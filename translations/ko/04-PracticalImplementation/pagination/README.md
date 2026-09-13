@@ -1,25 +1,25 @@
-# MCP에서 페이지네이션과 대용량 결과 집합
+# MCP에서 페이지 매김 및 대규모 결과 집합
 
-MCP 서버가 수천 개의 파일, 데이터베이스 레코드 또는 검색 결과와 같은 대규모 데이터셋을 처리할 때 메모리를 효율적으로 관리하고 반응성 있는 사용자 경험을 제공하려면 페이지네이션이 필요합니다. 이 가이드는 MCP에서 페이지네이션을 구현하고 사용하는 방법을 다룹니다.
+MCP 서버가 수천 개의 파일, 데이터베이스 레코드 또는 검색 결과를 나열하는 등 대규모 데이터 세트를 처리할 때, 메모리를 효율적으로 관리하고 반응적인 사용자 경험을 제공하려면 페이지 매김이 필요합니다. 이 가이드는 MCP에서 페이지 매김을 구현하고 사용하는 방법을 다룹니다.
 
-## 페이지네이션이 중요한 이유
+## 페이지 매김이 중요한 이유
 
-페이지네이션이 없으면 대규모 응답이 다음과 같은 문제를 일으킬 수 있습니다:
+페이지 매김이 없으면 대규모 응답이 다음과 같은 문제를 일으킬 수 있습니다:
 
-- **메모리 부족** - 수백만 개의 레코드를 한 번에 로드
+- **메모리 부족** - 한 번에 수백만 개 레코드 로드
 - **느린 응답 시간** - 모든 데이터가 로드될 때까지 사용자 대기
-- **타임아웃 오류** - 요청이 타임아웃 제한을 초과
-- **AI 성능 저하** - LLM이 방대한 컨텍스트를 처리하는 데 어려움
+- **타임아웃 오류** - 요청이 시간 제한을 초과
+- **부실한 AI 성능** - LLM이 방대한 맥락 처리에 어려움
 
-MCP는 결과 집합을 안정적이고 일관되게 페이지 처리하기 위해 **커서 기반 페이지네이션**을 사용합니다.
+MCP는 결과 집합을 안정적이고 일관되게 페이지 처리하기 위해 <strong>커서 기반 페이지 매김</strong>을 사용합니다.
 
 ---
 
-## MCP 페이지네이션 동작 방식
+## MCP 페이지 매김 동작 방식
 
 ### 커서 개념
 
-**커서**는 결과 집합 내 위치를 표시하는 불투명한 문자열입니다. 긴 책에서의 북마크와 같이 생각할 수 있습니다.
+<strong>커서</strong>는 결과 집합에서 현재 위치를 나타내는 불투명한 문자열입니다. 긴 책에 있는 책갈피와 비슷하다고 생각하세요.
 
 ```mermaid
 sequenceDiagram
@@ -27,17 +27,18 @@ sequenceDiagram
     participant Server
     
     Client->>Server: tools/list (커서 없음)
-    Server-->>Client: 도구 [1-10], 다음커서: "abc123"
+    Server-->>Client: tools [1-10], nextCursor: "abc123"
     
     Client->>Server: tools/list (커서: "abc123")
-    Server-->>Client: 도구 [11-20], 다음커서: "def456"
+    Server-->>Client: tools [11-20], nextCursor: "def456"
     
     Client->>Server: tools/list (커서: "def456")
-    Server-->>Client: 도구 [21-25], 다음커서: null (끝)
+    Server-->>Client: tools [21-25], nextCursor: null (끝)
 ```
-### MCP 메서드의 페이지네이션
 
-다음 MCP 메서드들이 페이지네이션을 지원합니다:
+### MCP 메서드에서의 페이지 매김
+
+다음 MCP 메서드들은 페이지 매김을 지원합니다:
 
 | 메서드 | 반환값 | 커서 지원 |
 |--------|---------|----------------|
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # 다음 커서 계산하기
+    # 다음 커서 계산
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// 시뮬레이션된 대용량 데이터셋
+// 시뮬레이션된 대규모 데이터셋
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### 지연 로딩 패턴
 
-매우 큰 데이터셋의 경우 필요에 따라 페이지를 로드하세요:
+매우 큰 데이터 세트의 경우, 페이지를 필요할 때마다 로드하세요:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # 버퍼에서 가능하면 반환
+        # 버퍼에 있으면 버퍼에서 반환
         if self.buffer:
             return self.buffer.pop(0)
         
-        # 모든 페이지를 다 사용했는지 확인
+        # 모든 페이지를 다 소모했는지 확인
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# 사용법 - 대용량 데이터셋에 대해 메모리 효율적임
+# 사용법 - 대용량 데이터셋에 메모리 효율적
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## 리소스용 페이지네이션
+## 리소스를 위한 페이지 매김
 
-리소스는 디렉터리나 대규모 데이터셋에 대해 페이지네이션이 자주 필요합니다:
+디렉터리 또는 대규모 데이터 세트에 대해 리소스는 종종 페이지 매김이 필요합니다:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # 커서 디코딩 (파일 인덱스)
+    # 커서(파일 인덱스) 디코딩
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # 이 페이지에 대한 리소스 리스트 생성
+    # 이 페이지에 대한 리소스 목록 생성
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -320,15 +321,15 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## 커서 설계 전략
 
-### 전략 1: 인덱스 기반 (단순)
+### 전략 1: 인덱스 기반 (간단함)
 
 ```python
-# 커서는 단지 인덱스입니다
+# 커서는 단순히 인덱스입니다
 cursor = "50"  # 50번째 항목에서 시작합니다
 ```
 
-**장점:** 단순하고 상태 비저장  
-**단점:** 항목이 추가/삭제되면 결과가 이동할 수 있음
+**장점:** 단순하고 상태가 없음
+**단점:** 항목이 추가되거나 제거되면 결과가 변할 수 있음
 
 ### 전략 2: ID 기반 (안정적)
 
@@ -337,10 +338,10 @@ cursor = "50"  # 50번째 항목에서 시작합니다
 cursor = "item_abc123"  # 이 항목 다음부터 시작합니다
 ```
 
-**장점:** 항목이 변경되어도 안정적  
-**단점:** 정렬된 ID 필요
+**장점:** 항목이 변해도 안정적임
+**단점:** 정렬된 ID가 필요함
 
-### 전략 3: 인코딩된 상태 (복잡)
+### 전략 3: 인코딩된 상태 (복잡함)
 
 ```python
 import base64
@@ -360,8 +361,8 @@ cursor = encode_cursor({
 })
 ```
 
-**장점:** 복잡한 상태를 인코딩 가능  
-**단점:** 더 복잡하고 커서 문자열이 길어짐
+**장점:** 복잡한 상태도 인코딩 가능
+**단점:** 더 복잡하고 커서 문자열이 더 김
 
 ---
 
@@ -373,7 +374,7 @@ cursor = encode_cursor({
 # 데이터 크기를 고려하세요
 PAGE_SIZE_SMALL_ITEMS = 100   # 간단한 메타데이터
 PAGE_SIZE_MEDIUM_ITEMS = 20   # 더 풍부한 객체
-PAGE_SIZE_LARGE_ITEMS = 5     # 복잡한 내용
+PAGE_SIZE_LARGE_ITEMS = 5     # 복잡한 콘텐츠
 ```
 
 ### 2. 잘못된 커서 우아하게 처리
@@ -386,7 +387,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # 처음으로 재설정
     except (ValueError, TypeError):
-        start_index = 0  # 잘못된 커서, 새로 시작
+        start_index = 0  # 유효하지 않은 커서, 새로 시작
     # ...
 ```
 
@@ -396,12 +397,12 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # 일부 구현은 UI 진행 상황을 위한 전체 합계를 포함합니다
+    # 일부 구현은 UI 진행 상황에 대한 총계를 포함합니다
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. 극단적 케이스 테스트
+### 4. 극한 사례 테스트
 
 ```python
 async def test_pagination():
@@ -416,14 +417,14 @@ async def test_pagination():
     
     # 잘못된 커서
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # 첫 페이지를 반환해야 함
+    assert result.tools  # 첫 번째 페이지를 반환해야 함
 ```
 
 ---
 
-## 자주 하는 실수
+## 흔한 함정
 
-### ❌ 모든 결과를 반환한 후 클라이언트에서 페이지네이션 수행
+### ❌ 모든 결과를 반환한 후 클라이언트에서 페이지 매김
 
 ```python
 # 나쁨: 모든 것을 메모리에 로드함
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ 데이터 소스에서 페이지네이션 수행
+### ✅ 데이터 소스에서 페이지 매김 수행
 
 ```python
 # 좋음: 필요한 것만 로드합니다
@@ -450,19 +451,19 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 - [모듈 5.14 - 컨텍스트 엔지니어링](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [모듈 8 - 모범 사례](../../08-BestPractices/README.md)
-- [3.8 - MCP 서버 테스트](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - MCP 서버 테스트하기](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## 추가 자료
 
-- [MCP 사양 - 페이지네이션](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [커서 기반 페이지네이션 설명](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK 페이지네이션 테스트](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP 사양 - 페이지 매김](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [커서 기반 페이지 매김 설명](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK 페이지 매김 테스트](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있음을 유의해 주시기 바랍니다. 원본 문서의 원어는 권위 있는 출처로 간주되어야 합니다. 중요한 정보의 경우 전문 인간 번역을 권장합니다. 본 번역의 사용으로 인한 오해나 오해석에 대해 당사는 어떠한 법적 책임도 지지 않습니다.
+**면책 조항**:
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 기하기 위해 노력하고 있으나, 자동 번역은 오류나 부정확한 부분이 있을 수 있음을 유의하시기 바랍니다. 원본 문서의 원어본이 권위 있는 자료로 간주되어야 합니다. 중요한 정보의 경우, 전문가의 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

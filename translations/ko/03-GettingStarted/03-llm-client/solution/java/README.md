@@ -1,8 +1,13 @@
 # 계산기 LLM 클라이언트
 
-LangChain4j를 사용하여 MiniMax OpenAI 호환 API를 통해 MCP(모델 컨텍스트 프로토콜) 계산기 서비스에 연결하는 방법을 보여주는 Java 애플리케이션입니다.
+> [!NOTE]
+> 이 솔루션은 강의의 레거시 HTTP+SSE 계산기 서비스에 연결되며 
+> MCP `2025-11-25` SDK API를 대상으로 합니다. 이는 `2026-07-28` 스트리머블 HTTP
+> 예제가 아닙니다.
 
-## 전제 조건
+LangChain4j를 사용하여 MiniMax OpenAI 호환 API를 통해 MCP(모델 컨텍스트 프로토콜) 계산기 서비스에 연결하는 방법을 시연하는 자바 응용 프로그램입니다.
+
+## 필수 조건
 
 - Java 21 이상
 - Maven 3.6+ (또는 포함된 Maven 래퍼 사용)
@@ -11,11 +16,11 @@ LangChain4j를 사용하여 MiniMax OpenAI 호환 API를 통해 MCP(모델 컨�
 
 ## API 키 받기
 
-이 애플리케이션은 MiniMax OpenAI 호환 API를 사용합니다. 키와 엔드포인트를 얻으려면 다음 단계를 따르세요:
+이 응용 프로그램은 MiniMax OpenAI 호환 API를 사용합니다. 키와 엔드포인트를 얻으려면 다음 단계를 따르세요:
 
 ### 1. 엔드포인트 선택
-1. 글로벌 엔드포인트는 `https://api.minimax.io/v1` 사용
-2. 중국 엔드포인트는 `https://api.minimaxi.com/v1` 사용
+1. 글로벌 엔드포인트로는 `https://api.minimax.io/v1` 사용
+2. 중국 엔드포인트로는 `https://api.minimaxi.com/v1` 사용
 
 ### 2. API 키 생성
 1. MiniMax 계정에서 MiniMax API 키 생성
@@ -46,21 +51,21 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## 설정 및 설치
 
-1. **프로젝트 디렉터리 클론 또는 이동**
+1. **프로젝트 디렉터리 클론하거나 이동**
 
-2. **의존성 설치**:
+2. **종속성 설치**:
    ```cmd
    mvnw clean install
    ```
-   Maven이 전역에 설치된 경우:
+   또는 Maven이 전역에 설치되어 있다면:
    ```cmd
    mvn clean install
    ```
 
-3. **환경 변수 설정** ("API 키 받기" 섹션 참조)
+3. **환경 변수 설정** ("API 키 받기" 섹션 참고)
 
 4. **MCP 계산기 서비스 시작**:
-   `http://localhost:8080/sse`에서 1장 MCP 계산기 서비스가 실행 중인지 확인하세요. 클라이언트를 시작하기 전에 반드시 실행 중이어야 합니다.
+   1장의 MCP 계산기 서비스가 `http://localhost:8080/sse`에서 실행 중인지 확인하세요. 클라이언트를 시작하기 전에 실행 중이어야 합니다.
 
 ## 애플리케이션 실행
 
@@ -71,7 +76,7 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## 애플리케이션이 수행하는 작업
 
-애플리케이션은 계산기 서비스와 세 가지 주요 상호작용을 보여줍니다:
+애플리케이션은 계산기 서비스와 세 가지 주요 상호작용을 시연합니다:
 
 1. <strong>덧셈</strong>: 24.5와 17.3의 합 계산
 2. <strong>제곱근</strong>: 144의 제곱근 계산
@@ -79,7 +84,7 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## 예상 출력
 
-성공적으로 실행하면 다음과 유사한 출력이 표시됩니다:
+성공적으로 실행되면 다음과 유사한 출력을 볼 수 있습니다:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,21 +96,21 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### 일반적인 문제
 
-1. **"OPENAI_API_KEY 환경 변수가 설정되지 않았습니다"**
-   - `OPENAI_API_KEY` 환경 변수를 설정했는지 확인하세요
-   - 변수를 설정한 후 터미널/명령 프롬프트를 다시 시작하세요
+1. **"OPENAI_API_KEY 환경 변수가 설정되지 않음"**
+   - `OPENAI_API_KEY` 환경 변수가 설정되었는지 확인하세요
+   - 변수 설정 후 터미널/명령 프롬프트를 재시작하세요
 
 2. **"localhost:8080에 연결 거부됨"**
-   - MCP 계산기 서비스가 8080 포트에서 실행 중인지 확인
-   - 8080 포트를 사용하는 다른 서비스가 있는지 확인
+   - MCP 계산기 서비스가 포트 8080에서 실행 중인지 확인하세요
+   - 다른 서비스가 포트 8080을 사용 중인지 확인하세요
 
 3. **"인증 실패"**
-   - API 키가 유효한지 확인
-   - `OPENAI_BASE_URL`이 사용하려는 엔드포인트와 일치하는지 확인
+   - API 키가 유효한지 확인하세요
+   - `OPENAI_BASE_URL`이 사용하려는 엔드포인트와 일치하는지 확인하세요
 
 4. **Maven 빌드 오류**
-   - Java 21 이상을 사용 중인지 확인: `java -version`
-   - 빌드 정리 시도: `mvnw clean`
+   - Java 21 이상을 사용 중인지 확인하세요: `java -version`
+   - 빌드를 깨끗하게 해보세요: `mvnw clean`
 
 ### 디버깅
 
@@ -114,17 +119,17 @@ The calculator service provides the following functions: add, subtract, multiply
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## 설정
+## 구성
 
-애플리케이션 설정은 다음과 같습니다:
-- 기본적으로 MiniMax-M3 사용; `MINIMAX_MODEL_ID` 설정으로 `MiniMax-M3` 또는 `MiniMax-M2.7` 선택 가능
-- `OPENAI_BASE_URL`이 설정되면 해당 URL에 연결; 그렇지 않으면 `MINIMAX_REGION=cn_zh` 시 `https://api.minimaxi.com/v1`, 기본은 `https://api.minimax.io/v1` 사용
-- `http://localhost:8080/sse`의 MCP 서비스에 연결
-- 요청에 60초 타임아웃 사용
+애플리케이션은 다음과 같이 구성됩니다:
+- 기본적으로 MiniMax-M3 사용; `MINIMAX_MODEL_ID`를 설정하여 `MiniMax-M3` 또는 `MiniMax-M2.7` 선택 가능
+- `OPENAI_BASE_URL`이 설정된 경우 해당 URL에 연결; 그렇지 않으면 `MINIMAX_REGION=cn_zh`일 때는 `https://api.minimaxi.com/v1`, 기본적으로는 `https://api.minimax.io/v1` 사용
+- MCP 서비스는 `http://localhost:8080/sse`에 연결
+- 요청에 60초 제한 시간 사용
 
-## 의존성
+## 종속성
 
-이 프로젝트에서 사용하는 주요 의존성:
+이 프로젝트에서 사용하는 주요 종속성:
 - **LangChain4j**: AI 통합 및 도구 관리용
 - **LangChain4j MCP**: 모델 컨텍스트 프로토콜 지원용
 - **LangChain4j OpenAI 공식**: MiniMax OpenAI 호환 API 통합용
@@ -132,7 +137,7 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 
 ## 라이선스
 
-이 프로젝트는 Apache License 2.0 하에 라이선스가 부여되어 있습니다 - 자세한 내용은 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 파일을 참조하세요.
+이 프로젝트는 Apache License 2.0 라이선스 하에 있습니다 - 자세한 내용은 [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) 파일을 참조하세요.
 
 ---
 

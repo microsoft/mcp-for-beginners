@@ -1,39 +1,41 @@
 # stdio トランスポートを使った MCP サーバー
 
-> **⚠️ 重要な更新**: MCP仕様書 2025-06-18 により、スタンドアロンの SSE (Server-Sent Events) トランスポートは<strong>非推奨</strong>となり、「Streamable HTTP」トランスポートに置き換えられました。現在の MCP 仕様では主に次の2つのトランスポート機構が定義されています：
-> 1. **stdio** - 標準入出力（ローカルサーバーに推奨）
-> 2. **Streamable HTTP** - SSEを内部的に使用する可能性があるリモートサーバー向け
+> **⚠️ 重要なアップデート**: MCP仕様 2025-06-18 の時点で、単独の SSE (Server-Sent Events) トランスポートは <strong>非推奨</strong> となり、「Streamable HTTP」トランスポートに置き換えられました。現行の MCP 仕様では、主要な２つのトランスポートメカニズムが定義されています:
+> 1. **stdio** - 標準入力／出力（ローカルサーバーに推奨）
+> 2. **Streamable HTTP** - SSE を内部的に使う可能性のあるリモートサーバー向け
 >
-> 本レッスンは、ほとんどの MCP サーバー実装に推奨される<strong>stdio トランスポート</strong>に焦点を当てて更新されています。
+> 本レッスンは、ほとんどの MCP サーバー実装に推奨される **stdio トランスポート** に焦点を当てて更新されています。
 
-stdio トランスポートは、MCP サーバーが標準入力と標準出力のストリームを介してクライアントと通信するためのものです。これは、現在の MCP 仕様で最も一般的かつ推奨されるトランスポート方式であり、さまざまなクライアントアプリケーションと簡単に統合できるシンプルで効率的な方法を提供します。
+stdio トランスポートを使用することで、MCP サーバーは標準入力および標準出力ストリームを通じてクライアントと通信できます。これは MCP 仕様で最も一般的かつ推奨されるトランスポートであり、様々なクライアントアプリケーションと簡単に統合可能なシンプルかつ効率的な MCP サーバー構築手法です。
 
 ## 概要
 
-このレッスンでは、stdio トランスポートを使った MCP サーバーの構築と利用方法を解説します。
+このレッスンでは、stdio トランスポートを用いて MCP サーバーを構築し、利用する方法を解説します。
 
 ## 学習目標
 
-このレッスン終了時には以下が可能になります：
+このレッスンを終える頃には、以下ができるようになります:
 
-- stdio トランスポートを使った MCP サーバーの構築
-- Inspector を使った MCP サーバーのデバッグ
-- Visual Studio Code での MCP サーバーの利用
-- 現行 MCP トランスポート機構と stdio が推奨される理由の理解
+- stdio トランスポートを使って MCP サーバーを構築する。
+- Inspector を使って MCP サーバーのデバッグを行う。
+- Visual Studio Code から MCP サーバーを利用する。
+- 現行 MCP のトランスポートメカニズムと stdio 推奨の理由を理解する。
 
-## stdio トランスポートの仕組み
 
-stdio トランスポートは、現行 MCP 仕様（2025-11-25）でサポートされている2つのトランスポートタイプのうちの1つです。仕組みは以下の通りです：
+## stdio トランスポート - 動作原理
 
-- <strong>シンプルな通信</strong>：サーバーは標準入力(stdin)から JSON-RPC メッセージを読み込み、標準出力(stdout)にメッセージを送信します。
-- <strong>プロセスベース</strong>：クライアントが MCP サーバーをサブプロセスとして起動します。
-- <strong>メッセージ形式</strong>：メッセージは個々の JSON-RPC リクエスト、通知、またはレスポンスで、改行で区切られています。
-- <strong>ログ出力</strong>：サーバーは必要に応じて標準エラー(stderr)に UTF-8 文字列を書き込むことがあります。
+stdio トランスポートは MCP 仕様
+`2026-07-28` における 2 つの標準トランスポートの一つです。動作は以下の通りです:
 
-### 重要な要件：
+- <strong>シンプルな通信</strong>: サーバーは標準入力(`stdin`)から JSON-RPC メッセージを読み取り、標準出力(`stdout`)へメッセージを送信します。
+- <strong>プロセスベース</strong>: クライアントが MCP サーバーをサブプロセスとして起動します。
+- <strong>メッセージ形式</strong>: メッセージは個別の JSON-RPC リクエスト、通知、またはレスポンスであり、改行で区切られます。
+- <strong>ログ出力</strong>: サーバーはログのために標準エラー(`stderr`)へ UTF-8 文字列を出力してもよいです。
+
+### 主要要件:
 - メッセージは必ず改行で区切られ、埋め込み改行を含んではいけません
-- サーバーは有効な MCP メッセージでないものを stdout に書き込んではいけません
-- クライアントは有効な MCP メッセージでないものをサーバーの stdin に書き込んではいけません
+- サーバーは有効な MCP メッセージ以外を `stdout` に書き込んではいけません
+- クライアントは有効な MCP メッセージ以外をサーバーの `stdin` に書き込んではいけません
 
 ### TypeScript
 
@@ -61,11 +63,11 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-上のコードでは：
+前述のコードでは:
 
 - MCP SDK から `Server` クラスと `StdioServerTransport` をインポートしています
-- 基本的な設定と能力を持つサーバーインスタンスを作成しています
-- `StdioServerTransport` インスタンスを作成し、stdin/stdout 経由の通信を有効にするためサーバーに接続しています
+- 基本設定と機能を持ったサーバーインスタンスを作成しています
+- `StdioServerTransport` インスタンスを作成し、サーバーを標準入出力で通信可能に接続しています
 
 ### Python
 
@@ -95,11 +97,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-上のコードでは：
+上記コードでは:
 
 - MCP SDK を使ってサーバーインスタンスを作成しています
-- デコレーターを使ってツールを定義しています
-- stdio_server コンテキストマネージャーを使用してトランスポートを処理しています
+- デコレーターでツールを定義しています
+- stdio_server コンテキストマネージャーを使ってトランスポートを管理しています
 
 ### .NET
 
@@ -122,30 +124,29 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-SSE と違う主な点は stdio サーバーが：
+SSE との主な違いは stdio サーバーは:
 
-- Webサーバー設定や HTTP エンドポイントを必要としないこと
-- クライアントがサブプロセスとして起動すること
-- stdin/stdout ストリームで通信すること
-- 実装とデバッグがより簡単であること
+- ウェブサーバー設定や HTTP エンドポイントを必要としません
+- クライアントによりサブプロセスとして起動されます
+- 標準入力・出力ストリームで通信します
+- 実装やデバッグが簡単です
 
 ## 演習: stdio サーバーの作成
 
-サーバーを作成するにあたり、以下のことを念頭に置きます：
+サーバー作成にあたり以下を念頭に置きます:
 
-- 接続とメッセージ用にエンドポイントを公開するために Web サーバーを使用する必要があります。
+- 接続やメッセージ用のエンドポイントを公開するにはウェブサーバーを使う必要があります。
+## ラボ: 簡単な MCP stdio サーバーの作成
 
-## 実習: 簡単な MCP stdio サーバーの作成
-
-この実習では、推奨される stdio トランスポートを使って単純な MCP サーバーを作成します。このサーバーはクライアントが標準の Model Context Protocol を使って呼び出せるツールを公開します。
+このラボでは、推奨される stdio トランスポートを用いてシンプルな MCP サーバーを作成します。クライアントが標準の Model Context Protocol を使って呼び出せるツールを公開します。
 
 ### 前提条件
 
 - Python 3.8 以上
-- MCP Python SDK：`pip install mcp`
-- 非同期プログラミングの基本知識
+- MCP Python SDK: `pip install mcp`
+- 非同期プログラミングの基礎知識
 
-さっそく最初の MCP stdio サーバーを作成してみましょう：
+まずは初めての MCP stdio サーバーを作ってみましょう:
 
 ```python
 import asyncio
@@ -154,7 +155,7 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# ロギングを設定する
+# ロギングを構成する
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -186,32 +187,32 @@ if __name__ == "__main__":
 
 ## 非推奨の SSE アプローチとの主な違い
 
-**Stdio トランスポート（現在の標準）：**
+**Stdio トランスポート（現在の標準）:**
 - シンプルなサブプロセスモデル - クライアントがサーバーを子プロセスとして起動
-- JSON-RPC メッセージを使った stdin/stdout 通信
-- HTTP サーバー設定は不要
-- 性能とセキュリティが向上
+- JSON-RPC メッセージを標準入出力で通信
+- HTTP サーバー設定不要
+- パフォーマンスとセキュリティが向上
 - デバッグと開発が容易
 
-**SSE トランスポート（MCP 2025-06-18 以降非推奨）：**
-- SSE エンドポイントを持つ HTTP サーバーが必要
-- Webサーバーインフラによる複雑なセットアップ
-- HTTP エンドポイントの追加セキュリティ考慮事項
-- Webベースのシナリオでは Streamable HTTP に置き換えられた
+**SSE トランスポート（MCP 2025-06-18 で非推奨）:**
+- SSE エンドポイント付き HTTP サーバーが必要
+- ウェブサーバーインフラの複雑なセットアップ
+- HTTP エンドポイントの追加セキュリティ考慮
+- 現在はウェブベース用途のため Streamable HTTP に置き換え済み
 
-### stdio トランスポートでサーバーを作る
+### stdio トランスポートのサーバー作成
 
-stdio サーバー作成の基本手順は以下の通りです：
+stdio サーバーを作成するには:
 
-1. <strong>必要なライブラリをインポート</strong> - MCP サーバーコンポーネントと stdio トランスポート
-2. <strong>サーバーインスタンスを作成</strong> - サーバーとその機能を定義
+1. <strong>必要なライブラリをインポート</strong> - MCP サーバー部品と stdio トランスポートを使用
+2. <strong>サーバーインスタンスを作成</strong> - 機能を定義
 3. <strong>ツールを定義</strong> - 公開したい機能を追加
-4. <strong>トランスポートをセットアップ</strong> - stdio 通信を設定
-5. <strong>サーバーを起動</strong> - サーバーを開始しメッセージを処理
+4. <strong>トランスポートを設定</strong> - stdio 通信を構成
+5. <strong>サーバーを起動</strong> - メッセージを処理しながらサーバーを実行
 
-ステップごとに作っていきましょう：
+一つずつ順番に進めていきましょう:
 
-### ステップ1: 基本的な stdio サーバーを作成
+### ステップ 1: 基本的な stdio サーバーを作成
 
 ```python
 import asyncio
@@ -243,7 +244,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### ステップ2: ツールを追加
+### ステップ 2: さらにツールを追加
 
 ```python
 @server.tool()
@@ -267,21 +268,21 @@ def get_server_info() -> dict:
     }
 ```
 
-### ステップ3: サーバーの起動
+### ステップ 3: サーバーの起動
 
-コードを `server.py` として保存し、コマンドラインで実行します：
+コードを `server.py` として保存し、コマンドラインから実行してください:
 
 ```bash
 python server.py
 ```
 
-サーバーが起動し、stdin からの入力を待機します。stdio トランスポート経由で JSON-RPC メッセージで通信します。
+サーバーは起動して標準入力からの入力を待機します。stdio トランスポートを通じて JSON-RPC メッセージで通信します。
 
-### ステップ4: Inspector でのテスト
+### ステップ 4: Inspector でのテスト
 
-MCP Inspector を使ってサーバーをテストできます：
+MCP Inspector を使ってサーバーをテストできます:
 
-1. Inspector をインストール：`npx @modelcontextprotocol/inspector`
+1. Inspector をインストール: `npx @modelcontextprotocol/inspector`
 2. Inspector を起動し、サーバーを指定
 3. 作成したツールをテスト
 
@@ -296,29 +297,29 @@ builder.Services
 
 ### MCP Inspector の使用
 
-MCP Inspector は MCP サーバーのデバッグとテストに役立つツールです。stdio サーバーでの使い方は以下の通り：
+MCP Inspector は MCP サーバーのデバッグとテストに役立つツールです。stdio サーバーでの使い方は以下の通りです:
 
-1. **Inspector をインストール**：
+1. **Inspector をインストール**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Inspector を実行**：
+2. **Inspector を起動**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. <strong>サーバーをテスト</strong>：Inspector のウェブインターフェースで以下が可能です：
-   - サーバーの能力を表示
-   - パラメーターを変えたツールのテスト
+3. <strong>サーバーをテスト</strong>: Inspector のウェブインターフェースで以下ができます:
+   - サーバーの機能表示
+   - さまざまなパラメーターでツールをテスト
    - JSON-RPC メッセージの監視
-   - 接続問題の調査
+   - 接続の問題をデバッグ
 
 ### VS Code の使用
 
-VS Code でも直接 MCP サーバーをデバッグできます：
+VS Code 内でも MCP サーバーのデバッグが可能です:
 
-1. `.vscode/launch.json` に起動構成を作成：
+1. `.vscode/launch.json` に起動設定を作成:
    ```json
    {
      "version": "0.2.0",
@@ -335,22 +336,22 @@ VS Code でも直接 MCP サーバーをデバッグできます：
    ```
 
 2. サーバーコードにブレークポイントを設定
-3. デバッガーを起動し、Inspector でテスト
+3. デバッガーを実行し、Inspector と併用してテスト
 
-### よくあるデバッグのヒント
+### 一般的なデバッグのコツ
 
-- ログは `stderr` に書き、`stdout` には MCP メッセージのみを出力する
-- すべての JSON-RPC メッセージが改行区切りであることを確認
-- 最初は単純なツールでテストし、複雑な機能は後から追加
-- Inspector を活用してメッセージ形式を検証する
+- ログには `stderr` を使う - `stdout` は MCP メッセージ専用で絶対に使わない
+- 全ての JSON-RPC メッセージが改行区切りであることを確認
+- 複雑な機能追加前にまずシンプルなツールでテスト
+- Inspector でメッセージ形式を検証
 
-## VS Code での stdio サーバーの利用
+## VS Code での stdio サーバー利用
 
-MCP stdio サーバーを作成したら、VS Code に統合して Claude などの MCP 対応クライアントで利用できます。
+MCP stdio サーバーを構築したら、Claude や他の MCP 対応クライアントとの連携のため VS Code に統合できます。
 
 ### 設定方法
 
-1. `%APPDATA%\Claude\claude_desktop_config.json` (Windows) または `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) に MCP 設定ファイルを作成：
+1. MCP 設定ファイルを `%APPDATA%\Claude\claude_desktop_config.json`（Windows）または `~/Library/Application Support/Claude/claude_desktop_config.json`（Mac）に作成:
 
    ```json
    {
@@ -363,16 +364,16 @@ MCP stdio サーバーを作成したら、VS Code に統合して Claude など
    }
    ```
 
-2. **Claude を再起動**：新設定を読み込むため Claude を閉じて再度開く
+2. Claude を再起動し、新サーバー設定を読み込みます。
 
-3. <strong>接続テスト</strong>：Claude と会話し、サーバーツールを試す：
-   - 「greeting ツールを使って挨拶してくれる？」
+3. 接続テスト: Claude との会話を開始し、サーバーのツールを試します:
+   - 「greeting ツールで挨拶してくれますか？」
    - 「15 と 27 の合計を計算して」
-   - 「サーバー情報を教えて」
+   - 「サーバー情報は？」
 
-### TypeScript stdio サーバー例
+### TypeScript stdio サーバーの例
 
-参考のための完全な TypeScript 例：
+参考用の TypeScript 完全例です:
 
 ```typescript
 #!/usr/bin/env node
@@ -437,7 +438,7 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-### .NET stdio サーバー例
+### .NET stdio サーバーの例
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -475,19 +476,20 @@ public class Tools
 
 ## まとめ
 
-本レッスンでは以下を学びました：
+この更新レッスンで学んだこと:
 
-- 現行の **stdio トランスポート**（推奨手法）を使った MCP サーバーの構築
+- 現行の **stdio トランスポート**（推奨手法）を用いた MCP サーバーの構築
 - SSE トランスポートが stdio と Streamable HTTP に置き換えられた理由の理解
-- MCP クライアントから呼び出せるツールの作成
-- MCP Inspector を使ったサーバーデバッグ
-- VS Code と Claude との統合方法
+- MCP クライアントが呼び出せるツールの作成
+- MCP Inspector を使ったサーバーのデバッグ
+- VS Code と Claude との統合による stdio サーバーの活用
 
-stdio トランスポートは、非推奨となった SSE アプローチと比較して、より簡単で安全かつ高性能に MCP サーバーを構築できる方法です。2025-06-18 仕様以降、ほとんどの MCP サーバー実装に推奨されています。
+stdio トランスポートは、非推奨となった SSE アプローチに比べてシンプルでセキュアかつ高性能な MCP サーバー構築方法を提供し、2025-06-18 仕様以降ほとんどの MCP サーバー実装に推奨されています。
+
 
 ### .NET
 
-1. まずはツールを作成しましょう。*Tools.cs* というファイルに以下の内容を記述します：
+1. まずはツールをいくつか作成しましょう。*Tools.cs* ファイルに以下の内容を記述します:
 
   ```csharp
   using System.ComponentModel;
@@ -497,101 +499,100 @@ stdio トランスポートは、非推奨となった SSE アプローチと比
 
 ## 演習: stdio サーバーのテスト
 
-stdio サーバーができたら、正しく動作するかテストしましょう。
+stdio サーバーを構築したので、正常に動作するかテストしましょう。
 
 ### 前提条件
 
-1. MCP Inspector がインストールされていること：
+1. MCP Inspector がインストールされていることを確認:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. サーバーコードが保存されていること（例：`server.py`）
+2. サーバーコードが保存されていること（例: `server.py`）
 
 ### Inspector でのテスト
 
-1. **Inspector をサーバーで起動**：
+1. **Inspector をサーバー付きで起動**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. <strong>ウェブインターフェースを開く</strong>：Inspector はサーバーの能力を表示するブラウザウィンドウを開きます。
+2. <strong>ウェブインターフェースを開く</strong>: Inspector がブラウザを開き、サーバーの機能を表示します。
 
-3. <strong>ツールをテスト</strong>： 
-   - `get_greeting` ツールに様々な名前で呼び出し
-   - `calculate_sum` ツールに異なる数値を入力
-   - `get_server_info` ツールでサーバーメタデータ確認
+3. <strong>ツールをテスト</strong>:
+   - `get_greeting` ツールを様々な名前で試す
+   - `calculate_sum` ツールを色々な数値でテスト
+   - `get_server_info` ツールを呼び出し、サーバーのメタデータを確認
 
-4. <strong>通信状況を監視</strong>：Inspector でクライアントとサーバー間の JSON-RPC メッセージを確認
+4. <strong>通信を監視</strong>: Inspector はクライアントとサーバー間の JSON-RPC メッセージを表示します。
 
-### 正常時に見るべき内容
+### 見られるべきもの
 
-サーバーが正しく起動していれば以下が見られます：
-- Inspector に表示されたサーバーの能力
-- テスト可能なツールの一覧
-- 成功した JSON-RPC メッセージ交換
-- インターフェースに表示されるツールの応答
+正常に起動した場合、以下が確認できます:
+- Inspector 内でサーバーの機能一覧
+- テスト可能なツール
+- 成功した JSON-RPC メッセージの交換
+- インターフェースに返されたツールのレスポンス
 
-### よくある問題と対処法
+### よくある問題と解決策
 
-**サーバーが起動しない：**
-- 必要な依存関係 (`pip install mcp`) がインストールされているか確認
-- Python の構文・インデントをチェック
+**サーバーが起動しない:**
+- 依存関係が全てインストールされているか確認: `pip install mcp`
+- Python の文法エラーやインデントを確認
 - コンソールのエラーメッセージを確認
 
-**ツールが表示されない：**
-- `@server.tool()` デコレータがあるか確認
-- ツール関数が `main()` 実行前に定義されているか
-- サーバー設定が正しく行われているか確認
+**ツールが表示されない:**
+- `@server.tool()` デコレーターの有無を確認
+- `main()` より前にツール関数が定義されているか確認
+- サーバーが正しく設定されているか確認
 
-**接続の問題：**
-- stdio トランスポートが正しく使われているか
-- 他のプロセスとの干渉がないか確認
-- Inspector のコマンド構文を見直す
+**接続問題:**
+- サーバーが stdio トランスポートを正しく使っているか確認
+- 他のプロセスが干渉していないか確認
+- Inspector のコマンド構文を確認
 
 ## 課題
 
-自分でサーバーの機能を拡張してみましょう。例えば [このページ](https://api.chucknorris.io/) の API を呼び出すツールを追加したり、サーバーの形を自由に決めてください。楽しんで作ってみてください :)
-
+さらに機能を充実させたサーバーを構築してみてください。[こちらのページ](https://api.chucknorris.io/)などを参考に、API を呼び出すツールを追加するのも良いでしょう。サーバーの仕様はあなた次第です。楽しんでください :)
 ## 解答例
 
-[解答例](./solution/README.md) 動作するコードを含んだ一例です。
+[解答例](./solution/README.md) 動作するコードを含む一例です。
 
-## 重要ポイント
+## 重要なポイント
 
-この章での重要ポイントは以下の通りです：
+本章の重要なポイントは以下です:
 
-- stdio トランスポートはローカル MCP サーバーに推奨される通信機構である
-- stdio トランスポートにより MCP サーバーとクライアント間が標準入出力ストリームでシームレスに通信可能
-- Inspector と Visual Studio Code の両方で stdio サーバーを直接利用でき、デバッグや統合が簡単に行える
+- stdio トランスポートはローカル MCP サーバーに推奨される仕組みです。
+- 標準入力・出力ストリームを使い MCP サーバーとクライアント間でシームレスに通信できます。
+- Inspector と Visual Studio Code の両方を使って stdio サーバーを直接利用でき、デバッグや統合が簡単です。
 
-## サンプル集
+## サンプル 
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python) 
+- [Java 計算機](../samples/java/calculator/README.md)
+- [.Net 計算機](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript 計算機](../samples/javascript/README.md)
+- [TypeScript 計算機](../samples/typescript/README.md)
+- [Python 計算機](../../../../03-GettingStarted/samples/python) 
 
 ## 追加リソース
 
 - [SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
-## 次に学ぶこと
+## 次に進むべきこと
 
 ## 次のステップ
 
-stdio トランスポートで MCP サーバーの作成方法を学んだので、次の応用トピックに進みましょう：
+stdio トランスポートを使った MCP サーバー構築を学んだら、より高度なトピックに進みましょう:
 
-- <strong>次へ</strong>: [MCP の HTTP ストリーミング（Streamable HTTP）](../06-http-streaming/README.md) - リモートサーバー向けのもう一つのサポートトランスポートを学ぶ
-- <strong>応用</strong>: [MCP セキュリティベストプラクティス](../../02-Security/README.md) - MCP サーバーのセキュリティ対策を実装
-- <strong>本番用</strong>: [デプロイ戦略](../09-deployment/README.md) - 本番環境向けサーバーのデプロイ方法
+- <strong>次へ</strong>: [MCP の HTTP ストリーミング (Streamable HTTP)](../06-http-streaming/README.md) - リモートサーバー向けの他のトランスポートメカニズムを学ぶ
+- <strong>上級</strong>: [MCP セキュリティのベストプラクティス](../../02-Security/README.md) - MCP サーバーにセキュリティを実装
+- <strong>本番</strong>: [デプロイ戦略](../09-deployment/README.md) - サーバーを本番環境へ展開
 
 ## 追加リソース
 
-- [MCP 仕様書 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) - 公式仕様
+- [MCP 仕様 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - 現行仕様
 - [MCP SDK ドキュメント](https://github.com/modelcontextprotocol/sdk) - 全言語向け SDK リファレンス
-- [コミュニティサンプル](../../06-CommunityContributions/README.md) - コミュニティによる他のサーバー例
+- [コミュニティ例](../../06-CommunityContributions/README.md) - コミュニティによるさらに多くのサーバー例
 
 ---
 
