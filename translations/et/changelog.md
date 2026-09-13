@@ -1,52 +1,96 @@
 # Muudatuste logi: MCP algajate õppekava
 
-See dokument toimib kõigi Model Context Protocol (MCP) algajate õppekavas tehtud oluliste muudatuste kirjelduseks. Muudatused on dokumenteeritud pööratud kronoloogilises järjekorras (kõige uuemad muudatused eespool).
+See dokument toimib kõigi Model Context Protocol (MCP) algajate õppekavas tehtud oluliste muudatuste registrina. Muudatused on dokumenteeritud pöördses kronoloogilises järjekorras (kõige uuemad muudatused ees).
 
-## 29. juuli 2026
+## 9. september 2026
 
-### Uus moodul 08 kaaslane: Usaldusväärsuse kõrvalprogrammid ja turvalised taaskatsed
+### MCP 2026-07-28 lõpliku spetsifikatsiooni joondamine
 
-Lisatud tarnijast sõltumatu kaasatundmuse tund MCP tööriistadele, mis loovad reaalmaailma
-efekte, vastavuses lõpliku `2026-07-28` spetsifikatsiooniga.
+Uuendatud ingliskeelne õppekava release-kandidaadi ja `2025-11-25`
+baasjoonist lõpliku MCP `2026-07-28` spetsifikatsiooni vastu.
 
-- **Uus**: [usaldusväärsuse kõrvalprogrammi kaasõppetund][reliability-sidecar]
-  kasutab ühte tugipileti lugu, kahte Mermaid diagrammi ja taaskatse otsustamise
-  voogu, et selgitada stabiilse toimimise võtmeid, aatomilist duplikaatide vastuvõttu,
-  kokkulepet, tõendeid ja Tasks laienduse piire.
-- **Uus**: Standardraamatukogu Python ja SQLite veasisestamise harjutus
-  kasutab eraldi toimingute ja piletite andmekogusid, et demonstreerida vastuse kaotust
-  pärast välise efekti kinnitamist. Kuus deterministlikku testi hõlmavad naiivset
-  dubleerimist, kaitstud taaskäivituse taastumist, koormuse konflikte, vahemällu salvestatud tulemusi,
-  aktiivseid nõudeid ja samaaegset dubleerimise vastuvõttu.
-- **Uuendatud**: Moodul 08 ühendab nüüd kaasõppetunni lingi, määratleb
-  lõpliku `2026-07-28` olekutaotluse mudeli, eristab OpenTelemetry jälgitavust
-  MCP logimisfunktsioonist ja piirab oma
-  üldist taaskatse näidet ainult lugemisoperatsioonidele.
-- **Valikuline**: Õppetund seob oma kaasaskantavad kontseptsioonid ühe märgistatud kogukonna
-  teostusega ilma, et majutatud teenus või võrguühendus oleks osa
-  harjutusest.
+- **Uuendatud**: Praeguse versiooni viited, spetsifikatsiooni lingid, staaditud
+  päringu juhised, `server/discover`, voogedastatavad HTTP päised ja ülesannete
+  laienduselu tsükkel 38 ingliskeelses dokumentatsioonifailis.
+- **Parandatud**: Elicitation kasutab nüüd `elicitation/create`, Sampling kasutab
+  `sampling/createMessage` ning `InputRequiredResult.resultType` kasutab
+  `"input_required"`.
+- **Asendatud**: Ebatäpne Root Context vestlusstaadi õppetund asendatud
+  protokollile vastava Roots õppetunniga, mis katab infoteadlikke failisüsteemi vihjeid,
+  praegust mitmekordse ringkäigu voogu, turvapiire ja migratsioonivõimalusi.
+- **Selgitatud**: Roots, Sampling, Logging ja Dynamic Client Registration on
+  `2026-07-28` versioonis aegunud, koos soovitatud asenduste ja varaseima
+  eemaldamise kuupäevaga dokumenteeritud.
+- **Sildistatud**: Näited, mis sõltuvad endiselt MCP `2025-11-25`, HTTP+SSE,
+  initsialiseerimiskäteviisidest või protokollisessioonidest, hoitakse pärandühilduvuse
+  näidetena, mitte mitteakutsetava rakendusena.
+- **Turvajuhised**: Uuendatud eraldiseisvad turva juhendid kasutama
+  päringu-põhist autoriseerimist ja selgeid rakenduse oleku käsitlejaid eemaldatud
+  protokollisessiooni ID-de asemel. Kliendi ID metaandmedokumentid on nüüd
+  eelistatud registreerimise tee, DCR dokumenteeritud kui ainult ühilduvus.
+- **Tugimaterjalid**: Uuendatud õpi juhend, kaastöötajate kontrollnimekiri,
+  Publora juhtumiuuring ja APIM juhtumiuuring. APIM läbivaade soovitab nüüd
+  oma voogedastatavat HTTP `/mcp` lõpp-punkti asemel aegunud `/sse`.
+- **Kanonilised lingid**: Asendatud lõpetatud ja mustandi spetsifikatsiooni URL-id
+  ingliskeelse lähte Markdowni versioonitud `2026-07-28` linkidega,
+  säilitades aga nähtavad lingid pärandi versioonidele seal, kus näide on
+  vanema tööriistaga lukustatud.
+- **Stabiilsed failinimed**: Nimeti lõplik spetsifikatsiooni juhend ja kaks turvajuhendit
+  ümber, eemaldades release-kandidaadi ja aastasildi ning uuendades kõiki
+  ingliskeelseid hüperlinke nende stabiilsete radade järjekorda.
+- **Uus autoriseerimisnäide**: Lisatud testitud
+  [TypeScript MCP `2026-07-28` ressursiserver](./02-Security/samples/cimd-dcr-auth/README.md),
+  mis võrdleb eelistatud Kliendi ID Metaandmedokumente aegunud dünaamilise
+  kliendi registreerimise varukoopiaga. Näide sisaldab RFC 9728 avastust,
+  JWKS valideerimist, tööriistadeüleseid õigusi, tosinat testi ja Auth0 seadistusjuhendit.
+- **Tõlkeulatus**: Muudetud on ainult ingliskeelsed lähtefailid; genereeritud
 
-[reliability-sidecar]: ./08-BestPractices/reliability-sidecars/README.md
 
-## 2. juuli 2026
 
-### Uus õppetund: MCP spetsifikatsiooni vabastamise kandidaat 2026-07-28
 
-Lisatud ülevaade eelseisvast `2026-07-28` MCP spetsifikatsiooni vabastamise kandidaadist (teatatud 21. mail 2026; lõplik vabastamine kavandatud 28. juuliks 2026), kokkuvõtlikult [ametlikust teatise blogipostitusest](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). Õppekava alus jääb alles **MCP spetsifikatsioon 2025-11-25** kuni uue versiooni väljalaskmiseni, seega esitatakse see kui tulevikku vaatavat juhist, mitte olemasolevate õppetundide ümberkirjutust.
 
-- **Uus**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — terve õppetund, mis käsitleb olekutut protokolli tuuma (algusest `initialize` käepigistuse ja `Mcp-Session-Id` eemaldamine), uusi `Mcp-Method`/`Mcp-Name` marsruutimispäiseid, `ttlMs`/`cacheScope` vahemällu salvestamise metaandmeid, W3C jälje konteksti `_meta` sees, ametlikku laienduste raamistikku (MCP rakendused ja uus Tasks laiendus), kuut autoriseerimise tugevdamise SEP-i, Roots/Sampling/Logging kasutuse lõpetamist ja üleminekut täielikule JSON Schema 2020-12 tööriistade skeemidele.
-- **Uuendatud** tulevikku vaatavate viidetega, mis lingivad uuele õppetundile:
-  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protokolli versiooni märkus, Sampling/Roots/Logging/Tasks osad ja "Mis järgmiseks"
-  - [02-Security/README.md](./02-Security/README.md): autoriseerimise tugevdamise märkus
-  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): olekuta transpordi märkus
-  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): Sampling lõpetamise märkus
-  - [05-AdvancedTopics/mcp-protocol-features/README.md](./05-AdvancedTopics/mcp-protocol-features/README.md): Logging lõpetamise ja Tasks laienduse märkus
-  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): olekuta/session-marsruutimise märkus
-  - [README.md](./README.md): "Tulevikku vaatamine" märkus spetsifikatsiooni sektsioonis ja uus `1.1` kirje õppekava moodulite tabelis
-  - [study_guide.md](./study_guide.md): tulevikku vaatav punkt Core Concepts ülevaates ja dateeritud lisamärkus
-  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): märkus `mcp-session-id` transpordimapi kohta enne olekutaotluse mudelit
-  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): mooduli ülevaate märkus Root Contexts/Sampling lõpetamiste ja Tasks laienduse kohta
-  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): autoriseerimise tugevdamise märkus
+
+Lisatud tarnijast sõltumatu kaaslase õppetund MCP tööriistadele, mis loovad reaalse maailma
+
+
+- **Uus**: [Usaldusväärsuse abikomponendi kaaslase õppetund][reliability-sidecar]
+  kasutab ühte tugipileti lugu, kahte Mermaid diagrammi ja korduskatses
+  otsustuslõiku sujuvaks toimimise võti, aatomiline dubleerimississepääs,
+  kokkusobitamine, tõendid ja ülesannete laienduse piirid selgitamiseks.
+- **Uus**: Standardteegipõhine Python ja SQLite rike-söödu harjutus kasutab
+  eraldi töötluse ja piletite andmehoidlaid, et demonstreerida vastust, mis kaob
+  pärast välist efekti sooritamist. Kuus deterministlikku testi katavad naiivset
+  dubleerimist, kaitstud taaskäivituse taaste, koormuse konflikte, vahemällu pandud tulemusi,
+  aktiivseid nõudeid ja samaaegset dubleerimississepääsu.
+- **Uuendatud**: Moodul 08 lingib nüüd kaaslase õppetundi, määratleb
+  lõpliku `2026-07-28` staatilse päringu mudeli, eristab OpenTelemetry
+  jälgitavust aegunud MCP logimisfunktsioonist ning piirab oma üldist
+  korduskatsenäidet ainult lugemisoperatsioonide jaoks.
+- **Valikuline**: Õppetund seob oma kaasaskantavad kontseptsioonid ühe märgistatud
+  kogukonna rakendusega ilma, et hostitud teenus või võrguühendus oleks osa
+
+
+
+
+
+
+
+
+
+
+- **Uus**: [01-CoreConcepts/mcp-2026-07-28.md](./01-CoreConcepts/mcp-2026-07-28.md) — täismahus õppetund, mis käsitleb staatilist protokolli tuuma (algse `initialize` käepigistuse ning `Mcp-Session-Id` eemaldamine), uusi `Mcp-Method`/`Mcp-Name` marsruutingupäiseid, `ttlMs`/`cacheScope` vahemällu salvestamise metaandmeid, W3C Trace Context `_meta` sees, formaalset laiendusraamistikku (MCP rakendused ja uus Ülesannete laiendus), kuut volituste tugevdamise SEP-i, Roots/Sampling/Logging aegumist ja üleminekut täielikule JSON Schema 2020-12 tööriistade skeemidele.
+- **Uuendatud** tulevikku suunatud viidetega, mis ühendavad uue õppetunniga:
+  - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protokolli versiooni märkus, Sampling/Roots/Logging/Tasks sektsioonid ja "Mis järgmiseks"
+  - [02-Security/README.md](./02-Security/README.md): volituste tugevdamise juhis
+  - [03-GettingStarted/06-http-streaming/README.md](./03-GettingStarted/06-http-streaming/README.md): staatilise transpordi juhis
+  - [03-GettingStarted/14-sampling/README.md](./03-GettingStarted/14-sampling/README.md): Sampling aegumise juhis
+
+  - [05-AdvancedTopics/mcp-transport/README.md](./05-AdvancedTopics/mcp-transport/README.md): seisundivaba/seansi-reisituse välja toomine
+  - [README.md](./README.md): "Vaatame ette" märkus spetsifikatsiooni sektsioonis ja uus `1.1` kirje õppekava moodulitabelis
+  - [study_guide.md](./study_guide.md): edasipilgav punkt Tuumikkontseptsioonide ülevaates ja dateeritud lisa märkus
+  - [03-GettingStarted/11-simple-auth/README.md](./03-GettingStarted/11-simple-auth/README.md): välja toomine `mcp-session-id` transpordikaardilt enne seisundivaba päringu mudelit
+  - [05-AdvancedTopics/README.md](./05-AdvancedTopics/README.md): mooduli ülevaate välja toomine Root Contexts/Sampling aegumiste ja Tasks laienduse kohta
+  - [05-AdvancedTopics/mcp-security/README.md](./05-AdvancedTopics/mcp-security/README.md): autoriseerimise tugevdamise välja toomine
 
 ## 24. juuni 2026
 
@@ -57,94 +101,92 @@ Lisatud ülevaade eelseisvast `2026-07-28` MCP spetsifikatsiooni vabastamise kan
 
 ## 16. juuni 2026
 
-### MCP spetsifikatsiooni joondamine ja näidiste valideerimine
+### MCP spetsifikatsiooni joondamine & näidise valideerimine
 
-Valideeriti õppekava vastavust kehtivale **MCP spetsifikatsioonile 2025-11-25** ja uusimatele ametlikele SDK-dele, seejärel parandati ülejäänud aegunud spetsifikatsiooni viited ning kinnitati, et põhinäited ehituvad ja jooksevad endiselt.
+Valideeriti õppekava vastavalt kehtivale **MCP Spetsifikatsioonile 2025-11-25** ja viimastele ametlikele SDK-dele, seejärel parandati kõik aegunud spetsifikatsiooni viited ning kinnitati, et tuumiknäidised ikkagi ehituvad ja töötavad.
 
-#### Spetsifikatsiooni versiooni parandused (2025-06-18 / 2025-03-26 → 2025-11-25)
+#### Spetsifikatsiooni versiooniparandused (2025-06-18 / 2025-03-26 → 2025-11-25)
 
-Uuendatud ingliskeelne sisu, kus endiselt väideti, et vanem spetsifikatsiooni revisjon oli *praegune/viimane* standard, ning suunatud lingid kanonilistele `modelcontextprotocol.io` spetsifikatsiooni radadele:
-- **05-AdvancedTopics/mcp-security/README.md**: Uuendatud "Praegune standard" bännerit, sissejuhatust, tuumaturbefilosoofia pealkirja, kohustuslike nõuete pealkirja, Microsoft Entra ID jaotist, Viiteid ja Ressursse linke ning lõplikku turvahoiatust (8 viidet) 2025-11-25 kuupäevaks
-- **05-AdvancedTopics/mcp-transport/README.md**: Uuendatud Lisaressursside spetsifikatsiooni linki ja "Praegune standard" bännerit 2025-11-25 kuupäevani
-- **05-AdvancedTopics/mcp-realtimesearch/README.md**: Asendatud aegunud `2025-03-26` turbe-ja-usalduslink praeguse 2025-11-25 turbe parimate tavade lehega
-- **03-GettingStarted/14-sampling/README.md**: Uuendatud ametlikust proovi võtmise dokumentatsioonist link 2025-11-25 kuupäevaga
+Uuendatud ingliskeelset sisu seal, kus see väitis veel vanema spetsifikatsioonimuudatuse olevat *kehtiv/viimane* standard ning suunatud lingid uuesti kanonilistele `modelcontextprotocol.io` spetsifikatsiooni radadele:
+- **05-AdvancedTopics/mcp-security/README.md**: Uuendatud "Kehtiv standard" bänner, sissejuhatus, tuumik turvapõhimõtete pealkiri, kohustuslike nõuete pealkiri, Microsoft Entra ID sektsioon, Viited & Ressursid lingid ning lõplik turvateade (8 viidet) versioonile 2025-11-25
+- **05-AdvancedTopics/mcp-transport/README.md**: Uuendatud Lisavahendite spetsifikatsiooni link ja "Kehtiv standard" bänner versioonile 2025-11-25
+- **05-AdvancedTopics/mcp-realtimesearch/README.md**: Asendatud aegunud `2025-03-26` turvalisuse-ja-usaldusväärsuse link praeguse 2025-11-25 turvalisuse parimate tavade lehega
+- **03-GettingStarted/14-sampling/README.md**: Uuendatud ametlik proovitöö dokumentide link versioonile 2025-11-25
+- **03-GettingStarted/05-stdio-server/README.md**: Uuendatud oleviku "kehtiv MCP spetsifikatsioon" viide ja Lisavahendite spetsifikatsiooni link versioonile 2025-11-25 (ajaloolised SSE aegumise märkused jäid täpsuseks alles)
 
-- **03-GettingStarted/05-stdio-server/README.md**: Uuendatud olevikuvormis „praeguse MCP spetsifikatsiooni“ viide ja täiendavate ressursside spetsifikatsiooni link kuupäevale 2025-11-25 (ajaloolised SSE-deprekatsiooni märkused jäid täpsuse huvides muutmata)
+#### Näidise valideerimine kehtivate SDK-dega
 
-#### Näidised kehtivuse kontroll praeguste SDK-de vastu
+- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` lahendas `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` möödus ilma tüübivigadeta — olemasolevad `McpServer`/`StdioServerTransport` API-d jäid kehtima
+- **Python (03-GettingStarted/01-first-server/solution/python)**: Valideeritud isoleeritud `.venv` keskkonnas `mcp[cli]` (1.27.2); `py_compile` õnnestus ja `FastMCP.list_tools()` tagastas korrektselt tööriistad `add` ja `subtract`
+- Kinnitatud, et kõik näidises kasutatud `@modelcontextprotocol/sdk` versioonivahemikud (`>=1.26.0` / `^1.26.0` / `^1.27.0`) lahenevad puhtalt praegusele `1.29.0` versioonile ilma API murdmiseta
 
-- **TypeScript (03-GettingStarted/01-first-server/solution/typescript)**: `npm install` lahendas `@modelcontextprotocol/sdk@1.29.0`; `tsc --noEmit` läbis tüübiveadeta — olemasolevad `McpServer`/`StdioServerTransport` API-d jäävad kehtima
-- **Python (03-GettingStarted/01-first-server/solution/python)**: Kontrollitud isoleeritud `.venv` keskkonnas `mcp[cli]` (1.27.2) abil; `py_compile` läbis ja `FastMCP.list_tools()` tagastas korrektselt `add` ja `subtract` tööriistad
-- Kinnitatud, et kõigi näidiste `@modelcontextprotocol/sdk` versioonivahemikud (`>=1.26.0` / `^1.26.0` / `^1.27.0`) lahenevad korrektselt praegusele `1.29.0` versioonile ilma katkestavate API muutusteta
+#### Sõltuvuste täpsustamine (versioonivahede sulgemine)
 
-#### Sõltuvuste versioonipinnide joondamine (versioonilünkade lõpetamine)
+Tõstetud aegunud SDK versioonid nii, et iga näidis jälgib kehtivat MCP versiooni, vastavalt kogu repositooriumi konventsioonile:
+- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: Tõstetud `@modelcontextprotocol/sdk` `^1.8.0` → `>=1.26.0` ja uuendatud aegunud `"updated for MCP 2025-06-18"` paketi kirjeldus versioonile `"aligned with MCP Specification 2025-11-25"`
+- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** ja **lab4/code/github_mcp_server/pyproject.toml**: Tõstetud täpne versioonipiirang `mcp==1.23.0` → `mcp>=1.26.0`; uuesti genereeritud mõlemad `uv.lock` failid (`uv lock`), nii et lukustusfailid lahenevad praegusele `mcp 1.27.2` versioonile ning püsivad manifestidega sünkroonis
 
-Värskendatud aegunud SDK pinnid nii, et iga näidis jälgib praegust MCP väljaannet, järgides kogu mõisa konventsiooni:
-- **03-GettingStarted/05-stdio-server/solution/typescript/package.json**: Uuendatud `@modelcontextprotocol/sdk` versioonilt `^1.8.0` → `>=1.26.0` ning aegunud pakendi kirjeldus "uuendatud MCP 2025-06-18 jaoks" uuendatud "joondunud MCP spetsifikatsiooniga 2025-11-25"
-- **10-StreamliningAIWorkflows.../lab3/code/weather_mcp/pyproject.toml** ja **lab4/code/github_mcp_server/pyproject.toml**: Täpsete kinnituste `mcp==1.23.0` → `mcp>=1.26.0` tõstmine; mõlema `uv.lock` faili uuesti genereerimine (`uv lock`), nii, et lockfailid lahenduksid praegusele `mcp 1.27.2` versioonile ning püsiksid manuaalidega sünkroonis
+#### Õppekava lünkade analüüs — uusima spetsifikatsiooni funktsioonide kaetus
 
-#### Õppekava lünkade analüüs — uusima spetsifikatsiooni funktsioonide katvus
+Kinnitatud, et õppekava hõlmab juba kõiki põhielemente, mis MCP 2025-11-25 toob või laiendab, seega sisulünki pole jäänud:
+- **Proovi võtmine**: Õppetund 03-GettingStarted/14-sampling ning 05-AdvancedTopics/mcp-sampling
+- **Andmete kogumine (sh URL režiim)**: Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
+- **Juured**: Dokumenteeritud 00-Introduction, 01-CoreConcepts ja 05-AdvancedTopics/mcp-root-contexts
+- **Ülesanded (katseversioon, pikaajalised toimingud)**: Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
+- **Tööriista märkused** (`readOnlyHint` / `destructiveHint`): Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
 
-Kontrollitud, et õppekava hõlmab juba kõiki MCP 2025-11-25 tutvustatud / laiendatud primitiive, seega pole sisulisi puudujääke:
-- **Võtmine (Sampling)**: Õppetund 03-GettingStarted/14-sampling pluss 05-AdvancedTopics/mcp-sampling
-- **Elicitation (sh URL-režiim)**: Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
-- **Juurkontekstid (Roots)**: Dokumenteeritud 00-Introduction, 01-CoreConcepts ja 05-AdvancedTopics/mcp-root-contexts
-- **Ülesanded (eksperimentaalne, pikaajalised toimingud)**: Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
-- **Tööriista annotatsioonid** (`readOnlyHint` / `destructiveHint`): Dokumenteeritud 01-CoreConcepts ja 05-AdvancedTopics/mcp-protocol-features
+### Turvalisuse tugevdamine ja sõltuvuste haavatavuste parandamine
 
-### Turvalisuse tugevdamine & sõltuvuste haavatavuste parandamine
-
-Läbitud täielik turvapassinõue iga sõltuvuse manifesti ja näidiste lähtekoodi kohta, seejärel parandatud kõik teatatud npm hoiatused ja üks kooditasandi probleem. Pärast parandusi näitab `npm audit` raporteeritud seirekaustades **0 haavatavust**.
+Läbiviidud täielik turvastaatus kõigi sõltuvuste manifestid ja näidise lähtekoodi kohta, seejärel lahendatud kõik npm-i hoiatuste teated ning üks koodi tasandi leidmine. Pärast parandusi annab `npm audit` aru iga kontrollitud kataloogi kohta **0 haavatavust**.
 
 #### npm sõltuvuste haavatavused (kaudsed) — Parandatud
 
-Kontrolliti kõiki 15 kohusetäitnud `package-lock.json` faili. Haavatavused piirdusid kaudsete sõltuvustega, mida tõmbas MCP Inspector dev tööriist, OpenAI klient ja MCP SDK; kõik on nüüd lahendatud ilma näidiseid katkestamata:
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** ja **lab3/code/weather_mcp/inspector**: Uuendatud `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), mis eemaldab kaasatud `ajv`, `brace-expansion`, `diff`, `path-to-regexp` ja `ws` hoiatused. Lisatud npm `overrides` kirje, mis sunnib parandatud `shell-quote@1.8.4` kasutamist, et elimineerida kogu kriitiline hoiatus, mida edastas `concurrently`; mõlema lockfaili uuesti genereerimine (nüüd 0 haavatavust)
-- **03-GettingStarted/samples/typescript**: `npm audit fix` uuendas kaudse `qs` (kõrge) parandatud versioonile
-- **03-GettingStarted/samples/javascript**: `npm audit fix` uuendas kaudse `hono` (keskmine) parandatud versioonile
-- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` uuendas kaudse `form-data` (kõrge) parandatud versioonile
-- **03-GettingStarted/11-simple-auth/solution/typescript**: Genereeritud puuduva `package-lock.json`, et projekt oleks reprodutseeritav ja auditeeritav (0 haavatavust)
+Kontrollitud kõiki 15 kaustas salvestatud `package-lock.json` faili. Haavatavused piirdusid kaudsete sõltuvustega, mis toodi MCP Inspector arendusriista, OpenAI kliendi ning MCP SDK kaudu; kõik on nüüd lahendatud ilma näidiste purunemiseta:
 
-#### Kooditasandi turvaparandus (OWASP A03: süstimine)
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** ja **lab3/code/weather_mcp/inspector**: Uuendatud `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), mis kustutas kaasatud `ajv`, `brace-expansion`, `diff`, `path-to-regexp` ja `ws` hoiatused. Lisatud npm `overrides` kirje, mis sunnib parendatud `shell-quote@1.8.4` kasutamist, et likvideerida `concurrently` poolt kantud ülejäänud kriitiline hoiatus; mõlema lukufaili ümberregeneratsioon (nüüd 0 haavatavust)
+- **03-GettingStarted/samples/typescript**: `npm audit fix` uuendas transitiivset `qs` (keskmine) parandatud versioonini
+- **03-GettingStarted/samples/javascript**: `npm audit fix` uuendas transitiivset `hono` (keskmine) parandatud versioonini
+- **03-GettingStarted/03-llm-client/solution/typescript**: `npm audit fix` uuendas transitiivset `form-data` (kõrge) parandatud versioonini
+- **03-GettingStarted/11-simple-auth/solution/typescript**: Genereeritud puuduolev `package-lock.json`, nii et projekt on reprodutseeritav ja auditeeritav (0 haavatavust)
 
-- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: Eemaldatud `shell=True` `open_in_vscode` tööriistast. Varasem `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` lubas käsukesta metamärgid kaustatee sees `cmd.exe` poolt tõlgendamiseks (käsusüstimise vektor). Nüüd käivitatakse lahendatud `Code.exe` otse kausta argumendiga — ilma kestas — mis on funktsionaalselt ekvivalentne ning ohutu
+#### Kooditaseme turvaparandus (OWASP A03: Süstimine)
 
-#### Python sõltuvuste audit
+- **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/src/server.py**: Eemaldatud `shell=True` `open_in_vscode` tööriistast. Varem `subprocess.run(["start", "", vscode_path, folder_path], shell=True)` lubas kausta tee sees shell-metamärke tõlgendada `cmd.exe` poolt (käskude süstimise vektor). Nüüd käivitab otse lahendatud `Code.exe` kaustaga argumendina — ilma shellita — mis on funktsionaalselt samaväärne ja turvaline
 
-- Auditeeritud iga Python'i nõuete komplekt `pip-audit` abil. `05-AdvancedTopics` ja `03-GettingStarted/samples/python` teatavad **mitte ühestki tuntud haavatavusest** (nende `mcp` / `httpx` / `pydantic` / `python-dotenv` vahemikud lahenevad praegustele parandatud versioonidele)
-- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` tuvastas kaudse sõltuvuse **`werkzeug` 3.1.1** kohta kolm `safe_join` Windowsi seadmenime DoS hoiatusi — `CVE-2025-66221`, `CVE-2026-21860` ja `CVE-2026-27199` (kõik parandatud versioonis 3.1.6). Lisatud otsene turvalisuse pin `werkzeug>=3.1.6`, et parandatud versioon lahenduks korrektselt; kinnitatud, et piirang laheneb puhtalt `chainlit` / `mcp` / `semantic-kernel` virna kontekstis
+#### Python'i sõltuvuste audit
 
-### Tootenime ümberbrändimine
+- Auditeeritud iga Python'i nõuete komplekt `pip-audit` abil. `05-AdvancedTopics` ja `03-GettingStarted/samples/python` ei leidnud **tuntud haavatavusi** (nende `mcp` / `httpx` / `pydantic` / `python-dotenv` vahemikud lahenduvad praegustesse parandatud väljaannetesse)
+- **09-CaseStudy/docs-mcp/solution/python/requirements.txt**: `pip-audit` tuvastas transitiivse sõltuvuse **`werkzeug` 3.1.1** kolme `safe_join` Windowsi seadmenime DoS hoiatusena — `CVE-2025-66221`, `CVE-2026-21860` ja `CVE-2026-27199` (kõik parandatud versioonis 3.1.6). Lisatud konkreetne turvapin `werkzeug>=3.1.6`, et lahendatakse parandatud väljaanne; kontrollitud, et tingimus lahendub puhtalt `chainlit` / `mcp` / `semantic-kernel` staki puhul
 
-Uuendatud kogu õppekava sisu, et kajastada Microsofti tootenime ümberbrändimist:
+### Toote nime ümberbrändimine
 
+Uuendatud kogu õppesisu vastamaks Microsofti toote ümberbrändimisele:
 
 #### Azure AI Foundry → Microsoft Foundry
 - **SUPPORT.md**: Uuendatud Discordi kogukonna link
-
 - **AGENTS.md**: Uuendatud Discordi serveri viide
-- **README.md**: Uuendatud tehnoloogilise ökosüsteemi viited
-- **study_guide.md**: Uuendatud juhtumiuuringute viited
-- **05-AdvancedTopics/README.md**: Uuendatud Mooduli 5.13 pealkiri ja kirjeldus
+- **README.md**: Uuendatud tehnoloogia ökosüsteemi viited
+- **study_guide.md**: Uuendatud juhtumiuuringu viited
+- **05-AdvancedTopics/README.md**: Uuendatud mooduli 5.13 pealkiri ja kirjeldus
 - **05-AdvancedTopics/mcp-integration/README.md**: Uuendatud sektsiooni päis ja kirjeldus
 - **05-AdvancedTopics/mcp-foundry-agent-integration/README.md**: Täielik mooduli pealkirja ja sisu uuendus
-- **05-AdvancedTopics/mcp-security-entra/README.md**: Uuendatud ristviitamise link
-- **07-LessonsfromEarlyAdoption/README.md**: Uuendatud juhtumiuuringute viited
-- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: Uuendatud jaotise 9 päis, märgised ja võimalused
+- **05-AdvancedTopics/mcp-security-entra/README.md**: Uuendatud ristviite link
+- **07-LessonsfromEarlyAdoption/README.md**: Uuendatud juhtumiuuringu viited
+- **07-LessonsfromEarlyAdoption/microsoft-mcp-servers.md**: Uuendatud jaotise 9 päis, märgised ja võimed
 - **08-BestPractices/README.md**: Uuendatud Discordi kogukonna link
 - **09-CaseStudy/docs-mcp/solution/scenario3/README.md**: Uuendatud Discordi kanali viide
-- **09-CaseStudy/docs-mcp/solution/python/README.md**: Uuendatud mudeli juurutamise viide
+- **09-CaseStudy/docs-mcp/solution/python/README.md**: Uuendatud mudeli juurutuse viide
 - **11-MCPServerHandsOnLabs/00-Introduction/README.md**: Uuendatud AI teenuste tabel
 - **11-MCPServerHandsOnLabs/03-Setup/README.md**: Uuendatud ressursside viited
 
-#### AI tööriistakomplekt / AITK → Microsoft Foundry tööriistakomplekti laiendus VS Code’ile
-- **README.md**: Uuendatud põhikursuse viited
+#### AI Toolkit / AITK → Microsoft Foundry Toolkit Extension for VS Code
+- **README.md**: Uuendatud põhilise õppekava viited
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md**: Uuendatud mooduli pealkiri, ülevaade ja kõik mooduli päised
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: Uuendatud pealkiri, õpieesmärgid, seadistamise juhised ja ressursid
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/README.md**: Uuendatud pealkiri, õpieesmärgid, seadistusjuhised ja ressursid
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/README.md**: Uuendatud pealkiri, õpieesmärgid, MCP hostide tabel ja ristviited
 - **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md**: Uuendatud pealkiri, märgised, eeltingimused ja ressursid
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: Uuendatud Agent Builderi viited ja tagasiside link
-- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: Uuendatud eeltingimused ja laienduse viited
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/README.md**: Uuendatud Agent Builder'i viited ja tagasiside link
+- **10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/README.md**: Uuendatud eeltingimused ja laienduste viited
 
 ---
 
@@ -152,589 +194,590 @@ Uuendatud kogu õppekava sisu, et kajastada Microsofti tootenime ümberbrändimi
 
 ### Uus õppetund, dokumentatsiooni parandused ja sõltuvuste uuendused
 
-#### Lisatud uus kursuse sisu
+#### Lisatud uus õppekava sisu
 
-**Moodul 05 - Täiustatud teemad**
-- **Õppetund 5.17: Vihkiv mitmeagendiline mõtlemine MCP abil** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): Uus põhjalik juhend, mis käsitleb mitme-agendi süsteemide vastuolulise vaidluse mustrit
-  - Mermaid arhitektuuri diagramm: kaks agenti → ühine MCP server → vaidluse transkriptsioon → kohtunik → otsus
-  - Ühiskasutatav MCP tööriistaserver (`web_search` + `run_python`) realiseeritud Pythonis ja TypeScriptis
-  - Vastandlikud süsteemi käsklused (FOR / AGAINST / Judge) koos selgete tööriistakasutuse nõuetega
-  - Vaidluse korraldaja Pythonis, TypeScriptis ja C# keeles, haldab voorusid ja argumentide suunamist
-  - MCP `ClientSession` ühendamine korraldajale päris tööriistakõnede jaoks
-  - Kasutusjuhtude tabel (hallutsinatsiooni tuvastamine, ohumudelite loomine, API disaini ülevaade, faktide kontroll, tehnoloogia valik)
-  - Turvaküsimused: liivakastis täitmine, tööriistakõnede valideerimine, kvoodi piiramine, auditeerimine
-  - Struktureeritud harjutus kolme praktilise stsenaariumiga (koodi ülevaade, arhitektuuri otsus, sisumoderatsioon)
+**Moodul 05 - Täiendavad teemad**
+- **Õppetund 5.17: Konfliktne mitme agendi põhjendamine MCP-ga** (`05-AdvancedTopics/mcp-adversarial-agents/README.md`): Uus põhjalik juhend konflikti-debati mustrist mitme agendi süsteemide jaoks
+  - Mermaidi arhitektuuri diagramm: kaks agenti → jagatud MCP server → debati transkriptsioon → kohtunik → lahendus
+  - Jagatud MCP tööriista server (`web_search` + `run_python`) teostatud Pythonis ja TypeScriptis
+  - Vastuolulised süsteemi kehtestused (FOR / AGAINST / Judge) koos selgete tööriistakasutuse nõuetega
+  - Debati orkestreerija Pythonis, TypeScriptis ja C#-s, haldades voorusid ja argumentide marsruutimist
+  - MCP `ClientSession` ühendamine orkestreerijale päristööriistakõnede jaoks
+  - Kasutusjuhtumite tabel (hallutsinatsioonide tuvastamine, ohumudelite koostamine, API disaini ülevaade, faktide kontroll, tehnika valik)
+  - Turvaküsimused: liivakastis käitamine, tööriistakõnede valideerimine, kiiruse piiramine, auditeerimise logimine
+  - Struktureeritud harjutus kolme praktilise stsenaariumiga (koodi ülevaade, arhitektuuri otsus, sisumajandus)
 
 #### Dokumentatsiooni parandused
 
 **Moodul 03 - Algus**
-- **05-stdio-server/README.md**: Parandatud mittetäielik TypeScript stdio serveri näide — lisatud puuduva transpordi loomisekutse (`new StdioServerTransport()`) ja `server.connect(transport)` kõne vastavuseks Python ja .NET näidistega samas jaotises
-- **14-sampling/README.md**: Parandatud kirjavea — parandatud "Sampling is an davanced features" → "Sampling is an advanced feature"
+- **05-stdio-server/README.md**: Parandas mittetäieliku TypeScript stdio serveri näite — lisati puuduolev transpordinietamine (`new StdioServerTransport()`) ja `server.connect(transport)` kõne, et vastata Python ja .NET näidetele samas jaotises
+- **14-sampling/README.md**: Parandas trükivea — parandatud `"Sampling is an davanced features"` → `"Sampling is an advanced feature"`
 
-#### Kursuse uuendused
+#### Õppekava uuendused
 
-**Põhi README.md**
-- Lisatud 5.17 (Vihkiv mitme-agendi mõtlemine MCP abil) kande kursuse tabelisse koos otselinkiga uuele õppetunnile
+**Põhijuhend README.md**
+- Lisatud sissekanne 5.17 (Konfliktne mitme agendi põhjendamine MCP-ga) õppekava tabelisse koos otselinkiga uuele õppetunnile
 
 **05-AdvancedTopics/README.md**
-- Lisatud õppetund 5.17 rida õppetundide tabelisse
+- Lisatud õppetunni 5.17 rida õppetundide tabelisse
 
 **study_guide.md**
-- Lisatud Vihkiva mitme-agendi mõtlemise teema mõttekaardile ja täiendatud kirjeldus Täiustatud teemades
+- Lisatud Konfliktse mitme agendi põhjendamise teema mõttekaardile ja täiendavate teemade tekstikirjeldusse
 
-#### Koodi ja turvalisuse parandused
+#### Koodi ja turvaparandused
 
-**Moodul 05 - Vihkivad agendid (`mcp-adversarial-agents`)**
-- **Turvaparandus — käsu süstimine**: Asendatud `execSync` kestainterpolatsioon `execFile` + `promisify` kombinatsiooniga TypeScripti `run_python` tööriistas, likvideerides käsu süstimise pinna (LLM-i juhitud kood edastatakse nüüd kirjeldavalt argv elemendina ilma kestataustata)
-- **MCP tööriistasilmuse ühendamine**: Uuendatud Python debate-orgide kasutama `AsyncAnthropic` klienti (asendab blokeeriva sünkroonse `Anthropic`), edastab live `ClientSession` otseselt igale agendi voorule, hangib tööriistade definitsioonid `session.list_tools()` kaudu igas voorus ja edastab `tool_use` plokid `session.call_tool()` abil lõputeksti vastuse saamiseni
+**Moodul 05 - Konflikt-agendid (`mcp-adversarial-agents`)**
+- **Turvaparandus — käsu süstimine**: Asendatud `execSync` shell-interpolatsioon `execFile` + `promisify` abil TypeScripti `run_python` tööriistas, eemaldades käsu süstimise pinnase (LLM juhitud kood edastatakse nüüd kirjaliku argv elemendina ilma shelli osaluseta)
+- **MCP tööriistade tsükli juhtimine**: Uuendatud Python'i debati orkestreerija kasutama `AsyncAnthropic` klienti (asendades blokeeriva süntroonse `Anthropic`), edastama igale agendi voorule otse live `ClientSession`, pärima tööriistade definitsioone iga vooru jaoks `session.list_tools()` kaudu ja saatma `tool_use` plokke `session.call_tool()` tsüklis kuni mudel genereerib lõpliku tekstvastuse
 
 #### Sõltuvuste uuendused
 
-- Tõstetud `hono` versiooniks 4.12.12 mitmes paketis (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
-- Tõstetud `@hono/node-server` versioon 1.19.11 → 1.19.13 TypeScripti pakettides
-- Tõstetud `cryptography` versioon 46.0.5 → 46.0.7 Python pakettides (10-StreamliningAIWorkflows laborid 3 ja 4)
-- Tõstetud `lodash` versioon 4.17.23 → 4.18.1 10-StreamliningAIWorkflows inspector
+- Uuendatud `hono` versiooniks 4.12.12 mitmetes pakkides (03-GettingStarted, 04-PracticalImplementation, 10-StreamliningAIWorkflows)
+- Uuendatud `@hono/node-server` 1.19.11 → 1.19.13 TypeScripti pakkides
+- Uuendatud `cryptography` 46.0.5 → 46.0.7 Python'i pakkides (10-StreamliningAIWorkflows laboris 3 ja 4)
+- Uuendatud `lodash` 4.17.23 → 4.18.1 10-StreamliningAIWorkflows inspektoris
 
 #### Tõlked
 
-- Sünkroniseeritud tõlked 48+ keeles viimaste lähte muudatustega (i18n uuendus)
+- Sünkroniseeritud tõlked 48+ keelde viimaste lähte muudatustega (i18n uuendus)
 
 ---
 
 ## 5. veebruar 2026
 
-### Kogu hoidla valideerimine ja navigeerimise parandused
+### Terve repositooriumi valideerimise ja navigeerimise täiustused
 
-#### Lisatud uus kursuse sisu
+#### Lisatud uus õppekava sisu
 
 **Moodul 03 - Algus**
 - **12-mcp-hosts/README.md**: Uus põhjalik juhend MCP hostide seadistamiseks
   - Claude Desktop, VS Code, Cursor, Cline, Windsurf konfiguratsiooni näited
-  - JSON konfiguratsiooni mallid kõigi peamiste hostide jaoks
+  - JSON konfiguratsioonimallid kõigi peamiste hostide jaoks
   - Transporditüüpide võrdlustabel (stdio, SSE/HTTP, WebSocket)
-  - Levinumate ühendusprobleemide tõrkeotsing
-  - Hostide konfiguratsiooni turvalisuse parimad tavad
+  - Levinud ühendusprobleemide tõrkeotsing
+  - Parimad turvatavad hostide konfiguratsioonis
 
-- **13-mcp-inspector/README.md**: Uus silumise juhend MCP Inspectorile
-  - Paigaldusmeetodid (npx, globaalne npm, lähtekoodist)
+- **13-mcp-inspector/README.md**: Uus MCP Inspektori tõrkeotsingu juhend
+  - Paigaldamisviisid (npx, npm global, lähtekoodist)
   - Ühendamine serveritega stdio ja HTTP/SSE kaudu
-  - Testimise tööriistad, ressursid ja käskluste töövoogude juhised
-  - VS Code integratsioon MCP Inspectoriga
-  - Levinumad silumise stsenaariumid koos lahendustega
+  - Testitööriistad, ressursid ja promptide töövood
+  - VS Code integreerimine MCP Inspektoriga
+  - Levinud tõrkeotsingu stsenaariumid koos lahendustega
 
-**Moodul 04 - Praktiline rakendamine**
-- **pagination/README.md**: Uus leheküljestamise rakendamisjuhend
-  - Kursori põhised leheküljestamise mustrid Pythonis, TypeScriptis, Javas
-  - Kliendipoolse leheküljestamise haldus
-  - Kursori disaini strateegiad (opaakne vs struktureeritud)
+**Moodul 04 - Praktiline rakendus**
+- **pagination/README.md**: Uus lehekülgede lõikamise teostamise juhend
+  - Kursoripõhised lehekülgede lõikamise mustrid Pythonis, TypeScriptis, Javas
+  - Kliendipoolse lehekülgede haldamine
+  - Kursoridisaini strateegiad (suletud vs struktureeritud)
   - Jõudluse optimeerimise soovitused
 
-**Moodul 05 - Täiustatud teemad**
-- **mcp-protocol-features/README.md**: Uus protokolli funktsioonide põhjalik ülevaade
-  - Edusammude teatamise rakendus
-  - Päringu tühistamise mustrid
-  - Ressursi mallid URI mustritega
+**Moodul 05 - Täiendavad teemad**
+- **mcp-protocol-features/README.md**: Uus põhjalik protokolli funktsioonide ülevaade
+  - Edusammuteate teostus
+  - Päringu katkestamise mustrid
+  - Ressursimallid URI mustritega
   - Serveri elutsükli haldus
-  - Logitaseme kontroll
-  - Veahaldusmeetodid JSON-RPC koodidega
+  - Logimise taseme juhtimine
+  - Vea haldamise mustrid JSON-RPC koodidega
 
-#### Navigeerimise parandused (24+ faili uuendatud)
+#### Navigeerimise parandused (uuendatud 24+ faili)
 
-**Peamiste moodulite README-d**
- Nüüd lingib nii esimesele õppetunnile KUI ka järgnevale moodulile
+**Põhimooduli README.d**
+ Nüüd lingid nii esimesele õppetunnile KUI järgnevale moodulile
 
 **02-Security alamfailid**
-- Kõigil 5 täiendaval turvakäsiraamatul on nüüd "Mis järgmiseks" navigeerimine:
+- Kõik 5 täiendavat turvadokumenti on nüüd "Mis järgmiseks" navigeerimisega varustatud:
 
 **09-CaseStudy failid**
-- Kõigil juhtumiuuringute failidel on nüüd järjestikune navigeerimine:
+- Kõik juhtumiuuringu failid on nüüd järjestikuse navigeerimisega varustatud:
 
 **10-StreamliningAI laboris**
-Lisatud “Mis järgmiseks” jaotis Moodulite 10 ülevaatesse ja Mooduli 11-le
+Lisatud Mis järgmiseks sektsioon Moodulisse 10 ülevaates ja Moodulisse 11
 
 #### Koodi ja sisu parandused
 
 **SDK ja sõltuvuste uuendused**
-Parandatud tühi openai versioon `^4.95.0`-ks
-SDK uuendatud versioonile `>=1.26.0` varasemalt `^1.8.0`
-MCP versiooni lukustused uuendatud `>=1.26.0`
+Parandatud tühi openai versiooniks `^4.95.0`
+Uuendatud SDK versiooniks `>=1.26.0` (varasemalt `^1.8.0`)
+Uuendatud mcp versioonipinnid `>=1.26.0`
 
 **Koodi parandused**
 Parandatud vale mudel `gpt-4o-mini` → `gpt-4.1-mini`
 
-**Sisupärandused**
-Parandatud katkine link `READMEmd` → `README.md`, parandas kursuse päise `Moodul 1-3` → `Moodul 0-3`, parandatud tõstutundlik tee
-Eemaldatud rikutud duplikaat juhtumiuuringu 5 sisu
+**Sisu parandused**
+Parandatud purunenud link `READMEmd` → `README.md`, parandatud õppekava päis `Module 1-3` → `Module 0-3`, parandatud suurustundlik teekond
+Eemaldatud rikutud duplikaat Case Study 5 sisu
 
-**Algajate juhendamise täiustused**
-Lisatud korralik sissejuhatus, õpieesmärgid ja eeltingimused algajatele
+**Algajate juhendamise parandused**
+Lisatud korrektne sissejuhatus, õpieesmärgid ja eeltingimused algajatele
 
-#### Kursuse uuendused
+#### Õppekava uuendused
 
-**Põhi README.md**
-- Lisatud kanded 3.12 (MCP hostid), 3.13 (MCP Inspector), 4.1 (Leheküljestamine), 5.16 (Protokolli funktsioonid) kursuse tabelisse
+**Põhijuhend README.md**
+- Lisatud sissekanded 3.12 (MCP Hosts), 3.13 (MCP Inspector), 4.1 (Lehekülgede lõikamine), 5.16 (Protokolli funktsioonid) õppekava tabelisse
 
-**Mooduli README-d**
+**Moodulite README.d**
 Lisatud õppetunnid 12 ja 13 õppetundide nimekirja
-Lisatud Praktiliste juhendite jaotis koos leheküljestamise lingiga
-Lisatud õppetunnid 5.15 (Kohandatud transport) ja 5.16 (Protokolli funktsioonid)
+Lisatud Praktilised juhendid jaotis lehekülgede lõikamise lingiga
+Lisatud õppetunnid 5.15 (Kohandatud Transport) ja 5.16 (Protokolli funktsioonid)
 
 **study_guide.md**
-- Uuendatud mõttekaart kõigi uute teemadega: MCP hostide seadistus, MCP Inspector, leheküljestamise strateegiad, protokolli funktsioonide põhjalik ülevaade
+- Uuendatud mõttekaart kõigi uute teemadega: MCP Hosts seadistus, MCP Inspector, lehekülgede lõikamise strateegiad, protokolli funktsioonide põhjalik ülevaade
 
 ## 28. jaanuar 2026
 
-### MCP spetsifikatsiooni 2025-11-25 vastavuse ülevaatus
+### MCP spetsifikatsiooni 2025-11-25 vastavuse ülevaade
 
-#### Tuumikkontseptsioonide täiustamine (01-CoreConcepts/)
-- **Uus kliendi primitiiv - Roots**: Lisatud põhjalik dokumentatsioon Roots kliendi primitiivi kohta, mis võimaldab serveritel mõista failisüsteemi piire ja juurdepääsuõigusi
-- **Tööriista annotatsioonid**: Lisatud dokumentatsioon tööriista käitumise annotatsioonidest (`readOnlyHint`, `destructiveHint`) paremate tööriistate täitmise otsuste jaoks
-- **Tööriistakõned valikus**: Uuendatud Sampling dokumentatsiooni, lisades `tools` ja `toolChoice` parameetrid mudelipõhiste tööriistakõnede tegemiseks proovivõtu päringute ajal
-- **URL režiimi paljastamine**: Lisatud dokumentatsioon URL-põhise paljastamise kohta serveripoolsete väliste veebisuhtluste algatamiseks
-- **Ülesanded (eksperimentaalne)**: Lisatud uus jaotis ülesannete kohta, mis dokumenteerib katsetuslikku funktsiooni vastupidavate täitmiskihistuste ja tulemust tagastamise edasilükkamiseks
-- **Ikonide tugi**: Märgitud, et tööriistad, ressursid, ressursimallid ja kutseviidad võivad nüüd sisaldada ikoone lisametabina
+#### Põhikontseptsioonide täiustamine (01-CoreConcepts/)
+- **Uus kliendi primitiiv - Roots**: Lisatud põhjalik dokumentatsioon Roots kliendi primitiivi kohta, võimaldades serveritel mõista failisüsteemi piire ja juurdepääsuõigusi
+- **Tööriistade märgendid**: Lisatud dokumentatsioon tööriistade käitumismärkmete kohta (`readOnlyHint`, `destructiveHint`), et parandada tööriistade täitmise otsuseid
+- **Tööriistade kutsumine proovivõtmisel**: Uuendatud proovivõtmise dokumentatsiooni, lisades `tools` ja `toolChoice` parameetrid mudelipõhiseks tööriistakutsumiseks proovivõtmise päringute käigus
+- **URL režiimi tuvastamine**: Lisatud dokumentatsioon URL-põhise tuvastamise kohta serveri algatatud väliste veebiside toimingute jaoks
+- **Ülesanded (eksperimentaalne)**: Lisatud uus jaotis, mis dokumenteerib eksperimentaalset Ülesannete funktsiooni kestvate täitmispakendite ja tulemuste edasi lükitud hankimise jaoks
+
+- **Ikonide tugi**: Märgitud, et tööriistad, ressursid, ressursside mallid ja üleskutsed võivad nüüd sisaldada ikoone täiendava metainformatsioonina
 
 #### Dokumentatsiooni uuendused
-- **README.md**: Lisatud MCP spetsifikatsiooni 2025-11-25 versiooni viide ja kuupõhine versioonihaldus selgitus
-- **study_guide.md**: Uuendatud kursuse kaart, lisades Ülesanded ja Tööriista annotatsioonid Tuumikontseptsioonide sektsiooni; uuendatud dokumendi kuupäev
+- **README.md**: Lisatud MCP spetsifikatsiooni 2025-11-25 versiooni viide ja kuupõhine versiooni selgitus
+- **study_guide.md**: Uuendatud õppekava kaart, lisades ülesanded ja tööriistade annotatsioonid põhikontseptsioonide sektsiooni; uuendatud dokumendi kuupäev
 
-#### Spetsifikatsiooni vastavuse kinnitamine
-- **Protokolli versioon**: Kontrollitud, et kogu dokumentatsioon viitab aktuaalsele MCP spetsifikatsioonile 2025-11-25
-- **Arhitektuuri kokkusobivus**: Kinnitatud kahekihiline arhitektuur (andmekiht + transpordikiht) dokumentatsiooni täpsus
-- **Primitiivide dokumenteerimine**: Kontollitud serveripoolsete primitiivide (ressursid, kutsed, tööriistad) ja kliendipoolsete primitiivide (Sampling, Elicitation, Logging, Roots) dokumentatsiooni täpsus
-- **Transpordimehhanismid**: Kinnitatud STDIO ja Streamable HTTP transpordi dokumentatsiooni täpsus
-- **Turvajuhtnöörid**: Kinnitatud vastavus hetke MCP turvalisuse parimate tavade dokumentatsioonile
+#### Spetsifikatsiooni vastavuse kontroll
+- **Protokolli versioon**: Kinnitatud, et kogu dokumentatsioon viitab kehtivale MCP spetsifikatsioonile 2025-11-25
+- **Arhitektuuri joondus**: Kinnitatud kahekihilise arhitektuuri (andmekiht + transpordikiht) dokumentatsiooni täpsus
+- **Primitiivide dokumentatsioon**: Kontrollitud serveri primitiive (ressursid, üleskutsed, tööriistad) ja kliendi primitiive (valim, andmete kogumine, logimine, juured)
+- **Transpordimehhanismid**: Kinnitatud STDIO ja voogedastatava HTTP transpordi dokumentatsiooni täpsus
+- **Turvalisuse juhised**: Kinnitatud vastavus kehtivatele MCP turvalisuse headele praktikatele
 
-#### Olulised MCP 2025-11-25 funktsioonid dokumenteeritud
-- **OpenID Connect avastamine**: Autentimisserveri avastamine OIDC kaudu
+#### Olulised MCP 2025-11-25 omadused dokumenteeritud
+- **OpenID Connect avastus**: Autentimisserveri avastus OIDC kaudu
 - **OAuth kliendi ID metaandmete dokumendid**: Soovitatud kliendi registreerimise mehhanism
-- **JSON skeem 2020-12**: MCP skeemide põhikeel
-- **SDK astmeliistude süsteem**: Formaliseeritud nõuded SDK funktsioonide toetusele ja hooldusele
-- **Haldusstruktuur**: Formaliseeritud töörühmad ja huvirühmad MCP halduses
+- **JSON skeem 2020-12**: MCP skeemide määratluste vaike dialekt
+- **SDK kihistamissüsteem**: Formaliseeritud nõuded SDK funktsioonide toetuseks ja hoolduseks
+- **Juhtimisstruktuur**: Formaliseeritud MCP juhtimisvõrgustikud ja huvigruppide struktuur
 
-### Turvadokumentatsiooni suur uuendus (02-Security/)
+### Turvalisuse dokumentatsiooni põhiuuendus (02-Security/)
 
 #### MCP Security Summit Workshop (Sherpa) integreerimine
-- **Uus praktiline koolitusressurss**: Lisatud põhjalik integratsioon [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) kõigis turbudokumentides
-- **Ekspeditsiooni marsruudid**: Dokumenteeritud kogu laagrilt laagrile liikumine Aluslaagrist Haripunkti
-- **OWASP vastavus**: Kõik turvajuhtnöörid nüüd kooskõlas OWASP MCP Azure turvajuhendite riskidega
+- **Uus praktiline koolitusressurss**: Lisatud ulatuslik integratsioon [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) kogu turvalisuse dokumentatsiooni ulatuses
+- **Ekspeditsiooni marsruudi kajastus**: Dokumenteeritud täielik laager-laager üleminek baaskomandopunktist tippu
+- **OWASP-iga joondus**: Kõik turvalisuse juhised nüüd kooskõlas OWASP MCP Azure Security Guide riskidega
 
 #### OWASP MCP Top 10 integreerimine
-- **Uus sektsioon**: Lisatud OWASP MCP Top 10 turvariskide tabel Azure leevendustega peamise Security README-sse
-- **Riskipõhine dokumentatsioon**: Uuendatud mcp-security-controls-2025.md koos OWASP MCP riskiviidetega igas turvadomeenis
-- **Võrdlusarhitektuur**: Lingitud OWASP MCP Azure turvajuhendi võrdlusarhitektuuri ja rakendusmustritega
+- **Uus sektsioon**: Lisatud OWASP MCP Top 10 turvariskide tabel Azure leevendustega peamise turvalisuse README-sse
+- **Riskipõhine dokumentatsioon**: Uuendatud mcp-security-controls-2025.md koos OWASP MCP riskiviidetega igas turvavaldkonnas
+- **Viidearhitektuur**: Linkitud OWASP MCP Azure Security Guide viidearhitektuuri ja rakendusmustritele
 
-#### Uuendatud turbefailid
-- **README.md**: Lisatud Sherpa koolituse ülevaade, ekspeditsiooni marsruuditabel, OWASP MCP Top 10 riskide kokkuvõte ja praktilise koolituse jaotis
-- **mcp-security-controls-2025.md**: Uuendatud päis veebruar 2026, lisatud OWASP riskiviited (MCP01-MCP08), parandatud spetsifikatsiooni versiooni vastuolu
-- **mcp-security-best-practices-2025.md**: Lisatud Sherpa ja OWASP ressursside jaotis, uuendatud kuupäev
-- **mcp-best-practices.md**: Lisatud praktilise koolituse jaotis Sherpa ja OWASP linkidega
-- **azure-content-safety-implementation.md**: Lisatud OWASP MCP06 viide, Sherpa laager 3 kooskõlastus ja täiendavate ressursside jaotis
+#### Uuendatud turvafailid
+- **README.md**: Lisatud Sherpa töötoa ülevaade, ekspeditsiooni marsruudi tabel, OWASP MCP Top 10 riskide kokkuvõte ja praktilise koolituse sektsioon
+- **mcp-security-controls-2025.md**: Uuendatud päis veebruariks 2026, lisatud OWASP riskiviited (MCP01-MCP08), parandatud spetsifikatsiooni versiooni vastuolu
+- **mcp-security-best-practices-2025.md**: Lisatud Sherpa ja OWASP ressursside sektsioon, uuendatud ajatemplit
+- **mcp-best-practices.md**: Lisatud praktilise koolituse sektsioon Sherpa ja OWASP linkidega
+- **azure-content-safety-implementation.md**: Lisatud OWASP MCP06 viide, Sherpa Camp 3 joondus ja täiendavate ressursside sektsioon
 
-#### Lisatud uued ressursside lingid
+#### Uued ressursside lingid lisatud
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
-
-- [OWASP MCP Azure turvajuht](https://microsoft.github.io/mcp-azure-security-guide/)
+- [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)
-- Üksikisiku OWASP MCP riskilehed (MCP01-MCP10)
+- Individuaalsed OWASP MCP riskilehed (MCP01-MCP10)
 
-### Õppekavaülene MCP Spetsifikatsiooni 2025-11-25 joondamine
+### Õppekava ulatuslik MCP spetsifikatsiooni 2025-11-25 joondus
 
-#### Moodul 03 - Alustamine
-- **SDK dokumentatsioon**: Lisatud Go SDK ametlikku SDK nimekirja; uuendatud kõik SDK viited MCP Spetsifikatsioonile 2025-11-25 vastavaks
-- **Ülekande täpsustus**: Uuendatud STDIO ja HTTP voogedastuse transpordi kirjeldusega, kus on eksplicitse spetsifikatsiooni viited
+#### Moodul 03 - Algus
+- **SDK dokumentatsioon**: Lisatud Go SDK ametliku SDK nimekirja; uuendatud kõik SDK viited MCP spetsifikatsioonile 2025-11-25 vastavalt
+- **Transpordi täpsustus**: Uuendatud STDIO ja HTTP voogedastuse transpordi kirjeldused koos otseste spetsifikatsiooni viidetega
 
-#### Moodul 04 - Praktiline rakendamine
-- **SDK uuendused**: Lisatud Go SDK; uuendatud SDK nimekiri spetsifikatsiooni versiooni viitega
-- **Autoriseerimise spetsifikatsioon**: Uuendatud MCP autoriseerimise spetsifikatsiooni link uuele 2025-11-25 versioonile
+#### Moodul 04 - Praktiline rakendus
+- **SDK uuendused**: Lisatud Go SDK; uuendatud SDK nimekiri koos spetsifikatsiooni versiooni viitega
+- **Autentimise spetsifikatsioon**: Uuendatud MCP autentimise spetsifikatsiooni link kehtivale 2025-11-25 versioonile
 
 #### Moodul 05 - Täiustatud teemad
-- **Uued funktsioonid**: Lisatud märkus MCP Spetsifikatsiooni 2025-11-25 uute funktsioonide kohta (ülesanded, tööriistade annotatsioonid, URL režii tuvastamine, juured)
-- **Turberessursid**: Lisatud OWASP MCP Top 10 ja Sherpa töötoa lingid täiendavatesse viidetesse
+- **Uued omadused**: Lisatud märkus MCP spetsifikatsiooni 2025-11-25 uutest omadustest (Ülesanded, Tööriistade annotatsioonid, URL-režiimi andmeküsitlused, Juured)
+- **Turvaressursid**: Lisatud OWASP MCP Top 10 ja Sherpa töötoa lingid täiendavatele viidetele
 
-#### Moodul 06 - Ühiskonna panused
+#### Moodul 06 - Kogukonna panused
 - **SDK nimekiri**: Lisatud Swift ja Rust SDKd; uuendatud spetsifikatsiooni link 2025-11-25
-- **Spetsifikatsiooni viide**: Uuendatud MCP Spetsifikatsiooni link otsesele spetsifikatsiooni URLile
+- **Spetsifikatsiooni viide**: Uuendatud MCP spetsifikatsiooni link otse spetsifikatsiooni URL-ile
 
-#### Moodul 07 - Õppetunnid varajastest kasutuselevõttudest
-- **Ressursside uuendused**: Lisatud MCP Spetsifikatsioon 2025-11-25 lingid ja OWASP MCP Top 10 täiendavatesse ressurssidesse
+#### Moodul 07 - Varased praktikad
+- **Ressursside uuendused**: Lisatud MCP spetsifikatsiooni 2025-11-25 link ja OWASP MCP Top 10 täiendavatesse ressurssidesse
 
-#### Moodul 08 - Parimad praktikad
-- **Spetsifikatsiooni versioon**: Uuendatud MCP Spetsifikatsiooni viide 2025-11-25 versioonile
-- **Turberessursid**: Lisatud OWASP MCP Top 10 ja Sherpa töötoa lingid täiendavatesse viidetesse
+#### Moodul 08 - Head praktikad
+- **Spetsifikatsiooni versioon**: Uuendatud MCP spetsifikatsiooni viide 2025-11-25
+- **Turvaressursid**: Lisatud OWASP MCP Top 10 ja Sherpa töötuba täiendavates viidetes
 
 #### Moodul 10 - AI töövoogude sujuvamaks muutmine
-- **Märgisuuendus**: Vahetatud MCP versiooni märgis SDK versioonilt (1.9.3) spetsifikatsiooni versioonile (2025-11-25)
-- **Ressursside lingid**: Uuendatud MCP Spetsifikatsiooni link; lisatud OWASP MCP Top 10
+- **Märgistuse uuendus**: Muudetud MCP versiooni märk SDK versioonilt (1.9.3) spetsifikatsiooni versioonile (2025-11-25)
+- **Ressursside lingid**: Uuendatud MCP spetsifikatsiooni link; lisatud OWASP MCP Top 10
 
-#### Moodul 11 - MCP serveri praktilised laborisessioonid
-- **Spetsifikatsiooni viide**: Uuendatud MCP Spetsifikatsiooni link 2025-11-25 versioonile
-- **Turberessursid**: Lisatud OWASP MCP Top 10 ametlikesse ressurssidesse
+#### Moodul 11 - MCP serveri praktilised töötoad
+- **Spetsifikatsiooni viide**: Uuendatud MCP spetsifikatsiooni link 2025-11-25 versioonile
+- **Turvaressursid**: Lisatud OWASP MCP Top 10 ametlike ressursside hulka
 
 ## 18. detsember 2025
 
-### Turbedokumentatsiooni uuendus - MCP Spetsifikatsioon 2025-11-25
+### Turvalisuse dokumentatsiooni uuendus - MCP spetsifikatsioon 2025-11-25
 
-#### MCP Turbe parimad praktikad (02-Security/mcp-best-practices.md) - Spetsifikatsiooni versiooni uuendus
-- **Protokolli versiooni uuendus**: Uuendatud viide uusimale MCP Spetsifikatsioonile 2025-11-25 (vabastatud 25. novembril 2025)
-  - Uuendatud kõik spetsifikatsiooni versiooni viited 2025-06-18 asemel 2025-11-25
-  - Uuendatud dokumendi kuupäevad augustist 18, 2025 detsembrisse 18, 2025
-  - Kontrollitud, et kõik spetsifikatsiooni URLid osutaksid kehtivale dokumentatsioonile
-- **Sisu valideerimine**: Ulatuslik turbe parimate tavade valideerimine viimaste standardite vastu
-  - **Microsofti turbeslahendused**: Kinnitatud terminoloogia ja lingid Prompt Shields (varem "Jailbreak risk detection"), Azure Content Safety, Microsoft Entra ID ja Azure Key Vault kohta
-  - **OAuth 2.1 turve**: Kinnitatud uusimate OAuth turbetavade järgimine
-  - **OWASP standardid**: Valideeritud, et OWASP Top 10 LLMide puhul on ajakohane
-  - **Azure teenused**: Kontrollitud kõik Microsoft Azure dokumentatsiooni lingid ja parimad praktikad
-- **Standardite joondamine**: Kõik viidatud turbestandardid on ajakohased
-  - NIST AI Riskide juhtimise raamistik
+#### MCP turvalisuse head praktikad (02-Security/mcp-best-practices.md) - spetsifikatsiooni versiooni uuendus
+- **Protokolli versiooni uuendus**: Uuendatud viide uusimale MCP spetsifikatsioonile 2025-11-25 (välja antud 25. november 2025)
+  - Uuendatud kõik spetsifikatsiooni versiooni viited 2025-06-18 -> 2025-11-25
+  - Uuendatud dokumendi kuupäeva viited 18. august 2025 -> 18. detsember 2025
+  - Kontrollitud, et kõik spetsifikatsiooni URLid viitavad kehtivale dokumentatsioonile
+- **Sisu valideerimine**: Ulatuslik turvalisuse headade praktikate vastavuse kontroll viimaste standarditega
+  - **Microsofti turvalahendused**: Kinnitatud tänapäevane terminoloogia ja lingid Prompt Shieldile (varem "vanglakaristuste riskide tuvastamine"), Azure Content Safety, Microsoft Entra ID ja Azure Key Vaulti kohta
+  - **OAuth 2.1 turvalisus**: Kinnitatud vastavus uusimatele OAuth turvapraktikatele
+  - **OWASP standardid**: Kontrollitud, et OWASP Top 10 LLMide kohta viited on ajakohased
+  - **Azure teenused**: Kontrollitud kõik Microsoft Azure dokumentatsiooni lingid ja head praktikad
+- **Standardite joondus**: Kõik viidatud turvastandardid kinnitatud ajakohasteks
+  - NIST AI riskijuhtimise raamistik
   - ISO 27001:2022
-  - OAuth 2.1 turbe parimad tavad
-  - Azure turbe ja vastavuse raamistikud
-- **Rakendamise ressursid**: Kinnitatud kõik rakendamisjuhendite lingid ja ressursid
+  - OAuth 2.1 turvalisuse head praktikad
+  - Azure turbe- ja vastavusraamistikud
+- **Rakendamisjuhised**: Kinnitatud kõik rakendusjuhiste lingid ja ressursid
   - Azure API haldamise autentimismustrid
-  - Microsoft Entra ID integratsiooni juhendid
-  - Azure Key Vault saladuste haldamine
-  - DevSecOps torujuhtmed ja monitooringulahendused
+  - Microsoft Entra ID integreerimisjuhendid
+  - Azure Key Vaulti salajaste andmete haldus
+  - DevSecOps torujuhtmed ja jälgimislahendused
 
 ### Dokumentatsiooni kvaliteedi tagamine
-- **Spetsifikatsiooni nõuete järgimine**: Tagatud kõikide MCP turbenõuete (PEAB/PEAB MITTE) vastavus uusimale spetsifikatsioonile
-- **Ressursside ajakohasus**: Kontrollitud kõik välised lingid Microsofti dokumentatsioonile, turbestandarditele ja rakendamisjuhenditele
-- **Parimate tavade ulatus**: Kinnitatud autentimise, autoriseerimise, AI-spetsiifiliste ohtude, tarneahela turbe ja ettevõttesiseste mustrite kõikehõlmav käsitlemine
+- **Spetsifikatsiooni nõuete järgimine**: Kinnitatud, et kõik kohustuslikud MCP turvanõuded (PEAB/PEAB MITTE) vastavad uusimale spetsifikatsioonile
+- **Ressursside ajakohasus**: Kontrollitud kõik välised lingid Microsofti dokumentatsioonile, turvastandarditele ja rakendusjuhistele
+- **Heade praktikate ulatus**: Kinnitatud põhjalik katvus autentimise, autoriseerimise, AI spetsiifiliste ohtude, tarneahela turvalisuse ja ettevõtte mustrite osas
 
 ## 6. oktoober 2025
 
-### Alustamise sektsiooni laiendus – Täiustatud serverikasutus ja lihtne autentimine
+### Algusosa laiendus – Täiustatud serveri kasutus ja lihtne autentimine
 
-#### Täiustatud serverikasutus (03-GettingStarted/10-advanced)
-- **Lisatud uus peatükk**: Tutvustati ulatuslikku juhendit täiustatud MCP serveri kasutamiseks, hõlmates nii tavapärast kui ka madala taseme serveri arhitektuuri.
-  - **Tavalise versus madala taseme server**: Üksikasjalik võrdlus ja koodinäited Pythonis ja TypeScriptis mõlemal lähenemisel.
-  - **Handleripõhine disain**: Selgitus tööriistade, ressursside ja promptide haldamiseks handleripõhiselt, et toetada skaleeritavaid ja paindlikke serverilahendusi.
-  - **Praktilised mustrid**: Reaalmaailma stsenaariumid, kus madala taseme serverimustrid aitavad täiustatud funktsioone ja arhitektuuri.
+#### Täiustatud serveri kasutus (03-GettingStarted/10-advanced)
+- **Uus peatükk lisatud**: Esitatud põhjalik juhend täiustatud MCP serveri kasutusele, hõlmates nii regulaarset kui madala taseme serveri arhitektuuri.
+  - **Regulaarne vs madala taseme server**: Detailne võrdlus ning koodinäited Pythonis ja TypeScriptis mõlema lähenemise kohta.
+  - **Handler-põhine disain**: Selgitus vahendipõhisest tööriistade/ressursside/üleskutsete haldamisest skaleeritavate ja paindlike serverirakenduste jaoks.
+  - **Praktilised mustrid**: Reaalsed stsenaariumid, kus madala taseme serverimustrid on kasulikud täiustatud funktsioonide ja arhitektuuri jaoks.
 
 #### Lihtne autentimine (03-GettingStarted/11-simple-auth)
-- **Lisatud uus peatükk**: Samm-sammuline juhend lihtsa autentimise rakendamiseks MCP serverites.
-  - **Autentimise kontseptsioonid**: Selged selgitused autentimise ja autoriseerimise ning mandaadihalduse vahel.
-  - **Põhjauth rakendus**: Vahevara-põhised autentimismustrid Pythonis (Starlette) ja TypeScriptis (Express), koos koodinäidetega.
-  - **Edasiminek täiustatud turbe suunas**: Juhised lihtsast autentimisest alustamiseks ja edasi liikumiseks OAuth 2.1 ja RBAC juurde, koos viidetega täiustatud turbemoodulitele.
+- **Uus peatükk lisatud**: Samm-sammuline juhend lihtsa autentimise rakendamiseks MCP serverites.
+  - **Autentimise kontseptsioonid**: Selge selgitus autentimise ja autoriseerimise erinevustest ning tõendite käsitlemisest.
+  - **Lihtsa autentimise rakendamine**: Vahevara-põhised autentimismustrid Pythonis (Starlette) ja TypeScriptis (Express), koodinäidetega.
+  - **Arene turvalisuse suunas**: Juhised, kuidas alustada lihtsa autentimisega ja liikuda edasi OAuth 2.1 ja RBAC juurde, viidates täiustatud turvamoodulitele.
 
-Need täiendused pakuvad praktilist ja käed-külge juhendit tugevamate, turvalisemate ja paindlikumate MCP serverilahenduste ehitamiseks, ühendades põhikontseptsioonid täiustatud tootmismustritega.
+Need täiendused pakuvad praktilist käed-külge juhendit tugevamate, turvalisemate ja paindlikumate MCP serveri rakenduste loomiseks, ühendades põhikontseptsioonid täiustatud tootmispraktikatega.
 
 ## 29. september 2025
 
-### MCP serveri andmebaasi integratsiooni laborisessioonid - Ulatuslik praktiline õppeprogramm
+### MCP serveri andmebaasi integreerimise töötoad - põhjalik praktiline õppekava
 
-#### 11-MCPServerHandsOnLabs - uus täielik andmebaasi integratsiooni õppekava
-- **Täielik 13-laboriline õppekava**: Lisatud ulatuslik praktika MCP tootmistasemel serverite ehitamiseks PostgreSQL andmebaasi integratsiooniga
-  - **Reaalmaailma rakendus**: Zava Retail analüütiline kasutusjuhtum, mis demonstreerib ettevõtte standardeid
-  - **Struktureeritud õppimise progresioon**:
-    - **Laborid 00-03: Alused** - Sissejuhatus, põhiehituse arhitektuur, turve & mitme üürnikuga tugi, keskkonna seadistamine
-    - **Laborid 04-06: MCP serveri arendus** - Andmebaasi disain & skeem, MCP serveri rakendus, tööriistade arendamine  
-    - **Laborid 07-09: Täiustatud funktsioonid** - Semantiline otsing, testimine ja silumine, VS Code integratsioon
-    - **Laborid 10-12: Tootmine ja parimad praktikad** - Juhtimise strateegiad, monitooring & jälgitavus, parimad praktikad & optimeerimine
-  - **Ettevõtte tehnoloogiad**: FastMCP raamistik, PostgreSQL koos pgvectoriga, Azure OpenAI sisaldised, Azure Container Apps, Application Insights
-  - **Täiustatud funktsioonid**: Ridade tasemel turve (RLS), semantiline otsing, mitme üürniku andmete ligipääs, vektorimplantaatide kasutus, reaalajas monitooring
+#### 11-MCPServerHandsOnLabs - uus täismahus andmebaasi integreerimise õppekava
+- **Täielik 13 töötoa õppekava**: Lisatud ulatuslik praktiline õppekava tootmisvalmis MCP serverite loomiseks PostgreSQL andmebaasi integratsiooniga
+  - **Reaalmaailma rakendus**: Zava Retail analüütika kasutusjuht, näidates ettevõtte tasemel mustreid
+  - **Struktureeritud õppeprotsess**:
+    - **Töötoad 00-03: Alused** - Sissejuhatus, põhiarhitektuur, turvalisus ja mitmiküüriline funktsionaalsus, keskkonna seadistamine
+    - **Töötoad 04-06: MCP serveri ehitamine** - Andmebaasi disain ja skeem, MCP serveri rakendamine, tööriistade arendus  
+    - **Töötoad 07-09: Täiustatud funktsioonid** - Semantiline otsing, testimine ja silumine, VS Code integratsioon
+    - **Töötoad 10-12: Tootmine ja head praktikad** - Juhtimise strateegiad, monitooring ja jälgitavus, head praktikad ja optimeerimine
+  - **Ettevõtte tehnoloogiad**: FastMCP raamistik, PostgreSQL koos pgvectoriga, Azure OpenAI embeddid, Azure Container Apps, Application Insights
+  - **Täiustatud omadused**: Rea taseme turvalisus (RLS), semantiline otsing, mitme kliendi andmete ligipääs, vektori embeddid, reaalajas monitooring
 
-#### Terminoloogia standardiseerimine - Moodulist laborisse üleminek
-- **Ulatuslik dokumentatsiooni uuendus**: Süsteemne kõigi README failide uuendus 11-MCPServerHandsOnLabs kataloogis, kasutades terminoloogiat "Labor" "Mooduli" asemel
-  - **Sektsioonide päised**: Uuendatud kõigis 13 laboris jaotist "Mida see moodul hõlmab" kujule "Mida see labor hõlmab"
-  - **Sisukirjeldus**: Muudetud "See moodul pakub..." kujule "See labor pakub..." dokumentatsioonis
-  - **Õpieesmärgid**: Uuendatud "Selle mooduli lõpus..." kujule "Selle labori lõpus..."
-  - **Navigatsioonilingid**: Kõik "Moodul XX:" viited muudetud "Labor XX:" viideteks ristviidetes ja navigeerimisel
-  - **Lõpetamise jälgimine**: Uuendatud "Pärast selle mooduli lõpetamist..." kujule "Pärast selle labori lõpetamist..."
-  - **Tehnilised viited säilitatud**: Säilitatud Python mooduliviited konfiguratsioonifailides (näiteks `"module": "mcp_server.main"`)
+#### Terminoloogia standardiseerimine - mooduli töötoaks muutmine
+- **Põhjalik dokumentatsiooni uuendus**: Süsteemne kõigi README failide uuendus 11-MCPServerHandsOnLabs kataloogis, kasutades "Töötuba" terminoloogiat "Mooduli" asemel
+  - **Sektsioonide pealkirjad**: Muudetud "Mis see moodul katab" kõigis 13 töökohas "Mis see töötuba katab"
+  - **Sisu kirjeldus**: Muudetud "See moodul pakub..." vormingust "See töötuba pakub..." üle kogu dokumentatsioonis
+  - **Õpieesmärgid**: Muudetud "Selle mooduli lõpuks..." vormingust "Selle töötoa lõpuks..." 
+  - **Navigatsioonilingid**: Kõik "Moodul XX:" viited muudetud "Töötuba XX:"-ks ristviidetes ja navigeerimisel
+  - **Lõpetamise jälgimine**: Muudetud "Pärast selle mooduli lõpetamist..." vormingust "Pärast selle töötoa lõpetamist..."
+  - **Tehnilised viited säilitatud**: Säilitatud Python mooduliviited konfiguratsioonifailides (nt `"module": "mcp_server.main"`)
 
-#### Õpigrupeeringu täiustamine (study_guide.md)
-- **Visuaalne õppekava kaart**: Lisatud uus sektsioon "11. Andmebaasi integratsiooni laborisessioonid" koos ulatusliku laboristruktuuri visualiseerimisega
-- **Repositooriumi struktuur**: Uuendatud kümnest üheteistkümneks põhiosas, lisades põhjaliku 11-MCPServerHandsOnLabs kirjelduse
-- **Õppeteejuhend**: Täiustatud navigeerimisjuhised, hõlmates sektsioone 00-11
-- **Tehnoloogiate käsitlus**: Lisatud FastMCP, PostgreSQL, Azure teenuste integratsiooni üksikasjad
-- **Õpitulemused**: Rõhutatud tootmisvalmis serveri arendamist, andmebaasi integratsioonimustreid ja ettevõtte turvalisust
+#### Õppematerjali täiustamine (study_guide.md)
+- **Visuaalne õppekava kaart**: Lisatud uus sektsioon "11. Andmebaasintegreerimise töötoad" koos põhjaliku töötoa struktuuri visualiseerimisega
+- **Kataloogi struktuur**: Uuendatud kümnest üheteistkümneks põhiosaks koos detailselt 11-MCPServerHandsOnLabs kirjeldusega
+- **Õpimarsruudi juhendamine**: Täiustatud navigeerimisjuhised hõlmates sektsioone 00-11
+- **Tehnoloogiate katvus**: Lisatud FastMCP, PostgreSQL, Azure teenuste integratsiooni detailid
+- **Õpitulemused**: Tõstetud esile tootmisvalmis serveri arendus, andmebaasi integratsiooni mustrid ja ettevõttesektori turvalisus
 
 #### Peamise README struktuuri täiustamine
-- **Laboripõhine terminoloogia**: Uuendatud 11-MCPServerHandsOnLabs peamist README.md faili järjepidevalt kasutama "Labor" struktuuri
-- **Õppeteekonna organiseerimine**: Selge progresioon alustavate kontseptsioonide, täiustatud rakendamise ja tootmisvalmiks juurutamise vahel
-- **Reaalmaailma fookus**: Rõhutatud praktilist, käed-külge õppimist ettevõtte standardite ja tehnoloogiatega
+- **Töötuba-põhine terminoloogia**: Uuendatud põhi README.md 11-MCPServerHandsOnLabs kaustas järjekindlalt kasutama "Töötuba" struktuuri
+- **Õpimarsruudi korraldus**: Selge areng alates põhikontseptsioonidest kuni täiustatud rakenduste ja tootmise juurutamiseni
+- **Reaalmaailma fookus**: Rõhutatud praktilist, käed-külge õppe lähenemist ettevõtte tasemel mustrite ja tehnoloogiatega
 
-### Dokumentatsiooni kvaliteedi ja ühtsuse täiustused
-- **Praktiliste õppemomentide rõhutamine**: Tugevdatud käed-külge, laboripõhine lähenemine kogu dokumentatsioonis
-- **Ettevõttemustrid**: Esile toodud täisväärtuslikud tootmisvalmid rakendused ja ettevõtte turbe kaalutlused
-- **Tehnoloogiate integratsioon**: Kaasaegsete Azure teenuste ja AI integratsioonimustrite ulatuslik käsitlus
-- **Õppeteekonna progressioon**: Selge, struktureeritud tee alustavate kontseptsioonide juurest tootmisvalmis juurutamiseni
+### Dokumentatsiooni kvaliteedi ja järjepidevuse parandused
+- **Praktilise õppe rõhutamine**: Kinnitatud praktiline, töötubade-põhine lähenemine kogu dokumentatsioonis
+- **Ettevõtte mustrite fookus**: Tõstetud esile tootmisvalmis rakendused ja ettevõtte turvapõhimõtted
+- **Tehnoloogia integratsioon**: Ulatuslik kaetus kaasaegsetest Azure teenustest ja AI integreerimise mustritest
+- **Õppimise areng**: Selge, struktureeritud tee põhikontseptsioonidest tootmisjuurutuseni
 
 ## 26. september 2025
 
-### Juhtumiuuringute täiustamine - GitHub MCP registri integratsioon
+### Juhtumiuuringute täiustamine - GitHub MCP registri integreerimine
 
-#### Juhtumiuuringud (09-CaseStudy/) - Ökosüsteemi arendusfookus
-- **README.md**: Oluline laiendus ulatuslike GitHub MCP registri juhtumiuuringutega
-  - **GitHub MCP registri juhtumiuuring**: Uus põhjalik juhtumiuuring, mis uurib GitHub MCP registri lansseerimist septembris 2025
-    - **Probleemi analüüs**: Üksikasjalik fragmentide MCP serverite leidmise ja juurutamise väljakutsetest
-    - **Lahenduse arhitektuur**: GitHubi keskne registri lähenemine koos ühe klõpsuga VS Code paigaldusega
-    - **Äriline mõju**: Mõõdetavad parendused arendaja käivitamisel ja tootlikkuses
-    - **Strateegiline väärtus**: Fookus modulaarsele agendi juurutamisele ja tööriistadevahelisele koostalitlusele
-    - **Ökosüsteemi arendamine**: Positsioneerimine agentipõhise süsteemi alussektorina
-  - **Täiustatud juhtumiuuringu struktuur**: Uuendatud kõik seitse juhtumiuuringut järjepideva vormingu ja põhjalike kirjeldustega
-    - Azure AI reisibürood: Mitmeagendi orkestreerimise rõhuasetus
-    - Azure DevOps integratsioon: Töövoo automatiseerimise keskendumine
-    - Reaalajas dokumentide päring: Python konsooliklient
-    - Interaktiivne õppeplaani generaator: Chainlit vestluspõhine veebirakendus
-    - Redaktori sees dokumentatsioon: VS Code ja GitHub Copilot integratsioon
-    - Azure API haldamine: Ettevõtte API integratsiooni mustrid
-    - GitHub MCP registri: Ökosüsteemi arendus ja kogukonna platvorm
-  - **Ulatuslik järeldus**: Ümberkirjutatud kokkuvõtte peatükk, mis rõhutab seitset erinevat juhtumiuuringut, hõlmates mitmeid MCP rakendamismõõtmeid
-    - Ettevõtte integratsioon, mitmeagendi orkestreerimine, arendaja tootlikkus
+#### Juhtumiuuringud (09-CaseStudy/) - ökosüsteemi arendamise fookus
+- **README.md**: Suur laiendus ulatusliku GitHub MCP registri juhtumiuuringuga
+  - **GitHub MCP registri juhtumiuuring**: Uus põhjalik juhtumiuuring, uurides GitHub MCP registri käivitust 2025. aasta septembris
+    - **Probleemi analüüs**: Detailne läbivaatus killustatud MCP serveri avastamise ja juurutamise väljakutsetest
+    - **Lahenduse arhitektuur**: GitHubi tsentraliseeritud registri lahendus koos ühe-klõpsuga VS Code installiga
+    - **Äriline mõju**: Mõõdetavad parendused arendajate käibele ja tootlikkuses
+    - **Strateegiline väärtus**: Fookus modulaarsele agendi juurutusele ja tööriistadevahelisele koostalitlusvõimele
+    - **Ökosüsteemi areng**: Positsioneerimine alustalaks agentuursel integratsioonil
+  - **Täiendatud juhtumiuuringute struktuur**: Kõigi seitsme juhtumiuuringu värskendamine ühetaolise vormingu ja ulatuslike kirjeldustega
+    - Azure AI reisisekretärid: Mitme agendi orkestreerimise rõhuasetus
+    - Azure DevOpsi integratsioon: Töövoo automatiseerimise fookus
+    - Reaalajas dokumentatsiooni tuvastus: Python konsoolikliendi rakendus
+    - Interaktiivne õppekava generaator: Chainlit vestlev veebirakendus
+
+    - Toimetaja sees olev dokumentatsioon: VS Code ja GitHub Copilot integratsioon
+    - Azure API haldus: Ettevõtte API integratsioonimustrid
+    - GitHub MCP register: Ökosüsteemi arendus ja kogukonna platvorm
+  - **Ülevaatlik kokkuvõte**: ümber kirjutatud kokkuvõtte osa, kus on välja toodud seitse juhtumiuuringut, mis hõlmavad MCP rakendamise mitmeid dimensioone
+    - Ettevõtte integreerimine, mitmeagendi orkestreerimine, arendaja tootlikkus
     - Ökosüsteemi arendus, hariduslike rakenduste kategoriseerimine
-    - Täiustatud teadmised arhitektuurimustritest, rakendusstrateegiatest ja parimatest praktikatest
-    - Rõhuasetus MCP-le kui küpsele, tootmisvalmiks protokollile
+    - Täiustatud ülevaated arhitektuurimustritest, rakendusstrateegiatest ja parimatest tavade näidetest
+    - Rõhk MCP-l kui küpsel, tootmiskõlblikul protokollil
 
-#### Õpigruppi juhendi uuendused (study_guide.md)
-- **Visuaalne õppekava kaart**: Uuendatud mõttekart gramm GitHub MCP registri lisamiseks juhtumiuuringute sektsiooni
-- **Juhtumiuuringute kirjeldus**: Täiustatud üldistest kirjeldustest üksikasjalikuks ülevaateks seitsmel põhjalikul juhtumiuuringul
-- **Repositooriumi struktuur**: Uuendatud 10. sektsioon hõlmama põhjalikku juhtumiuuringute käsitlust koos konkreetsete rakenduse detailidega
-- **Muudatuste logi integreerimine**: Lisatud 26. septembri 2025 sissekanne, mis dokumenteerib GitHub MCP registri lisamist ja juhtumiuuringute täiustusi
-- **Kuupäeva uuendused**: Uuendatud jaluse ajatempli peegeldamaks viimast versiooni (26. september 2025)
+#### Õppejuhendi uuendused (study_guide.md)
+- **Visuaalne õppekava kaart**: uuendatud mõttekaart, et lisada GitHub MCP register juhtumiuuringute sektsiooni
+- **Juhtumiuuringute kirjeldus**: parendatud üldistest kirjetest detailseks seitse ulatusliku juhtumiuuringu jaotuseks
+- **Arhiivi struktuur**: uuendatud 10. sektsioon, mis kajastab ulatuslikku juhtumiuuringute katvust spetsiifiliste rakenduste detailidega
+- **Muudatuste logi integreerimine**: lisatud 26. septembri 2025 sissekanne, dokumenteerides GitHub MCP registri lisamise ja juhtumiuuringute täiustused
+- **Kuupäeva uuendused**: jaluses uuendatud viimase versiooni kuupäev (26. september 2025)
 
-### Dokumentatsiooni kvaliteedi parandused
-- **Järjepidevuse täiustamine**: Standardiseeritud juhtumiuuringute vormindus ja struktuur kõigis seitsmes näites
-- **Ulatuslik käsitlus**: Juhtumiuuringud hõlmavad nüüd ettevõtte, arendaja tootlikkuse ja ökosüsteemi arendusstsenaariume
-- **Strateegiline positsioneerimine**: Täiustatud fookus MCP-le agentipõhise süsteemide rakendamise fundamentaalse platvormina
-- **Ressursside integreerimine**: Täiendatud täiendavad ressursid lisades GitHub MCP registri lingi
+### Dokumentatsiooni kvaliteedi parendused
+- **Järjepidevuse parandamine**: ühetaoline juhtumiuuringute vorming ja struktuur kõigi seitsme näite puhul
+- **Ülevaatlik katvus**: juhtumiuuringud hõlmavad nüüd ettevõtte, arendaja tootlikkuse ja ökosüsteemi arenduse stsenaariume
+- **Strateegiline positsioneerimine**: rõhuasetuse tugevdamine MCP-l kui agentide süsteemi paigaldamise alusplatvormil
+- **Ressursside integreerimine**: täiendatud lisavahendite jaotist GitHub MCP registri lingiga
 
 ## 15. september 2025
 
-### Täiustatud teemade laiendus - Kohandatud transpordid ja konteksti inseneritöö
+### Täiendatud teemade laiendus – Kohandatud transpordid ja konteksti inseneriteadus
 
-#### MCP kohandatud transpordid (05-AdvancedTopics/mcp-transport/) - uus täiustatud rakendamise juhend
-- **README.md**: Täielik rakendamisjuhend kohandatud MCP transpordimehhanismide kohta
-  - **Azure Event Grid transport**: Ulatuslik serverivaba sündmustel põhineva transpordi rakendus
-    - Näited C#, TypeScript ja Python keelega Azure Functions integratsiooniga
-    - Sündmustel põhineva arhitektuuri mustrid skaleeritavate MCP lahenduste jaoks
-    - Webhook vastuvõtjad ja push-sõnumi käsitlemine
-  - **Azure Event Hubs transport**: Suure läbilaskevõimega voogedastuse transpordi rakendus
-    - Reaalajas voogedastuse võimalused madala latentsusega stsenaariumites
-    - Partitsioneerimise strateegiad ja kontrollpunktide haldus
-    - Sõnumite virnastamine ja jõudluse optimeerimine
-  - **Ettevõtte integratsioonimustrid**: Tootmisvalmis arhitektuurinäited
-    - Hajutatud MCP töötlemine mitmes Azure Functions funktsioonis
-    - Hübriidtranspordi arhitektuurid, mis ühendavad mitut transporditüüpi
-    - Sõnumi vastupidavus, usaldusväärsus ja veakäsitluse strateegiad
-  - **Turve ja monitooring**: Azure Key Vault integratsioon ja jälgitavuse mustrid
-    - Hallatud identiteedi autentimine ja minimaalsete õiguste ligipääs
+#### MCP kohandatud transpordid (05-AdvancedTopics/mcp-transport/) – uus täiustatud rakendusjuhend
+- **README.md**: täielik juhend kohandatud MCP transpordimehhanismide rakendamiseks
+  - **Azure Event Gridi transport**: ulatuslik serverivaba sündmuspõhine transpordirakendus
+    - näited C#, TypeScripti ja Pythoni keeles Azure Functions integratsiooniga
+    - sündmuspõhised arhitektuurimustrid skaleeritavate MCP lahenduste jaoks
+    - webhook vastuvõtjad ja sõnumite push-tüüpi töötlemine
+  - **Azure Event Hubsi transport**: suure läbilaskevõimega voogedastus transpordi rakendus
+    - reaalajas voogedastus madala latentsusega stsenaariumite jaoks
+    - partitsioneerimisstrateegiad ja punktide haldus
+    - sõnumite partiide töötlemine ja jõudluse optimeerimine
+  - **Ettevõtte integratsioonimustrid**: tootmiskõlblikud arhitektuuri näited
+    - hajutatud MCP töötlemine mitme Azure Functioni vahel
+    - hübriidtranspordi arhitektuurid, mis kombineerivad mitut transporditüüpi
+    - sõnumite vastupidavuse, usaldusväärsuse ja veakäsitluse strateegiad
+  - **Turvalisus ja jälgimine**: Azure Key Vault integratsioon ja jälgitavuse mustrid
+    - hallatava identiteedi autentimine ja minimaalsete õiguste põhimõte
     - Application Insights telemeetria ja jõudluse jälgimine
-    - Kaitseseadmed ja vigursallivuse mustrid
-  - **Testimisraamistikud**: Ulatuslikud testimisstrateegiad kohandatud transpordide jaoks
-    - Ühiktestimine testtopeltide ja simulatsiooniraamistikega
-    - Integratsioonitestimine Azure Test Containersiga
-    - Jõudluse ja koormuse testimise kaalutlused
+    - kaitselülitid ja tõrketaluvuse mustrid
+  - **Testimisraamistikud**: kõikehõlmavad testimisstrateegiad kohandatud transpordite jaoks
+    - üksuse testimine testtopiste ja mokkimisraamistikega
+    - integratsioonitestimine Azure Test Containersiga
+    - jõudluse ja koormustestimise kaalutlused
 
-#### Konteksti inseneritöö (05-AdvancedTopics/mcp-contextengineering/) - Kujunev tehisintellekti distsipliin
-- **README.md**: Läbivaatus konteksti inseneritööst kui kujunevast valdkonnast
-  - **Põhiprintsiibid**: Täielik konteksti jagamine, tegevusotsuste teadlikkus ja konteksti akna haldus
-
-  - **MCP protokolli vastavus**: Kuidas MCP disain lahendab kontekstitöötluse väljakutseid
-    - Kontekstiakna piirangud ja progressiivsed laadimisstrateegiad
-    - Asjakohasuse määramine ja dünaamiline konteksti hankimine
-    - Mitme modaalne konteksti töötlemine ja turvalisuse kaalutlused
-  - **Rakendusviisid**: Üheteljelised vs. mitmeagendi arhitektuurid
-    - Kontekstitükkide tegemise ja prioriseerimise tehnikad
-    - Progressiivne konteksti laadimine ja tihendamisstrateegiad
-    - Kihilised kontekstilähenemised ja hankimise optimeerimine
-  - **Mõõtmise raamistik**: Uued mõõdikud konteksti tõhususe hindamiseks
-    - Sisendi efektiivsus, jõudlus, kvaliteet ja kasutajakogemus
-    - Katsemeetodid konteksti optimeerimiseks
-    - Rikkefailide analüüs ja täiustamismetoodikad
+#### Konteksti inseneriteadus (05-AdvancedTopics/mcp-contextengineering/) – tekkiv AI eriala
+- **README.md**: põhjalik uurimus konteksti inseneriteadusest kui tekkivast valdkonnast
+  - **Põhiprintsiibid**: täielik konteksti jagamine, tegevuseotsuste teadlikkus ja konteksti akna haldus
+  - **MCP protokolli kooskõlastamine**: kuidas MCP disain lahendab konteksti inseneriteaduse väljakutseid
+    - konteksti akna piirangud ja progressiivse laadimise strateegiad
+    - asjakohasuse määramine ja dünaamiline konteksti hankimine
+    - multimodaalne konteksti käsitlemine ja turvaküsimused
+  - **Rakendamise lähenemised**: ühesuunalised vs mitmeagendi arhitektuurid
+    - kontekstitükkide jaotamine ja prioriseerimise tehnikad
+    - progressiivne konteksti laadimine ja pakkimise strateegiad
+    - kihilised konteksti lähenemised ja hankimise optimeerimine
+  - **Mõõtmise raamistik**: tekkivad mõõdikud konteksti tõhususe hindamiseks
+    - sisendite efektiivsus, jõudlus, kvaliteet ja kasutajakogemuse kaalutlused
+    - eksperimentaalsed lähenemised konteksti optimeerimiseks
+    - rikete analüüs ja parendusmeetodid
 
 #### Õppekava navigeerimise uuendused (README.md)
-- **Täpsem mooduli struktuur**: Uuendatud õppekava tabel lisamaks uusi edasijõudnute teemasid
-  - Lisatud kontekstitöötlus (5.14) ja kohandatud transport (5.15) kirjed
-  - Ühtlane vormindus ja navigeerimislingid kõikides moodulites
-  - Uuendatud kirjeldused vastavaks praegusele sisule
+- **Täiustatud moodulistruktuur**: uuendatud õppekava tabel, et hõlmata uusi täiustatud teemasid
+  - lisatud Konteksti inseneriteadus (5.14) ja kohandatud transport (5.15)
+  - järjepidev vormindus ja navigeerimislingid kõigi moodulite vahel
+  - uuendatud kirjeldused, et kajastada praegust sisukattvust
 
-### Kaustastruktuuri täiustused
-- **Nimede standardiseerimine**: "mcp transport" ümber nimetatud "mcp-transport" järjepidevuse huvides teiste täiustatud teemade kaustadega
-- **Sisu organiseerimine**: Kõik 05-AdvancedTopics kaustad järgivad nüüd ühtset nimetamismustrit (mcp-[teema])
+### Kaustastruktuuri parandused
+- **Nimede standardiseerimine**: ümber nimetatud "mcp transport" kujule "mcp-transport" kooskõlas teiste täiustatud teemade kaustadega
+- **Sisu organiseerimine**: kõik 05-AdvancedTopics kaustad järgnevad nüüd ühtsele nimetamismustrile (mcp-[teema])
 
-### Dokumentatsiooni kvaliteedi parandused
-- **MCP spetsifikatsiooni vastavus**: Kõik uus sisu viitab praegusele MCP spetsifikatsioonile 2025-06-18
-- **Mitmekeelsed näited**: Ulatuslikud koodinäited C#, TypeScript ja Python keeles
-- **Ettevõttesisene fookus**: Tootmiseks valmis mustrid ja Azure pilve integratsioon kogu materjalis
-- **Visuaalne dokumentatsioon**: Mermaid skeemid arhitektuuri ja voogude visualiseerimiseks
+### Dokumentatsiooni kvaliteedi täiendused
+- **MCP spetsifikatsiooni kooskõlastamine**: kogu uus sisu viitab MCP spetsifikatsioonile 2025-06-18
+- **Mitmekeelsed näited**: põhjalikud koodinäited C#, TypeScripti ja Pythoni keeles
+- **Ettevõtte fookus**: tootmiskõlblikud mustrid ja Azure pilve integratsioon kõigis osades
+- **Visuaalne dokumentatsioon**: Mermaid diagrammid arhitektuuri ja voo visualiseerimiseks
 
 ## 18. august 2025
 
-### Dokumentatsiooni põhjalik uuendus - MCP 2025-06-18 standardid
+### Dokumentatsiooni põhjalik uuendus – MCP 2025-06-18 standardid
 
-#### MCP turvalisuse parimad tavad (02-Security/) - Täielik moderniseerimine
-- **MCP-SECURITY-BEST-PRACTICES-2025.md**: Täielik ümberkirjutus vastavuses MCP spetsifikatsiooniga 2025-06-18
-  - **Kohustuslikud nõuded**: Lisatud selged PEAB/PEAB MITTE nõuded ametlikust spetsifikatsioonist koos visuaalsete indikaatoritega
-  - **12 põhilist turvapraktilist juhendit**: Muudetud 15-punktilisest loendist ulatuslikeks turva valdkondadeks
-    - Märgistamise turvalisus ja autentimine väliste identiteedipakkujate integratsiooniga
-    - Sessioonihaldus ja transpordi turvalisus krüptograafiliste nõuetega
-    - AI-spetsiifiline ohutuse kaitse Microsoft Prompt Shieldsi integratsiooniga
-    - Juhtimis- ja õiguste haldus vähemalt privileegide põhimõttega
-    - Sisu turvalisus ja järelevalve Azure Content Safety integratsiooniga
-    - Tarneahela turvalisus ulatuslike komponendi kontrollidega
-    - OAuth turvalisus ja Confused Deputy rünnete ennetus PKCEga
-    - Intsidendi reageerimine ja taastumine automatiseeritud võimekusega
-    - Vastavus ja valitsemine regulatiivse nõuetega
-    - Täiustatud turvakontrollid null usalduse arhitektuuriga
-    - Microsoft turvaökosüsteemi integratsioon ulatuslike lahendustega
-    - Pidev turvaarenemine kohanemisvõimeliste praktikutega
-  - **Microsofti turvalahendused**: Täiustatud integratsiooni juhised Prompt Shieldsi, Azure Content Safety, Entra ID ja GitHub Advanced Security jaoks
-  - **Rakendusressursid**: Kategooriatena esitatud ulatuslikud ressursilingid ametliku MCP dokumentatsiooni, Microsofti turvalahenduste, turvastandardite ja rakendusjuhiste kaupa
+#### MCP turvalisuse parimad praktikad (02-Security/) – täielik moderniseerimine
+- **MCP-SECURITY-BEST-PRACTICES-2025.md**: täielik ümberkirjutus kooskõlas MCP spetsifikatsiooniga 2025-06-18
+  - **Kohustuslikud nõuded**: lisatud selged PEAB/PEAB MITTE nõuded ametlikust spetsifikatsioonist koos visuaalsete indikaatoritega
+  - **12 põhiturvalisuse praktikat**: ümber struktuuritud 15-kohalisest loendist laiaulatuslikeks turva valdkondadeks
+    - Tokeni turvalisus ja autentimine välishalduri integratsiooniga
+    - Sessiooni haldus ja transpordi turvalisus krüptograafiliste nõuetega
+    - Tehisintellekti spetsiifiline ohu kaitse Microsoft Prompt Shieldi integratsiooniga
+    - Juurdepääsukontroll ja õigused minimaalsete privileegidega
+    - Sisu turvalisus ja jälgimine Azure Content Safety integratsiooniga
+    - Tarneahela turvalisus põhjaliku komponentide kontrolliga
+    - OAuth turvalisus ja Confused Deputy rünnakute ennetamine PKCE rakendusega
+    - Intsidendihaldus ja taastumine automatiseeritud võimalustega
+    - Nõuetele vastavus ja juhtimine regulatiivse kooskõlastusega
+    - Täiustatud turvakontrollid nullusaldus arhitektuuri alusel
+    - Microsofti turvaökosüsteemi integratsioon laiaulatuslike lahendustega
+    - Turvalisuse pidev areng adaptatiivsete praktikatega
+  - **Microsofti turvalahendused**: parendatud integreerimisjuhendid Prompt Shieldsi, Azure Content Safety, Entra ID ja GitHub Advanced Security jaoks
+  - **Rakendamise ressursid**: kategooriastatud allikad ametliku MCP dokumentatsiooni, Microsofti turvalahenduste, turvastandardite ja rakendusjuhiste kaupa
 
-#### Täiustatud turvakontrollid (02-Security/) - Ettevõttesisene rakendus
-- **MCP-SECURITY-CONTROLS-2025.md**: Täielik ülevaatus ettevõtte tasemel turvaraamistikuga
-  - **9 ulatuslikku turvavaldkonda**: Põhikontrollidest ümber töötatud üksikasjalikuks ettevõtte raamistiku
-    - Täiustatud autentimine ja volitamine Microsoft Entra ID integratsiooniga
-    - Märgistamise turvalisus ja läbipääsu kontrollid ulatusliku valideerimisega
-    - Sessiooni turvakontrollid ülevõtmise ennetamiseks
-    - AI spetsiifilised turvakontrollid õpetuste süstimise ja tööriista mürgitamise ennetusega
-    - Confused Deputy rünnete ennetus OAuth proxy turvameetmetega
-    - Tööriistade täitmise turvalisus liivakasti ja isolatsiooni kasutades
+#### Täiustatud turvakontrollid (02-Security/) – ettevõtte rakendus
+- **MCP-SECURITY-CONTROLS-2025.md**: täielik ülevaatus ettevõtte tasemel turvasüsteemiga
+  - **9 laiaulatuslikku turvavaldkonda**: põhikontrollidest täpse ettevõtte raamistiku juurde
+    - Täiustatud autentimine ja autoriseerimine Microsoft Entra ID integratsiooniga
+    - Tokeni turvalisus ja pass-through kontrollid põhjaliku valideerimisega
+    - Sessiooni turvalisuse kontrollid kaaperdamise ennetamiseks
+    - AI spetsiifilised turvakontrollid prompt-injectioni ja tööriista mürgituse ennetamiseks
+    - Confused Deputy rünnakute ennetamine OAuth-proxy turvalisusega
+    - Tööriistade täitmise turvalisus sandboxi ja isoleerimisega
     - Tarneahela turvakontrollid sõltuvuste kontrolliga
-    - Jälgimis- ja avastamiskontrollid SIEM integratsiooniga
-    - Intsidendi reageerimine ja taastumine automatiseeritud võimestusega
-  - **Rakendusnäited**: Lisatud üksikasjalikud YAML konfiguratsiooni plokid ja koodinäited
-  - **Microsofti lahenduste integratsioon**: Ulatuslik käsitlus Azure turvateenuste, GitHub Advanced Security ja ettevõtte identiteedihaldusega
+    - Jälgimise ja avastamise kontrollid SIEM integratsiooniga
+    - Intsidendi reageerimine ja taastumine automatiseeritud võimalustega
+  - **Rakenduse näited**: lisatud detailseid YAML konfiguratsiooniblokke ja koodinäiteid
+  - **Microsofti lahenduste integreerimine**: ulatuslik ülevaade Azure turvateenustest, GitHub Advanced Securityst ja ettevõtte identiteedihaldusest
 
-#### Täiustatud teemade turvalisus (05-AdvancedTopics/mcp-security/) - Tootmiseks valmis rakendus
-- **README.md**: Täielik ümberkirjutus ettevõtte turvarakendamiseks
-  - **Praegune spetsifikatsiooni vastavus**: Uuendatud MCP spetsifikatsiooniga 2025-06-18 ning kohustuslike turvanõuetega
-  - **Täiustatud autentimine**: Microsoft Entra ID integreerimine ulatuslike .NET ja Java Spring Security näidetega
-  - **AI turvaintegratsioon**: Microsoft Prompt Shields ja Azure Content Safety rakendus üksikasjalike Python näidetega
-  - **Täiustatud ohtude leevendamine**: Ulatuslikud rakendusnäited
-    - Confused Deputy rünnete ennetamine PKCE ja kasutaja nõusoleku valideerimisega
-    - Märgistuse läbipääsu ennetamine publiku valideerimise ja turvalise märgistusjuhtimisega
-    - Sessiooni ülevõtmise ennetus krüptograafilise sidumise ja käitumusanalüüsiga
-  - **Ettevõtte turvaintegratsioon**: Azure Application Insights jälgimine, ohtude tuvastamise torustikud ja tarneahela turvalisus
-  - **Rakendusnimekiri**: Selged kohustuslikud vs soovitatavad turvakontrollid koos Microsofti turvaökosüsteemi eelistega
+#### Täiustatud teemade turvalisus (05-AdvancedTopics/mcp-security/) – tootmiskõlblik rakendus
+- **README.md**: täielik ümberkirjutus ettevõtte turvalisuse rakenduseks
+  - **Praegune spetsifikatsiooni kooskõlas**: uuendatud MCP spetsifikatsioonile 2025-06-18 koos kohustuslike turvanõuetega
+  - **Täiustatud autentimine**: Microsoft Entra ID integratsioon koos põhjalike .NET ja Java Spring Security näidetega
+  - **AI turva integratsioon**: Microsoft Prompt Shieldsi ja Azure Content Safety rakendamine detailsete Python näidetega
+  - **Täiustatud ohu leevendamine**: põhjalikud rakendamise näited
+    - Confused Deputy rünnaku ennetamine PKCE ja kasutaja nõusoleku valideerimisega
+    - Tokeni läbimise ennetamine audientsi valideerimise ja turvalise tokeni haldusega
+    - Sessiooni kaaperdamise ennetamine krüptograafilise sidumise ja käitumisanalüüsiga
+  - **Ettevõtte turvaintegreerimine**: Azure Application Insights jälgimine, ohu tuvastamise töövood ja tarneahela turvalisus
+  - **Rakenduse kontrollnimekiri**: selge jaotus kohustuslike ja soovitatavate turvakontrollide vahel koos Microsofti turvaökosüsteemi eelistustega
 
-### Dokumentatsiooni kvaliteet ja standardite vastavus
-- **Spetsifikatsiooniviited**: Uuendatud kõik viited praegusele MCP spetsifikatsioonile 2025-06-18
-- **Microsofti turvaökosüsteem**: Paranenud integratsioonijuhised kogu turvadokumentatsioonis
-- **Praktilised rakendused**: Lisatud üksikasjalikud koodinäited .NET, Java ja Python keeles koos ettevõttesiseste mustritega
-- **Ressursside organiseerimine**: Ulatuslik ametliku dokumentatsiooni, turvastandardite ja rakendusjuhiste kategooriajaotus
-- **Visuaalsed indikaatorid**: Selge märgistus kohustuslike nõuete ja soovitatud praktikate vahel
+### Dokumentatsiooni kvaliteet ja standardite kooskõlastamine
+- **Spetsifikatsiooni viited**: uuendatud kõik viited praegusele MCP spetsifikatsioonile 2025-06-18
+- **Microsofti turvaökosüsteem**: täiustatud integreerimisjuhendid kogu turvadokumentatsioonis
+- **Praktiline rakendamine**: lisatud detailseid koodinäiteid .NET, Java ja Python keeles koos ettevõtte mustritega
+- **Ressursside korraldus**: ametlike dokumentide, turvastandardite ja rakendusjuhiste põhjalik kategooriajaotus
+- **Visuaalsed indikaatorid**: kohustuslike nõuete ja soovitatavate tavade selge märgistamine
 
 
-#### Põhikontseptsioonid (01-CoreConcepts/) - Täielik moderniseerimine
-- **Protokolli versiooni uuendus**: Uuendatud viide praegusele MCP spetsifikatsioonile 2025-06-18 koos kuupõhise versiooninumbriga (AAAA-KK-PP vorming)
-- **Arhitektuuri täpsustamine**: Parandatud kirjeldused Hostidest, klientidest ja serveritest MCP arhitektuuri mustrite järgi
-  - Hostid nüüd selgelt määratletud kui AI rakendused, mis koordineerivad mitut MCP kliendiühendust
-  - Kliendid kirjeldatud protokolli ühendajatena, säilitades ühe-ühele serveri seosed
-  - Serverid täiustatud lokaalse vs kaugjuhtimise paigaldusstsenaariumitega
-- **Primitiivide ümberkorraldus**: Serveri ja kliendi primitiivide täielik ülevaatus
-  - Serveri primitiivid: Ressursid (andmeallikad), Päringud (mallid), Tööriistad (täidetavad funktsioonid) koos üksikasjalike selgituste ja näidetega
-  - Kliendi primitiivid: Valimine (LLM vastused), Päring (kasutaja sisend), Logimine (silumine/jälgimine)
-  - Uuendatud praeguste avastamise (`*/list`), hankimise (`*/get`) ja täitmise (`*/call`) metodoloogiate mustritega
-- **Protokolli arhitektuur**: Esitatud kahekihiline arhitektuuri mudel
+#### Põhikontseptsioonid (01-CoreConcepts/) – täielik moderniseerimine
+- **Protokolli versiooni uuendus**: värskendatud viide MCP spetsifikatsioonile 2025-06-18 kuupõhise versiooniga (AAAA-KK-PP formaat)
+- **Arhitektuuri täpsustus**: täiustatud Hosts, Clients ja Servers kirjeldused, peegeldades MCP praeguseid arhitektuurimustreid
+  - Hosts defineeritud selgelt kui AI rakendused, mis koordineerivad mitut MCP kliendiühendust
+  - Clients kirjelduse, kui protokolli ühendajad, kes hoiavad ühe-ühe vastu serveri suhteid
+  - Servers täiustatud kohaliku ja kaugpaigalduse stsenaariumitega
+- **Primitiivide ümberkorraldus**: täielik ülevaatus serveri ja kliendi primitiividest
+  - Serveri primitiivid: ressursid (andmeallikad), juhised (mallid), tööriistad (käidavad funktsioonid) koos põhjalike selgituste ja näidetega
+  - Kliendi primitiivid: proovivõtt (LLM täitmised), väljatoomine (kasutaja sisend), logimine (silumine/jälgimine)
+  - Värskendatud praeguste avastamise (`*/list`), hankimise (`*/get`) ja täitmise (`*/call`) meetodimustritega
+- **Protokolli arhitektuur**: esitatud kahekihiline arhitektuuri mudel
   - Andmekiht: JSON-RPC 2.0 alus koos elutsükli halduse ja primitiividega
-  - Transpordikiht: STDIO (kohalik) ja streamitav HTTP koos SSE (kaug-) transpordimehhanismidega
-- **Turvarest**: Ulatuslikud turvapõhimõtted, sh kasutaja selge nõusolek, andmekaitse, tööriistade täitmise turvalisus ja transpordikihi turvalisus
-- **Kommunikatsioonimustrid**: Uuendatud protokollisõnumid, mis näitavad initsialiseerimist, avastamist, täitmist ja teavitusi
-- **Koodinäited**: Värskendatud mitmekeelsed näited (.NET, Java, Python, JavaScript) vastavalt praegustele MCP SDK mustritele
+  - Transpordikiht: STDIO (kohalik) ja voogestatav HTTP koos SSE-ga (kaugtranspordimehhanismid)
+- **Turvasüsteem**: ulatuslikud turvapõhimõtted koos selge kasutaja nõusoleku, andmekaitse, tööriista täitmise ohutuse ja transpordikihi turvalisusega
+- **Suhtlemismustrid**: protokolli sõnumite uuendamine, kajastades initsialiseerimist, avastamist, täitmist ja teavitamise vooge
+- **Koodinäited**: värskendatud mitmekeelsetes näidetes (.NET, Java, Python, JavaScript) praeguseid MCP SDK mustreid
 
-#### Turvalisus (02-Security/) - Ulatuslik turvapõhikorrastus  
-- **Standardite vastavus**: Täielik kooskõla MCP spetsifikatsiooni 2025-06-18 turvanõuetega
-- **Autentimise areng**: Dokumenteeritud areng kohandatud OAuth serveritest väliste identiteedipakkujate delegeerimiseni (Microsoft Entra ID)
-- **AI spetsiifiline ohtude analüüs**: Paranenud kajastus tänapäevastele AI rünnakute vektoritele
-  - Üksikasjalikud õpetuste süstimise ründe stsenaariumid reaalse maailma näidetega
-  - Tööriistamürgituse mehhanismid ja "rug pull" ründemustrid
-  - Konteksti akna mürgitus ja mudeli segaduse rünnakud
-- **Microsoft AI turvarahastused**: Ulatuslik ülevaade Microsofti turvaökosüsteemist
-  - AI Prompt Shieldsid koos täiustatud tuvastuse, esiletõstmise ja eraldusmeetoditega
-  - Azure Content Safety integratsiooni mustrid
+#### Turvalisus (02-Security/) – põhjalik turvauuendus  
+- **Standardite kooskõlastamine**: täpne vastavus MCP spetsifikatsiooni 2025-06-18 turvanõuetele
+- **Autentimise areng**: dokumenteeritud areng kohandatud OAuth serveritest välistuveni (Microsoft Entra ID)
+- **AI-spetsiifiline ohuanalüüs**: täiustatud kaasaegsete AI rünnakute vektorite käsitlus
+  - üksikasjalikud prompt injection rünnakute stsenaariumid reaalse elu näidetega
+  - tööriistade mürgitamise mehhanismid ja "rug pull" rünnakud
+  - konteksti akna mürgitamine ja mudeli segadusseajamise rünnakud
+- **Microsofti AI turvalahendused**: põhjalik ülevaade Microsofti turvaökosüsteemist
+  - AI Prompt Shieldsid koos täiustatud avastamise, rõhutamise ja piiritlemistehnikatega
+  - Azure Content Safety integratsioonimustrid
   - GitHub Advanced Security tarneahela kaitseks
-- **Täiustatud ohtude leevendus**: Üksikasjalikud turvakontrollid
-  - Sessiooni ülevõtmine MCP-spetsiifiliste ründe stsenaariumitega ja krüptograafiliste sessiooni ID nõuetega
-  - Confused Deputy probleemid MCP proksi stsenaariumites koos selgete nõusoleku nõuetega
-  - Märgistuse läbipääsu haavatavused kohustuslike valideerimiskontrollidega
-- **Tarneahela turvalisus**: Laiendatud AI tarneahela käsitlus kaasates baasmodelle, manustusteenuseid, kontekstipakkujaid ja kolmanda osapoole API-sid
-- **Põhi turvalisus**: Täiustatud integratsioon ettevõtte turvamustritega, sh null usalduse arhitektuur ja Microsofti turvaökosüsteem
-- **Ressursside organiseerimine**: Kategooriatena esitatud ulatuslikud ressursilingid tüübi kaupa (ametlik dokumentatsioon, standardid, uurimused, Microsofti lahendused, rakendusjuhendid)
+- **Täiustatud ohu leevendamine**: üksikasjalikud turvakontrollid
+  - Sessiooni kaaperdamine MCP-spetsiifiliste stsenaariumitega ja krüptograafiliste sessioonitunnuste nõuetega
+  - Confused Deputy probleemid MCP proxy stsenaariumites koos selgete nõusoleku nõuetega
+  - Tokeni läbipääsu haavatavused kohustusliku valideerimisega
+- **Tarneahela turvalisus**: laiendatud AI tarneahela katvus, sh alusmudelid, embedded teenused, konteksti pakkujad ja kolmandate osapoolte API-d
+- **Aluse turvalisus**: täiustatud ettevõtte turvamustrite integratsioon nullusaldus arhitektuuri ja Microsofti turvaökosüsteemiga
+- **Ressursside korraldus**: põhjalik kategooriate jaotus ametlike dokumentide, standardite, uurimiste, Microsofti lahenduste ja rakendusjuhiste kaupa
 
-### Dokumentatsiooni kvaliteedi parandused
-- **Struktureeritud õpieesmärgid**: Täiustatud õpieesmärgid spetsiifiliste ja teostatavate tulemustega 
-- **Vastastikused viited**: Lisatud lingid seotud turva ja põhimõistete teemade vahel
-- **Ajakohane info**: Uuendatud kõik kuupäeva viited ja spetsifikatsiooni lingid praeguste standardite järgi
-- **Rakendusjuhised**: Lisatud spetsiifilised ja teostatavad rakendusjuhised mõlemas osas
+### Dokumentatsiooni kvaliteedi parendused
+- **Struktureeritud õpieesmärgid**: täiustatud õpieesmärgid spetsiifiliste, teostatavate tulemuste jaoks 
+- **Ristviited**: lisatud lingid seotud turva- ja põhikontseptsiooni teemade vahel
+- **Praegune info**: uuendatud kõik kuupäevaviited ja spetsifikatsiooni lingid vastavalt praegustele standarditele
+- **Rakendamisjuhendid**: lisatud spetsiifilisi, teostatavaid rakendamisjuhiseid mõlemas sektsioonis
 
 ## 16. juuli 2025
 
 ### README ja navigeerimise täiustused
-- Täielikult ümber kujundatud õppekava navigeerimine README.md-s
+- Tõeliselt ümber kujundatud õppekava navigeerimine README.md failis
 - Asendatud `<details>` sildid ligipääsetavama tabelipõhise vorminguga
-- Loodud alternatiivsed paigutusvalikud uues "alternative_layouts" kaustas
-- Lisatud kaartidel põhinevad, tabulaarsed ja akordionstiilis navigeerimisnäited
-- Uuendatud hoidla struktuur jaotises, et hõlmata kõiki viimaseid faile
-- Täiustatud "Kuidas seda õppekava kasutada" jaotis selgete soovitustega
-- Uuendatud MCP spetsifikatsiooni lingid õigetesse URL-idesse
-- Lisatud kontekstitöötluse jaotis (5.14) õppekava struktuuri
+- Loodud alternatiivsed paigutuse valikud uues “alternative_layouts” kaustas
+- Lisatud kaartide, vahekaartide ja akordionstiili navigeerimise näited
+- Uuendatud arhiivi struktuuriosa, et hõlmata kõiki uusimaid faile
+- Täiustatud sektsioon “Kuidas seda õppekava kasutada” selgete soovitustega
+- Uuendatud MCP spetsifikatsiooni lingid, et osutada õigetele URL-idele
+- Lisatud Konteksti inseneriteaduse sektsioon (5.14) õppekava struktuuri
 
-### Õppekava juhendi uuendused
-- Täielikult uuendatud õppekavajuhend vastavaks praegusele hoidla struktuurile
-- Lisatud uued jaotised MCP klientide ja tööriistade ning populaarsete MCP serverite jaoks
-- Uuendatud visuaalne õppekava kaart kõigi teemade täpseks kajastamiseks
-- Täiustatud Advanced Topics kirjeldusi kõigi spetsialiseeritud valdkondade katmiseks
-- Uuendatud juhtumiuuringute jaotis, et kajastada tegelikke näiteid
+### Õppejuhendi uuendused
+- Täielikult üle vaadatud õppejuhend, et olla kooskõlas praeguse arhiivi struktuuriga
+- Lisatud uued sektsioonid MCP klientide ja tööriistade ning populaarsete MCP serverite kohta
+- Uuendatud visuaalne õppekava kaart, et täpselt kajastada kõiki teemasid
+- Täiustatud Advanced Topics kirjeldused, hõlmates kõiki spetsialiseeritud valdkondi
+- Uuendatud juhtumiuuringute osa, et kajastada tegelikke näiteid
 - Lisatud see põhjalik muudatuste logi
 
 ### Kogukonna panused (06-CommunityContributions/)
-- Lisatud üksikasjalik info MCP serverite kohta piltide genereerimiseks
-- Lisatud ulatuslik jaotis Claude kasutamisest VSCode-is
-- Lisatud Cline terminalikliendi seadistamise ja kasutusjuhendid
-- Uuendatud MCP kliendi jaotis, mis sisaldab kõiki populaarseid kliendivalikuid
+- Lisatud põhjalik info MCP serverite kohta pildigeneratsiooni jaoks
+- Lisatud ulatuslik sektsioon Claude kasutamise kohta VSCode'is
+- Lisatud Cline terminali kliendi seadistuse ja kasutusjuhised
+- Uuendatud MCP kliendi sektsioon, et hõlmata kõiki populaarseid kliendi valikuid
 - Täiustatud panuse näited täpsemate koodinäidetega
 
 ### Täiustatud teemad (05-AdvancedTopics/)
-- Korraldatud kõik spetsialiseeritud teema kaustad ühtse nimetamisega
-- Lisatud kontekstitöötluse materjalid ja näited
+- Kõik spetsialiseeritud teema kaustad organiseeritud järjepideva nimetamisega
+- Lisatud konteksti inseneriteaduse materjalid ja näited
 - Lisatud Foundry agendi integratsiooni dokumentatsioon
-- Täiustatud Entra ID turvaintegratsiooni dokumentatsioon
+- Täiustatud Entra ID turvalisuse integratsiooni dokumentatsioon
 
 ## 11. juuni 2025
 
-### Esmane loomine
-- Välja lastud MCP algajate õppekava esimene versioon
-- Loodud põhistruktuur kõigi 10 põhijaotise jaoks
+### Esialgne loomine
+- Avaldatud esimene versioon MCP for Beginners õppekavast
+
+- Loodud põhiline struktuur kõigile 10 põhiosale
 - Rakendatud Visuaalne õppekava kaart navigeerimiseks
-- Lisatud esialgsed prooviprojektid mitmes programmeerimiskeeles
+- Lisatud esialgsed näidistooted mitmes programmeerimiskeeles
 
 ### Alustamine (03-GettingStarted/)
-- Loodud esimesed serveri rakendusnäited
-- Lisatud kliendi arendusjuhend
-- Kaasas LLM kliendi integratsiooni juhised
+- Loodud esimesed serveri rakenduse näited
+- Lisatud juhised kliendi arendamiseks
+- Kaasatud LLM kliendi integratsiooni juhised
 - Lisatud VS Code integratsiooni dokumentatsioon
 - Rakendatud Server-Sent Events (SSE) serveri näited
 
-### Põhikonseptsioonid (01-CoreConcepts/)
-- Lisatud kliendi-serveri arhitektuuri üksikasjalik selgitus
-- Loodud dokumentatsioon võtmeprotokolli komponentide kohta
-- Dokumenteeritud sõnumimustrid MCP-s
+### Põhikontseptsioonid (01-CoreConcepts/)
+- Lisatud põhjalik selgitus kliendi-serveri arhitektuurist
+- Loodud dokumentatsioon peamiste protokolli komponentide kohta
+- Dokumenteeritud sõnumivahetusmustrid MCP-s
 
 ## 23. mai 2025
 
-### Hoidla struktuur
-- Initsialiseeritud hoidla baaskaustastruktuuriga
-- Loodud README-failid iga suurema jaotise tarbeks
-- Seadistatud tõlke infrastruktuur
-- Lisatud pildid ja skeemid
+### Repositooriumi struktuur
+- Algatatud repositoorium põhilise kaustastruktuuriga
+- Loodud README failid iga suurema osa jaoks
+- Seadistatud tõlkeinfrastruktuur
+- Lisatud pildifailid ja diagrammid
 
 ### Dokumentatsioon
 - Loodud esialgne README.md õppekava ülevaatega
-- Lisatud CODE_OF_CONDUCT.md ja SECURITY.md failid
+- Lisatud CODE_OF_CONDUCT.md ja SECURITY.md
 - Seadistatud SUPPORT.md abi saamise juhistega
-- Loodud esmane õppekava struktuur
+- Loodud eelluure juhendi struktuur
 
 ## 15. aprill 2025
 
 ### Planeerimine ja raamistik
-- Esmane planeerimine MCP for Beginners õppekavaks
-- Määratletud õpieesmärgid ja sihtrühm
-- Kirjeldatud õppekava 10 jaotise struktuur
-- Töötatud välja kontseptuaalne raamistik näidete ja juhtumiuuringute jaoks
-- Loodud esialgsed prototüübi näited võtmekontseptsioonide kohta
+- Esialgne planeerimine MCP algajate õppekavale
+- Määratletud õpieesmärgid ja sihtgrupp
+- Koostatud õppekava 10 osa struktuur
+- Arendatud kontseptuaalne raamistik näidete ja juhtumianalüüside jaoks
+- Loodud esialgsed prototüüpnäited oluliste kontseptsioonide kohta
 
 ---
 

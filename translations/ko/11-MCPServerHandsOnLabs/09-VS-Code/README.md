@@ -1,27 +1,33 @@
 # VS Code 통합
 
+> [!NOTE]
+> 이 실습의 `initializationOptions` 설정은 샘플의 MCP
+> `2025-11-25` 핸드셰이크를 대상으로 합니다. MCP `2026-07-28`은 초기화 핸드셰이크를 제거하므로;
+> 이 샘플을 마이그레이션할 때는 요청별 메타데이터 및 `server/discover`를 지원하는 호스트와 SDK를 사용하세요.
+
+
 ## 🎯 이 실습에서 다루는 내용
 
-이 실습은 MCP 서버를 VS Code와 통합하여 AI 채팅을 통한 자연어 쿼리를 활성화하는 방법에 대한 종합적인 가이드를 제공합니다. VS Code를 MCP 사용에 최적화하도록 설정하고, 서버 연결을 디버깅하며, AI 지원 데이터베이스 상호작용의 모든 기능을 활용하는 방법을 배우게 됩니다.
+이 실습에서는 MCP 서버를 VS Code와 통합하여 AI Chat을 통한 자연어 쿼리 기능을 구현하는 방법을 종합적으로 안내합니다. VS Code 최적화를 위한 MCP 설정 방법, 서버 연결 디버깅, AI 지원 데이터베이스 상호작용의 활용법을 배우게 됩니다.
 
 ## 개요
 
-VS Code의 MCP 통합은 개발자가 자연어를 통해 데이터베이스와 API를 상호작용하는 방식을 혁신적으로 변화시킵니다. 소매 MCP 서버를 VS Code Chat에 연결하면, 대화형 AI를 사용하여 판매 데이터, 제품 카탈로그, 비즈니스 분석을 지능적으로 쿼리할 수 있습니다.
+VS Code의 MCP 통합은 개발자가 자연어를 통해 데이터베이스와 API를 상호작용하는 방식을 변화시킵니다. 소매 MCP 서버를 VS Code Chat과 연결하면 대화형 AI를 활용해 판매 데이터, 제품 카탈로그, 비즈니스 분석을 지능적으로 질의할 수 있습니다.
 
-이 통합을 통해 개발자는 "이번 달에 가장 많이 팔린 제품을 보여줘" 또는 "90일 동안 구매하지 않은 고객을 찾아줘"와 같은 질문을 하고, SQL 쿼리를 작성하지 않고도 구조화된 데이터 응답을 받을 수 있습니다.
+이 통합으로 개발자는 "이번 달 베스트셀러 제품 보여줘" 또는 "90일간 구매하지 않은 고객 찾아줘" 같은 질문을 SQL 쿼리를 작성하지 않고도 구조화된 데이터 응답으로 받을 수 있습니다.
 
 ## 학습 목표
 
-이 실습을 완료하면 다음을 수행할 수 있습니다:
+실습 종료 후 다음을 수행할 수 있습니다:
 
-- **VS Code MCP 설정 구성**: 소매 서버에 맞게 VS Code 설정  
-- **MCP 서버 통합**: VS Code AI Chat 기능과 MCP 서버 연결  
-- **서버 연결 디버깅**: 문제 해결 및 디버깅  
-- **자연어 쿼리 최적화**: 더 나은 결과를 위한 쿼리 패턴 최적화  
-- **VS Code 작업 공간 맞춤화**: MCP 개발을 위한 작업 공간 설정  
-- **다중 서버 구성 배포**: 복잡한 시나리오를 위한 다중 서버 설정  
+- 소매 서버용 VS Code MCP 설정 <strong>구성하기</strong>
+- MCP 서버를 VS Code AI Chat 기능과 <strong>통합하기</strong>
+- MCP 서버 연결을 <strong>디버깅</strong>하고 문제를 해결하기
+- 보다 나은 결과를 위한 자연어 쿼리 패턴 <strong>최적화하기</strong>
+- MCP 개발을 위한 VS Code 작업 공간 <strong>맞춤화하기</strong>
+- 복잡한 시나리오를 위한 다중 서버 구성 <strong>배포하기</strong>
 
-## 🔧 VS Code MCP 설정
+## 🔧 VS Code MCP 구성
 
 ### 초기 설정 및 설치
 
@@ -65,23 +71,23 @@ VS Code의 MCP 통합은 개발자가 자연어를 통해 데이터베이스와 
 ### 환경 구성
 
 ```bash
-# .env file for development
+# 개발용 .env 파일
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure 구성
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# 선택 사항: Azure 키 자격 증명 저장소
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# 서버 구성
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### 작업(Task) 구성
+### 작업 구성
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI 채팅 통합
+## 💬 AI Chat 통합
 
 ### 자연어 쿼리 패턴
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS Code Chat를 위한 예시 쿼리 패턴
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### 채팅 통합 예제
+### 채팅 통합 예시
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### 채팅 응답 형식화
+### 채팅 응답 서식 지정
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # 주요 지표
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # 성능 지표
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # 상위 카테고리
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -500,7 +506,7 @@ class ChatResponseFormatter:
 
 ## 🔍 디버깅 및 문제 해결
 
-### VS Code 디버그 설정
+### VS Code 디버그 구성
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS 코드 전용 포매터 생성
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # VS 코드 터미널 전용 콘솔 핸들러
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# 전역 디버그 로거
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # 환경에서 연결 매개변수 가져오기
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # 연결 테스트
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # 기본 쿼리 테스트
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # 스키마 접근 테스트
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # 임베딩 생성 테스트
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCP 서버 구성요소 가져오기
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # 테스트 구성 생성
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # 서버 초기화
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # 사용 가능한 도구 가져오기
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # 간단한 도구 테스트
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # 데이터베이스 연결 테스트
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI 연결 테스트
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCP 도구 테스트
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # 전체 상태
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,7 +787,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 고급 설정
+## 🚀 고급 구성
 
 ### 다중 서버 설정
 
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### 사용자 정의 VS Code 확장
+### 맞춤 VS Code 확장
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - 맞춤형 MCP 소매 확장
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP 소매 명령 등록
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // 매장 전환기 등록
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // 구성 업데이트
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // VS Code 채팅에서 미리 정의된 쿼리 실행
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 주요 내용 요약
 
-이 실습을 완료한 후, 다음을 달성할 수 있습니다:
+이 실습을 완료하면 다음을 갖추게 됩니다:
 
-✅ **VS Code MCP 설정**: MCP 통합을 위한 최적의 설정 완료  
-✅ **AI 채팅 통합**: VS Code에서 자연어 쿼리 기능 활성화  
-✅ **디버깅 도구**: 포괄적인 문제 해결 및 연결 진단  
+✅ **VS Code MCP 구성**: 최적의 MCP 통합을 위한 완전한 설정  
+✅ **AI Chat 통합**: VS Code 내 자연어 쿼리 기능  
+✅ **디버깅 도구**: 종합적인 문제 해결 및 연결 진단  
 ✅ **다중 서버 설정**: 여러 MCP 서버 인스턴스 구성  
-✅ **사용자 정의 확장**: 소매업에 특화된 VS Code 경험 강화  
-✅ **프로덕션 준비**: 엔터프라이즈 수준의 VS Code 개발 환경  
+✅ **맞춤 확장**: 소매 전용 기능을 갖춘 향상된 VS Code 경험  
+✅ **운영 준비 완료**: 엔터프라이즈 수준의 VS Code 개발 환경  
 
 ## 🚀 다음 단계
 
-**[실습 10: 배포 전략](../10-Deployment/README.md)**을 계속 진행하여:
+<strong>[Lab 10: Deployment Strategies](../10-Deployment/README.md)</strong>를 계속 진행하여:
 
-- MCP 서버를 프로덕션 환경에 배포  
+- MCP 서버를 운영 환경에 배포  
 - 확장성을 위한 클라우드 인프라 구성  
 - 자동 배포를 위한 CI/CD 파이프라인 구현  
-- 프로덕션 MCP 서버 성능 모니터링  
+- 운영 중인 MCP 서버 성능 모니터링  
 
 ## 📚 추가 자료
 
 ### VS Code 개발
 - [VS Code Extension API](https://code.visualstudio.com/api) - 공식 확장 개발 가이드  
 - [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP 통합 문서  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code에서 TypeScript 개발  
+- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code에서의 TypeScript 개발  
 
 ### MCP 프로토콜
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - 공식 MCP 사양  
 - [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - 구현 모범 사례  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP 구현  
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP 구현체  
 
 ### 개발 도구
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - VS Code에서 Python 개발 설정  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - 고급 디버깅 기술  
+- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python 개발 환경 설정  
+- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - 고급 디버깅 기법  
 - [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - 작업 자동화 및 구성  
 
 ---
 
-**이전**: [실습 08: 테스트 및 디버깅](../08-Testing/README.md)  
-**다음**: [실습 10: 배포 전략](../10-Deployment/README.md)  
+<strong>이전</strong>: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+<strong>다음</strong>: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
 
 ---
 
-**면책 조항**:  
-이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 위해 최선을 다하고 있으나, 자동 번역에는 오류나 부정확성이 포함될 수 있습니다. 원본 문서의 원어 버전을 권위 있는 자료로 간주해야 합니다. 중요한 정보의 경우, 전문적인 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**면책 조항**:
+이 문서는 AI 번역 서비스 [Co-op Translator](https://github.com/Azure/co-op-translator)를 사용하여 번역되었습니다. 정확성을 기하기 위해 노력하고 있으나, 자동 번역은 오류나 부정확한 부분이 있을 수 있음을 유의하시기 바랍니다. 원본 문서의 원어본이 권위 있는 자료로 간주되어야 합니다. 중요한 정보의 경우, 전문가의 인간 번역을 권장합니다. 이 번역 사용으로 인해 발생하는 오해나 잘못된 해석에 대해 당사는 책임을 지지 않습니다.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -2,12 +2,12 @@
 
 ## Projektöversikt
 
-**MCP för nybörjare** är en öppen källkodsutbildning för att lära sig Model Context Protocol (MCP) - en standardiserad ram för interaktioner mellan AI-modeller och klientapplikationer. Detta arkiv tillhandahåller omfattande lärandematerial med praktiska kodexempel på flera programmeringsspråk.
+**MCP för nybörjare** är en öppen källkodsutbildningsplan för att lära sig Model Context Protocol (MCP) - en standardiserad ram för interaktioner mellan AI-modeller och klientapplikationer. Detta förvar erbjuder omfattande lärmaterial med praktiska kodexempel i flera programmeringsspråk.
 
-### Nyckelteknologier
+### Viktiga teknologier
 
 - **Programmeringsspråk**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Ramverk & SDKs**: 
+- **Ramar & SDK:er**:
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
@@ -19,20 +19,20 @@
 
 ### Arkitektur
 
-- **11 kärnmoduler (00-11)**: Sekventiell inlärningsväg från grunder till avancerade ämnen
-- **Praktiska labbar**: Praktiska övningar med komplett lösningskod på flera språk
-- **Exempelprojekt**: Fungerande MCP-server och klientimplementationer
-- **Översättningssystem**: Automatiserat GitHub Actions-arbetsflöde för flerspråkigt stöd
+- **11 kärnmoduler (00-11)**: Sekventiell lärandeväg från grundläggande till avancerade ämnen
+- **Praktiska labbar**: Praktiska övningar med fullständig lösningskod i flera språk
+- **Exempelprojekt**: Fungerande MCP server- och klientimplementationer
+- **Översättningssystem**: Automatiserat GitHub Actions-flöde för flerspråkigt stöd
 - **Bildresurser**: Centraliserad bildmapp med översatta versioner
 
-## Kommandon för installation
+## Konfigurationskommandon
 
-Detta är ett dokumentationsfokuserat arkiv. Den mesta installationen sker inom individuella exempelprojekt och labbar.
+Detta är ett dokumentationsinriktat repo. Det mesta av installationen sker inom de enskilda exempelprojekten och labbarna.
 
-### Arkivinrättning
+### Reposetup
 
 ```bash
-# Klona förrådet
+# Klona arkivet
 git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
@@ -70,42 +70,42 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Utvecklingsflöde
+## Utvecklingsarbetsflöde
 
-### MCP 7-28 Förberedelse
+### MCP 7-28 beredskap
 
-#### Checklista för arkivförberedelse
+#### Checklista för reposberedskap
 
-- [x] **Tydlighet för nya bidragsgivare**: Denna fil definierar arkivets syfte,
-  struktur, bidragsregler och exempel på installationsvägar.
+- [x] **Tydlighet för nya bidragsgivare**: Denna fil definierar repo-ändamål,
+  struktur, regler för bidrag, och exempelvägar för setup.
 - [x] **Bygg/test/lint-kommandon med exakta flaggor**:
-  - Lintning av arkivets dokumentation:
+  - Lint för repodokumentation:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Revision av länkstruktur i dokumentationen:
+  - Repos dokumentations länkgranskningskommando:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
-  - Validering av TypeScript-exempel:
+  - TypeScript-exempelvalidering:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
-  - Validering av Python-exempel:
+  - Python-exempelvalidering:
     `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
-  - Validering av Java-exempel:
+  - Java-exempelvalidering:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
 - [x] **Ett realistiskt arbetsflöde som kan bli ett MCP-verktyg**:
   `validate_curriculum_change`
-- [x] **In- och utdata är tydliga** (se specifikation nedan).
-- [x] **Behörigheter och felhanteringslägen är dokumenterade** (se specifikation nedan).
-- [x] **CI-testbarhet är tydlig** (deterministiska kommandon, tydliga
-  avbrottskoder och maskinläsbara utdata).
+- [x] **Indata/utdata är explicit** (se specifikationen nedan).
+- [x] **Behörigheter och felhanteringslägen dokumenteras** (se specifikationen nedan).
+- [x] **CI-testbarhet är explicit** (deterministiska kommandon, explicita
+  exitkoder, och maskinläsbara utdata).
 
-#### Kandidat till MCP-verktygsarbetsflöde: `validate_curriculum_change`
+#### Kandidat MCP-verktygsarbetsflöde: `validate_curriculum_change`
 
 ##### Mål
 
-Validera hälsotillståndet för dokumentationsändringar i kursmaterialet och representativ exempel kod
-innan sammanslagning.
+Validera ändringar i kursdokumentation och representativ exempelkod
+hälsa före sammanslagning.
 
 ##### Indata
 
-- `changed_paths: string[]` (obligatoriskt) - relativa sökvägar ändrade i PR.
+- `changed_paths: string[]` (obligatorisk) - relativa sökvägar ändrade i PR.
 - `run_docs_lint: boolean` (standard `true`)
 - `run_links_audit: boolean` (standard `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
@@ -124,82 +124,81 @@ innan sammanslagning.
 - Läsa arbetsytans filer och skriva verktyggenererade artefakter (t.ex. lint-
   rapporter, testloggar) endast; inga skrivningar till `translations/` eller
   `translated_images/`.
-- Utföra lokala shell-kommandon.
-- Valfritt nätverksåtkomst endast för paketåterställning (`npm ci`,
-  `python -m pip install`, `mvn` beroendehantering).
-- Ingen behörighet att pusha, slå ihop eller ändra `translations/` eller
+- Exekvera lokala shell-kommandon.
+- Valfri nätverksåtkomst endast för paketåterställning (`npm ci`,
+  `python -m pip install`, `mvn` beroendeupplösning).
+- Ingen behörighet att pusha, merga eller modifiera `translations/` eller
   `translated_images/`.
 
 ##### Felhanteringslägen
 
-- `E_NO_INPUT_PATHS`: `changed_paths` är tom.
-- `E_INVALID_PATH`: indata-sökväg går utanför arkivets rot.
-- `E_LINT_FAILED`: markdown lint avslutas med icke-noll.
-- `E_LINK_AUDIT_FAILED`: länkrevisionskommando avslutas med icke-noll.
-- `E_SAMPLE_TEST_FAILED`: test/bygg av exempel avslutas med icke-noll.
+- `E_NO_INPUT_PATHS`: `changed_paths` tom.
+- `E_INVALID_PATH`: indata sökväg går utanför repots rot.
+- `E_LINT_FAILED`: markdown lint avslutas med annat än noll.
+- `E_LINK_AUDIT_FAILED`: länkgranskning kommandot avslutas med annat än noll.
+- `E_SAMPLE_TEST_FAILED`: exempeltest/bygge avslutas med annat än noll.
 - `E_TIMEOUT`: kommando överskred konfigurerad timeout.
 
 ##### Rekommenderat CI-kontrakt
 
-För att automatisera validering, konfigurera en CI-jobb som:
+För att automatisera validering, konfigurera ett CI-jobb som:
 
-- Triggas vid pull-förfrågningar som berör `*.md`, exempel kod eller denna fil.
-- Kör de exakta kommandon som anges ovan.
-- Sparar loggar som artefakter.
-- Skickar jobb vid vilken icke-noll avbrottskod som helst.
+- Startar vid pull requests som berör `*.md`, exempel-kod, eller denna fil.
+- Kör de exakta kommandon som listas ovan.
+- Behåller loggar som artefakter.
+- Fäller jobbet vid alla icke-noll exitkoder.
 
-#### Om du levererar en MCP-server från detta arkiv
+#### Om du levererar en MCP-server från detta repo
 
-- [ ] Läs utkast till ändringslogg för MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Kör din server mot SDK-betaversioner:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Ta bort antaganden om session och handskakning; behandla varje förfrågan som
+- [ ] Läs den slutliga MCP `2026-07-28` ändringsloggen:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Verifiera att vald SDK-release stödjer MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] Ta bort session- och handskakningsantaganden; behandla varje förfrågan som
   självständig:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
 - [ ] Skicka `Mcp-Method` och `Mcp-Name` headers för råa HTTP-förfrågningar:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Revidera hårdkodade felkoder (`missing resource` flyttad från `-32002` till `-32602`).
-
-- [ ] Flagga och planera migrering för föråldrade rötter, sampling och
-  loggning:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Migrera bort från den experimentella `2025-11-25` Tasks API:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Granska auktorisation för OAuth och OpenID Connect förstärkning:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Granska hårdkodade felkoder (`missing resource` flyttades från `-32002` till `-32602`).
+- [ ] Migrera bort deprecated Roots, Sampling, Logging, och Dynamic Client
+  Registration:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Migrera från experimentella `2025-11-25` Tasks API:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Granska auktorisering för OAuth och OpenID Connect-härdning:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Dokumentationsstruktur
 
-- **Moduler 00-11**: Kärninnehåll i kursplan, i sekventiell ordning
+- **Moduler 00-11**: Kärninnehåll för läroplan i sekventiell ordning
 - **translations/**: Språkspecifika versioner (automatiskt genererade, redigera inte direkt)
-- **translated_images/**: Lokala bildversioner (automatiskt genererade)
-- **images/**: Originalbilder och diagram
+- **translated_images/**: Lokaliserade bildversioner (automatiskt genererade)
+- **images/**: Källbilder och diagram
 
 ### Göra dokumentationsändringar
 
-1. Redigera endast de engelska markdown-filerna i root-modulkatalogerna (00-11)
-2. Uppdatera bilder i katalogen `images/` om det behövs
-3. GitHub Action co-op-translator genererar automatiskt översättningar
-4. Översättningar regenereras vid push till main-branchen
+1. Redigera endast de engelska markdown-filerna i rotmodulkatalogerna (00-11)
+2. Uppdatera bilder i `images/`-katalogen vid behov
+3. co-op-translator GitHub Action genererar automatiskt översättningar
+4. Översättningar skapas på nytt vid push till main-branchen
 
 ### Arbeta med översättningar
 
-- **Automatiserad översättning**: GitHub Actions workflow hanterar alla översättningar
-- Redigera INTE manuellt filer i katalogen `translations/`
+- **Automatiserad översättning**: GitHub Actions-flödet hanterar alla översättningar
+- **Redigera INTE manuellt** filer i `translations/`-katalogen
 - Översättningsmetadata är inbäddad i varje översatt fil
-- Stödda språk: 48+ språk inklusive arabiska, kinesiska, franska, tyska, hindi, japanska, koreanska, portugisiska, ryska, spanska med flera
+- Stödda språk: 48+ språk inklusive arabiska, kinesiska, franska, tyska, hindi, japanska, koreanska, portugisiska, ryska, spanska, och många fler
 
 ## Testinstruktioner
 
 ### Dokumentationsvalidering
 
-Eftersom detta huvudsakligen är ett dokumentationsförråd fokuserar testning på:
+Eftersom detta huvudsakligen är ett dokumentationsrepo, fokuserar testningen på:
 
-1. **Länkgranskning**: Lista Markdown-länkar för granskning
+1. **Länkgranskningsrevisionslista**: Lista Markdown-länkar för granskning
 
    ```bash
-   # Lista Markdown-länkar (mönsterrevision)
+   # Lista Markdown-länkar (mönsteraudit)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
@@ -211,7 +210,7 @@ Eftersom detta huvudsakligen är ett dokumentationsförråd fokuserar testning p
    npm install && npm test
    ```
 
-3. **Markdown-lintning**: Kontrollera formateringskonsekvens
+3. **Markdown-linting**: Kontrollera formatkonsistens
 
    ```bash
    # Använd markdownlint vid behov
@@ -220,7 +219,7 @@ Eftersom detta huvudsakligen är ett dokumentationsförråd fokuserar testning p
 
 ### Testning av exempelprojekt
 
-Varje språkspecifikt exempel inkluderar sin egen testmetod:
+Varje språksspecifikt exempel har sin egen testmetod:
 
 #### TypeScript/JavaScript
 ```bash
@@ -244,32 +243,32 @@ mvn verify
 
 ### Dokumentationsstil
 
-- Använd klar och nybörjarvänlig språkstil
-- Inkludera kodexempel i flera språk där det är tillämpligt
-- Följ markdowns bästa praxis:
-  - Använd ATX-stil på rubriker (syntax med `#`)
-  - Använd inhägnade kodblock med språkspecifika identifierare
+- Använd klart, nybörjarvänligt språk
+- Inkludera kodexempel i flera språk där det är möjligt
+- Följ markdown bästa praxis:
+  - Använd ATX-stil rubriker (`#` syntax)
+  - Använd fenced code blocks med språkindikatorer
   - Inkludera beskrivande alt-text för bilder
-  - Håll radlängder rimliga (ingen hård gräns, men var förnuftig)
+  - Håll radernas längd rimlig (ingen hård gräns, men var förnuftig)
 
 ### Kodexempelstil
 
 #### TypeScript/JavaScript
 - Använd ES-moduler (`import`/`export`)
-- Följ TypeScripts striktläges-konventioner
-- Inkludera typannoteringar
-- Rikta mot ES2022
+- Följ TypeScript strict mode-konventioner
+- Inkludera typanteckningar
+- Rikta in mot ES2022
 
 #### Python
 - Följ PEP 8 stilriktlinjer
-- Använd typanteckningar där det är lämpligt
+- Använd typindikatorer där lämpligt
 - Inkludera docstrings för funktioner och klasser
 - Använd moderna Python-funktioner (3.8+)
 
 #### Java
 - Följ Spring Boot-konventioner
 - Använd Java 21-funktioner
-- Följ standard Maven-projektstruktur
+- Följ standard Maven projektstruktur
 - Inkludera Javadoc-kommentarer
 
 ### Filorganisation
@@ -286,114 +285,114 @@ mvn verify
     └── <language>/
 ```
 
-## Kompilering och distribution
+## Bygg och distribution
 
 ### Dokumentationsdistribution
 
-Förtroendet använder GitHub Pages eller liknande för dokumentationshosting (om tillämpligt). Ändringar i main-branchen utlöser:
+Reposet använder GitHub Pages eller liknande för dokumentationshosting (om tillämpligt). Ändringar i main-branchen triggar:
 
 1. Översättningsarbetsflöde (`.github/workflows/co-op-translator.yml`)
-2. Automatisk översättning av alla engelska markdown-filer
-3. Lokaliseringsanpassning av bilder vid behov
+2. Automatiserad översättning av alla engelska markdown-filer
+3. Bildlokalisering vid behov
 
-### Ingen kompileringsprocess krävs
+### Inget byggsteg krävs
 
-Detta förtroende innehåller huvudsakligen markdown-dokumentation. Ingen kompilerings- eller byggsteg behövs för kärnkurinnehållet.
+Detta repo innehåller huvudsakligen markdown-dokumentation. Ingen kompilering eller byggsteg behövs för kärninnehållet i läroplanen.
 
-### Exempelprojektsdistribution
+### Exempelprojektdistribution
 
 Enskilda exempelprojekt kan ha distributionsinstruktioner:
-- Se `03-GettingStarted/09-deployment/` för MCP-serverdistributionsanvisningar
+- Se `03-GettingStarted/09-deployment/` för MCP serverdistributionsvägledningar
 - Exempel på Azure Container Apps-distribution i `11-MCPServerHandsOnLabs/`
 
 ## Bidragsriktlinjer
 
-### Process för pull requests
+### Pull request-process
 
-1. **Forka och Klona**: Forka förtroendet och klona din fork lokalt
+1. **Forka och klona**: Forka repot och klona din fork lokalt
 2. **Skapa en gren**: Använd beskrivande grennamn (t.ex. `fix/typo-module-3`, `add/python-example`)
 3. **Gör ändringar**: Redigera endast engelska markdown-filer (inte översättningar)
 4. **Testa lokalt**: Verifiera att markdown renderas korrekt
 5. **Skicka PR**: Använd tydliga PR-titlar och beskrivningar
-6. **CLA**: Skriv under Microsoft Contributor License Agreement när det efterfrågas
+6. **CLA**: Skriv under Microsoft Contributor License Agreement när du uppmanas
 
 ### PR-titelformat
 
 Använd tydliga, beskrivande titlar:
 - `[Module XX] Kort beskrivning` för modulspecifika ändringar
-- `[Samples] Beskrivning` för kodexempeländringar
+- `[Samples] Beskrivning` för ändringar i exempel-kod
 - `[Docs] Beskrivning` för allmänna dokumentationsuppdateringar
 
 ### Vad att bidra med
 
 - Buggfixar i dokumentation eller kodexempel
-- Nya kodexempel på fler språk
+- Nya kodexempel i fler språk
 - Förtydliganden och förbättringar av befintligt innehåll
 - Nya fallstudier eller praktiska exempel
 - Felrapporter för oklart eller felaktigt innehåll
 
-### Vad man INTE ska göra
+### Vad att inte göra
 
-- Redigera inte filer direkt i katalogen `translations/`
-- Redigera inte katalogen `translated_images/`
+- Redigera inte direkt filer i `translations/`-katalogen
+- Redigera inte `translated_images/`-katalogen
 - Lägg inte till stora binära filer utan diskussion
-- Ändra inte översättningsarbetsflödesfiler utan samordning
+- Byt inte översättningsarbetsflödesfiler utan samordning
 
 ## Ytterligare anmärkningar
 
-### Förtroendesunderhåll
+### Repositories underhåll
 
-- **Changelog**: Alla viktiga ändringar dokumenteras i `changelog.md`
-- **Studieguide**: Använd `study_guide.md` för översikt av kursnavigering
-- **Issue-mallar**: Använd GitHub issue-mallar för bugg- och funktionsförfrågningar
+- **Ändringslogg**: Alla viktiga ändringar dokumenteras i `changelog.md`
+- **Studieguide**: Använd `study_guide.md` för överblick av läroplansnavigering
+- **Issue-mallar**: Använd GitHub issue-mallar för buggrapporter och funktionsförfrågningar
 - **Uppförandekod**: Alla bidragsgivare måste följa Microsoft Open Source Code of Conduct
 
-### Inlärningsväg
+### Lärväg
 
-Följ moduler i sekventiell ordning (00-11) för optimal inlärning:
-1. **00-02**: Grunderna (Introduktion, Kärnkoncept, Säkerhet)
+Följ moduler i sekventiell ordning (00-11) för optimalt lärande:
+1. **00-02**: Grundläggande (Introduktion, kärnkoncept, säkerhet)
 2. **03**: Kom igång med praktisk implementation
-3. **04-05**: Praktisk implementering och avancerade ämnen
-4. **06-10**: Gemenskap, bästa praxis och realistiska tillämpningar
-5. **11**: Omfattande databasintegrationslaborationer (13 sekventiella labbar)
+3. **04-05**: Praktisk implementation och avancerade ämnen
+4. **06-10**: Gemenskap, bästa praxis och verkliga tillämpningar
+5. **11**: Omfattande databasintegrationslabbar (13 sekventiella labbar)
 
 ### Supportresurser
 
 - **Dokumentation**: https://modelcontextprotocol.io/
-- **Specifikation**: https://spec.modelcontextprotocol.io/
-- **Community**: https://github.com/orgs/modelcontextprotocol/discussions
-- **Discord**: Microsoft Foundry Discord-server
-- **Relaterade kurser**: Se README.md för andra Microsoft-inlärningsvägar
+- **Specifikation**: https://modelcontextprotocol.io/specification/2026-07-28/
+- **Gemenskap**: https://github.com/orgs/modelcontextprotocol/discussions
+- **Discord**: Microsoft Foundry Discord-servern
+- **Relaterade kurser**: Se README.md för andra Microsoft-lärvägar
 
-### Vanliga felsökningar
+### Vanliga felsökningsfrågor
 
 **F: Min PR misslyckas översättningskontrollen**
-S: Kontrollera att du endast redigerat engelska markdown-filer i root-modulkataloger, inte översatta versioner.
+S: Se till att du endast redigerat engelska markdown-filer i rotdirektorierna, inte översatta versioner.
 
 **F: Hur lägger jag till ett nytt språk?**
-S: Språkstöd hanteras via arbetsflödet co-op-translator. Öppna en issue för att diskutera tillägg av nya språk.
+S: Språkstöd hanteras via co-op-translator-flödet. Öppna ett issue för att diskutera nya språk.
 
 **F: Kodexempel fungerar inte**
+S: Säkerställ att du följt installationsinstruktionerna i specifika exempel-README. Kontrollera att du har rätt versioner av beroenden installerade.
 
-Svar: Se till att du har följt installationsinstruktionerna i den specifika provfilens README. Kontrollera att du har rätt versioner av beroenden installerade.
+**F: Bilder visas inte**
 
-**Fråga: Bilder visas inte**
-Svar: Kontrollera att bildsökvägar är relativa och använder framåtslässtreck. Bilder ska finnas i mappen `images/` eller `translated_images/` för lokaliserade versioner.
+A: Verifiera att bildvägar är relativa och använder snedstreck framåt. Bilder ska finnas i katalogen `images/` eller `translated_images/` för lokaliserade versioner.
 
 ### Prestandahänsyn
 
-- Översättningsarbetsflödet kan ta flera minuter att slutföra
-- Stora bilder bör optimeras innan de sparas
+- Översättningsflödet kan ta flera minuter att slutföra
+- Stora bilder bör optimeras innan de läggs till i versionhanteringen
 - Håll enskilda markdown-filer fokuserade och rimligt stora
 - Använd relativa länkar för bättre portabilitet
 
 ### Projektstyrning
 
-Detta projekt följer Microsofts öppna källkodsprinciper:
+Detta projekt följer Microsofts öppna källkodsmetoder:
 - MIT-licens för kod och dokumentation
-- Microsofts uppförandekod för öppen källkod
+- Microsofts öppna källkodsuppförandekod
 - CLA krävs för bidrag
-- Säkerhetsfrågor: Följ riktlinjerna i SECURITY.md
+- Säkerhetsfrågor: Följ SECURITY.md-riktlinjer
 - Support: Se SUPPORT.md för hjälpresurser
 
 ---

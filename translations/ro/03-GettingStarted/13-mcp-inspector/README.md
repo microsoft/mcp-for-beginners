@@ -1,31 +1,36 @@
 # Depanare cu MCP Inspector
 
-**MCP Inspector** este un instrument esențial de depanare care îți permite să testezi și să depistezi problemele serverelor tale MCP în mod interactiv, fără a avea nevoie de o aplicație completă de gazdă AI. Gândește-l ca pe un „Postman pentru MCP” - oferă o interfață vizuală pentru a trimite cereri, a vedea răspunsuri și a înțelege cum se comportă serverul tău.
+> [!NOTE]
+> Comenzile care folosesc `--sse` și URL-urile care se termină cu `/sse` testează transportul moștenit HTTP+SSE.
+> Pentru un server MCP `2026-07-28` nou, folosește o versiune Inspector care
+> suportă HTTP Streamable și selectează acel transport în schimb.
+
+**MCP Inspector** este un instrument esențial de depanare care îți permite să testezi interactiv și să rezolvi problemele serverelor tale MCP fără a avea nevoie de o aplicație completă de gazduire AI. Gândește-l ca pe un "Postman pentru MCP" - oferă o interfață vizuală pentru a trimite cereri, a vizualiza răspunsuri și a înțelege comportamentul serverului tău.
 
 ## De ce să folosești MCP Inspector?
 
-Când construiești servere MCP, te vei confrunta adesea cu următoarele provocări:
+Când construiești servere MCP, vei întâmpina adesea aceste provocări:
 
-- **„Serverul meu funcționează oare?”** - Inspector arată starea conexiunii
-- **„Instrumentele mele sunt înregistrate corect?”** - Inspector listează toate instrumentele disponibile
-- **„Care este formatul răspunsului?”** - Inspector afișează răspunsurile JSON complete
-- **„De ce nu funcționează acest instrument?”** - Inspector afișează mesaje detaliate de eroare
+- **„Serverul meu funcționează oare?”** - Inspector afișează starea conexiunii
+- **„Sunt uneltele mele înregistrate corect?”** - Inspector listează toate uneltele disponibile
+- **„Care este formatul răspunsului?”** - Inspector afișează răspunsuri JSON complete
+- **„De ce nu funcționează această unealtă?”** - Inspector arată mesaje detaliate de eroare
 
-## Cerințe preliminare
+## Cerințe prealabile
 
 - Node.js 18+ instalat
-- npm (vine odată cu Node.js)
-- Un server MCP de testat (vezi [Modul 3.1 - Primul Server](../01-first-server/README.md))
+- npm (vine împreună cu Node.js)
+- Un server MCP de testat (vezi [Module 3.1 - First Server](../01-first-server/README.md))
 
 ## Instalare
 
-### Opțiunea 1: Rulează cu npx (Recomandat pentru testare rapidă)
+### Opțiunea 1: Rulare cu npx (Recomandat pentru testări rapide)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Opțiunea 2: Instalează global
+### Opțiunea 2: Instalare globală
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -71,7 +76,7 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 Pentru servere care rulează ca servicii HTTP:
 
-1. Pornește mai întâi serverul:
+1. Pornește serverul mai întâi:
    ```bash
    python server.py  # Serverul rulează pe http://localhost:8080
    ```
@@ -83,9 +88,9 @@ Pentru servere care rulează ca servicii HTTP:
 
 ---
 
-## Prezentare generală a interfeței Inspector
+## Prezentare Interfață Inspector
 
-Când Inspector se lansează, vei vedea o interfață web (de obicei la `http://localhost:5173`):
+Când Inspector pornește, vei vedea o interfață web (de obicei la `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Când Inspector se lansează, vei vedea o interfață web (de obicei la `http://
 
 ---
 
-## Testarea instrumentelor
+## Testarea Uneltelor
 
-### Listarea instrumentelor disponibile
+### Listarea uneltelor disponibile
 
-1. Dă clic pe fila **Tools**
+1. Dă click pe fila **Tools**
 2. Inspector apelează automat `tools/list`
-3. Vei vedea toate instrumentele înregistrate cu:
-   - Numele instrumentului
+3. Vei vedea toate uneltele înregistrate cu:
+   - Numele uneltei
    - Descrierea
    - Schema de intrare (parametrii)
 
-### Apelarea unui instrument
+### Invocarea unei unelte
 
-1. Selectează un instrument din listă
+1. Selectează o unealtă din listă
 2. Completează parametrii necesari în formular
 3. Apasă **Run Tool**
-4. Vizualizează răspunsul în panoul de rezultate
+4. Vezi răspunsul în panoul de rezultate
 
-**Exemplu: Testarea unui instrument calculator**
+**Exemplu: Testarea unei unelte de calculator**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Depanarea erorilor instrumentelor
+### Depanarea erorilor uneltelor
 
-Când un instrument eșuează, Inspector afișează:
+Când o unealtă eșuează, Inspector afișează:
 
 ```
 Error Response:
@@ -162,22 +167,22 @@ Error Response:
 }
 ```
 
-Coduri frecvente de eroare:
+Coduri de eroare comune:
 | Cod | Semnificație |
-|------|--------------|
-| -32700 | Eroare de parsare (JSON invalid) |
-| -32600 | Cerere invalidă |
-| -32601 | Metodă negăsită |
-| -32602 | Parametri invalizi |
+|------|---------|
+| -32700 | Eroare de analiză (JSON invalid) |
+| -32600 | Cerere nevalidă |
+| -32601 | Metoda negăsită |
+| -32602 | Parametri nevalizi |
 | -32603 | Eroare internă |
 
 ---
 
-## Testarea resurselor
+## Testarea Resurselor
 
 ### Listarea resurselor
 
-1. Dă clic pe fila **Resources**
+1. Dă click pe fila **Resources**
 2. Inspector apelează `resources/list`
 3. Vei vedea:
    - URI-urile resurselor
@@ -188,9 +193,9 @@ Coduri frecvente de eroare:
 
 1. Selectează o resursă
 2. Apasă **Read Resource**
-3. Vizualizează conținutul returnat
+3. Vezi conținutul returnat
 
-**Exemplu de ieșire:**
+**Exemplu de rezultat:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Testarea mesajelor prompt
+## Testarea Prompturilor
 
 ### Listarea prompturilor
 
-1. Dă clic pe fila **Prompts**
+1. Dă click pe fila **Prompts**
 2. Inspector apelează `prompts/list`
-3. Vezi șabloanele disponibile de prompturi
+3. Vezi șabloanele de prompt disponibile
 
 ### Obținerea unui prompt
 
 1. Selectează un prompt
-2. Completează eventualii argumente necesare
+2. Completează argumentele necesare
 3. Apasă **Get Prompt**
-4. Vezi mesajele prompt afisate
+4. Vezi mesajele promptului generate
 
 ---
 
 ## Analiza jurnalului de mesaje
 
-Jurnalul de mesaje arată toate mesajele protocolului MCP:
+Jurnalul de mesaje arată toate mesajele protocolului MCP. Transcrierea de mai jos este dintr-un
+server moștenit `2025-11-25` și include handshake-ul `initialize` eliminat. Un server
+`2026-07-28` folosește metadate ale cererii autonome și `server/discover`
+în schimb.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -238,14 +246,14 @@ Jurnalul de mesaje arată toate mesajele protocolului MCP:
 
 ### La ce să fii atent
 
-- **Perechi cerere/răspuns**: Fiecare `→` trebuie să aibă un `←` corespunzător
+- **Perechi cerere/răspuns**: Fiecare `→` ar trebui să aibă un `←` corespunzător
 - **Mesaje de eroare**: Caută `"error"` în răspunsuri
-- **Timp**: Intervalele mari pot indica probleme de performanță
-- **Versiunea protocolului**: Asigură-te că serverul și clientul sunt pe aceeași versiune
+- **Timp**: Pauzele mari pot indica probleme de performanță
+- **Versiunea protocolului**: Asigură-te că serverul și clientul sunt acordați pe versiune
 
 ---
 
-## Integrarea în VS Code
+## Integrare VS Code
 
 Poți rula Inspector direct din VS Code:
 
@@ -314,51 +322,51 @@ Adaugă în `.vscode/tasks.json`:
 
 ### Scenariul 1: Serverul nu se conectează
 
-**Simptome:** Inspector afișează „Disconnected” sau se blochează la „Connecting...”
+**Simptome:** Inspector afișează „Disconnected” sau rămâne blocat pe „Connecting...”
 
 **Lista de verificare:**
 1. ✅ Comanda serverului este corectă?
 2. ✅ Sunt toate dependențele instalate?
-3. ✅ Calea către server este absolută sau relativă la directorul curent?
-4. ✅ Sunt setate variabilele de mediu necesare?
+3. ✅ Calea serverului este absolută sau relativă față de directorul curent?
+4. ✅ Sunt toate variabilele de mediu necesare setate?
 
 **Pași de depanare:**
 ```bash
-# Testați serverul manual mai întâi
+# Testează manual serverul mai întâi
 python -c "import your_server_module; print('OK')"
 
-# Verificați erorile de import
+# Verifică pentru erori de import
 python -m your_server_module 2>&1 | head -20
 
-# Verificați dacă MCP SDK este instalat
+# Verifică dacă MCP SDK este instalat
 pip show mcp
 ```
 
-### Scenariul 2: Instrumentele nu apar
+### Scenariul 2: Uneltele nu apar
 
-**Simptome:** Fila Tools afișează o listă goală
+**Simptome:** Fila unelte afișează o listă goală
 
 **Cauze posibile:**
-1. Instrumentele nu au fost înregistrate în timpul inițializării serverului
-2. Serverul s-a blocat după pornire
+1. Uneltele nu au fost înregistrate la inițializarea serverului
+2. Serverul a căzut după pornire
 3. Handler-ul `tools/list` returnează un array gol
 
 **Pași de depanare:**
-1. Verifică jurnalul de mesaje pentru răspunsul la `tools/list`
-2. Adaugă logare în codul de înregistrare a instrumentelor
+1. Verifică în jurnal răspunsul la `tools/list`
+2. Adaugă logare în codul de înregistrare al uneltelor tale
 3. Verifică dacă decoratorii `@mcp.tool()` sunt prezenți (Python)
 
-### Scenariul 3: Instrumentul întoarce eroare
+### Scenariul 3: Unealta returnează eroare
 
-**Simptome:** Apelul instrumentului returnează mesaj de eroare
+**Simptome:** Apelul uneltei returnează răspuns de eroare
 
 **Abordare de depanare:**
 1. Citește cu atenție mesajul de eroare
 2. Verifică dacă tipurile parametrilor corespund schemei
-3. Adaugă blocuri try/catch cu mesaje de eroare detaliate
-4. Verifică jurnalele serverului pentru stive de apeluri
+3. Adaugă try/catch cu mesaje detaliate de eroare
+4. Verifică jurnalele serverului pentru stack trace-uri
 
-**Exemplu de gestiune îmbunătățită a erorilor:**
+**Exemplu de gestionare îmbunătățită a erorilor:**
 
 ```python
 @mcp.tool()
@@ -373,18 +381,18 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Scenariul 4: Conținutul resursei este gol
+### Scenariul 4: Conținutul resursei gol
 
 **Simptome:** Resursa este returnată, dar conținutul este gol sau null
 
 **Lista de verificare:**
-1. ✅ Calea fișierului sau URI-ul este corect
+1. ✅ Calea fișierului sau URI este corectă
 2. ✅ Serverul are permisiunea de a citi resursa
 3. ✅ Conținutul resursei este returnat corect
 
 ---
 
-## Funcții avansate Inspector
+## Funcționalități avansate Inspector
 
 ### Headere personalizate (SSE)
 
@@ -402,8 +410,8 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Înregistrarea sesiunilor
 
-Inspector poate exporta jurnalele de mesaje pentru analiză ulterioară:
-1. Click pe **Export Log** în panoul de mesaje
+Inspector poate exporta jurnalele de mesaje pentru analiza ulterioară:
+1. Apasă **Export Log** în panoul de mesaje
 2. Salvează fișierul JSON
 3. Distribuie colegilor pentru depanare
 
@@ -411,31 +419,31 @@ Inspector poate exporta jurnalele de mesaje pentru analiză ulterioară:
 
 ## Cele mai bune practici
 
-1. **Testează devreme și des** - Folosește Inspector în timpul dezvoltării, nu doar când apar erori
-2. **Începe simplu** - Testează conectivitatea de bază înainte de apeluri complexe la instrumente
-3. **Verifică schema** - Multe erori provin din nepotriviri ale tipurilor parametrilor
+1. **Testează devreme și des** - Folosește Inspector în timpul dezvoltării, nu doar când apar probleme
+2. **Începe simplu** - Testează conexiunea de bază înaintea apelurilor complexe
+3. **Verifică schema** - Multe erori provin din nepotriviri de tipuri de parametri
 4. **Citește mesajele de eroare** - Erorile MCP sunt de obicei descriptive
-5. **Ține Inspector deschis** - Te ajută să depistezi probleme pe măsură ce dezvolți
+5. **Menține Inspector deschis** - Ajută la prinderea problemelor pe parcursul dezvoltării
 
 ---
 
-## Următorii pași
+## Ce urmează
 
-Ai terminat Modulul 3: Începem! Continuă învățarea ta:
+Ai terminat Modulul 3: Începem! Continuă-ți învățarea:
 
-- [Modulul 4: Implementare practică](../../04-PracticalImplementation/README.md)
+- [Module 4: Practical Implementation](../../04-PracticalImplementation/README.md)
 
 ---
 
 ## Resurse suplimentare
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [Specificația MCP - Mesaje protocol](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Specificația JSON-RPC 2.0](https://www.jsonrpc.org/specification)
+- [MCP Specification - Protocol Messages](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Declinare a responsabilității**:
-Acest document a fost tradus folosind serviciul de traducere automată AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autoritară. Pentru informații critice, se recomandă o traducere profesională realizată de un traducător uman. Nu ne asumăm răspunderea pentru orice neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

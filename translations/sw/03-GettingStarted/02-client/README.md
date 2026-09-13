@@ -1,10 +1,10 @@
-# Kuunda mteja
+# Kutengeneza mteja
 
-Wateja ni programu maalum au skiripti ambazo huwasiliana moja kwa moja na MCP Server kuomba rasilimali, zana, na maelekezo. Tofauti na kutumia chombo cha mtaalamu wa ukaguzi, ambacho hutoa kiolesura cha picha kwa kuingiliana na seva, kuandika mteja wako kunaruhusu mwingiliano wa programu kwa njia ya programu na otomatiki. Hii inawawezesha waendelezaji kuingiza uwezo wa MCP katika michakato yao ya kazi, kuendesha kazi kwa otomatiki, na kujenga suluhisho maalum zilizotengenezwa kwa mahitaji maalum.
+Wateja ni programu maalum au maandishi yanayozungumza moja kwa moja na MCP Server kuomba rasilimali, zana, na maagizo. Tofauti na kutumia zana ya mchunguzi, ambayo hutoa kiolesura cha picha kwa ajili ya kuingiliana na seva, kuandika mteja wako mwenyewe huruhusu mwingiliano wa programu na otomatiki. Hii inawawezesha waendelezaji kuunganisha uwezo wa MCP katika kazi zao wenyewe, kuendesha kazi kwa otomatiki, na kujenga suluhisho maalum zilizobinafsishwa kulingana na mahitaji maalum.
 
 ## Muhtasari
 
-Mafunzo haya yanaanzisha dhana ya wateja ndani ya mfumo wa Model Context Protocol (MCP). Utajifunza jinsi ya kuandika mteja wako mwenyewe na kuufanya uungane na MCP Server.
+Somo hili linaletwa wazo la wateja ndani ya mfumo wa Model Context Protocol (MCP). Utajifunza jinsi ya kuandika mteja wako mwenyewe na kumfanya aungane na MCP Server.
 
 ## Malengo ya Kujifunza
 
@@ -12,22 +12,22 @@ Mwisho wa somo hili, utaweza:
 
 - Kuelewa kile mteja anaweza kufanya.
 - Kuandika mteja wako mwenyewe.
-- Kuunganisha na kujaribu mteja na seva ya MCP kuhakikisha kuwa seva inafanya kazi kama inavyotarajiwa.
+- Kuunganisha na kujaribu mteja na seva ya MCP kuhakikisha inafanya kazi kama inavyotarajiwa.
 
-## Nini kinaingia katika kuandika mteja?
+## Nini kinahitajika kuandika mteja?
 
-Ili kuandika mteja, utahitaji kufanya mambo yafuatayo:
+Ili kuandika mteja, utahitaji kufanya yafuatayo:
 
-- **Ingiza maktaba sahihi**. Utatumia maktaba ile ile kama awali, tofauti ni mabadiliko ya miundo.
-- **Tengeneza mteja**. Hii itahusisha kuunda mfano wa mteja na kuunganisha kwa njia ya usafirishaji uliyochagua.
-- **Amua rasilimali gani zaorodheshe**. Seva yako ya MCP ina rasilimali, zana na maelekezo, unahitaji kuamua ipi yaorodheshwe.
-- **Unganisha mteja kwenye programu mwenyeji**. Mara utakapojua uwezo wa seva, unahitaji kuunganisha hii kwenye programu yako mwenyeji ili kama mtumiaji ataandika maelekezo au amri nyingine, kipengele kinacholingana cha seva kitaitwa.
+- **Leta maktaba sahihi**. Utatumia maktaba ile ile kama kabla, tu miundo tofauti.
+- **Tengeneza mfano wa mteja**. Hii itahusisha kuunda mfano wa mteja na kuunganisha kwa njia ya usafirishaji uliyochaguliwa.
+- **Amua rasilimali gani kutazama**. Seva yako ya MCP ina rasilimali, zana na maagizo, unahitaji kuamua ipi utaorodhesha.
+- **Unganisha mteja na programu mwenyeji**. Mara ukijua uwezo wa seva, unahitaji kuunganisha hili na programu yako mwenyeji ili endapo mtumiaji ataandika agizo au sehemu nyingine ya amri, kipengele kinacholingana cha seva kiitwe.
 
-Sasa tukiwa tumeelewa kwa kiwango cha juu kile tutakachofanya, tuchunguze mfano unaofuata.
+Sasa tunapoelewa kwa ujumla kile tunachotaka kufanya, tuchukulie mfano ufuatao.
 
 ### Mfano wa mteja
 
-Tazama mfano huu wa mteja:
+Tuchukulie mfano huu wa mteja:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// Orodha ya maelekezo
+// Orodhesha maagizo
 const prompts = await client.listPrompts();
 
-// Pata maelekezo
+// Pata agizo
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,7 +60,7 @@ const prompt = await client.getPrompt({
   }
 });
 
-// Orodha ya rasilimali
+// Orodhesha rasilimali
 const resources = await client.listResources();
 
 // Soma rasilimali
@@ -68,7 +68,7 @@ const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Piga chombo
+// Piga simu zana
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Katika msimbo uliotangulia tulifanya:
+Katika msimbo ulio hapo juu tumefanya:
 
-- Kuingiza maktaba
-- Kuunda mfano wa mteja na kuungana kwa kutumia stdio kama usafirishaji.
-- Kuuorodhesha maelekezo, rasilimali na zana na kuzitumia zote.
+- Leta maktaba
+- Tengeneza mfano wa mteja na kuunganisha kwa kutumia stdio kama njia ya usafirishaji.
+- Orodhesha maagizo, rasilimali na zana na kuyaitisha yote.
 
-Hapo una mteja anayeweza kuzungumza na MCP Server.
+Hivyo ndivyo, mteja anaweza kuzungumza na MCP Server.
 
-Tuchukue muda katika sehemu ya mazoezi ijayo na tufumue kila kipande cha msimbo na kuelezea kinachotokea.
+Tuchukulie kwa makini sehemu ya mazoezi na kueleza kipande cha msimbo kila mara kinachotokea.
 
-## Mazoezi: Kuandika mteja
+## Zoekezaji: Kuandika mteja
 
-Kama ilivyoambia hapo juu, tuchukue muda kuelezea msimbo, na kwa njia yoyote andika msimbo ikiwa unataka.
+Kama ilivyosemwa hapo juu, tuchukue muda kueleza msimbo, na kwa kila njia andika ikiwa unataka.
 
-### -1- Kuingiza maktaba
+### -1- Leta maktaba
 
-Tuingize maktaba tunazohitaji, tutahitaji marejeleo kwa mteja na kwa itifaki ya usafirishaji tuliyoichagua, stdio. stdio ni itifaki kwa ajili ya vitu vinavyopaswa kuendeshwa kwenye mashine yako ya ndani. SSE ni itifaki nyingine ya usafirishaji tutakayoonyesha katika sura zijazo lakini hiyo ni chaguo lako lingine. Kwa sasa, tuchukue stdio tu.
+Tuzilete maktaba tunazohitaji, tutahitaji marejeleo ya mteja na itifaki yetu ya usafirishaji tuliyochagua, stdio. stdio ni itifaki ya vitu vinavyotarajiwa kuendeshwa kwenye mashine yako ya karibu. SSE ni itifaki nyingine ya usafirishaji tutakayoonyesha katika sura zijazo lakini hiyo ni chaguo lako lingine. Kwa sasa, tukae na stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Kwa Java, utaunda mteja unaounganisha na MCP server kutoka kwa zoezi lililotangulia. Ukitumia muundo ule ule wa mradi wa Java Spring Boot kutoka [Kuanzia na MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), unda darasa jipya la Java lijulike kama `SDKClient` kwenye folda `src/main/java/com/microsoft/mcp/sample/client/` na ongeza maingizo yafuatayo:
+Kwa Java, utaunda mteja anayehusiana na MCP server kutoka zoezi la awali. Ukitumia muundo ule ule wa mradi wa Java Spring Boot kutoka [Anza na MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), tengeneza darasa jipya la Java linaloitwa `SDKClient` katika folda `src/main/java/com/microsoft/mcp/sample/client/` na ongeza imports zifuatazo:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Utahitaji kuongeza utegemezi ufuatao kwenye faili yako ya `Cargo.toml`.
+Utahitaji kuongeza utegemezi ufuatao kwenye faili lako `Cargo.toml`.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Kutoka hapo, unaweza kuingiza maktaba zinazohitajika kwenye msimbo wa mteja wako.
+Kutoka hapo, utaweza kuleta maktaba zinazohitajika katika msimbo wa mteja wako.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Tuweke mbele kwa kuunda mfano.
+Tuchukulie sasa kuanzisha.
 
-### -2- Kuunda mfano wa mteja na usafirishaji
+### -2- Kuanzisha mteja na usafirishaji
 
-Tutahitaji kuunda mfano wa usafirishaji na vilevile wa mteja wetu:
+Tutahitaji kuunda mfano wa usafirishaji na wa mteja wetu:
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuunda mfano wa usafirishaji wa stdio. Angalia jinsi inavyoelezea amri na hoja (args) za jinsi ya kupata na kuanzisha seva kwani hili ni jambo tunalotakiwa kufanya tunapoanzisha mteja.
+- Tumeunda mfano wa usafirishaji wa stdio. Angalia jinsi inavyoelezea amri na mijadala ya jinsi ya kupata na kuanzisha seva kwani hii ni kitu tutakachohitaji tufanye tunapoanzisha mteja.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ Katika msimbo uliopita tumefanya:
     });
     ```
 
-- Kuanzisha mteja kwa kumpa jina na toleo.
+- Tumeanzisha mteja kwa kumpa jina na toleo.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ Katika msimbo uliopita tumefanya:
     });
     ```
 
-- Kuunganisha mteja kwenye usafirishaji uliyochaguliwa.
+- Tumeunganisha mteja na usafirishaji ulioteuliwa.
 
     ```typescript
     await client.connect(transport);
@@ -218,11 +218,11 @@ Katika msimbo uliopita tumefanya:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Unda vipimo vya seva kwa muunganisho wa stdio
+# Unda vigezo vya seva kwa muunganisho wa stdio
 server_params = StdioServerParameters(
     command="mcp",  # Inayotekelezeka
     args=["run", "server.py"],  # Hoja za hiari za mstari wa amri
-    env=None,  # Mabadiliko ya mazingira ya hiari
+    env=None,  # Mazingira ya hiari ya kandarasi
 )
 
 async def run():
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuingiza maktaba zinazohitajika
-- Kuunda kitu cha vigezo vya seva kama tutakavyotumia hili kuendesha seva ili tuweze kuungana nayo kwa mteja wetu.
-- Kuweka njia `run` inayoiita `stdio_client` ambayo huanzisha kikao cha mteja.
-- Kuunda sehemu ya kuingia ambapo tunapeana njia ya `run` kwa `asyncio.run`.
+- Leta maktaba zinazohitajika
+- Tengeneza kitu cha vigezo vya seva kwani tutakitumia kuendesha seva ili kuungana nayo na mteja wetu.
+- Fafanua njia `run` ambayo inaita `stdio_client` ambayo huanzisha kikao cha mteja.
+- Tengeneza sehemu ya kuingia ambapo tunatoa njia `run` kwa `asyncio.run`.
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuingiza maktaba zinazohitajika.
-- Kuunda usafirishaji wa stdio na kuunda mteja `mcpClient`. Hii ni kitu ambacho tutatumia kuorodhesha na kuitisha vipengele kwenye MCP Server.
+- Leta maktaba zinazohitajika.
+- Tunga usafirishaji wa stdio na uunde mteja `mcpClient`. Huu ni kitu tutakachotumia kuorodhesha na kuitisha vipengele kwenye MCP Server.
 
-Kumbuka, katika "Arguments", unaweza kuonyesha kwa faili *.csproj* au kwenye faili linaloweza kutekelezwa.
+Kumbuka, katika "Arguments", unaweza kumwelekeza kwenye *.csproj* au kwenye program inayotekelezeka.
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Mantiki ya mteja wako inaenda hapa
+        // Mantiki ya mteja wako inaweza kuwekwa hapa
     }
 }
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuunda njia kuu (main method) ambayo inaweka usafirishaji wa SSE unaonena `http://localhost:8080` ambapo seva yetu ya MCP itakuwa ikifungua.
-- Kuunda darasa la mteja linalopokea usafirishaji kama parameter kwenye konstrukta.
-- Katika njia ya `run`, tunaunda mteja wa MCP katika njia ya sinkroni tukiitumia usafirishaji na kuanzisha muunganisho.
-- Kutumia usafirishaji wa SSE (Server-Sent Events) unaofaa kwa mawasiliano ya HTTP na seva za MCP za Java Spring Boot.
+- Tumeunda njia kuu inayoweka usafirishaji SSE unaoelekeza kwenye `http://localhost:8080` ambapo MCP server itakuwa ikiendesha.
+- Tumeunda darasa la mteja linalochukua usafirishaji kama kiparameteri cha muunda.
+- Katika njia `run`, tumeunda mteja wa MCP wa muunganiko kwa kutumia usafirishaji na kuanzisha muunganisho.
+- Tumetumia usafirishaji wa SSE (Server-Sent Events) unaofaa kwa mawasiliano ya HTTP na MCP servers za Java Spring Boot.
 
 #### Rust
 
-Kumbuka mteja huyu wa Rust unadhani seva ni mradi wa jamaa aliyeitwa "calculator-server" katika saraka ile ile. Msimbo uliopo utaanzisha seva na kuungana nayo.
+Kumbuka mteja huyu wa Rust anadhani seva ni mradi wa ndugu unaoitwa "calculator-server" katika saraka ile ile. Msimbo hapo chini utaanzisha seva na kuungana nayo.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Kubaliana seva ni mradi wa ndugu unaoitwa "calculator-server" katika saraka sawa
+    // Kubali kuwa seva ni mradi wa kaka uitwao "calculator-server" katika saraka moja
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -334,28 +334,28 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // KTK: Anzisha
+    // TODO: Anzisha
 
-    // KTK: Orodhesha zana
+    // TODO: Orodhesha zana
 
-    // KTK: Piga simu ya kuongeza zana na hoja = {"a": 3, "b": 2}
+    // TODO: Piga simu kuongeza zana kwa hoja = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Kuorodhesha vipengele vya seva
+### -3- Kurodha vipengele vya seva
 
-Sasa tuna mteja anayeweza kuungana ikiwa programu itaendeshwa. Hata hivyo, haijaorodhesha vipengele vyake, basi hebu tufanye hivyo sasa:
+Sasa, tuna mteja anaweza kuungana endapo programu itaendeshwa. Hata hivyo, haorodheshi vipengele vyake sasa, tuchukulie hivyo sasa:
 
 #### TypeScript
 
 ```typescript
-// Orodha ya maelekezo
+// Orodhesha vichocheo
 const prompts = await client.listPrompts();
 
-// Orodha ya rasilimali
+// Orodhesha rasilimali
 const resources = await client.listResources();
 
 // orodha ya zana
@@ -378,7 +378,7 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Hapa tunaorodhesha rasilimali zilizopo, `list_resources()` na zana, `list_tools` na kuzichapisha.
+Hapa tunataja rasilimali zilizopo, `list_resources()` na zana, `list_tools` na kuziandika.
 
 #### .NET
 
@@ -389,12 +389,12 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Huu ni mfano wa jinsi tunavyoweza kuorodhesha zana kwenye seva. Kwa kila zana, tunachapisha jina lake.
+Hapo juu ni mfano wa jinsi tunavyoweza kuorodhesha zana za seva. Kwa kila zana, tunachapisha jina lake.
 
 #### Java
 
 ```java
-// Orodhesha na onyesha zana
+// Orodhesha na kuonyesha zana
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
@@ -402,31 +402,31 @@ System.out.println("Available Tools = " + toolsList);
 client.ping();
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuuita `listTools()` kupata zana zote zinazopatikana kutoka MCP server.
-- Kutumia `ping()` kutathmini kuwa muunganisho na seva unafanya kazi.
-- Matokeo ya `ListToolsResult` yanajumuisha taarifa kuhusu zana zote ikiwa ni pamoja na majina yao, maelezo, na mipangilio ya matumizi.
+- Imetaja `listTools()` kupata zana zote zinazopatikana kutoka kwa MCP server.
+- Imetumia `ping()` kuthibitisha kuwa muunganisho na seva unafanya kazi.
+- `ListToolsResult` ina taarifa kuhusu zana zote ikiwemo majina yao, maelezo, na vipimo vya ingizo.
 
-Nzuri, sasa tumekamata vipengele vyote. Sasa swali ni lini tunavitumia? Huyu mteja ni rahisi sana, rahisi kwa maana kwamba tutahitaji kuitisha vipengele hapo tunapotaka. Katika sura inayofuata, tutaunda mteja aliye na uwezo zaidi mwenye mtindo wake mkubwa wa lugha, LLM. Kwa sasa, tuchukulie jinsi ya kuitisha vipengele kwenye seva:
+Vizuri, sasa tumehifadhi vipengele vyote. Sasa swali ni lini tunavitumia? Haya, mteja huyu ni rahisi sana, rahisi kwa maana tunahitaji kupiga simu kwa vipengele vilipowekwa. Katika sura inayofuata, tutaunda mteja zaidi wa hali ya juu ambaye ana ufikiaji wa mfano wa lugha mkubwa wake, LLM. Kwa sasa tuone jinsi ya kuaitisha vipengele kwenye seva:
 
 #### Rust
 
-Katika kazi kuu (main function), baada ya kuanzisha mteja, tunaweza kuanzisha seva na kuorodhesha baadhi ya vipengele vyake.
+Katika func main, baada ya kuanzisha mteja, tunaweza kuanzisha seva na kuorodhesha baadhi ya vipengele vyake.
 
 ```rust
 // Anzisha
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// Orodha ya zana
+// Orodhesha zana
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
 ### -4- Kuitisha vipengele
 
-Ili kuitisha vipengele tunahitaji kuhakikisha tunabainisha hoja sahihi na katika baadhi ya kesi jina la kile tunachojaribu kuitisha.
+Ili kuitisha vipengele tunahitaji kuhakikisha tumeelezea hoja sahihi na kwa baadhi ya kesi jina la kile tunachojaribu kuitisha.
 
 #### TypeScript
 
@@ -437,7 +437,7 @@ const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Piga simu zana
+// Piga simu kwa chombo
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// piga simu kiagizo
+// piga simu kwa taarifa
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -454,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-Katika msimbo uliopita tulifanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kusoma rasilimali, tunaita rasilimali kwa kuitisha `readResource()` tukibainisha `uri`. Hapa ni jinsi inavyoweza kuonekana upande wa seva:
+- Kusoma rasilimali, tunaita rasilimali kwa kutumia `readResource()` tukielezea `uri`. Hapa huenda ikawa inavyoonekana upande wa seva:
 
     ```typescript
     server.resource(
@@ -473,7 +473,7 @@ Katika msimbo uliopita tulifanya:
 
     Thamani yetu ya `uri` `file://example.txt` inalingana na `file://{name}` kwenye seva. `example.txt` itahusishwa na `name`.
 
-- Kuitisha zana, tunaaita kwa kubainisha `name` na `arguments` kama ifuatavyo:
+- Kuitisha zana, tunaiita kwa kuelezea jina lake `name` na `arguments` kama ifuatavyo:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ Katika msimbo uliopita tulifanya:
     });
     ```
 
-- Kupata maelekezo, ili kupata maelekezo, unaita `getPrompt()` ukiipa `name` na `arguments`. Msimbo wa seva unaonekana kama:
+- Kupata agizo, ili kupata agizo, unaiga `getPrompt()` na `name` na `arguments`. Msimbo wa seva unaonekana kama ifuatavyo:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ Katika msimbo uliopita tulifanya:
     );
     ```
 
-    na msimbo wa mteja unaotokana naye unaonekana kama ifuatavyo ili ulingane na kile kilichotangazwa kwenye seva:
+    na msimbo wa mteja utakavyoonekana utakubaliana na kile kilichotangazwa kwenye seva:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -520,20 +520,20 @@ Katika msimbo uliopita tulifanya:
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Piga simu kwa chombo
+# Piga zana
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Katika msimbo uliopita, tumefanya:
+Katika msimbo uliotangulia, tumefanya:
 
-- Kuita rasilimali iitwayo `greeting` kwa kutumia `read_resource`.
+- Kuitisha rasilimali inayoitwa `greeting` kwa kutumia `read_resource`.
 - Kuitisha zana iitwayo `add` kwa kutumia `call_tool`.
 
 #### .NET
 
-1. Tuweke msimbo wa kuita zana:
+1. Tongeze msimbo wa kuitisha zana:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ Katika msimbo uliopita, tumefanya:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Ili kuchapisha matokeo, hapa kuna msimbo wa kushughulikia hayo:
+1. Ili kuchapisha matokeo, hapa kuna msimbo wa kushughulikia hiyo:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ Katika msimbo uliopita, tumefanya:
 #### Java
 
 ```java
-// Piga zana mbalimbali za kalkuleta
+// Piga huduma mbalimbali za kalukuleta
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -569,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Katika msimbo uliopita tumefanya:
+Katika msimbo uliotangulia tumefanya:
 
-- Kuita zana mbalimbali za kihesabu kwa kutumia njia ya `callTool()` na vitu vya `CallToolRequest`.
-- Kila wito wa zana unaainisha jina la zana na `Map` ya hoja zinazohitajika na zana hiyo.
-- Zana za seva zinatarajia majina maalum ya vigezo (kama "a", "b" kwa hesabu).
-- Matokeo yanarudishwa kama vitu vya `CallToolResult` vinavyoshikilia majibu kutoka kwa seva.
+- Kuitisha zana nyingi za calculator kwa kutumia njia `callTool()` na vitu vya `CallToolRequest`.
+- Kila simu ya zana inaonyesha jina la zana na ramani ya hoja zinazohitajika na zana hiyo.
+- Zana za seva zinahitaji majina maalum ya vigezo (kama "a", "b" kwa operesheni za hisabati).
+- Matokeo huletwa kama vitu vya `CallToolResult` vinavyozidiwa na majibu kutoka kwa seva.
 
 #### Rust
 
 ```rust
-// Piga simu zana ya kuongeza kwa hoja = {"a": 3, "b": 2}
+// Piga simu zana ya kuongeza na hoja = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Endesha mteja
 
-Ili kuendesha mteja, andika amri ifuatayo kwenye terminal:
+Kuendesha mteja, andika amri ifuatayo kwenye terminal:
 
 #### TypeScript
 
-Ongeza kipengele hiki kwenye sehemu ya "scripts" katika *package.json*:
+Ongeza kipengele ifuatavyo kwenye sehemu ya "scripts" katika *package.json* yako:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -623,7 +623,7 @@ dotnet run
 
 #### Java
 
-Kwanza, hakikisha seva yako ya MCP inaendeshwa kwenye `http://localhost:8080`. Kisha endesha mteja:
+Kwanza, hakikisha MCP server yako inakimbia kwenye `http://localhost:8080`. Kisha endesha mteja:
 
 ```bash
 # Jenga mradi wako
@@ -633,13 +633,13 @@ Kwanza, hakikisha seva yako ya MCP inaendeshwa kwenye `http://localhost:8080`. K
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Kama mbadala, unaweza kuendesha mradi kamili wa mteja ulio kwenye folda ya suluhisho `03-GettingStarted\02-client\solution\java`:
+Vinginevyo, unaweza kuendesha mradi kamili wa mteja uliopewa katika folda ya suluhisho `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Elekea kwenye saraka ya suluhisho
 cd 03-GettingStarted/02-client/solution/java
 
-# Jenga na endesha JAR
+# Tengeneza na endesha JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -651,11 +651,11 @@ cargo fmt
 cargo run
 ```
 
-## Kazi ya nyumbani
+## Kazi ya Nyumbani
 
-Katika kazi hii ya nyumbani, utatumia kile ulichojifunza kuunda mteja lakini unda mteja wako mwenyewe.
+Katika kazi hii ya nyumbani, utatumia kile ulichojifunza katika kutengeneza mteja lakini utatengeneza mteja wako mwenyewe.
 
-Huu ni seva unayotumia ambayo unahitaji kuiitisha kupitia msimbo wa mteja wako, angalia kama unaweza kuongeza vipengele zaidi kwa seva kufanya iwe ya kuvutia zaidi.
+Huyu ni seva unayoweza kutumia unayohitaji kuitisha kupitia msimbo wa mteja wako, tazama ikiwa unaweza kuongeza vipengele zaidi kwenye seva kufanya iwe ya kuvutia zaidi.
 
 ### TypeScript
 
@@ -664,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Unda seva ya MCP
+// Tengeneza seva ya MCP
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Ongeza zana ya kuongeza
+// Ongeza chombo cha ongezeko
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -710,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Unda seva ya MCP
+# Tengeneza seva ya MCP
 mcp = FastMCP("Demo")
 
 
-# Ongeza kifaa cha kuongeza
+# Ongeza chombo cha kuongeza
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Ongeza rasilimali ya salamu inayobadilika
+# Ongeza rasilimali ya salamu yenye mabadiliko
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Tazama mradi huu kuona jinsi unavyoweza [kuongeza maelekezo na rasilimali](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Tazama mradi huu kuona jinsi ya [kuongeza maagizo na rasilimali](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Pia, angalia kiungo hiki cha jinsi ya kuitisha [maelekezo na rasilimali](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Pia, angalia kiungo hiki kwa jinsi ya kuitisha [maagizo na rasilimali](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Katika [sehemu iliyotangulia](../../../../03-GettingStarted/01-first-server), ulijifunza jinsi ya kuunda seva rahisi ya MCP kwa Rust. Unaweza kuendelea kujenga hapo au angalia kiungo hiki kwa mifano zaidi ya seva za MCP zilizoandikwa kwa Rust: [Mifano ya MCP Server](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Katika [sehemu iliyopita](../../../../03-GettingStarted/01-first-server), ulijifunza jinsi ya kutengeneza seva rahisi ya MCP kwa Rust. Unaweza kuendelea kujenga hapo au angalia kiungo hiki kwa mifano zaidi ya seva za MCP zenye msingi wa Rust: [Mfano za MCP Server](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Suluhisho
 
-**Folda ya suluhisho** ina utekelezaji kamili wa mteja tayari kuendesha unaoonyesha dhana zote zilizojadiliwa katika mafunzo haya. Kila suluhisho linajumuisha msimbo wa mteja na seva uliopangwa katika miradi tofauti, iliyo huru.
+**Folda ya suluhisho** ina utekelezaji kamili wa wateja wa programu, tayari kuendeshwa unaoonyesha dhana zote zilizojadiliwa katika mafunzo haya. Kila suluhisho lina msimbo wa mteja na seva umeandaliwa katika miradi ya kujitegemea.
 
 ### 📁 Muundo wa Suluhisho
 
-Saraka ya suluhisho imepangwa kwa lugha ya programu:
+Saraka ya suluhisho imeandaliwa kwa lugha za programu:
 
 ```text
 solution/
@@ -803,19 +803,19 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 Kila Suluhisho Linajumuisha
+### 🚀 Kila Suluhisho Linajumuisha Nini
 
 Kila suluhisho la lugha maalum linatoa:
 
-- **Utekelezaji kamili wa mteja** ukiwa na vipengele vyote kutoka kwa mafunzo
-- **Muundo wa mradi unaofanya kazi** una utegemezi sahihi na usanidi
-- **Scripts za kujenga na kuendesha** kwa urahisi wa usanidi na utekelezaji
-- **README ya kina** yenye maelekezo maalum kwa kila lugha
-- **Udhibiti wa makosa** na mifano ya usindikaji matokeo
+- **Utekelezaji kamili wa mteja** wenye vipengele vyote kutoka mafunzoni
+- **Muundo wa mradi unaofanya kazi** na utegemezi sahihi na usanidi
+- **Skripti za kujenga na kuendesha** kwa urahisi wa usanidi na utekelezaji
+- **README ya kina** yenye maelekezo ya lugha husika
+- **Mifano ya usindikaji wa makosa** na matokeo
 
 ### 📖 Kutumia Suluhisho
 
-1. **Fikia folda ya lugha unayopendelea**:
+1. **Elekea saraka ya lugha unayopendelea**:
 
    ```bash
    cd solution/typescript/    # Kwa TypeScript
@@ -824,12 +824,12 @@ Kila suluhisho la lugha maalum linatoa:
    cd solution/dotnet/        # Kwa .NET
    ```
 
-2. **Fuata maelekezo ya README kwenye kila folda kwa ajili ya:**
-   - Kufunga utegemezi
+2. **Fuata maelekezo ya README** katika kila saraka kwa:
+   - Kusakinisha utegemezi
    - Kujenga mradi
    - Kuendesha mteja
 
-3. **Matokeo ya mfano** unayopaswa kuona:
+3. **Matokeo mfano** unayopaswa kuona:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,78 +837,80 @@ Kila suluhisho la lugha maalum linatoa:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Kwa hati kamili na maelekezo ya hatua kwa hatua, angalia: **[📖 Hati za Suluhisho](./solution/README.md)**
+Kwa nyaraka kamili na maelekezo ya hatua kwa hatua, tazama: **[📖 Nyaraka za Suluhisho](./solution/README.md)**
 
 ## 🎯 Mifano Kamili
 
-Tumetoa utekelezaji kamili wa mteja wa lugha zote za programu zilizofunikwa katika mafunzo haya. Mifano hii inaonyesha utendakazi kamili ulioelezwa hapo juu na inaweza kutumika kama marejeleo au kama msingi wa miradi yako mwenyewe.
+Tumetoa utekelezaji kamili, wa kazi kwa wateja wa lugha zote za programu zilizofunikwa katika mafunzo haya. Mifano hii inaonyesha utendakazi kamili ulioelezwa hapo juu na inaweza kutumika kama marejeleo au kuanzia mradi wako.
 
 ### Mifano Kamili Inayopatikana
 
 | Lugha | Faili | Maelezo |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Mteja kamili wa Java akitumia usafirishaji wa SSE na udhibiti wa makosa kwa kina |
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Mteja kamili wa Java akitumia usafirishaji wa SSE na usindikaji wa makosa kwa kina |
 | **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Mteja kamili wa C# akitumia usafirishaji wa stdio na kuanzisha seva moja kwa moja |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Mteja kamili wa TypeScript ukiunga mkono itifaki kamili ya MCP |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Mteja kamili wa TypeScript mwenye msaada wa itifaki ya MCP kikamilifu |
 | **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Mteja kamili wa Python akitumia mifumo ya async/await |
 | **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Mteja kamili wa Rust akitumia Tokio kwa operesheni za async |
 
 Kila mfano kamili unajumuisha:
-- ✅ **Kuanzishwa kwa muunganisho** na kushughulikia makosa  
-- ✅ **Ugunduzi wa seva** (zana, rasilimali, miongozo pale inapowezekana)  
-- ✅ **Operesheni za kalkuleta** (ongeza, toa, zidisha, gawanya, msaada)  
-- ✅ **Usindikaji wa matokeo** na usanifu wa matokeo  
-- ✅ **Kushughulikia makosa kwa kina**  
-- ✅ **Nambari safi, iliyobainishwa** yenye maelezo ya hatua kwa hatua  
 
-### Kuanzia na Mifano Kamili  
+- ✅ **Kuanza muunganisho** na usindikaji wa makosa
+- ✅ **Ugonjwa wa seva** (zana, rasilimali, maagizo pale inapowezekana)
+- ✅ **Operesheni za calculator** (ongeza, toa, zidisha, gawanya, msaada)
+- ✅ **Usindikaji wa matokeo** na maonyesho yaliyopangwa
+- ✅ **Usindikaji wa makosa kwa kina**
 
-1. **Chagua lugha unayopendelea** kutoka kwenye meza hapo juu  
-2. **Kagua faili la mfano kamili** ili kuelewa utekelezaji kamili  
-3. **Endesha mfano huo** ukifuata maelekezo katika [`complete_examples.md`](./complete_examples.md)  
-4. **Badilisha na ongeza** mfano kwa matumizi yako maalum  
+- ✅ **Kanuni safi, zilizobainishwa** zilizo na maelezo hatua kwa hatua
 
-Kwa nyaraka za kina kuhusu jinsi ya kuendesha na kubinafsisha mifano hii, angalia: **[📖 Nyaraka Kamili za Mifano](./complete_examples.md)**  
+### Kuanzia na Mifano Kamili
 
-### 💡 Suluhisho dhidi ya Mifano Kamili  
+1. **Chagua lugha unayopendelea** kutoka kwenye jedwali hapo juu
+2. **Pitia faili la mfano kamili** kuelewa utekelezaji kamili
+3. **Endesha mfano** kufuata maelekezo katika [`complete_examples.md`](./complete_examples.md)
+4. **Badilisha na ongeza** mfano kwa matumizi yako maalum
 
-| **Folda ya Suluhisho** | **Mifano Kamili** |  
-|-----------------------|-------------------|  
-| Muundo kamili wa mradi na faili za kujenga | Utekelezaji wa faili moja |  
-| Tayari kuendeshwa na utegemezi | Mifano ya nambari iliyoelekezwa |  
-| Mpangilio kama wa utengenezaji | Marejeleo ya kielimu |  
-| Zana maalum za lugha | Mlinganisho wa lugha mbalimbali |  
+Kwa maelezo ya kina kuhusu kuendesha na kubadilisha mifano hii, angalia: **[📖 Nyaraka za Mifano Kamili](./complete_examples.md)**
 
-Mbinu zote mbili ni za thamani - tumia **folda ya suluhisho** kwa miradi kamili na **mifano kamili** kwa kujifunza na marejeleo.  
+### 💡 Suluhisho vs. Mifano Kamili
 
-## Muhimu Kufahamu  
+| **Folda ya Suluhisho** | **Mifano Kamili** |
+|--------------------|--------------------- |
+| Muundo kamili wa mradi na faili za kujenga | Utekelezaji wa faili moja |
+| Tayari kuendesha na utegemezi | Mifano ya kanuni iliyo elekezwa |
+| Mipangilio kama kwa uzalishaji | Marejeleo ya elimu |
+| Vifaa maalum vya lugha | Mlinganisho wa lugha mbalimbali |
 
-Muhimu kuelewa katika sura hii kuhusu wateja ni yafuatayo:  
+Mbinu zote mbili ni kuwa na thamani - tumia **folda ya suluhisho** kwa miradi kamili na **mifano kamili** kwa kujifunza na marejeleo.
 
-- Wanaweza kutumiwa kugundua na kuitisha sehemu kwenye seva.  
-- Wanaweza kuanzisha seva wakati wanajiendesha wenyewe (kama katika sura hii) lakini wateja pia wanaweza kuunganishwa na seva zinazoendesha tayari.  
-- Ni njia nzuri ya kujaribu uwezo wa seva kando na njia mbadala kama Inspector ilivyotajwa katika sura iliyopita.  
+## Muhimu Kukumbuka
 
-## Rasilimali Zaidi  
+Muhimu wa sura hii kuhusu wateja ni yafuatayo:
 
-- [Ujengeaji wa wateja katika MCP](https://modelcontextprotocol.io/quickstart/client)  
+- Inaweza kutumika kugundua na kuitisha sifa kwenye seva.
+- Inaweza kuanzisha seva wakati inavyoanzisha yenyewe (kama sura hii) lakini wateja pia wanaweza kuunganisha na seva zinazotumika.
+- Ni njia bora ya kujaribu uwezo wa seva kando na mbadala kama Inspector kama ilivyoelezwa kwenye sura iliyopita.
 
-## Sampuli  
+## Rasilimali Zaidi
 
-- [Java Kalkuleta](../samples/java/calculator/README.md)  
-- [.Net Kalkuleta](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Kalkuleta](../samples/javascript/README.md)  
-- [TypeScript Kalkuleta](../samples/typescript/README.md)  
-- [Python Kalkuleta](../../../../03-GettingStarted/samples/python)  
-- [Rust Kalkuleta](../../../../03-GettingStarted/samples/rust)  
+- [Kujenga wateja katika MCP](https://modelcontextprotocol.io/quickstart/client)
 
-## Kitakachofuata  
+## Mifano
 
-- Kifuatazo: [Kuunda mteja na LLM](../03-llm-client/README.md)
+- [Kalkuleta ya Java](../samples/java/calculator/README.md)
+- [Kalkuleta ya .NET](../../../../03-GettingStarted/samples/csharp)
+- [Kalkuleta ya JavaScript](../samples/javascript/README.md)
+- [Kalkuleta ya TypeScript](../samples/typescript/README.md)
+- [Kalkuleta ya Python](../../../../03-GettingStarted/samples/python)
+- [Kalkuleta ya Rust](../../../../03-GettingStarted/samples/rust)
+
+## Kifuatavyo
+
+- Kifuatavyo: [Kuunda mteja na LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kweli ya Kusema**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kufanikisha usahihi, tafadhali fahamu kwamba tafsiri za moja kwa moja zinaweza kuwa na makosa au kutokukamilika. Hati ya asili kwa lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu sana, tafsiri ya kitaalamu inayofanywa na binadamu inashauriwa. Hatuwajibiki kwa maelewano au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

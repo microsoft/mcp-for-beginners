@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Attiva l'ambiente virtuale
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Installa le dipendenze
@@ -33,15 +33,19 @@ LISTING RESOURCES
 Resource:  ('meta', None)
 Resource:  ('nextCursor', None)
 Resource:  ('resources', [])
-                    INFO     Processing request of type ListToolsRequest                                                                               server.py:534
+INFO Processing request of type ListToolsRequest server.py:534
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-                    INFO     Processing request of type ReadResourceRequest                                                                            server.py:534
+INFO Processing request of type ReadResourceRequest server.py:534
 CALL TOOL
-                    INFO     Processing request of type CallToolRequest                                                                                server.py:534
+INFO Processing request of type CallToolRequest server.py:534
 [TextContent(type='text', text='8', annotations=None)]
 ```
 
-**Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+Questo documento è stato tradotto utilizzando il servizio di traduzione AI [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire la precisione, si prega di notare che le traduzioni automatizzate possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un essere umano. Non siamo responsabili per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,29 +1,29 @@
 # Vytvoření klienta
 
-Klienti jsou vlastní aplikace nebo skripty, které komunikují přímo s MCP serverem za účelem požádání o zdroje, nástroje a promptů. Na rozdíl od používání nástroje inspektoru, který poskytuje grafické rozhraní pro interakci se serverem, vlastní klient umožňuje programatickou a automatizovanou interakci. To umožňuje vývojářům integrovat schopnosti MCP do svých pracovních postupů, automatizovat úkoly a vytvářet vlastní řešení přizpůsobená specifickým potřebám.
+Klienti jsou vlastní aplikace nebo skripty, které komunikují přímo se serverem MCP za účelem žádosti o zdroje, nástroje a výzvy. Na rozdíl od použití inspektoru, který poskytuje grafické rozhraní pro interakci se serverem, psaní vlastního klienta umožňuje programovatelnou a automatizovanou interakci. To umožňuje vývojářům integrovat schopnosti MCP do vlastních pracovních postupů, automatizovat úkoly a vytvářet vlastní řešení přizpůsobená specifickým potřebám.
 
 ## Přehled
 
-Tato lekce představuje koncept klientů v rámci ekosystému Model Context Protocol (MCP). Naučíte se, jak napsat vlastního klienta a připojit ho k MCP serveru.
+Tato lekce představuje koncept klientů v ekosystému Model Context Protocol (MCP). Naučíte se, jak napsat vlastní klient a připojit ho k serveru MCP.
 
 ## Cíle učení
 
 Na konci této lekce budete schopni:
 
-- Porozumět, co klient dokáže.
+- Porozumět, co klient může dělat.
 - Napsat vlastního klienta.
-- Připojit a otestovat klienta s MCP serverem, aby bylo ověřeno, že server funguje podle očekávání.
+- Připojit a otestovat klienta se serverem MCP, aby bylo zajištěno, že server funguje podle očekávání.
 
-## Co patří do psaní klienta?
+## Co obnáší psaní klienta?
 
-Chcete-li napsat klienta, budete muset učinit následující kroky:
+Pro napsání klienta musíte udělat následující:
 
-- **Importovat správné knihovny**. Budete používat stejnou knihovnu jako předtím, jen jiné konstrukty.
-- **Vytvořit instanci klienta**. To bude zahrnovat vytvoření instance klienta a připojení k zvolenému způsobu transportu.
-- **Rozhodnout, které zdroje chcete vypisovat**. Váš MCP server obsahuje zdroje, nástroje a promptů, musíte se rozhodnout, které z nich budete vypisovat.
-- **Integrovat klienta do hostitelské aplikace**. Jakmile znáte schopnosti serveru, je třeba klienta integrovat do hostitelské aplikace tak, aby při zadání promptu nebo jiného příkazu uživatelem byla vyvolána odpovídající funkce serveru.
+- **Importovat správné knihovny**. Budete používat stejnou knihovnu jako dříve, pouze jiné konstrukty.
+- **Vytvořit instanci klienta**. To zahrnuje vytvoření instance klienta a připojení k vybranému způsobu přenosu.
+- **Rozhodnout, jaké zdroje zobrazit**. Váš server MCP obsahuje zdroje, nástroje a výzvy, musíte se rozhodnout, které chcete zobrazit.
+- **Integrovat klienta do hostitelské aplikace**. Jakmile znáte schopnosti serveru, musíte tuto integraci provést do své hostitelské aplikace tak, aby se při zadání výzvy nebo jiného příkazu uživatelem vyvolala příslušná funkce serveru.
 
-Nyní, když rozumíme na vysoké úrovni, co budeme dělat, podíváme se na následující příklad.
+Nyní, když jsme si v hrubých rysech vysvětlili, co budeme dělat, podívejme se na příklad.
 
 ### Příklad klienta
 
@@ -49,7 +49,7 @@ const client = new Client(
 
 await client.connect(transport);
 
-// Vypsat výzvy
+// Seznam výzev
 const prompts = await client.listPrompts();
 
 // Získat výzvu
@@ -60,7 +60,7 @@ const prompt = await client.getPrompt({
   }
 });
 
-// Vypsat zdroje
+// Seznam zdrojů
 const resources = await client.listResources();
 
 // Přečíst zdroj
@@ -80,20 +80,20 @@ const result = await client.callTool({
 V předchozím kódu jsme:
 
 - Importovali knihovny
-- Vytvořili instanci klienta a připojili ji pomocí stdio jako transportu.
-- Vypsali promptů, zdroje a nástroje a všechny je vyvolali.
+- Vytvořili instanci klienta a připojili ji pomocí stdio jako způsobu přenosu.
+- Vyjmenovali výzvy, zdroje a nástroje a všechny je vyvolali.
 
-Máte tedy klienta, který může komunikovat s MCP serverem.
+Tady to máte, klient, který může komunikovat se serverem MCP.
 
-V další cvičné části si vezmeme čas a rozložíme jednotlivé bloky kódu a vysvětlíme, co se děje.
+V další cvičební části si podrobně vysvětlíme jednotlivé části kódu a co se v nich děje.
 
 ## Cvičení: Psaní klienta
 
-Jak bylo řečeno výše, vezmeme si čas na vysvětlení kódu a rozhodně klidně kódujte zároveň.
+Jak už bylo řečeno, pojďme si na vysvětlení kódu dát čas a klidně kódujte současně, pokud chcete.
 
 ### -1- Import knihoven
 
-Importujme knihovny, které potřebujeme, budeme potřebovat reference na klienta a zvolený protokol transportu, stdio. stdio je protokol pro věci, které mají běžet na vašem lokálním počítači. SSE je další transportní protokol, který ukážeme v budoucích kapitolách, ale to je vaše druhá možnost. Prozatím však pokračujeme se stdio.
+Importujme knihovny, které potřebujeme, budeme potřebovat odkazy na klienta a na náš zvolený přenosový protokol stdio. stdio je protokol pro věci určené k běhu na lokálním počítači. SSE je dalším přenosovým protokolem, který ukážeme v budoucích kapitolách, ale prozatím pokračujme se stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Pro Javu vytvoříte klienta, který se připojuje k MCP serveru z předchozího cvičení. Použijte stejnou strukturu projektu Java Spring Boot z [Zahájení práce s MCP Serverem](../../../../03-GettingStarted/01-first-server/solution/java), vytvořte novou třídu Java nazvanou `SDKClient` ve složce `src/main/java/com/microsoft/mcp/sample/client/` a přidejte následující importy:
+Pro Javu vytvoříte klienta, který se připojí k serveru MCP z předchozího cvičení. Použijte stejnou strukturu projektu Java Spring Boot z [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), vytvořte novou třídu Java s názvem `SDKClient` ve složce `src/main/java/com/microsoft/mcp/sample/client/` a přidejte následující importy:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Musíte přidat následující závislosti do vašeho souboru `Cargo.toml`.
+Musíte přidat následující závislosti do souboru `Cargo.toml`.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Odtud můžete importovat potřebné knihovny ve svém kódu klienta.
+Odtud můžete importovat potřebné knihovny do kódu klienta.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Přejděme k vytvoření instance.
+Přejděme k vytváření instancí.
 
-### -2- Vytvoření instance klienta a transportu
+### -2- Vytvoření instance klienta a přenosu
 
-Budeme muset vytvořit instanci transportu i klienta:
+Budeme potřebovat vytvořit instanci přenosu i instanci klienta:
 
 #### TypeScript
 
@@ -187,7 +187,7 @@ await client.connect(transport);
 
 V předchozím kódu jsme:
 
-- Vytvořili instanci stdio transportu. Všimněte si, jak specifikuje příkaz a argumenty, jak server najít a spustit, protože to budeme potřebovat pro vytvoření klienta.
+- Vytvořili instanci přenosu stdio. Všimněte si, jak specifikuje příkaz a argumenty, jak najít a spustit server, protože to budeme potřebovat při vytváření klienta.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ V předchozím kódu jsme:
     });
     ```
 
-- Vytvořili instanci klienta s názvem a verzí.
+- Vytvořili instanci klienta, přičemž jsme mu dali jméno a verzi.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ V předchozím kódu jsme:
     });
     ```
 
-- Připojili klienta k vybranému transportu.
+- Připojili klienta k vybranému přenosu.
 
     ```typescript
     await client.connect(transport);
@@ -218,11 +218,11 @@ V předchozím kódu jsme:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Vytvořit parametry serveru pro stdio připojení
+# Vytvořit parametry serveru pro připojení stdio
 server_params = StdioServerParameters(
     command="mcp",  # Spustitelný soubor
-    args=["run", "server.py"],  # Nepovinné argumenty příkazové řádky
-    env=None,  # Nepovinné proměnné prostředí
+    args=["run", "server.py"],  # Volitelné argumenty příkazového řádku
+    env=None,  # Volitelné proměnné prostředí
 )
 
 async def run():
@@ -244,8 +244,8 @@ if __name__ == "__main__":
 V předchozím kódu jsme:
 
 - Importovali potřebné knihovny
-- Vytvořili objekt parametrů serveru, který využijeme k spuštění serveru, abychom se k němu mohli připojit přes klienta.
-- Definovali metodu `run`, která volá `stdio_client`, spouštějící klientskou relaci.
+- Vytvořili objekt parametrů serveru, protože ho použijeme k spuštění serveru, aby se k němu klient mohl připojit.
+- Definovali metodu `run`, která zavolá `stdio_client`, jež spustí klientskou relaci.
 - Vytvořili vstupní bod, kde předáváme metodu `run` do `asyncio.run`.
 
 #### .NET
@@ -277,9 +277,9 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 V předchozím kódu jsme:
 
 - Importovali potřebné knihovny.
-- Vytvořili stdio transport a klienta `mcpClient`. To použijeme pro výpis a vyvolání funkcí na MCP serveru.
+- Vytvořili přenos stdio a klienta `mcpClient`. To použijeme k výpisu a vyvolání funkcí na serveru MCP.
 
-Poznámka, v "Arguments" můžete ukázat buď na *.csproj* nebo na spustitelný soubor.
+Poznámka: V "Arguments" můžete buď ukázat na *.csproj* nebo na spustitelný soubor.
 
 #### Java
 
@@ -308,14 +308,14 @@ public class SDKClient {
 
 V předchozím kódu jsme:
 
-- Vytvořili hlavní metodu, která nastavuje SSE transport směřující na `http://localhost:8080`, kde bude běžet náš MCP server.
-- Vytvořili třídu klienta, která přijímá transport jako konstruktorový parametr.
-- V metodě `run` vytváříme synchronní MCP klienta používajícího transport a inicializujeme připojení.
-- Použili SSE (Server-Sent Events) transport, který je vhodný pro HTTP komunikaci s MCP servery běžícími na Java Spring Boot.
+- Vytvořili hlavní metodu, která nastavuje přenos SSE směřující na `http://localhost:8080`, kde bude běžet náš server MCP.
+- Vytvořili klientskou třídu, která přijímá přenos jako parametr konstruktoru.
+- V metodě `run` jsme vytvořili synchronní MCP klienta s přenosem a inicializovali připojení.
+- Použili přenos SSE (Server-Sent Events), který je vhodný pro komunikaci po HTTP s MCP servery v Java Spring Boot.
 
 #### Rust
 
-Poznámka: Tento Rust klient předpokládá, že server je souběžný projekt pojmenovaný "calculator-server" ve stejné složce. Níže uvedený kód spustí server a připojí se k němu.
+Tento Rust klient předpokládá, že server je souběžný projekt pojmenovaný "calculator-server" ve stejné složce. Kód níže spustí server a připojí se k němu.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
@@ -334,11 +334,11 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Inicializovat
+    // TODO: Inicializace
 
     // TODO: Vypsat nástroje
 
-    // TODO: Zavolejte přidávací nástroj s argumenty = {"a": 3, "b": 2}
+    // TODO: Zavolat nástroj add s argumenty = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
@@ -347,7 +347,7 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- Výpis funkcí serveru
 
-Nyní máme klienta, který se může připojit, pokud program spustíme. Nicméně nevypisuje jeho funkce, udělejme tedy toto následující:
+Nyní máme klienta, který se může připojit při spuštění programu. Nicméně nevypisuje své funkce, tak to udělejme:
 
 #### TypeScript
 
@@ -378,7 +378,7 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Zde vypisujeme dostupné zdroje `list_resources()` a nástroje `list_tools` a vytiskneme je.
+Zde vypisujeme dostupné zdroje, `list_resources()` a nástroje, `list_tools`, a tiskneme je.
 
 #### .NET
 
@@ -394,25 +394,25 @@ Výše je příklad, jak můžeme vypsat nástroje na serveru. Pro každý nást
 #### Java
 
 ```java
-// Vyjmenujte a ukažte nástroje
+// Vyjmenujte a předveďte nástroje
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// Můžete také pingnout server pro ověření připojení
+// Můžete také použít ping na server pro ověření připojení
 client.ping();
 ```
 
 V předchozím kódu jsme:
 
-- Zavolali `listTools()` pro získání všech dostupných nástrojů z MCP serveru.
+- Zavolali `listTools()` pro získání všech dostupných nástrojů ze serveru MCP.
 - Použili `ping()` pro ověření, že spojení se serverem funguje.
-- `ListToolsResult` obsahuje informace o všech nástrojích včetně jejich názvů, popisů a vstupních schémat.
+- `ListToolsResult` obsahuje informace o všech nástrojích včetně jejich jmen, popisů a vstupních schémat.
 
-Skvělé, nyní máme zachyceny všechny funkce. Nyní otázka zní, kdy je používáme? Tento klient je poměrně jednoduchý, to znamená, že musíme explicitně vyvolat funkce, když je chceme použít. V další kapitole vytvoříme pokročilejšího klienta, který bude mít přístup ke svému vlastnímu velkému jazykovému modelu (LLM). Prozatím však uvidíme, jak můžeme vyvolat funkce na serveru:
+Skvělé, teď jsme zachytili všechny funkce. Kdy je ale použít? Tento klient je poměrně jednoduchý, což znamená, že musíme explicitně volat funkce, když je chceme použít. V další kapitole vytvoříme pokročilejšího klienta, který bude mít přístup k vlastnímu velkému jazykovému modelu, LLM. Prozatím si ale ukážeme, jak vyvolat funkce na serveru:
 
 #### Rust
 
-V hlavní funkci, po inicializaci klienta, inicializujeme server a vypíšeme některé jeho funkce.
+V hlavní funkci po inicializaci klienta můžeme inicializovat server a vypsat některé jeho funkce.
 
 ```rust
 // Inicializovat
@@ -426,13 +426,13 @@ println!("Available tools: {:?}", tools);
 
 ### -4- Vyvolání funkcí
 
-Pro vyvolání funkcí musíme zajistit správné zadání argumentů a v některých případech i názvu toho, co vyvoláváme.
+Pro vyvolání funkcí musíme správně specifikovat argumenty a v některých případech i název toho, co chceme vyvolat.
 
 #### TypeScript
 
 ```typescript
 
-// Přečíst zdroj
+// Načíst zdroj
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// zavolat prompt
+// zavolat výzvu
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -456,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 V předchozím kódu jsme:
 
-- Přečetli zdroj, voláme zdroj pomocí `readResource()` a zadáváme `uri`. Na serverové straně to vypadá pravděpodobně takto:
+- Načetli zdroj, voláme ho funkcí `readResource()` s parametrem `uri`. Takto to asi vypadá na straně serveru:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ V předchozím kódu jsme:
     );
     ```
 
-    Hodnota `uri` `file://example.txt` odpovídá `file://{name}` na serveru. `example.txt` se namapuje na `name`.
+    Hodnota `uri` `file://example.txt` odpovídá `file://{name}` na serveru. `example.txt` bude namapováno na `name`.
 
-- Zavolali nástroj, voláme ho zadáním jeho `name` a `arguments` takto:
+- Zavolali nástroj, voláme ho určením jeho `name` a `arguments` takto:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ V předchozím kódu jsme:
     });
     ```
 
-- Získali prompt, pro získání promptu voláte `getPrompt()` se `name` a `arguments`. Serverový kód je takovýto:
+- Získali výzvu, pro získání výzvy voláte `getPrompt()` s `name` a `arguments`. Kód serveru vypadá takto:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ V předchozím kódu jsme:
     );
     ```
 
-    a výsledný klientský kód vypadá takto, aby odpovídal deklaracím na serveru:
+    a výsledný kód klienta tedy vypadá takto, aby odpovídal tomu, co je deklarováno na serveru:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -516,11 +516,11 @@ V předchozím kódu jsme:
 #### Python
 
 ```python
-# Přečíst zdroj
+# Přečtěte si zdroj
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Zavolat nástroj
+# Zavolejte nástroj
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
@@ -529,11 +529,11 @@ print(result.content)
 V předchozím kódu jsme:
 
 - Zavolali zdroj s názvem `greeting` pomocí `read_resource`.
-- Vyvolali nástroj s názvem `add` pomocí `call_tool`.
+- Vyvolali nástroj `add` pomocí `call_tool`.
 
 #### .NET
 
-1. Přidejme kód pro zavolání nástroje:
+1. Přidáme kód pro zavolání nástroje:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ V předchozím kódu jsme:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Pro vypsání výsledku, zde je kód jak na to:
+1. Pro vypsání výsledku přidáme tento kód:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -571,15 +571,15 @@ System.out.println("Help = " + resultHelp);
 
 V předchozím kódu jsme:
 
-- Zavolali několik kalkulačních nástrojů pomocí metody `callTool()` s objekty `CallToolRequest`.
-- Každé volání nástroje specifikuje název nástroje a `Map` argumentů vyžadovaných nástrojem.
-- Serverové nástroje očekávají specifické názvy parametrů (např. "a", "b" pro matematické operace).
-- Výsledky jsou vráceny jako objekty `CallToolResult` obsahující odpovědi ze serveru.
+- Zavolali více kalkulačních nástrojů pomocí metody `callTool()` s objekty `CallToolRequest`.
+- Každé volání nástroje specifikuje jméno nástroje a `Map` argumentů požadovaných nástrojem.
+- Nástroje na serveru očekávají konkrétní názvy parametrů (např. "a", "b" pro matematické operace).
+- Výsledky jsou vráceny jako objekty `CallToolResult`, které obsahují odpovědi ze serveru.
 
 #### Rust
 
 ```rust
-// Zavolejte nástroj pro sčítání s argumenty = {"a": 3, "b": 2}
+// Zavolejte nástroj add s argumenty = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,7 +593,7 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Spuštění klienta
 
-Pro spuštění klienta zadejte v terminálu následující příkaz:
+Pro spuštění klienta zadejte do terminálu následující příkaz:
 
 #### TypeScript
 
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-Spusťte klienta tímto příkazem:
+Zavolejte klienta tímto příkazem:
 
 ```sh
 python client.py
@@ -623,7 +623,7 @@ dotnet run
 
 #### Java
 
-Nejdříve se ujistěte, že váš MCP server běží na `http://localhost:8080`. Pak spusťte klienta:
+Nejprve se ujistěte, že váš server MCP běží na `http://localhost:8080`. Pak spusťte klienta:
 
 ```bash
 # Sestavte svůj projekt
@@ -633,7 +633,7 @@ Nejdříve se ujistěte, že váš MCP server běží na `http://localhost:8080`
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativně můžete spustit kompletní projekt klienta, který je k dispozici v řešení ve složce `03-GettingStarted\02-client\solution\java`:
+Alternativně můžete spustit celý projekt klienta dostupný ve složce řešení `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Přejděte do adresáře řešení
@@ -651,11 +651,11 @@ cargo fmt
 cargo run
 ```
 
-## Úkol
+## Zadání
 
-V tomto úkolu použijete to, co jste se naučili, k vytvoření klienta podle vlastního návrhu.
+V tomto zadání použijete to, co jste se naučili o vytváření klienta, ale vytvoříte si vlastního klienta.
 
-Zde je server, který můžete použít a potřebujete jeho volání přes váš klientský kód: zkuste přidat více funkcí do serveru, aby byl zajímavější.
+Zde je server, který můžete použít a který musíte volat přes svůj klientský kód; zkuste přidat do serveru více funkcí, aby byl zajímavější.
 
 ### TypeScript
 
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Přidat dynamický zdroj pozdravů
+// Přidat dynamický zdroj pozdravu
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -710,7 +710,7 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Vytvořit MCP server
+# Vytvořit server MCP
 mcp = FastMCP("Demo")
 
 
@@ -721,7 +721,7 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Přidat dynamický zdroj pozdravu
+# Přidat dynamický uvítací zdroj
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Podívejte se na tento projekt, kde se dozvíte, jak [přidat prompty a zdroje](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Podívejte se na tento projekt, abyste zjistili, jak můžete [přidat výzvy a zdroje](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Také si prohlédněte tento odkaz, jak vyvolávat [prompty a zdroje](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Také si prohlédněte tento odkaz pro informace, jak vyvolávat [výzvy a zdroje](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-V [předchozí části](../../../../03-GettingStarted/01-first-server) jste se naučili, jak vytvořit jednoduchý MCP server v Rustu. Můžete na tom stavět nebo si prohlédnout tento odkaz pro více příkladů MCP serverů v Rustu: [Příklady MCP serverů](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+V [předchozí sekci](../../../../03-GettingStarted/01-first-server) jste se naučili, jak vytvořit jednoduchý MCP server v Rustu. Můžete na tom stavět dále, nebo se podívat na tento odkaz pro další příklady MCP serverů založených na Rustu: [Příklady MCP serverů](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Řešení
 
-**Složka řešení** obsahuje kompletní, připravené k běhu implementace klientů, které demonstrují všechny koncepty pokryté v tomto tutoriálu. Každé řešení zahrnuje klientský i serverový kód, který je organizován v samostatných, soběstačných projektech.
+**Složka řešení** obsahuje kompletní, připravené klientské implementace, které demonstrují všechny koncepty porušené v tomto tutoriálu. Každé řešení zahrnuje klientský i serverový kód uspořádaný v samostatných, samostatně fungujících projektech.
 
 ### 📁 Struktura řešení
 
-Adresář řešení je organizován podle programovacích jazyků:
+Adresář řešení je uspořádán podle programovacího jazyka:
 
 ```text
 solution/
@@ -808,28 +808,28 @@ solution/
 Každé jazykově specifické řešení poskytuje:
 
 - **Kompletní implementaci klienta** se všemi funkcemi z tutoriálu
-- **Funkční strukturu projektu** s odpovídajícími závislostmi a konfigurací
-- **Skripty na kompilaci a spuštění** pro snadné nastavení a spuštění
-- **Podrobný README** s instrukcemi specifickými pro daný jazyk
-- **Ukázky správného zpracování chyb a výsledků**
+- **Funkční strukturu projektu** s potřebnými závislostmi a konfigurací
+- **Skripty pro sestavení a spuštění** pro snadné nastavení a spuštění
+- **Podrobný README** s instrukcemi specifickými pro jazyk
+- **Ukázky zacházení s chybami** a zpracování výsledků
 
 ### 📖 Použití řešení
 
-1. **Přejděte do složky podle preferovaného jazyka**:
+1. **Přejděte do složky vašeho preferovaného jazyka**:
 
    ```bash
    cd solution/typescript/    # Pro TypeScript
-   cd solution/java/          # Pro Java
+   cd solution/java/          # Pro Javu
    cd solution/python/        # Pro Python
    cd solution/dotnet/        # Pro .NET
    ```
 
-2. **Řiďte se instrukcemi v README** v každé složce pro:
+2. **Postupujte podle návodu v README** v každé složce pro:
    - Instalaci závislostí
    - Sestavení projektu
    - Spuštění klienta
 
-3. **Očekávaný výstup je následující**:
+3. **Příklad výstupu** by měl vypadat takto:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,70 +837,72 @@ Každé jazykově specifické řešení poskytuje:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Pro kompletní dokumentaci a podrobné instrukce viz: **[📖 Dokumentace řešení](./solution/README.md)**
+Pro kompletní dokumentaci a krok za krokem instrukce viz: **[📖 Dokumentace řešení](./solution/README.md)**
 
 ## 🎯 Kompletní příklady
 
-Poskytli jsme kompletní pracovní implementace klientů pro všechny jazyky pokryté v tomto tutoriálu. Tyto příklady demonstrují veškerou výše popsanou funkcionalitu a mohou být použity jako referenční implementace nebo výchozí body pro vaše projekty.
+Poskytli jsme kompletní, funkční implementace klientů pro všechny programovací jazyky, pokryté v tomto tutoriálu. Tyto příklady demonstrují veškerou výše popsanou funkčnost a mohou být použity jako referenční implementace nebo jako výchozí body pro vaše vlastní projekty.
 
 ### Dostupné kompletní příklady
 
-| Jazyk   | Soubor                    | Popis                                                                             |
-|---------|---------------------------|----------------------------------------------------------------------------------|
-| **Java**  | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java)       | Kompletní Java klient s využitím SSE transportu a důkladným ošetřením chyb       |
-| **C#**    | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs)       | Kompletní C# klient používající stdio transport s automatickým spuštěním serveru  |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompletní TypeScript klient s plnou podporou MCP protokolu                        |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py)       | Kompletní Python klient využívající async/await vzory                             |
-| **Rust**   | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs)           | Kompletní Rust klient využívající Tokio pro asynchronní operace                   |
+| Jazyk | Soubor | Popis |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kompletní Java klient použitím přenosu SSE s komplexním zacházením s chybami |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Kompletní C# klient použitím přenosu stdio se automatickým spuštěním serveru |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompletní TypeScript klient s plnou podporou protokolu MCP |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Kompletní Python klient používající async/await vzory |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Kompletní Rust klient používající Tokio pro asynchronní operace |
 
-Každý kompletní příklad zahrnuje:
-- ✅ **Navázání připojení** a zpracování chyb  
-- ✅ **Objevování serveru** (nástroje, zdroje, výzvy tam, kde to je vhodné)  
-- ✅ **Operace kalkulačky** (sčítání, odčítání, násobení, dělení, pomoc)  
-- ✅ **Zpracování výsledků** a formátovaný výstup  
-- ✅ **Komplexní zpracování chyb**  
-- ✅ **Čistý, dokumentovaný kód** s komentáři krok za krokem  
+Každý kompletní příklad obsahuje:
+
+- ✅ **Založení spojení** a zacházení s chybami
+- ✅ **Objevování serveru** (nástroje, zdroje, výzvy tam kde jsou)
+- ✅ **Operace kalkulačky** (sčítání, odečítání, násobení, dělení, pomoc)
+- ✅ **Zpracování výsledků** a formátovaný výstup
+- ✅ **Komplexní zacházení s chybami**
+
+- ✅ **Čistý, dokumentovaný kód** s komentáři krok za krokem
 
 ### Začínáme s kompletními příklady
 
-1. **Vyberte svůj preferovaný jazyk** z tabulky výše  
-2. **Projděte si kompletní příkladový soubor** pro pochopení celé implementace  
-3. **Spusťte příklad** podle pokynů v [`complete_examples.md`](./complete_examples.md)  
-4. **Upravte a rozšiřte** příklad pro svůj konkrétní případ použití  
+1. **Vyberte si preferovaný jazyk** z tabulky výše
+2. **Prohlédněte si kompletní ukázkový soubor** pro pochopení celé implementace
+3. **Spusťte příklad** podle pokynů v [`complete_examples.md`](./complete_examples.md)
+4. **Upravte a rozšiřte** příklad pro vaše konkrétní použití
 
-Pro podrobnou dokumentaci o spuštění a přizpůsobení těchto příkladů viz: **[📖 Dokumentace kompletních příkladů](./complete_examples.md)**
+Pro podrobné dokumentace o spuštění a přizpůsobení těchto příkladů se podívejte na: **[📖 Dokumentace kompletních příkladů](./complete_examples.md)**
 
 ### 💡 Řešení vs. kompletní příklady
 
 | **Složka řešení** | **Kompletní příklady** |
-|-------------------|------------------------|
-| Celá struktura projektu s build soubory | Implementace v jednom souboru |
-| Připravené ke spuštění s závislostmi | Zaměřené na ukázky kódu |
-| Produkční nastavení | Vzdělávací reference |
-| Jazykově specifické nástroje | Porovnání napříč jazyky |
+|--------------------|--------------------- |
+| Plná struktura projektu s konfiguračními soubory | Jednosouborové implementace |
+| Připraveno ke spuštění s závislostmi | Zaměřené ukázky kódu |
+| Produkčně podobné nastavení | Vzdělávací reference |
+| Nástroje specifické pro jazyk | Porovnání mezi jazyky |
 
-Obě přístupy jsou cenné – použijte **složku řešení** pro kompletní projekty a **kompletní příklady** pro učení a referenci.
+Obě metody jsou cenné - použijte **složku řešení** pro kompletní projekty a **kompletní příklady** pro učení a referenci.
 
-## Klíčové body
+## Klíčová zjištění
 
-Klíčové poznatky pro tuto kapitolu o klientech jsou následující:
+Klíčová zjištění pro tuto kapitolu ohledně klientů jsou následující:
 
-- Lze je použít jak k objevení, tak ke spuštění funkcí na serveru.  
-- Dokáží spustit server zatímco se sami spouštějí (jako v této kapitole), ale klienti se také mohou připojit k již běžícím serverům.  
-- Jsou skvělým způsobem, jak otestovat schopnosti serveru vedle alternativ jako je Inspector, jak bylo popsáno v předchozí kapitole.  
+- Lze je použít jak k objevování, tak k vyvolávání funkcí na serveru.
+- Mohou spustit server současně s jeho spuštěním (jako v této kapitole), ale klienti se také mohou připojit k již běžícím serverům.
+- Jsou skvělým způsobem, jak otestovat schopnosti serveru vedle alternativ jako je Inspektor, jak bylo popsáno v předchozí kapitole.
 
 ## Další zdroje
 
-- [Budování klientů v MCP](https://modelcontextprotocol.io/quickstart/client)
+- [Tvorba klientů v MCP](https://modelcontextprotocol.io/quickstart/client)
 
 ## Ukázky
 
-- [Java kalkulačka](../samples/java/calculator/README.md)  
-- [.Net kalkulačka](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript kalkulačka](../samples/javascript/README.md)  
-- [TypeScript kalkulačka](../samples/typescript/README.md)  
-- [Python kalkulačka](../../../../03-GettingStarted/samples/python)  
-- [Rust kalkulačka](../../../../03-GettingStarted/samples/rust)  
+- [Java Kalkulačka](../samples/java/calculator/README.md)
+- [.NET Kalkulačka](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulačka](../samples/javascript/README.md)
+- [TypeScript Kalkulačka](../samples/typescript/README.md)
+- [Python Kalkulačka](../../../../03-GettingStarted/samples/python)
+- [Rust Kalkulačka](../../../../03-GettingStarted/samples/rust)
 
 ## Co dál
 
@@ -910,5 +912,5 @@ Klíčové poznatky pro tuto kapitolu o klientech jsou následující:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Prohlášení o omezení odpovědnosti**:
-Tento dokument byl přeložen pomocí AI překládací služby [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoliv usilujeme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro důležité informace se doporučuje využít profesionální lidský překlad. Nejsme odpovědní za jakékoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

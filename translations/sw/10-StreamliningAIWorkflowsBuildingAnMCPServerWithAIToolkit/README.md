@@ -1,6 +1,6 @@
-# Kuboresha Mipangilio ya AI: Kujenga Server ya MCP kwa Microsoft Foundry Toolkit
+# Kurahisisha Mifereji ya Kazi ya AI: Kujenga Seva ya MCP na Microsoft Foundry Toolkit
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
@@ -12,48 +12,54 @@
 
 _(Bonyeza picha hapo juu kutazama video ya somo hili)_
 
-Karibu katika **Warsha ya Model Context Protocol (MCP)**! Warsha hii ya kina ya mazoezi inaunganisha teknolojia mbili za kisasa kubadilisha maendeleo ya programu za AI:
+Karibu kwenye **Warsha ya Mradi wa Muktadha wa Mfano (MCP)**! Warsha hii ya vitendo yenye maelezo kamili huunganisha teknolojia mbili za kisasa kubadilisha maendeleo ya programu za AI:
 
-- **🔗 Model Context Protocol (MCP)**: Kiwango wazi cha kuunganisha AI na zana kwa urahisi
-- **🛠️ Microsoft Foundry Toolkit Extension kwa VS Code**: Ongezaji lenye nguvu la maendeleo ya AI kutoka Microsoft
+> **Kumbusho la ulinganifu:** msimbo wa warsha ujenzi na kujaribiwa na MCP
+> `2025-11-25`, kama inavyoonyeshwa na beji hapo juu. Tumia
+> [sifa ya sasa ya `2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28/)
+> kwa utekelezaji mpya wa protokoli na hakiki noti za toleo la SDK kabla
+> ya kuhama maabara.
+
+- **🔗 Protokoli ya Muktadha wa Mfano (MCP)**: Viwango wazi kwa uunganishaji laini wa zana za AI
+- **🛠️ Kiendelezi cha Microsoft Foundry Toolkit kwa VS Code**: Kiendelezi chenye nguvu cha maendeleo ya AI cha Microsoft
 
 ### 🎓 Utajifunza Nini
 
-Mwisho wa warsha hii, utakuwa mtaalamu wa ujenzi wa programu mahiri zinazounganisha mifano ya AI na zana na huduma za dunia halisi. Kuanzia majaribio yaliyojengwa hadi muunganisho wa API za desturi, utapata ujuzi wa vitendo kutatua changamoto ngumu za biashara.
+Mwishoni mwa warsha hii, utakuwa na ujuzi wa kujenga programu zenye akili zinazounganisha mifano ya AI na zana na huduma halisi za ulimwengu. Kuanzia upimaji wa moja kwa moja hadi ushirikiano wa API za kawaida, utapata stadi za vitendo kutatua changamoto ngumu za biashara.
 
 ## 🏗️ Stack ya Teknolojia
 
-### 🔌 Model Context Protocol (MCP)
+### 🔌 Protokoli ya Muktadha wa Mfano (MCP)
 
-MCP ni **"USB-C kwa AI"** - kiwango cha ulimwengu kinachounganisha mifano ya AI na zana za nje na vyanzo vya data.
+MCP ni **"USB-C kwa AI"** - kiwango cha ulimwengu kinachounganisha mifano ya AI na zana na vyanzo vya data vya nje.
 
-**✨ Mipangilio Mikuu:**
+**✨ Vipengele Vikuu:**
 
-- 🔄 **Muunganisho wa Kiwango**: Kiolesura cha ulimwengu kwa muunganisho wa zana za AI
-- 🏛️ **Mali Rahisi**: Server za ndani na za mbali kupitia usafirishaji wa stdio/SSE
-- 🧰 **Ekosistimu Tajiri**: Zana, ujumbe, na rasilimali katika itifaki moja
-- 🔒 **Tayari kwa Kampuni**: Usalama na kuaminika iliyojengwa ndani
+- 🔄 **Uunganishaji wa Kiwango**: Kiolesura cha ulimwengu kwa uhusiano wa zana za AI
+- 🏛️ **Miundo Raha**: Seva lokal na za mbali kupitia usafirishaji wa stdio/SSE
+- 🧰 **Mfumo Wenye Rasilimali Mbalimbali**: Zana, viamsha, na rasilimali katika protokoli moja
+- 🔒 **Tayari kwa Biashara**: Usalama na kuaminika vilivyojengwa ndani
 
 **🎯 Kwa Nini MCP Ni Muhimu:**
-Kama USB-C ilivyoondoa machafuko ya nyaya, MCP inaondoa utata wa muunganisho wa AI. Itifaki moja, fursa zisizo na kipimo.
+Kama usb-C ilivyotatua machafuko ya kebo, MCP huondoa ugumu wa uunganishaji wa AI. Protokoli moja, uwezekano usio na kikomo.
 
-### 🤖 Microsoft Foundry Toolkit Extension kwa VS Code
+### 🤖 Kiendelezi cha Microsoft Foundry Toolkit kwa VS Code
 
-Ongezaji kuu la maendeleo ya AI la Microsoft ambalo hubadilisha VS Code kuwa kituo cha nguvu cha AI.
+Kiendelezi cha maendeleo ya AI cha ngazi ya juu cha Microsoft kinachobadilisha VS Code kuwa nguvu kubwa ya AI.
 
 **🚀 Uwezo Msingi:**
 
-- 📦 **Katalogi ya Mfano**: Pata mifano kutoka Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Maamuzi ya Ndani**: Uendeshaji ulio bora wa CPU/GPU/NPU kwa ONNX
-- 🏗️ **Mjenzi wa Wakala**: Maendeleo ya wakala wa AI kwa mtazamo na muunganisho wa MCP
-- 🎭 **Mbalimbali**: Msaada wa maandishi, kuona na matokeo yaliyopangwa
+- 📦 **Katalogi ya Mifano**: Pata mifano kutoka Azure AI, GitHub, Hugging Face, Ollama
+- ⚡ **Utabiri Lokal**: Uendeshaji wa ONNX kwa CPU/GPU/NPU
+- 🏗️ **Mjenzi wa Mawakala**: Maendeleo ya mwakilishi wa AI kwa picha na ushirikiano MCP
+- 🎭 **Multi-Modal**: Msaada wa maandishi, kuona, na matokeo ya muundo
 
 **💡 Faida za Maendeleo:**
 
-- Utekelezaji wa mfano bila usanidi
-- Uhandisi wa maelekezo kwa mtazamo
+- Uwekaji moduli wa mfano bila usanidi wowote
+- Uhandisi wa kiamsha picha
 - Uwanja wa majaribio wa wakati halisi
-- Muunganisho laini wa server ya MCP
+- Uunganishaji laini wa seva ya MCP
 
 ## 📚 Safari ya Kujifunza
 
@@ -61,163 +67,163 @@ Ongezaji kuu la maendeleo ya AI la Microsoft ambalo hubadilisha VS Code kuwa kit
 
 **Muda**: Dakika 15
 
-- 🛠️ Sakinisha na badilisha Microsoft Foundry Toolkit kwa VS Code
-- 🗂️ Chunguza Katalogi ya Mfano (mifano 100+ kutoka GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Kuwa mtaalamu wa Uwanja wa Majaribio kwa majaribio ya moja kwa moja ya mfano
-- 🤖 Jenge wakala wako wa kwanza wa AI kwa Agent Builder
-- 📊 Tathmini utendaji wa mfano kwa vipimo vilivyojengwa (F1, umuhimu, ufananishi, uwiano)
-- ⚡ Jifunze usindikaji wa kundi na uwezo wa msaada wa modal nyingi
+- 🛠️ Sakinisha na sanidi Microsoft Foundry Toolkit kwa VS Code
+- 🗂️ Chunguza Katalogi ya Mifano (mifano zaidi ya 100 kutoka GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Dumisha Uwanja wa Maingiliano kwa upimaji wa mfano wa wakati halisi
+- 🤖 Jenga wakala wako wa kwanza wa AI kwa Agent Builder
+- 📊 Pima utendaji wa mfano kwa vipimo vilivyojengewa ndani (F1, umuhimu, usawa, muunganiko)
+- ⚡ Jifunze usindikaji wa kundi na uwezo wa msaada wa multi-modal
 
-**🎯 Matokeo ya Kujifunza**: Tengeneza wakala wa AI anayeweza kufanya kazi kwa uelewa kamili wa uwezo wa Microsoft Foundry Toolkit
+**🎯 Matokeo ya Kujifunza**: Tengeneza wakala wa AI wa matumizi kwa uelewa kamili wa uwezo wa Microsoft Foundry Toolkit
 
-### [🌐 Moduli 2: MCP pamoja na Misingi ya Microsoft Foundry Toolkit](./lab2/README.md)
-
-**Muda**: Dakika 20
-
-- 🧠 Fahamu usanifu na dhana za Model Context Protocol (MCP)
-- 🌐 Chunguza ekosistimu ya server ya MCP ya Microsoft
-- 🤖 Jenga wakala wa otomatiki wa kivinjari kwa kutumia Playwright MCP server
-- 🔧 Unganisha server za MCP na Microsoft Foundry Toolkit Agent Builder
-- 📊 Amilisha na jaribu zana za MCP ndani ya mawakala yako
-- 🚀 Hamisha na tuma mawakala wenye nguvu ya MCP kwa matumizi ya uzalishaji
-
-**🎯 Matokeo ya Kujifunza**: Tuma wakala wa AI aliyeimarishwa na zana za nje kupitia MCP
-
-### [🔧 Moduli 3: Maendeleo ya Juu ya MCP kwa Microsoft Foundry Toolkit](./lab3/README.md)
+### [🌐 Moduli 2: MCP na Misingi ya Microsoft Foundry Toolkit](./lab2/README.md)
 
 **Muda**: Dakika 20
 
-- 💻 Tengeneza server za MCP za desturi kwa kutumia Microsoft Foundry Toolkit
-- 🐍 Sanidi na tumia SDK ya MCP ya Python iliyosasaishwa (v1.9.3)
-- 🔍 Weka na tumia MCP Inspector kwa urekebishaji hitilafu
-- 🛠️ Jenga Weather MCP Server kwa mtiririko wa kazi wa kitaalamu wa urekebishaji
-- 🧪 Rekebisha server za MCP katika mazingira ya Agent Builder na Inspector
+- 🧠 Damirisha usanifu na dhana za Protokoli ya Muktadha wa Mfano (MCP)
+- 🌐 Chunguza mfumo wa seva wa MCP wa Microsoft
+- 🤖 Jenga wakala wa kuendesha kivinjari ukitumia Playwright MCP server
+- 🔧 Unganisha seva za MCP na Microsoft Foundry Toolkit Agent Builder
+- 📊 Sanidi na jaribu zana za MCP ndani ya mawakala yako
+- 🚀 Hamisha na pakia mawakala yanayotumia MCP kwa matumizi ya uzalishaji
 
-**🎯 Matokeo ya Kujifunza**: Tengeneza na rekebisha server za MCP za desturi kwa zana za kisasa
+**🎯 Matokeo ya Kujifunza**: Weka wakala wa AI aliyezidiwa nguvu na zana za nje kupitia MCP
 
-### [🐙 Moduli 4: Maendeleo ya Vitendo ya MCP - Server ya Nakala ya GitHub Desturi](./lab4/README.md)
+### [🔧 Moduli 3: Maendeleo ya Juu ya MCP na Microsoft Foundry Toolkit](./lab3/README.md)
+
+**Muda**: Dakika 20
+
+- 💻 Tengeneza seva za MCP maalum ukitumia Microsoft Foundry Toolkit
+- 🐍 Sanidi na tumia MCP Python SDK ya hivi karibuni (tofauti 1.9.3)
+- 🔍 Weka na tumia MCP Inspector kwa utatuzi wa makosa
+- 🛠️ Jenga Seva ya Hali ya Hewa ya MCP kwa mifereji ya utatuzi wa kisasa
+- 🧪 Tatua makosa seva za MCP katika mazingira ya Agent Builder na Inspector
+
+**🎯 Matokeo ya Kujifunza**: Tengeneza na tatua makosa seva za MCP maalum kwa zana za kisasa
+
+### [🐙 Moduli 4: Maendeleo ya Vitendo ya MCP - Seva Maalum ya Nakala ya GitHub](./lab4/README.md)
 
 **Muda**: Dakika 30
 
-- 🏗️ Jenga server halisi ya GitHub Clone MCP kwa mtiririko wa maendeleo
-- 🔄 Tekeleza kunakili kwa akili ya hazina kwa uthibitishaji na usimamizi wa makosa
-- 📁 Tengeneza usimamizi wa saraka mahiri na muunganisho wa VS Code
-- 🤖 Tumia Mode ya Wakala wa GitHub Copilot na zana za MCP za desturi
-- 🛡️ Tumia uthabiti wa hali ya uzalishaji na muendeshaji wa majukwaa mbalimbali
+- 🏗️ Jenga seva ya nakala ya GitHub MCP kwa mifereji ya maendeleo halisi
+- 🔄 Tekeleza kunakili hifadhidata kwa akili kwa uthibitishaji na utunzaji wa makosa
+- 📁 Tengeneza usimamizi wa hifadhidata wenye akili na ushirikiano na VS Code
+- 🤖 Tumia Hali ya Wakala wa GitHub Copilot na zana maalum za MCP
+- 🛡️ Weka kuaminika kwa uzalishaji na ulinganifu wa majukwaa mbalimbali
 
-**🎯 Matokeo ya Kujifunza**: Tuma server ya MCP tayari kwa uzalishaji inayoboresha mtiririko halisi wa maendeleo
+**🎯 Matokeo ya Kujifunza**: Weka seva ya MCP inayotumika uzalishaji inayorahisisha mifereji halisi ya maendeleo
 
-## 💡 Matumizi ya Dunia Halisi & Athari
+## 💡 Matumizi Halisi na Athari
 
-### 🏢 Matumizi ya Kampuni
+### 🏢 Matumizi ya Biashara
 
-#### 🔄 Otomatiki ya DevOps
+#### 🔄 Uendeshaji wa DevOps kwa Hiari
 
-Badilisha mtiririko wako wa maendeleo kwa otomatiki mahiri:
+Badilisha mifereji yako ya maendeleo na uendeshaji wenye akili:
 
-- **Usimamizi Akili wa Hazina**: Mapitio ya msimbo yanayoendeshwa na AI na maamuzi ya kuunganisha
-- **CI/CD Mahiri**: Uboreshaji wa bomba la kazi msingi wa mabadiliko ya msimbo
-- **Tausi ya Masuala**: Uainishaji wa kiotomatiki wa hitilafu na ugawaji
+- **Usimamizi Mwerevu wa Hifadhidata**: Mapitio ya msimbo yanayotumiwa na AI na maamuzi ya kuunganisha
+- **CI/CD Bora**: Uboreshaji wa mfuatano wa moja kwa moja kulingana na mabadiliko ya msimbo
+- **Utangamano wa Masuala**: Uainishaji na ugawaji wa makosa kwa moja kwa moja
 
-#### 🧪 Mapinduzi ya Hakiki Ubora
+#### 🧪 Mapinduzi ya Ukaguzi wa Ubora
 
-Inua majaribio kwa otomatiki wa AI:
+Ongeza upimaji kwa uendeshaji wa AI:
 
-- **Uundaji mahiri wa majaribio**: Tengeneza seti kamili za majaribio kiotomatiki
-- **Jaribio la Mabadiliko ya Mwonekano**: Ugunduzi wa mabadiliko wa UI wenye nguvu wa AI
-- **Ufuatiliaji wa Utendaji**: Utambuzi wa matatizo mapema na utatuzi
+- **Uundaji Wa Mtihani wa Kitaalamu**: Tengeneza seti za mtihani kwa kina moja kwa moja
+- **Upimaji wa Mabadiliko ya Muonekano**: Kugundua mabadiliko ya UI kwa nguvu za AI
+- **Ufuatiliaji wa Utendaji**: Utambuzi na utatuzi wa matatizo kwa ufanisi
 
-#### 📊 Ujasusi wa Mipangilio ya Data
+#### 📊 Akili ya Mifereji ya Data
 
-Jenga mitiririko ya usindikaji wa data yenye akili zaidi:
+Jenga mifereji ya usindikaji ya data yenye akili zaidi:
 
-- **Mchakato wa ETL unaojirekebisha**: Mabadiliko ya data yanayoboresha yenyewe
-- **Uchunguzi wa Dosari**: Ufuatiliaji wa ubora wa data kwa wakati halisi
-- **Uelekezaji Mahiri**: Usimamizi wa mtiririko wa data kwa akili
+- **Mchakato wa ETL Unaoweza Kujibadilisha**: Mabadiliko ya data yanayojiboresha yenyewe
+- **Ugunduzi wa Mazingira**: Ufuatiliaji wa ubora wa data kwa wakati halisi
+- **Usimamizi Mwerevu wa Mtiririko wa Data**: Usimamizi wa mtiririko wa data kwa akili
 
-#### 🎧 Maboresho ya Uzoefu wa Mteja
+#### 🎧 Kuboresha Uzoefu wa Mteja
 
-Tengeneza mwingiliano bora wa mteja:
+Tengeneza mwingiliano wa kipekee wa wateja:
 
-- **Msaada Unaojua Muktadha**: Maajenti wa AI yenye ufikiaji wa historia ya mteja
-- **Utatuzi wa Masuala kwa Ubashiri**: Huduma kwa wateja inayotabiri matatizo
-- **Muunganisho wa Njia Nyingi**: Uzoefu wa AI uliojumlishwa kupitia majukwaa mbalimbali
+- **Msaada Unaojali Muktadha**: Wakala wa AI wenye ufikiaji wa historia ya mteja
+- **Utatuzi wa Matatizo kwa Mbele**: Huduma ya wateja inayotabiri matatizo
+- **Ushirikiano wa Mifumo Mbalimbali**: Uzoefu wa AI uliounganishwa kwenye majukwaa yote
 
-## 🛠️ Mahitaji na Usanidi
+## 🛠️ Mahitaji ya Awali na Usanidi
 
 ### 💻 Mahitaji ya Mfumo
 
 | Kipengele | Mahitaji | Maelezo |
 |-----------|-------------|-------|
 | **Mfumo wa Uendeshaji** | Windows 10+, macOS 10.15+, Linux | Mfumo wowote wa kisasa |
-| **Visual Studio Code** | Toleo thabiti la sasa | Inahitajika kwa Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ na npm | Kwa maendeleo ya server ya MCP |
-| **Python** | 3.10+ | Hiari kwa server za MCP za Python |
-| **Kumbukumbu** | RAM 8GB chini kabisa | 16GB inashauriwa kwa mifano ya ndani |
+| **Visual Studio Code** | Toleo thabiti la hivi karibuni | Inahitajika kwa Microsoft Foundry Toolkit |
+| **Node.js** | v18.0+ na npm | Kwa maendeleo ya seva ya MCP |
+| **Python** | 3.10+ | Hiari kwa seva za MCP za Python |
+| **Kumbukumbu** | RAM 8GB angalau | 16GB inapendekezwa kwa mifano lokal |
 
 ### 🔧 Mazingira ya Maendeleo
 
-#### Ongezo Zilizopendekezwa za VS Code
+#### Viendelezi vya VS Code Vilivyopendekezwa
 
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Hiari lakini msaada
+- **GitHub Copilot** (GitHub.copilot) - Hiari lakini ni msaada
 
 #### Zana za Hiari
 
-- **uv**: Meneja wa kisasa wa vifurushi vya Python
-- **MCP Inspector**: Zana ya urekebishaji mtazamo kwa server za MCP
-- **Playwright**: Kwa mifano ya otomatiki ya wavuti
+- **uv**: Meneja wa kisasa wa pakiti za Python
+- **MCP Inspector**: Zana ya kuona makosa kwa seva za MCP
+- **Playwright**: Kwa mifano ya kuendesha kazi za mtandao kiatomati
 
 ## 🎖️ Matokeo ya Kujifunza na Njia ya Cheti
 
-### 🏆 Orodha ya Ustadi wa Utaalamu
+### 🏆 Orodha ya Ustadi wa Kuongoza
 
-Kwa kumaliza warsha hii, utapata utaalamu katika:
+Kwa kumaliza warsha hii, utapata ustadi katika:
 
 #### 🎯 Uwezo Msingi
 
-- [ ] **Utaalamu wa Itifaki ya MCP**: Uelewa wa kina wa usanifu na mifumo ya utekelezaji
-- [ ] **Umahiri wa Microsoft Foundry Toolkit**: Matumizi ya kiwango cha mtaalamu wa Microsoft Foundry Toolkit kwa maendeleo ya haraka
-- [ ] **Maendeleo ya Server za Desturi**: Jenga, tuma, na dumu server za MCP za uzalishaji
-- [ ] **Ufanisi wa Muunganisho wa Zana**: Unganisha AI kwa mtiririko uliopo wa maendeleo bila mshono
-- [ ] **Matumizi ya Utaalamu wa Kutatua Matatizo**: Tumia ujuzi uliopatikana kutatua changamoto halisi za biashara
+- [ ] **Uelewa wa Protokoli ya MCP**: Uelewa wa kina wa usanifu na mifumo ya utekelezaji
+- [ ] **Uwezo wa Microsoft Foundry Toolkit**: Matumizi ya kiwango cha mtaalamu wa Microsoft Foundry Toolkit kwa maendeleo ya haraka
+- [ ] **Maendeleo ya Seva Maalum**: Tengeneza, weka, na simamia seva za MCP zinazotumika uzalishaji
+- [ ] **Ubora wa Ushirikiano wa Zana**: Unganisha AI na mifereji ya maendeleo iliyopo bila matatizo
+- [ ] **Matumizi ya Ustadi wa Kutatua Matatizo**: Tumia stadi ulizojifunza kwa changamoto halisi za biashara
 
-#### 🔧 Ujuzi wa Kiufundi
+#### 🔧 Ujuzi wa Kifundi
 
-- [ ] Sanidi na badilisha Microsoft Foundry Toolkit katika VS Code
-- [ ] Buni na tekeleza server za MCP za desturi
+- [ ] Sanidi na tumia Microsoft Foundry Toolkit katika VS Code
+- [ ] Tengeneza na tekeleza seva maalum za MCP
 - [ ] Unganisha Mifano ya GitHub na usanifu wa MCP
-- [ ] Tengeneza mitiririko ya majaribio ya kiotomatiki na Playwright
-- [ ] Tuma mawakala wa AI kwa matumizi ya uzalishaji
-- [ ] Rekebisha na boresha utendaji wa server ya MCP
+- [ ] Tengeneza mifereji ya majaribio ya kiotomatiki kwa Playwright
+- [ ] Tumia mawakala wa AI kwa matumizi ya uzalishaji
+- [ ] Tatua makosa na boresha utendaji wa seva za MCP
 
 #### 🚀 Uwezo wa Juu
 
-- [ ] Buni muunganisho wa AI wa kiwango cha kampuni
-- [ ] Tekeleza mbinu za usalama bora kwa programu za AI
-- [ ] Buni usanifu wa server za MCP unaoweza kupanuka
-- [ ] Tengeneza minyororo ya zana za desturi kwa maeneo maalum
-- [ ] Fundisha wengine katika maendeleo ya AI-native
+- [ ] Sanifu uunganishaji wa AI wa kiwango cha biashara
+- [ ] Tekeleza mbinu bora za usalama kwa programu za AI
+- [ ] Tengeneza usanifu unaoweza kupanuka wa seva za MCP
+- [ ] Tengeneza mnyororo wa zana maalum kwa maeneo maalum
+- [ ] Fundisha wengine katika maendeleo ya AI asilia
 
 ## 📖 Rasilimali Zaidi
 
-- [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
 - [Sample MCP Servers Collection](https://github.com/modelcontextprotocol/servers)
 - [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Mbinu bora za usalama
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Mazoezi bora ya usalama
 
 ---
 
-**🚀 Tuko tayari kubadilisha mtiririko wako wa maendeleo ya AI?**
+**🚀 Tayari kubadilisha njia yako ya maendeleo ya AI?**
 
-Tujenge pamoja siku za baadaye za programu mahiri kwa kutumia MCP na Microsoft Foundry Toolkit!
+Hebu tujenge pamoja mustakabali wa programu zenye akili na MCP na Microsoft Foundry Toolkit!
 
-## Nini Kifuatacho
+## Kidirisha Kinachofuata
 
-Endelea kwa: [Moduli 11: Maabara za Mkono za Server ya MCP](../11-MCPServerHandsOnLabs/README.md)
+Endelea kwa: [Moduli 11: Maabara za Mikono za Seva ya MCP](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

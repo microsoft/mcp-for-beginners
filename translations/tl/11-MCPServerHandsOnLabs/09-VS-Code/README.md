@@ -1,29 +1,35 @@
 # VS Code Integration
 
-## 🎯 Ano ang Saklaw ng Lab na Ito
+> [!NOTE]
+> Ang mga setting ng `initializationOptions` sa lab na ito ay tumutukoy sa MCP
+> `2025-11-25` handshake ng sample. Inaalis ng MCP `2026-07-28` ang initialization handshake;
+> gumamit ng host at SDK na sumusuporta sa per-request metadata at `server/discover`
+> kapag nililipat ang sample na ito.
 
-Ang lab na ito ay nagbibigay ng detalyadong gabay sa pag-integrate ng iyong MCP server sa VS Code upang makapagsagawa ng natural language queries gamit ang AI Chat. Matututuhan mo kung paano i-configure ang VS Code para sa optimal na paggamit ng MCP, mag-debug ng koneksyon sa server, at gamitin ang buong potensyal ng AI-assisted database interactions.
+## 🎯 Ano ang Sinasaklaw ng Lab na Ito
+
+Nagbibigay ang lab na ito ng komprehensibong gabay sa pagsasama ng iyong MCP server sa VS Code upang paganahin ang mga natural na query sa wika sa pamamagitan ng AI Chat. Matututuhan mong i-configure ang VS Code para sa pinakamainam na paggamit ng MCP, i-debug ang mga koneksyon sa server, at gamitin ang buong kapangyarihan ng AI-assisted na pakikipag-ugnayan sa database.
 
 ## Pangkalahatang-ideya
 
-Ang MCP integration ng VS Code ay binabago ang paraan ng pakikipag-ugnayan ng mga developer sa databases at APIs gamit ang natural na wika. Sa pamamagitan ng pagkonekta ng iyong retail MCP server sa VS Code Chat, magagawa mong mag-query ng sales data, product catalogs, at business analytics gamit ang conversational AI.
+Binabago ng integrasyon ng MCP ng VS Code kung paano nakikipag-ugnayan ang mga developer sa mga database at API gamit ang natural na wika. Sa pamamagitan ng pagkonekta ng iyong retail MCP server sa VS Code Chat, pinapagana mo ang matalinong pag-query sa datos ng benta, katalogo ng produkto, at analytics ng negosyo gamit ang conversational AI.
 
-Ang integrasyong ito ay nagbibigay-daan sa mga developer na magtanong tulad ng "Ipakita ang mga nangungunang produktong nabenta ngayong buwan" o "Hanapin ang mga customer na hindi bumili sa loob ng 90 araw" at makakuha ng structured data responses nang hindi kailangang magsulat ng SQL queries.
+Pinapayagan ng integrasyong ito ang mga developer na magtanong ng mga katanungan tulad ng "Ipakita sa akin ang mga nangungunang produktong mabenta ngayong buwan" o "Hanapin ang mga customer na hindi pa bumibili sa loob ng 90 araw" at makakuha ng mga nakaayos na tugon ng datos nang hindi nagsusulat ng SQL queries.
 
 ## Mga Layunin sa Pag-aaral
 
-Sa pagtatapos ng lab na ito, magagawa mo ang sumusunod:
+Sa pagtatapos ng lab na ito, magagawa mong:
 
-- **I-configure** ang VS Code MCP settings para sa iyong retail server  
-- **I-integrate** ang MCP servers sa VS Code AI Chat functionality  
-- **Mag-debug** ng koneksyon sa MCP server at mag-troubleshoot ng mga isyu  
-- **I-optimize** ang natural language query patterns para sa mas magagandang resulta  
-- **I-customize** ang VS Code workspace para sa MCP development  
-- **I-deploy** ang multi-server configurations para sa mas komplikadong scenarios  
+- **I-configure** ang mga setting ng VS Code MCP para sa iyong retail server
+- **Isama** ang mga MCP server sa VS Code AI Chat functionality
+- **I-debug** ang mga koneksyon ng MCP server at ayusin ang mga problema
+- **I-optimize** ang mga pattern ng natural na query sa wika para sa mas magagandang resulta
+- **I-customize** ang workspace ng VS Code para sa MCP development
+- **I-deploy** ang mga multi-server configuration para sa mga kumplikadong scenario
 
 ## 🔧 VS Code MCP Configuration
 
-### Paunang Setup at Pag-install
+### Paunang Setup at Instalasyon
 
 ```json
 // .vscode/settings.json
@@ -62,10 +68,10 @@ Sa pagtatapos ng lab na ito, magagawa mo ang sumusunod:
 }
 ```
 
-### Configuration ng Environment
+### Pag-configure ng Kapaligiran
 
 ```bash
-# .env file for development
+# .env file para sa pag-develop
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
@@ -78,7 +84,7 @@ AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Opsyonal: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
 # Server Configuration
@@ -87,7 +93,7 @@ MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Configuration ng Workspace
+### Pag-configure ng Workspace
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Configuration ng Task
+### Pag-configure ng Task
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI Chat Integration
+## 💬 Integrasyon ng AI Chat
 
 ### Mga Pattern ng Natural Language Query
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Mga halimbawa ng mga pattern ng query para sa VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Pag-format ng Chat Response
+### Pag-format ng Tugon sa Chat
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Pangunahing mga sukatan
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Mga tagapagpahiwatig ng pagganap
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Nangungunang kategorya
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Debugging at Troubleshooting
+## 🔍 Pag-debug at Pagsasaayos ng Problema
 
-### VS Code Debug Configuration
+### Pag-configure ng VS Code Debug
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Gumawa ng tiyak na formatter para sa VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Console handler para sa terminal ng VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Pandaigdigang debug logger
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Troubleshooting ng Koneksyon
+### Pagsasaayos ng Koneksyon
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Kumuha ng mga parameter ng koneksyon mula sa kapaligiran
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Subukan ang koneksyon
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Subukan ang pangunahing query
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Subukan ang pag-access ng schema
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Subukan ang paglikha ng embedding
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # I-import ang mga bahagi ng MCP server
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Gumawa ng test configuration
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # I-initialize ang server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Kumuha ng mga magagamit na tools
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Subukan ang isang simpleng tool
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Subukan ang koneksyon sa database
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Subukan ang koneksyon sa Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Subukan ang mga tool ng MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Kabuuang status
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Custom VS Code Extension
+### Custom na VS Code Extension
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Pasadyang MCP retail extension
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Irehistro ang mga utos ng MCP retail
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Irehistro ang tagapalit ng tindahan
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // I-update ang configuration
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Isagawa ang mga nakatakdang query sa VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Configuration ng Extension Package
+### Pag-configure ng Extension Package
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Mga Pangunahing Puntos
+## 🎯 Mahahalagang Aral
 
-Pagkatapos makumpleto ang lab na ito, dapat ay mayroon ka nang:
+Pagkatapos makumpleto ang lab na ito, dapat ay mayroon kang:
 
-✅ **VS Code MCP Configuration**: Kumpletong setup para sa optimal na MCP integration  
-✅ **AI Chat Integration**: Kakayahang mag-query gamit ang natural na wika sa VS Code  
-✅ **Debugging Tools**: Komprehensibong troubleshooting at diagnostics ng koneksyon  
-✅ **Multi-Server Setup**: Configuration para sa maraming MCP server instances  
-✅ **Custom Extensions**: Pinahusay na karanasan sa VS Code gamit ang retail-specific features  
-✅ **Production Readiness**: Enterprise-ready na VS Code development environment  
+✅ **Pag-configure ng VS Code MCP**: Kumpletong setup para sa pinakamainam na integrasyon ng MCP  
+✅ **Integrasyon ng AI Chat**: Mga kakayahan sa natural na pag-query sa wika sa VS Code  
+✅ **Mga Kasangkapang Pang-debug**: Komprehensibong troubleshooting at diagnostics ng koneksyon  
+✅ **Pag-setup ng Multi-Server**: Configuration para sa maraming MCP server instances  
+✅ **Custom na Extensions**: Pinahusay na karanasan sa VS Code na may mga tampok na nakalaan para sa retail  
+✅ **Kahandaan sa Produksyon**: Enterprise-ready na development environment ng VS Code  
 
 ## 🚀 Ano ang Susunod
 
 Magpatuloy sa **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** upang:
 
-- I-deploy ang MCP servers sa production environments  
-- I-configure ang cloud infrastructure para sa scalability  
-- Mag-implement ng CI/CD pipelines para sa automated deployment  
-- I-monitor ang performance ng production MCP server  
+- I-deploy ang mga MCP server sa mga production environment
+- I-configure ang cloud infrastructure para sa scalability
+- Ipatupad ang CI/CD pipelines para sa automated deployment
+- I-monitor ang performance ng production MCP server
 
-## 📚 Karagdagang Resources
+## 📚 Karagdagang Mga Sanggunian
 
-### VS Code Development
-- [VS Code Extension API](https://code.visualstudio.com/api) - Opisyal na gabay sa pag-develop ng extension  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentasyon ng MCP integration  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript development sa VS Code  
+### Pag-develop sa VS Code
+- [VS Code Extension API](https://code.visualstudio.com/api) - Opisyal na gabay sa pag-develop ng extension
+- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentasyon ng integrasyon ng MCP
+- [TypeScript para sa VS Code](https://code.visualstudio.com/docs/languages/typescript) - Pag-develop ng TypeScript sa VS Code
 
-### MCP Protocol
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Opisyal na MCP specification  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Mga pinakamahusay na kasanayan sa implementasyon  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP implementation  
+### Protokol ng MCP
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Opisyal na espesipikasyon ng MCP
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Mga pinakamahusay na gawi sa pagpapatupad
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Implementasyon ng Python MCP
 
-### Development Tools
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Setup ng Python development  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - Advanced debugging techniques  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Automation at configuration ng tasks  
-
----
-
-**Nakaraan**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
-**Susunod**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)  
+### Mga Kasangkapan sa Pag-develop
+- [Python sa VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Setup sa pag-develop ng Python
+- [Pag-debug sa VS Code](https://code.visualstudio.com/docs/editor/debugging) - Mga advanced na paraan ng pag-debug
+- [Mga Task sa VS Code](https://code.visualstudio.com/docs/editor/tasks) - Automasyon at configuration ng mga task
 
 ---
 
-**Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, mangyaring tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
+**Nauna**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+**Susunod**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

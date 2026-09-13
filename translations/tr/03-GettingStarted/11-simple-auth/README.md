@@ -1,25 +1,25 @@
 # Basit kimlik doğrulama
 
-MCP SDK'ları, adaletli olmak gerekirse, kimlik sunucusu, kaynak sunucusu, kimlik bilgilerini gönderme, kod alma, kodu taşıyıcı token için değiştirme gibi kavramları içeren oldukça karmaşık bir süreç olan OAuth 2.1 kullanımını destekler; sonunda kaynak verilerinize erişebilirsiniz. Eğer harika bir uygulama olan OAuth'a alışık değilseniz, temel bir kimlik doğrulama ile başlayıp daha iyi ve daha iyi güvenlik inşa etmek iyi bir fikirdir. Bu nedenle, bu bölüm var, sizi daha gelişmiş kimlik doğrulamaya hazırlamak için.
+MCP SDK'ları OAuth 2.1 kullanımını destekler, ki bu adil olmak gerekirse kimlik sunucusu, kaynak sunucusu, kimlik bilgilerini gönderme, bir kod alma, kodu bir taşıyıcı token ile değiştirme gibi kavramları içeren oldukça karmaşık bir süreçtir ve sonunda kaynak verilerinizi alabilirsiniz. OAuth'a alışık değilseniz, ki bu harika bir uygulamadır, temel bir kimlik doğrulama seviyesinden başlamanız ve giderek daha iyi güvenlik seviyelerine doğru ilerlemeniz iyi bir fikirdir. Bu yüzden bu bölüm var; sizi daha gelişmiş kimlik doğrulamaya hazırlamak için.
 
 ## Kimlik doğrulama, ne demek istiyoruz?
 
-Auth, kimlik doğrulama ve yetkilendirme kelimelerinin kısaltmasıdır. Düşüncemiz şu iki şeyi yapmamız gerektiğidir:
+Kimlik doğrulama ve yetkilendirme (auth) kelimelerinin kısaltmasıdır. Amaç iki şeyi yapmaktır:
 
-- **Kimlik doğrulama (Authentication)**, bir kişinin evimize girip girmesine izin verip vermeyeceğimizi belirleme, yani "burada" olmaya hakkı olup olmadığını anlamak; yani MCP Sunucumuzun özelliklerinin bulunduğu kaynak sunucumuza erişim hakkı olup olmadığını tespit etme sürecidir.
-- **Yetkilendirme (Authorization)**, bir kullanıcının talep ettiği belirli kaynaklara erişimi (örneğin, bu siparişlere veya bu ürünlere) olup olmadığını ya da başka bir örnek olarak içeriği okuyabilir ama silemez gibi kısıtlamalarının olup olmadığını belirleme sürecidir.
+- **Kimlik doğrulama**, bir kişinin evimize girip girmesine izin verip vermeyeceğimizi anlamak, yani MCP Sunucumuzun özelliklerinin bulunduğu kaynak sunucuya erişim hakkının olup olmadığını tespit etme sürecidir.
+- **Yetkilendirme**, kullanıcının istediği belirli kaynaklara erişip erişmemesi gerektiğini anlamak, örneğin bu siparişlere ya da ürünlere erişimi olup olmadığını ya da içeriği okuyup okuyamayacağı, ancak silme yetkisinin olmayabileceğini anlamaktır.
 
-## Kimlik bilgileri: Sisteme kim olduğumuzu nasıl bildiriyoruz?
+## Kimlik Bilgileri: Sisteme kim olduğumuzu nasıl söyleriz
 
-Çoğu web geliştiricisi genellikle bir kimlik bilgisini sunucuya sağlamayı düşünür, genellikle buraya erişim izni varsa bunu belirten bir gizli bilgi ("Authentication"). Bu kimlik bilgisi genellikle kullanıcı adı ve şifrenin base64 kodlanmış versiyonu ya da belirli bir kullanıcıyı benzersiz olarak tanımlayan bir API anahtarıdır.
+Çoğu web geliştiricisi genellikle sunucuya, orada olup olmamalarına izin veren bir gizli bilgi gibi bir kimlik bilgisi sağlamayı düşünür, yani "Kimlik Doğrulama". Bu kimlik bilgisi genelde kullanıcı adı ve şifrenin base64 kodlu hali ya da belirli bir kullanıcıyı benzersiz tanımlayan bir API anahtarıdır.
 
-Bu, "Authorization" adlı bir başlık ile gönderilir:
+Bu, genellikle şöyle bir "Authorization" adındaki başlıktan gönderilir:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-Genellikle temel kimlik doğrulama olarak adlandırılır. Genel akış şöyle işler:
+Buna genellikle temel kimlik doğrulama denir. Genel işleyiş şöyle olur:
 
 ```mermaid
 sequenceDiagram
@@ -27,13 +27,13 @@ sequenceDiagram
    participant Client
    participant Server
 
-   User->>Client: bana veriyi göster
-   Client->>Server: bana veriyi göster, işte kimlik bilgim
-   Server-->>Client: 1a, seni tanıyorum, işte verin
+   User->>Client: bana verileri göster
+   Client->>Server: bana verileri göster, işte kimlik bilgilerim
+   Server-->>Client: 1a, seni tanıyorum, işte verilerin
    Server-->>Client: 1b, seni tanımıyorum, 401 
 ```
 
-Akış açısından nasıl çalıştığını anladıktan sonra, bunu nasıl uygularız? Çoğu web sunucusunda middleware adında bir kavram bulunur; bu, isteğin bir parçası olarak çalışan, kimlik bilgilerini doğrulayabilen ve geçerli ise isteğin geçmesine izin veren bir kod parçasıdır. Kimlik bilgileri geçerli değilse, bir kimlik doğrulama hatası alırsınız. Şimdi bunu nasıl uygulayabileceğimize bakalım:
+Akış perspektifinden nasıl çalıştığını anladığımıza göre, bunu nasıl uygularız? Çoğu web sunucusunda middleware denilen, istek sırasında çalışan ve kimlik bilgilerini doğrulayabilen ve eğer kimlik bilgileri geçerliyse isteğin geçmesine izin veren bir kod parçası vardır. Eğer istek geçerli kimlik bilgisine sahip değilse, kimlik doğrulama hatası alırsınız. İsterseniz, bunu nasıl uygulayabileceğimize bakalım:
 
 **Python**
 
@@ -53,23 +53,23 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # herhangi bir özel başlık ekleyin veya yanıtta herhangi bir şekilde değişiklik yapın
+        # yanıt üzerinde herhangi bir müşteri başlığı ekleyin veya değişiklik yapın
         return response
 
 
 starlette_app.add_middleware(CustomHeaderMiddleware)
 ```
 
-Burada:
+Burada şunlar var: 
 
-- `AuthMiddleware` adlı bir middleware oluşturduk ve `dispatch` yöntemi web sunucusu tarafından çağrılıyor.
-- Middleware'i web sunucusuna ekledik:
+- `AuthMiddleware` adlı bir middleware oluşturdum ve web sunucusu `dispatch` metodu ile bunu çağırıyor.
+- Middleware'i web sunucusuna ekledim:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Authorization başlığının varlığını ve gönderilen gizliliğin geçerliği kontrol eden doğrulama mantığını yazdık:
+- Authorization başlığının varlığını ve gönderilen gizlinin geçerliliğini kontrol eden doğrulama mantığı yazıldı:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -82,19 +82,19 @@ Burada:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    gizlilik var ve geçerliyse, isteğin geçmesine izin veriyoruz ve `call_next` çağırıp yanıtı döndürüyoruz.
+    Eğer gizli bilgi varsa ve geçerliyse, `call_next` çağrılarak istek içeri geçer ve yanıt döndürülür.
 
     ```python
     response = await call_next(request)
-    # yanıt üzerinde herhangi bir müşteri başlığı ekleyin veya bir şekilde değişiklik yapın
+    # herhangi bir müşteri başlığı ekle veya yanıt üzerinde bir şekilde değişiklik yap
     return response
     ```
 
-Çalışma şekli şudur: web isteği sunucuya yapıldığında, middleware çağrılır ve uygulamasına göre isteğin geçmesine izin verir veya istemcinin devam etmesine izin verilmediğini belirten bir hata döndürür.
+İşleyişi şöyledir: Bir web isteği sunucuya geldiğinde middleware çalışır ve onun uygulamasına göre ya isteğin geçmesine izin verir ya da istemcinin ilerlemesine izin verilmediğine dair hata döner.
 
 **TypeScript**
 
-Burada popüler Express framework'ü ile bir middleware oluşturup isteği MCP Sunucusuna ulaşmadan önce yakalıyoruz. İşte kod:
+Burada popüler Express framework ile bir middleware oluşturuyoruz ve isteği MCP Sunucusuna ulaşmadan önce yakalıyoruz. İşte kodu:
 
 ```typescript
 function isValid(secret) {
@@ -102,7 +102,7 @@ function isValid(secret) {
 }
 
 app.use((req, res, next) => {
-    // 1. Yetkilendirme başlığı var mı?
+    // 1. Yetkilendirme başlığı mevcut mu?
     if(!req.headers["Authorization"]) {
         res.status(401).send('Unauthorized');
     }
@@ -116,39 +116,44 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. İsteği istek hattındaki bir sonraki adıma geçir.
+    // 3. İsteği istek işlem hattındaki sonraki adıma geçir.
     next();
 });
 ```
 
 Bu kodda:
 
-1. İlk olarak Authorization başlığının var olup olmadığını kontrol ediyoruz, yoksa 401 hata gönderiyoruz.
-2. Kimlik bilgisi/token geçerli değilse 403 hata gönderiyoruz.
-3. Son olarak isteği istek hattında geçiyoruz ve istenen kaynağı döndürüyoruz.
+1. İlk olarak Authorization başlığının var olup olmadığını kontrol ediyoruz; yoksa 401 hatası gönderiyoruz.
+2. Kimlik bilgisi/token geçerliyse, devam etmesine izin veriyoruz; değilse 403 hatası gönderiyoruz.
+3. Son olarak, isteği istek hattında ilerletip istenen kaynağı döndürüyoruz.
 
-## Alıştırma: Kimlik doğrulama uygulaması
+## Alıştırma: Kimlik doğrulamayı uygulayın
 
-Bilgimizi alıp uygulamaya koymaya çalışalım. Plan:
+Şimdi bilgimizi alalım ve uygulamaya çalışalım. Plan:
 
 Sunucu
 
-- Bir web sunucusu ve MCP örneği oluştur.
-- Sunucu için middleware uygula.
+- Bir web sunucusu ve MCP örneği oluşturun.
+- Sunucu için middleware'ı uygulayın.
 
-İstemci 
+İstemci
 
-- Kimlik bilgisi içeren web isteğini başlık üzerinden gönder.
+- Web isteğini kimlik bilgisi ile beraber başlık üzerinden gönderin.
 
-### -1- Bir web sunucusu ve MCP örneği oluştur
+### -1- Bir web sunucusu ve MCP örneği oluşturun
 
-> **İleriye bakış:** Aşağıdaki TypeScript örneği, **MCP Spesifikasyonu 2025-11-25** uyarınca `mcp-session-id` anahtarlı `transports` haritasında HTTP taşıyıcılarını takip eder. `2026-07-28` sürüm adayı, `initialize` el sıkışmasını ve oturum kimliğini tamamen kaldırır, böylece bu oturum başına taşıyıcı haritası, durumsuz, kendi kendine yeten isteklere geçilir. Ayrıntılar için bkz. [MCP'deki Değişiklikler: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [!WARNING]
+> Aşağıdaki TypeScript örneği MCP `2025-11-25` sürümünü hedeflemektedir. Taşıyıcıları
+> `mcp-session-id` ile izler ve güncel `2026-07-28` taşıyıcı örneği değildir. MCP
+> `2026-07-28` "initialize" el sıkışması ve protokol oturum kimliğini kaldırır; yeni
+> uygulamalar kendi kendine yeten istekler kullanır. Bkz.
+> [MCP’de Neler Değişti: 2026-07-28 Spesifikasyonu](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-İlk adımda web sunucu örneğini ve MCP Sunucusunu oluşturmamız gerekiyor.
+İlk adım olarak, web sunucusu örneğini ve MCP Sunucusunu oluşturmalıyız.
 
 **Python**
 
-Burada bir MCP sunucu örneği oluşturuyoruz, starlette web uygulaması oluşturuyoruz ve uvicorn ile çalıştırıyoruz.
+Burada bir MCP sunucu örneği oluşturuyoruz, starlette web uygulaması yaratıyor ve uvicorn ile barındırıyoruz.
 
 ```python
 # MCP Sunucusu oluşturuluyor
@@ -181,13 +186,13 @@ run(starlette_app)
 
 Bu kodda:
 
-- MCP Sunucusunu oluşturduk.
-- MCP Sunucusundan bir starlette web uygulaması oluşturduk, `app.streamable_http_app()`.
-- uvicorn ile web uygulamasını barındırıp sunuyoruz, `server.serve()`.
+- MCP Sunucusu oluşturuldu.
+- MCP Sunucusundan starlette web uygulaması yapıldı, `app.streamable_http_app()`.
+- Uvicorn kullanılarak web uygulaması barındırıldı ve servis edildi `server.serve()`.
 
 **TypeScript**
 
-Burada bir MCP Sunucu örneği oluşturuyoruz.
+Burada bir MCP Sunucu örneği yaratıyoruz.
 
 ```typescript
 const server = new McpServer({
@@ -195,10 +200,10 @@ const server = new McpServer({
       version: "1.0.0"
     });
 
-    // ... sunucu kaynaklarını, araçlarını ve istemleri kur ...
+    // ... sunucu kaynaklarını, araçları ve istemleri ayarlayın ...
 ```
 
-Bu MCP Sunucu oluşturma, POST /mcp rota tanımımız içinde gerçekleşmek zorunda, o yüzden yukarıdaki kodu şöyle taşıyalım:
+Bu MCP Sunucu yaratımı POST /mcp rotası tanımlaması içinde yapılmalıdır, yukarıdaki kodu alıp şöyle taşıyalım:
 
 ```typescript
 import express from "express";
@@ -210,33 +215,33 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 const app = express();
 app.use(express.json());
 
-// Oturum ID'sine göre taşıma araçlarını saklamak için harita
+// Oturum ID'sine göre taşıyıcıları saklamak için harita
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
-// İstemciden sunucuya iletişim için POST isteklerini işleme
+// İstemciden sunucuya iletişim için POST isteklerini işleyin
 app.post('/mcp', async (req, res) => {
-  // Mevcut oturum ID'sini kontrol et
+  // Varolan oturum ID'sini kontrol et
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
   if (sessionId && transports[sessionId]) {
-    // Mevcut taşıma aracını yeniden kullan
+    // Varolan taşıyıcıyı yeniden kullan
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
     // Yeni başlatma isteği
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // Taşıma aracını oturum ID'sine göre sakla
+        // Taşıyıcıyı oturum ID'sine göre sakla
         transports[sessionId] = transport;
       },
-      // DNS yeniden bağlama koruması, geriye dönük uyumluluk için varsayılan olarak devre dışı bırakılmıştır. Bu sunucuyu
+      // DNS yeniden bağlama koruması geriye dönük uyumluluk için varsayılan olarak devre dışıdır. Bu sunucuyu
       // yerel olarak çalıştırıyorsanız, şunu ayarladığınızdan emin olun:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Taşıma aracı kapandığında temizle
+    // Taşıyıcı kapandığında temizle
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -247,7 +252,7 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... sunucu kaynakları, araçları ve istemleri ayarla ...
+    // ... sunucu kaynaklarını, araçlarını ve istemleri kur ...
 
     // MCP sunucusuna bağlan
     await server.connect(transport);
@@ -264,11 +269,11 @@ app.post('/mcp', async (req, res) => {
     return;
   }
 
-  // İsteği işleme
+  // İsteği işle
   await transport.handleRequest(req, res, req.body);
 });
 
-// GET ve DELETE istekleri için yeniden kullanılabilir işlemci
+// GET ve DELETE istekleri için yeniden kullanılabilir işleyici
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -280,31 +285,31 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// SSE aracılığıyla sunucudan istemciye bildirimler için GET isteklerini işleme
+// SSE yoluyla sunucudan istemciye bildirimler için GET isteklerini işle
 app.get('/mcp', handleSessionRequest);
 
-// Oturum sonlandırma için DELETE isteklerini işleme
+// Oturum sonlandırma için DELETE isteklerini işle
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
 ```
 
-Gördüğünüz gibi, MCP Sunucu oluşturma `app.post("/mcp")` içine taşındı.
+Şimdi MCP Sunucu yaratımının `app.post("/mcp")` içine taşındığını görüyorsunuz.
 
-Şimdi, gelen kimlik bilgisini doğrulayacak middleware oluşturmaya geçelim.
+Şimdi gelelim gelen kimlik bilgisini doğrulayacak middleware oluşturma adımına.
 
-### -2- Sunucu için middleware uygula
+### -2- Sunucu için bir middleware uygulayın
 
-Middleware kısmına geçelim. Burada `Authorization` başlığında bir kimlik bilgisi arayan ve bunu doğrulayan bir middleware oluşturacağız. Kabul edilebilirse istek yapmak istediği işlem (araçları listeleme, kaynak okuma veya istemcinin istediği MCP işlevi) için ilerleyecek.
+Şimdi middleware kısmına geçelim. Burada `Authorization` başlığında bir kimlik bilgisi arayan ve doğrulayan bir middleware oluşturacağız. Eğer kabul edilirse, istek gerekli işlemleri yapmaya devam edecek (ör. araç listesini alma, kaynak okuma ya da istemcinin istediği MCP işlevleri).
 
 **Python**
 
-Middleware oluşturmak için `BaseHTTPMiddleware` sınıfından türeyen bir sınıf yaratmalıyız. İki önemli parça var:
+Middleware oluşturmak için `BaseHTTPMiddleware` sınıfından türeyen bir sınıf yaratmamız gerekiyor. İki önemli parça var:
 
-- İstek, `request`, başlık bilgisini buradan okuyoruz.
-- `call_next`, eğer istemci geçerli bir kimlik bilgisi getirmişse çağırmamız gereken geri çağırma.
+- Header bilgilerini okuduğumuz isteği temsil eden `request`.
+- Eğer kabul edilebilir kimlik bilgisi varsa çağırmamız gereken `call_next` callback'i.
 
-Öncelikle `Authorization` başlığı yoksa ne olacağını halletmemiz gerekiyor:
+Öncelikle `Authorization` başlığı yoksa durumu ele almamız gerek:
 
 ```python
 has_header = request.headers.get("Authorization")
@@ -315,9 +320,9 @@ if not has_header:
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Burada istemcinin kimlik doğrulaması başarısız olduğunda 401 yetkisiz mesajı gönderiyoruz.
+Burada, istemci kimlik doğrulamada başarısız olduğu için 401 yetkisiz mesajı gönderiyoruz.
 
-Sonra, eğer kimlik bilgisi gönderilmişse geçerliliğini şöyle kontrol ediyoruz:
+Sonra, eğer bir kimlik bilgisi gönderildiyse, aşağıdaki gibi doğruluğunu kontrol etmeliyiz:
 
 ```python
  if not valid_token(has_header):
@@ -325,7 +330,7 @@ Sonra, eğer kimlik bilgisi gönderilmişse geçerliliğini şöyle kontrol ediy
     return Response(status_code=403, content="Forbidden")
 ```
 
-Yukarıda 403 yasak mesajı gönderiyoruz. Tam middleware şu şekilde, yukarıda bahsettiğimiz her şeyi uyguluyor:
+Yukarıda 403 yasak mesajı gönderdiğimize dikkat edin. Aşağıda tüm söylediklerimizi uygulayan middleware'i görelim:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -348,10 +353,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Peki `valid_token` fonksiyonu ne durumda? İşte aşağıda:
+Güzel, peki `valid_token` fonksiyonu ne alemde? İşte burada:
 
 ```python
-# Üretim için kullanmayın - geliştirin !!
+# Üretimde kullanmayın - geliştirin !!
 def valid_token(token: str) -> bool:
     # "Bearer " önekini kaldırın
     if token.startswith("Bearer "):
@@ -360,18 +365,20 @@ def valid_token(token: str) -> bool:
     return False
 ```
 
-Bu elbette geliştirilmeli.
+Bu açıkça geliştirilmeli.
 
-ÖNEMLİ: Bu tür gizli değerler hiçbir zaman koda gömülmemelidir. Değer ideal olarak bir veri kaynağından ya da bir kimlik sağlayıcıdan (IDP) alınmalı ya da en iyisi doğrulama tamamen IDP tarafından yapılmalıdır.
+ÖNEMLİ: Kod içinde böyle gizli anahtarlar asla bulunmamalıdır. Karşılaştırmak için değeri ideal olarak bir veri kaynağından ya da bir IDP'den (kimlik sağlayıcı) almalısınız ya da daha iyisi, IDP doğrulamayı kendisi yapsın.
 
 **TypeScript**
 
-Express ile bunu uygulamak için, middleware fonksiyonlarını alan `use` yöntemini çağırmalıyız.
+Bunu Express ile uygulamak için `use` metodunu çağırmalıyız ve middleware fonksiyonlarını vermeliyiz.
 
-- İstek değişkeni ile etkileşim kurup `Authorization` özelliğinde geçen kimlik bilgisi kontrol edilir.
-- Kimlik bilgisi geçerliyse istek devam eder ve istemcinin MCP isteği yapması gereken iş yapılır (örneğin araçları listeleme, kaynak okuma veya diğer MCP ile ilgili işlemler).
+Yapmamız gerekenler:
 
-Burada `Authorization` başlığının var olup olmadığını kontrol ediyoruz ve yoksa isteğin geçmesini engelliyoruz:
+- İstek içinden `Authorization` özelliğinde geçen kimlik bilgisine erişmek.
+- Kimlik bilgisi geçerliyse isteğin devam etmesini sağlamak ve böylece istemcinin MCP isteğinin çalışmasını sağlamak (örneğin araçları listeleme, kaynak okuma veya diğer MCP fonksiyonları).
+
+Burada `Authorization` başlığı var mı diye kontrol ediyoruz, yoksa isteğin geçmesini durduruyoruz:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -380,9 +387,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Başlık ilk başta gönderilmezse 401 alırsınız.
+Eğer başlık hiç gönderilmemişse 401 hatası alırsınız.
 
-Sonra kimlik bilgisi geçerli mi diye kontrol ediyoruz, geçerli değilse farklı bir mesajla isteği durduruyoruz:
+Sonra kimlik bilgisinin geçerli olup olmadığını kontrol ediyoruz, değilse isteği biraz farklı bir mesajla yine durduruyoruz:
 
 ```typescript
 if(!isValid(token)) {
@@ -391,9 +398,9 @@ if(!isValid(token)) {
 } 
 ```
 
-Şimdi 403 hata aldığınıza dikkat edin.
+Artık 403 hatası aldığınıza dikkat edin.
 
-Tam kod şu:
+İşte tam kod:
 
 ```typescript
 app.use((req, res, next) => {
@@ -416,18 +423,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Web sunucusunu, istemcinin göndermesini umduğumuz kimlik bilgisini kontrol eden bir middleware kabul edecek şekilde ayarladık. İstemci tarafında ne yapıyoruz?
+Web sunucusunu, istemciden gelen kimlik bilgisini doğrulayacak middleware kabul edecek şekilde ayarladık. Peki istemcinin kendisi ne yapıyor?
 
-### -3- Başlık üzerinden kimlik bilgisi içeren web isteği gönder
+### -3- Kimlik bilgisi ile web isteği gönderin (başlık ile)
 
-İstemcinin kimlik bilgisini başlık üzerinden ilettiğinden emin olmamız gerekiyor. MCP istemcisi kullanacağımız için bunu nasıl yapacağımızı bulmalıyız.
+İstemcinin kimlik bilgisini başlıkta gönderdiğinden emin olmalıyız. MCP istemcisi kullanacağımız için bunun nasıl yapıldığını çözmemiz lazım.
 
 **Python**
 
-İstemci için kimlik bilgimizi içeren başlığı şöyle geçmeliyiz:
+İstemci için kimlik bilgi başlığını şöyle göndeririz:
 
 ```python
-# DEĞERİ sabit kodlama, en azından bir ortam değişkeninde veya daha güvenli bir depolama alanında tut
+# DEĞERİ sabit kodlama, en azından bir ortam değişkeninde veya daha güvenli bir depolamada bulundur
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -444,24 +451,24 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # YAPILACAK, istemcide ne yapılmasını istediğin, örn. araçları listele, araçları çağır vb.
+            # TODO, istemcide ne yapılmasını istediğin, örn. araçları listele, araçları çağır vs.
 ```
 
-`headers = {"Authorization": f"Bearer {token}"}` şeklinde `headers` özelliğinin doldurulduğuna dikkat edin.
+`headers = {"Authorization": f"Bearer {token}"}` şeklinde `headers` özelliğini doldurduğumuza dikkat edin.
 
 **TypeScript**
 
-Bunu iki adımda çözebiliriz:
+Bunu iki aşamada halledebiliriz:
 
-1. Kimlik bilgilerimizi içeren bir konfigürasyon nesnesi oluştur.
-2. Bu konfigürasyonu taşıyıcıya (transport) geç.
+1. Kimlik bilgisi içeren bir yapılandırma nesnesini dolduralım.
+2. Bu yapılandırma nesnesini taşıyıcıya iletelim.
 
 ```typescript
 
-// Burada gösterildiği gibi değeri sabit kodlama YAPMAYIN. En azından bir ortam değişkeni olarak tutun ve geliştirme modunda dotenv gibi bir şey kullanın.
+// DEĞERİ burada gösterildiği gibi sabit kodlama. En azından bir çevresel değişken olarak tutun ve geliştirme modunda dotenv gibi bir şey kullanın.
 let token = "secret123"
 
-// bir istemci taşıma seçenekleri nesnesi tanımlayın
+// bir istemci taşıma seçeneği nesnesi tanımlayın
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -471,7 +478,7 @@ let options: StreamableHTTPClientTransportOptions = {
   }
 };
 
-// seçenekler nesnesini taşıma fonksiyonuna geçirin
+// seçenekler nesnesini taşıma işlemine geçirin
 async function main() {
    const transport = new StreamableHTTPClientTransport(
       new URL(serverUrl),
@@ -479,46 +486,46 @@ async function main() {
    );
 ```
 
-Burada, üstte `options` nesnesi oluşturduk ve başlıklarımızı `requestInit` altında yerleştirdik.
+Yukarıda, konfigürasyon nesnesi `options` oluşturarak `requestInit` altında başlıklarımızı yerleştirdiğimizi gördünüz.
 
-ÖNEMLİ: Buradan nasıl geliştiririz? Şu anki uygulamada bazı sorunlar var. Öncelikle, böyle bir kimlik bilgisi geçirmek oldukça risklidir, minimum HTTPS olmadan hiç önerilmez. Olsa bile kimlik bilgisi çalınabilir; bu yüzden token iptal edilebilmeli ve ek kontroller eklenmeli (token nereden geliyor, istek çok sık mı geliyor (bot benzeri davranış), kısaca pek çok endişe var).
+ÖNEMLİ: Peki buradan sonra bunu nasıl geliştirebiliriz? Şimdiki uygulama bazı sorunlara sahip. Öncelikle, bu şekilde kimlik bilgisi göndermek en azından HTTPS yoksa oldukça riskli. Olsa bile, kimlik bilgisi çalınabilir; yani token'ın iptal edilebileceği, nereden geldiği kontrolü gibi ek kontroller yapılabilen bir sistem gerekir. Ayrıca isteğin aşırı sık olup olmadığı (bot hareketi gibi) kontrolü gibi pek çok endişe var.
 
-Yine de, kimliği doğrulanmamış kimsenin API'nizi çağırmasını istemediğiniz çok basit API'ler için burada iyi bir başlangıç var.
+Ancak şunu söylemek gerekir ki çok basit API'ler için, API'nizi çağıran herkesin kimlik doğrulaması olmadan erişmesini istemiyorsanız, burada iyi bir başlangıç var.
 
-Bunu söyledikten sonra, güvenliği biraz sertleştirmek için JSON Web Token, diğer adıyla JWT veya "JOT" tokenları gibi standart bir format kullanmayı deneyelim.
+Bununla beraber, güvenliği biraz daha artırmak için JSON Web Token (JWT) gibi standart bir format kullanmaya çalışalım.
 
-## JSON Web Tokenlar, JWT
+## JSON Web Token, JWT
 
-Yani, çok basit kimlik bilgileri gönderme işini iyileştirmeye çalışıyoruz. JWT kabul ettiğimizde ne tür doğrudan geliştirmeler elde ediyoruz?
+Yani, çok basit kimlik bilgisi göndermekten iyileştirmeye çalışıyoruz. JWT kullanmanın hemen sağladığı iyileştirmeler nelerdir?
 
-- **Güvenlik geliştirmeleri**. Temel doğrulamada kullanıcı adı ve şifre base64 kodlu token olarak (ya da API anahtarı olarak) sürekli gönderilir, bu riski artırır. JWT'de kullanıcı adı ve şifre gönderilir ve karşılığında bir token alınır; ayrıca zaman sınırı vardır, yani süresi dolacaktır. JWT, rollere, kapsam ve izinlere dayalı ince taneli erişim kontrolü sağlar.
-- **Durumsuzluk ve ölçeklenebilirlik**. JWT'ler kendi kendine yeterlidir, tüm kullanıcı bilgilerini taşır ve sunucu tarafında oturum depolama ihtiyacını ortadan kaldırır. Token yerelde de doğrulanabilir.
-- **Etkileşebilirlik ve federasyon**. JWT, Open ID Connect'in merkezindedir ve Entra ID, Google Identity ve Auth0 gibi bilinen kimlik sağlayıcılarla kullanılır. Tek oturum açma ve daha fazlasını mümkün kılarak kurumsal düzeyde kullanım sağlar.
-- **Modülerlik ve esneklik**. JWT, Azure API Management, NGINX gibi API Ağ Geçitleriyle kullanılabilir. Ayrıca kullanıcı doğrulama senaryolarını ve sunucudan hizmete iletişim senaryolarını (temsil ve delege etme dahil) destekler.
-- **Performans ve önbellekleme**. JWT çözüldükten sonra önbelleğe alınabilir, böylece ayrıştırma ihtiyacı azalır. Özellikle yüksek trafikli uygulamalarda verimliliği artırır ve altyapı yükünü azaltır.
-- **Gelişmiş özellikler**. Sunucuda geçerliliği kontrol etme (introspection) ve token iptali (revocation) destekler.
+- **Güvenlik iyileştirmeleri**. Temel kimlik doğrulamada kullanıcı adı ve şifre base64 kodlu token olarak (veya API anahtarı olarak) tekrar tekrar gönderilir, bu risk oluşturur. JWT ise kullanıcı adı ve parolayı gönderip bir token alır ve bu token zaman sınırına sahiptir; yani sona erer. JWT, rollere, kapsam ve izinlere dayalı ince ayarlı erişim kontrolü sunar.
+- **Durumsuzluk ve ölçeklenebilirlik**. JWT self-contained'dır; tüm kullanıcı bilgilerini taşır ve sunucu tarafında oturum depolama ihtiyacını ortadan kaldırır. Token lokal olarak doğrulanabilir.
+- **Birlikte çalışabilirlik ve federasyon**. JWT OpenID Connect'in merkezindedir ve Entra ID, Google Identity, Auth0 gibi bilinen kimlik sağlayıcılarla kullanılır. Tek oturum açma ve daha fazlasını mümkün kılar, böylece kurumsal seviyededir.
+- **Modülerlik ve esneklik**. JWT API Gateway'lerde de kullanılabilir, örneğin Azure API Management, NGINX ve daha fazlası. Kimlik doğrulama senaryoları, sunucudan servise iletişim, kişinin kimliğini taklit etme ve delege etme senaryolarını destekler.
+- **Performans ve önbellekleme**. JWT decode edildikten sonra önbelleğe alınabilir, bu parsing ihtiyacını azaltır. Yüksek trafiğe sahip uygulamalarda performansı artırır ve altyapı üzerindeki yükü azaltır.
+- **Gelişmiş özellikler**. Sunucu tarafında geçerlilik kontrolü (introspection) ve token iptali (revocation) desteklenir.
 
-Tüm bu avantajlarla uygulamamızı nasıl ileri taşıyabileceğimize bakalım.
+Tüm bu faydalarla, uygulamamızı bir sonraki seviyeye taşıyalım.
 
 ## Temel kimlik doğrulamayı JWT'ye dönüştürmek
 
-Yapmamız gereken değişiklikler genel olarak:
+Yüksek seviyede yapmamız gereken değişiklikler:
 
-- **JWT token oluşturmayı öğrenmek** ve istemciden sunucuya gönderime hazır hale getirmek.
-- **JWT token doğrulamak**, eğer geçerliyse istemciye kaynaklarımızı vermek.
-- **Token güvenli depolama**. Token'ı nasıl sakladığımız.
-- **Rotaları koruma**. Rotaları, bizim durumumuzda MCP özelliklerini korumak.
-- **Yenileme tokenları eklemek**. Kısa ömürlü tokenlar yaratmak, uzun ömürlü yenileme tokenları ile yenilenmesini sağlamak. Ayrıca yenileme noktası ve rotasyon stratejisi olmalı.
+- **Bir JWT token oluşturmayı öğrenmek** ve istemciden sunucuya gönderilmeye hazır hale getirmek.
+- **JWT token doğrulaması yapmak** ve geçerliyse istemciye kaynakları vermek.
+- **Token güvenli saklama**. Bu token nasıl saklanır.
+- **Rotaları korumak**. Rotaları, bizim durumumuzda MCP özelliklerini ve rotaları korumamız gerekir.
+- **Refresh token eklemek**. Kısa ömürlü tokenlar ve uzun ömürlü refresh tokenlar yaratarak, tokenlar süresi dolduğunda yeni token almayı sağlamak. Ayrıca bir refresh endpoint'i ve bir döndürme stratejisi eklemek.
 
-### -1- JWT token oluşturma
+### -1- Bir JWT token oluşturmak
 
-Öncelikle bir JWT token şu parçalardan oluşur:
+Öncelikle, JWT token aşağıdaki bölümlerden oluşur:
 
 - **header**, kullanılan algoritma ve token türü.
-- **payload**, talepler, mesela sub (tokenin temsil ettiği kullanıcı veya varlık, genelde kullanıcı id'si), exp (sona erme zamanı) role (rolü)
-- **signature**, gizli veya özel anahtarla imzalanır.
+- **payload**, iddialar, örn. sub (token'in temsil ettiği kullanıcı veya varlık, genelde kullanıcı id'si), exp (sona erme zamanı), role (rol)
+- **signature**, bir gizli anahtar ya da özel anahtar ile imzalanır.
 
-Bunun için header, payload ve kodlanmış token oluşturacağız.
+Bunun için header, payload ve kodlanmış token oluşturulmalıdır.
 
 **Python**
 
@@ -537,27 +544,27 @@ header = {
     "typ": "JWT"
 }
 
-# kullanıcı bilgisi ve beyanları ile son kullanma süresi
+# kullanıcı bilgileri ve talepleri ile son kullanma süresi
 payload = {
     "sub": "1234567890",               # Konu (kullanıcı kimliği)
-    "name": "User Userson",                # Özel beyan
-    "admin": True,                     # Özel beyan
-    "iat": datetime.datetime.utcnow(),# Veriliş zamanı
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Son kullanma zamanı
+    "name": "User Userson",                # Özel talep
+    "admin": True,                     # Özel talep
+    "iat": datetime.datetime.utcnow(),# Veriliş tarihi
+    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Son kullanma tarihi
 }
 
-# kodla
+# şifrele
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
 Yukarıdaki kodda:
 
-- HS256 algoritmasını ve token tipini JWT olarak belirten bir header tanımlandı.
-- Bir konu veya kullanıcı id'si, kullanıcı adı, rol, veriliş zamanı ve süresi geçen bir payload oluşturuldu; böylece zaman sınırlaması sağlandı.
+- Algoritma olarak HS256, tür olarak JWT şeklinde bir header tanımladık.
+- Bir payload oluşturduk, içinde bir subject veya kullanıcı id'si, kullanıcı adı, rol, veriliş zamanı ve sona erme zamanı var; böylece daha önce bahsettiğimiz zaman bağımlılığı uygulanmış oldu.
 
 **TypeScript**
 
-Burada JWT token yapmak için yardımcı olacak bazı bağımlılıklara ihtiyacımız var.
+Burada JWT token oluşturmanıza yardım edecek bazı bağımlılıklara ihtiyacımız olacak.
 
 Bağımlılıklar
 
@@ -567,23 +574,23 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Bunu sağladıktan sonra header, payload oluşturalım ve kodlanmış token elde edelim.
+Bunu kurduktan sonra, header ve payload'u oluşturup, şifrelenmiş token'u yaratacağız.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Üretimde çevresel değişkenleri kullanın
+const secretKey = 'your-secret-key'; // Üretimde ortam değişkenlerini kullan
 
-// Yük verisini tanımla
+// Yükü tanımla
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
   iat: Math.floor(Date.now() / 1000), // Veriliş zamanı
-  exp: Math.floor(Date.now() / 1000) + 60 * 60 // 1 saat içinde sona erer
+  exp: Math.floor(Date.now() / 1000) + 60 * 60 // 1 saat içinde geçersiz olur
 };
 
-// Başlığı tanımla (isteğe bağlı, jsonwebtoken varsayılanları ayarlar)
+// Başlığı tanımla (opsiyonel, jsonwebtoken varsayılanları ayarlar)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
@@ -601,14 +608,14 @@ console.log('JWT:', token);
 Bu token:
 
 HS256 ile imzalanmış
-1 saat geçerli
-sub, name, admin, iat ve exp gibi talepleri içeren
+1 saat geçerlilik süresi var
+sub, name, admin, iat ve exp gibi iddialar içeriyor.
 
-### -2- Token doğrulama
+### -2- Bir token doğrulama
 
-Token doğrulamamız da gerekecek, bunu sunucu tarafında yapmalıyız ki istemcinin gönderdiği gerçekten geçerli olsun. Yapısal kontrollerden geçerliliğe kadar pek çok kontrol yapmalıyız. Kullanıcının sistemde olup olmadığını kontrol etmek gibi ek adımlar da yapmanız önerilir.
+Token doğrulamaya da ihtiyacımız var. Bu, istemcinin gönderdiğinin gerçekten geçerli olup olmadığını kontrol etmek için sunucuda yapılmalı. Burada yapısal doğrulamadan geçerliliğe kadar pek çok kontrol yapmalıyız. Ayrıca kullanıcının sisteminizde olup olmadığını görmek gibi başka kontroller eklemeye teşvik edilirsiniz.
 
-Token doğrulamak için kodunu çözmemiz, sonra geçerliliğini kontrol etmeye başlamamız gerekiyor:
+Token'u doğrulamak için önce decode ederek okuyacağız ve sonra geçerliliğini kontrol edeceğiz:
 
 **Python**
 
@@ -628,11 +635,12 @@ except InvalidTokenError as e:
 
 ```
 
-Bu kodda, belirteci, gizli anahtarı ve seçilen algoritmayı giriş olarak kullanarak `jwt.decode` çağrısı yapıyoruz. Başarısız bir doğrulamanın hata oluşturmasına neden olması nedeniyle try-catch yapısını nasıl kullandığımıza dikkat edin.
+
+Bu kodda, giriş olarak token, gizli anahtar ve seçilen algoritma kullanılarak `jwt.decode` çağrılır. Başarısız bir doğrulamanın hata oluşturmasına neden olacağından, try-catch yapısını kullandığımıza dikkat edin.
 
 **TypeScript**
 
-Burada, belirtecin çözümlenmiş bir sürümünü almak için `jwt.verify` çağrısı yapmamız gerekir; böylece üzerinde daha fazla analiz yapabiliriz. Bu çağrı başarısız olursa, bu belirtecin yapısının yanlış olduğu veya artık geçerli olmadığı anlamına gelir.
+Burada token'ın çözümlenmiş bir versiyonunu elde etmek için `jwt.verify` çağrısını yapmamız gerekiyor ki bunu daha fazla analiz edebilelim. Bu çağrı başarısız olursa, bu token yapısının yanlış olduğu ya da artık geçerli olmadığı anlamına gelir.
 
 ```typescript
 
@@ -644,19 +652,19 @@ try {
 }
 ```
 
-NOT: Daha önce belirtildiği gibi, bu belirtecin sistemimizde bir kullanıcıya işaret ettiğinden ve kullanıcının iddia ettiği haklara sahip olduğundan emin olmak için ek kontroller yapmalıyız.
+NOT: Daha önce bahsedildiği gibi, bu tokenın sistemimizde bir kullanıcıyı işaret ettiğinden ve kullanıcının iddia ettiği haklara sahip olduğundan emin olmak için ek kontroller yapmalıyız.
 
-Şimdi, rol tabanlı erişim kontrolüne, diğer adıyla RBAC’a bakalım.
+Şimdi ise, rol tabanlı erişim kontrolü veya diğer adıyla RBAC konusuna bakalım.
 
-## Rol tabanlı erişim kontrolü ekleme
+## Rol tabanlı erişim kontrolü eklemek
 
-Fikir, farklı rollerin farklı izinlere sahip olduğunu ifade etmek istiyoruz. Örneğin, bir yöneticinin her şeyi yapabileceğini, normal bir kullanıcının okuma/yazma yapabileceğini ve bir misafirin sadece okuyabileceğini varsayıyoruz. Bu nedenle, işte bazı olası izin seviyeleri:
+Fikir, farklı rollerin farklı izinlere sahip olduğunu ifade etmektir. Örneğin, bir yöneticinin her şeyi yapabileceğini, normal bir kullanıcının okuma/yazma yapabileceğini ve konukların yalnızca okuyabileceğini varsayıyoruz. Bu nedenle, işte bazı olası izin seviyeleri:
 
-- Admin.Write  
-- User.Read  
-- Guest.Read  
+- Admin.Write 
+- User.Read
+- Guest.Read
 
-Böyle bir kontrolü ara katman yazılımla nasıl uygulayabileceğimize bakalım. Ara katmanlar, rotaya özel veya tüm rotalar için eklenebilir.
+Böyle bir kontrolü middleware ile nasıl uygulayabileceğimize bakalım. Middleware'ler belirli bir rota için veya tüm rotalar için eklenebilir.
 
 **Python**
 
@@ -665,8 +673,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# Gizli bilgiyi kodun içinde bulundurma, bu sadece gösterim amaçlıdır. Güvenli bir yerden oku.
-SECRET_KEY = "your-secret-key" # bunu ortam değişkenine koy
+# GİZLİ ANAHTARI kod içinde bulundurmayın, bu sadece gösterim amaçlıdır. Güvenli bir yerden okuyun.
+SECRET_KEY = "your-secret-key" # bunu ortam değişkenine koyun
 REQUIRED_PERMISSION = "User.Read"
 
 class JWTPermissionMiddleware(BaseHTTPMiddleware):
@@ -693,7 +701,7 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Aşağıdaki gibi ara katmanı eklemenin birkaç farklı yolu vardır:
+Middleware'i aşağıdakiler gibi birkaç farklı şekilde ekleyebilirsiniz:
 
 ```python
 
@@ -707,11 +715,11 @@ app = Starlette(routes=routes, middleware=middleware)
 # Alt 2: starlette uygulaması zaten oluşturulduktan sonra middleware ekle
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Alt 3: rota başına middleware ekle
+# Alt 3: route başına middleware ekle
 routes = [
     Route(
         "/mcp",
-        endpoint=..., # işleyici
+        endpoint=..., # işlemci
         middleware=[Middleware(JWTPermissionMiddleware)]
     )
 ]
@@ -719,7 +727,7 @@ routes = [
 
 **TypeScript**
 
-Tüm isteklerde çalışacak bir ara katman için `app.use` ve bir ara katman kullanabiliriz. 
+`app.use` ve tüm istekler için çalışacak bir middleware kullanabiliriz.
 
 ```typescript
 app.use((req, res, next) => {
@@ -735,7 +743,7 @@ app.use((req, res, next) => {
     
     let token = req.headers["authorization"];
 
-    // 2. Tokenın geçerli olup olmadığını kontrol edin
+    // 2. Token geçerli mi kontrol edin
     if(!isValid(token)) {
         res.status(403).send('Forbidden');
         return;
@@ -749,7 +757,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Tokenın doğru izinlere sahip olduğunu doğrulayın
+    // 4. Token'ın doğru izinlere sahip olduğunu doğrulayın
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -762,11 +770,11 @@ app.use((req, res, next) => {
 
 ```
 
-Ara katmanımızın yapabileceği ve YAPMASI GEREKEN birçok şey vardır, bunlar:
+Middleware'imizin yapması gereken ve yapması GEREKEN oldukça fazla şey var, yani:
 
-1. Yetkilendirme başlığının bulunup bulunmadığını kontrol etmek  
-2. Belirtecin geçerli olup olmadığını kontrol etmek; `isValid` adlı, JWT belirtecinin bütünlüğünü ve geçerliliğini kontrol eden kendi yazdığımız metoda çağrı yapıyoruz.  
-3. Kullanıcının sistemimizde var olduğunu doğrulamak; bunu kontrol etmeliyiz.  
+1. Authorization başlığının var olup olmadığını kontrol et
+2. Token geçerli mi kontrol et, `isValid` metodunu çağırıyoruz, bu metod JWT tokenının bütünlüğünü ve geçerliliğini kontrol eder.
+3. Kullanıcının sistemimizde var olduğunun doğrulanması gerekiyor.
 
    ```typescript
     // DB'deki kullanıcılar
@@ -778,14 +786,14 @@ Ara katmanımızın yapabileceği ve YAPMASI GEREKEN birçok şey vardır, bunla
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // YAPILACAK, kullanıcının DB'de var olup olmadığını kontrol et
+     // TODO, kullanıcının DB'de var olup olmadığını kontrol et
      return users.includes(decodedToken?.name || "");
    }
    ```
 
-   Yukarıda, basit bir `users` listesi oluşturduk, ki bu tabii ki bir veritabanında olması gerekir.
+   Yukarıda, basit bir `users` listesi oluşturduk, ki aslında bu veritabanında olmalı.
 
-4. Ayrıca, belirtecin doğru izinlere sahip olup olmadığını kontrol etmeliyiz.
+4. Ayrıca, tokenın doğru izinlere sahip olduğunu da kontrol etmeliyiz.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -793,7 +801,7 @@ Ara katmanımızın yapabileceği ve YAPMASI GEREKEN birçok şey vardır, bunla
    }
    ```
 
-   Yukarıdaki ara katman kodunda, belirtecin User.Read izni içerip içermediğini kontrol ediyoruz; eğer değilse 403 hatası gönderiyoruz. Aşağıda `hasScopes` yardımcı metod var.
+   Yukarıdaki middleware kodunda, tokenın User.Read izni içerip içermediğini kontrol ediyoruz, yoksa 403 hatası gönderiyoruz. Aşağıda `hasScopes` yardımcı metodu bulunmaktadır.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -842,15 +850,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kullanılabileceğini gördünüz, peki MCP nasıl? MCP kimlik doğrulamamızı değiştirir mi? Bir sonraki bölümde öğrenelim.
+Artık middleware'in hem kimlik doğrulama hem de yetkilendirme için nasıl kullanılabileceğini gördünüz, peki MCP için durum nasıl, kimlik doğrulama biçimimizi değiştiriyor mu? Bir sonraki bölümde öğrenelim.
 
-### -3- MCP’ye RBAC ekleme
+### -3- RBAC'yi MCP'ye eklemek
 
-Şimdiye kadar ara katman yoluyla RBAC eklemeyi gördünüz, ancak MCP için özellik başı RBAC eklemenin kolay bir yolu yok, peki ne yaparız? İşte bu durumda istemcinin belirli bir aracı çağırma hakkına sahip olup olmadığını kontrol eden böyle bir kod eklememiz gerekir:
+Şimdiye kadar middleware ile RBAC nasıl eklenir gördünüz ancak MCP için özellik başına RBAC eklemek kolay değil, peki ne yapmalıyız? İşte, bu durumda belirli bir aracın çağrılma hakkı olup olmadığını kontrol eden şöyle bir kod eklememiz gerekiyor:
 
-Özellik başı RBAC’ı nasıl sağlayacağınıza dair birkaç farklı seçenek var, işte bazıları:
+Özellik başına RBAC'yi gerçekleştirmenin birkaç farklı yolu var, işte bazıları:
 
-- İzin seviyesini kontrol etmeniz gereken her araç, kaynak, istem için kontrol ekleyin.
+- İzin seviyesini kontrol etmeniz gereken her araç, kaynak, istek için bir kontrol ekleyin.
 
    **python**
 
@@ -860,7 +868,7 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # istemci yetkilendirmeyi başaramadı, yetkilendirme hatası oluşturuldu
+        pass # istemci yetkilendirme başarısız oldu, yetkilendirme hatası oluştur
    ```
 
    **typescript**
@@ -877,7 +885,7 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
       
       try {
         checkPermissions("Admin.Write", request);
-        // yapılacak, id'yi productService ve uzak girişe gönder
+        // yapılacak, id'yi productService ve remote entry'ye gönder
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -890,7 +898,7 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
    ```
 
 
-- Kontrol yapılması gereken yerlerin sayısını en aza indirmek için gelişmiş sunucu yaklaşımı ve istek işleyicilerini kullanın.
+- Gelişmiş sunucu yaklaşımı ve istek işleyicileri kullanarak kontrolleri yalnızca gerekli yerde yapacak şekilde minimize edin.
 
    **Python**
 
@@ -903,18 +911,18 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
 
    def has_permission(user_permissions, required_permissions) -> bool:
       # user_permissions: kullanıcının sahip olduğu izinlerin listesi
-      # required_permissions: aracın gerektirdiği izinlerin listesi
+      # required_permissions: araç için gerekli izinlerin listesi
       return any(perm in user_permissions for perm in required_permissions)
 
    @server.call_tool()
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # request.user.permissions kullanıcının izinlerinin listesi olarak varsayılır
+    # request.user.permissions'in kullanıcının izinlerinden oluşan bir liste olduğunu varsayın
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # "Aracı çağırma izniniz yok {name}" hatası oluştur
+        # Hata oluştur "Aracı çağırma izniniz yok {name}"
         raise Exception(f"You don't have permission to call tool {name}")
      # devam et ve aracı çağır
      # ...
@@ -926,7 +934,7 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
    ```typescript
    function hasPermission(userPermissions: string[], requiredPermissions: string[]): boolean {
        if (!Array.isArray(userPermissions) || !Array.isArray(requiredPermissions)) return false;
-       // Kullanıcının en az bir gerekli izni varsa true döndür
+       // Kullanıcının en az bir gerekli izne sahip olması durumunda true döndürür
        
        return requiredPermissions.some(perm => userPermissions.includes(perm));
    }
@@ -944,25 +952,25 @@ Artık ara katmanın hem kimlik doğrulama hem de yetkilendirme için nasıl kul
    });
    ```
 
-   Not, ara katmanınızın çözümlenmiş bir belirteci istek nesnesinin user özelliğine atadığından emin olmanız gerekecek, böylece yukarıdaki kod basit olur.
+   Dikkat edin, middleware'inizin çözümlenmiş tokenı istek nesnesinin user özelliğine atadığından emin olmalısınız ki yukarıdaki kod basit olsun.
 
 ### Özet
 
-Genel olarak ve özellikle MCP için RBAC eklemeyi konuştuk, şimdi kavramları anladığınızdan emin olmak için kendi başınıza güvenlik uygulamayı deneme zamanı.
+Genel olarak ve özellikle MCP için RBAC desteği nasıl eklenir tartıştıktan sonra, sunulan kavramları anladığınızdan emin olmak için güvenliği kendi başınıza uygulamayı denemenin zamanı geldi.
 
-## Ödev 1: Temel kimlik doğrulama kullanarak bir MCP sunucusu ve MCP istemcisi oluşturun
+## Ödev 1: Temel kimlik doğrulama kullanarak bir mcp sunucusu ve mcp istemcisi oluşturun
 
-Burada, başlıklar aracılığıyla kimlik bilgilerini gönderme konusunda öğrendiklerinizi kullanacaksınız.
+Burada, başlıklar aracılığıyla kimlik bilgilerini göndermeyi öğrendiklerinizi kullanacaksınız.
 
 ## Çözüm 1
 
 [Solution 1](./code/basic/README.md)
 
-## Ödev 2: Ödev 1’deki çözümü JWT kullanacak şekilde yükseltin
+## Ödev 2: Ödev 1'deki çözümü JWT kullanacak şekilde yükseltin
 
-İlk çözümü alın ama bu sefer geliştirelim.  
+İlk çözümü alın ama bu sefer üzerine geliştirelim.
 
-Basic Auth kullanmak yerine, JWT kullanalım.
+Basic Auth yerine JWT kullanalım.
 
 ## Çözüm 2
 
@@ -970,19 +978,19 @@ Basic Auth kullanmak yerine, JWT kullanalım.
 
 ## Meydan Okuma
 
-"Add RBAC to MCP" bölümünde anlattığımız özellik başı RBAC’ı ekleyin.
+"RBAC'yi MCP'ye ekleme" bölümünde anlattığımız araç başına RBAC'yi ekleyin.
 
 ## Özet
 
-Umarım bu bölümde hiç güvenlik olmamasından temel güvenliğe, JWT’ye ve bunun MCP’ye nasıl eklenebileceğine kadar birçok şey öğrenmişsinizdir.
+Umarız bu bölümde sıfırdan temel güvenliğe, JWT'ye ve bunun MCP'ye nasıl eklenebileceğine kadar çok şey öğrenmişsinizdir.
 
-Özel JWT’lerle sağlam bir temel oluşturduk, ancak ölçeklendikçe standartlara dayalı bir kimlik modeli yöneliyoruz. Entra veya Keycloak gibi bir IdP benimsemek, belirteci oluşturma, doğrulama ve yaşam döngüsü yönetimini güvenilir bir platforma devretmemizi sağlar — böylece uygulama mantığı ve kullanıcı deneyimine odaklanabiliriz.
+Özel JWT'lerle sağlam bir temel oluşturduk, ancak ölçeklendikçe standartlara dayalı bir kimlik modeline doğru ilerliyoruz. Entra veya Keycloak gibi bir IdP kullanmak, token verilmesi, doğrulanması ve yaşam döngüsü yönetimini güvenilir bir platforma devretmemizi sağlar — böylece uygulama mantığı ve kullanıcı deneyimine odaklanabiliriz.
 
-Bunun için daha [gelişmiş bir Entra bölümü](../../05-AdvancedTopics/mcp-security-entra/README.md) mevcut.
+Bunun için, daha [ileri düzeyde Entra ile ilgili bir bölümümüz var](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
-## Sonraki Adım
+## Sırada Ne Var
 
-- Sonraki: [MCP Sunucularını Kurma](../12-mcp-hosts/README.md)
+- Sonraki: [MCP Hostları Kurmak](../12-mcp-hosts/README.md)
 
 ---
 

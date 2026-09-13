@@ -1,25 +1,30 @@
 # Detaljno o značajkama MCP protokola
 
-Ovaj vodič istražuje napredne značajke MCP protokola koje nadilaze osnovno rukovanje alatima i resursima. Razumijevanje ovih značajki pomaže vam u izgradnji robusnijih, korisnički pristupačnijih i spremnih za produkciju MCP servera.
+Ovaj vodič istražuje napredne značajke MCP protokola koje nadilaze osnovno rukovanje alatima i resursima. Razumijevanje ovih značajki pomaže vam u izgradnji robusnijih, korisnički prihvatljivih i proizvodno spremnih MCP poslužitelja.
 
-> **Gledajući unaprijed:** kandidat za izdanje `2026-07-28` ukida Logiranje kao primitiv (favorizirajući `stderr` za stdio i OpenTelemetry za strukturiranu observabilnost), uklanja model `initialize`/sesije spomenut u Događajima životnog ciklusa servera dolje, te premješta eksperimentalnu značajku Zadataka u posebni dodatak Zadataka s novim životnim ciklusom `tasks/get`/`tasks/update`/`tasks/cancel`. Pogledajte [Što se mijenja u MCP-u: kandidat za izdanje 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Opseg MCP `2026-07-28`:** pokretanje i zaustavljanje procesa poslužitelja ostaju
+> odgovornosti aplikacije, ali  MCP `initialize` rukovanje i sesije na razini protokola
+> su uklonjeni. Odjeljak o zapisivanju (Logging) u nastavku zadržan je za naslijeđene
+> implementacije; novi poslužitelji trebaju koristiti `stderr` ili OpenTelemetry. Zadatci su
+> sada zasebno verzionirani dodatak. Pogledajte
+> [Što je promijenjeno u MCP-u: specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Obuhvaćene značajke
+## Pokrivene značajke
 
-1. **Obavijesti o napretku** - Izvještavanje o napretku za dugotrajne operacije
-2. **Otkaživanje zahtjeva** - Omogućavanje klijentima da otkažu zahtjeve u toku
-3. **Predlošci resursa** - Dinamičke URI adrese resursa s parametrima
-4. **Događaji životnog ciklusa servera** - Ispravno inicijaliziranje i isključivanje
-5. **Kontrola logiranja** - Konfiguracija logiranja na strani servera
-6. **Obrasci rukovanja pogreškama** - Dosljedni odgovori na pogreške
+1. **Obavijesti o napretku** – Prikaz napretka za dugotrajne operacije
+2. **Otkazivanje zahtjeva** – Omogućavanje klijentima da otkažu zahtjeve u tijeku
+3. **Predlošci resursa** – Dinamičke URI adrese resursa s parametrima
+4. **Životni ciklus aplikacije** – Pokretanje i zaustavljanje procesa poslužitelja
+5. **Kontrola zapisivanja (naslijeđeno)** – Zastarjela konfiguracija zapisivanja MCP-a
+6. **Obrasci rukovanja pogreškama** – Dosljedni odgovori o pogreškama
 
 ---
 
 ## 1. Obavijesti o napretku
 
-Za operacije koje traju duže vrijeme (obrada podataka, preuzimanja datoteka, API pozivi), obavijesti o napretku održavaju korisnike informiranima.
+Za operacije koje zahtijevaju vrijeme (obrada podataka, preuzimanje datoteka, API pozivi), obavijesti o napretku informiraju korisnike o statusu.
 
-### Kako to radi
+### Kako funkcionira
 
 ```mermaid
 sequenceDiagram
@@ -33,7 +38,7 @@ sequenceDiagram
     Server->>Client: rezultat (kompletno)
 ```
 
-### Python implementacija
+### Implementacija u Pythonu
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -93,7 +98,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     return f"Completed {total} items"
 ```
 
-### TypeScript implementacija
+### Implementacija u TypeScriptu
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -137,17 +142,17 @@ async def handle_progress(notification):
 # Registriraj rukovatelja
 session.on_notification("notifications/progress", handle_progress)
 
-# Pozovi alat (ažuriranja napretka dolazit će putem rukovatelja)
+# Pozovi alat (ažuriranja napretka će stizati putem rukovatelja)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
 ---
 
-## 2. Otkaživanje zahtjeva
+## 2. Otkazivanje zahtjeva
 
-Omogućite klijentima da otkažu zahtjeve koji nisu više potrebni ili traju predugo.
+Omogućite klijentima da otkažu zahtjeve koji više nisu potrebni ili traju predugo.
 
-### Python implementacija
+### Implementacija u Pythonu
 
 ```python
 from mcp.server import Server
@@ -164,7 +169,7 @@ async def long_running_search(query: str, ctx) -> str:
     
     try:
         for page in range(100):  # Pretraži kroz mnoge stranice
-            # Provjeri je li otkazivanje zatraženo
+            # Provjeri je li zatraženo otkazivanje
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
@@ -172,7 +177,7 @@ async def long_running_search(query: str, ctx) -> str:
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Mali odmak omogućuje provjere otkazivanja
+            # Mali zastoj omogućava provjeru otkazivanja
             await asyncio.sleep(0.1)
             
     except CancelledError:
@@ -201,7 +206,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### Implementacija konteksta otkazivanja
+### Implementacija konteksta za otkazivanje
 
 ```python
 class CancellableContext:
@@ -265,7 +270,7 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Predlošci resursa
 
-Predlošci resursa omogućuju dinamičku konstrukciju URI adresa s parametrima, korisno za API-je i baze podataka.
+Predlošci resursa omogućuju dinamičku konstrukciju URI-ja s parametrima, što je korisno za API-je i baze podataka.
 
 ### Definiranje predložaka
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Analiziraj URI za izdvajanje parametara
+    # Analizirajte URI kako biste izvukli parametre
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -320,7 +325,7 @@ async def read_resource(uri: str) -> str:
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
 
-### TypeScript implementacija
+### Implementacija u TypeScriptu
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Parsiraj URI GitHub issue-a
+  // Parsiraj GitHub URI problema
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Događaji životnog ciklusa servera
+## 4. Životni ciklus aplikacije
 
-Ispravno inicijaliziranje i isključivanje osigurava čisto upravljanje resursima.
+Ovaj odjeljak pokriva pokretanje i zaustavljanje procesa aplikacije, ne uklonjeno
+MCP `initialize` rukovanje. Ispravno rukovanje životnim ciklusom osigurava uredno
+upravljanje resursima.
 
 ### Upravljanje životnim ciklusom u Pythonu
 
@@ -428,7 +435,7 @@ class ManagedServer {
   }
   
   async start() {
-    // Inicijalizirajte resurse
+    // Inicijaliziraj resurse
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
@@ -449,7 +456,7 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Sigurno koristite this.dbConnection
+      // Sigurno koristi this.dbConnection
       // ...
     });
   }
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Kontrola logiranja
+## 5. Kontrola zapisivanja (naslijeđeno)
 
-MCP podržava server-side razine logiranja kojima klijenti mogu upravljati.
+> [!WARNING]
+> MCP zapisivanje zastarjelo je u `2026-07-28` i podložno je uklanjanju u
+> prvoj reviziji specifikacije koja bude objavljena nakon 28. srpnja 2027. Sljedeći
+> primjeri služe za kompatibilnost sa starijim implementacijama. Za nove poslužitelje
+> koristite `stderr` sa stdio i OpenTelemetry za strukturiranu promatranost.
 
-### Implementacija razina logiranja
+Naslijeđene MCP verzije podržavaju razine zapisivanja na strani poslužitelja koje klijenti mogu kontrolirati.
+
+### Implementacija razina zapisivanja
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Preslikajte MCP razine na Python razine zapisivanja
+# Preslikajte MCP razine u Python razine zapisivanja dnevnika
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -512,14 +525,14 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Slanje log poruka klijentu
+### Slanje poruka zapisivanja klijentu
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Pošalji obavijest o zapisu klijentu
+    # Pošalji obavijest o zapisniku klijentu
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
@@ -572,14 +585,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Strukturirani odgovori s pogreškama
+### Strukturirani odgovori o pogreškama
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Provjeri unesene podatke
+    # Validiraj unos
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Već MCP pogreška
+      throw error;  // Već MCP greška
     }
     
-    // Pretvori druge pogreške
+    // Pretvori druge greške
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Nepoznata pogreška
+    // Nepoznata greška
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,65 +669,35 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Eksperimentalne značajke (MCP 2025-11-25)
+## Značajke osjetljive na verziju
 
-Ove su značajke označene kao eksperimentalne u specifikaciji:
+### Dodatak za zadatke
 
-### Zadaci (dugotrajne operacije)
+Zadatci su službeni, zasebno verzionirani dodatak u MCP `2026-07-28`. Poslužitelj
+može vratiti rukovatelj zadatkom iz poziva alata, a klijent upravlja zadatkom
+pomoću `tasks/get`, `tasks/update` i `tasks/cancel`. Eksperimentalni
+`2025-11-25` Tasks API nije unatrag kompatibilan, i `tasks/list` više ne postoji.
 
-```python
-# Zadaci omogućuju praćenje dugotrajnih operacija s državom
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Prijavi da je zadatak započeo
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Petlja treniranja
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
 
-### Anotacije alata
 
-```python
-# Anotacije pružaju metapodatke o ponašanju alata
-@app.tool(
-    annotations={
-        "destructive": False,      # Ne mijenja podatke
-        "idempotent": True,        # Sigurno za ponovni pokušaj
-        "timeout_seconds": 30,     # Očekivano maksimalno trajanje
-        "requires_approval": False # Nije potrebna odobrenje korisnika
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+
+ili otvoreni svijet operacije. One su naznake i ne smiju se smatrati povjerenim
+ovlastima ili jamstvima sigurnosti osim ako ne dolaze od pouzdanog poslužitelja.
+
 
 ---
 
-## Što je sljedeće
+## Što slijedi
 
 - [Modul 8 - Najbolje prakse](../../08-BestPractices/README.md)
-- [5.14 - Inženjering konteksta](../mcp-contextengineering/README.md)
-- [Dnevnici promjena MCP specifikacije](https://spec.modelcontextprotocol.io/)
+- [5.14 - Inženjerstvo konteksta](../mcp-contextengineering/README.md)
+- [Dnevnik promjena MCP specifikacije](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
-## Dodatni resursi
+## Dodatni izvori
 
-- [MCP specifikacija 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP specifikacija 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 kodovi pogrešaka](https://www.jsonrpc.org/specification#error_object)
 - [Primjeri Python SDK-a](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [Primjeri TypeScript SDK-a](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

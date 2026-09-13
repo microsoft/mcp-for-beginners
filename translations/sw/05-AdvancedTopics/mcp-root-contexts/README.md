@@ -1,660 +1,149 @@
-> [IMEZIMWA: MGOMO WA KUACHILIWA 2026-07-28](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+# Mizizi ya MCP (Sifa ya Kale)
 
-# Muktadha wa Mizizi wa MCP
+> [!WARNING]
+> Mizizi imeachwa rasmi kuanzia MCP `2026-07-28`. Zinabaki katika marekebisho haya kwa ajili ya
+> usawazishaji na zinaweza kuondolewa katika marekebisho ya kwanza ya
+> vipengele yatakayotolewa tarehe au baada ya Julai 28, 2027. Utekelezaji mpya unapaswa kupitisha
+> folda au faili kupitia vigezo vya zana, URI za rasilimali, au usanidi wa seva.
 
-> **Tangazo la kuachwa matumizi:** mgomo wa kuachiliwa wa sifa za MCP tarehe `2026-07-28` unaweka Mizizi kuwa imezimiwa kwa ajili ya vigezo vya zana, URI za rasilimali, au usanidi wa seva. Mizizi itaendelea kufanya kazi katika `2025-11-25` na kwa angalau mwaka mmoja baada ya kuachwa rasmi, hivyo kila kitu katika somo hili bado ni halali - lakini muundo mpya wa seva unapaswa kutathmini mfano wa mbadala. Angalia [Nini Kinabadilika MCP: Mgomo wa Kuachiliwa 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
 
-Muktadha wa mizizi ni dhana muhimu katika Itifaki ya Muktadha wa Mfano inayotoa tabaka la kudumu la kuhifadhi historia ya mazungumzo na hali iliyoshirikiwa kati ya maombi na vikao vingi.
+## Muhtasari
 
-## Utangulizi
+Mizizi huruhusu mteja wa MCP kumuambia seva ni maeneo gani ya mfumo wa faili yanayohusiana
+na ombi lililopo sasa. Mizizi ina URI inayotakiwa ya `file://` na jina la hiari
+linaloweza kusomwa na binadamu.
 
-Katika somo hili, tutaangalia jinsi ya kuunda, kusimamia, na kutumia muktadha wa mizizi katika MCP.
+Mizizi ni vidokezo vya taarifa. Sio vyombo vya kuhifadhi historia ya mazungumzo,
+vikao vya itifaki, au njia ya udhibiti wa upatikanaji. Itifaki haina nguvu
+ya kulazimisha seva kubaki ndani ya mizizi iliyoorodheshwa.
 
 ## Malengo ya Kujifunza
 
-Mwisho wa somo hili, utakua na uwezo wa:
+Mwisho wa somo hili, utakuwa na uwezo wa:
 
-- Kuelewa kusudi na muundo wa muktadha wa mizizi
-- Kuunda na kusimamia muktadha wa mizizi kwa kutumia maktaba za wateja za MCP
-- Kutekeleza muktadha wa mizizi katika programu za .NET, Java, JavaScript, na Python
-- Kutumia muktadha wa mizizi kwa mazungumzo ya mizunguko mingi na usimamizi wa hali
-- Kutekeleza mbinu bora za usimamizi wa muktadha wa mizizi
+- Eleza ni nini Mizizi ya MCP inawakilisha na isiyowakilisha.
+- Tambua mchakato wa `roots/list` wa mizunguko mingi ya sasa.
+- Tumia udhibiti wa usalama huru na Mizizi.
+- Hamisha utekelezaji mpya kwa mbadala zinazotegemewa.
 
-## Kuelewa Muktadha wa Mizizi
+## Data za Mizizi
 
-Muktadha wa mizizi hutumika kama vyombo vinavyoshikilia historia na hali ya mfululizo wa mwingiliano unaohusiana. Huwezesha:
+Mteja hurudisha kila mzizi kama URI ya `file://` yenye jina la kuonyesha la hiari:
 
-- **Uendelevu wa Mazungumzo**: Kuhifadhi mazungumzo yaliyo na mizunguko mingi kwa muafaka
-- **Usimamizi wa Kumbukumbu**: Kuhifadhi na kurejesha taarifa katika mwingiliano
-- **Usimamizi wa Hali**: Kufuatilia maendeleo katika mchakato tata
-- **Kushirikiana kwa Muktadha**: Kuruhusu wateja wengi kupata hali hiyo hiyo ya mazungumzo
-
-Katika MCP, muktadha wa mizizi una sifa muhimu hizi:
-
-- Kila muktadha wa mizizi una kitambulisho cha kipekee.
-- Unaweza kuwa na historia ya mazungumzo, mapendeleo ya mtumiaji, na metadata nyingine.
-- Unaweza kuundwa, kufikiwa, na kuhifadhiwa kama inavyohitajika.
-- Husaidia udhibiti wa upatikanaji kwa kina na ruhusa.
-
-## Mzunguko wa Maisha ya Muktadha wa Mizizi
-
-```mermaid
-flowchart TD
-    A[Unda Muktadha Msingi] --> B[Anzisha na Metadata]
-    B --> C[Tuma Maombi na Kitambulisho cha Muktadha]
-    C --> D[Sasisha Muktadha na Matokeo]
-    D --> C
-    D --> E[Hifadhi Muktadha Ikiwa Imekamilika]
-```
-
-## Kufanya kazi na Muktadha wa Mizizi
-
-Hapa kuna mfano wa jinsi ya kuunda na kusimamia muktadha wa mizizi.
-
-### Utekelezaji wa C#
-
-```csharp
-// .NET Example: Root Context Management
-using Microsoft.Mcp.Client;
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-public class RootContextExample
+```json
 {
-    private readonly IMcpClient _client;
-    private readonly IRootContextManager _contextManager;
-    
-    public RootContextExample(IMcpClient client, IRootContextManager contextManager)
+  "roots": [
     {
-        _client = client;
-        _contextManager = contextManager;
+      "uri": "file:///home/user/projects/weather-service",
+      "name": "Weather Service"
     }
-    
-    public async Task DemonstrateRootContextAsync()
-    {
-        // 1. Create a new root context
-        var contextResult = await _contextManager.CreateRootContextAsync(new RootContextCreateOptions
-        {
-            Name = "Customer Support Session",
-            Metadata = new Dictionary<string, string>
-            {
-                ["CustomerName"] = "Acme Corporation",
-                ["PriorityLevel"] = "High",
-                ["Domain"] = "Cloud Services"
-            }
-        });
-        
-        string contextId = contextResult.ContextId;
-        Console.WriteLine($"Created root context with ID: {contextId}");
-        
-        // 2. First interaction using the context
-        var response1 = await _client.SendPromptAsync(
-            "I'm having issues scaling my web service deployment in the cloud.", 
-            new SendPromptOptions { RootContextId = contextId }
-        );
-        
-        Console.WriteLine($"First response: {response1.GeneratedText}");
-        
-        // Second interaction - the model will have access to the previous conversation
-        var response2 = await _client.SendPromptAsync(
-            "Yes, we're using containerized deployments with Kubernetes.", 
-            new SendPromptOptions { RootContextId = contextId }
-        );
-        
-        Console.WriteLine($"Second response: {response2.GeneratedText}");
-        
-        // 3. Add metadata to the context based on conversation
-        await _contextManager.UpdateContextMetadataAsync(contextId, new Dictionary<string, string>
-        {
-            ["TechnicalEnvironment"] = "Kubernetes",
-            ["IssueType"] = "Scaling"
-        });
-        
-        // 4. Get context information
-        var contextInfo = await _contextManager.GetRootContextInfoAsync(contextId);
-        
-        Console.WriteLine("Context Information:");
-        Console.WriteLine($"- Name: {contextInfo.Name}");
-        Console.WriteLine($"- Created: {contextInfo.CreatedAt}");
-        Console.WriteLine($"- Messages: {contextInfo.MessageCount}");
-        
-        // 5. When the conversation is complete, archive the context
-        await _contextManager.ArchiveRootContextAsync(contextId);
-        Console.WriteLine($"Archived context {contextId}");
-    }
+  ]
 }
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Wateja wanapaswa kuonyesha maeneo tu yaliyoruhusiwa na mtumiaji. Seva zinapaswa
+kutambua matokeo hayo kama mwongozo kuhusu faili muhimu, si kama uthibitisho wa ruhusa.
 
-1. Kuunda muktadha wa mizizi kwa kikao cha msaada kwa wateja.
-1. Kutuma ujumbe mwingi ndani ya muktadha huo, kuruhusu mfano kudumisha hali.
-1. Kusasisha muktadha na metadata husika kulingana na mazungumzo.
-1. Kupata taarifa za muktadha kuelewa historia ya mazungumzo.
-1. Kuhifadhi muktadha wakati mazungumzo yalipokamilika.
+## Mchakato wa MCP 2026-07-28
 
-## Mfano: Utekelezaji wa Muktadha wa Mizizi kwa uchambuzi wa kifedha
+Mteja anayeoana na Mizizi hutoa uwezo wake katika kila ombi:
 
-Katika mfano huu, tutaunda muktadha wa mizizi kwa kikao cha uchambuzi wa kifedha, kuonyesha jinsi ya kudumisha hali katika mwingiliano mingi.
-
-### Utekelezaji wa Java
-
-```java
-// Mfano wa Java: Utekelezaji wa Muktadha Mwenza
-package com.example.mcp.contexts;
-
-import com.mcp.client.McpClient;
-import com.mcp.client.ContextManager;
-import com.mcp.models.RootContext;
-import com.mcp.models.McpResponse;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-public class RootContextsDemo {
-    private final McpClient client;
-    private final ContextManager contextManager;
-    
-    public RootContextsDemo(String serverUrl) {
-        this.client = new McpClient.Builder()
-            .setServerUrl(serverUrl)
-            .build();
-            
-        this.contextManager = new ContextManager(client);
+```json
+{
+  "_meta": {
+    "io.modelcontextprotocol/clientCapabilities": {
+      "roots": {}
     }
-    
-    public void demonstrateRootContext() throws Exception {
-        // Unda metadata ya muktadha
-        Map<String, String> metadata = new HashMap<>();
-        metadata.put("projectName", "Financial Analysis");
-        metadata.put("userRole", "Financial Analyst");
-        metadata.put("dataSource", "Q1 2025 Financial Reports");
-        
-        // 1. Unda muktadha mpya mwenza
-        RootContext context = contextManager.createRootContext("Financial Analysis Session", metadata);
-        String contextId = context.getId();
-        
-        System.out.println("Created context: " + contextId);
-        
-        // 2. Mwingiliano wa kwanza
-        McpResponse response1 = client.sendPrompt(
-            "Analyze the trends in Q1 financial data for our technology division",
-            contextId
-        );
-        
-        System.out.println("First response: " + response1.getGeneratedText());
-        
-        // 3. Sasisha muktadha na taarifa muhimu zilizopatikana kutoka kwa majibu
-        contextManager.addContextMetadata(contextId, 
-            Map.of("identifiedTrend", "Increasing cloud infrastructure costs"));
-        
-        // Mwingiliano wa pili - ukitumia muktadha ule ule
-        McpResponse response2 = client.sendPrompt(
-            "What's driving the increase in cloud infrastructure costs?",
-            contextId
-        );
-        
-        System.out.println("Second response: " + response2.getGeneratedText());
-        
-        // 4. Tengeneza muhtasari wa kikao cha uchambuzi
-        McpResponse summaryResponse = client.sendPrompt(
-            "Summarize our analysis of the technology division financials in 3-5 key points",
-            contextId
-        );
-        
-        // Hifadhi muhtasari katika metadata ya muktadha
-        contextManager.addContextMetadata(contextId, 
-            Map.of("analysisSummary", summaryResponse.getGeneratedText()));
-            
-        // Pata taarifa za muktadha zilizosasishwa
-        RootContext updatedContext = contextManager.getRootContext(contextId);
-        
-        System.out.println("Context Information:");
-        System.out.println("- Created: " + updatedContext.getCreatedAt());
-        System.out.println("- Last Updated: " + updatedContext.getLastUpdatedAt());
-        System.out.println("- Analysis Summary: " + 
-            updatedContext.getMetadata().get("analysisSummary"));
-            
-        // 5. Hifadhi muktadha kufikia mwisho
-        contextManager.archiveContext(contextId);
-        System.out.println("Context archived");
-    }
+  }
 }
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Wakati wa kushughulikia ombi la mteja, seva inaweza kurudisha
+`InputRequiredResult` iliyo na ombi la ingizo la `roots/list`:
 
-1. Kuunda muktadha wa mizizi kwa kikao cha uchambuzi wa kifedha.
-2. Kutuma ujumbe mwingi ndani ya muktadha huo, kuruhusu mfano kudumisha hali.
-3. Kusasisha muktadha na metadata husika kulingana na mazungumzo.
-4. Kutengeneza muhtasari wa kikao cha uchambuzi na kuhifadhi katika metadata ya muktadha.
-5. Kuhifadhi muktadha wakati mazungumzo yalipokamilika.
-
-## Mfano: Usimamizi wa Muktadha wa Mizizi
-
-Kusimamia muktadha wa mizizi kwa ufanisi ni muhimu kwa kuhifadhi historia na hali ya mazungumzo. Hapa chini ni mfano wa jinsi ya kutekeleza usimamizi wa muktadha wa mizizi.
-
-### Utekelezaji wa JavaScript
-
-```javascript
-// Mfano wa JavaScript: Kusimamia Muktadha wa Mizizi ya MCP
-const { McpClient, RootContextManager } = require('@mcp/client');
-
-class ContextSession {
-  constructor(serverUrl, apiKey = null) {
-    // Anzisha mteja wa MCP
-    this.client = new McpClient({
-      serverUrl,
-      apiKey
-    });
-    
-    // Anzisha msimamizi wa muktadha
-    this.contextManager = new RootContextManager(this.client);
-  }
-  
-  /**
-   * Create a new conversation context
-   * @param {string} sessionName - Name of the conversation session
-   * @param {Object} metadata - Additional metadata for the context
-   * @returns {Promise<string>} - Context ID
-   */
-  async createConversationContext(sessionName, metadata = {}) {
-    try {
-      const contextResult = await this.contextManager.createRootContext({
-        name: sessionName,
-        metadata: {
-          ...metadata,
-          createdAt: new Date().toISOString(),
-          status: 'active'
-        }
-      });
-      
-      console.log(`Created root context '${sessionName}' with ID: ${contextResult.id}`);
-      return contextResult.id;
-    } catch (error) {
-      console.error('Error creating root context:', error);
-      throw error;
+```json
+{
+  "resultType": "input_required",
+  "inputRequests": {
+    "workspaceRoots": {
+      "method": "roots/list"
     }
-  }
-  
-  /**
-   * Send a message in an existing context
-   * @param {string} contextId - The root context ID
-   * @param {string} message - The user's message
-   * @param {Object} options - Additional options
-   * @returns {Promise<Object>} - Response data
-   */
-  async sendMessage(contextId, message, options = {}) {
-    try {
-      // Tuma ujumbe kwa kutumia muktadha ulioainishwa
-      const response = await this.client.sendPrompt(message, {
-        rootContextId: contextId,
-        temperature: options.temperature || 0.7,
-        allowedTools: options.allowedTools || []
-      });
-      
-      // Hiari hifadhi maarifa muhimu kutoka katika mazungumzo
-      if (options.storeInsights) {
-        await this.storeConversationInsights(contextId, message, response.generatedText);
+  },
+  "requestState": "opaque-state-from-server"
+}
+```
+
+Mteja hukusanya mizizi iliyoruhusiwa na kurudia ombi la awali kwa
+`inputResponses` zinazolingana na `requestState` isiyobadilika. Mizunguko hii mingi
+hufanya itifaki iwe isiyo na hali; hakuna mkutano wa `initialize` au
+kikao cha ngazi ya itifaki.
+
+## Tabia ya Kale ya 2025-11-25
+
+Katika MCP `2025-11-25`, wateja walitangaza Mizizi wakati wa kuanzisha. Seva
+ingeweza kutoa ombi la moja kwa moja la `roots/list`, na mteja angeweza kutuma
+`notifications/roots/list_changed` wakati mizizi yake ilibadilika.
+
+Mzunguko huu ni tabia ya kale. Usichanganye mifano yake ya uanzishaji au
+ya taarifa na utekelezaji wa `2026-07-28`.
+
+## Mbadala Inayopendekezwa
+
+### Vigezo vya Zana
+
+Fanya folda au faili inayotakiwa iwe wazi katika muundo wa zana:
+
+```json
+{
+  "name": "analyze_project",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "projectDirectory": {
+        "type": "string",
+        "description": "Approved project directory to analyze"
       }
-      
-      return {
-        message: response.generatedText,
-        toolCalls: response.toolCalls || [],
-        contextId
-      };
-    } catch (error) {
-      console.error(`Error sending message in context ${contextId}:`, error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Store important insights from a conversation
-   * @param {string} contextId - The root context ID
-   * @param {string} userMessage - User's message
-   * @param {string} aiResponse - AI's response
-   */
-  async storeConversationInsights(contextId, userMessage, aiResponse) {
-    try {
-      // Chukua maarifa yanayowezekana (katika programu halisi, hii ingekuwa mbinu zaidi)
-      const combinedText = userMessage + "\n" + aiResponse;
-      
-      // Kanuni rahisi ya kutambua maarifa yanayowezekana
-      const insightWords = ["important", "key point", "remember", "significant", "crucial"];
-      
-      const potentialInsights = combinedText
-        .split(".")
-        .filter(sentence => 
-          insightWords.some(word => sentence.toLowerCase().includes(word))
-        )
-        .map(sentence => sentence.trim())
-        .filter(sentence => sentence.length > 10);
-      
-      // Hifadhi maarifa katika metadata ya muktadha
-      if (potentialInsights.length > 0) {
-        const insights = {};
-        potentialInsights.forEach((insight, index) => {
-          insights[`insight_${Date.now()}_${index}`] = insight;
-        });
-        
-        await this.contextManager.updateContextMetadata(contextId, insights);
-        console.log(`Stored ${potentialInsights.length} insights in context ${contextId}`);
-      }
-    } catch (error) {
-      console.warn('Error storing conversation insights:', error);
-      // Hitilafu isiyo ya muhimu, kwa hivyo andika tu onyo
-    }
-  }
-  
-  /**
-   * Get summary information about a context
-   * @param {string} contextId - The root context ID
-   * @returns {Promise<Object>} - Context information
-   */
-  async getContextInfo(contextId) {
-    try {
-      const contextInfo = await this.contextManager.getContextInfo(contextId);
-      
-      return {
-        id: contextInfo.id,
-        name: contextInfo.name,
-        created: new Date(contextInfo.createdAt).toLocaleString(),
-        lastUpdated: new Date(contextInfo.lastUpdatedAt).toLocaleString(),
-        messageCount: contextInfo.messageCount,
-        metadata: contextInfo.metadata,
-        status: contextInfo.status
-      };
-    } catch (error) {
-      console.error(`Error getting context info for ${contextId}:`, error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Generate a summary of the conversation in a context
-   * @param {string} contextId - The root context ID
-   * @returns {Promise<string>} - Generated summary
-   */
-  async generateContextSummary(contextId) {
-    try {
-      // Muulize mfano kutengeneza muhtasari wa mazungumzo hadi sasa
-      const response = await this.client.sendPrompt(
-        "Please summarize our conversation so far in 3-4 sentences, highlighting the main points discussed.",
-        { rootContextId: contextId, temperature: 0.3 }
-      );
-      
-      // Hifadhi muhtasari katika metadata ya muktadha
-      await this.contextManager.updateContextMetadata(contextId, {
-        conversationSummary: response.generatedText,
-        summarizedAt: new Date().toISOString()
-      });
-      
-      return response.generatedText;
-    } catch (error) {
-      console.error(`Error generating context summary for ${contextId}:`, error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Archive a context when it's no longer needed
-   * @param {string} contextId - The root context ID
-   * @returns {Promise<Object>} - Result of the archive operation
-   */
-  async archiveContext(contextId) {
-    try {
-      // Tengeneza muhtasari wa mwisho kabla ya kuhifadhi
-      const summary = await this.generateContextSummary(contextId);
-      
-      // Hifadhi muktadha
-      await this.contextManager.archiveContext(contextId);
-      
-      return {
-        status: "archived",
-        contextId,
-        summary
-      };
-    } catch (error) {
-      console.error(`Error archiving context ${contextId}:`, error);
-      throw error;
-    }
+    },
+    "required": ["projectDirectory"]
   }
 }
-
-// Mfano wa matumizi
-async function demonstrateContextSession() {
-  const session = new ContextSession('https://mcp-server-example.com');
-  
-  try {
-    // 1. Unda muktadha mpya kwa mazungumzo ya msaada wa bidhaa
-    const contextId = await session.createConversationContext(
-      'Product Support - Database Performance',
-      {
-        customer: 'Globex Corporation',
-        product: 'Enterprise Database',
-        severity: 'Medium',
-        supportAgent: 'AI Assistant'
-      }
-    );
-    
-    // 2. Ujumbe wa kwanza katika mazungumzo
-    const response1 = await session.sendMessage(
-      contextId,
-      "I'm experiencing slow query performance on our database cluster after the latest update.",
-      { storeInsights: true }
-    );
-    console.log('Response 1:', response1.message);
-    
-    // Ujumbe wa kufuatilia katika muktadha huo huo
-    const response2 = await session.sendMessage(
-      contextId,
-      "Yes, we've already checked the indexes and they seem to be properly configured.",
-      { storeInsights: true }
-    );
-    console.log('Response 2:', response2.message);
-    
-    // 3. Pata taarifa kuhusu muktadha
-    const contextInfo = await session.getContextInfo(contextId);
-    console.log('Context Information:', contextInfo);
-    
-    // 4. Tengeneza na onesha muhtasari wa mazungumzo
-    const summary = await session.generateContextSummary(contextId);
-    console.log('Conversation Summary:', summary);
-    
-    // 5. Hifadhi muktadha wakati umemaliza
-    const archiveResult = await session.archiveContext(contextId);
-    console.log('Archive Result:', archiveResult);
-    
-    // 6. Shughulikia makosa yoyote kwa upole
-  } catch (error) {
-    console.error('Error in context session demonstration:', error);
-  }
-}
-
-demonstrateContextSession();
 ```
 
-Katika msimbo uliotangulia tumefanya:
+### URI za Rasilimali
 
-1. Kuunda muktadha wa mizizi kwa mazungumzo ya msaada wa bidhaa kwa kifurushi `createConversationContext`. Katika kesi hii, muktadha ni kuhusu matatizo ya utendaji wa hifadhidata.
+Tumia Rasilimali za MCP wakati seva inaweza kuonyesha faili zinazohusiana kupitia URI
+imara. Hii hufanya ugunduzi na upokeaji kuwa wazi.
 
-1. Kutuma ujumbe mwingi ndani ya muktadha huo, kuruhusu mfano kudumisha hali kwa kifurushi `sendMessage`. Ujumbe unaotumwa ni kuhusu utendaji wa upungufu wa maswali na usanidi wa faharasa.
+### Usanidi wa Seva
 
-1. Kusasisha muktadha na metadata husika kulingana na mazungumzo.
+Kwa usanifu thabiti, sanidi folda zilizoruhusiwa wakati seva inapoanza.
+Hii mara nyingi ni wazi zaidi kuliko kugundua wakati wa wito wa zana.
 
-1. Kutengeneza muhtasari wa mazungumzo na kuhifadhi katika metadata ya muktadha kwa kifurushi `generateContextSummary`.
+## Mahitaji ya Usalama
 
-1. Kuhifadhi muktadha wakati mazungumzo yalipokamilika kwa kifurushi `archiveContext`.
+Mbali na mbadala unaochagua:
 
-1. Kutatua makosa kwa hila ili kuhakikisha uimara.
+- Pata idhini ya mtumiaji kabla ya kuonyesha maeneo ya mfumo wa faili.
+- Fanya njia kuwa za kawaida na zikague ili kuzuia kupita kwenye mipaka isiyoruhusiwa.
+- Tekeleza uthibitishaji na sandbox bila kuhusiana na thamani za mizizi.
+- Tathmini ruhusa tena wakati faili inapotakiwa kufikiwa, si tu wakati inaporejelewa.
+- Epuka kurudisha njia nyeti katika rekodi za kumbukumbu au ujumbe wa makosa.
 
-## Muktadha wa Mizizi kwa Msaada wa Mizunguko mingi
+## Muhimu Kumbuka
 
-Katika mfano huu, tutaunda muktadha wa mizizi kwa kikao cha msaada wa mizunguko mingi, kuonyesha jinsi ya kudumisha hali katika mwingiliano mingi.
+- Mizizi huelezea maeneo muhimu ya mfumo wa faili; hazi hifadhi hali za mazungumzo.
 
-### Utekelezaji wa Python
+- Mizizi ni mwongozo, si ukomo wa udhibiti wa upatikanaji.
+- MCP `2026-07-28` huleta uwezo kwa kila ombi na hutumia
+  `InputRequiredResult` kwa `roots/list`.
+- Utekelezaji mpya unapaswa kutumia vigezo vya zana, URI za rasilimali, au
+  usanidi wa seva badala yake.
 
-```python
-# Mfano wa Python: Muktadha wa Mzizi kwa Msaada wa Mizunguko Nyingi
-import asyncio
-from datetime import datetime
-from mcp_client import McpClient, RootContextManager
+## Rasilimali Zaidi
 
-class AssistantSession:
-    def __init__(self, server_url, api_key=None):
-        self.client = McpClient(server_url=server_url, api_key=api_key)
-        self.context_manager = RootContextManager(self.client)
-    
-    async def create_session(self, name, user_info=None):
-        """Create a new root context for an assistant session"""
-        metadata = {
-            "session_type": "assistant",
-            "created_at": datetime.now().isoformat(),
-        }
-        
-        # Ongeza taarifa za mtumiaji ikiwa zimetolewa
-        if user_info:
-            metadata.update({f"user_{k}": v for k, v in user_info.items()})
-            
-        # Unda muktadha wa mzizi
-        context = await self.context_manager.create_root_context(name, metadata)
-        return context.id
-    
-    async def send_message(self, context_id, message, tools=None):
-        """Send a message within a root context"""
-        # Unda chaguzi na ID ya muktadha
-        options = {
-            "root_context_id": context_id
-        }
-        
-        # Ongeza zana ikiwa zimeelezwa
-        if tools:
-            options["allowed_tools"] = tools
-        
-        # Tuma ombi ndani ya muktadha
-        response = await self.client.send_prompt(message, options)
-        
-        # Sasisha metadata ya muktadha na maendeleo ya mazungumzo
-        await self.context_manager.update_context_metadata(
-            context_id,
-            {
-                f"message_{datetime.now().timestamp()}": message[:50] + "...",
-                "last_interaction": datetime.now().isoformat()
-            }
-        )
-        
-        return response
-    
-    async def get_conversation_history(self, context_id):
-        """Retrieve conversation history from a context"""
-        context_info = await self.context_manager.get_context_info(context_id)
-        messages = await self.client.get_context_messages(context_id)
-        
-        return {
-            "context_info": context_info,
-            "messages": messages
-        }
-    
-    async def end_session(self, context_id):
-        """End an assistant session by archiving the context"""
-        # Tengeneza ombi la muhtasari kwanza
-        summary_response = await self.client.send_prompt(
-            "Please summarize our conversation and any key points or decisions made.",
-            {"root_context_id": context_id}
-        )
-        
-        # Hifadhi muhtasari katika metadata
-        await self.context_manager.update_context_metadata(
-            context_id,
-            {
-                "summary": summary_response.generated_text,
-                "ended_at": datetime.now().isoformat(),
-                "status": "completed"
-            }
-        )
-        
-        # Funga muktadha
-        await self.context_manager.archive_context(context_id)
-        
-        return {
-            "status": "completed",
-            "summary": summary_response.generated_text
-        }
-
-# Matumizi ya mfano
-async def demo_assistant_session():
-    assistant = AssistantSession("https://mcp-server-example.com")
-    
-    # 1. Unda kikao
-    context_id = await assistant.create_session(
-        "Technical Support Session",
-        {"name": "Alex", "technical_level": "advanced", "product": "Cloud Services"}
-    )
-    print(f"Created session with context ID: {context_id}")
-    
-    # 2. Mwingiliano wa kwanza
-    response1 = await assistant.send_message(
-        context_id, 
-        "I'm having trouble with the auto-scaling feature in your cloud platform.",
-        ["documentation_search", "diagnostic_tool"]
-    )
-    print(f"Response 1: {response1.generated_text}")
-    
-    # Mwingiliano wa pili katika muktadha ule ule
-    response2 = await assistant.send_message(
-        context_id,
-        "Yes, I've already checked the configuration settings you mentioned, but it's still not working."
-    )
-    print(f"Response 2: {response2.generated_text}")
-    
-    # 3. Pata historia
-    history = await assistant.get_conversation_history(context_id)
-    print(f"Session has {len(history['messages'])} messages")
-    
-    # 4. Maliza kikao
-    end_result = await assistant.end_session(context_id)
-    print(f"Session ended with summary: {end_result['summary']}")
-
-if __name__ == "__main__":
-    asyncio.run(demo_assistant_session())
-```
-
-Katika msimbo uliotangulia tumefanya:
-
-1. Kuunda muktadha wa mizizi kwa kikao cha msaada wa kiufundi kwa kifurushi `create_session`. Muktadha unajumuisha taarifa za mtumiaji kama jina na kiwango cha kiufundi.
-
-1. Kutuma ujumbe mwingi ndani ya muktadha huo, kuruhusu mfano kudumisha hali kwa kifurushi `send_message`. Ujumbe unaotumwa ni kuhusu matatizo ya kipengele cha uendelezaji wa moja kwa moja.
-
-1. Kupata historia ya mazungumzo kwa kutumia kifurushi `get_conversation_history`, kinachotoa taarifa za muktadha na ujumbe.
-
-1. Kumaliza kikao kwa kuhifadhi muktadha na kutengeneza muhtasari kwa kifurushi `end_session`. Muhtasari unakamata pointi kuu kutoka mazungumzo.
-
-## Mbinu Bora za Muktadha wa Mizizi
-
-Hapa kuna mbinu bora za kusimamia muktadha wa mizizi kwa ufanisi:
-
-- **Unda Muktadha Zilizolengwa**: Unda muktadha wa mizizi tofauti kwa madhumuni au nyanja tofauti za mazungumzo ili kudumisha uwazi.
-
-- **Weka Sera za Kumalizika kwa Muda**: Tekeleza sera za kuhifadhi au kufuta muktadha wa zamani ili kusimamia kuhifadhi na kuzingatia sera za uhifadhi wa data.
-
-- **Hifadhi Metadata Muhimu**: Tumia metadata ya muktadha kuhifadhi taarifa muhimu kuhusu mazungumzo ambayo inaweza kuwa ya manufaa baadaye.
-
-- **Tumia Vitambulisho vya Muktadha kwa Konsistensia**: Mara muktadha utakapoundwa, tumia ID yake kwa uthabiti kwa maombi yote yanayohusiana kudumisha mfuatano.
-
-- **Tengeneza Mihtasari**: Wakati muktadha unapoanza kuwa mrefu, fikiria kutengeneza mihtasari ya kunasa taarifa muhimu huku ukisimamia ukubwa wa muktadha.
-
-- **Tekeleza Udhibiti wa Upatikanaji**: Kwa mifumo ya watumiaji wengi, tekeleza udhibiti mzuri wa upatikanaji kuhakikisha faragha na usalama wa muktadha wa mazungumzo.
-
-- **Kabiliana na Mipaka ya Muktadha**: Fahamu mipaka ya ukubwa wa muktadha na tekeleza mbinu za kushughulikia mazungumzo marefu sana.
-
-- **Hifadhi Ukimalizika**: Hifadhi muktadha wakati mazungumzo yanapokamilika ili kuachilia rasilimali huku ukihifadhi historia ya mazungumzo.
-
-## Kifaacho
-
-- [5.5 Routing](../mcp-routing/README.md)
+- [Mizizi katika MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/client/roots)
+- [Kurikulum ya sifa zilizoezwa](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)
+- [Mabadiliko katika MCP: Maelezo ya 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md)
 
 ---
 

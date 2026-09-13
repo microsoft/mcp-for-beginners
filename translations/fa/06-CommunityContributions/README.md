@@ -1,33 +1,33 @@
 # جامعه و مشارکت‌ها
 
-[![چگونه به MCP مشارکت کنیم: ابزارها، مستندات، کد و بیشتر](../../../translated_images/fa/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
+[![چگونه به MCP کمک کنیم: ابزارها، مستندات، کد و بیشتر](../../../translated_images/fa/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
-_(برای دیدن ویدئوی این درس روی تصویر بالا کلیک کنید)_
+_(برای دیدن ویدیوی این درس روی تصویر بالا کلیک کنید)_
 
 ## مرور کلی
 
-این درس بر چگونگی تعامل با جامعه MCP، مشارکت در اکوسیستم MCP و دنبال کردن بهترین شیوه‌ها برای توسعه مشترک تمرکز دارد. درک نحوه شرکت در پروژه‌های منبع باز MCP برای کسانی که می‌خواهند آینده این فناوری را شکل دهند، ضروری است.
+این درس بر روی نحوه مشارکت با جامعه MCP، کمک به اکوسیستم MCP و پیروی از بهترین روش‌ها برای توسعه مشارکتی تمرکز دارد. درک نحوه شرکت در پروژه‌های منبع باز MCP برای کسانی که می‌خواهند آینده این فناوری را شکل دهند، ضروری است.
 
 ## اهداف یادگیری
 
-تا پایان این درس، قادر خواهید بود:
+تا پایان این درس، شما قادر خواهید بود:
 
 - ساختار جامعه و اکوسیستم MCP را درک کنید
 - به طور مؤثر در انجمن‌ها و بحث‌های جامعه MCP شرکت کنید
-- به مخازن منبع باز MCP مشارکت کنید
-- ابزارها و سرورهای سفارشی MCP را ایجاد و به اشتراک بگذارید
-- بهترین شیوه‌ها برای توسعه و همکاری در MCP را دنبال کنید
-- منابع و فریمورک‌های جامعه برای توسعه MCP را کشف کنید
+- به مخازن منبع باز MCP کمک کنید
+- ابزارها و سرورهای سفارشی MCP بسازید و به اشتراک بگذارید
+- بهترین روش‌های توسعه و همکاری MCP را دنبال کنید
+- منابع و چارچوب‌های جامعه برای توسعه MCP را کشف کنید
 
 ## اکوسیستم جامعه MCP
 
-اکوسیستم MCP از اجزای مختلف و شرکت‌کنندگانی تشکیل شده است که با هم برای پیشرفت پروتکل کار می‌کنند.
+اکوسیستم MCP شامل اجزا و شرکت‌کنندگان مختلفی است که با هم کار می‌کنند تا پروتکل را به پیش ببرند.
 
 ### اجزای کلیدی جامعه
 
-1. **نگهدارندگان اصلی پروتکل**: سازمان رسمی [Model Context Protocol در گیت‌هاب](https://github.com/modelcontextprotocol) نگهدارنده مشخصات اصلی MCP و پیاده‌سازی‌های مرجع است
-2. **توسعه‌دهندگان ابزار**: افراد و تیم‌هایی که ابزارها و سرورهای MCP را ایجاد می‌کنند
-3. **ارائه‌دهندگان یکپارچه‌سازی**: شرکت‌هایی که MCP را در محصولات و خدمات خود ادغام می‌کنند
+1. **نگهدارندگان اصلی پروتکل**: سازمان رسمی [GitHub پروتکل مدل کانتکست](https://github.com/modelcontextprotocol) مسئول نگهداری مشخصات اصلی MCP و پیاده‌سازی‌های مرجع است
+2. **توسعه‌دهندگان ابزار**: افراد و تیم‌هایی که ابزارها و سرورهای MCP را می‌سازند
+3. **ارائه‌دهندگان ادغام**: شرکت‌هایی که MCP را در محصولات و خدمات خود ادغام می‌کنند
 4. **کاربران نهایی**: توسعه‌دهندگان و سازمان‌هایی که از MCP در برنامه‌های خود استفاده می‌کنند
 5. **مشارکت‌کنندگان**: اعضای جامعه که کد، مستندات یا منابع دیگر ارائه می‌دهند
 
@@ -35,22 +35,22 @@ _(برای دیدن ویدئوی این درس روی تصویر بالا کلی
 
 #### کانال‌های رسمی
 
-- [سازمان گیت‌هاب MCP](https://github.com/modelcontextprotocol)
+- [سازمان MCP در GitHub](https://github.com/modelcontextprotocol)
 - [مستندات MCP](https://modelcontextprotocol.io/)
-- [مشخصات MCP](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [بحث‌های گیت‌هاب](https://github.com/orgs/modelcontextprotocol/discussions)
-- [مخزن نمونه‌ها و سرورهای MCP](https://github.com/modelcontextprotocol/servers)
+- [مشخصات MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [بحث‌های GitHub](https://github.com/orgs/modelcontextprotocol/discussions)
+- [مخزن نمونه‌ها و سرورها MCP](https://github.com/modelcontextprotocol/servers)
 
-#### منابع جامعه‌محور
+#### منابع جامعه محور
 
-- [کلاینت‌های MCP](https://modelcontextprotocol.io/clients) - فهرستی از کلاینت‌هایی که از یکپارچه‌سازی MCP پشتیبانی می‌کنند
-- [سرورهای جامعه MCP](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - فهرست در حال رشد سرورهای توسعه یافته توسط جامعه MCP
+- [کلاینت‌های MCP](https://modelcontextprotocol.io/clients) - فهرستی از کلاینت‌هایی که ادغام MCP را پشتیبانی می‌کنند
+- [سرورهای جامعه MCP](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - لیست رو به رشد سرورهای ساخته شده توسط جامعه MCP
 - [سرورهای عالی MCP](https://github.com/wong2/awesome-mcp-servers) - فهرست منتخب سرورهای MCP
-- [PulseMCP](https://www.pulsemcp.com/) - مرکز جامعه و خبرنامه برای کشف منابع MCP
-- [Remote OpenClaw](https://www.remoteopenclaw.com/) - فهرست جستجوپذیر رایگان سرورهای MCP، مهارت‌های عامل و افزونه‌ها
+- [PulseMCP](https://www.pulsemcp.com/) - مرکز و خبرنامه جامعه برای کشف منابع MCP
+- [Remote OpenClaw](https://www.remoteopenclaw.com/) - فهرست رایگان قابل جستجو از سرورهای MCP، مهارت‌های عامل و افزونه‌ها
 - [سرور Discord](https://discord.gg/jHEGxQu2a5) - ارتباط با توسعه‌دهندگان MCP
-- پیاده‌سازی‌های SDK مخصوص زبان‌های برنامه‌نویسی
-- پست‌ها و آموزش‌های وبلاگ
+- پیاده‌سازی‌های SDK به زبان‌های مختلف
+- پست‌ها و آموزش‌های وبلاگی
 
 ## مشارکت در MCP
 
@@ -58,69 +58,69 @@ _(برای دیدن ویدئوی این درس روی تصویر بالا کلی
 
 اکوسیستم MCP انواع مختلفی از مشارکت‌ها را می‌پذیرد:
 
-1. **مشارکت‌های کدی**:
+1. **مشارکت‌های کد**:
    - بهبودهای پروتکل اصلی
-   - رفع اشکال‌ها
+   - رفع اشکالات
    - پیاده‌سازی ابزارها و سرورها
    - کتابخانه‌های کلاینت/سرور در زبان‌های مختلف
 
 2. **مستندات**:
    - بهبود مستندات موجود
-   - ایجاد آموزش‌ها و راهنماها
+   - ساخت آموزش‌ها و راهنماها
    - ترجمه مستندات
-   - ایجاد نمونه‌ها و برنامه‌های نمونه
+   - ساخت نمونه‌ها و برنامه‌های نمونه
 
-3. **پشتیبانی از جامعه**:
-   - پاسخ‌دهی به سوالات در انجمن‌ها و بحث‌ها
+3. **پشتیبانی جامعه**:
+   - پاسخ به سوالات در انجمن‌ها و بحث‌ها
    - آزمایش و گزارش مشکلات
    - سازماندهی رویدادهای جامعه
-   - راهنمایی به مشارکت‌کنندگان جدید
+   - راهنمایی مشارکت‌کنندگان جدید
 
-### روند مشارکت: پروتکل اصلی
+### فرآیند مشارکت: پروتکل اصلی
 
-برای مشارکت در پروتکل اصلی MCP یا پیاده‌سازی‌های رسمی، اصول زیر از [راهنمای مشارکت رسمی](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md) را دنبال کنید:
+برای کمک به پروتکل اصلی MCP یا پیاده‌سازی‌های رسمی، اصول زیر از [راهنمای مشارکت رسمی](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md) را دنبال کنید:
 
-1. **سادگی و مینیمالیسم**: مشخصات MCP استاندارد بالایی برای افزودن مفاهیم جدید دارد. اضافه کردن چیزها به مشخصات آسان‌تر از حذف آن‌ها است.
+1. **سادگی و مینیمالیسم**: مشخصات MCP معیار بالایی برای افزودن مفاهیم جدید دارد. اضافه کردن چیزها به مشخصات آسان‌تر از حذف آن‌هاست.
 
-2. **رویکرد ملموس**: تغییرات مشخصات باید بر اساس چالش‌های پیاده‌سازی مشخص باشد، نه ایده‌های فرضی.
+2. **رویکرد ملموس**: تغییرات مشخصات باید بر اساس چالش‌های پیاده‌سازی خاص باشد، نه ایده‌های احتمالی.
 
 3. **مراحل یک پیشنهاد**:
-   - تعریف: کاوش فضای مسئله، اعتبارسنجی اینکه سایر کاربران MCP با مشکل مشابه روبرو هستند
-   - نمونه اولیه: ساخت یک راه‌حل نمونه و نشان دادن کاربرد عملی آن
-   - نوشتن: بر اساس نمونه اولیه، نوشتن یک پیشنهاد مشخصات
+   - تعریف: فضای مسئله را کاوش کنید، تایید کنید که کاربران دیگر MCP با مشکل مشابهی مواجه‌اند
+   - نمونه‌سازی: یک راه‌حل نمونه بسازید و کاربرد عملی آن را نشان دهید
+   - نوشتن: بر اساس نمونه، یک پیشنهاد مشخصات بنویسید
 
-### تنظیم محیط توسعه
+### راه‌اندازی محیط توسعه
 
 ```bash
-# ایجاد فورک از مخزن
+# انشعاب از مخزن
 git clone https://github.com/YOUR-USERNAME/modelcontextprotocol.git
 cd modelcontextprotocol
 
 # نصب وابستگی‌ها
 npm install
 
-# برای تغییرات در اسکما، اعتبارسنجی و تولید schema.json:
+# برای تغییرات اسکما، تأیید و تولید schema.json:
 npm run check:schema:ts
 npm run generate:schema
 
-# برای تغییرات در مستندات
+# برای تغییرات مستندات
 npm run check:docs
 npm run format
 
-# پیش‌نمایش مستندات به صورت محلی (اختیاری):
+# پیش‌نمایش مستندات به‌صورت محلی (اختیاری):
 npm run serve:docs
 ```
 
-### مثال: مشارکت در رفع یک اشکال
+### مثال: کمک به رفع یک اشکال
 
 ```javascript
-// کد اصلی با اشکال در typescript-sdk
+// کد اصلی با باگ در typescript-sdk
 export function validateResource(resource: unknown): resource is MCPResource {
   if (!resource || typeof resource !== 'object') {
     return false;
   }
   
-  // اشکال: اعتبارسنجی ویژگی مفقود شده
+  // باگ: اعتبارسنجی ویژگی مفقود است
   // پیاده‌سازی فعلی:
   const hasName = 'name' in resource;
   const hasSchema = 'schema' in resource;
@@ -128,7 +128,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
   return hasName && hasSchema;
 }
 
-// پیاده‌سازی اصلاح‌شده در یک مشارکت
+// پیاده‌سازی اصلاح شده در یک مشارکت
 export function validateResource(resource: unknown): resource is MCPResource {
   if (!resource || typeof resource !== 'object') {
     return false;
@@ -143,10 +143,10 @@ export function validateResource(resource: unknown): resource is MCPResource {
 }
 ```
 
-### مثال: مشارکت یک ابزار جدید در کتابخانه استاندارد
+### مثال: کمک به افزودن ابزار جدید به کتابخانه استاندارد
 
 ```python
-# نمونه مشارکت: ابزاری برای پردازش داده‌های CSV برای کتابخانه استاندارد MCP
+# نمونه مشارکت: ابزار پردازش داده CSV برای کتابخانه استاندارد MCP
 
 from mcp_tools import Tool, ToolRequest, ToolResponse, ToolExecutionException
 import pandas as pd
@@ -212,10 +212,10 @@ class CsvProcessingTool(Tool):
             operation = request.parameters.get("operation")
             output_format = request.parameters.get("outputFormat", "json")
             
-            # دریافت داده‌های CSV از داده مستقیم یا URL
+            # دریافت داده CSV از داده مستقیم یا URL
             df = await self._get_dataframe(request)
             
-            # پردازش بر اساس عملیات درخواست شده
+            # پردازش بر اساس عملیات درخواستی
             result = {}
             
             if operation == "summary":
@@ -303,18 +303,18 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### دستورالعمل‌های مشارکت
+### راهنمای مشارکت
 
-برای انجام یک مشارکت موفق در پروژه‌های MCP:
+برای موفقیت در کمک به پروژه‌های MCP:
 
-1. **با کوچک شروع کنید**: با مستندات، رفع اشکال یا بهبودهای کوچک آغاز کنید
-2. **راهنمای سبک را دنبال کنید**: به سبک کدنویسی و قراردادهای پروژه پایبند باشید
-3. **تست بنویسید**: تست‌های واحد را برای مشارکت‌های کدی خود اضافه کنید
-4. **کار خود را مستند کنید**: مستندات واضح برای ویژگی‌ها یا تغییرات جدید اضافه کنید
-5. **درخواست‌های کشش هدفمند ارسال کنید**: درخواست‌های کشش را بر روی یک مسئله یا ویژگی متمرکز نگه دارید
-6. **با بازخورد تعامل کنید**: نسبت به بازخوردها پاسخگو باشید
+1. **از کوچک شروع کنید**: با مستندات، رفع اشکالات، یا بهبودهای کوچک شروع کنید
+2. **راهنمای سبک را دنبال کنید**: به سبک کدنویسی و توافقات پروژه پایبند باشید
+3. **تست بنویسید**: شامل تست‌های واحد برای کمک‌های کدی خود باشید
+4. **کار خود را مستند کنید**: مستندات واضح درباره ویژگی‌ها یا تغییرات جدید اضافه کنید
+5. **درخواست‌های کشش هدفمند ارسال کنید**: درخواست‌های کشش را متمرکز بر یک موضوع یا ویژگی نگه دارید
+6. **با بازخورد درگیر شوید**: به بازخوردها درباره کمک‌های خود پاسخگو باشید
 
-### نمونه فرآیند مشارکت
+### مثال روند مشارکت
 
 ```bash
 # مخزن را کلون کنید
@@ -327,7 +327,7 @@ git checkout -b feature/my-contribution
 # تغییرات خود را اعمال کنید
 # ...
 
-# تست‌ها را اجرا کنید تا مطمئن شوید تغییرات شما عملکرد موجود را خراب نمی‌کند
+# تست‌ها را اجرا کنید تا اطمینان حاصل شود تغییرات شما عملکردهای موجود را خراب نمی‌کند
 npm test
 
 # تغییرات خود را با یک پیام توصیفی کامیت کنید
@@ -336,37 +336,39 @@ git commit -am "Fix validation in resource handler"
 # شاخه خود را به فورک خود پوش کنید
 git push origin feature/my-contribution
 
-# یک درخواست Pull از شاخه خود به مخزن اصلی ایجاد کنید
-# سپس با بازخوردها درگیر شوید و در صورت نیاز روی PR خود تکرار کنید
+# یک درخواست pull از شاخه خود به مخزن اصلی ایجاد کنید
+# سپس با بازخوردها تعامل داشته و بر اساس نیاز درخواست pull خود را تکرار کنید
 ```
 
-## ایجاد و به اشتراک‌گذاری سرورهای MCP
+## ساخت و به اشتراک‌گذاری سرورهای MCP
 
-یکی از ارزشمندترین روش‌های مشارکت در اکوسیستم MCP، ایجاد و به اشتراک‌گذاری سرورهای سفارشی MCP است. جامعه تاکنون صدها سرور برای خدمات و موارد کاربرد مختلف توسعه داده است.
+یکی از ارزشمندترین راه‌های کمک به اکوسیستم MCP، ایجاد و به‌اشتراک‌گذاری سرورهای سفارشی MCP است. جامعه تا کنون صدها سرور برای خدمات و کاربردهای مختلف توسعه داده است.
 
-### فریمورک‌های توسعه سرور MCP
+### چارچوب‌های توسعه سرور MCP
 
-چندین فریمورک برای ساده‌سازی توسعه سرور MCP موجود است:
+چندین چارچوب برای ساده‌سازی توسعه سرور MCP در دسترس است:
 
-1. **SDK های رسمی** (مطابق با [مشخصات MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
-   - [SDK تایپ‌اسکریپت](https://github.com/modelcontextprotocol/typescript-sdk)
-   - [SDK پایتون](https://github.com/modelcontextprotocol/python-sdk)
-   - [SDK سی‌شارپ](https://github.com/modelcontextprotocol/csharp-sdk)
-   - [SDK گو](https://github.com/modelcontextprotocol/go-sdk)
-   - [SDK جاوا](https://github.com/modelcontextprotocol/java-sdk)
-   - [SDK کاتلین](https://github.com/modelcontextprotocol/kotlin-sdk)
-   - [SDK سوئیفت](https://github.com/modelcontextprotocol/swift-sdk)
-   - [SDK راست](https://github.com/modelcontextprotocol/rust-sdk)
+1. **SDKهای رسمی** (مستندات
+    [SDK](https://modelcontextprotocol.io/docs/sdk) را برای هر
+    نسخه پروتکل پشتیبانی شده بررسی کنید):
+   - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
+   - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+   - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
+   - [Go SDK](https://github.com/modelcontextprotocol/go-sdk)
+   - [Java SDK](https://github.com/modelcontextprotocol/java-sdk)
+   - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk)
+   - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk)
+   - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk)
 
-2. **فریمورک‌های جامعه**:
-   - [MCP-Framework](https://mcp-framework.com/) - ساخت سرورهای MCP با ظرافت و سرعت در تایپ‌اسکریپت
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - سرورهای MCP مبتنی بر انوتیشن با جاوا
-   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - فریمورک جاوا برای سرورهای MCP
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - پروژه آغازین Next.js برای سرورهای MCP
+2. **چارچوب‌های جامعه**:
+   - [MCP-Framework](https://mcp-framework.com/) - ساخت سرورهای MCP با زیبایی و سرعت در TypeScript
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - سرورهای MCP مبتنی بر حاشیه‌نویسی با جاوا
+   - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - چارچوب جاوا برای سرورهای MCP
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - پروژه شروع کننده Next.js برای سرورهای MCP
 
-### توسعه ابزارهای قابل اشتراک‌گذاری
+### توسعه ابزارهای قابل اشتراک
 
-#### مثال .NET: ایجاد بسته ابزار قابل اشتراک‌گذاری
+#### مثال .NET: ساخت پکیج ابزار قابل اشتراک
 
 ```csharp
 // Create a new .NET library project
@@ -472,7 +474,7 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### مثال جاوا: ایجاد بسته Maven برای ابزارها
+#### مثال جاوا: ساخت پکیج Maven برای ابزارها
 
 ```java
 // پیکربندی pom.xml برای یک بسته ابزار MCP قابل اشتراک‌گذاری
@@ -536,7 +538,7 @@ public class WeatherForecastTool implements Tool {
     @Override
     public Object getSchema() {
         Map<String, Object> schema = new HashMap<>();
-        // تعریف طرح‌واره...
+        // تعریف طرحواره...
         return schema;
     }
     
@@ -547,7 +549,7 @@ public class WeatherForecastTool implements Tool {
             int days = request.getParameters().has("days") ? 
                 request.getParameters().get("days").asInt() : 3;
             
-            // فراخوانی API هواشناسی
+            // فراخوانی API آب و هوا
             Map<String, Object> forecast = getForecast(location, days);
             
             // ساخت پاسخ
@@ -560,8 +562,8 @@ public class WeatherForecastTool implements Tool {
     }
     
     private Map<String, Object> getForecast(String location, int days) {
-        // پیاده‌سازی فراخوانی API هواشناسی خواهد بود
-        // مثال ساده شده
+        // پیاده‌سازی فراخوانی API آب و هوا خواهد بود
+        // مثال ساده‌شده
         Map<String, Object> result = new HashMap<>();
         // افزودن داده‌های پیش‌بینی...
         return result;
@@ -573,12 +575,12 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### مثال پایتون: انتشار بسته PyPI
+#### مثال پایتون: انتشار پکیج PyPI
 
 ```python
-# ساختار دایرکتوری برای یک بسته PyPI:
+# ساختار پوشه برای یک بسته PyPI:
 # mcp_nlp_tools/
-# ├── LICENSE
+# ├── مجوز
 # ├── README.md
 # ├── setup.py
 # ├── mcp_nlp_tools/
@@ -586,7 +588,7 @@ public class WeatherForecastTool implements Tool {
 # │   ├── sentiment_tool.py
 # │   └── translation_tool.py
 
-# نمونه setup.py
+# نمونه فایل setup.py
 """
 from setuptools import setup, find_packages
 
@@ -623,7 +625,7 @@ class SentimentAnalysisTool(Tool):
     """MCP tool for sentiment analysis of text"""
     
     def __init__(self, model_name="distilbert-base-uncased-finetuned-sst-2-english"):
-        # بارگذاری مدل تحلیل احساسات
+        # بارگذاری مدل تحلیل احساس
         self.sentiment_analyzer = pipeline("sentiment-analysis", model=model_name)
     
     def get_name(self):
@@ -655,7 +657,7 @@ class SentimentAnalysisTool(Tool):
             text = request.parameters.get("text")
             include_score = request.parameters.get("includeScore", True)
             
-            # تحلیل احساسات
+            # تحلیل احساس
             sentiment_result = self.sentiment_analyzer(text)[0]
             
             # قالب‌بندی نتیجه
@@ -678,71 +680,71 @@ class SentimentAnalysisTool(Tool):
 # python -m twine upload dist/*
 ```
 
-### به اشتراک‌گذاری بهترین شیوه‌ها
+### به اشتراک‌گذاری بهترین روش‌ها
 
-هنگام به اشتراک‌گذاری ابزارهای MCP با جامعه:
+هنگام به اشتراک گذاری ابزارهای MCP با جامعه:
 
 1. **مستندات کامل**:
-   - هدف، نحوه استفاده و مثال‌ها را مستند کنید
-   - پارامترها و مقادیر بازگشتی را توضیح دهید
-   - وابستگی‌های خارجی را مستند کنید
+   - هدف، نحوه استفاده و نمونه‌ها را مستند کنید
+   - پارامترها و مقادیر برگشتی را توضیح دهید
+   - هر وابستگی خارجی را مستند کنید
 
 2. **مدیریت خطا**:
-   - مدیریت خطاهای قوی پیاده‌سازی کنید
+   - پیاده‌سازی مدیریت خطاهای قوی
    - پیام‌های خطای مفید ارائه دهید
-   - موارد خاص را به خوبی مدیریت کنید
+   - شرایط حاشیه‌ای را به طور مناسب مدیریت کنید
 
 3. **ملاحظات عملکردی**:
-   - بهینه‌سازی برای سرعت و مصرف منابع
-   - در صورت مناسب، کشینگ پیاده‌سازی کنید
+   - برای سرعت و مصرف منابع بهینه‌سازی کنید
+   - هنگام امکان پیاده‌سازی کشینگ انجام دهید
    - مقیاس‌پذیری را در نظر بگیرید
 
 4. **امنیت**:
    - از کلیدهای API و احراز هویت امن استفاده کنید
    - ورودی‌ها را اعتبارسنجی و پاک‌سازی کنید
-   - محدودیت نرخ برای تماس‌های API خارجی اجرا کنید
+   - محدودیت نرخ برای تماس‌های API خارجی اعمال کنید
 
-5. **آزمون**:
-   - پوشش آزمایشی جامع داشته باشید
-   - با انواع ورودی‌ها و موارد خاص تست کنید
-   - روش‌های آزمون را مستند کنید
+5. **آزمایش**:
+   - پوشش آزمایشی جامع ارائه دهید
+   - با انواع ورودی و شرایط مرزی آزمایش کنید
+   - روند آزمایش را مستند کنید
 
-## همکاری جامعه و بهترین شیوه‌ها
+## همکاری جامعه و بهترین روش‌ها
 
-همکاری مؤثر کلید اکوسیستم پررونق MCP است.
+همکاری مؤثر کلیدی برای اکوسیستم موفق MCP است.
 
 ### کانال‌های ارتباطی
 
-- مسائل و بحث‌های گیت‌هاب
-- جامعه فنی مایکروسافت
+- مسائل و بحث‌های GitHub
+- جامعه فناوری مایکروسافت
 - کانال‌های Discord و Slack
 - Stack Overflow (برچسب: `model-context-protocol` یا `mcp`)
 
-### بررسی کد
+### مرور کد
 
 هنگام بررسی مشارکت‌های MCP:
 
-1. **وضوح**: آیا کد واضح و خوب مستند شده است؟
-2. **درستی**: آیا همان طور که انتظار می‌رود کار می‌کند؟
-3. **یکپارچگی**: آیا از قراردادهای پروژه پیروی می‌کند؟
-4. **کامل بودن**: آیا تست‌ها و مستندات شامل شده‌اند؟
+1. **وضوح**: آیا کد واضح و به‌خوبی مستند شده است؟
+2. **درستی**: آیا همانطور که انتظار می‌رود کار می‌کند؟
+3. **یکپارچگی**: آیا دستورالعمل‌های پروژه را رعایت می‌کند؟
+4. **کامل بودن**: آیا تست و مستندات همراه است؟
 5. **امنیت**: آیا نگرانی‌های امنیتی وجود دارد؟
 
-### سازگاری نسخه‌ها
+### سازگاری نسخه
 
 هنگام توسعه برای MCP:
 
 1. **نسخه‌بندی پروتکل**: به نسخه پروتکل MCP که ابزار شما پشتیبانی می‌کند پایبند باشید
-2. **سازگاری کلاینت**: سازگاری به عقب را در نظر بگیرید
+2. **سازگاری کلاینت**: سازگاری به عقب را مد نظر داشته باشید
 3. **سازگاری سرور**: دستورالعمل‌های پیاده‌سازی سرور را دنبال کنید
-4. **تغییرات شکافنده**: هر گونه تغییر شکافنده را واضح مستند کنید
+4. **تغییرات شکاف‌دار**: هر گونه تغییر شکاف‌دار را به وضوح مستند کنید
 
-## پروژه نمونه جامعه: ثبت ابزارهای MCP
+## پروژه نمونه جامعه: ثبت ابزار MCP
 
-یک مشارکت مهم در جامعه می‌تواند توسعه یک ثبت عمومی برای ابزارهای MCP باشد.
+یک مشارکت مهم جامعه می‌تواند توسعه یک فهرست عمومی برای ابزارهای MCP باشد.
 
 ```python
-# نمونه‌ای از ساختار برای API ثبت ابزار جامعه
+# نمونه طرح‌واره برای API رجیستری ابزار جامعه
 
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field, HttpUrl
@@ -750,7 +752,7 @@ from typing import List, Optional
 import datetime
 import uuid
 
-# مدل‌ها برای ثبت ابزار
+# مدل‌ها برای رجیستری ابزار
 class ToolSchema(BaseModel):
     """JSON Schema for a tool"""
     type: str
@@ -779,10 +781,10 @@ class Tool(ToolRegistration):
     rating: float = Field(default=0.0)
     ratings_count: int = Field(default=0)
 
-# برنامه FastAPI برای ثبت
+# برنامه FastAPI برای رجیستری
 app = FastAPI(title="MCP Tool Registry")
 
-# پایگاه داده در حافظه برای این نمونه
+# پایگاه داده در حافظه برای این مثال
 tools_db = {}
 
 @app.post("/tools", response_model=Tool)
@@ -820,19 +822,19 @@ async def delete_tool(tool_name: str):
 
 ## نکات کلیدی
 
-- جامعه MCP متنوع است و انواع مختلفی از مشارکت‌ها را استقبال می‌کند
-- مشارکت در MCP می‌تواند از بهبودهای پروتکل اصلی تا ابزارهای سفارشی متغیر باشد
-- دنبال کردن دستورالعمل‌های مشارکت شانس پذیرش PR شما را افزایش می‌دهد
-- ایجاد و به اشتراک‌گذاری ابزارهای MCP راهی ارزشمند برای بهبود اکوسیستم است
-- همکاری جامعه برای رشد و بهبود MCP حیاتی است
+- جامعه MCP متنوع است و انواع مختلف مشارکت را می‌پذیرد
+- کمک به MCP می‌تواند از بهبود پروتکل اصلی تا ابزارهای سفارشی متغیر باشد
+- پیروی از راهنمای مشارکت شانس پذیرش درخواست شما را افزایش می‌دهد
+- ساخت و به اشتراک‌گذاری ابزارهای MCP راهی ارزشمند برای تقویت اکوسیستم است
+- همکاری جامعه برای رشد و بهبود MCP ضروری است
 
 ## تمرین
 
-1. یک حوزه در اکوسیستم MCP که می‌توانید بر اساس مهارت‌ها و علاقه‌هایتان مشارکت کنید را شناسایی کنید
+1. یک حوزه در اکوسیستم MCP که می‌توانید بر اساس مهارت‌ها و علاقه‌مندی‌هایتان مشارکت کنید را شناسایی کنید
 2. مخزن MCP را فورک کرده و محیط توسعه محلی راه‌اندازی کنید
-3. یک بهبود کوچک، رفع اشکال یا ابزاری که به جامعه سود برساند ایجاد کنید
+3. یک بهبود کوچک، رفع اشکال یا ابزار ایجاد کنید که به جامعه سود برساند
 4. مشارکت خود را با تست‌ها و مستندات مناسب مستند کنید
-5. یک درخواست کشش به مخزن مناسب ارسال کنید
+5. یک درخواست کشش (Pull Request) به مخزن مناسب ارسال کنید
 
 ## منابع اضافی
 
@@ -840,7 +842,7 @@ async def delete_tool(tool_name: str):
 
 ---
 
-## مرحله بعدی
+## مرحله بعد
 
 بعدی: [درس‌هایی از پذیرش اولیه](../07-LessonsfromEarlyAdoption/README.md)
 

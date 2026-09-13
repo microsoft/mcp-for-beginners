@@ -1,25 +1,25 @@
-# Lapozás és Nagy Eredményhalmazok az MCP-ben
+# Lapozás és nagy eredményhalmazok az MCP-ben
 
-Amikor az MCP szervere nagy adatállományokat kezel - legyen szó akár több ezer fájl, adatbázis rekord vagy keresési találat listázásáról -, szükség van lapozásra a memória hatékony kezelése és a gyors válaszidők biztosítása érdekében. Ez az útmutató bemutatja, hogyan valósítható meg és használható a lapozás az MCP-ben.
+Amikor az MCP szervered nagy adatbázisokkal dolgozik – akár több ezer fájl, adatbázis rekord vagy keresési eredmény listázásáról van szó – a lapozásra van szükség a memória hatékony kezelése és a gyors felhasználói élmény biztosítása érdekében. Ez az útmutató bemutatja, hogyan kell megvalósítani és használni a lapozást az MCP-ben.
 
-## Miért Fontos a Lapozás
+## Miért fontos a lapozás
 
-Lapozás nélkül a nagy válaszok a következőket okozhatják:
+Lapozás nélkül a nagy válaszok okozhatják:
 
 - **Memória kimerülése** - Egyszerre több millió rekord betöltése
-- **Lassú válaszidő** - A felhasználók megvárják az összes adat betöltését
-- **Időtúllépési hibák** - A kérések túllépik az időkorlátokat
-- **Gyenge AI teljesítmény** - A LLM-ek nehezen boldogulnak hatalmas kontextusokkal
+- **Lassú válaszidők** - A felhasználók várnak, amíg az összes adat betöltődik
+- **Időtúllépési hibák** - A kérések meghaladják az időkorlátot
+- **Gyenge AI teljesítmény** - A nagyméretű szövegkörnyezet nehézséget okoz az LLM-eknek
 
-Az MCP **kurzor-alapú lapozást** használ a megbízható és következetes eredményoldalazáshoz.
+Az MCP **kurzor alapú lapozást** használ a megbízható, konzisztens lapozáshoz az eredményhalmazokon keresztül.
 
 ---
 
-## Hogyan Működik az MCP Lapozás
+## Hogyan működik az MCP lapozás
 
-### A Kurzor Fogalma
+### A kurzor fogalma
 
-A **kurzor** egy átlátszatlan karakterlánc, amely az eredményhalmazon belüli helyzetedet jelöli. Olyan, mint egy könyvjelző egy hosszú könyvben.
+Egy **kurzor** egy átlátszatlan szöveg, amely jelzi a helyedet egy eredményhalmazban. Olyan, mint egy könyvjelző egy hosszú könyvben.
 
 ```mermaid
 sequenceDiagram
@@ -35,7 +35,8 @@ sequenceDiagram
     Client->>Server: eszközök/lista (kurzor: "def456")
     Server-->>Client: eszközök [21-25], következőKurzor: null (vég)
 ```
-### Lapozás az MCP Metódusokban
+
+### Lapozás az MCP metódusaiban
 
 Ezek az MCP metódusok támogatják a lapozást:
 
@@ -48,7 +49,7 @@ Ezek az MCP metódusok támogatják a lapozást:
 
 ---
 
-## Szerver Oldali Megvalósítás
+## Szerver oldali megvalósítás
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Szimulált nagy adathalmaz
+# Szimulált nagy adatállomány
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Dekódolja a kurzort a kezdő index megszerzéséhez
+    # Dekódolja a kurzort a kezdőindex lekéréséhez
     start_index = 0
     if cursor:
         try:
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Eredmények oldalának lekérése
+    # Az eredmények oldalának lekérése
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Szimulált nagyméretű adatállomány
+// Szimulált nagy adatállomány
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Dekódolja a kurzort
+  // Kurzor dekódolása
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Nagy adatkészlet inicializálása
+        // Nagy adathalmaz inicializálása
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## Kliens Oldali Megvalósítás
+## Kliens oldali megvalósítás
 
-### Python Kliens
+### Python kliens
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript Kliens
+### TypeScript kliens
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Lusta Betöltés Mintázat
+### Lusta betöltési minta
 
-Nagyon nagy adatállományok esetén töltsd be az oldalakat igény szerint:
+Nagyon nagy adatbázisok esetén töltsd be az oldalakat igény szerint:
 
 ```python
 class PaginatedToolIterator:
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Használat - memóriahatékony nagy adathalmazok esetén
+# Használat - memóriahatékony nagy adatkészletekhez
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Lapozás az Erőforrásoknál
+## Lapozás erőforrásoknál
 
-Az erőforrásoknál gyakran szükséges lapozás mappák vagy nagy adatállományok esetén:
+Az erőforrások gyakran igénylik a lapozást könyvtárak vagy nagy adatbázisok esetén:
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Kurzor dekódolása (fájl index)
+    # Dekódolja az kurzort (fájl index)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Következő kurzor kiszámítása
+    # Számolja ki a következő kurzort
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Kurzor Tervezési Stratégiák
+## Kurzor tervezési stratégiák
 
-### Stratégia 1: Index Alapú (Egyszerű)
+### 1. stratégia: Index alapú (Egyszerű)
 
 ```python
 # A kurzor csak az index
-cursor = "50"  # Kezdje az 50. elemtől
+cursor = "50"  # Indítás az 50. elemtől
 ```
 
-**Előnyök:** Egyszerű, állapotmentes  
-**Hátrányok:** Az eredmények eltolódhatnak, ha elemek kerülnek be vagy ki
+**Előnyök:** Egyszerű, állapot nélküli
+**Hátrányok:** Az eredmények elmozdulhatnak, ha elemeket adnak hozzá vagy távolítanak el
 
-### Stratégia 2: ID Alapú (Stabil)
+### 2. stratégia: Azonosító alapú (Stabil)
 
 ```python
 # A kurzor az utoljára látott azonosító
-cursor = "item_abc123"  # Ezt az elemet követően kezdődik
+cursor = "item_abc123"  # Kezdje e tétel után
 ```
 
-**Előnyök:** Stabil, még ha az elemek változnak is  
-**Hátrányok:** Sorrendben lévő azonosítók szükségesek
+**Előnyök:** Stabil akkor is, ha változnak az elemek
+**Hátrányok:** Rendezett azonosítókat igényel
 
-### Stratégia 3: Titkosított Állapot (Összetett)
+### 3. stratégia: Kódolt állapot (Komplex)
 
 ```python
 import base64
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Előnyök:** Képes bonyolult állapotok kódolására  
-**Hátrányok:** Komplexebb, nagyobb kurzor karakterláncok
+**Előnyök:** Összetett állapot kódolható
+**Hátrányok:** Komplexebb, nagyobb kurzor stringek
 
 ---
 
-## Legjobb Gyakorlatok
+## Legjobb gyakorlatok
 
-### 1. Válassz Megfelelő Oldalméretet
+### 1. Válassz megfelelő oldal méreteket
 
 ```python
-# Vegyük figyelembe az adatmennyiséget
+# Vegyük figyelembe az adatméretet
 PAGE_SIZE_SMALL_ITEMS = 100   # Egyszerű metaadatok
 PAGE_SIZE_MEDIUM_ITEMS = 20   # Gazdagabb objektumok
 PAGE_SIZE_LARGE_ITEMS = 5     # Összetett tartalom
 ```
 
-### 2. Kezeld Gráciánsan az Érvénytelen Kurzorokat
+### 2. Kezeld a hibás kurzorokat elegánsan
 
 ```python
 @app.list_tools()
@@ -390,18 +391,18 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Tartalmazza az Összesített Eredmény Számot (Opcionális)
+### 3. Tartalmazza az összesített számot (opcionális)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Néhány megvalósítás tartalmazza az összesített értéket a felhasználói felület haladásához
+    # Néhány megvalósítás tartalmaz összesítést a felhasználói felület előrehaladásához
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Teszteld a Szélsőséges Eseteket
+### 4. Teszteld a szélsőséges eseteket
 
 ```python
 async def test_pagination():
@@ -421,9 +422,9 @@ async def test_pagination():
 
 ---
 
-## Gyakori Hibák
+## Gyakori hibák
 
-### ❌ MINDEN Eredmény Visszaadása, Majd Kliens Oldali Lapozás
+### ❌ Az összes eredményt visszaadni, majd kliens oldalon lapozni
 
 ```python
 # ROSSZ: Minden betöltése a memóriába
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Lapozás az Adatforrásnál
+### ✅ Lapozz az adatforrásnál
 
 ```python
-# JÓ: Csak a szükséges dolgokat tölti be
+# JÓ: Csak a szükségeseket tölti be
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Mi Következik
+## Mi következik
 
-- [5.14 Modul - Kontextus Mérnökség](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [8. Modul - Legjobb Gyakorlatok](../../08-BestPractices/README.md)
-- [3.8 - Az MCP Szerver Tesztelése](../../03-GettingStarted/08-testing/README.md)
+- [Module 5.14 - Kontextelemzés](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Module 8 - Legjobb gyakorlatok](../../08-BestPractices/README.md)
+- [3.8 - Az MCP szerver tesztelése](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## További Erőforrások
+## További források
 
-- [MCP Specifikáció - Lapozás](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Kurzor-alapú Lapozás Magyarázat](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK lapozás tesztjei](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP specifikáció - Lapozás](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Kurzor alapú lapozás magyarázat](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK lapozási tesztek](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) használatával készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások tartalmazhatnak hibákat vagy pontatlanságokat. Az eredeti, anyanyelvi dokumentum tekintendő hivatalos forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből eredő félreértésekért vagy félreértelmezésekért.
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

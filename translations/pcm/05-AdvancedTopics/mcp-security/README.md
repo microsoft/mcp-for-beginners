@@ -1,40 +1,54 @@
 # MCP Security Best Practices - Advanced Implementation Guide
 
-> **Current Standard**: Dis guide dey show [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) security requirements and di official [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+> **Current standard:** Dis guide dey reflect
+> [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and di official
+> [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
-> **Looking ahead:** di `2026-07-28` release candidate dey make authorization strong pass — clients must check di `iss` parameter for authorization responses (RFC 9207), talk true OpenID Connect `application_type` during Dynamic Client Registration, and connect registered credentials to di authorization server wey issue am. E also say make dem no use sessions for authentication, like di "MUST NOT use sessions for authentication" rule wey dem don talk for below. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) for di full list of authorization SEPs.
+> **Authorization update:** MCP `2026-07-28` require clients make dem validate di
+> `iss` parameter for authorization responses (RFC 9207) and bind credentials to
+> di issuing authorization server. Dynamic Client Registration don commot;
+> new implementations suppose use Client ID Metadata Documents. Protocol
+> sessions no suppose dey use for authentication. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Security na serious tin for MCP implementations, especially for enterprise environments. Dis advanced guide go show dangeful security practices for production MCP deployments, cover both normal security gbege and AI-specific threats wey only Model Context Protocol get.
+Security na important part for MCP implementations, specially for enterprise environments. Dis advanced guide go explore full security practices wey important for production MCP deployments, e go cover traditional security concerns plus AI-specific threats wey dey unique to di Model Context Protocol.
 
 ## Introduction
 
-Di Model Context Protocol (MCP) get one kain security palava wey pass normal software security. As AI systems start use tools, data, and outside services, new way for attack full come, like prompt injection, tool poisoning, session hijacking, confused deputy wahala, and token passthrough wahala.
+Di Model Context Protocol (MCP) bring unique security challenges wey
+pass the traditional software security. As AI systems dey get access to tools,
+data, and external services, new attack ways go show face like prompt
+injection, tool poisoning, application-session hijacking, confused deputy
+problems, and token passthrough vulnerabilities.
 
-Dis lesson go show advanced security ways based on di latest MCP specification (2025-11-25), Microsoft security solutions, and known enterprise security styles.
+Dis lesson go explore advance security implementations based on MCP
+Specification `2026-07-28`, Microsoft security solutions, and correct
+enterprise security patterns.
 
 ### **Core Security Principles**
 
-**From MCP Specification (2025-11-25):**
+**From MCP Specification `2026-07-28`:**
 
-- **Explicit Prohibitions**: MCP servers **MUST NOT** accept tokens wey no issue for dem, and **MUST NOT** use sessions for authentication
-- **Mandatory Verification**: All inbound requests **MUST** be checked, and user consent **MUST** dey before proxy operations
-- **Secure Defaults**: Make fail-safe security controls with defense-in-depth methods
-- **User Control**: Users must give clear consent before any data access or tool use
+- **Explicit Prohibitions**: MCP servers **MUST NOT** accept tokens wey dem no issue for dem, and **MUST NOT** use sessions for authentication
+- **Mandatory Verification**: All inbound requests **MUST** dey verified, and user consent **MUST** dey get for proxy operations
+- **Secure Defaults**: Implement fail-safe security controls with defense-in-depth approaches
+- **User Control**: Users must provide explicit consent before any data access or tool execution
 
 ## Learning Objectives
 
-By di end of dis advanced lesson, you go fit:
+By the end of dis advanced lesson, you go fit:
 
-- **Implement Advanced Authentication**: Arrange external identity provider work with Microsoft Entra ID and OAuth 2.1 security styles
-- **Prevent AI-Specific Attacks**: Defend prompt injection, tool poisoning, and session hijacking using Microsoft Prompt Shields and Azure Content Safety
-- **Apply Enterprise Security**: Arrange full logging, monitoring, and incident response for production MCP deployments  
-- **Secure Tool Execution**: Design sandboxed places wey tools dey work with proper isolation and resource controls
-- **Address MCP Vulnerabilities**: Find and stop confused deputy problems, token passthrough issues, and supply chain risks
-- **Integrate Microsoft Security**: Use Azure security services and GitHub Advanced Security for full protection
+- **Implement Advanced Authentication**: Deploy external identity provider integration with Microsoft Entra ID and OAuth 2.1 security patterns
+- **Prevent AI-Specific Attacks**: Protect against prompt injection, tool poisoning, and session hijacking using Microsoft Prompt Shields and Azure Content Safety
+- **Apply Enterprise Security**: Implement comprehensive logging, monitoring, and incident response for production MCP deployments  
+- **Secure Tool Execution**: Design sandboxed execution environments with proper isolation and resource controls
+- **Address MCP Vulnerabilities**: Identify and mitigate confused deputy problems, token passthrough vulnerabilities, and supply chain risks
+- **Integrate Microsoft Security**: Leverage Azure security services and GitHub Advanced Security for comprehensive protection
 
 ## **MANDATORY Security Requirements**
 
-### **Critical Requirements from MCP Specification (2025-11-25):**
+### **Critical Requirements from MCP Specification `2026-07-28`**
 
 ```yaml
 Authentication & Authorization:
@@ -43,7 +57,8 @@ Authentication & Authorization:
   request_verification: "MUST verify ALL inbound requests"
   
 Proxy Operations:  
-  user_consent: "MUST obtain consent for dynamic client registration"
+    user_consent: "MUST obtain consent before authorization and sensitive actions"
+    client_registration: "Use Client ID Metadata Documents; DCR is deprecated"
   oauth_security: "MUST implement OAuth 2.1 with PKCE"
   redirect_validation: "MUST validate redirect URIs strictly"
   
@@ -55,22 +70,23 @@ Session Management:
 
 ## Advanced Authentication and Authorization
 
-Modern MCP implementations benefit from di specification wey dey develop towards external identity provider delegation, wey make security better pass custom authentication methods.
+Modern MCP implementations dey benefit from di specification wey don evolve to external identity provider delegation, wey improve security level well well pass custom authentication implementations.
 
 ### **Microsoft Entra ID Integration**
 
-Di current MCP specification (2025-11-25) allow delegation to external identity providers like Microsoft Entra ID, wey get enterprise-grade security features:
+MCP Specification `2026-07-28` allow delegation to external identity providers
+like Microsoft Entra ID, wey dey provide enterprise-grade security features:
 
 **Security Benefits:**
 - Enterprise-grade multi-factor authentication (MFA)
-- Conditional access policies based on risk check
+- Conditional access policies based on risk assessment
 - Centralized identity lifecycle management
 - Advanced threat protection and anomaly detection
 - Compliance with enterprise security standards
 
 ### .NET Implementation with Entra ID
 
-Better implementation wey use Microsoft security system:
+Enhanced implementation wey dey leverage Microsoft security ecosystem:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -262,7 +278,7 @@ public class AuditLoggingService
 
 ### Java Spring Security with OAuth 2.1 Integration
 
-Better Spring Security implementation wey follow OAuth 2.1 security ways required by MCP specification:
+Enhanced Spring Security implementation wey follow OAuth 2.1 security patterns wey MCP specification require:
 
 ```java
 @Configuration
@@ -308,7 +324,7 @@ public class AdvancedMcpSecurityConfig {
             .cache(Duration.ofMinutes(5))
             .build();
             
-        // MANDATORY: Set up audience validation
+        // MANDATORY: Set audience validation
         jwtDecoder.setJwtValidator(jwtValidator());
         return jwtDecoder;
     }
@@ -317,17 +333,17 @@ public class AdvancedMcpSecurityConfig {
     public Jwt validator jwtValidator() {
         List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
         
-        // Make sure say issuer na Microsoft Entra ID
+        // Make sure issuer na Microsoft Entra ID
         validators.add(new JwtIssuerValidator(
             String.format("https://login.microsoftonline.com/%s/v2.0", tenantId)));
         
-        // MANDATORY: Make sure audience dey match MCP server
+        // MANDATORY: Make sure audience match MCP server
         validators.add(new JwtAudienceValidator(expectedAudience));
         
-        // Check token timestamps
+        // Make sure token time dem correct
         validators.add(new JwtTimestampValidator());
         
-        // Custom validator for MCP-specific claims
+        // Custom validator for MCP-specific claims dem
         validators.add(new McpTokenValidator());
         
         return new DelegatingOAuth2TokenValidator<>(validators);
@@ -355,13 +371,13 @@ public class McpTokenValidator implements OAuth2TokenValidator<Jwt> {
     public OAuth2TokenValidatorResult validate(Jwt jwt) {
         List<OAuth2Error> errors = new ArrayList<>();
         
-        // Check say MCP access get all the required claims
+        // Check required claims for MCP access
         if (!hasRequiredScopes(jwt)) {
             errors.add(new OAuth2Error("invalid_scope", 
                 "Token missing required MCP scopes", null));
         }
         
-        // Check for high-risk indicators
+        // Check for high-risk signs
         if (hasRiskIndicators(jwt)) {
             errors.add(new OAuth2Error("high_risk_token", 
                 "Token indicates high-risk authentication", null));
@@ -389,14 +405,14 @@ public class McpTokenValidator implements OAuth2TokenValidator<Jwt> {
     }
     
     private boolean hasRiskIndicators(Jwt jwt) {
-        // Check for Entra ID risk indicators
+        // Check for Entra ID risk signs
         String riskLevel = jwt.getClaimAsString("riskLevel");
         return "high".equalsIgnoreCase(riskLevel) || "medium".equalsIgnoreCase(riskLevel);
     }
     
     private boolean validateTokenBinding(Jwt jwt) {
-        // Make token binding validation if you dey use bound tokens
-        return true; // Simple for example
+        // Do token binding validation if you dey use bound tokens
+        return true; // Make am simple for example
     }
 }
 
@@ -416,17 +432,17 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
         String userId = authentication.getName();
         
         try {
-            // 1. Make sure token audience dey correct (MANDATORY)
+            // 1. Validate token audience (MANDATORY)
             validateTokenAudience(authentication);
             
-            // 2. Check for prompt injection attempts
+            // 2. Check for prompt injection wahala
             if (promptDetector.detectInjection(request.getParameters())) {
                 auditService.logSecurityEvent(SecurityEventType.PROMPT_INJECTION_ATTEMPT, 
                     userId, toolName, request.getParameters());
                 throw new SecurityException("Potential prompt injection detected");
             }
             
-            // 3. Content safety screening with Azure Content Safety
+            // 3. Content safety check using Azure Content Safety
             ContentSafetyResult safetyResult = contentSafetyClient.analyzeText(
                 request.getParameters().toString());
                 
@@ -436,15 +452,15 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
                 throw new SecurityException("Content safety violation detected");
             }
             
-            // 4. Tool-specific authorization checks
+            // 4. Tool-specific authorization check
             validateToolSpecificPermissions(toolName, authentication, request);
             
-            // 5. Rate limiting and throttling
+            // 5. Rate limit and throttle
             if (!rateLimitService.allowExecution(userId, toolName)) {
                 throw new SecurityException("Rate limit exceeded");
             }
             
-            // Write down successful authorization
+            // Log when authorization succeed
             auditService.logSecurityEvent(SecurityEventType.TOOL_ACCESS_GRANTED,
                 userId, toolName, null);
                 
@@ -471,7 +487,7 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
     private void validateToolSpecificPermissions(String toolName, 
             Authentication auth, ToolRequest request) {
         
-        // Make detailed tool permissions
+        // Implement fine-grained tool permissions
         if (toolName.startsWith("admin.") && !hasRole(auth, "MCP_ADMIN")) {
             throw new AccessDeniedException("Admin role required");
         }
@@ -505,7 +521,7 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
     }
     
     private boolean hasResourceAccess(String userId, String resourceId) {
-        // Implementation go check fine-grained resource permissions
+        // How e go take implement na to check fine-grained resource permissions
         return resourceAccessService.hasAccess(userId, resourceId);
     }
 }
@@ -515,7 +531,7 @@ public class AdvancedMcpSecurityInterceptor implements ToolExecutionInterceptor 
 
 ### **Prompt Injection Defense with Microsoft Prompt Shields**
 
-Modern MCP implementations face strong AI-specific attacks wey need special defenses:
+Modern MCP implementations dey face sophisticated AI-specific attack wey need special defense:
 
 ```python
 from mcp_server import McpServer
@@ -903,7 +919,7 @@ async def log_security_event(event_data: Dict):
 
 ### **1. Confused Deputy Attack Prevention**
 
-**Better Implementation Following MCP Specification (2025-11-25):**
+**Enhanced implementation wey follow MCP Specification `2026-07-28`:**
 
 ```python
 import asyncio
@@ -923,7 +939,7 @@ class AdvancedConfusedDeputyProtection:
         self.secret_client = SecretClient(vault_url=key_vault_url, credential=self.credential)
         self.logger = logging.getLogger(__name__)
         
-        # Cache for clients wey dem don validate (wey fit expire)
+        # Cache for dem client wey dem don check well (wey get expiry)
         self.validated_clients = {}
         
     async def validate_dynamic_client_registration(
@@ -938,7 +954,7 @@ class AdvancedConfusedDeputyProtection:
         per MCP specification requirement
         """
         try:
-            # 1. MANDATORY: Make user gree clear
+            # 1. NA WA: Make you get clear user permission
             consent_validated = await self.validate_user_consent(
                 user_consent_token, client_id, redirect_uri
             )
@@ -947,22 +963,22 @@ class AdvancedConfusedDeputyProtection:
                 self.logger.warning(f"User consent validation failed for client {client_id}")
                 return False
             
-            # 2. Make redirect URI correct correct
+            # 2. Sharp sharp check redirect URI
             if not await self.validate_redirect_uri(redirect_uri, client_id):
                 self.logger.warning(f"Invalid redirect URI for client {client_id}: {redirect_uri}")
                 return False
             
-            # 3. Check against known bad pattern dem
+            # 3. Check make e no be one kain bad kain pattern
             if await self.check_malicious_patterns(client_id, redirect_uri):
                 self.logger.error(f"Malicious pattern detected for client {client_id}")
                 return False
             
-            # 4. Check static client ID relationship
+            # 4. Check the static client ID relationship
             if not await self.validate_static_client_relationship(static_client_id, client_id):
                 self.logger.warning(f"Invalid static client relationship: {static_client_id} -> {client_id}")
                 return False
             
-            # Cache validation wey succeed
+            # Store the beta validation
             self.validated_clients[client_id] = {
                 'validated_at': datetime.utcnow(),
                 'redirect_uri': redirect_uri,
@@ -984,13 +1000,13 @@ class AdvancedConfusedDeputyProtection:
     ) -> bool:
         """Validate explicit user consent for dynamic client registration"""
         try:
-            # Decode and check consent token
+            # Decode and check the consent token
             consent_data = await self.decode_consent_token(consent_token)
             
             if not consent_data:
                 return False
             
-            # Check consent specific one
+            # Confirm say the consent correct
             expected_consent = {
                 'client_id': client_id,
                 'redirect_uri': redirect_uri,
@@ -1014,19 +1030,19 @@ class AdvancedConfusedDeputyProtection:
             
             # Security check dem
             security_checks = [
-                # Gotta use HTTPS for security
+                # Gats use HTTPS for security reason
                 parsed_uri.scheme == 'https',
                 
-                # Check domain
+                # Check the domain
                 await self.validate_domain_ownership(parsed_uri.netloc, client_id),
                 
-                # No dodgy query parameters
+                # No funny query parameters
                 not self.has_suspicious_query_params(parsed_uri.query),
                 
-                # No dey blocklist
+                # No dey for blocklist
                 not await self.is_uri_blocklisted(redirect_uri),
                 
-                # Check path
+                # Check the path
                 self.validate_redirect_path(parsed_uri.path)
             ]
             
@@ -1058,7 +1074,7 @@ class AdvancedConfusedDeputyProtection:
                 return code_challenge == expected_challenge
             
             elif code_challenge_method == "plain":
-                # No too recommend am, but e dey support
+                # E no too beta, but e dey supported
                 return code_challenge == code_verifier
             
             else:
@@ -1071,29 +1087,29 @@ class AdvancedConfusedDeputyProtection:
     
     async def validate_domain_ownership(self, domain: str, client_id: str) -> bool:
         """Validate domain ownership for the registered client"""
-        # Implementation go check domain ownership through DNS records,
-        # certificate check, or domain list wey dem don register before
-        return True  # E easy small for example
+        # The way for do am na to check say you be owner of the domain wit DNS records,
+        # certificate check, or domain dem wey dem don register before
+        return True  # Dem make am simple for example
     
     async def check_malicious_patterns(self, client_id: str, redirect_uri: str) -> bool:
         """Check for known malicious patterns in client registration"""
         malicious_patterns = [
-            # Dodgy domains
+            # Domains wey dey suspect
             lambda uri: any(bad_domain in uri for bad_domain in [
                 'bit.ly', 'tinyurl.com', 'localhost', '127.0.0.1'
             ]),
             
-            # Dodgy client IDs
+            # Client IDs wey dey suspect
             lambda cid: len(cid) < 8 or cid.isdigit(),
             
-            # URL shortener or redirector
+            # URL shorteners or redirectors
             lambda uri: 'redirect' in uri.lower() or 'forward' in uri.lower()
         ]
         
         return any(pattern(redirect_uri) for pattern in malicious_patterns[:1]) or \
                any(pattern(client_id) for pattern in malicious_patterns[1:2])
 
-# How to take use am example
+# How to use am example
 async def secure_oauth_proxy_flow():
     """Example of secure OAuth proxy implementation with confused deputy protection"""
     
@@ -1102,14 +1118,14 @@ async def secure_oauth_proxy_flow():
         tenant_id="your-tenant-id"
     )
     
-    # Example flow
+    # Example of the flow
     async def handle_dynamic_client_registration(request):
         client_id = request.json.get('client_id')
         redirect_uri = request.json.get('redirect_uri') 
         user_consent_token = request.headers.get('User-Consent-Token')
         static_client_id = os.getenv('STATIC_CLIENT_ID')
         
-        # MANDATORY validation like MCP talk
+        # NA WA validation for MCP specification
         if not await protection.validate_dynamic_client_registration(
             client_id=client_id,
             redirect_uri=redirect_uri, 
@@ -1118,7 +1134,7 @@ async def secure_oauth_proxy_flow():
         ):
             return {"error": "Client registration validation failed"}, 400
         
-        # Continue OAuth flow only after validation
+        # Make you continue with OAuth flow only after you don validate
         return await proceed_with_oauth_flow(client_id, redirect_uri)
     
     async def handle_authorization_callback(request):
@@ -1128,19 +1144,19 @@ async def secure_oauth_proxy_flow():
         code_challenge = request.session.get('code_challenge')
         code_challenge_method = request.session.get('code_challenge_method')
         
-        # Validate PKCE (MANDATORY for OAuth 2.1)
+        # Check PKCE (NA WA for OAuth 2.1)
         if not await protection.implement_pkce_validation(
             code_verifier, code_challenge, code_challenge_method
         ):
             return {"error": "PKCE validation failed"}, 400
         
-        # Change authorization code to tokens
+        # Change authorization code for tokens
         return await exchange_code_for_tokens(authorization_code, code_verifier)
 ```
 
 ### **2. Token Passthrough Prevention**
 
-**Complete Implementation:**
+**Comprehensive Implementation:**
 
 ```python
 class TokenPassthroughPrevention:
@@ -1159,12 +1175,12 @@ class TokenPassthroughPrevention:
             import jwt
             from jwt.exceptions import InvalidTokenError
             
-            # Decode wídaot vérifikeshn foh fin chek di claims
+            # Decode am without check first to verify claims
             unverified_payload = jwt.decode(
                 token, options={"verify_signature": False}
             )
             
-            # 1. MANDATORY: Make sure say di audience claim correct
+            # 1. MANDATORY: Check say audience claim correct
             audience = unverified_payload.get('aud')
             if isinstance(audience, list):
                 if self.expected_audience not in audience:
@@ -1175,20 +1191,20 @@ class TokenPassthroughPrevention:
                     self.logger.error(f"Token audience mismatch. Expected: {self.expected_audience}, Got: {audience}")
                     return {"valid": False, "reason": "Invalid audience - token not issued for this MCP server"}
             
-            # 2. Check say di issuer na correct trust person
+            # 2. Make sure say issuer na person wey you fit trust
             issuer = unverified_payload.get('iss')
             if issuer not in self.trusted_issuers:
                 self.logger.error(f"Untrusted issuer: {issuer}")
                 return {"valid": False, "reason": "Untrusted token issuer"}
             
-            # 3. Check di token scope/wetin e suppose do
+            # 3. Check say token get correct scope or purpose
             scope = unverified_payload.get('scp', '').split()
             if 'mcp.server.access' not in scope:
                 self.logger.error("Token missing required MCP server scope")
                 return {"valid": False, "reason": "Token missing required MCP scope"}
             
-            # 4. Now make you verify di signature well well wit correct validation
-            # Dis go use di issuer pùblik key dem
+            # 4. Now make you verify signature well well with proper validation
+            # This one go use issuer public keys
             verified_payload = await self.verify_token_signature(token, issuer)
             
             if not verified_payload:
@@ -1210,26 +1226,26 @@ class TokenPassthroughPrevention:
         Prevent token passthrough by issuing new tokens for downstream services
         """
         try:
-            # No ever carry di og token wok
-            # Instead, make new token specially for di downstream service
+            # No ever use the original token pass through
+            # Instead, make new token wey go be for downstream service only
             
             original_token = downstream_request.get('authorization_token')
             downstream_service = downstream_request.get('service_name')
             
-            # Make sure say di original token na for dis MCP server
+            # Check say original token na for this MCP server wey e issue
             validation_result = await self.validate_token_for_mcp_server(original_token)
             
             if not validation_result['valid']:
                 raise SecurityException(f"Token validation failed: {validation_result['reason']}")
             
-            # Make new token for di downstream service
+            # Issue new token wey go be for downstream service
             new_token = await self.issue_downstream_token(
                 user_context=validation_result['payload'],
                 downstream_service=downstream_service,
                 requested_scopes=downstream_request.get('scopes', [])
             )
             
-            # Update di request wit new token
+            # Update request with the new token
             secure_request = downstream_request.copy()
             secure_request['authorization_token'] = new_token
             secure_request['_original_token_validated'] = True
@@ -1249,10 +1265,10 @@ class TokenPassthroughPrevention:
     ) -> str:
         """Issue new tokens specifically for downstream services"""
         
-        # Token payload for di downstream service
+        # Token payload wey go for downstream service
         token_payload = {
-            'iss': 'mcp-server',  # Dis MCP server na di issuer
-            'aud': f'downstream.{downstream_service}',  # Specific to di downstream service
+            'iss': 'mcp-server',  # This MCP server be the issuer
+            'aud': f'downstream.{downstream_service}',  # Specific to the downstream service
             'sub': user_context.get('sub'),  # Original user subject
             'scp': ' '.join(self.filter_downstream_scopes(requested_scopes)),
             'iat': int(datetime.utcnow().timestamp()),
@@ -1261,7 +1277,7 @@ class TokenPassthroughPrevention:
             'original_token_aud': user_context.get('aud')
         }
         
-        # Sign di token wit MCP server private key
+        # Sign token with MCP server private key
         return await self.sign_downstream_token(token_payload)
 ```
 
@@ -1288,13 +1304,13 @@ class AdvancedSessionSecurity:
         MANDATORY: Generate secure, non-deterministic session IDs
         per MCP specification requirement
         """
-        # Make cryptographically secure random part
+        # Generate cryptographically secure random component
         random_component = secrets.token_urlsafe(32)  # 256 bits of entropy
         
-        # Create user-specific binding as MCP spec talk
+        # Create user-specific binding as recommended by MCP spec
         user_binding = hashlib.sha256(f"{user_id}:{random_component}".encode()).hexdigest()
         
-        # Add timestamp and extra context
+        # Add timestamp and additional context
         timestamp = int(datetime.utcnow().timestamp())
         context_hash = ""
         
@@ -1305,7 +1321,7 @@ class AdvancedSessionSecurity:
         # Format: <user_id>:<timestamp>:<random>:<context>
         session_id = f"{user_id}:{timestamp}:{random_component}:{context_hash}"
         
-        # Encrypt session ID for extra security
+        # Encrypt the session ID for additional security
         encrypted_session_id = self.cipher.encrypt(session_id.encode()).decode()
         
         return encrypted_session_id
@@ -1323,7 +1339,7 @@ class AdvancedSessionSecurity:
             # Decrypt session ID
             decrypted_session = self.cipher.decrypt(session_id.encode()).decode()
             
-            # Break down session parts
+            # Parse session components
             parts = decrypted_session.split(':')
             if len(parts) != 4:
                 self.logger.warning("Invalid session ID format")
@@ -1331,20 +1347,20 @@ class AdvancedSessionSecurity:
             
             session_user_id, timestamp, random_component, context_hash = parts
             
-            # Check user binding
+            # Validate user binding
             if session_user_id != expected_user_id:
                 self.logger.warning(f"Session user mismatch: {session_user_id} != {expected_user_id}")
                 return False
             
-            # Check session age
+            # Validate session age
             session_time = datetime.fromtimestamp(int(timestamp))
-            max_age = timedelta(hours=24)  # E fit configure
+            max_age = timedelta(hours=24)  # Configurable
             
             if datetime.utcnow() - session_time > max_age:
                 self.logger.warning("Session expired due to age")
                 return False
             
-            # Check extra context if e dey
+            # Validate additional context if present
             if context_hash and request_context:
                 expected_context_hash = hashlib.sha256(
                     json.dumps(request_context, sort_keys=True).encode()
@@ -1368,24 +1384,24 @@ class AdvancedSessionSecurity:
     ) -> Dict:
         """Implement comprehensive session security controls"""
         
-        # 1. Check session binding (MANDATORY)
+        # 1. Validate session binding (MANDATORY)
         if not await self.validate_session_binding(session_id, user_id, request.get('context', {})):
             raise SecurityException("Session validation failed")
         
-        # 2. Look for session hijack signs
+        # 2. Check for session hijacking indicators
         hijack_indicators = await self.detect_session_hijacking(session_id, request)
         if hijack_indicators['risk_score'] > 0.7:
             await self.invalidate_session(session_id)
             raise SecurityException("Session hijacking detected")
         
-        # 3. Check request origin and transport security
+        # 3. Validate request origin and transport security
         if not self.validate_transport_security(request):
             raise SecurityException("Insecure transport detected")
         
         # 4. Update session activity
         await self.update_session_activity(session_id, request)
         
-        # 5. Check if session rotation dey needed
+        # 5. Check if session rotation is needed
         if await self.should_rotate_session(session_id):
             new_session_id = await self.rotate_session(session_id, user_id)
             return {"session_rotated": True, "new_session_id": new_session_id}
@@ -1401,28 +1417,28 @@ class AdvancedSessionSecurity:
         session_history = await self.get_session_history(session_id)
         
         if session_history:
-            # IP address change
+            # IP address changes
             current_ip = request.get('client_ip')
             if current_ip != session_history.get('last_ip'):
                 risk_indicators.append('ip_change')
                 risk_score += 0.3
             
-            # User agent change
+            # User agent changes
             current_ua = request.get('user_agent')
             if current_ua != session_history.get('last_user_agent'):
                 risk_indicators.append('user_agent_change')
                 risk_score += 0.2
             
-            # Geographic wahala
+            # Geographic anomalies
             if await self.detect_geographic_anomaly(current_ip, session_history.get('last_ip')):
                 risk_indicators.append('geographic_anomaly')
                 risk_score += 0.4
             
-            # Time-based wahala
+            # Time-based anomalies
             last_activity = session_history.get('last_activity')
             if last_activity:
                 time_gap = datetime.utcnow() - datetime.fromisoformat(last_activity)
-                if time_gap > timedelta(hours=8):  # Long gap fit show say compromise happen
+                if time_gap > timedelta(hours=8):  # Long gap might indicate compromise
                     risk_indicators.append('long_inactivity')
                     risk_score += 0.1
         
@@ -1435,7 +1451,7 @@ class AdvancedSessionSecurity:
 
 ## Enterprise Security Integration & Monitoring
 
-### **Full Logging with Azure Application Insights**
+### **Comprehensive Logging with Azure Application Insights**
 
 ```python
 import json
@@ -1449,7 +1465,7 @@ class EnterpriseSecurityMonitoring:
     """Enterprise-grade security monitoring with Azure integration"""
     
     def __init__(self, app_insights_key: str, log_analytics_workspace: str):
-        # Setup Azure Monitor integration
+        # Set up Azure Monitor integration
         configure_azure_monitor(connection_string=f"InstrumentationKey={app_insights_key}")
         
         self.tracer = trace.get_tracer(__name__)
@@ -1460,7 +1476,7 @@ class EnterpriseSecurityMonitoring:
         """Log security events to Azure Monitor with structured data"""
         
         with self.tracer.start_as_current_span("mcp_security_event") as span:
-            # Add structured properties for span
+            # Add structured properties to span
             span.set_attributes({
                 "mcp.event.type": event_data.get('event_type'),
                 "mcp.tool.name": event_data.get('tool_name'),
@@ -1469,7 +1485,7 @@ class EnterpriseSecurityMonitoring:
                 "mcp.session.id": event_data.get('session_id', '')[:8] + '...',
             })
             
-            # Log go Application Insights
+            # Log to Application Insights
             self.logger.info("MCP Security Event", extra={
                 "custom_dimensions": {
                     **event_data,
@@ -1479,7 +1495,7 @@ class EnterpriseSecurityMonitoring:
                 }
             })
             
-            # For high-risk events, make custom telemetry too
+            # For high-risk events, also create custom telemetry
             if event_data.get('risk_score', 0) > 0.7:
                 await self.create_security_alert(event_data)
     
@@ -1496,7 +1512,7 @@ class EnterpriseSecurityMonitoring:
             "investigation_required": True
         }
         
-        # Send go Azure Sentinel or security operations center
+        # Send to Azure Sentinel or security operations center
         await self.send_to_security_center(alert_data)
     
     async def monitor_tool_usage_patterns(self, user_id: str, tool_name: str):
@@ -1597,7 +1613,7 @@ class MCPThreatDetectionPipeline:
             })
             threat_analysis["risk_score"] += exfiltration_analysis['risk_score']
         
-        # 5. Calculate final risk score and advice
+        # 5. Calculate final risk score and recommendation
         threat_analysis["risk_score"] = min(threat_analysis["risk_score"], 1.0)
         
         if threat_analysis["risk_score"] > 0.8:
@@ -1622,7 +1638,7 @@ class MCPThreatDetectionPipeline:
             "techniques": []
         }
         
-        # Plenty detection techniques
+        # Multiple detection techniques
         techniques = [
             ("pattern_matching", await self.pattern_based_detection(combined_text)),
             ("semantic_analysis", await self.semantic_injection_detection(combined_text)),
@@ -1639,7 +1655,7 @@ class MCPThreatDetectionPipeline:
                 })
                 detection_results["confidence"] = max(detection_results["confidence"], result['confidence'])
         
-        # Gather results together
+        # Aggregate results
         if detection_results["techniques"]:
             detection_results["detected"] = True
             detection_results["severity"] = max(t.get('severity', 1) for _, r in techniques for t in [r] if r['detected'])
@@ -1697,7 +1713,7 @@ class MCPSupplyChainSecurity:
             reputation_score = await self.analyze_component_reputation(component)
             validation_results["reputation_score"] = reputation_score
             
-            # Fin validation decision
+            # Final validation decision
             critical_vulns = [v for v in validation_results["vulnerabilities"] if v['severity'] == 'CRITICAL']
             
             validation_results["security_validated"] = (
@@ -1725,7 +1741,7 @@ Authentication & Authorization:
   External identity provider integration (Microsoft Entra ID)
   Token audience validation (MANDATORY)
   No session-based authentication
-  Full request verification
+  Comprehensive request verification
   
 AI Security Controls:
   Microsoft Prompt Shields integration
@@ -1741,7 +1757,7 @@ Session Security:
   
 OAuth & Proxy Security:
   PKCE implementation (OAuth 2.1)
-  Clear user consent for dynamic clients
+  Explicit user consent for dynamic clients
   Strict redirect URI validation
   No token passthrough (MANDATORY)
 
@@ -1752,24 +1768,24 @@ Enterprise Integration:
   Microsoft Defender for DevOps integration
 
 Monitoring & Response:
-  Full security event logging
+  Comprehensive security event logging
   Real-time threat detection
   Automated incident response
   Risk-based alerting
 
 ### **Microsoft Security Ecosystem Benefits**
 
-- **Integrated Security Posture**: One security for identity, infrastructure, and apps
-- **Advanced AI Protection**: Special defenses against AI-specific threats  
-- **Enterprise Compliance**: Built-in support for regulatory and industry rules
-- **Threat Intelligence**: Global threat intelligence join to protect well
-- **Scalable Architecture**: Enterprise-grade scale with maintained security controls
+- **Integrated Security Posture**: Unified security across identity, infrastructure, and applications
+- **Advanced AI Protection**: Purpose-built defenses against AI-specific threats  
+- **Enterprise Compliance**: Built-in support for regulatory requirements and industry standards
+- **Threat Intelligence**: Global threat intelligence integration for proactive protection
+- **Scalable Architecture**: Enterprise-grade scaling with maintained security controls
 
 ### **References & Resources**
 
-- **[MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25/)**
-- **[MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)**  
-- **[MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)**
+- **[MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)**
+- **[MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)**
+- **[MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)**
 - **[Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)**
 - **[Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/)**
 - **[OAuth 2.0 Security Best Practices (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)**
@@ -1777,7 +1793,9 @@ Monitoring & Response:
 
 ---
 
-> **Security Notice**: Dis advanced implementation guide dey reflect current MCP specification (2025-11-25) requirements. Always check di latest official documents and think about your own security needs and threat model when you dey implement these controls.
+> **Security notice:** Dis advanced implementation guide dey reflect MCP
+> Specification `2026-07-28`. Make you always verify with di latest official
+> documentation and apply controls wey go fit your threat model.
 
 ## What's next
 

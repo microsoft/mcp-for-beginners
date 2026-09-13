@@ -1,78 +1,94 @@
-# MCP ការដឹកជញ្ចូនផ្ទាល់ខ្លួន - មគ្គុទេសក៍អនុវត្តខ្ពស់
+# MCP Custom Transports - មគ្គុទេសក៍អនុវត្តលំដាប់ខ្ពស់
 
-ប្រព័ន្ធ Protocol Context Model (MCP) ផ្តល់ភាពបត់បែនក្នុងមេកានិចដឹកជញ្ជូន ដែលអនុញ្ញាតឱ្យមានការអនុវត្តផ្ទាល់ខ្លួនសម្រាប់បរិយាកាសសហគ្រាសជាក់លាក់។ មគ្គុទេសក៍ខ្ពស់នេះស្វែងយល់អំពីការអនុវត្តការដឹកជញ្ជូនផ្ទាល់ខ្លួនដោយប្រើ Azure Event Grid និង Azure Event Hubs ជាឧទាហរណ៍ជាក់ស្តែងសម្រាប់កំណត់ស្ថាបនាដំណោះស្រាយ MCP ជាក្លោតធីវធម្មជាតិដែលអាចស្កេលបាន។
+របៀប Model Context Protocol (MCP) អនុញ្ញាតឱ្យមានការអនុវត្តន៍ចរន្តផ្ទាល់ខ្លួនសម្រាប់
+បរិយាកាសឯកទេស។ មគ្គុទេសក៍លំដាប់ខ្ពស់នេះសិក្សាពី Azure Event Grid និង
+Azure Event Hubs ជាគំរូសំណង់ស្ថាបត្យកម្ម។ ពួកវាមិនមែនជាចរន្ត MCP ស្តង់ដារ
+ហើយត្រូវការឲ្យទាំងពីរជម្រើសទាំងពីរយល់ព្រមលើការគំរូផ្ទាល់ខ្លួន។
 
-> **មើលទៅមុខ:** មគ្គុទេសក៍នេះត្រូវបានសរសេរតាម **MCP Specification 2025-11-25** ដែលការរៀបចំលំដាប់វគ្គត្រូវតែផ្តល់ការការពារតាមវគ្គមួយៗ (មើល Protocol សារ ខាងក្រោម)។ កំណែបញ្ចេញ `2026-07-28` លុបចេញទាំងសព្វវគ្គនៅកម្រិត protocol ហើយទាមទារក្បាលសារ `Mcp-Method`/`Mcp-Name` ដើម្បីឲ្យទីផ្សា និងការដឹកជញ្ជូនផ្ទាល់ខ្លួនអាចបញ្ជូនតាមសំណើមួយៗដោយមិនតាមវគ្គមួយៗទៀត។ មើល [មានអ្វីប្រែប្រួលនៅ MCP៖ កំណែបញ្ចេញ 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)។
+> **វិសាលភាព MCP `2026-07-28`:** បច្ចុប្បន្ននេះគ្មានសម័យកាលប៉ាប់ប៉ងលើប្រព័ន្ធពិធីការណ៍ទេ,
+> ដូច្នេះចរន្តផ្ទាល់ខ្លួនមិនត្រូវឱ្យពឹងផ្អែកលើភាពតម្រូវសម័យកាល ឬ
+> ការរៀបចំតាមលំដាប់ក្នុងមួយសម័យកាល។ ក្បាល `Mcp-Method` និង `Mcp-Name` ដែលមានលក្ខណៈលក្ខខណ្ឌគឺ
+> ជាការទាមទាររបស់ចរន្ត Streamable HTTP ស្តង់ដារ; ចរន្តមិនមែន HTTP
+> ត្រូវការតំណាងសមមូល មូលនិធិដែលបានយល់ព្រមច្បាស់លាស់ ប្រសិនបើកណ្តាលកណ្តាលត្រូវតែផ្ញើ
+> ដោយគ្មានការដោះស្រាយ JSON-RPC body។ មើល
+> [មានអ្វីផ្លាស់ប្តូរនៅ MCP: ការបញ្ជាក់ 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md)។
 
 ## ការណែនាំ
 
-ខណៈដែលការដឹកជញ្ចូនស្តង់ដារ MCP (stdio និង HTTP streaming) អាចបម្រើការប្រើប្រាស់ភាគច្រើន វប្បធម៌សហគ្រាសជាច្រើនតែងតែទាមទារមេកានិចដឹកជញ្ជូនជាក់លាក់សម្រាប់ការកែលម្អការស្កែល, ភាពទំនុកចិត្ត, និងការរួមបញ្ចូលជាមួយរចនាសម្ព័ន្ធពពកដែលមានស្រាប់។ ការដឹកជញ្ជូនផ្ទាល់ខ្លួនអនុញ្ញាតឲ្យ MCP ប្រើសេវារបស់សារ cloud-native សម្រាប់ការទំនាក់ទំនងមិន đồngពេល, រោងចក្រោតមូលដ្ឋានតាមព្រឹត្តិការណ៍, និងការដំណើរការចែកចាយ។
+ចរន្តស្តង់ដាររបស់ MCP គឺ stdio និង Streamable HTTP។ ប៉ុន្តែក្នុងបរិយាកាស
+សហគ្រាសមួយចំនួន ប្រើការគំរូផ្ទាល់ខ្លួនដើម្បីចងក្រងជាមួយនឹង
+រចនាសម្ព័ន្ធសាររួមប្រកបដោយស្រោចស្រង់មុន ដោយការធ្វើបែបនេះអាចបន្ថយការអាចប្រើប្រាស់រួមជាមួយម្ចាស់ផ្ទះ MCP និង
+SDKs ដែលអនុវត្តតែចរន្តស្តង់ដារ។
 
-មេរៀននេះស្វែងយល់អំពីការអនុវត្តការដឹកជញ្ជូនខ្ពស់ដែលផ្អែកលើព័ត៌មាន MCP ចុងក្រោយ (2025-11-25), សេវាសាររបស់ Azure, និងគំរូរៀបចំសហគ្រាសដែលបានបង្កើតឡើង។
+មេរៀននេះអនុវត្តលក្ខខណ្ឌមិនមានស្ថានភាពរបស់ការបញ្ជាក់ MCP
+`2026-07-28` ទៅសេវាកម្មសារតាម Azure និងគំរូបញ្ចូលសហគ្រាសដែលបានកំណត់។
 
-### **ស្ថាបត្យកម្មដឹកជញ្ជូន MCP**
 
-**ពី MCP Specification (2025-11-25):**
+### **ស្ថាបត្យកម្មចរន្ត MCP**
 
-- **ការដឹកជញ្ជូនស្តង់ដារ**: stdio (ណែនាំ), HTTP streaming (សម្រាប់ស្ថានភាពពីចម្ងាយ)
-- **ការដឹកជញ្ជូនផ្ទាល់ខ្លួន**: ណាមួយដែលអនុវត្ត protocol ផ្លាស់ប្តូរសារអ្នក MCP
-- **ទ្រង់ទ្រាយសារ**: JSON-RPC 2.0 ជាមួយការពង្រីកផ្ទាល់ខ្លួនដោយ MCP
-- **ការទំនាក់ទំនងទ្វេផ្លូវ**: ទំនាក់ទំនង duplex ពេញលេញត្រូវការសម្រាប់ការជូនដំណឹង និងការឆ្លើយតប
+**ចេញពីការបញ្ជាក់ MCP `2026-07-28`:**
 
-## គោលបំណងរៀន
+- **ចរន្តស្តង់ដារ**: stdio និង Streamable HTTP
+- **ចរន្តផ្ទាល់ខ្លួន**: ជម្រើស អនុវត្តសម្រាប់ទៅតាមការយល់ព្រមរួមពី
+    ទីបញ្ចប់ទាំងពីរ
+- **ទំរង់សារ**: JSON-RPC 2.0 មានការពន្ធបន្ថែមជាពិសេសសម្រាប់ MCP
+- **សំណើដែលមានផ្ទៃក្នុងខ្លួនឯង**: គ្មានសម័យកាលប្រព័ន្ធពិធីការណ៍ ឬសេចក្តីព្រមព្រៀងណាមួយ
+    សម្រាប់ផ្ទុកស្ថានភាពរវាងសំណើ
 
-នៅចុងក្រោយនៃមេរៀនខ្ពស់នេះ អ្នកនឹងអាច:
+## គោលបំណងសិក្សា
 
-- **យល់ពីតម្រូវការដឹកជញ្ជូនផ្ទាល់ខ្លួន**: អនុវត្ត protocol MCP លើស្រទាប់ដឹកជញ្ជូនណាមួយ ខណៈដែលរក្សាការអនុវត្តគោលការណ៍
-- **បង្កើត Azure Event Grid Transport**: បង្កើតម៉ាស៊ីនបម្រើ MCP ដំណើរការតាមព្រឹត្តិការណ៍ដោយប្រើ Azure Event Grid សម្រាប់ការស្កែលគ្មានម៉ាស៊ីន
-- **អនុវត្ត Azure Event Hubs Transport**: រចនាដំណោះស្រាយ MCP ថាមពលខ្ពស់ដោយប្រើ Azure Event Hubs សម្រាប់ការផ្សាយផ្ទាល់ពេលវេលាពិតប្រាកដ
-- **អនុវត្តគំរូសហគ្រាស**: រួមបញ្ចូលការដឹកជញ្ជូនផ្ទាល់ខ្លួនជាមួយរចនាសម្ព័ន្ធ Azure និងគំរូសុវត្ថិភាពដែលមានស្រាប់
-- **ដោះស្រាយភាពទំនុកចិត្តនៃការដឹកជញ្ជូន**: អនុវត្តការរឹតបន្តឹងសារចាំ, លំដាប់ និងការគ្រប់គ្រងកំហុសសម្រាប់ស្ថានភាពសហគ្រាស
-- **បង្កើនប្រសិទ្ធភាព**: រចនាដំណោះស្រាយដឹកជញ្ជូនសម្រាប់តម្រូវការស្កែល, ពេលបង្ហាញ និងថាមពលផ្ទេរ
+នៅចុងបំផុតនៃមេរៀនលំដាប់ខ្ពស់នេះ អ្នកនឹងអាច:
 
-## **តម្រូវការដឹកជញ្ជូន**
+- **យល់ដឹងពីតម្រូវការចរន្តផ្ទាល់ខ្លួន**: អនុវត្តន៍ពិធី MCP លើស្រទាប់ចរន្តណាមួយ ខណៈរក្សាការអនុលោម
+- **បង្កើតចរន្ត Azure Event Grid**: បង្កើតម៉ាស៊ីនបម្រើ MCP ដែលបើកចំហដោយព្រឹត្តិការណ៍ដោយប្រើ Azure Event Grid សម្រាប់កំណត់ភាពខ្ពស់ដោយគ្មានម៉ាស៊ីន
+- **អនុវត្តចរន្ត Azure Event Hubs**: រចនាដំណោះស្រាយ MCP មានកំណត់ថ្មោងខ្ពស់ដោយប្រើ Azure Event Hubs សម្រាប់ការប្រលោមពេលវេលាពិត
+- **អនុវត្តសំណង់សហគ្រាស**: បញ្ចូលចរន្តផ្ទាល់ខ្លួនជាមួយរចនាសម្ព័ន្ធ និងម៉ូដែលសុវត្ថិភាព Azure មានស្រាប់
+- **ដោះស្រាយភាពទុកចិត្តរបស់ចរន្ត**: អនុវត្តភាពធន់នឹងសារ ការរៀបលំដាប់ និងដោះស្រាយកំហុសសម្រាប់សេណារីយ៉ូសហគ្រាស
+- **បង្កើនប្រសិទ្ធភាព**: រចនាដំណោះស្រាយចរន្តសម្រាប់កម្រិត តិចណូឡូស៊ី និងកំណត់មុខងារ
 
-### **តម្រូវការស្នូលពី MCP Specification (2025-11-25):**
+## **តម្រូវការចរន្ត**
+
+### **តម្រូវការគោលសម្រាប់ MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
-## **អនុវត្តផ្សព្វផ្សាយ Azure Event Grid**
+## **ការអនុវត្តចរន្ត Azure Event Grid**
 
-Azure Event Grid ផ្តល់សេវាកម្មផ្លូវចែកតំបន់ដំណើរការអ៊ីវ៉ង់គ្មានម៉ាស៊ីន ដែលល្អសម្រាប់ស្ថាបត្យកម្ម MCP ដំណើរការតាមព្រឹត្តិការណ៍។ ការអនុវត្តនេះបង្ហាញពីរបៀបកសាងប្រព័ន្ធ MCP ដែលអាចស្កែលបាន និងភ្ជាប់បានយ៉ាងទាប។
+Azure Event Grid ផ្តល់ជាសេវាកម្មការបញ្ជូនព្រឹត្តិការណ៍ដែលគ្មានម៉ាស៊ីនល្អសម្រាប់សំណង់ MCP ដំណើរការតាមព្រឹត្តិការណ៍។ ការអនុវត្តនេះបង្ហាញពីរបៀបបង្កើតប្រព័ន្ធ MCP ដែលអាចពង្រីក និងមានភាពច្របូកច្របល់តិច។
 
 ### **ទិដ្ឋភាពស្ថាបត្យកម្ម**
 
 ```mermaid
 graph TB
-    Client[អតិថិជន MCP] --> EG[បណ្ដាញព្រឹត្តិការណ៍ Azure]
-    EG --> Server[មុខងារ​ម៉ាស៊ីន​បម្រើ MCP]
+    Client[អតិថិជន MCP] --> EG[ក្រឡាចត្រង្គព្រឹត្តិការណ៍ Azure]
+    EG --> Server[មុខងារម៉ាស៊ីនម៉ាសីន MCP]
     Server --> EG
     EG --> Client
     
     subgraph "សេវាកម្ម Azure"
         EG
         Server
-        KV[ស្រុកចំណង]
-        Monitor[ការយល់ដឹងពីកម្មវិធី]
+        KV[កូនសោ Vault]
+        Monitor[ការយល់ដឹងអំពីកម្មវិធី]
     end
 ```
 
-### **ការអនុវត្ត C# - ផ្សព្វផ្សាយ Event Grid**
+### **អនុវត្ត C# - ចរន្ត Event Grid**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -144,7 +160,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **ការអនុវត្ត TypeScript - ផ្សព្វផ្សាយ Event Grid**
+### **អនុវត្ត TypeScript - ចរន្ត Event Grid**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -178,10 +194,10 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // ទទួលបានដោយបើកហេតុវិធីតាមរយៈ Azure Functions
+    // ទទួលបានដោយបើកហេតុតាមរយៈ Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // ការអនុវត្តន៍នឹងប្រើ Azure Functions Event Grid trigger
-        // នេះគឺជាចំណុចផ្ដាច់មុខសម្រាប់កម្មវិធីទទួល webhook
+        // ការអនុវត្តន៍នឹងប្រើកញ្ចក់ Azure Functions Event Grid
+        // នេះជាចំណុចផ្ដើមមួយសម្រាប់អ្នកទទួល webhook
     }
 }
 
@@ -193,7 +209,7 @@ app.eventGrid("mcpEventGridHandler", {
         try {
             const mcpMessage = event.data as McpMessage;
             
-            // ដំណើរការប្រែសារម៉ាស៊ីន MCP
+            // ដំណើរការសារប្រព័ន្ធ MCP
             const response = await mcpServer.processMessage(mcpMessage);
             
             // ផ្ញើការឆ្លើយតបតាមរយៈ Event Grid
@@ -207,7 +223,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **ការអនុវត្ត Python - ផ្សព្វផ្សាយ Event Grid**
+### **អនុវត្ត Python - ចរន្ត Event Grid**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -249,37 +265,37 @@ import logging
 def main(event: func.EventGridEvent) -> None:
     """Azure Functions Event Grid trigger for MCP messages"""
     try:
-        # វិភាគសារជា MCP ពីព្រឹត្តិការណ៍ Event Grid
+        # រាវអត្ថន័យសារ MCP ពីព្រឹត្តិការណ៍ Event Grid
         mcp_message = json.loads(event.get_body().decode('utf-8'))
         
-        # ដំណើរការសារជា MCP
+        # ដំណើរការ​សារ MCP
         response = process_mcp_message(mcp_message)
         
-        # ផ្ញើការឆ្លើយតបត្រឡប់វិញតាមរយៈ Event Grid
-        # (ការអនុវត្តនឹងបង្កើតអ្នកអតិថិជន Event Grid ថ្មី)
+        # ផ្ញើការឆ្លើយតបត្រឡប់តាមរយៈ Event Grid
+        # (ការអនុវត្តនឹងបង្កើតអតិថិជន Event Grid ថ្មី)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **អនុវត្តផ្សព្វផ្សាយ Azure Event Hubs**
+## **ការអនុវត្តចរន្ត Azure Event Hubs**
 
-Azure Event Hubs ផ្តល់នូវសមត្ថភាពផ្សាយផ្ទាល់ពេលវេលាពិតប្រាកដមានថាមពលខ្ពស់សម្រាប់ស្ថានភាព MCP ការទាមទារពេលយឺតតិច និងបរិមាណសារខ្ពស់។
+Azure Event Hubs ផ្តល់នូវសមត្ថភាពបង្ហោះថ្មោងខ្ពស់ និងការបញ្ចូនពេលវេលាពិតសម្រាប់សេណារីយ៉ូម៉ាស៊ីន MCP ដែលតម្រូវឲ្យមានការត្រឹមត្រូវទាប និងបរិមាណសារខ្ពស់។
 
 ### **ទិដ្ឋភាពស្ថាបត្យកម្ម**
 
 ```mermaid
 graph TB
-    Client[អតិថិជន MCP] --> EH[Azure Event Hubs]
+    Client[ម៉ាស៊ីនអតិថិជន MCP] --> EH[Azure Event Hubs]
     EH --> Server[ម៉ាស៊ីនបម្រើ MCP]
     Server --> EH
     EH --> Client
     
-    subgraph "លក្ខណៈពិសេស Event Hubs"
-        Partition[ការបែងចែកផ្នែក]
-        Retention[ការរក្សាទុកសារជាពេលវែង]
-        Scaling[ការពង្រីកដោយស្វ័យប្រវត្តិ]
+    subgraph "លក្ខណៈពិសេស​នៃ Event Hubs"
+        Partition[ការចែកផ្នែក]
+        Retention[ការរក្សាទុកសារ]
+        Scaling[ការកំណែទំហំពីរ Automatically]
     end
     
     EH --> Partition
@@ -287,7 +303,7 @@ graph TB
     EH --> Scaling
 ```
 
-### **ការអនុវត្ត C# - ផ្សព្វផ្សាយ Event Hubs**
+### **អនុវត្ត C# - ចរន្ត Event Hubs**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -361,7 +377,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **ការអនុវត្ត TypeScript - ផ្សព្វផ្សាយ Event Hubs**
+### **អនុវត្ត TypeScript - ចរន្ត Event Hubs**
 
 ```typescript
 import { 
@@ -420,7 +436,7 @@ export class EventHubsMcpTransport implements McpTransport {
                         
                         await messageHandler(mcpMessage);
                         
-                        // បន្ទាន់សម័យចំណុចត្រួតពិនិត្យសម្រាប់ការដឹកជញ្ជូនយ៉ាងហោចណាស់មួយ​ដង
+                        // បន្ទាន់សម័យចំណុចពិនិត្យសម្រាប់ការដឹកជញ្ជូនអλάχισត់ម្តងម្ដង
                         await context.updateCheckpoint(event);
                     } catch (error) {
                         console.error("Error processing Event Hubs message:", error);
@@ -441,7 +457,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **ការអនុវត្ត Python - ផ្សព្វផ្សាយ Event Hubs**
+### **អនុវត្ត Python - ចរន្ត Event Hubs**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -473,11 +489,11 @@ class EventHubsMcpTransport:
         """Send MCP message via Event Hubs"""
         event_data = EventData(json.dumps(message))
         
-        # បន្ថែមគុណលក្ខណៈជាក់លាក់ MCP
+        # បន្ថែមលក្ខណៈពិសេស MCP
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # ប្រើម៉ោងពិត
+            "timestamp": "2025-01-14T10:30:00Z"  # ប្រើពេលវេលាពិត
         }
         
         async with self.producer:
@@ -505,14 +521,14 @@ class EventHubsMcpTransport:
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # ផ្ទៀងផ្ទាត់សារ MCP ពីព្រឹត្តិការណ៍ Event Hubs
+                # បំលែងសារ MCP ពីព្រឹត្តិការណ៍ Event Hubs
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
                 # ដំណើរការសារ MCP
                 await handler(mcp_message)
                 
-                # បន្ទាន់សម័យចំណុចមើលសម្រាប់ការបញ្ជូនយ៉ាងហោចណាស់មួយដង
+                # រុញបន្ទាន់ស្នូលសម្រាប់ការចែកចាយយ៉ាងតិចមួយដង
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -527,9 +543,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **គំរូដឹកជញ្ជូនខ្ពស់**
+## **គំរូចរន្តខ្ពស់**
 
-### **ភាពរឹងមាំនិងភាពទំនុកចិត្តរបស់សារ**
+### **ភាពធន់នឹងសារនិងភាពទុកចិត្តនៃចរន្ត**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -556,7 +572,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **ការរួមបញ្ចូលសុវត្ថិភាពការដឹកជញ្ជូន**
+### **ការបញ្ចូលសុវត្ថិភាពចរន្ត**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -578,7 +594,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **ការតាមដាន និងការមើលឃើញការដឹកជញ្ជូន**
+### **ការត្រួតពិនិត្យ និងទស្សនៈវិជ្ជាពីចរន្ត**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -617,11 +633,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **ស្ថានភាពការរួមបញ្ចូលសហគ្រាស**
+## **សេណារីយ៉ូបញ្ចូលសហគ្រាស**
 
-### **ស្ថានភាព ១: ការដំណើរការចែកចាយ MCP**
+### **សេណារីយ៉ូ 1: ការបំលែង MCP ចែកចាយ**
 
-ប្រើ Azure Event Grid ដើម្បីចែកចាយសំណើ MCP តាមរយៈចំណុចដំណើរការច្រើន៖
+ប្រើ Azure Event Grid សម្រាប់ចែកចាយសំណើ MCP ទៅតាមកណ្តាលដំណើរការច្រើនកន្លែង៖
 
 ```yaml
 Architecture:
@@ -635,9 +651,9 @@ Benefits:
   - Cost optimization with serverless compute
 ```
 
-### **ស្ថានភាព ២: ផ្សព្វផ្សាយ MCP ពេលវេលាពិតប្រាកដ**
+### **សេណារីយ៉ូ 2: MCP បញ្ចូនព័ត៌មានពេលវេលាពិត**
 
-ប្រើ Azure Event Hubs សម្រាប់ប្រតិកម្ម MCP ប្រកបដោយកម្រិតខ្ពស់៖
+ប្រើ Azure Event Hubs សម្រាប់អន្តិប្រតិបត្តិ MCP ខ្ពស់៖
 
 ```yaml
 Architecture:
@@ -651,9 +667,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **ស្ថានភាព ៣: ស្ថាបត្យកម្មដឹកជញ្ជូនចម្រុះ**
+### **សេណារីយ៉ូ 3: ស្ថាបត្យកម្មចរន្តផ្សំ**
 
-បញ្ចូលការដឹកជញ្ជូនច្រើនសម្រាប់ការប្រើប្រាស់ខុសគ្នា៖
+រួមបញ្ចូលចរន្តជាច្រើនសម្រាប់ករណីប្រើប្រាស់ផ្សេងៗ៖
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -677,9 +693,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **បង្កើនប្រសិទ្ធភាពសមត្ថភាព**
+## **ការបង្កើនប្រសិទ្ធភាព**
 
-### **ការប្រមូលសារដើម្បីផ្ញើម្ដងសម្រាប់ Event Grid**
+### **បាត់ឆាបសារសម្រាប់ Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -719,7 +735,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **យុទ្ធសាស្រ្តបែងចែកសម្រាប់ Event Hubs**
+### **យុទ្ធសាស្រ្តចែកផ្នែកសម្រាប់ Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -739,9 +755,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **ការធ្វើតេស្តការដឹកជញ្ជូនផ្ទាល់ខ្លួន**
+## **ការប जांचចរន្តផ្ទាល់ខ្លួន**
 
-### **ការធ្វើតេស្តអង្គភាពជាមួយ Test Doubles**
+### **ការធ្វើតេស្តឯកតាមួយនឹងមនុស្សប្រដាប់ការតេស្ត**
 
 ```csharp
 [Test]
@@ -768,7 +784,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **ការធ្វើតេស្តរួមជាមួយ Azure Test Containers**
+### **ការធ្វើតេស្តបញ្ចូលជាមួយ Azure Test Containers**
 
 ```csharp
 [Test]
@@ -801,48 +817,49 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **អនុវត្តហេតុការណ៍ល្អបំផុត និងនីតិវិធីជាដើម**
+## **បែបបទល្អសម្រាប់យុទ្ធសាស្រ្ត**
 
-### **គោលការណ៍រចនាដឹកជញ្ជូន**
+### **គោលការណ៍រចនាចរន្ត**
 
-1. **ភាពអាចត្រូវបានធ្វើឡើងម្តងទៀត (Idempotency)**: ធានាថាការដំណើរការសារជាអត្តនោមិត្តដើម្បីដោះស្រាយករណីចម្លង
-2. **ការគ្រប់គ្រងកំហុស**: អនុវត្តការគ្រប់គ្រងកំហុសម៉ឺងម៉ាត់ និងកាលេបក្រឡាចាញ់
-3. **ការតាមដាន**: បន្ថែមយោបល់លំអិត និងការត្រួតពិនិត្យសុខភាព
-4. **សុវត្ថិភាព**: ប្រើសមត្ថភាពតំណាងគ្រប់គ្រង និងការចូលប្រើតិចតួចបំផុត
-5. **សមត្ថភាព**: រចនាសម្រាប់តម្រូវការពេលយឺត និងថាមពលផ្ទេរដែលជាក់លាក់របស់អ្នក
+1. **ភាពមិនប៉ុនប៉ង**: ធានាការបម្រើសារមានភាពមិនប៉ុនប៉ងសម្រាប់ដោះស្រាយសារស្ទុំ
+2. **ដោះស្រាយកំហុស**: អនុវត្តការដោះស្រាយកំហុសពេញលេញ និងសៀវភៅសារស្លាប់
+3. **ត្រួតពិនិត្យ**: បន្ថែមទ្រឹស្តីភាគច្រើននិងការត្រួតពិនិត្យសុខភាព
+4. **សុវត្ថិភាព**: ប្រើអត្តសញ្ញាណគ្រប់គ្រង និងការចូលដំណើរការកំណត់តិចបំផុត
+5. **ប្រសិទ្ធភាព**: រចនាសម្រាប់តម្រូវការតិចណូឡូស៊ី និងកំណត់មុខងារ
 
-### **ការណែនាំជាក់លាក់សម្រាប់ Azure**
+### **အ推荐 Azure**
 
 1. **ប្រើអត្តសញ្ញាណគ្រប់គ្រង**: ជៀសវាងខ្សែការតភ្ជាប់នៅក្នុងផលិតកម្ម
-2. **អនុវត្តឧបករណ៍រាំងខ្ទប់សៀគ្វី**: ការពារករណីបរាជ័យសេវាកម្ម Azure
-3. **តាមដានចំណាយ**: តាមដានបរិមាណសារ និងចំណាយដំណើរការ
-4. **រៀបចំសម្រាប់ការស្កែល**: រចនាយុទ្ធសាស្រ្តបែងចែក និងស្កែលទុកមុន
-5. **ធ្វើតេស្តយ៉ាងពេញលេញ**: ប្រើ Azure DevTest Labs សម្រាប់ការធ្វើតេស្តទូលំទូលាយ
+2. **អនុវត្តម្លប់រង្វង់បិទ**: គ្រប់គ្រងការដួលខ្សែសេវារបស់ Azure
+3. **ត្រួតពិនិត្យថ្លៃ**: តាមដានបរិមាណសារ និងថ្លៃដំណើរការ
+4. **ផែនការសម្រាប់កំណត់ទំហំ**: រចនាយុទ្ធសាស្រ្តចែកផ្នែក និងកំណត់ទំហំមុនជំនួស
+5. **ធ្វើតេស្តយ៉ាងហ្មត់ចត់**: ប្រើ Azure DevTest Labs សម្រាប់តេស្តពេញលេញ
 
-## **សេចក្ដីសន្និដ្ឋាន**
+## **ចប់សារសារ**
 
-ការដឹកជញ្ជូន MCP ផ្ទាល់ខ្លួនអនុញ្ញាតអោយមានស្ថានភាពសហគ្រាសមានថាមពលខ្ពស់ដោយប្រើសេវាសាររបស់ Azure។ ដោយអនុវត្តការដឹកជញ្ជូន Event Grid ឬ Event Hubs អ្នកអាចបង្កើតដំណោះស្រាយ MCP ដែលអាចស្កែលបាន និងទុកចិត្តបាន ដែលរួមបញ្ចូលជាសំរួលជាមួយរចនាសម្ព័ន្ធ Azure ដែលមានស្រាប់។
+ចរន្ត MCP ផ្ទាល់ខ្លួនអាចបង្កើតសេណារីយ៉ូសហគ្រាសដ៏មានអំណាចដោយប្រើសេវាកម្មសាររបស់ Azure។ ដោយអនុវត្តចរន្ត Event Grid រឺ Event Hubs អ្នកអាចសង់ដំណោះស្រាយ MCP ដែលអាចកំណត់ទំហំបាន ប្រើប្រាស់បានទៀងទាត់ ដែលបញ្ចូលបានដោយទៀងទាត់ជាមួយរចនាសម្ព័ន្ធ Azure មានស្រាប់។
 
-ឧទាហរណ៍ដែលផ្តល់ជូនបង្ហាញពីគំរូដែលមានភាពត្រៀមរួច Production សម្រាប់ការអនុវត្តការដឹកជញ្ជូនផ្ទាល់ខ្លួន ខណៈដែលរក្សាការអនុវត្តតាម protocol MCP និងការណែនាំល្អបំផុតរបស់ Azure។
+ឧទាហរណ៍ដែលបានផ្តល់គេចេញបង្ហាញពីគំរូសម្រាប់ផលិតកម្មក្នុងការអនុវត្តចរន្តផ្ទាល់ខ្លួន ខណៈរក្សាការអនុលោមពិធីការណ៍ MCP និងអនុវត្តរឿងល្អរបស់ Azure។
 
 ## **ធនធានបន្ថែម**
 
-- [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
-- [Azure Event Grid Documentation](https://docs.microsoft.com/azure/event-grid/)
-- [Azure Event Hubs Documentation](https://docs.microsoft.com/azure/event-hubs/)
+- [ការបញ្ជាក់ MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [ឯកសារណៃ Event Grid របស់ Azure](https://docs.microsoft.com/azure/event-grid/)
+- [ឯកសារណៃ Event Hubs របស់ Azure](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
-- [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net)
-- [Azure SDK for TypeScript](https://github.com/Azure/azure-sdk-for-js)
-- [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python)
+- [Azure SDK សម្រាប់ .NET](https://github.com/Azure/azure-sdk-for-net)
+- [Azure SDK សម្រាប់ TypeScript](https://github.com/Azure/azure-sdk-for-js)
+- [Azure SDK សម្រាប់ Python](https://github.com/Azure/azure-sdk-for-python)
 
 ---
 
-> *មគ្គុទេសក៍នេះផ្តោតលើគំរូអនុវត្តសកម្មភាពសម្រាប់ប្រព័ន្ធ MCP សម្រាប់ផលិតកម្ម។ តែងតែពិនិត្យការអនុវត្តដឹកជញ្ជូនទៅនឹងតម្រូវការពិសេសរបស់អ្នក និងកំណត់កំរិតសេវាកម្ម Azure។*
-> **ស្តង់ដារបច្ចុប្បន្ន**: មគ្គុទេសក៍នេះបង្ហាញពីតម្រូវការដឹកជញ្ជូននិងគំរូដឹកជញ្ជូនខ្ពស់សម្រាប់បរិយាកាសសហគ្រាសតាម [MCP Specification 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)។
+> *មគ្គុទេសក៍នេះផ្តោតលើគំរូស្ថាបត្យកម្មផ្ទាល់ខ្លួន។ សូមពិនិត្យលក្ខណៈ
+> ពិធីការណ៍ដោយប្រើ [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/),
+> ហើយពិនិត្យការប្រើប្រាស់ Azure ទៅតាមតម្រូវការរបស់អ្នក និងដែនកំណត់សេវា។*
 
 
-## ជំហានបន្ទាប់
-- [6. ដំណោយឱ្យសហគមន៍](../../06-CommunityContributions/README.md)
+## តើអ្វីទៅជាពេលក្រោយ
+- [6. ការរួមចំណែករបស់សហគមន៍](../../06-CommunityContributions/README.md)
 
 ---
 

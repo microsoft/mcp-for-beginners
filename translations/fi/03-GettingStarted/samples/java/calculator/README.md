@@ -1,47 +1,52 @@
-# Basic Calculator MCP Service
+# Peruslaskin MCP-palvelu
 
-Tämä palvelu tarjoaa peruslaskutoimituksia Model Context Protocolin (MCP) kautta käyttäen Spring Bootia ja WebFlux-siirtoa. Se on suunniteltu yksinkertaiseksi esimerkiksi aloittelijoille, jotka opettelevat MCP:n toteutuksia.
+> [!NOTE]
+> Tämä esimerkki käyttää perinteistä HTTP+SSE-välitystä ja kohdistuu MCP-yhteensopivaan SDK:hon version `2025-11-25` mukaan. Uusien etäpalvelinten tulisi käyttää `2026-07-28` Streamable HTTP -tukea.
+> MCP `2025-11-25`. Uusien etäpalvelinten tulisi käyttää `2026-07-28` Streamable
+> HTTP -tukea.
+
+Tämä palvelu tarjoaa peruslaskutoimituksia Model Context Protocolin (MCP) kautta käyttäen Spring Bootia WebFlux-välityksellä. Se on suunniteltu yksinkertaiseksi esimerkiksi MCP-implementaatioita opetteleville aloittelijoille.
 
 Lisätietoja löytyy [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) -viitedokumentaatiosta.
 
 ## Yleiskatsaus
 
 Palvelu esittelee:
-- Tuen SSE:lle (Server-Sent Events)
+- SSE:n (Server-Sent Events) tuen
 - Automaattisen työkalujen rekisteröinnin Spring AI:n `@Tool`-annotaation avulla
-- Peruslaskimen toiminnot:
+- Peruslaskin-toiminnallisuudet:
   - Yhteenlasku, vähennyslasku, kertolasku, jakolasku
   - Potenssilasku ja neliöjuuri
-  - Jakojäännös (moduuli) ja itseisarvo
-  - Ohjefunktio operaatioiden kuvauksille
+  - Moduuli (jäännös) ja itseisarvo
+  - Ohjetoiminto laskutoimitusten kuvauksille
 
 ## Ominaisuudet
 
 Tämä laskinpalvelu tarjoaa seuraavat toiminnot:
 
-1. **Peruslaskutoimitukset**:
+1. **Perusaritmeettiset toiminnot**:
    - Kahden luvun yhteenlasku
-   - Toisen luvun vähentäminen ensimmäisestä
+   - Toisen luvun vähennys toisesta
    - Kahden luvun kertolasku
-   - Ensimmäisen luvun jakaminen toisella (nollalla jakamisen tarkistus)
+   - Jakolasku (nollalla jakamisen tarkistus)
 
 2. **Edistyneet toiminnot**:
    - Potenssilasku (kannan korottaminen eksponenttiin)
    - Neliöjuuren laskeminen (negatiivisen luvun tarkistus)
-   - Jakojäännöksen laskeminen
+   - Moduulin (jäännöksen) laskeminen
    - Itseisarvon laskeminen
 
 3. **Ohjejärjestelmä**:
-   - Sisäänrakennettu ohjefunktio, joka selittää kaikki käytettävissä olevat toiminnot
+   - Sisäänrakennettu ohjetoiminto, joka selittää kaikki käytettävissä olevat toiminnot
 
-## Palvelun käyttö
+## Palvelun käyttäminen
 
 Palvelu tarjoaa seuraavat API-päätepisteet MCP-protokollan kautta:
 
 - `add(a, b)`: Laskee kahden luvun summan
 - `subtract(a, b)`: Vähentää toisen luvun ensimmäisestä
-- `multiply(a, b)`: Kertoo kaksi lukua
-- `divide(a, b)`: Jakaa ensimmäisen luvun toisella (nollalla jakamisen tarkistus)
+- `multiply(a, b)`: Kertoo kaksi lukua keskenään
+- `divide(a, b)`: Jakaa ensimmäisen luvun toisella (nollajakotarkistus)
 - `power(base, exponent)`: Laskee luvun potenssin
 - `squareRoot(number)`: Laskee neliöjuuren (negatiivisen luvun tarkistus)
 - `modulus(a, b)`: Laskee jakojäännöksen
@@ -52,29 +57,29 @@ Palvelu tarjoaa seuraavat API-päätepisteet MCP-protokollan kautta:
 
 Yksinkertainen testiasiakas sisältyy `com.microsoft.mcp.sample.client`-pakettiin. `SampleCalculatorClient`-luokka demonstroi laskinpalvelun käytettävissä olevia toimintoja.
 
-## LangChain4j-asiakkaan käyttö
+## LangChain4j-asiakkaan käyttäminen
 
-Projekti sisältää LangChain4j-esimerkkiasiakkaan `com.microsoft.mcp.sample.client.LangChain4jClient`-luokassa, joka näyttää, miten laskinpalvelu integroidaan LangChain4j:n ja GitHub-mallien kanssa:
+Projekti sisältää LangChain4j-esimerkkiasiakkaan `com.microsoft.mcp.sample.client.LangChain4jClient`-luokassa, joka näyttää, miten laskinpalvelu integroidaan LangChain4j:n ja GitHubin mallien kanssa:
 
 ### Esivaatimukset
 
-1. **GitHub-tokenin asetus**:
+1. **GitHub-tokenin määritys**:
    
-   GitHubin AI-mallien (kuten phi-4) käyttöön tarvitset GitHubin henkilökohtaisen käyttöoikeustunnuksen:
+   GitHubin AI-mallien (kuten phi-4) käyttöön tarvitset GitHubin henkilökohtaisen käyttöoikeustokeneen:
 
    a. Mene GitHub-tilisi asetuksiin: https://github.com/settings/tokens
    
    b. Klikkaa "Generate new token" → "Generate new token (classic)"
    
-   c. Anna tokenille kuvaava nimi
+   c. Anna tokenillesi kuvaava nimi
    
    d. Valitse seuraavat oikeudet:
-      - `repo` (Täysi hallinta yksityisiin repositorioihin)
-      - `read:org` (Lue organisaation ja tiimien jäsenyydet, lue organisaation projektit)
+      - `repo` (Täysi hallinta yksityisissä repositorioissa)
+      - `read:org` (Lue organisaation ja tiimien jäsenyydet sekä organisaation projektit)
       - `gist` (Luo gistejä)
-      - `user:email` (Käyttäjän sähköpostiosoitteiden luku (vain luku))
+      - `user:email` (Käyttäjän sähköpostiosoitteiden lukeminen (vain luku))
    
-   e. Klikkaa "Generate token" ja kopioi uusi token
+   e. Klikkaa "Generate token" ja kopioi uusi tokenisi
    
    f. Aseta se ympäristömuuttujaksi:
       
@@ -90,7 +95,7 @@ Projekti sisältää LangChain4j-esimerkkiasiakkaan `com.microsoft.mcp.sample.cl
 
    g. Pysyväksi asetukseksi lisää se järjestelmän ympäristömuuttujiin
 
-2. Lisää LangChain4j GitHub-riippuvuus projektiisi (sisältyy jo pom.xml:ään):
+2. Lisää projektiisi LangChain4j GitHub -riippuvuus (sisältyy jo pom.xml:ään):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -103,21 +108,21 @@ Projekti sisältää LangChain4j-esimerkkiasiakkaan `com.microsoft.mcp.sample.cl
 
 ### LangChain4j-asiakkaan ajaminen
 
-Tämä esimerkki näyttää:
-- Yhteyden muodostamisen laskimen MCP-palvelimeen SSE-siirron kautta
-- LangChain4j:n käytön chat-botin luomiseen, joka hyödyntää laskimen toimintoja
-- Integroinnin GitHubin AI-malleihin (käytössä phi-4-malli)
+Tämä esimerkki demonstroi:
+- Yhdistämisen laskimen MCP-palvelimeen SSE-välityksen kautta
+- LangChain4j:n käyttöä keskustelurobotin luomiseen, joka hyödyntää laskintoimintoja
+- Integroinnin GitHubin AI-mallien kanssa (käyttäen nyt phi-4-mallia)
 
-Asiakas lähettää seuraavat esimerkkikyselyt demonstroidakseen toiminnallisuutta:
+Asiakas lähettää seuraavat esimerkkikyselyt toiminnallisuuden demonstroimiseksi:
 1. Kahden luvun summan laskeminen
-2. Neliöjuuren laskeminen
-3. Ohjetiedon hakeminen käytettävissä olevista laskinoperaatioista
+2. Neliöjuuren etsiminen luvusta
+3. Avain tietojen hakemiseen käytettävistä laskutoiminnoista
 
-Aja esimerkki ja tarkista konsolin tuloste nähdäksesi, miten AI-malli käyttää laskintyökaluja vastatakseen kyselyihin.
+Suorita esimerkki ja katso konsolitulostetta nähdäksesi, miten AI-malli käyttää laskintyökaluja vastatakseen kyselyihin.
 
-### GitHub-mallin konfigurointi
+### GitHub-mallin määrittely
 
-LangChain4j-asiakas on konfiguroitu käyttämään GitHubin phi-4-mallia seuraavilla asetuksilla:
+LangChain4j-asiakas on määritetty käyttämään GitHubin phi-4-mallia seuraavilla asetuksilla:
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,7 +134,7 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Jos haluat käyttää muita GitHub-malleja, vaihda `modelName`-parametri toiseen tuettuun malliin (esim. "claude-3-haiku-20240307", "llama-3-70b-8192" jne.).
+Käyttääksesi muita GitHubin malleja, vaihda `modelName`-parametri toiseksi tuetuksi malliksi (esim. "claude-3-haiku-20240307", "llama-3-70b-8192" jne.).
 
 ## Riippuvuudet
 
@@ -166,7 +171,7 @@ Rakenna projekti Mavenilla:
 
 ## Palvelimen käynnistäminen
 
-### Javaa käyttäen
+### Javalla
 
 ```bash
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
@@ -174,29 +179,29 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### MCP Inspectorin käyttö
 
-MCP Inspector on hyödyllinen työkalu MCP-palveluiden kanssa työskentelyyn. Käyttääksesi sitä tämän laskinpalvelun kanssa:
+MCP Inspector on hyödyllinen työkalu MCP-palveluiden kanssa kommunikointiin. Käyttääksesi sitä tämän laskinpalvelun kanssa:
 
-1. **Asenna ja käynnistä MCP Inspector** uudessa terminaalissa:
+1. **Asenna ja käynnistä MCP Inspector** uudessa terminaali-ikkunassa:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Avaa web-käyttöliittymä** klikkaamalla sovelluksen näyttämää URL-osoitetta (yleensä http://localhost:6274)
+2. **Avaa käyttöliittymä** napsauttamalla sovelluksen näyttämää URL-osoitetta (yleensä http://localhost:6274)
 
 3. **Määritä yhteys**:
-   - Aseta siirtotavaksi "SSE"
-   - Aseta URL palvelimesi SSE-päätepisteeseen: `http://localhost:8080/sse`
+   - Aseta kuljetustavaksi "SSE"
+   - Aseta URL palvelimen käynnissä olevaan SSE-päätepisteeseen: `http://localhost:8080/sse`
    - Klikkaa "Connect"
 
 4. **Käytä työkaluja**:
-   - Klikkaa "List Tools" nähdäksesi käytettävissä olevat laskinoperaatiot
-   - Valitse työkalu ja klikkaa "Run Tool" suorittaaksesi operaation
+   - Klikkaa "List Tools" nähdäksesi laskutoiminnot
+   - Valitse työkalu ja klikkaa "Run Tool" suorittaaksesi toiminnon
 
-![MCP Inspector Screenshot](../../../../../../translated_images/fi/tool.c75a0b2380efcf1a.webp)
+![MCP Inspector -kuvakaappaus](../../../../../../translated_images/fi/tool.c75a0b2380efcf1a.webp)
 
 ### Dockerin käyttö
 
-Projekti sisältää Dockerfile-tiedoston konttikäyttöä varten:
+Projekti sisältää Dockerfile-tiedoston konttien käyttöönottoa varten:
 
 1. **Rakenna Docker-kuva**:
    ```bash
@@ -208,27 +213,31 @@ Projekti sisältää Dockerfile-tiedoston konttikäyttöä varten:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Tämä:
-- Rakentaa monivaiheisen Docker-kuvan Maven 3.9.9:llä ja Eclipse Temurin 24 JDK:lla
-- Luo optimoidun konttikuvan
-- Avauttaa palvelun portissa 8080
-- Käynnistää MCP-laskinpalvelun kontissa
+Tämä suorittaa:
+- Monivaiheisen Docker-kuvan rakentamisen Maven 3.9.9:llä ja Eclipse Temurin 24 JDK:lla
+- Optimoidun konttikuvan luomisen
+- Palvelun julkaisun portissa 8080
+- MCP-laskinpalvelun käynnistämisen kontin sisällä
 
 Palveluun pääsee käsiksi osoitteessa `http://localhost:8080` kun kontti on käynnissä.
 
 ## Vianetsintä
 
-### Yleisiä ongelmia GitHub-tokenin kanssa
+### Yleiset GitHub-tokenin ongelmat
 
-1. **Tokenin oikeusongelmat**: Jos saat 403 Forbidden -virheen, tarkista, että tokenilla on oikeat oikeudet kuten esivaatimuksissa on kuvattu.
+1. **Tokenin oikeusongelmat**: Jos saat 403 Forbidden -virheen, tarkista, että tokenillasi on oikeat oikeudet kuten esivaatimuksissa on kuvattu.
 
 2. **Tokenia ei löydy**: Jos saat "No API key found" -virheen, varmista, että GITHUB_TOKEN-ympäristömuuttuja on asetettu oikein.
 
-3. **Käyttörajoitukset**: GitHub API:lla on käyttörajoituksia. Jos kohtaat rajoitusvirheen (statuskoodi 429), odota muutama minuutti ennen uudelleenyritystä.
+3. **Käyttörajoitus**: GitHub API:ssa on käyttörajoituksia. Jos kohtaat rajoitusvirheen (tilakoodi 429), odota muutama minuutti ennen uudelleen yrittämistä.
 
 4. **Tokenin vanhentuminen**: GitHub-tokenit voivat vanhentua. Jos saat autentikointivirheitä ajan myötä, luo uusi token ja päivitä ympäristömuuttuja.
 
-Jos tarvitset lisäapua, tutustu [LangChain4j-dokumentaatioon](https://github.com/langchain4j/langchain4j) tai [GitHub API -dokumentaatioon](https://docs.github.com/en/rest).
+Tarvittaessa katso [LangChain4j-dokumentaatio](https://github.com/langchain4j/langchain4j) tai [GitHub API -dokumentaatio](https://docs.github.com/en/rest).
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

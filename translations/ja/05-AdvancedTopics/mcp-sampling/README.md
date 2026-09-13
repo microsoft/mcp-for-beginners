@@ -1,62 +1,70 @@
-> [非推奨: 2026-07-28 リリース候補](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> MCPの`2026-07-28`ではSamplingは非推奨です。このレッスンは
+> レガシー実装向けに残されています。新しいサーバーは直接LLM
+> プロバイダーAPIと統合すべきです。
 
-# Model Context Protocol におけるサンプリング
+# Model Context ProtocolにおけるSampling
 
-> **非推奨通知:** `2026-07-28` の MCP 仕様リリース候補では、Sampling は直接的なLLMプロバイダーAPIとの統合を推奨するため非推奨とされました。Samplingは `2025-11-25` で動作を継続し、正式な非推奨から少なくとも1年間は使用可能なので、このレッスンの内容は有効ですが、新しいサーバーデザインは置き換えパターンを検討してください。詳細は [MCPの変更点：2026-07-28 リリース候補](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)をご覧ください。
+> Samplingは互換性のため`2026-07-28`仕様で残っており、
+> 2027年7月28日以降にリリースされる最初の改訂で削除される予定です。
+> このレッスンの例は`2025-11-25`を実装するSDK APIを使う場合があります。
+> 詳細は[What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md)を参照してください。
 
-Samplingは、クライアントを通じてサーバーがLLM補完を要求できる強力なMCP機能であり、高度なエージェント的動作を可能にしつつ、セキュリティとプライバシーを維持します。適切なサンプリング設定は応答品質とパフォーマンスを劇的に向上させます。MCPは、ランダム性、創造性、一貫性に影響を与える特定のパラメータでモデルのテキスト生成を制御する標準化された方法を提供します。
+レガシーなMCP実装において、Samplingはサーバーがクライアントを通じてLLMの完了を要求する方法です。このレッスンでは
+非推奨になったこのプロトコルの流れを互換性と移行作業のために説明します。
 
-## はじめに
 
-本レッスンでは、MCPリクエストにおけるサンプリングパラメータの設定方法と、サンプリングの基礎プロトコルの仕組みを探ります。
+
+
+Samplingの基礎となるプロトコルの仕組みを理解します。
 
 ## 学習目標
 
-このレッスンを終えると、以下ができるようになります：
+このレッスンの終わりには、以下ができるようになります：
 
-- MCPで利用可能な主要なサンプリングパラメータを理解する
-- 様々なユースケースに応じてサンプリングパラメータを設定する
-- 再現可能な結果のために決定論的サンプリングを実装する
-- コンテキストやユーザーの好みに基づいてサンプリングパラメータを動的に調整する
-- 様々なシナリオでモデルパフォーマンス向上のためにサンプリング戦略を適用する
-- MCPのクライアントサーバーフローでサンプリングがどのように機能するか理解する
+- MCPで使用可能な主要なSamplingパラメータを理解すること。
+- さまざまなユースケースのためにSamplingパラメータを設定すること。
+- 再現性のある結果を得るための決定論的Samplingを実装すること。
+- コンテキストやユーザーの好みに基づいてSamplingパラメータを動的に調整すること。
+- さまざまなシナリオでモデルの性能を向上させるSampling戦略を適用すること。
+- MCPのクライアント-サーバーフローにおけるSamplingの動作を理解すること。
 
-## MCPにおけるサンプリングの仕組み
+## MCPにおけるSamplingの仕組み
 
-MCPのサンプリングフローは以下のステップに従います：
+MCPでのSamplingの流れは以下のステップです：
 
-1. サーバーがクライアントに `sampling/createMessage` リクエストを送信
-2. クライアントがリクエストを確認し、必要に応じて変更
-3. クライアントがLLMからサンプリング
-4. クライアントが補完結果を確認
-5. クライアントが結果をサーバーに返す
+1. サーバーがクライアントに`sampling/createMessage`リクエストを送信
+2. クライアントはリクエストを確認し、修正可能
+3. クライアントがLLMからサンプリングを実施
+4. クライアントが完了結果をレビュー
+5. クライアントがサーバーに結果を返す
 
-このヒューマン・イン・ザ・ループ設計により、ユーザーはLLMが見る内容と生成する内容のコントロール権を保ちます。
+この人間が介在する設計により、ユーザーがLLMが見る内容と生成する内容を制御できます。
 
-## サンプリングパラメータ概要
+## Samplingパラメータの概要
 
-MCPはクライアントリクエストで設定可能な以下のサンプリングパラメータを定義しています：
+MCPはクライアントリクエストで設定可能な以下のSamplingパラメータを定義しています：
 
-| パラメータ | 説明 | 典型的な範囲 |
-|-----------|------|------------|
+| パラメータ | 説明 | 一般的な範囲 |
+|-----------|-------------|---------------|
 | `temperature` | トークン選択のランダム性を制御 | 0.0 - 1.0 |
-| `maxTokens` | 生成する最大トークン数 | 整数値 |
-| `stopSequences` | 生成停止のトリガーとなるカスタムシーケンス | 文字列配列 |
-| `metadata` | 追加のプロバイダー特有パラメータ | JSONオブジェクト |
+| `maxTokens` | 生成される最大トークン数 | 整数値 |
+| `stopSequences` | 生成を停止する特定のシーケンス | 文字列の配列 |
+| `metadata` | プロバイダー固有の追加パラメータ | JSONオブジェクト |
 
-多くのLLMプロバイダーは `metadata` フィールドを通じて追加のパラメータをサポートしており、以下が含まれる場合があります：
+多くのLLMプロバイダーは`metadata`フィールドを通じて追加パラメータをサポートしています。例えば：
 
-| 共通拡張パラメータ | 説明 | 典型的な範囲 |
-|-----------|------|------------|
-| `top_p` | ニュークリウスサンプリング - トークンを上位累積確率に制限 | 0.0 - 1.0 |
-| `top_k` | トークン選択を上位K件に制限 | 1 - 100 |
-| `presence_penalty` | 既出トークンへのペナルティ | -2.0 - 2.0 |
-| `frequency_penalty` | トークン出現頻度によるペナルティ | -2.0 - 2.0 |
-| `seed` | 再現可能な結果を得るための特定の乱数シード | 整数値 |
+| よくある拡張パラメータ | 説明 | 一般的な範囲 |
+|-----------|-------------|---------------|
+| `top_p` | ニュークリアスサンプリング - トップ累積確率に制限 | 0.0 - 1.0 |
+| `top_k` | トップKのオプションに制限 | 1 - 100 |
+| `presence_penalty` | テキスト中の出現に基づくペナルティ | -2.0 - 2.0 |
+| `frequency_penalty` | テキスト中の頻度に基づくペナルティ | -2.0 - 2.0 |
+| `seed` | 再現性のための特定の乱数シード | 整数値 |
 
 ## リクエスト例フォーマット
 
-以下はMCPでクライアントにサンプリングを要求する例です：
+以下はMCPでクライアントからSamplingを要求する例です：
 
 ```json
 {
@@ -81,7 +89,7 @@ MCPはクライアントリクエストで設定可能な以下のサンプリ�
 
 ## レスポンスフォーマット
 
-クライアントは補完結果を返します：
+クライアントは完了結果を返します：
 
 ```json
 {
@@ -95,42 +103,42 @@ MCPはクライアントリクエストで設定可能な以下のサンプリ�
 }
 ```
 
-## ヒューマン・イン・ザ・ループの制御
+## 人間が介在するコントロール
 
-MCPサンプリングは人間の監督を念頭に設計されています：
+MCPのSamplingは人間の監視を念頭に設計されています：
 
-- <strong>プロンプトの場合</strong>：
-  - クライアントはユーザーに提案されたプロンプトを表示すべき
-  - ユーザーはプロンプトを修正または拒否できるべき
-  - システムプロンプトはフィルターや修正が可能
-  - コンテキストの含有はクライアントが制御
+- <strong>プロンプトについて</strong>：
+  - クライアントは提案されたプロンプトをユーザーに表示すべきです
+  - ユーザーはプロンプトを修正または拒否できるべきです
+  - システムプロンプトはフィルタリングまたは修正可能
+  - コンテキストの含有はクライアントが制御します
 
-- <strong>補完の場合</strong>：
-  - クライアントはユーザーに補完結果を表示すべき
-  - ユーザーは補完を修正または拒否できるべき
-  - クライアントは補完をフィルタリングまたは修正できる
-  - 使用モデルはユーザーが制御
+- <strong>完了について</strong>：
+  - クライアントは完了結果をユーザーに見せるべきです
+  - ユーザーは完了結果を修正または拒否できるべきです
+  - クライアントは完了結果をフィルタリングまたは修正可能
+  - ユーザーは使用モデルを選択できます
 
-これらの原則を踏まえて、異なるプログラミング言語での実装例を見ていきましょう。共通してLLMプロバイダーでサポートされるパラメータに焦点を当てます。
+これらの原則を踏まえ、共通のLLMプロバイダーでサポートされているパラメータに焦点を当てて、さまざまなプログラミング言語でのSampling実装方法を見てみましょう。
 
-## セキュリティの考慮事項
+## セキュリティ上の考慮点
 
-MCPのサンプリング実装時に留意すべきセキュリティのベストプラクティス：
+MCPでSamplingを実装する際は、以下のセキュリティベストプラクティスを考慮してください：
 
-- <strong>すべてのメッセージ内容を検証</strong>した上でクライアントに送信
-- <strong>プロンプトと補完から機微情報を除去</strong>
-- <strong>不正利用防止のためレート制限を実装</strong>
-- <strong>異常パターンのサンプリング使用状況を監視</strong>
-- <strong>安全なプロトコルでデータ転送を暗号化</strong>
-- <strong>関連規制に従いユーザーデータのプライバシーを扱う</strong>
-- <strong>コンプライアンスとセキュリティのためサンプリングリクエストを監査</strong>
-- <strong>コスト管理のため適切な制限を設ける</strong>
-- <strong>サンプリングリクエストにタイムアウトを設定</strong>
-- <strong>モデルエラーを適切に処理しフォールバックを実装</strong>
+- <strong>メッセージ内容をすべて検証</strong>しクライアントに送信すること
+- <strong>プロンプトや完了結果の機密情報のサニタイズ</strong>
+- <strong>乱用防止のためレート制限を実装</strong>
+- **異常なパターンのSampling使用を監視**
+- <strong>安全なプロトコルで通信中のデータを暗号化</strong>
+- <strong>関連規制に準拠したユーザーデータのプライバシー保護</strong>
+- **コンプライアンスとセキュリティのためSamplingリクエストを監査**
+- <strong>適切な制限でコストの露出をコントロール</strong>
+- **Samplingリクエストにタイムアウトを実装**
+- <strong>モデルエラーは適切に回避可能なフォールバックで扱う</strong>
 
-サンプリングパラメータは、モデルの決定論的かつ創造的な出力のバランスを調整することを可能にします。
+Samplingパラメータは、決定論的な出力と創造的な出力の望ましいバランスを取るために言語モデルの動作を微調整することを可能にします。
 
-これらのパラメータを異なるプログラミング言語で設定する方法を見てみましょう。
+それでは、さまざまなプログラミング言語でこれらのパラメータをどのように設定するかを見てみましょう。
 
 # [.NET](#tab-dotnet)
 
@@ -168,23 +176,23 @@ public class SamplingExample
 }
 ```
 
-先のコードでは以下を行っています：
+前述のコードでは以下を行いました：
 
-- 特定のサーバーURLでMCPクライアントを作成
-- `temperature`、`top_p`、`top_k`などのサンプリングパラメータを使いリクエストを設定
-- リクエストを送信し生成されたテキストを表示
-- 以下を使用：
-    - `allowedTools` で生成中にモデルが利用できるツールを指定。ここでは `ideaGenerator` と `marketAnalyzer` を許可し、創造的なアプリアイデアの生成を支援。
-    - `frequencyPenalty` と `presencePenalty` による出力の繰り返し抑制と多様性促進。
-    - `temperature` により出力のランダム性を制御。値が高いほど創造的な応答。
-    - `top_p` によって上位累積確率に貢献するトークンの選択を制限し、生成テキストの質を向上。
-    - `top_k` によって最も確率の高い上位Kトークンにモデルの選択を制限し、より一貫性のある応答生成に寄与。
-    - `frequencyPenalty` と `presencePenalty` により繰り返しを減らし、多様性を促進。
+- 特定のサーバーURLでMCPクライアントを作成しました。
+- `temperature`、`top_p`、`top_k`などSamplingパラメータを設定したリクエストを構成しました。
+- リクエストを送信し、生成されたテキストを出力しました。
+- 使用したもの：
+    - `allowedTools`で生成時にモデルが使用可能なツールを指定しました。この場合、クリエイティブなアプリのアイデア生成を支援する`ideaGenerator`と`marketAnalyzer`ツールを許可しました。
+    - 出力の繰り返しと多様性を制御するための`frequencyPenalty`と`presencePenalty`。
+    - 出力のランダム性を制御する`temperature`。値が高いほど創造的な応答になります。
+    - 生成品質を向上させるための累積確率上位に限定する`top_p`。
+    - モデルをトップKの最も確率の高いトークンに制限し、一貫性のある応答生成に寄与する`top_k`。
+    - 出力の繰り返しを減らし、多様性を促進するための`frequencyPenalty`と`presencePenalty`。
 
 # [JavaScript](#tab/javascript)
 
 ```javascript
-// JavaScriptの例：温度およびTop-Pサンプリング設定
+// JavaScriptの例：温度およびTop-Pサンプリングの設定
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
@@ -196,17 +204,17 @@ async function demonstrateSampling() {
   
   // 異なるサンプリングパラメータでリクエストを設定する
   const creativeSampling = {
-    temperature: 0.9,    // 温度が高いほどランダム性や創造性が増す
+    temperature: 0.9,    // 温度が高いほどランダム性/創造性が高くなる
     topP: 0.92,          // 上位92％の確率質量を持つトークンを考慮する
-    frequencyPenalty: 0.6, // トークンの繰り返しを減らす
+    frequencyPenalty: 0.6, // トークンシーケンスの繰り返しを減らす
     presencePenalty: 0.4   // これまでのテキストに出現したトークンをペナルティする
   };
   
   const factualSampling = {
-    temperature: 0.2,    // 温度が低いほど決定的で事実的になる
-    topP: 0.85,          // やや集中したトークン選択
+    temperature: 0.2,    // 温度が低いほど決定的/事実的になる
+    topP: 0.85,          // やや絞り込まれたトークン選択
     frequencyPenalty: 0.2, // 最小限の繰り返しペナルティ
-    presencePenalty: 0.1   // 最小限の出現ペナルティ
+    presencePenalty: 0.1   // 最小限のプレゼンスペナルティ
   };
   
   try {
@@ -241,46 +249,47 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-先のコードでは以下を行っています：
+前述のコードでは以下を行いました：
 
-- サーバーURLとAPIキーでMCPクライアントを初期化
-- 創造的タスク用と事実タスク用に2つのサンプリングパラメータセットを構成
-- これら設定でリクエストを送り、モデルがそれぞれのタスク用に特定ツールを利用可能に
-- 生成された応答を出力し、異なるサンプリングパラメータの効果を実証
-- `allowedTools` を使用し、生成中にモデルが利用可能なツールを指定。ここでは創造的タスクに `ideaGenerator` と `environmentalImpactTool`、事実タスクに `factChecker` と `dataAnalysisTool` を許可。
-- `temperature` により出力のランダム性を制御。値が高いほど創造的な応答。
-- `top_p` により上位累積確率に貢献するトークンの選択を制限し、生成テキストの質を向上。
-- `frequencyPenalty` と `presencePenalty` によって繰り返しを抑制し、多様性を促進。
-- `top_k` によりモデルの選択を確率上位Kトークンに制限し、一貫性のある応答を助ける。
+- サーバーURLとAPIキーでMCPクライアントを初期化しました。
+- クリエイティブ用と事実ベース用の2つのSamplingパラメータセットを設定しました。
+- これらの設定でリクエストを送り、各タスクに特定のツールをモデルが使用できるようにしました。
+- 生成された応答を出力し、Samplingパラメータの効果を示しました。
+- 生成時にモデルが使えるツールとして、クリエイティブ用に`ideaGenerator`と`environmentalImpactTool`、事実ベース用に`factChecker`と`dataAnalysisTool`を指定しました。
+- 出力のランダム性を制御する`temperature`を使用しました。値が高いほど創造的な応答が得られます。
+
+- 最上位の累積確率質量に寄与するトークンの選択を制限するために `top_p` を使用し、生成されるテキストの品質を向上させました。
+- 繰り返しを減らし出力の多様性を促進するために `frequencyPenalty` と `presencePenalty` を使用しました。
+- モデルを最も確率の高い上位K個のトークンに制限するために `top_k` を使用し、より一貫性のある応答の生成に役立てました。
 
 ---
 
-## 決定論的サンプリング
+## 決定的サンプリング
 
-一貫した出力が必要なアプリケーションでは、決定論的サンプリングにより再現可能性を保証します。その方法は固定の乱数シードを使い、temperatureをゼロに設定することです。
+一貫した出力が必要なアプリケーションでは、決定的サンプリングにより再現可能な結果が保証されます。その方法は、固定されたランダムシードを使用し、温度をゼロに設定することです。
 
-以下のサンプル実装で、異なるプログラミング言語における決定論的サンプリングを示します。
+以下のサンプル実装を見て、異なるプログラミング言語での決定的サンプリングを示します。
 
 # [Java](#tab/java)
 
 ```java
-// Javaの例：固定シードによる決定的応答
+// Javaの例：固定シードによる決定論的な応答
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // 決定的な結果のために固定シードを使用
+        long fixedSeed = 12345; // 決定論的な結果のために固定シードを使用
         
-        // 固定シードによる最初のリクエスト
+        // 固定シードでの最初のリクエスト
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // 最大の決定性のために温度をゼロに設定
+            .setTemperature(0.0) // 最大の決定論を得るための温度0
             .build();
             
-        // 同じシードによる2回目のリクエスト
+        // 同じシードでの2回目のリクエスト
         McpRequest request2 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
@@ -291,7 +300,7 @@ public class DeterministicSamplingExample {
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // 同じシードとtemperature=0のため、応答は同一であるべきです
+        // 同じシードと温度0のため、応答は同一のはず
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -300,19 +309,19 @@ public class DeterministicSamplingExample {
 }
 ```
 
-先のコードでは以下を行っています：
+上記のコードでは以下を行いました:
 
-- 指定したサーバーURLでMCPクライアントを作成
-- 同じプロンプト、固定シード、温度ゼロの2つのリクエストを設定
-- 両方のリクエストを送信し生成テキストを表示
-- シードと温度が同じため、返答が同一になる決定論的性を示した
-- `setSeed` を使い固定乱数シードを指定し、同じ入力で同じ出力を生成
-- `temperature` をゼロに設定し最大の決定論性を保証。モデルは常に最も確率の高い次のトークンを選択しランダム性なし。
+- 指定されたサーバーURLでMCPクライアントを作成しました。
+- 同じプロンプト、固定シード、温度ゼロで2つのリクエストを構成しました。
+- 両方のリクエストを送信し、生成されたテキストを出力しました。
+- シードと温度が同じため、サンプリング設定が決定的であり応答が同一であることを示しました。
+- 固定ランダムシードを指定するために `setSeed` を使用し、同じ入力に対して常に同じ出力を生成するようにしました。
+- 最大の決定性を保証するために温度をゼロに設定し、モデルは常に最も確率の高い次のトークンを選択します。
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// JavaScriptの例：シード制御による決定的な応答
+// JavaScriptの例：シード制御による決定論的な応答
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -327,7 +336,7 @@ async function deterministicSampling() {
     // 固定シードでの最初のリクエスト
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // 最大の決定性のためのゼロ温度
+      temperature: 0.0  // 最大限の決定性のためのゼロ温度
     });
     
     // 同じシードと温度での2回目のリクエスト
@@ -356,28 +365,28 @@ async function deterministicSampling() {
 deterministicSampling();
 ```
 
-先のコードでは以下を行っています：
+上記のコードでは以下を行いました:
 
-- サーバーURLでMCPクライアントを初期化
-- 同じプロンプト、固定シード、温度ゼロの2つのリクエストを設定
-- 両リクエストを送信し生成テキストを表示
-- シードと温度が同じため、返答が同一になる決定論的性を示した
-- `seed` を使い固定乱数シードを指定し、同じ入力で同じ出力を生成
-- `temperature` をゼロに設定し最大の決定論性を保証。モデルは常に最も確率の高い次のトークンを選択しランダム性なし。
-- 3つ目のリクエストでは異なるシードを使い、同じプロンプトと温度でも異なる出力になることを示した。
+- サーバーURLでMCPクライアントを初期化しました。
+- 同じプロンプト、固定シード、温度ゼロで2つのリクエストを構成しました。
+- 両方のリクエストを送信し、生成されたテキストを出力しました。
+- シードと温度が同じため、サンプリング設定が決定的であり応答が同一であることを示しました。
+- 固定ランダムシードを指定するために `seed` を使用し、同じ入力に対して常に同じ出力を生成するようにしました。
+- 最大の決定性を保証するために温度をゼロに設定し、モデルは常に最も確率の高い次のトークンを選択します。
+- 3回目のリクエストでは異なるシードを使用し、同じプロンプトと温度でもシードを変えると出力が異なることを示しました。
 
 ---
 
 ## 動的サンプリング設定
 
-インテリジェントなサンプリングは、リクエストごとのコンテキストと要件に基づいてパラメータを適応的に調整します。つまり、タスクの種類、ユーザーの好み、過去のパフォーマンスに応じてtemperature、top_p、ペナルティなどのパラメータを動的に変えます。
+インテリジェントなサンプリングは、各リクエストの文脈や要件に応じてパラメーターを適応的に調整します。これは、タスクの種類、ユーザーの好み、あるいは過去のパフォーマンスに基づき温度、top_p、ペナルティなどのパラメーターを動的に変えることを意味します。
 
-以下に、異なるプログラミング言語で動的サンプリングを実装する方法を紹介します。
+異なるプログラミング言語における動的サンプリングの実装方法を見てみましょう。
 
 # [Python](#tab/python)
 
 ```python
-# Pythonの例：リクエストコンテキストに基づく動的サンプリング
+# Python例：リクエストコンテキストに基づく動的サンプリング
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +394,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # 異なるタスクタイプのためのサンプリングプリセットを定義
+        # さまざまなタスクタイプに対するサンプリングプリセットを定義
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -393,18 +402,18 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # 基本プリセットを選択
+        # ベースプリセットを選択
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # ユーザーの好みがあればそれに基づいて調整
+        # ユーザーの好みが提供されていればそれに基づいて調整
         if user_preferences:
             if "creativity_level" in user_preferences:
-                # 創造性の好み（1-10）に基づいて温度をスケーリング
+                # 創造性の好み（1-10）に基づいて温度をスケール
                 creativity = min(max(user_preferences["creativity_level"], 1), 10) / 10
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # 希望する応答の多様性に基づいてtop_pを調整
+                # 望ましい応答の多様性に基づいてtop_pを調整
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
@@ -416,7 +425,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # 透明性のためにサンプリングメタデータ付きで応答を返す
+        # 透明性のためにサンプリングメタデータを含む応答を返す
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -424,32 +433,32 @@ class DynamicSamplingService:
         }
 ```
 
-先のコードでは以下を行っています：
+上記のコードでは以下を行いました:
 
-- 適応的サンプリングを管理する `DynamicSamplingService` クラスを作成
-- 創造的、事実、コード、分析といった異なるタスクタイプのサンプリングプリセットを定義
-- タスクタイプに基づいてベースのサンプリングプリセットを選択
-- 創造性や多様性のユーザー設定に基づいてサンプリングパラメータを調整
-- 動的に設定されたサンプリングパラメータでリクエストを送信
-- 生成されたテキストと共に適用されたサンプリングパラメータやタスクタイプを返却して透明性を確保
-- `temperature` を使いランダム性を制御。値が高いとより創造的な応答。
-- `top_p` によって上位累積確率に貢献するトークンの選択を制限し、生成テキストの質を向上。
-- 再現性を高めるために `frequency_penalty` を利用し繰り返し抑制と多様性促進。
-- ユーザーの創造性や多様性レベルの設定に合わせて `user_preferences` を使用しパラメータをカスタマイズ。
-- `task_type` を使いリクエストの性質に最適なサンプリング戦略を決定。
-- `send_request` メソッドで設定済みのサンプリングパラメータ付きでプロンプトを送信し、モデルが指定要件に沿ったテキストを生成。
-- `generated_text` でモデルの応答を取得し、分析や表示用にパラメータとタスクタイプと共に返却。
-- ユーザー設定が有効範囲内であることを保証するため `min` と `max` 関数でクランプ処理を行う。
+- 適応的サンプリングを管理する `DynamicSamplingService` クラスを作成しました。
+- クリエイティブ、事実、コード、分析など異なるタスク種別のサンプリングプリセットを定義しました。
+- タスク種別に基づき基本のサンプリングプリセットを選択しました。
+- 創造性レベルや多様性などユーザーの好みに基づいてサンプリングパラメーターを調整しました。
+- 動的に設定されたサンプリングパラメーターでリクエストを送信しました。
+- 生成されたテキストと適用されたサンプリングパラメーターおよびタスク種別を返して透明性を維持しました。
+- 出力のランダム性を制御するために `temperature` を使用し、高い値はより創造的な応答へと繋がります。
+- 最上位の累積確率質量に寄与するトークンの選択を制限するために `top_p` を使用し、生成テキストの品質を向上させました。
+- 繰り返しを減らし出力の多様性を促進するために `frequency_penalty` を使用しました。
+- ユーザー定義の創造性および多様性レベルに基づくサンプリングパラメーターのカスタマイズを可能にするために `user_preferences` を使用しました。
+- リクエストのタスク種別に応じて適切なサンプリング戦略を決定するために `task_type` を使用しました。
+- 設定されたサンプリングパラメーターでプロンプトを送信するために `send_request` メソッドを使用し、指定された要件に従ってテキストを生成しました。
+- モデルの応答を取得するために `generated_text` を使用し、これをサンプリングパラメーターおよびタスク種別とともに返しました。これによりさらなる分析や表示が可能となります。
+- `min` と `max` 関数を使用し、ユーザーの好みが有効範囲内に制限されるようにして、無効なサンプリング設定を防止しました。
 
 # [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
-// JavaScriptの例: ユーザーコンテキストに基づく動的サンプリング設定
+// JavaScriptの例：ユーザーコンテキストに基づく動的サンプリング設定
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // 基本のサンプリングプロファイルを定義する
+    // 基本サンプリングプロファイルを定義
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,15 +466,15 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // 過去のパフォーマンスを追跡する
+    // 過去のパフォーマンスを追跡
     this.performanceHistory = [];
   }
   
-  // プロンプトからタスクの種類を検出する
+  // プロンプトからタスクタイプを検出
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // シンプルなヒューリスティック検出 - ML分類で強化可能
+    // 簡単なヒューリスティック検出 - 機械学習分類で強化可能
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,57 +495,57 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // 明確な種類が検出されなければ対話型をデフォルトとする
+    // 明確なタイプが検出されない場合は会話形式をデフォルトに設定
     return 'conversational';
   }
   
-  // コンテキストとユーザーの好みに基づいてサンプリングパラメータを計算する
+  // コンテキストとユーザーの好みに基づいてサンプリングパラメータを計算
   getSamplingParameters(prompt, context = {}) {
-    // タスクの種類を検出する
+    // タスクのタイプを検出
     const taskType = this.detectTaskType(prompt, context);
     
-    // 基本プロファイルを取得する
+    // 基本プロファイルを取得
     let params = {...this.samplingProfiles[taskType]};
     
-    // ユーザーの好みに応じて調整する
+    // ユーザーの好みに基づいて調整
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // 1から10の範囲を適切な温度範囲にスケールする
+        // 1〜10の範囲を適切な温度範囲にスケーリング
         params.temperature = 0.1 + (creativity * 0.09); // 0.1〜1.0
       }
       
       if (precision !== undefined) {
-        // 精度が高いほどtopPは低く（より集中した選択）
+        // より高い精度はより低いtopPを意味する（より焦点を絞った選択）
         params.topP = 1.0 - (precision * 0.05); // 0.5〜1.0
       }
       
       if (consistency !== undefined) {
-        // 一貫性が高いほどペナルティは低くなる
+        // より高い一貫性はより低いペナルティを意味する
         params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0.1〜0.9
       }
     }
     
-    // パフォーマンス履歴から学習した調整を適用する
+    // パフォーマンス履歴から学習した調整を適用
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // シンプルな適応ロジック - より洗練されたアルゴリズムで強化可能
+    // シンプルな適応ロジック - より高度なアルゴリズムで強化可能
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // 最近の履歴のみを考慮する
+      .slice(-5); // 最近の履歴のみを考慮
     
     if (relevantHistory.length > 0) {
-      // 平均パフォーマンススコアを計算する
+      // 平均パフォーマンススコアを計算
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // パフォーマンスが閾値を下回る場合はパラメータを調整する
+      // パフォーマンスが閾値を下回った場合、パラメータを調整
       if (avgScore < 0.7) {
-        // より安全な値に向けてわずかに調整する
+        // より安全な値へのわずかな調整
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,32 +553,32 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // 将来の調整のためにパフォーマンスを記録する
+    // 今後の調整のためにパフォーマンスを記録
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // 応答品質の0から1の評価
+      score // 応答品質の0〜1評価
     });
     
-    // 履歴のサイズを制限する
+    // 履歴サイズを制限
     if (this.performanceHistory.length > 100) {
       this.performanceHistory.shift();
     }
   }
   
   async generateResponse(prompt, context = {}) {
-    // 最適化されたサンプリングパラメータを取得する
+    // 最適化されたサンプリングパラメータを取得
     const samplingParams = this.getSamplingParameters(prompt, context);
     
-    // 最適化パラメータでリクエストを送信する
+    // 最適化されたパラメータでリクエストを送信
     const response = await this.client.sendPrompt(prompt, {
       ...samplingParams,
       allowedTools: context.allowedTools || []
     });
     
-    // ユーザーからフィードバックがあれば将来の最適化のために記録する
+    // ユーザーがフィードバックを提供した場合、将来の最適化のために記録
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -591,13 +600,13 @@ async function demonstrateAdaptiveSampling() {
   const samplingManager = new AdaptiveSamplingManager(client);
   
   try {
-    // カスタムユーザー設定の創造的なタスク
+    // カスタムユーザー設定によるクリエイティブなタスク
     const creativeResult = await samplingManager.generateResponse(
       "Write a short poem about artificial intelligence",
       {
         userPreferences: {
-          creativity: 9,  // 高い創造性（1-10）
-          consistency: 3  // 低い一貫性（1-10）
+          creativity: 9,  // 高い創造性（1〜10）
+          consistency: 3  // 低い一貫性（1〜10）
         }
       }
     );
@@ -632,31 +641,31 @@ async function demonstrateAdaptiveSampling() {
 demonstrateAdaptiveSampling();
 ```
 
-先のコードでは以下を行っています：
+上記のコードでは以下を行いました:
 
-- タスクタイプとユーザー設定に基づく動的サンプリングを管理する `AdaptiveSamplingManager` クラスを作成
-- 創造的、事実、コード、会話の異なるタスクタイプ向けにサンプリングプロファイルを定義
-- シンプルなヒューリスティクスでプロンプトからタスクタイプを検出するメソッドを実装
-- 検出されたタスクタイプとユーザー設定に基づいてサンプリングパラメータを計算
-- 過去のパフォーマンスに基づく学習調整を適用してサンプリングパラメータを最適化
-- 過去のやり取りを記録しシステムの学習に活用
-- 動的に設定されたサンプリングパラメータでリクエストを送信し、適用パラメータと検出されたタスクタイプ付きで生成テキストを返却
-- 使用したもの：
-    - `userPreferences` でユーザーが定義した創造性、正確性、一貫性レベルに基づきパラメータをカスタマイズ可能
-    - `detectTaskType` でプロンプトからタスク類型を判断し適切な応答を得る
-    - `recordPerformance` で生成応答のパフォーマンスを記録しシステムの継続的改善を実現
-    - `applyLearnedAdjustments` で過去の実績から学んだ調整をパラメータに適用し高品質応答を強化
-    - `generateResponse` で適応型サンプリングを使った応答生成プロセスをまとめ、様々なプロンプトやコンテキストに簡単に使用可能
-    - `allowedTools` で生成時に使用できるツールを指定し、より文脈に即した応答を実現
-    - `feedbackScore` でユーザーから生成応答の品質に関するフィードバックを受け、それを元にパフォーマンス改善
-    - `performanceHistory` で過去のやり取りを記録し成功/失敗から学習
-    - `getSamplingParameters` でリクエストのコンテキストに応じてサンプリングパラメータを動的に調整し柔軟なモデル動作を実現
-    - `detectTaskType` でプロンプトに基づきタスクを分類し、各種リクエストに適したサンプリング戦略を適用
-    - `samplingProfiles` で異なるタスクタイプの基礎サンプリング構成を定義し、リクエストの性質に応じて迅速に調整可能
+- タスク種別とユーザーの好みに基づいた動的サンプリングを管理する `AdaptiveSamplingManager` クラスを作成しました。
+- クリエイティブ、事実、コード、会話など異なるタスク種別のサンプリングプロファイルを定義しました。
+- 簡単なヒューリスティックを用いてプロンプトからタスク種別を検出するメソッドを実装しました。
+- 検出されたタスク種別とユーザーの好みに基づいてサンプリングパラメーターを計算しました。
+- 過去のパフォーマンスに基づく学習調整を適用し、サンプリングパラメーターを最適化しました。
+- 将来の調整のためにパフォーマンスを記録し、過去の対話から学習できるようにしました。
+- 動的に設定されたサンプリングパラメーターでリクエストを送信し、生成されたテキストと適用パラメーターおよび検出されたタスク種別を返しました。
+- 以下を使用しました:
+    - `userPreferences` はユーザー定義の創造性、精度、および一貫性のレベルに基づきサンプリングパラメーターをカスタマイズ可能にします。
+    - `detectTaskType` はプロンプトに基づいてタスクの性質を判断し、より適切な応答を可能にします。
+    - `recordPerformance` は生成応答のパフォーマンスを記録し、システムが適応・改善できるようにします。
+    - `applyLearnedAdjustments` は過去のパフォーマンスに基づいてサンプリングパラメーターを変更し、高品質な応答生成能力を強化します。
+    - `generateResponse` は適応サンプリングを用いた応答生成の全過程をカプセル化し、異なるプロンプトやコンテキストで簡単に呼び出せるようにします。
+    - `allowedTools` はモデルが生成中に使用可能なツールを指定し、よりコンテキストに即した応答を可能にします。
+    - `feedbackScore` はユーザーが生成応答の品質にフィードバックを提供できるようにし、モデルの性能をさらに改善します。
+    - `performanceHistory` は過去の対話記録を保持し、システムが成功や失敗から学習できるようにします。
+    - `getSamplingParameters` はリクエストの文脈に基づきサンプリングパラメーターを動的に調整し、より柔軟で応答性の高いモデル動作を実現します。
+    - `detectTaskType` はプロンプトに基づいてタスクを分類し、異なる種類のリクエストに適切なサンプリング戦略を適用します。
+    - `samplingProfiles` は異なるタスク種別の基本サンプリング設定を定義し、リクエストの性質に応じた迅速な調整を可能にします。
 
 ---
 
-## 次のステップ
+## 次に進むこと
 
 - [5.7 スケーリング](../mcp-scaling/README.md)
 

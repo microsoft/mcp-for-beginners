@@ -1,510 +1,524 @@
-# MCP Biztonság: Átfogó védelem AI rendszerek számára
+# MCP Biztonság: Átfogó védelem az AI rendszerek számára
 
-[![MCP Security Best Practices](../../../translated_images/hu/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)
+[![MCP Biztonság Legjobb Gyakorlatai](../../../translated_images/hu/03.175aed6dedae133f.webp)](https://youtu.be/88No8pw706o)
 
-_(Kattints a fenti képre, hogy megnézd a tanóra videóját)_
+_(Kattintson a fenti képre a tananyag videójának megtekintéséhez)_
 
-A biztonság alapvető az AI rendszerek tervezésénél, ezért helyezzük ezt a második szekcióként a prioritásaink közé. Ez összhangban áll a Microsoft **Secure by Design** elvével a [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/) keretében.
+A biztonság alapvető fontosságú az AI rendszerek tervezésében, ezért kiemelt helyen kezeljük a második szakaszunkban. Ez összhangban áll a Microsoft **Secure by Design** elvével a [Secure Future Initiative](https://www.microsoft.com/security/blog/2025/04/17/microsofts-secure-by-design-journey-one-year-of-success/) részeként.
 
-A Model Context Protocol (MCP) erőteljes új képességeket hoz AI-vezérelt alkalmazásokba, miközben egyedi biztonsági kihívásokat vet fel, amelyek túlmutatnak a hagyományos szoftverkockázatokon. Az MCP rendszerek szembesülnek mind a meglévő biztonsági aggályokkal (biztonságos kódolás, legkisebb jogosultság, beszállítói lánc biztonság), mind pedig új, kizárólag AI-re jellemző fenyegetésekkel, úgymint prompt injekció, eszköz mérgezés, munkamenet eltérítés, confused deputy támadások, token átengedési sérülékenységek és dinamikus képesség módosítás.
+A Model Context Protocol (MCP) új, erőteljes képességeket hoz az AI által vezérelt alkalmazásokhoz, miközben egyedi biztonsági kihívásokat is felvet, amelyek túlmutatnak a hagyományos szoftverkockázatokon. Az MCP rendszereknek szembe kell nézniük mind a bevett biztonsági kérdésekkel (biztonságos programozás, legkisebb jogosultság elve, ellátási lánc biztonság), mind az új AI-specifikus fenyegetésekkel, mint a prompt injekció, eszköz mérgezés, munkamenet eltérítés, összezavart helyettesítő támadások, token átviteli sérülékenységek és dinamikus képesség módosítás.
 
-Ez a tananyag a legkritikusabb biztonsági kockázatokat tárgyalja az MCP megvalósításokban — lefedve az autentikációt, jogosultságot, túlzott jogosultságokat, közvetett prompt injekciót, munkamenet biztonságot, confused deputy problémákat, token kezelést és beszállítói lánc sérülékenységeket. Megtanulod az alkalmazható kontrollokat és bevált gyakorlatokat ezek kockázatok mérséklésére, miközben kihasználod a Microsoft megoldásait, például a Prompt Shields-t, az Azure Content Safety-t és a GitHub Advanced Security-t az MCP telepítésed megerősítésére.
+Ez a tananyag feltárja az MCP megvalósítások legkritikusabb biztonsági kockázatait — beleértve a hitelesítést, engedélyezést, túlzott jogosultságokat, közvetett prompt injekciót, munkamenet biztonságot, összezavart helyettesítő problémákat, token kezelést és ellátási lánc sebezhetőségeket. Megtanulhatja a kockázatok mérséklésére alkalmas irányítási intézkedéseket és legjobb gyakorlatokat, miközben kihasználja a Microsoft megoldásait, mint a Prompt Shields, Azure Content Safety és GitHub Advanced Security, hogy megerősítse MCP telepítését.
 
 ## Tanulási célok
 
-A tanóra végére képes leszel:
+A tananyag végére képes lesz:
 
-- **MCP-specifikus fenyegetések felismerése**: Az MCP rendszerek egyedi biztonsági kockázatainak megértése, beleértve a prompt injekciót, eszköz mérgezést, túlzott jogosultságokat, munkamenet eltérítést, confused deputy problémákat, token átengedési sérülékenységeket és beszállítói lánc kockázatokat
-- **Biztonsági kontrollok alkalmazása**: Hatékony mérséklések megvalósítása, beleértve a robusztus autentikációt, legkisebb jogosultság hozzáférést, biztonságos token kezelést, munkamenet biztonsági kontrollokat és beszállítói lánc ellenőrzést
-- **Microsoft biztonsági megoldások hasznosítása**: A Microsoft Prompt Shields, Azure Content Safety és GitHub Advanced Security megértése és bevetése az MCP munkaterhelés védelmében
-- **Eszközbiztonság validálása**: Az eszköz metaadatok érvényesítésének fontosságának felismerése, dinamikus változások figyelése és védekezés a közvetett prompt injekciós támadások ellen
-- **Bevált gyakorlatok integrálása**: Meglévő biztonsági alapelvek (biztonságos kódolás, szervererősítés, zero trust) egyesítése MCP-specifikus kontrollokkal az átfogó védelem érdekében
+- **Az MCP-specifikus fenyegetések azonosítása**: Felismerni az MCP rendszerek egyedi biztonsági kockázatait, beleértve a prompt injekciót, eszköz mérgezést, túlzott jogosultságokat, munkamenet eltérítést, összezavart helyettesítő problémákat, token átviteli sérülékenységeket és ellátási lánc kockázatokat
+- **Biztonsági kontrollok alkalmazása**: Hatékony enyhítések végrehajtása, beleértve a szilárd hitelesítést, legkisebb jogosultság hozzáférést, biztonságos token kezelést, munkamenet biztonsági ellenőrzéseket és ellátási lánc ellenőrzést
+- **Microsoft biztonsági megoldások kihasználása**: Megérteni és telepíteni a Microsoft Prompt Shields, Azure Content Safety és GitHub Advanced Security megoldásokat az MCP munkaterhelés védelmére
+- **Eszköz biztonságának érvényesítése**: Felismerni az eszköz metaadat érvényesítés fontosságát, a dinamikus változások figyelemmel kísérését és a közvetett prompt injekciós támadások elleni védelmet
+- **Legjobb gyakorlatok integrálása**: Összekapcsolni a bevett biztonsági alapelveket (biztonságos kódolás, szerver megerősítés, nulla bizalom) az MCP-specifikus kontrollokkal az átfogó védelem érdekében
 
-# MCP Biztonsági architektúra és kontrollok
+# MCP Biztonsági Architektúra és Kontrollok
 
-A modern MCP megvalósítások többrétegű biztonsági megközelítéseket igényelnek, amelyek mind a hagyományos szoftverbiztonságot, mind az AI-specifikus fenyegetéseket kezelik. Az MCP specifikáció gyors fejlődése folyamatosan fejleszti biztonsági kontrolljait, lehetővé téve a jobb integrációt vállalati biztonsági architektúrákkal és bevált gyakorlatokkal.
+A modern MCP megvalósítások több rétegű biztonsági megközelítést igényelnek, amelyek egyszerre kezelik a hagyományos szoftverbiztonsági és AI-specifikus fenyegetéseket. A gyorsan fejlődő MCP specifikáció folyamatosan éretté teszi biztonsági kontrolljait, lehetővé téve a jobb integrációt a vállalati biztonsági architektúrákkal és a bevett legjobb gyakorlatokkal.
 
-A [Microsoft Digital Defense Report](https://aka.ms/mddr) kutatása kimutatja, hogy a **jelentett incidensek 98%-a megelőzhető robusztus biztonsági higiénia révén**. A leghatékonyabb védekezési stratégia az alapvető biztonsági gyakorlatok és MCP-specifikus kontrollok kombinálása — a bizonyított alapbiztonsági intézkedések a legnagyobb hatásúak az összesített kockázat csökkentésében.
+A [Microsoft Digital Defense Report](https://aka.ms/mddr) kutatása kimutatja, hogy a **jelentett támadások 98%-a elkerülhető lenne szilárd biztonsági higiéniával**. A leghatékonyabb védekezési stratégia az alapvető biztonsági gyakorlatokat és az MCP-specifikus kontrollokat ötvözi — a bizonyított alapbiztonsági intézkedések a legnagyobb hatást gyakorolják az átfogó biztonsági kockázat csökkentésében.
 
 ## Jelenlegi Biztonsági Helyzet
 
-> **Megjegyzés:** Ezek az információk az MCP biztonsági szabványokat tükrözik **2026. február 5-ig**, összhangban az **MCP Specifikáció 2025-11-25** verzióval. Az MCP protokoll gyorsan fejlődik, és a jövőbeni megvalósítások új autentikációs mintákat és fejlettebb kontrollokat hozhatnak. Mindig tekintsd meg a legfrissebb [MCP Specifikációt](https://spec.modelcontextprotocol.io/), [MCP GitHub tárházát](https://github.com/modelcontextprotocol) és a [biztonsági legjobb gyakorlatokat tartalmazó dokumentációt](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) a legaktuálisabb útmutatásért.
+> **Megjegyzés:** Ez a fejezet ötvözi a bevett MCP biztonsági kontrollokat a
+> jelenlegi **MCP Specifikáció 2026-07-28** engedélyezési iránymutatással. Mindig hivatkozzon
+> a jelenlegi [MCP Specifikációra](https://modelcontextprotocol.io/specification/2026-07-28/),
+> az [MCP GitHub tárházára](https://github.com/modelcontextprotocol), és a
+> [biztonsági legjobb gyakorlatok dokumentációjára](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+> biztonságérzékeny kód megvalósításakor.
 
-> **Előretekintve:** a `2026-07-28` kiadási jelölt tovább szigorítja az autorizációt — az ügyfeleknek validálniuk kell az `iss` paramétert az autorizációs válaszokon (RFC 9207), meg kell határozniuk egy OpenID Connect `application_type`-ot a Dinamikus Ügyfél Regisztráció során, és a regisztrált hitelesítő adatokat az autorizáló szerverhez kell kötniük. Lásd a teljes jogosultsági SEP-ek listáját a [Mi változik az MCP-ben: A 2026-07-28 kiadási jelölt](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) dokumentumban.
+> **Engedélyezés frissítés:** Az MCP `2026-07-28` követeli meg az ügyfelektől, hogy ellenőrizzék az
+> `iss` paramétert az engedélyezési válaszokban (RFC 9207) és kössék a regisztrált
+> hitelesítő adatokat a kibocsátó engedélyező szerverhez. A Dinamikus Ügyfél Regisztráció
+> elavult; az új megvalósításoknak az Ügyfélazonosító Metaadat dokumentumokat kell használniuk.
+> Lásd: [Mi változott az MCP-ben: 2026-07-28 Specifikáció](../01-CoreConcepts/mcp-2026-07-28.md)
+> az engedélyezési változtatások teljes listájáért.
 
 ## 🏔️ MCP Biztonsági Csúcstalálkozó Műhely (Sherpa)
 
-A **gyakorlati biztonsági képzéshez** erősen ajánljuk az **MCP Biztonsági Csúcstalálkozó Műhelyt** (Sherpa) — egy átfogó, vezetett expedíciót az MCP szerverek Microsoft Azure-ban történő biztonságosítására.
+A **gyakorlati biztonsági képzéshez** erősen ajánljuk az **MCP Biztonsági Csúcstalálkozó Műhelyt** (Sherpa) - egy átfogó, vezetett expedíciót az MCP szerverek Microsoft Azure-ban történő biztosítására.
 
-### Műhely áttekintése
+### Műhely Áttekintése
 
-Az [MCP Biztonsági Csúcstalálkozó Műhely](https://azure-samples.github.io/sherpa/) gyakorlati, cselekvőképes biztonsági képzést nyújt egy bizonyított "sebezhetőség → kihasználás → javítás → érvényesítés" módszertan által. A következőket fogod:
+A [MCP Biztonsági Csúcstalálkozó Műhely](https://azure-samples.github.io/sherpa/) gyakorlati, megvalósítható biztonsági képzést nyújt bizonyított "sebezhető → kihasználás → javítás → ellenőrzés" módszeren keresztül. A következőket teheti:
 
-- **Tanulj a hibákból**: Tapasztald meg a sebezhetőségeket azáltal, hogy szándékosan sebezhető szervereket kihasználsz
-- **Használd az Azure natív biztonsági megoldásait**: Kihasználd az Azure Entra ID-t, Key Vault-ot, API menedzsmentet és AI tartalombiztonságot
-- **Kövesd a rétegzett védekezést**: Táborok mentén építs átfogó biztonsági rétegeket
-- **Alkalmazd az OWASP szabványokat**: Minden technika megfelel az [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/) útmutatásainak
-- **Szerezd meg a produkciós kódot**: Dolgozó, tesztelt megvalósításokkal távozol
+- **Tanuljon a hibákból**: Tapasztalja meg a sebezhetőségeket személyesen, véletlenül sebezhető szerverek kihasználásával
+- **Használja az Azure-natív biztonságot**: Kihasználja az Azure Entra ID, Key Vault, API Management és AI Content Safety szolgáltatásokat
+- **Kövesse a mélységi védelem elvét**: Haladjon előre táborok között, átfogó biztonsági rétegek kiépítésével
+- **Alkalmazza az OWASP szabványokat**: Minden technika megfelel az [OWASP MCP Azure Biztonsági Útmutatónak](https://microsoft.github.io/mcp-azure-security-guide/)
+- **Szerezzen működő kódot**: Hazavihet működő, tesztelt megvalósításokat
 
 ### Az expedíció útvonala
 
-| Tábor | Fókusz | Fedezett OWASP kockázatok |
+| Tábor | Fókusz | Lefedett OWASP kockázatok |
 |------|-------|---------------------|
-| **Alaptábor** | MCP alapok és autentikációs sebezhetőségek | MCP01, MCP07 |
-| **1. tábor: Identitás** | OAuth 2.1, Azure Managed Identity, Key Vault | MCP01, MCP02, MCP07 |
-| **2. tábor: Átjáró** | API menedzsment, privát végpontok, kormányzás | MCP02, MCP06, MCP07, MCP09 |
-| **3. tábor: I/O Biztonság** | Prompt injekció, személyes adatvédelem, tartalombiztonság | MCP03, MCP05, MCP06, MCP10 |
-| **4. tábor: Megfigyelés** | Log elemzés, irányítópultok, fenyegetésészlelés | MCP04, MCP08 |
-| **Csúcstalálkozó** | Red Team / Blue Team integrációs teszt | Mind |
+| **Alaptábor** | MCP alapok és hitelesítési sebezhetőségek | MCP01, MCP07 |
+| **1. Tábor: Identitás** | OAuth 2.1, Azure Kezelt Identitás, Key Vault | MCP01, MCP02, MCP07 |
+| **2. Tábor: Átjáró** | API Management, privát végpontok, irányítás | MCP02, MCP06, MCP07, MCP09 |
+| **3. Tábor: Bemenet/Kimenet Biztonság** | Prompt injekció, PII védelem, tartalombiztonság | MCP03, MCP05, MCP06, MCP10 |
+| **4. Tábor: Megfigyelés** | Log Analytics, műszerfalak, fenyegetésészlelés | MCP04, MCP08 |
+| **A Csúcs** | Red Team / Blue Team integrációs teszt | Minden |
 
-**Kezdd el itt**: [https://azure-samples.github.io/sherpa/](https://azure-samples.github.io/sherpa/)
+**Kezdje el itt**: [https://azure-samples.github.io/sherpa/](https://azure-samples.github.io/sherpa/)
 
 ## OWASP MCP Top 10 Biztonsági Kockázat
 
-Az [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/) részletezi a legkritikusabb tíz biztonsági kockázatot az MCP megvalósításokhoz:
+A [OWASP MCP Azure Biztonsági Útmutató](https://microsoft.github.io/mcp-azure-security-guide/) részletezi az MCP megvalósítások tíz legkritikusabb biztonsági kockázatát:
 
-| Kockázat | Leírás | Azure mérséklés |
+| Kockázat | Leírás | Azure Megelőzés |
 |------|-------------|------------------|
-| **MCP01** | Token kezelés hibái és titkok kiszivárgása | Azure Key Vault, Managed Identity |
-| **MCP02** | Jogosultság emelkedés hatókör túllépés miatt | RBAC, Feltételes Hozzáférés |
-| **MCP03** | Eszköz mérgezés | Eszköz validáció, integritás ellenőrzés |
-| **MCP04** | Szoftver beszállítói lánc támadások és függőség manipuláció | GitHub Advanced Security, függőségvizsgálat |
-| **MCP05** | Parancs injekció és végrehajtás | Bememeneti érvényesítés, sandoxing |
-| **MCP06** | Szándék folyamat megkerülése | Azure AI Content Safety, Prompt Shields |
-| **MCP07** | Elégtelen autentikáció és jogosultságkezelés | Azure Entra ID, OAuth 2.1 PKCE-vel |
+| **MCP01** | Token Kezelési Hibák és Titkok Szivárgása | Azure Key Vault, Kezelt Identitás |
+| **MCP02** | Jogosultság Növelés a Scope Creep által | RBAC, Feltételes Hozzáférés |
+| **MCP03** | Eszköz mérgezés | Eszköz érvényesítés, integritás ellenőrzés |
+| **MCP04** | Szoftver ellátási lánc támadások és függőség manipulálás | GitHub Advanced Security, függőség szkennelés |
+| **MCP05** | Parancs injekció és végrehajtás | Bemeneti érvényesítés, sandboxing |
+| **MCP06** | Szándék áramló aláásás | Azure AI Content Safety, Prompt Shields |
+
+| **MCP07** | Nem megfelelő hitelesítés és engedélyezés | Azure Entra ID, OAuth 2.1 PKCE-vel |
 | **MCP08** | Auditálás és telemetria hiánya | Azure Monitor, Application Insights |
-| **MCP09** | Árnyék MCP szerverek | API Center kormányzás, hálózati izoláció |
-| **MCP10** | Kontextus befecskendezés és túlzott megosztás | Adatosztályozás, minimális kitettség |
+| **MCP09** | Árnyék MCP szerverek | API Center irányítás, hálózati izoláció |
+| **MCP10** | Kontextus injekció és túlzott megosztás | Adatok osztályozása, minimális kitettség |
 
-### MCP Autentikáció fejlődése
+### Az MCP hitelesítés fejlődése
 
-Az MCP specifikáció jelentősen fejlődött autentikáció és jogosultságkezelés terén:
+Az MCP specifikáció jelentősen fejlődött a hitelesítés és engedélyezés megközelítésében:
 
-- **Eredeti megközelítés**: Korai specifikációk megkövetelték a fejlesztőktől, hogy egyedi autentikációs szervereket építsenek, az MCP szerverek pedig OAuth 2.0 autorizációs szerverként működtek és közvetlenül kezelték a felhasználói autentikációt
-- **Jelenlegi szabvány (2025-11-25)**: Frissített specifikáció lehetővé teszi az MCP szerverek számára, hogy az autentikációt külső identitásszolgáltatókra (pl. Microsoft Entra ID) bízzák, javítva a biztonsági állapotot és csökkentve a megvalósítási komplexitást
-- **Továbbfejlesztett transport réteg biztonság**: Fejlesztett támogatás biztonságos szállítási mechanizmusokhoz, megfelelő autentikációs mintákkal mind helyi (STDIO), mind távoli (Streamable HTTP) kapcsolatokhoz
+- **Eredeti megközelítés**: Korai specifikációk megkövetelték a fejlesztőktől egyedi hitelesítő szerverek megvalósítását, ahol az MCP szerverek OAuth 2.0 engedélyező szerverként közvetlenül kezelték a felhasználói hitelesítést
+- **Jelenlegi szabvány (`2026-07-28`)**: Az MCP szerverek átruházhatják a hitelesítést külső identitásszolgáltatókra, például a Microsoft Entra ID-re. Az ügyfeleknek szintén alkalmazniuk kell az aktuális kibocsátó-ellenőrzési és hitelesítő adat-kötési követelményeket.
+ 
+ 
+- **Átvitelréteg biztonság**: Fokozott támogatás a biztonságos átvitelhez megfelelő hitelesítési mintákkal mind helyi (STDIO), mind távoli (Streamable HTTP) kapcsolatok esetén
 
-## Autentikáció és jogosultságkezelés biztonsága
+## Hitelesítés és engedélyezés biztonsága
 
 ### Jelenlegi biztonsági kihívások
 
-A modern MCP megvalósítások több autentikációs és jogosultságkezelési kihívással néznek szembe:
+A modern MCP implementációk több hitelesítési és engedélyezési kihívással néznek szembe:
 
 ### Kockázatok és fenyegetési vektorok
 
-- **Helytelenül konfigurált jogosultság logika**: Hibás jogosultságkezelés az MCP szervereken érzékeny adatok kiszivárgását és nem megfelelő hozzáférés-ellenőrzést eredményezhet
-- **OAuth token kompromittálás**: Helyi MCP szerver token lopása lehetővé teszi a támadók számára a szerverek megszemélyesítését és downstream szolgáltatások elérését
-- **Token átengedési sérülékenységek**: Helytelen token kezelés lehetővé teszi a biztonsági kontrollok megkerülését és elszámoltathatósági hiányokat
-- **Túlzott jogosultságok**: Túlzott jogosultságú MCP szerverek sértik a legkisebb jogosultság elvét és megnövelik a támadási felületet
+- **Hibásan konfigurált engedélyezési logika**: Az MCP szerverek hibás engedélyezési megvalósítása érzékeny adatok kiszivárgását és helytelen hozzáférés-vezérlést eredményezhet
+- **OAuth token kompromittálás**: A helyi MCP szerver token lopása lehetővé teszi a támadók számára a szerverek megszemélyesítését és a további szolgáltatásokhoz való hozzáférést
+- **Token továbbítási sérülékenységek**: A helytelen tokenkezelés biztonsági ellenőrzések megkerüléséhez és elszámoltathatósági hiányosságokhoz vezet
+- **Túlzott jogosultságok**: A túljogosított MCP szerverek sértik a legkisebb jogosultság elvét és növelik a támadási felületet
 
-#### Token átengedés: Kritikus negatív minta
+#### Token továbbítás: Kritikus anti-minta
 
-A **token átengedés kifejezetten tiltott** a jelenlegi MCP autorizációs specifikációban súlyos biztonsági következményei miatt:
+**A token továbbítás kifejezetten tilos** a jelenlegi MCP engedélyezési specifikációban súlyos biztonsági következményei miatt:
 
-##### Biztonsági kontroll megkerülés
-- Az MCP szerverek és downstream API-k kritikus biztonsági kontrollokat valósítanak meg (pl. aránykorlátozás, kérés érvényesítés, forgalomfigyelés), melyek a megfelelő token érvényesítésen alapulnak
-- Közvetlen kliens-API token használat megkerüli ezeket az alapvető védelmeket, aláássa a biztonsági architektúrát
+##### Biztonsági ellenőrzések megkerülése
+- Az MCP szerverek és a downstream API-k kritikus biztonsági ellenőrzéseket (sebességkorlátozás, kérés-ellenőrzés, forgalomfigyelés) valósítanak meg, amelyek a megfelelő token érvényesítésen alapulnak
+- A közvetlen kliens-API token használat megkerüli ezeket az alapvető védelmi mechanizmusokat, aláaknázva a biztonsági architektúrát
 
-##### Felelősségvállalási és audit kihívások  
-- Az MCP szerverek nem tudják megkülönböztetni az upstream által kiadott tokeneket használó ügyfeleket, megszakítva az audit nyomokat
-- A downstream erőforrásszerver naplók megtévesztő kérés eredeteket mutatnak a valós MCP szerver közvetítők helyett
-- Az incidenskezelés és megfelelőségi audit sokkal nehezebb lesz
+##### Elszámoltathatóság és auditálás kihívások  
+- Az MCP szerverek nem tudják megkülönböztetni az upstream által kibocsátott tokeneket használó ügyfeleket, megszakítva az audit nyomvonalakat
+- A downstream erőforrásszerver naplók félrevezető kérés-eredetet mutatnak az MCP szerver közvetítők helyett
+- Az incidens kivizsgálás és megfelelőségi audit jelentősen megnehezedik
 
-##### Adatkiszivárgási kockázatok
-- Érvénytelenített token állítások lehetővé teszik rosszindulatú szereplőknek, hogy lopott tokenekkel MCP szervereket használjanak proxyként adatkiszivárgáshoz
-- Bizalmi határok megsértése megkerüli a szándékolt biztonsági kontrollokat
+##### Adat kimeneti kockázatok
+- Az érvénytelenített token állítások lehetővé teszik rosszindulatú szereplők számára, hogy ellopott tokenekkel MCP szervereket használjanak adatok kiszivárogtatására
+- A bizalmi határok megszegése nem jogosított hozzáférési mintákat hoz létre, amelyek megkerülik a tervezett biztonsági ellenőrzéseket
 
-##### Több szolgáltatást érintő támadási vektorok
-- Több szolgáltatás által elfogadott kompromittált tokenek lehetővé teszik az oldalirányú mozgást a kapcsolódó rendszerek között
-- A szolgáltatások közötti bizalmi feltételezések megsértődhetnek, ha a token eredete nem ellenőrizhető
+##### Több szolgáltatás elleni támadási vektorok
+- A kompromittált tokeneket több szolgáltatás elfogadja, lehetővé téve a rendszeroldali oldalirányú mozgást összekapcsolt rendszerek között
+- A token eredetét igazolni nem tudó szolgáltatások közötti bizalmi feltevések sérülhetnek
 
-### Biztonsági kontrollok és mérséklések
+### Biztonsági ellenőrzések és mérséklések
 
 **Kritikus biztonsági követelmények:**
 
-> **KÖTELEZŐ**: Az MCP szerverek **NEM FOGADHATNAK EL** olyan tokeneket, amelyeket nem az adott MCP szerver számára explicit módon bocsátottak ki
+> **KÖTELEZŐ**: Az MCP szerverek **NEM FOGADHATNAK EL** olyan tokeneket, amelyeket nem kifejezetten az adott MCP szerver számára bocsátottak ki
 
-#### Autentikáció és jogosultságkezelési kontrollok
+#### Hitelesítési és engedélyezési ellenőrzések
 
-- **Átfogó jogosultság felülvizsgálat**: Teljes körű auditálás az MCP szerver jogosultság logikáján, hogy csak a szándékolt felhasználók és kliensek férhessenek hozzá érzékeny erőforrásokhoz
-  - **Megvalósítási útmutató**: [Azure API Management, mint autentikációs átjáró az MCP szerverekhez](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-  - **Identitás integráció**: [Microsoft Entra ID használata MCP szerver autentikációhoz](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- **Alapos engedélyezési átvizsgálás**: Teljes körű auditok az MCP szerver engedélyezési logikáján, hogy biztosítsák, hogy csak a szándékolt felhasználók és kliensek férjenek hozzá érzékeny erőforrásokhoz
+  - **Megvalósítási útmutató**: [Azure API Management mint hitelesítési átjáró MCP szerverekhez](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+  - **Identitás integráció**: [Microsoft Entra ID használata MCP szerver hitelesítéshez](https://den.dev/blog/mcp-server-auth-entra-id-session/)
 
-- **Biztonságos token kezelés**: [A Microsoft token érvényesítési és életciklus bevált gyakorlatai](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens) megvalósítása
-  - Érvényesítsd, hogy a token közönség állításai megfelelnek az MCP szerver identitásának
-  - Alkalmazz megfelelő token forgatási és lejárati szabályzatokat
-  - Előzd meg a token visszajátszási támadásokat és jogosulatlan használatot
+- **Biztonságos token kezelés**: Megvalósítani a [Microsoft token érvényesítés és életciklus legjobb gyakorlatokat](https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens)
+  - Érvényesíteni, hogy a token célozottsági állítások megfeleljenek az MCP szerver identitásának
+  - Megvalósítani megfelelő token forgatási és lejárati szabályzatokat
+  - Megelőzni a token újrajátszást és jogosulatlan használatot
 
 - **Védett token tárolás**: Titkosított token tárolás mind nyugalmi, mind átvitel közbeni állapotban
-  - **Bevált gyakorlatok**: [Secure Token Storage and Encryption Guidelines](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+  - **Legjobb gyakorlatok**: [Biztonságos token tárolás és titkosítási irányelvek](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-#### Hozzáférés-vezérlési megvalósítás
+#### Hozzáférés-vezérlés megvalósítása
 
-- **Legkisebb jogosultság elve**: Csak a szükséges minimális jogosultságokat add meg az MCP szervereknek a tervezett funkciókhoz
-  - Rendszeres jogosultság felülvizsgálatok és frissítések a jogosultság növekedés megelőzésére
+- **Legkisebb jogosultság elve**: Az MCP szervereknek csak a rendelt funkcióhoz szükséges minimális jogosultságokat adni
+  - Rendszeres jogosultság-átvizsgálatok és frissítések a privilégium-növekedés megelőzésére
   - **Microsoft dokumentáció**: [Biztonságos legkisebb jogosultságú hozzáférés](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
 
-- **Szerepalapú hozzáférés-vezérlés (RBAC)**: Finomhangolt szerep hozzárendelések megvalósítása
-  - Szerepkörök szűk körű korlátozása konkrét erőforrásokra és műveletekre
-  - Kerüld a túl széles vagy szükségtelen jogosultságokat, amelyek növelik a támadási felületet
+- **Szerepalapú hozzáférés-vezérlés (RBAC)**: Finomhangolt szerepkör hozzárendelések megvalósítása
+  - A szerepköröket szűken egy-egy erőforráshoz és művelethez kötni
+  - Kerülni a széles vagy szükségtelen jogosultságokat, amelyek növelik a támadási felületet
 
-- **Folyamatos jogosultság monitorozás**: Hozzáférési auditálás és monitorozás bevezetése
-  - Kövesd a jogosultsághasználati mintákat anomáliákért
-  - Gyorsan szüntesd meg a túlzott vagy használaton kívüli jogosultságokat
+- **Folyamatos jogosultság-figyelés**: Megvalósítani a folyamatos hozzáférés auditálást és monitorozást
+  - Figyelni a jogosultság használati mintákat rendellenességek után kutatva
+  - Azonnal kezelni a túlzott vagy fel nem használt jogosultságokat
 
-## AI-specifikus biztonsági fenyegetések
+## Mesterséges Intelligencia specifikus biztonsági fenyegetések
 
-### Prompt injekció és eszköz manipulációs támadások
+### Prompt injekció és eszközmanipulációs támadások
 
-A modern MCP megvalósítások kifinomult AI-specifikus támadási vektorokkal néznek szembe, amelyeket a hagyományos biztonsági intézkedések nem tudnak teljes mértékben kezelni:
+A modern MCP implementációk kifinomult, MI-specifikus támadási vektorokkal néznek szembe, amelyeket a hagyományos biztonsági intézkedések nem fednek le teljes mértékben:
 
-#### **Közvetett prompt injekció (Cross-Domain Prompt Injection)**
+#### **Közvetett prompt injekció (kereszt-domain prompt injekció)**
 
-A **közvetett prompt injekció** az egyik legkritikusabb sérülékenység az MCP-képes AI rendszerekben. A támadók rosszindulatú utasításokat ágyaznak be külső tartalmakba — dokumentumokba, weboldalakba, e-mailekbe vagy adatforrásokba — amelyeket az AI rendszerek később legitim parancsként dolgoznak fel.
+A **közvetett prompt injekció** az egyik legsúlyosabb sérülékenység az MCP-t támogató MI rendszerekben. A támadók rosszindulatú utasításokat rejtenek el külső tartalmakban – dokumentumokban, weboldalakon, e-mailekben vagy adatforrásokban –, amelyeket az MI rendszerek később legitim parancsként dolgoznak fel.
 
 **Támadási forgatókönyvek:**
-- **Dokumentum alapú befecskendezés**: Rosszindulatú utasítások elrejtve feldolgozott dokumentumokban, amelyek nem szándékolt AI műveleteket váltanak ki
-- **Webtartalom kihasználás**: Kompromittált weboldalak beágyazott promptokkal, amelyek manipulálják az AI viselkedését, amikor adatokat gyűjtenek róluk
-- **E-mail alapú támadások**: Rosszindulatú promptok e-mailekben, amelyek arra késztetik az AI asszisztenst, hogy információkat szivárogtasson vagy jogosulatlan műveleteket hajtson végre
-- **Adatforrás szennyezés**: Kompromittált adatbázisok vagy API-k, amelyek szennyezett tartalmat szolgáltatnak az AI rendszereknek
+- **Dokumentumalapú injekció**: Rosszindulatú utasítások rejtve a feldolgozott dokumentumokban, amelyek nemkívánatos MI műveleteket váltanak ki
+- **Webtartalom kihasználása**: Megfertőzött weboldalak beágyazott promptokkal, amelyek manipulálják az MI viselkedését, amikor azokat lekérik
+- **E-mail alapú támadások**: Rosszindulatú promptok az e-mailekben, amelyek MI asszisztensek által információszivárgást vagy jogosulatlan műveleteket idéznek elő
+- **Adatforrás szennyeződés**: Megfertőzött adatbázisok vagy API-k, amelyek szennyezett tartalmat szolgáltatnak az MI rendszereknek
 
-**Való életbeli hatás**: Ezek a támadások adatkiszivárgást, adatvédelmi incidenseket, káros tartalom generálását és felhasználói interakciók manipulálását eredményezhetik. Részletes elemzésért lásd [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
+**Valós hatás**: Ezek a támadások adatkiszivárgáshoz, adatvédelmi incidensekhez, ártalmas tartalmak generálásához és a felhasználói interakciók manipulációjához vezethetnek. Részletes elemzésért lásd [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/).
 
 ![Prompt Injection Attack Diagram](../../../translated_images/hu/prompt-injection.ed9fbfde297ca877.webp)
 
-#### **Eszköz mérgezés támadások**
+#### **Eszközmérgezéses támadások**
 
-Az **eszköz mérgezés** az MCP eszközöket definiáló metaadatokat célozza, kihasználva azt, ahogyan a nagy nyelvi modellek (LLM) az eszközleírásokat és paramétereket értelmezik a végrehajtási döntések meghozatalához.
+Az **eszközmérgezés** az MCP eszközök metaadataira irányul, kihasználva, hogy az LLM-ek hogyan értelmezik az eszközleírásokat és paramétereket a végrehajtási döntések meghozatalához.
 
 **Támadási mechanizmusok:**
-- **Metaadat manipuláció**: Támadók rosszindulatú utasításokat fecskendeznek be az eszköz leírásokba, paraméter definíciókba vagy használati példákba
-- **Láthatatlan utasítások**: Rejtett promptok az eszköz metaadatokban, amelyeket az AI modellek feldolgoznak, de az emberi felhasználók nem látnak
-- **Dinamikus eszköz módosítás ("rug pull")**: A felhasználók által jóváhagyott eszközök később titokban módosulnak rosszindulatú műveletek végrehajtására a felhasználók tudta nélkül
-- **Paraméter befecskendezés**: Rosszindulatú tartalom beágyazása az eszköz paraméter sémáiba, amely befolyásolja a modell viselkedését
+- **Metaadat manipuláció**: Támadók rosszindulatú utasításokat fecskendeznek be az eszközleírásokba, paraméterdefiníciókba vagy használati példákba
+- **Láthatatlan utasítások**: Rejtett promptok az eszköz metaadataiban, amelyeket az MI modellek feldolgoznak, de emberi felhasználók nem látnak
+- **Dinamikus eszköz módosítások ("Rug Pulls")**: A felhasználók által jóváhagyott eszközök később módosulnak, hogy rosszindulatú műveleteket hajtsanak végre felhasználói tudta nélkül
+- **Paraméter injekció**: Rosszindulatú tartalom eszközparaméter sémákba ágyazva, amely befolyásolja a modell viselkedését
 
 
-**Tárhelyen üzemeltetett szerverek kockázatai**: A távoli MCP szerverek nagyobb kockázatot jelentenek, mivel az eszközdefiníciók a felhasználói jóváhagyás után is frissíthetők, így korábban biztonságos eszközök rosszindulatúvá válhatnak. A részletes elemzésért lásd: [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
+**Tárhelyen üzemeltetett szerverek kockázatai**: A távoli MCP szerverek fokozott kockázatot jelentenek, mivel az eszközdefiníciók a felhasználó első jóváhagyása után frissíthetők, ami olyan helyzeteket hozhat létre, ahol korábban biztonságos eszközök rosszindulatúvá válhatnak. Az alapos elemzésért lásd: [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks).
 
-![Eszközbeillesztési támadási diagram](../../../translated_images/hu/tool-injection.3b0b4a6b24de6bef.webp)
+![Tool Injection Attack Diagram](../../../translated_images/hu/tool-injection.3b0b4a6b24de6bef.webp)
 
-#### **További MI támadási vektorok**
+#### **További AI támadási vektorok**
 
-- **Domain-eken átnyúló prompt injekció (XPIA)**: Összetett támadások, amelyek több domain tartalmát használják fel a biztonsági ellenőrzések kikerüléséhez
-- **Dinamiki képesség módosítás**: Az eszközképességek valós idejű változtatása, amely megkerüli a kezdeti biztonsági felméréseket
-- **Kontextus ablak mérgezés**: Támadások, amelyek nagy kontextusablakokat manipulálnak a rosszindulatú utasítások elrejtésére
-- **Modell zavartatás támadások**: A modell korlátainak kihasználásával kiszámíthatatlan vagy nem biztonságos viselkedések létrehozása
+- **Domainok közötti prompt injektálás (XPIA)**: Megbízható biztonsági mechanizmusokat megkerülő, több domaint érintő kifinomult támadások
+- **Dinamikus képesség módosítás**: Az eszközök képességeinek valós idejű változtatásai, amelyek elkerülik a kezdeti biztonsági értékeléseket
+- **Kontextus ablak mérgezés**: Nagy kontextusablakokat manipuláló támadások, amelyek elrejtik a rosszindulatú utasításokat
+- **Modell összezavarásos támadások**: A modell korlátait kihasználó, kiszámíthatatlan vagy veszélyes viselkedéseket előidéző támadások
 
 
-### MI biztonsági kockázatok hatásai
+### AI Biztonsági kockázatok hatásai
 
 **Magas hatású következmények:**
-- **Adatkivitel**: Jogosulatlan hozzáférés és érzékeny vállalati vagy személyes adatok eltulajdonítása
-- **Adatvédelmi incidensek**: Személyazonosításra alkalmas adatok (PII) és bizalmas üzleti adatok kiszivárgása
-- **Rendszermanipuláció**: Kritikus rendszerek és munkafolyamatok nem szándékolt módosításai
+- **Adatkiszivárgás**: Jogosulatlan hozzáférés és érzékeny vállalati vagy személyes adatok ellopása
+- **Adatvédelmi incidensek**: Személyes azonosításra alkalmas információk (PII) és bizalmas üzleti adatok kiszivárogtatása  
+- **Rendszermanipuláció**: Kritikus rendszerek és munkafolyamatok nem szándékolt módosítása
 - **Hitelesítő adatok ellopása**: Hitelesítési tokenek és szolgáltatási hitelesítő adatok kompromittálása
-- **Oldalirányú mozgás**: Megsértett MI rendszerek használata szélesebb körű hálózati támadások pivot pontjaként
+- **Oldallépéses mozgás**: Megtámadott AI rendszerek támadási kiindulópontként való felhasználása szélesebb körű hálózati támadásokhoz
 
-### Microsoft MI biztonsági megoldások
+### Microsoft AI biztonsági megoldások
 
-#### **MI Prompt Shields: Fejlett védelem az injekciós támadások ellen**
+#### **AI Prompt Shields: Fejlett védelem az injektálásos támadások ellen**
 
-A Microsoft **MI Prompt Shields** több biztonsági rétegen keresztül nyújt átfogó védelmet mind közvetlen, mind közvetett prompt injekciós támadások ellen:
+A Microsoft **AI Prompt Shields** átfogó védelmet nyújt közvetlen és közvetett prompt injektálásos támadások ellen több biztonsági rétegen keresztül:
 
 ##### **Alapvető védelmi mechanizmusok:**
 
 1. **Fejlett felismerés és szűrés**
-   - Gépi tanulási algoritmusok és NLP technikák, amelyek felismerik a rosszindulatú utasításokat külső tartalmakban
-   - Valós idejű elemzés dokumentumok, weboldalak, e-mailek és adatforrások esetén a beágyazott fenyegetések azonosítására
-   - Kontexualizált megértés a jogos és rosszindulatú prompt minták között
+   - Gépi tanulási algoritmusok és NLP technikák azonosítják a rosszindulatú utasításokat a külső tartalmakban
+   - Dokumentumok, weboldalak, emailek és adatforrások valós idejű elemzése a beágyazott fenyegetések detektálásához
+   - Kontextuális megértés a jogos és rosszindulatú promptminták között
 
 2. **Kiemelési technikák**  
    - Megkülönbözteti a megbízható rendszerutasításokat a potenciálisan kompromittált külső bemenetektől
-   - Szövegátalakító módszerek, amelyek növelik a modell relevanciáját miközben elkülönítik a rosszindulatú tartalmakat
-   - Segíti az MI rendszereket a helyes utasítási hierarchia fenntartásában és a beszúrt parancsok figyelmen kívül hagyásában
+   - Szövegátalakítási módszerek, amelyek növelik a modell relevanciáját, miközben izolálják a rosszindulatú tartalmat
+   - Segít az AI rendszereknek megőrizni a megfelelő utasítási hierarchiát és figyelmen kívül hagyni az injektált parancsokat
 
-3. **Elválasztó és adatjelző rendszerek**
-   - Egyértelmű határvonal meghatározása a megbízható rendszerüzenetek és a külső bemeneti szöveg között
-   - Különleges jelölők emelik ki a határokat a megbízható és nem megbízható adatforrások között
-   - Egyértelmű elkülönítés megakadályozza az utasítási zavarokat és a jogosulatlan parancsvégrehajtást
+3. **Elválasztó és adatjelölő rendszerek**
+   - Kifejezett határ meghatározása a megbízható rendszerüzenetek és külső bemeneti szöveg között
+   - Speciális jelölők kiemelik a megbízható és nem megbízható adatforrások közötti határokat
+   - Az egyértelmű elválasztás megelőzi az utasítási összetévesztéseket és a jogosulatlan parancsvégrehajtást
 
-4. **Folyamatos fenyegetésintelligencia**
-   - A Microsoft folyamatosan figyeli az új támadási mintákat és frissíti a védekezést
-   - Proaktív fenyegetéskutatás új injekciós technikák és támadási vektorok után
-   - Rendszeres biztonsági modellfrissítések az evolúcionáló fenyegetések elleni hatékonyság fenntartásáért
+4. **Folyamatos fenyegetésinformáció**
+   - A Microsoft folyamatosan figyeli a felmerülő támadási mintákat és frissíti a védelmi mechanizmusokat
+   - Proaktív fenyegetésfelderítés új injektáló technikák és támadási vektorok után kutatva
+   - Rendszeres biztonsági modellfrissítések az egyre változó fenyegetések elleni hatékonyság fenntartására
 
 5. **Azure Content Safety integráció**
    - Az átfogó Azure AI Content Safety csomag része
-   - Kiegészítő felismerés jailbreak kísérletek, káros tartalmak és biztonsági szabályzat megsértések ellen
-   - Egységes biztonsági vezérlések az MI alkalmazás komponensei között
+   - Kiegészítő észlelés jailbreak-kísérletekre, káros tartalmakra és biztonsági előírások megsértésére
+   - Egységes biztonsági vezérlők az AI alkalmazási komponensei között
 
 **Megvalósítási források**: [Microsoft Prompt Shields Dokumentáció](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
 
-![Microsoft Prompt Shields védelem](../../../translated_images/hu/prompt-shield.ff5b95be76e9c78c.webp)
+![Microsoft Prompt Shields Protection](../../../translated_images/hu/prompt-shield.ff5b95be76e9c78c.webp)
 
 
-## Fejlett MCP biztonsági fenyegetések
+## Fejlett MCP Biztonsági Fenyegetések
 
-### Munkamenet eltérítés sérülékenységek
+### Munkamenet-eltérítési sebezhetőségek
 
-A **munkamenet eltérítés** kritikus támadási vektor a állapotfüggő MCP megvalósításokban, amikor jogosulatlan felek megszerzik és visszaélnek jogos munkamenet azonosítókkal, hogy ügyfeleket megszemélyesítve jogosulatlan műveleteket végezzenek.
+A **munkamenet eltérítés** kritikus támadási vektort jelent állapotot tároló MCP implementációkban, ahol jogosulatlan felek jogos munkamenet-azonosítókat szereznek meg és visszaélnek velük, ügyfelek személyének eltulajdonítása és jogosulatlan műveletek végrehajtása céljából.
 
 #### **Támadási forgatókönyvek és kockázatok**
 
-- **Munkamenet eltérítéses prompt injekció**: A lopott munkamenetazonosítókkal rendelkező támadók rosszindulatú eseményeket injektálnak a munkamenet állapotot megosztó szerverekbe, potenciálisan káros műveleteket kiváltva vagy érzékeny adatokhoz férve hozzá
-- **Közvetlen megszemélyesítés**: A lopott munkamenetazonosítók lehetővé teszik a közvetlen MCP szerverhívásokat, amelyek megkerülik a hitelesítést, és a támadókat jogos felhasználóként kezelik
-- **Kompromittált folytatható adatfolyamok**: A támadók korán lezárhatják a kéréseket, így a jogos ügyfelek rosszindulatú tartalommal folytatják a munkamenetet
+- **Munkamenet-eltérítéses prompt injektálás**: Lopott munkamenet azonosítóval rendelkező támadók rosszindulatú eseményeket injektálnak olyan szerverekbe, amelyek megosztják a munkamenet állapotot, potenciálisan káros műveleteket indítva el vagy érzékeny adatokhoz férve hozzá
+- **Közvetlen személyesítés**: Lopott munkamenet azonosítók lehetővé teszik a közvetlen MCP szerver hívásokat hitelesítés megkerülésével, a támadókat jogos felhasználóként kezelve
+- **Kompromittált folytatható adatfolyamok**: A támadók idő előtt megszakíthatják a kéréseket, így a jogos ügyfelek potenciálisan rosszindulatú tartalommal folytathatják
 
-#### **Biztonsági vezérlések a munkamenet-kezeléshez**
+#### **Munkamenet-kezelési biztonsági intézkedések**
 
 **Kritikus követelmények:**
-- **Engedélyezés ellenőrzése**: Az MCP szerverek, amelyek engedélyezést hajtanak végre, **KÖTELESEK** minden bejövő kérelmet ellenőrizni, és **NEM SZABAD** munkamenetekre hitelesítésként hagyatkozniuk
-- **Biztonságos munkamenet generálás**: Kriptográfiailag biztonságos, nem determinisztikus munkamenetazonosítókat kell használni, amelyek biztonságos véletlenszám-generátorral készülnek
-- **Felhasználó-specifikus kötés**: A munkamenetazonosítókat felhasználó-specifikus információkhoz kell kötni, például `<user_id>:<session_id>` formátum szerint, hogy megakadályozzák a munkamenetek felhasználók közötti visszaélését
-- **Munkamenet életciklus kezelése**: Megfelelő lejárat, forgatás és érvénytelenítés bevezetése a sérülékenységi időablakok korlátozására
-- **Átvitel biztonsága**: Kötelező HTTPS minden kommunikációnál a munkamenet-azonosítók elfogása elleni védelemre
+- **Engedélyezés ellenőrzése**: Az engedélyezést megvalósító MCP szerverek **MINDEN** bejövő kérést ellenőrizni **KELL**, és nem támaszkodhatnak munkamenetekre hitelesítés céljából
+- **Biztonságos munkamenet-generálás**: Kriptográfiailag biztonságos, nem-determinisztikus munkamenet azonosítók használata, biztonságos véletlenszám generátorokkal
+- **Felhasználóhoz kötés**: Munkamenet azonosítók kötése felhasználó-specifikus információkhoz `<user_id>:<session_id>` formában a felhasználók közötti munkamenet-visszaélések megakadályozására
+- **Munkamenet életciklus kezelése**: Megfelelő lejárat, forgatás és érvénytelenítés megvalósítása a sebezhetőségi időablakok korlátozására
+- **Szállítási biztonság**: Kötelező HTTPS minden kommunikációra a munkamenet azonosítók elfogása elleni védelemért
 
-### Zavart helyettesítő probléma
+### Összezavart megbízott probléma
 
-A **zavart helyettesítő probléma** akkor fordul elő, amikor az MCP szerverek hitelesítési proxyként működnek ügyfelek és harmadik fél szolgáltatások között, lehetőséget teremtve az engedélyezés megkerülésére statikus ügyfélazonosító kihasználásával.
+Az **összezavart megbízott probléma** akkor fordul elő, amikor az MCP szerverek hitelesítési proxyként működnek kliens és harmadik fél szolgáltatások között, engedélyezési kikerülési lehetőséget teremtve statikus kliens-azonosítók kihasználásával.
 
 #### **Támadási mechanizmusok és kockázatok**
 
-- **Sütialapú beleegyezés megkerülés**: Előző felhasználói hitelesítés hozz létre beleegyezési sütiket, amelyeket a támadók rosszindulatú engedélyezési kérelmekkel, előre elkészített átirányító URI-kkal használnak ki
-- **Engedélyezési kód lopás**: A meglévő beleegyezési sütik miatt az engedélyezési szerverek kihagyhatják a beleegyezési képernyőket és kódokat tolnak támadó által kezelt végpontokra
-- **Jogosulatlan API hozzáférés**: Lopott engedélyezési kódok lehetővé teszik tokencserét és felhasználószemélyesítést jóváhagyás nélkül
+- **Cookie alapú hozzájárulás kikerülés**: Korábbi felhasználói hitelesítés hozzájárulási cookie-kat hoz létre, amelyeket a támadók rosszindulatú engedélyezési kérelmekkel, elkészített átirányítási URI-kkal kihasználnak
+- **Engedélyezési kód lopás**: A meglévő hozzájárulási cookie-k miatt az engedélyezési szerverek kihagyhatják a hozzájárulási képernyőket, és a kódokat támadó által irányított végpontokra irányíthatják  
+- **Jogosulatlan API hozzáférés**: Ellopott engedélyezési kódok token cserét és felhasználó személyének eltulajdonítását teszik lehetővé explicite jóváhagyás nélkül
 
 #### **Megelőzési stratégiák**
 
 **Kötelező vezérlések:**
-- **Explicit beleegyezési követelmények**: Az MCP proxy szerverek statikus ügyfélazonosítóval **KÖTELESEK** minden dinamikusan regisztrált kliens esetén felhasználói beleegyezést kérni
-- **OAuth 2.1 biztonsági megvalósítás**: Kövesse az aktuális OAuth biztonsági legjobb gyakorlatokat, beleértve a PKCE-t (Proof Key for Code Exchange) minden engedélyezési kérésnél
-- **Szigorú kliens validáció**: Vezesse be az átirányítási URI-k és kliensazonosítók alapos ellenőrzését a kihasználások megelőzése érdekében
+- **Explicit hozzájárulási követelmények**: Az MCP proxy szerverek statikus kliens azonosítókkal **KELL**, hogy minden dinamikus regisztrációjú kliens esetében felhasználói hozzájárulást szerezzenek
+- **OAuth 2.1 biztonsági megvalósítás**: Az aktuális OAuth biztonsági legjobb gyakorlatok követése, beleértve a PKCE-t (Proof Key for Code Exchange) minden engedélyezési kérelemhez
+- **Szigorú kliens validálás**: Kemény validáció az átirányítási URI-k és kliens-azonosítók esetén a kihasználás megelőzése érdekében
 
-### Token átvivő sérülékenységek  
+### Token átvivő sebezhetőségek  
 
-A **token átvitel** kifejezett anti-patternt jelent, ahol az MCP szerverek ügyfél tokeneket fogadnak el megfelelő validáció nélkül, és továbbítják azokat a lefelé irányuló API-knak, megsértve az MCP engedélyezési specifikációkat.
+A **token átvivés** kifejezetten nem ajánlott gyakorlatot jelent, ahol az MCP szerverek érvényesítés nélkül fogadnak el kliens tokeneket és továbbítják őket alá-folyó API-k felé, megsértve az MCP engedélyezési specifikációit.
 
 #### **Biztonsági következmények**
 
-- **Kontroll megkerülés**: Az ügyféltől közvetlenül az API felé irányított tokenhasználat megkerüli a kritikus korlátozásokat, validációt és monitorozást
-- **Ellenőrzési napló sérülése**: A felülről kiadott tokenek lehetetlenné teszik az ügyfél azonosítását, megszakítva az incidensvizsgálati képességeket
-- **Proxy alapú adatkinyerés**: A nem validált tokenek lehetővé teszik a rosszindulatú szereplők számára, hogy szervereket használjanak jogosulatlan adathozzáféréshez proxyként
-- **Bizalomhatár megsértések**: A lefelé irányuló szolgáltatások bizalmi feltételezései sérülhetnek, amikor a tokenek eredete nem ellenőrizhető
-- **Többszolgáltatós támadás kiterjedés**: Több szolgáltatásban elfogadott kompromittált tokenek oldalirányú mozgást tesznek lehetővé
+- **Szabályozás megkerülése**: A kliens közvetlen API token használata megkerüli a kritikus sebességkorlátozást, érvényesítést és felügyeleti vezérlőket
+- **Audit nyomvonal sérülése**: Felülről kiadott tokenek megakadályozzák a kliensazonosítást, megnehezítve az incidenst kivizsgálását
+- **Proxy alapú adatkiszivárgás**: Érvénytelenített tokenek lehetővé teszik rosszindulatú szereplőknek, hogy szervereket használjanak jogosulatlan adat-hozzáféréshez
+- **Bizalmi határ átlépések**: Az aláfolyó szolgáltatások bizalmi feltevéseit megsértheti, ha a tokenek eredete nem igazolható
+- **Többszolgáltatásos támadás kiterjesztés**: Széles körben elfogadott kompromittált tokenek lehetővé teszik oldallépést
 
-#### **Követelt biztonsági vezérlések**
+#### **Szükséges biztonsági vezérlések**
 
-**Vitatkozás nélküli követelmények:**
-- **Token validáció**: Az MCP szerverek **NEM FOGADHATNAK EL** tokeneket, amelyeket nem kifejezetten az MCP szerver számára bocsátottak ki
-- **Közönség ellenőrzés**: Mindig ellenőrizze, hogy a token közönség állítása megegyezzen az MCP szerver azonosítójával
-- **Megfelelő token életciklus**: Rövid életű hozzáférési tokenek és biztonságos forgatási gyakorlatok alkalmazása
+**Nem tárgyalható követelmények:**
+- **Token érvényesítés**: Az MCP szerverek nem fogadhatnak el kifejezetten nem nekik kiadott tokeneket
+- **Célközönség ellenőrzése**: Mindig ellenőrizze, hogy a token célközönség állítása megegyezik-e az MCP szerver azonosítójával
+- **Megfelelő token életciklus kezelés**: Rövid élettartamú hozzáférési tokenek és biztonságos forgatási gyakorlatok alkalmazása
 
 
-## Ellátási lánc biztonság MI rendszerek számára
+## Ellátási lánc biztonság AI rendszerek számára
 
-Az ellátási lánc biztonsága túlmutat a hagyományos szoftverfüggőségeken, és átfogja az egész MI ökoszisztémát. A modern MCP megvalósításoknak szigorúan ellenőrizniük és figyelniük kell minden MI-vel kapcsolatos komponenst, mivel mindegyik potenciális sérülékenységeket hordozhat, amelyek veszélyeztethetik a rendszer integritását.
+Az ellátási lánc biztonság a hagyományos szoftver-függőségeken túlterjedve magában foglalja az egész AI ökoszisztémát. A modern MCP implementációknak szigorúan ellenőrizniük és felügyelniük kell minden AI-rel kapcsolatos komponenst, mivel mindegyik bevezethet olyan sebezhetőségeket, amelyek veszélyeztethetik a rendszer integritását.
 
-### Kibővített MI ellátási lánc komponensek
+### Kibővített AI ellátási lánc komponensek
 
 **Hagyományos szoftverfüggőségek:**
 - Nyílt forráskódú könyvtárak és keretrendszerek
-- Konténer képek és alap rendszerek
+- Konténer képek és alap rendszerek  
 - Fejlesztői eszközök és build pipeline-ok
 - Infrastruktúra komponensek és szolgáltatások
 
-**MI-specifikus ellátási lánc elemek:**
-- **Alap modellek**: Előre betanított modellek különböző szolgáltatóktól, előzetes eredetellenőrzéssel
-- **Beágyazási szolgáltatások**: Külső vektorizációs és szemantikus kereső szolgáltatások
-- **Kontextus szolgáltatók**: Adatforrások, tudásbázisok és dokumentumtárak
-- **Harmadik féltől származó API-k**: Külső MI szolgáltatások, ML pipeline-ok és adatfeldolgozó végpontok
-- **Modell artefaktumok**: Súlyok, konfigurációk és finomhangolt modellvariánsok
-- **Képzési adatforrások**: Modellek betanítására és finomhangolására használt adathalmazok
+**AI-specifikus ellátási lánc elemek:**
+- **Alapmodellek**: Különféle szolgáltatóktól származó előre betanított modellek, melyek eredete igazolandó
+- **Beágyazási szolgáltatások**: Külső vektorosítási és szemantikus keresési szolgáltatások
+- **Kontextus szolgáltatók**: Adatforrások, tudásbázisok és dokumentumtárak  
+- **Harmadik féltől származó API-k**: Külső AI szolgáltatások, gépi tanulási pipeline-ok és adatfeldolgozó végpontok
+- **Modell artefaktumok**: Súlyok, konfigurációk és finomhangolt modell változatok
+- **Tanító adatforrások**: Modell tanításához és finomhangolásához használt adatkészletek
 
 ### Átfogó ellátási lánc biztonsági stratégia
 
-#### **Komponens ellenőrzés és bizalom**
-- **Eredetellenőrzés**: Ellenőrizze az összes MI komponens eredetét, licencelését és sértetlenségét a beépítés előtt
-- **Biztonsági értékelés**: Sérülékenység vizsgálatok és biztonsági áttekintések végrehajtása modellek, adatforrások és MI szolgáltatások esetén
-- **Hírnév elemzés**: Értékelje az MI szolgáltató biztonsági múltját és gyakorlatát
-- **Megfelelőség ellenőrzése**: Biztosítsa, hogy minden komponens megfeleljen a szervezeti biztonsági és szabályozási követelményeknek
+#### **Komponens ellenőrzés és megbízhatóság**
+- **Eredet ellenőrzése**: Ellenőrizze az AI komponensek származását, licencelését és sértetlenségét az integráció előtt
+- **Biztonsági értékelés**: Sebezhetőség vizsgálatok és biztonsági áttekintések modellek, adatforrások és AI szolgáltatások esetén
+- **Hírnév elemzés**: Az AI szolgáltatók biztonsági múljának és gyakorlatainak értékelése
+- **Megfelelőség igazolása**: Biztosítsa, hogy minden komponens megfelel a szervezeti biztonsági és szabályozási követelményeknek
 
 #### **Biztonságos telepítési pipeline-ok**  
-- **Automatizált CI/CD biztonság**: Biztonsági szkennelés integrálása a teljes automatizált telepítési pipeline-ban
-- **Artefaktum sértetlenség**: Kriptográfiai ellenőrzés végrehajtása minden telepített artefaktumon (kód, modellek, konfigurációk)
-- **Fokozatos telepítés**: Fokozatos telepítési stratégiák használata biztonsági ellenőrzéssel minden fázisban
-- **Megbízható artefaktum-tárolók**: Csak megerősített, biztonságos artefaktum registry-kből és tárolókból telepítés
+- **Automatizált CI/CD biztonság**: Biztonsági szkennelést építsen be az automatizált telepítési folyamatokba
+- **Artefaktum sértetlenség**: Minden telepített artefaktum (kód, modellek, konfigurációk) kriptográfiai igazolása
+- **Fokozatos telepítés**: Lépésenkénti telepítési stratégiák alkalmazása biztonsági ellenőrzéssel minden szakaszban
+- **Megbízható artefakt tárolók**: Csak ellenőrzött, biztonságos regisztrált könyvtárakból telepítsen
 
 #### **Folyamatos megfigyelés és reagálás**
-- **Függőség szkennelés**: Folyamatos sérülékenységfigyelés minden szoftver és MI komponens függőség esetén
-- **Modell megfigyelés**: Folyamatos értékelés a modell viselkedéséről, teljesítményeltérésről és biztonsági anomáliákról
-- **Szolgáltatás egészség követés**: Külső MI szolgáltatások elérhetőségének, biztonsági incidenseknek és szabályzati változások figyelése
-- **Fenyegetés intelligencia integráció**: MI és ML biztonsági kockázatokra specifikus fenyegetés folyamatok használata
+- **Függőség szkennelés**: Folytatólagos sebezhetőség monitorozás minden szoftver és AI komponens függőségre
+- **Modell monitorozás**: Folyamatos értékelése a modell viselkedésének, teljesítmény-ingadozásának és biztonsági anomáliáinak
+- **Szolgáltatás egészség követés**: Külső AI szolgáltatások elérhetőségének, biztonsági incidenseknek és szabályzatváltozásoknak megfigyelése
+- **Fenyegetés információ integráció**: Az AI és gépi tanulás biztonsági kockázataira specializált fenyegetésfeedek beépítése
 
 #### **Hozzáférés-vezérlés és legkisebb jogosultság elve**
-- **Komponens szintű jogosultságok**: Hozzáférés korlátozása a modellekhez, adatokhoz és szolgáltatásokhoz üzleti szükséglet szerint
-- **Szolgáltatás fiók menedzsment**: Dedikált szolgáltatás fiókok implementálása minimális szükséges jogosultságokkal
-- **Hálózati szeparáció**: MI komponensek izolálása és hálózati hozzáférések korlátozása szolgáltatások között
-- **API átjáró vezérlések**: Központosított API átjárók használata a külső MI szolgáltatások elérésének szabályozására és monitorozására
+- **Komponens szintű engedélyek**: Hozzáférés korlátozása modellekhez, adatokhoz és szolgáltatásokhoz üzleti szükséglet alapján
+- **Szolgáltatói fiók menedzsment**: Dedikált szolgáltatói fiókok minimális jogosultságokkal
+- **Hálózati szeparáció**: AI komponensek elkülönítése és hálózati hozzáférések korlátozása a szolgáltatások között
+- **API Gateway vezérlések**: Központosított API gatewayek alkalmazása a külső AI szolgáltatások hozzáférésének ellenőrzésére és monitorozására
 
-#### **Incidensreagálás és helyreállítás**
-- **Gyors reagálási eljárások**: Megsértett MI komponensek javítására vagy cseréjére kialakított folyamatok
-- **Hitelesítő forgatás**: Automatikus titkos adat, API kulcs és szolgáltatási hitelesítő forgatás rendszerek
-- **Visszagörgetési képességek**: Képes gyorsan visszatérni MI komponensek korábbi, ismert jó állapotára
-- **Ellátási lánc megsértés helyreállítás**: Speciális eljárások a felülről jövő MI szolgáltatás kompromittálásaira reagáláshoz
+#### **Incidens reagálás és helyreállítás**
+- **Gyors reagálási eljárások**: Meghatározott folyamatok sérült AI komponensek javítására vagy cseréjére
+- **Hitelesítő adatok forgatása**: Automatikus rendszerek titkok, API kulcsok és szolgáltatói hitelesítők forgatására
+- **Visszaállítási képességek**: Gyors visszatérés korábbi megbízható AI komponens verziókra
+- **Ellátási lánc incidens helyreállítás**: Konkrét eljárások felsőbb szintű AI szolgáltatás kompromittálások kezelésére
 
 ### Microsoft biztonsági eszközök és integráció
 
-A **GitHub Advanced Security** átfogó ellátási lánc védelmet nyújt, beleértve:
-- **Titokkeresés**: Automatikus hitelesítő adatok, API kulcsok és tokenek észlelése a tárolókban
-- **Függőség szkennelés**: Sérülékenység értékelés nyílt forráskódú függőségekre és könyvtárakra
-- **CodeQL elemzés**: Statikus kód elemzés biztonsági sérülékenységek és kódolási problémák feltárására
-- **Ellátási lánc áttekintés**: Láthatóság a függőségek egészségére és biztonsági állapotára
+A **GitHub Advanced Security** átfogó ellátási lánc védelmet nyújt, többek között:
+- **Titok szkennelés**: Automatizált hitelesítő adatok, API kulcsok és tokenek detektálása a tárolókban
+- **Függőség szkennelés**: Nyílt forráskódú függőségek és könyvtárak sebezhetőség értékelése
+- **CodeQL elemzés**: Statisztikai kódelemzés biztonsági sebezhetőségek és kódolási hibák felderítésére
+- **Ellátási lánc betekintések**: Láthatóság a függőségek egészségi és biztonsági állapotára
 
 **Azure DevOps és Azure Repos integráció:**
-- Zökkenőmentes biztonsági szkennelés integráció a Microsoft fejlesztési platformokon
-- Automatizált biztonsági ellenőrzések az Azure Pipelines-ben MI munkaterhelésekhez
-- Politikai érvényesítés az MI komponensek biztonságos telepítéséhez
+- Zökkenőmentes biztonsági szkennelés integráció a Microsoft fejlesztési platformjain
+- Automatizált biztonsági ellenőrzések AI munkaterhelések Azure Pipelines-ban
+- Szabályzati végrehajtás az AI komponensek biztonságos telepítéséhez
 
 **Microsoft belső gyakorlatok:**
-A Microsoft átfogó ellátási lánc biztonsági gyakorlatokat alkalmaz minden termékében. Tudjon meg többet a bevált megközelítésekről: [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/).
+A Microsoft kiterjedt ellátási lánc biztonsági gyakorlatokat valósít meg minden termékénél. Tudjon meg többet a bevált módszerekről a [The Journey to Secure the Software Supply Chain at Microsoft](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/) oldalon.
 
 
-## Alapvető biztonsági legjobb gyakorlatok
+## Alapvető Biztonsági Legjobb Gyakorlatok
 
-Az MCP megvalósítások az Ön szervezetének meglévő biztonsági helyzetére épülnek és azt fejlesztik tovább. Az alapvető biztonsági gyakorlatok megerősítése jelentősen növeli az MI rendszerek és MCP telepítések általános biztonságát.
+Az MCP implementációk öröklik és tovább építik szervezete meglévő biztonsági helyzetét. Az alapvető biztonsági gyakorlatok megerősítése jelentősen növeli az AI rendszerek és MCP telepítések összbiztonságát.
 
 ### Alapvető biztonsági alapelvek
 
 #### **Biztonságos fejlesztési gyakorlatok**
-- **OWASP megfelelés**: Védelem az [OWASP Top 10](https://owasp.org/www-project-top-ten/) webalkalmazás sérülékenységekkel szemben
-- **MI-specifikus védelem**: Védelmi intézkedések bevezetése az [OWASP Top 10 LLM-ekre](https://genai.owasp.org/download/43299/?tmstv=1731900559)
-- **Biztonságos titokkezelés**: Dedikált tárolók használata tokenek, API kulcsok és érzékeny konfigurációs adatok tárolására
-- **Végpontok közti titkosítás**: Biztonságos kommunikáció bevezetése az összes alkalmazás komponens és adatfolyam között
-- **Bemeneti érvényesítés**: Rigórus érvényesítés minden felhasználói bemenet, API paraméter és adatforrás esetén
+- **OWASP megfelelés**: Védje webalkalmazásait az [OWASP Top 10](https://owasp.org/www-project-top-ten/) sebezhetőségek ellen
+- **AI-specifikus védelem**: Alkalmazzon kontrollokat az [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) szerint
+- **Biztonságos titokkezelés**: Dedikált tárhelyek használata tokenek, API kulcsok és érzékeny konfigurációs adatok számára
+- **Végpontok közötti titkosítás**: Biztonságos kommunikáció megvalósítása minden alkalmazás komponens és adatáramlás között
+- **Bemenet-ellenőrzés**: Minden felhasználói bevitel, API paraméter és adatforrás szigorú ellenőrzése
 
-#### **Infrastruktúra megerősítés**
-- **Többtényezős hitelesítés**: Kötelező MFA minden adminisztratív és szolgáltatás fiókhoz
-- **Javítási folyamatok**: Automatizált, időben történő javítás operációs rendszerek, keretek és függőségek esetén
-- **Azonosító szolgáltató integráció**: Központosított identitáskezelés vállalati identitás szolgáltatókon keresztül (Microsoft Entra ID, Active Directory)
-- **Hálózati szeparáció**: MCP komponensek logikai izolálása az oldalirányú mozgás lehetőségének korlátozására
-- **Legkisebb jogosultság elve**: Minimálisan szükséges jogosultságok biztosítása minden rendszerkomponens és fiók számára
+#### **Infrastruktúra megerősítése**
+- **Többlépcsős hitelesítés**: Kötelező MFA minden adminisztratív és szolgáltatói fiók számára
+- **Frissítés-kezelés**: Automatizált, időben történő javítások operációs rendszerekre, keretrendszerekre és függőségekre  
+- **Identitásszolgáltató integráció**: Központosított identitáskezelés vállalati identitásszolgáltatókon keresztül (Microsoft Entra ID, Active Directory)
+- **Hálózati szeparáció**: MCP komponensek logikai elkülönítése az oldallépési potenciál korlátozására
+- **Legkisebb jogosultság elve**: Minimális szükséges jogosultság minden rendszerkomponens és fiók számára
 
-#### **Biztonsági naplózás és észlelés**
-- **Átfogó naplózás**: Részletes naplózás az MI alkalmazási tevékenységekről, beleértve az MCP kliens-szerver interakciókat
-- **SIEM integráció**: Központosított biztonsági információ- és eseménymenedzsment az anomáliák felismerésére
-- **Viselkedéselemzés**: MI alapú monitorozás a rendellenes rendszer- és felhasználói viselkedés észlelésére
-- **Fenyegetés intelligencia**: Külső fenyegetés források és kompromittálódási jelek (IOC) integrálása
-- **Incidens kezelés**: Kidolgozott eljárások biztonsági incidensek felismerésére, reagálásra és helyreállításra
+#### **Biztonsági monitorozás és észlelés**
+- **Átfogó naplózás**: Részletes naplózás az AI alkalmazás tevékenységeiről, beleértve az MCP kliens-szerver interakciókat
+- **SIEM integráció**: Központosított biztonsági információ- és eseménykezelés anomáliák észlelésére
+- **Viselkedési elemzés**: AI által támogatott megfigyelés szokatlan rendszer- és felhasználói viselkedési minták felismerésére
+- **Fenyegetés információ**: Külső fenyegetési feedek és kompromittálódás indikátorok (IOC) integrációja
+- **Incidens reagálás**: Jól definiált eljárások a biztonsági incidensek észlelésére, kezelésére és helyreállítására
 
 #### **Zero Trust architektúra**
-- **Sose bízz meg, mindig ellenőrizz**: Folyamatos felhasználói, eszköz és hálózati kapcsolat ellenőrzés
-- **Mikroszeparáció**: Granuláris hálózati vezérlés, amely izolálja az egyes munkaterheléseket és szolgáltatásokat
-- **Identitás-központú biztonság**: Olyan biztonsági szabályzatok, amelyek ellenőrzött identitásokra, nem pedig hálózati helyre épülnek
-- **Folyamatos kockázatértékelés**: Dinamikus biztonsági helyzet értékelés a jelenlegi kontextus és viselkedés alapján
-- **Feltételes hozzáférés**: Olyan hozzáférési vezérlések, amelyek alkalmazkodnak a kockázati tényezők, hely és eszköz megbízhatósága szerint
+- **Soha ne bízz, mindig ellenőrizz**: Folyamatos ellenőrzése a felhasználóknak, eszközöknek és hálózati kapcsolatoknak
+- **Mikro-szegmentáció**: Részletes hálózati vezérlések, amelyek izolálják az egyes munkaterheléseket és szolgáltatásokat
+- **Identitás-központú biztonság**: Biztonsági irányelvek ellenőrzött identitások alapján a hálózati helyett
+- **Folyamatos kockázatértékelés**: Dinamikus biztonsági helyzet értékelése az aktuális kontextus és viselkedés alapján
+- **Feltételes hozzáférés**: Kockázati tényezők, helyszín és eszköz megbízhatóság szerint alkalmazkodó hozzáférés-vezérlés
 
 ### Vállalati integrációs minták
 
 #### **Microsoft biztonsági ökoszisztéma integráció**
-- **Microsoft Defender for Cloud**: Átfogó felhő biztonsági helyzet menedzsment
-- **Azure Sentinel**: Felhő-alapú SIEM és SOAR képességek MI munkaterhelések védelmére
-- **Microsoft Entra ID**: Vállalati identitás- és hozzáférés menedzsment feltételes hozzáférési szabályokkal
-- **Azure Key Vault**: Központosított titokkezelés hardveres biztonsági modul (HSM) támogatással
-- **Microsoft Purview**: Adatkezelés és megfelelőség MI adatforrások és munkafolyamatok esetén
+- **Microsoft Defender for Cloud**: Átfogó felhőbiztonsági helyzetkezelés
+- **Azure Sentinel**: Felhő-alapú SIEM és SOAR képességek AI munkaterhelés védelemre
+- **Microsoft Entra ID**: Vállalati identitás- és hozzáférés-kezelés feltételes hozzáférési szabályokkal
+- **Azure Key Vault**: Központosított titokkezelés hardveres biztonsági modullal (HSM)
+- **Microsoft Purview**: Adatkezelés és megfelelőség AI adatforrások és munkafolyamatok számára
 
 #### **Megfelelőség és irányítás**
-- **Szabályozói összhang**: Biztosítsa, hogy az MCP megvalósítások megfeleljenek az iparági specifikus megfelelőségi követelményeknek (GDPR, HIPAA, SOC 2)
+- **Szabályozási megfelelés**: Biztosítsa, hogy az MCP implementációk megfelelnek az iparági szabályozási követelményeknek (GDPR, HIPAA, SOC 2)
 
-- **Adatosztályozás**: A mesterséges intelligencia rendszerek által feldolgozott érzékeny adatok megfelelő kategorizálása és kezelése
-- **Auditálási Naplók**: Átfogó naplózás a szabályozási megfelelőség és a nyomozati vizsgálatok érdekében
-- **Adatvédelmi Szabályozások**: A privacy-by-design elvek megvalósítása az MI rendszer architektúrájában
-- **Változáskezelés**: Formális folyamatok az MI rendszer módosításainak biztonsági felülvizsgálatához
+- **Adatosztályozás**: Az AI rendszerek által feldolgozott érzékeny adatok megfelelő kategorizálása és kezelése
+- **Ellenőrzési naplók**: Átfogó naplózás a szabályozási megfelelés és a kriminalisztikai vizsgálat érdekében
+- **Adatvédelmi vezérlők**: Az adatvédelem tervezésbe építésének elveinek megvalósítása az AI rendszer architektúrájában
+- **Változáskezelés**: Formális folyamatok az AI rendszer módosításainak biztonsági áttekintéséhez
 
-Ezek az alapvető gyakorlatok egy robusztus biztonsági alapot hoznak létre, amely növeli az MCP-specifikus biztonsági szabályozások hatékonyságát és átfogó védelmet nyújt az MI-alapú alkalmazások számára.
+Ezek az alapvető gyakorlatok stabil biztonsági alapot teremtenek, amelyek növelik az MCP-specifikus biztonsági vezérlők hatékonyságát és átfogó védelmet nyújtanak az AI-alapú alkalmazások számára.
 
-## Főbb biztonsági tanulságok
+## Fő biztonsági tanulságok
 
-- **Többrétegű Biztonsági Megközelítés**: Kombinálja az alapvető biztonsági gyakorlatokat (biztonságos kódolás, legkisebb jogosultság, ellátási lánc ellenőrzés, folyamatos megfigyelés) MI-specifikus szabályozásokkal a teljes körű védelem érdekében
+- **Többrétegű biztonsági megközelítés**: Alapvető biztonsági gyakorlatok (biztonságos kódolás, legkisebb jogosultság elve, ellátási lánc ellenőrzése, folyamatos megfigyelés) egyesítése az AI-specifikus vezérlőkkel átfogó védelem érdekében
 
-- **MI-specifikus Fenyegetési Környezet**: Az MCP rendszerek egyedi kockázatokkal szembesülnek, többek között prompt injection, eszközmérgezés, munkamenet eltérítés, confused deputy problémák, token átengedési sebezhetőségek és túlzott jogosultságok, amelyek speciális enyhítéseket igényelnek
+- **AI-specifikus fenyegetettségi környezet**: Az MCP rendszerek egyedi kockázatokkal szembesülnek, mint például a prompt injekció, eszközmérgezés, munkamenet eltérítés, zavaros helyettes problémák, token átengedési sérülékenységek és túlzott jogosultságok, amelyek speciális ellenszabályokat igényelnek
 
-- **Hitelesítés és Jogosultságkezelés Kiválósága**: Erős hitelesítés megvalósítása külső azonosító szolgáltatókkal (Microsoft Entra ID), megfelelő token validálás kikényszerítése, és soha ne fogadjon el olyan tokeneket, amelyeket nem kifejezetten az Ön MCP szervere számára bocsátottak ki
+- **Kiváló hitelesítés és engedélyezés**: Robusztus hitelesítés megvalósítása külső identitásszolgáltatók (Microsoft Entra ID) használatával, a tokenek megfelelő érvényesítésének betartása, és soha nem fogadni el olyan tokeneket, amelyeket nem kifejezetten az MCP szerver számára bocsátottak ki
 
-- **MI-támadások Megelőzése**: Microsoft Prompt Shields és Azure Content Safety alkalmazása a közvetett prompt injection és eszközmérgező támadások elleni védelem érdekében, miközben a eszköz metaadatokat validálja és figyeli a dinamikus változásokat
+- **AI támadások megelőzése**: Microsoft Prompt Shields és Azure Content Safety használata a közvetett prompt injekció és eszközmérgezés elleni védelemhez, miközben ellenőrzik az eszköz metaadatait és figyelik az dinamikus változásokat
 
-- **Munkamenet és Átvitel Biztonság**: Kriptográfiailag biztonságos, nem determinisztikus, felhasználói identitásokhoz kötött munkamenet azonosítók használata, megfelelő munkamenet életciklus-kezelés megvalósítása, és munkamenetek soha ne használata hitelesítésre
+- **Munkamenet- és átvitelbiztonság**: Kriptográfiailag biztonságos, nem determinisztikus munkamenet-azonosítók használata, amelyek a felhasználói identitásokhoz kötöttek, a munkamenet életciklusának megfelelő kezelése, és munkamenetek használatának mellőzése hitelesítésre
 
-- **OAuth Biztonsági Legjobb Gyakorlatok**: Confused deputy támadások megelőzése kifejezett felhasználói hozzájárulással dinamikusan regisztrált kliensek esetén, helyes OAuth 2.1 implementáció PKCE-vel, és szigorú redirect URI validáció  
+- **OAuth biztonsági legjobb gyakorlatok**: Zavaros helyettes támadások megakadályozása a dinamikusan regisztrált kliensek esetén a felhasználói nyílt beleegyezés által, az OAuth 2.1 megfelelő megvalósítása PKCE-vel, és a redirect URI szigorú ellenőrzése  
 
-- **Token Biztonsági Elvek**: Token átengedési anti-minták elkerülése, token audience claim-ek validálása, rövid életidejű tokenek biztonságos forgatással történő megvalósítása, és világos bizalmi határok fenntartása
+- **Token biztonsági alapelvek**: Token átengedési anti-minták kerülése, a token célközönségének érvényesítése, rövid élettartamú tokenek biztonságos forgatással, és tiszta bizalmi határok fenntartása
 
-- **Átfogó Ellátási Lánc Biztonság**: Az MI ökoszisztéma összes komponensét (modellek, beágyazások, kontextus szolgáltatók, külső API-k) ugyanolyan szigorral kezelje, mint a hagyományos szoftver függőségeket
+- **Átfogó ellátási lánc biztonság**: Minden AI ökoszisztéma komponens kezelése (modellek, beágyazások, kontextusszolgáltatók, külső API-k) ugyanazzal a biztonsági szigorral, mint a hagyományos szoftver-függőségek esetében
 
-- **Folyamatos Fejlődés**: Maradjon naprakész a gyorsan fejlődő MCP specifikációkkal, járuljon hozzá a biztonsági közösségi szabványokhoz, és tartson fenn adaptív biztonsági álláspontokat a protokoll érésével
+- **Folyamatos fejlődés**: Naprakészség megtartása a gyorsan fejlődő MCP szabványokkal, hozzájárulás a biztonsági közösségi szabványokhoz, és adaptív biztonsági megközelítések fenntartása a protokoll érésével párhuzamosan
 
-- **Microsoft Biztonsági Integráció**: Használja ki a Microsoft átfogó biztonsági ökoszisztémáját (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) az MCP telepítések fokozott védelméért
+- **Microsoft biztonsági integráció**: A Microsoft átfogó biztonsági ökoszisztémájának (Prompt Shields, Azure Content Safety, GitHub Advanced Security, Entra ID) kihasználása az MCP telepítések fokozott védelme érdekében
 
-## Átfogó Források
+## Átfogó források
 
-### **Hivatalos MCP Biztonsági Dokumentáció**
-- [MCP Specificáció (aktuális: 2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [MCP Biztonsági Legjobb Gyakorlatok](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
-- [MCP Jogosultság-specifikáció](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
-- [MCP GitHub Tároló](https://github.com/modelcontextprotocol)
+### **Hivatalos MCP biztonsági dokumentáció**
+- [MCP specifikáció (Aktuális: 2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [MCP biztonsági legjobb gyakorlatok](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices)
+- [MCP engedélyezési specifikáció](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [MCP GitHub tárhely](https://github.com/modelcontextprotocol)
 
-### **OWASP MCP Biztonsági Források**
-- [OWASP MCP Azure Biztonsági Útmutató](https://microsoft.github.io/mcp-azure-security-guide/) - Átfogó OWASP MCP Top 10 Azure megvalósítási útmutatóval
+### **OWASP MCP biztonsági források**
+- [OWASP MCP Azure biztonsági útmutató](https://microsoft.github.io/mcp-azure-security-guide/) - Átfogó OWASP MCP Top 10 Azure megvalósítási útmutatóval
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - Hivatalos OWASP MCP biztonsági kockázatok
-- [MCP Biztonsági Csúcstalálkozó Műhelymunka (Sherpa)](https://azure-samples.github.io/sherpa/) - Gyakorlati biztonsági tréning MCP-hez Azure-on
+- [MCP biztonsági csúcstalálkozó workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Gyakorlati biztonsági tréning MCP Azure rendszerekhez
 
-### **Biztonsági Szabványok és Legjobb Gyakorlatok**
-- [OAuth 2.0 Biztonsági Legjobb Gyakorlatok (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
-- [OWASP Top 10 Webalkalmazás Biztonság](https://owasp.org/www-project-top-ten/)
-- [OWASP Top 10 Nagyméretű Nyelvi Modellekhez](https://genai.owasp.org/download/43299/?tmstv=1731900559)
+### **Biztonsági szabványok és legjobb gyakorlatok**
+- [OAuth 2.0 biztonsági legjobb gyakorlatok (RFC 9700)](https://datatracker.ietf.org/doc/html/rfc9700)
+- [OWASP Top 10 webalkalmazás-biztonság](https://owasp.org/www-project-top-ten/)
+- [OWASP Top 10 nagyméretű nyelvi modellekhez](https://genai.owasp.org/download/43299/?tmstv=1731900559)
 - [Microsoft Digitális Védelem Jelentés](https://aka.ms/mddr)
 
-### **MI Biztonsági Kutatás és Elemzés**
-- [Prompt Injection az MCP-ben (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
-- [Eszközmérgező Támadások (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
-- [MCP Biztonsági Kutatási Tájékoztató (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
+### **AI biztonsági kutatás és elemzés**
+- [Prompt Injekció az MCP-ben (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
+- [Eszközmérgezési támadások (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
+- [MCP biztonsági kutatási összefoglaló (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
 
-### **Microsoft Biztonsági Megoldások**
-- [Microsoft Prompt Shields Dokumentáció](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
-- [Azure Content Safety Szolgáltatás](https://learn.microsoft.com/azure/ai-services/content-safety/)
-- [Microsoft Entra ID Biztonság](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
-- [Azure Tokenkezelési Legjobb Gyakorlatok](https://learn.microsoft.com/entra/identity-platform/access-tokens)
+### **Microsoft biztonsági megoldások**
+- [Microsoft Prompt Shields dokumentáció](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
+- [Azure Content Safety szolgáltatás](https://learn.microsoft.com/azure/ai-services/content-safety/)
+- [Microsoft Entra ID biztonság](https://learn.microsoft.com/entra/identity-platform/secure-least-privileged-access)
+- [Azure token kezelési legjobb gyakorlatok](https://learn.microsoft.com/entra/identity-platform/access-tokens)
 - [GitHub Advanced Security](https://github.com/security/advanced-security)
 
-### **Megvalósítási Útmutatók és Oktatóanyagok**
-- [Azure API Management mint MCP Hitelesítési Kapu](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
-- [Microsoft Entra ID Hitelesítés MCP Szerverekhez](https://den.dev/blog/mcp-server-auth-entra-id-session/)
-- [Biztonságos Token Tárolás és Titkosítás (videó)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
+### **Megvalósítási útmutatók és oktatóanyagok**
+- [Azure API Management mint MCP hitelesítési átjáró](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+- [Microsoft Entra ID hitelesítés MCP szerverekhez](https://den.dev/blog/mcp-server-auth-entra-id-session/)
+- [Biztonságos token tárolás és titkosítás (videó)](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2)
 
-### **DevOps és Ellátási Lánc Biztonság**
-- [Azure DevOps Biztonság](https://azure.microsoft.com/products/devops)
-- [Azure Repos Biztonság](https://azure.microsoft.com/products/devops/repos/)
-- [Microsoft Ellátási Lánc Biztonsági Útja](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
+### **DevOps és ellátási lánc biztonság**
+- [Azure DevOps biztonság](https://azure.microsoft.com/products/devops)
+- [Azure Repos biztonság](https://azure.microsoft.com/products/devops/repos/)
+- [Microsoft ellátási lánc biztonsági útja](https://devblogs.microsoft.com/engineering-at-microsoft/the-journey-to-secure-the-software-supply-chain-at-microsoft/)
 
-## **További Biztonsági Dokumentáció**
+## **További biztonsági dokumentáció**
 
-Átfogó biztonsági útmutatóért tekintse meg a szakasz ezen speciális dokumentumait:
+Átfogó biztonsági útmutatásért olvassa el az ebben a szakaszban található speciális dokumentumokat:
 
-- **[MCP Biztonsági Legjobb Gyakorlatok 2025](./mcp-security-best-practices-2025.md)** - Teljes körű biztonsági legjobb gyakorlatok MCP implementációkhoz
-- **[Azure Content Safety Megvalósítás](./azure-content-safety-implementation.md)** - Gyakorlati példák az Azure Content Safety integrációra  
-- **[MCP Biztonsági Szabályozások 2025](./mcp-security-controls-2025.md)** - Friss biztonsági szabályozások és technikák MCP telepítésekhez
-- **[MCP Legjobb Gyakorlatok Gyorsreferencia](./mcp-best-practices.md)** - Gyorsreferencia az alapvető MCP biztonsági gyakorlatokhoz
-- **[BlueHat 2026: Az MI jövőjének biztosítása: Az MCP többrétegű védelme](https://www.youtube.com/watch?v=cVWB58kEt-Y)** - Többrétegű védelemminták a Microsoft Security Response Center (MSRC) jóvoltából
+- **[CIMD és DCR engedélyezési minta](./samples/cimd-dcr-auth/README.md)** - Futtatható TypeScript MCP `2026-07-28` erőforrás szerver, amely összehasonlítja a preferált Client ID Metadata Documents dokumentumokat a megszűnő Dynamic Client Registration visszalépéssel
+- **[MCP biztonsági legjobb gyakorlatok](./mcp-security-best-practices.md)** - Teljes biztonsági legjobb gyakorlatok MCP megvalósításokhoz
+- **[Azure Content Safety megvalósítás](./azure-content-safety-implementation.md)** - Gyakorlati megvalósítási példák az Azure Content Safety integrációhoz  
+- **[MCP biztonsági vezérlők](./mcp-security-controls.md)** - Legfrissebb biztonsági vezérlők és technikák MCP telepítésekhez
+- **[MCP legjobb gyakorlatok gyors referencia](./mcp-best-practices.md)** - Gyors referencia útmutató az alapvető MCP biztonsági gyakorlatokhoz
+- **[BlueHat 2026: Az AI jövőjének védelme: MCP védelme több rétegű védelemmel](https://www.youtube.com/watch?v=cVWB58kEt-Y)** - Többrétegű védelem minták a Microsoft Biztonsági Reagálási Központjától (MSRC)
 
-### **Gyakorlati Biztonsági Képzés**
+### **Gyakorlati biztonsági képzés**
 
-- **[MCP Biztonsági Csúcstalálkozó Műhelymunka (Sherpa)](https://azure-samples.github.io/sherpa/)** - Átfogó, gyakorlati műhelymunka az MCP szerverek biztonságának növelésére Azure-on, az alapozó tábortól a csúcstalálkozóig terjedő szintekkel
-- **[OWASP MCP Azure Biztonsági Útmutató](https://microsoft.github.io/mcp-azure-security-guide/)** - Referencia architektúra és megvalósítási útmutató az összes OWASP MCP Top 10 kockázathoz
+- **[MCP biztonsági csúcstalálkozó workshop (Sherpa)](https://azure-samples.github.io/sherpa/)** - Átfogó, gyakorlati workshop az MCP Azure szerverek védelméhez alapozó tábortól a csúcstalálkozóig
+- **[OWASP MCP Azure biztonsági útmutató](https://microsoft.github.io/mcp-azure-security-guide/)** - Referencia architektúra és megvalósítási útmutató minden OWASP MCP Top 10 kockázathoz
 
 ---
 
 ## Mi következik
 
-Következő: [3. fejezet: Kezdő lépések](../03-GettingStarted/README.md)
+Következő: [3. fejezet: Első lépések](../03-GettingStarted/README.md)
 
 ---
 

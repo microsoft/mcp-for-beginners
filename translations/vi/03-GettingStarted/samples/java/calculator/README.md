@@ -1,14 +1,19 @@
-# Basic Calculator MCP Service
+# Dịch vụ Máy tính Cơ bản MCP
 
-Dịch vụ này cung cấp các phép toán cơ bản của máy tính thông qua Model Context Protocol (MCP) sử dụng Spring Boot với giao thức WebFlux. Nó được thiết kế như một ví dụ đơn giản dành cho người mới bắt đầu tìm hiểu về triển khai MCP.
+> [!NOTE]
+> Ví dụ này sử dụng giao thức truyền tải HTTP+SSE cũ và hướng đến một SDK tương thích
+> với MCP `2025-11-25`. Các máy chủ từ xa mới nên sử dụng hỗ trợ HTTP Streamable
+> `2026-07-28`.
+
+Dịch vụ này cung cấp các phép tính cơ bản qua Giao thức Ngữ cảnh Mô hình (MCP) sử dụng Spring Boot với giao thức WebFlux. Nó được thiết kế như một ví dụ đơn giản cho người mới bắt đầu tìm hiểu về triển khai MCP.
 
 Để biết thêm thông tin, xem tài liệu tham khảo [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 ## Tổng quan
 
-Dịch vụ trình bày:
-- Hỗ trợ SSE (Server-Sent Events)
-- Tự động đăng ký công cụ bằng annotation `@Tool` của Spring AI
+Dịch vụ trình diễn:
+- Hỗ trợ SSE (Sự kiện do máy chủ gửi)
+- Đăng ký công cụ tự động sử dụng chú thích `@Tool` của Spring AI
 - Các chức năng máy tính cơ bản:
   - Cộng, trừ, nhân, chia
   - Tính lũy thừa và căn bậc hai
@@ -19,64 +24,64 @@ Dịch vụ trình bày:
 
 Dịch vụ máy tính này cung cấp các khả năng sau:
 
-1. **Phép toán số học cơ bản**:
+1. **Các phép toán số học cơ bản**:
    - Cộng hai số
-   - Trừ số thứ hai khỏi số thứ nhất
+   - Trừ số thứ hai từ số thứ nhất
    - Nhân hai số
-   - Chia số thứ nhất cho số thứ hai (kiểm tra chia cho 0)
+   - Chia số thứ nhất cho số thứ hai (có kiểm tra chia cho 0)
 
 2. **Phép toán nâng cao**:
-   - Tính lũy thừa (cơ số mũ số mũ)
-   - Tính căn bậc hai (kiểm tra số âm)
+   - Tính lũy thừa (nâng cơ số lên mũ)
+   - Tính căn bậc hai (có kiểm tra số âm)
    - Tính phần dư (modulus)
    - Tính giá trị tuyệt đối
 
 3. **Hệ thống trợ giúp**:
    - Hàm trợ giúp tích hợp giải thích tất cả các phép toán có sẵn
 
-## Sử dụng dịch vụ
+## Sử dụng Dịch vụ
 
-Dịch vụ cung cấp các API endpoint sau thông qua giao thức MCP:
+Dịch vụ cung cấp các điểm cuối API sau qua giao thức MCP:
 
-- `add(a, b)`: Cộng hai số
-- `subtract(a, b)`: Trừ số thứ hai khỏi số thứ nhất
+- `add(a, b)`: Cộng hai số lại với nhau
+- `subtract(a, b)`: Trừ số thứ hai từ số thứ nhất
 - `multiply(a, b)`: Nhân hai số
-- `divide(a, b)`: Chia số thứ nhất cho số thứ hai (kiểm tra chia cho 0)
-- `power(base, exponent)`: Tính lũy thừa
-- `squareRoot(number)`: Tính căn bậc hai (kiểm tra số âm)
+- `divide(a, b)`: Chia số thứ nhất cho số thứ hai (có kiểm tra số 0)
+- `power(base, exponent)`: Tính lũy thừa của một số
+- `squareRoot(number)`: Tính căn bậc hai (có kiểm tra số âm)
 - `modulus(a, b)`: Tính phần dư khi chia
 - `absolute(number)`: Tính giá trị tuyệt đối
 - `help()`: Lấy thông tin về các phép toán có sẵn
 
-## Client kiểm thử
+## Khách hàng Thử nghiệm
 
-Một client kiểm thử đơn giản được bao gồm trong package `com.microsoft.mcp.sample.client`. Lớp `SampleCalculatorClient` minh họa các phép toán có sẵn của dịch vụ máy tính.
+Một khách hàng thử nghiệm đơn giản được bao gồm trong gói `com.microsoft.mcp.sample.client`. Lớp `SampleCalculatorClient` trình bày các phép toán có sẵn của dịch vụ máy tính.
 
-## Sử dụng LangChain4j Client
+## Sử dụng Khách hàng LangChain4j
 
-Dự án bao gồm một client ví dụ LangChain4j trong `com.microsoft.mcp.sample.client.LangChain4jClient` minh họa cách tích hợp dịch vụ máy tính với LangChain4j và các mô hình GitHub:
+Dự án bao gồm một khách hàng LangChain4j ví dụ trong `com.microsoft.mcp.sample.client.LangChain4jClient` minh họa cách tích hợp dịch vụ máy tính với LangChain4j và các mô hình GitHub:
 
-### Yêu cầu trước
+### Yêu cầu Trước
 
-1. **Cài đặt GitHub Token**:
+1. **Cài đặt Token GitHub**:
    
    Để sử dụng các mô hình AI của GitHub (như phi-4), bạn cần một token truy cập cá nhân GitHub:
 
-   a. Truy cập cài đặt tài khoản GitHub của bạn: https://github.com/settings/tokens
+   a. Vào phần cài đặt tài khoản GitHub của bạn: https://github.com/settings/tokens
    
    b. Nhấn "Generate new token" → "Generate new token (classic)"
    
-   c. Đặt tên mô tả cho token của bạn
+   c. Đặt tên mô tả cho token
    
    d. Chọn các phạm vi sau:
-      - `repo` (Toàn quyền với kho riêng tư)
-      - `read:org` (Đọc thông tin tổ chức và thành viên nhóm, đọc dự án tổ chức)
-      - `gist` (Tạo gist)
+      - `repo` (Quản lý đầy đủ kho riêng tư)
+      - `read:org` (Đọc tổ chức và thành viên nhóm, đọc dự án tổ chức)
+      - `gist` (Tạo gists)
       - `user:email` (Truy cập địa chỉ email người dùng (chỉ đọc))
    
    e. Nhấn "Generate token" và sao chép token mới
    
-   f. Thiết lập biến môi trường:
+   f. Đặt nó làm biến môi trường:
       
       Trên Windows:
       ```
@@ -88,9 +93,9 @@ Dự án bao gồm một client ví dụ LangChain4j trong `com.microsoft.mcp.sa
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. Để thiết lập lâu dài, thêm biến môi trường này qua cài đặt hệ thống
+   g. Để thiết lập lâu dài, thêm vào biến môi trường qua cài đặt hệ thống
 
-2. Thêm dependency LangChain4j GitHub vào dự án của bạn (đã có trong pom.xml):
+2. Thêm phụ thuộc LangChain4j GitHub vào dự án của bạn (đã có trong pom.xml):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -99,25 +104,25 @@ Dự án bao gồm một client ví dụ LangChain4j trong `com.microsoft.mcp.sa
    </dependency>
    ```
 
-3. Đảm bảo server máy tính đang chạy trên `localhost:8080`
+3. Đảm bảo máy chủ máy tính đang chạy tại `localhost:8080`
 
-### Chạy LangChain4j Client
+### Chạy Khách hàng LangChain4j
 
-Ví dụ này minh họa:
-- Kết nối tới server MCP máy tính qua giao thức SSE
+Ví dụ này trình bày:
+- Kết nối với máy chủ MCP máy tính qua giao thức SSE
 - Sử dụng LangChain4j để tạo chatbot tận dụng các phép toán máy tính
-- Tích hợp với các mô hình AI GitHub (hiện sử dụng mô hình phi-4)
+- Tích hợp với các mô hình AI của GitHub (hiện dùng mô hình phi-4)
 
-Client gửi các truy vấn mẫu sau để minh họa chức năng:
+Khách hàng gửi các truy vấn ví dụ sau để minh họa chức năng:
 1. Tính tổng hai số
-2. Tính căn bậc hai của một số
+2. Tìm căn bậc hai của một số
 3. Lấy thông tin trợ giúp về các phép toán máy tính có sẵn
 
-Chạy ví dụ và kiểm tra đầu ra trên console để xem cách mô hình AI sử dụng các công cụ máy tính trả lời truy vấn.
+Chạy ví dụ và xem đầu ra console để thấy cách mô hình AI sử dụng các công cụ máy tính để trả lời truy vấn.
 
-### Cấu hình mô hình GitHub
+### Cấu hình Mô hình GitHub
 
-Client LangChain4j được cấu hình sử dụng mô hình phi-4 của GitHub với các thiết lập sau:
+Khách hàng LangChain4j được cấu hình sử dụng mô hình phi-4 của GitHub với các thiết lập sau:
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,9 +134,9 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Để sử dụng các mô hình GitHub khác, chỉ cần thay đổi tham số `modelName` sang mô hình được hỗ trợ khác (ví dụ: "claude-3-haiku-20240307", "llama-3-70b-8192", v.v.).
+Để dùng các mô hình GitHub khác, chỉ cần thay đổi tham số `modelName` sang mô hình được hỗ trợ khác (ví dụ: "claude-3-haiku-20240307", "llama-3-70b-8192", v.v.).
 
-## Các phụ thuộc
+## Phụ thuộc
 
 Dự án yêu cầu các phụ thuộc chính sau:
 
@@ -157,14 +162,14 @@ Dự án yêu cầu các phụ thuộc chính sau:
 </dependency>
 ```
 
-## Xây dựng dự án
+## Xây dựng Dự án
 
 Xây dựng dự án bằng Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## Chạy server
+## Chạy Máy chủ
 
 ### Sử dụng Java
 
@@ -174,31 +179,31 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Sử dụng MCP Inspector
 
-MCP Inspector là công cụ hữu ích để tương tác với các dịch vụ MCP. Để sử dụng với dịch vụ máy tính này:
+MCP Inspector là công cụ hữu ích để tương tác với các dịch vụ MCP. Để sử dụng nó với dịch vụ máy tính này:
 
 1. **Cài đặt và chạy MCP Inspector** trong cửa sổ terminal mới:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Truy cập giao diện web** bằng cách nhấp vào URL hiển thị bởi ứng dụng (thường là http://localhost:6274)
+2. **Truy cập giao diện web** bằng cách nhấp vào URL được ứng dụng hiển thị (thông thường là http://localhost:6274)
 
 3. **Cấu hình kết nối**:
-   - Chọn loại giao thức là "SSE"
-   - Đặt URL tới endpoint SSE của server đang chạy: `http://localhost:8080/sse`
+   - Đặt loại giao thức truyền tải thành "SSE"
+   - Đặt URL đến điểm cuối SSE của máy chủ đang chạy: `http://localhost:8080/sse`
    - Nhấn "Connect"
 
 4. **Sử dụng các công cụ**:
-   - Nhấn "List Tools" để xem các phép toán máy tính có sẵn
+   - Nhấn "List Tools" để xem các phép toán máy tính sẵn có
    - Chọn một công cụ và nhấn "Run Tool" để thực thi phép toán
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/vi/tool.c75a0b2380efcf1a.webp)
 
 ### Sử dụng Docker
 
-Dự án bao gồm Dockerfile để triển khai dưới dạng container:
+Dự án bao gồm Dockerfile để triển khai đóng gói:
 
-1. **Xây dựng image Docker**:
+1. **Xây dựng ảnh Docker**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
@@ -208,27 +213,31 @@ Dự án bao gồm Dockerfile để triển khai dưới dạng container:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Điều này sẽ:
-- Xây dựng image Docker đa giai đoạn với Maven 3.9.9 và Eclipse Temurin 24 JDK
-- Tạo image container tối ưu
+Việc này sẽ:
+- Xây dựng ảnh Docker đa giai đoạn với Maven 3.9.9 và Eclipse Temurin 24 JDK
+- Tạo ảnh container tối ưu hóa
 - Mở cổng dịch vụ trên 8080
-- Khởi động dịch vụ MCP máy tính bên trong container
+- Khởi động dịch vụ máy tính MCP bên trong container
 
-Bạn có thể truy cập dịch vụ tại `http://localhost:8080` khi container đang chạy.
+Bạn có thể truy cập dịch vụ tại `http://localhost:8080` sau khi container chạy.
 
 ## Khắc phục sự cố
 
-### Các vấn đề thường gặp với GitHub Token
+### Các vấn đề thường gặp với Token GitHub
 
-1. **Lỗi quyền token**: Nếu nhận lỗi 403 Forbidden, kiểm tra token của bạn có đủ quyền như yêu cầu trong phần yêu cầu trước.
+1. **Vấn đề quyền Token**: Nếu bạn nhận lỗi 403 Forbidden, hãy kiểm tra token của bạn có quyền đúng như yêu cầu trong phần cài đặt trước hay không.
 
-2. **Không tìm thấy token**: Nếu nhận lỗi "No API key found", đảm bảo biến môi trường GITHUB_TOKEN đã được thiết lập đúng.
+2. **Không tìm thấy Token**: Nếu bạn nhận lỗi "No API key found", đảm bảo biến môi trường GITHUB_TOKEN đã được thiết lập đúng.
 
-3. **Giới hạn tần suất**: GitHub API có giới hạn tần suất. Nếu gặp lỗi giới hạn (mã trạng thái 429), hãy chờ vài phút rồi thử lại.
+3. **Giới hạn tốc độ**: API của GitHub có giới hạn tốc độ. Nếu gặp lỗi giới hạn (mã trạng thái 429), hãy chờ vài phút rồi thử lại.
 
-4. **Token hết hạn**: Token GitHub có thể hết hạn. Nếu gặp lỗi xác thực sau một thời gian, tạo token mới và cập nhật biến môi trường.
+4. **Token hết hạn**: Token GitHub có thể hết hạn. Nếu nhận lỗi xác thực sau một thời gian, hãy tạo token mới và cập nhật biến môi trường.
 
-Nếu cần hỗ trợ thêm, xem tài liệu [LangChain4j documentation](https://github.com/langchain4j/langchain4j) hoặc [GitHub API documentation](https://docs.github.com/en/rest).
+Nếu cần thêm trợ giúp, hãy xem [tài liệu LangChain4j](https://github.com/langchain4j/langchain4j) hoặc [tài liệu API GitHub](https://docs.github.com/en/rest).
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

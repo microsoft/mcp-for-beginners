@@ -1,31 +1,33 @@
-# 🚀 MCPツーリング
+# 🚀 MCP ツーリング
 
-## 🧠 MCPデータベース統合学習パスの概要
+## 🧠 MCP データベース統合ラーニングパスの概要
 
-ここでは、MCPを使用するツールの使い方を学びます。MCPサーバーをこれらのツールに接続することで、ツールの使用体験が向上します。
+ここでは MCP を使用するツールの使い方を学びます。MCP サーバーをこれらのツールに接続することで、使用体験が向上します。
 
-## 🔗 公式MCPリソース
+## 🔗 公式 MCP リソース
 
 - 📘 [MCP Documentation](https://modelcontextprotocol.io/) – 詳細なチュートリアルとユーザーガイド
-- 📜 [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – プロトコルのアーキテクチャと技術的参考資料
+- 📜 [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – プロトコルアーキテクチャと技術参照
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – オープンソースのSDK、ツール、コードサンプル
-- 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – ディスカッションに参加しコミュニティに貢献
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – セキュリティのベストプラクティスとリスク軽減策
+- 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – 議論に参加し、コミュニティに貢献
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – セキュリティのベストプラクティスとリスク軽減
+
+
 
 ## 🌟 コミュニティとサポート
 
 ### ヘルプを得る
 
 - **Azure AI Discord**: [専門家サポートに参加](https://discord.com/invite/ByRwuEEgH4)
-- **MCP Community**: [MCPの広範なディスカッションに参加](https://github.com/orgs/modelcontextprotocol/discussions)
+- **MCP Community**: [広範な MCP 議論に参加](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 はじめましょうか？
+## 🚀 始める準備はできましたか？
 
-**[GitHub Copilot app](./01-copilot-app/README.md)** で旅を始めよう
+**[GitHub Copilot app](./01-copilot-app/README.md)** から旅を始めましょう
 
 ---
 
-*MCPを使ってこれらのツールをマスターし、生産性の向上とシームレスな統合を実現しましょう。*
+*これらのツールで MCP を使いこなして、生産性向上とシームレスな統合を実現しましょう。*
 
 ---
 

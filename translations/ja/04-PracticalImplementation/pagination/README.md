@@ -1,17 +1,17 @@
 # MCPにおけるページネーションと大規模結果セット
 
-MCPサーバーが数千件のファイル、データベースレコード、検索結果などの大規模データセットを扱う際には、メモリを効率的に管理し、応答性の高いユーザー体験を提供するためにページネーションが必要です。このガイドでは、MCPでのページネーションの実装および使用方法について説明します。
+MCPサーバーが大量のデータセット、例えば何千ものファイル、データベースレコード、検索結果を扱う場合、メモリを効率的に管理し応答性の高いユーザー体験を提供するためにページネーションが必要です。本ガイドではMCPにおけるページネーションの実装と使用方法について解説します。
 
 ## なぜページネーションが重要か
 
-ページネーションがないと、大規模なレスポンスは以下の問題を引き起こす可能性があります：
+ページネーションがない場合、大量のレスポンスが以下を引き起こす可能性があります：
 
-- **メモリ枯渇** - 数百万のレコードを一度に読み込む
-- **遅い応答時間** - 全データの読み込みをユーザーが待つ
-- **タイムアウトエラー** - リクエストがタイムアウト制限を超える
-- **AIパフォーマンス低下** - 大規模なコンテキストでLLMの処理が困難になる
+- <strong>メモリ枯渇</strong> - 一度に何百万ものレコードを読み込む
+- <strong>応答遅延</strong> - 全データの読み込みをユーザーが待つ
+- <strong>タイムアウトエラー</strong> - リクエストがタイムアウト制限を超過
+- **AIパフォーマンス低下** - LLMが巨大なコンテキストに苦戦
 
-MCPは結果セットの確実で一貫したページングのために、**カーソルベースのページネーション**を使用しています。
+MCPでは、信頼性と一貫性のある結果セットのページングのために<strong>カーソルベースのページネーション</strong>を採用しています。
 
 ---
 
@@ -19,7 +19,7 @@ MCPは結果セットの確実で一貫したページングのために、**カ
 
 ### カーソルの概念
 
-**カーソル**は、結果セット内の位置を示す不透明な文字列です。長い本のブックマークのようなものと考えてください。
+<strong>カーソル</strong>とは、結果セットの現在位置を示す不透明な文字列のことです。長い本のしおりのようなイメージです。
 
 ```mermaid
 sequenceDiagram
@@ -35,11 +35,12 @@ sequenceDiagram
     Client->>Server: tools/list（カーソル: "def456"）
     Server-->>Client: tools [21-25]、nextCursor: null（終了）
 ```
-### MCPメソッドのページネーション
 
-これらのMCPメソッドはページネーションに対応しています：
+### MCPメソッドにおけるページネーション
 
-| メソッド | 返されるもの | カーソル対応 |
+以下のMCPメソッドがページネーションをサポートします：
+
+| メソッド | 戻り値 | カーソル対応 |
 |--------|---------|----------------|
 | `tools/list` | ツール定義 | ✅ |
 | `resources/list` | リソース定義 | ✅ |
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # 開始インデックスを取得するためにカーソルをデコードする
+    # カーソルをデコードして開始インデックスを取得
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # 結果のページを取得する
+    # 結果のページを取得
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # 次のカーソルを計算する
+    # 次のカーソルを計算
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -223,14 +224,14 @@ async function getAllTools(client: Client): Promise<Tool[]> {
   return allTools;
 }
 
-// 使用法
+// 使用方法
 const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
 ### レイジーローディングパターン
 
-非常に大きなデータセットの場合、ページを必要に応じて読み込みます：
+非常に大きなデータセットには、ページを必要に応じて読み込みます：
 
 ```python
 class PaginatedToolIterator:
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # 全てのページを使い果たしたかチェックする
+        # すべてのページを使い果たしたか確認する
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## リソースのページネーション
 
-リソースはディレクトリや大規模データセットでページネーションが必要です：
+リソースはディレクトリや大規模データセットに対してページネーションが必要になることが多いです：
 
 ```python
 from mcp.server import Server
@@ -318,17 +319,17 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## カーソル設計の戦略
+## カーソル設計戦略
 
 ### 戦略1：インデックスベース（シンプル）
 
 ```python
-# カーソルは単にインデックスです
-cursor = "50"  # アイテム50から開始する
+# カーソルは単なるインデックスです
+cursor = "50"  # アイテム50から開始してください
 ```
 
-**利点:** シンプルでステートレス  
-**欠点:** アイテムの追加・削除で結果がずれることがある
+**長所:** シンプルでステートレス
+**短所:** アイテムの追加・削除で結果がずれる可能性あり
 
 ### 戦略2：IDベース（安定）
 
@@ -337,8 +338,8 @@ cursor = "50"  # アイテム50から開始する
 cursor = "item_abc123"  # この項目の後から開始します
 ```
 
-**利点:** アイテムの変化があっても安定  
-**欠点:** 順序付けられたIDが必要
+**長所:** アイテムが変わっても安定
+**短所:** 順序付けされたIDが必要
 
 ### 戦略3：エンコードされた状態（複雑）
 
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# カーソルには複数の状態フィールドが含まれています
+# カーソルは複数の状態フィールドを含んでいます
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,8 +361,8 @@ cursor = encode_cursor({
 })
 ```
 
-**利点:** 複雑な状態をエンコード可能  
-**欠点:** より複雑でカーソル文字列が大きくなる
+**長所:** 複雑な状態をエンコード可能
+**短所:** より複雑でカーソル文字列が大きくなる
 
 ---
 
@@ -370,13 +371,13 @@ cursor = encode_cursor({
 ### 1. 適切なページサイズを選択する
 
 ```python
-# データサイズを考慮してください
+# データサイズを考慮する
 PAGE_SIZE_SMALL_ITEMS = 100   # シンプルなメタデータ
 PAGE_SIZE_MEDIUM_ITEMS = 20   # より豊かなオブジェクト
 PAGE_SIZE_LARGE_ITEMS = 5     # 複雑なコンテンツ
 ```
 
-### 2. 無効なカーソルに対処する
+### 2. 無効なカーソルを適切に処理する
 
 ```python
 @app.list_tools()
@@ -386,17 +387,17 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # 最初にリセット
     except (ValueError, TypeError):
-        start_index = 0  # 無効なカーソル、新たに開始
+        start_index = 0  # 無効なカーソル、新しく開始
     # ...
 ```
 
-### 3. 合計件数を含める（任意）
+### 3. 合計数を含める（任意）
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # 一部の実装にはUIの進行状況の合計が含まれています
+    # 一部の実装にはUIの進行状況のための合計が含まれています
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
@@ -423,20 +424,20 @@ async def test_pagination():
 
 ## よくある落とし穴
 
-### ❌ 全ての結果を返してからクライアント側でページネーションする
+### ❌ すべての結果を返してからクライアント側でページング
 
 ```python
-# 悪い：すべてをメモリに読み込む
+# 悪い：全てをメモリに読み込む
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 100万のツール！
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ データソース側でページネーションする
+### ✅ データソースでページングを行う
 
 ```python
-# 良い: 必要なものだけを読み込む
+# 良い: 必要なものだけを読み込みます
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## 次に読むべきもの
+## 次に読むべき内容
 
-- [モジュール 5.14 - コンテキストエンジニアリング](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [モジュール 8 - ベストプラクティス](../../08-BestPractices/README.md)
-- [3.8 - MCPサーバのテスト](../../03-GettingStarted/08-testing/README.md)
+- [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
+- [3.8 - Testing Your MCP Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## 追加リソース
 
-- [MCP仕様 - ページネーション](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP仕様 - ページネーション](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [カーソルベースページネーションの解説](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK ページネーションテスト](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Python SDKのページネーションテスト](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責事項**：  
-本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されました。正確性の確保に努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文の言語による文書が正式な情報源として扱われるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の使用により生じたいかなる誤解や解釈の相違についても、当方は一切の責任を負いかねます。
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

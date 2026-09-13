@@ -1,43 +1,48 @@
-# Nameščanje strežnikov MCP
+# Namestitev MCP strežnikov
 
-Nameščanje vašega MCP strežnika omogoča drugim dostop do njegovih orodij in virov onkraj vašega lokalnega okolja. Obstaja več strategij nameščanja, ki jih lahko upoštevate glede na vaše zahteve po razširljivosti, zanesljivosti in enostavnosti upravljanja. Spodaj boste našli navodila za nameščanje strežnikov MCP lokalno, v kontejnerjih in v oblaku.
+> [!NOTE]
+> Konfiguracijski primeri, ki uporabljajo `/sse` konektor, ciljajo na staro transportno kodo HTTP+SSE.
+> Oddaljeni MCP strežniki `2026-07-28` uporabljajo Streamable HTTP, običajno na
+> na konektorju, ki ga definira strežnik, na primer `/mcp`.
+
+Namestitev vašega MCP strežnika omogoča drugim dostop do njegovih orodij in virov onkraj vašega lokalnega okolja. Obstaja več strategij namestitve, ki jih je treba upoštevati, odvisno od vaših zahtev glede razširljivosti, zanesljivosti in enostavnosti upravljanja. Spodaj boste našli navodila za namestitev MCP strežnikov lokalno, v zabojnikih in v oblak.
 
 ## Pregled
 
-Ta lekcija zajema, kako namestiti vašo aplikacijo MCP Server.
+Ta lekcija pokriva, kako namestiti vašo MCP Server aplikacijo.
 
 ## Cilji učenja
 
 Do konca te lekcije boste znali:
 
-- Ovrednotiti različne pristope nameščanja.
+- Oceniti različne pristope namestitve.
 - Namestiti vašo aplikacijo.
 
-## Lokalni razvoj in nameščanje
+## Lokalni razvoj in namestitev
 
-Če je vaš strežnik namenjen za uporabo na računalniku uporabnika, lahko sledite naslednjim korakom:
+Če je vaš strežnik namenjen uporabi na uporabnikovi napravi, lahko sledite naslednjim korakom:
 
-1. **Prenesite strežnik**. Če niste vi napisali strežnika, ga najprej prenesite na svoj računalnik.  
-1. **Zaženite proces strežnika**: Zaženite vašo aplikacijo MCP strežnika.
+1. **Prenesite strežnik**. Če niste napisali strežnika, ga najprej prenesite na vaše računalnik.
+1. **Zaženite strežniški proces**: Zaženite vašo MCP strežniško aplikacijo.
 
-Za SSE (ni potrebno za strežnik tipa stdio)
+Za SSE (ni potrebno za stdio tip strežnika)
 
-1. **Konfigurirajte omrežje**: Poskrbite, da je strežnik dostopen na pričakovani vratih.  
-1. **Povežite odjemalce**: Uporabite lokalne povezovalne URL-je, kot je `http://localhost:3000`
+1. **Nastavite omrežje**: Poskrbite, da je strežnik dostopen na pričakovanem priključku.
+1. **Povežite odjemalce**: Uporabite lokalne URL-je povezave, kot je `http://localhost:3000`.
 
-## Namestitev v oblaku
+## Namestitev v oblak
 
-MCP strežnike je mogoče namestiti na različnih oblačnih platformah:
+MCP strežniki se lahko nameščajo na različne oblačne platforme:
 
-- **Brezstrežni funkciji**: Namestite lahke MCP strežnike kot brezstrežne funkcije  
-- **Kontejnerske storitve**: Uporabite storitve, kot so Azure Container Apps, AWS ECS ali Google Cloud Run  
-- **Kubernetes**: Namestite in upravljajte MCP strežnike v Kubernetes grozdih za visoko razpoložljivost
+- **Brezstrežniške funkcije**: Namestite lahke MCP strežnike kot brezstrežniške funkcije.
+- **Zabojniške storitve**: Uporabite storitve, kot so Azure Container Apps, AWS ECS ali Google Cloud Run.
+- **Kubernetes**: Namestite in upravljajte MCP strežnike v Kubernetes grozdih za visoko razpoložljivost.
 
 ### Primer: Azure Container Apps
 
-Azure Container Apps podpirajo namestitev MCP strežnikov. Projekt je še v teku in trenutno podpira SSE strežnike.
+Azure Container Apps podpira namestitev MCP strežnikov. Še vedno je delo v teku in trenutno podpira SSE strežnike.
 
-Tukaj je, kako lahko to naredite:
+Tukaj je, kako lahko začnete:
 
 1. Klonirajte repozitorij:
 
@@ -59,7 +64,7 @@ Tukaj je, kako lahko to naredite:
   uv run fastapi dev main.py
   ```
 
-1. Za lokalno preizkušanje ustvarite datoteko *mcp.json* v mapi *.vscode* in vnesite naslednjo vsebino:
+1. Da preizkusite lokalno, ustvarite datoteko *mcp.json* v imeniku *.vscode* in dodajte naslednjo vsebino:
 
   ```json
   {
@@ -83,30 +88,30 @@ Tukaj je, kako lahko to naredite:
   }
   ```
 
-  Ko je SSE strežnik zagnan, lahko kliknete na ikono predvajanja v JSON datoteki; orodja na strežniku bi morala biti zdaj zaznana s strani GitHub Copilot, glejte ikono orodja.
+Ko je SSE strežnik zagnan, lahko kliknete ikono za predvajanje v datoteki JSON, zdaj bi morali videti orodja na strežniku, ki jih prevzame GitHub Copilot, glejte ikono orodja.
 
-1. Za nameščanje zaženite naslednji ukaz:
+1. Za namestitev zaženite naslednji ukaz:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-To je to, namestite ga lokalno ali v Azure preko teh korakov.
+To je to, namestite lokalno, namestite v Azure s temi koraki.
 
 ## Dodatni viri
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Članek o Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
-- [Repositorij Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+- [Azure Container Apps MCP repozitorij](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
 ## Kaj sledi
 
-- Naslednje: [Napredne teme o strežnikih](../10-advanced/README.md)
+- Naslednje: [Napredne teme strežnika](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Omejitev odgovornosti**:
-Ta dokument je bil preveden z uporabo storitve za avtomatski prevod [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, upoštevajte, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v njegovem matičnem jeziku velja za avtoritativni vir. Za kritične informacije priporočamo strokovni prevod s strani človeka. Nismo odgovorni za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

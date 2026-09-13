@@ -1,5 +1,10 @@
 # Run the sample
 
+> [!WARNING]
+> This sample uses deprecated Sampling and a legacy HTTP+SSE endpoint. It is
+> retained for MCP `2025-11-25` compatibility. New implementations should call
+> an LLM provider directly and use Streamable HTTP for remote MCP traffic.
+
 ## Create virtual environment
 
 ```sh
@@ -52,5 +57,5 @@ The first time you will be asked whether to accept a Sampling action, then you w
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

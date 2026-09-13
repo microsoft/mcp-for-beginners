@@ -1,45 +1,50 @@
 # MCP serverių diegimas
 
-Diegdami savo MCP serverį leidžiate kitiems naudotis jo įrankiais ir ištekliais ne tik jūsų vietinėje aplinkoje. Yra keli diegimo strategijų variantai, priklausomai nuo jūsų reikalavimų skalabilumui, patikimumui ir valdymo paprastumui. Žemiau rasite rekomendacijas MCP serverių diegimui vietoje, konteineriuose ir debesyje.
+> [!NOTE]
+> Konfigūracijos pavyzdžiai, naudojantys `/sse` pabaigos tašką, taikomi tradiciniam HTTP+SSE
+> perdavimui. MCP `2026-07-28` nuotoliniai serveriai naudoja Streamable HTTP, paprastai serveryje
+> apibrėžtą pabaigos tašką, pvz., `/mcp`.
+
+Jūsų MCP serverio diegimas leidžia kitiems prieiti prie jo įrankių ir išteklių už jūsų vietinio aplinkos ribų. Yra keletas diegimo strategijų, kurias reikėtų apsvarstyti, atsižvelgiant į jūsų mastelio didinimo, patikimumo ir valdymo paprastumo reikalavimus. Žemiau rasite gaires, kaip diegti MCP serverius vietoje, konteineriuose ir debesyje.
 
 ## Apžvalga
 
-Ši pamoka apima, kaip diegti jūsų MCP Server programėlę.
+Ši pamoka apima, kaip įdiegti savo MCP Server programą.
 
 ## Mokymosi tikslai
 
 Pamokos pabaigoje galėsite:
 
-- Įvertinti skirtingus diegimo metodus.
-- Diegti savo programėlę.
+- Įvertinti skirtingus diegimo būdus.
+- Įdiegti savo programą.
 
-## Vietinis kūrimas ir diegimas
+## Vietinis vystymas ir diegimas
 
-Jei jūsų serveris skirtas naudoti vartotojo mašinoje, galite vadovautis šiomis instrukcijomis:
+Jei jūsų serveris skirtas naudoti vartotojo kompiuteryje, galite vadovautis šiais žingsniais:
 
-1. **Atsisiųskite serverį**. Jei serverio nerašėte patys, pirmiausia atsisiųskite jį į savo kompiuterį.  
-1. **Paleiskite serverio procesą**: Paleiskite jūsų MCP serverio programą
+1. **Atsisiųskite serverį**. Jei pats nesukūrėte serverio, pirmiausia atsisiųskite jį į savo kompiuterį.
+1. **Paleiskite serverio procesą**: paleiskite MCP serverio programą
 
 SSE atveju (nereikalinga stdio tipo serveriui)
 
-1. **Konfigūruokite tinklą**: Užtikrinkite, kad serveris būtų pasiekiamas per numatytą prievadą  
-1. **Prijunkite klientus**: Naudokite vietinius prisijungimo URL, pvz., `http://localhost:3000`
+1. **Konfigūruokite tinklą**: įsitikinkite, kad serveris pasiekiamas per numatytą prievadą
+1. **Prisijunkite klientus**: naudokite vietinius prisijungimo URL, pvz., `http://localhost:3000`
 
 ## Debesų diegimas
 
 MCP serverius galima diegti įvairiose debesų platformose:
 
-- **Serverless funkcijos**: Diegti lengvus MCP serverius kaip serverless funkcijas  
-- **Konteinerių paslaugos**: Naudokite paslaugas kaip Azure Container Apps, AWS ECS arba Google Cloud Run  
-- **Kubernetes**: Diegti ir valdyti MCP serverius Kubernetes klasteriuose, siekiant aukšto prieinamumo
+- **Serverless funkcijos**: diegti lengvus MCP serverius kaip serverless funkcijas
+- **Konteinerių paslaugos**: naudoti paslaugas, tokias kaip Azure Container Apps, AWS ECS arba Google Cloud Run
+- **Kubernetes**: diegti ir valdyti MCP serverius Kubernetes klasteriuose dėl didelio prieinamumo
 
 ### Pavyzdys: Azure Container Apps
 
-Azure Container Apps palaiko MCP serverių diegimą. Tai dar yra kuriama funkcija ir šiuo metu palaikomi SSE serveriai.
+Azure Container Apps palaiko MCP serverių diegimą. Tai vis dar kuriama, ir šiuo metu palaikomi SSE serveriai.
 
-Štai kaip galite tai padaryti:
+Štai kaip galite tai atlikti:
 
-1. Atsiųskite repozitoriją:
+1. Klonuokite repozitoriją:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
@@ -83,15 +88,15 @@ Azure Container Apps palaiko MCP serverių diegimą. Tai dar yra kuriama funkcij
   }
   ```
 
-  Kai SSE serveris bus paleistas, spustelėkite grojimo piktogramą JSON faile, ir turėtumėte matyti, kad GitHub Copilot aptinka serverio įrankius, žr. įrankio piktogramą.
+  Kai SSE serveris bus paleistas, galėsite spustelėti grojimo piktogramą JSON faile, dabar turėtumėte matyti įrankius serveryje, kuriuos aptinka GitHub Copilot, žr. įrankio piktogramą.
 
-1. Norėdami diegti, vykdykite šią komandą:
+1. Norėdami įdiegti, vykdykite šią komandą:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Štai ir viskas – diegiate vietoje arba diegiate į Azure atlikdami šiuos veiksmus.
+Štai ir viskas, įdiekite vietoje arba Azure pagal šiuos žingsnius.
 
 ## Papildomi ištekliai
 
@@ -99,13 +104,14 @@ Azure Container Apps palaiko MCP serverių diegimą. Tai dar yra kuriama funkcij
 - [Azure Container Apps straipsnis](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
 - [Azure Container Apps MCP repozitorija](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
+
 ## Kas toliau
 
-- Toliau: [Pažangios serverio temos](../10-advanced/README.md)
+- Toliau: [Pažangūs serverio klausimai](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už jokius nesusipratimus ar neteisingus interpretavimus, kylančius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

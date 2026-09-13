@@ -1,39 +1,39 @@
-# Case Study: Paglalathala sa Mga Social Network mula sa Isang Ahente gamit ang Remote MCP Server
+# Pag-aaral ng Kaso: Pag-publish sa mga Social Network mula sa isang Ahente na may Remote MCP Server
 
-> **Paunawa:** Maraming serbisyo at open-source na proyekto ang maaaring maglathala sa mga social network, at maaari ring isama ng isang koponan ang API ng bawat network nang direkta. Ang sumusunod na senaryo ay ibinigay bilang isang halimbawa kung paano maaaring idisenyo at gamitin ang isang **write-capable remote MCP server**. Ang Publora ay isang komersyal na serbisyo na may libreng tier; ang mga pattern na inilarawan dito ay naaangkop sa anumang MCP server na nagsasagawa ng hindi na mababalik na mga aksyon sa ngalan ng gumagamit.
+> **Paalala:** Maraming mga serbisyo at open-source na proyekto ang maaaring mag-publish sa mga social network, at maaaring direktang i-integrate ng isang koponan ang API ng bawat network. Ang senaryong nasa ibaba ay isang halimbawa kung paano maaaring idisenyo at gamitin ang isang **write-capable remote MCP server**. Ang Publora ay isang komersyal na serbisyo na may libreng tier; ang mga pattern na inilarawan dito ay naaangkop sa anumang MCP server na gumagawa ng mga hindi mababaling aksyon para sa isang user.
 
-## Pangkalahatang Ideya
+## Pangkalahatang-ideya
 
-Magaling ang mga ahente sa paggawa ng draft ng nilalaman ngunit mahina sa paghahatid nito. Maaaring magsulat ang isang modelo ng anunsyo ng release sa loob ng ilang segundo, at pagkatapos ay humihinto ang trabaho: nangangahulugan ang paglalathala nito ng isang API para sa bawat network, isang OAuth app para sa bawat network, at magkakaibang hanay ng mga patakaran sa media para sa bawat isa. Karamihan sa mga koponan ay nilulutas ito sa pamamagitan ng pagkopya ng teksto sa isang browser nang mano-mano.
+Magaling ang mga ahente sa paggawa ng draft ng nilalaman ngunit hindi sa paghahatid nito. Maaaring makabuo ang isang modelo ng anunsyo sa loob ng ilang segundo, tapos humihinto ang trabaho: ang pag-publish nito ay nangangailangan ng isang API sa bawat network, isang OAuth app kada network, at iba’t ibang mga patakaran sa media para sa bawat isa. Karamihan sa mga koponan ay nagagawa ito sa pamamagitan ng mano-manong pagkopya ng teksto sa browser.
 
-Tiningnan sa case study na ito kung paano nasasara ang huling hakbang gamit ang isang remote MCP server lamang, at — mas kapaki-pakinabang para sa sinumang bumubuo nito — sa mga desisyon sa disenyo na kailangang tama ng isang **write-capable** server. Ang pagbasa ng data ay may patawad. Ang paglalathala ay hindi: ang maling tawag sa tool ay nakikita ng publiko at hindi maaaring bawiin.
+Tinutukoy ng pag-aaral na ito kung paano nagsasara ang huling hakbang sa pamamagitan ng isang solong remote MCP server, at — mas kapaki-pakinabang para sa sinumang bumubuo nito — sa mga desisyong disenyo na kailangang maitama ng isang **write-capable** server. Ang pagbabasa ng data ay mapagpatawad. Ang pag-publish ay hindi: ang maling tawag sa tool ay makikita ng audience at hindi na maaaring bawiin.
 
 ## Senaryo
 
-Isang maliit na koponan sa developer-relations ang gumagawa ng mga post sa loob ng isang ahente (Claude, VS Code, Cursor — walang importansya ang client). Gusto nilang ang ahente ay:
+Ang isang maliit na koponan ng developer-relations ay gumagawa ng mga draft ng post sa loob ng ahente (Claude, VS Code, Cursor — hindi mahalaga ang client). Nais nila na ang ahente ay:
 
-- makita kung alin sa mga social account ang nakakonekta ng koponan,
-- gumawa ng draft ng post at itago ito bilang draft para aprubahan ng tao,
-- maglakip ng larawan,
-- iskedyul ito sa ilang mga network sa napiling oras,
-- at sa kalaunan iulat kung paano ito nag-perform.
+- makita kung aling mga social account ang nakakonekta ng koponan,
+- gumawa ng draft ng post at panatilihin ito bilang draft para aprubahan ng tao,
+- maglakip ng imahe,
+- mag-iskedyul nito sa ilang mga network sa napiling oras,
+- at mag-ulat sa kalaunan kung paano ito nagganap.
 
-Mahalaga, gusto nilang *hindi* makapag-publish ang ahente nang aksidenteng habang sila ay nag-eeksperimento pa lang.
+Mahalaga, nais nilang *hindi* makapag-publish nang aksidente ang ahente habang sila ay nagsusubok pa lamang.
 
-## Mga Ginamit na Tools
+## Mga Ginamit na Tool
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — isang remote MCP server (`streamable-http`) na nagpapakita ng mga tool para sa paglalathala, pag-iskedyul, media at LinkedIn analytics. Nakarehistro sa opisyal na MCP registry bilang `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — isang remote MCP server (`streamable-http`) na naglalantad ng mga tool para sa pag-publish, pag-iskedyul, media at LinkedIn analytics. Nakarehistro sa opisyal na MCP registry bilang `com.publora/mcp-server`.
 
 ## Hakbang-hakbang na Workflow
 
-1. **Ikonekta ang server.** Ang mga client na gumagamit ng OAuth ay kumukumpleto ng authorization-code flow na may PKCE laban sa consent screen ng server; ang mga client na hindi, tulad ng headless na CLI, ay gumagamit ng Publora API key sa header. Suportado ang parehong mga paraan, at alin ang makukuha mo ay depende sa client, hindi sa server.
-2. **Ilista ang mga koneksyon.** Tumatawag ang ahente ng `list_connections` at tumatanggap ng mga nakakonektang account kasama ang kanilang mga identifier.
-3. **Gumawa ng draft.** Tumatawag ang ahente ng `create_post` *nang walang* naka-iskedyul na oras. Ang post ay iniimbak bilang draft — walang nalathala.
-4. **Maglakip ng media.** Ipinapasa ang mga pampublikong URL ng larawan sa parehong tawag; dinadownload at nire-validate ng server ang mga ito.
-5. **Mag-iskedyul.** Pagkatapos aprubahan ng tao, itinatakda ng `update_post` ang status bilang naka-iskedyul gamit ang oras na ISO 8601.
+1. **Ikonekta ang server.** Ang mga client na gumagamit ng OAuth ay tinatapos ang authorization-code flow na may PKCE laban sa sariling consent screen ng server; ang mga client na hindi, tulad ng headless CLI, ay gumagamit ng Publora API key sa header. Suportado ang parehong paraan, at alin man ang makukuha mo ay depende sa client, hindi sa server.
+2. **Ilista ang mga koneksyon.** Tinatawag ng ahente ang `list_connections` at natatanggap ang mga nakakonektang account kasama ang kanilang mga identifier.
+3. **Gumawa ng draft.** Tinatawag ng ahente ang `create_post` *nang walang* naka-iskedyul na oras. Ang post ay iniimbak bilang draft — walang naipublish.
+4. **Maglakip ng media.** Ipinapasa ang mga pampublikong URL ng imahe sa parehong tawag; dinadownload at kinukumpirma ng server ang mga ito.
+5. **Mag-iskedyul.** Pagkatapos aprubahan ng tao, tinatakda ng `update_post` ang status sa scheduled gamit ang ISO 8601 na oras.
 6. **Sukatin.** Para sa LinkedIn, ibinabalik ng `linkedin_post_stats` ang engagement kapag live na ang post.
 
-## Halimbawang Prompt
+## Halimbawa ng Prompt
 
 ```text
 Which social accounts do I have connected?
@@ -46,84 +46,94 @@ Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 
 ```mermaid
 flowchart TD
-    A[Mungkahi ng user sa isang MCP client] --> B[Isinasagawa ng client ang OAuth sa server]
-    B --> C[listahan_ng_mga_koneksyon]
+    A[User prompt sa isang MCP client] --> B[Client nagsasagawa ng OAuth sa server]
+    B --> C[list_connections]
     C --> D{Nakakonekta ba ang mga target na network?}
-    D -- No --> E[Iniulat ng agent kung alin ang nawawala]
-    D -- Yes --> F[gumawa_ng_post nang walang scheduledTime -> draft]
-    F --> G[Sine-review ng tao ang draft]
-    G -- Approved --> H[update_post: status=isinaayos]
-    G -- Rejected --> I[tanggalin_post]
-    H --> J[Nagpopublish ang server sa naka-iskedyul na oras]
-    J --> K[istatistika_ng_linkedin_post para sa pakikilahok]
+    D -- No --> E[Nag-uulat ang agent kung alin ang nawawala]
+    D -- Yes --> F[create_post nang walang scheduledTime -> draft]
+    F --> G[Sinasuri ng tao ang draft]
+    G -- Approved --> H[update_post: status=scheduled]
+    G -- Rejected --> I[delete_post]
+    H --> J[Naglalathala ang server sa naka-schedule na oras]
+    J --> K[linkedin_post_stats para sa pakikipag-ugnayan]
 ```
 
-## Teknikal na Implementasyon
+## Teknikal na Pagpapatupad
 
-Ang mga aral sa ibaba ay ang maaaring ilipat na bahagi ng case study na ito.
+Ang mga aral sa ibaba ay ang mga maaaring ilipat na bahagi ng pag-aaral na ito.
 
-### Bukas na pagtuklas, authenticated na pagpapatupad
+### Bukas na pagtuklas, na-authenticate na pagpapatupad
 
-Ang `tools/list` ay ibinibigay nang walang kredensyal; bawat `tools/call` ay nangangailangan ng token at kung hindi ay nagbabalik ng `401` na may `WWW-Authenticate` na header na nagtuturo sa metadata ng protected-resource. (Sinasagot din ng server ang hindi authenticated na `initialize`, na mahalaga lamang para sa mga client sa mga protocol version bago ang `2026-07-28`; tinanggal ng rebisyon na iyon ang handshake nang buo.)
+Ang `tools/list` ay ipinapasa nang walang credentials; bawat `tools/call` ay nangangailangan ng token
+at kung hindi, nagbabalik ng `401` na may `WWW-Authenticate` na header na nagtuturo sa
+protected-resource metadata. Ang legacy endpoint ng server ay tumutugon din sa
+hindi-authenticated na `initialize` para sa mga client na nasa mga bersyon ng protocol bago
+`2026-07-28`; ang kasalukuyang mga client ay hindi na gumagamit ng handshake na iyon.
 
-Mahalaga ang paghahati na ito sa pagsasanay. Maaari ng mga registries, katalogo at client na suriin ang tool surface — mga pangalan, schema, anotasyon — nang hindi nagtatago ng lihim, habang walang kahit ano ang maaaring *ipatupad* nang anonymous. Ang server na nangangailangan ng token para sa `initialize` ay epektibong invisible sa mga tooling; ang server na nagpapahintulot ng anonymous na `tools/call` ay isang liability.
+Ang paghahati na ito na specific sa server ay nagpapahintulot sa mga registry, katalogo, at mga client na inspeksyunin ang mga pangalan ng tool,
+schema, at anotasyon nang walang sikreto habang pinipigilan ang anonymous
+na pagpapatupad. Ang bukas na pagtuklas ay isang pagpipiliang deployment, hindi isang kinakailangan ng MCP; ang
+isang sinesegurowang deployment ay maaaring mangailangan din ng awtorisasyon para sa `tools/list`.
 
-### Rehistrasyon: dynamic client registration, at ano ang pumalit dito
+### Rehistrasyon: dynamic client registration, at ano ang pumapalit dito
 
-Inaanunsyo ng server ang `/.well-known/oauth-protected-resource` at `/.well-known/oauth-authorization-server`, at sinusuportahan ang authorization-code flow na may PKCE (`S256`), refresh tokens, at **dynamic client registration**.
+Ipinapahayag ng server ang `/.well-known/oauth-protected-resource` at `/.well-known/oauth-authorization-server`, at sinusuportahan ang authorization-code flow na may PKCE (`S256`), refresh tokens, at **dynamic client registration**.
 
-Inaalis ng dynamic registration ang manwal na hakbang: kung wala ito, bawat client ay nangangailangan ng pre-issued na `client_id`, na nangangahulugang isang out-of-band na kahilingan sa vendor para sa bawat bagong client.
+Tinanggal ng dynamic registration ang manwal na hakbang para sa mga legacy client: kung wala ito,
+bawat client ay kailangan ng naunang `client_id` mula sa vendor.
 
-Itratong ito bilang compatibility behavior kaysa bilang disenyo na kokopyahin. Ang `2026-07-28` na rebisyon ng espesipikasyon ay nagde-deprecate ng dynamic client registration pabor sa Client ID Metadata Documents, kung saan ang client ang nagho-host ng metadata document sa isang matatag na HTTPS na URL at ang URL na iyon *ay* ang `client_id`. Patuloy pa ring gumagana ang DCR, ngunit dapat magplano para sa CIMD at panatilihin ang DCR para lang sa mga lumang client ang server na binubuo ngayon.
+Ituring ito bilang compatibility behaviour at hindi bilang disenyo na kokopyahin. Binabawal ng rebisyon ng specification noong `2026-07-28` ang dynamic client registration pabor sa Client ID Metadata Documents, kung saan nagho-host ang client ng metadata document sa isang matatag na HTTPS URL at ang URL na iyon *ay* ang `client_id`. Patuloy pa rin ang DCR ngayon, pero ang isang server na ginagawa ngayon ay dapat magplano para sa CIMD at panatilihin ang DCR para lamang sa mga lumang client.
 
-### Hindi upang palamuti lang ang mga anotasyon ng tool
+### Hindi dekorasyon ang mga anotasyon ng tool
 
-Bawat tool ay may `title` at mga angkop na hint: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Bawat tool ay may `title` at mga naaangkop na pahiwatig: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-May dalawang dahilan para pag-ukulan ito ng pansin. Una, ginagamit ng client ang mga hint para magdesisyon kung ano ang kokumpirmahin sa user — maaaring awtomatikong patakbuhin ng client ang read-only lookup at huminto muna para sa pag-apruba bago mag-delete. Eksplisitong sinasabi ng espesipikasyon na ang mga anotasyon ay hindi pinagkakatiwalaang hint, hindi mekanismo ng awtorisasyon: nililinya nila kung ano ang iniaalok gawin ng client, hindi sila pumipigil sa anumang aksyon sa server, at kailangang ipatupad pa rin ng server ang sarili nitong mga patakaran. Pangalawa, hinihingi na ngayon ng pangunahing mga connector directory ang mga ito para sa pagsusuri; ang server na walang mga title at hint sa tools ay ibabalik kahit gaano pa ito kabilis gumana.
+Dalawang dahilan para pag-ibayuhin ang mga ito. Una, ginagamit ng mga client ang mga pahiwatig upang magpasya kung ano ang dapat i-confirm sa user — maaaring awtomatikong patakbuhin ng isang client ang isang read-only lookup at huminto para sa pag-apruba bago mag-delete. Malinaw sa specification na ang mga anotasyon ay mga hindi pinagkakatiwalaang pahiwatig, hindi mekanismo ng awtorisasyon: nililikha nila kung ano ang inaalok ng client, hindi nito pinipigilan ang anumang bagay sa server, at dapat pa ring ipatupad ng server ang sarili nitong mga patakaran. Pangalawa, ang mga pangunahing directory ng connector ngayon ay *nangangailangan* nito para sa review; ang isang server na ang mga tools ay walang pamagat at pahiwatig ay ibabalik kahit gaano pa ito kagana.
 
-### Gawing hindi mahulaan ang mga identifier
+### Gawing hindi mahuhulaan ang mga identifier
 
-Ang mga platform identifier ay mga opaque na string na binabalik ng `list_connections`, at sinasabi ng paglalarawan ng schema nang tahasan na dapat silang kopyahin nang eksakto at wag hulaan. Tinanggihan ng server ang anumang iba pa.
+Ang mga platform identifier ay opaque strings na ibinabalik ng `list_connections`, at malinaw na sinasabi ng schema description na dapat kopyahin ang mga ito nang eksakto at hindi hulaan. Tinanggihan ng server ang anumang iba pa.
 
-Marunong manghula ang mga modelo. Dapat ipalagay ng anumang write-capable server na ang isang identifier ay maaaring imahinahin balang araw at gawing maliwanag at maagang mabigo ang daang iyon, kaysa umaksyon sa isang mukhang kapani-paniwala na halaga.
+Magaling sa paghuhula ang mga modelo. Ang kahit anong write-capable server ay dapat mag-assume na may identifier na balak mapanghula at dapat gumawa ng maliwanag at maagang pagkabigo sa ganitong pangyayari, kaysa iakto ang isang kahawig na halaga.
 
-### Mabigo bago mag-publish, na may mensaheng maaaring pagkilosan
+### Mag-fail bago mag-publish, na may makatwirang mensahe
 
-May ilang network na tumatanggi sa text-only na mga post at nangangailangan ng larawan o video. Nivavalidate iyon kapag na-iskedyul na ang post, at binabanggit ng error ang platform at ang nawawalang requirement.
+May ilang network na tumatanggi sa text-only posts at nangangailangan ng imahe o video. Kinukumpirma ito kapag ang post ay naka-iskedyul na, at nilalagay ng error ang pangalan ng platform at ang kulang na pangangailangan.
 
-Maaaring maka-recover ang ahente mula sa "Instagram requires media — maglakip ng larawan o video" nang hindi na nagpapadala pang muli. Hindi ito makakarekober mula sa pangkalahatang `400`.
+Maaaring makabangon ang ahente mula sa "Instagram requires media — maglakip ng imahe o video" nang walang dagdag na pagbalik. Hindi ito makakabangon mula sa pangkalahatang `400`.
 
-### Gawing ligtas ang mga ulit-ulitin
+### Gawing ligtas ang mga retry
 
-Ang dalawang tool na lumilikha ng nilalaman, `create_post` at `update_post`, ay tumatanggap ng idempotency key: kapag ginamit muli ito nang may kaparehong kahilingan ay inuulit ang orihinal na tugon sa halip na gumawa ng pangalawang post. Ang mga runtime ng ahente ay nagri-retry kapag nag-timeout; kung walang idempotency, ang mabagal na tugon ay nagiging duplikadong paglalathala. Ang ibang write tools — deletions, media steps, LinkedIn reactions at comments — ay hindi tumatanggap nito, kaya ang retry doon ay hindi awtomatikong ligtas. Mabuting malaman kung alin sa iyong mga mutasyon ang protektado at kung alin ang hindi.
+Ang dalawang tool na lumilikha ng nilalaman, `create_post` at `update_post`, ay tumatanggap ng isang idempotency key: ang muling paggamit nito sa magkatulad na kahilingan ay inuulit ang orihinal na tugon sa halip na gumawa ng pangalawang post. Nagre-retry ang mga agent runtime sa mga timeout; kung walang idempotency, ang mabagal na tugon ay nagdudulot ng duplicate na pag-publish. Ang iba pang mga write tool — deletions, media steps, LinkedIn reactions at comments — ay hindi tumatanggap nito, kaya ang pag-retry doon ay hindi awtomatikong ligtas. Magandang malaman kung alin sa iyong mga pagbabago ang protektado at alin ang hindi.
 
-### Magbigay ng paraan para subukan na walang nalalathala
+### Magbigay ng paraan na subukan na walang nai-publish
 
-Tumatanggap ang server ng isang reserved target, `publora-playground`, na vine-validate at kinikilala tulad ng totoong destinasyon at pagkatapos ay itinatapon — walang anuman ang umaabot sa isang live na account. Inilarawan ito mismo sa schema ng tool, na maaaring basahin ng anumang client nang walang kredensyal: ang `platforms` field ng `create_post` ay nagdodokumento nito bilang "isang connection-test target na hindi nangangailangan ng tunay na koneksyon — kinikilala at itinatapon ang post, walang nalalathala". Tawagin ito sa pamamagitan ng pagpasa nito bilang nag-iisang entry: `platforms: ["publora-playground"]`.
+Tinatanggap ng server ang isang reserved target, `publora-playground`, na kinukumpirma at kinikilala tulad ng totoong destinasyon at pagkatapos ay tinatanggihan — walang umaabot sa isang live na account. Inilarawan ito sa mismong schema ng tool, na maaaring basahin ng anumang client nang walang credentials: ang `platforms` field ng `create_post` ay nagdodokumento nito bilang "isang connection-test target na hindi nangangailangan ng totoong koneksyon — kinikilala at tinatanggihan ang post, walang naipublish". Tawagin ito sa pamamagitan ng pagpasa nito bilang nag-iisang entry: `platforms: ["publora-playground"]`.
 
-Ito ang isa sa pinaka-kapaki-pakinabang na detalye sa buong surface. Maaari ng mga tagasuri ng connector directory, mga contributor at CI na subukin ang buong write path nang walang panganib sa totoong madla. Anumang MCP server na may hindi na mababaling mga aksyon ay nakikinabang mula sa dokumentadong no-op target.
+Ito ay isa sa pinaka-kapaki-pakinabang na detalye sa buong surface. Pinapayagan ng mga reviewer ng connector directory, mga contributor at CI na maisagawa ang buong write path mula simula hanggang dulo nang walang panganib sa totoong audience. Anumang MCP server na may hindi mababalik na aksyon ay nakikinabang mula sa dokumentadong no-op target.
 
 ## Mga Resulta at Epekto
 
-- Ang hakbang sa paglalathala ay lumipat mula sa browser papunta sa parehong usapan kung saan isinulat ang nilalaman, at ang draft-first na ugali ay nagpapanatili ng tao sa loop. Maging eksakto kung ano ito: ang draft ay isang kaugalian, hindi isang hangganan. Ang parehong kredensyal ay maaaring mag-iskedyul o mag-publish, kaya sinuman na nangangailangan ng tunay na approval gate ay kailangang ipatupad ito sa labas ng tool surface — magkahiwalay na kredensyal, o isang patakaran sa harap ng server.
-- Ang mga pagkakaiba sa bawat network — mga kinakailangan sa media, threading, kontrol sa sagot — ay hinawakan nang isang beses sa server imbes sa bawat ahente na nakikipag-usap dito.
-- Ang parehong server ay sumusuporta sa iba't ibang MCP client nang walang paggawa para sa bawat client, dahil bukas ang discovery at dynamic ang registration.
-- Ang mga disenyo sa itaas ay hinubog ng mga pagsusuri sa connector directory hangga't ng mga gumagamit: mga anotasyon, OAuth at ligtas na test target ay kinakailangan ng bawat isa sa kanila.
+- Ang hakbang ng pag-publish ay nailipat mula sa browser papunta sa parehong usapan kung saan isinusulat ang nilalaman, at ang draft-first na gawi ay nagpapanatili ng tao sa loop. Maging tumpak sa kung ano ang ibig sabihin nito: ang draft ay isang kaugalian, hindi isang hangganan. Ang parehong credential ay maaaring mag-iskedyul o mag-publish, kaya ang sinumang nangangailangan ng tunay na aprubal ay kailangang ipatupad ito sa labas ng tool surface — hiwalay na credentials, o isang patakaran sa harap ng server.
+- Ang mga pagkakaiba-iba sa bawat network — mga pangangailangan sa media, threading, reply controls — ay pinangangasiwaan nang isang beses sa server sa halip na bawat ahenteng nakikipag-usap dito.
+- Ang parehong server ay sumusuporta sa ilang MCP client nang walang paunang inilabas na credentials.
+    Maaaring gumamit ang mga kasalukuyang client ng Client ID Metadata Documents; nananatiling fallback
+    ang DCR para sa mga lumang client.
+- Ang mga constraints sa disenyo sa itaas ay hinubog ng mga review sa connector directory pati na rin ng mga user: ang mga anotasyon, OAuth at isang ligtas na test target ay hinihingi ng kahit isa sa kanila.
 
 ## Mga Sanggunian
 
-- [Publora MCP Server (pinagmulan)](https://github.com/publora/mcp-server)
-- [Publora API at dokumentasyon ng MCP](https://docs.publora.com)
+- [Publora MCP Server (source)](https://github.com/publora/mcp-server)
+- [Publora API and MCP documentation](https://docs.publora.com)
 - [MCP Registry entry: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [Espesipikasyon ng MCP — Awtorisasyon](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Espesipikasyon ng MCP — Mga anotasyon ng tool](https://modelcontextprotocol.io/docs/concepts/tools)
+- [MCP specification — Authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [MCP specification — Tool annotations](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## Ano ang Susunod
 
-- Kunin ang MCP server na iyong binubuo at suriin ang tatlong pinakamurang panalo dito: mga anotasyon sa bawat tool, isang idempotency key sa bawat write, at isang dokumentadong no-op target.
-- Subukan ang open-discovery split: tawagan ang `tools/list` laban sa isang pampublikong remote server nang walang kredensyal, at pagkatapos ay tawagan ang isang tool at inspeksyunin ang `401` na challenge.
-- Isipin kung ano ang ibig sabihin ng "undo" sa iyong domain. Ang paglalathala ay may mga draft at pagbura; kung wala ang iyong mga aksyon ng katumbas, ang kumpirmasyon ay dapat na bahagi ng disenyo ng tool, hindi ng prompt.
+- Kunin ang MCP server na iyong binubuo at tingnan ang tatlong pinakamurang mga pagpapabuti dito: mga anotasyon sa bawat tool, isang idempotency key sa bawat pagsusulat, at isang dokumentadong no-op target.
+- Subukan ang paghahati ng open-discovery: tawagan ang `tools/list` laban sa isang pampublikong remote server nang walang credentials, pagkatapos tawagan ang isang tool at inspeksyunin ang `401` na hamon.
+- Isaalang-alang kung ano ang ibig sabihin ng "undo" para sa iyong domain. May mga draft at pagtanggal ang pag-publish; kung walang katumbas ang iyong mga aksyon, ang kumpirmasyon ay dapat nasa disenyo ng tool, hindi sa prompt.
 
 ---
 

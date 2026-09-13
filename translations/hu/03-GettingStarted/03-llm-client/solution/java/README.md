@@ -1,36 +1,41 @@
 # Számológép LLM kliens
 
-Egy Java alkalmazás, amely bemutatja, hogyan használható a LangChain4j egy MCP (Model Context Protocol) számológép szolgáltatáshoz való csatlakozáshoz a MiniMax OpenAI-kompatibilis API-n keresztül.
+> [!NOTE]
+> Ez a megoldás csatlakozik a tanfolyam régi HTTP+SSE számológép szolgáltatásához, és
+> az MCP `2025-11-25` SDK API-kat célozza meg. Ez nem egy `2026-07-28` Streamable HTTP
+> példa.
+
+Egy Java alkalmazás, amely bemutatja, hogyan lehet a LangChain4j-t használni az MCP (Model Context Protocol) számológép szolgáltatáshoz való kapcsolódáshoz a MiniMax OpenAI-kompatibilis API-n keresztül.
 
 ## Előfeltételek
 
 - Java 21 vagy újabb
-- Maven 3.6+ (vagy használd a mellékelt Maven wrappert)
-- Egy MiniMax API kulcs
-- Egy MCP számológép szolgáltatás, amely a `http://localhost:8080` címen fut
+- Maven 3.6+ (vagy használja a mellékelt Maven wrappert)
+- Egy MiniMax API-kulcs
+- Egy MCP számológép szolgáltatás fut a `http://localhost:8080` címen
 
-## Az API kulcs beszerzése
+## API-kulcs beszerzése
 
-Ez az alkalmazás a MiniMax OpenAI-kompatibilis API-t használja. A kulcs és az végpont megszerzéséhez kövesd az alábbi lépéseket:
+Ez az alkalmazás a MiniMax OpenAI-kompatibilis API-t használja. Kövesse az alábbi lépéseket a kulcs és az végpont megszerzéséhez:
 
-### 1. Válassz egy végpontot
-1. A globális végponthoz használd a `https://api.minimax.io/v1` címet
-2. A kínai végponthoz használd a `https://api.minimaxi.com/v1` címet
+### 1. Válasszon végpontot
+1. Használja a `https://api.minimax.io/v1` című globális végpontot
+2. Használja a `https://api.minimaxi.com/v1` című kínai végpontot
 
-### 2. Készíts API kulcsot
-1. Hozz létre egy MiniMax API kulcsot a MiniMax fiókodból
-2. Tartsd biztonságos helyen a kulcsot
+### 2. Hozzon létre API kulcsot
+1. Hozzon létre MiniMax API kulcsot MiniMax fiókjából
+2. Tartsa biztonságos helyen a kulcsot
 
-### 3. Állítsd be a környezeti változókat
+### 3. Állítsa be a környezeti változókat
 
-#### Windows rendszerben (Parancssor):
+#### Windows rendszeren (Parancssor):
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
 set MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-#### Windows rendszerben (PowerShell):
+#### Windows rendszeren (PowerShell):
 ```powershell
 $env:OPENAI_API_KEY="your_minimax_api_key_here"
 $env:OPENAI_BASE_URL="https://api.minimax.io/v1"
@@ -44,11 +49,11 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Telepítés és beállítás
+## Beállítás és telepítés
 
-1. **Klónozd vagy navigálj a projekt könyvtárába**
+1. **Klónozza vagy navigáljon a projekt könyvtárába**
 
-2. **Telepítsd a függőségeket**:
+2. **Telepítse a függőségeket**:
    ```cmd
    mvnw clean install
    ```
@@ -57,10 +62,10 @@ export MINIMAX_MODEL_ID=MiniMax-M3
    mvn clean install
    ```
 
-3. **Állítsd be a környezeti változókat** (lásd a "Az API kulcs beszerzése" részt fent)
+3. **Állítsa be a környezeti változókat** (lásd a fenti "API-kulcs beszerzése" részt)
 
-4. **Indítsd el az MCP számológép szolgáltatást**:
-   Győződj meg róla, hogy az 1. fejezet MCP számológép szolgáltatása fut a `http://localhost:8080/sse` címen. Ennek futnia kell, mielőtt elindítod a klienst.
+4. **Indítsa el az MCP számológép szolgáltatást**:
+   Győződjön meg, hogy az 1. fejezet MCP számológép szolgáltatása fut a `http://localhost:8080/sse` címen. Ennek futnia kell, mielőtt elindítja a klienst.
 
 ## Az alkalmazás futtatása
 
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Mit csinál az alkalmazás
 
-Az alkalmazás három fő interakciót mutat be a számológép szolgáltatással:
+Az alkalmazás három fő interakciót demonstrál a számológép szolgáltatással:
 
 1. **Összeadás**: Kiszámolja 24.5 és 17.3 összegét
 2. **Négyzetgyök**: Kiszámolja 144 négyzetgyökét
-3. **Súgó**: Megjeleníti a rendelkezésre álló számológép funkciókat
+3. **Segítség**: Megjeleníti a rendelkezésre álló számológép funkciókat
 
-## Várt kimenet
+## Várható kimenet
 
-Sikeres futtatás esetén hasonló kimenetet kell látnod:
+Ha sikeresen fut, hasonló kimenetet kell látnia:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,52 +92,52 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Hibakeresés
+## Hibaelhárítás
 
 ### Gyakori problémák
 
-1. **"OPENAI_API_KEY környezeti változó nincs beállítva"**
-   - Győződj meg róla, hogy beállítottad az `OPENAI_API_KEY` környezeti változót
-   - Indítsd újra a terminált/parancssort a változó beállítása után
+1. **„OPENAI_API_KEY környezeti változó nincs beállítva”**
+   - Győződjön meg róla, hogy beállította az `OPENAI_API_KEY` környezeti változót
+   - Indítsa újra a terminált/parancssort a változó beállítása után
 
-2. **"Kapcsolódás megtagadva localhost:8080"**
-   - Ellenőrizd, hogy az MCP számológép szolgáltatás fut-e a 8080-as porton
-   - Nézd meg, hogy nem foglalja-e el más szolgáltatás a 8080-as portot
+2. **„Kapcsolat megtagadva localhost:8080 címen”**
+   - Ellenőrizze, hogy az MCP számológép szolgáltatás fut-e a 8080-as porton
+   - Ellenőrizze, hogy nem használja-e valamelyik szolgáltatás a 8080-as portot
 
-3. **"Hitelesítés sikertelen"**
-   - Ellenőrizd, hogy az API kulcsod érvényes
-   - Győződj meg róla, hogy az `OPENAI_BASE_URL` megfelel a szándékolt végpontnak
+3. **„Hitelesítés sikertelen”**
+   - Ellenőrizze, hogy az API kulcsa érvényes-e
+   - Győződjön meg róla, hogy az `OPENAI_BASE_URL` megfelel annak a végpontnak, amit használni szeretett volna
 
 4. **Maven build hibák**
-   - Ellenőrizd, hogy Java 21 vagy újabbat használsz: `java -version`
-   - Próbáld meg tisztítani a buildet: `mvnw clean`
+   - Győződjön meg róla, hogy Java 21 vagy újabb verziót használ: `java -version`
+   - Próbálja meg kitisztítani a buildet: `mvnw clean`
 
 ### Hibakeresés
 
-A hibakereső naplózás engedélyezéséhez add hozzá az alábbi JVM argumentumot a futtatáskor:
+A hibakeresési naplózás engedélyezéséhez adja hozzá a következő JVM argumentumot a futtatáskor:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguráció
 
-Az alkalmazás a következőképp van konfigurálva:
-- Alapértelmezés szerint a MiniMax-M3 modellt használja; a `MINIMAX_MODEL_ID` beállításával választható a `MiniMax-M3` vagy a `MiniMax-M2.7`
-- Csatlakozik az `OPENAI_BASE_URL`-hez ha be van állítva; egyébként a `https://api.minimaxi.com/v1`-et használja, ha `MINIMAX_REGION=cn_zh`, vagy alapértelmezésben a `https://api.minimax.io/v1` végpontot
+Az alkalmazás az alábbiak szerint van konfigurálva:
+- Alapértelmezésként a MiniMax-M3 modellt használja; állítsa be a `MINIMAX_MODEL_ID` változót, hogy kiválassza a `MiniMax-M3` vagy `MiniMax-M2.7` modellt
+- Ha be van állítva, csatlakozik az `OPENAI_BASE_URL`-hoz; különben a `MINIMAX_REGION=cn_zh` esetén a `https://api.minimaxi.com/v1`, egyébként a `https://api.minimax.io/v1` végpontot használja alapértelmezettként
 - Csatlakozik az MCP szolgáltatáshoz a `http://localhost:8080/sse` címen
-- 60 másodperces időkorlátot használ a kérésekhez
+- Kérésenként 60 másodperces időkorlátot használ
 
 ## Függőségek
 
-A projektben használt kulcsfüggőségek:
-- **LangChain4j**: AI integráció és eszközkezelés
-- **LangChain4j MCP**: Model Context Protocol támogatás
-- **LangChain4j OpenAI hivatalos**: MiniMax OpenAI-kompatibilis API integráció
-- **Spring Boot**: Alkalmazáskeret és függőség-injektálás
+A projekt kulcsfontosságú függőségei:
+- **LangChain4j**: AI integrációhoz és eszközkezeléshez
+- **LangChain4j MCP**: Model Context Protocol támogatáshoz
+- **LangChain4j OpenAI hivatalos**: MiniMax OpenAI-kompatibilis API integrációhoz
+- **Spring Boot**: Alkalmazáskerethez és függőség-injektáláshoz
 
 ## Licenc
 
-Ez a projekt az Apache License 2.0 alatt van licencelve - további részletekért lásd a [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) fájlt.
+Ez a projekt az Apache License 2.0 licenc alatt áll - részletekért lásd a [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) fájlt.
 
 ---
 

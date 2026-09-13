@@ -1,126 +1,126 @@
-# Modellkontextprotokoll för Realtidssökning på Webben
+# Model Context Protocol för Realtidssökning på Webben
 
 ## Översikt
 
-Realtidssökning på webben har blivit avgörande i dagens informationsdrivna miljö, där applikationer behöver omedelbar åtkomst till uppdaterad information över internet för att erbjuda relevanta och tidsmässigt anpassade svar. Modellkontextprotokollet (MCP) representerar en betydande utveckling för att optimera dessa realtidssökningsprocesser, förbättra sökeffektiviteten, bibehålla kontextuell integritet och förbättra det övergripande systemets prestanda.
+Realtidssökning på webben har blivit avgörande i dagens informationsdrivna miljö, där applikationer behöver omedelbar tillgång till uppdaterad information över internet för att kunna leverera relevanta och tidsmässigt korrekta svar. Model Context Protocol (MCP) representerar ett betydande framsteg i att optimera dessa realtidssökningsprocesser, förbättra sökeffektivitet, bibehålla kontextuell integritet och höja den övergripande systemprestandan.
 
-Denna modul utforskar hur MCP omvandlar realtidssökning på webben genom att erbjuda ett standardiserat tillvägagångssätt för kontexthantering mellan AI-modeller, sökmotorer och applikationer.
+Denna modul utforskar hur MCP förändrar realtidssökning på webben genom att erbjuda ett standardiserat tillvägagångssätt för kontexthantering mellan AI-modeller, sökmotorer och applikationer.
 
-### Vad du kommer att lära dig
+### Vad Du Kommer Lära Dig
 
 I denna omfattande guide kommer du att upptäcka:
 
-- Hur MCP skapar en sömlös bro mellan AI-modeller och realtidssökningsmöjligheter
+- Hur MCP skapar en sömlös brygga mellan AI-modeller och realtidssökningskapabiliteter
 - Arkitektoniska mönster för implementering av effektiva och skalbara söklösningar med MCP
 - Tekniker för att bevara sökkontext över flera frågor och interaktioner
-- Praktiska kodimplementeringar i Python och JavaScript för olika sökscenarier
+- Praktiska kodimplementationer i Python och JavaScript för olika sökscenarier
 - Metoder för att balansera relevans, aktualitet och prestanda i MCP-drivna söksystem
 
 ## Introduktion till Realtidssökning på Webben
 
-Realtidssökning på webben är en teknologisk metod som möjliggör kontinuerlig frågeställning, bearbetning och analys av webbaserad information när den publiceras eller uppdateras, vilket gör att system kan tillhandahålla färsk och relevant information med minimal fördröjning. Till skillnad från traditionella söksystem som arbetar med indexerad data som kan vara flera timmar eller dagar gammal, bearbetar realtidssökning levande data från webben, vilket levererar insikter och information som speglar det aktuella tillståndet för onlineinnehåll.
+Realtidssökning på webben är en teknologisk metod som möjliggör kontinuerlig förfrågan, bearbetning och analys av webb-baserad information i takt med att den publiceras eller uppdateras, vilket tillåter system att leverera färsk och relevant information med minimal fördröjning. Till skillnad från traditionella söksystem som arbetar med indexerad data som kan vara timmar eller dagar gammal, hanterar realtidssökning live-data från webben, och ger insikter och information som speglar det aktuella tillståndet för onlineinnehåll.
 
-### Kärnbegrepp för Realtidssökning på Webben:
+### Kärnkoncept för Realtidssökning på Webben:
 
-- **Kontinuerlig frågebearbetning**: Sökningsfrågor bearbetas mot konstant uppdaterande datakällor
-- **Prioritering av aktualitet**: System är utformade för att prioritera färsk information
-- **Balansering av relevans**: Bibehålla balans mellan relevans och aktualitet
-- **Skalbar arkitektur**: System behöver hantera varierande belastning och datavolymer
-- **Kontextuell förståelse**: Att bevara användarkontext över sökiterationer är avgörande för meningsfulla resultat
-- **Dynamisk omformulering av frågor**: Anpassa frågor baserat på kontext och tidigare resultat
-- **Integration av flera källor**: Kombinera resultat från flera sökleverantörer och webbplatser
-- **Semantisk förståelse**: Bearbeta frågor och innehåll baserat på mening snarare än endast nyckelord
-- **Realtidsrankning**: Kontinuerligt justera resultatens rangordning när ny information blir tillgänglig
+- **Kontinuerlig Frågebehandling**: Sökfrågor bearbetas mot ständigt uppdaterande datakällor
+- **Prioritering av Aktualitet**: System är designade för att prioritera färsk information
+- **Balans mellan Relevans och Aktualitet**: Bibehålla balans mellan relevans och aktualitet
+- **Skalbar Arkitektur**: System måste hantera varierande belastning av förfrågningar och datavolymer
+- **Kontextuell Förståelse**: Att bibehålla användarkontext över sökiterationer är avgörande för meningsfulla resultat
+- **Dynamisk Omskrivning av Frågor**: Anpassa frågor baserat på kontext och tidigare resultat
+- **Integration av Flera Källor**: Kombinera resultat från flera sökleverantörer och webbkällor
+- **Semantisk Förståelse**: Bearbeta frågor och innehåll baserat på mening snarare än bara nyckelord
+- **Realtidsrankning**: Kontinuerligt justera resultatrankning när ny information blir tillgänglig
 
-### Modellkontextprotokollet och Realtidssökning på Webben
+### Model Context Protocol och Realtidssökning på Webben
 
-Modellkontextprotokollet (MCP) tar itu med flera kritiska utmaningar i realtidssökningsmiljöer på webben:
+Model Context Protocol (MCP) tar itu med flera kritiska utmaningar i realtidssökningsmiljöer:
 
-1. **Bevarande av sökkontext**: MCP standardiserar hur kontext upprätthålls mellan distribuerade sökkomponenter, vilket säkerställer att AI-modeller och bearbetningsnoder har tillgång till relevant sökhistorik och användarpreferenser.
+1. **Bevarande av Sökkontext**: MCP standardiserar hur kontext bibehålls över distribuerade sökkomponenter, vilket säkerställer att AI-modeller och bearbetningsnoder har tillgång till relevant frågehistorik och användarpreferenser.
 
-2. **Effektiv hantering av frågor**: Genom att tillhandahålla strukturerade mekanismer för kontextöverföring minskar MCP den överbelastning som uppstår av att upprepa kontext i varje sökiterering.
+2. **Effektiv Frågehantering**: Genom att tillhandahålla strukturerade mekanismer för kontextöverföring minskar MCP overheaden av att upprepa kontext i varje sökiteration.
 
-3. **Interoperabilitet**: MCP skapar ett gemensamt språk för kontextdelning mellan olika sökteknologier och AI-modeller, vilket möjliggör mer flexibla och utbyggbara arkitekturer.
+3. **Interoperabilitet**: MCP skapar ett gemensamt språk för kontextsdelning mellan olika sökteknologier och AI-modeller, vilket möjliggör mer flexibla och utbyggbara arkitekturer.
 
-4. **Sökoptimerad kontext**: MCP-implementationer kan prioritera vilka kontextelement som är mest relevanta för effektiv sökning, och optimera både prestanda och noggrannhet.
+4. **Sökoptimerad Kontext**: MCP-implementationer kan prioritera vilka kontextelement som är mest relevanta för effektiv sökning, och optimera för både prestanda och noggrannhet.
 
-5. **Adaptiv sökprocess**: Med korrekt kontexthantering via MCP kan söksystem dynamiskt justera bearbetningen baserat på föränderliga användarbehov och informationslandskap.
+5. **Adaptiv Sökbehandling**: Med korrekt kontexthantering genom MCP kan söksystem dynamiskt justera bearbetningen baserat på utvecklande användarbehov och informationslandskap.
 
-I moderna applikationer, från nyhetsaggregation till forskningsassistenter, möjliggör integrationen av MCP med webbsökning mer intelligenta, kontextmedvetna sökningar som kan erbjuda allt mer relevanta resultat i takt med att användarinteraktioner fortsätter.
+I moderna applikationer från nyhetsaggregat till forskningsassistenter möjliggör integrationen av MCP med webbsökning mer intelligent, kontextmedveten sökning som kan leverera alltmer relevanta resultat i takt med att användarinteraktioner fortgår.
 
 ## Lärandemål
 
 Vid slutet av denna lektion kommer du att kunna:
 
 - Förstå grunderna i realtidssökning på webben och dess utmaningar i moderna applikationer
-- Förklara hur Modellkontextprotokollet (MCP) förbättrar realtidssökningsmöjligheter
+- Förklara hur Model Context Protocol (MCP) förbättrar realtidssökningskapabiliteter
 - Implementera MCP-baserade söklösningar med populära ramverk och API:er
 - Designa och distribuera skalbara, högpresterande sökarkitekturer med MCP
 - Tillämpa MCP-koncept på olika användningsfall inklusive semantisk sökning, forskningsassistans och AI-förstärkt surfning
 - Utvärdera framväxande trender och framtida innovationer inom MCP-baserade sökteknologier
-- Utveckla kontextmedvetna söksystem som lär sig av användarinteraktioner
-- Integrera webbsökningsfunktioner i AI-assistenter med hjälp av standardiserade MCP-protokoll
-- Skapa mångstegs sökprocesser som successivt förfinar resultat baserat på kontext
+- Utveckla kontextmedvetna söksystem som lär från användarinteraktioner
+- Integrera webbsökningskapabiliteter i AI-assistenter med hjälp av standardiserade MCP-protokoll
+- Skapa flerstegs sökflöden som successivt förfinar resultat baserat på kontext
 - Optimera sökprestanda samtidigt som omfattande kontextmedvetenhet bibehålls
 
 ### Definition och Betydelse
 
-Realtidssökning på webben innebär kontinuerlig frågeställning, återvinning och leverans av webbaserad information med minimal fördröjning. Till skillnad från traditionella sökmotorer som periodiskt genomsöker och indexerar webben, syftar realtidssökning till att exponera information i samma ögonblick den blir tillgänglig, vilket möjliggör omedelbar åtkomst till det mest aktuella innehållet.
+Realtidssökning på webben involverar kontinuerlig förfrågan, hämtning och leverans av webbaserad information med minimal fördröjning. Till skillnad från traditionella sökmotorer som periodiskt genomsöker och indexerar webben, syftar realtidssökning till att lyfta fram information när den blir tillgänglig, vilket möjliggör omedelbar tillgång till det mest aktuella innehållet.
 
 Viktiga egenskaper för realtidssökning på webben inkluderar:
 
-- **Färskhet**: Prioritering av nyligen publicerat innehåll och uppdateringar
-- **Kontinuerlig bearbetning**: Konstant övervakning efter ny information
-- **Frågeanpassning**: Förfining av sökfrågor baserat på kontext och återkoppling
-- **Omedelbar leverans**: Tillhandahålla sökresultat med minimal fördröjning
-- **Kontextbehållning**: Bygga vidare på tidigare frågor för förbättrad relevans
+- **Färskhet**: Prioritera nyligen publicerat innehåll och uppdateringar
+- **Kontinuerlig Bearbetning**: Ständig övervakning efter ny information
+- **Frågeanpassning**: Förfina sökfrågor baserat på kontext och feedback
+- **Omedelbar Leverans**: Ge sökresultat med minimal fördröjning
+- **Kontextbevarande**: Bygga vidare på tidigare frågor för förbättrad relevans
 
 ### Utmaningar i Traditionell Webbsökning
 
-Traditionella metoder för webbsökning stöter på flera begränsningar vid tillämpning i realtidsscenarier:
+Traditionella webbsökningsmetoder stöter på flera begränsningar i realtidsscenarier:
 
-1. **Fragmentering av kontext**: Svårigheter att bevara sökkontext över flera frågor
-2. **Informationsfärskhet**: Utmaningar att få tillgång till och prioritera den senaste informationen
+1. **Fragmentering av Kontext**: Svårigheter att bibehålla sökkontext över flera frågor
+2. **Informationsfärskhet**: Utmaningar att få tillgång till och prioritera mest aktuell information
 3. **Integrationskomplexitet**: Problem med interoperabilitet mellan söksystem och applikationer
-4. **Latensproblem**: Att balansera omfattande sökning med svarstidskrav
-5. **Justering av relevans**: Säkerställa noggrannhet och relevans samtidigt som aktualitet prioriteras
+4. **Fördröjningsproblem**: Balans mellan omfattande sökning och svarstid
+5. **Relevansjustering**: Säkerställa noggrannhet och relevans samtidigt som aktualitet prioriteras
 
-## Förstå Modellkontextprotokollet (MCP) för Sökarbeten
+## Förstå Model Context Protocol (MCP) för Sökning
 
-### Vad är MCP i Sökkontexter?
+### Vad är MCP i Sökcontext?
 
-Modellkontextprotokollet (MCP) är ett standardiserat kommunikationsprotokoll utformat för att underlätta effektiv interaktion mellan AI-modeller och applikationer. I kontexten av realtidssökning på webben erbjuder MCP en ram för:
+Model Context Protocol (MCP) är ett standardiserat kommunikationsprotokoll utformat för att underlätta effektiv interaktion mellan AI-modeller och applikationer. I kontexten av realtidssökning på webben erbjuder MCP en ram för:
 
-- Bevarande av sökkontext genom hela frågesekvenser
-- Standardisering av format för sökfrågor och resultat
-- Optimering av överföringen av sökparametrar och resultat
-- Förbättrad kommunikation mellan modell och sökmotor
+- Bevarande av sökkontext genom hela frågesekvensen
+- Standardisering av sökfrågor och resultatformat
+- Optimering av överföring av sökparametrar och resultat
+- Förbättring av kommunikation mellan modell och sökmotor
 
 ### Kärnkomponenter och Arkitektur
 
-MCP-arkitekturen för realtidssökning på webben består av flera nyckelkomponenter:
+MCP-arkitektur för realtidssökning på webben består av flera nyckelkomponenter:
 
-1. **Hanterare för frågekontekst**: Hanterar och bibehåller sökkontext över flera frågor
-2. **Sökprocessorer**: Bearbetar inkommande sökförfrågningar med kontextmedvetna tekniker
-3. **Protokolladapterare**: Omvandlar mellan olika sök-API:er samtidigt som kontext bibehålls
-4. **Kontextlager**: Effektiv lagring och hämtning av sökhistorik och preferenser
-5. **Sökanslutningar**: Ansluter till olika sökmotorer och webb-API:er
+1. **Hantera Sökkontext**: Hanterar och bibehåller sökkontext över flera frågor
+2. **Sökprocessor**: Bearbetar inkommande sökförfrågningar med kontextmedvetna tekniker
+3. **Protokolladapter**: Konverterar mellan olika sök-API:er samtidigt som kontext bevaras
+4. **Kontextlagring**: Effektiv lagring och hämtning av sökhistorik och preferenser
+5. **Sökkontakter**: Ansluter till olika sökmotorer och web-API:er
 
 ```mermaid
 graph TD
     subgraph "Datakällor"
-        Web[Webb innehåll]
+        Web[Webbplatsinnehåll]
         APIs[Externa API:er]
         DB[Kunskapsbaser]
         News[Nyhetsflöden]
     end
 
-    subgraph "MCP Sök-lager"
+    subgraph "MCP-sökning"
         SC[Sökanslutningar]
-        PA[Protokoll-adaptrar]
-        CH[Kontext-hanterare]
-        SP[Sökprocessor]
-        CS[Kontextlagring]
+        PA[Protokolladapterare]
+        CH[Kontextbehandlare]
+        SP[Sökprocessorer]
+        CS[Kontextlager]
     end
 
     subgraph "Bearbetning & Analys"
@@ -144,14 +144,14 @@ graph TD
     
     SC -->|Råa resultat| PA
     PA -->|Normaliserade resultat| CH
-    CH <-->|Kontext operationer| CS
-    CH -->|Kontext-berikade resultat| SP
+    CH <-->|Kontextoperationer| CS
+    CH -->|Kontextberikade resultat| SP
     SP -->|Bearbetade resultat| RE
     SP -->|Funktioner| ML
     SP -->|Text| NLP
     
     RE -->|Rankade resultat| Rank
-    ML -->|Förutsägelser| Rank
+    ML -->|Prognoser| Rank
     NLP -->|Entiteter & Relationer| Rank
     
     Rank -->|Slutgiltiga resultat| RA
@@ -175,41 +175,41 @@ graph TD
 
 ### Hur MCP Förbättrar Realtidssökning på Webben
 
-MCP adresserar traditionella problem i webbsökning genom:
+MCP hanterar traditionella utmaningar för webbsökning genom:
 
-- **Kontextuell kontinuitet**: Att bibehålla relationer mellan frågor under hela sökessionen
-- **Optimerad överföring**: Minska redundans i sökparametrar genom intelligent kontexthantering
-- **Standardiserade gränssnitt**: Tillhandahålla konsistenta API:er för sökkomponenter
-- **Minskad latens**: Minimera bearbetningskostnader genom effektiv kontexthantering
-- **Förbättrad relevans**: Förbättra sökresultatens relevans genom att bevara användarens avsikt över flera frågor
+- **Kontextuell Kontinuitet**: Bibehålla relationer mellan frågor under hela söksessionen
+- **Optimerad Överföring**: Minska redundans i sökparametrar genom intelligent kontexthantering
+- **Standardiserade Gränssnitt**: Tillhandahålla konsistenta API:er för sökkomponenter
+- **Minskad Latens**: Minimera bearbetningskostnader genom effektiv kontexthantering
+- **Förbättrad Relevans**: Höja sökrelevans genom att bevara användarintention över flera frågor
 
-## Integration och Implementation
+## Integration och Implementering
 
-Realtidssöksystem kräver noggrann arkitektonisk design och implementering för att bibehålla både prestanda och kontextuell integritet. Modellkontextprotokollet erbjuder ett standardiserat tillvägagångssätt för att integrera AI-modeller och sökteknologier, vilket möjliggör mer sofistikerade, kontextmedvetna sökprocesser.
+Realtidssökningssystem kräver noggrann arkitekturdesign och implementering för att bibehålla både prestanda och kontextuell integritet. Model Context Protocol erbjuder ett standardiserat tillvägagångssätt för att integrera AI-modeller och sökteknologier, vilket möjliggör mer sofistikerade, kontextmedvetna sökflöden.
 
-### Översikt av MCP-integration i sökarkitekturer
+### Översikt av MCP-Integration i Sökararkitekturer
 
-Implementering av MCP i realtidssökningsmiljöer innebär flera viktiga överväganden:
+Implementering av MCP i realtidssökningsmiljöer involverar flera viktiga överväganden:
 
-1. **Serialisering av sökkontext**: MCP tillhandahåller effektiva mekanismer för kodning av kontextuell information inom sökförfrågningar, vilket säkerställer att väsentlig kontext följer med frågan genom hela bearbetningskedjan. Detta inkluderar standardiserade serialiseringsformat optimerade för sökrelevant metadata.
+1. **Serialisering av Sökkontext**: MCP erbjuder effektiva mekanismer för att koda kontextuell information inom sökförfrågningar, vilket säkerställer att viktig kontext följer med frågan genom hela bearbetningskedjan. Detta inkluderar standardiserade serialiseringsformat optimerade för sökrelevant metadata.
 
-2. **Tillståndsbaserad sökprocess**: MCP möjliggör intelligent tillståndsbaserad bearbetning genom att upprätthålla konsekvent kontextrepresentation över sökiterationer. Detta är särskilt värdefullt i mångstegs-sökprocesser där kontextförfining förbättrar resultat.
+2. **Stateful Sökbehandling**: MCP möjliggör mer intelligent statefull bearbetning genom att bibehålla en konsekvent kontextrepresentation över sökiterationer. Detta är särskilt värdefullt i flerstegs sökflöden där kontextförfining förbättrar resultaten.
 
-3. **Uppskalning och förfining av frågor**: MCP-implementationer i söksystem kan underlätta avancerad utökning och förfining av frågor baserat på ansamlad kontext, vilket möjliggör allt mer relevanta resultat i takt med att söksessionen fortskrider.
+3. **Frågeexpansion och -förfining**: MCP-implementationer i söksystem kan underlätta sofistikerad frågeexpansion och förfining baserat på ackumulerad kontext, vilket tillåter alltmer relevanta resultat i takt med att söksessionen fortskrider.
 
-4. **Resultatcache och prioritering**: Genom att standardisera kontexthantering hjälper MCP till att hantera cachelagring och prioritering av resultat, vilket gör att komponenter kan anpassa sig efter den föränderliga sökkontexten.
+4. **Resultatcache och Prioritering**: Genom att standardisera hantering av kontext, hjälper MCP till att hantera caching och prioritering av resultat, så att komponenter kan anpassa sig efter den utvecklande sökkontexten.
 
-5. **Söksamarbete och aggregering**: MCP möjliggör mer sofistikerad samverkan mellan sökningar över flera backend-tjänster genom att tillhandahålla strukturerade representationer av sökkontext, vilket möjliggör meningsfullare aggregering av resultat från skilda källor.
+5. **Sökfederation och Aggregation**: MCP underlättar mer avancerad federation av sökningar över flera backends genom att tillhandahålla strukturerade representationer av sökkontext, vilket möjliggör mer meningsfull aggregering av resultat från olika källor.
 
-Implementeringen av MCP över olika sökteknologier skapar ett enhetligt tillvägagångssätt för kontexthantering, vilket minskar behovet av anpassad integrationskod samtidigt som systemets förmåga att bibehålla meningsfull kontext under sökfrågors utveckling förstärks.
+Implementeringen av MCP över olika sökteknologier skapar ett enhetligt tillvägagångssätt för kontexthantering, minskar behovet av specialanpassad integrationskod samtidigt som systemets förmåga att bibehålla meningsfull kontext när sökfrågor utvecklas förbättras.
 
-### MCP i olika webbsöksimplementationer
+### MCP i Olika Webbsökningsimplementationer
 
-Dessa exempel följer den aktuella MCP-specifikationen som fokuserar på ett JSON-RPC-baserat protokoll med distinkta transportmekanismer. Koden visar hur du kan implementera anpassade sökintegrationer samtidigt som full kompatibilitet med MCP-protokollet bibehålls.
+Dessa exempel följer den aktuella MCP-specifikationen som fokuserar på ett JSON-RPC-baserat protokoll med distinkta transportmekanismer. Koden visar hur du kan implementera egna sökintegrationer samtidigt som full kompatibilitet med MCP-protokollet bibehålls.
 
 
 <details>
-<summary>Python-implementation med Generisk Sök-API</summary>
+<summary>Python-implementation med generisk sök-API</summary>
 
 ```python
 import asyncio
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Initialisera sökhantaren
+# Initiera sökhantearen
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Ställ in livslängd för att hantera sökhantaren
+# Ställ in livslängd för att hantera sökhantearen
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Ange livslängd för servern
+# Sätt livslängd för servern
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Registrera ett webbsökverktyg
+# Registrera ett webbsökningsverktyg
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -349,10 +349,10 @@ async def web_search(query: str, max_results: int = 5,
 
 # Exempel på klientanvändning
 async def client_example():
-    # Anslut till sökservern med Streamable HTTP-överföring
+    # Anslut till sökservern med Streamable HTTP-transport
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Initialisera anslutningen
+            # Initiera anslutningen
             await session.initialize()
             
             # Anropa web_search-verktyget
@@ -368,9 +368,9 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Serverexekveringsexempel
+# Exempel på serverkörning
 if __name__ == "__main__":
-    # Kör servern med Streamable HTTP-överföring
+    # Kör servern med Streamable HTTP-transport
     search_server.run(transport="streamable-http")
 ```
 </details> 
@@ -391,7 +391,7 @@ const searchServer = new McpServer({
     description: "A server that provides web search capabilities"
 });
 
-// Söktjänstklass
+// Sökningstjänstklass
 class SearchService {
     constructor(searchApiUrl, apiKey) {
         this.searchApiUrl = searchApiUrl;
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Omvandla API-specifik svar till ett standardformat
+            // Omvandla API-specifikt svar till ett standardformat
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -471,7 +471,7 @@ searchServer.setContextProvider(() => {
     };
 });
 
-// Registrera webb sökverktyg
+// Registrera webbsökningsverktyg
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -529,7 +529,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Utför sökverktyget
+    // Kör sökverktyget
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -551,7 +551,7 @@ const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
 
-// I en separat process eller efter att servern startat
+// I en separat process eller efter att servern har startat
 // connectToSearchServer().catch(console.error);
 ```
 </details> 
@@ -561,214 +561,217 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 ## Ansvarsfriskrivning för Kodexempel
 
-> **Viktig notering**: Kodexemplen nedan demonstrerar integrationen av Modellkontextprotokollet (MCP) med webbsökningsfunktionalitet. Även om de följer mönster och strukturer från de officiella MCP-SDK:erna har de förenklats för utbildningssyfte.
+> **Viktig Notis**: Kodexemplen nedan visar integrationen av Model Context Protocol (MCP) med webbsökningsfunktionalitet. Även om de följer mönster och strukturer från de officiella MCP-SDK:erna har de förenklats för utbildningsändamål.
 > 
 > Dessa exempel visar:
 > 
-> 1. **Python-implementation**: En FastMCP-serverimplementation som tillhandahåller ett webbsökningsverktyg och ansluter till en extern sök-API. Exemplet visar korrekt livscykelhantering, kontexthantering och verktygsimplementation enligt mönstren i [det officiella MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Servern använder den rekommenderade Streamable HTTP-transporten som ersatt den äldre SSE-transporten för produktionsdistributioner.
+> 1. **Python-implementation**: En FastMCP-serverimplementation som tillhandahåller ett webbsökningsverktyg och kopplar till ett externt sök-API. Detta exempel demonstrerar korrekt livscykelhantering, kontexthantering och verktygsimplementering enligt mönstren i den [officiella MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Servern använder den rekommenderade Streamable HTTP-transporten som ersatt den äldre SSE-transporten för produktionsdistributioner.
 > 
-> 2. **JavaScript-implementation**: En TypeScript/JavaScript-implementation som använder FastMCP-mönstret från [det officiella MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) för att skapa en sökserver med korrekt verktygsdefinition och klientanslutningar. Den följer de senaste rekommenderade mönstren för sessionshantering och kontextbevarande.
+> 2. **JavaScript-implementation**: En TypeScript/JavaScript-implementation som använder FastMCP-mönstret från den [officiella MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) för att skapa en sökserver med korrekta verktygsdefinitioner och klientanslutningar. Den följer de senaste rekommenderade mönstren för sessionshantering och kontextbevarande.
 > 
-> Dessa exempel skulle kräva ytterligare felhantering, autentisering och specifik API-integrationskod för produktionsbruk. De sök-API-endpoints som visas (`https://api.search-service.example/search`) är platshållare och måste ersättas med faktiska söktjänstendpoints.
+> Dessa exempel skulle kräva ytterligare felhantering, autentisering och specifik API-integrationskod för produktionsbruk. Sök-API-endpoints som visas (`https://api.search-service.example/search`) är platshållare och måste ersättas med faktiska söktjänstendpoints.
 > 
-> För fullständiga implementeringsdetaljer och de mest aktuella tillvägagångssätten, vänligen se [den officiella MCP-specifikationen](https://spec.modelcontextprotocol.io/) och SDK-dokumentationen.
+> För fullständiga implementeringsdetaljer och de mest uppdaterade metoderna,
+> hänvisa till den [officiella MCP-specifikationen](https://modelcontextprotocol.io/specification/2026-07-28/)
+> och SDK-dokumentationen.
 
-## Kärnbegrepp
+## Kärnkoncept
 
-### Modellkontextprotokollets (MCP) ramverk
+### Model Context Protocol (MCP)-ramverket
 
-I sin grund erbjuder Modellkontextprotokollet ett standardiserat sätt för AI-modeller, applikationer och tjänster att utbyta kontext. Inom realtidssökning på webben är detta ramverk avgörande för att skapa sammanhängande, fleromgångs sökupplevelser. Nyckelkomponenter inkluderar:
+I sin grund utgör Model Context Protocol ett standardiserat sätt för AI-modeller, applikationer och tjänster att utbyta kontext. I realtidssökning på webben är detta ramverk avgörande för att skapa sammanhängande, flerstegs sökupplevelser. Nyckelkomponenter inkluderar:
 
-1. **Klient-serverarkitektur**: MCP etablerar en tydlig separation mellan sökklienter (förfrågare) och sökservrar (tillhandahållare), vilket möjliggör flexibla distributionsmodeller.
+1. **Klient-Server-arkitektur**: MCP etablerar en tydlig separation mellan sökklienter (förfrågande) och sökservrar (tillhandahållande), vilket möjliggör flexibla distributionsmodeller.
 
-2. **JSON-RPC-kommunikation**: Protokollet använder JSON-RPC för meddelandeutbyte, vilket gör det kompatibelt med webbaserade teknologier och enkelt att implementera över olika plattformar.
+2. **JSON-RPC-kommunikation**: Protokollet använder JSON-RPC för meddelandeutbyte, vilket gör det kompatibelt med webteknologier och enkelt att implementera över olika plattformar.
 
-3. **Kontexthantering**: MCP definierar strukturerade metoder för att upprätthålla, uppdatera och nyttja sökkontext över flera interaktioner.
+3. **Kontexthantering**: MCP definierar strukturerade metoder för att bibehålla, uppdatera och utnyttja sökkontext över flera interaktioner.
 
-4. **Verktygsdefinitioner**: Sökfunktionalitet exponeras som standardiserade verktyg med väldefinierade parametrar och returvärden.
+4. **Verksdefinitions**: Sökmöjligheter exponeras som standardiserade verktyg med väldefinierade parametrar och returvärden.
 
-5. **Stöder streaming**: Protokollet stödjer strömmande resultat, vilket är essentiellt för realtidssökning där resultat kan komma successivt.
+5. **Streamingstöd**: Protokollet stödjer strömmande resultat, vilket är nödvändigt för realtidssökning där resultat kan ankomma successivt.
 
 ### Mönster för integration av webbsökning
 
-Vid integration av MCP med webbsökning framträder flera mönster:
+Vid integrering av MCP med webbsökning framträder flera mönster:
 
-#### 1. Direkt integration med sökleverantör
+#### 1. Direkt Integration med Sökleverantör
 
 ```mermaid
 graph LR
-    Client[MCP Klient] --> |MCP Begäran| Server[MCP Server]
-    Server --> |API Anrop| SearchAPI[Sök-API]
+    Client[MCP-klient] --> |MCP-förfrågan| Server[MCP-server]
+    Server --> |API-anrop| SearchAPI[Sökapit]
     SearchAPI --> |Resultat| Server
-    Server --> |MCP Svar| Client
+    Server --> |MCP-svar| Client
 ```
 
-I detta mönster interagerar MCP-servern direkt med en eller flera sök-API:er, översätter MCP-förfrågningar till API-specifika anrop och formaterar resultaten som MCP-svar.
+I detta mönster gränssnittar MCP-servern direkt med ett eller flera sök-API:er, översätter MCP-förfrågningar till API-specifika anrop och formaterar resultaten som MCP-svar.
 
-#### 2. Federerad sökning med kontextbevarande
+#### 2. Federerad Sökning med Kontextbevarande
 
 ```mermaid
 graph LR
-    Client[MCP Klient] --> |MCP Förfrågan| Federation[MCP Federationlager]
-    Federation --> |MCP Förfrågan 1| Search1[Sökleverantör 1]
-    Federation --> |MCP Förfrågan 2| Search2[Sökleverantör 2]
-    Federation --> |MCP Förfrågan 3| Search3[Sökleverantör 3]
+    Client[MCP Klient] --> |MCP Begäran| Federation[MCP Federationlager]
+    Federation --> |MCP Begäran 1| Search1[Söktjänstleverantör 1]
+    Federation --> |MCP Begäran 2| Search2[Söktjänstleverantör 2]
+    Federation --> |MCP Begäran 3| Search3[Söktjänstleverantör 3]
     Search1 --> |MCP Svar 1| Federation
     Search2 --> |MCP Svar 2| Federation
     Search3 --> |MCP Svar 3| Federation
-    Federation --> |Aggregerat MCP Svar| Client
+    Federation --> |Aggregerat MCP-svar| Client
 ```
 
-Detta mönster distribuerar sökfrågor över flera MCP-kompatibla sökleverantörer, som var och en potentiellt specialiserar sig på olika typer av innehåll eller sökfunktioner, samtidigt som en enhetlig kontext bibehålls.
+Detta mönster distribuerar sökfrågor över flera MCP-kompatibla sökleverantörer, var och en potentiellt specialiserad på olika typer av innehåll eller sökkapabiliteter, samtidigt som en enhetlig kontext bibehålls.
 
-#### 3. Kontextförbättrad sökkedja
+#### 3. Kontextförbättrad Söksekvens
 
 ```mermaid
 graph LR
     Client[MCP-klient] --> |Fråga + Kontext| Server[MCP-server]
     Server --> |1. Frågeanalys| NLP[NLP-tjänst]
     NLP --> |Förbättrad fråga| Server
-    Server --> |2. Sökningsexekvering| Search[Sökmotor]
+    Server --> |2. Sökutförande| Search[Sökmotor]
     Search --> |Råa resultat| Server
     Server --> |3. Resultatbearbetning| Enhancement[Resultatförbättring]
     Enhancement --> |Förbättrade resultat| Server
     Server --> |Slutgiltiga resultat + Uppdaterad kontext| Client
 ```
 
-I detta mönster delas sökprocessen upp i flera steg, där kontext berikas vid varje steg, vilket resulterar i successivt mer relevanta resultat.
+I detta mönster delas sökprocessen upp i flera steg där kontext berikas vid varje steg, vilket resulterar i successivt mer relevanta resultat.
 
-### Sökkonstekomponenter
+### Komponenter i Sökkontext
 
-I MCP-baserad webbsökning inkluderar kontext typiskt:
+I MCP-baserad webbsökning innefattar kontext typiskt:
 
-- **Sökhistorik**: Tidigare sökfrågor i sessionen
-- **Användarpreferenser**: Språk, region, säker sökning-inställningar
+- **Frågehistorik**: Tidigare sökfrågor i sessionen
+- **Användarpreferenser**: Språk, region, säkert sökläge
 - **Interaktionshistorik**: Vilka resultat som klickats på, tid spenderad på resultat
 - **Sökparametrar**: Filter, sorteringsordningar och andra sökmodifierare
 - **Domänkunskap**: Ämnesspecifik kontext relevant för sökningen
-- **Tidsbaserad kontext**: Relevansfaktorer baserade på tid
+- **Tidskontext**: Tidsbaserade relevansfaktorer
 - **Källpreferenser**: Betrodda eller föredragna informationskällor
 
 ## Användningsfall och Applikationer
 
 ### Forskning och Informationsinsamling
 
-MCP förbättrar forskningsflöden genom att:
+MCP förbättrar forskningsarbetsflöden genom att:
 
-- Bevara forskningskontext över sökningssessioner
-- Möjliggöra mer sofistikerade och kontextuellt relevanta frågor
-- Stödja mångkälla-söktfederation
+- Bevara forskningskontext över söksessioner
+- Möjliggöra mer sofistikerade och kontextuellt relevanta sökfrågor
+- Stödja multifedererad sökning
 - Underlätta kunskapsutvinning från sökresultat
 
 ### Realtidsnyheter och Trendövervakning
 
 MCP-drivna sökningar erbjuder fördelar för nyhetsövervakning:
 
-- Nästan realtidsupptäckt av framväxande nyhetshändelser
+- Nära-realtidsupptäckt av framväxande nyhetshändelser
 - Kontextuell filtrering av relevant information
-- Ämnes- och entitetsuppföljning över flera källor
-- Personliga nyhetsvarningar baserade på användarkontext
+- Ämnes- och enhetsspårning över flera källor
+- Personliga nyhetsaviseringar baserat på användarkontext
 
-### AI-förstärkt surfning och forskning
+### AI-förstärkt Surfning och Forskning
 
 MCP skapar nya möjligheter för AI-förstärkt surfning:
 
 - Kontextuella sökförslag baserade på aktuell webbläsaraktivitet
 - Sömlös integration av webbsökning med LLM-drivna assistenter
-- Fleromgångars sökförfining med bibehållen kontext
+- Flerstegs sökförfining med bibehållen kontext
 - Förbättrad faktakoll och informationsverifiering
 
-## Framtidstrender och Innovationer
+## Framtida Trender och Innovationer
 
-### MCP:s utveckling inom webbsökning
+### MCP:s Utveckling inom Webbsökning
 
-Framöver förväntar vi oss att MCP utvecklas för att ta itu med:
-
-
-- **Multimodal sökning**: Integrera text-, bild-, ljud- och videosökning med bevarad kontext
-- **Decentraliserad sökning**: Stöd för distribuerade och federerade sökekosystem
-- **Sökningsintegritet**: Konstmedvetna integritetsskyddande sökmetoder
-- **Förståelse av sökfrågor**: Djup semantisk analys av naturliga språkfrågor
-
-### Potentiella tekniska framsteg
-
-Framväxande teknologier som kommer att forma framtiden för MCP-sökning:
-
-1. **Neurala sökarkitekturer**: Inbäddningsbaserade söksystem optimerade för MCP
-2. **Personanpassad sökkontext**: Inlärning av individuella användares sökmönster över tid
-3. **Kunskapsgrafintegration**: Kontextuell sökning förbättrad med domänspecifika kunskapsgrafer
-4. **Tvärmodal kontext**: Upprätthålla kontext över olika sökmodaliteter
-
-## Praktiska övningar
-
-### Övning 1: Sätta upp en grundläggande MCP-sökningspipeline
-
-I denna övning lär du dig att:
-- Konfigurera en grundläggande MCP-sökmiljö
-- Implementera kontexthanterare för websökning
-- Testa och validera kontextbevarande över sökiterationer
-
-### Övning 2: Bygga en forskningsassistent med MCP-sökning
-
-Skapa en komplett applikation som:
-- Bearbetar forskningsfrågor på naturligt språk
-- Utför kontextmedvetna websökningar
-- Syntetiserar information från flera källor
-- Presenterar organiserade forskningsresultat
-
-### Övning 3: Implementera multifrågekälls-federering med MCP
-
-Avancerad övning som omfattar:
-- Kontextmedveten frågehantering till flera sökmotorer
-- Resultatrankning och aggregering
-- Kontextuell deduplicering av sökresultat
-- Hantering av källspecifik metadata
-
-## Ytterligare resurser
-
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Officiell MCP-specifikation och detaljerad protokolldokumentation
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaljerade handledningar och implementationsguider
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Officiell Python-implementering av MCP-protokollet
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Officiell TypeScript-implementering av MCP-protokollet
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Referensimplementationer av MCP-servrar
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofts webbsöknings-API
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googles programmerbara sökmotor
-- [SerpAPI Documentation](https://serpapi.com/search-api) - Sökmotorresultats-API
-- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Öppen källkod sökmotor
-- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distribuerad sök- och analysmotor
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Bygga applikationer med LLMs
-
-## Lärandemål
-
-Genom att slutföra denna modul kommer du att kunna:
-
-- Förstå grunderna i realtidswebbsökning och dess utmaningar
-- Förklara hur Model Context Protocol (MCP) förbättrar realtidswebbsökningens kapabiliteter
-- Implementera MCP-baserade söklösningar med populära ramverk och API:er
-- Designa och distribuera skalbara, högpresterande sökarkitekturer med MCP
-- Tillämpa MCP-koncept på olika användningsområden inklusive semantisk sökning, forskningsassistans och AI-förstärkt surfning
-- Utvärdera nya trender och framtida innovationer inom MCP-baserad sökteknologi
+Framöver förväntar vi oss att MCP utvecklas för att hantera:
 
 
-### Överväganden kring förtroende och säkerhet
+- **Multimodal sökning**: Integrering av text-, bild-, ljud- och videosökning med bevarad kontext  
+- **Decentraliserad sökning**: Stöd för distribuerade och federerade sökekosystem  
+- **Sökningsintegritet**: Kontextmedvetna integritetsbevarande sökfunktioner  
+- **Frågeförståelse**: Djup semantisk analys av naturliga språksökfrågor  
 
-Vid implementering av MCP-baserade webbsökningslösningar, kom ihåg dessa viktiga principer från MCP-specifikationen:
+### Potentiella teknologiska framsteg  
 
-1. **Användarsamtycke och kontroll**: Användare måste uttryckligen samtycka till och förstå all dataåtkomst och alla operationer. Detta är särskilt viktigt för implementationslösningar för webbsökning som kan komma åt externa datakällor.
+Framväxande teknologier som kommer forma framtidens MCP-sökning:  
 
-2. **Datasäkerhet**: Säkerställ korrekt hantering av sökfrågor och resultat, särskilt när de kan innehålla känslig information. Implementera lämpliga åtkomstkontroller för att skydda användardata.
+1. **Neurala sökarkitekturer**: Inbäddningsbaserade söksystem optimerade för MCP  
+2. **Personlig sökkontext**: Inlärning av individuella användares sökmönster över tid  
+3. **Integrering av kunskapsgrafer**: Kontextuell sökning förbättrad med domänspecifika kunskapsgrafer  
+4. **Tvärmodal kontext**: Bibehållande av kontext över olika sökmodaliteter  
 
-3. **Verktygssäkerhet**: Implementera korrekt auktorisation och validering för sökverktyg, eftersom dessa utgör potentiella säkerhetsrisker genom godtycklig kodkörning. Beskrivningar av verktygsbeteende ska betraktas som opålitliga om de inte erhållits från en betrodd server.
+## Praktiska övningar  
 
-4. **Tydlig dokumentation**: Tillhandahåll klar dokumentation om kapaciteter, begränsningar och säkerhetsaspekter för din MCP-baserade sökimplementation, enligt implementationsriktlinjerna i MCP-specifikationen.
+### Övning 1: Sätta upp en grundläggande MCP-sökningspipeline  
 
-5. **Robusta samtyckesflöden**: Bygg robusta samtycke- och auktoriseringsflöden som tydligt förklarar vad varje verktyg gör innan dess användning auktoriseras, särskilt för verktyg som interagerar med externa webbresurser.
+I denna övning kommer du lära dig att:  
+- Konfigurera en grundläggande MCP-sökmiljö  
+- Implementera kontexthanterare för webbsökning  
+- Testa och validera kontextbevarande över sökningens iterationer  
 
-För fullständiga detaljer om MCP:s säkerhets- och förtroendebetraktelser, se den [officiella dokumentationen](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+### Övning 2: Bygga en forskningsassistent med MCP-sökning  
 
-## Vad händer härnäst
+Skapa en komplett applikation som:  
+- Bearbetar forskningsfrågor på naturligt språk  
+- Utför kontextmedvetna webbsökningar  
+- Syntetiserar information från flera källor  
+- Presenterar organiserade forskningsresultat  
 
-- [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
+### Övning 3: Implementera sökförbund från flera källor med MCP  
+
+Avancerad övning som täcker:  
+- Kontextmedveten frågeutdelning till flera sökmotorer  
+- Resultatrankning och aggregering  
+- Kontextuell deduplicering av sökresultat  
+- Hantering av källspecifik metadata  
+
+## Ytterligare resurser  
+
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Officiell MCP-specifikation och detaljerad protokollokumentation  
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaljerade handledningar och implementationsguider  
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Officiell Python-implementation av MCP-protokollet  
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Officiell TypeScript-implementation av MCP-protokollet  
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Referensimplementationer av MCP-servrar  
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofts webbsöks-API  
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googles programmerbara sökmotor  
+- [SerpAPI Documentation](https://serpapi.com/search-api) - API för sökmotorresultatsidor  
+- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Öppen källkods-sökmotor  
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Distribuerad sök- och analyssystem  
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Bygga applikationer med stora språkmodeller  
+
+## Inlärningsmål  
+
+Genom att slutföra denna modul kommer du kunna:  
+
+- Förstå grunderna i realtidssökning på webben och dess utmaningar  
+- Förklara hur Model Context Protocol (MCP) förbättrar realtidssökningsmöjligheter på webben  
+- Implementera MCP-baserade söklösningar med populära ramverk och API:er  
+- Designa och distribuera skalbara, högpresterande sökarkitekturer med MCP  
+- Tillämpa MCP-koncept på olika användningsområden inklusive semantisk sökning, forskningshjälp och AI-förstärkt surfning  
+- Bedöma framväxande trender och framtida innovationer inom MCP-baserad sökteknologi  
+
+
+### Betroddhet och säkerhetsaspekter  
+
+När du implementerar MCP-baserade webbsöklösningar, kom ihåg dessa viktiga principer från MCP-specifikationen:  
+
+1. **Användarsamtycke och kontroll**: Användare måste uttryckligen samtycka till och förstå all dataåtkomst och alla operationer. Detta är särskilt viktigt för webbsöksimplementationer som kan komma att använda externa datakällor.  
+
+2. **Dataintegritet**: Säkerställ korrekt hantering av sökfrågor och resultat, särskilt när de kan innehålla känslig information. Implementera lämpliga åtkomstkontroller för att skydda användardata.  
+
+3. **Verktygssäkerhet**: Implementera korrekt auktorisering och validering för sökverktyg, eftersom de utgör potentiella säkerhetsrisker genom godtycklig kodkörning. Beskrivningar av verktygsbeteenden ska betraktas som opålitliga om de inte erhållits från en betrodd server.  
+
+4. **Tydlig dokumentation**: Tillhandahåll tydlig dokumentation om kapabiliteter, begränsningar och säkerhetsaspekter för din MCP-baserade sökimplementation, i enlighet med implementeringsriktlinjerna från MCP-specifikationen.  
+
+5. **Robusta samtyckesflöden**: Bygg robusta samtyckes- och auktoriseringsflöden som tydligt förklarar vad varje verktyg gör innan användning godkänns, särskilt för verktyg som interagerar med externa webbresurser.  
+
+För fullständiga detaljer om MCP:s säkerhets- och betroddhetsöverväganden, se  
+[officiell dokumentation](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).  
+
+## Vad är nästa steg  
+
+- [5.12 Entra ID-autentisering för Model Context Protocol-servrar](../mcp-security-entra/README.md)  
 
 ---
 

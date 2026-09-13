@@ -2,50 +2,50 @@
 
 ## Projekto apžvalga
 
-**MCP pradedantiesiems** yra atvirojo kodo mokomasis kursas Modelio konteksto protokolo (MCP) mokymuisi - standartizuota sistema sąveikoms tarp AI modelių ir klientų programėlių. Šis saugykla suteikia išsamias mokymosi medžiagas su praktiniais kodo pavyzdžiais keliose programavimo kalbose.
+**MCP pradedantiesiems** yra atviro kodo mokomasis kursas, skirtas Modelio Konteksto Protokolo (MCP) mokymuisi – standartizuota sistema AI modelių ir klientų programų sąveikai. Ši saugykla pateikia išsamias mokymosi medžiagas su praktiniais kodo pavyzdžiais keliomis programavimo kalbomis.
 
 ### Pagrindinės technologijos
 
 - **Programavimo kalbos**: C#, Java, JavaScript, TypeScript, Python, Rust
-- **Sistemos ir SDK**: 
+- **Framework’ai ir SDK**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
   - LangChain4j (Java)
-- **Duomenų bazės**: PostgreSQL su pgvector praplėtimu
+- **Duomenų bazės**: PostgreSQL su pgvector plėtiniu
 - **Debesų platformos**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
-- **Konstravimo įrankiai**: npm, Maven, pip, Cargo
-- **Dokumentacija**: Markdown su automatizuotu daugiakalbiu vertimu (daugiau nei 48 kalbomis)
+- **Kūrimo įrankiai**: npm, Maven, pip, Cargo
+- **Dokumentacija**: Markdown su automatizuotu daugiakalbiu vertimu (48+ kalbų)
 
 ### Architektūra
 
-- **11 pagrindinių modulių (00-11)**: Nuosekli mokymosi seka nuo pagrindų iki pažangių temų
-- **Praktinės laboratorijos**: Praktiniai užsiėmimai su pilnu sprendimų kodu keliose kalbose
+- **11 pagrindinių modulių (00-11)**: Sekanti mokymosi eiga nuo pagrindų iki pažangių temų
+- **Praktiniai darbai**: Praktinės užduotys su pilnu sprendimo kodu keliomis kalbomis
 - **Pavyzdiniai projektai**: Veikiantys MCP serverio ir kliento įgyvendinimai
-- **Vertimo sistema**: Automatizuotas GitHub Actions darbo eigas daugiakalbei palaikymui
-- **Vaizdo ištekliai**: Centralizuota vaizdų katalogas su išverstomis versijomis
+- **Vertimo sistema**: Automatizuotas GitHub Actions darbo eiga daugiakalbei pagalbai
+- **Vaizdų ištekliai**: Centralizuota vaizdų direktorija su išverstomis versijomis
 
-## Diegimo komandos
+## Įdiegimo komandos
 
-Tai yra dokumentacijai skirta saugykla. Dauguma diegimo vyksta atskiruose pavyzdiniuose projektuose ir laboratorijose.
+Tai dokumentacijai skirta saugykla. Daugiausia nustatymų atliekama kiekviename atskirame pavyzdiniame projekte ir užduotyse.
 
-### Saugyklos diegimas
+### Saugyklos nustatymas
 
 ```bash
-# Nuklonuokite saugyklą
+# Nukopijuokite saugyklą
 git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
 ### Darbas su pavyzdiniais projektais
 
-Pavyzdiniai projektai yra šiose vietose:
-- `03-GettingStarted/samples/` - Kalbai specifiniai pavyzdžiai
-- `03-GettingStarted/01-first-server/solution/` - Pirmieji serverio įgyvendinimai
-- `03-GettingStarted/02-client/solution/` - Klientų įgyvendinimai
-- `11-MCPServerHandsOnLabs/` - Išsamios duomenų bazės integravimo laboratorijos
+Pavyzdiniai projektai randami:
+- `03-GettingStarted/samples/` - Kalbai būdingi pavyzdžiai
+- `03-GettingStarted/01-first-server/solution/` - Pirmojo serverio įgyvendinimai
+- `03-GettingStarted/02-client/solution/` - Kliento įgyvendinimai
+- `11-MCPServerHandsOnLabs/` - Išsamios duomenų bazės integracijos užduotys
 
-Kiekvienas pavyzdinis projektas turi savas diegimo instrukcijas:
+Kiekvienas pavyzdinis projektas turi atskiras įdiegimo instrukcijas:
 
 #### TypeScript/JavaScript projektai
 ```bash
@@ -70,48 +70,48 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Vystymo darbo eiga
+## Kūrimo darbo eiga
 
-### MCP 7-28 parengtis
+### MCP 7-28 pasiruošimas
 
-#### Saugyklos parengiamasis kontrolinis sąrašas
+#### Saugyklos pasiruošimo sąrašas
 
 - [x] **Naujo dalyvio aiškumas**: Šis failas apibrėžia saugyklos paskirtį,
-  struktūrą, kontributavimo taisykles ir pavyzdinių nustatymų kelius.
-- [x] **Konstravimo/testavimo/lint komandų su tiksliomis vėliavomis**:
-  - Saugyklos dokumentų lint:
+  struktūrą, indėlio taisykles ir pavyzdinius nustatymų kelius.
+- [x] **Tikslūs statybos/testavimo/lint komandų parametrai**:
+  - Dokumentacijos lint tikrinimas:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Saugyklos dokumentų nuorodų modelio patikra:
+  - Dokumentacijos nuorodų šablonų patikra:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
-  - TypeScript pavyzdžio patikra:
+  - TypeScript pavyzdžio validacija:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
-  - Python pavyzdžio patikra:
+  - Python pavyzdžio validacija:
     `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
-  - Java pavyzdžio patikra:
+  - Java pavyzdžio validacija:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
-- [x] **Vienas realistiškas darbo srautas, kuris gali tapti MCP įrankiu**:
+- [x] **Vienas realistiškas darbo eiga, galinti tapti MCP įrankiu**:
   `validate_curriculum_change`
-- [x] **Įėjimai/išėjimai yra aiškūs** (žr. žemiau specifikaciją).
-- [x] **Leidimai ir klaidų režimai yra dokumentuoti** (žr. žemiau specifikaciją).
-- [x] **CI testavimas yra aiškus** (deterministiniai komandų paleidimai, aiškios
-  išeigos kodai ir mašinai skaitomi rezultatai).
+- [x] **Įvestys/išvestys yra aiškios** (žr. žemiau pateiktą specifikaciją).
+- [x] **Leidimai ir klaidų režimai yra dokumentuoti** (žr. žemiau pateiktą specifikaciją).
+- [x] **CI testavimas yra aiškus** (deterministinės komandos, aiškūs
+  išėjimo kodai ir mašinai skaitomi pranešimai).
 
-#### MCP įrankio kandidato darbo eiga: `validate_curriculum_change`
+#### Kandidato MCP įrankio darbo eiga: `validate_curriculum_change`
 
 ##### Tikslas
 
-Patikrinti mokymo programos dokumentacijos pakeitimų ir reprezentatyvaus pavyzdinio kodo
-būklę prieš sujungimą.
+Patikrinti mokymo programos dokumentacijos pakeitimus ir reprezentatyvų pavyzdinį kodą
+prieš sujungiant.
 
-##### Įėjimai
+##### Įvestys
 
-- `changed_paths: string[]` (privaloma) - PR pakeisti santykiniai keliai.
+- `changed_paths: string[]` (privalomas) - PR pakeisti santykiniai keliai.
 - `run_docs_lint: boolean` (numatytasis `true`)
 - `run_links_audit: boolean` (numatytasis `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
-  (numatytasis visi `false`)
+  (numatytasis viskas `false`)
 
-##### Išeigos
+##### Išvestys
 
 - `status: "ok" | "failed"`
 - `checks: Array<{ name: string, command: string, exit_code: number,
@@ -121,106 +121,105 @@ būklę prieš sujungimą.
 
 ##### Leidimai
 
-- Gali skaityti darbo srities failus ir rašyti įrankio sugeneruotus artefaktus (pvz., lint
-  ataskaitas, testų žurnalus) tik; negali rašyti į `translations/` ar
+- Skaityti darbo srities failus ir rašyti įrankio sugeneruotus artefaktus (pvz., lint
+  ataskaitas, testavimo žurnalus) tik; negalima rašyti į `translations/` arba
   `translated_images/`.
-- Gali vykdyti vietines apvalkalo komandas.
-- Tinklo prieiga leidžiama tik paketų atkūrimui (`npm ci`,
-  `python -m pip install`, `mvn` priklausomybių išsprendimui).
+- Vykdyti vietines apvalkalo komandas.
+- Tinklo prieiga leidžiama tik priklausomybių atkūrimui (`npm ci`,
+  `python -m pip install`, `mvn` priklausomybių tvarkymas).
 - Nėra leidimo siųsti, sujungti ar keisti `translations/` ar
   `translated_images/`.
 
-##### Klaidos režimai
+##### Klaidų režimai
 
-- `E_NO_INPUT_PATHS`: `changed_paths` yra tuščias.
-- `E_INVALID_PATH`: įėjimo kelias išeina už saugyklos šaknies.
-- `E_LINT_FAILED`: markdown lint baigiasi su klaida.
-- `E_LINK_AUDIT_FAILED`: nuorodų tikrinimo komanda baigiasi su klaida.
-- `E_SAMPLE_TEST_FAILED`: pavyzdinio testo/kompiliavimo komanda baigiasi su klaida.
-- `E_TIMEOUT`: komanda viršijo nustatytą laukimo laiką.
+- `E_NO_INPUT_PATHS`: `changed_paths` tuščias.
+- `E_INVALID_PATH`: įvesties kelias išeina už saugyklos šaknies ribų.
+- `E_LINT_FAILED`: markdown lint baigėsi klaida.
+- `E_LINK_AUDIT_FAILED`: nuorodų patikros komanda baigėsi klaida.
+- `E_SAMPLE_TEST_FAILED`: pavyzdžio testas/statyba baigėsi klaida.
+- `E_TIMEOUT`: komandai viršytas nustatytas laiko limitas.
 
 ##### Rekomenduojamas CI susitarimas
 
-Automatizuotam patikrinimui sukurkite CI darbą, kuris:
+Automatikai patvirtinti reikia konfigūruoti CI darbą, kuris:
 
-- Aktyvuojasi PR, kuriuose keičiasi `*.md`, pavyzdinis kodas ar šis failas.
-- Atlieka tiksliai aukščiau išvardintas komandas.
-- Išsaugo žurnalus kaip artefaktus.
-- Jei bet kuri komanda baigiasi klaida, darbas nesėkmingas.
+- Reaguoja į pull request’us, liečiančius `*.md`, pavyzdinį kodą ar šį failą.
+- Vykdo tiksliai aukščiau nurodytas komandas.
+- Saugoti žurnalus kaip artefaktus.
+- Nubausti darbą, jei bet kuri komandos išėjimo reikšmė nėra nulis.
 
-#### Jei išleidžiate MCP serverį iš šios saugyklos
+#### Jei iš šios saugyklos paleidžiate MCP serverį
 
-- [ ] Perskaitykite peržiūros keitinių žurnalą MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Paleiskite savo serverį su SDK beta versijomis:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Pašalinkite sesijų ir rankos paspaudimo prielaidas; traktuokite kiekvieną užklausą kaip
+- [ ] Perskaitykite galutinį MCP „2026-07-28“ keitimų žurnalą:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Patikrinkite, ar pasirinktas SDK leidimas palaiko MCP „2026-07-28“:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] Panaikinkite sesijos ir susitarimo prielaidas; traktukite kiekvieną užklausą kaip
   savarankišką:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
 - [ ] Siųskite `Mcp-Method` ir `Mcp-Name` antraštes žaliems HTTP užklausoms:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Peržiūrėkite kietai užkoduotus klaidų kodus (`missing resource` perkeltas iš `-32002` į `-32602`).
-
-- [ ] Pažymėti ir suplanuoti migraciją dėl nebenaudojamų root, atrankos ir
-  registravimo:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Pereiti nuo eksperimentinės `2025-11-25` Tasks API:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Peržiūrėti autorizaciją OAuth ir OpenID Connect sustiprinimui:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Patikrinkite, ar nėra kietai įrašytų klaidų kodų (`missing resource` perkeltas iš `-32002` į `-32602`).
+- [ ] Migravimas nuo pasenusių Roots, Sampling, Logging ir Dinaminio Kliento
+  registracijos:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Migravimas nuo eksperimentinės `2025-11-25` Užduočių API:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Peržiūrėkite įgaliojimus OAuth ir OpenID Connect stiprinimui:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Dokumentacijos struktūra
 
-- **Moduliai 00-11**: Pagrindinio mokymo turinys nuoseklia tvarka
-- **translations/**: Kalbai skirtos versijos (automatizuotos, redaguoti negalima tiesiogiai)
-- **translated_images/**: Lokalizuotos paveikslėlių versijos (automatizuotos)
-- **images/**: Šaltinio paveikslėliai ir diagramos
+- **Moduliai 00-11**: Pagrindinis mokymo programos turinys sekančia tvarka
+- **translations/**: Kalbai būdingos versijos (automatizuotos, redaguoti ne tiesiogiai)
+- **translated_images/**: Lokalizuotos vaizdų versijos (automatizuotos)
+- **images/**: Šaltinio vaizdai ir schemos
 
-### Kaip keisti dokumentaciją
+### Dokumentacijos keitimo eiga
 
-1. Redaguokite tik anglų kalbos markdown failus pagrindiniuose modulio kataloguose (00-11)
-2. Jei reikia, atnaujinkite paveikslėlius `images/` kataloge
-3. GitHub veiksmas co-op-translator automatiškai sugeneruos vertimus
-4. Vertimai atnaujinami kiekvieno pakeitimo pagrindinėje šakoje metu
+1. Redaguokite tik angliškus markdown failus pagrindiniuose modulio aplankuose (00-11)
+2. Pagal poreikį atnaujinkite vaizdus `images/` kataloge
+3. GitHub Action co-op-translator automatiškai generuos vertimus
+4. Vertimai renovuojami iš karto po pakeitimų pagrindiniame šakoje
 
 ### Darbas su vertimais
 
-- **Automatinis vertimas**: GitHub Actions tvarko visą vertimų procesą
-- **Neredaguokite rankiniu būdu** `translations/` katalogo failų
-- Vertimų metaduomenys įterpti kiekviename išverstame faile
-- Palaikomos kalbos: daugiau nei 48 kalbos, įskaitant arabų, kinų, prancūzų, vokiečių, hindi, japonų, korėjiečių, portugalų, rusų, ispanų ir daugelį kitų
+- **Automatinis vertimas**: GitHub Actions darbo eiga tvarko visus vertimus
+- **Neredaguokite rankiniu būdu** failų `translations/` direktorijoje
+- Vertimo metaduomenys įterpiami į kiekvieną išverstą failą
+- Palaikomos kalbos: 48+ kalbos, įskaitant arabų, kinų, prancūzų, vokiečių, hindi, japonų, korėjiečių, portugalų, rusų, ispanų ir daugelį kitų
 
 ## Testavimo instrukcijos
 
-### Dokumentacijos patvirtinimas
+### Dokumentacijos patikra
 
-Kadangi tai daugiausia dokumentacijos saugykla, testavimas koncentruojasi į:
+Kadangi tai pagrinde dokumentacijos saugykla, testavimas orientuojamas į:
 
-1. **Nuorodų šablono tikrinimą**: Sąrašas Markdown nuorodų peržiūrai
+1. **Nuorodų šablonų patikra**: markdown nuorodų išrašas peržiūrai
 
    ```bash
-   # Išvardinti Markdown nuorodas (šablono patikrinimas)
+   # Išvardinti Markdown nuorodas (šablono patikra)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Kodo pavyzdžių patvirtinimą**: Patikrinkite, ar kodo pavyzdžiai kompiliuojasi / veikia
+2. **Kodo pavyzdžių validacija**: Patikrinkite, ar kodo pavyzdžiai kompiliuojasi/veikia
 
    ```bash
-   # Eiti į konkretų pavyzdį ir paleisti jo testus
+   # Eikite į konkretų pavyzdį ir paleiskite jo testus
    cd 03-GettingStarted/samples/typescript
    npm install && npm test
    ```
 
-3. **Markdown stiliaus tikrinimą**: Patikrinkite formatavimo nuoseklumą
+3. **Markdown lint tikrinimas**: Formato atitikimo patikra
 
    ```bash
-   # Jei reikia, naudokite markdownlint
+   # Naudokite markdownlint, jei reikia
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
 ### Pavyzdinių projektų testavimas
 
-Kiekviena kalbai skirta pavyzdinė programėlė turi savo testavimo metodiką:
+Kiekvienas kalbai būdingas pavyzdys turi savitą testavimo metodiką:
 
 #### TypeScript/JavaScript
 ```bash
@@ -240,36 +239,36 @@ mvn test
 mvn verify
 ```
 
-## Kodo stiliaus gairės
+## Kodo stiliaus gaires
 
 ### Dokumentacijos stilius
 
-- Naudokite aiškią, pradedantiesiems draugišką kalbą
-- Pavyzdžiuose pateikite kodą keliose kalbose, kur tai taikoma
-- Laikykitės markdown geriausių praktikų:
+- Naudokite aiškią, pradedantiesiems suprantamą kalbą
+- Įtraukite kodo pavyzdžius keliose kalbose, kur taikoma
+- Vadovaukitės markdown gerąja praktika:
   - Naudokite ATX stiliaus antraštes (`#` sintaksė)
-  - Naudokite tvarkingus kodo blokus su kalbos žymomis
-  - Paveikslėliams įtraukite aprašomuosius alt tekstus
-  - Laikykite eilučių ilgį protingą (nėra griežto limito, bet būkite saikingi)
+  - Naudokite aptvertus kodo blokus su kalbų žymomis
+  - Pateikite aprašomąjį alt tekstą vaizdams
+  - Laikykitės racionalaus eilučių ilgio (nėra griežtos ribos, bet naudokite sveiką protą)
 
 ### Kodo pavyzdžių stilius
 
 #### TypeScript/JavaScript
 - Naudokite ES modulius (`import`/`export`)
-- Laikykitės TypeScript griežto režimo taisyklių
-- Įtraukite tipo anotacijas
-- Tikslinė versija ES2022
+- Vadovaukitės TypeScript griežto režimo konvencijomis
+- Įtraukite tipų anotacijas
+- Tikslinė aplinka – ES2022
 
 #### Python
-- Laikykitės PEP 8 stiliaus gairių
-- Naudokite tipo užuominas, kur tai tinka
-- Funkcijoms ir klasėms pridėkite docstring'us
+- Vadovaukitės PEP 8 stiliaus gairėmis
+- Naudokite tipų užuominas, kur tinka
+- Pridėkite docstring’us funkcijoms bei klasėms
 - Naudokite modernias Python funkcijas (3.8+)
 
 #### Java
-- Laikykitės Spring Boot konvencijų
+- Vadovaukitės Spring Boot konvencijomis
 - Naudokite Java 21 funkcijas
-- Laikykitės įprastinės Maven projekto struktūros
+- Vadovaukitės standartu Maven projekto struktūrai
 - Pridėkite Javadoc komentarus
 
 ### Failų organizavimas
@@ -290,111 +289,111 @@ mvn verify
 
 ### Dokumentacijos diegimas
 
-Saugykla naudoja GitHub Pages arba panašią platformą dokumentacijos talpinimui (jei taikoma). Pakeitimai pagrindinėje šakoje sukelia:
+Saugykla naudoja GitHub Pages arba panašias priemones dokumentacijos talpinimui (jei taikoma). Pakeitimai pagrindiniame šakoje sukelia:
 
-1. Vertimų darbo eigą (`.github/workflows/co-op-translator.yml`)
-2. Automatizuotą visų anglų kalbos markdown failų vertimą
-3. Paveikslėlių lokalizavimą pagal poreikį
+1. Vertimo darbo eigą (`.github/workflows/co-op-translator.yml`)
+2. Automatinį visų anglų kalbos markdown failų vertimą
+3. Vaizdų lokalizavimą pagal poreikį
 
-### Nereikia kūrimo proceso
+### Statybos proceso nereikia
 
-Ši saugykla daugiausia talpina markdown dokumentaciją. Nereikalingas sudarymas ar kūrimas pagrindiniam mokymo turiniui.
+Ši saugykla daugiausia sudaryta iš markdown dokumentacijos. Pagrindiniam mokymo programos turiniui nereikia kompiliavimo ar statybos žingsnio.
 
 ### Pavyzdinių projektų diegimas
 
-Atskiri pavyzdiniai projektai gali turėti diegimo instrukcijas:
-- Pažiūrėkite `03-GettingStarted/09-deployment/`, jei norite gauti MCP serverio diegimo nurodymus
-- Pavyzdžiai Azure Container Apps diegimui `11-MCPServerHandsOnLabs/`
+Kiekvienas pavyzdinis projektas gali turėti diegimo instrukcijų:
+- Žr. `03-GettingStarted/09-deployment/` MCP serverio diegimo rekomendacijas
+- Azure Container Apps diegimo pavyzdžiai `11-MCPServerHandsOnLabs/`
 
 ## Indėlio gairės
 
-### Pull Request procesas
+### Pull request proceso eiga
 
-1. **Fork ir klonavimas**: Padarykite saugyklos fork ir nuklonuokite jį vietoje
-2. **Sukurti šaką**: Naudokite aprašomuosius šakų pavadinimus (pvz., `fix/typo-module-3`, `add/python-example`)
-3. **Atlikite pakeitimus**: Redaguokite tik anglų kalbos markdown failus (ne vertimus)
-4. **Testuokite vietoje**: Patikrinkite, ar markdown tinkamai atvaizduojamas
-5. **Pateikite PR**: Naudokite aiškius PR pavadinimus ir aprašymus
-6. **CLA**: Pasirašykite Microsoft Bendradarbio Licencijos Sutartį, kai bus paprašyta
+1. **Fork’inimas ir klonavimas**: Fork’inkite saugyklą ir klonuokite savo forką vietoje
+2. **Šakos kūrimas**: Naudokite aprašomuosius šakų pavadinimus (pvz., `fix/typo-module-3`, `add/python-example`)
+3. **Pakeitimų darymas**: Redaguokite tik anglų kalbos markdown failus (ne vertimus)
+4. **Vietinis testavimas**: Patikrinkite, jog markdown atvaizduojamas tinkamai
+5. **PR pateikimas**: Naudokite aiškius PR pavadinimus ir aprašymus
+6. **CLA**: Pasirašykite Microsoft bendradarbio licencijos sutartį, kai bus paprašyta
 
-### PR pavadinimo formatas
+### PR pavadinimų formatas
 
-Naudokite aiškius, aprašomuosius pavadinimus:
-- `[Module XX] Trumpas aprašymas` modulio pakeitimams
-- `[Samples] Aprašymas` pavyzdinio kodo pakeitimams
-- `[Docs] Aprašymas` bendriems dokumentacijos atnaujinimams
+Naudokite aiškius ir aprašomuosius pavadinimus:
+- `[Modulis XX] Trumpas aprašymas` moduliui būdingiems pakeitimams
+- `[Pavyzdžiai] Aprašymas` pavyzdinių kodo pakeitimų atvejais
+- `[Dokumentacija] Aprašymas` bendriems dokumentacijos atnaujinimams
 
-### Ką įnešti
+### Ką prisidėti
 
-- Klaidų taisymai dokumentacijoje arba kodo pavyzdžiuose
+- Dokumentacijos arba pavyzdinių kodo klaidų taisymas
 - Nauji kodo pavyzdžiai papildomomis kalbomis
-- Esamo turinio patikslinimai ir patobulinimai
-- Naujos bylos studijos ar praktiški pavyzdžiai
-- Probleminių vietų ataskaitos dėl neaiškaus ar neteisingo turinio
+- Esamo turinio paaiškinimai ir patobulinimai
+- Naujos atvejų studijos arba praktiniai pavyzdžiai
+- Neaiškaus ar neteisingo turinio klaidų pranešimai
 
 ### Ko nedaryti
 
-- Neredaguokite tiesiogiai failų `translations/` kataloge
-- Neredaguokite `translated_images/` katalogo
-- Nedėkite didelių dvejetainių failų be aptarimo
-- Nekeiskite vertimų darbo eigos failų be koordinavimo
+- Neredaguokite tiesiogiai failų `translations/` direktorijoje
+- Neredaguokite `translated_images/` direktorijos
+- Nerekite didelių dvejetainių failų be aptarimo
+- Nekoreguokite vertimo darbo eigos failų be koordinacijos
 
-## Papildomi pastabos
+## Papildomos pastabos
 
 ### Saugyklos priežiūra
 
-- **Pakeitimų žurnalas**: Visi svarbūs pakeitimai dokumentuoti `changelog.md`
-- **Mokymosi vadovas**: Naudokite `study_guide.md` mokymo plano apžvalgai
-- **Klaidų šablonai**: Naudokite GitHub problemų šablonus klaidų ataskaitoms ir funkcijų prašymams
-- **Elgesio kodeksas**: Visi bendradarbiai turi laikytis Microsoft atvirojo kodo elgesio kodekso
+- **Keitimų žurnalas**: Visos reikšmingos permainos dokumentuojamos `changelog.md`
+- **Mokymosi vadovas**: Naudokite `study_guide.md` mokymo programos naršymo apžvalgai
+- **Klaidų formos**: Naudokite GitHub problemų šablonus klaidų ataskaitoms bei funkcijų užklausoms
+- **Elgesio kodeksas**: Visi bendradarbiai privalo laikytis Microsoft atvirojo kodo elgesio kodekso
 
-### Mokymosi kelias
+### Mokymosi eiga
 
-Laikykitės moduliais nuoseklia tvarka (00-11) optimaliai mokymuisi:
+Vadovaukitės moduliais sekančia tvarka (00-11) optimaliai mokymuisi:
 1. **00-02**: Pagrindai (Įvadas, Pagrindinės sąvokos, Saugumas)
-2. **03**: Pradžia su praktiniu pritaikymu
-3. **04-05**: Praktinis įgyvendinimas ir pažangios temos
-4. **06-10**: Bendruomenė, geriausios praktikos, realaus pasaulio taikymai
-5. **11**: Išsamūs duomenų bazės integravimo laboratoriniai darbai (13 nuoseklių laboratorijų)
+2. **03**: Susipažinimas su praktine implementacija
+3. **04-05**: Praktinė implementacija ir pažangios temos
+4. **06-10**: Bendruomenė, geriausios praktikos ir realaus pasaulio taikymai
+5. **11**: Išsamios duomenų bazės integracijos užduotys (13 nuoseklių laboratorinių darbų)
 
-### Palaikymo ištekliai
+### Pagalbiniai ištekliai
 
 - **Dokumentacija**: https://modelcontextprotocol.io/
-- **Specifikacija**: https://spec.modelcontextprotocol.io/
+- **Specifikacija**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Bendruomenė**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord serveris
-- **Susiję kursai**: Žr. README.md dėl kitų Microsoft mokymosi kelių
+- **Susiję kursai**: Žr. README.md kitoms Microsoft mokymosi programoms
 
-### Dažniausiai pasitaikančios problemos
+### Dažnos problemos ir sprendimai
 
-**K: Mano PR nepraeina vertimo patikros**
-A: Įsitikinkite, kad redagavote tik anglų kalbos markdown failus pagrindiniuose modulio kataloguose, ne išverstinius variantus.
+**Q: Mano PR nepraleidžia vertimo patikros**
+A: Įsitikinkite, kad redagavote tik anglų kalbos markdown failus pagrindiniuose modulio aplankuose, o ne išverstus failus.
 
-**K: Kaip pridėti naują kalbą?**
-A: Kalbų palaikymas valdomas naudojant co-op-translator darbo eigą. Atsidarykite problemą aptarti naujų kalbų pridėjimą.
+**Q: Kaip pridėti naują kalbą?**
+A: Kalbų palaikymą valdo co-op-translator darbo eiga. Atsidarykite problemą (issue) kalbų pridėjimo aptarimui.
 
-**K: Kodo pavyzdžiai neveikia**
+**Q: Kodo pavyzdžiai neveikia**
+A: Įsitikinkite, kad sekėte specifinio pavyzdžio README diegimo instrukcijas. Patikrinkite, ar turite tinkamas priklausomybių versijas.
 
-A: Įsitikinkite, kad sekėte nustatymo instrukcijas konkretaus pavyzdžio README faile. Patikrinkite, ar įdiegėte tinkamas priklausomybių versijas.
+**Q: Vaizdai nerodomi**
 
-**Klausimas: Paveikslėliai nerodomi**
-A: Patikrinkite, ar paveikslėlių keliai yra santykiniai ir naudoja pasvirusiuosius brūkšnelius. Paveikslėliai turėtų būti `images/` kataloge arba `translated_images/` lokalizuotoms versijoms.
+A: Patikrinkite, ar paveikslėlių keliai yra reliatyvūs ir naudoja pasvirusiuosius brūkšnelius. Paveikslėliai turėtų būti kataloge `images/` arba `translated_images/` lokalizuotoms versijoms.
 
-### Veikimo efektyvumo svarstymai
+### Veikimo našumo svarstymai
 
-- Vertimo procesas gali trukti keletą minučių
+- Vertimo darbo eiga gali užtrukti kelias minutes
 - Dideli paveikslėliai turėtų būti optimizuoti prieš įsipareigojant
-- Laikykite atskirus markdown failus susitelkusius ir vidutinio dydžio
-- Naudokite santykinius nuorodas geresniam perkeliamumui
+- Išlaikykite atskirus markdown failus sutelktus ir protingo dydžio
+- Naudokite reliatyvius ryšius geresniam perkėlimo patogumui
 
 ### Projekto valdymas
 
 Šis projektas laikosi Microsoft atviro kodo praktikų:
 - MIT licencija kodui ir dokumentacijai
 - Microsoft atviro kodo elgesio kodeksas
-- CLA reikalaujama prisidėjimams
-- Saugumo klausimai: laikykitės SECURITY.md gairių
-- Pagalba: žr. SUPPORT.md pagalbos išteklius
+- Prisidėjimams reikalinga CLA
+- Saugumo problemos: laikykitės SECURITY.md gairių
+- Palaikymas: žr. SUPPORT.md pagalbos šaltiniams
 
 ---
 

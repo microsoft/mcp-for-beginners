@@ -1,68 +1,68 @@
-# Μελέτη Περίπτωσης: Έκθεση REST API στο API Management ως MCP server
+# Μελέτη Περίπτωσης: Έκθεση REST API σε API Management ως MCP server
 
-Το Azure API Management είναι μια υπηρεσία που παρέχει μια Πύλη πάνω από τα API Endpoints σας. Ο τρόπος λειτουργίας του είναι ότι το Azure API Management λειτουργεί ως μεσολαβητής μπροστά από τα APIs σας και μπορεί να αποφασίσει τι να κάνει με τις εισερχόμενες αιτήσεις.
+Το Azure API Management είναι μια υπηρεσία που παρέχει μια Πύλη πάνω από τα API Endpoints σας. Ο τρόπος λειτουργίας είναι ότι το Azure API Management λειτουργεί σαν μεσολαβητής μπροστά από τα APIs σας και μπορεί να αποφασίσει τι να κάνει με τα εισερχόμενα αιτήματα.
 
-Χρησιμοποιώντας το, προσθέτετε ολόκληρο ένα σύνολο λειτουργιών όπως:
+Χρησιμοποιώντας το, προσθέτετε μια σειρά από λειτουργίες όπως:
 
-- **Ασφάλεια**, μπορείτε να χρησιμοποιήσετε από κλειδιά API, JWT μέχρι διαχειριζόμενη ταυτότητα.
-- **Περιορισμός ρυθμού**, μια εξαιρετική λειτουργία είναι η δυνατότητα να αποφασίσετε πόσες κλήσεις περνούν ανά συγκεκριμένη μονάδα χρόνου. Αυτό βοηθά να εξασφαλιστεί ότι όλοι οι χρήστες έχουν μια εξαιρετική εμπειρία και επίσης ότι η υπηρεσία σας δεν επιβαρύνεται υπερβολικά με αιτήσεις.
-- **Κλιμάκωση & Ισορροπία Φορτίου**. Μπορείτε να ορίσετε έναν αριθμό endpoints για να ισορροπείται το φορτίο και επίσης μπορείτε να αποφασίσετε πώς θα γίνεται η «ισορροπία φορτίου».
-- **Λειτουργίες AI όπως η σημασιολογική προσωρινή αποθήκευση**, όριο tokens και παρακολούθηση tokens και άλλα. Αυτές είναι εξαιρετικές λειτουργίες που βελτιώνουν την ανταπόκριση καθώς και σας βοηθούν να παραμένετε ενημερωμένοι για τη χρήση των tokens σας. [Διαβάστε περισσότερα εδώ](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities). 
+- **Ασφάλεια**, μπορείτε να χρησιμοποιήσετε τα πάντα από κλειδιά API, JWT μέχρι διαχειριζόμενη ταυτότητα.
+- **Περιορισμός ρυθμού κλήσεων**, μια εξαιρετική λειτουργία είναι η δυνατότητα να αποφασίσετε πόσες κλήσεις περνούν ανά μονάδα χρόνου. Αυτό βοηθά να διασφαλίσετε ότι όλοι οι χρήστες έχουν μια εξαιρετική εμπειρία και επίσης ότι η υπηρεσία σας δεν κατακλύζεται από αιτήματα.
+- **Κλιμάκωση & Ισορροπία φορτίου**. Μπορείτε να ορίσετε έναν αριθμό endpoints για να εξισορροπήσετε το φορτίο και επίσης μπορείτε να αποφασίσετε πώς να γίνει η "ισορροπία φορτίου".
+- **Λειτουργίες AI όπως σημασιολογική προσωρινή αποθήκευση (semantic caching)**, όριο tokens και παρακολούθηση tokens και άλλα. Αυτές είναι εξαιρετικές λειτουργίες που βελτιώνουν την ανταπόκριση καθώς και σας βοηθούν να έχετε τον έλεγχο των δαπανών token. [Διαβάστε περισσότερα εδώ](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
 ## Γιατί MCP + Azure API Management;
 
-Το Model Context Protocol γίνεται γρήγορα πρότυπο για agentic εφαρμογές AI και για το πώς να εκθέτεις εργαλεία και δεδομένα με συνεπή τρόπο. Το Azure API Management είναι μια φυσική επιλογή όταν χρειάζεστε να «διαχειριστείτε» APIs. Οι MCP Servers συχνά ενσωματώνονται με άλλα APIs για να επιλύσουν αιτήματα προς ένα εργαλείο, για παράδειγμα. Επομένως, ο συνδυασμός του Azure API Management και MCP έχει πολύ νόημα.
+Το Model Context Protocol γίνεται γρήγορα ένα πρότυπο για εφαρμογές πρακτόρων AI και για το πώς να εκθέτουμε εργαλεία και δεδομένα με συνεπή τρόπο. Το Azure API Management είναι η φυσική επιλογή όταν χρειάζεται να "διαχειριστείτε" APIs. Οι MCP Servers συχνά ενσωματώνονται με άλλα APIs για να επιλύσουν αιτήματα σε ένα εργαλείο, για παράδειγμα. Επομένως, ο συνδυασμός Azure API Management και MCP έχει πολύ νόημα.
 
 ## Επισκόπηση
 
-Σε αυτή τη συγκεκριμένη περίπτωση χρήσης θα μάθουμε πώς να εκθέτουμε τα API endpoints ως MCP Server. Κάνοντας αυτό, μπορούμε εύκολα να ενσωματώσουμε αυτά τα endpoints σε μια agentic εφαρμογή ενώ εκμεταλλευόμαστε και τις λειτουργίες του Azure API Management.
+Σε αυτήν την συγκεκριμένη περίπτωση χρήσης θα μάθουμε πώς να εκθέτουμε τα API endpoints ως MCP Server. Κάνοντας αυτό, μπορούμε εύκολα να κάνουμε αυτά τα endpoints μέρος μιας εφαρμογής πράκτορα ενώ παράλληλα εκμεταλλευόμαστε τις λειτουργίες του Azure API Management.
 
-## Κύρια Χαρακτηριστικά
+## Βασικά Χαρακτηριστικά
 
 - Επιλέγετε τις μεθόδους endpoint που θέλετε να εκθέσετε ως εργαλεία.
-- Οι επιπλέον λειτουργίες που λαμβάνετε εξαρτώνται από το τι διαμορφώνετε στο τμήμα πολιτικής για το API σας. Εδώ θα σας δείξουμε πώς να προσθέσετε περιορισμό ρυθμού.
+- Οι επιπρόσθετες λειτουργίες που λαμβάνετε εξαρτώνται από το τι ρυθμίζετε στο τμήμα πολιτικών για το API σας. Εδώ όμως θα σας δείξουμε πώς να προσθέσετε περιορισμό ρυθμού κλήσεων (rate limiting).
 
-## Προέτοιμη Βήμα: εισαγωγή ενός API
+## Προ-βήμα: εισαγωγή ενός API
 
-Εάν έχετε ήδη ένα API στο Azure API Management, τέλεια, τότε μπορείτε να παραλείψετε αυτό το βήμα. Αν όχι, δείτε αυτόν τον σύνδεσμο, [εισαγωγή ενός API στο Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Αν έχετε ήδη ένα API στο Azure API Management, υπέροχα, τότε μπορείτε να παραλείψετε αυτό το βήμα. Αν όχι, δείτε αυτόν τον σύνδεσμο, [εισαγωγή API στο Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
-## Έκθεση του API ως MCP Server
+## Έκθεση API ως MCP Server
 
-Για να εκθέσουμε τα API endpoints, ας ακολουθήσουμε τα παρακάτω βήματα:
+Για να εκθέσουμε τα API endpoints, ας ακολουθήσουμε τα εξής βήματα:
 
-1. Μεταβείτε στο Azure Portal και στην ακόλουθη διεύθυνση <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
-Μεταβείτε στην περίπτωση API Management σας.
+1. Μεταβείτε στο Azure Portal στη διεύθυνση <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
+Μεταβείτε στην παρουσία Azure API Management σας.
 
-1. Στο αριστερό μενού, επιλέξτε APIs > MCP Servers > + Δημιουργία νέου MCP Server.
+1. Στο αριστερό μενού, επιλέξτε APIs > MCP Servers > + Create new MCP Server.
 
-1. Στο API, επιλέξτε ένα REST API για έκθεση ως MCP server.
+1. Στο API, επιλέξτε ένα REST API που θέλετε να εκθέσετε ως MCP server.
 
-1. Επιλέξτε μία ή περισσότερες λειτουργίες API (API Operations) για έκθεση ως εργαλεία. Μπορείτε να επιλέξετε όλες τις λειτουργίες ή μόνο συγκεκριμένες.
+1. Επιλέξτε μία ή περισσότερες λειτουργίες API (API Operations) για να τις εκθέσετε ως εργαλεία. Μπορείτε να επιλέξετε όλες τις λειτουργίες ή μόνο συγκεκριμένες.
 
-    ![Επιλογή μεθόδων για έκθεση](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![Select methods to expose](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 
-1. Επιλέξτε **Δημιουργία**.
+1. Επιλέξτε **Create**.
 
-1. Μεταβείτε στην επιλογή μενού **APIs** και **MCP Servers**, θα πρέπει να δείτε τα εξής:
+1. Μεταβείτε στην επιλογή μενού **APIs** και **MCP Servers**, θα δείτε το εξής:
 
-    ![Δείτε τον MCP Server στο κύριο παράθυρο](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![See the MCP Server in the main pane](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    Ο MCP server δημιουργήθηκε και οι λειτουργίες API εκτέθηκαν ως εργαλεία. Ο MCP server εμφανίζεται στο παράθυρο MCP Servers. Η στήλη URL δείχνει το endpoint του MCP server που μπορείτε να καλέσετε για δοκιμές ή μέσα σε μια πελατειακή εφαρμογή.
+    Ο MCP server δημιουργήθηκε και οι API λειτουργίες εκτέθηκαν ως εργαλεία. Ο MCP server εμφανίζεται στην καρτέλα MCP Servers. Η στήλη URL δείχνει το endpoint του MCP server που μπορείτε να καλέσετε για δοκιμές ή μέσω μιας εφαρμογής πελάτη.
 
-## Προαιρετικό: Διαμόρφωση πολιτικών
+## Προαιρετικά: Ρύθμιση πολιτικών
 
-Το Azure API Management έχει τον βασικό μηχανισμό των πολιτικών, όπου ορίζετε διαφορετικούς κανόνες για τα endpoints σας, όπως για παράδειγμα περιορισμό ρυθμού ή σημασιολογική προσωρινή αποθήκευση. Αυτές οι πολιτικές δημιουργούνται σε μορφή XML.
+Το Azure API Management έχει την βασική έννοια των πολιτικών (policies) όπου ρυθμίζετε διάφορους κανόνες για τα endpoints σας, όπως για παράδειγμα περιορισμό ρυθμού κλήσεων ή σημασιολογική προσωρινή αποθήκευση. Αυτές οι πολιτικές ορίζονται σε XML.
 
-Δείτε πώς μπορείτε να ρυθμίσετε μια πολιτική για περιορισμό ρυθμού στο MCP Server σας:
+Να πώς μπορείτε να ρυθμίσετε μια πολιτική για περιορισμό ρυθμού κλήσεων στον MCP Server σας:
 
-1. Στο portal, κάτω από APIs, επιλέξτε **MCP Servers**.
+1. Στην πύλη (portal), κάτω από APIs, επιλέξτε **MCP Servers**.
 
 1. Επιλέξτε τον MCP server που δημιουργήσατε.
 
 1. Στο αριστερό μενού, κάτω από MCP, επιλέξτε **Policies**.
 
-1. Στο πρόγραμμα επεξεργασίας πολιτικών (policy editor), προσθέστε ή επεξεργαστείτε τις πολιτικές που θέλετε να εφαρμόσετε στα εργαλεία του MCP server. Οι πολιτικές ορίζονται σε μορφή XML. Για παράδειγμα, μπορείτε να προσθέσετε μια πολιτική για να περιορίσετε τις κλήσεις προς τα εργαλεία του MCP server (σε αυτό το παράδειγμα, 5 κλήσεις ανά 30 δευτερόλεπτα ανά IP διεύθυνση πελάτη). Δείτε ένα XML που θα προκαλέσει τον περιορισμό ρυθμού:
+1. Στον επεξεργαστή πολιτικών, προσθέστε ή επεξεργαστείτε τις πολιτικές που θέλετε να εφαρμόσετε στα εργαλεία του MCP server. Οι πολιτικές ορίζονται σε μορφή XML. Για παράδειγμα, μπορείτε να προσθέσετε μια πολιτική που περιορίζει τις κλήσεις στα εργαλεία του MCP server (σε αυτό το παράδειγμα, 5 κλήσεις ανά 30 δευτερόλεπτα ανά διεύθυνση IP πελάτη). Ακολουθεί XML που θα προκαλέσει το περιορισμό:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -72,42 +72,38 @@
     />
     ```
 
-    Εδώ είναι μια εικόνα του προγράμματος επεξεργασίας πολιτικών:
+    Εδώ μια εικόνα του επεξεργαστή πολιτικών:
 
-    ![Πρόγραμμα επεξεργασίας πολιτικών](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+    ![Policy editor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
  
 ## Δοκιμάστε το
 
-Ας βεβαιωθούμε ότι ο MCP Server μας λειτουργεί όπως αναμένεται.
+Ας διασφαλίσουμε ότι ο MCP Server μας λειτουργεί όπως αναμένεται.
 
-Για αυτό, θα χρησιμοποιήσουμε το Visual Studio Code και το GitHub Copilot στην λειτουργία Agent. Θα προσθέσουμε τον MCP server σε ένα αρχείο *mcp.json*. Με αυτό τον τρόπο, το Visual Studio Code θα λειτουργεί ως πελάτης με agentic δυνατότητες και οι τελικοί χρήστες θα μπορούν να πληκτρολογούν ένα prompt και να αλληλεπιδρούν με τον server.
+> [!NOTE]
+> Το Azure API Management εκθέτει επί του παρόντος αυτόν τον server μέσω του Streamable
+> HTTP endpoint `/mcp`. Η παλαιότερη μεταφορά HTTP+SSE `/sse` έχει καταργηθεί και
+> θα πρέπει να χρησιμοποιείται μόνο με παλιούς πελάτες.
 
-Ας δούμε πώς, για να προσθέσετε τον MCP server στο Visual Studio Code:
+Για αυτό, θα χρησιμοποιήσουμε το Visual Studio Code και το GitHub Copilot στη λειτουργία Agent. Θα προσθέσουμε τον MCP server σε ένα αρχείο *mcp.json*. Κάνοντας αυτό, το Visual Studio Code θα λειτουργεί ως πελάτης με ικανότητες πράκτορα και οι τελικοί χρήστες θα μπορούν να πληκτρολογούν εντολές και να αλληλεπιδρούν με τον server.
+
+Ας δούμε πώς, για να προσθέσουμε τον MCP server στο Visual Studio Code:
 
 1. Χρησιμοποιήστε την εντολή MCP: **Add Server από το Command Palette**.
 
-1. Όταν σας ζητηθεί, επιλέξτε τον τύπο διακομιστή: **HTTP (HTTP ή Server Sent Events)**.
+1. Όταν σας ζητηθεί, επιλέξτε τον τύπο server: **HTTP (HTTP ή Server Sent Events)**.
 
-1. Πληκτρολογήστε το URL του MCP server στο API Management. Παράδειγμα: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (για SSE endpoint) ή **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (για MCP endpoint), σημειώστε τη διαφορά μεταξύ των transport που είναι `/sse` ή `/mcp`.
+1. Εισαγάγετε το Streamable HTTP URL που εμφανίζεται για τον MCP server στο API Management.
+    Για παράδειγμα:
+    `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
-1. Πληκτρολογήστε ένα αναγνωριστικό server της επιλογής σας. Δεν είναι σημαντική τιμή αλλά θα σας βοηθήσει να θυμάστε ποια είναι αυτή η περίπτωση server.
+1. Εισαγάγετε ένα ID server της επιλογής σας. Αυτή δεν είναι μια σημαντική τιμή, αλλά θα σας βοηθήσει να θυμάστε ποια είναι αυτή η περίπτωση server.
 
-1. Επιλέξτε αν θα αποθηκεύσετε τη διαμόρφωση στις ρυθμίσεις του workspace ή του χρήστη.
+1. Επιλέξτε αν θα αποθηκεύσετε τη ρύθμιση στα workspace settings ή στα user settings.
 
-  - **Ρυθμίσεις Workspace** - Η διαμόρφωση του server αποθηκεύεται σε ένα αρχείο .vscode/mcp.json που είναι διαθέσιμο μόνο στο τρέχον workspace.
+  - **Workspace settings** - Η ρύθμιση server αποθηκεύεται σε ένα αρχείο .vscode/mcp.json που είναι διαθέσιμο μόνο στο τρέχον workspace.
 
     *mcp.json*
-
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "sse",
-            "url": "url-to-mcp-server/sse"
-        }
-    }
-    ```
-
-    ή αν επιλέξετε streaming HTTP ως μεταφορά θα διαφέρει ελαφρώς:
 
     ```json
     "servers": {
@@ -118,17 +114,17 @@
     }
     ```
 
-  - **Ρυθμίσεις Χρήστη** - Η διαμόρφωση του server προστίθεται στο παγκόσμιο αρχείο *settings.json* και είναι διαθέσιμη σε όλα τα workspaces. Η διαμόρφωση μοιάζει ως εξής:
+  - **User settings** - Η ρύθμιση server προστίθεται στο παγκόσμιο αρχείο *settings.json* και είναι διαθέσιμη σε όλα τα workspaces. Η ρύθμιση φαίνεται ως εξής:
 
-    ![Ρύθμιση χρήστη](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+    ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Πρέπει επίσης να προσθέσετε διαμόρφωση, μια κεφαλίδα για να βεβαιωθείτε ότι γίνεται σωστή αυθεντικοποίηση προς το Azure API Management. Χρησιμοποιεί μια κεφαλίδα με όνομα **Ocp-Apim-Subscription-Key*. 
+1. Πρέπει επίσης να προσθέσετε ρύθμιση, μια κεφαλίδα για να διασφαλιστεί ότι γίνεται σωστή αυθεντικοποίηση προς το Azure API Management. Χρησιμοποιεί μια κεφαλίδα που ονομάζεται **Ocp-Apim-Subscription-Key**.
 
-    - Δείτε πως μπορείτε να την προσθέσετε στις ρυθμίσεις:
+    - Να πώς μπορείτε να την προσθέσετε στις ρυθμίσεις:
 
-    ![Προσθήκη κεφαλίδας για αυθεντικοποίηση](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), αυτό θα εμφανίσει μια προτροπή για να εισάγετε την τιμή του κλειδιού API, το οποίο μπορείτε να βρείτε στο Azure Portal για την περίπτωση Azure API Management σας.
+    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), αυτό θα προκαλέσει να εμφανιστεί μια προτροπή για την τιμή του κλειδιού API η οποία μπορεί να βρεθεί στο Azure Portal για την παρουσία Azure API Management σας.
 
-   - Για να το προσθέσετε στο *mcp.json* αντί αυτού, μπορείτε να το προσθέσετε ως εξής:
+   - Για να το προσθέσετε απευθείας στο *mcp.json*, μπορείτε να το κάνετε ως εξής:
 
     ```json
     "inputs": [
@@ -150,54 +146,54 @@
     }
     ```
 
-### Χρήση λειτουργίας Agent
+### Χρησιμοποιήστε τη λειτουργία Agent
 
-Τώρα που είμαστε έτοιμοι είτε στις ρυθμίσεις είτε στο *.vscode/mcp.json*, ας το δοκιμάσουμε. 
+Τώρα είμαστε έτοιμοι είτε στις ρυθμίσεις ή στο *.vscode/mcp.json*. Ας το δοκιμάσουμε.
 
-Θα υπάρχει ένα εικονίδιο Εργαλεία, όπου θα εμφανίζονται τα εργαλεία που εκτέθηκαν από τον server σας:
+Πρέπει να υπάρχει ένα εικονίδιο Εργαλείων (Tools) όπως αυτό, όπου εμφανίζονται τα εκτεθειμένα εργαλεία από τον server σας:
 
-![Εργαλεία από τον server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
+![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Κάντε κλικ στο εικονίδιο εργαλείων και θα βλέπετε μια λίστα εργαλείων όπως η παρακάτω:
+1. Κάντε κλικ στο εικονίδιο εργαλείων και θα δείτε μια λίστα εργαλείων όπως αυτή:
 
-    ![Εργαλεία](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
+    ![Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Πληκτρολογήστε ένα prompt στη συνομιλία για να καλέσετε το εργαλείο. Για παράδειγμα, αν επιλέξατε ένα εργαλείο για να λάβετε πληροφορίες παραγγελίας, μπορείτε να ρωτήσετε τον agent για μια παραγγελία. Ιδού ένα παράδειγμα prompt:
+1. Πληκτρολογήστε μια ερώτηση στο chat για να καλέσετε το εργαλείο. Για παράδειγμα, αν επιλέξατε ένα εργαλείο για να λάβετε πληροφορίες σχετικά με μια παραγγελία, μπορείτε να ρωτήσετε τον πράκτορα για μια παραγγελία. Να ένα παράδειγμα εντολής:
 
     ```text
     get information from order 2
     ```
 
-    Τώρα θα σας εμφανιστεί ένα εικονίδιο εργαλείων που θα σας ζητεί να συνεχίσετε την κλήση ενός εργαλείου. Επιλέξτε να συνεχίσετε την εκτέλεση του εργαλείου, θα δείτε τώρα μια έξοδο όπως η παρακάτω:
+    Τώρα θα εμφανιστεί ένα εικονίδιο εργαλείων που θα σας ζητήσει να προχωρήσετε στην εκτέλεση του εργαλείου. Επιλέξτε να συνεχιστεί η εκτέλεση του εργαλείου, θα δείτε τώρα ένα αποτέλεσμα όπως το παρακάτω:
 
-    ![Αποτέλεσμα από το prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **το τι βλέπετε παραπάνω εξαρτάται από τα εργαλεία που έχετε ρυθμίσει, αλλά η ιδέα είναι να λάβετε μια λεκτική απάντηση όπως παραπάνω**
+    **όσα βλέπετε παραπάνω εξαρτώνται από τα εργαλεία που έχετε ρυθμίσει, αλλά η ιδέα είναι να λάβετε μια κειμενική απάντηση όπως παραπάνω**
 
 
 ## Αναφορές
 
-Δείτε πώς μπορείτε να μάθετε περισσότερα:
+Να πώς μπορείτε να μάθετε περισσότερα:
 
-- [Εκπαιδευτικό για Azure API Management και MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
+- [Εγχειρίδιο για το Azure API Management και MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
 - [Παράδειγμα Python: Ασφαλείς απομακρυσμένοι MCP servers με Azure API Management (πειραματικό)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
-- [MCP client authorization lab](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
+- [MCP για πελάτη εργαστήριο εξουσιοδότησης](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Χρήση της επέκτασης Azure API Management για VS Code για εισαγωγή και διαχείριση APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Χρήση επέκτασης Azure API Management για VS Code για εισαγωγή και διαχείριση APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Εγγραφή και ανακάλυψη απομακρυσμένων MCP servers στο Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Εξαιρετικό αποθετήριο που δείχνει πολλές δυνατότητες AI με το Azure API Management
-- [Εργαστήρια AI Gateway](https://azure-samples.github.io/AI-Gateway/) Περιέχει εργαστήρια που χρησιμοποιούν το Azure Portal, που είναι ένας εξαιρετικός τρόπος για να ξεκινήσετε την αξιολόγηση των λειτουργιών AI.
+- [Καταγραφή και εύρεση απομακρυσμένων MCP servers στο Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Εξαιρετικό αποθετήριο που δείχνει πολλές δυνατότητες AI με Azure API Management
+- [AI Gateway εργαστήρια](https://azure-samples.github.io/AI-Gateway/) Περιλαμβάνει εργαστήρια που χρησιμοποιούν το Azure Portal, ο οποίος είναι ένας εξαιρετικός τρόπος να ξεκινήσετε την αξιολόγηση δυνατοτήτων AI.
 
-## Τι ακολουθεί
+## Τι Ακολουθεί
 
 - Πίσω στο: [Επισκόπηση Μελετών Περίπτωσης](./README.md)
-- Επόμενο: [Azure AI Travel Agents](./travelagentsample.md)
+- Επόμενο: [Πράκτορες Ταξιδιού Azure AI](./travelagentsample.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Αποποίηση ευθυνών**:  
-Το παρόν έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία αυτόματης μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρότι καταβάλλουμε προσπάθειες για ακρίβεια, παρακαλούμε λάβετε υπόψη ότι οι αυτόματες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η επίσημη πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+**Αποποίηση ευθυνών**:
+Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία μετάφρασης με τεχνητή νοημοσύνη [Co-op Translator](https://github.com/Azure/co-op-translator). Ενώ επιδιώκουμε την ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτοματοποιημένες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

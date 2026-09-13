@@ -1,31 +1,36 @@
-# Penyahpepijatan dengan MCP Inspector
+# Penyahpepijatan dengan Pemeriksa MCP
 
-**MCP Inspector** ialah alat penyahpepijatan penting yang membolehkan anda menguji dan menyelesaikan masalah pelayan MCP anda secara interaktif tanpa memerlukan aplikasi hos AI penuh. Anggap ia sebagai "Postman untuk MCP" - ia menyediakan antara muka visual untuk menghantar permintaan, melihat respons, dan memahami bagaimana pelayan anda berkelakuan.
+> [!NOTE]
+> Arahan menggunakan `--sse` dan URL yang berakhir dengan `/sse` menguji pengangkutan HTTP+SSE warisan.
+> Untuk pelayan MCP `2026-07-28` yang baru, gunakan versi Pemeriksa yang
+> menyokong HTTP BolehAlir dan pilih pengangkutan itu sebaliknya.
 
-## Kenapa Guna MCP Inspector?
+**Pemeriksa MCP** adalah alat penyahpepijatan penting yang membolehkan anda menguji dan menyelesaikan masalah pelayan MCP anda secara interaktif tanpa memerlukan aplikasi hos AI penuh. Anggap sahaja ia sebagai "Postman untuk MCP" - ia menyediakan antara muka visual untuk menghantar permintaan, melihat respons, dan memahami bagaimana pelayan anda berfungsi.
 
-Apabila membina pelayan MCP, anda sering menghadapi cabaran ini:
+## Mengapa Gunakan Pemeriksa MCP?
 
-- **"Adakah pelayan saya berjalan?"** - Inspector menunjukkan status sambungan
-- **"Adakah alat saya didaftarkan dengan betul?"** - Inspector menyenaraikan semua alat yang tersedia
-- **"Apakah format respons?"** - Inspector memaparkan respons JSON penuh
-- **"Mengapa alat ini tidak berfungsi?"** - Inspector menunjukkan mesej ralat terperinci
+Apabila membina pelayan MCP, anda sering akan menghadapi cabaran berikut:
+
+- **"Adakah pelayan saya sedang berjalan?"** - Pemeriksa menunjukkan status sambungan
+- **"Adakah alat saya didaftarkan dengan betul?"** - Pemeriksa menyenaraikan semua alat yang tersedia
+- **"Apakah format respons?"** - Pemeriksa memaparkan respons JSON sepenuhnya
+- **"Kenapa alat ini tidak berfungsi?"** - Pemeriksa menunjukkan mesej ralat terperinci
 
 ## Prasyarat
 
 - Node.js 18+ dipasang
-- npm (dihantar bersama Node.js)
-- Pelayan MCP untuk diuji (lihat [Modul 3.1 - Pelayan Pertama](../01-first-server/README.md))
+- npm (disediakan bersama Node.js)
+- Pelayan MCP untuk diuji (rujuk [Modul 3.1 - Pelayan Pertama](../01-first-server/README.md))
 
 ## Pemasangan
 
-### Pilihan 1: Jalankan dengan npx (Disyorkan untuk Ujian Cepat)
+### Pilihan 1: Jalankan dengan npx (Disyorkan untuk Ujian Pantas)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Pilihan 2: Pasang Secara Global
+### Pilihan 2: Pasang secara Global
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -50,7 +55,7 @@ Tambah ke `package.json`:
 
 ---
 
-## Menyambung ke Pelayan Anda
+## Sambung ke Pelayan Anda
 
 ### Pelayan stdio (Proses Tempatan)
 
@@ -69,23 +74,23 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ### Pelayan SSE/HTTP (Rangkaian)
 
-Untuk pelayan yang dijalankan sebagai perkhidmatan HTTP:
+Untuk pelayan yang berjalan sebagai perkhidmatan HTTP:
 
-1. Mulakan pelayan anda dahulu:
+1. Mula pelayan anda dahulu:
    ```bash
    python server.py  # Pelayan berjalan di http://localhost:8080
    ```
 
-2. Lancarkan Inspector dan sambung:
+2. Lancarkan Pemeriksa dan sambung:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Gambaran Keseluruhan Antara Muka Inspector
+## Gambaran Keseluruhan Antara Muka Pemeriksa
 
-Apabila Inspector dilancarkan, anda akan melihat antara muka web (biasanya di `http://localhost:5173`):
+Apabila Pemeriksa dilancarkan, anda akan melihat antara muka web (biasanya di `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,11 +118,11 @@ Apabila Inspector dilancarkan, anda akan melihat antara muka web (biasanya di `h
 
 ## Menguji Alat
 
-### Menyenaraikan Alat Yang Ada
+### Menyenaraikan Alat Tersedia
 
-1. Klik tab **Tools**
-2. Inspector secara automatik memanggil `tools/list`
-3. Anda akan melihat semua alat yang didaftarkan dengan:
+1. Klik tab **Alat**
+2. Pemeriksa secara automatik memanggil `tools/list`
+3. Anda akan melihat semua alat yang didaftarkan bersama:
    - Nama alat
    - Penerangan
    - Skema input (parameter)
@@ -126,7 +131,7 @@ Apabila Inspector dilancarkan, anda akan melihat antara muka web (biasanya di `h
 
 1. Pilih satu alat dari senarai
 2. Isikan parameter yang diperlukan dalam borang
-3. Klik **Run Tool**
+3. Klik **Jalankan Alat**
 4. Lihat respons dalam panel hasil
 
 **Contoh: Menguji alat kalkulator**
@@ -150,7 +155,7 @@ Response:
 
 ### Menyahpepijat Ralat Alat
 
-Apabila alat gagal, Inspector menunjukkan:
+Apabila alat gagal, Pemeriksa menunjukkan:
 
 ```
 Error Response:
@@ -177,8 +182,8 @@ Kod ralat biasa:
 
 ### Menyenaraikan Sumber
 
-1. Klik tab **Resources**
-2. Inspector memanggil `resources/list`
+1. Klik tab **Sumber**
+2. Pemeriksa memanggil `resources/list`
 3. Anda akan melihat:
    - URI sumber
    - Nama dan penerangan
@@ -186,9 +191,9 @@ Kod ralat biasa:
 
 ### Membaca Sumber
 
-1. Pilih sumber
-2. Klik **Read Resource**
-3. Lihat kandungan yang dikembalikan
+1. Pilih satu sumber
+2. Klik **Baca Sumber**
+3. Lihat kandungan yang dipulangkan
 
 **Contoh output:**
 
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Menguji Prompts
+## Menguji Petunjuk
 
-### Menyenaraikan Prompts
+### Menyenaraikan Petunjuk
 
-1. Klik tab **Prompts**
-2. Inspector memanggil `prompts/list`
-3. Lihat templat prompt yang tersedia
+1. Klik tab **Petunjuk**
+2. Pemeriksa memanggil `prompts/list`
+3. Lihat templat petunjuk yang tersedia
 
-### Mendapatkan Prompt
+### Mendapatkan Petunjuk
 
-1. Pilih prompt
-2. Isikan sebarang argumen diperlukan
-3. Klik **Get Prompt**
-4. Lihat mesej prompt yang dihasilkan
+1. Pilih satu petunjuk
+2. Isikan sebarang hujah yang diperlukan
+3. Klik **Dapatkan Petunjuk**
+4. Lihat mesej petunjuk yang dirender
 
 ---
 
 ## Analisis Log Mesej
 
-Log mesej menunjukkan semua mesej protokol MCP:
+Log mesej menunjukkan semua mesej protokol MCP. Transkrip di bawah adalah dari
+pelayan `2025-11-25` warisan dan termasuk jabat tangan `initialize` yang telah dialih keluar. Pelayan
+`2026-07-28` menggunakan metadata permintaan sendiri dan `server/discover`
+sebaliknya.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,18 +244,18 @@ Log mesej menunjukkan semua mesej protokol MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Apa Yang Perlu Diperhatikan
+### Apa Yang Perlu Dicari
 
-- **Pasangan Permintaan/Respons**: Setiap `→` harus ada padanan `←`
+- **Pasangan Permintaan/Respons**: Setiap `→` harus mempunyai pasangan `←`
 - **Mesej ralat**: Cari `"error"` dalam respons
-- **Penjadualan masa**: Jurang besar mungkin menunjukkan isu prestasi
+- **Masa**: Jurang besar mungkin menunjukkan isu prestasi
 - **Versi protokol**: Pastikan pelayan dan klien bersetuju pada versi
 
 ---
 
 ## Integrasi VS Code
 
-Anda boleh menjalankan Inspector terus dari VS Code:
+Anda boleh menjalankan Pemeriksa terus dari VS Code:
 
 ### Menggunakan launch.json
 
@@ -314,20 +322,20 @@ Tambah ke `.vscode/tasks.json`:
 
 ### Senario 1: Pelayan Tidak Sambung
 
-**Gejala:** Inspector menunjukkan "Disconnected" atau tersekat pada "Connecting..."
+**Gejala:** Pemeriksa menunjukkan "Terputus" atau tersekat pada "Menyambung..."
 
 **Senarai Semak:**
 1. ✅ Adakah arahan pelayan betul?
 2. ✅ Adakah semua kebergantungan dipasang?
 3. ✅ Adakah laluan pelayan mutlak atau relatif kepada direktori semasa?
-4. ✅ Adakah pemboleh ubah persekitaran yang diperlukan ditetapkan?
+4. ✅ Adakah pembolehubah persekitaran yang diperlukan disetkan?
 
 **Langkah penyahpepijatan:**
 ```bash
 # Uji pelayan secara manual terlebih dahulu
 python -c "import your_server_module; print('OK')"
 
-# Semak ralat import
+# Semak untuk ralat import
 python -m your_server_module 2>&1 | head -20
 
 # Sahkan MCP SDK telah dipasang
@@ -336,17 +344,17 @@ pip show mcp
 
 ### Senario 2: Alat Tidak Muncul
 
-**Gejala:** Tab alat menunjukkan senarai kosong
+**Gejala:** Tab Alat menunjukkan senarai kosong
 
-**Punca kemungkinan:**
+**Punca mungkin:**
 1. Alat tidak didaftarkan semasa inisialisasi pelayan
-2. Pelayan terhenti selepas permulaan
-3. Pengendalikan `tools/list` mengembalikan tatasusunan kosong
+2. Pelayan terhenti selepas dimulakan
+3. Pengendali `tools/list` mengembalikan tatasusunan kosong
 
 **Langkah penyahpepijatan:**
 1. Periksa log mesej untuk respons `tools/list`
-2. Tambah log ke dalam kod pendaftaran alat anda
-3. Sahkan hiasan `@mcp.tool()` ada (Python)
+2. Tambah log pada kod pendaftaran alat anda
+3. Sahkan hiasan `@mcp.tool()` hadir (Python)
 
 ### Senario 3: Alat Mengembalikan Ralat
 
@@ -354,9 +362,9 @@ pip show mcp
 
 **Pendekatan penyahpepijatan:**
 1. Baca mesej ralat dengan teliti
-2. Periksa jenis parameter sepadan dengan skema
+2. Periksa padanan jenis parameter dengan skema
 3. Tambah try/catch dengan mesej ralat terperinci
-4. Periksa log pelayan untuk jejak tumpukan
+4. Semak log pelayan untuk jejak tumpukan
 
 **Contoh pengendalian ralat yang diperbaiki:**
 
@@ -364,7 +372,7 @@ pip show mcp
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Logik alat di sini
+        # Logik alatan di sini
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -375,18 +383,18 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ### Senario 4: Kandungan Sumber Kosong
 
-**Gejala:** Sumber dikembalikan tetapi kandungan kosong atau null
+**Gejala:** Sumber dipulangkan tetapi kandungan kosong atau null
 
 **Senarai Semak:**
 1. ✅ Laluan fail atau URI adalah betul
 2. ✅ Pelayan mempunyai kebenaran untuk membaca sumber
-3. ✅ Kandungan sumber dikembalikan dengan betul
+3. ✅ Kandungan sumber dipulangkan dengan betul
 
 ---
 
-## Ciri-ciri Lanjutan Inspector
+## Ciri Lanjutan Pemeriksa
 
-### Header Tersuai (SSE)
+### Tajuk Tersuai (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -402,8 +410,8 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Rakaman Sesi
 
-Inspector boleh mengeksport log mesej untuk analisis kemudian:
-1. Klik **Export Log** dalam panel mesej
+Pemeriksa boleh mengeksport log mesej untuk analisis kemudian:
+1. Klik **Eksport Log** dalam panel mesej
 2. Simpan fail JSON
 3. Kongsi dengan ahli pasukan untuk penyahpepijatan
 
@@ -411,17 +419,17 @@ Inspector boleh mengeksport log mesej untuk analisis kemudian:
 
 ## Amalan Terbaik
 
-1. **Uji awal dan kerap** - Gunakan Inspector semasa pembangunan, bukan hanya bila berlaku masalah
-2. **Mula dengan mudah** - Uji kesambungan asas sebelum panggilan alat kompleks
-3. **Periksa skema** - Ramai ralat datang dari ketidakpadanan jenis parameter
+1. **Uji awal dan kerap** - Gunakan Pemeriksa semasa pembangunan, bukan hanya bila ada masalah
+2. **Mulakan dengan mudah** - Uji sambungan asas sebelum panggilan alat kompleks
+3. **Periksa skema** - Banyak ralat berasal dari ketidakpadanan jenis parameter
 4. **Baca mesej ralat** - Ralat MCP biasanya deskriptif
-5. **Pastikan Inspector terbuka** - Ia membantu menangkap isu semasa anda membangunkan
+5. **Buka Pemeriksa sentiasa** - Ia membantu mengesan isu semasa anda membangunkan
 
 ---
 
 ## Apa Seterusnya
 
-Anda telah menamatkan Modul 3: Bermula! Teruskan pembelajaran anda:
+Anda telah menyiapkan Modul 3: Memulakan! Teruskan pembelajaran anda:
 
 - [Modul 4: Pelaksanaan Praktikal](../../04-PracticalImplementation/README.md)
 
@@ -430,12 +438,12 @@ Anda telah menamatkan Modul 3: Bermula! Teruskan pembelajaran anda:
 ## Sumber Tambahan
 
 - [Repositori GitHub MCP Inspector](https://github.com/modelcontextprotocol/inspector)
-- [Spesifikasi MCP - Mesej Protokol](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Spesifikasi MCP - Mesej Protokol](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Spesifikasi JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk mencapai ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sah. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau penafsiran yang salah yang timbul daripada penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

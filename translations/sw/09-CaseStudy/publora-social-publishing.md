@@ -1,36 +1,36 @@
-# Uchunguzi wa Kesi: Kuchapisha kwenye Mitandao ya Kijamii kutoka kwa Wakala kwa Server ya MCP ya Mbali
+# Uchunguzi wa Kesi: Kuchapisha kwa Mitandao ya Kijamii kutoka kwa Wakala na Serveri ya MCP ya Mbali
 
-> **Kiarifu cha Masuala:** Huduma kadhaa na miradi ya chanzo wazi inaweza kuchapisha kwenye mitandao ya kijamii, na timu inaweza pia kuunganisha API ya kila mtandao moja kwa moja. Hali iliyopo hapa chini imetolewa kama mfano mmoja wa jinsi **server ya MCP ya mbali inayoweza kuandika** inaweza kubuniwa na kutumiwa. Publora ni huduma ya kibiashara yenye kiwango cha bure; mifumo iliyobainishwa hapa inahusu server yoyote ya MCP inayofanya vitendo visivyorudishwa kwa niaba ya mtumiaji.
+> **Onyo:** Huduma kadhaa na miradi ya chanzo huria inaweza kuchapisha kwa mitandao ya kijamii, na timu inaweza pia kuunganisha API ya kila mtandao moja kwa moja. Hali ifuatayo inatolewa kama mfano mmoja uliofanyiwa kazi wa jinsi **serveri ya mbali ya MCP yenye uwezo wa kuandika** inaweza kubuniwa na kutumika. Publora ni huduma ya kibiashara yenye ngazi ya bure; mifumo inayotajwa hapa inatumika kwa serveri yoyote ya MCP inayotekeleza vitendo visivyo vya kurekebishwa kwa niaba ya mtumiaji.
 
 ## Muhtasari
 
-Wakala ni wazuri katika kutayarisha maudhui na wabovu katika kuyapeleka. Mfano unaweza kuandika tangazo la kutolewa kwa sekunde chache, na kisha kazi inasimama: kuchapisha kunahitaji API kwa mtandao kila mmoja, programu ya OAuth kwa mtandao kila mmoja, na seti tofauti ya sheria za vyombo vya habari kwa kila mmoja. Timu nyingi hushughulikia hili kwa kunakili maandishi kwenye kivinjari kwa mkono.
+Wakala ni wazuri katika kuandaa maudhui na duni katika kuyapeleka. Mfano unaweza kuandika tangazo la kutolewa katika sekunde chache, kisha kazi inakoma: kuchapisha ina maana ya API kwa kila mtandao, programu ya OAuth kwa kila mtandao, na seti tofauti za sheria za vyombo vya habari kwa kila mmoja. Timu nyingi hutatua hili kwa kunakili maandishi kwenye kivinjari kwa mkono.
 
-Uchunguzi huu wa kesi unachunguza jinsi hatua hiyo ya mwisho inafungwa na server moja ya MCP ya mbali, na — kwa manufaa zaidi kwa yeyote anayeijenga — maamuzi ya muundo ambayo server **inayoweza kuandika** inapaswa kufanya sawa. Kusoma data ni msamaha. Kuchapisha siyo: mwito mbaya wa zana ni waonekana kwa watazamaji na hauwezi kubadilishwa.
+Uchunguzi huu wa kesi unaangalia jinsi hatua ya mwisho inavyofungwa na serveri moja ya mbali ya MCP, na — kwa njia inayosaidia zaidi kwa yeyote anayeijenga — maamuzi ya kubuni ambayo serveri **enye uwezo wa kuandika** lazima ifanye sawa. Kusoma data ni msamaha. Kuchapisha si hivyo: wito wa zana lisilo sahihi linaonekana kwa hadhira na haliwezi kutendolewa upya.
 
-## Hali
+## Hali ya Kesi
 
-Timu ndogo ya uhusiano wa waundaji wanaandaa machapisho ndani ya wakala (Claude, VS Code, Cursor — mteja hauna umuhimu). Wanataka wakala afanye:
+Timu ndogo ya mahusiano ya waendelezaji huandaa machapisho ndani ya wakala (Claude, VS Code, Cursor — mteja hauna maana). Wanataka wakala afanye:
 
-- kuona akaunti za mitandao ya kijamii zilizounganishwa na timu,
-- kuandika chapisho na kuacha kama rasimu kwa mtu kuidhinisha,
-- kuambatisha picha,
-- kupanga kwenye mitandao kadhaa kwa wakati uliochaguliwa,
-- na baadaye kuripoti jinsi ilivyofanya kazi.
+- kuona akaunti za mitandao zilizounganishwa na timu,
+- kuandaa chapisho na kukihifadhi kama rasimu kwa binadamu kuikubali,
+- kuambatanisha picha,
+- kupanga kutolewa kwa mitandao kadhaa kwa wakati uliotolewa,
+- na baadaye kuripoti jinsi kilivyofanya kazi.
 
-Muhimu, wanataka wakala asiwe na uwezo wa kuchapisha kwa bahati mbaya wakati bado wanajaribu.
+Muhimu, wanataka wakala asiwe na uwezo wa kuchapisha bila makusudi wakati bado wanajaribu.
 
 ## Zana Zilitumika
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — server ya MCP ya mbali (`streamable-http`) inayotoa zana za kuchapisha, kupanga, vyombo vya habari na takwimu za LinkedIn. Imejisajili katika rejista rasmi ya MCP kama `com.publora/mcp-server`.
+- [Serveri ya MCP ya Publora](https://github.com/publora/mcp-server) — serveri ya mbali ya MCP (`streamable-http`) inayotolea huduma za kuchapisha, kupanga, vyombo vya habari na zana za uchambuzi za LinkedIn. Imesajiliwa katika rejistu rasmi ya MCP kama `com.publora/mcp-server`.
 
 ## Mchakato Hatua kwa Hatua
 
-1. **Unganisha server.** Wateja wanaozungumza OAuth hukamilisha mtiririko wa msimbo wa idhini kwa PKCE dhidi ya skrini ya idhini ya server; wateja wasio na uwezo huo, kama CLI zisizo na kichwa, hutumia ufunguo wa API wa Publora kwenye kichwa cha ombi. Njia zote mbili zinasaidiwa, na ni ipi unayoitegemea mteja, si server.
-2. **Orodhesha muunganisho.** Wakala huita `list_connections` na kupokea akaunti zilizounganishwa na vitambulisho vyao.
-3. **Andaa rasimu.** Wakala huita `create_post` *bila* muda uliopangwa. Chapisho huhifadhiwa kama rasimu — hakuna kinachochapishwa.
-4. **Ambatisha media.** URL za picha za umma huzungushwa kwenye mwito huo huo; server hupakua na kuthibitisha.
-5. **Panga.** Baada ya binadamu kuidhinisha, `update_post` huweka hali kuwa imepangwa na muda wa ISO 8601.
+1. **Unganisha serveri.** Wateja wanaozungumza OAuth hukamilisha mchakato wa msimbo wa idhini kwa PKCE dhidi ya skrini ya ruhusa ya serveri; wateja wasiofanya hivyo, kama CLI zisizo na kichwa, hutumia ufunguo wa API wa Publora kichwani. Njia zote mbili zinasaidiwa, na unayopata hutegemea mteja, si serveri.
+2. **Ona orodha ya muunganisho.** Wakala huita `list_connections` na anapokea akaunti zilizounganishwa na vitambulisho vyao.
+3. **Tengeneza rasimu.** Wakala huita `create_post` *bila* wakati wa kupanga. Chapisho huhifadhiwa kama rasimu — hakuna kinachochapishwa.
+4. **Ambatisha media.** Anuani za picha za umma hupitishwa katika wito huo huo; serveri hupakua na kuthibitisha.
+5. **Panga ratiba.** Baada ya binadamu kukubali, `update_post` huweka hali kuwa imepangwa kwa wakati wa ISO 8601.
 6. **Pima.** Kwa LinkedIn, `linkedin_post_stats` hurudisha ushiriki mara chapisho linapokuwa hai.
 
 ## Mfano wa Ombi
@@ -47,83 +47,96 @@ Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```mermaid
 flowchart TD
     A[Ombi la mtumiaji katika mteja wa MCP] --> B[Mteja hufanya OAuth na seva]
-    B --> C[orodha_ya_mitangazo]
+    B --> C[orodha_ya_mitungo]
     C --> D{Mitandao lengwa imeunganishwa?}
-    D -- No --> E[Wakala anaripoti ni zipi zinazokosekana]
-    D -- Yes --> F[tengeneza_post bila scheduledTime -> rasimu]
+    D -- No --> E[Wakala anaripoti ni zipi zilizokosekana]
+    D -- Yes --> F[unda_post bila scheduledTime -> rasimu]
     F --> G[Binadamu anapitia rasimu]
     G -- Approved --> H[update_post: hali=imepangwa]
     G -- Rejected --> I[futa_post]
-    H --> J[Seva huchapisha kwa wakati uliopangwa]
-    J --> K[takwimu_za_post_za_linkedin kwa ushirikiano]
+    H --> J[Seva huchapisha wakati uliopangwa]
+    J --> K[takwimu_ya_post_ya_linkedin kwa ushiriki]
 ```
 
 ## Utekelezaji wa Kiufundi
 
-Mafunzo hapa chini ni sehemu inayoweza kuhamishwa ya uchunguzi huu wa kesi.
+Mafunzo yaliyo hapa chini ni sehemu inayoweza kuhamishwa ya uchunguzi huu wa kesi.
 
 ### Ugunduzi wazi, utekelezaji uliothibitishwa
 
-`tools/list` hupatikana bila vyeti; kila `tools/call` inahitaji token na vinginevyo hurudisha `401` na kichwa cha `WWW-Authenticate` kinachoelekeza kwenye metadata ya rasilimali iliyo chini ya ulinzi. (Server pia hujibu `initialize` isiyo na uthibitisho, ambayo ni muhimu tu kwa wateja wa toleo la awali kabla ya `2026-07-28`; marekebisho hayo yaliondoa kabisa mkono wa mikono.)
+`tools/list` hutolewa bila vyeti; kila `tools/call` inahitaji tokeni
+na vinginevyo hurudisha `401` na kichwa `WWW-Authenticate` kinachoelekeza kwenye
 
-Ugawaji huu ni muhimu katika vitendo. Ordinary ya rejista, katalogi na wateja wanaweza kuchunguza eneo la zana — majina, masemo, maelezo — bila kuwa na siri, wakati hakuna chochote kinaweza *kutekelezwa* kiasiri. Server inayotaka token kwa `initialize` haikuonekana na zana; server inayoruhusu `tools/call` ya mjambazi ni hatari.
+metadata ya rasilimali iliyolindwa. Sehemu ya zamani ya seva pia hujibu
+`initialize` isiyothibitishwa kwa wateja katika toleo za itifaki kabla ya
+`2026-07-28`; wateja wa sasa hawatumii mkusanyiko huo.
+
+Ugawanyiko huu maalum wa seva huruhusu rejista, katalogi, na wateja kuchunguza majina ya zana,
+skimu, na maelezo kwa siri bila siri wakati wakizuia utekelezaji usiojulikana.
+Ugunduzi wazi ni chaguo la usambazaji, si sharti la MCP; usambazaji uliolindwa pia unaweza kuhitaji idhini kwa `tools/list`.
+
 
 ### Usajili: usajili wa mteja unaobadilika, na kinachobadilisha
 
-Server hutangaza `/.well-known/oauth-protected-resource` na `/.well-known/oauth-authorization-server`, na inasaidia mtiririko wa msimbo wa idhini kwa PKCE (`S256`), token za uhuishaji, na **usajili wa mteja unaobadilika**.
+Seva hupangaza `/.well-known/oauth-protected-resource` na `/.well-known/oauth-authorization-server`, na inaunga mkono mchakato wa ruhusa ya msimbo na PKCE (`S256`), tokeni za kusasisha, na **usajili wa mteja unaobadilika**.
 
-Usajili unaobadilika unaondoa hatua ya mkono: bila huo mteja kila mmoja anahitaji `client_id` iliyotolewa awali, ambayo inamaanisha ombi nje ya mpangilio kwa muuzaji kwa kila mteja mpya.
+Usajili unaobadilika umeondoa hatua ya mikono kwa wateja wa zamani: bila huo,
+kila mteja alikuwa na `client_id` aliyetolewa awali na muuzaji.
 
-Tazama hili kama tabia ya ulinganifu badala ya muundo wa kunakili. Marekebisho ya `2026-07-28` ya spesifiesheni yanawasha usajili wa mteja unaobadilika kwa ajili ya Hati za Metadata za Kitambulisho cha Mteja, ambapo mteja huhifadhi hati ya metadata kwenye URL thabiti ya HTTPS na URL hiyo *ndiyo* `client_id`. DCR inaendelea kufanya kazi kwa sasa, lakini server inayojengwa leo inapaswa kupanga kwa CIMD na kuweka DCR tu kwa wateja wazee.
+Tendea hili kama mwenendo wa uthabiti badala ya muundo wa kunakili. Marekebisho ya `2026-07-28` ya masharti yanaondoa usajili wa mteja unaobadilika kwa faida ya Hati za Metadata za Kitambulisho cha Mteja, ambapo mteja hushikilia hati ya metadata kwenye URL salama ya HTTPS na URL hiyo *ndiyo* `client_id`. DCR inaendelea kufanya kazi kwa sasa, lakini seva inayojengwa leo inapaswa kupanga kwa CIMD na kuweka DCR kwa wateja wa zamani tu.
 
 ### Maelezo ya zana si mapambo
 
-Kila zana ina `title` na vidokezo vinavyotumika: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Kila zana hubeba `title` na vidokezo vinavyotumika: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Sababu mbili za kuwekeza kwenye vidokezo hivyo. Kwanza, wateja hutumia vidokezo kuamua nini kuthibitisha kwa mtumiaji — mteja anaweza kuendesha kuaangalia kwa usomaji tu na kusimama kwa idhini kabla ya kufuta. Maelezo ni wazi kwamba vidokezo ni vidokezo visivyoaminika, si utaratibu wa idhini: vinaunda kile mteja hutoa kufanya, havizuizi chochote kwenye server, na server bado lazima ifuate sheria zake. Pili, orodha kuu za waunganishaji sasa *zinahitaji* vidokezo kwa ukaguzi; server zisizo na majina na vidokezo zitarejeshwa bila kujali uwezo wake.
+Sababu mbili za kuwekeza ndani yake. Kwanza, wateja hutumia vidokezo kuamua ni nini kuthibitisha na mtumiaji — mteja anaweza kuendesha moja kwa moja utafutaji wa kusoma tu na kusubiri idhini kabla ya kufuta. Maandalizi ni wazi kwamba maelezo ni vidokezo visivyoaminika, si njia ya idhini: huathiri kile mteja anachotoa kufanya, hazuishi chochote kwenye seva, na seva lazima bado ifuate sheria zake. Pili, saraka kuu za kiunganishi sasa *zinahitaji* hizo kwa mapitio; seva ambayo zana zake hazina majina na vidokezo itarejeshwa hata kama inafanya kazi vizuri.
 
-### Fanya vitambulisho visivyovinaweza kubuniwa
+### Fanya vitambulisho visivyoweza kuvumbuliwa
 
-Vitambulisho vya jukwaa ni mistari isiyoonekana inayorejeshwa na `list_connections`, na maelezo ya muundo yanasema wazi kuwa lazima vikopiwe tovuti kwa tovuti na usikadiri. Server hukataa chochote kingine.
+Vitambulisho vya jukwaa ni mistari isiyo wazi inayopelekwa na `list_connections`, na maelezo ya skimu husema wazi kuwa lazima zikopiwe kama zilivyo na zisitafutwe. Seva inakatia rejea chochote kingine.
 
-Mifano ni wachunguzi wenye ufanisi. Server yoyote inayoweza kuandika inapaswa kudhani kitambulisho hatimaye kitatengenezwa kiholela na kutengeneza njia hiyo ishindwe kwa sauti na mapema badala ya kutenda kwa thamani inayoweza kuaminika.
+Modeli ni wachunguzi wenye mtiririko. Seva yoyote inayoweza kuandika inapaswa kudhani kuwa kitambulisho kitagunduliwa kusuasua na kufanya njia hiyo ishindwe kwa sauti na mapema, badala ya kutekeleza thamani inayoweza kuonekana kuwa halisi.
 
-### Gonga kabla ya kuchapisha, na ujumbe wa kutekeleza
+### Shindwa kabla ya kuchapisha, kwa ujumbe wa vitendo
 
-Mitandao mingine hukataa machapisho ya maandishi tu na inahitaji picha au video. Hiyo inathibitishwa wakati chapisho linapopangwa, na kosa linaorodhesha jukwaa na hitaji linalokosekana.
+Mitandao mingine hukataa chapisho la maandishi tu na kuhitaji picha au video. Hiyo huhakikiwa wakati chapisho linapopangwa, na kosa linaeleza jukwaa na mahitaji yaliyokosekana.
 
-Wakala anaweza kupona kutoka kwa "Instagram inahitaji media — ambatisha picha au video" bila ziara nyingine ya mzunguko. Haiwezi kupona kutoka kwa `400` ya jumla.
+Wakala anaweza kurejesha kutoka "Instagram inahitaji media — ambatanisha picha au video" bila ziara nyingine. Haiwezi kurejesha kutoka `400` jumla.
 
-### Fanya jaribio kuwa salama
+### Fanya jaribio la upya salama
 
-Zana mbili zinazotoa maudhui, `create_post` na `update_post`, zinakubali ufunguo wa idempotency: kuutumia tena na ombi sawia hurudia majibu ya awali badala ya kuunda chapisho la pili. Muda wa wakala hurudia inapochelewa; bila idempotency, jibu polepole huwa chapisho maradufu. Zana nyingine za kuandika — kufuta, hatua za media, majibu na maoni ya LinkedIn — hazichukui, kwa hivyo kurudia huko si salama moja kwa moja. Ni vyema kujua ni mabadiliko yapi yako salama na yapi siyo.
+Zana mbili zinazounda maudhui, `create_post` na `update_post`, zinakubali ufunguo wa idempotency: kutumia tena na ombi sawa hurudia jibu halisi badala ya kuunda chapisho la pili. Runtime za wakala hurudia kwenye muda wa kusubiri; bila idempotency, jibu polepole hubadilika kuwa chapisho la nakala. Zana nyingine za kuandika — kufuta, hatua za media, mizozo na maoni ya LinkedIn — hazikubali, hivyo jaribio la upya sio salama moja kwa moja huko. Ni vyema kujua ni mabadiliko yapi yako salama na ni yapi siyo.
+
 
 ### Toa njia ya kujaribu ambayo haichapishi chochote
 
-Server inakubali lengo lililohifadhiwa, `publora-playground`, ambalo linathibitishwa na kukubaliwa kama mwisho halisi na halafu linatupwa — hakuna kinachofika akaunti halisi. Imethibitishwa katika muundo wa zana yenyewe, ambayo mteja yoyote anaweza kusoma bila vyeti: eneo la `platforms` la `create_post` linaliandika kama "lengo la mtihani wa muunganisho linalohitaji hakuna muunganisho halisi — chapisho linakubaliwa na kutupwa, hakuna kinachochapishwa". Litumie kwa kuipitia kama kipengele kimoja tu: `platforms: ["publora-playground"]`.
 
-Hili lilibainika kuwa moja ya maelezo muhimu zaidi ya uso wote. Wakaguzi wa orodha za waunganishaji, wachangiaji na CI wanaweza kufanya njia nzima ya kuandika kwa kina bila hatari kwa watazamaji halisi. Server yeyote ya MCP yenye vitendo visivyozyumbufu inafaidika na eneo lililofafanuliwa la no-op.
+Seva inapokea lengo lililohifadhiwa, `publora-playground`, ambalo linathibitishwa na kukubaliwa kama eneo halisi na kisha kulifuta — hakuna kinachofikia akaunti hai. Linaelezewa ndani ya muundo wa chombo hicho chenyewe, ambacho mteja yeyote anaweza kusoma bila vyeti vya kuingia: sehemu ya `platforms` ya `create_post` linaelezea hili kama "lengo la kujaribu muunganisho ambalo halihitaji muunganisho halisi — chapisho linakubaliwa na kufutwa, hakuna kinachochapishwa". Laitaje kwa kuipatia kama ingizo pekee: `platforms: ["publora-playground"]`.
 
-## Matokeo na Mwingiliano
+Hili lilionekana kuwa moja ya maelezo muhimu zaidi ya uso mzima. Wakaguzi wa orodha za viunganishi, wachangiaji na CI wanaweza kufanya njia kamili ya kuandika kutoka mwanzo hadi mwisho bila hatari kwa hadhira halisi. Seva yeyote ya MCP yenye vitendo visivyorekebishika inafaidika na lengo la no-op lililoandikwa.
 
-- Hatua ya kuchapisha ilihamishwa kutoka kwa kivinjari kwenda kwenye mazungumzo ambapo yaliyomo yanaandikwa, na tabia ya rasimu-ya kwanza huweka binadamu ndani ya mzunguko. Kuwa sahihi kuhusu nini hiyo ni: rasimu ni tamaduni, si mpaka. Cheti sawa kinaweza kupanga au kuchapisha, hivyo mtu yeyote anayeihitaji idhini halisi anapaswa kuitekeleza nje ya uso wa zana — vyeti tofauti, au safu ya sera mbele ya server.
-- Tofauti za mtandao kwa mtandao — mahitaji ya media, uzi, udhibiti wa majibu — hushughulikiwa mara moja kwenye server badala ya katika wakala kila mmoja anayezungumza nayo.
-- Server hiyo hiyo inasaidia wateja kadhaa wa MCP bila kazi kwa mteja, kwa sababu ugunduzi ni wazi na usajili ni mabadilika.
-- Vizuizi vya muundo vilivyotajwa hapo juu viligawanywa na mapitio ya orodha ya waunganishaji kama vile kwa watumiaji: maelezo, OAuth na eneo la mtihani salama yaliombwa kila moja na angalau mmoja wao.
+## Matokeo na Mwitikio
+
+- Hatua ya kuchapisha ilihamishwa kutoka kivinjari kwenda kwenye mazungumzo yale yale ambapo maudhui yanaandikwa, na tabia ya drftu kwanza huweka mtu katika mzunguko. Kuwa sahihi kuhusu hiyo: drftu ni mkataba, si mpaka. Cheti kilekile kinaweza kupanga au kuchapisha, kwa hivyo mtu yeyote anaye hitaji lango halali la kibali lazima alilazimishe nje ya uso wa chombo — vyeti tofauti, au safu ya sera mbele ya seva.
+- Tofauti kwa mitandao — mahitaji ya vyombo vya habari, kuunganisha mazungumzo, udhibiti wa majibu — zinashughulikiwa mara moja kwenye seva badala ya kwa kila wakala anayezungumza nayo.
+- Seva ile ile inaunga mkono wateja wengi wa MCP bila vyeti vilivyotolewa awali.
+    Wateja wa sasa wanaweza kutumia Nyaraka za Metadata za Kitambulisho cha Mteja; DCR bado ni mbadala
+    kwa wateja wa zamani.
+- Vizingiti vya muundo vilivyo juu viliumbwa na mapitio ya orodha za viunganishi pamoja na watumiaji: maelezo, OAuth na lengo salama la majaribio kila moja lilihitajika na angalau mmoja wao.
 
 ## Marejeleo
 
-- [Publora MCP Server (chanzo)](https://github.com/publora/mcp-server)
+- [Seva ya Publora MCP (chanzo)](https://github.com/publora/mcp-server)
 - [API ya Publora na nyaraka za MCP](https://docs.publora.com)
-- [Entry ya rejista ya MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [Spesifiesheni ya MCP — Idhini](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Spesifiesheni ya MCP — Maelezo ya zana](https://modelcontextprotocol.io/docs/concepts/tools)
+- [Kuingia kwa rejista ya MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [Maelezo ya MCP — Idhini](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [Maelezo ya MCP — Maelezo ya zana](https://modelcontextprotocol.io/docs/concepts/tools)
 
-## Kinachofuata
+## Kile Kifuatacho
 
-- Chukua server ya MCP unayojenga na angalia mafanikio matatu ya bei nafuu hapa: maelezo kwenye kila zana, ufunguo wa idempotency kwenye kila uandishi, na eneo lililothibitishwa la no-op.
-- Jaribu ugawaji wa ugunduzi wazi: ita `tools/list` dhidi ya server ya mbali ya umma bila vyeti, kisha ita zana na angalia changamoto ya `401`.
-- Fikiria maana ya "kurejesha" kwa uwanja wako. Kuchapisha kuna rasimu na kufuta; ikiwa vitendo vyako vyanafanana, uthibitisho unapaswa kuwekwa kwenye muundo wa zana, si kwenye ombi.
+- Chukua seva ya MCP unayojenga na angalia mafanikio matatu ya bei nafuu hapa: maelezo kwenye kila chombo, ufunguo wa uhakikisho wa mara moja kwenye kila uandishi, na lengo la no-op lililoandikwa.
+- Jaribu mgawanyo wa ugunduzi wazi: piga `tools/list` dhidi ya seva ya mbali ya umma bila vyeti, kisha piga chombo na angalia changamoto ya `401`.
+- Fikiria maana ya "kurejesha" kwa eneo lako. Kuchapisha kuna drftu na kufuta; kama vitendo vyako havina kinachofanana, uthibitisho unastahili katika muundo wa chombo, si kwenye daraja.
 
 ---
 

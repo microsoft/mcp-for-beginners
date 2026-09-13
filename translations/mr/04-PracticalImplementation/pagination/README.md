@@ -1,49 +1,50 @@
-# MCP मध्ये पॅजिनेशन आणि मोठ्या परिणाम संच
+# MCP मध्ये पेजिनेशन आणि मोठ्या परिणाम संच
 
-जेव्हा तुमचा MCP सर्व्हर मोठ्या डेटासेटस हाताळतो - हजारो फायली, डेटाबेस नोंदी किंवा शोध परिणामांची यादी करताना - तुम्हाला मेमरी कार्यक्षमतेने व्यवस्थापित करण्यासाठी आणि प्रतिसाद देणारा वापरकर्ता अनुभव प्रदान करण्यासाठी पॅजिनेशनची आवश्यकता असते. हा मार्गदर्शक MCP मध्ये पॅजिनेशन कसे राबवायचे आणि वापरायचे यावर आहे.
+जेव्हा तुमचा MCP सर्व्हर मोठ्या डेटासेट्ससह हाताळतो - हजारो फाइल्स, डेटाबेस रेकॉर्ड्स किंवा शोध परिणामांची यादी करत असो - तुम्हाला मेमरी कार्यक्षमतेने व्यवस्थापित करण्यासाठी आणि प्रतिसादात्मक वापरकर्ता अनुभव देण्यासाठी पेजिनेशन आवश्यक आहे. ही मार्गदर्शिका MCP मध्ये पेजिनेशन कसे अंमलात आणायचे आणि वापरायचे हे स्पष्ट करते.
 
-## पॅजिनेशन का महत्त्वाचा आहे
+## पेजिनेशन का महत्त्वाचे आहे
 
-पॅजिनेशनशिवाय, मोठे प्रतिसाद यामुळे होऊ शकतात:
+पेजिनेशनशिवाय, मोठ्या प्रतिसादांमुळे खालील समस्या उद्भवू शकतात:
 
-- **मेमरी संपणा** - एकाच वेळी कोट्यवधी नोंदी लोड करणे
-- **मंद प्रतिसाद वेळा** - वापरकर्ते सर्व डेटा लोड होईपर्यंत थांबतात
-- **टाईमआउट चुका** - विनंत्या टाईमआउट मर्यादांपेक्षा जास्त होतात
-- **कमकुवत AI कामगिरी** - LLMs मोठ्या संदर्भांसाठी संघर्ष करतात
+- **मेमरी संपुष्टात येणे** - एकावेळी लाखो रेकॉर्ड लोड करणे
+- **हळू प्रतिसाद वेळा** - सर्व डेटा लोड होईपर्यंत वापरकर्त्यांना वाट पाहावी लागते
+- **टाइमआउट त्रुटी** - विनंत्या टाइमआउट मर्यादा ओलांडतात
+- **वाईट AI कार्यक्षमता** - LLMs मोठ्या संदर्भामुळे अडचणीत येतात
 
-MCP वापरते **कर्सर-आधारित पॅजिनेशन** जे परिणाम संचांमधून विश्वासार्ह, सातत्यपूर्ण पेजिंग करते.
+MCP मध्ये परिणाम संचांमधून विश्वसनीय, सुसंगत पेजिंगसाठी **कर्सर-आधारित पेजिनेशन** वापरले जाते.
 
 ---
 
-## MCP पॅजिनेशन कसे कार्य करते
+## MCP पेजिनेशन कसे कार्य करते
 
 ### कर्सर संकल्पना
 
-एक **कर्सर** म्हणजे एक अस्पष्ट स्ट्रिंग जे परिणाम संचातील तुमची स्थिती दर्शवते. याला एका लांब पुस्तकातील ठेच्याचा ठसा समजून घ्या.
+एक **कर्सर** हा एक अस्पष्ट स्ट्रिंग आहे जो परिणाम संचामधील तुमची स्थान दर्शवतो. त्याला एका लांब पुस्तकातल्या बुकमार्कसारखा समजा.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (कोणताही कर्सर नाही)
+    Client->>Server: tools/list (कर्सर नाही)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
     Client->>Server: tools/list (कर्सर: "abc123")
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
     Client->>Server: tools/list (कर्सर: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (समाप्त)
+    Server-->>Client: tools [21-25], nextCursor: null (समाप्ती)
 ```
-### MCP पद्धतीतील पॅजिनेशन
 
-हे MCP पद्धती पॅजिनेशनला समर्थन देतात:
+### MCP पद्धतींमधील पेजिनेशन
+
+खालील MCP पद्धती पेजिनेशनला समर्थन देतात:
 
 | पद्धत | परत करते | कर्सर समर्थन |
 |--------|---------|----------------|
-| `tools/list` | साधने परिभाषा | ✅ |
-| `resources/list` | संसाधन परिभाषा | ✅ |
-| `prompts/list` | प्रॉम्प्ट परिभाषा | ✅ |
+| `tools/list` | साधनाची व्याख्या | ✅ |
+| `resources/list` | संसाधन व्याख्या | ✅ |
+| `prompts/list` | प्रॉम्प्ट व्याख्या | ✅ |
 | `resources/templates/list` | संसाधन टेम्पलेट्स | ✅ |
 
 ---
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# अनुकरण केलेली मोठी डेटासेट
+# अनुकरण केलेला मोठा डेटासेट
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # प्रारंभिक अनुक्रमणिका मिळवण्यासाठी कर्सर डीकोड करा
+    # सुरूवातीचा निर्देशांक मिळवण्यासाठी कर्सर डिकोड करा
     start_index = 0
     if cursor:
         try:
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # निकालांची पृष्ठ मिळवा
+    # निकालांचा पृष्ठ मिळवा
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// अनुकरण केलेला मोठा डेटासेट
+// सिम्युलेट केलेला मोठा डेटासेट
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -121,11 +122,11 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // निकालांचे पृष्ठ मिळवा
+  // निकालाचा पृष्ठ मिळवा
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // पुढील कर्सर काढा
+  // पुढचा कर्सर मोजा
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // मोठ्या डेटासेटची सुरुवात करा
+        // मोठा डेटासेट प्रारंभ करा
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -163,11 +164,11 @@ public class PaginatedToolService {
             }
         }
         
-        // निकालांचा पृष्ठ मिळवा
+        // निकालांचे पृष्ठ मिळवा
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // पुढचा कर्सर गणना करा
+        // पुढचा कर्सर मोजा
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### लेझी लोडिंग पॅटर्न
+### रिलॅक्स पद्धत (Lazy Loading Pattern)
 
-अत्यंत मोठ्या डेटासेटसाठी, पृष्ठे मागणीवर लोड करा:
+अत्यंत मोठ्या डेटासेटसाठी, पानं गरजेनुसार लोड करा:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # बफर उपलब्ध असल्यास परत करा
+        # उपलब्ध असल्यास बफरमधून परत करा
         if self.buffer:
             return self.buffer.pop(0)
         
-        # तपासा की आपण सर्व पृष्ठे संपवली आहेत का
+        # सर्व पानांचा वापर झाला आहे का ते तपासा
         if self.exhausted:
             raise StopAsyncIteration
         
-        # पुढील पृष्ठ मिळवा
+        # पुढील पान मिळवा
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# वापर - मोठ्या डेटासेटसाठी मेमरी बचत करणारा
+# वापर - मोठ्या डेटासेटसाठी स्मृती कार्यक्षम
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## संसाधनांसाठी पॅजिनेशन
+## संसाधनांसाठी पेजिनेशन
 
-संसाधनांना बहुधा निर्देशिका किंवा मोठ्या डेटासेटसाठी पॅजिनेशनची गरज असते:
+संसाधनांना बहुतेकदा निर्देशिका किंवा मोठ्या डेटासेटसाठी पेजिनेशन आवश्यक असते:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # कर्सर डिकोड करा (फाइल निर्देशांक)
+    # कर्सर डीकोड करा (फाइल निर्देशांक)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # या पानासाठी संसाधन यादी तयार करा
+    # या पानासाठी संसाधनांची यादी तयार करा
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # पुढील कर्सर गणना करा
+    # पुढील कर्सर कॅल्क्युलेट करा
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## कर्सर डिझाइन धोरणे
 
-### धोरण 1: निर्देशांक-आधारित (सोपं)
+### धोरण 1: निर्देशांक-आधारित (सोपे)
 
 ```python
-# कर्सर म्हणजे फक्त अनुक्रमांक
-cursor = "50"  # आयटम ५० पासून सुरू करा
+# कर्सर हे फक्त निर्देशांक आहे
+cursor = "50"  # आयटम ५० वर सुरू करा
 ```
 
-**चांगले:** सोपे, स्टेटलेस  
-**वाईट:** जर आयटम जोडले किंवा काढले तर परिणाम हलू शकतात
+**तरीका:** सोपे, स्टेटलेस
+**कमी:** जर आयटम जोडले/काढले गेले तर निकाल हलू शकतो
 
-### धोरण 2: ID-आधारित (स्थिर)
+### धोरण 2: आयडी-आधारित (स्थिर)
 
 ```python
-# कर्सर हा शेवटचा पाहिला आयडी आहे
-cursor = "item_abc123"  # या आयटमनंतर सुरू करा
+# कर्सर म्हणजे शेवटचे पाहिलेले आयडी
+cursor = "item_abc123"  # या आयटम नंतर शुरू करा
 ```
 
-**चांगले:** आयटम बदलले तरी स्थिर राहतं  
-**वाईट:** क्रमबद्ध ID आवश्यक
+**तरीका:** आयटम बदलले तरी स्थिर
+**कमी:** क्रमबद्ध आयडी आवश्यक
 
-### धोरण 3: एन्कोड केलेले स्थिती (संकुल)
+### धोरण 3: एन्कोड केलेली अवस्था (कठीण)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# कर्सरमध्ये अनेक स्थिती क्षेत्रे आहेत
+# कर्सरमध्ये अनेक स्थिती फील्ड्स आहेत
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**चांगले:** गुंतागुंतीची स्थिती एन्कोड करू शकते  
-**वाईट:** अधिक जटिल, मोठे कर्सर स्ट्रिंग्ज
+**तरीका:** गुंतागुंतीची अवस्था एन्कोड करू शकते
+**कमी:** जास्त क्लिष्ट, मोठे कर्सर स्ट्रिंग्ज
 
 ---
 
 ## सर्वोत्तम सराव
 
-### 1. योग्य पृष्ठ आकार निवडा
+### 1. योग्य पान आकार निवडा
 
 ```python
-# डेटा आकार विचारात घ्या
+# डेटा आकाराचा विचार करा
 PAGE_SIZE_SMALL_ITEMS = 100   # साधे मेटाडेटा
-PAGE_SIZE_MEDIUM_ITEMS = 20   # अधिक समृद्ध वस्तू
-PAGE_SIZE_LARGE_ITEMS = 5     # गुंतागुंतीची सामग्री
+PAGE_SIZE_MEDIUM_ITEMS = 20   # समृद्ध ऑब्जेक्ट्स
+PAGE_SIZE_LARGE_ITEMS = 5     # गुंतागुंतीचा मजकूर
 ```
 
-### 2. अवैध कर्सरसोबत समजूतदारपणे वागा
+### 2. अवैध कर्सर सुंदरपणे हाताळा
 
 ```python
 @app.list_tools()
@@ -386,26 +387,26 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # सुरुवातीला रीसेट करा
     except (ValueError, TypeError):
-        start_index = 0  # अवैध कर्सर, नवीन तऱ्हेने सुरू करा
+        start_index = 0  # अमान्य कर्सर, नवीन सुरुवात करा
     # ...
 ```
 
-### 3. एकूण संख्या समाविष्ट करा (ऐच्छिक)
+### 3. एकूण गणना समाविष्ट करा (ऐच्छिक)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # काही अंमलबजावणीत UI प्रगतीसाठी एकूण समाविष्ट असते
+    # काही अंमलबजावणीमध्ये UI प्रगतीसाठी एकूण समाविष्ट आहे
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. कडा केसेस तपासा
+### 4. सीमांत प्रकरणांची चाचणी करा
 
 ```python
 async def test_pagination():
-    # रिक्त निकाल संच
+    # रिकामा निकाल संच
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -416,27 +417,27 @@ async def test_pagination():
     
     # अवैध कर्सर
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # पहिलं पृष्ठ परत करावं
+    assert result.tools  # पहिला पृष्ठ परत करावा
 ```
 
 ---
 
 ## सामान्य चुका
 
-### ❌ सर्व निकाल परत करून नंतर क्लायंट-साइड पॅजिनेशन करणे
+### ❌ सर्व निकाल परत करून नंतर क्लायंट बाजूने पेजिनेशन करणे
 
 ```python
-# खराब: सगळं मेमरीमध्ये लोड करतो
+# वाईट: सर्वकाही मेमरीमध्ये लोड करते
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 1 दशलक्ष साधने!
+    all_tools = load_all_tools()  # १ दशलक्ष साधने!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ डेटा स्रोतावरच पॅजिनेशन करा
+### ✅ डेटा स्रोतावरच पेजिनेशन करा
 
 ```python
-# चांगले: फक्त आवश्यक असलेलेच लोड करते
+# चांगले: फक्त आवश्यक तेच लोड करते
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## पुढील काय आहे
+## पुढे काय
 
 - [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
-- [3.8 - तुमच्या MCP सर्व्हरचे परीक्षण](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - Testing Your MCP Server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## अतिरिक्त संसाधने
 
-- [MCP तपशील - पॅजिनेशन](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [कर्सर-आधारित पॅजिनेशन स्पष्टीकरण](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK पॅजिनेशन चाचण्या](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**सूचना**:
-हा दस्तऐवज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) वापरून अनुवादित केला आहे. आम्ही अचूकतेसाठी प्रयत्न करतो, तरी कृपया लक्षात घ्या की स्वयंचलित अनुवादांमध्ये चुका किंवा अपवाक्ये असू शकतात. मूळ दस्तऐवज त्याच्या स्थानिक भाषेत अधिकृत स्रोत समजावा. महत्त्वाच्या माहितीकरिता व्यावसायिक मानवी अनुवाद शिफारसीय आहे. या अनुवादाच्या वापरामुळे उद्भवणाऱ्या कोणत्याही गैरसमजुतींसाठी किंवा कडवट अर्थाप्रमाणे जबाबदार आम्ही नाही.
+**अस्वीकरण**:
+हा दस्तऐवज AI भाषांतर सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) चा वापर करून अनुवादित केला आहे. जरी आम्ही अचूकतेसाठी प्रयत्न करतो, तरी कृपया लक्षात घ्या की स्वयंचलित भाषांतरांमध्ये त्रुटी किंवा अचूकतेची कमतरता असू शकते. मूळ दस्तऐवज त्याच्या मूळ भाषेत अधिकृत स्रोत मानला पाहिजे. महत्त्वाची माहिती असल्यास, व्यावसायिक मानवी भाषांतराची शिफारस केली जाते. या भाषांतराच्या वापरामुळे उद्भवणाऱ्या कोणत्याही गैरसमज किंवा चुकीच्या अर्थलावणीसाठी आम्ही जबाबदार नाही.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

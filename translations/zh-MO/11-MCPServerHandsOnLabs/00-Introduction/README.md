@@ -1,84 +1,89 @@
-# MCP 數據庫整合簡介
+# MCP 數據庫整合介紹
 
-## 🎯 本實驗涵蓋內容
+> [!NOTE]
+> 本學習路徑中的圖表或程式碼若使用 HTTP/SSE 或初始化
+> 選項，反映的是範例 MCP `2025-11-25` 依賴版本。對於新的
+> 實作，請使用 `2026-07-28` 無狀態請求及 Streamable HTTP。
 
-本簡介實驗提供如何構建具備數據庫整合功能的 Model Context Protocol (MCP) 伺服器的完整概覽。你將通過 Zava Retail 分析案例（https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail）了解業務案例、技術架構及實際應用。
+## 🎯 本實驗室涵蓋內容
+
+本入門實驗室提供建立具有數據庫整合的模型上下文協議 (MCP) 服務器的完整概述。您將透過 https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail 中的 Zava Retail 零售分析實例，了解商業案例、技術架構及實際應用。
 
 ## 概述
 
-**Model Context Protocol (MCP)** 讓 AI 助理能夠安全地即時訪問和互動於外部資料來源。結合數據庫整合，MCP 可釋放資料驅動 AI 應用的強大能力。
+**模型上下文協議 (MCP)** 使 AI 助理能即時安全地存取並與外部資料來源互動。結合數據庫整合時，MCP 釋放強大能力，推動資料驅動的 AI 應用。
 
-本教學路徑教你構建生產就緒的 MCP 伺服器，通過 PostgreSQL 將 AI 助理連接到零售銷售數據，實現企業級模式如行級安全、語義搜尋及多租戶數據訪問。
+本學習路徑教您建立可用於生產環境的 MCP 服務器，將 AI 助理連接至 PostgreSQL 的零售銷售數據，並實作企業級模式，如行級安全、多租戶資料存取和語義搜尋。
 
 ## 學習目標
 
-完成本實驗後，你將能夠：
+完成本實驗後，您將能夠：
 
-- <strong>定義</strong> Model Context Protocol 及其在數據庫整合中的核心優勢
-- <strong>識別</strong> MCP 伺服器與數據庫架構中的關鍵組件
-- <strong>理解</strong> Zava Retail 案例及其業務需求
-- <strong>認識</strong> 企業級安全、可擴充數據庫訪問模式
-- <strong>列出</strong> 本教學路徑中使用的工具與技術
+- <strong>定義</strong> 模型上下文協議及其數據庫整合的核心優點
+- <strong>識別</strong> MCP 服務器架構中與數據庫關鍵元件
+- <strong>理解</strong> Zava Retail 使用案例及其商業需求
+- <strong>認識</strong> 企業級安全且可擴展的數據庫存取模式
+- <strong>列出</strong> 本學習路徑中使用的工具與技術
 
-## 🧭 挑戰：AI 遇上現實世界數據
+## 🧭 挑戰：AI 與實際資料的結合
 
-### 傳統 AI 限制
+### 傳統 AI 的限制
 
-現代 AI 助理非常強大，但在處理現實業務數據時仍面臨重大限制：
+現代 AI 助理功能強大，但在處理實際商業資料時面臨重要限制：
 
-| <strong>挑戰</strong> | <strong>說明</strong> | <strong>業務影響</strong> |
-|----------|----------|-------------|
-| <strong>靜態知識</strong> | AI 模型訓練於固定數據集，無法存取最新業務數據 | 洞察過時，錯失機會 |
-| <strong>數據孤島</strong> | 資料鎖定於資料庫、API 及系統，AI 無法接觸 | 分析不全，工作流程支離破碎 |
-| <strong>安全限制</strong> | 直接存取資料庫帶來安全及合規風險 | 部署受限，需手動資料準備 |
-| <strong>複雜查詢</strong> | 業務用戶需技術能力才能取得數據洞察 | 採用率低，流程效率差 |
+| <strong>挑戰</strong> | <strong>說明</strong> | <strong>商業影響</strong> |
+|---------------|-----------------|-------------------|
+| <strong>靜態知識</strong> | AI 模型基於固定資料集訓練，無法存取即時商業資料 | 洞見過時，錯失良機 |
+| <strong>數據孤島</strong> | 資訊鎖定於數據庫、API 及系統，AI 無法觸及 | 分析不完整，流程破碎 |
+| <strong>安全限制</strong> | 直接存取數據庫牽涉安全與合規顧慮 | 部署受限，人工作業多 |
+| <strong>複雜查詢</strong> | 商業使用者需具備技術知識以取得數據洞見 | 採用率低，效率不彰 |
 
 ### MCP 解決方案
 
-Model Context Protocol 透過以下方式解決上述挑戰：
+模型上下文協議透過以下方式解決這些挑戰：
 
-- <strong>即時數據存取</strong>：AI 助理查詢即時資料庫和 API
-- <strong>安全整合</strong>：透過身份驗證與權限控管控制存取
-- <strong>自然語言介面</strong>：業務用戶以簡單英語發問
-- <strong>標準化協議</strong>：跨平台與工具通用
+- <strong>即時數據存取</strong>：AI 助理查詢即時數據庫與 API
+- <strong>安全整合</strong>：經過授權與權限控管的受控存取
+- <strong>自然語言介面</strong>：商業用戶可用英文直接提問
+- <strong>標準化協議</strong>：適用於不同 AI 平台與工具
 
-## 🏪 認識 Zava Retail：本教學案例 https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 認識 Zava Retail：我們的學習案例 https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-在本教學中，我們將為虛構的多店面 DIY 零售連鎖店 **Zava Retail** 建立 MCP 伺服器。此真實情境展示企業級 MCP 實作。
+在本學習路徑中，我們將為 **Zava Retail** 建置 MCP 服務器，該零售連鎖店為虛構的 DIY 銷售商，擁有多個門市。此真實情境示範企業級 MCP 實作。
 
-### 業務背景
+### 商業背景
 
-**Zava Retail** 運營：
-- **8 間實體店**，分布於華盛頓州（西雅圖、貝爾維尤、塔科馬、斯波坎、埃弗雷特、雷德蒙、科克蘭）
-- **1 間線上店鋪** 提供電子商務銷售
-- <strong>多元產品目錄</strong> 包含工具、五金、園藝用品及建築材料
-- <strong>多層級管理</strong> 含店面經理、區域經理及高階主管
+**Zava Retail** 營運：
+- **8 家實體店**，遍佈華盛頓州（Seattle、西雅圖、Bellevue、Tacoma、Spokane、Everett、Redmond、Kirkland）
+- **1 家網店**，進行電子商務銷售
+- <strong>多元產品目錄</strong>，包括工具、五金、園藝用具和建築材料
+- <strong>多層級管理結構</strong>：店經理、區域經理與主管
 
-### 業務需求
+### 商業需求
 
-店面經理及主管需 AI 支援的分析以：
+店經理與主管需要 AI 驅動的分析，以：
 
-1. <strong>分析</strong> 店鋪及時間區間的銷售表現
-2. <strong>追蹤</strong> 庫存狀況與補貨需求
-3. <strong>了解</strong> 顧客行為與採購模式
-4. <strong>發掘</strong> 產品洞察，透過語義搜尋
-5. <strong>生成</strong> 用自然語言查詢的報告
-6. <strong>維護</strong> 資料安全，採取角色基礎訪問控制
+1. <strong>分析各門市及時段銷售表現</strong>
+2. <strong>追蹤庫存水平及補貨需求</strong>
+3. <strong>理解顧客行為及購買模式</strong>
+4. <strong>透過語義搜索發掘產品洞見</strong>
+5. <strong>用自然語言查詢生成報告</strong>
+6. <strong>以角色基礎存取控制維持數據安全</strong>
 
 ### 技術需求
 
-MCP 伺服器必須提供：
+MCP 服務器必須提供：
 
-- <strong>多租戶資料訪問</strong>，店經理只看見自家店資料
-- <strong>彈性查詢</strong>，支援複雜 SQL 操作
-- <strong>語義搜尋</strong>，用於產品發現與推薦
-- <strong>即時數據</strong>，反映當前業務狀態
-- <strong>安全身份認證</strong>，行級安全保障
-- <strong>可擴充架構</strong>，支持多用戶同時訪問
+- <strong>多租戶數據存取</strong>：店經理只能看到自身店鋪資料
+- <strong>彈性查詢能力</strong>：支援複雜 SQL 操作
+- <strong>語義搜尋</strong>：產品發現及推薦
+- <strong>即時資料</strong>：反映最新商業狀況
+- <strong>安全身份驗證</strong>：結合行級安全 (RLS)
+- <strong>可擴展架構</strong>：支援多並發用戶
 
-## 🏗️ MCP 伺服器架構概覽
+## 🏗️ MCP 服務器架構總覽
 
-我們的 MCP 伺服器採用針對數據庫整合優化的分層架構：
+我們的 MCP 服務器採用分層架構，優化數據庫整合：
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -118,119 +123,119 @@ MCP 伺服器必須提供：
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 關鍵組件
+### 關鍵元件
 
-#### **1. MCP 伺服器層**
-- **FastMCP 框架**：現代 Python MCP 伺服器實作
-- <strong>工具註冊</strong>：聲明式工具定義與型別安全
-- <strong>請求上下文</strong>：用戶身份與會話管理
-- <strong>錯誤處理</strong>：穩健錯誤管理與日誌記錄
+#### **1. MCP 服務器層**
+- **FastMCP 框架**：現代 Python MCP 服務器實作
+- <strong>工具註冊</strong>：宣告式工具定義並具型別安全
+- <strong>請求上下文</strong>：用戶身份及會話管理
+- <strong>錯誤處理</strong>：強韌錯誤管理與日誌紀錄
 
 #### **2. 數據庫整合層**
-- <strong>連線池管理</strong>：高效 asyncpg 連線管理
-- **Schema 提供者**：動態表結構發現
-- <strong>查詢執行器</strong>：附帶 RLS 上下文安全執行 SQL
+- <strong>連線池</strong>：高效 asyncpg 連接管理
+- <strong>結構提供者</strong>：動態資料表結構發現
+- <strong>查詢執行器</strong>：帶 RLS 上下文的安全 SQL 執行
 - <strong>交易管理</strong>：ACID 合規與回滾處理
 
 #### **3. 安全層**
-- **行級安全（RLS）**：PostgreSQL RLS 多租戶數據隔離
-- <strong>用戶身份</strong>：店面經理身份認證與授權
-- <strong>存取控制</strong>：細粒度權限及審計追蹤
-- <strong>輸入驗證</strong>：防止 SQL 注入及查詢驗證
+- <strong>行級安全</strong>：PostgreSQL RLS 提供多租戶資料隔離
+- <strong>用戶身份</strong>：店經理認證與授權
+- <strong>存取控制</strong>：細粒度權限與稽核軌跡
+- <strong>輸入驗證</strong>：防止 SQL 注入與查詢驗證
 
 #### **4. AI 增強層**
-- <strong>語義搜尋</strong>：產品發現的向量嵌入
-- **Azure OpenAI 整合**：文字嵌入生成
-- <strong>相似性算法</strong>：pgvector 餘弦相似度搜尋
+- <strong>語義搜尋</strong>：使用向量嵌入進行產品發現
+- **Azure OpenAI 整合**：生成文字嵌入
+- <strong>相似度演算法</strong>：使用 pgvector 餘弦相似度搜尋
 - <strong>搜尋優化</strong>：索引與效能調校
 
-## 🔧 技術棧
+## 🔧 技術堆疊
 
 ### 核心技術
 
-| <strong>組件</strong> | <strong>技術</strong> | <strong>用途</strong> |
-|----------|----------|----------|
-| **MCP 框架** | FastMCP（Python） | 現代 MCP 伺服器實作 |
-| <strong>數據庫</strong> | PostgreSQL 17 + pgvector | 關聯數據及向量搜尋 |
-| **AI 服務** | Azure OpenAI | 文字嵌入與語言模型 |
+| <strong>元件</strong> | <strong>技術</strong> | <strong>用途</strong> |
+|---------------|----------------|-------------|
+| **MCP 框架** | FastMCP (Python) | 現代 MCP 服務器實作 |
+| <strong>數據庫</strong> | PostgreSQL 17 + pgvector | 關聯資料與向量搜尋 |
+| **AI 服務** | Azure OpenAI | 文字嵌入及語言模型 |
 | <strong>容器化</strong> | Docker + Docker Compose | 開發環境 |
 | <strong>雲端平台</strong> | Microsoft Azure | 生產部署 |
-| <strong>整合開發環境</strong> | VS Code | AI 聊天及開發工作流程 |
+| **IDE 整合** | VS Code | AI 聊天及開發流程 |
 
 ### 開發工具
 
 | <strong>工具</strong> | <strong>用途</strong> |
-|----------|----------|
-| **asyncpg** | 高性能 PostgreSQL 驅動 |
-| **Pydantic** | 數據驗證與序列化 |
+|----------|-------------|
+| **asyncpg** | 高效能 PostgreSQL 驅動 |
+| **Pydantic** | 資料驗證與序列化 |
 | **Azure SDK** | 雲端服務整合 |
 | **pytest** | 測試框架 |
 | **Docker** | 容器化與部署 |
 
-### 生產環境堆疊
+### 生產堆疊
 
 | <strong>服務</strong> | **Azure 資源** | <strong>用途</strong> |
-|----------|----------------|----------|
-| <strong>數據庫</strong> | Azure Database for PostgreSQL | 託管資料庫服務 |
-| <strong>容器</strong> | Azure Container Apps | 無伺服器容器托管 |
-| **AI 服務** | Microsoft Foundry | OpenAI 模型及端點 |
-| <strong>監控</strong> | Application Insights | 可觀測性與診斷 |
-| <strong>安全</strong> | Azure Key Vault | 秘密管理與配置 |
+|-------------|-------------------|-------------|
+| <strong>數據庫</strong> | Azure Database for PostgreSQL | 托管式數據庫服務 |
+| <strong>容器</strong> | Azure Container Apps | 伺服器無伺服器容器主機 |
+| **AI 服務** | Microsoft Foundry | OpenAI 模型與端點 |
+| <strong>監控</strong> | Application Insights | 可觀察性與診斷 |
+| <strong>安全性</strong> | Azure Key Vault | 秘密及配置管理 |
 
 ## 🎬 實際使用情境
 
-讓我們看看不同用戶如何與 MCP 伺服器互動：
+讓我們來看不同用戶如何與 MCP 服務器互動：
 
-### 情境 1：店面經理績效回顧
+### 情境一：店經理績效評估
 
 <strong>用戶</strong>：Sarah，西雅圖店經理  
-<strong>目標</strong>：分析上一季度銷售表現
+<strong>目標</strong>：分析 2024 年第四季銷售績效
 
 <strong>自然語言查詢</strong>：
->「請顯示我店鋪 2024 年第 4 季度收入排名前 10 的產品」
+> 「顯示我店鋪 2024 年第四季前 10 大營收產品」
 
-<strong>流程</strong>：
-1. VS Code AI Chat 發送查詢至 MCP 伺服器
-2. MCP 伺服器識別 Sarah 的店鋪上下文（西雅圖）
-3. 行級安全政策過濾僅限西雅圖店資料
-4. 生成並執行 SQL 查詢
-5. 格式化結果並回傳 AI Chat
-6. AI 提供分析與洞察
+<strong>發生的事情</strong>：
+1. VS Code AI Chat 將查詢發送至 MCP 服務器
+2. MCP 服務器識別 Sarah 的店鋪上下文（西雅圖）
+3. RLS 政策篩選僅限西雅圖店鋪資料
+4. 產生並執行 SQL 查詢
+5. 格式化結果返回給 AI Chat
+6. AI 提供分析與洞見
 
-### 情境 2：語義搜尋產品發現
+### 情境二：語義搜尋進行產品發掘
 
 <strong>用戶</strong>：Mike，庫存經理  
-<strong>目標</strong>：尋找與客戶需求相似的產品
+<strong>目標</strong>：找到與顧客需求相似的產品
 
 <strong>自然語言查詢</strong>：
->「有哪些產品類似『戶外用防水電氣連接器』？」
+> 「我們賣哪些類似 ‘戶外用防水電氣接頭’ 的產品？」
 
-<strong>流程</strong>：
-1. 查詢由語義搜尋工具處理
-2. Azure OpenAI 生成文字嵌入向量
+<strong>發生的事情</strong>：
+1. 查詢經由語義搜尋工具處理
+2. Azure OpenAI 生成嵌入向量
 3. pgvector 執行相似度搜尋
-4. 相關產品依關聯度排序
-5. 結果包含產品詳細及庫存狀況
-6. AI 建議替代品及組合銷售機會
+4. 相關產品依關聯度排名
+5. 結果含產品細節及庫存狀況
+6. AI 建議替代方案與套裝組合
 
-### 情境 3：跨店分析
+### 情境三：跨店銷售分析
 
 <strong>用戶</strong>：Jennifer，區域經理  
-<strong>目標</strong>：比較過去六個月所有店鋪銷售表現
+<strong>目標</strong>：比較所有店鋪的業績表現
 
 <strong>自然語言查詢</strong>：
->「請比較所有店鋪過去 6 個月的類別銷售」
+> 「比較過去 6 個月所有店鋪的類別銷售」
 
-<strong>流程</strong>：
-1. 設定 RLS 上下文符合區域經理存取權限
-2. 生成複雜多店鋪查詢
-3. 匯總各店資料
-4. 結果含趨勢與比較
-5. AI 識別洞察與建議
+<strong>發生的事情</strong>：
+1. 為區域經理設定 RLS 上下文存取
+2. 產生複雜的多店鋪查詢
+3. 從多店鋪位置彙整資料
+4. 結果包含趨勢與比較
+5. AI 識別洞見與建議
 
-## 🔒 深入安全與多租戶
+## 🔒 安全性與多租戶深入探討
 
-我們的實作側重企業級安全：
+我們的實作優先考量企業級安全：
 
 ### 行級安全 (RLS)
 
@@ -251,58 +256,58 @@ CREATE POLICY regional_manager_policy ON retail.orders
 ### 用戶身份管理
 
 每個 MCP 連線包含：
-- **店面經理 ID**：RLS 上下文唯一識別
-- <strong>角色分配</strong>：權限與存取層級
-- <strong>會話管理</strong>：安全身份認證令牌
-- <strong>審計日誌</strong>：完整存取歷史
+- **店經理 ID**：RLS 上下文唯一標識
+- <strong>角色分配</strong>：權限與存取階層
+- <strong>會話管理</strong>：安全驗證令牌
+- <strong>稽核紀錄</strong>：完整存取歷史
 
 ### 資料保護
 
-多重安全層面：
-- <strong>連線加密</strong>：所有資料庫連線採用 TLS
-- **防 SQL 注入**：僅參數化查詢
-- <strong>輸入驗證</strong>：全面請求驗證
-- <strong>錯誤處理</strong>：錯誤訊息不洩漏敏感資料
+多層安全防護：
+- <strong>連線加密</strong>：所有數據庫連線皆使用 TLS
+- **防 SQL 注入**：僅使用參數化查詢
+- <strong>輸入驗證</strong>：全面查詢驗證
+- <strong>錯誤處理</strong>：錯誤訊息不含敏感資料
 
 ## 🎯 主要收穫
 
-完成本簡介後，你應理解：
+完成本介紹後，您應該能理解：
 
-✅ **MCP 價值主張**：如何橋接 AI 助理與現實數據  
-✅ <strong>業務背景</strong>：Zava Retail 的需求與挑戰  
-✅ <strong>架構概覽</strong>：主要組件及交互原理  
-✅ <strong>技術棧</strong>：使用的工具與框架  
-✅ <strong>安全模型</strong>：多租戶數據訪問與保護  
-✅ <strong>使用模式</strong>：真實查詢場景及工作流程  
+✅ **MCP 價值主張**：MCP 如何橋接 AI 助理與實際資料  
+✅ <strong>商業背景</strong>：Zava Retail 的需求與挑戰  
+✅ <strong>架構概述</strong>：關鍵元件及其互動  
+✅ <strong>技術堆疊</strong>：貫穿全路徑的工具與框架  
+✅ <strong>安全模型</strong>：多租戶資料存取與保護  
+✅ <strong>使用模式</strong>：真實查詢情境與工作流程  
 
-## 🚀 下一步
+## 🚀 接下來的步驟
 
-準備深入探究？繼續閱讀：
+準備深入探討嗎？請繼續：
 
-**[實驗 01：核心架構概念](../01-Architecture/README.md)**
+**[實驗室 01：核心架構概念](../01-Architecture/README.md)**
 
-學習 MCP 伺服器架構模式、數據庫設計原則及零售分析方案的詳細技術實作。
+了解 MCP 服務器架構模式、數據庫設計原理與支持我們零售分析解決方案的詳細技術實作。
 
-## 📚 補充資源
+## 📚 附加資源
 
 ### MCP 文件
 - [MCP 規範](https://modelcontextprotocol.io/docs/) - 官方協議文件
-- [MCP 初學者指南](https://aka.ms/mcp-for-beginners) - 全面學習指南
+- [MCP 新手入門](https://aka.ms/mcp-for-beginners) - 全面 MCP 學習指南
 - [FastMCP 文件](https://github.com/modelcontextprotocol/python-sdk) - Python SDK 文件
 
 ### 數據庫整合
-- [PostgreSQL 文件](https://www.postgresql.org/docs/) - 全面參考
-- [pgvector 指南](https://github.com/pgvector/pgvector) - 向量擴展說明
+- [PostgreSQL 文件](https://www.postgresql.org/docs/) - 完整 PostgreSQL 參考
+- [pgvector 指南](https://github.com/pgvector/pgvector) - 向量擴展文件
 - [行級安全](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - PostgreSQL RLS 指南
 
 ### Azure 服務
 - [Azure OpenAI 文件](https://docs.microsoft.com/azure/cognitive-services/openai/) - AI 服務整合
-- [Azure PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - 託管數據庫服務
-- [Azure 容器應用](https://docs.microsoft.com/azure/container-apps/) - 無伺服器容器
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - 托管數據庫服務
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - 無伺服器容器
 
 ---
 
-<strong>免責聲明</strong>：本教學為使用虛構零售數據的學習練習。實際生產環境中，請務必遵守貴組織的資料治理與安全政策。
+<strong>免責聲明</strong>：本為使用虛構零售資料的學習練習。實作類似解決方案於生產環境時，請務必遵守您組織的數據治理及安全政策。
 
 ---
 

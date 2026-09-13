@@ -1,110 +1,110 @@
-# Model Context Protocol für die Echtzeit-Websuche
+# Modell-Kontext-Protokoll für Echtzeit-Websuche
 
 ## Überblick
 
-Echtzeit-Websuche ist in der heutigen informationsgetriebenen Umgebung unverzichtbar geworden, in der Anwendungen sofortigen Zugriff auf aktuelle Informationen im Internet benötigen, um relevante und zeitnahe Antworten zu liefern. Das Model Context Protocol (MCP) stellt einen bedeutenden Fortschritt bei der Optimierung dieser Echtzeitsuchprozesse dar, verbessert die Sucheffizienz, bewahrt die Kontextintegrität und steigert die Gesamtleistung des Systems.
+Echtzeit-Websuche ist in der heutigen informationsgetriebenen Umgebung unverzichtbar geworden, in der Anwendungen sofortigen Zugriff auf aktuelle Informationen im Internet benötigen, um relevante und zeitnahe Antworten zu liefern. Das Modell-Kontext-Protokoll (MCP) stellt einen bedeutenden Fortschritt bei der Optimierung dieser Echtzeit-Suchprozesse dar, verbessert die Sucheffizienz, bewahrt die kontextuelle Integrität und steigert die Gesamtleistung des Systems.
 
-Dieses Modul untersucht, wie MCP die Echtzeit-Websuche transformiert, indem es einen standardisierten Ansatz für das Kontextmanagement über KI-Modelle, Suchmaschinen und Anwendungen hinweg bietet.
+Dieses Modul untersucht, wie MCP die Echtzeit-Websuche transformiert, indem es einen standardisierten Ansatz für das Kontextmanagement zwischen KI-Modellen, Suchmaschinen und Anwendungen bietet.
 
 ### Was Sie lernen werden
 
-In diesem umfassenden Leitfaden entdecken Sie:
+In diesem umfassenden Leitfaden erfahren Sie:
 
-- Wie MCP eine nahtlose Brücke zwischen KI-Modellen und Echtzeit-Websuchfähigkeiten schafft
-- Architekturmuster zur Implementierung effizienter und skalierbarer Suchlösungen mit MCP
+- Wie MCP eine nahtlose Brücke zwischen KI-Modellen und Echtzeit-Websuchfunktionen schafft
+- Architekturmustern zur Implementierung effizienter und skalierbarer Suchlösungen mit MCP
 - Techniken zur Bewahrung des Suchkontexts über mehrere Abfragen und Interaktionen hinweg
 - Praktische Code-Implementierungen in Python und JavaScript für verschiedene Suchszenarien
-- Methoden zur Balance von Relevanz, Aktualität und Leistung in MCP-gestützten Suchsystemen
+- Methoden zur Balance von Relevanz, Aktualität und Leistung in von MCP unterstützten Suchsystemen
 
 ## Einführung in die Echtzeit-Websuche
 
-Echtzeit-Websuche ist ein technologischer Ansatz, der kontinuierliche Abfragen, Verarbeitung und Analyse webbasierter Informationen ermöglicht, sobald diese veröffentlicht oder aktualisiert werden, sodass Systeme frische und relevante Informationen mit minimaler Verzögerung bereitstellen können. Im Gegensatz zu traditionellen Suchsystemen, die mit indizierten Daten arbeiten, die Stunden oder Tage alt sein können, verarbeitet die Echtzeitsuche Live-Daten aus dem Web und liefert Einsichten und Informationen, die den aktuellen Zustand von Online-Inhalten widerspiegeln.
+Echtzeit-Websuche ist ein technologischer Ansatz, der es ermöglicht, webbasierte Informationen kontinuierlich abzufragen, zu verarbeiten und zu analysieren, sobald sie veröffentlicht oder aktualisiert werden. So können Systeme frische und relevante Informationen mit minimaler Verzögerung bereitstellen. Im Gegensatz zu traditionellen Suchsystemen, die mit indexierten Daten arbeiten, die Stunden oder Tage alt sein können, verarbeitet die Echtzeit-Suche Live-Daten aus dem Web und liefert Einsichten und Informationen, die den aktuellen Zustand von Online-Inhalten widerspiegeln.
 
 ### Kernkonzepte der Echtzeit-Websuche:
 
 - **Kontinuierliche Abfrageverarbeitung**: Suchanfragen werden gegen ständig aktualisierte Datenquellen verarbeitet
 - **Priorisierung der Aktualität**: Systeme sind darauf ausgelegt, frische Informationen zu priorisieren
-- **Balance der Relevanz**: Aufrechterhaltung eines Gleichgewichts zwischen Relevanz und Aktualität
+- **Ausgewogene Relevanz**: Aufrechterhaltung eines Gleichgewichts zwischen Relevanz und Aktualität
 - **Skalierbare Architektur**: Systeme müssen variable Abfragelasten und Datenvolumen bewältigen können
-- **Kontextuelles Verständnis**: Aufrechterhaltung des Nutzerkontexts über Suchiterationen hinweg ist entscheidend für sinnvolle Ergebnisse
-- **Dynamische Abfrageumformulierung**: Adaptive Modifikation von Abfragen basierend auf Kontext und vorherigen Ergebnissen
+- **Kontextuelles Verständnis**: Die Aufrechterhaltung des Nutzerkontexts über Suchdurchläufe hinweg ist essenziell für aussagekräftige Ergebnisse
+- **Dynamische Abfrageumformulierung**: Adaptive Anpassung von Suchanfragen basierend auf Kontext und vorherigen Ergebnissen
 - **Integration mehrerer Quellen**: Kombination von Ergebnissen aus mehreren Suchanbietern und Webquellen
-- **Semantisches Verständnis**: Verarbeitung von Abfragen und Inhalten basierend auf Bedeutung und nicht nur auf Schlüsselwörtern
-- **Echtzeit-Ranking**: Kontinuierliche Anpassung der Ergebnisrangfolge, sobald neue Informationen verfügbar werden
+- **Semantisches Verständnis**: Verarbeitung von Anfragen und Inhalten basierend auf Bedeutung statt nur Schlüsselwörtern
+- **Echtzeit-Ranking**: Kontinuierliche Anpassung der Ergebnisrangfolge, sobald neue Informationen verfügbar sind
 
-### Das Model Context Protocol und Echtzeit-Websuche
+### Das Modell-Kontext-Protokoll und die Echtzeit-Websuche
 
-Das Model Context Protocol (MCP) adressiert mehrere kritische Herausforderungen in Echtzeit-Websuchumgebungen:
+Das Modell-Kontext-Protokoll (MCP) adressiert mehrere zentrale Herausforderungen in Echtzeit-Websuchumgebungen:
 
-1. **Bewahrung des Suchkontexts**: MCP standardisiert, wie Kontext über verteilte Suchkomponenten hinweg aufrechterhalten wird, wodurch KI-Modelle und Verarbeitungsstationen Zugriff auf relevante Abfragehistorie und Benutzerpräferenzen erhalten.
+1. **Erhalt des Suchkontexts**: MCP standardisiert die Art und Weise, wie Kontext über verteilte Suchkomponenten hinweg erhalten bleibt, sodass KI-Modelle und Verarbeitungsknoten Zugriff auf relevante Abfragehistorien und Nutzerpräferenzen haben.
 
-2. **Effizientes Abfragemanagement**: Durch strukturierte Mechanismen zur Kontextübertragung reduziert MCP den Aufwand, den Kontext bei jeder Suchiteration erneut bereitzustellen.
+2. **Effizientes Abfragemanagement**: Durch die Bereitstellung strukturierter Mechanismen für die Kontextübertragung reduziert MCP den Aufwand wiederholter Kontextangaben in jeder Suchiteration.
 
-3. **Interoperabilität**: MCP schafft eine gemeinsame Sprache für den Kontextaustausch zwischen unterschiedlichen Suchtechnologien und KI-Modellen, was flexiblere und erweiterbare Architekturen ermöglicht.
+3. **Interoperabilität**: MCP schafft eine gemeinsame Sprache für den Kontextaustausch zwischen verschiedenen Suchtechnologien und KI-Modellen, was flexiblere und erweiterbare Architekturen ermöglicht.
 
-4. **Such-optimierter Kontext**: MCP-Implementierungen können priorisieren, welche Kontext-Elemente für eine effektive Suche am relevantesten sind, und somit sowohl Leistung als auch Genauigkeit optimieren.
+4. **Suchoptimierter Kontext**: MCP-Implementierungen können priorisieren, welche Kontextelemente für eine effektive Suche am relevantesten sind, und optimieren so sowohl Leistung als auch Genauigkeit.
 
-5. **Adaptive Suchverarbeitung**: Durch ein richtiges Kontextmanagement mittels MCP können Suchsysteme ihre Verarbeitung dynamisch an sich entwickelnde Benutzerbedürfnisse und Informationslandschaften anpassen.
+5. **Adaptives Suchverhalten**: Mit ordnungsgemäßem Kontextmanagement durch MCP können Suchsysteme ihre Verarbeitung dynamisch an sich verändernde Nutzerbedürfnisse und Informationslandschaften anpassen.
 
-In modernen Anwendungen – von Nachrichtenaggregation bis Forschungshilfen – ermöglicht die Integration von MCP mit Websuchtechnologien intelligentere, kontextbewusste Suche, die zunehmend relevante Ergebnisse liefern kann, während die Nutzerinteraktionen fortschreiten.
+In modernen Anwendungen, angefangen bei Nachrichtenaggregation bis hin zu Forschungsassistenten, ermöglicht die Integration von MCP mit Websuchtechnologien intelligentere, kontextbewusste Suchfunktionen, die im Verlauf der Nutzungsinteraktionen zunehmend relevantere Ergebnisse liefern können.
 
 ## Lernziele
 
-Nach Abschluss dieser Lektion werden Sie in der Lage sein:
+Am Ende dieser Lektion werden Sie in der Lage sein:
 
 - Die Grundlagen der Echtzeit-Websuche und ihre Herausforderungen in modernen Anwendungen zu verstehen
-- Erklären, wie das Model Context Protocol (MCP) die Echtzeit-Websuchfähigkeiten verbessert
-- MCP-basierte Suchlösungen mit populären Frameworks und APIs zu implementieren
+- Zu erklären, wie das Modell-Kontext-Protokoll (MCP) die Fähigkeiten der Echtzeit-Websuche verbessert
+- MCP-basierte Suchlösungen mit gängigen Frameworks und APIs zu implementieren
 - Skalierbare, leistungsstarke Sucharchitekturen mit MCP zu entwerfen und bereitzustellen
-- MCP-Konzepte auf verschiedene Anwendungsfälle einschließlich semantischer Suche, Forschungsassistenz und KI-unterstütztem Browsing anzuwenden
-- Aufkommende Trends und zukünftige Innovationen in MCP-basierten Suchtechnologien zu bewerten
-- Kontextbewusste Suchsysteme zu entwickeln, die aus Benutzerinteraktionen lernen
-- Websuchfunktionen in KI-Assistenten mittels standardisierter MCP-Protokolle einzubinden
+- MCP-Konzepte in verschiedenen Anwendungsfällen anzuwenden, einschließlich semantischer Suche, Forschungsassistenz und KI-gestütztem Browsing
+- Neue Trends und zukünftige Innovationen in MCP-basierten Suchtechnologien zu bewerten
+- Kontextbewusste Suchsysteme zu entwickeln, die aus Nutzerinteraktionen lernen
+- Websuchfunktionen mithilfe standardisierter MCP-Protokolle in KI-Assistenten zu integrieren
 - Mehrstufige Suchpipelines zu erstellen, die Ergebnisse basierend auf Kontext schrittweise verfeinern
-- Die Suchleistung zu optimieren und dabei umfassendes Kontextbewusstsein aufrechtzuerhalten
+- Die Suchleistung zu optimieren, während ein umfassendes Kontextbewusstsein erhalten bleibt
 
 ### Definition und Bedeutung
 
-Echtzeit-Websuche umfasst das kontinuierliche Abfragen, Abrufen und Bereitstellen webbasierten Wissens mit minimaler Latenz. Im Gegensatz zu traditionellen Suchmaschinen, die das Web periodisch crawlen und indexieren, zielt die Echtzeitsuche darauf ab, Informationen unmittelbar bei Verfügbarkeit darzustellen und so den direkten Zugriff auf die aktuellsten Inhalte zu ermöglichen.
+Echtzeit-Websuche umfasst die kontinuierliche Abfrage, Abruf und Bereitstellung webbasierter Informationen mit minimaler Latenz. Im Gegensatz zu traditionellen Suchmaschinen, die das Web periodisch crawlen und indexieren, zielt die Echtzeit-Suche darauf ab, Informationen unmittelbar nach deren Verfügbarkeit bereitzustellen und damit den sofortigen Zugriff auf die aktuellsten Inhalte zu ermöglichen.
 
-Schlüsselmerkmale der Echtzeit-Websuche sind:
+Wichtige Merkmale der Echtzeit-Websuche sind:
 
-- **Aktualität**: Priorisierung kürzlich erstellter Inhalte und Updates
-- **Kontinuierliche Verarbeitung**: Permanente Überwachung neuer Informationen
-- **Abfrageanpassung**: Verfeinerung von Suchanfragen basierend auf Kontext und Feedback
-- **Sofortige Bereitstellung**: Suchergebnisse mit minimaler Verzögerung ausliefern
-- **Kontextbeibehaltung**: Aufbau auf vorherigen Abfragen für verbesserte Relevanz
+- **Aktualität**: Priorisierung neuer Inhalte und Updates
+- **Kontinuierliche Verarbeitung**: Ständige Überwachung neuer Informationen
+- **Abfrageanpassung**: Verfeinerung von Suchanfragen basierend auf Kontext und Rückmeldungen
+- **Sofortige Bereitstellung**: Suchergebnisse werden mit minimaler Verzögerung bereitgestellt
+- **Kontextbeibehaltung**: Aufbau auf vorherigen Abfragen zur Verbesserung der Relevanz
 
-### Herausforderungen bei herkömmlicher Websuche
+### Herausforderungen traditioneller Websuche
 
-Traditionelle Ansätze der Websuche stoßen in Echtzeitszenarien auf verschiedene Einschränkungen:
+Traditionelle Websuchansätze stoßen bei der Anwendung in Echtzeitszenarien auf mehrere Einschränkungen:
 
-1. **Kontextfragmentierung**: Schwierigkeit, Suchkontext über mehrere Abfragen hinweg zu bewahren
-2. **Informationsaktualität**: Herausforderungen beim Zugriff und der Priorisierung der neuesten Informationen
-3. **Integrationskomplexität**: Probleme bei der Interoperabilität zwischen Suchsystemen und Anwendungen
-4. **Latenzprobleme**: Balance zwischen umfassender Suche und Antwortzeit-Anforderungen
-5. **Relevanzanpassung**: Sicherstellung von Genauigkeit und Relevanz unter Berücksichtigung der Aktualität
+1. **Kontextfragmentierung**: Schwierigkeit, den Suchkontext über mehrere Abfragen hinweg aufrechtzuerhalten
+2. **Informationsaktualität**: Herausforderungen beim Zugriff auf und Priorisieren der neuesten Informationen
+3. **Integrationskomplexität**: Probleme mit der Interoperabilität zwischen Suchsystemen und Anwendungen
+4. **Latenzprobleme**: Ausbalancieren umfassender Suche mit Anforderungen an die Antwortzeit
+5. **Feinabstimmung der Relevanz**: Sicherstellung von Genauigkeit und Relevanz bei gleichzeitiger Priorisierung der Aktualität
 
-## Verständnis des Model Context Protocol (MCP) für die Suche
+## Verständnis des Modell-Kontext-Protokolls (MCP) für die Suche
 
 ### Was ist MCP im Suchkontext?
 
-Das Model Context Protocol (MCP) ist ein standardisiertes Kommunikationsprotokoll, das auf effiziente Interaktion zwischen KI-Modellen und Anwendungen ausgelegt ist. Im Kontext der Echtzeit-Websuche bietet MCP einen Rahmen für:
+Das Modell-Kontext-Protokoll (MCP) ist ein standardisiertes Kommunikationsprotokoll, das eine effiziente Interaktion zwischen KI-Modellen und Anwendungen erleichtert. Im Kontext der Echtzeit-Websuche bietet MCP einen Rahmen für:
 
-- Bewahrung des Suchkontexts über Abfolgen von Abfragen hinweg
-- Standardisierung von Suchanfrage- und Ergebnisformaten
-- Optimierung der Übertragung von Suchparametern und Ergebnissen
-- Verbesserung der Kommunikation zwischen Modell und Suchmaschine
+- Das Bewahren des Suchkontexts über Abfolgen von Suchanfragen hinweg
+- Die Standardisierung von Suchanfrage- und Ergebnisformaten
+- Die Optimierung der Übertragung von Suchparametern und Ergebnissen
+- Die Verbesserung der Kommunikation zwischen Modell und Suchmaschine
 
 ### Kernkomponenten und Architektur
 
 Die MCP-Architektur für die Echtzeit-Websuche besteht aus mehreren Schlüsselkomponenten:
 
-1. **Abfrage-Kontext-Handler**: Verwalten und erhalten Suchkontext über mehrere Abfragen
-2. **Suchprozessoren**: Verarbeiten eingehende Suchanfragen mit kontextbewussten Techniken
-3. **Protokolladapter**: Wandeln zwischen verschiedenen Such-APIs um und bewahren dabei Kontext
-4. **Kontextspeicher**: Effizientes Speichern und Abrufen der Suchhistorie und Präferenzen
-5. **Suchanschlüsse**: Verbinden zu verschiedenen Suchmaschinen und Web-APIs
+1. **Abfrage-Kontext-Handler**: Verwalten und pflegen den Suchkontext über mehrere Abfragen hinweg
+2. **Suchprozessoren**: Verarbeiten eingehende Suchanfragen mithilfe kontextbewusster Techniken
+3. **Protokoll-Adapter**: Konvertieren zwischen verschiedenen Such-APIs unter Bewahrung des Kontexts
+4. **Kontextspeicher**: Effiziente Speicherung und Abruf von Suchhistorie und Präferenzen
+5. **Such-Connectoren**: Anbindung an verschiedene Suchmaschinen und Web-APIs
 
 ```mermaid
 graph TD
@@ -116,9 +116,9 @@ graph TD
     end
 
     subgraph "MCP-Suchschicht"
-        SC[Suchanschlüsse]
+        SC[Suchverbindungen]
         PA[Protokolladapter]
-        CH[Kontext-Handler]
+        CH[Kontextverwalter]
         SP[Suchprozessoren]
         CS[Kontextspeicher]
     end
@@ -132,7 +132,7 @@ graph TD
 
     subgraph "Anwendungen & Dienste"
         RA[Forschungsassistent]
-        Alerts[Benachrichtigungssysteme]
+        Alerts[Alarmsysteme]
         KB[Wissensdatenbank]
         API[API-Dienste]
     end
@@ -142,15 +142,15 @@ graph TD
     DB -->|Wissen| SC
     News -->|Aktualisierungen| SC
     
-    SC -->|Rohresultate| PA
-    PA -->|Normalisierte Resultate| CH
+    SC -->|Rohdaten| PA
+    PA -->|Normalisierte Ergebnisse| CH
     CH <-->|Kontextoperationen| CS
-    CH -->|Kontextangereicherte Ergebnisse| SP
+    CH -->|Kontext-angereicherte Ergebnisse| SP
     SP -->|Verarbeitete Ergebnisse| RE
     SP -->|Merkmale| ML
     SP -->|Text| NLP
     
-    RE -->|Gerankte Ergebnisse| Rank
+    RE -->|Bewertete Ergebnisse| Rank
     ML -->|Vorhersagen| Rank
     NLP -->|Entitäten & Beziehungen| Rank
     
@@ -160,7 +160,7 @@ graph TD
     
     RA -->|Forschung| Users((Users))
     Alerts -->|Benachrichtigungen| Users
-    KB <-->|Wissenszugriff| API
+    KB <-->|Wissenszugang| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -175,37 +175,38 @@ graph TD
 
 ### Wie MCP die Echtzeit-Websuche verbessert
 
-MCP adressiert traditionelle Herausforderungen der Websuche durch:
+MCP begegnet den Herausforderungen traditioneller Websuche durch:
 
-- **Kontextuelle Kontinuität**: Aufrechterhaltung der Beziehungen zwischen Abfragen über die gesamte Suchsitzung hinweg
+- **Kontextuelle Kontinuität**: Aufrechterhaltung von Beziehungen zwischen Suchanfragen während der gesamten Suchsitzung
 - **Optimierte Übertragung**: Reduzierung von Redundanzen bei Suchparametern durch intelligentes Kontextmanagement
 - **Standardisierte Schnittstellen**: Bereitstellung konsistenter APIs für Suchkomponenten
-- **Reduzierte Latenz**: Minimierung des Verarbeitungsaufwands durch effiziente Kontextverwaltung
-- **Verbesserte Relevanz**: Erhöhung der Suchrelevanz durch Bewahrung der Benutzerintention über mehrere Abfragen hinweg
+- **Verringerte Latenz**: Minimierung des Verarbeitungsaufwands durch effiziente Kontextbehandlung
+- **Verbesserte Relevanz**: Steigerung der Suchrelevanz durch Bewahrung der Nutzerintention über mehrere Anfragen hinweg
+
 
 ## Integration und Implementierung
 
-Echtzeit-Websuchsysteme erfordern sorgfältiges architektonisches Design und Implementierung, um sowohl Leistung als auch Kontextintegrität zu gewährleisten. Das Model Context Protocol bietet einen standardisierten Ansatz zur Integration von KI-Modellen und Suchtechnologien und erlaubt komplexere, kontextbewusste Suchpipelines.
+Echtzeit-Websuchsysteme erfordern ein sorgfältiges architektonisches Design und eine sorgfältige Implementierung, um sowohl Leistung als auch kontextuelle Integrität zu gewährleisten. Das Model Context Protocol bietet einen standardisierten Ansatz zur Integration von KI-Modellen und Suchtechnologien, der komplexere, kontextbewusste Suchpipelines ermöglicht.
 
-### Überblick über MCP-Integration in Sucharchitekturen
+### Überblick über die MCP-Integration in Sucharchitekturen
 
-Die Implementierung von MCP in Echtzeit-Websuchumgebungen beruht auf mehreren wichtigen Überlegungen:
+Die Implementierung von MCP in Echtzeit-Websuchumgebungen umfasst mehrere zentrale Überlegungen:
 
-1. **Serialisierung des Suchkontexts**: MCP bietet effiziente Mechanismen zur Kodierung kontextueller Informationen innerhalb von Suchanfragen, sodass wesentlicher Kontext der Abfrage entlang der Verarbeitungspipeline folgt. Dazu gehören standardisierte Serialisierungsformate, die für suchbezogene Metadaten optimiert sind.
+1. **Suchkontext-Serialisierung**: MCP bietet effiziente Mechanismen zur Codierung kontextueller Informationen innerhalb von Suchanfragen, wodurch sichergestellt wird, dass der wesentliche Kontext während der gesamten Verarbeitungskette der Abfrage folgt. Dies beinhaltet standardisierte Serialisierungsformate, die für suchrelevante Metadaten optimiert sind.
 
-2. **Zustandsbehaftete Suchverarbeitung**: MCP ermöglicht intelligentere zustandsbehaftete Verarbeitung, indem es eine konsistente Kontextdarstellung über Suchiterationen aufrechterhält. Dies ist insbesondere in mehrstufigen Suchpipelines wertvoll, wo Kontextverfeinerung die Ergebnisse verbessert.
+2. **Zustandsbehaftete Suchverarbeitung**: MCP ermöglicht intelligentere zustandsbehaftete Verarbeitung, indem eine konsistente Kontextdarstellung über Suchiterationen hinweg gepflegt wird. Dies ist besonders wertvoll in mehrstufigen Suchpipelines, in denen die Kontextverfeinerung die Ergebnisse verbessert.
 
-3. **Abfrageerweiterung und -verfeinerung**: MCP-Implementierungen in Suchsystemen können eine ausgefeilte Abfrageerweiterung und -verfeinerung basierend auf angesammeltem Kontext erleichtern, was im Verlauf der Suchsitzung zu zunehmend relevanteren Ergebnissen führt.
+3. **Abfrageerweiterung und -verfeinerung**: MCP-Implementierungen in Suchsystemen können ausgefeilte Erweiterungen und Verfeinerungen von Suchanfragen basierend auf angesammeltem Kontext erleichtern, wodurch mit fortschreitender Suchsitzung immer relevantere Ergebnisse erzielt werden.
 
-4. **Ergebnis-Caching und Priorisierung**: Durch die Standardisierung des Kontexthandlings unterstützt MCP das Management von Ergebnis-Caching und Priorisierung, sodass Komponenten sich anhand des sich entwickelnden Suchkontexts anpassen können.
+4. **Ergebnis-Caching und Priorisierung**: Durch die Standardisierung der Kontextbehandlung trägt MCP dazu bei, das Ergebnis-Caching und die Priorisierung zu steuern, sodass Komponenten sich an den sich entwickelnden Suchkontext anpassen können.
 
-5. **Suchföderation und Aggregation**: MCP ermöglicht eine ausgefeiltere Föderation von Suchen über mehrere Backends hinweg, indem strukturierte Repräsentationen des Suchkontexts bereitgestellt werden, was die bedeutungsvollere Aggregation von Ergebnissen aus diversen Quellen erlaubt.
+5. **Suchföderation und Aggregation**: MCP ermöglicht eine ausgefeiltere Föderation von Suchanfragen über mehrere Backends, indem strukturierte Darstellungen des Suchkontexts bereitgestellt werden, die eine sinnvollere Aggregation von Ergebnissen aus unterschiedlichen Quellen ermöglichen.
 
-Die Implementierung von MCP über verschiedene Suchtechnologien hinweg schafft einen einheitlichen Ansatz zum Kontextmanagement, verringert den Bedarf an spezifischem Integrationscode und verbessert die Fähigkeit des Systems, während der Entwicklung von Suchanfragen bedeutungsvollen Kontext aufrechtzuerhalten.
+Die Implementierung von MCP über verschiedene Suchtechnologien hinweg schafft einen einheitlichen Ansatz für das Kontextmanagement, reduziert den Bedarf an benutzerdefiniertem Integrationscode und verbessert die Fähigkeit des Systems, bedeutsamen Kontext bei der Entwicklung von Suchanfragen aufrechtzuerhalten.
 
-### MCP in verschiedenen Websuchimplementierungen
+### MCP bei verschiedenen Websuchimplementierungen
 
-Diese Beispiele folgen der aktuellen MCP-Spezifikation, die sich auf ein JSON-RPC-basiertes Protokoll mit unterschiedlichen Transportmechanismen fokussiert. Der Code zeigt, wie benutzerdefinierte Suchintegrationen implementiert werden können, während vollständige Kompatibilität mit dem MCP-Protokoll gewahrt bleibt.
+Diese Beispiele folgen der aktuellen MCP-Spezifikation, die sich auf ein JSON-RPC-basiertes Protokoll mit unterschiedlichen Transportmechanismen konzentriert. Der Code zeigt, wie benutzerdefinierte Suchintegrationen implementiert werden können, während die volle Kompatibilität mit dem MCP-Protokoll erhalten bleibt.
 
 
 <details>
@@ -219,16 +220,16 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# Importieren Sie Standard-MCP-Bibliotheken
+# Importieren der Standard-MCP-Bibliotheken
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Erstellen Sie einen FastMCP-Server für die Websuche
+# Erstellen eines FastMCP-Servers für die Websuche
 search_server = FastMCP("WebSearch")
 
-# Klasse zur Handhabung von Websuchoperationen
+# Klasse zur Handhabung von Websuchvorgängen
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -264,7 +265,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # Führen Sie die Suchanfrage aus
+        # Die Suchanfrage ausführen
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -296,13 +297,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Initialisieren Sie den Suchhandler
+# Den Such-Handler initialisieren
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Lebensdauer einrichten, um den Suchhandler zu verwalten
+# Lebensdauer einrichten, um den Such-Handler zu verwalten
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,10 +313,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Setzen Sie die Lebensdauer für den Server
+# Lebensdauer für den Server festlegen
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Registrieren Sie ein Websuch-Tool
+# Ein Websuch-Werkzeug registrieren
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -349,13 +350,13 @@ async def web_search(query: str, max_results: int = 5,
 
 # Beispielhafte Client-Nutzung
 async def client_example():
-    # Verbinden Sie sich mit dem Suchserver über Streamable HTTP Transport
+    # Mit dem Suchserver über Streamable HTTP Transport verbinden
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Initialisieren Sie die Verbindung
+            # Die Verbindung initialisieren
             await session.initialize()
             
-            # Rufen Sie das Websuch-Tool auf
+            # Das web_search-Werkzeug aufrufen
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -370,22 +371,22 @@ async def client_example():
 
 # Serverausführungsbeispiel
 if __name__ == "__main__":
-    # Führen Sie den Server mit Streamable HTTP Transport aus
+    # Den Server mit Streamable HTTP Transport ausführen
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>JavaScript-Implementierung mit Browser-basierter Suche</summary>
+<summary>JavaScript-Implementierung mit browserbasierter Suche</summary>
 
 
 ```javascript
-// MCP-Server-Implementierung für die Websuche
+// MCP-Serverimplementierung für die Websuche
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Erstellen eines MCP-Servers für die Websuche
+// Erstelle einen MCP-Server für die Websuche
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -407,7 +408,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Such-URL mit Parametern erstellen
+        // Baue die Such-URL mit Parametern
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -437,7 +438,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // API-spezifische Antwort in ein Standardformat umwandeln
+            // Transformiere API-spezifische Antwort in ein Standardformat
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -471,7 +472,7 @@ searchServer.setContextProvider(() => {
     };
 });
 
-// Registriere das Websuch-Tool
+// Registriere das Websuchwerkzeug
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -512,12 +513,12 @@ searchServer.tool({
     }
 });
 
-// Beispiel-Clientcode zur Verbindung mit dem Suchserver
+// Beispielclient-Code zur Verbindung mit dem Suchserver
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 async function connectToSearchServer() {
-    // Mit dem Suchserver verbinden
+    // Verbinde mit dem Suchserver
     const transport = new StreamableHTTPClientTransport(
         new URL('http://localhost:8000/mcp')
     );
@@ -529,7 +530,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Das Such-Tool ausführen
+    // Führe das Suchwerkzeug aus
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -542,11 +543,11 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // Aufräumen
+    // Bereinigung
     await client.disconnect();
 }
 
-// Server starten
+// Starte den Server
 const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
@@ -559,41 +560,43 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Haftungsausschluss für Codebeispiele
+## Haftungsausschluss zu Codebeispielen
 
-> **Wichtiger Hinweis**: Die folgenden Codebeispiele demonstrieren die Integration des Model Context Protocol (MCP) mit Websuchfunktionalität. Obwohl sie den Mustern und Strukturen der offiziellen MCP-SDKs folgen, wurden sie zu Lehrzwecken vereinfacht.
+> **Wichtiger Hinweis**: Die folgenden Codebeispiele demonstrieren die Integration des Model Context Protocol (MCP) mit Websuchfunktionen. Obwohl sie den Mustern und Strukturen der offiziellen MCP-SDKs folgen, wurden sie zu Bildungszwecken vereinfacht.
 > 
 > Diese Beispiele zeigen:
 > 
-> 1. **Python-Implementierung**: Eine FastMCP-Serverimplementierung, die ein Websuchtool bereitstellt und sich mit einer externen Such-API verbindet. Dieses Beispiel demonstriert korrektes Lebenszyklusmanagement, Kontextbehandlung und Toolimplementierung nach den Mustern des [offiziellen MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Der Server nutzt den empfohlenen Streamable HTTP Transport, der den älteren SSE Transport für Produktionseinsätze abgelöst hat.
+> 1. **Python-Implementierung**: Eine FastMCP-Serverimplementierung, die ein Websuch-Tool bereitstellt und sich mit einer externen Such-API verbindet. Dieses Beispiel demonstriert die ordnungsgemäße Lebenszyklusverwaltung, Kontextbehandlung und Toolimplementierung nach den Mustern des [offiziellen MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). Der Server nutzt den empfohlenen Streamable HTTP-Transport, der den älteren SSE-Transport für produktive Einsätze abgelöst hat.
 > 
-> 2. **JavaScript-Implementierung**: Eine TypeScript/JavaScript-Implementierung basierend auf dem FastMCP-Pattern des [offiziellen MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk), um einen Suchserver mit korrekten Tool-Definitionen und Client-Verbindungen zu erstellen. Sie folgt den neuesten empfohlenen Mustern für Sitzungsmanagement und Kontextbewahrung.
+> 2. **JavaScript-Implementierung**: Eine TypeScript/JavaScript-Implementierung unter Verwendung des FastMCP-Musters aus dem [offiziellen MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) zur Erstellung eines Suchservers mit korrekter Tooldefinition und Clientverbindungen. Sie folgt den neuesten empfohlenen Mustern für Sitzungsmanagement und Kontextwahrung.
 > 
 > Für den Produktionseinsatz würden diese Beispiele zusätzliche Fehlerbehandlung, Authentifizierung und spezifischen API-Integrationscode erfordern. Die gezeigten Such-API-Endpunkte (`https://api.search-service.example/search`) sind Platzhalter und müssten durch tatsächliche Suchdienst-Endpunkte ersetzt werden.
 > 
-> Für vollständige Implementierungsdetails und die aktuellsten Ansätze verweisen wir auf die [offizielle MCP-Spezifikation](https://spec.modelcontextprotocol.io/) und die SDK-Dokumentation.
+> Für vollständige Implementierungsdetails und die aktuellsten Vorgehensweisen,
+> siehe die [offizielle MCP-Spezifikation](https://modelcontextprotocol.io/specification/2026-07-28/)
+> und die SDK-Dokumentation.
 
 ## Kernkonzepte
 
 ### Das Model Context Protocol (MCP) Framework
 
-Grundlegend stellt das Model Context Protocol einen standardisierten Weg bereit, wie KI-Modelle, Anwendungen und Dienste Kontext austauschen können. In der Echtzeit-Websuche ist dieses Framework essenziell, um kohärente, mehrstufige Sucherfahrungen zu schaffen. Die Schlüsselkomponenten umfassen:
+Grundlegend bietet das Model Context Protocol eine standardisierte Möglichkeit, wie KI-Modelle, Anwendungen und Dienste Kontext austauschen. Beim Echtzeit-Websuchvorgang ist dieses Framework entscheidend, um kohärente Sucherlebnisse mit mehreren Durchläufen zu schaffen. Wichtige Komponenten sind:
 
-1. **Client-Server-Architektur**: MCP etabliert eine klare Trennung zwischen Suchclients (Anfragenden) und Suchservern (Anbietenden), was flexible Bereitstellungsmodelle ermöglicht.
+1. **Client-Server-Architektur**: MCP schafft eine klare Trennung zwischen Suchclients (Anfragesteller) und Suchservern (Anbieter), die flexible Bereitstellungsmodelle ermöglicht.
 
-2. **JSON-RPC-Kommunikation**: Das Protokoll verwendet JSON-RPC für den Nachrichtenaustausch, was es kompatibel mit Webtechnologien macht und die Implementierung auf unterschiedlichen Plattformen erleichtert.
+2. **JSON-RPC-Kommunikation**: Das Protokoll verwendet JSON-RPC zum Nachrichtenaustausch, was es kompatibel mit Webtechnologien macht und die Implementierung auf verschiedenen Plattformen erleichtert.
 
-3. **Kontextmanagement**: MCP definiert strukturierte Methoden zur Pflege, Aktualisierung und Nutzung von Suchkontext über mehrere Interaktionen hinweg.
+3. **Kontextverwaltung**: MCP definiert strukturierte Methoden zur Pflege, Aktualisierung und Nutzung des Suchkontexts über mehrere Interaktionen hinweg.
 
-4. **Tool-Definitionen**: Suchfähigkeiten werden als standardisierte Tools mit klar definierten Parametern und Rückgabewerten bereitgestellt.
+4. **Tool-Definitionen**: Suchfunktionen werden als standardisierte Tools mit klar definierten Parametern und Rückgabewerten bereitgestellt.
 
-5. **Streaming-Unterstützung**: Das Protokoll unterstützt das Streaming von Ergebnissen, was für Echtzeitsuche wichtig ist, da Ergebnisse schrittweise ankommen können.
+5. **Streaming-Unterstützung**: Das Protokoll unterstützt Streaming-Ergebnisse, was für die Echtzeitsuche unerlässlich ist, bei der Ergebnisse schrittweise eintreffen können.
 
 ### Integrationsmuster für Websuche
 
-Bei der Integration von MCP mit Websuche ergeben sich mehrere Muster:
+Bei der Integration von MCP in die Websuche treten verschiedene Muster auf:
 
-#### 1. Direkte Integration von Suchanbietern
+#### 1. Direkte Integration des Suchanbieters
 
 ```mermaid
 graph LR
@@ -603,9 +606,9 @@ graph LR
     Server --> |MCP Antwort| Client
 ```
 
-In diesem Muster stellt der MCP-Server eine direkte Schnittstelle zu einer oder mehreren Such-APIs her, übersetzt MCP-Anfragen in API-spezifische Aufrufe und formatiert die Ergebnisse als MCP-Antworten.
+In diesem Muster stellt der MCP-Server die direkte Schnittstelle zu einer oder mehreren Such-APIs dar, übersetzt MCP-Anfragen in API-spezifische Aufrufe und formatiert die Ergebnisse als MCP-Antworten.
 
-#### 2. Föderierte Suche mit Kontextbewahrung
+#### 2. Föderierte Suche mit Kontextwahrung
 
 ```mermaid
 graph LR
@@ -619,7 +622,7 @@ graph LR
     Federation --> |Aggregierte MCP-Antwort| Client
 ```
 
-Dieses Muster verteilt Suchanfragen auf mehrere MCP-kompatible Suchanbieter, die möglicherweise in verschiedenen Inhaltstypen oder Suchfähigkeiten spezialisiert sind, während ein einheitlicher Kontext bewahrt wird.
+Dieses Muster verteilt Suchanfragen über mehrere MCP-kompatible Suchanbieter, die sich jeweils auf unterschiedliche Inhaltsarten oder Suchfunktionen spezialisieren können und dennoch einen einheitlichen Kontext beibehalten.
 
 #### 3. Kontext-verbesserte Suchkette
 
@@ -628,147 +631,148 @@ graph LR
     Client[MCP Client] --> |Anfrage + Kontext| Server[MCP Server]
     Server --> |1. Anfrageanalyse| NLP[NLP-Dienst]
     NLP --> |Verbesserte Anfrage| Server
-    Server --> |2. Suchausführung| Search[Suchmaschine]
-    Search --> |Rohergebnisse| Server
+    Server --> |2. Suche ausführen| Search[Suchmaschine]
+    Search --> |Rohdaten| Server
     Server --> |3. Ergebnisverarbeitung| Enhancement[Ergebnisverbesserung]
     Enhancement --> |Verbesserte Ergebnisse| Server
     Server --> |Endergebnisse + Aktualisierter Kontext| Client
 ```
 
-In diesem Muster ist der Suchprozess in mehrere Stufen aufgeteilt, wobei der Kontext bei jedem Schritt angereichert wird, was zu zunehmend relevanteren Ergebnissen führt.
+Bei diesem Muster wird der Suchprozess in mehrere Stufen unterteilt, wobei der Kontext bei jedem Schritt angereichert wird und so zunehmend relevantere Ergebnisse erzielt werden.
 
-### Suchkontext-Komponenten
+### Komponenten des Suchkontexts
 
 Im MCP-basierten Websuchkontext umfasst der Kontext typischerweise:
 
-- **Abfragehistorie**: Vorherige Suchanfragen in der Sitzung
+- **Abfrageverlauf**: Frühere Suchanfragen in der Sitzung
 - **Benutzereinstellungen**: Sprache, Region, Safe-Search-Einstellungen
-- **Interaktionshistorie**: Welche Ergebnisse angeklickt wurden, Verweildauer bei Ergebnissen
+- **Interaktionsverlauf**: Welche Ergebnisse angeklickt wurden, wie viel Zeit bei Ergebnissen verbracht wurde
 - **Suchparameter**: Filter, Sortierreihenfolgen und andere Suchmodifikatoren
-- **Domainspezifisches Wissen**: Fachspezifischer Kontext relevant zur Suche
-- **Temporaler Kontext**: Zeitabhängige Relevanzfaktoren
+- **Fachliches Wissen**: Fachspezifischer Kontext, der für die Suche relevant ist
+- **Zeitlicher Kontext**: Zeitbasierte Relevanzfaktoren
 - **Quellenpräferenzen**: Vertrauenswürdige oder bevorzugte Informationsquellen
 
-## Anwendungsfälle und Einsatzgebiete
+## Anwendungsfälle und Einsatzbereiche
 
 ### Forschung und Informationsbeschaffung
 
 MCP verbessert Forschungsabläufe durch:
 
-- Erhaltung des Forschungskontexts über Suchsitzungen hinweg
-- Ermöglichung ausgefeilter und kontextuell relevanterer Abfragen
-- Unterstützung der Multi-Source-Suchföderation
+- Bewahrung des Forschungs-Kontexts über Suchsitzungen hinweg
+- Ermöglichung ausgefeilterer und kontextuell relevanterer Abfragen
+- Unterstützung föderierter Suchen über mehrere Quellen
 - Erleichterung der Wissensextraktion aus Suchergebnissen
 
 ### Echtzeit-Nachrichten- und Trendüberwachung
 
-MCP-gestützte Suche bietet Vorteile bei der Nachrichtenüberwachung:
+Von MCP unterstützte Suche bietet Vorteile für die Nachrichtenüberwachung:
 
-- Nahezu Echtzeit-Entdeckung neuer Nachrichtenereignisse
-- Kontextbasierte Filterung relevanter Informationen
+- Entdeckung von aktuellen Nachrichtenereignissen in quasi Echtzeit
+- Kontextuelle Filterung relevanter Informationen
 - Themen- und Entitätenverfolgung über mehrere Quellen hinweg
-- Personalisierte Nachrichtenbenachrichtigungen basierend auf Nutzerkontext
+- Personalisierte Nachrichtenbenachrichtigungen basierend auf Benutzerkontext
 
 ### KI-unterstütztes Browsen und Forschen
 
-MCP schafft neue Möglichkeiten für KI-unterstütztes Browsen:
+MCP eröffnet neue Möglichkeiten für KI-unterstütztes Browsen:
 
-- Kontextuelle Suchvorschläge basierend auf aktueller Browseraktivität
+- Kontextbasierte Suchvorschläge basierend auf aktueller Browseraktivität
 - Nahtlose Integration der Websuche mit LLM-gestützten Assistenten
-- Mehrstufige Suchverfeinerung mit aufrechterhaltenem Kontext
+- Mehrstufige Suchverfeinerung bei wahrung des Kontexts
 - Verbesserte Faktenprüfung und Informationsverifikation
 
 ## Zukünftige Trends und Innovationen
 
 ### Entwicklung von MCP in der Websuche
 
-Mit Blick auf die Zukunft erwarten wir, dass MCP sich weiterentwickelt, um zu adressieren:
+Mit Blick auf die Zukunft erwarten wir, dass MCP sich weiterentwickelt, um folgende Aspekte zu adressieren:
 
 
-- **Multimodale Suche**: Integration von Text-, Bild-, Audio- und Videosuche mit erhaltenem Kontext
+- **Multimodale Suche**: Integration von Text-, Bild-, Audio- und Videosuche mit erhaltener Kontextinformation
 - **Dezentrale Suche**: Unterstützung verteilter und föderierter Suchökosysteme
 - **Suchprivatsphäre**: Kontextbewusste, datenschutzwahrende Suchmechanismen
 - **Abfrageverständnis**: Tiefgehende semantische Analyse natürlicher Sprachsuchanfragen
 
-### Potenzielle technologische Fortschritte
+### Potentielle technologische Fortschritte
 
 Neue Technologien, die die Zukunft der MCP-Suche prägen werden:
 
 1. **Neuronale Sucharchitekturen**: Einbettungsbasierte Suchsysteme, optimiert für MCP
-2. **Personalisierter Suchkontext**: Langfristiges Lernen individueller Suchmuster der Nutzer
-3. **Integration von Wissensgraphen**: Kontextuelle Suche erweitert durch domänenspezifische Wissensgraphen
-4. **Cross-Modaler Kontext**: Kontextbeibehaltung über verschiedene Suchmodalitäten hinweg
+2. **Personalisierter Suchkontext**: Erlernen individueller Suchmuster von Nutzern über die Zeit
+3. **Integration von Wissensgraphen**: Kontextbasierte Suche verbessert durch domänenspezifische Wissensgraphen
+4. **Modalitätenübergreifender Kontext**: Kontextbeibehaltung über verschiedene Suchmodalitäten hinweg
 
 ## Praktische Übungen
 
-### Übung 1: Einrichtung einer grundlegenden MCP-Suchpipeline
+### Übung 1: Einrichtung einer einfachen MCP-Suchpipeline
 
 In dieser Übung lernen Sie:
-- Eine grundlegende MCP-Suchumgebung zu konfigurieren
-- Kontext-Handler für die Websuche zu implementieren
-- Die Kontextbeibehaltung über Suchiterationen zu testen und zu validieren
+- Konfiguration einer einfachen MCP-Suchumgebung
+- Implementierung von Kontext-Handlern für die Websuche
+- Test und Validierung der Kontextbeibehaltung über Suchdurchläufe hinweg
 
-### Übung 2: Erstellung eines Forschungsassistenten mit MCP-Suche
+### Übung 2: Aufbau eines Research-Assistenten mit MCP-Suche
 
-Entwickeln Sie eine vollständige Anwendung, die:
+Erstellen Sie eine vollständige Anwendung, die:
 - Natürliche Sprachforschungsfragen verarbeitet
-- Kontextbewusste Websuchen durchführt
-- Informationen aus mehreren Quellen synthetisiert
+- Kontextbewusste Websuchen ausführt
+- Informationen aus mehreren Quellen zusammenfasst
 - Organisierte Forschungsergebnisse präsentiert
 
-### Übung 3: Implementierung einer multi-quellenbasierten Suchföderation mit MCP
+### Übung 3: Implementierung einer Multi-Source-Suchföderation mit MCP
 
-Fortgeschrittene Übung mit folgenden Inhalten:
-- Kontextbewusste Aufgabenverteilung von Suchanfragen an mehrere Suchmaschinen
-- Ergebnis-Ranking und Aggregation
-- Kontextuelle Duplikatsbeseitigung von Suchergebnissen
-- Umgang mit quellen-spezifischen Metadaten
+Erweiterte Übung zu:
+- Kontextbewusstem Absetzen von Abfragen an mehrere Suchmaschinen
+- Ergebnis-Rangfolge und Aggregation
+- Kontextuelle Duplikatserkennung der Suchergebnisse
+- Umgang mit quellenspezifischen Metadaten
 
 ## Zusätzliche Ressourcen
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Offizielle MCP-Spezifikation und ausführliche Protokolldokumentation
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Offizielle MCP-Spezifikation und ausführliche Protokolldokumentation
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detaillierte Tutorials und Implementierungsanleitungen
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Offizielle Python-Implementierung des MCP-Protokolls
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Offizielle TypeScript-Implementierung des MCP-Protokolls
 - [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Referenzimplementierungen von MCP-Servern
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Websuch-API von Microsoft
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Programmgesteuerte Suchmaschine von Google
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsofts Web-Such-API
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googles programmierbare Suchmaschine
 - [SerpAPI Documentation](https://serpapi.com/search-api) - API für Suchmaschinenergebnisseiten
 - [Meilisearch Documentation](https://www.meilisearch.com/docs) - Open-Source-Suchmaschine
 - [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Verteilte Such- und Analyse-Engine
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Aufbau von Anwendungen mit LLMs
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Anwendungen mit LLMs entwickeln
 
 ## Lernziele
 
-Nach Abschluss dieses Moduls werden Sie in der Lage sein:
+Nach Abschluss dieses Moduls sind Sie in der Lage:
 
 - Die Grundlagen der Echtzeit-Websuche und deren Herausforderungen zu verstehen
-- Erklären zu können, wie das Model Context Protocol (MCP) die Fähigkeiten der Echtzeit-Websuche verbessert
+- Erläutern, wie das Model Context Protocol (MCP) die Fähigkeiten der Echtzeit-Websuche verbessert
 - MCP-basierte Suchlösungen mit populären Frameworks und APIs zu implementieren
-- Skalierbare, leistungsstarke Sucharchitekturen mit MCP zu entwerfen und zu betreiben
-- MCP-Konzepte auf verschiedene Anwendungsfälle wie semantische Suche, Forschungsassistenz und KI-unterstütztes Browsing anzuwenden
-- Neue Trends und Innovationen in MCP-basierten Suchtechnologien zu bewerten
+- Skalierbare, leistungsstarke Sucharchitekturen mit MCP zu entwerfen und bereitzustellen
+- MCP-Konzepte auf verschiedene Anwendungsfälle anzuwenden, darunter semantische Suche, Forschungsassistenz und KI-unterstütztes Browsen
+- Neue Trends und zukünftige Innovationen im Bereich der MCP-basierten Suchtechnologien zu bewerten
 
 
-### Vertrauen und Sicherheitsüberlegungen
+### Vertrauens- und Sicherheitsüberlegungen
 
-Bei der Implementierung von MCP-basierten Websuchlösungen sollten Sie diese wichtigen Grundsätze aus der MCP-Spezifikation beachten:
+Denken Sie bei der Implementierung von MCP-basierten Websuchlösungen an diese wichtigen Prinzipien aus der MCP-Spezifikation:
 
-1. **Benutzereinwilligung und Kontrolle**: Nutzer müssen ausdrücklich zustimmen und alle Datenzugriffe und Operationen verstehen. Dies ist besonders wichtig bei Websuchimplementierungen, die auf externe Datenquellen zugreifen können.
+1. **Benutzereinwilligung und Kontrolle**: Benutzer müssen alle Datenzugriffe und Operationen ausdrücklich zustimmen und verstehen. Dies ist besonders wichtig bei Websuchimplementierungen, die externe Datenquellen anzapfen können.
 
-2. **Datenschutz**: Sorgen Sie für eine angemessene Behandlung von Suchanfragen und -ergebnissen, insbesondere wenn diese sensible Informationen enthalten könnten. Implementieren Sie geeignete Zugriffskontrollen zum Schutz der Benutzerdaten.
+2. **Datenschutz**: Stellen Sie eine angemessene Handhabung von Suchanfragen und Ergebnissen sicher, insbesondere wenn diese sensible Informationen enthalten könnten. Implementieren Sie angemessene Zugriffskontrollen zum Schutz der Benutzerdaten.
 
-3. **Werkzeugsicherheit**: Implementieren Sie ordnungsgemäße Autorisierung und Validierung für Suchwerkzeuge, da sie potenzielle Sicherheitsrisiken durch beliebige Codeausführung darstellen. Beschreibungen des Werkzeugverhaltens sind als nicht vertrauenswürdig zu betrachten, sofern sie nicht von einem vertrauenswürdigen Server stammen.
+3. **Werkzeugsicherheit**: Implementieren Sie ordnungsgemäße Autorisierung und Validierung für Suchwerkzeuge, da diese potenzielle Sicherheitsrisiken durch beliebige Codeausführung darstellen. Beschreibungen des Werkzeugverhaltens sollten als nicht vertrauenswürdig betrachtet werden, sofern sie nicht von einem vertrauenswürdigen Server stammen.
 
-4. **Klare Dokumentation**: Stellen Sie eine klare Dokumentation über Fähigkeiten, Einschränkungen und Sicherheitsaspekte Ihrer MCP-basierten Suche bereit, gemäß den Implementierungsrichtlinien der MCP-Spezifikation.
+4. **Klare Dokumentation**: Bieten Sie eine klare Dokumentation über die Fähigkeiten, Einschränkungen und Sicherheitsaspekte Ihrer MCP-basierten Suche, entsprechend den Implementierungsrichtlinien der MCP-Spezifikation.
 
-5. **Robuste Zustimmungsprozesse**: Entwickeln Sie robuste Einwilligungs- und Autorisierungsabläufe, die klar erklären, was jedes Werkzeug tut, bevor dessen Nutzung genehmigt wird, insbesondere für Werkzeuge, die mit externen Webressourcen interagieren.
+5. **Robuste Zustimmungsprozesse**: Entwickeln Sie robuste Zustimmungs- und Autorisierungsprozesse, die klar erklären, was jedes Werkzeug tut, bevor dessen Verwendung genehmigt wird, insbesondere bei Werkzeugen, die mit externen Webressourcen interagieren.
 
-Für vollständige Details zu Sicherheits- und Vertrauensüberlegungen bei MCP konsultieren Sie bitte die [offizielle Dokumentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Für vollständige Details zu MCP-Sicherheits- und Vertrauensaspekten verweisen Sie auf die
+[offizielle Dokumentation](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## Was kommt als Nächstes
 
-- [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
+- [5.12 Entra ID Authentication für Model Context Protocol Server](../mcp-security-entra/README.md)
 
 ---
 

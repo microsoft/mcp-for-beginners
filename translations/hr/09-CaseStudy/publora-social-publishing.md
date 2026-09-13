@@ -1,39 +1,39 @@
-# Studija slučaja: Objavljivanje na društvenim mrežama iz agenta s udaljenim MCP poslužiteljem
+# Studija slučaja: Objavljivanje na društvenim mrežama iz agenta s udaljenim MCP serverom
 
-> **Odricanje:** Nekoliko usluga i open-source projekata može objavljivati na društvenim mrežama, a tim također može izravno integrirati API svake mreže. Sljedeći scenarij prikazan je kao jedan izrađeni primjer kako se može dizajnirati i koristiti **remote MCP poslužitelj sposoban za pisanje**. Publora je komercijalna usluga s besplatnim slojem; obrasci opisani ovdje primjenjuju se na bilo koji MCP poslužitelj koji izvodi nepovratne radnje u ime korisnika.
+> **Odricanje od odgovornosti:** Nekoliko usluga i open-source projekata može objavljivati na društvenim mrežama, a tim bi također mogao izravno integrirati API svake mreže. Scenarij u nastavku pruži jedan primijenjeni primjer kako se može dizajnirati i koristiti **udaljeni MCP server sposoban za pisanje**. Publora je komercijalna usluga s besplatnim slojem; obrasci opisani ovdje primjenjuju se na bilo koji MCP server koji izvodi nepovratne radnje u ime korisnika.
 
 ## Pregled
 
-Agenti su dobri u izradi sadržaja, ali slabi u njegovom dostavljanju. Model može napisati objavu o vijesti za nekoliko sekundi, a zatim se rad zaustavlja: objavljivanje znači API po mreži, OAuth aplikaciju po mreži i različit skup medijskih pravila za svaku. Većina timova to riješi tako da ručno kopira tekst u preglednik.
+Agenti su dobri u izradi sadržaja, a slabi u njegovoj isporuci. Model može napisati najavu puštanja u rad u nekoliko sekundi, a zatim posao prestaje: objavljivanje znači jedan API po mreži, jednu OAuth aplikaciju po mreži i različit skup pravila za medije za svaku mrežu. Većina timova to rješava ručnim kopiranjem teksta u preglednik.
 
-Ova studija slučaja proučava kako se taj posljednji korak zatvara pomoću jednog udaljenog MCP poslužitelja i — još korisnije za svakoga tko ga gradi — o odlukama u dizajnu koje mora ispravno donijeti **poslužitelj sposoban za pisanje**. Čitanje podataka je popustljivo. Objavljivanje nije: pogrešan poziv alata vidljiv je publici i ne može se opozvati.
+Ova studija slučaja prikazuje kako se taj zadnji korak zatvara s jednim udaljenim MCP serverom, i — što je korisnije za svakoga tko gradi takav server — o dizajnerskim odlukama koje **server sposoban za pisanje** mora ispravno donijeti. Čitanje podataka je oprostivo. Objavljivanje nije: pogrešan poziv alata vidljiv je publici i ne može se poništiti.
 
 ## Scenarij
 
-Mali tim za odnose s programerima izrađuje objave unutar agenta (Claude, VS Code, Cursor — klijent nije bitan). Žele da agent može:
+Mali tim za odnose s developerima izrađuje postove u agentu (Claude, VS Code, Cursor — klijent nije bitan). Žele da agent:
 
-- vidjeti koje su društvene račune tim povezao,
-- izraditi objavu i zadržati je kao nacrt za ljudsku potvrdu,
-- priložiti sliku,
-- zakazati je na nekoliko mreža u odabrano vrijeme,
-- i kasnije izvještavati o njenim rezultatima.
+- vidi koje su društvene račune tim povezao,
+- izrađuje post i čuva ga kao nacrt za ljudsku odobrenje,
+- prilaže sliku,
+- zakazuje objavu na nekoliko mreža u odabrano vrijeme,
+- i kasnije izvještava o učinku.
 
 Ključno, žele da agent *ne može* slučajno objaviti dok još eksperimentiraju.
 
-## Korišteni alati
+## Alati koji se koriste
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — udaljeni MCP poslužitelj (`streamable-http`) koji nudi alate za objavljivanje, zakazivanje, medije i analitiku LinkedIna. Registriran u službenom MCP registru kao `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — udaljeni MCP server (`streamable-http`) koji nudi alate za objavljivanje, zakazivanje, medije i LinkedIn analitiku. Registriran u službenom MCP registru kao `com.publora/mcp-server`.
 
-## Radni tok korak po korak
+## Korak-po-korak tijek rada
 
-1. **Povežite poslužitelj.** Klijenti koji podržavaju OAuth dovršavaju autorizacijski proces pomoću autorizacijskog koda s PKCE prema zaslonu pristanka poslužitelja; klijenti koji ne podržavaju OAuth, poput headless CLI-ja, koriste Publora API ključ u zaglavlju. Oba pristupa su podržana i izbor ovisi o klijentu, a ne o poslužitelju.
-2. **Popis veza.** Agent poziva `list_connections` i prima povezane račune sa njihovim identifikatorima.
-3. **Nacrt.** Agent poziva `create_post` *bez* zakazanog vremena. Objavu sprema kao nacrt — ništa nije objavljeno.
-4. **Priloži medij.** Javni URL-ovi slika se prosljeđuju u istom pozivu; poslužitelj ih preuzima i provjerava.
-5. **Zakazivanje.** Nakon ljudske potvrde, `update_post` postavlja status na zakazano s vremenom u ISO 8601 formatu.
-6. **Mjerenje.** Za LinkedIn, `linkedin_post_stats` vraća angažman kada je objava uživo.
+1. **Povežite server.** Klijenti koji koriste OAuth dovršavaju autorizacijski kodni tijek s PKCE preko serverovog vlastitog zaslona suglasnosti; klijenti koji ne koriste, poput bezglavih CLI alata, koriste Publora API ključ u zaglavlju. Oba puta su podržana, a koji ćete dobiti ovisi o klijentu, ne o serveru.
+2. **Prikaži veze.** Agent poziva `list_connections` i prima povezane račune s njihovim identifikatorima.
+3. **Nacrtaj.** Agent poziva `create_post` *bez* zakazanog vremena. Post se pohranjuje kao nacrt — ništa nije objavljeno.
+4. **Priloži medije.** Javni URL-ovi za slike prolaze u istom pozivu; server ih preuzima i provjerava.
+5. **Zakaži.** Nakon ljudskog odobrenja, `update_post` postavlja status na zakazano s ISO 8601 vremenom.
+6. **Mjerenje.** Za LinkedIn, `linkedin_post_stats` vraća angažman nakon što post postane aktivan.
 
-## Primjer naredbe
+## Primjer upita
 
 ```text
 Which social accounts do I have connected?
@@ -46,84 +46,95 @@ Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 
 ```mermaid
 flowchart TD
-    A[Korisnički upit u MCP klijentu] --> B[Klijent izvodi OAuth s poslužiteljem]
-    B --> C[popis_veza]
-    C --> D{Ciljne mreže povezane?}
+    A[Korisnički upit u MCP klijentu] --> B[Klijent izvodi OAuth sa serverom]
+    B --> C[list_connections]
+    C --> D{Je li ciljana mreža povezana?}
     D -- No --> E[Agent prijavljuje koje nedostaju]
-    D -- Yes --> F[create_post bez scheduledTime -> nacrt]
-    F --> G[Čovjek pregledava nacrt]
-    G -- Approved --> H[update_post: status=zakazano]
+    D -- Yes --> F[create_post bez scheduledTime -> skica]
+    F --> G[Čovjek pregledava skicu]
+    G -- Approved --> H[update_post: status=scheduled]
     G -- Rejected --> I[delete_post]
-    H --> J[Poslužitelj objavljuje u zakazano vrijeme]
+    H --> J[Server objavljuje u zakazano vrijeme]
     J --> K[linkedin_post_stats za angažman]
 ```
 
 ## Tehnička implementacija
 
-Lekcije u nastavku su prenosivi dio ove studije slučaja.
+Pouke u nastavku su prenosivi dio ove studije slučaja.
 
-### Otkrivenje bez autentifikacije, izvršenje s autentifikacijom
+### Otvoreno otkrivanje, autentificirano izvršenje
 
-`tools/list` se poslužuje bez vjerodajnica; svaki `tools/call` zahtijeva token i inače vraća `401` s `WWW-Authenticate` zaglavljem koje upućuje na meta podatke zaštićenog resursa. (Poslužitelj također odgovara na neautentificirani `initialize`, što je važno samo za klijente na protokolima prije `2026-07-28`; ta revizija je u potpunosti uklonila rukovanje vezom.)
+`tools/list` se poslužuje bez vjerodajnica; svaki `tools/call` zahtijeva token
+i inače vraća `401` s `WWW-Authenticate` zaglavljem koje upućuje na
+meta-podatke zaštićenih resursa. Serverov naslijeđeni endpoint također odgovara na
+neautentificirani `initialize` za klijente s protokolnim verzijama prije
+`2026-07-28`; trenutni klijenti ne koriste taj postupak.
 
-Ova podjela je važna u praksi. Registri, katalozi i klijenti mogu pregledavati dostupne alate — nazive, sheme, bilješke — bez držanja tajne, dok se ništa *ne može izvršiti* anonimno. Poslužitelj koji zahtijeva token za `initialize` efektivno je nevidljiv alatima; poslužitelj koji dopušta anonimni `tools/call` predstavlja rizik.
+Ova specifična podjela servera omogućuje registrima, katalogima i klijentima pregled imena alata,
+shema i bilješki bez tajne uz sprječavanje anonimnog
+izvršenja. Otvoreno otkrivanje je izbor implementacije, a ne MCP zahtjev; zaštićena
+implementacija može također zahtijevati autorizaciju za `tools/list`.
 
 ### Registracija: dinamička registracija klijenata i što je zamjenjuje
 
-Poslužitelj oglašava `/.well-known/oauth-protected-resource` i `/.well-known/oauth-authorization-server` te podržava autorizacijski tijek koda s PKCE (`S256`), osvježavajuće tokene i **dinamičku registraciju klijenata**.
+Server oglašava `/.well-known/oauth-protected-resource` i `/.well-known/oauth-authorization-server`, te podržava autorizacijski kodni tijek s PKCE (`S256`), osvježavajuće tokene i **dinamičku registraciju klijenata**.
 
-Dinamička registracija uklanja ručni korak: bez nje svaki klijent treba prethodno dodijeljeni `client_id`, što znači izvanmrežni zahtjev prodavaču za svakog novog klijenta.
+Dinamička registracija uklonila je ručni korak za naslijeđene korisnike: bez nje,
+svaki klijent je trebao unaprijed izdan `client_id` od dobavljača.
 
-Ovo treba smatrati kompatibilnošću, a ne dizajnom za kopiranje. Revizija specifikacije `2026-07-28` ukida dinamičku registraciju u korist Client ID Metadata Documents, gdje klijent hosta dokument s meta podacima na stabilnom HTTPS URL-u i taj URL *je* `client_id`. DCR zasad radi, ali poslužitelj koji se danas gradi treba planirati za CIMD i očuvati DCR samo za starije klijente.
+Ovo treba tretirati kao kompatibilnost, a ne kao dizajn koji se treba kopirati. Revizija specifikacije od `2026-07-28` ukida dinamičku registraciju klijenata u korist dokumenata Client ID metapodataka, gdje klijent postavlja dokument metapodataka na stabilni HTTPS URL i taj URL *je* `client_id`. DCR još radi, ali server danas u izgradnji treba planirati za CIMD i zadržati DCR samo za starije klijente.
 
-### Bilješke alata nisu ukras
+### Bilješke alata nisu dekoracija
 
-Svaki alat nosi `title` i odgovarajuće naznake: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Svaki alat nosi `title` i primjenjive naznake: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Dva su razloga za ulaganje u njih. Prvo, klijenti koriste naznake da odluče što potvrditi s korisnikom — klijent može automatski pokrenuti upit za čitanje i zaustaviti se na potvrdu prije brisanja. Specifikacija izričito kaže da su bilješke nepouzdane naznake, a ne mehanizam autorizacije: oblikuju što klijent nudi za napraviti, ne sprječavaju ništa na poslužitelju, te poslužitelj i dalje mora provoditi svoja pravila. Drugo, glavni direktoriji konektora sada ih *zahtijevaju* za pregled; poslužitelj čiji alati nemaju naslove i naznake biti će vraćen bez obzira na rad.
+Dva su razloga za ulaganje u njih. Prvo, klijenti koriste naznake da odluče što potvrditi s korisnikom — klijent može automatski izvršiti samo čitanje i zaustaviti se za odobrenje prije brisanja. Specifikacija izričito kaže da su bilješke nepouzdane naznake, a ne autorizacijski mehanizam: oblikuju što klijent nudi, ali ništa ne zaustavljaju na serveru, koji mora i dalje provoditi svoja pravila. Drugi, glavni imenici konektora sada *zahtijevaju* ih za pregled; server čiji alati nemaju naslove i naznake bit će vraćen bez obzira na kvalitetu rada.
 
-### Napravite identifikatore neizmišljivima
+### Neka identifikatori budu neizmišljivi
 
-Identifikatori platforme su neprozirni nizovi vraćeni iz `list_connections`, a opis sheme izričito kaže da ih treba doslovno kopirati i nikad ne pogađati. Poslužitelj odbacuje sve ostalo.
+Identifikatori platformi su neprozirni nizovi koje vraća `list_connections`, a opis sheme izričito kaže da se moraju preuzeti vjerno i nikad ne smiju pogađati. Server odbija sve ostalo.
 
-Modeli su vješti pogađači. Svaki poslužitelj sposoban za pisanje trebao bi pretpostaviti da će se identifikator prije ili kasnije halucinirati i učiniti da ta radnja zakaže glasno i rano, umjesto da postupa prema vrijednosti koja izgleda vjerodostojno.
+Modeli su izvrsni u pogađanju. Svaki server sposoban za pisanje trebao bi pretpostaviti da će se identifikator na kraju halucinirati i učiniti da taj put neuspije glasno i rano, umjesto da djeluje na plauzibilnu vrijednost.
 
-### Neuspjeh prije objave, s porukom za djelovanje
+### Neuspjeh prije objave s porukom koju je moguće primijeniti
 
-Neke mreže odbijaju objave koje sadrže samo tekst i zahtijevaju sliku ili video. To se provjerava kad se objava zakazuje, a pogreška imenuje platformu i nedostajući zahtjev.
+Neke mreže odbijaju postove samo s tekstom i zahtijevaju sliku ili video. To se provjerava pri zakazivanju, a greška imenuje platformu i nedostajuće zahtjeve.
 
-Agent se može oporaviti od "Instagram zahtijeva medij - priložite sliku ili video" bez novog kruga slanja. Ne može se oporaviti od generičkog `400`.
+Agent može oporaviti se od "Instagram zahtijeva medije — priložite sliku ili video" bez dodatnog kruga komunikacije. Ne može se oporaviti od generičkog `400`.
 
-### Učinite ponovne pokušaje sigurnima
+### Neka ponovne pokušaje budu sigurni
 
-Dva alata koja stvaraju sadržaj, `create_post` i `update_post`, prihvaćaju ključ idempotentnosti: ponovno korištenje s istim zahtjevom ponavlja izvorni odgovor umjesto da kreira drugu objavu. Runtime okruženja agenta ponavljaju pokušaje na istek vremena; bez idempotentnosti, spori odgovor postaje dvostruka objava. Ostali alati za pisanje — brisanja, radnje s medijima, signali i komentari za LinkedIn — nemaju taj ključ, pa ponovni pokušaj tamo nije automatski siguran. Dobro je znati koje su vaši mutacijski zahtjevi zaštićeni, a koje nisu.
+Dva alata koja kreiraju sadržaj, `create_post` i `update_post`, prihvaćaju ključ idempotencije: ponovno korištenje s istim zahtjevom ponavlja izvornu reakciju umjesto da stvori drugi post. Agent runtime-i ponovo pokušavaju kod vremenskog prekida; bez idempotencije spori odgovor dovodi do duplikatne objave. Ostali alati za pisanje — brisanja, koraci medija, LinkedIn reakcije i komentari — ne prihvaćaju taj ključ, pa ponovni pokušaj tamo nije automatski siguran. Vrijedno je znati koje vaše mutacije su zaštićene, a koje nisu.
 
-### Omogućite način testiranja bez objave
+### Omogućite način testiranja koji ne objavljuje ništa
 
-Poslužitelj prihvaća rezervirani cilj, `publora-playground`, koji se provjerava i potvrđuje kao stvarna destinacija te se zatim odbacuje — ništa ne dolazi do živog računa. To je opisano u samoj shemi alata, koju svaki klijent može pročitati bez vjerodajnica: polje `platforms` `create_post` dokumentira ga kao "cilj za testiranje veze koji ne zahtijeva stvarnu vezu — objava se potvrđuje i odbacuje, ništa se ne objavljuje". Pozovite ga tako da ga proslijedite kao jedini unos: `platforms: ["publora-playground"]`.
 
-Ispostavilo se da je to jedan od najkorisnijih detalja cijele površine. Recenzenti direktorija konektora, suradnici i CI (kontinuirana integracija) mogu provjeriti cijeli put pisanja od početka do kraja bez rizika za stvarnu publiku. Svaki MCP poslužitelj s nepovratnim radnjama ima koristi od dokumentiranog cilja bez učinka.
+Poslužitelj prihvaća rezerviranu metu, `publora-playground`, koja se provjerava i potvrđuje kao stvarna destinacija, a zatim odbacuje — ništa ne dolazi do stvarnog računa. Opisana je u samoj shemi alata, koju svaki klijent može pročitati bez vjerodajnica: polje `platforms` u `create_post` dokumentira je kao "meta za test veze koja ne zahtijeva stvarnu vezu — objava se potvrđuje i odbacuje, ništa nije objavljeno". Pozovite je tako da je proslijedite kao jedini unos: `platforms: ["publora-playground"]`.
+
+Ovo se pokazalo kao jedan od najkorisnijih detalja cijelog sučelja. Recenzenti direktorija konektora, suradnici i CI mogu testirati cijeli postupak pisanja od početka do kraja bez rizika za stvarnu publiku. Bilo koji MCP poslužitelj s nepovratnim radnjama ima koristi od dokumentirane ciljne bez akcije.
 
 ## Rezultati i utjecaj
 
-- Korak objavljivanja preselio se iz preglednika u isti razgovor u kojem se sadržaj piše, a navika prvo nacrta zadržava čovjeka u petlji. Budite precizni što to znači: nacrt je konvencija, a ne granica. Isti vjerodajnici mogu zakazati ili objaviti, pa svatko kome treba stvarni odobreni filter mora ga provoditi izvan alata — odvojeni vjerodajnici ili sloj pravila ispred poslužitelja.
-- Razlike po mreži — zahtjevi za medije, tematska struktura, kontrole odgovora — obrađuju se jednom na poslužitelju, a ne u svakom agentu koji s njim komunicira.
-- Isti poslužitelj podržava nekoliko MCP klijenata bez rada po klijentu, jer je otkrivanje otvoreno, a registracija dinamična.
-- Ograničenja dizajna gore oblikovana su kako recenzijama direktorija konektora tako i korisnicima: bilješke, OAuth i sigurni testni cilj svaki su bili zahtjev barem jednog od njih.
+- Korak objavljivanja premješten je iz preglednika u isti razgovor u kojem se sadržaj piše, a navika započinjanja s nacrtom drži čovjeka uključenim. Budite precizni u vezi s time što to znači: nacrt je konvencija, ne granica. Iste vjerodajnice mogu zakazati ili objaviti, stoga svatko kome je potrebna stvarna provjera odobrenja mora je provoditi izvan sučelja alata — odvojene vjerodajnice ili sloj politike ispred poslužitelja.
+- Razlike po mreži — zahtjevi za medijima, povezivanje tema, kontrole odgovora — obrađuju se jednom na poslužitelju, a ne na svakom agentu koji s njim komunicira.
+- Isti poslužitelj podržava nekoliko MCP klijenata bez unaprijed izdanih vjerodajnica.
+    Trenutni klijenti mogu koristiti Dokumente metapodataka klijenta; DCR ostaje rezervna opcija
+    za starije klijente.
+- Ograničenja dizajna gore oblikovana su recenzijama direktorija konektora jednako kao i korisnicima: bilješke, OAuth i sigurna meta za test bili su zahtjev barem jednog od njih.
 
 ## Reference
 
 - [Publora MCP Server (izvor)](https://github.com/publora/mcp-server)
 - [Publora API i MCP dokumentacija](https://docs.publora.com)
-- [MCP Registry unos: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP specifikacija — Autorizacija](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [MCP zapisnik unosa: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP specifikacija — Autorizacija](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP specifikacija — Bilješke alata](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## Što slijedi
 
-- Uzmite MCP poslužitelj koji gradite i provjerite tri najjeftinije pobjede ovdje: bilješke na svakom alatu, ključ idempotentnosti na svakom pisanju i dokumentirani cilj bez učinka.
-- Isprobajte podjelu otvorenog otkrivanja: pozovite `tools/list` prema javnom udaljenom poslužitelju bez vjerodajnica, zatim pozovite alat i pregledajte izazov `401`.
-- Razmislite što "opoziv" znači za vaš domen. Objavljivanje ima nacrte i brisanje; ako vaše radnje nemaju ekvivalent, potvrda treba biti u dizajnu alata, a ne u naredbi.
+- Uzmi MCP poslužitelj koji gradiš i provjeri tri najjeftinija dobitka ovdje: bilješke na svakom alatu, ključ idempotencije na svakom zapisu i dokumentiranu meta bez akcije.
+- Isprobaj podjelu otvorenog otkrivanja: pozovi `tools/list` prema javnom udaljenom poslužitelju bez vjerodajnica, zatim pozovi alat i pregledaj izazov `401`.
+- Razmotri što "poništi" znači za tvoju domenu. Objavljivanje ima nacrte i brisanje; ako tvoje radnje nemaju ekvivalent, potvrda pripada dizajnu alata, a ne upitu.
 
 ---
 

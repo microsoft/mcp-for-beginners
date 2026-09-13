@@ -1,6 +1,6 @@
-# Dirbtinio intelekto darbo eigos supaprastinimas: MCP serverio kūrimas su Microsoft Foundry Toolkit
+# AI darbo procesų optimizavimas: MCP serverio kūrimas su Microsoft Foundry Toolkit
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
@@ -10,214 +10,220 @@
 
 [![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/lt/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Spustelėkite aukščiau esantį paveikslėlį, norėdami peržiūrėti šios pamokos vaizdo įrašą)_
+_(Paspauskite paveikslėlį, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 
-Sveiki atvykę į **Model Context Protocol (MCP) dirbtuves**! Šios išsamios praktinės dirbtuvės sujungia dvi pažangiausias technologijas, kurios pertvarko DI programų kūrimą:
+Sveiki atvykę į **Model Context Protocol (MCP) dirbtuves**! Šios išsamios praktinės dirbtuvės sujungia dvi pažangiausias technologijas, kad pakeistų AI programų kūrimą:
 
-- **🔗 Model Context Protocol (MCP)**: atviras standartas sklandžiam DI įrankių integravimui
-- **🛠️ Microsoft Foundry Toolkit išplėtimas VS Code**: Microsoft galingas DI kūrimo įrankis
+> **Suderinamumo pastaba:** dirbtuvių kodas buvo sukurtas ir išbandytas su MCP
+> `2025-11-25`, kaip parodyta aukščiau esančiame ženklelyje. Naudokite
+> [naujausią `2026-07-28` specifikaciją](https://modelcontextprotocol.io/specification/2026-07-28/)
+> naujiems protokolo įgyvendinimams ir peržiūrėkite SDK leidimo pastabas prieš
+> perkeliamas dirbtuves.
 
-### 🎓 Ko Išmoksite
+- **🔗 Model Context Protocol (MCP)**: atviras standartas sklandžiai AI įrankių integracijai
+- **🛠️ Microsoft Foundry Toolkit papildinys VS Code**: galingas Microsoft AI kūrimo įrankis
 
-Šių dirbtuvių pabaigoje mokėsite kurti intelektualias programas, jungiančias DI modelius su realiais įrankiais ir paslaugomis. Nuo automatizuoto testavimo iki pasirinktinių API integracijų – įgysite praktinių įgūdžių spręsti sudėtingas verslo problemas.
+### 🎓 Ko išmoksite
 
-## 🏗️ Technologijų Rinkinys
+Baigę šias dirbtuves, įvaldysite išmaniosios programinės įrangos kūrimą, kuris jungia AI modelius su realaus pasaulio įrankiais ir paslaugomis. Nuo automatizuotų testavimų iki individualių API integracijų, įgysite praktinių įgūdžių spręsti sudėtingus verslo iššūkius.
+
+## 🏗️ Technologijų rinkinys
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP yra **„USB-C DI“** – universalus standartas, kuris sujungia DI modelius su išoriniais įrankiais ir duomenų šaltiniais.
+MCP yra **„USB-C AI“** – universalus standartas, jungiantis AI modelius su išoriniais įrankiais ir duomenų šaltiniais.
 
 **✨ Pagrindinės savybės:**
 
-- 🔄 **Standartizuota integracija**: Universalus sąsajos standartas DI įrankių jungčiai
-- 🏛️ **Lanksti architektūra**: Vietiniai ir nuotoliniai serveriai per stdio/SSE transportą
-- 🧰 **Turtinga ekosistema**: Įrankiai, užklausos ir ištekliai viename protokole
-- 🔒 **Įmonėms tinkama**: Integruota sauga ir patikimumas
+- 🔄 **Standartizuota integracija**: universali sąsaja AI įrankiams prijungti
+- 🏛️ **Lanksti architektūra**: vietiniai ir nuotoliniai serveriai per stdio/SSE transportą
+- 🧰 **Turtinga ekosistema**: įrankiai, užklausos ir ištekliai viename protokole
+- 🔒 **Įmonių lygio paruošimas**: įmontuotas saugumas ir patikimumas
 
 **🎯 Kodėl MCP svarbus:**
-Kaip USB-C panaikino laidų chaosą, taip MCP panaikina DI integracijų sudėtingumą. Vienas protokolas, begalinės galimybės.
+Kaip USB-C pašalino laidų painiavą, taip MCP pašalina AI integracijų sudėtingumą. Vienas protokolas – begalinės galimybės.
 
-### 🤖 Microsoft Foundry Toolkit išplėtimas VS Code
+### 🤖 Microsoft Foundry Toolkit papildinys VS Code
 
-Microsoft pagrindinis DI kūrimo išplėtimas, kuris paverčia VS Code į DI galingą aplinką.
+Microsoft pagrindinis AI kūrimo papildinys, kuris paverčia VS Code galingu AI įrankiu.
 
 **🚀 Pagrindinės galimybės:**
 
-- 📦 **Modelių katalogas**: Prieiga prie modelių iš Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Vietinė inferencija**: ONNX optimizuotas CPU/GPU/NPU vykdymas
-- 🏗️ **Agentų kūrėjas**: Vizualus DI agentų kūrimas su MCP integracija
-- 🎭 **Daugiakanalis palaikymas**: Tekstas, vizija ir struktūrizuotas išėjimas
+- 📦 **Modelių katalogas**: prieiga prie modelių iš Azure AI, GitHub, Hugging Face, Ollama
+- ⚡ **Vietinė išvada**: ONNX optimizuotas CPU/GPU/NPU vykdymas
+- 🏗️ **Agentų kūrėjas**: vizualus AI agentų kūrimas su MCP integracija
+- 🎭 **Daugiakanalis**: palaiko tekstą, vaizdą ir struktūrizuotą išvestį
 
 **💡 Kūrimo privalumai:**
 
-- Nulinė konfigūracija diegiant modelius
-- Vizualinė užklausų kūrimo sistema
-- Realiojo laiko testavimo aikštelė
+- Be konfigūracijos modelių diegimas
+- Vizualinė užklausų inžinerija
+- Realaus laiko testavimo aplinka
 - Sklandi MCP serverio integracija
 
-## 📚 Mokymosi Kelionė
+## 📚 Mokymosi kelias
 
-### [🚀 1 modulis: Microsoft Foundry Toolkit pagrindai](./lab1/README.md)
+### [🚀 Modulis 1: Microsoft Foundry Toolkit pagrindai](./lab1/README.md)
 
 **Trukmė**: 15 minučių
 
-- 🛠️ Įdiegti ir sukonfigūruoti Microsoft Foundry Toolkit VS Code
-- 🗂️ Išnagrinėti Modelių katalogą (100+ modelių iš GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Įvaldyti Interaktyvią testavimo vietą realiu laiku
-- 🤖 Sukurti pirmą DI agentą su Agentų kūrėju
-- 📊 Įvertinti modelio veikimą naudojant įmontuotus metrikus (F1, aktualumą, panašumą, nuoseklumą)
-- ⚡ Išmokti partijų apdorojimą ir daugiakanalio palaikymo galimybes
+- 🛠️ Įdiekite ir sukonfigūruokite Microsoft Foundry Toolkit VS Code
+- 🗂️ Tyrinėkite modelių katalogą (100+ modelių iš GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Įvaldykite Interaktyviąją žaidimų aikštelę realaus laiko modeliui testuoti
+- 🤖 Sukurkite pirmąjį AI agentą su Agentų kūrėju
+- 📊 Įvertinkite modelio našumą su įtaisytomis metrikomis (F1, aktualumas, panašumas, nuoseklumas)
+- ⚡ Sužinokite apie partijų apdorojimą ir daugiakanalės palaikymą
 
-**🎯 Mokymosi rezultatas**: Sukurti funkcinį DI agentą ir išsamiai suprasti Microsoft Foundry Toolkit galimybes
+**🎯 Mokymosi rezultatas**: Sukurkite funkcinį AI agentą su Microsoft Foundry Toolkit galimybių išmanymu
 
-### [🌐 2 modulis: MCP su Microsoft Foundry Toolkit pagrindai](./lab2/README.md)
-
-**Trukmė**: 20 minučių
-
-- 🧠 Įvaldyti Model Context Protocol (MCP) architektūrą ir koncepcijas
-- 🌐 Pažinti Microsoft MCP serverių ekosistemą
-- 🤖 Sukurti naršyklės automatizavimo agentą naudojant Playwright MCP serverį
-- 🔧 Integruoti MCP serverius su Microsoft Foundry Toolkit Agentų kūrėju
-- 📊 Sukonfigūruoti ir išbandyti MCP įrankius agentuose
-- 🚀 Eksportuoti ir diegti MCP palaikomus agentus gamybai
-
-**🎯 Mokymosi rezultatas**: Diegti DI agentą, kuris efektyviai naudoja išorinius įrankius per MCP
-
-### [🔧 3 modulis: Pažangus MCP kūrimas su Microsoft Foundry Toolkit](./lab3/README.md)
+### [🌐 Modulis 2: MCP su Microsoft Foundry Toolkit pagrindais](./lab2/README.md)
 
 **Trukmė**: 20 minučių
 
-- 💻 Kurti individualius MCP serverius naudojant Microsoft Foundry Toolkit
-- 🐍 Konfigūruoti ir naudoti naujausią MCP Python SDK (v1.9.3)
-- 🔍 Nustatyti ir naudoti MCP Inspector derinimui
-- 🛠️ Kurti Orų MCP serverį su profesionaliomis derinimo darbo eigos funkcijomis
-- 🧪 Derinti MCP serverius tiek Agentų kūrėjo, tiek Inspector aplinkose
+- 🧠 Įvaldykite Model Context Protocol (MCP) architektūrą ir koncepcijas
+- 🌐 Tyrinėkite Microsoft MCP serverių ekosistemą
+- 🤖 Sukurkite naršyklės automatizavimo agentą naudojant Playwright MCP serverį
+- 🔧 Integruokite MCP serverius su Microsoft Foundry Toolkit Agentų kūrėju
+- 📊 Konfigūruokite ir testuokite MCP įrankius savo agentuose
+- 🚀 Eksportuokite ir diegkite MCP varomus agentus gamybiniam naudojimui
 
-**🎯 Mokymosi rezultatas**: Vystyti ir derinti individualius MCP serverius su moderniais įrankiais
+**🎯 Mokymosi rezultatas**: Diegti AI agentą, papildytą išoriniais įrankiais per MCP
 
-### [🐙 4 modulis: Praktinis MCP kūrimas – Individualus GitHub klonuotojas serveris](./lab4/README.md)
+### [🔧 Modulis 3: Pažangus MCP kūrimas su Microsoft Foundry Toolkit](./lab3/README.md)
+
+**Trukmė**: 20 minučių
+
+- 💻 Kurkite individualius MCP serverius naudojant Microsoft Foundry Toolkit
+- 🐍 Konfigūruokite ir naudokite naujausią MCP Python SDK (v1.9.3)
+- 🔍 Įdiekite ir naudokite MCP Inspector derinimui
+- 🛠️ Sukurkite Orų MCP serverį su profesionaliomis derinimo darbo eigomis
+- 🧪 Derinkite MCP serverius tiek Agentų kūrimo, tiek Inspector aplinkose
+
+**🎯 Mokymosi rezultatas**: Kurti ir derinti individualius MCP serverius su moderniais įrankiais
+
+### [🐙 Modulis 4: Praktinis MCP kūrimas - individualus GitHub klonavimo serveris](./lab4/README.md)
 
 **Trukmė**: 30 minučių
 
-- 🏗️ Kurti realų GitHub klonavimo MCP serverį, skirtą vystymo darbo srautams
-- 🔄 Įgyvendinti išmanų repozitorijų klonavimą su validacija ir klaidų valdymu
-- 📁 Kurti intelektualų katalogų valdymą ir VS Code integraciją
-- 🤖 Naudoti GitHub Copilot Agento režimą su individualiais MCP įrankiais
-- 🛡️ Taikyti gamybai tinkamą patikimumą ir daugiaplatfromiškumą
+- 🏗️ Kurkite realų GitHub klonavimo MCP serverį kūrimo darbo eigoms
+- 🔄 Įgyvendinkite išmanų saugyklų klonavimą su validacija ir klaidų valdymu
+- 📁 Kurkite išmanų katalogų valdymą ir VS Code integraciją
+- 🤖 Naudokite GitHub Copilot agento režimą su individualiais MCP įrankiais
+- 🛡️ Taikykite gamybai paruoštą patikimumą ir daugiaplatforminį suderinamumą
 
-**🎯 Mokymosi rezultatas**: Įdiegti gamybai paruoštą MCP serverį, kuris supaprastina tikrus vystymo procesus
+**🎯 Mokymosi rezultatas**: Diegti gamybai paruoštą MCP serverį, kuris supaprastina tikrąją kūrimo darbo eigą
 
-## 💡 Realaus pasaulio taikymai ir įtaka
+## 💡 Realios taikymo sritys ir poveikis
 
-### 🏢 Įmonių naudojimo scenarijai
+### 🏢 Įmonių naudojimo atvejai
 
 #### 🔄 DevOps automatizavimas
 
-Transformuokite savo vystymo darbo eigą protinga automatika:
+Transformuokite savo kūrimo darbo eigą su išmania automatizacija:
 
-- **Išmanus repozitorijų valdymas**: DI pagrįsti kodo peržiūros ir sujungimo sprendimai
-- **Išmanus CI/CD**: Automatizuotas vamzdynų optimizavimas pagal kodo pokyčius
-- **Klaidų klasifikavimas**: Automatinis klaidų klasifikavimas ir priskyrimas
+- **Išmanus saugyklų valdymas**: AI pagrįstas kodo peržiūra ir sujungimo sprendimai
+- **Išmanus CI/CD**: Automatinis vamzdyno optimizavimas pagal kodo pakeitimus
+- **Problemos triažas**: Automatinė klaidų klasifikacija ir priskyrimas
 
 #### 🧪 Kokybės užtikrinimo revoliucija
 
-Pakelkite testavimą į kitą lygį su DI valdomais sprendimais:
+Pakelkite testavimą su AI pagrįsta automatizacija:
 
-- **Išmanus testų generavimas**: Automatinis išsamų testų rinkinio kūrimas
-- **Vizualinis regresijos testavimas**: DI pagrįstas UI pokyčių aptikimas
+- **Išmanus testų generavimas**: Automatiškai kurkite visapusiškus testų rinkinius
+- **Vizualinis regresijos testavimas**: AI pagrįstas UI pakeitimų aptikimas
 - **Veiklos stebėsena**: Proaktyvus problemų identifikavimas ir sprendimas
 
 #### 📊 Duomenų srauto intelektas
 
-Kurkite išmanesnius duomenų apdorojimo darbo srautus:
+Kurkite išmanesnes duomenų apdorojimo darbo eigas:
 
-- **Adaptuojami ETL procesai**: Savarankiškai optimizuojamos duomenų transformacijos
-- **Anomalijų aptikimas**: Realiojo laiko duomenų kokybės stebėsena
-- **Išmanus maršrutavimas**: Protingas duomenų srauto valdymas
+- **Adaptuojami ETL procesai**: Savęs optimizuojančios duomenų transformacijos
+- **Anomalijų aptikimas**: Realaus laiko duomenų kokybės stebėsena
+- **Išmanus maršrutavimas**: Išmanus duomenų srauto valdymas
 
 #### 🎧 Klientų patirties gerinimas
 
-Kurkite išskirtines klientų sąveikas:
+Kurkite išskirtinius kliento bendravimo sprendimus:
 
-- **Konteksto suvokianti pagalba**: DI agentai su prieiga prie kliento istorijos
-- **Proaktyvus problemų sprendimas**: Prognozuojanti klientų aptarnavimo sistema
-- **Daugialypė integracija**: Vieninga DI patirtis įvairiose platformose
+- **Kontekstualiai jautri pagalba**: AI agentai su prieiga prie kliento istorijos
+- **Proaktyvus problemų sprendimas**: Prognozuojamos klientų paslaugos
+- **Daugiakanalė integracija**: Suvienyta AI patirtis visose platformose
 
 ## 🛠️ Reikalavimai ir paruošimas
 
 ### 💻 Sistemos reikalavimai
 
 | Komponentas | Reikalavimas | Pastabos |
-|-------------|--------------|----------|
-| **Operacinė sistema** | Windows 10+, macOS 10.15+, Linux | Bet kuri moderni OS |
+|-----------|-------------|-------|
+| **Operacinė sistema** | Windows 10+, macOS 10.15+, Linux | Bet kuri šiuolaikinė OS |
 | **Visual Studio Code** | Naujausia stabili versija | Reikalinga Microsoft Foundry Toolkit |
 | **Node.js** | v18.0+ ir npm | MCP serverio kūrimui |
 | **Python** | 3.10+ | Pasirinktinai Python MCP serveriams |
-| **Atmintis** | Mažiausiai 8GB RAM | Rekomenduojama 16GB vietiniams modeliams |
+| **Atmintis** | Bent 8GB RAM | 16GB rekomenduojama vietiniams modeliams |
 
-### 🔧 Vystymo aplinka
+### 🔧 Kūrimo aplinka
 
-#### Rekomenduojami VS Code išplėtimai
+#### Rekomenduojami VS Code papildiniai
 
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python derintuvas** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) – pasirenkamas, bet naudingas
+- **GitHub Copilot** (GitHub.copilot) - pasirinktinai, bet naudinga
 
 #### Pasirinktiniai įrankiai
 
-- **uv**: Modernus Python paketų valdymas
-- **MCP Inspector**: Vizualinis MCP serverių derintojas
-- **Playwright**: Interneto automatizavimo pavyzdžiams
+- **uv**: modernus Python paketų tvarkyklė
+- **MCP Inspector**: vizualinis MCP serverių derinimo įrankis
+- **Playwright**: žiniatinklio automatizavimo pavyzdžiams
 
-## 🎖️ Įgūdžių įsisavinimas ir sertifikavimo kelias
+## 🎖️ Mokymosi rezultatai ir sertifikavimo kelias
 
 ### 🏆 Įgūdžių meistriškumo sąrašas
 
-Užbaigus šias dirbtuves, įgysite meistriškumą šiose srityse:
+Baigę šias dirbtuves, pasieksite meistriškumą:
 
-#### 🎯 Pagrindiniai gebėjimai
+#### 🎯 Pagrindinės kompetencijos
 
-- [ ] **MCP protokolo išmanymas**: Gili architektūros ir įgyvendinimo modelių supratimas
-- [ ] **Microsoft Foundry Toolkit profesionalumas**: Ekspertinis Microsoft Foundry Toolkit naudojimas sparčiam kūrimui
-- [ ] **Individualių serverių kūrimas**: MCP serverių kūrimas, diegimas ir palaikymas gamybai
-- [ ] **Įrankių integravimo kompetencija**: Sklandi DI susiejimas su esamais vystymo procesais
-- [ ] **Probleminių uždavinių sprendimas**: Įgytų įgūdžių taikymas realiose verslo užduotyse
+- [ ] **MCP protokolo valdymas**: Gilus architektūros ir įgyvendinimo šablonų supratimas
+- [ ] **Microsoft Foundry Toolkit įgūdžiai**: Ekspertinis Microsoft Foundry Toolkit naudojimas sparčiam vystymui
+- [ ] **Individualių serverių kūrimas**: Kurti, diegti ir prižiūrėti MCP gamybos serverius
+- [ ] **Įrankių integracijos meistriškumas**: Sklandžiai sujungti AI su esamomis kūrimo darbo eigomis
+- [ ] **Problemų sprendimo pritaikymas**: Pritaikyti įgytus įgūdžius realiems verslo iššūkiams
 
 #### 🔧 Techniniai įgūdžiai
 
-- [ ] Microsoft Foundry Toolkit diegimas ir konfigūravimas VS Code
-- [ ] Individualių MCP serverių projektavimas ir įgyvendinimas
-- [ ] GitHub modelių integravimas su MCP architektūra
-- [ ] Automatizuoto testavimo darbo srautų kūrimas su Playwright
-- [ ] DI agentų diegimas gamybiniam naudojimui
-- [ ] MCP serverių derinimas ir našumo optimizavimas
+- [ ] Įdiegti ir sukonfigūruoti Microsoft Foundry Toolkit VS Code
+- [ ] Suplanuoti ir įgyvendinti individualius MCP serverius
+- [ ] Integruoti GitHub modelius su MCP architektūra
+- [ ] Kurti automatizuotų testavimo darbo eigas su Playwright
+- [ ] Diegti AI agentus gamybiniam naudojimui
+- [ ] Derinti ir optimizuoti MCP serverių našumą
 
 #### 🚀 Pažangios galimybės
 
-- [ ] Įmonių masto DI integracijų architektūra
-- [ ] Saugaus DI programų kūrimo geriausia praktika
-- [ ] Skalabilių MCP serverių architektūrų kūrimas
-- [ ] Specializuotų įrankių grandinių kūrimas specifinėms sritims
-- [ ] Kitų mokymas DI gimtosios plėtros srityje
+- [ ] Kurti įmonių lygmens AI integracijas
+- [ ] Įgyvendinti saugumo geriausias praktikas AI programoms
+- [ ] Projektuoti lengvai plečiamas MCP serverių architektūras
+- [ ] Kurti individualius įrankių rinkinius specifinėms sritims
+- [ ] Mentoruoti kitus AI gimtosios kūrimo srityje
 
-## 📖 Papildomi šaltiniai
+## 📖 Papildomi ištekliai
 
-- [MCP specifikacija (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP specifikacija (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Microsoft Foundry Toolkit GitHub saugykla](https://github.com/microsoft/vscode-ai-toolkit)
-- [Pavyzdiniai MCP serveriai](https://github.com/modelcontextprotocol/servers)
-- [Geriausių praktikų vadovas](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Saugumo geriausios praktikos
+- [Pavyzdinių MCP serverių rinkinys](https://github.com/modelcontextprotocol/servers)
+- [Geriausių praktikų gidas](https://modelcontextprotocol.io/docs/best-practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - saugumo geriausios praktikos
 
 ---
 
-**🚀 Pasiruošę revoliucionizuoti savo DI kūrimo darbo eigą?**
+**🚀 Pasiruošę revoliucionizuoti savo AI kūrimo procesą?**
 
-Kurkime kartu intelektualių programų ateitį su MCP ir Microsoft Foundry Toolkit!
+Kurkime protingų programų ateitį kartu su MCP ir Microsoft Foundry Toolkit!
 
 ## Kas toliau
 
-Tęsti į: [11 modulis: MCP serverio praktinės dirbtuvės](../11-MCPServerHandsOnLabs/README.md)
+Tęskite: [Modulis 11: MCP serverio praktinės dirbtuvės](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

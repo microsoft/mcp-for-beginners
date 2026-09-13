@@ -1,31 +1,33 @@
-# 🚀 MCP Tooling
+# 🚀 MCP Gereedschap
 
 ## 🧠 Overzicht van het MCP Database Integratie Leerpad
 
-Hier leer je hoe je tools gebruikt die MCP gebruiken. Je ervaring met het gebruik van deze tools zal verbeteren naarmate je MCP-servers ermee verbindt.
+Hier leert u hoe u tools kunt gebruiken die MCP gebruiken. Uw ervaring met deze tools zal verbeteren naarmate u MCP-servers eraan koppelt.
 
 ## 🔗 Officiële MCP Bronnen
 
 - 📘 [MCP Documentatie](https://modelcontextprotocol.io/) – Gedetailleerde tutorials en gebruikershandleidingen
-- 📜 [MCP Specificatie (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protocolarchitectuur en technische referenties
-- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDK's, tools en codevoorbeelden
+- 📜 [MCP Specificatie (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protocol architectuur en technische referenties
+- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDK's, tools en voorbeeldcode
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Doe mee aan discussies en draag bij aan de community
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Beveiligingsbest practices en risicomitigaties
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Best practices voor beveiliging en risicobeperking
+
+
 
 ## 🌟 Community en Ondersteuning
 
 ### Hulp Krijgen
 
 - **Azure AI Discord**: [Doe mee voor deskundige ondersteuning](https://discord.com/invite/ByRwuEEgH4)
-- **MCP Community**: [Doe mee aan bredere MCP-discussies](https://github.com/orgs/modelcontextprotocol/discussions)
+- **MCP Community**: [Doe mee aan bredere MCP discussies](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Klaar om te Starten?
+## 🚀 Klaar om te Beginnen?
 
 Begin je reis met **[GitHub Copilot app](./01-copilot-app/README.md)**
 
 ---
 
-*Beheers deze met MCP met deze tools voor verhoogde productiviteit en naadloze integratie.*
+*Beheers deze met MCP met deze tools voor verbeterde productiviteit en naadloze integratie.*
 
 ---
 

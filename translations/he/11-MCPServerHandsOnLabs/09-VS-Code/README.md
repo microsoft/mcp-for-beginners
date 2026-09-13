@@ -1,29 +1,35 @@
 # אינטגרציה עם VS Code
 
-## 🎯 מה מכסה המעבדה הזו
+> [!NOTE]
+> ההגדרות `initializationOptions` במעבדה זו מיועדות ל-MCP של הדוגמה
+> `2025-11-25` handshake. MCP `2026-07-28` מסיר את ה-handshake של האתחול;
+> יש להשתמש במארח ו-SDK שתומכים במטא-דאטה לפי בקשה ו-`server/discover`
+> בעת מעבר לדוגמה זו.
 
-המעבדה הזו מספקת הדרכה מקיפה על שילוב שרת MCP שלך עם VS Code כדי לאפשר שאילתות בשפה טבעית באמצעות AI Chat. תלמד כיצד להגדיר את VS Code לשימוש מיטבי ב-MCP, לפתור בעיות חיבור לשרת, ולנצל את הכוח המלא של אינטראקציות עם בסיסי נתונים בעזרת AI.
+## 🎯 מה מכסה מעבדה זו
+
+מעבדה זו מספקת הדרכה מקיפה על שילוב שרת MCP שלך עם VS Code כדי לאפשר שאילתות בשפה טבעית באמצעות AI Chat. תלמד כיצד להגדיר את VS Code לשימוש מיטבי ב-MCP, לפתור בעיות חיבור לשרת ולנצל את מלוא כוח האינטראקציה עם בסיס הנתונים בתמיכת AI.
 
 ## סקירה כללית
 
-האינטגרציה של MCP עם VS Code משנה את הדרך שבה מפתחים מתקשרים עם בסיסי נתונים ו-APIs באמצעות שפה טבעית. על ידי חיבור שרת MCP הקמעונאי שלך ל-VS Code Chat, תוכל לבצע שאילתות חכמות על נתוני מכירות, קטלוגי מוצרים וניתוח עסקי באמצעות AI שיחתי.
+האינטגרציה של VS Code עם MCP משנה את האופן שבו מפתחים מתקשרים עם בסיסי נתונים ו-APIs באמצעות שפה טבעית. באמצעות חיבור שרת ה-MCP הקמעונאי שלך ל- VS Code Chat, תוכל לאפשר שאילתות חכמות על נתוני מכירות, קטלוגי מוצרים וניתוחים עסקיים באמצעות AI שיחתי.
 
-האינטגרציה הזו מאפשרת למפתחים לשאול שאלות כמו "הראה לי את המוצרים הנמכרים ביותר החודש" או "מצא לקוחות שלא רכשו ב-90 ימים" ולקבל תגובות נתונים מובנות מבלי לכתוב שאילתות SQL.
+אינטגרציה זו מאפשרת למפתחים לשאול שאלות כמו "הראה לי את המוצרים הנמכרים ביותר החודש" או "מצא לקוחות שלא רכשו ב-90 הימים האחרונים" ולקבל תגובות נתונים מובנות ללא כתיבת שאילתות SQL.
 
-## מטרות למידה
+## יעדי למידה
 
-בסיום המעבדה הזו, תוכל:
+בסוף מעבדה זו תוכל:
 
-- **להגדיר** את הגדרות MCP ב-VS Code עבור השרת הקמעונאי שלך  
-- **לשלב** שרתי MCP עם פונקציונליות AI Chat ב-VS Code  
-- **לפתור בעיות** חיבור לשרת MCP ולפתור תקלות  
-- **לייעל** דפוסי שאילתות בשפה טבעית לתוצאות טובות יותר  
-- **להתאים אישית** את סביבת העבודה של VS Code לפיתוח MCP  
-- **לפרוס** תצורות מרובות שרתים לתרחישים מורכבים  
+- **להגדיר** את הגדרות MCP של VS Code לשרת הקמעונאי שלך
+- **לאחד** שרתי MCP עם פונקציונליות AI Chat של VS Code
+- **לתקן** חיבורי שרת MCP ולפתור תקלות
+- **לאופטם** תבניות שאילתות בשפה טבעית לתוצאות טובות יותר
+- **להתאים** את סביבת העבודה של VS Code לפיתוח MCP
+- **לפרוס** קונפיגורציות של שרתים מרובים לתרחישים מורכבים
 
 ## 🔧 הגדרת MCP ב-VS Code
 
-### הגדרה ראשונית והתקנה
+### התקנה והגדרה ראשונית
 
 ```json
 // .vscode/settings.json
@@ -65,23 +71,23 @@
 ### הגדרת סביבה
 
 ```bash
-# .env file for development
+# קובץ .env לפיתוח
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# תצורת Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# אופציונלי: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# תצורת שרת
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 אינטגרציה עם AI Chat
+## 💬 אינטגרציה עם שיחה בינה מלאכותית
 
-### דפוסי שאילתות בשפה טבעית
+### תבניות שאילתות בשפה טבעית
 
 ```typescript
-// Example query patterns for VS Code Chat
+// דפוסי שאילתות לדוגמה עבור VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### דוגמאות לאינטגרציה עם Chat
+### דוגמאות לאינטגרציית שיחה
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### עיצוב תגובות Chat
+### עיצוב תגובות השיחה
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # מדדי מפתח
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # מדדי ביצועים
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # קטגוריה מובילה
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 פתרון בעיות ותקלות
+## 🔍 איתור תקלות ופתרון בעיות
 
-### הגדרת Debug ב-VS Code
+### הגדרת ניטור ב-VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # צור מעצב ספציפי ל-VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # מטפל בקונסולה עבור המסוף של VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# מנהל יומן ניפוי שגיאות גלובלי
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # קבלת פרמטרי חיבור מהסביבה
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # בדיקת חיבור
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # בדיקת שאילתה בסיסית
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # בדיקת גישת סכימה
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # בדיקת יצירת אמבדינג
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # יבוא רכיבי שרת MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # יצירת תצורת בדיקה
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # אתחול שרת
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # קבלת כלים זמינים
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # בדיקת כלי פשוט
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # בדיקת חיבור למסד נתונים
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # בדיקת חיבור ל-Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # בדיקת כלי MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # מצב כללי
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 הגדרות מתקדמות
 
-### תצורת מרובת שרתים
+### הגדרת שרתים מרובים
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### הרחבה מותאמת אישית ל-VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - הרחבת מכירות קמעונאיות מותאמת אישית של MCP
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // רישום פקודות מכירות קמעונאיות של MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // רישום מתג חנות
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // עדכון תצורה
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // ביצוע שאילתות מוגדרות מראש בצ'אט של VS Code
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### הגדרת חבילת הרחבה
+### הגדרת חבילת ההרחבה
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 נקודות מפתח
+## 🎯 סיכום עיקרי הדברים
 
-לאחר השלמת המעבדה הזו, תוכל:
+עם סיום מעבדה זו, תהיה לך:
 
-✅ **הגדרת MCP ב-VS Code**: הגדרה מלאה לשילוב מיטבי של MCP  
-✅ **אינטגרציה עם AI Chat**: יכולות שאילתות בשפה טבעית ב-VS Code  
-✅ **כלי פתרון בעיות**: פתרון תקלות ואבחון חיבורים מקיף  
-✅ **תצורת מרובת שרתים**: הגדרה למספר מופעי שרת MCP  
-✅ **הרחבות מותאמות אישית**: חוויית VS Code משופרת עם תכונות ייחודיות לקמעונאות  
-✅ **מוכנות לייצור**: סביבת פיתוח VS Code מוכנה לארגונים  
+✅ **הגדרת VS Code MCP**: התקנה מלאה לאינטגרציה מיטבית עם MCP  
+✅ **אינטגרציית שיחה AI**: יכולות שאילתות בשפה טבעית ב-VS Code  
+✅ **כלי איתור תקלות**: פתרון תקלות ואבחון חיבורים מקיף  
+✅ **הגדרת שרתים מרובים**: קונפיגורציה להרצת מספר מופעי שרת MCP  
+✅ **הרחבות מותאמות אישית**: חווית משתמש משודרגת עם תכונות קמעונאיות  
+✅ **מוכנות לייצור**: סביבה לפיתוח VS Code המתאימה לארגונים  
 
 ## 🚀 מה הלאה
 
 המשך עם **[מעבדה 10: אסטרטגיות פריסה](../10-Deployment/README.md)** כדי:
 
-- לפרוס שרתי MCP בסביבות ייצור  
-- להגדיר תשתית ענן להרחבה  
-- ליישם CI/CD לפריסה אוטומטית  
-- לנטר ביצועי שרת MCP בייצור  
+- לפרוס שרתי MCP בסביבות ייצור
+- להגדיר תשתיות ענן להתמודדות עם גדילה
+- ליישם צינורות CI/CD לפריסה אוטומטית
+- לנטר ביצועי שרת MCP בייצור
 
 ## 📚 משאבים נוספים
 
 ### פיתוח ב-VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - מדריך רשמי לפיתוח הרחבות  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - תיעוד אינטגרציה של MCP  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - פיתוח TypeScript ב-VS Code  
+- [API של הרחבת VS Code](https://code.visualstudio.com/api) - מדריך רשמי לפיתוח הרחבות
+- [תיעוד MCP ל-VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - תיעוד אינטגרציית MCP
+- [TypeScript ל-VS Code](https://code.visualstudio.com/docs/languages/typescript) - פיתוח TypeScript ב-VS Code
 
 ### פרוטוקול MCP
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - מפרט רשמי של MCP  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - שיטות עבודה מומלצות ליישום  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - יישום MCP ב-Python  
+- [מפרט פרוטוקול Model Context](https://modelcontextprotocol.io/specification) - מפרט רשמי של MCP
+- [שיטות עבודה מומלצות ל-MCP](https://modelcontextprotocol.io/docs/best-practices) - שיטות עבודה מומלצות ליישום
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - יישום MCP בפייתון
 
 ### כלי פיתוח
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - הגדרת פיתוח Python  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - טכניקות Debug מתקדמות  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - אוטומציה והגדרת משימות  
+- [פייתון ב-VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - הגדרת פיתוח בפייתון
+- [איתור תקלות ב-VS Code](https://code.visualstudio.com/docs/editor/debugging) - טכניקות איתור תקלות מתקדמות
+- [משימות ב-VS Code](https://code.visualstudio.com/docs/editor/tasks) - אוטומציה והגדרת משימות
 
 ---
 
-**קודם**: [מעבדה 08: בדיקות ופתרון בעיות](../08-Testing/README.md)  
-**הבא**: [מעבדה 10: אסטרטגיות פריסה](../10-Deployment/README.md)  
+**הקודם**: [מעבדה 08: בדיקות ואיתור תקלות](../08-Testing/README.md)  
+**הבא**: [מעבדה 10: אסטרטגיות פריסה](../10-Deployment/README.md)
 
 ---
 
-**כתב ויתור**:  
-מסמך זה תורגם באמצעות שירות תרגום מבוסס בינה מלאכותית [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עשויים להכיל שגיאות או אי דיוקים. המסמך המקורי בשפתו המקורית צריך להיחשב כמקור הסמכותי. עבור מידע קריטי, מומלץ להשתמש בתרגום מקצועי על ידי אדם. איננו נושאים באחריות לאי הבנות או לפרשנויות שגויות הנובעות משימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**כתב ויתור**:
+מסמך זה תורגם באמצעות שירות תרגום אוטומטי [Co-op Translator](https://github.com/Azure/co-op-translator). למרות שאנו שואפים לדיוק, יש לקחת בחשבון שתרגומים אוטומטיים עלולים להכיל שגיאות או אי-דיוקים. יש להחשיב את המסמך המקורי בשפתו הטבעית כמקור הסמכות. למידע קריטי מומלץ להשתמש בתרגום מקצועי על ידי מתרגם אדם. אנו לא אחראים לכל אי-הבנה או פירוש שגוי הנובע מהשימוש בתרגום זה.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

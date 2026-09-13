@@ -2,7 +2,7 @@
 
 ## Projekt áttekintése
 
-**MCP kezdőknek** egy nyílt forráskódú oktatási tananyag a Model Context Protocol (MCP) elsajátításához – egy szabványosított keretrendszer az AI modellek és ügyfélalkalmazások közötti interakciókhoz. Ez a tárhely átfogó tananyagot és gyakorlati kódpéldákat kínál több programozási nyelven.
+**MCP kezdőknek** egy nyílt forráskódú oktatási tananyag a Model Context Protocol (MCP) - az AI modellek és kliens alkalmazások közötti interakciók szabványosított keretrendszere - elsajátításához. Ez a tároló átfogó tananyagot biztosít gyakorlati kódpéldákkal több programozási nyelven.
 
 ### Kulcs technológiák
 
@@ -15,21 +15,21 @@
 - **Adatbázisok**: PostgreSQL pgvector kiterjesztéssel
 - **Felhőplatformok**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
 - **Build eszközök**: npm, Maven, pip, Cargo
-- **Dokumentáció**: Markdown automatizált többnyelvű fordítással (48+ nyelv)
+- **Dokumentáció**: Markdown automatikus többnyelvű fordítással (48+ nyelv)
 
 ### Architektúra
 
-- **11 fő modul (00-11)**: Szisztematikus tanulási út az alapoktól a haladó témákig
-- **Gyakorlati laborgyakorlatok**: Gyakorlati feladatok komplett megoldási kóddal több nyelven
-- **Minta projektek**: Működő MCP szerver és kliens implementációk
-- **Fordítási rendszer**: Automatizált GitHub Actions munkafolyamat többnyelvű támogatáshoz
-- **Kép állományok**: Központi képtár helyi fordított változatokkal
+- **11 Magmodul (00-11)**: Folyamatos tanulási útvonal az alapoktól a haladó témákig
+- **Gyakorlati laborok**: Kódolási gyakorlatok több nyelvű teljes megoldással
+- **Minta projektek**: Működő MCP szerver és kliens megvalósítások
+- **Fordító rendszer**: Automatikus GitHub Actions munkafolyamat több nyelv támogatására
+- **Képi erőforrások**: Központosított képek mappa fordított verziókkal
 
-## Beállító parancsok
+## Telepítési parancsok
 
-Ez egy dokumentációközpontú tárhely. A legtöbb beállítás az egyes mintaprojektekben és laborgyakorlatokban történik.
+Ez egy dokumentáció-központú tároló. A legtöbb telepítés az egyes minta projektekben és laborokban történik.
 
-### A tárhely beállítása
+### Tároló beállítása
 
 ```bash
 # Klónozd a tárolót
@@ -37,15 +37,15 @@ git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
-### Minta projektekkel való munka
+### Minta projektek kezelése
 
 A minta projektek helye:
 - `03-GettingStarted/samples/` - Nyelvspecifikus példák
-- `03-GettingStarted/01-first-server/solution/` - Első szerver implementációk
-- `03-GettingStarted/02-client/solution/` - Kliens implementációk
-- `11-MCPServerHandsOnLabs/` - Átfogó adatbázis integrációs laborgyakorlatok
+- `03-GettingStarted/01-first-server/solution/` - Első szerver megvalósítások
+- `03-GettingStarted/02-client/solution/` - Kliens megvalósítások
+- `11-MCPServerHandsOnLabs/` - Átfogó adatbázis integrációs laborok
 
-Minden minta projekt saját beállítási utasításokat tartalmaz:
+Minden minta projekthez saját telepítési útmutató tartozik:
 
 #### TypeScript/JavaScript projektek
 ```bash
@@ -74,42 +74,42 @@ mvn spring-boot:run
 
 ### MCP 7-28 készültség
 
-#### Tárhely készültségi ellenőrző lista
+#### Tároló készültségi ellenőrző lista
 
-- [x] **Új közreműködők számára egyértelműség**: Ez a fájl meghatározza a tárhely célját,
-  struktúráját, hozzájárulási szabályokat és minta beállítási útvonalakat.
-- [x] **Pontos build/test/lint parancsok**:
-  - Tárhely dokumentáció lint:
+- [x] **Új közreműködők számára világos**: Ez a fájl határozza meg a tároló célját,
+  szerkezetét, hozzájárulási szabályokat, és a minta telepítési útvonalakat.
+- [x] **Build/test/lint parancsok pontos kapcsolókkal**:
+  - Tároló dokumentáció lint:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Tárhely dokumentáció linkminta ellenőrzés:
+  - Tároló dokumentáció linkminta audit:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
-  - TypeScript minta validáció:
+  - TypeScript minta validálás:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
-  - Python minta validáció:
+  - Python minta validálás:
     `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
-  - Java minta validáció:
+  - Java minta validálás:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
-- [x] **Egy realisztikus munkafolyamat, ami MCP eszközzé válhat**:
+- [x] **Egy valós munkafolyamat ami MCP eszközzé válhat**:
   `validate_curriculum_change`
-- [x] **Bemenetek/kimenetek explicit megadása** (lásd lentebb a specifikációt).
-- [x] **Engedélyek és hibamódok dokumentálva** (lásd lentebb a specifikációt).
-- [x] **CI tesztelhetőség explicit** (determinista parancsok, explicit kilépési kódok,
-  és gépileg olvasható kimenetek).
+- [x] **Bemenetek/kimenetek egyértelműek** (lásd alább a specifikációt).
+- [x] **Engedélyek és hibamódok dokumentáltak** (lásd alább a specifikációt).
+- [x] **CI tesztelhetőség egyértelmű** (determinista parancsok, egyértelmű
+  kilépési kódok, géppel olvasható kimenetek).
 
 #### Jelölt MCP eszköz munkafolyamat: `validate_curriculum_change`
 
 ##### Cél
 
-Ellenőrizni a tananyag dokumentáció változásokat és a példakód egészségi állapotát
-a beolvadás előtt.
+Validálni a tananyagdokumentáció változásait és reprezentatív minta kódok
+egészségét összeolvadás előtt.
 
 ##### Bemenetek
 
-- `changed_paths: string[]` (kötelező) - a PR-ban változott relatív elérési utak.
+- `changed_paths: string[]` (kötelező) - az PR által módosított relatív útvonalak.
 - `run_docs_lint: boolean` (alapértelmezett `true`)
 - `run_links_audit: boolean` (alapértelmezett `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
-  (alapértelmezett mind `false`)
+  (alapértelmezett minden `false`)
 
 ##### Kimenetek
 
@@ -121,105 +121,106 @@ a beolvadás előtt.
 
 ##### Engedélyek
 
-- Csak munkakönyvtár fájlok olvasása és eszköz által generált állományok írása (pl. lint
-  jelentések, teszt logok); nem ír a `translations/` vagy
-  `translated_images/` könyvtárakba.
-- Helyi shell parancsok futtatása.
-- Hálózati hozzáférés csak opcionálisan, a csomaghelyreállításhoz (`npm ci`,
+- Csak a munkaterület fájljainak olvasása és az eszköz által generált eredmények (pl. lint
+  jelentések, teszt naplók) írása; semmilyen írás a `translations/` vagy
+  `translated_images/` mappákba.
+- Helyi shell parancsok végrehajtása.
+- Opcionális hálózati hozzáférés csak csomag-helyreállításhoz (`npm ci`,
   `python -m pip install`, `mvn` függőség feloldás).
-- Nincs jogosultság push-olásra, merge-re vagy módosításra a `translations/` vagy
-  `translated_images/` könyvtárakban.
+- Nincs jogosultság `translations/` vagy
+  `translated_images/` módosításához, pusholásához vagy összeolvasztásához.
 
 ##### Hibamódok
 
 - `E_NO_INPUT_PATHS`: `changed_paths` üres.
-- `E_INVALID_PATH`: bemeneti elérési út kilép a tárhely gyökérből.
-- `E_LINT_FAILED`: markdown lint nem nulla kilépési kóddal állt le.
-- `E_LINK_AUDIT_FAILED`: link ellenőrző parancs nem nulla kilépési kóddal állt le.
-- `E_SAMPLE_TEST_FAILED`: minta teszt/build nem nulla kilépési kóddal állt le.
-- `E_TIMEOUT`: a parancs túllépte a beállított időkorlátot.
+- `E_INVALID_PATH`: bemeneti útvonal kilép a tároló gyökeréből.
+- `E_LINT_FAILED`: markdown lint nem nulla kilépési kóddal kilép.
+- `E_LINK_AUDIT_FAILED`: link audit parancs nem nulla kilépési kóddal kilép.
+- `E_SAMPLE_TEST_FAILED`: minta teszt/build nem nulla kilépési kóddal kilép.
+- `E_TIMEOUT`: parancs túllépte a beállított időkorlátot.
 
 ##### Ajánlott CI szerződés
 
-Az ellenőrzés automatizálásához állíts be egy CI feladatot, amely:
+Az érvényesítés automatizálásához állíts be egy CI feladatot, amely:
 
-- Aktiválódik olyan pull requestek esetén, amelyek `*.md` fájlokat, példakódokat vagy ezt a fájlt érintik.
-- A fent megadott pontos parancsokat futtatja.
-- Megőrzi a logokat műtárgyaként.
-- A feladat hibás lesz nem nulla kilépési kód esetén.
+- Felhúzás kérésekre (pull request), amelyek érintik a `*.md`, minta kódokat vagy ezt a fájlt.
+- Futtatja a fent felsorolt pontos parancsokat.
+- Ment naplókat eredményként.
+- Hibára fut bármely nem nulla kilépési kód esetén.
 
-#### Ha MCP szervert szállítasz erről a tárhelyről
+#### Ha MCP szervert szállítasz innen a tárolóból
 
-- [ ] Olvasd át az MCP 7-28 váznaptárat:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Teszteld a szervered az SDK bétáival:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Távolítsd el a munkamenet és kézfogás feltételezéseket; kezelj minden kérést
-  önálló egységként:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
-- [ ] Küldj `Mcp-Method` és `Mcp-Name` fejléceket nyers HTTP kérésekhez:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Vizsgáld át a kemény kódolt hibakódokat (`missing resource` áthelyezve `-32002`-ről `-32602`-re).
-- [ ] Jelöld és tervezd a migrációt elavult gyökerek, mintavételezés és
-  naplózás esetén:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Migrálj az experimentális `2025-11-25` Tasks API-ról:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Tekintsd át az OAuth és OpenID Connect jogosultságokat:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+- [ ] Olvasd el a végleges MCP `2026-07-28` változásjegyzéket:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Ellenőrizd, hogy a kiválasztott SDK kiadás támogatja-e az MCP `2026-07-28` verziót:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] Távolítsd el a munkamenet- és kézfogás feltételezéseket; minden kérés legyen
+  önálló egység:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
+- [ ] Küldd el a `Mcp-Method` és `Mcp-Name` fejlécet az alap HTTP kérésekhez:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Vizsgáld felül a keménykódolt hibakódokat (`missing resource` áthelyezve a `-32002`-ről `-32602`-re).
+
+- [ ] Áthelyezni a megszűnt Roots, Sampling, Logging és Dynamic Client
+  regisztrációt:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Áttérés az experimentális `2025-11-25` Tasks API-ról:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Felülvizsgálni az OAuth és OpenID Connect engedélyezést a megerősítéshez:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Dokumentációs struktúra
 
-- **Modulok 00-11**: Alap tananyag sorrendben
-- **translations/**: Nyelvspecifikus változatok (automatikusan generált, ne szerkeszd közvetlenül)
-- **translated_images/**: Lokalizált képek (automatikusan generált)
-- **images/**: Forrás képek és ábrák
+- **00-11 modulok**: Alap tananyag tartalma sorrendben
+- **translations/**: Nyelvspecifikus verziók (automatikusan generált, ne szerkessze közvetlenül)
+- **translated_images/**: Lokalizált képek verziói (automatikusan generált)
+- **images/**: Forrás képek és diagramok
 
 ### Dokumentációs változtatások végrehajtása
 
-1. Csak az angol nyelvű markdown fájlokat szerkeszd a gyökér modul könyvtárakban (00-11)
-2. Szükség esetén frissítsd a `images/` könyvtár képeit
+1. Csak az angol markdown fájlokat szerkessze a gyökér modul könyvtárakban (00-11)
+2. Szükség esetén frissítse a képeket az `images/` könyvtárban
 3. A co-op-translator GitHub Action automatikusan generálja a fordításokat
-4. A fordítások újragenerálódnak a main ágra történő push után
+4. A fordítás újragenerálódik, amikor a fő ágra push-olnak
 
 ### Fordítások kezelése
 
-- **Automatizált fordítás**: A GitHub Actions munkafolyamat kezeli az összes fordítást
-- **NE szerkeszd kézzel** a `translations/` könyvtár fájljait
-- A fordítás metaadata minden fordított fájlban beágyazott
-- Támogatott nyelvek: több mint 48 nyelv, köztük arab, kínai, francia, német, hindi, japán, koreai, portugál, orosz, spanyol és sok más
+- **Automatizált fordítás**: A GitHub Actions folyamat kezeli az összes fordítást
+- Ne szerkessze kézzel a `translations/` könyvtár fájljait
+- A fordítási metaadatok minden fordított fájlban beágyazva vannak
+- Támogatott nyelvek: 48+ nyelv, beleértve az arabot, kínait, franciát, németet, hindit, japánt, koreait, portugált, oroszt, spanyolt és még sok mást
 
-## Tesztelési utasítások
+## Tesztelési útmutató
 
-### Dokumentáció ellenőrzés
+### Dokumentáció érvényesítése
 
-Mivel főleg dokumentációs tárhelyről van szó, a tesztelés fókusza:
+Mivel elsősorban dokumentációs tárhelyről van szó, a tesztelés az alábbiakra összpontosít:
 
-1. **Linkminta ellenőrzés**: A Markdown linkek listázása áttekintésre
+1. **Link mintázat ellenőrzése**: Markdown linkek listázása átnézéshez
 
    ```bash
-   # Markdown linkek felsorolása (mintázatellenőrzés)
+   # Markdown linkek listázása (mintavizsgálat)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Kódminta validáció**: A kód példák fordítása/futtatása
+2. **Kód példa validálás**: Ellenőrizze, hogy a kód példák fordíthatók/futtathatók
 
    ```bash
-   # Navigáljon egy adott mintához, és futtassa le a tesztjeit
+   # Navigáljon egy adott mintához, és futtassa annak tesztjeit
    cd 03-GettingStarted/samples/typescript
    npm install && npm test
    ```
 
-3. **Markdown lintelés**: Formázási konzisztencia ellenőrzése
+3. **Markdown linting**: Formázási következetesség ellenőrzése
 
    ```bash
-   # Használja a markdownlint-et, ha szükséges
+   # Használd a markdownlint-et, ha szükséges
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
-### Minta projekt tesztelés
+### Mintaprojekt tesztelése
 
-Minden nyelvspecifikus mintaprojekt saját tesztelési megközelítést alkalmaz:
+Minden nyelvspecifikus mintához saját tesztelési megközelítés tartozik:
 
 #### TypeScript/JavaScript
 ```bash
@@ -239,39 +240,39 @@ mvn test
 mvn verify
 ```
 
-## Kódstílus irányelvek
+## Kód stílus irányelvek
 
-### Dokumentációs stílus
+### Dokumentáció stílusa
 
-- Használj tiszta, kezdőbarát nyelvezetet
-- Több nyelven adj kód példákat, ahol releváns
-- Kövesd a markdown legjobb gyakorlatokat:
-  - Használj ATX stílusú címsorokat (`#` szintaxis)
-  - Használj dettós kódrészleteket nyelvjelzővel
-  - Adj képekhez leíró alt szöveget
-  - Tartsd észszerűen a sorhosszt (nincs szigorú határ, de légy józan)
+- Használjon világos, kezdőknek szóló nyelvezetet
+- Tartalmazzon kód példákat több nyelven, ahol alkalmazható
+- Kövesse a markdown legjobb gyakorlatait:
+  - Használjon ATX stílusú címeket (`#` szintaxis)
+  - Használjon keretes kódblokkokat nyelvazonosítókkal
+  - Tartalmazzon képleíró alt szöveget a képekhez
+  - Tartsa mértékkel a sorhosszakat (nincs kemény korlát, de legyen értelmes)
 
-### Kódminta stílus
+### Kód példa stílusa
 
 #### TypeScript/JavaScript
-- Használj ES modulokat (`import`/`export`)
-- Kövesd a TypeScript szigorú mód konvencióit
-- Adj típus annotációkat
-- Cél verzió: ES2022
+- Használjon ES modulokat (`import`/`export`)
+- Kövesse a TypeScript szigorú mód konvencióit
+- Tartalmazzon típus annotációkat
+- Célzott ES2022
 
 #### Python
-- Kövesd a PEP 8 stílus irányelveket
-- Használj típus jelöléseket, ahol szükséges
-- Adj docstringeket függvényekhez és osztályokhoz
-- Használj modern Python funkciókat (3.8+)
+- Kövesse a PEP 8 stílusirányelveket
+- Használjon típusjelöléseket ahol megfelelő
+- Tartalmazzon docstringeket függvényekhez és osztályokhoz
+- Használjon modern Python funkciókat (3.8+)
 
 #### Java
-- Kövesd a Spring Boot konvenciókat
-- Használj Java 21 funkciókat
-- Kövesd a standard Maven projekt struktúrát
-- Adj Javadoc kommenteket
+- Kövesse a Spring Boot konvenciókat
+- Használjon Java 21 funkciókat
+- Kövesse a szabványos Maven projekt szerkezetet
+- Tartalmazzon Javadoc kommenteket
 
-### Fájlszervezés
+### Fájl szervezés
 
 ```
 <module-number>-<ModuleName>/
@@ -289,111 +290,114 @@ mvn verify
 
 ### Dokumentáció telepítés
 
-A tárhely GitHub Pages vagy hasonló szolgáltatást használ dokumentáció hostingra (ha alkalmazható). A main ágra történő változtatás:
+A tárhely GitHub Pages vagy hasonlót használ dokumentáció hosztolására (ha alkalmazható). A főág változásai kiváltják:
 
-1. Elindítja a fordítási munkafolyamatot (`.github/workflows/co-op-translator.yml`)
-2. Automatikusan lefordít minden angol markdown fájlt
-3. Szükség esetén képek lokalizálása
+1. Fordítási folyamat (`.github/workflows/co-op-translator.yml`)
+2. Minden angol markdown fájl automatikus fordítása
 
-### Build folyamat nem szükséges
+3. Kép lokalizálása szükség szerint
 
-Ez a tárhely elsősorban markdown dokumentációt tartalmaz. Az alap tananyagot nem kell lefordítani vagy buildelni.
+### Nincs szükség build folyamatra
 
-### Minta projekt telepítés
+Ez a tároló elsősorban markdown dokumentációt tartalmaz. A fő tananyag tartalmának nem szükséges fordítási vagy build lépés.
 
-Az egyes mintaprojektek saját telepítési utasításokat tartalmazhatnak:
-- Lásd a `03-GettingStarted/09-deployment/` MCP szerver telepítési útmutatóját
-- Azure Container Apps telepítési példák a `11-MCPServerHandsOnLabs/` könyvtárban
+### Minta projekt telepítése
+
+Egyéni minta projektekhez lehetnek telepítési utasítások:
+- Lásd a `03-GettingStarted/09-deployment/` mappát az MCP szerver telepítési útmutatóért
+- Azure Container Apps telepítési példák a `11-MCPServerHandsOnLabs/` mappában
 
 ## Hozzájárulási irányelvek
 
 ### Pull Request folyamat
 
-1. **Fork és klónozás**: Forkold a tárhelyet, majd klónozd a sajátodat helyileg
-2. **Ág létrehozása**: Használj leíró ág neveket (pl. `fix/typo-module-3`, `add/python-example`)
-3. **Változtatások**: Csak az angol nyelvű markdown fájlokat szerkeszd (nem a fordításokat)
-4. **Helyi tesztelés**: Ellenőrizd, hogy a markdown helyesen jelenik meg
-5. **PR beküldése**: Használj egyértelmű címet és leírást a PR-hoz
-6. **CLA**: Írd alá a Microsoft Contributor License Agreement-et, ha felszólítanak
+1. **Fork és klónozás**: Forkold a tárolót, majd klónozd helyileg a forkodat
+2. **Ág létrehozása**: Használj leíró ágneveket (például `fix/typo-module-3`, `add/python-example`)
+3. **Változtatások**: Szerkeszd csak az angol nyelvű markdown fájlokat (ne a fordításokat)
+4. **Tesztelés helyben**: Ellenőrizd, hogy a markdown helyesen jelenik meg
+5. **PR beküldése**: Használj világos PR címet és leírást
+6. **CLA**: Írd alá a Microsoft Hozzájárulói Licenc Megállapodást, amikor erre kérnek
 
-### PR cím formátuma
+### PR cím formátum
 
-Használj tiszta, leíró címeket:
+Használj egyértelmű, leíró címeket:
 - `[Module XX] Rövid leírás` modul-specifikus változtatásokhoz
-- `[Samples] Leírás` kódpélda változtatásokhoz
-- `[Docs] Leírás` általános dokumentáció frissítésekhez
+- `[Samples] Leírás` mintakód változtatásokhoz
+- `[Docs] Leírás` általános dokumentációs frissítésekhez
 
-### Mit járulj hozzá
+### Mihez járulhatsz hozzá
 
-- Hibajavítások a dokumentációban vagy kódpéldákban
-- Új kód példák további nyelveken
-- Tisztázások és fejlesztések a meglévő tartalmakban
+- Hibajavítások dokumentációban vagy kódmintákban
+- Új kódpéldák további nyelveken
+- Megerősítések és fejlesztések a meglévő tartalomban
 - Új esettanulmányok vagy gyakorlati példák
-- Hibajelentések nem tiszta vagy hibás tartalomra
+- Probléma jelentések homályos vagy hibás tartalomról
 
-### Mit NE csinálj
+### Mit ne tegyél
 
 - Ne szerkeszd közvetlenül a `translations/` könyvtár fájljait
 - Ne szerkeszd a `translated_images/` könyvtárat
-- Ne adj hozzá nagy bináris fájlokat egyeztetés nélkül
-- Ne változtasd a fordítási munkafolyamat fájlokat koordináció nélkül
+- Ne adj hozzá nagy bináris fájlokat megbeszélés nélkül
+- Ne változtass a fordítási munkafolyamat fájlokon előzetes egyeztetés nélkül
 
 ## További megjegyzések
 
-### Tárhely karbantartás
+### Tároló karbantartás
 
-- **Változásnapló**: Minden jelentős változás dokumentálva van a `changelog.md`-ben
-- **Tanulmányi útmutató**: Használd a `study_guide.md`-t a tananyag áttekintéséhez
-- **Hibajegyből sablonok**: Használj GitHub hibajegy sablonokat hibajelentéshez és funkciókéréshez
-- **Magatartási kódex**: Minden közreműködőnek követnie kell a Microsoft Open Source Magatartási kódexét
+- **Változásnapló**: Minden jelentős változás dokumentálva van a `changelog.md` fájlban
+- **Tanulmányi útmutató**: Használd a `study_guide.md`-t a tananyag áttekintő navigációjához
+- **Probléma sablonok**: Használd a GitHub problémasablonjait hibajelentésekhez és funkciókéréshez
+- **Magatartási kódex**: Minden közreműködőnek be kell tartania a Microsoft Nyílt Forráskód Magatartási Kódexet
 
 ### Tanulási útvonal
 
-Kövesd a modulokat sorrendben (00-11) a optimális tanulásért:
+A modulokat sorrendben (00-11) kövesd az optimális tanulás érdekében:
 1. **00-02**: Alapok (Bevezetés, Alapfogalmak, Biztonság)
-2. **03**: Első lépések gyakorlati megvalósítással
+2. **03**: Kezdő lépések gyakorlati megvalósítással
 3. **04-05**: Gyakorlati megvalósítás és haladó témák
-4. **06-10**: Közösség, legjobb gyakorlatok és valós alkalmazások
-5. **11**: Átfogó adatbázis integrációs laborgyakorlatok (13 egymást követő laborgyakorlat)
+4. **06-10**: Közösség, bevált gyakorlatok és valós alkalmazások
+5. **11**: Átfogó adatbázis integrációs laborok (13 egymás utáni labor)
 
 ### Támogatási erőforrások
 
 - **Dokumentáció**: https://modelcontextprotocol.io/
-- **Specifikáció**: https://spec.modelcontextprotocol.io/
+- **Specifikáció**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Közösség**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord szerver
-- **Kapcsolódó tanfolyamok**: Lásd README.md a további Microsoft tanulási útvonalakért
+- **Kapcsolódó tanfolyamok**: Lásd a README.md fájlt más Microsoft tanulási útvonalakért
 
-### Gyakori hibaelhárítás
+### Gyakori hibakeresés
 
-**K: A PR-om elbukik a fordítási ellenőrzésen**
-V: Győződj meg róla, hogy csak az angol nyelvű markdown fájlokat szerkesztetted a gyökér modul könyvtárakban, nem a lefordított verziókat.
+**K: A PR-em elbukik a fordítási ellenőrzésen**
+V: Győződj meg arról, hogy csak az angol nyelvű markdown fájlokat szerkesztetted a gyökér modul könyvtárakban, nem a fordításokat.
 
 **K: Hogyan adhatok hozzá új nyelvet?**
-V: A nyelvi támogatást a co-op-translator munkafolyamat kezeli. Nyiss egy hibajegyet az új nyelvek hozzáadásának megbeszéléséhez.
+V: A nyelvi támogatás a co-op-translator munkafolyamat révén van kezelve. Nyiss egy issue-t az új nyelvek hozzáadása érdekében.
 
-**K: A kód példák nem működnek**
+**K: A kódpéldák nem működnek**
 
-V: Győződjön meg róla, hogy követte a konkrét minta README fájljában található beállítási útmutatót. Ellenőrizze, hogy a megfelelő verziójú függőségek vannak telepítve.
+A: Győződj meg róla, hogy követted a telepítési utasításokat az adott példa README fájljában. Ellenőrizd, hogy a megfelelő verziójú függőségek telepítve vannak.
 
-**K: A képek nem jelennek meg**
-V: Ellenőrizze, hogy a képútvonalak relatívak és perjeleket használnak. A képeknek az `images/` könyvtárban kell lenniük, vagy a lokalizált verzióknál a `translated_images/` mappában.
+
+**K: A képek nem jelennek meg** 
+
+A: Ellenőrizze, hogy a képek elérési útjai relatívak és előre mutató perjeleket használnak. A képeknek az `images/` könyvtárban vagy a lokalizált verziók esetén a `translated_images/` könyvtárban kell lenniük.
 
 ### Teljesítmény szempontok
 
 - A fordítási munkafolyamat több percig is eltarthat
-- Nagy képeket érdemes optimalizálni a commit előtt
-- Tartsa az egyes markdown fájlokat fókuszáltnak és ésszerű méretűnek
+- A nagy méretű képeket optimalizálni kell elkötelezés előtt
+- Tartsa a markdown fájlokat fókuszáltan és ésszerű méretűen
 - Használjon relatív hivatkozásokat a jobb hordozhatóság érdekében
 
-### Projekt irányítás
+### Projektirányítás
 
-Ez a projekt a Microsoft nyílt forráskódú gyakorlatainak megfelelően működik:
+Ez a projekt a Microsoft nyílt forráskódú gyakorlatait követi:
 - MIT licenc a kódra és dokumentációra
-- Microsoft Open Source Code of Conduct
-- CLA kötelező hozzájárulások esetén
-- Biztonsági problémák: Kövesse a SECURITY.md irányelveit
-- Támogatás: Lásd a SUPPORT.md fájlt segélyforrásokért
+- Microsoft nyílt forráskódú magatartási kódex
+- CLA szükséges a hozzájárulásokhoz
+- Biztonsági problémák: Kövesse a SECURITY.md útmutatásait
+- Támogatás: Kérjen segítséget a SUPPORT.md-ben található forrásokból
 
 ---
 

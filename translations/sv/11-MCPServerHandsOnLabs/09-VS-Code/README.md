@@ -1,29 +1,35 @@
 # VS Code-integration
 
-## 🎯 Vad Denna Labb Täcker
+> [!NOTE]
+> Inställningarna `initializationOptions` i denna labb riktar sig mot exempel-MCP:s
+> `2025-11-25`-handshake. MCP `2026-07-28` tar bort initialiseringshandshake;
+> använd en host och SDK som stödjer metadata per förfrågan och `server/discover`
+> när du migrerar detta exempel.
 
-Denna labb ger omfattande vägledning om hur du integrerar din MCP-server med VS Code för att möjliggöra naturliga språkfrågor via AI Chat. Du kommer att lära dig att konfigurera VS Code för optimal användning av MCP, felsöka serveranslutningar och utnyttja den fulla potentialen av AI-assisterade databasinteraktioner.
+## 🎯 Vad denna labb täcker
+
+Denna labb ger omfattande vägledning för att integrera din MCP-server med VS Code för att möjliggöra naturliga språkfrågor via AI Chat. Du lär dig att konfigurera VS Code för optimal MCP-användning, felsöka serveranslutningar och utnyttja AI-assisterad databashantering fullt ut.
 
 ## Översikt
 
-VS Codes MCP-integration förändrar hur utvecklare interagerar med databaser och API:er genom naturligt språk. Genom att ansluta din MCP-server för detaljhandel till VS Code Chat kan du möjliggöra intelligenta frågor om försäljningsdata, produktkataloger och affärsanalys med hjälp av konversations-AI.
+VS Codes MCP-integration förändrar hur utvecklare interagerar med databaser och API:er via naturligt språk. Genom att koppla din detaljhandels-MCP-server till VS Code Chat kan du göra intelligenta förfrågningar om försäljningsdata, produktkataloger och affärsanalys med konverserande AI.
 
-Denna integration gör det möjligt för utvecklare att ställa frågor som "Visa mig de mest sålda produkterna denna månad" eller "Hitta kunder som inte har köpt något på 90 dagar" och få strukturerade datarespons utan att skriva SQL-frågor.
+Denna integration gör det möjligt för utvecklare att ställa frågor som "Visa toppsäljande produkter denna månad" eller "Hitta kunder som inte köpt på 90 dagar" och få strukturerade data-svar utan att skriva SQL-frågor.
 
 ## Lärandemål
 
-Efter denna labb kommer du att kunna:
+I slutet av denna labb ska du kunna:
 
-- **Konfigurera** VS Code MCP-inställningar för din detaljhandelsserver
+- **Konfigurera** VS Code MCP-inställningar för din detaljhandelserver
 - **Integrera** MCP-servrar med VS Code AI Chat-funktionalitet
 - **Felsöka** MCP-serveranslutningar och lösa problem
-- **Optimera** frågemönster med naturligt språk för bättre resultat
+- **Optimera** naturliga språkfrågemönster för bättre resultat
 - **Anpassa** VS Code-arbetsytan för MCP-utveckling
-- **Distribuera** konfigurationer för flera servrar i komplexa scenarier
+- **Distribuera** konfigurationer för multipla servrar i komplexa scenarion
 
 ## 🔧 VS Code MCP-konfiguration
 
-### Grundläggande Installation och Setup
+### Initial installation och uppsättning
 
 ```json
 // .vscode/settings.json
@@ -65,29 +71,29 @@ Efter denna labb kommer du att kunna:
 ### Miljökonfiguration
 
 ```bash
-# .env file for development
+# .env-fil för utveckling
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure-konfiguration
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Valfritt: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Serverkonfiguration
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Arbetsytakonfiguration
+### Arbetsyte-konfiguration
 
 ```json
 // .vscode/launch.json
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 AI Chat-integration
 
-### Frågemönster med Naturligt Språk
+### Naturliga språkfrågemönster
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Exempel på sökfrågemönster för VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Exempel på Chat-integration
+### Chatexempel
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Formatering av Chat-respons
+### Formatering av chatsvar
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Nyckelmetrik
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Prestandaindikatorer
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Toppkategori
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Felsökning och Problemlösning
+## 🔍 Felsökning och problemhantering
 
-### VS Code Debug-konfiguration
+### VS Code-felsökningskonfiguration
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Skapa formatterare specifik för VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konsolhanterare för VS Code-terminalen
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Global debug-loggare
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Felsökning av Anslutningar
+### Problemhantering vid anslutning
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Hämta anslutningsparametrar från miljön
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Testa anslutning
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Testa grundläggande fråga
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Testa schematillgång
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Testa inbäddningsgenerering
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importera MCP-serverkomponenter
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Skapa testkonfiguration
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Initiera server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Hämta tillgängliga verktyg
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Testa ett enkelt verktyg
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Testa databasanslutning
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Testa Azure OpenAI-anslutning
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Testa MCP-verktyg
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Övergripande status
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Avancerad Konfiguration
+## 🚀 Avancerad konfiguration
 
-### Setup för Flera Servrar
+### Multi-server-uppsättning
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Anpassad VS Code Extension
+### Anpassad VS Code-extension
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Anpassad MCP-detaljhandelsförlängning
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Registrera MCP-detaljhandelskommandon
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Registrera butiksväxlare
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Uppdatera konfiguration
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Kör fördefinierade frågor i VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Konfiguration av Extension-paket
+### Konfiguration för extension-paketet
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Viktiga Slutsatser
+## 🎯 Viktiga insikter
 
 Efter att ha genomfört denna labb bör du ha:
 
-✅ **VS Code MCP-konfiguration**: Komplett setup för optimal MCP-integration  
-✅ **AI Chat-integration**: Möjlighet att göra naturliga språkfrågor i VS Code  
-✅ **Felsökningsverktyg**: Omfattande problemlösning och diagnostik av anslutningar  
-✅ **Setup för Flera Servrar**: Konfiguration för flera MCP-serverinstanser  
-✅ **Anpassade Extensions**: Förbättrad VS Code-upplevelse med detaljhandelsspecifika funktioner  
-✅ **Produktionsberedskap**: Enterprise-redo VS Code-utvecklingsmiljö  
+✅ **VS Code MCP-konfiguration**: Fullständig uppsättning för optimal MCP-integration  
+✅ **AI Chat-integration**: Naturliga språkfrågefärdigheter i VS Code  
+✅ **Felsökningsverktyg**: Omfattande problemlösning och anslutningsdiagnostik  
+✅ **Multi-server-uppsättning**: Konfiguration för flera MCP-serverinstanser  
+✅ **Anpassade extensions**: Förbättrad VS Code-upplevelse med detaljhandels-specifika funktioner  
+✅ **Produktionberedskap**: Företagsredo VS Code-utvecklingsmiljö  
 
-## 🚀 Vad Kommer Härnäst
+## 🚀 Vad blir nästa steg
 
-Fortsätt med **[Lab 10: Distributionsstrategier](../10-Deployment/README.md)** för att:
+Fortsätt med **[Labb 10: Distributionsstrategier](../10-Deployment/README.md)** för att:
 
 - Distribuera MCP-servrar till produktionsmiljöer
 - Konfigurera molninfrastruktur för skalbarhet
-- Implementera CI/CD-pipelines för automatiserad distribution
-- Övervaka prestanda för MCP-servrar i produktion
+- Implementera CI/CD-pipelines för automatiserad driftsättning
+- Övervaka MCP-serverns prestanda i produktion
 
-## 📚 Ytterligare Resurser
+## 📚 Ytterligare resurser
 
 ### VS Code-utveckling
-- [VS Code Extension API](https://code.visualstudio.com/api) - Officiell guide för utveckling av extensions
-- [VS Code MCP-dokumentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentation för MCP-integration
+- [VS Code Extension API](https://code.visualstudio.com/api) - Officiell guide för extension-utveckling
+- [VS Code MCP-dokumentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP-integrationsdokumentation
 - [TypeScript för VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript-utveckling i VS Code
 
 ### MCP-protokoll
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Officiell MCP-specifikation
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Bästa praxis för implementering
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python-implementation av MCP
+- [MCP bästa praxis](https://modelcontextprotocol.io/docs/best-practices) - Implementeringsriktlinjer
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP-implementation
 
 ### Utvecklingsverktyg
-- [Python i VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Setup för Python-utveckling
+- [Python i VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Uppsättning för Python-utveckling
 - [Felsökning i VS Code](https://code.visualstudio.com/docs/editor/debugging) - Avancerade felsökningstekniker
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Automatisering och konfiguration av uppgifter
+- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Automatisering och uppgiftskonfiguration
 
 ---
 
-**Föregående**: [Lab 08: Testning och Felsökning](../08-Testing/README.md)  
-**Nästa**: [Lab 10: Distributionsstrategier](../10-Deployment/README.md)
+**Föregående**: [Labb 08: Testning och felsökning](../08-Testing/README.md)  
+**Nästa**: [Labb 10: Distributionsstrategier](../10-Deployment/README.md)
 
 ---
 
-**Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, bör det noteras att automatiserade översättningar kan innehålla fel eller felaktigheter. Det ursprungliga dokumentet på dess ursprungliga språk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfriskrivning**:
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,28 +1,36 @@
-> [ATSISAKYTA: 2026-07-28 IŠLEIDIMO KANDIDATAS](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Mėginimas yra nepraktikuojamas MCP `2026-07-28`. Ši pamoka laikoma
+> paveldėtomis įgyvendinimo versijomis. Nauji serveriai turėtų integruotis tiesiogiai su LLM
+> teikėjo API.
 
-# Imties ėmimas - deleguoti funkcijas Klientui
+# Mėginimas - funkcijų delegavimas klientui
 
-> **Atsisakymo pranešimas:** `2026-07-28` MCP specifikacijos išleidimo kandidatas žymi Imties ėmimą kaip atsisakytiną, rekomenduojant tiesioginę integraciją su LLM tiekėjų API. Imties ėmimas toliau veikia `2025-11-25` verijoje ir bent metus po bet kokio formalio atsisakymo, todėl visa ši pamoka išlieka galiojanti — tačiau nauji serverio dizainai turėtų įvertinti pakeitimo modelį. Žr. [Kas keičiasi MCP: 2026-07-28 Išleidimo kandidatas](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Mėginimas lieka `2026-07-28` specifikacijoje suderinamumui ir gali būti
+> pašalintas pirmame pakeitime, išleistame nuo 2027 m. liepos 28 d. ar vėliau.
+> Šios pamokos pavyzdžiai gali naudoti SDK API, kurie įgyvendina `2025-11-25`.
+> Žr. [Kas pasikeitė MCP: 2026-07-28 specifikacija](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Kartais reikia, kad MCP Klientas ir MCP Serveris bendradarbiautų, siekdami bendro tikslo. Gali būti situacijų, kai Serveriui reikia LLM pagalbos, esančios kliento pusėje. Tokiu atveju turėtumėte naudoti imties ėmimą (Sampling).
+Paveldėtuose įgyvendinimuose mėginimas leidžia MCP serveriui paprašyti pagalbos iš LLM,
+kurį valdo klientas. Naujuose įgyvendinimuose kvieskite pasirinktą LLM teikėją
+tiesiogiai.
 
-Pažvelkime į keletą naudojimo atvejų ir kaip sukurti sprendimą, kuriame naudojamas imties ėmimas.
+Pažiūrėkime į kai kuriuos naudojimo atvejus ir kaip sukurti sprendimą, apimantį mėginimą.
 
 ## Apžvalga
 
-Šioje pamokoje dėmesys sutelktas į tai, kada ir kur naudoti Imties ėmimą bei kaip jį konfigūruoti.
+Šioje pamokoje sutelksime dėmesį į tai, kada ir kur naudoti mėginimą ir kaip jį sukonfigūruoti.
 
 ## Mokymosi tikslai
 
 Šiame skyriuje mes:
 
-- Paaiškinsime, kas yra Imties ėmimas ir kada jį naudoti.
-- Parodysime, kaip konfigūruoti Imties ėmimą MCP.
-- Pateiksime Imties ėmimo pavyzdžių veikiant.
+- Paaiškinsime, kas yra mėginimas ir kada jį naudoti.
+- Parodysime, kaip sukonfigūruoti mėginimą MCP.
+- Pateiksime pavyzdžius, kaip veikia mėginimas.
 
-## Kas yra Imties ėmimas ir kodėl jį naudoti?
+## Kas yra mėginimas ir kodėl jį naudoti?
 
-Imties ėmimas yra pažangi funkcija, veikiančią šiuo būdu:
+Mėginimas yra pažangi funkcija, veikianti taip:
 
 ```mermaid
 sequenceDiagram
@@ -32,18 +40,18 @@ sequenceDiagram
     participant MCP Server
 
     User->>MCP Client: Autoriaus tinklaraščio įrašas
-    MCP Client->>MCP Server: Įrankio kvietimas (tinklaraščio įrašo juodraštis)
-    MCP Server->>MCP Client: Imties prašymas (sukurti santrauką)
-    MCP Client->>LLM: Sugeneruoti tinklaraščio įrašo santrauką
+    MCP Client->>MCP Server: Įrankio iškvietimas (tinklaraščio įrašo juodraštis)
+    MCP Server->>MCP Client: Imties užklausa (sukurti santrauką)
+    MCP Client->>LLM: Sukurti tinklaraščio įrašo santrauką
     LLM->>MCP Client: Santraukos rezultatas
     MCP Client->>MCP Server: Imties atsakymas (santrauka)
-    MCP Server->>MCP Client: Baigtas tinklaraščio įrašas (juodraštis + santrauka)
+    MCP Server->>MCP Client: Užbaigtas tinklaraščio įrašas (juodraštis + santrauka)
     MCP Client->>User: Tinklaraščio įrašas paruoštas
 ```
 
-### Imties ėmimo užklausa
+### Mėginimo užklausa
 
-Gerai, turime platų patikimos situacijos vaizdą, pažiūrėkime, kokia atrodo imties ėmimo užklausa, kurią serveris siunčia klientui. Štai kaip tokia užklausa gali atrodyti JSON-RPC formatu:
+Gerai, dabar turime aukšto lygio patikimą scenarijų, aptarkime mėginimo užklausą, kurią serveris siunčia atgal klientui. Štai kaip tokia užklausa gali atrodyti JSON-RPC formatu:
 
 ```json
 {
@@ -75,17 +83,17 @@ Gerai, turime platų patikimos situacijos vaizdą, pažiūrėkime, kokia atrodo 
 }
 ```
 
-Čia verta atkreipti dėmesį į keletą dalykų:
+Yra keletas dalykų, kuriuos verta paminėti:
 
-- Prompt, po content -> text, yra mūsų užklausa, t.y. instrukcija LLM suvesti tinklaraščio įrašo turinį.
+- Prompt, po content -> text, yra mūsų paragrafas, tai instrukcija LLM apibendrinti tinklaraščio įrašą.
 
-- **modelPreferences**. Ši dalis yra pageidavimų skyrius, rekomendacija, kokią LLM konfigūraciją naudoti. Vartotojas gali pasirinkti naudoti šias rekomendacijas arba jas keisti. Šiuo atveju yra rekomendacijų dėl modelio, greičio ir intelekto prioriteto.
-- **systemPrompt**, tai jūsų įprastinė sistemos užklausa, suteikianti LLM asmenybę ir turinti nurodymus.
-- **maxTokens**, tai kita savybė, nurodanti, kiek žetonų rekomenduojama naudoti šiam užduočiai.
+- **modelPreferences**. Ši skiltis yra tiesiog pageidavimas, rekomendacija, kokią konfigūraciją naudoti su LLM. Vartotojas gali pasirinkti sekti šias rekomendacijas arba jas keisti. Šiuo atveju yra rekomendacijos apie modelį naudoti, greitį ir intelekto prioritetą.
+- **systemPrompt**, tai įprastas sistemos paragrafas, suteikiantis LLM asmenybę ir turintis gaires.
+- **maxTokens**, tai dar viena savybė, kuri nurodo, kiek žetonų rekomenduojama naudoti šiai užduočiai.
 
-### Imties ėmimo atsakymas
+### Mėginimo atsakymas
 
-Šis atsakymas yra tai, ką MCP Klientas siunčia atgal MCP Serveriui ir kuris yra kliento kvietimo LLM rezultatas, laukiamas atsakymas ir tada sukonstruojamas pranešimas. Štai kaip tai atrodo JSON-RPC formatu:
+Šis atsakymas yra tai, ką MCP klientas galiausiai siunčia atgal MCP serveriui ir yra kliento kvietimo LLM rezultatas, laukimo atsakymo ir šio pranešimo konstravimo rezultatas. Štai kaip tai gali atrodyti JSON-RPC:
 
 ```json
 {
@@ -103,13 +111,13 @@ Gerai, turime platų patikimos situacijos vaizdą, pažiūrėkime, kokia atrodo 
 }
 ```
 
-Atkreipkite dėmesį, kad atsakymas yra tinklaraščio įrašo santrauka, kaip ir prašėme. Taip pat matykite, kad naudotas `model` nėra tas, kurio prašėme, bet "gpt-5" vietoje "claude-3-sonnet". Tai iliustruoja, kad vartotojas gali pasirinkti, ką naudoti, ir jūsų imties užklausa yra rekomendacija.
+Pažymėkite, kad atsakymas yra tinklaraščio įrašo santrauka, kaip ir prašėme. Taip pat pastebėkite, kad naudotas `model` nėra tas, kurio prašėme, o "gpt-5" vietoje "claude-3-sonnet". Tai iliustruoja, kad vartotojas gali pakeisti nuomonę dėl naudojamo modelio ir kad jūsų mėginimo užklausa yra rekomendacija.
 
-Gerai, dabar, kai suprantame pagrindinį srautą ir naudingą užduotį „tinklaraščio įrašo kūrimas + santrauka“, pažiūrėkime, ką turime padaryti, kad tai veiktų.
+Gerai, dabar, kai suprantame pagrindinį srautą ir naudingą užduotį, pvz., „tinklaraščio įrašo kūrimas + santrauka“, pažiūrėkime, ką reikia padaryti, kad tai veiktų.
 
 ### Žinučių tipai
 
-Imties ėmimo žinutės nėra ribojamos tik tekstu, bet galite siųsti ir paveikslėlius bei garsą. Štai kaip JSON-RPC atrodo kitaip:
+Mėginimo žinutės nėra apribotos tik tekstu, bet taip pat galite siųsti vaizdus ir garsą. Štai kaip JSON-RPC atrodo kitaip:
 
 **Tekstas**
 
@@ -120,7 +128,7 @@ Imties ėmimo žinutės nėra ribojamos tik tekstu, bet galite siųsti ir paveik
 }
 ```
 
-**Paveikslėlio turinys**
+**Vaizdo turinys**
 
 ```json
 {
@@ -140,13 +148,14 @@ Imties ėmimo žinutės nėra ribojamos tik tekstu, bet galite siųsti ir paveik
 }
 ```
 
-> PASTABA: daugiau informacijos apie Imties ėmimą rasite [oficialioje dokumentacijoje](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> PASTABA: Dėl dabartinės būsenos ir migracijos gairių žr.
+> [nebeveikiančią mėginimo dokumentaciją](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Kaip konfigūruoti Imties ėmimą Kliente
+## Kaip sukonfigūruoti mėginimą klientui
 
-> Pastaba: jei kuriate tik serverį, čia daug ko daryti nereikia.
+> Pastaba: jei statote tik serverį, daug nereikia daryti čia.
 
-Kliente turite nurodyti šią funkciją taip:
+Klientui reikia nurodyti šią funkciją taip:
 
 ```json
 {
@@ -156,16 +165,16 @@ Kliente turite nurodyti šią funkciją taip:
 }
 ```
 
-Tai bus priimta, kai jūsų pasirinktas klientas inicijuos ryšį su serveriu.
+Tai bus įtrauktas, kai pasirinktas klientas inicijuosis su serveriu.
 
-## Imties ėmimo pavyzdys veikime - sukurti tinklaraščio įrašą
+## Mėginimo veiksmo pavyzdys - tinklaraščio įrašo kūrimas
 
-Sukurkime kartu imties serverį, mums reikės padaryti šiuos veiksmus:
+Koduokime mėginimo serverį kartu, reikės atlikti šiuos veiksmus:
 
 1. Sukurti įrankį serveryje.
-1. Šis įrankis turėtų sukurti imties užklausą.
-1. Įrankis turėtų laukti, kol kliento imties užklausa bus atsakyta.
-1. Tada turi būti pagamintas įrankio rezultatas.
+1. Šis įrankis turėtų sukurti mėginimo užklausą.
+1. Įrankis turėtų laukti, kol klientas atsakys į mėginimo užklausą.
+1. Tada sukurkite įrankio rezultatą.
 
 Pažiūrėkime kodą žingsnis po žingsnio:
 
@@ -180,7 +189,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Sukurkite imties užklausą
+### -2- Sukurkite mėginimo užklausą
 
 Išplėskite savo įrankį šiuo kodu:
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Laukite atsakymo ir grąžinkite atsakymą
+### -3- Palaukite atsakymo ir grąžinkite jį
 
 **python**
 
@@ -217,7 +226,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# grąžinti galutinį produktą
+# grąžinkite pilną produktą
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -286,7 +295,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # grąžinti visą tinklaraščio įrašą
+    # grąžina visą tinklaraščio įrašą
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -297,15 +306,15 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# paleisti programą su: python server.py
+# paleiskite programą su: python server.py
 ```
 
-### -5- Testavimas Visual Studio Code
+### -5- Testavimas Visual Studio Code aplinkoje
 
-Norėdami tai patikrinti Visual Studio Code, atlikite šiuos veiksmus:
+Norėdami tai išbandyti Visual Studio Code, atlikite šiuos veiksmus:
 
-1. Paleiskite serverį terminale.
-1. Įtraukite jį į *mcp.json* (ir įsitikinkite, kad jis veikia), pvz., štai taip:
+1. Paleiskite serverį terminale
+1. Įtraukite jį į *mcp.json* (ir įsitikinkite, kad jis paleistas), pvz., taip:
 
    ```json
    "servers": {
@@ -316,29 +325,29 @@ Norėdami tai patikrinti Visual Studio Code, atlikite šiuos veiksmus:
    }
    ```
 
-1. Įveskite užklausą:
+1. Įveskite paragrafą:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Leiskite vykti imčiai. Pirmą kartą testuodami matysite papildomą dialogo langą, kurį turėsite patvirtinti, tuomet pasirodys įprastas dialogas, prašantis paleisti įrankį.
+1. Leiskite vykti mėginimui. Pirmą kartą testuodami būsite pateikti papildomu dialogu, kurį turėsite priimti, tada pamatysite įprastą dialogą, prašantį paleisti įrankį
 
-1. Apžiūrėkite rezultatus. Matysite rezultatus gražiai atvaizduotus GitHub Copilot Chat, taip pat galėsite peržiūrėti žalią JSON atsakymą.
+1. Peržiūrėkite rezultatus. Matysite rezultatus gražiai pateiktus GitHub Copilot Chat, bet taip pat galite patikrinti neapdorotą JSON atsakymą.
 
-**Papildymas**. Visual Studio Code įrankiai puikiai palaiko imties ėmimą. Galite konfigūruoti Imties prieigą savo įdiegto serveryje, eidami taip:
+**Bonus**. Visual Studio Code įrankiai puikiai palaiko mėginimą. Galite sukonfigūruoti Mėginimo prieigą savo įdiegtame serveryje taip:
 
 1. Eikite į plėtinių skyrių.
-1. Pasirinkite krumpliaračio piktogramą savo įdiegtam serveriui „MCP SERVERS - INSTALLED“ skiltyje.
-1 Pasirinkite „Configure Model Access“, čia galite pasirinkti, kuriuos modelius GitHub Copilot gali naudoti atlikdamas imties ėmimą. Taip pat galite matyti visas nesenas imties užklausas, pasirinkdami „Show Sampling requests“.
+1. Pasirinkite varnelę savo įdiegto serverio dalyje "MCP SERVERS - INSTALLED".
+1 Pasirinkite "Configure Model Access", čia galite pasirinkti, kokius modelius GitHub Copilot gali naudoti vykdydamas mėginimą. Taip pat galite matyti visus neseniai įvykusius mėginimo užklausimus pasirinkdami "Show Sampling requests".
 
 ## Užduotis
 
-Šioje užduotyje kursite šiek tiek kitokį Imties ėmimą, būtent – imties integraciją, palaikančią produkto aprašymo generavimą. Štai jūsų scenarijus:
+Šioje užduotyje kursite šiek tiek kitokį Mėginimą, būtent mėginimo integraciją, palaikančią produkto aprašymo generavimą. Štai jūsų scenarijus:
 
-**Scenarijus**: E-komercijos biuro darbuotojui reikia pagalbos, nes produkto aprašymų generavimas užtrunka pernelyg ilgai. Todėl turite sukurti sprendimą, kuriame galite iškviesti įrankį „create_product“ su „title“ ir „keywords“ argumentais, o jis turi pagaminti pilną produktą, įskaitant „description“ lauką, kurį užpildo kliento LLM.
+**Scenarijus**: el. prekybos įmonės administracijos darbuotojui reikia pagalbos, nes produkto aprašymų kūrimas užima per daug laiko. Todėl turite sukurti sprendimą, kuriame galite iškviesti įrankį "create_product" su argumentais "title" ir "keywords", ir jis turėtų sukurti pilną produktą, įskaitant "description" lauką, kuris turi būti užpildytas kliento LLM.
 
-PATARIMAS: naudokite anksčiau įgytas žinias, kad sukurtumėte šį serverį ir jo įrankį, naudodami imties užklausą.
+Patarimas: naudokite anksčiau išmoktą medžiagą, kad sukurtumėte šį serverį ir jo įrankį naudodami mėginimo užklausą.
 
 ## Sprendimas
 
@@ -346,11 +355,12 @@ PATARIMAS: naudokite anksčiau įgytas žinias, kad sukurtumėte šį serverį i
 
 ## Pagrindinės išvados
 
-Imties ėmimas yra galinga funkcija, leidžianti serveriui deleguoti užduotis klientui, kai reikia LLM pagalbos.
+
+Atranka yra galinga funkcija, leidžianti serveriui perduoti užduotis klientui, kai jam reikia LLM pagalbos.
 
 ## Kas toliau
 
-- [4 skyrius - praktinė įgyvendinimas](../../04-PracticalImplementation/README.md)
+- [4 skyrius – praktinė įgyvendinimas](../../04-PracticalImplementation/README.md)
 
 ---
 

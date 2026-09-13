@@ -1,6 +1,11 @@
 # 🔧 Modul 3: Napredni razvoj MCP-a s Microsoft Foundry Toolkitom
 
-![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
+> [!NOTE]
+> URL-ovi Inspektora u ovom laboratoriju koriste naslijeđenu `/sse` točku pristupa i ciljaju
+> fiksirane ovisnosti MCP SDK-a `1.9.3` i Inspektora `0.14.0`. Nisu
+> aktualni primjerci Streamable HTTP `2026-07-28`.
+
+![Trajanje](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
@@ -10,38 +15,38 @@
 
 Do kraja ovog laboratorija moći ćete:
 
-- ✅ Kreirati prilagođene MCP poslužitelje koristeći Microsoft Foundry Toolkit
-- ✅ Konfigurirati i koristiti najnoviji MCP Python SDK (verzija 1.9.3)
-- ✅ Postaviti i koristiti MCP Inspector za ispravljanje pogrešaka
-- ✅ Ispravljati pogreške MCP poslužitelja u Agent Builder i Inspector okruženjima
-- ✅ Razumjeti napredne radne tokove razvoja MCP poslužitelja
+- ✅ Kreirati prilagođene MCP servere koristeći Microsoft Foundry Toolkit
+- ✅ Konfigurirati i koristiti najnoviji MCP Python SDK (v1.9.3)
+- ✅ Postaviti i koristiti MCP Inspektor za otklanjanje pogrešaka
+- ✅ Otklanjati pogreške MCP servera u Agent Builderu i Inspektoru
+- ✅ Razumjeti napredne tijekove rada u razvoju MCP servera
 
 ## 📋 Preduvjeti
 
-- Završetak laboratorija 2 (MCP Osnove)
-- VS Code s instaliranim Microsoft Foundry Toolkit dodatkom
-- Python 3.10+ okruženje
-- Node.js i npm za postavljanje Inspectora
+- Završetak Laboratorija 2 (Osnove MCP-a)
+- VS Code s instaliranim Microsoft Foundry Toolkit proširenjem
+- Python okruženje 3.10 ili novije
+- Node.js i npm za postavljanje Inspektora
 
 ## 🏗️ Što ćete izraditi
 
 U ovom laboratoriju izradit ćete **Weather MCP Server** koji demonstrira:
-- Prilagođenu implementaciju MCP poslužitelja
+- Prilagođenu implementaciju MCP servera
 - Integraciju s Microsoft Foundry Toolkit Agent Builderom
-- Profesionalne radne tokove za ispravljanje pogrešaka
-- Moderni obrazac korištenja MCP SDK-a
+- Profesionalne tijekove otklanjanja pogrešaka
+- Moderne obrasce korištenja MCP SDK-a
 
 ---
 
 ## 🔧 Pregled osnovnih komponenti
 
 ### 🐍 MCP Python SDK
-Model Context Protocol Python SDK pruža temelj za izgradnju prilagođenih MCP poslužitelja. Koristit ćete verziju 1.9.3 s poboljšanim mogućnostima ispravljanja pogrešaka.
+Model Context Protocol Python SDK pruža temelj za izgradnju prilagođenih MCP servera. Koristit ćete verziju 1.9.3 s poboljšanim mogućnostima otklanjanja pogrešaka.
 
-### 🔍 MCP Inspector
-Moćan alat za ispravljanje pogrešaka koji pruža:
-- Praćenje poslužitelja u stvarnom vremenu
-- Vizualizaciju izvršenja alata
+### 🔍 MCP Inspektor
+Moćan alat za otklanjanje pogrešaka koji pruža:
+- Praćenje servera u stvarnom vremenu
+- Vizualizaciju izvođenja alata
 - Inspekciju mrežnih zahtjeva/odgovora
 - Interaktivno testno okruženje
 
@@ -51,21 +56,21 @@ Moćan alat za ispravljanje pogrešaka koji pruža:
 
 ### Korak 1: Izradite WeatherAgent u Agent Builderu
 
-1. **Pokrenite Agent Builder** u VS Codeu preko Microsoft Foundry Toolkit dodatka
-2. **Izradite novog agenta** sa sljedećom konfiguracijom:
-   - Ime agenta: `WeatherAgent`
+1. **Pokrenite Agent Builder** u VS Codeu kroz Microsoft Foundry Toolkit ekstenziju
+2. **Kreirajte novog agenta** s konfiguracijom:
+   - Naziv agenta: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/hr/Agent.c9c33f6a412b4cde.webp)
+![Kreiranje agenta](../../../../translated_images/hr/Agent.c9c33f6a412b4cde.webp)
 
 ### Korak 2: Inicijalizirajte MCP Server projekt
 
 1. **Idite na Tools** → **Add Tool** u Agent Builderu
 2. **Odaberite "MCP Server"** iz dostupnih opcija
-3. **Odaberite "Create A new MCP Server"**
-4. **Izaberite `python-weather` predložak**
-5. **Imenujte svoj poslužitelj:** `weather_mcp`
+3. **Izaberite "Create A new MCP Server"**
+4. **Odaberite predložak `python-weather`**
+5. **Nazovite svoj server:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/hr/Pythontemplate.9d0a2913c6491500.webp)
+![Odabir Python predloška](../../../../translated_images/hr/Pythontemplate.9d0a2913c6491500.webp)
 
 ### Korak 3: Otvorite i pregledajte projekt
 
@@ -88,31 +93,31 @@ Moćan alat za ispravljanje pogrešaka koji pruža:
 
 ### Korak 4: Nadogradite na najnoviji MCP SDK
 
-> **🔍 Zašto nadograditi?** Želimo koristiti najnoviji MCP SDK (verzija 1.9.3) i Inspector servis (0.14.0) za poboljšane značajke i bolje mogućnosti ispravljanja pogrešaka.
+> **🔍 Zašto nadograditi?** Želimo koristiti najnoviji MCP SDK (v1.9.3) i Inspektor uslugu (0.14.0) za poboljšane značajke i bolju mogućnost otklanjanja pogrešaka.
 
 #### 4a. Ažurirajte Python ovisnosti
 
-**Uredite `pyproject.toml`:** update [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**Uredite `pyproject.toml`:** ažurirajte [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. Ažurirajte konfiguraciju Inspectora
+#### 4b. Ažurirajte konfiguraciju Inspektora
 
-**Uredite `inspector/package.json`:** update [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**Uredite `inspector/package.json`:** ažurirajte [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Ažurirajte ovisnosti Inspectora
+#### 4c. Ažurirajte ovisnosti Inspektora
 
-**Uredite `inspector/package-lock.json`:** update [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**Uredite `inspector/package-lock.json`:** ažurirajte [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Napomena:** Ova datoteka sadrži opsežne definicije ovisnosti. Dolje je prikazana osnovna struktura - puna sadržaj osigurava pravilno rješavanje ovisnosti.
+> **📝 Napomena:** Ova datoteka sadrži opsežne definicije ovisnosti. Ispod je osnovna struktura - cijeli sadržaj osigurava pravilno razrješenje ovisnosti.
 
 
-> **⚡ Potpuni Package Lock:** Kompletni package-lock.json sadrži ~3000 redaka definicija ovisnosti. Gore je prikazana ključna struktura - koristite priloženu datoteku za potpunu rezoluciju ovisnosti.
+> **⚡ Potpuni Package Lock:** Cjelokupna datoteka package-lock.json sadrži oko 3000 linija definicija ovisnosti. Iznad je prikazana ključna struktura - koristite danu datoteku za cjelovito razrješenje ovisnosti.
 
-### Korak 5: Konfigurirajte ispravljanje pogrešaka u VS Codeu
+### Korak 5: Konfigurirajte otklanjanje pogrešaka u VS Codeu
 
 *Napomena: Molimo kopirajte datoteku na naznačenoj lokaciji kako biste zamijenili odgovarajuću lokalnu datoteku*
 
-#### 5a. Ažurirajte Launch konfiguraciju
+#### 5a. Ažurirajte konfiguraciju za pokretanje
 
 **Uredite `.vscode/launch.json`:**
 
@@ -296,31 +301,31 @@ Moćan alat za ispravljanje pogrešaka koji pruža:
 
 ---
 
-## 🚀 Pokretanje i testiranje MCP poslužitelja
+## 🚀 Pokretanje i testiranje vašeg MCP servera
 
 ### Korak 6: Instalirajte ovisnosti
 
-Nakon izmjena konfiguracije pokrenite sljedeće naredbe:
+Nakon što napravite promjene u konfiguraciji, izvršite sljedeće naredbe:
 
 **Instalirajte Python ovisnosti:**
 ```bash
 uv sync
 ```
 
-**Instalirajte Inspector ovisnosti:**
+**Instalirajte Inspektor ovisnosti:**
 ```bash
 cd inspector
 npm install
 ```
 
-### Korak 7: Ispravljanje pogrešaka s Agent Builderom
+### Korak 7: Otklanjajte pogreške u Agent Builderu
 
-1. **Pritisnite F5** ili upotrijebite konfiguraciju **"Debug in Agent Builder"**
+1. **Pritisnite F5** ili koristite konfiguraciju **"Debug in Agent Builder"**
 2. **Odaberite složenu konfiguraciju** iz debug panela
-3. **Pričekajte da se poslužitelj pokrene** i da se Agent Builder otvori
-4. **Testirajte svoj weather MCP poslužitelj** s upitima na prirodnom jeziku
+3. **Pričekajte da se server pokrene** i otvori Agent Builder
+4. **Testirajte svoj weather MCP server** prirodnim jezičnim upitima
 
-Unesite upit ovako
+Unesite upit poput ovoga
 
 SYSTEM_PROMPT
 
@@ -334,60 +339,60 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/hr/Result.6ac570f7d2b1d538.webp)
+![Rezultat otklanjanja pogrešaka u Agent Builderu](../../../../translated_images/hr/Result.6ac570f7d2b1d538.webp)
 
-### Korak 8: Ispravljanje pogrešaka s MCP Inspectorom
+### Korak 8: Otklanjajte pogreške s MCP Inspektorom
 
 1. **Koristite konfiguraciju "Debug in Inspector"** (Edge ili Chrome)
-2. **Otvorite Inspector sučelje** na `http://localhost:6274`
+2. **Otvorite Inspektor sučelje** na `http://localhost:6274`
 3. **Istražite interaktivno testno okruženje:**
-   - Pogledajte dostupne alate
-   - Testirajte izvršenje alata
+   - Pregledajte dostupne alate
+   - Testirajte izvođenje alata
    - Pratite mrežne zahtjeve
-   - Ispravljajte odgovore poslužitelja
+   - Otklanjajte pogreške odgovora servera
 
-![MCP Inspector Interface](../../../../translated_images/hr/Inspector.5672415cd02fe873.webp)
+![Sučelje MCP Inspektora](../../../../translated_images/hr/Inspector.5672415cd02fe873.webp)
 
 ---
 
 ## 🎯 Ključni ishodi učenja
 
-Završetkom ovog laboratorija:
+Završetkom ovog laboratorija ste:
 
-- [x] **Kreirali ste prilagođeni MCP poslužitelj** koristeći Microsoft Foundry Toolkit predloške
-- [x] **Nadogradili na najnoviji MCP SDK** (verzija 1.9.3) za poboljšanu funkcionalnost
-- [x] **Konfigurirali profesionalne radne tokove ispravljanja pogrešaka** za Agent Builder i Inspector
-- [x] **Postavili MCP Inspector** za interaktivno testiranje poslužitelja
-- [x] **Ovladali VS Code konfiguracijom ispravljanja pogrešaka** za razvoj MCP-a
+- [x] **Kreirali prilagođeni MCP server** pomoću Microsoft Foundry Toolkit predložaka
+- [x] **Nadogradili na najnoviji MCP SDK** (v1.9.3) za poboljšanu funkcionalnost
+- [x] **Konfigurirali profesionalne tijekove otklanjanja pogrešaka** za Agent Builder i Inspektor
+- [x] **Postavili MCP Inspektor** za interaktivno testiranje servera
+- [x] **Ovladali VS Code konfiguracijama za otklanjanje pogrešaka** za razvoj MCP-a
 
 ## 🔧 Istražene napredne značajke
 
-| Značajka | Opis | Primjer upotrebe |
+| Značajka | Opis | Primjena |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Najnovija implementacija protokola | Moderan razvoj poslužitelja |
-| **MCP Inspector 0.14.0** | Interaktivni alat za ispravljanje pogrešaka | Testiranje poslužitelja u stvarnom vremenu |
-| **VS Code Debugging** | Integrirano razvojno okruženje | Profesionalni radni tok ispravljanja pogrešaka |
-| **Agent Builder Integracija** | Direktna veza s Microsoft Foundry Toolkitom | Testiranje agenata od početka do kraja |
+| **MCP Python SDK v1.9.3** | Najnovija implementacija protokola | Moderan razvoj servera |
+| **MCP Inspektor 0.14.0** | Interaktivni alat za otklanjanje pogrešaka | Testiranje servera u stvarnom vremenu |
+| **VS Code Debugging** | Integrirano razvojno okruženje | Profesionalni tijek rada otklanjanja pogrešaka |
+| **Integracija s Agent Builderom** | Izravna veza Microsoft Foundry Toolkita | Testiranje agenata od kraja do kraja |
 
 ## 📚 Dodatni resursi
 
-- [MCP Python SDK dokumentacija](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit vodič za dodatak](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [VS Code dokumentacija za ispravljanje pogrešaka](https://code.visualstudio.com/docs/editor/debugging)
-- [Model Context Protocol specifikacija](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [Dokumentacija MCP Python SDK-a](https://modelcontextprotocol.io/docs/sdk/python)
+- [Vodič za Microsoft Foundry Toolkit ekstenziju](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [Dokumentacija za otklanjanje pogrešaka u VS Codeu](https://code.visualstudio.com/docs/editor/debugging)
+- [Specifikacija Model Context Protocola](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Čestitamo!** Uspješno ste završili laboratorij 3 i sada možete stvarati, ispravljati pogreške i implementirati prilagođene MCP poslužitelje koristeći profesionalne radne tokove razvoja.
+**🎉 Čestitamo!** Uspješno ste završili Laboratorij 3 i sada možete kreirati, otklanjati pogreške i implementirati prilagođene MCP servere koristeći profesionalne tijekove rada.
 
 ### 🔜 Nastavite na sljedeći modul
 
-Spremni primijeniti svoje MCP vještine u stvarnom razvojnom tijeku? Nastavite na **[Modul 4: Praktični razvoj MCP-a - prilagođeni GitHub Clone Server](../lab4/README.md)** gdje ćete:
-- Izgraditi proizvodno spreman MCP poslužitelj koji automatizira GitHub repozitorijske operacije
-- Implementirati funkcionalnost kloniranja GitHub repozitorija preko MCP-a
-- Integrirati prilagođene MCP poslužitelje s VS Code i GitHub Copilot Agent Modeom
-- Testirati i implementirati prilagođene MCP poslužitelje u produkcijskim okruženjima
-- Naučiti praktičnu automatizaciju radnih tokova za developere
+Spremni ste primijeniti svoje MCP vještine u stvarnom razvojnom tijeku? Nastavite na **[Modul 4: Praktični razvoj MCP-a - Prilagođeni GitHub Clone Server](../lab4/README.md)** gdje ćete:
+- Izgraditi MCP server spreman za produkciju koji automatizira operacije GitHub repozitorija
+- Implementirati funkcionalnost kloniranja GitHub repozitorija putem MCP-a
+- Integrirati prilagođene MCP servere s VS Codeom i GitHub Copilot Agent načinom rada
+- Testirati i implementirati prilagođene MCP servere u produkcijskim okruženjima
+- Naučiti praktičnu automatizaciju tijekova rada za developere
 
 ---
 

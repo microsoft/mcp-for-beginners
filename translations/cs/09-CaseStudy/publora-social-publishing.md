@@ -1,39 +1,39 @@
-# Případová studie: Publikování na sociální sítě z agenta pomocí vzdáleného MCP serveru
+# Případová studie: Publikování do sociálních sítí z agenta s dálkovým MCP serverem
 
-> **Upozornění:** Několik služeb a open-source projektů dokáže publikovat na sociální sítě a tým může také integrovat API každé sítě přímo. Níže uvedený scénář je uveden jako jeden konkrétní příklad, jak může být navržen a používán **vzdálený MCP server s možností zápisu**. Publora je komerční služba s bezplatným tarifem; popsané vzory platí pro jakýkoli MCP server, který na uživatelově přání provádí nevratné akce.
+> **Prohlášení:** Několik služeb a open-source projektů umí publikovat do sociálních sítí, a tým může také integrovat API každé sítě přímo. Scénář níže je poskytnut jako jeden praktický příklad, jak lze navrhnout a využívat **dálkový MCP server s možností zápisu**. Publora je komerční služba s bezplatnou vrstvou; vzory zde popsané platí pro jakýkoli MCP server, který provádí nevratné akce jménem uživatele.
 
 ## Přehled
 
-Agentům jde dobře psaní obsahu, ale špatně jeho doručení. Model může během vteřin napsat oznámení zprávy a pak práce končí: publikování znamená API na každou síť, OAuth aplikaci pro každou síť a různé sady pravidel pro média pro každou. Většina týmů toto řeší ručním kopírováním textu do prohlížeče.
+Agentům jde dobře vytvářet obsah, ale nikoli ho doručovat. Model dokáže během sekund napsat oznámení o vydání, a pak práce končí: publikování znamená API pro každou síť, OAuth aplikaci pro každou síť a jiné soubory pravidel pro média pro každou z nich. Většina týmů to řeší tak, že text ručně zkopírují do prohlížeče.
 
-Tato případová studie ukazuje, jak je tento poslední krok uzavřen pomocí jediného vzdáleného MCP serveru, a — co je užitečnější pro kohokoli, kdo jeden buduje — jaká designová rozhodnutí musí **server s možností zápisu** správně udělat. Čtení dat je shovívavé. Publikování nikoli: špatný nástrojový příkaz je viditelný publiku a nelze ho vzít zpět.
+Tato případová studie zkoumá, jak je tento poslední krok vyřešen jedním dálkovým MCP serverem a – co je užitečnější pro kohokoli, kdo takový server buduje – jaká designová rozhodnutí musí **server s možností zápisu** správně udělat. Čtení dat je tolerantní. Publikování nikoli: špatné použití nástroje je viditelné pro publikum a nelze ho vzít zpět.
 
 ## Scénář
 
-Malý tým pro vztahy s vývojáři připravuje příspěvky v agentovi (Claude, VS Code, Cursor — klient není podstatný). Chtějí, aby agent:
+Malý tým pro vztahy s vývojáři připravuje příspěvky uvnitř agenta (Claude, VS Code, Cursor – klient je jedno). Chtějí, aby agent mohl:
 
-- viděl, jaké sociální účty má tým připojené,
-- vytvořil návrh příspěvku a uchoval ho jako návrh k lidskému schválení,
-- připojil obrázek,
-- naplánoval ho do několika sítí na zvolený čas,
-- a později podával zprávy o jeho výkonu.
+- zjistit, které sociální účty má tým propojené,
+- vytvořit příspěvek a uložit ho jako koncept k lidskému schválení,
+- přiložit obrázek,
+- naplánovat ho do několika sítí na vybraný čas,
+- a později hlásit, jak si vedl.
 
-Klíčové je, že chtějí, aby agent *nemohl* omylem publikovat, zatímco stále experimentují.
+Klíčové je, že chtějí, aby agent *nemohl* omylem publikovat, dokud stále experimentují.
 
 ## Použité nástroje
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — vzdálený MCP server (`streamable-http`), který vystavuje nástroje pro publikování, plánování, média a analytiku LinkedIn. Registrován v oficiálním MCP registru jako `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — dálkový MCP server (`streamable-http`) vystavující nástroje pro publikování, plánování, média a analytiku LinkedIn. Registrován v oficiálním MCP registru jako `com.publora/mcp-server`.
 
-## Postup krok za krokem
+## Průběh krok za krokem
 
-1. **Připojit server.** Klienti podporující OAuth dokončují autorizační kódový tok s PKCE proti vlastnímu oknu souhlasu serveru; klienti bez OAuth, jako například bezhlavé CLI, používají API klíč Publora v hlavičce. Oba způsoby jsou podporovány a který dostanete, závisí na klientovi, ne na serveru.
-2. **Seznam připojení.** Agent zavolá `list_connections` a obdrží připojené účty s jejich identifikátory.
-3. **Návrh.** Agent zavolá `create_post` *bez* naplánovaného času. Příspěvek se uloží jako návrh — nic se nezveřejní.
+1. **Připojit server.** Klienti, kteří podporují OAuth, dokončí autorizační kódový postup s PKCE na vlastním souhlasném displeji serveru; klienti, kteří ne – například bezhlavé CLI –, použijí API klíč Publora v hlavičce. Obě cesty jsou podporovány a kterou dostanete, závisí na klientovi, nikoli na serveru.
+2. **Vypsat propojení.** Agent zavolá `list_connections` a obdrží propojené účty s jejich identifikátory.
+3. **Připravit koncept.** Agent zavolá `create_post` *bez* nastaveného času plánování. Příspěvek je uložen jako koncept – nic není publikováno.
 4. **Připojit média.** Ve stejném volání jsou předány veřejné URL obrázků; server je stáhne a ověří.
-5. **Naplánovat.** Po lidském schválení `update_post` změní stav na naplánováno s časem ve formátu ISO 8601.
-6. **Měření.** Pro LinkedIn vrací `linkedin_post_stats` zapojení, jakmile je příspěvek zveřejněn.
+5. **Naplánovat.** Po lidském schválení `update_post` nastaví stav na naplánováno s časem ve formátu ISO 8601.
+6. **Měřit.** Pro LinkedIn vrací `linkedin_post_stats` zapojení, jakmile je příspěvek naživu.
 
-## Příklad výzvy
+## Příklad promptu
 
 ```text
 Which social accounts do I have connected?
@@ -42,19 +42,19 @@ https://example.com/changelog.png, and keep it as a draft — do not publish it.
 Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```
 
-## Schéma Mermaid
+## Mermaid diagram toku
 
 ```mermaid
 flowchart TD
     A[Uživatelský požadavek v MCP klientu] --> B[Klient provádí OAuth se serverem]
     B --> C[list_connections]
-    C --> D{Jsou připojeny cílové sítě?}
+    C --> D{Jsou cílové sítě připojeny?}
     D -- No --> E[Agent hlásí, které chybí]
     D -- Yes --> F[create_post bez scheduledTime -> koncept]
     F --> G[Člověk kontroluje koncept]
     G -- Approved --> H[update_post: status=scheduled]
     G -- Rejected --> I[delete_post]
-    H --> J[Server zveřejní v plánovaný čas]
+    H --> J[Server zveřejní ve stanovený čas]
     J --> K[linkedin_post_stats pro zapojení]
 ```
 
@@ -62,68 +62,78 @@ flowchart TD
 
 Níže uvedené lekce jsou přenosnou částí této případové studie.
 
-### Otevřený objev, autentizované vykonání
+### Otevřené zjišťování, autentizované vykonávání
 
-`tools/list` je poskytováno bez ověření; každý `tools/call` vyžaduje token a jinak vrací `401` s hlavičkou `WWW-Authenticate` ukazující na metadata chráněného zdroje. (Server také reaguje na neautentizovaný `initialize`, který je důležitý jen pro klienty na verzích protokolu před `2026-07-28`; tato revize handshake zcela odstranila.)
+`tools/list` je podáváno bez přihlašovacích údajů; každé `tools/call` vyžaduje token
+a jinak vrací `401` s hlavičkou `WWW-Authenticate` ukazující
+na metadata protected-resource. Legacy endpoint serveru také odpovídá na
+neautentizovaný `initialize` pro klienty na protokolových verzích před
+`2026-07-28`; aktuální klienti toto propojení nepoužívají.
 
-Tento rozdělení má praktický význam. Registry, katalogy a klienti mohou nahlížet povrch nástrojů — jména, schémata, anotace — bez držení tajemství, ale nic nemůže být *provedeno* anonymně. Server, který požaduje token pro `initialize`, je efektivně neviditelný pro nástroje; server, který dovoluje anonymní `tools/call`, je rizikem.
+Toto server-specifické rozdělení umožňuje registrům, katalogům a klientům
+zkoumat názvy nástrojů, schémata a anotace bez tajemství a přitom
+zabraňuje anonymnímu vykonání. Otevřené zjišťování je volbou nasazení, nikoli požadavkem MCP; chráněné nasazení může také vyžadovat autorizaci pro `tools/list`.
 
-### Registrace: dynamická registrace klientů a co ji nahrazuje
 
-Server zveřejňuje `/.well-known/oauth-protected-resource` a `/.well-known/oauth-authorization-server` a podporuje autorizační kódový tok s PKCE (`S256`), obnovovací tokeny a **dynamickou registraci klientů**.
 
-Dynamická registrace odstraňuje ruční krok: bez ní každý klient potřebuje předem vydané `client_id`, což znamená mimořádný požadavek na dodavatele pro každého nového klienta.
 
-Berte to jako kompatibilitní chování, nikoli jako návrh ke kopírování. Revize specifikace z `2026-07-28` označuje dynamickou registraci klientů za zastaralou ve prospěch dokumentů metadat Client ID, kde klient hostuje dokument metadat na stabilní HTTPS URL a tato URL *je* `client_id`. DCR stále funguje, ale server budovaný dnes by měl plánovat CIMD a DCR ponechat jen pro starší klienty.
+a podporuje autorizační kódový tok s PKCE (`S256`), obnovovací tokeny a **dynamickou registraci klienta**.
 
-### Anotace nástrojů nejsou ozdoba
+Dynamická registrace odstranila ruční krok pro legacy klienty: bez ní
+potřeboval každý klient předem vydané `client_id` od poskytovatele.
 
-Každý nástroj nese `title` a příslušné náznaky: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Pokládejte to spíše za kompatibilitní chování než za design k napodobení. Revize specifikace `2026-07-28` označuje dynamickou registraci klienta jako zastaralou ve prospěch Dokumentů metadat klienta (Client ID Metadata Documents), kde klient hostuje metadata na stabilní HTTPS URL adrese a tato URL *je* `client_id`. DCR zatím funguje, ale server budovaný dnes by měl plánovat CIMD a DCR ponechat jen pro starší klienty.
 
-Dva důvody, proč do nich investovat. Za prvé, klienti používají náznaky k rozhodnutí, co s uživatelem potvrdit — klient může automaticky spustit dotaz jen pro čtení a zastavit se k potvrzení před smazáním. Specifikace jasně uvádí, že anotace jsou nedůvěryhodné náznaky, nikoli autorizační mechanizmus: formují, co klient nabídne k provedení, nic nezabrání na serveru a server musí stále prosazovat vlastní pravidla. Za druhé, hlavní adresáře konektorů je nyní *vyžadují* pro revizi; server, jehož nástroje postrádají názvy a náznaky, bude odmítnut bez ohledu na kvalitu.
+### Anotace nástrojů nejsou jen ozdobou
 
-### Udělejte identifikátory nevycucatelnými z prstu
+Každý nástroj nese `title` a platné náznaky: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Identifikátory platforem jsou neprůhledné řetězce vrácené voláním `list_connections` a popis schématu jasně říká, že je nutné je kopírovat beze změny a nikdy nehádat. Server jinak požadavek odmítá.
+Jsou dva důvody, proč do nich investovat. Za prvé: klienti používají náznaky k rozhodnutí, co potvrdit s uživatelem — klient může automaticky spustit pouze čtecí dotaz a zastavit se před smazáním pro schválení. Specifikace jasně říká, že anotace jsou důvěryhodné náznaky, nikoli autorizační mechanismus: formují, co klient nabídne, nezastaví nic na serveru a server musí stále prosazovat svá vlastní pravidla. Za druhé: největší adresáře konektorů je nyní *vyžadují* k přezkoumání; server, jehož nástroje postrádají tituly a náznaky, bude odmítnut bez ohledu na kvalitu funkcionality.
 
-Modely jsou schopné hádat plynule. Každý server s možností zápisu by měl předpokládat, že identifikátor bude nakonec vycucán z hlavy, a nechat tuto cestu zřetelně a rychle selhat místo jednání podle pravděpodobné hodnoty.
+### Identifikátory musí být neuhádnutelné
 
-### Selhat před publikováním s konkrétní zprávou
+Platformní identifikátory jsou neprůhledné řetězce vrácené `list_connections` a schéma jasně uvádí, že je musíte citovat doslovně a nikdy je nehádat. Server vše ostatní odmítá.
 
-Některé sítě odmítají příspěvky pouze s textem a vyžadují obrázek nebo video. To se ověřuje při plánování příspěvku a chyba pojmenuje platformu a chybějící požadavek.
+Modely jsou fluentní hádači. Každý server s možností zápisu by měl předpokládat, že identifikátor bude nakonec vymyšlen, a ten případ neprodleně a hlasitě zablokovat, místo aby jednal podle hodnoty, která vypadá pravděpodobně.
 
-Agent se může zotavit ze zprávy „Instagram vyžaduje média — připojte obrázek nebo video“ bez dalšího kola. Nemůže se zotavit z obecného `400`.
+### Selhání před publikováním s proveditelnou zprávou
 
-### Zajistěte bezpečnost opakování požadavků
+Některé sítě odmítají příspěvky obsahující jen text a vyžadují obrázek nebo video. Toto se ověřuje při plánování příspěvku a chyba jmenuje platformu i chybějící požadavek.
 
-Dvě nástroje, které vytvářejí obsah, `create_post` a `update_post`, přijímají klíč idempotence: opětovné použití se stejným požadavkem přehraje původní odpověď místo vytvoření druhého příspěvku. Agent runtime opakuje při timeoutu; bez idempotence pomalá odpověď způsobí duplicitní publikaci. Ostatní zápisové nástroje — mazání, kroky médií, reakce a komentáře LinkedIn — jej nepřijímají, takže tam opakování není automaticky bezpečné. Je dobré vědět, které z vlastních mutací jsou chráněné a které ne.
+Agent se může zotavit z "Instagram vyžaduje média – přilož obrázek nebo video" bez dalšího zpětného volání. Nemůže se však zotavit z obecného `400`.
 
-### Poskytněte způsob testování, který nic nepublikuje
+### Učiňte opakování bezpečné
 
-Server akceptuje rezervovaný cíl `publora-playground`, který je ověřen a potvrzen jako skutečný cíl a pak zamítnut — nic nedojde do živého účtu. Je popsán v samotném schématu nástroje, které může každý klient číst bez přihlašovacích údajů: pole `platforms` u `create_post` ho uvádí jako „testovací cíl připojení, který nevyžaduje skutečné připojení — příspěvek je potvrzen a zamítnut, nic není publikováno“. Vyvolá se předáním jako jediný prvek: `platforms: ["publora-playground"]`.
+Dva nástroje, které vytváří obsah, `create_post` a `update_post`, přijímají klíč idempotence: jeho opakování se stejným požadavkem zopakuje původní odpověď místo vytvoření dvojího příspěvku. Agentní běhy opakují na vypršení časového limitu; bez idempotence pomalá odpověď znamená duplikát publikace. Ostatní nástroje se zápisem – mazání, kroky médií, reakce a komentáře na LinkedIn – klíč nepřijímají, takže jejich opakování není automaticky bezpečné. Stojí za to vědět, které z vašich mutací jsou chráněné a které nikoli.
 
-Ukázalo se, že je to jeden z nejužitečnějších detailů celé plochy. Recenzenti adresářů konektorů, přispěvatelé a CI mohou otestovat celý zápisový proces end-to-end bez rizika pro skutečné publikum. Každý MCP server s nevratnými akcemi z toho profituje díky zdokumentovanému neakčnímu cíli.
+### Poskytněte způsob, jak testovat bez publikování
+
+Server přijímá rezervovaný cíl `publora-playground`, který je ověřen a uznán jako skutečný cíl a následně zahoděn – nic se nedostane na živý účet. Je popsán přímo ve schématu nástroje, které může každý klient číst bez přihlašovacích údajů: pole `platforms` v `create_post` jej dokumentuje jako "testovací cíl připojení, který nevyžaduje skutečné připojení – příspěvek je přijat a zahoděn, nic není publikováno". Zavolejte jej tak, že jej předáte jako jedinou položku: `platforms: ["publora-playground"]`.
+
+Ukázalo se, že to je jeden z nejužitečnějších detailů celé plochy. Recenzenti adresářů konektorů, přispěvatelé a CI mohou zcela bezpečně otestovat plnou cestu zápisu od začátku do konce bez rizika pro skutečné publikum. Každý MCP server s nevratnými akcemi získává výhodu z dokumentovaného cíle no-op.
 
 ## Výsledky a dopad
 
-- Krok publikování se přesunul z prohlížeče do stejné konverzace, kde se obsah píše, a zvyk „nejdříve návrh“ udržuje člověka ve smyčce. Buďte přesní v tom, co to znamená: návrh je konvence, ne hranice. Stejný oprávnění může plánovat i publikovat, takže kdo potřebuje skutečné schvalovací místo, musí to vynutit mimo nástrojový povrch — samostatná oprávnění nebo policy vrstva před serverem.
-- Rozdíly mezi sítěmi — požadavky na média, vlákna, kontrola odpovědí — jsou řešeny jednou na serveru místo v každém agentovi, který s ním komunikuje.
-- Jeden server podporuje několik MCP klientů bez práce na klientskou stranu, protože objevování je otevřené a registrace dynamická.
-- Designová omezení výše byla formována jak recenzemi adresářů konektorů, tak uživateli: anotace, OAuth a bezpečný testovací cíl byl vyžadován alespoň jedním z nich.
+- Krok publikování se přesunul z prohlížeče do stejné konverzace, kde se obsah píše, a zvyk "nejprve koncept" udržuje člověka v procesu. Buďte přesní, co to znamená: koncept je dohoda, nikoli hranice. Stejný přihlašovací údaj může plánovat i publikovat, takže kdokoli, kdo potřebuje skutečné schválení, musí to prosadit mimo plochu nástroje – oddělené přihlašovací údaje nebo politickou vrstvu před serverem.
+- Rozdíly mezi sítěmi – požadavky na média, vlákna, řízení odpovědí – se řeší jednou na serveru místo v každém agentovi, který s ním komunikuje.
+- Jeden server podporuje několik MCP klientů bez předem vydaných přihlašovacích údajů.
+    Současní klienti mohou používat Client ID Metadata Documents; DCR zůstává záložní možnost
+    pro starší klienty.
+- Výše uvedená návrhová omezení formovaly přezkoumání adresářů konektorů stejně jako uživatelé: anotace, OAuth a bezpečný testovací cíl byly vyžadovány alespoň jedním z nich.
 
 ## Reference
 
 - [Publora MCP Server (zdroj)](https://github.com/publora/mcp-server)
-- [Publora API a dokumentace MCP](https://docs.publora.com)
-- [Záznam v registru MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [Specifikace MCP — Autorizace](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Specifikace MCP — Anotace nástrojů](https://modelcontextprotocol.io/docs/concepts/tools)
+- [Publora API a MCP dokumentace](https://docs.publora.com)
+- [MCP zápis v registru: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP specifikace — Autorizace](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [MCP specifikace — Anotace nástrojů](https://modelcontextprotocol.io/docs/concepts/tools)
 
-## Co dále
+## Co dál
 
-- Vezměte si MCP server, který stavíte, a zkontrolujte zde tři nejlevnější vylepšení: anotace u každého nástroje, klíč idempotence u každého zápisu a popsaný neakční cíl.
-- Vyzkoušejte rozdělení otevřeného objevu: zvolte `tools/list` proti veřejnému vzdálenému serveru bez přihlašovacích údajů, pak zavolejte nástroj a prohlédněte si výzvu `401`.
-- Zvažte, co "zpět" znamená pro vaši doménu. Publikování má návrhy a mazání; pokud vaše akce nemají ekvivalent, potvrzení patří do návrhu nástroje, ne do výzvy.
+- Vezměte MCP server, který budujete, a zkontrolujte tři nejlevnější vylepšení zde: anotace u každého nástroje, klíč idempotence u každého zápisu a dokumentovaný no-op cíl.
+- Vyzkoušejte otevřené zjišťování: zavolejte `tools/list` na veřejném vzdáleném serveru bez přihlašovacích údajů a potom zavolejte nástroj a prohlédněte si výzvu `401`.
+- Zvažte, co „vrátit zpět“ znamená ve vaší doméně. Publikování má koncepty a mazání; pokud vaše akce nemají ekvivalent, potvrzení patří do designu nástroje, nikoli do promptu.
 
 ---
 

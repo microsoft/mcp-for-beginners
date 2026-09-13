@@ -1,7 +1,7 @@
 {
   "00-Introduction/README.md": {
-    "original_hash": "11adfa4545aafc850a177402de63e3f9",
-    "translation_date": "2026-07-13T19:07:16+00:00",
+    "original_hash": "cbed5b929db314e9eaca6b49551a9ec5",
+    "translation_date": "2026-09-11T03:30:11+00:00",
     "source_file": "00-Introduction/README.md",
     "language_code": "pa"
   },
@@ -18,8 +18,8 @@
     "language_code": "pa"
   },
   "02-Security/README.md": {
-    "original_hash": "422e906ace337954152cfb5aa32b4217",
-    "translation_date": "2026-07-08T18:39:51+00:00",
+    "original_hash": "3969842d2cfca6c8613e5fda755617fe",
+    "translation_date": "2026-09-11T03:48:33+00:00",
     "source_file": "02-Security/README.md",
     "language_code": "pa"
   },
@@ -36,8 +36,8 @@
     "language_code": "pa"
   },
   "02-Security/mcp-best-practices.md": {
-    "original_hash": "27778a74451603fa5398790cbc9d402f",
-    "translation_date": "2026-02-08T17:46:34+00:00",
+    "original_hash": "fceba452246c8310e50202fbecea4b45",
+    "translation_date": "2026-09-11T03:53:39+00:00",
     "source_file": "02-Security/mcp-best-practices.md",
     "language_code": "pa"
   },
@@ -54,8 +54,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/01-first-server/README.md": {
-    "original_hash": "e7d34112ae90a02725e7dc2d0f92c65c",
-    "translation_date": "2026-04-11T20:45:43+00:00",
+    "original_hash": "f34cacc5a973ab0f665f7cf26f90c240",
+    "translation_date": "2026-09-11T04:19:34+00:00",
     "source_file": "03-GettingStarted/01-first-server/README.md",
     "language_code": "pa"
   },
@@ -72,8 +72,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/01-first-server/solution/java/README.md": {
-    "original_hash": "ed9cab32cc67c12d8969b407aa47100a",
-    "translation_date": "2025-07-13T17:53:41+00:00",
+    "original_hash": "3c2540cfd4baca908e1260b43b2ffc11",
+    "translation_date": "2026-09-11T04:33:01+00:00",
     "source_file": "03-GettingStarted/01-first-server/solution/java/README.md",
     "language_code": "pa"
   },
@@ -96,8 +96,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/02-client/README.md": {
-    "original_hash": "735bf71472d1957535928b0085788889",
-    "translation_date": "2026-02-27T12:13:07+00:00",
+    "original_hash": "a705367cdda9083e6e64f0c0fb912744",
+    "translation_date": "2026-09-11T04:26:06+00:00",
     "source_file": "03-GettingStarted/02-client/README.md",
     "language_code": "pa"
   },
@@ -126,8 +126,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/02-client/solution/python/README.md": {
-    "original_hash": "0ab9613fc9595f493847f91275859a18",
-    "translation_date": "2025-07-13T18:40:31+00:00",
+    "original_hash": "5e45caeed7c5a7840531842a384f1f70",
+    "translation_date": "2026-09-11T04:33:06+00:00",
     "source_file": "03-GettingStarted/02-client/solution/python/README.md",
     "language_code": "pa"
   },
@@ -144,8 +144,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/03-llm-client/README.md": {
-    "original_hash": "e7951e45ea065c33cf0fe73f6d3ed687",
-    "translation_date": "2026-09-09T19:59:27+00:00",
+    "original_hash": "d7c0cfc052004377bf0a4055263822a9",
+    "translation_date": "2026-09-11T04:13:43+00:00",
     "source_file": "03-GettingStarted/03-llm-client/README.md",
     "language_code": "pa"
   },
@@ -162,8 +162,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/03-llm-client/solution/java/README.md": {
-    "original_hash": "b21e6bd48c46004ac5a4a4d47ea40a64",
-    "translation_date": "2026-09-09T19:59:54+00:00",
+    "original_hash": "6f27ab0791c36ade62f037d04da33586",
+    "translation_date": "2026-09-11T04:32:48+00:00",
     "source_file": "03-GettingStarted/03-llm-client/solution/java/README.md",
     "language_code": "pa"
   },
@@ -288,14 +288,14 @@
     "language_code": "pa"
   },
   "03-GettingStarted/09-deployment/README.md": {
-    "original_hash": "53297ef48b822eb83a9318a67ec179c7",
-    "translation_date": "2026-03-15T15:34:45+00:00",
+    "original_hash": "c53647f1b0205f56cd60d8877e6e4be2",
+    "translation_date": "2026-09-11T04:22:48+00:00",
     "source_file": "03-GettingStarted/09-deployment/README.md",
     "language_code": "pa"
   },
   "03-GettingStarted/10-advanced/README.md": {
-    "original_hash": "6b8c13d4353e4d308c6f3e1372ec6f67",
-    "translation_date": "2026-07-13T19:12:41+00:00",
+    "original_hash": "33fae53c9bfcf973819c5b266f6440aa",
+    "translation_date": "2026-09-11T04:23:51+00:00",
     "source_file": "03-GettingStarted/10-advanced/README.md",
     "language_code": "pa"
   },
@@ -318,8 +318,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/11-simple-auth/README.md": {
-    "original_hash": "919ddbc7182045d54da7b2a6b88e0550",
-    "translation_date": "2026-07-08T18:59:32+00:00",
+    "original_hash": "c825ff27bdc809f37e7ba3b9535ecc09",
+    "translation_date": "2026-09-11T04:29:13+00:00",
     "source_file": "03-GettingStarted/11-simple-auth/README.md",
     "language_code": "pa"
   },
@@ -378,20 +378,20 @@
     "language_code": "pa"
   },
   "03-GettingStarted/13-mcp-inspector/README.md": {
-    "original_hash": "05b26e71d6c1f69bad8d96fef17b9804",
-    "translation_date": "2026-02-08T18:41:05+00:00",
+    "original_hash": "f6a0838c5909e61c48c286a2c7e7681c",
+    "translation_date": "2026-09-11T04:04:05+00:00",
     "source_file": "03-GettingStarted/13-mcp-inspector/README.md",
     "language_code": "pa"
   },
   "03-GettingStarted/14-sampling/README.md": {
-    "original_hash": "8d27fe3cfe0c5df6f5927babaa7cb8d0",
-    "translation_date": "2026-07-13T19:16:36+00:00",
+    "original_hash": "8f003be683ff0caa7d5b079e2906801f",
+    "translation_date": "2026-09-11T04:32:28+00:00",
     "source_file": "03-GettingStarted/14-sampling/README.md",
     "language_code": "pa"
   },
   "03-GettingStarted/14-sampling/code/python/README.md": {
-    "original_hash": "c79c50505f77088459a1e5d5e2f4d9f3",
-    "translation_date": "2026-02-18T15:24:46+00:00",
+    "original_hash": "83a7ecd6c452175915e94bd71e0105d8",
+    "translation_date": "2026-09-11T04:36:01+00:00",
     "source_file": "03-GettingStarted/14-sampling/code/python/README.md",
     "language_code": "pa"
   },
@@ -444,8 +444,8 @@
     "language_code": "pa"
   },
   "03-GettingStarted/README.md": {
-    "original_hash": "eddb1398f097e678a9b94632b67d2eae",
-    "translation_date": "2026-07-13T19:05:05+00:00",
+    "original_hash": "9851d76164f8a268b18edf6e59834522",
+    "translation_date": "2026-09-11T03:13:47+00:00",
     "source_file": "03-GettingStarted/README.md",
     "language_code": "pa"
   },
@@ -486,14 +486,14 @@
     "language_code": "pa"
   },
   "04-PracticalImplementation/README.md": {
-    "original_hash": "72b2f7cf2fe6bf94f5f24de4109a9081",
-    "translation_date": "2026-03-15T14:50:23+00:00",
+    "original_hash": "00e1cf10f46ac12298ef6191cb2e43f2",
+    "translation_date": "2026-09-11T03:16:44+00:00",
     "source_file": "04-PracticalImplementation/README.md",
     "language_code": "pa"
   },
   "04-PracticalImplementation/pagination/README.md": {
-    "original_hash": "a80a17cc4ae59dee36ecd37658f4369f",
-    "translation_date": "2026-02-08T18:46:36+00:00",
+    "original_hash": "c0b7759069d12937573467b5ec6d0511",
+    "translation_date": "2026-09-11T04:37:02+00:00",
     "source_file": "04-PracticalImplementation/pagination/README.md",
     "language_code": "pa"
   },
@@ -534,8 +534,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/README.md": {
-    "original_hash": "5ba8851658b3c063fad8475514079d56",
-    "translation_date": "2026-07-13T19:04:00+00:00",
+    "original_hash": "cc3231d2489c7ad5266e26ad9ad90eec",
+    "translation_date": "2026-09-11T03:34:08+00:00",
     "source_file": "05-AdvancedTopics/README.md",
     "language_code": "pa"
   },
@@ -552,8 +552,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/mcp-foundry-agent-integration/README.md": {
-    "original_hash": "e509812ee179e5acb38fec9f6e677fe8",
-    "translation_date": "2026-06-17T13:48:24+00:00",
+    "original_hash": "92806c5aaacfaac42c6d3486c92019f3",
+    "translation_date": "2026-09-11T04:57:26+00:00",
     "source_file": "05-AdvancedTopics/mcp-foundry-agent-integration/README.md",
     "language_code": "pa"
   },
@@ -576,8 +576,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md": {
-    "original_hash": "32c9a4263be08f9050c8044bb26267c4",
-    "translation_date": "2025-07-14T00:25:36+00:00",
+    "original_hash": "1b77250af96bbe9bef01048385129b0a",
+    "translation_date": "2026-09-11T04:55:27+00:00",
     "source_file": "05-AdvancedTopics/mcp-oauth2-demo/apimoauth.md",
     "language_code": "pa"
   },
@@ -588,8 +588,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/mcp-realtimesearch/README.md": {
-    "original_hash": "3891c266593a12eb4340ccf92f188539",
-    "translation_date": "2026-08-19T01:40:35+00:00",
+    "original_hash": "289add6d06cc3efb19ea2bc28d52932b",
+    "translation_date": "2026-09-11T04:49:58+00:00",
     "source_file": "05-AdvancedTopics/mcp-realtimesearch/README.md",
     "language_code": "pa"
   },
@@ -624,8 +624,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/mcp-security-entra/README.md": {
-    "original_hash": "50a9d32da8cb92a73db6489ca0779257",
-    "translation_date": "2026-06-17T13:45:55+00:00",
+    "original_hash": "9023e718dc186663709fa9bb0d1d9326",
+    "translation_date": "2026-09-11T04:43:06+00:00",
     "source_file": "05-AdvancedTopics/mcp-security-entra/README.md",
     "language_code": "pa"
   },
@@ -636,8 +636,8 @@
     "language_code": "pa"
   },
   "05-AdvancedTopics/mcp-transport/README.md": {
-    "original_hash": "f0bda0c5c6c21a756a7b626628c76aaf",
-    "translation_date": "2026-07-08T18:44:29+00:00",
+    "original_hash": "89789a3c1c4ed2011859b46e3ec0c5f2",
+    "translation_date": "2026-09-11T04:46:05+00:00",
     "source_file": "05-AdvancedTopics/mcp-transport/README.md",
     "language_code": "pa"
   },
@@ -654,8 +654,8 @@
     "language_code": "pa"
   },
   "07-LessonsfromEarlyAdoption/README.md": {
-    "original_hash": "25498b89e77835c9b4e8f0b6fcb647fe",
-    "translation_date": "2026-06-17T13:31:47+00:00",
+    "original_hash": "f5723a99e454123fc658c72f568e2d12",
+    "translation_date": "2026-09-11T03:32:09+00:00",
     "source_file": "07-LessonsfromEarlyAdoption/README.md",
     "language_code": "pa"
   },
@@ -684,8 +684,8 @@
     "language_code": "pa"
   },
   "09-CaseStudy/apimsample.md": {
-    "original_hash": "b0027ab7fc24fa80b1561e2406a88b28",
-    "translation_date": "2026-02-08T17:42:42+00:00",
+    "original_hash": "5d23989fd868710fb6826b22079568b4",
+    "translation_date": "2026-09-11T03:35:12+00:00",
     "source_file": "09-CaseStudy/apimsample.md",
     "language_code": "pa"
   },
@@ -714,8 +714,8 @@
     "language_code": "pa"
   },
   "09-CaseStudy/publora-social-publishing.md": {
-    "original_hash": "9c860d3fea4a5cfd58ea714fd608aad4",
-    "translation_date": "2026-08-26T12:49:47+00:00",
+    "original_hash": "aa39df4b09f82e82d7f4f357057628c6",
+    "translation_date": "2026-09-11T03:42:57+00:00",
     "source_file": "09-CaseStudy/publora-social-publishing.md",
     "language_code": "pa"
   },
@@ -726,8 +726,8 @@
     "language_code": "pa"
   },
   "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md": {
-    "original_hash": "f4971eb71dafc6b77407f78f3be8365b",
-    "translation_date": "2026-06-17T13:39:25+00:00",
+    "original_hash": "296cc1b7da03a60f5269a277f9b5b826",
+    "translation_date": "2026-09-11T03:23:53+00:00",
     "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md",
     "language_code": "pa"
   },
@@ -744,8 +744,8 @@
     "language_code": "pa"
   },
   "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md": {
-    "original_hash": "8d1f66e3d941a0b56f355cd6d4137a23",
-    "translation_date": "2026-06-17T14:02:48+00:00",
+    "original_hash": "8b635ed31e92b9248cd7b1ef219247e4",
+    "translation_date": "2026-09-11T04:37:39+00:00",
     "source_file": "10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/README.md",
     "language_code": "pa"
   },
@@ -768,8 +768,8 @@
     "language_code": "pa"
   },
   "11-MCPServerHandsOnLabs/00-Introduction/README.md": {
-    "original_hash": "0109fcf746a4d1cb5d942a54fe287c05",
-    "translation_date": "2026-06-17T13:56:48+00:00",
+    "original_hash": "a3b3d18134cb19085a7398da98a18c07",
+    "translation_date": "2026-09-11T04:02:28+00:00",
     "source_file": "11-MCPServerHandsOnLabs/00-Introduction/README.md",
     "language_code": "pa"
   },
@@ -822,8 +822,8 @@
     "language_code": "pa"
   },
   "11-MCPServerHandsOnLabs/09-VS-Code/README.md": {
-    "original_hash": "769c9794759f416450dce77286e98f00",
-    "translation_date": "2025-09-30T16:45:26+00:00",
+    "original_hash": "047c39b1d5e9e87f96a20a014e435a8b",
+    "translation_date": "2026-09-11T04:03:15+00:00",
     "source_file": "11-MCPServerHandsOnLabs/09-VS-Code/README.md",
     "language_code": "pa"
   },
@@ -846,8 +846,8 @@
     "language_code": "pa"
   },
   "11-MCPServerHandsOnLabs/README.md": {
-    "original_hash": "8347ef1970813e6c9581733a1f825bd3",
-    "translation_date": "2026-02-08T17:29:16+00:00",
+    "original_hash": "4b5a200f5edd1a34f589ad5b52ee69e2",
+    "translation_date": "2026-09-11T03:11:19+00:00",
     "source_file": "11-MCPServerHandsOnLabs/README.md",
     "language_code": "pa"
   },
@@ -858,8 +858,8 @@
     "language_code": "pa"
   },
   "12-tooling/README.md": {
-    "original_hash": "5c2482cafe5558a25f03bb860cdd6bb4",
-    "translation_date": "2026-06-25T03:53:44+00:00",
+    "original_hash": "8f53afc40fb39482a06e684785bb3497",
+    "translation_date": "2026-09-11T04:01:37+00:00",
     "source_file": "12-tooling/README.md",
     "language_code": "pa"
   },
@@ -876,8 +876,8 @@
     "language_code": "pa"
   },
   "README.md": {
-    "original_hash": "70e26fed3fc555e89b34b9023deb392b",
-    "translation_date": "2026-08-19T01:28:08+00:00",
+    "original_hash": "5af4980b479f51b001558bef0f8c49a6",
+    "translation_date": "2026-09-11T03:05:55+00:00",
     "source_file": "README.md",
     "language_code": "pa"
   },
@@ -898,7 +898,7 @@
       "original_hash": "8ba1781e6978308063cb698d13bcde43",
       "source_file": "08-BestPractices/README.md",
       "language_code": "pa",
-      "failure_date": "2026-09-09T19:53:44+00:00",
+      "failure_date": "2026-09-11T04:01:28+00:00",
       "status": "failed",
       "error_type": "TranslationIncompleteError",
       "error_message": "Markdown translation remained incomplete for chunk 1.2.1 of 'README.md', and the chunk could not be split further.",
@@ -915,6 +915,193 @@
       "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
       "translator_version": "0.20.0",
       "failure_policy_version": 1
+    },
+    "changelog.md": {
+      "original_hash": "bbc797c73a66c734507547b01a874163",
+      "source_file": "changelog.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T03:02:16+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'changelog.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "AGENTS.md": {
+      "original_hash": "e9496d9d2cd79880da2a0a2042131b79",
+      "source_file": "AGENTS.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T03:09:11+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'AGENTS.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "06-CommunityContributions/README.md": {
+      "original_hash": "7ceb83f3f9ef216c67962a02a093a0d2",
+      "source_file": "06-CommunityContributions/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T03:20:59+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.2 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "01-CoreConcepts/README.md": {
+      "original_hash": "ff1407b7c42b729e940909b6adeefa3e",
+      "source_file": "01-CoreConcepts/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T03:29:15+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "03-GettingStarted/06-http-streaming/README.md": {
+      "original_hash": "f8db895941fa52d53dcffcdd9e8c69e0",
+      "source_file": "03-GettingStarted/06-http-streaming/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:07:53+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "03-GettingStarted/05-stdio-server/README.md": {
+      "original_hash": "f67633861ae86eac3d7431e9d53a64eb",
+      "source_file": "03-GettingStarted/05-stdio-server/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:17:10+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "03-GettingStarted/12-mcp-hosts/README.md": {
+      "original_hash": "7014c7f128a1666a93e0f2898f06b740",
+      "source_file": "03-GettingStarted/12-mcp-hosts/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:22:31+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "03-GettingStarted/samples/java/calculator/README.md": {
+      "original_hash": "614f16e7ab9d4a7656248150369715ca",
+      "source_file": "03-GettingStarted/samples/java/calculator/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:35:48+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "05-AdvancedTopics/mcp-sampling/README.md": {
+      "original_hash": "5c9c29ae8b7445966662ce1df62c4fdf",
+      "source_file": "05-AdvancedTopics/mcp-sampling/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:41:34+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "05-AdvancedTopics/mcp-protocol-features/README.md": {
+      "original_hash": "fa33aa6ffff3c541dba19a694cfcce1b",
+      "source_file": "05-AdvancedTopics/mcp-protocol-features/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:47:27+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "05-AdvancedTopics/mcp-security/README.md": {
+      "original_hash": "ec155356c76f2e8da4446ea16cf67a3f",
+      "source_file": "05-AdvancedTopics/mcp-security/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:53:50+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "05-AdvancedTopics/mcp-oauth2-demo/README.md": {
+      "original_hash": "8bb289d7c97713a790a32b4dd2755c54",
+      "source_file": "05-AdvancedTopics/mcp-oauth2-demo/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:54:33+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "05-AdvancedTopics/mcp-root-contexts/README.md": {
+      "original_hash": "11c4d37d3f872ce3089ddc15ff750531",
+      "source_file": "05-AdvancedTopics/mcp-root-contexts/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T04:56:37+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "01-CoreConcepts/mcp-2026-07-28.md": {
+      "original_hash": "120ccf1374c3db72f7092e70041070d0",
+      "source_file": "01-CoreConcepts/mcp-2026-07-28.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T07:22:18+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.2.2 of 'mcp-2026-07-28.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "02-Security/mcp-security-controls.md": {
+      "original_hash": "0f651084b78e5ee2f8c506d60d7d513a",
+      "source_file": "02-Security/mcp-security-controls.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T07:34:32+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'mcp-security-controls.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "02-Security/mcp-security-best-practices.md": {
+      "original_hash": "6d4c7f80eb4ecf3c69bc270768373e50",
+      "source_file": "02-Security/mcp-security-best-practices.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T07:45:31+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'mcp-security-best-practices.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
+    },
+    "02-Security/samples/cimd-dcr-auth/README.md": {
+      "original_hash": "9219eb0de7ba7816ff13d4abeeae2318",
+      "source_file": "02-Security/samples/cimd-dcr-auth/README.md",
+      "language_code": "pa",
+      "failure_date": "2026-09-11T07:55:34+00:00",
+      "status": "failed",
+      "error_type": "TranslationIncompleteError",
+      "error_message": "Markdown translation remained incomplete for chunk 1.1.1 of 'README.md', and the chunk could not be split further.",
+      "translator_version": "0.20.0",
+      "failure_policy_version": 1
     }
   },
   "changelog.md": {
@@ -924,8 +1111,8 @@
     "language_code": "pa"
   },
   "study_guide.md": {
-    "original_hash": "480f76e9b15e39d582fb276da670c983",
-    "translation_date": "2026-07-08T18:28:35+00:00",
+    "original_hash": "6df551a873438f06bbe2b6ff8b780b92",
+    "translation_date": "2026-09-11T03:10:41+00:00",
     "source_file": "study_guide.md",
     "language_code": "pa"
   }

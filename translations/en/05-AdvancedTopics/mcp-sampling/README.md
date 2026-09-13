@@ -1,10 +1,18 @@
-> [DEPRECATED: 2026-07-28 RELEASE CANDIDATE](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Sampling is deprecated in MCP `2026-07-28`. This lesson is retained for
+> legacy implementations. New servers should integrate directly with an LLM
+> provider API.
 
 # Sampling in Model Context Protocol
 
-> **Deprecation notice:** the `2026-07-28` MCP specification release candidate marks Sampling as deprecated in favor of direct integration with LLM provider APIs. Sampling continues to work in `2025-11-25` and for at least a year after any formal deprecation, so everything in this lesson remains valid - but new server designs should evaluate the replacement pattern. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Sampling remains in the `2026-07-28` specification for compatibility and is
+> eligible for removal in the first revision released on or after July 28,
+> 2027. Examples in this lesson may use SDK APIs that implement `2025-11-25`.
+> See [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Sampling is a powerful MCP feature that allows servers to request LLM completions through the client, enabling sophisticated agentic behaviors while maintaining security and privacy. The right sampling configuration can dramatically improve response quality and performance. MCP provides a standardized way to control how models generate text with specific parameters that influence randomness, creativity, and coherence.
+In legacy MCP implementations, Sampling allows servers to request LLM
+completions through the client. This lesson explains that deprecated protocol
+flow for compatibility and migration work.
 
 ## Introduction
 
