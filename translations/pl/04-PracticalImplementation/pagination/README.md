@@ -1,17 +1,17 @@
 # Paginacja i duże zestawy wyników w MCP
 
-Gdy twój serwer MCP obsługuje duże zestawy danych – czy to listując tysiące plików, rekordów bazy danych, czy wyników wyszukiwania – potrzebujesz paginacji, aby efektywnie zarządzać pamięcią i zapewnić responsywne doświadczenia użytkownika. Ten przewodnik opisuje, jak wdrożyć i korzystać z paginacji w MCP.
+Kiedy twój serwer MCP obsługuje duże zestawy danych - czy to listując tysiące plików, rekordów bazy danych, czy wyników wyszukiwania - potrzebujesz paginacji, aby efektywnie zarządzać pamięcią i zapewnić responsywne doświadczenia użytkownika. Ten przewodnik opisuje, jak zaimplementować i korzystać z paginacji w MCP.
 
-## Dlaczego paginacja ma znaczenie
+## Dlaczego paginacja jest ważna
 
-Bez paginacji, duże odpowiedzi mogą powodować:
+Bez paginacji duże odpowiedzi mogą powodować:
 
-- **Wyczerpanie pamięci** – Ładowanie milionów rekordów naraz
-- **Wolne czasy odpowiedzi** – Użytkownicy czekają, aż wszystkie dane się załadują
-- **Błędy przekroczenia limitu czasu** – Żądania przekraczają limity czasu
-- **Słaba wydajność AI** – LLM mają problemy z ogromnym kontekstem
+- **Wyczerpanie pamięci** - ładowanie milionów rekordów naraz
+- **Wolne czasy odpowiedzi** - użytkownicy czekają, aż wszystkie dane się załadują
+- **Błędy przekroczenia limitu czasu** - zapytania przekraczają limity czasu oczekiwania
+- **Słaba wydajność AI** - modele LLM mają trudności z ogromnym kontekstem
 
-MCP używa **paginacji opartej na kursorze** dla niezawodnego, spójnego przeglądania zestawów wyników.
+MCP używa **paginacji opartej na kursorze**, aby zapewnić niezawodne i spójne przechodzenie przez zestawy wyników.
 
 ---
 
@@ -26,29 +26,30 @@ sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: narzędzia/lista (brak kursora)
-    Server-->>Client: narzędzia [1-10], nextCursor: "abc123"
+    Client->>Server: tools/list (bez wskaźnika)
+    Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: narzędzia/lista (kursor: "abc123")
-    Server-->>Client: narzędzia [11-20], nextCursor: "def456"
+    Client->>Server: tools/list (wskaźnik: "abc123")
+    Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: narzędzia/lista (kursor: "def456")
-    Server-->>Client: narzędzia [21-25], nextCursor: null (koniec)
+    Client->>Server: tools/list (wskaźnik: "def456")
+    Server-->>Client: tools [21-25], nextCursor: null (koniec)
 ```
+
 ### Paginacja w metodach MCP
 
 Te metody MCP obsługują paginację:
 
-| Metoda | Zwraca | Wsparcie dla kursora |
-|--------|---------|---------------------|
+| Metoda | Zwraca | Obsługa kursora |
+|--------|---------|-----------------|
 | `tools/list` | Definicje narzędzi | ✅ |
 | `resources/list` | Definicje zasobów | ✅ |
-| `prompts/list` | Definicje podpowiedzi | ✅ |
+| `prompts/list` | Definicje promptów | ✅ |
 | `resources/templates/list` | Szablony zasobów | ✅ |
 
 ---
 
-## Implementacja po stronie serwera
+## Implementacja serwera
 
 ### Python (FastMCP)
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Zdekoduj kursor, aby uzyskać indeks początkowy
+    # Dekoduj kursor, aby uzyskać indeks początkowy
     start_index = 0
     if cursor:
         try:
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Sztuczny duży zbiór danych
+// Symulowany duży zestaw danych
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Zainicjuj dużą bazę danych
+        // Inicjalizuj duży zbiór danych
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // Odszyfruj kursor
+        // Dekoduj kursor
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementacja po stronie klienta
+## Implementacja klienta
 
 ### Klient Python
 
@@ -199,7 +200,7 @@ async def get_all_tools(session: ClientSession) -> list:
     
     return all_tools
 
-# Użytkowanie
+# Użycie
 async with client_session as session:
     tools = await get_all_tools(session)
     print(f"Found {len(tools)} tools")
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Wzorzec ładowania leniwego
+### Wzorzec leniwego ładowania
 
-Dla bardzo dużych zestawów danych, ładuj strony na żądanie:
+Dla bardzo dużych zbiorów danych ładuj strony na żądanie:
 
 ```python
 class PaginatedToolIterator:
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Użycie - pamięciooszczędne dla dużych zbiorów danych
+# Użycie - efektywne pod względem pamięci dla dużych zbiorów danych
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Paginacja dla zasobów
+## Paginacja zasobów
 
-Zasoby często wymagają paginacji w katalogach lub dużych zestawach danych:
+Zasoby często wymagają paginacji dla katalogów lub dużych zestawów danych:
 
 ```python
 from mcp.server import Server
@@ -320,24 +321,24 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## Strategie projektowania kursora
 
-### Strategia 1: Opierająca się na indeksie (prosta)
+### Strategia 1: Indeksowa (prosta)
 
 ```python
 # Kursor to tylko indeks
 cursor = "50"  # Zacznij od elementu 50
 ```
 
-**Zalety:** Prosta, bezstanowa  
-**Wady:** Wyniki mogą się przesuwać, gdy elementy są dodawane/usuwane
+**Zalety:** Prosta, bezstanowa
+**Wady:** Wyniki mogą się przesuwać, jeśli dodawane/usuwane są elementy
 
-### Strategia 2: Opierająca się na ID (stabilna)
+### Strategia 2: Na podstawie ID (stabilna)
 
 ```python
 # Kursor to ostatnio widziane ID
 cursor = "item_abc123"  # Zacznij po tym elemencie
 ```
 
-**Zalety:** Stabilna nawet jeśli elementy się zmieniają  
+**Zalety:** Stabilna nawet przy zmianach elementów
 **Wady:** Wymaga uporządkowanych ID
 
 ### Strategia 3: Zakodowany stan (złożona)
@@ -360,19 +361,19 @@ cursor = encode_cursor({
 })
 ```
 
-**Zalety:** Może kodować złożony stan  
-**Wady:** Bardziej skomplikowana, większe ciągi kursora
+**Zalety:** Może kodować złożony stan
+**Wady:** Bardziej złożona, większe ciągi kursora
 
 ---
 
 ## Najlepsze praktyki
 
-### 1. Wybierz odpowiedni rozmiar strony
+### 1. Wybieraj odpowiednie rozmiary stron
 
 ```python
-# Weź pod uwagę rozmiar danych
+# Rozważ rozmiar danych
 PAGE_SIZE_SMALL_ITEMS = 100   # Proste metadane
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Bardziej rozbudowane obiekty
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Bardziej złożone obiekty
 PAGE_SIZE_LARGE_ITEMS = 5     # Złożona zawartość
 ```
 
@@ -384,19 +385,19 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # Reset do początku
+            start_index = 0  # Resetuj do początku
     except (ValueError, TypeError):
         start_index = 0  # Nieprawidłowy kursor, zacznij od nowa
     # ...
 ```
 
-### 3. Uwzględnij całkowitą liczbę (opcjonalnie)
+### 3. Uwzględniaj całkowitą liczbę (opcjonalnie)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Niektóre implementacje zawierają sumę dla postępu interfejsu użytkownika
+    # Niektóre implementacje zawierają łączną sumę dla postępu interfejsu użytkownika
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
@@ -405,7 +406,7 @@ return ListToolsResult(
 
 ```python
 async def test_pagination():
-    # Pusty zestaw wyników
+    # Pusty zbiór wyników
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -450,19 +451,19 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 - [Moduł 5.14 - Inżynieria kontekstu](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Moduł 8 - Najlepsze praktyki](../../08-BestPractices/README.md)
-- [3.8 - Testowanie serwera MCP](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - Testowanie twojego serwera MCP](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Dodatkowe zasoby
 
-- [Specyfikacja MCP - Paginacja](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Specyfikacja MCP - Paginacja](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Wyjaśnienie paginacji opartej na kursorze](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Testy paginacji SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Testy paginacji w Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą automatycznego serwisu tłumaczeniowego AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było poprawne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym należy traktować jako źródło wiążące. W przypadku informacji istotnych zalecamy skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do dokładności, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w jego języku źródłowym należy uznawać za autorytatywne źródło. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

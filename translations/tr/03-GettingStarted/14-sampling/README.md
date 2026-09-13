@@ -1,28 +1,36 @@
-> [KALDIRILDI: 2026-07-28 SÜRÜM ADAYI](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Örnekleme, MCP `2026-07-28` sürümünde kullanımdan kaldırılmıştır. Bu ders, 
+> eski uygulamalar için saklanmaktadır. Yeni sunucular doğrudan bir LLM sağlayıcı 
+> API'si ile entegre olmalıdır.
 
-# Örnekleme - Özellikleri İstemciye Devretme
+# Örnekleme - özellikleri İstemciye devretme
 
-> **Kaldırılma bildirimi:** `2026-07-28` MCP spesifikasyonu sürüm adayı, Örneklemeyi, LLM sağlayıcı API'leriyle doğrudan entegrasyon lehine kaldırılmış olarak işaretler. Örnekleme, `2025-11-25` sürümünde ve herhangi bir resmi kaldırılmadan sonra en az bir yıl boyunca çalışmaya devam eder, bu yüzden bu derste yer alan her şey geçerlidir — ancak yeni sunucu tasarımları yedek desenleri değerlendirmelidir. Bkz. [MCP’de Neler Değişiyor: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Örnekleme, uyumluluk için `2026-07-28` spesifikasyonunda kalmaya devam etmekte olup,
+> 28 Temmuz 2027 ya da sonrasında yayımlanacak ilk revizyonda kaldırılabilir. Bu dersteki
+> örnekler `2025-11-25` sürümünü uygulayan SDK API'lerini kullanabilir.
+> Bakınız: [MCP’de Neler Değişti: 2026-07-28 Spesifikasyonu](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Bazen, MCP İstemcisi ve MCP Sunucusunun ortak bir hedefe ulaşmak için iş birliği yapması gerekir. Sunucunun, istemcide bulunan bir LLM'nin yardımına ihtiyaç duyduğu durumlar olabilir. Bu durum için kullanmanız gereken yöntem örneklemedir.
+Eski uygulamalarda, örnekleme MCP sunucusunun istemci tarafından yönetilen bir LLM’den
+yardım istemesini sağlar. Yeni uygulamalarda ise doğrudan seçilen LLM sağlayıcıya çağrı yapılmalıdır.
 
-Bazı kullanım durumlarını ve örneklemeyi içeren nasıl bir çözüm kurulacağını keşfedelim.
+
+
 
 ## Genel Bakış
 
-Bu derste, Örneklemenin ne zaman ve nerede kullanılacağını ve nasıl yapılandırılacağını açıklamaya odaklanacağız.
+Bu derste örneklemenin ne zaman ve nerede kullanılacağını ve nasıl yapılandırılacağını açıklamaya odaklanacağız.
 
 ## Öğrenme Hedefleri
 
 Bu bölümde:
 
 - Örneklemenin ne olduğunu ve ne zaman kullanılacağını açıklayacağız.
-- MCP'de Örneklemenin nasıl yapılandırılacağını göstereceğiz.
-- Örneklemenin uygulamadaki örneklerini sunacağız.
+- MCP’de örneklemenin nasıl yapılandırılacağını göstereceğiz.
+- Örnekleme örneklerini sunacağız.
 
 ## Örnekleme nedir ve neden kullanılır?
 
-Örnekleme, şu şekilde çalışan gelişmiş bir özelliktir:
+Örnekleme, aşağıdaki şekilde çalışan gelişmiş bir özelliktir:
 
 ```mermaid
 sequenceDiagram
@@ -43,7 +51,7 @@ sequenceDiagram
 
 ### Örnekleme isteği
 
-Tamam, şimdi güvenilir bir senaryoya genel bir bakışımız olduğuna göre, sunucunun istemciye göndereceği örnekleme isteği hakkında konuşalım. Bu tür bir istek JSON-RPC formatında şöyle görünebilir:
+Tamam, şimdi inandırıcı bir senaryonun geniş bir görünümüne sahibiz, gelin sunucunun istemciye geri gönderdiği örnekleme isteğinden bahsedelim. Böyle bir isteğin JSON-RPC formatında nasıl görünebileceğine bakalım:
 
 ```json
 {
@@ -75,17 +83,17 @@ Tamam, şimdi güvenilir bir senaryoya genel bir bakışımız olduğuna göre, 
 }
 ```
 
-Burada belirtmeye değer birkaç şey var:
+Burada dikkat çekilmesi gereken birkaç şey var:
 
-- İçerik -> metin altında yer alan istek, LLM'ye blog yazısı içeriğini özetlemek için verilen talimattır.
+- Prompt, content -> text altında, LLM’ye blog yazısı içeriğini özetlemesi için verilen talimatımızdır.
 
-- **modelPreferences**. Bu bölüm, sadece öneri olarak LLM ile kullanılacak yapılandırma tercihini belirtir. Kullanıcı bu önerileri kabul edebilir veya değiştirebilir. Bu durumda, kullanılacak model ve hız ile zeka önceliği hakkında öneriler bulunur.
-- **systemPrompt**, bu, LLM'nize kişilik veren ve yönlendirme talimatları içeren normal sistem talimatınızdır.
-- **maxTokens**, bu, bu görev için kullanılmasının önerildiği maksimum token sayısını belirtir.
+- **modelPreferences**. Bu bölüm yalnızca bir tercihtir, LLM ile kullanılacak yapılandırma için bir öneridir. Kullanıcı bu önerilere uyabilir veya değiştirebilir. Bu durumda kullanılacak model, hız ve zeka önceliğine dair öneriler var.
+- **systemPrompt**, LLM’nize kişilik katan ve rehberlik talimatları içeren normal sistem isteminiz budur.
+- **maxTokens**, bu da bu görev için önerilen maksimum token sayısını belirten başka bir özelliktir.
 
 ### Örnekleme yanıtı
 
-Bu yanıt, MCP İstemcisinin MCP Sunucusuna geri gönderdiği yanıttır ve istemcinin LLM'yi çağırıp yanıtı bekleyip ardından bu mesajı oluşturmasının sonucudur. JSON-RPC formatında şöyle görünebilir:
+Bu yanıt, MCP İstemcisinin MCP Sunucusuna gönderdiği ve istemcinin LLM’yi çağırdıktan sonra bu yanıtı bekleyip oluşturduğu mesajdır. JSON-RPC formatında şöyle görünebilir:
 
 ```json
 {
@@ -103,13 +111,13 @@ Bu yanıt, MCP İstemcisinin MCP Sunucusuna geri gönderdiği yanıttır ve iste
 }
 ```
 
-Yanıtın, istediğimiz gibi blog yazısının bir özeti olduğunu not edin. Ayrıca kullanılan `model`'in istemediğimiz "claude-3-sonnet" değil, "gpt-5" olduğunu fark edin. Bu, kullanıcının ne kullanacağına kararını değiştirebileceğini ve örnekleme isteğinizin bir öneri olduğunu göstermektedir.
+Yanıtın blog yazısının özetini içerdiğine dikkat edin, tıpkı istediğimiz gibi. Ayrıca kullanılan `model`’in istediğimiz değil de "gpt-5" olduğunu, "claude-3-sonnet" yerine, not edin. Bu, kullanıcının seçimlerini değiştirebileceğini ve örnekleme isteğinizin bir öneri olduğunu göstermek içindir.
 
-Tamam, şimdi ana akışı ve faydalı görev olan "blog yazısı oluşturma + özet" kullanımını anladığımıza göre, çalıştırmak için neler yapmamız gerektiğine bakalım.
+Tamam, artık ana akışı ve "blog yazısı oluşturma + özet" gibi faydalı bir görevi anladığımıza göre, bunu çalıştırmak için neler yapmamız gerektiğine bakalım.
 
 ### Mesaj türleri
 
-Örnekleme mesajları sadece metinle sınırlı değildir, aynı zamanda resim ve ses de gönderebilirsiniz. JSON-RPC'nin nasıl farklı göründüğüne bakalım:
+Örnekleme mesajları sadece metinle sınırlı değildir, aynı zamanda resim ve ses de gönderebilirsiniz. JSON-RPC’nin nasıl farklı göründüğüne bakalım:
 
 **Metin**
 
@@ -121,6 +129,7 @@ Tamam, şimdi ana akışı ve faydalı görev olan "blog yazısı oluşturma + �
 ```
 
 **Resim içeriği**
+
 
 ```json
 {
@@ -140,13 +149,14 @@ Tamam, şimdi ana akışı ve faydalı görev olan "blog yazısı oluşturma + �
 }
 ```
 
-> NOT: Örnekleme hakkında daha ayrıntılı bilgi için [resmi dökümantasyona](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling) bakınız.
+> NOT: Mevcut durumu ve geçiş rehberliğini görmek için
+> [kullanımı bırakılan Sampling dokümantasyonuna](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling) bakın.
 
-## İstemcide Örnekleme Nasıl Yapılandırılır
+## İstemcide Sampling Yapılandırması Nasıl Olur
 
-> Not: Sadece bir sunucu inşa ediyorsanız, burada çok fazla bir şey yapmanıza gerek yok.
+> Not: Sadece bir sunucu inşa ediyorsanız, burada pek bir şey yapmanıza gerek yoktur.
 
-İstemcide aşağıdaki özelliği şöyle belirtmeniz gerekir:
+Bir istemcide, aşağıdaki özelliği şu şekilde belirtmeniz gerekir:
 
 ```json
 {
@@ -156,18 +166,18 @@ Tamam, şimdi ana akışı ve faydalı görev olan "blog yazısı oluşturma + �
 }
 ```
 
-Bu, seçilen istemci sunucuyla başlatıldığında alınacaktır.
+Bu, seçtiğiniz istemci sunucu ile başlatıldığında aktif hale gelecektir.
 
-## Örnekleme Uygulamasına Örnek - Bir Blog Yazısı Oluşturma
+## Sampling Örneği - Bir Blog Yazısı Oluştur
 
-Hadi birlikte örnekleme sunucusu kodlayalım, aşağıdakileri yapmamız gerekecek:
+Bir sampling sunucusu birlikte kodlayalım, şunları yapmamız gerekecek:
 
-1. Sunucuda bir araç oluştur.
-1. Bu araç bir örnekleme isteği oluşturmalı.
-1. Araç, istemcinin örnekleme isteğine yanıt vermesini beklemeli.
-1. Ardından araç sonucu üretilmeli.
+1. Sunucuda bir araç oluşturun.
+1. Bu araç bir sampling isteği oluşturmalı
+1. Araç, istemcinin sampling isteğine yanıt verilmesini beklemeli.
+1. Sonra aracın sonucu üretilmeli.
 
-Kodu adım adım görelim:
+Kodu adım adım inceleyelim:
 
 ### -1- Aracı oluştur
 
@@ -180,7 +190,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Bir örnekleme isteği oluştur
+### -2- Sampling isteği oluştur
 
 Aracınızı aşağıdaki kodla genişletin:
 
@@ -208,7 +218,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Yanıtı bekleyip yanıtı döndür
+### -3- Yanıt bekle ve yanıtı döndür
 
 **python**
 
@@ -217,7 +227,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# tamamlanmış ürünü döndürün
+# tam ürünü geri döndür
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -286,7 +296,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # tam blog gönderisini döndürür
+    # tam blog gönderisini döndür
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -300,9 +310,9 @@ if __name__ == "__main__":
 # uygulamayı çalıştır: python server.py
 ```
 
-### -5- Visual Studio Code'da test etmek
+### -5- Visual Studio Code'da test etme
 
-Bunu Visual Studio Code'da test etmek için aşağıdakileri yapın:
+Bunu Visual Studio Code'da test etmek için şu adımları izleyin:
 
 1. Terminalde sunucuyu başlatın
 1. *mcp.json* dosyasına ekleyin (ve başlatıldığından emin olun), örneğin şöyle:
@@ -316,39 +326,40 @@ Bunu Visual Studio Code'da test etmek için aşağıdakileri yapın:
    }
    ```
 
-1. Bir istek yazın:
+1. Bir komut girin:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Örneklemenin gerçekleşmesine izin verin. Bunu ilk test ettiğinizde, ek bir diyaloğun gösterileceğini ve kabul etmeniz gerektiğini not edin, ardından normal araç çalıştırma isteği diyaloğunu göreceksiniz.
+1. Sampling gerçekleşmesine izin verin. İlk kez test ettiğinizde ek bir diyalog karşınıza çıkacak, onu kabul etmeniz gerekecek, sonra aracın çalıştırılması için normal diyalog görünecek.
 
-1. Sonuçları inceleyin. Sonuçları GitHub Copilot Chat'te güzelce render edilmiş olarak göreceksiniz ama aynı zamanda ham JSON yanıtını da inceleyebilirsiniz.
+1. Sonuçları inceleyin. Sonuçları hem GitHub Copilot Sohbet'te güzelce formatlanmış olarak göreceksiniz hem de ham JSON yanıtını inceleyebilirsiniz.
 
-**Bonus**. Visual Studio Code araçları örnekleme için harika destek sunar. Kurulu sunucunuz için Örnekleme erişimini şöyle yapılandırabilirsiniz:
+**Bonus**. Visual Studio Code araçları sampling için harika destek sunar. Yüklü sunucunuzdaki Sampling erişimini şu şekilde yapılandırabilirsiniz:
 
 1. Uzantılar bölümüne gidin.
-1. "MCP SERVERS - INSTALLED" bölümündeki kurulu sunucunuz için dişli simgesini seçin.
-1 "Model Erişimini Yapılandır" seçeneğini belirleyin, burada GitHub Copilot’un örnekleme yaparken kullanmasına izin verilen modelleri seçebilirsiniz. Ayrıca "Örnekleme isteklerini göster" seçeneğiyle son zamanlarda yapılan tüm örnekleme isteklerini görebilirsiniz.
+1. "MCP SUNUCULARI - YÜKLENENLER" bölümünde yüklü sunucunuzun dişli simgesini seçin.
+1 "Model Erişimini Yapılandır" seçeneğini seçin, burada Sampling yaparken GitHub Copilot'un hangi Modelleri kullanmasına izin verileceğini seçebilirsiniz. Ayrıca "Sampling isteklerini göster" seçeneğini seçerek son zamanlarda yapılmış tüm sampling isteklerini görebilirsiniz.
 
 ## Ödev
 
-Bu ödevde, ürün açıklaması oluşturmayı destekleyen biraz farklı bir örnekleme entegrasyonu geliştireceksiniz. İşte senaryonuz:
+Bu ödevde, biraz farklı bir Sampling yani ürün açıklaması oluşturmayı destekleyen bir sampling entegrasyonu inşa edeceksiniz. İşte senaryonuz:
 
-**Senaryo**: E-ticaretin arka ofis çalışanı yardıma ihtiyaç duyuyor, ürün açıklamaları oluşturmak çok vakit alıyor. Bu nedenle, "title" ve "keywords" argümanları ile "create_product" aracını çağırabileceğiniz ve "description" alanını istemci LLM'si ile doldurması gereken eksiksiz bir ürün üretecek bir çözüm oluşturmanız gerekiyor.
+**Senaryo**: Bir e-ticaretin arka ofis çalışanı yardıma ihtiyaç duyuyor, ürün açıklaması oluşturmak çok fazla zaman alıyor. Bu nedenle, "title" ve "keywords" argümanlarıyla "create_product" adlı bir aracı çağırabileceğiniz ve istemci tarafı LLM tarafından doldurulacak "description" alanı da dahil olmak üzere tam bir ürün üretecek bir çözüm inşa ediyorsunuz.
 
-İPUCU: Önceden öğrendiklerinizi kullanarak bu sunucuyu ve aracını bir örnekleme isteğiyle oluşturun.
+İPUCU: Bu sunucu ve aracını önceden öğrendiklerinizi kullanarak bir sampling isteği ile oluşturun.
 
 ## Çözüm
 
 [Çözüm](./solution/README.md)
 
-## Önemli Noktalar
+## Temel Çıkarımlar
 
-Örnekleme, sunucunun bir LLM yardımı gerektiğinde görevleri istemciye devretmesini sağlayan güçlü bir özelliktir.
 
-## Sonraki Adım
+Örnekleme, sunucunun büyük dil modelinin (LLM) yardımına ihtiyaç duyduğunda görevleri istemciye devretmesini sağlayan güçlü bir özelliktir.
+
+## Sonraki Adımlar
 
 - [Bölüm 4 - Pratik uygulama](../../04-PracticalImplementation/README.md)
 

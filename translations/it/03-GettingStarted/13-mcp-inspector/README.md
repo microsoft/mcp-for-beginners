@@ -1,14 +1,19 @@
 # Debugging con MCP Inspector
 
-Il **MCP Inspector** è uno strumento di debugging essenziale che ti consente di testare e diagnosticare interattivamente i tuoi server MCP senza la necessità di un'applicazione host AI completa. Pensalo come il "Postman per MCP" - fornisce un'interfaccia visiva per inviare richieste, visualizzare risposte e comprendere come si comporta il tuo server.
+> [!NOTE]
+> I comandi che usano `--sse` e gli URL che finiscono con `/sse` testano il trasporto legacy HTTP+SSE.
+> Per un server MCP `2026-07-28` nuovo, usa una versione di Inspector che
+> supporta HTTP Streamable e seleziona invece quel trasporto.
 
-## Perché Usare MCP Inspector?
+Il **MCP Inspector** è uno strumento essenziale per il debugging che ti permette di testare e risolvere interattivamente i tuoi server MCP senza aver bisogno di un'applicazione host AI completa. Pensalo come un "Postman per MCP" - fornisce un'interfaccia visiva per inviare richieste, visualizzare risposte e comprendere come si comporta il tuo server.
 
-Quando costruisci server MCP, incontrerai spesso queste sfide:
+## Perché usare MCP Inspector?
+
+Nel costruire server MCP, spesso ti trovi ad affrontare queste sfide:
 
 - **"Il mio server è in esecuzione?"** - Inspector mostra lo stato della connessione
 - **"I miei strumenti sono registrati correttamente?"** - Inspector elenca tutti gli strumenti disponibili
-- **"Qual è il formato della risposta?"** - Inspector visualizza le risposte JSON complete
+- **"Qual è il formato della risposta?"** - Inspector mostra risposte JSON complete
 - **"Perché questo strumento non funziona?"** - Inspector mostra messaggi di errore dettagliati
 
 ## Prerequisiti
@@ -19,20 +24,20 @@ Quando costruisci server MCP, incontrerai spesso queste sfide:
 
 ## Installazione
 
-### Opzione 1: Esegui con npx (Consigliato per Test Rapidi)
+### Opzione 1: Esegui con npx (Raccomandato per test rapidi)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Opzione 2: Installa Globalmente
+### Opzione 2: Installa globalmente
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Opzione 3: Aggiungi al Tuo Progetto
+### Opzione 3: Aggiungi al tuo progetto
 
 ```bash
 cd your-mcp-server-project
@@ -50,9 +55,9 @@ Aggiungi a `package.json`:
 
 ---
 
-## Connessione al Tuo Server
+## Connettersi al tuo server
 
-### Server stdio (Processo Locale)
+### Server stdio (processo locale)
 
 Per server che comunicano tramite input/output standard:
 
@@ -67,9 +72,9 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Server SSE/HTTP (Rete)
+### Server SSE/HTTP (rete)
 
-Per server che funzionano come servizi HTTP:
+Per server che girano come servizi HTTP:
 
 1. Avvia prima il tuo server:
    ```bash
@@ -83,9 +88,9 @@ Per server che funzionano come servizi HTTP:
 
 ---
 
-## Panoramica dell'Interfaccia di Inspector
+## Panoramica dell'interfaccia Inspector
 
-Quando si avvia Inspector, vedrai un'interfaccia web (tipicamente su `http://localhost:5173`):
+Quando Inspector si avvia, vedrai un'interfaccia web (tipicamente su `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Quando si avvia Inspector, vedrai un'interfaccia web (tipicamente su `http://loc
 
 ---
 
-## Test degli Strumenti
+## Test degli strumenti
 
-### Elenco Strumenti Disponibili
+### Elenco degli strumenti disponibili
 
-1. Clicca la scheda **Tools**
+1. Clicca sulla scheda **Strumenti**
 2. Inspector chiama automaticamente `tools/list`
 3. Vedrai tutti gli strumenti registrati con:
    - Nome dello strumento
    - Descrizione
-   - Schema di input (parametri)
+   - Schema d'ingresso (parametri)
 
-### Invocare uno Strumento
+### Invocare uno strumento
 
 1. Seleziona uno strumento dalla lista
 2. Compila i parametri richiesti nel modulo
-3. Clicca **Run Tool**
+3. Clicca su **Esegui strumento**
 4. Visualizza la risposta nel pannello dei risultati
 
-**Esempio: Test di uno strumento calcolatrice**
+**Esempio: test di uno strumento calcolatrice**
 
 ```
 Tool: add
@@ -148,7 +153,7 @@ Response:
 }
 ```
 
-### Debug di Errori degli Strumenti
+### Debug degli errori degli strumenti
 
 Quando uno strumento fallisce, Inspector mostra:
 
@@ -164,7 +169,7 @@ Error Response:
 
 Codici di errore comuni:
 | Codice | Significato |
-|--------|-------------|
+|--------|------------|
 | -32700 | Errore di parsing (JSON non valido) |
 | -32600 | Richiesta non valida |
 | -32601 | Metodo non trovato |
@@ -173,21 +178,21 @@ Codici di errore comuni:
 
 ---
 
-## Test delle Risorse
+## Test delle risorse
 
-### Elenco Risorse
+### Elenco delle risorse
 
-1. Clicca la scheda **Resources**
+1. Clicca sulla scheda **Risorse**
 2. Inspector chiama `resources/list`
 3. Vedrai:
    - URI delle risorse
    - Nomi e descrizioni
    - Tipi MIME
 
-### Lettura di una Risorsa
+### Lettura di una risorsa
 
 1. Seleziona una risorsa
-2. Clicca **Read Resource**
+2. Clicca su **Leggi risorsa**
 3. Visualizza il contenuto restituito
 
 **Esempio di output:**
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Test dei Prompt
+## Test dei prompt
 
-### Elenco Prompt
+### Elenco dei prompt
 
-1. Clicca la scheda **Prompts**
+1. Clicca sulla scheda **Prompt**
 2. Inspector chiama `prompts/list`
 3. Visualizza i modelli di prompt disponibili
 
-### Ottenere un Prompt
+### Ottenere un prompt
 
 1. Seleziona un prompt
 2. Compila eventuali argomenti richiesti
-3. Clicca **Get Prompt**
-4. Vedi i messaggi del prompt renderizzati
+3. Clicca su **Ottieni prompt**
+4. Visualizza i messaggi prompt renderizzati
 
 ---
 
-## Analisi del Registro Messaggi
+## Analisi del log dei messaggi
 
-Il registro messaggi mostra tutti i messaggi del protocollo MCP:
+Il log dei messaggi mostra tutti i messaggi del protocollo MCP. La trascrizione qui sotto è da un
+server legacy `2025-11-25` e include la stretta di mano `initialize` rimossa. Un
+server `2026-07-28` usa metadata della richiesta autonomi e `server/discover`
+al loro posto.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Il registro messaggi mostra tutti i messaggi del protocollo MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Cosa Cercare
+### Cosa osservare
 
-- **Coppie Richiesta/Risposta**: Ogni `→` dovrebbe avere un corrispondente `←`
+- **Coppie richiesta/risposta**: Ogni `→` dovrebbe avere un corrispondente `←`
 - **Messaggi di errore**: Cerca `"error"` nelle risposte
-- **Tempi**: Grandi pause possono indicare problemi di performance
-- **Versione del protocollo**: Assicurati che server e client concordino sulla versione
+- **Tempi**: Lunghi intervalli possono indicare problemi di performance
+- **Versione del protocollo**: Assicurati che server e client usino la stessa versione
 
 ---
 
@@ -310,53 +318,53 @@ Aggiungi a `.vscode/tasks.json`:
 
 ---
 
-## Scenari Comuni di Debugging
+## Scenari comuni di debugging
 
-### Scenario 1: Il Server Non Si Connette
+### Scenario 1: Il server non si connette
 
-**Sintomi:** Inspector mostra "Disconnected" o si blocca su "Connecting..."
+**Sintomi:** Inspector mostra "Disconnected" o rimane bloccato su "Connecting..."
 
 **Lista di controllo:**
 1. ✅ Il comando del server è corretto?
 2. ✅ Sono installate tutte le dipendenze?
 3. ✅ Il percorso del server è assoluto o relativo alla directory corrente?
-4. ✅ Le variabili di ambiente richieste sono impostate?
+4. ✅ Sono impostate le variabili d'ambiente necessarie?
 
-**Passi di debug:**
+**Passi per il debug:**
 ```bash
-# Testa il server manualmente prima
+# Testa manualmente prima il server
 python -c "import your_server_module; print('OK')"
 
-# Controlla eventuali errori di importazione
+# Controlla errori di importazione
 python -m your_server_module 2>&1 | head -20
 
 # Verifica che MCP SDK sia installato
 pip show mcp
 ```
 
-### Scenario 2: Strumenti Non Visualizzati
+### Scenario 2: Gli strumenti non appaiono
 
 **Sintomi:** La scheda strumenti mostra una lista vuota
 
 **Cause possibili:**
-1. Strumenti non registrati durante l’inizializzazione del server
-2. Il server è crashato dopo l’avvio
-3. L’handler `tools/list` restituisce un array vuoto
+1. Strumenti non registrati durante l'inizializzazione del server
+2. Crash del server dopo l'avvio
+3. L'handler di `tools/list` restituisce un array vuoto
 
-**Passi di debug:**
-1. Controlla il registro messaggi per la risposta `tools/list`
-2. Aggiungi logging al codice di registrazione dello strumento
+**Passi per il debug:**
+1. Controlla il log dei messaggi per la risposta di `tools/list`
+2. Aggiungi logging al codice di registrazione degli strumenti
 3. Verifica che i decoratori `@mcp.tool()` siano presenti (Python)
 
-### Scenario 3: Lo Strumento Restituisce Errore
+### Scenario 3: Lo strumento restituisce errore
 
 **Sintomi:** La chiamata allo strumento restituisce una risposta di errore
 
-**Approccio al debug:**
-1. Leggi attentamente il messaggio di errore
+**Approccio di debug:**
+1. Leggi con attenzione il messaggio di errore
 2. Controlla che i tipi dei parametri corrispondano allo schema
-3. Aggiungi blocchi try/catch con messaggi di errore dettagliati
-4. Controlla i log del server per tracce dello stack
+3. Aggiungi try/catch con messaggi di errore dettagliati
+4. Controlla i log del server per stack trace
 
 **Esempio di gestione errori migliorata:**
 
@@ -373,9 +381,9 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Scenario 4: Contenuto della Risorsa Vuoto
+### Scenario 4: Contenuto risorsa vuoto
 
-**Sintomi:** La risorsa viene restituita ma il contenuto è vuoto o nullo
+**Sintomi:** La risorsa restituisce ma il contenuto è vuoto o nullo
 
 **Lista di controllo:**
 1. ✅ Il percorso del file o URI è corretto
@@ -384,9 +392,9 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ---
 
-## Funzionalità Avanzate di Inspector
+## Funzionalità avanzate di Inspector
 
-### Header Personalizzati (SSE)
+### Header personalizzati (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -394,48 +402,48 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Logging Verboso
+### Logging dettagliato
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Registrazione Sessioni
+### Registrazione delle sessioni
 
-Inspector può esportare i registri dei messaggi per analisi successive:
-1. Clicca **Export Log** nel pannello messaggi
+Inspector può esportare i log dei messaggi per analisi successive:
+1. Clicca su **Esporta log** nel pannello dei messaggi
 2. Salva il file JSON
-3. Condividilo con i membri del team per il debug
+3. Condividi con i membri del team per il debugging
 
 ---
 
-## Best Practice
+## Buone pratiche
 
-1. **Testa presto e spesso** - Usa Inspector durante lo sviluppo, non solo quando si rompe qualcosa
-2. **Inizia semplice** - Testa la connettività di base prima di chiamate strumento complesse
-3. **Controlla lo schema** - Molti errori derivano da discrepanze nei tipi di parametri
-4. **Leggi i messaggi di errore** - Gli errori MCP sono generalmente descrittivi
-5. **Tieni Inspector aperto** - Aiuta a individuare problemi durante lo sviluppo
+1. **Testa presto e spesso** - Usa Inspector durante lo sviluppo, non solo quando qualcosa si rompe
+2. **Inizia semplice** - Testa la connettività base prima di chiamate complesse
+3. **Controlla lo schema** - Molti errori derivano da discrepanze nei tipi dei parametri
+4. **Leggi i messaggi di errore** - Gli errori MCP sono di solito descrittivi
+5. **Tieni Inspector aperto** - Aiuta a catturare problemi mentre sviluppi
 
 ---
 
-## Cosa Fare Dopo
+## Cosa c'è dopo
 
-Hai completato il Modulo 3: Getting Started! Continua il tuo apprendimento:
+Hai completato il Modulo 3: Introduzione! Continua il tuo apprendimento:
 
 - [Modulo 4: Implementazione Pratica](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Risorse Aggiuntive
+## Risorse aggiuntive
 
 - [Repository GitHub MCP Inspector](https://github.com/modelcontextprotocol/inspector)
-- [Specifiche MCP - Messaggi di Protocollo](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Specifiche MCP - Messaggi del protocollo](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Specifiche JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica AI [Co-op Translator](https://github.com/Azure/co-op-translator). Pur impegnandoci per garantire accuratezza, si prega di considerare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua natia deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un umano. Non ci assumiamo alcuna responsabilità per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
+**Disclaimer**:
+Questo documento è stato tradotto utilizzando il servizio di traduzione AI [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire la precisione, si prega di notare che le traduzioni automatizzate possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa deve essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un essere umano. Non siamo responsabili per eventuali malintesi o interpretazioni errate derivanti dall’uso di questa traduzione.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,62 +1,68 @@
-# Zabezpieczenie przepływów pracy AI: uwierzytelnianie Entra ID dla serwerów Model Context Protocol
+# Zabezpieczanie przepływów pracy AI: Uwierzytelnianie Entra ID dla serwerów Model Context Protocol
+
+> [!NOTE]
+> Kod zdalnego serwera w tej lekcji chroni legacy'owe punkty końcowe `/sse` i `/message`
+> oraz celuje w MCP `2025-11-25`. Zachowaj jego praktyki dotyczące tożsamości i walidacji tokenów,
+> ale do nowych implementacji używaj kompatybilnego z `2026-07-28` transportu Streamable HTTP.
+
 
 ## Wprowadzenie
-Zabezpieczenie serwera Model Context Protocol (MCP) jest równie ważne jak zamknięcie drzwi frontowych domu na klucz. Pozostawienie serwera MCP otwartego naraża Twoje narzędzia i dane na nieautoryzowany dostęp, co może prowadzić do naruszeń bezpieczeństwa. Microsoft Entra ID dostarcza solidne, oparte na chmurze rozwiązanie do zarządzania tożsamością i dostępem, które pomaga zapewnić, że tylko upoważnieni użytkownicy i aplikacje mogą współdziałać z Twoim serwerem MCP. W tej sekcji nauczysz się, jak chronić swoje przepływy pracy AI za pomocą uwierzytelniania Entra ID.
+Zabezpieczenie serwera Model Context Protocol (MCP) jest tak samo ważne jak zamknięcie drzwi wejściowych do twojego domu. Pozostawienie serwera MCP otwartego naraża twoje narzędzia i dane na nieautoryzowany dostęp, co może prowadzić do naruszeń bezpieczeństwa. Microsoft Entra ID zapewnia solidne, oparte na chmurze rozwiązanie do zarządzania tożsamością i dostępem, które pomaga zagwarantować, że tylko autoryzowani użytkownicy i aplikacje mogą wchodzić w interakcje z twoim serwerem MCP. W tej sekcji dowiesz się, jak chronić przepływy pracy AI, korzystając z uwierzytelniania Entra ID.
 
 ## Cele nauki
-Po ukończeniu tej sekcji będziesz potrafił:
+Po przeczytaniu tej sekcji będziesz potrafił:
 
-- Zrozumieć znaczenie zabezpieczenia serwerów MCP.
+- Zrozumieć znaczenie zabezpieczania serwerów MCP.
 - Wyjaśnić podstawy Microsoft Entra ID i uwierzytelniania OAuth 2.0.
-- Rozpoznać różnicę między klientami publicznymi a poufnymi.
-- Wdrożyć uwierzytelnianie Entra ID w scenariuszach lokalnych (klient publiczny) i zdalnych (klient poufny) serwerów MCP.
+- Rozróżnić klientów publicznych i poufnych.
+- Zaimplementować uwierzytelnianie Entra ID zarówno w lokalnych (klient publiczny), jak i zdalnych (klient poufny) scenariuszach serwera MCP.
 - Stosować najlepsze praktyki bezpieczeństwa podczas tworzenia przepływów pracy AI.
 
 ## Bezpieczeństwo i MCP
 
-Tak jak nie zostawiłbyś drzwi frontowych swojego domu otwartych, tak nie powinieneś pozostawiać serwera MCP dostępnego dla każdego. Zabezpieczenie przepływów pracy AI jest niezbędne do budowania solidnych, wiarygodnych i bezpiecznych aplikacji. Ten rozdział przedstawi Ci, jak używać Microsoft Entra ID do zabezpieczenia serwerów MCP, gwarantując, że tylko uprawnieni użytkownicy i aplikacje mogą korzystać z Twoich narzędzi i danych.
+Tak jak nie zostawiasz otwartych drzwi frontowych w swoim domu, tak nie powinieneś pozostawiać otwartego serwera MCP dla każdego. Zabezpieczenie twoich przepływów pracy AI jest kluczowe dla tworzenia solidnych, wiarygodnych i bezpiecznych aplikacji. Ten rozdział wprowadzi Cię do używania Microsoft Entra ID do zabezpieczania serwerów MCP, zapewniając, że tylko autoryzowani użytkownicy i aplikacje będą mogły korzystać z twoich narzędzi i danych.
 
-## Dlaczego bezpieczeństwo ma znaczenie dla serwerów MCP?
+## Dlaczego bezpieczeństwo ma znaczenie dla serwerów MCP
 
-Wyobraź sobie, że Twój serwer MCP posiada narzędzie, które może wysyłać e-maile lub uzyskiwać dostęp do bazy danych klientów. Niezabezpieczony serwer oznaczałby, że każdy potencjalnie może użyć tego narzędzia, co prowadzi do nieautoryzowanego dostępu do danych, spamu lub innych złośliwych działań.
+Wyobraź sobie, że twój serwer MCP ma narzędzie, które może wysyłać e-maile lub uzyskiwać dostęp do bazy danych klientów. Niechroniony serwer oznacza, że każdy mógłby potencjalnie używać tego narzędzia, co prowadziłoby do nieautoryzowanego dostępu do danych, spamu lub innych złośliwych działań.
 
-Implementując uwierzytelnianie, zapewniasz, że każde żądanie do Twojego serwera jest weryfikowane, potwierdzając tożsamość użytkownika lub aplikacji, która to żądanie wysyła. To pierwszy i najważniejszy krok w zabezpieczaniu przepływów pracy AI.
+Wdrożenie uwierzytelniania pozwala upewnić się, że każde żądanie do twojego serwera jest weryfikowane, potwierdzając tożsamość użytkownika lub aplikacji wysyłającej żądanie. To pierwszy i najważniejszy krok w zabezpieczaniu przepływów pracy AI.
 
 ## Wprowadzenie do Microsoft Entra ID
 
-[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) to usługa zarządzania tożsamością i dostępem oparta na chmurze. Można ją porównać do uniwersalnego strażnika bezpieczeństwa dla Twoich aplikacji. Obsługuje ona złożony proces weryfikacji tożsamości użytkowników (uwierzytelnianie) oraz ustalania, co mogą one robić (autoryzacja).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) to oparte na chmurze rozwiązanie do zarządzania tożsamością i dostępem. Można to porównać do uniwersalnego ochroniarza twoich aplikacji. Obsługuje skomplikowany proces weryfikacji tożsamości użytkowników (uwierzytelnianie) oraz ustala, co im wolno robić (autoryzacja).
 
 Korzystając z Entra ID, możesz:
 
-- Włączyć bezpieczne logowanie dla użytkowników.
-- Chronić API i usługi.
-- Zarządzać politykami dostępu z jednego centralnego miejsca.
+- Umożliwić bezpieczne logowanie użytkowników.
+- Chronić interfejsy API i usługi.
+- Zarządzać politykami dostępu z jednego miejsca.
 
-Dla serwerów MCP Entra ID zapewnia solidne i szeroko zaufane rozwiązanie do zarządzania tym, kto może korzystać z możliwości Twojego serwera.
+Dla serwerów MCP, Entra ID stanowi solidne i szeroko zaufane rozwiązanie do zarządzania tym, kto ma dostęp do funkcji twojego serwera.
 
 ---
 
-## Zrozumienie mechanizmu: jak działa uwierzytelnianie Entra ID
+## Zrozumienie magii: Jak działa uwierzytelnianie Entra ID
 
-Entra ID korzysta z otwartych standardów, takich jak **OAuth 2.0**, do obsługi uwierzytelniania. Szczegóły mogą być skomplikowane, ale podstawowa idea jest prosta i można ją zrozumieć na analogii.
+Entra ID używa otwartych standardów takich jak **OAuth 2.0** do obsługi uwierzytelniania. Chociaż szczegóły mogą być złożone, podstawowa idea jest prosta i można ją zrozumieć za pomocą analogii.
 
-### Łagodne wprowadzenie do OAuth 2.0: klucz dozorcy
+### Łagodne wprowadzenie do OAuth 2.0: Klucz dla woźnego
 
-Pomyśl o OAuth 2.0 jak o serwisie dozorcy Twojego samochodu. Kiedy przyjeżdżasz do restauracji, nie dajesz dozorcy swojego głównego klucza. Zamiast tego dajesz mu **klucz dozorcy**, który ma ograniczone uprawnienia — może uruchomić samochód i zamknąć drzwi, ale nie może otworzyć bagażnika ani schowka.
+Pomyśl o OAuth 2.0 jak o usłudze woźnego do twojego samochodu. Gdy przyjeżdżasz do restauracji, nie dajesz woźnemu swojego głównego klucza. Zamiast tego dostarczasz **klucz woźnego**, który posiada ograniczone uprawnienia — może uruchomić samochód i zamknąć drzwi, ale nie może otworzyć bagażnika ani schowka.
 
 W tej analogii:
 
 - **Ty** jesteś **Użytkownikiem**.
-- **Twój samochód** to **serwer MCP** z cennymi narzędziami i danymi.
-- **Dozorca** to **Microsoft Entra ID**.
-- **Parkujący** to **klient MCP** (aplikacja próbująca uzyskać dostęp do serwera).
-- **Klucz dozorcy** to **token dostępu**.
+- **Twój samochód** to **serwer MCP** z jego cennymi narzędziami i danymi.
+- **Woźny** to **Microsoft Entra ID**.
+- **Parkingowy** to **klient MCP** (aplikacja próbująca uzyskać dostęp do serwera).
+- **Klucz woźnego** to **token dostępu**.
 
-Token dostępu to bezpieczny ciąg tekstu, który klient MCP otrzymuje od Entra ID po zalogowaniu się użytkownika. Klient przekazuje ten token serwerowi MCP przy każdym żądaniu. Serwer może zweryfikować token, by upewnić się, że żądanie jest prawidłowe i że klient ma wymagane uprawnienia, wszystko to bez konieczności obsługi Twoich rzeczywistych danych uwierzytelniających (np. hasła).
+Token dostępu to bezpieczny ciąg tekstowy, który klient MCP otrzymuje od Entra ID po zalogowaniu się użytkownika. Klient następnie przedstawia ten token serwerowi MCP przy każdym żądaniu. Serwer może zweryfikować token, aby upewnić się, że żądanie jest prawidłowe i że klient ma odpowiednie uprawnienia, wszystko to bez potrzeby obsługiwania twoich prawdziwych danych uwierzytelniających (np. hasła).
 
 ### Przebieg uwierzytelniania
 
-Oto, jak proces działa w praktyce:
+Oto jak ten proces działa w praktyce:
 
 ```mermaid
 sequenceDiagram
@@ -65,12 +71,12 @@ sequenceDiagram
     participant Entra as 🔐 Microsoft Entra ID
     participant Server as 🔧 Serwer MCP
 
-    Client->>+User: Proszę zaloguj się, aby kontynuować.
-    User->>+Entra: Wprowadza dane logowania (nazwa użytkownika/hasło).
-    Entra-->>Client: Oto twój token dostępu.
-    User-->>-Client: (Powrót do aplikacji)
+    Client->>+User: Proszę się zalogować, aby kontynuować.
+    User->>+Entra: Wprowadza poświadczenia (nazwa użytkownika/hasło).
+    Entra-->>Client: Oto Twój token dostępu.
+    User-->>-Client: (Powraca do aplikacji)
 
-    Client->>+Server: Potrzebuję użyć narzędzia. Oto mój token dostępu.
+    Client->>+Server: Muszę użyć narzędzia. Oto mój token dostępu.
     Server->>+Entra: Czy ten token dostępu jest ważny?
     Entra-->>-Server: Tak, jest ważny.
     Server-->>-Client: Token jest ważny. Oto wynik działania narzędzia.
@@ -78,54 +84,54 @@ sequenceDiagram
 
 ### Wprowadzenie do Microsoft Authentication Library (MSAL)
 
-Zanim przejdziemy do kodu, ważne jest, aby przedstawić kluczowy komponent, który pojawia się w przykładach: **Microsoft Authentication Library (MSAL)**.
+Zanim przejdziemy do kodu, ważne jest, aby poznać kluczowy komponent pojawiający się w przykładach: **Microsoft Authentication Library (MSAL)**.
 
-MSAL to biblioteka stworzona przez Microsoft, która znacznie ułatwia programistom obsługę uwierzytelniania. Zamiast pisać skomplikowany kod zarządzający tokenami bezpieczeństwa, logowaniami i odnawianiem sesji, MSAL zajmuje się tymi zadaniami.
+MSAL to biblioteka opracowana przez Microsoft, która znacznie ułatwia deweloperom obsługę uwierzytelniania. Zamiast pisać skomplikowany kod do obsługi tokenów bezpieczeństwa, zarządzania logowaniami i odświeżania sesji, MSAL wykonuje za ciebie tę ciężką pracę.
 
-Korzystanie z biblioteki takiej jak MSAL jest bardzo polecane, ponieważ:
+Korzystanie z biblioteki takiej jak MSAL jest wysoce zalecane ponieważ:
 
-- **Jest bezpieczna:** Implementuje standardowe protokoły branżowe i najlepsze praktyki bezpieczeństwa, zmniejszając ryzyko luk w Twoim kodzie.
-- **Ułatwia rozwój:** Ukrywa złożoność protokołów OAuth 2.0 i OpenID Connect, pozwalając dodać solidne uwierzytelnianie do aplikacji za pomocą kilku linijek kodu.
-- **Jest utrzymywana:** Microsoft aktywnie rozwija i aktualizuje MSAL, by reagować na nowe zagrożenia i zmiany platform.
+- **Jest bezpieczna:** Implementuje standardy branżowe i najlepsze praktyki bezpieczeństwa, zmniejszając ryzyko podatności w twoim kodzie.
+- **Upraszcza rozwój:** Ukrywa złożoność protokołów OAuth 2.0 i OpenID Connect, pozwalając ci dodać solidne uwierzytelnianie do aplikacji przy kilku linijkach kodu.
+- **Jest utrzymywana:** Microsoft aktywnie utrzymuje i aktualizuje MSAL, aby sprostać nowym zagrożeniom bezpieczeństwa i zmianom platform.
 
-MSAL obsługuje wiele języków programowania i frameworków, w tym .NET, JavaScript/TypeScript, Python, Java, Go oraz platformy mobilne takie jak iOS i Android. Oznacza to, że możesz korzystać z jednolitych wzorców uwierzytelniania w całym swoim stosie technologicznym.
+MSAL wspiera wiele języków i frameworków, w tym .NET, JavaScript/TypeScript, Python, Java, Go oraz platformy mobilne takie jak iOS i Android. Oznacza to, że możesz stosować te same spójne wzorce uwierzytelniania w całym swoim stosie technologicznym.
 
 Aby dowiedzieć się więcej o MSAL, możesz zapoznać się z oficjalną [dokumentacją przeglądową MSAL](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## Zabezpieczenie serwera MCP za pomocą Entra ID: przewodnik krok po kroku
+## Zabezpieczanie serwera MCP za pomocą Entra ID: przewodnik krok po kroku
 
-Przejdźmy teraz przez proces zabezpieczenia lokalnego serwera MCP (komunikującego się przez `stdio`) za pomocą Entra ID. Ten przykład wykorzystuje **klienta publicznego**, który jest odpowiedni dla aplikacji działających na komputerze użytkownika, takich jak aplikacja desktopowa lub lokalny serwer deweloperski.
+Teraz przejdźmy przez proces zabezpieczania lokalnego serwera MCP (komunikującego się przez `stdio`) przy użyciu Entra ID. Ten przykład wykorzystuje **klienta publicznego**, co jest odpowiednie dla aplikacji działających na komputerze użytkownika, takich jak aplikacje desktopowe lub lokalne serwery developerskie.
 
-### Scenariusz 1: zabezpieczenie lokalnego serwera MCP (z klientem publicznym)
+### Scenariusz 1: Zabezpieczenie lokalnego serwera MCP (z klientem publicznym)
 
-W tym scenariuszu zobaczymy serwer MCP działający lokalnie, komunikujący się przez `stdio`, który używa Entra ID do uwierzytelnienia użytkownika przed udostępnieniem dostępu do narzędzi. Serwer będzie miał jedno narzędzie, które pobiera informacje profilowe użytkownika z Microsoft Graph API.
+W tym scenariuszu przyjrzymy się lokalnemu serwerowi MCP, który komunikuje się przez `stdio` i korzysta z Entra ID do uwierzytelniania użytkownika przed udostępnieniem mu narzędzi. Serwer będzie miał jedno narzędzie, które pobiera informacje o profilu użytkownika z Microsoft Graph API.
 
 #### 1. Konfiguracja aplikacji w Entra ID
 
-Zanim zaczniesz pisać kod, musisz zarejestrować swoją aplikację w Microsoft Entra ID. Informujesz tym Entra ID o swojej aplikacji i udzielasz jej uprawnień do korzystania z usługi uwierzytelniania.
+Zanim zaczniesz pisać kod, musisz zarejestrować swoją aplikację w Microsoft Entra ID. Informuje to Entra ID o twojej aplikacji i przyznaje jej uprawnienia do korzystania z usługi uwierzytelniania.
 
 1. Przejdź do **[portalu Microsoft Entra](https://entra.microsoft.com/)**.
-2. Wybierz **Rejestracje aplikacji** i kliknij **Nowa rejestracja**.
-3. Nadaj aplikacji nazwę (np. "Mój lokalny serwer MCP").
-4. W sekcji **Obsługiwane typy kont** wybierz **Konta tylko w tym katalogu organizacji**.
-5. Możesz pozostawić pole **URI przekierowania** puste dla tego przykładu.
-6. Kliknij **Zarejestruj**.
+2. Wejdź do **App registrations** i kliknij **New registration**.
+3. Nadaj aplikacji nazwę (np. „Mój lokalny serwer MCP”).
+4. W polu **Supported account types** wybierz **Accounts in this organizational directory only**.
+5. Możesz zostawić **Redirect URI** puste dla tego przykładu.
+6. Kliknij **Register**.
 
-Po rejestracji zanotuj **Identyfikator aplikacji (klienta)** oraz **Identyfikator katalogu (dzierżawy)**. Będziesz ich potrzebować w swoim kodzie.
+Po zarejestrowaniu zanotuj **Application (client) ID** oraz **Directory (tenant) ID**. Będą potrzebne w kodzie.
 
-#### 2. Kod: omówienie
+#### 2. Kod: podsumowanie
 
-Spójrzmy na kluczowe części kodu, które obsługują uwierzytelnianie. Pełny kod tego przykładu jest dostępny w folderze [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) w repozytorium [mcp-auth-servers na GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
+Przyjrzyjmy się kluczowym częściom kodu obsługującego uwierzytelnianie. Pełny kod tego przykładu znajduje się w folderze [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) w repozytorium [mcp-auth-servers GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-Ta klasa odpowiada za komunikację z Entra ID.
+Ta klasa jest odpowiedzialna za obsługę interakcji z Entra ID.
 
-- **`CreateAsync`**: Metoda inicjalizuje `PublicClientApplication` z MSAL (Microsoft Authentication Library). Jest konfigurowana za pomocą `clientId` i `tenantId` aplikacji.
-- **`WithBroker`**: Umożliwia korzystanie z brokerów (np. Windows Web Account Manager), co zapewnia bezpieczniejsze i wygodniejsze pojedyncze logowanie (single sign-on).
-- **`AcquireTokenAsync`**: Jest to podstawowa metoda. Najpierw próbuje pozyskać token w trybie cichym (użytkownik nie musi się ponownie logować, jeśli ma ważną sesję). Jeśli nie uda się zdobyć tokena w trybie cichym, wywołuje się interaktywny proces logowania.
+- **`CreateAsync`**: Ta metoda inicjalizuje `PublicClientApplication` z MSAL (Microsoft Authentication Library). Jest skonfigurowana z `clientId` i `tenantId` twojej aplikacji.
+- **`WithBroker`**: Umożliwia użycie brokera (np. Windows Web Account Manager), co zapewnia bardziej bezpieczne i płynne logowanie jednokrotne (SSO).
+- **`AcquireTokenAsync`**: To kluczowa metoda. Najpierw próbuje pozyskać token cicho (silent), czyli użytkownik nie musi ponownie się logować, jeśli ma ważną sesję. Jeśli nie uda się uzyskać takiego tokenu, wyświetli interaktywny prompt do logowania.
 
 ```csharp
 // Simplified for clarity
@@ -175,10 +181,10 @@ public async Task<string> AcquireTokenAsync()
 
 **`Program.cs`**
 
-Tu konfigurowany jest serwer MCP oraz integracja usługi uwierzytelniania.
+Tutaj konfiguruje się serwer MCP i integruje usługę uwierzytelniania.
 
-- **`AddSingleton<AuthenticationService>`**: Rejestruje `AuthenticationService` w kontenerze dependency injection, aby mógł być używany w innych częściach aplikacji (np. w narzędziu).
-- Narzędzie **`GetUserDetailsFromGraph`** wymaga instancji `AuthenticationService`. Przed wykonaniem działania wywołuje `authService.AcquireTokenAsync()`, aby zdobyć ważny token dostępu. Po pomyślnym uwierzytelnieniu token jest używany do wywołania Microsoft Graph API i pobrania danych użytkownika.
+- **`AddSingleton<AuthenticationService>`**: Rejestruje `AuthenticationService` w kontenerze dependency injection, dzięki czemu może być używany w innych częściach aplikacji (np. w naszym narzędziu).
+- **narzędzie `GetUserDetailsFromGraph`**: To narzędzie wymaga instancji `AuthenticationService`. Na początku wywołuje `authService.AcquireTokenAsync()`, aby uzyskać ważny token dostępu. Jeśli uwierzytelnianie jest udane, narzędzie używa tokenu, aby wywołać Microsoft Graph API i pobrać szczegóły użytkownika.
 
 ```csharp
 // Simplified for clarity
@@ -209,48 +215,48 @@ public static async Task<string> GetUserDetailsFromGraph(
 #### 3. Jak to wszystko działa razem
 
 1. Gdy klient MCP próbuje użyć narzędzia `GetUserDetailsFromGraph`, narzędzie najpierw wywołuje `AcquireTokenAsync`.
-2. `AcquireTokenAsync` uruchamia bibliotekę MSAL, która sprawdza, czy istnieje ważny token.
-3. Jeśli token nie jest dostępny, MSAL za pomocą brokera poprosi użytkownika o zalogowanie się kontem Entra ID.
+2. `AcquireTokenAsync` powoduje, że biblioteka MSAL sprawdza, czy istnieje ważny token.
+3. Jeśli nie ma tokenu, MSAL za pośrednictwem brokera wyświetla użytkownikowi stronę logowania Entra ID.
 4. Po zalogowaniu Entra ID wydaje token dostępu.
-5. Narzędzie odbiera token i wykorzystuje go do bezpiecznego wywołania Microsoft Graph API.
-6. Dane użytkownika zostają zwrócone klientowi MCP.
+5. Narzędzie otrzymuje token i używa go do bezpiecznego wywołania Microsoft Graph API.
+6. Szczegóły użytkownika są zwracane do klienta MCP.
 
 Ten proces zapewnia, że tylko uwierzytelnieni użytkownicy mogą korzystać z narzędzia, skutecznie zabezpieczając lokalny serwer MCP.
 
-### Scenariusz 2: zabezpieczenie zdalnego serwera MCP (z klientem poufnym)
+### Scenariusz 2: Zabezpieczenie zdalnego serwera MCP (z klientem poufnym)
 
-Gdy Twój serwer MCP działa na zdalnej maszynie (np. serwerze w chmurze) i komunikuje się przez protokół taki jak HTTP Streaming, wymagania bezpieczeństwa są inne. W takim przypadku powinieneś użyć **klienta poufnego** oraz **Authorization Code Flow**. To bezpieczniejsza metoda, ponieważ sekret aplikacji nigdy nie jest ujawniany przeglądarce.
+Gdy twój serwer MCP działa na zdalnej maszynie (np. serwerze w chmurze) i komunikuje się poprzez protokół strumieniowego HTTP, wymagania bezpieczeństwa są inne. W tym przypadku powinieneś użyć **klienta poufnego** oraz **Authorization Code Flow**. To bezpieczniejsza metoda, ponieważ sekrety aplikacji nigdy nie są ujawniane przeglądarce.
 
-Ten przykład wykorzystuje serwer MCP oparty na TypeScript, który używa Express.js do obsługi żądań HTTP.
+Ten przykład używa serwera MCP opartego na TypeScript z Express.js do obsługi żądań HTTP.
 
 #### 1. Konfiguracja aplikacji w Entra ID
 
-Konfiguracja w Entra ID jest podobna do klienta publicznego, ale z jednym kluczowym dodatkiem: należy utworzyć **sekret klienta**.
+Konfiguracja w Entra ID jest podobna do klienta publicznego, ale z jedną kluczową różnicą: musisz utworzyć **sekret klienta**.
 
 1. Przejdź do **[portalu Microsoft Entra](https://entra.microsoft.com/)**.
-2. W rejestracji swojej aplikacji wejdź na zakładkę **Certyfikaty i sekrety**.
-3. Kliknij **Nowy sekret klienta**, podaj opis i kliknij **Dodaj**.
-4. **Ważne:** natychmiast skopiuj wartość sekretu. Nie będziesz mógł jej zobaczyć ponownie.
-5. Należy również skonfigurować **URI przekierowania**. Przejdź do zakładki **Uwierzytelnianie**, kliknij **Dodaj platformę**, wybierz **Web** i wpisz URI przekierowania dla aplikacji (np. `http://localhost:3001/auth/callback`).
+2. W rejestracji aplikacji przejdź do zakładki **Certificates & secrets**.
+3. Kliknij **New client secret**, podaj opis i kliknij **Add**.
+4. **Ważne:** Skopiuj wartość sekretu od razu. Nie będziesz mógł jej później zobaczyć.
+5. Musisz też skonfigurować **Redirect URI**. Wejdź na zakładkę **Authentication**, kliknij **Add a platform**, wybierz **Web** i wpisz redirect URI dla twojej aplikacji (np. `http://localhost:3001/auth/callback`).
 
-> **⚠️ Ważna uwaga dotycząca bezpieczeństwa:** Dla aplikacji produkcyjnych Microsoft zdecydowanie zaleca korzystanie z metod uwierzytelniania bez sekretów, takich jak **Managed Identity** lub **Workload Identity Federation** zamiast sekretów klienta. Sekrety klienta stanowią ryzyko bezpieczeństwa, ponieważ mogą zostać ujawnione lub skompromitowane. Tożsamości zarządzane oferują bezpieczniejsze podejście, eliminując konieczność przechowywania poświadczeń w kodzie lub konfiguracji.
+> **⚠️ Ważna uwaga dotycząca bezpieczeństwa:** W aplikacjach produkcyjnych Microsoft zdecydowanie zaleca stosowanie metod uwierzytelniania bezsecytowych, takich jak **Managed Identity** lub **Workload Identity Federation**, zamiast sekretów klienta. Sekrety klienta niosą ryzyko ujawnienia lub kompromitacji. Tożsamości zarządzane oferują bezpieczniejsze podejście, eliminując konieczność przechowywania danych uwierzytelniających w kodzie lub konfiguracji.
 >
-> Więcej informacji o tożsamościach zarządzanych i ich wdrażaniu znajdziesz w przeglądzie [Managed identities for Azure resources](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> Aby dowiedzieć się więcej o tożsamościach zarządzanych i jak je wdrożyć, zobacz [Przegląd zarządzanych tożsamości dla zasobów Azure](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
 
-#### 2. Kod: omówienie
+#### 2. Kod: podsumowanie
 
-Ten przykład używa podejścia sesyjnego. Gdy użytkownik się uwierzytelni, serwer przechowuje token dostępu i token odświeżający w sesji oraz przypisuje użytkownikowi token sesji. Ten token sesji jest następnie używany do kolejnych żądań. Pełny kod jest dostępny w folderze [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) w repozytorium [mcp-auth-servers na GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
+Ten przykład wykorzystuje podejście oparte na sesji. Po uwierzytelnieniu użytkownika serwer przechowuje token dostępu i token odświeżania w sesji, a użytkownikowi wydaje się token sesji. Token sesji jest następnie używany przy kolejnych żądaniach. Pełny kod tego przykładu znajduje się w folderze [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) w repozytorium [mcp-auth-servers GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
-Plik konfiguruje serwer Express oraz warstwę transportu MCP.
+Ten plik konfiguruje serwer Express i warstwę transportu MCP.
 
-- **`requireBearerAuth`**: Middleware chroniący endpointy `/sse` i `/message`. Sprawdza, czy w nagłówku `Authorization` żądania jest ważny token bearer.
-- **`EntraIdServerAuthProvider`**: Klasa implementująca interfejs `McpServerAuthorizationProvider`. Odpowiada za obsługę mechanizmu OAuth 2.0.
-- **`/auth/callback`**: Endpoint obsługujący przekierowanie z Entra ID po uwierzytelnieniu użytkownika. Wymienia kod autoryzacyjny na token dostępu i token odświeżający.
+- **`requireBearerAuth`**: To middleware, które chroni punkty końcowe `/sse` i `/message`. Sprawdza poprawny token bearer w nagłówku `Authorization` żądania.
+- **`EntraIdServerAuthProvider`**: To klasa niestandardowa implementująca interfejs `McpServerAuthorizationProvider`. Odpowiada za obsługę przepływu OAuth 2.0.
+- **`/auth/callback`**: Ten endpoint obsługuje przekierowanie z Entra ID po uwierzytelnieniu użytkownika. Wymienia kod autoryzacyjny na token dostępu i token odświeżania.
 
 ```typescript
-// Uproszczone dla jasności
+// Uproszczone dla przejrzystości
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
@@ -282,10 +288,10 @@ app.get("/auth/callback", (req, res) => {
 
 **`Tools.ts`**
 
-Ten plik definiuje narzędzia dostępne na serwerze MCP. Narzędzie `getUserDetails` jest podobne do poprzedniego przykładu, ale token dostępu pobierany jest z sesji.
+Ten plik definiuje narzędzia udostępniane przez serwer MCP. Narzędzie `getUserDetails` jest podobne do poprzedniego przykładu, ale pobiera token dostępu z sesji.
 
 ```typescript
-// Uproszczone dla jasności
+// Uproszczone dla przejrzystości
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name } = request.params;
   const context = request.params?.context as { token?: string } | undefined;
@@ -296,7 +302,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       throw new AuthenticationError("Authentication token is missing or invalid. Ensure the token is provided in the request context.");
     }
 
-    // Pobierz token Entra ID z magazynu sesji
+    // Pobierz token Entra ID ze sklepu sesji
     const tokenData = tokenStore.getToken(sessionToken);
     const entraIdToken = tokenData.accessToken;
 
@@ -315,71 +321,72 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 **`auth/EntraIdServerAuthProvider.ts`**
 
-Klasa odpowiada za:
+Ta klasa obsługuje logikę:
 
-- Przekierowywanie użytkownika na stronę logowania Entra ID.
-- Wymianę kodu autoryzacyjnego na token dostępu.
-- Przechowywanie tokenów w `tokenStore`.
-- Odświeżanie tokena dostępu po wygaśnięciu.
+- Przekierowania użytkownika do strony logowania Entra ID.
+- Wymiany kodu autoryzacyjnego na token dostępu.
+- Przechowywania tokenów w `tokenStore`.
+- Odświeżania tokenu dostępu po wygaśnięciu.
+
 
 #### 3. Jak to wszystko działa razem
 
-1. Gdy użytkownik próbuje połączyć się z serwerem MCP po raz pierwszy, middleware `requireBearerAuth` stwierdza brak ważnej sesji i przekierowuje go na stronę logowania Entra ID.
-2. Użytkownik loguje się przy użyciu konta Entra ID.
-3. Entra ID przekierowuje użytkownika z powrotem do punktu końcowego `/auth/callback` z kodem autoryzacyjnym.  
-4. Serwer wymienia kod na token dostępu i token odświeżania, przechowuje je oraz tworzy token sesji, który jest wysyłany do klienta.  
-5. Klient może teraz używać tego tokena sesji w nagłówku `Authorization` dla wszystkich przyszłych żądań do serwera MCP.  
-6. Gdy wywoływane jest narzędzie `getUserDetails`, używa ono tokena sesji, aby odnaleźć token dostępu Entra ID, a następnie wykorzystuje go do wywołania Microsoft Graph API.
+1. Gdy użytkownik po raz pierwszy próbuje połączyć się z serwerem MCP, middleware `requireBearerAuth` zauważy, że nie ma ważnej sesji i przekieruje go na stronę logowania Entra ID.
+2. Użytkownik loguje się za pomocą swojego konta Entra ID.
+3. Entra ID przekierowuje użytkownika z powrotem do punktu końcowego `/auth/callback` z kodem autoryzacyjnym.
+4. Serwer wymienia kod na token dostępu i token odświeżający, zapisuje je oraz tworzy token sesji, który jest wysyłany do klienta.
+5. Klient może teraz używać tego tokenu sesji w nagłówku `Authorization` dla wszystkich przyszłych żądań do serwera MCP.
+6. Gdy narzędzie `getUserDetails` jest wywoływane, używa tokenu sesji do znalezienia tokenu dostępu Entra ID, a następnie używa go do wywołania API Microsoft Graph.
 
-Ten przepływ jest bardziej złożony niż przepływ klienta publicznego, ale jest wymagany dla punktów końcowych dostępnych z Internetu. Ponieważ zdalne serwery MCP są dostępne przez publiczny Internet, potrzebują silniejszych środków bezpieczeństwa, aby chronić przed nieautoryzowanym dostępem i potencjalnymi atakami.
+Ten proces jest bardziej skomplikowany niż przepływ klienta publicznego, ale jest wymagany dla punktów końcowych dostępnych z internetu. Ponieważ zdalne serwery MCP są dostępne przez publiczny internet, potrzebują silniejszych zabezpieczeń, aby chronić się przed nieautoryzowanym dostępem i potencjalnymi atakami.
 
 
-## Najlepsze praktyki bezpieczeństwa
+## Najlepsze praktyki zabezpieczeń
 
-- **Zawsze używaj HTTPS**: Szyfruj komunikację między klientem a serwerem, aby chronić tokeny przed przechwyceniem.  
-- **Wdrażaj kontrolę dostępu opartą na rolach (RBAC)**: Sprawdzaj nie tylko *czy* użytkownik jest uwierzytelniony, ale *co* jest uprawniony zrobić. Możesz definiować role w Entra ID i sprawdzać je na swoim serwerze MCP.  
-- **Monitoruj i audytuj**: Rejestruj wszystkie zdarzenia uwierzytelniania, aby móc wykrywać i reagować na podejrzane działania.  
-- **Obsługuj ograniczenia i throttling**: Microsoft Graph i inne API wprowadzają ograniczenia liczby zapytań, aby zapobiegać nadużyciom. Zaimplementuj w swoim serwerze MCP logikę wykładniczego spowolnienia i ponawiania prób, aby łagodnie obsługiwać odpowiedzi HTTP 429 (Too Many Requests). Rozważ buforowanie często pobieranych danych, aby ograniczyć wywołania API.  
-- **Bezpieczne przechowywanie tokenów**: Przechowuj tokeny dostępu i odświeżania w bezpieczny sposób. Dla aplikacji lokalnych używaj systemowych mechanizmów bezpiecznego przechowywania. Dla aplikacji serwerowych rozważ użycie szyfrowanego magazynu lub bezpiecznych usług zarządzania kluczami, takich jak Azure Key Vault.  
-- **Obsługa wygasania tokenów**: Tokeny dostępu mają ograniczony czas ważności. Zaimplementuj automatyczne odświeżanie tokenów za pomocą tokenów odświeżania, aby zapewnić płynne doświadczenie użytkownika bez konieczności ponownego uwierzytelniania.  
-- **Rozważ użycie Azure API Management**: Chociaż implementacja zabezpieczeń bezpośrednio na twoim serwerze MCP daje precyzyjną kontrolę, bramy API takie jak Azure API Management mogą automatycznie obsługiwać wiele z tych zagadnień bezpieczeństwa, w tym uwierzytelnianie, autoryzację, ograniczenia liczby zapytań i monitorowanie. Zapewniają one scentralizowaną warstwę bezpieczeństwa pomiędzy klientami a serwerami MCP. Więcej informacji o użyciu bram API z MCP znajdziesz w naszym artykule [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Zawsze używaj HTTPS**: Szyfruj komunikację między klientem a serwerem, aby chronić tokeny przed przechwyceniem.
+- **Wdróż kontrolę dostępu opartą na rolach (RBAC)**: Nie sprawdzaj tylko *czy* użytkownik jest uwierzytelniony; sprawdzaj *co* jest uprawniony robić. Możesz definiować role w Entra ID i sprawdzać je na swoim serwerze MCP.
+- **Monitoruj i audytuj**: Rejestruj wszystkie zdarzenia uwierzytelniania, aby móc wykrywać i reagować na podejrzane działania.
+- **Obsługuj ograniczenia tempa i throttling**: Microsoft Graph i inne API wprowadzają ograniczenia tempa, aby zapobiegać nadużyciom. Wdróż eksponencjalny powrót (exponential backoff) oraz logikę ponawiania prób w swoim serwerze MCP, aby łagodnie obsługiwać odpowiedzi HTTP 429 (Too Many Requests). Rozważ buforowanie często wykorzystywanych danych, aby zmniejszyć liczbę wywołań API.
+- **Bezpieczne przechowywanie tokenów**: Przechowuj tokeny dostępu i tokeny odświeżające bezpiecznie. W aplikacjach lokalnych używaj mechanizmów bezpiecznego przechowywania systemu. W aplikacjach serwerowych rozważ użycie szyfrowanego magazynu lub bezpiecznych usług zarządzania kluczami, takich jak Azure Key Vault.
+- **Obsługa wygaśnięcia tokenów**: Tokeny dostępu mają ograniczony czas życia. Wdróż automatyczne odświeżanie tokenów przy użyciu tokenów odświeżających, aby utrzymać płynne doświadczenie użytkownika bez konieczności ponownego uwierzytelniania.
+- **Rozważ użycie Azure API Management**: Chociaż implementacja zabezpieczeń bezpośrednio w serwerze MCP daje precyzyjną kontrolę, bramki API, takie jak Azure API Management, mogą automatycznie obsługiwać wiele kwestii bezpieczeństwa, w tym uwierzytelnianie, autoryzację, ograniczenia tempa i monitorowanie. Zapewniają one scentralizowaną warstwę zabezpieczeń między klientami a serwerami MCP. Po więcej informacji na temat używania bramek API z MCP zobacz nasz [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
 
 
 ## Kluczowe wnioski
 
-- Zabezpieczenie twojego serwera MCP jest kluczowe dla ochrony danych i narzędzi.  
-- Microsoft Entra ID dostarcza solidne i skalowalne rozwiązanie do uwierzytelniania i autoryzacji.  
-- Używaj **klienta publicznego** dla aplikacji lokalnych oraz **klienta poufnego** dla zdalnych serwerów.  
-- **Przepływ kodu autoryzacyjnego** to najbezpieczniejsza opcja dla aplikacji webowych.
+- Zabezpieczenie serwera MCP jest kluczowe dla ochrony Twoich danych i narzędzi.
+- Microsoft Entra ID zapewnia solidne i skalowalne rozwiązanie do uwierzytelniania i autoryzacji.
+- Używaj **klienta publicznego** w lokalnych aplikacjach i **klienta poufnego** dla serwerów zdalnych.
+- **Authorization Code Flow** jest najbezpieczniejszą opcją dla aplikacji webowych.
 
 
 ## Ćwiczenie
 
-1. Pomyśl o serwerze MCP, który mógłbyś stworzyć. Czy byłby to serwer lokalny czy zdalny?  
-2. Na podstawie swojej odpowiedzi, czy użyłbyś klienta publicznego czy poufnego?  
-3. Jakie uprawnienie twój serwer MCP powinien zażądać do wykonywania działań wobec Microsoft Graph?
+1. Pomyśl o serwerze MCP, który chciałbyś zbudować. Czy byłby to serwer lokalny czy zdalny?
+2. Na podstawie Twojej odpowiedzi, czy użyłbyś klienta publicznego, czy poufnego?
+3. Jakie uprawnienia Twojego serwera MCP byłyby wymagane do wykonywania działań na Microsoft Graph?
 
 
 ## Ćwiczenia praktyczne
 
-### Ćwiczenie 1: Rejestracja aplikacji w Entra ID  
-Przejdź do portalu Microsoft Entra.  
-Zarejestruj nową aplikację dla serwera MCP.  
-Zapisz identyfikator aplikacji (client ID) oraz identyfikator katalogu (tenant ID).
+### Ćwiczenie 1: Zarejestruj aplikację w Entra ID
+Przejdź do portalu Microsoft Entra.
+Zarejestruj nową aplikację dla swojego serwera MCP.
+Zanotuj identyfikator aplikacji (client ID) oraz identyfikator katalogu (tenant ID).
 
-### Ćwiczenie 2: Zabezpieczenie lokalnego serwera MCP (klient publiczny)  
-- Postępuj zgodnie z przykładem kodu, aby zintegrować MSAL (Microsoft Authentication Library) do uwierzytelniania użytkownika.  
-- Przetestuj przepływ uwierzytelniania, wywołując narzędzie MCP, które pobiera dane użytkownika z Microsoft Graph.
+### Ćwiczenie 2: Zabezpiecz lokalny serwer MCP (klient publiczny)
+- Postępuj według przykładu kodu, aby zintegrować MSAL (Microsoft Authentication Library) do uwierzytelniania użytkownika.
+- Przetestuj przepływ uwierzytelniania, wywołując narzędzie MCP pobierające dane użytkownika z Microsoft Graph.
 
-### Ćwiczenie 3: Zabezpieczenie zdalnego serwera MCP (klient poufny)  
-- Zarejestruj klienta poufnego w Entra ID i utwórz sekret klienta.  
-- Skonfiguruj swój serwer MCP Express.js do używania przepływu kodu autoryzacyjnego.  
-- Przetestuj chronione punkty końcowe i potwierdź dostęp oparty na tokenach.
+### Ćwiczenie 3: Zabezpiecz zdalny serwer MCP (klient poufny)
+- Zarejestruj klienta poufnego w Entra ID i utwórz sekret klienta.
+- Skonfiguruj swój serwer Express.js MCP do użycia Authorization Code Flow.
+- Przetestuj chronione końcówki i potwierdź dostęp za pomocą tokenów.
 
-### Ćwiczenie 4: Zastosowanie najlepszych praktyk bezpieczeństwa  
-- Włącz HTTPS dla serwera lokalnego lub zdalnego.  
-- Wdróż kontrolę dostępu opartą na rolach (RBAC) w logice serwera.  
-- Dodaj obsługę wygasania tokenów i bezpieczne przechowywanie tokenów.
+### Ćwiczenie 4: Wdróż najlepsze praktyki zabezpieczeń
+- Włącz HTTPS dla swojego lokalnego lub zdalnego serwera.
+- Wdróż kontrolę dostępu opartą na rolach (RBAC) w logice serwera.
+- Dodaj obsługę wygaśnięcia tokenów i bezpieczne przechowywanie tokenów.
 
 ## Zasoby
 
@@ -387,35 +394,36 @@ Zapisz identyfikator aplikacji (client ID) oraz identyfikator katalogu (tenant I
    Dowiedz się, jak Microsoft Authentication Library (MSAL) umożliwia bezpieczne pozyskiwanie tokenów na różnych platformach:  
    [MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
-2. **Repozytorium GitHub Azure-Samples/mcp-auth-servers**  
-   Referencyjne implementacje serwerów MCP demonstrujące przepływy uwierzytelniania:  
+2. **Repozytorium Azure-Samples/mcp-auth-servers na GitHub**  
+   Przykłady referencyjne serwerów MCP demonstrujące przepływy uwierzytelniania:  
    [Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
 
-3. **Przegląd tożsamości zarządzanych dla zasobów Azure**  
-   Dowiedz się, jak wyeliminować sekrety, używając systemowo lub użytkownikowo przypisanych tożsamości zarządzanych:  
+3. **Przegląd Managed Identities dla zasobów Azure**  
+   Dowiedz się, jak wyeliminować sekrety, używając zarządzanych tożsamości przypisanych do systemu lub użytkownika:  
    [Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
 4. **Azure API Management: Twoja brama uwierzytelniania dla serwerów MCP**  
-   Szczegółowe omówienie użycia APIM jako bezpiecznej bramy OAuth2 dla serwerów MCP:  
+   Szczegółowe omówienie wykorzystania APIM jako bezpiecznej bramy OAuth2 dla serwerów MCP:  
    [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
-5. **Microsoft Graph Permissions Reference**  
+5. **Referencja uprawnień Microsoft Graph**  
    Kompleksowa lista uprawnień delegowanych i aplikacyjnych dla Microsoft Graph:  
    [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
-## Efekty nauki  
-Po ukończeniu tej sekcji będziesz potrafił:
 
-- Wyjaśnić, dlaczego uwierzytelnianie jest krytyczne dla serwerów MCP i przepływów AI.  
-- Skonfigurować uwierzytelnianie Entra ID dla scenariuszy lokalnych i zdalnych serwerów MCP.  
-- Wybrać odpowiedni typ klienta (publiczny lub poufny) w zależności od wdrożenia serwera.  
-- Wdrażać bezpieczne praktyki kodowania, w tym przechowywanie tokenów i autoryzację opartą na rolach.  
-- Skutecznie chronić swój serwer MCP i jego narzędzia przed nieautoryzowanym dostępem.
+## Efekty nauki
+Po ukończeniu tej sekcji będziecie mogli:
+
+- Wyjaśnić, dlaczego uwierzytelnianie jest kluczowe dla serwerów MCP i przepływów AI.
+- Skonfigurować uwierzytelnianie Entra ID dla lokalnych i zdalnych scenariuszy serwerów MCP.
+- Wybrać odpowiedni typ klienta (publiczny lub poufny) w zależności od wdrożenia serwera.
+- Wdrążyć bezpieczne praktyki kodowania, w tym przechowywanie tokenów i autoryzację opartą na rolach.
+- Pewnie chronić swój serwer MCP i jego narzędzia przed nieautoryzowanym dostępem.
 
 ## Co dalej
 
-- [5.13 Model Context Protocol (MCP) Integracja z Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
+- [5.13 Model Context Protocol (MCP) Integration with Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
 
 ---
 

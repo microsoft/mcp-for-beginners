@@ -1,39 +1,39 @@
-# Studium przypadku: Publikowanie w sieciach społecznościowych z agenta za pomocą zdalnego serwera MCP
+# Studium przypadku: Publikowanie w mediach społecznościowych z agenta za pomocą zdalnego serwera MCP
 
-> **Zastrzeżenie:** Istnieje wiele serwisów i projektów open source umożliwiających publikowanie w sieciach społecznościowych, a zespół może również integrować bezpośrednio API każdej sieci. Poniższy scenariusz przedstawia przykład tego, jak można zaprojektować i używać **zdalnego serwera MCP z możliwością zapisu**. Publora to komercyjna usługa z darmowym planem; opisane wzorce są stosowalne do każdego serwera MCP wykonującego nieodwracalne akcje w imieniu użytkownika.
+> **Zastrzeżenie:** Kilka usług i projektów open-source potrafi publikować w sieciach społecznościowych, a zespół może również integrować API każdej sieci bezpośrednio. Poniższy scenariusz jest jednym z przykładów pokazujących, jak można zaprojektować i korzystać z **zdalnego serwera MCP z możliwością zapisu**. Publora to usługa komercyjna z darmowym planem; wzorce opisane tutaj mają zastosowanie do każdego serwera MCP realizującego nieodwracalne działania w imieniu użytkownika.
 
 ## Przegląd
 
-Agenci dobrze radzą sobie z tworzeniem treści, ale słabo z ich dostarczaniem. Model może napisać ogłoszenie o wydaniu w kilka sekund, a potem praca się kończy: publikacja wymaga API dla każdej sieci, aplikacji OAuth dla każdej z nich oraz różnych zasad dotyczących mediów. Większość zespołów rozwiązuje to, kopiując ręcznie tekst do przeglądarki.
+Agenci dobrze radzą sobie z tworzeniem szkiców treści, ale słabo z jej publikacją. Model może napisać ogłoszenie prasowe w kilka sekund, a potem praca się zatrzymuje: publikacja oznacza API dla każdej sieci, aplikację OAuth dla każdej sieci i różny zestaw zasad dotyczących mediów dla każdej z nich. Większość zespołów rozwiązuje to, kopiując tekst ręcznie do przeglądarki.
 
-To studium przypadku pokazuje, jak zamknąć ostatni krok jednym zdalnym serwerem MCP, a co ważniejsze dla osób go tworzących — jakie decyzje projektowe musi podjąć serwer z możliwością zapisu. Odczyt danych jest wyrozumiały. Publikacja nie: złe wywołanie narzędzia jest widoczne dla odbiorców i nie da się go cofnąć.
+To studium przypadku pokazuje, jak ten ostatni krok można zamknąć za pomocą pojedynczego zdalnego serwera MCP i — co ważniejsze dla każdego budującego taki serwer — jakie decyzje projektowe musi podjąć **serwer z możliwością zapisu**. Odczyt danych jest wyrozumiały. Publikacja nie: błędne wywołanie narzędzia jest widoczne dla odbiorców i nie może być cofnięte.
 
 ## Scenariusz
 
-Mały zespół ds. relacji z programistami tworzy posty w agencie (Claude, VS Code, Cursor — klient nie ma znaczenia). Chcą, żeby agent:
+Mały zespół ds. relacji z deweloperami tworzy szkice postów wewnątrz agenta (Claude, VS Code, Cursor — klient nie ma znaczenia). Chcą, aby agent:
 
-- widział, które konta społecznościowe są połączone,
-- pisał post i przechowywał go jako szkic do zatwierdzenia przez człowieka,
-- dołączał obraz,
-- planował publikację na kilku sieciach o wybranej godzinie,
-- i później raportował, jak post się sprawował.
+- zobaczył, które konta społecznościowe zespół ma połączone,
+- utworzył szkic posta i przechował go jako szkic do zatwierdzenia przez człowieka,
+- dołączył obraz,
+- zaplanował publikację w kilku sieciach na wybrany czas,
+- a później raportował wyniki.
 
-Co istotne, chcą, aby agent *nie* mógł przypadkowo opublikować podczas eksperymentów.
+Co najważniejsze, chcą, aby agent *nie mógł* przypadkowo opublikować podczas gdy są jeszcze w fazie eksperymentów.
 
 ## Użyte narzędzia
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — zdalny serwer MCP (`streamable-http`) udostępniający funkcje publikowania, planowania, mediów i analityki LinkedIn. Zarejestrowany w oficjalnym rejestrze MCP jako `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — zdalny serwer MCP (`streamable-http`) udostępniający narzędzia do publikacji, planowania, zarządzania mediami i analityki LinkedIn. Zarejestrowany w oficjalnym rejestrze MCP jako `com.publora/mcp-server`.
 
 ## Przebieg krok po kroku
 
-1. **Połącz serwer.** Klienci obsługujący OAuth wykonują flow autoryzacji z kodem autoryzacyjnym i PKCE na ekranie zgody serwera; klienci bez tego, jak CLI bez interfejsu, używają klucza API Publora w nagłówku. Obie drogi są wspierane, a którą dostaniesz, zależy od klienta, nie serwera.
-2. **Wyświetl połączenia.** Agent wywołuje `list_connections` i otrzymuje połączone konta z ich identyfikatorami.
-3. **Szkic.** Agent wywołuje `create_post` *bez* zaplanowanego czasu. Post jest przechowywany jako szkic — nic nie jest publikowane.
-4. **Dołącz media.** Publiczne URL-e obrazów są przekazywane w tej samej komendzie; serwer je pobiera i waliduje.
-5. **Zaplanuj.** Po zatwierdzeniu przez człowieka `update_post` ustawia status na zaplanowany z czasem w formacie ISO 8601.
-6. **Mierz.** Dla LinkedIn `linkedin_post_stats` zwraca zaangażowanie, gdy post jest publiczny.
+1. **Podłącz serwer.** Klienci obsługujący OAuth przechodzą przepływ autoryzacji kodu z PKCE na ekranie zgody serwera; klienci bez takiej obsługi, np. CLI bez interfejsu, używają klucza API Publora w nagłówku. Obie ścieżki są obsługiwane, a jaką dostaniesz, zależy od klienta, nie od serwera.
+2. **Wyświetl połączenia.** Agent wywołuje `list_connections` i otrzymuje połączone konta wraz z ich identyfikatorami.
+3. **Tworzenie szkicu.** Agent wywołuje `create_post` *bez* ustawiania daty publikacji. Post jest zapisywany jako szkic — nic nie jest publikowane.
+4. **Dodawanie mediów.** Publiczne URL-e obrazów są przesyłane w tym samym wywołaniu; serwer je pobiera i weryfikuje.
+5. **Planowanie.** Po zatwierdzeniu przez człowieka `update_post` ustawia status na zaplanowany z datą w formacie ISO 8601.
+6. **Pomiar.** Dla LinkedIn `linkedin_post_stats` zwraca zaangażowanie, gdy post jest już opublikowany.
 
-## Przykładowa komenda
+## Przykładowe polecenie
 
 ```text
 Which social accounts do I have connected?
@@ -42,14 +42,14 @@ https://example.com/changelog.png, and keep it as a draft — do not publish it.
 Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```
 
-## Diagram Mermaid
+## Schemat Mermaid
 
 ```mermaid
 flowchart TD
-    A[Zapytanie użytkownika w kliencie MCP] --> B[Klient wykonuje OAuth z serwerem]
+    A[Polecenie użytkownika w kliencie MCP] --> B[Klient wykonuje OAuth z serwerem]
     B --> C[list_connections]
     C --> D{Czy docelowe sieci są połączone?}
-    D -- No --> E[Agent zgłasza, które brakuje]
+    D -- No --> E[Agent zgłasza, które z nich brakują]
     D -- Yes --> F[create_post bez scheduledTime -> szkic]
     F --> G[Człowiek przegląda szkic]
     G -- Approved --> H[update_post: status=scheduled]
@@ -60,70 +60,81 @@ flowchart TD
 
 ## Implementacja techniczna
 
-Poniższe lekcje to część tego studium, którą można przenieść.
+Lekcje poniżej to przenośna część tego studium przypadku.
 
-### Otwarta dystrybucja, wykonanie z autoryzacją
+### Otwarta odkrywalność, uwierzytelnione wykonywanie
 
-`tools/list` jest dostępne bez poświadczeń; każde `tools/call` wymaga tokena, inaczej zwraca `401` z nagłówkiem `WWW-Authenticate` wskazującym metadane chronionego zasobu. (Serwer odpowiada też na nieautoryzowane `initialize`, co ma znaczenie tylko dla klientów ze starszymi wersjami protokołu niż `2026-07-28`; ta wersja usunęła handshake całkowicie.)
+`tools/list` jest dostępne bez poświadczeń; każde `tools/call` wymaga tokenu
+i w przeciwnym wypadku zwraca `401` z nagłówkiem `WWW-Authenticate` wskazującym na
+metadane chronionego zasobu. Starszy endpoint serwera także odpowiada
+na niezweryfikowane `initialize` dla klientów protokołów sprzed
+`2026-07-28`; obecni klienci nie używają tego handshake.
 
-To rozdzielenie ma znaczenie w praktyce. Rejestry, katalogi i klienci mogą introspektować powierzchnię narzędzi — nazwy, schematy, adnotacje — bez trzymania sekretu, podczas gdy nic nie może być *wykonane* anonimowo. Serwer żądający tokena dla `initialize` jest praktycznie niewidoczny dla narzędzi; serwer dopuszczający anonimowe `tools/call` jest ryzykowny.
+Ten podział specyficzny dla serwera umożliwia rejestrom, katalogom i klientom inspekcję nazw narzędzi,
+schematów i adnotacji bez sekretu, jednocześnie zapobiegając anonimowemu
+wykonaniu. Otwarta odkrywalność to decyzja wdrożeniowa, nie wymóg MCP; wdrożenie
+chronione może też wymagać autoryzacji dla `tools/list`.
 
 ### Rejestracja: dynamiczna rejestracja klienta i co ją zastępuje
 
-Serwer udostępnia `/.well-known/oauth-protected-resource` i `/.well-known/oauth-authorization-server`, oraz wspiera flow z kodem autoryzacyjnym z PKCE (`S256`), tokeny odświeżające i **dynamiczną rejestrację klientów**.
+Serwer udostępnia `/.well-known/oauth-protected-resource` oraz `/.well-known/oauth-authorization-server` i obsługuje przepływ autoryzacji kodu z PKCE (`S256`), tokeny odświeżania i **dynamiczną rejestrację klienta**.
 
-Dynamiczna rejestracja usuwa krok ręczny: bez niej każdy klient potrzebuje wcześniej wygenerowanego `client_id`, co oznacza oddzielną prośbę do dostawcy dla każdego nowego klienta.
+Dynamiczna rejestracja usunęła ręczny krok dla klientów starszych: bez niej
+każdy klient potrzebował wcześniej wydanego `client_id` od dostawcy.
 
-Traktuj to jako zachowanie kompatybilności, a nie wzór do kopiowania. Rewizja specyfikacji z `2026-07-28` deprecjonuje dynamiczną rejestrację na rzecz Client ID Metadata Documents, gdzie klient hostuje dokument metadanych na stabilnym adresie HTTPS, a ten adres *jest* `client_id`. DCR działa nadal, ale nowy serwer powinien planować CIMD i trzymać DCR tylko dla starszych klientów.
+Traktuj to raczej jako zachowanie kompatybilności niż wzorzec do kopiowania. Wersja specyfikacji z `2026-07-28` wycofuje dynamiczną rejestrację klienta na rzecz Dokumentów Metadanych Klienta (Client ID Metadata Documents), gdzie klient hostuje dokument metadanych pod stabilnym URL HTTPS, a ten URL *jest* `client_id`. Dynamiczna rejestracja dalej działa, ale serwer budowany dziś powinien planować CIMD i utrzymywać dynamiczną rejestrację tylko dla starszych klientów.
 
-### Adnotacje narzędzi to nie tylko dekoracja
+### Adnotacje narzędzi to nie dekoracja
 
-Każde narzędzie ma `title` oraz stosowne wskazówki: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Każde narzędzie zawiera `title` oraz odpowiednie wskazówki: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Dwa powody, by w nie inwestować. Po pierwsze, klienci używają ich do decyzji, co potwierdzić z użytkownikiem — klient może automatycznie wykonać zapytanie tylko do odczytu i zatrzymać się po potwierdzenie przed usunięciem. Specyfikacja jasno mówi, że adnotacje to wskazówki niebudzące zaufania, nie mechanizm autoryzacji: kształtują, co klient oferuje, ale nic na serwerze nie zatrzymują, który i tak musi wymusić własne reguły. Po drugie, główne katalogi konektorów *wymagają* ich do recenzji; serwer bez tytułów i wskazówek narzędzi zostanie odrzucony bez względu na działanie.
+Są dwa powody, by w nie inwestować. Po pierwsze, klienci korzystają ze wskazówek, by zdecydować, co potwierdzić z użytkownikiem — klient może automatycznie wykonać zapytanie tylko do odczytu i zatrzymać się przed usunięciem do zatwierdzenia. Specyfikacja wyraźnie mówi, że adnotacje to niesprawdzone wskazówki, a nie mechanizm autoryzacji: kształtują, co klient chce zrobić, ale niczego na serwerze nie blokują, a serwer musi i tak egzekwować własne reguły. Po drugie, główne katalogi konektorów teraz *wymagają* ich do przeglądu; serwer bez tytułów i wskazówek dla narzędzi zostanie odrzucony bez względu na jakość działania.
 
-### Nie pozwól na wymyślanie identyfikatorów
+### Spraw, aby identyfikatory nie były wymyślne
 
-Identyfikatory platform to nieprzejrzyste ciągi zwracane przez `list_connections`, a opis schematu jasno mówi, że trzeba je kopiować dokładnie i nigdy nie zgadywać. Serwer odrzuca inaczej.
+Identyfikatory platform to nieprzezroczyste ciągi tekstowe zwracane przez `list_connections`, a opis schematu wyraźnie mówi, że muszą być kopiowane dosłownie i nigdy nie można ich zgadywać. Serwer odrzuca wszystko inne.
 
-Modele potrafią świetnie zgadywać. Każdy serwer z możliwością zapisu powinien zakładać, że identyfikator w końcu zostanie wymyślony i niech ta droga kończy się głośnym i wczesnym błędem, zamiast działać na podobnie wyglądającej wartości.
+Modele są biegłymi zgadywaczami. Każdy serwer z możliwością zapisu powinien zakładać, że identyfikator ostatecznie zostanie zahalucynowany i niech ta ścieżka kończy się głośnym i wczesnym błędem, a nie akcją na wartości, która wygląda wiarygodnie.
 
-### Zakończ z błędem przed publikacją, z komunikatem możliwym do działania
+### Zakończ przed publikacją z komunikatem możliwym do działania
 
-Niektóre sieci odrzucają posty tylko z tekstem i wymagają obrazu lub filmu. Walidacja odbywa się przy planowaniu, błąd wskazuje platformę i brakujący wymóg.
+Niektóre sieci odrzucają posty tylko z tekstem i wymagają obrazu lub wideo. Walidacja następuje podczas planowania, a błąd wskazuje platformę i brakujące wymaganie.
 
-Agent może się podnieść po komunikacie "Instagram wymaga mediów — dołącz obraz lub wideo" bez kolejnej rundy zapytań. Nie podniesie się po ogólnym `400`.
+Agent może naprawić sytuację „Instagram wymaga mediów — dołącz obraz lub wideo” bez kolejnej wymiany z serwerem. Nie może się jednak ustabilizować po ogólnym błędzie `400`.
 
-### Spraw, by ponawianie było bezpieczne
+### Uczyń ponawianie bezpiecznym
 
-Dwa narzędzia tworzące treść, `create_post` i `update_post`, akceptują klucz idempotencji: ponowne użycie z identycznym zapytaniem zwraca oryginalną odpowiedź, zamiast tworzyć drugi post. Środowiska agenta powtarzają zapytania przy timeoutach; bez idempotencji wolna odpowiedź oznacza duplikat publikacji. Inne narzędzia zapisujące — usuwanie, media, reakcje i komentarze LinkedIn — nie przyjmują klucza, więc tam ponawianie nie jest automatycznie bezpieczne. Warto wiedzieć, które własne zmiany są chronione, a które nie.
+Dwa narzędzia tworzące treść, `create_post` i `update_post`, akceptują klucz idempotencji: ponowne użycie go z identycznym żądaniem powtarza oryginalną odpowiedź zamiast tworzyć drugi post. Runtime agentów ponawia na timeouty; bez idempotencji wolna odpowiedź staje się podwójną publikacją. Pozostałe narzędzia zapisujące — usuwanie, etapy mediów, reakcje i komentarze LinkedIn — takiego klucza nie przyjmują, więc ponawianie tam nie jest automatycznie bezpieczne. Warto wiedzieć, które własne mutacje są chronione, a które nie.
 
-### Zapewnij sposób testowania publikując bez efektów
+### Zapewnij sposób na testowanie, które nic nie publikuje
 
-Serwer akceptuje zarezerwowany cel `publora-playground`, który jest walidowany i zatwierdzany jak prawdziwy, a potem odrzucany — nic nie trafia na prawdziwe konto. Jest opisany w schemacie narzędzia, które każdy klient może przeczytać bez poświadczeń: pole `platforms` w `create_post` dokumentuje go jako "cel testu połączenia, który nie wymaga realnego połączenia — post jest zatwierdzany i odrzucany, nic nie jest publikowane". Wywołaj, przekazując go jako jedyny wpis: `platforms: ["publora-playground"]`.
 
-To okazało się jednym z najcenniejszych szczegółów całej powierzchni. Recenzenci katalogów konektorów, współtwórcy i CI mogą testować pełną ścieżkę zapisu od początku do końca bez ryzyka dla prawdziwej publiczności. Każdy serwer MCP z nieodwracalnymi akcjami korzysta na udokumentowanym celu no-op.
+Serwer akceptuje zarezerwowany cel, `publora-playground`, który jest weryfikowany i potwierdzany jak prawdziwy cel, a następnie odrzucany — nic nie trafia do aktywnego konta. Jest to opisane w samym schemacie narzędzia, który każdy klient może odczytać bez uwierzytelnienia: pole `platforms` w `create_post` dokumentuje to jako "cel testu połączenia, który nie wymaga rzeczywistego połączenia — post jest potwierdzany i odrzucany, nic nie jest publikowane". Wywołaj go, przekazując jako jedyny wpis: `platforms: ["publora-playground"]`.
 
-## Wyniki i wpływ
+Okazało się, że jest to jeden z najbardziej użytecznych szczegółów całej powierzchni. Recenzenci katalogów konektorów, współtwórcy i CI mogą przetestować pełną ścieżkę zapisu od początku do końca bez ryzyka dla prawdziwej publiczności. Każdy serwer MCP, wykonujący działania nieodwracalne, korzysta z dokumentowanego celu no-op.
 
-- Krok publikacji przeniósł się z przeglądarki do tej samej rozmowy, w której tworzona jest treść, a nawyk szkicu pierwszego utrzymuje człowieka w procesie. Bądź precyzyjny, co to znaczy: szkic to konwencja, nie granica. Te same poświadczenia mogą planować lub publikować, więc kto potrzebuje realnej bramki zatwierdzającej, musi to wymusić poza powierzchnią narzędzia — osobne poświadczenia lub warstwę polityk przed serwerem.
-- Różnice między sieciami — wymagania medialne, wątki, kontrola odpowiedzi — są obsługiwane raz na serwerze, zamiast w każdym agencie.
-- Ten sam serwer obsługuje kilku klientów MCP bez pracy na klienta, bo odkrywanie jest otwarte, a rejestracja dynamiczna.
-- Ograniczenia projektowe powyżej ukształtowały przeglądy katalogów konektorów równie mocno jak użytkownicy: adnotacje, OAuth i bezpieczny cel testowy były wymagane przez co najmniej jeden z nich.
+## Wyniki i Wpływ
 
-## Źródła
+- Krok publikacji przesunięto z przeglądarki do tej samej konwersacji, w której tworzona jest treść, a nawyk rozpoczynania od szkicu utrzymuje człowieka w pętli. Bądź precyzyjny, czym to jest: szkic jest konwencją, a nie granicą. Ten sam kredensjał może zaplanować lub opublikować, więc każdy, kto potrzebuje prawdziwego zatwierdzenia, musi to wymusić poza interfejsem narzędzia — oddzielne kredensjały lub warstwa polityki przed serwerem.
+- Różnice między sieciami — wymagania mediów, wątki, kontrola odpowiedzi — są obsługiwane raz na serwerze, a nie w każdym agencie, który się z nim komunikuje.
+- Ten sam serwer wspiera kilku klientów MCP bez wcześniejszych kredensjałów.
+    Obecne klienty mogą korzystać z Dokumentów Metadanych Client ID; DCR pozostaje zapasem
+    dla starszych klientów.
+- Powyższe ograniczenia projektowe były formowane zarówno przez recenzje katalogu konektorów, jak i przez użytkowników: adnotacje, OAuth i bezpieczny cel testowy były wymagane przynajmniej przez jednego z nich.
+
+## Odniesienia
 
 - [Publora MCP Server (źródło)](https://github.com/publora/mcp-server)
-- [Publora API i dokumentacja MCP](https://docs.publora.com)
-- [Rejestr MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [Specyfikacja MCP — Autoryzacja](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [Dokumentacja Publora API i MCP](https://docs.publora.com)
+- [Wpis w rejestrze MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [Specyfikacja MCP — Autoryzacja](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [Specyfikacja MCP — Adnotacje narzędzi](https://modelcontextprotocol.io/docs/concepts/tools)
 
-## Co dalej
+## Co Dalej
 
-- Weź serwer MCP, który tworzysz i sprawdź trzy najtańsze do wdrożenia usprawnienia: adnotacje dla każdego narzędzia, klucz idempotencji dla każdego zapisu oraz udokumentowany cel no-op.
-- Wypróbuj otwarte odkrywanie: wywołaj `tools/list` na publicznym serwerze bez poświadczeń, potem wywołaj narzędzie i zbadaj wyzwanie `401`.
-- Zastanów się, co oznacza „cofnij” w twojej domenie. Publikowanie ma szkice i usuwanie; jeśli twoje akcje ich nie mają, potwierdzenie należy do projektu narzędzia, nie prompta.
+- Weź serwer MCP, który budujesz i sprawdź trzy najtańsze usprawnienia tutaj: adnotacje na każdym narzędziu, klucz idempotencji na każdym zapisie oraz udokumentowany cel no-op.
+- Wypróbuj podział otwartego odkrywania: wywołaj `tools/list` na publicznym zdalnym serwerze bez uwierzytelnienia, a następnie wywołaj narzędzie i sprawdź wyzwanie `401`.
+- Zastanów się, co oznacza „cofnij” w twojej domenie. Publikowanie ma szkice i usuwanie; jeśli twoje akcje nie mają odpowiednika, potwierdzenie należy umieścić w projekcie narzędzia, a nie w monicie.
 
 ---
 
