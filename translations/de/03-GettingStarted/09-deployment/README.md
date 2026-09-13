@@ -1,8 +1,13 @@
 # Bereitstellung von MCP-Servern
 
-Die Bereitstellung Ihres MCP-Servers ermöglicht es anderen, auf dessen Werkzeuge und Ressourcen über Ihre lokale Umgebung hinaus zuzugreifen. Es gibt mehrere Bereitstellungsstrategien, die je nach Ihren Anforderungen an Skalierbarkeit, Zuverlässigkeit und einfache Verwaltung zu berücksichtigen sind. Nachfolgend finden Sie Hinweise zur Bereitstellung von MCP-Servern lokal, in Containern und in der Cloud.
+> [!NOTE]
+> Konfigurationsbeispiele, die ein `/sse`-Endpunktziel verwenden, richten sich an den Legacy HTTP+SSE
+> Transport. MCP `2026-07-28` Remote-Server verwenden Streamable HTTP, normalerweise an einem
+> serverdefinierten Endpunkt wie `/mcp`.
 
-## Übersicht
+Die Bereitstellung Ihres MCP-Servers ermöglicht anderen den Zugriff auf seine Werkzeuge und Ressourcen über Ihre lokale Umgebung hinaus. Es gibt mehrere Bereitstellungsstrategien, die je nach Ihren Anforderungen an Skalierbarkeit, Zuverlässigkeit und Verwaltungsfreundlichkeit zu berücksichtigen sind. Im Folgenden finden Sie Anleitungen zur Bereitstellung von MCP-Servern lokal, in Containern und in der Cloud.
+
+## Überblick
 
 Diese Lektion behandelt, wie Sie Ihre MCP Server-App bereitstellen.
 
@@ -15,37 +20,37 @@ Am Ende dieser Lektion werden Sie in der Lage sein:
 
 ## Lokale Entwicklung und Bereitstellung
 
-Wenn Ihr Server dazu gedacht ist, auf den Rechnern der Nutzer ausgeführt zu werden, können Sie die folgenden Schritte befolgen:
+Wenn Ihr Server auf dem Rechner der Nutzer laufen soll, können Sie die folgenden Schritte befolgen:
 
-1. **Server herunterladen**. Wenn Sie den Server nicht selbst geschrieben haben, laden Sie ihn zuerst auf Ihren Rechner herunter.  
-1. **Serverprozess starten**: Führen Sie Ihre MCP Server-Anwendung aus
+1. **Laden Sie den Server herunter**. Falls Sie den Server nicht selbst geschrieben haben, laden Sie ihn zuerst auf Ihre Maschine herunter.
+1. **Starten Sie den Serverprozess**: Führen Sie Ihre MCP-Serveranwendung aus
 
-Für SSE (nicht notwendig für stdio-Typ-Server)
+Für SSE (nicht nötig für stdio-Typ Server)
 
-1. **Netzwerk konfigurieren**: Stellen Sie sicher, dass der Server auf dem erwarteten Port erreichbar ist  
-1. **Clients verbinden**: Verwenden Sie lokale Verbindungs-URLs wie `http://localhost:3000`
+1. **Netzwerkkonfiguration**: Stellen Sie sicher, dass der Server auf dem erwarteten Port erreichbar ist
+1. **Verbinden Sie die Clients**: Verwenden Sie lokale Verbindungs-URLs wie `http://localhost:3000`
 
 ## Cloud-Bereitstellung
 
 MCP-Server können auf verschiedenen Cloud-Plattformen bereitgestellt werden:
 
-- **Serverless Functions**: Leichte MCP-Server als Serverless Functions bereitstellen  
-- **Containerdienste**: Verwenden Sie Dienste wie Azure Container Apps, AWS ECS oder Google Cloud Run  
-- **Kubernetes**: MCP-Server in Kubernetes-Clustern bereitstellen und verwalten für hohe Verfügbarkeit
+- **Serverlose Funktionen**: Stellen Sie leichte MCP-Server als serverlose Funktionen bereit
+- **Container-Dienste**: Verwenden Sie Dienste wie Azure Container Apps, AWS ECS oder Google Cloud Run
+- **Kubernetes**: Stellen Sie MCP-Server in Kubernetes-Clustern für hohe Verfügbarkeit bereit und verwalten Sie sie
 
 ### Beispiel: Azure Container Apps
 
-Azure Container Apps unterstützen die Bereitstellung von MCP-Servern. Es ist noch ein Work in Progress und unterstützt derzeit SSE-Server.
+Azure Container Apps unterstützen die Bereitstellung von MCP-Servern. Die Funktion befindet sich noch in der Entwicklung und unterstützt aktuell SSE-Server.
 
-So gehen Sie vor:
+So können Sie vorgehen:
 
-1. Ein Repository klonen:
+1. Klonen Sie ein Repository:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Lokale Ausführung zum Testen:
+1. Führen Sie es lokal aus, um alles zu testen:
 
   ```sh
   uv venv
@@ -59,7 +64,7 @@ So gehen Sie vor:
   uv run fastapi dev main.py
   ```
 
-1. Um es lokal zu testen, erstellen Sie eine *mcp.json*-Datei in einem *.vscode*-Ordner und fügen Sie folgenden Inhalt hinzu:
+1. Um es lokal auszuprobieren, erstellen Sie eine *mcp.json*-Datei in einem *.vscode*-Verzeichnis und fügen Sie folgenden Inhalt hinzu:
 
   ```json
   {
@@ -83,7 +88,7 @@ So gehen Sie vor:
   }
   ```
 
-  Sobald der SSE-Server gestartet ist, können Sie auf das Wiedergabesymbol in der JSON-Datei klicken, und Sie sollten nun Werkzeuge auf dem Server sehen, die von GitHub Copilot erkannt werden, siehe das Werkzeugsymbol.
+  Sobald der SSE-Server gestartet ist, können Sie auf das Wiedergabe-Symbol in der JSON-Datei klicken. Sie sollten dann Werkzeuge auf dem Server sehen, die von GitHub Copilot erkannt werden, siehe das Werkzeug-Symbol.
 
 1. Um bereitzustellen, führen Sie folgenden Befehl aus:
 
@@ -91,22 +96,22 @@ So gehen Sie vor:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Damit haben Sie es: lokal bereitstellen, über diese Schritte auf Azure bereitstellen.
+Da haben Sie es, stellen Sie es lokal oder über Azure mit diesen Schritten bereit.
 
-## Zusätzliche Ressourcen
+## Weitere Ressourcen
 
-- [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)  
-- [Azure Container Apps Artikel](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)  
-- [Azure Container Apps MCP Repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)  
+- [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
+- [Azure Container Apps Artikel](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
+- [Azure Container Apps MCP Repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
 ## Was kommt als Nächstes
 
-- Weiter: [Erweiterte Server-Themen](../10-advanced/README.md)
+- Nächstes Thema: [Erweiterte Server-Themen](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir bestrebt sind, Genauigkeit zu gewährleisten, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,17 +1,22 @@
 # Einrichtung beliebter MCP-Host-Clients
 
-Dieses Handbuch beschreibt, wie man MCP-Server mit beliebten KI-Host-Anwendungen konfiguriert und verwendet. Jeder Host hat seinen eigenen Konfigurationsansatz, aber sobald er eingerichtet ist, kommunizieren sie alle mit MCP-Servern über das standardisierte Protokoll.
+> [!NOTE]
+> Host-Konfigurationen, die auf `/sse` zeigen, sind Legacy-HTTP+SSE-Beispiele für
+> MCP `2025-11-25`. Für MCP `2026-07-28` wählen Sie Streamable HTTP in Hosts, die
+> dies unterstützen, und verwenden Sie den vom Server konfigurierten Endpunkt.
+
+Dieser Leitfaden behandelt, wie man MCP-Server mit beliebten AI-Host-Anwendungen konfiguriert und verwendet. Jeder Host hat seinen eigenen Konfigurationsansatz, aber nach der Einrichtung kommunizieren sie alle mit MCP-Servern über das standardisierte Protokoll.
 
 ## Was ist ein MCP-Host?
 
-Ein **MCP-Host** ist eine KI-Anwendung, die sich mit MCP-Servern verbinden kann, um ihre Funktionen zu erweitern. Man kann es sich als die "Benutzeroberfläche" vorstellen, mit der Nutzer interagieren, während MCP-Server die "Backend"-Werkzeuge und Daten bereitstellen.
+Ein **MCP-Host** ist eine KI-Anwendung, die sich mit MCP-Servern verbinden kann, um ihre Fähigkeiten zu erweitern. Man kann es sich als „Frontend“ vorstellen, mit dem Benutzer interagieren, während MCP-Server die „Backend“-Werkzeuge und Daten bereitstellen.
 
 ```mermaid
 flowchart LR
-    User[👤 Benutzer] --> Host[🖥️ MCP Host]
-    Host --> S1[MCP Server A]
-    Host --> S2[MCP Server B]
-    Host --> S3[MCP Server C]
+    User[👤 Benutzer] --> Host[🖥️ MCP-Host]
+    Host --> S1[MCP-Server A]
+    Host --> S2[MCP-Server B]
+    Host --> S3[MCP-Server C]
     
     subgraph "Beliebte Hosts"
         H1[Claude Desktop]
@@ -21,11 +26,12 @@ flowchart LR
         H5[Windsurf]
     end
 ```
+
 ## Voraussetzungen
 
-- Ein MCP-Server, mit dem eine Verbindung hergestellt werden kann (siehe [Modul 3.1 - Erster Server](../01-first-server/README.md))
+- Ein MCP-Server, mit dem eine Verbindung hergestellt wird (siehe [Modul 3.1 - Erster Server](../01-first-server/README.md))
 - Die Host-Anwendung auf Ihrem System installiert
-- Grundkenntnisse im Umgang mit JSON-Konfigurationsdateien
+- Grundkenntnisse in JSON-Konfigurationsdateien
 
 ---
 
@@ -36,13 +42,13 @@ flowchart LR
 ### Installation
 
 1. Laden Sie Claude Desktop von [claude.ai/download](https://claude.ai/download) herunter
-2. Installieren Sie es und melden Sie sich mit Ihrem Anthropic-Konto an
+2. Installieren und melden Sie sich mit Ihrem Anthropic-Konto an
 
 ### Konfiguration
 
 Claude Desktop verwendet eine JSON-Konfigurationsdatei zur Definition von MCP-Servern.
 
-**Speicherort der Konfigurationsdatei:**
+**Ort der Konfigurationsdatei:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
@@ -78,29 +84,29 @@ Claude Desktop verwendet eine JSON-Konfigurationsdatei zur Definition von MCP-Se
 
 | Feld | Beschreibung | Beispiel |
 |-------|-------------|---------|
-| `command` | Das auszuführende Programm | `"python"`, `"node"`, `"npx"` |
-| `args` | Befehlszeilenargumente | `["-m", "my_server"]` |
+| `command` | Die auszuführende ausführbare Datei | `"python"`, `"node"`, `"npx"` |
+| `args` | Kommandozeilenargumente | `["-m", "my_server"]` |
 | `env` | Umgebungsvariablen | `{"API_KEY": "xxx"}` |
 | `cwd` | Arbeitsverzeichnis | `"/path/to/server"` |
 
 ### Testen Ihrer Einrichtung
 
 1. Speichern Sie die Konfigurationsdatei
-2. Starten Sie Claude Desktop vollständig neu (beenden und erneut öffnen)
-3. Öffnen Sie eine neue Unterhaltung
-4. Suchen Sie nach dem 🔌 Icon, das verbundene Server anzeigt
-5. Versuchen Sie, Claude zu bitten, eines Ihrer Tools zu verwenden
+2. Starten Sie Claude Desktop komplett neu (beenden und neu öffnen)
+3. Öffnen Sie ein neues Gespräch
+4. Achten Sie auf das 🔌-Symbol, das verbundene Server anzeigt
+5. Versuchen Sie, Claude zu bitten, eines Ihrer Werkzeuge zu benutzen
 
 ### Fehlerbehebung bei Claude Desktop
 
-**Server wird nicht angezeigt:**
+**Server erscheint nicht:**
 - Prüfen Sie die Syntax der Konfigurationsdatei mit einem JSON-Validator
-- Stellen Sie sicher, dass der Pfad zum Programm korrekt ist
-- Prüfen Sie die Claude Desktop-Logs: Hilfe → Logs anzeigen
+- Stellen Sie sicher, dass der Befehls-Pfad korrekt ist
+- Prüfen Sie die Claude Desktop-Protokolle: Hilfe → Protokolle anzeigen
 
 **Server stürzt beim Start ab:**
-- Testen Sie Ihren Server zunächst manuell im Terminal
-- Überprüfen Sie, dass Umgebungsvariablen korrekt gesetzt sind
+- Testen Sie den Server zuerst manuell im Terminal
+- Kontrollieren Sie, ob Umgebungsvariablen korrekt gesetzt sind
 - Stellen Sie sicher, dass alle Abhängigkeiten installiert sind
 
 ---
@@ -111,15 +117,15 @@ VS Code unterstützt MCP über GitHub Copilot Chat-Erweiterungen.
 
 ### Voraussetzungen
 
-1. VS Code 1.99+ installiert
-2. GitHub Copilot-Erweiterung installiert
-3. GitHub Copilot Chat-Erweiterung installiert
+1. Installierter VS Code 1.99+
+2. Installierte GitHub Copilot-Erweiterung
+3. Installierte GitHub Copilot Chat-Erweiterung
 
 ### Konfiguration
 
-VS Code verwendet `.vscode/mcp.json` im Arbeitsbereich oder in den Benutzereinstellungen.
+VS Code verwendet `.vscode/mcp.json` in Ihren Arbeitsbereichs- oder Benutzereinstellungen.
 
-**Arbeitsbereich-Konfiguration** (`.vscode/mcp.json`):
+**Arbeitsbereichskonfiguration** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -155,21 +161,21 @@ VS Code verwendet `.vscode/mcp.json` im Arbeitsbereich oder in den Benutzereinst
 ### Verwendung von MCP in VS Code
 
 1. Öffnen Sie das Copilot Chat-Panel (Strg+Shift+I / Cmd+Shift+I)
-2. Tippen Sie `@` ein, um verfügbare MCP-Tools zu sehen
-3. Verwenden Sie natürliche Sprache, um Tools aufzurufen: "Berechne 25 * 48 mit dem Taschenrechner"
+2. Geben Sie `@` ein, um verfügbare MCP-Werkzeuge zu sehen
+3. Verwenden Sie natürliche Sprache, um Werkzeuge aufzurufen: „Rechne 25 * 48 mit dem Taschenrechner“
 
-### Fehlerbehebung bei VS Code
+### Fehlerbehebung VS Code
 
 **MCP-Server werden nicht geladen:**
-- Prüfen Sie das Ausgabe-Panel → "MCP" auf Fehlermeldungen
-- Fenster neu laden: Strg+Shift+P → "Entwickler: Fenster neu laden"
-- Stellen Sie sicher, dass der Server eigenständig läuft
+- Prüfen Sie das Ausgabefenster → „MCP“ auf Fehlermeldungen
+- Fenster neu laden: Strg+Shift+P → „Developer: Reload Window“
+- Vergewissern Sie sich, dass der Server zuerst eigenständig läuft
 
 ---
 
 ## 3. Cursor
 
-**Cursor** ist ein KI-fokussierter Code-Editor mit integrierter MCP-Unterstützung.
+**Cursor** ist ein AI-fokussierter Code-Editor mit integrierter MCP-Unterstützung.
 
 ### Installation
 
@@ -180,7 +186,7 @@ VS Code verwendet `.vscode/mcp.json` im Arbeitsbereich oder in den Benutzereinst
 
 Cursor verwendet ein ähnliches Konfigurationsformat wie Claude Desktop.
 
-**Speicherort der Konfigurationsdatei:**
+**Ort der Konfigurationsdatei:**
 - **macOS**: `~/.cursor/mcp.json`
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
@@ -207,8 +213,8 @@ Cursor verwendet ein ähnliches Konfigurationsformat wie Claude Desktop.
 
 ### Verwendung von MCP in Cursor
 
-1. Öffnen Sie den KI-Chat von Cursor (Strg+L / Cmd+L)
-2. MCP-Tools erscheinen automatisch in den Vorschlägen
+1. Öffnen Sie den AI-Chat von Cursor (Strg+L / Cmd+L)
+2. MCP-Werkzeuge werden automatisch in den Vorschlägen angezeigt
 3. Bitten Sie die KI, Aufgaben mit verbundenen Servern auszuführen
 
 ---
@@ -225,7 +231,7 @@ npm install -g @anthropic/cline
 
 ### Konfiguration
 
-Cline verwendet Umgebungsvariablen und Befehlszeilenargumente.
+Cline verwendet Umgebungsvariablen und Kommandozeilenargumente.
 
 **Verwendung von Umgebungsvariablen:**
 
@@ -234,7 +240,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**Verwendung von Befehlszeilenargumenten:**
+**Verwendung von Kommandozeilenargumenten:**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
@@ -258,13 +264,13 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 ### Verwendung von Cline
 
 ```bash
-# Starten Sie eine interaktive Sitzung
+# Starte eine interaktive Sitzung
 cline
 
 # Einzelne Abfrage mit MCP
 cline "Calculate the square root of 144 using the calculator"
 
-# Liste der verfügbaren Werkzeuge
+# Verfügbare Werkzeuge auflisten
 cline --list-tools
 ```
 
@@ -277,15 +283,15 @@ cline --list-tools
 ### Installation
 
 1. Laden Sie Windsurf von [codeium.com/windsurf](https://codeium.com/windsurf) herunter
-2. Installieren Sie es und erstellen Sie ein Konto
+2. Installieren und erstellen Sie ein Konto
 
 ### Konfiguration
 
-Die Windsurf-Konfiguration wird über die Einstellungsoberfläche verwaltet:
+Windsurf-Konfiguration wird über die Einstellungsoberfläche verwaltet:
 
-1. Öffnen Sie Einstellungen (Strg+, / Cmd+,)
-2. Suchen Sie nach "MCP"
-3. Klicken Sie auf "In settings.json bearbeiten"
+1. Öffnen Sie die Einstellungen (Strg+, / Cmd+,)
+2. Suchen Sie nach „MCP“
+3. Klicken Sie auf „In settings.json bearbeiten“
 
 **Beispielkonfiguration:**
 
@@ -304,7 +310,7 @@ Die Windsurf-Konfiguration wird über die Einstellungsoberfläche verwaltet:
 
 ---
 
-## Vergleich der Übertragungsarten
+## Vergleich der Transporttypen
 
 Verschiedene Hosts unterstützen unterschiedliche Transportmechanismen:
 
@@ -316,8 +322,8 @@ Verschiedene Hosts unterstützen unterschiedliche Transportmechanismen:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (Standard-Ein-/Ausgabe): Am besten für lokal gestartete Server vom Host
-**SSE/HTTP**: Am besten für entfernte Server oder Server, die von mehreren Clients gemeinsam genutzt werden
+**stdio** (Standard Ein-/Ausgabe): Am besten für lokale Server, die vom Host gestartet werden
+**SSE/HTTP**: Am besten für Remote-Server oder Server, die von mehreren Clients gemeinsam genutzt werden
 
 ---
 
@@ -334,9 +340,9 @@ Verschiedene Hosts unterstützen unterschiedliche Transportmechanismen:
    node /path/to/server/index.js
    ```
 
-2. **Prüfen Sie den Befehlspfad:**
-   - Verwenden Sie möglichst absolute Pfade
-   - Stellen Sie sicher, dass das ausführbare Programm in Ihrem PATH ist
+2. **Überprüfen Sie den Befehls-Pfad:**
+   - Verwenden Sie wann immer möglich absolute Pfade
+   - Stellen Sie sicher, dass die ausführbare Datei in Ihrem PATH ist
 
 3. **Überprüfen Sie Abhängigkeiten:**
    ```bash
@@ -347,34 +353,34 @@ Verschiedene Hosts unterstützen unterschiedliche Transportmechanismen:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Server verbindet sich, Tools funktionieren aber nicht
+### Server verbindet, aber Werkzeuge funktionieren nicht
 
-1. **Prüfen Sie die Server-Logs** – die meisten Hosts bieten Protokollierungsoptionen
-2. **Überprüfen Sie die Tool-Registrierung** – mit MCP Inspector testen
-3. **Prüfen Sie Berechtigungen** – manche Tools benötigen Datei-/Netzwerkzugriff
+1. **Prüfen Sie Serverprotokolle** – Die meisten Hosts haben Protokollierungsoptionen
+2. **Überprüfen Sie die Werkzeugregistrierung** – Testen Sie mit MCP Inspector
+3. **Prüfen Sie Berechtigungen** – Einige Werkzeuge benötigen Datei- oder Netzwerkzugriff
 
 ### Umgebungsvariablen werden nicht übergeben
 
-- Manche Hosts bereinigen Umgebungsvariablen
-- Verwenden Sie explizit das `env`-Konfigurationsfeld
+- Einige Hosts filtern Umgebungsvariablen
+- Verwenden Sie das Konfigurationsfeld `env` explizit
 - Vermeiden Sie sensible Daten in Konfigurationsdateien (verwenden Sie Geheimnisverwaltung)
 
 ---
 
-## Sicherheits-Best Practices
+## Sicherheitsbest Practices
 
-1. **API-Schlüssel niemals in Konfigurationsdateien speichern**
+1. **API-Schlüssel niemals in Konfigurationsdateien festschreiben**
 2. **Verwenden Sie Umgebungsvariablen für sensible Daten**
-3. **Beschränken Sie Server-Berechtigungen auf das Notwendige**
+3. **Begrenzen Sie Serverberechtigungen nur auf das Notwendige**
 4. **Überprüfen Sie Servercode, bevor Sie Zugriff auf Ihr System gewähren**
-5. **Verwenden Sie Allowlists für Datei- und Netzwerkzugriff**
+5. **Verwenden Sie Erlaubnislisten für Datei- und Netzwerkzugriffe**
 
 ---
 
 ## Was kommt als Nächstes
 
 - [3.13 - Debugging mit MCP Inspector](../13-mcp-inspector/README.md)
-- [3.1 - Erstellen Sie Ihren ersten MCP-Server](../01-first-server/README.md)
+- [3.1 - Erstellen Ihres ersten MCP-Servers](../01-first-server/README.md)
 - [Modul 5 - Fortgeschrittene Themen](../../05-AdvancedTopics/README.md)
 
 ---
@@ -383,12 +389,12 @@ Verschiedene Hosts unterstützen unterschiedliche Transportmechanismen:
 
 - [Claude Desktop MCP-Dokumentation](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP-Erweiterung](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP-Spezifikation - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Offizielles MCP-Servers-Register](https://github.com/modelcontextprotocol/servers)
+- [MCP-Spezifikation - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Offizielles MCP-Server-Register](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir um Genauigkeit bemüht sind, möchten wir darauf hinweisen, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in der Ursprungssprache gilt als maßgebliche Quelle. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
