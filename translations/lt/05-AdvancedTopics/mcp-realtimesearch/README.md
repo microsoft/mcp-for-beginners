@@ -1,115 +1,115 @@
-# Modelio konteksto protokolas realiojo laiko interneto paieškai
+# Modelio konteksto protokolas realaus laiko interneto paieškai
 
 ## Apžvalga
 
-Realiojo laiko interneto paieška tapo esminė šiandieninėje informacijos valdomoje aplinkoje, kuriose programos turi nedelsiant gauti atnaujintą informaciją visame internete, kad pateiktų aktualius ir laiku tinkamus atsakymus. Modelio konteksto protokolas (MCP) reprezentuoja svarbų žingsnį realiojo laiko paieškos procesų optimizavimui, didinant paieškos efektyvumą, išlaikant konteksto vientisumą ir gerinant bendrą sistemos veikimą.
+Realiojo laiko interneto paieška tapo būtina šiandienos informaciniame pasaulyje, kuriame programoms reikia greito priėjimo prie naujausios informacijos visame internete, kad būtų teikiami aktualūs ir laiku pateikti atsakymai. Modelio konteksto protokolas (MCP) žymi svarbų žingsnį optimizuojant šiuos realaus laiko paieškos procesus, pagerinant paieškos efektyvumą, išlaikant kontekstinį vientisumą ir gerinant bendrą sistemos veikimą.
 
-Šis modulis nagrinėja, kaip MCP transformuoja realiojo laiko interneto paiešką, suteikdamas standartizuotą konteksto valdymo požiūrį tarp dirbtinio intelekto modelių, paieškos variklių ir programų.
+Šis modulis nagrinėja, kaip MCP keičia realaus laiko interneto paiešką, suteikdamas standartizuotą požiūrį į konteksto valdymą tarp AI modelių, paieškos sistemų ir programų.
 
 ### Ką sužinosite
 
-Išsamioje šioje pamokoje sužinosite:
+Šiame išsamiame gide sužinosite:
 
-- Kaip MCP sukuria sklandžią jungtį tarp dirbtinio intelekto modelių ir realiojo laiko interneto paieškos galimybių
-- Architektūrinius modelius efektyvių ir masteliu pritaikomų paieškos sprendimų įgyvendinimui su MCP
-- Technikas, kaip išlaikyti paieškos kontekstą kelių užklausų ir sąveikų metu
-- Praktinius kodų pavyzdžius Python ir JavaScript įvairioms paieškos situacijoms
-- Metodus, kaip subalansuoti aktualumą, naujumą ir našumą MCP pagrįstose paieškos sistemose
+- Kaip MCP sukuria sklandžią sąsają tarp AI modelių ir realaus laiko interneto paieškos galimybių
+- Architektūrinius modelius efektyvioms ir skalėms pritaikytoms paieškos sprendimų įgyvendinimui naudojant MCP
+- Technikas, skirtas paieškos konteksto išsaugojimui per kelis užklausų ir sąveikų etapus
+- Praktinius kodo pavyzdžius Python ir JavaScript kalbomis įvairioms paieškos situacijoms
+- Metodus, kaip subalansuoti aktualumą, šviežumą ir našumą MCP pagrindu veikiančiose paieškos sistemose
 
-## Įvadas į realiojo laiko interneto paiešką
+## Įvadas į realaus laiko interneto paiešką
 
-Realiojo laiko interneto paieška yra technologinis požiūris, leidžiantis nuolat vykdyti užklausas, apdoroti ir analizuoti internete esančią informaciją, kai ji skelbiama ar atnaujinama, taip suteikdama sistemoms galimybę pateikti šviežią ir aktualią informaciją su minimalia delsos trukme. Skirtingai nuo tradicinių paieškos sistemų, kurios veikia indeksuotų duomenų pagrindu, kurie gali būti kelių valandų ar dienų senumo, realiojo laiko paieškos apdoroja tiesioginius duomenis iš interneto, pristatydamos įžvalgas ir informaciją, atspindinčią dabartinę interneto turinio būklę.
+Realiojo laiko interneto paieška yra technologinis požiūris, leidžiantis nuolat vykdyti užklausas, apdoroti ir analizuoti internetinę informaciją, kai ji publikuojama ar atnaujinama, leidžiantis sistemoms pateikti naujausią ir aktualią informaciją su minimalia delsos laiku. Priešingai nei tradicinės paieškos sistemos, kurios veikia indeksuotų duomenų pagrindu, kurie gali būti kelių valandų ar dienų senumo, realiojo laiko paieška naudoja tiesioginius internetinius duomenis, pateikdama įžvalgas ir informaciją, atspindinčią dabartinę interneto turinio būseną.
 
-### Pagrindinės realiojo laiko interneto paieškos sąvokos:
+### Pagrindinės realaus laiko interneto paieškos sąvokos:
 
-- **Nuolatinis užklausų apdorojimas**: Paieškos užklausos apdorojamos nuolat atnaujinamuose duomenų šaltiniuose
-- **Naujumui skiriamas prioritetas**: Sistemos yra sukuriamos tokiu būdu, kad labiau vertintų naują informaciją
-- **Aktualumo balansavimas**: Išlaikyti pusiausvyrą tarp aktualumo ir naujumo
-- **Masteliu pritaikoma architektūra**: Sistemos turi sugebėti tvarkyti kintamą užklausų apkrovą ir duomenų kiekį
-- **Konteksto supratimas**: Vartotojo konteksto išlaikymas per paieškos iteracijas yra labai svarbus prasmingiems rezultatams
-- **Dinaminis užklausų pertvarkymas**: Užklausų adaptavimas remiantis kontekstu ir ankstesniais rezultatais
-- **Daugių šaltinių integracija**: Rezultatų sujungimas iš kelių paieškos tiekėjų ir interneto šaltinių
-- **Semantinis supratimas**: Užklausų ir turinio apdorojimas pagal reikšmę, o ne tik raktinius žodžius
-- **Reitingavimas realiu laiku**: Rezultatų reitingų nuolatinis koregavimas, kai atsiranda nauja informacija
+- **Nuolatinis užklausų apdorojimas**: Paieškos užklausos apdorojamos prieš nuolat atnaujinamus duomenų šaltinius
+- **Šviežumo prioritizavimas**: Sistemos skiriamos prioritetą šviežiai informacijai
+- **Aktualumo balansas**: Išlaikomas pusiausvyros tarp aktualumo ir naujumo palaikymas
+- **Skalės galimybė**: Sistemos turi tvarkyti kintančius užklausų kiekius ir duomenų apimtis
+- **Kontekstinis supratimas**: Ypatingai svarbu išlaikyti vartotojo kontekstą per kelias paieškos iteracijas reikšmingiems rezultatams
+- **Dinamika užklausų pertvarkyme**: Lanksčiai keisti užklausas remiantis kontekstu ir ankstesniais rezultatais
+- **Daugių šaltinių integracija**: Apjungti rezultatus iš įvairių paieškos tiekėjų ir interneto šaltinių
+- **Semantinis supratimas**: Apdoroti užklausas ir turinį pagal reikšmę, o ne tik pagal raktinius žodžius
+- **Realaus laiko reitingavimas**: Nuolat koreguoti rezultatų reitingus, kai pasirodo nauja informacija
 
-### Modelio konteksto protokolas ir realiojo laiko interneto paieška
+### Modelio konteksto protokolas ir realaus laiko interneto paieška
 
-Modelio konteksto protokolas (MCP) sprendžia kelias kritines problemas realiojo laiko interneto paieškos aplinkoje:
+Modelio konteksto protokolas (MCP) sprendžia keletą kritinių iššūkių realaus laiko interneto paieškos aplinkoje:
 
-1. **Paieškos konteksto išsaugojimas**: MCP standartizuoja, kaip kontekstas išlaikomas tarp paskirstytų paieškos komponentų, užtikrinant, kad dirbtinio intelekto modeliai ir apdorojimo mazgai turi prieigą prie svarbios užklausų istorijos ir vartotojo nuostatų.
+1. **Paieškos konteksto išsaugojimas**: MCP standartizuoja, kaip kontekstas palaikomas paskirstytose paieškos dalyse, užtikrindamas, kad AI modeliai ir apdorojimo mazgai turi prieigą prie svarbios užklausų istorijos ir vartotojo nustatymų.
 
-2. **Efektyvus užklausų valdymas**: Teikdamas struktūrizuotas mechanizmus konteksto perdavimui, MCP sumažina papildomą naštą pakartotinai įtraukiant kontekstą kiekvienoje paieškos iteracijoje.
+2. **Efektyvus užklausų valdymas**: Teikdamas struktūrizuotas mechanikas konteksto perdavimui, MCP sumažina perteklinį konteksto kartojimą kiekvienoje paieškos iteracijoje.
 
-3. **Suderinamumas**: MCP sukuria bendrą kalbą konteksto dalinimuisi tarp įvairių paieškos technologijų ir dirbtinio intelekto modelių, leidžiančią lanksčiau ir platesniam architektūrų taikymui.
+3. **Suderinamumas**: MCP kuria bendrą kalbą konteksto dalijimuisi tarp įvairių paieškos technologijų ir AI modelių, leidžiančią lankstesnes ir išplečiamas architektūras.
 
-4. **Paieškai optimizuotas kontekstas**: MCP įgyvendinimai gali prioritetizuoti, kurie konteksto elementai yra svarbiausi efektyviai paieškai, optimizuojant tiek našumą, tiek tikslumą.
+4. **Paieškai optimizuotas kontekstas**: MCP įgyvendinimai gali prioritetuoti, kurie konteksto elementai yra svarbiausi efektyviai paieškai, optimizuojant ir našumą, ir tikslumą.
 
-5. **Adaptuojamas paieškos apdorojimas**: Tinkamai valdant kontekstą per MCP, paieškos sistemos gali dinamiškai koreguoti apdorojimą remiantis besivystančiais vartotojo poreikiais ir informacijos sąlygomis.
+5. **Adaptuojamas paieškos apdorojimas**: Tinkamai valdant kontekstą per MCP, paieškos sistemos gali dinamiškai keisti apdorojimą pagal kintančius vartotojo poreikius ir informacines aplinkas.
 
-Šiuolaikinėse programose nuo naujienų agregavimo iki tyrimų pagalbininkų, MCP integracija su interneto paieškos technologijomis leidžia kurti išmanesnes, kontekstiškai informuotas paieškas, kurios teikia vis labiau aktualius rezultatus, kai vartotojų sąveikos tęsiasi.
+Šiuolaikinėse programose nuo naujienų agregacijos iki mokslinių asistentų MCP integracija su interneto paieškos technologijomis leidžia kurti protingesnę, kontekstą suprantančią paiešką, kuri su laiku gali pateikti vis aktualesnius rezultatus pagal vartotojo sąveiką.
 
 ## Mokymosi tikslai
 
-Šios pamokos pabaigoje sugebėsite:
+Šios pamokos pabaigoje jūs gebėsite:
 
-- Suprasti realiojo laiko interneto paieškos pagrindus ir jos iššūkius šiuolaikinėse programose
-- Paaiškinti, kaip Modelio konteksto protokolas (MCP) pagerina realiojo laiko interneto paieškos galimybes
-- Įgyvendinti MCP pagrįstus paieškos sprendimus naudojant populiarius karkasus ir API
-- Suprojektuoti ir diegti mastelio pritaikomas, aukšto našumo paieškos architektūras su MCP
-- Taikyti MCP koncepcijas įvairiuose panaudojimo atvejuose, įskaitant semantinę paiešką, tyrimų pagalbą ir DI papildomas naršymo galimybes
-- Įvertinti atsirandančias tendencijas ir būsimus MCP pagrįstų paieškos technologijų inovacijas
-- Kurti kontekstu pagrįstas paieškos sistemas, kurios mokosi iš vartotojų sąveikų
-- Integruoti interneto paieškos galimybes į DI pagalbininkus naudojant standartizuotus MCP protokolus
-- Kurti daugiapakopes paieškos grandines, kurios palaipsniui tobulina rezultatus remiantis kontekstu
-- Optimizuoti paieškos našumą išlaikant išsamų konteksto suvokimą
+- Suprasti realaus laiko interneto paieškos pagrindus ir jos iššūkius šiuolaikinėse programose
+- Paaiškinti, kaip Modelio konteksto protokolas (MCP) pagerina realaus laiko interneto paieškos galimybes
+- Įgyvendinti MCP pagrindu veikiančius paieškos sprendimus naudojant populiarias sistemas ir API
+- Kurti ir diegti skalę palaikančias, našias paieškos architektūras su MCP
+- Taikyti MCP koncepcijas įvairiems naudojimo atvejams, įskaitant semantinę paiešką, mokslinių tyrimų pagalbą ir AI papildytą naršymą
+- Vertinti naujas tendencijas ir būsimas inovacijas MCP pagrindu veikiančiose paieškos technologijose
+- Kurti kontekstą suprantančias paieškos sistemas, kurios mokosi iš vartotojo sąveikų
+- Integruoti interneto paieškos galimybes AI asistentams naudojant standartizuotus MCP protokolus
+- Kurti daugiapakopes paieškos grandines, kurios palaipsniui tikslina rezultatus pagal kontekstą
+- Optimizuoti paieškos našumą išlaikant visapusišką konteksto suvokimą
 
-### Apibrėžimas ir reikšmė
+### Apibrėžimas ir svarba
 
-Realiojo laiko interneto paieška apima nuolatinį užklausų pateikimą, gavybą ir interneto pagrindu teikiamos informacijos pristatymą su minimaliu vėlavimu. Skirtingai nuo tradicinių paieškos variklių, kurie periodiškai naršo ir indeksuoja internetą, realiojo laiko paieška siekia pateikti informaciją iš karto, kai ji tampa prieinama, užtikrindama nedelsiamą prieigą prie pačios naujausios informacijos.
+Realiojo laiko interneto paieška apima nuolatinį internetinės informacijos užklausimą, gavimą ir pateikimą su minimaliu delsos laiku. Priešingai nei tradiciniai paieškos varikliai, kurie periodiškai naršo ir indeksuoja internetą, realaus laiko paieška siekia pateikti informaciją, kai ji atsiranda, leidžiant nedelsiant gauti naujausią turinį.
 
-Pagrindinės realiojo laiko interneto paieškos savybės apima:
+Pagrindinės realaus laiko interneto paieškos savybės:
 
-- **Šviežumą**: Naujausio turinio ir atnaujinimų prioritetizavimą
-- **Nuolatinį apdorojimą**: Nuolatinį naujos informacijos stebėjimą
-- **Užklausų adaptaciją**: Paieškos užklausų tobulinimą pagal kontekstą ir grįžtamąjį ryšį
-- **Nedelsiamą pristatymą**: Paieškos rezultatų pateikimą su minimaliu vėlavimu
-- **Konteksto išlaikymą**: Remiantis ankstesnėmis užklausomis, geresnio aktualumo kūrimui
+- **Šviežumas**: Prioritetas neseniems turiniams ir atnaujinimams
+- **Nuolatinis apdorojimas**: Pastoviai stebima nauja informacija
+- **Užklausų adaptacija**: Paieškos užklausų patikslinimas pagal kontekstą ir atsiliepimus
+- **Momentinis pateikimas**: Paieškos rezultatų pateikimas su minimaliu vėlavimu
+- **Konteksto išlaikymas**: Iš ankstesnių užklausų statomas kontekstas, gerinantis aktualumą
 
-### Iššūkiai tradicinėje interneto paieškoje
+### Trūkumai tradicinėje interneto paieškoje
 
-Tradiciniai interneto paieškos metodai susiduria su keliomis ribotumais taikydami realiojo laiko scenarijus:
+Tradiciniai interneto paieškos metodai turi keletą apribojimų, taikant juos realaus laiko scenarijuose:
 
-1. **Konteksto fragmentacija**: Sunku išlaikyti paieškos kontekstą kelių užklausų metu
-2. **Informacijos šviežumo iššūkiai**: Sunkumai prieigą prie ir naujausios informacijos prioritetizavimą
-3. **Integracijos sudėtingumas**: Problemos dėl suderinamumo tarp paieškos sistemų ir programų
-4. **Vėlavimo problemos**: Balansavimas tarp išsamios paieškos ir atsako laiko reikalavimų
-5. **Aktualumo reguliavimas**: Tikslumo ir aktualumo užtikrinimas siekiant prioritetizuoti naujumą
+1. **Konteksto fragmentacija**: Sudėtinga išlaikyti paieškos kontekstą per kelias užklausas
+2. **Informacijos šviežumas**: Sudėtinga priartėti ir prioritetizuoti naujausią informaciją
+3. **Integracijos sudėtingumas**: Problemų tarp paieškos sistemų ir programų suderinamumo srityje
+4. **Delsos problemos**: Siekiant subalansuoti išsamų paieškos veikimą su atsako laiko reikalavimais
+5. **Aktualumo reguliavimas**: Užtikrinti tikslumą ir aktualumą, kartu suteikiant prioritetą naujumui
 
-## Modelio konteksto protokolo (MCP) supratimas paieškos kontekste
+## Modelio konteksto protokolo (MCP) supratimas paieškoje
 
-### Kas yra MCP paieškos kontekste?
+### Kas yra MCP paieškos kontekstuose?
 
-Modelio konteksto protokolas (MCP) yra standartizuotas komunikacijos protokolas, sukurtas palengvinti efektyvų bendradarbiavimą tarp dirbtinio intelekto modelių ir programų. Realiojo laiko interneto paieškos kontekste MCP suteikia pagrindinę sistemą:
+Modelio konteksto protokolas (MCP) yra standartizuotas komunikacijos protokolas, sukurtas palengvinti efektyvų bendradarbiavimą tarp AI modelių ir programų. Realiojo laiko interneto paieškos kontekste MCP suteikia platformą:
 
 - Išlaikyti paieškos kontekstą per užklausų sekas
-- Standartizuoti paieškos užklausų ir rezultatų formatus
+- Standardizuoti paieškos užklausų ir rezultatų formatus
 - Optimizuoti paieškos parametrų ir rezultatų perdavimą
 - Pagerinti modelio ir paieškos variklio komunikaciją
 
 ### Pagrindinės sudedamosios dalys ir architektūra
 
-MCP architektūra realiojo laiko interneto paieškai susideda iš kelių pagrindinių komponentų:
+MCP architektūra realaus laiko interneto paieškai susideda iš kelių pagrindinių komponentų:
 
 1. **Užklausų konteksto valdytojai**: Tvarko ir palaiko paieškos kontekstą per kelias užklausas
-2. **Paieškos procesoriai**: Apdoroja gaunamas paieškos užklausas, naudodami kontekstą atsižvelgiančias technikas
-3. **Protokolo adapteriai**: Paverčia skirtingas paieškos API, išlaikydami kontekstą
-4. **Konteksto saugykla**: Efektyviai saugo ir atkuria paieškos istoriją ir nuostatas
+2. **Paieškos apdorotojai**: Apdoroja gaunamas paieškos užklausas naudodami kontekstą suprantančias technikas
+3. **Protokolo adapteriai**: Konvertuoja tarp skirtingų paieškos API išlaikant kontekstą
+4. **Konteksto saugykla**: Efektyviai saugo ir pateikia paieškos istoriją bei vartotojo nustatymus
 5. **Paieškos jungtys**: Jungiasi su įvairiais paieškos varikliais ir interneto API
 
 ```mermaid
 graph TD
     subgraph "Duomenų šaltiniai"
-        Web[Tinklalapio turinys]
+        Web[Interneto turinys]
         APIs[Išoriniai API]
         DB[Žinių bazės]
         News[Naujienų srautai]
@@ -118,21 +118,21 @@ graph TD
     subgraph "MCP paieškos sluoksnis"
         SC[Paieškos jungtys]
         PA[Protokolų adapteriai]
-        CH[Konteksto tvarkytojai]
+        CH[Konteksto valdikliai]
         SP[Paieškos procesoriai]
         CS[Konteksto saugykla]
     end
 
     subgraph "Apdorojimas ir analizė"
-        RE[Aktualumo variklis]
+        RE[Reikšmingumo variklis]
         ML[ML modeliai]
         NLP[NLP apdorojimas]
-        Rank[Reitingavimo sistema]
+        Rank[Rūšiavimo sistema]
     end
 
-    subgraph "Programėlės ir paslaugos"
+    subgraph "Pritaikymas ir paslaugos"
         RA[Tyrimų asistentas]
-        Alerts[Įspėjimo sistemos]
+        Alerts[Įspėjimų sistemos]
         KB[Žinių bazė]
         API[API paslaugos]
     end
@@ -150,17 +150,17 @@ graph TD
     SP -->|Funkcijos| ML
     SP -->|Tekstas| NLP
     
-    RE -->|Išrikiuoti rezultatai| Rank
+    RE -->|Surikiuoti rezultatai| Rank
     ML -->|Prognozės| Rank
-    NLP -->|Vienetai ir ryšiai| Rank
+    NLP -->|Entitetai ir ryšiai| Rank
     
     Rank -->|Galutiniai rezultatai| RA
     ML -->|Įžvalgos| Alerts
-    NLP -->|Strukturizuoti duomenys| KB
+    NLP -->|Struktūruoti duomenys| KB
     
     RA -->|Tyrimai| Users((Users))
     Alerts -->|Pranešimai| Users
-    KB <-->|Žinių prieiga| API
+    KB <-->|Prieiga prie žinių| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -173,43 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Kaip MCP gerina realiojo laiko interneto paiešką
+### Kaip MCP gerina realaus laiko interneto paiešką
 
-MCP sprendžia tradicinių interneto paieškų iššūkius per:
+MCP sprendžia tradicinių interneto paieškos iššūkius per:
 
-- **Kontekstinę tęstinumą**: Išlaikydamas ryšius tarp užklausų per visą paieškos sesiją
-- **Optimizuotą perdavimą**: Sumažindamas perteklinį paieškos parametrų kartojimą protingu konteksto valdymu
-- **Standartizuotas sąsajas**: Teikdamas nuoseklias API paieškos komponentams
-- **Sumažintą vėlavimą**: Minimalizuodamas apdorojimo naštą efektyviu konteksto tvarkymu
-- **Pagerintą aktualumą**: Gerindamas paieškos aktualumą išlaikant vartotojo ketinimą per kelias užklausas
+- **Kontekstinė tęstinumo palaikymas**: Išlaikyti ryšius tarp užklausų visos paieškos sesijos metu
+- **Optimizuotą perdavimą**: Mažinti pasikartojančių paieškos parametrų kiekį protingu konteksto valdymu
+- **Standartizuotas sąsajas**: Suteikti vientisus API paieškos komponentams
+- **Sumažintą delsą**: Mažinti apdorojimo papildomas išlaidas efektyviu konteksto valdymu
+- **Pagerintą aktualumą**: Didinti paieškos aktualumą išlaikant vartotojo ketinimus per kelias užklausas
 
 ## Integracija ir įgyvendinimas
 
-Realiojo laiko interneto paieškos sistemos reikalauja kruopštaus architektūrinio dizaino ir įgyvendinimo norint išlaikyti tiek našumą, tiek kontekstinį vientisumą. Modelio konteksto protokolas siūlo standartizuotą požiūrį į dirbtinio intelekto modelių ir paieškos technologijų integravimą, leidžiantį kurti sudėtingesnes, kontekstą suprantančias paieškos grandines.
+Realiojo laiko interneto paieškos sistemos reikalauja kruopštaus architektūrinio dizaino ir įgyvendinimo, kad išlaikytų tiek našumą, tiek kontekstinį vientisumą. Modelio konteksto protokolas siūlo standartizuotą požiūrį integruojant AI modelius ir paieškos technologijas, leidžiant sudaryti pažangesnius, kontekstą suvokiančius paieškos srautus.
 
 ### MCP integracijos apžvalga paieškos architektūrose
 
-MCP įgyvendinimas realiojo laiko interneto paieškos aplinkose apima kelis svarbius aspektus:
+MCP taikymas realiojo laiko interneto paieškos aplinkoje reikalauja kelių pagrindinių aspektų:
 
-1. **Paieškos konteksto serializacija**: MCP suteikia efektyvius mechanizmus kontekstinei informacijai koduoti paieškos užklausose, užtikrindamas, kad svarbus kontekstas paseka užklausą visame apdorojimo procese. Tai apima standartizuotus serializacijos formatus, optimizuotus paieškai reikalingiems metaduomenims.
+1. **Paieškos konteksto serializavimas**: MCP teikia efektyvius mechanizmus kontekstinės informacijos kodavimui paieškos užklausose, užtikrinant, kad būtinas kontekstas seka per visą apdorojimo grandinę. Tai apima standartizuotus serializavimo formatus, optimizuotus paieškos metaduomenims.
 
-2. **Būseną palaikantis paieškos apdorojimas**: MCP leidžia išmanesnį būseną palaikantį apdorojimą, išlaikant nuoseklų konteksto atvaizdavimą paieškos iteracijose. Tai ypač vertinga daugiapakopėse paieškos grandinėse, kur konteksto tobulinimas gerina rezultatus.
+2. **Būsenos palaikymas paieškoje**: MCP leidžia išmanų apdorojimą palaikant nuoseklią konteksto reprezentaciją per kelias paieškos iteracijas. Tai ypač vertinga daugiapakopėse paieškos grandinėse, kuriose konteksto tobulinimas gerina rezultatus.
 
-3. **Užklausų išplečiavimas ir tobulinimas**: MCP įgyvendinimai paieškos sistemose gali palengvinti sudėtingą užklausų išplečiavimą ir tobulinimą remiantis sukauptu kontekstu, leidžiant vis labiau aktualius rezultatus, kai paieškos sesija progresuoja.
+3. **Užklausų plėtra ir patikslinimas**: MCP įgyvendinimai paieškos sistemose gali palengvinti sudėtingą užklausų plėtrą ir patikslinimą, remiantis sukauptu kontekstu, leidžiant gaunamus rezultatus pamažu daryti vis aktualesnius paieškos sesijos eigoje.
 
-4. **Rezultatų talpinimas ir prioritetizavimas**: Standartizuodamas konteksto tvarkymą, MCP padeda valdyti rezultatų talpinimą ir prioritetą, leidžiant komponentams prisitaikyti prie besikeičiančio paieškos konteksto.
+4. **Rezultatų talpinimas ir prioritetizavimas**: Standartizuodamas konteksto tvarkymą, MCP padeda valdyti rezultatų talpyklą ir jo prioriteto nustatymą, leidžiant komponentams prisitaikyti pagal besikeičiantį paieškos kontekstą.
 
-5. **Paieškos federacija ir agregacija**: MCP palengvina pažangesnę paieškos federaciją per kelis backend'us, pateikdamas struktūrizuotus paieškos konteksto atvaizdavimus, leidžiančius reikšmingiau sujungti rezultatus iš įvairių šaltinių.
+5. **Paieškos federacija ir agregacija**: MCP palengvina sudėtingesnę paieškos federaciją per keletą užnugarių sistemų, teikdamas struktūruotas paieškos konteksto atvaizdas, leidžiančius prasmingiau agreguoti rezultatus iš įvairių šaltinių.
 
-MCP įgyvendinimas įvairiose paieškos technologijose sukuria vieningą požiūrį į konteksto valdymą, sumažindamas poreikį rašyti individualų integracijos kodą ir kartu pagerindamas sistemos gebėjimą išlaikyti prasmingą kontekstą, kai keičiasi paieškos užklausos.
+Kadangi MCP įgyvendinamas įvairiose paieškos technologijose, sukuriamas vieningas konteksto valdymo metodas, mažinantis poreikį rašyti individualų integracijos kodą ir didinantis sistemos gebėjimą įsiklausyti į prasmingą kontekstą, kai paieškos užklausos vystosi.
 
 ### MCP įvairiuose interneto paieškos įgyvendinimuose
 
-Šie pavyzdžiai atitinka dabartinę MCP specifikaciją, kuri orientuota į JSON-RPC pagrindu veikiantį protokolą su skirtingais transportavimo mechanizmais. Kodas demonstruoja, kaip galite įgyvendinti pasirinktines paieškos integracijas išlaikydami visišką suderinamumą su MCP protokolu.
+Šie pavyzdžiai atitinka esamą MCP specifikaciją, kuri orientuota į JSON-RPC pagrindu veikiančią protokolą su aiškiais transporto mechanizmais. Kodu rodomas būdas, kaip galite įgyvendinti suasmenintus paieškos sprendimus išlaikant visišką suderinamumą su MCP protokolu.
 
 
 <details>
-<summary>Python įgyvendinimas su bendruoju paieškos API</summary>
+<summary>Python įgyvendinimas naudojant bendrą paieškos API</summary>
 
 ```python
 import asyncio
@@ -225,10 +225,10 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Sukurti FastMCP serverį internetinėms paieškoms
+# Sukurti FastMCP serverį interneto paieškai
 search_server = FastMCP("WebSearch")
 
-# Klasė, valdanti internetinės paieškos operacijas
+# Klasė, skirta valdyti interneto paieškos operacijas
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -264,7 +264,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # Vykdyti paieškos užklausą
+        # Atlikti paieškos užklausą
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Inicijuoti paieškos valdytoją
+# Inicializuoti paieškos valdiklį
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Nustatyti gyvenimo trukmę paieškos valdytojui valdyti
+# Nustatyti gyvenimo trukmę paieškos valdiklio valdymui
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -315,7 +315,7 @@ async def app_lifespan(server: FastMCP):
 # Nustatyti serverio gyvenimo trukmę
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Registruoti internetinės paieškos įrankį
+# Užregistruoti interneto paieškos įrankį
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -347,15 +347,15 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Kliento naudojimo pavyzdys
+# Pavyzdinis kliento naudojimas
 async def client_example():
     # Prisijungti prie paieškos serverio naudojant Streamable HTTP transportą
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Inicijuoti ryšį
+            # Inicializuoti ryšį
             await session.initialize()
             
-            # Iškvieti web_search įrankį
+            # Iškviesti web_search įrankį
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -370,7 +370,7 @@ async def client_example():
 
 # Serverio vykdymo pavyzdys
 if __name__ == "__main__":
-    # Paleisti serverį su Streamable HTTP transportu
+    # Vykdyti serverį su Streamable HTTP transportu
     search_server.run(transport="streamable-http")
 ```
 </details> 
@@ -380,12 +380,12 @@ if __name__ == "__main__":
 
 
 ```javascript
-// MCP serverio įgyvendinimas internetinei paieškai
+// MCP serverio įgyvendinimas interneto paieškai
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Sukurti MCP serverį internetinei paieškai
+// Sukurti MCP serverį interneto paieškai
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -407,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Sukurti paieškos URL su parametrais
+        // Sudaryti paieškos URL su parametrais
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Paversti API-specifinį atsakymą į standartinį formatą
+            // Paversti API specifinę atsakymą į standartinį formatą
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -458,7 +458,7 @@ class SearchService {
     }
 }
 
-// Inicializuoti paieškos paslaugą
+// Inicijuoti paieškos paslaugą
 const searchService = new SearchService(
     'https://api.search-service.example/search',
     'your-api-key-here'
@@ -471,7 +471,7 @@ searchServer.setContextProvider(() => {
     };
 });
 
-// Registruoti internetinės paieškos įrankį
+// Užregistruoti interneto paieškos įrankį
 searchServer.tool({
     name: 'web_search',
     description: 'Search the web for information',
@@ -512,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// Pavyzdinis kliento kodas prisijungti prie paieškos serverio
+// Pavyzdinis kliento kodas prisijungimui prie paieškos serverio
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -542,7 +542,7 @@ async function connectToSearchServer() {
     
     console.log('Search results:', searchResults);
     
-    // Išvalymas
+    // Valymas
     await client.disconnect();
 }
 
@@ -561,37 +561,39 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 ## Kodo pavyzdžių atsakomybės apribojimas
 
-> **Svarbi pastaba**: Toliau pateikti kodo pavyzdžiai demonstruoja Modelio konteksto protokolo (MCP) integraciją su interneto paieškos funkcija. Nors jie laikosi oficialių MCP SDK modelių ir struktūrų, jie supaprastinti mokomaisiais tikslais.
+> **Svarbi pastaba**: Toliau pateikti kodo pavyzdžiai demonstruoja Modelio konteksto protokolo (MCP) integraciją su interneto paieškos funkcionalumu. Nors jie atitinka oficialių MCP programų programavimo sąsajų (SDK) modelius ir struktūras, jie supaprastinti edukaciniais tikslais.
 > 
-> Šie pavyzdžiai demonstruoja:
+> Šie pavyzdžiai rodo:
 > 
-> 1. **Python įgyvendinimas**: FastMCP serverio įgyvendinimas, kuris suteikia interneto paieškos įrankį ir jungiasi prie išorinės paieškos API. Šis pavyzdys iliustruoja tinkamą gyvavimo trukmės valdymą, konteksto tvarkymą bei įrankių įgyvendinimą, laikantis [oficialaus MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) modelių. Serveris naudoja rekomenduojamą Streamable HTTP transportą, kuris pakeitė senesnį SSE transportą gamybinėse diegimuose.
+> 1. **Python įgyvendinimą**: FastMCP serverio įgyvendinimas, kuris suteikia interneto paieškos įrankį ir jungiasi prie išorinio paieškos API. Šis pavyzdys demonstruoja tinkamą gyvenimo ciklo valdymą, konteksto tvarkymą ir įrankio implementavimą pagal [oficialų MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) pavyzdžius. Serveris naudoja rekomenduojamą Streamable HTTP transportą, kuris pakeitė senesnį SSE transportą gamybiniuose diegimuose.
 > 
-> 2. **JavaScript įgyvendinimas**: TypeScript/JavaScript įgyvendinimas, naudodamas FastMCP šabloną iš [oficialaus MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk), sukūrantis paieškos serverį su tinkamais įrankių apibrėžimais ir klientų jungtimis. Jis laikosi naujausių rekomenduojamų sesijų valdymo ir konteksto išsaugojimo modelių.
+> 2. **JavaScript įgyvendinimą**: TypeScript/JavaScript įgyvendinimas naudojant FastMCP modelį iš [oficialaus MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk), kad būtų sukurtas paieškos serveris su tinkamais įrankių apibrėžimais ir klientų jungtimis. Tai atitinka naujausius rekomenduojamus sesijų valdymo ir konteksto išlaikymo modelius.
 > 
-> Šie pavyzdžiai produkciniam naudojimui reikalaus papildomo klaidų valdymo, autentifikacijos ir specifinio API integracijos kodo. Parodyti paieškos API galiniai taškai (`https://api.search-service.example/search`) yra vietos rezervacijos simboliai ir turi būti pakeisti tikrais paieškos paslaugų galiniais URL.
+> Šie pavyzdžiai reikalautų papildomo klaidų apdorojimo, autentifikacijos ir konkrečių API integracijos kodo gamybos naudojimui. Paieškos API taškai (`https://api.search-service.example/search`) yra pavyzdinės nuorodos ir turi būti pakeistos tikrais paieškos paslaugų taškais.
 > 
-> Pilniems įgyvendinimo duomenims ir naujausioms prieigoms, prašome kreiptis į [oficialią MCP specifikaciją](https://spec.modelcontextprotocol.io/) ir SDK dokumentaciją.
+> Dėl pilno įgyvendinimo detalių ir naujausių požiūrių,
+> kreipkitės į [oficialią MCP specifikaciją](https://modelcontextprotocol.io/specification/2026-07-28/)
+> ir SDK dokumentaciją.
 
 ## Pagrindinės sąvokos
 
-### Modelio konteksto protokolo (MCP) pagrindas
+### Modelio konteksto protokolo (MCP) sistema
 
-Pagrindas MCP suteikia standartizuotą būdą dirbtinio intelekto modeliams, programoms ir paslaugoms keistis kontekstu. Realiojo laiko interneto paieškoje šis pagrindas yra esminis kuriant nuoseklias, daug etapų turinčias paieškos patirtis. Pagrindiniai komponentai yra:
+Pagrindas MCP suteikia standartizuotą būdą AI modeliams, programoms ir paslaugoms keistis kontekstu. Realaus laiko interneto paieškoje šis pagrindas yra būtinas kuriant nuoseklias, daugiapakopes paieškos patirtis. Pagrindiniai komponentai apima:
 
-1. **Klientų-serverių architektūra**: MCP nustato aiškią atskirtį tarp paieškos klientų (užklausiančiųjų) ir paieškos serverių (teikėjų), leidžiančią lankstų diegimo modelį.
+1. **Kliento-serverio architektūra**: MCP nustato aiškią atskirtį tarp paieškos klientų (užklausų teikėjų) ir paieškos serverių (teikėjų), leidžiant lanksčias diegimo schemas.
 
-2. **JSON-RPC komunikacija**: Protokolas naudoja JSON-RPC žinučių mainams, todėl yra suderinamas su interneto technologijomis ir lengvai įgyvendinamas įvairiose platformose.
+2. **JSON-RPC komunikacija**: Protokolas naudoja JSON-RPC žinučių keitimui, tad jis suderinamas su interneto technologijomis ir lengvai įgyvendinamas įvairiose platformose.
 
-3. **Konteksto valdymas**: MCP apibrėžia struktūrizuotus metodus kontekstui išlaikyti, atnaujinti ir naudoti keliuose sąveikos etapuose.
+3. **Konteksto valdymas**: MCP apibrėžia struktūrizuotus metodus paieškos konteksto palaikymui, atnaujinimui ir išnaudojimui per kelias sąveikas.
 
-4. **Įrankių apibrėžimai**: Paieškos galimybės pateikiamos kaip standartizuoti įrankiai su aiškiai apibrėžtais parametrais ir grąžinamomis reikšmėmis.
+4. **Įrankių apibrėžimai**: Paieškos galimybės pateikiamos kaip standartizuoti įrankiai su aiškiai apibrėžtais parametrais ir grąžinimais.
 
-5. **Srautinio duomenų palaikymas**: Protokolas palaiko rezultatų srautą, kas yra būtina realiojo laiko paieškai, kai rezultatai gali atkeliauti palaipsniui.
+5. **Srautinis palaikymas**: Protokolas palaiko rezultatų srautavimą, būtina realaus laiko paieškai, kai rezultatai gali atkeliauti palaipsniui.
 
 ### Interneto paieškos integracijos modeliai
 
-Integruodami MCP su interneto paieška, atsiranda keli modeliai:
+Integruojant MCP su interneto paieška, atsiranda keletas modelių:
 
 #### 1. Tiesioginė paieškos tiekėjo integracija
 
@@ -603,25 +605,25 @@ graph LR
     Server --> |MCP Atsakymas| Client
 ```
 
-Šiame modelyje MCP serveris tiesiogiai sąveikauja su viena ar keliomis paieškos API, verčia MCP užklausas į API specifinius kvietimus ir formatuoja rezultatus kaip MCP atsakymus.
+Šiame modelyje MCP serveris tiesiogiai sąveikauja su vienu ar keliais paieškos API, verčia MCP užklausas į specifinius API kvietimus ir formatuoja rezultatus kaip MCP atsakymus.
 
 #### 2. Federuota paieška su konteksto išsaugojimu
 
 ```mermaid
 graph LR
-    Client[MCP klientas] --> |MCP užklausa| Federation[MCP federacijos sluoksnis]
-    Federation --> |MCP užklausa 1| Search1[Paieškos teikėjas 1]
-    Federation --> |MCP užklausa 2| Search2[Paieškos teikėjas 2]
-    Federation --> |MCP užklausa 3| Search3[Paieškos teikėjas 3]
-    Search1 --> |MCP atsakymas 1| Federation
-    Search2 --> |MCP atsakymas 2| Federation
-    Search3 --> |MCP atsakymas 3| Federation
-    Federation --> |Suvestinis MCP atsakymas| Client
+    Client[MCP Klientas] --> |MCP Užklausa| Federation[MCP Federacijos Sluoksnis]
+    Federation --> |MCP Užklausa 1| Search1[Paieškos Tiekėjas 1]
+    Federation --> |MCP Užklausa 2| Search2[Paieškos Tiekėjas 2]
+    Federation --> |MCP Užklausa 3| Search3[Paieškos Tiekėjas 3]
+    Search1 --> |MCP Atsakymas 1| Federation
+    Search2 --> |MCP Atsakymas 2| Federation
+    Search3 --> |MCP Atsakymas 3| Federation
+    Federation --> |Apibendrintas MCP Atsakymas| Client
 ```
 
-Šis modelis paskirsto paieškos užklausas keliems MCP suderinamiems paieškos tiekėjams, kurie gali specializuotis skirtinguose turinio ar paieškos galimybių segmentuose, išlaikant vieningą kontekstą.
+Šis modelis paskirsto paieškos užklausas per kelis MCP suderinamus paieškos tiekėjus, kurie gali specializuotis skirtingų tipų turiniu ar paieškos galimybėmis, išlaikant vieningą kontekstą.
 
-#### 3. Kontekstą praturtinta paieškos grandinė
+#### 3. Kontekstu sustiprinta paieškos grandinė
 
 ```mermaid
 graph LR
@@ -629,142 +631,143 @@ graph LR
     Server --> |1. Užklausos analizė| NLP[NLP Paslauga]
     NLP --> |Patobulinta užklausa| Server
     Server --> |2. Paieškos vykdymas| Search[Paieškos variklis]
-    Search --> |Neapdoroti rezultatai| Server
+    Search --> |Nekoreguoti rezultatai| Server
     Server --> |3. Rezultatų apdorojimas| Enhancement[Rezultatų patobulinimas]
     Enhancement --> |Patobulinti rezultatai| Server
     Server --> |Galutiniai rezultatai + atnaujintas kontekstas| Client
 ```
 
-Šiame modelyje paieškos procesas dalomas į kelis etapus, kuriuose kontekstas yra papildomas kiekviename žingsnyje, gaunant palaipsniui vis aktualesnius rezultatus.
+Šiame modelyje paieškos procesas yra suskaidytas į kelis etapus, kurių kiekviename žingsnyje kontekstas papildomas, rezultatai palaipsniui tampa aktualesni.
 
 ### Paieškos konteksto komponentai
 
-MCP pagrįstoje interneto paieškoje kontekstas paprastai apima:
+MCP pagrindu veikiančioje interneto paieškoje kontekstas paprastai apima:
 
-- **Užklausų istoriją**: Ankstesnes užklausas sesijos metu
-- **Vartotojo nuostatas**: Kalbą, regioną, saugios paieškos nustatymus
-- **Sąveikos istoriją**: Kurie rezultatai buvo paspausti, laikas praleistas su rezultatais
-- **Paieškos parametrus**: Filtrus, rūšiavimo eilę ir kitus paieškos modifikatorius
-- **Teminį žinių pagrindą**: Temomis susijusį kontekstą, aktualų paieškai
-- **Laiko kontekstą**: Laiko pagrindu aktualių veiksnių įtaką
-- **Šaltinių nuostatas**: Patikimus ar pageidaujamus informacijos šaltinius
+- **Užklausų istorija**: Ankstesnės paieškos užklausos sesijos metu
+- **Vartotojo nustatymai**: Kalba, regionas, saugios paieškos nustatymai
+- **Sąveikų istorija**: Kuriuos rezultatus paspausta, kiek laiko praleista prie rezultatų
+- **Paieškos parametrai**: Filtrai, rūšiavimo tvarkos ir kiti paieškos modifikatoriai
+- **Domeno žinios**: Tematika specifinis kontekstas, svarbus paieškai
+- **Laikinasis kontekstas**: Laiku pagrįsti aktualumo veiksniai
+- **Šaltinių prioritetai**: Patikimi ar pageidaujami informacijos šaltiniai
 
-## Naudojimo atvejai ir taikymo sritys
+## Naudojimo atvejai ir taikymas
 
-### Tyrimai ir informacijos rinkimas
+### Moksliniai tyrimai ir informacijos surinkimas
 
-MCP pagerina tyrimų darbo eigos procesus per:
+MCP pagerina mokslinių tyrimų darbo eigą per:
 
-- Tyrimų konteksto išlaikymą paieškos sesijų metu
-- Labiau sudėtingų ir kontekstualiai aktualių užklausų galimybę
-- Daugių šaltinių paieškos federacijos palaikymą
-- Pagalbinio žinių išgavimą iš paieškos rezultatų
+- Tyrimų konteksto išlaikymą per paieškos sesijas
+- Sudėtingų ir kontekstualiai aktualių užklausų galimybę
+- Palaikant daugių šaltinių paieškos federaciją
+- Palengvinant žinių išgavimo procesą iš paieškos rezultatų
 
 ### Realiojo laiko naujienų ir tendencijų stebėjimas
 
-MCP pagrįsta paieška siūlo privalumus naujienų stebėjimui:
+MCP pagrindu veikiančios paieškos suteikia pranašumų naujienų stebėsenai:
 
-- Naujų naujienų istorijų beveik realiu laiku atradimą
-- Kontekstinį aktualios informacijos filtravimą
-- Temų ir subjektų sekimą iš kelių šaltinių
-- Personalizuotas naujienų pranešimas pagal vartotojo kontekstą
+- Beveik realiuoju laiku aptinkamos naujos atsirandančios naujienos
+- Kontekstinis svarbios informacijos filtravimas
+- Temų ir objektų sekimas keliuose šaltiniuose
+- Asmeninės naujienų įspėjimų pranešimai pagal vartotojo kontekstą
 
-### DI papildomas naršymas ir tyrimai
+### AI papildytas naršymas ir tyrimai
 
-MCP kuria naujas galimybes DI papildomam naršymui:
+MCP atveria naujas galimybes AI papildytam naršymui:
 
-- Kontekstualias paieškos rekomendacijas, remiantis dabartine naršyklės veikla
-- Sklandžią interneto paieškų integraciją su LLM pagrįstais asistentais
-- Daugiapakopį paieškos tobulinimą su konteksto išlaikymu
-- Pagerintą faktų tikrinimą ir informacijos patikrinimą
+- Kontekstinės paieškos siūlymai pagal dabartinę naršyklės veiklą
+- Sklandi interneto paieškos integracija su LLM pagrindu veikiančiais asistentais
+- Daugiapakopis paieškos tobulinimas išlaikant kontekstą
+- Pagerintas faktų tikrinimas ir informacijos patikrinimas
 
 ## Ateities tendencijos ir inovacijos
 
 ### MCP evoliucija interneto paieškoje
 
-Žvelgiant į ateitį, tikimasi, kad MCP vystysis sprendžiant:
+Žvelgiant į ateitį, laukiama, kad MCP vystysis sprendžiant:
 
 
-- **Daugiakanalė Paieška**: Teksto, vaizdo, garso ir vaizdo paieškos integravimas su konteksto išsaugojimu
-- **Decentralizuota Paieška**: Palaikymas paskirstytoms ir federuotoms paieškos ekosistemoms
-- **Paieškos Privatumas**: Kontekstą atitinkančios privatumo saugančios paieškos mechanizmai
-- **Užklausų Supratimas**: Gilaus semantinio natūralios kalbos paieškos užklausų analizės taikymas
+- **Daugiakanalė paieška**: Teksto, vaizdų, garso ir vaizdo paieškos integravimas išlaikant kontekstą
+- **Decentralizuota paieška**: Palaikymas paskirstytoms ir federuotoms paieškos ekosistemoms
+- **Paieškos privatumas**: Kontekstą atitinkančios privatumo išsaugojimo paieškos mechanizmai
+- **Užklausų supratimas**: Gilus natūralios kalbos paieškos užklausų semantinis analizavimas
 
-### Galimi Technologijų Pažangumo Būdai
+### Potencialūs technologiniai patobulinimai
 
-Naujos technologijos, kurios formuos MCP paieškos ateitį:
+Iškyla technologijos, formuosiančios MCP paieškos ateitį:
 
-1. **Neuroniniai Paieškos Architektūros**: Įtvirtintos paieškos sistemos, optimizuotos MCP
-2. **Personalizuotas Paieškos Kontekstas**: Individualių vartotojų paieškos modelių mokymasis laikui bėgant
-3. **Žinių Grafų Integracija**: Kontekstinė paieška, praturtinta domeno specifinių žinių grafais
-4. **Tarpmodalinis Kontekstas**: Konteksto palaikymas įvairiose paieškos modalumose
+1. **Neuroninės paieškos architektūros**: Įterpimais pagrįstos paieškos sistemos optimizuotos MCP
+2. **Personalizuotas paieškos kontekstas**: Individualių vartotojų paieškos modelių mokymasis laikui bėgant
+3. **Žinių grafų integracija**: Kontekstinė paieška, patobulinta domeno specifiniais žinių grafais
+4. **Kryžminio modalumo kontekstas**: Konteksto palaikymas skirtingose paieškos modalumuose
 
-## Praktinės Užduotys
+## Praktinės užduotys
 
-### Užduotis 1: Bazinės MCP Paieškos Vamzdyno Sukūrimas
+### Užduotis 1: Paprastos MCP paieškos grandinės sukūrimas
 
-Šioje užduotyje sužinosite, kaip:
-- Konfigūruoti bazinę MCP paieškos aplinką
+Šioje užduotyje išmoksite:
+- Suorganizuoti paprastą MCP paieškos aplinką
 - Įgyvendinti konteksto tvarkyklius interneto paieškai
-- Išbandyti ir patvirtinti konteksto išsaugojimą paieškos iteracijų metu
+- Testuoti ir patvirtinti konteksto išsaugojimą paieškos iteracijose
 
-### Užduotis 2: Tyrimų Asistento Kūrimas su MCP Paieška
+### Užduotis 2: Tyrimų asistento kūrimas su MCP paieška
 
 Sukurkite pilną programą, kuri:
 - Apdoroja natūralios kalbos tyrimų klausimus
-- Atlieka kontekstinę interneto paiešką
-- Sintezuoja informaciją iš kelių šaltinių
+- Atlieka kontekstą atitinkančias interneto paieškas
+- Sintetina informaciją iš kelių šaltinių
 - Pateikia organizuotus tyrimų rezultatus
 
-### Užduotis 3: Multi-Šaltinių Paieškos Federacijos Įgyvendinimas su MCP
+### Užduotis 3: Daugiakanalės paieškos federacijos įgyvendinimas su MCP
 
-Pažangi užduotis, apimanti:
-- Kontekstinį užklausų siuntimą kelioms paieškos sistemoms
-- Rezultatų reitingavimą ir agregaciją
-- Kontekstinę paieškos rezultatų dublikavimo šalinimą
-- Šaltinių specifinių metaduomenų tvarkymą
+Pažangi užduotis apimanti:
+- Kontekstą atitinkančių užklausų delegavimą keliems paieškos varikliams
+- Rezultatų reitingavimą ir apjungimą
+- Kontekstinį paieškos rezultatų dubliavimo šalinimą
+- Šaltiniui būdingų meta duomenų tvarkymą
 
-## Papildomi Ištekliai
+## Papildomi ištekliai
 
-- [Model Context Protocol Specifications](https://spec.modelcontextprotocol.io/) - Oficialios MCP specifikacijos ir išsami protokolo dokumentacija
-- [Model Context Protocol Dokumentacija](https://modelcontextprotocol.io/) - Išsamūs mokymai ir įgyvendinimo vadovai
+- [Model Context Protocol specifikacija](https://modelcontextprotocol.io/specification/2026-07-28/) - Oficiali MCP specifikacija ir išsami protokolo dokumentacija
+- [Model Context Protocol dokumentacija](https://modelcontextprotocol.io/) - Išsamūs vadovai ir įgyvendinimo gairės
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Oficialus MCP protokolo Python įgyvendinimas
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Oficialus MCP protokolo TypeScript įgyvendinimas
-- [MCP Referenciniai Serveriai](https://github.com/modelcontextprotocol/servers) - MCP serverių referenciniai įgyvendinimai
-- [Bing Interneto Paieškos API Dokumentacija](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoft interneto paieškos API
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - „Google“ programuojamoji paieškos sistema
-- [SerpAPI Dokumentacija](https://serpapi.com/search-api) - Paieškos variklių rezultatų puslapio API
-- [Meilisearch Dokumentacija](https://www.meilisearch.com/docs) - Atvirojo kodo paieškos variklis
-- [Elasticsearch Dokumentacija](https://www.elastic.co/guide/index.html) - Paskirstyta paieškos ir analizės sistema
-- [LangChain Dokumentacija](https://python.langchain.com/docs/get_started/introduction) - Programų kūrimas su LLM
+- [MCP atskaitos serveriai](https://github.com/modelcontextprotocol/servers) - MCP serverių atskaitos įgyvendinimai
+- [Bing interneto paieškos API dokumentacija](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoft interneto paieškos API
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - „Google“ programuojamas paieškos variklis
+- [SerpAPI dokumentacija](https://serpapi.com/search-api) - Paieškos variklio rezultatų puslapio API
+- [Meilisearch dokumentacija](https://www.meilisearch.com/docs) - Atviro kodo paieškos variklis
+- [Elasticsearch dokumentacija](https://www.elastic.co/guide/index.html) - Paskirstytas paieškos ir analizės variklis
+- [LangChain dokumentacija](https://python.langchain.com/docs/get_started/introduction) - Programų kūrimas su LLM
 
-## Mokymosi Rezultatai
+## Mokymosi rezultatai
 
-Užbaigus šį modulį, galėsite:
+Baigę šį modulį galėsite:
 
-- Suprasti realaus laiko interneto paieškos pagrindus ir iššūkius
-- Paaiškinti, kaip Model Context Protocol (MCP) pagerina realaus laiko interneto paieškos galimybes
-- Įgyvendinti MCP pagrindu veikiančius paieškos sprendimus naudojant populiarias sistemas ir API
-- Kurti ir diegti mastelio keičiamas, aukštos spartos paieškos architektūras su MCP
-- Taikyti MCP koncepcijas įvairiose srityse, įskaitant semantinę paiešką, tyrimų pagalbą ir AI praturtintą naršymą
-- Vertinti naujas tendencijas ir būsimus MCP pagrindu veikiančių paieškos technologijų inovacijas
+- Suprasti realaus laiko interneto paieškos pagrindus ir jos iššūkius
+- Paaiškinti, kaip Model Context Protocol (MCP) gerina realaus laiko interneto paieškos galimybes
+- Įgyvendinti MCP pagrindu veikiančius paieškos sprendimus naudojant populiarius karkasus ir API
+- Kurti ir diegti masteliu pritaikomas, aukšto našumo paieškos architektūras su MCP
+- Taikyti MCP koncepcijas įvairiems naudojimo atvejams, įskaitant semantinę paiešką, tyrimų asistavimą ir AI papildomą naršymą
+- Įvertinti kylančias tendencijas ir ateities naujoves MCP pagrįstoje paieškos technologijoje
 
 
-### Patikimumo ir Saugumo Aspektai
+### Pasitikėjimo ir saugumo svarstymai
 
-Įgyvendinant MCP pagrindu veikiančius interneto paieškos sprendimus, atminkite šias svarbias MCP specifikacijos principas:
+Įgyvendinant MCP pagrindu veikiančius interneto paieškos sprendimus, atminkite šias svarbias MCP specifikacijos nuostatas:
 
-1. **Vartotojo Sutikimas ir Kontrolė**: Vartotojai privalo aiškiai sutikti ir suprasti visą duomenų pasiekiamumą ir veiksmus. Tai ypač svarbu interneto paieškos įgyvendinimams, kurie gali pasiekti išorinius duomenų šaltinius.
+1. **Vartotojo sutikimas ir kontrolė**: Vartotojai privalo aiškiai pritarti ir suprasti visus duomenų prieigos ir operacijų aspektus. Tai ypač svarbu interneto paieškos įgyvendinimuose, kurie gali prieiti prie išorinių duomenų šaltinių.
 
-2. **Duomenų Privatumas**: Užtikrinkite tinkamą paieškos užklausų ir rezultatų tvarkymą, ypač jei jie gali turėti jautrios informacijos. Įgyvendinkite tinkamus prieigos valdymus, kad apsaugotumėte vartotojų duomenis.
+2. **Duomenų privatumas**: Užtikrinkite tinkamą paieškos užklausų ir rezultatų tvarkymą, ypač jei jie gali turėti jautrios informacijos. Taikykite tinkamas prieigos kontrolės priemones, kad apsaugotumėte vartotojo duomenis.
 
-3. **Įrankių Saugumas**: Įgyvendinkite tinkamą įrankių autorizaciją ir patikrinimą, nes jie gali kelti saugumo riziką dėl savavališko kodo vykdymo. Įrankių elgesio aprašymai turi būti laikomi nepatikimais, nebent gauti iš patikimo serverio.
+3. **Įrankių saugumas**: Įgyvendinkite tinkamą leidimų suteikimą ir patikrinimą paieškos įrankiams, nes jie gali kelti saugumo riziką dėl savavališko kodo vykdymo. Įrankių elgesio aprašymai turėtų būti traktuojami kaip nepatikimi, jei negaunami iš patikimo serverio.
 
-4. **Aiški Dokumentacija**: Pateikite aiškią dokumentaciją apie MCP pagrindu veikiančios paieškos galimybes, apribojimus ir saugumo aspektus, laikydamiesi MCP specifikacijos įgyvendinimo gairių.
+4. **Aiški dokumentacija**: Teikite aiškią dokumentaciją apie MCP pagrindu veikiančios paieškos galimybes, apribojimus ir saugumo aspektus, remdamiesi MCP specifikacijos įgyvendinimo gairėmis.
 
-5. **Tvirti Sutikimo Srautai**: Kurkite tvirtus sutikimo ir autorizacijos srautus, kurie aiškiai paaiškina, ką kiekvienas įrankis atlieka prieš leidžiant jį naudoti, ypač kai įrankiai jungiasi prie išorinių interneto išteklių.
+5. **Patikimos sutikimo protokolų srauto įgyvendinimas**: Kurkite patikimus sutikimo ir autorizacijos srautus, kurie aiškiai paaiškina, ką kiekvienas įrankis daro prieš leidžiant jį naudoti, ypač įrankiams, kurie sąveikauja su išoriniais interneto resursais.
 
-Išsamią informaciją apie MCP saugumą ir patikimumo aspektus rasite [oficialioje dokumentacijoje](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Visiems MCP saugumo ir pasitikėjimo svarstymams išsamiai žiūrėkite į
+[oficialią dokumentaciją](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## Kas toliau
 

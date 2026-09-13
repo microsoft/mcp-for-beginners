@@ -1,39 +1,39 @@
-# Atvejo analizė: publikavimas į socialinius tinklus iš agento naudojant nuotolinį MCP serverį
+# Atvejo analizė: Leidyba į socialinius tinklus iš agento su nuotoliniu MCP serveriu
 
-> **Atsakomybės apribojimas:** Keletas paslaugų ir atvirojo kodo projektų gali publikuoti socialiniuose tinkluose, ir komanda taip pat galėtų tiesiogiai integruoti kiekvieno tinklo API. Žemiau pateiktas scenarijus yra vienas apdorotas pavyzdys, kaip galima sukurti ir vartoti **rašymo gebantį nuotolinį MCP serverį**. Publora yra komercinė paslauga su nemokamu lygiu; čia aprašyti modeliai galioja bet kokiam MCP serveriui, kuris atlieka negrįžtamus veiksmus vartotojo vardu.
+> **Atsakomybės apribojimas:** Keletas paslaugų ir atviro kodo projektų gali skelbti socialiniuose tinkluose, ir komanda taip pat gali tiesiogiai integruoti kiekvieno tinklo API. Žemiau pateiktas scenarijus yra vienas iš dirbtinių pavyzdžių, kaip galima sukurti ir naudoti **rašyti gebantį nuotolinį MCP serverį**. Publora yra komercinė paslauga su nemokamu planu; čia aprašyti modeliai taikomi bet kuriam MCP serveriui, kuris atlieka negrįžtamus veiksmus vartotojo vardu.
 
 ## Apžvalga
 
-Agentai gerai rašo turinį, bet blogai jį paskelbia. Modelis gali akimirksniu parašyti pranešimą spaudai, bet darbas ten baigiasi: publikavimas reikalauja API kiekvienam tinklui, OAuth programėlės kiekvienam tinklui ir skirtingų medijos taisyklių kiekvienam. Daugelis komandų sprendžia tai rankiniu būdu kopijuodamos tekstą į naršyklę.
+Agentai gerai geba rengti turinį, bet blogai jį paskelbti. Modelis gali parašyti pranešimą spaudai per kelias sekundes, ir tada darbas sustoja: jo paskelbimas reiškia kiekvienam tinklui atskirą API, kiekvienam tinklui atskirą OAuth programėlę ir skirtingus medijų taisyklių rinkinius. Dauguma komandų tai sprendžia rankiniu būdu nukopijuodami tekstą į naršyklę.
 
-Šis atvejo analizės pavyzdys nagrinėja, kaip paskutinis žingsnis uždaromas naudojant vieną nuotolinį MCP serverį ir — kas naudingiau tiems, kurie kuria tokį serverį — dizaino sprendimus, kuriuos privalo teisingai įgyvendinti **rašymo gebantis** serveris. Duomenų skaitymas yra atleidžiantis. Publikavimas ne: klaidingas įrankio kvietimas matomas auditorijai ir jo atšaukti neįmanoma.
+Ši atvejo analizė nagrinėja, kaip paskutinis žingsnis uždaromas vienu nuotoliniu MCP serveriu ir – naudingiau tiems, kurie jį kuria – į dizaino sprendimus, kuriuos turi teisingai priimti **rašyti gebantis** serveris. Duomenų skaitymas yra lankstus. Leidyba – ne: neteisingas įrankio kvietimas matomas auditorijai ir jo negalima atšaukti.
 
 ## Scenarijus
 
-Maža kūrėjų ryšių komanda rengia įrašus agento viduje (Claude, VS Code, Cursor — klientas nesvarbus). Jie nori, kad agentas:
+Nedidelė vystytojų ryšių komanda rengia pranešimus agente (Claude, VS Code, Cursor — klientas nesvarbus). Jie nori, kad agentas:
 
-- matytų, kokios socialinės paskyros yra prijungtos prie komandos,
-- kurtų įrašą ir laikytų jį kaip juodraštį, kurį patvirtintų žmogus,
-- pridėtų vaizdą,
-- suplanuotų jį keliose tinkluose pasirinktu metu,
-- ir vėliau pateiktų ataskaitą apie jo pasirodymą.
+- matytų, kurios socialinės paskyros komanda yra prijungusi,
+- parašytų pranešimą ir išsaugotų jį kaip juodraštį žmogaus patvirtinimui,
+- pridėtų paveikslėlį,
+- suplanuotų paskelbimą keliuose tinkluose pasirinktu laiku,
+- ir vėliau pateiktų ataskaitą, kaip pranešimas pasirodė.
 
-Svarbiausia, jie nori, kad agentas **negali** netyčia publikuoti, kol jie dar eksperimentuoja.
+Svarbiausia, kad jie nori, jog agentas **negali netyčia** paskelbti, kol jie dar eksperimentuoja.
 
-## Naudojami įrankiai
+## Naudoti įrankiai
 
-- [Publora MCP serveris](https://github.com/publora/mcp-server) — nuotolinis MCP serveris (`streamable-http`), suteikiantis publikavimo, planavimo, medijos ir LinkedIn analizės įrankius. Užregistruotas oficialiame MCP registre kaip `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — nuotolinis MCP serveris (`streamable-http`), suteikiantis leidybos, planavimo, medijų ir LinkedIn analitikos įrankius. Registruotas oficialiame MCP registre kaip `com.publora/mcp-server`.
 
-## Žingsnis po žingsnio veiksmų eiga
+## Žingsnis po žingsnio darbo eiga
 
-1. **Prisijungti prie serverio.** Klientai, kurie palaiko OAuth, atlieka autorizacijos kodo srauto su PKCE patvirtinimą per pačio serverio sutikimo ekraną; klientai, kurie to nepalaiko, pavyzdžiui, bevaizdžiai CLI, naudoja Publora API raktą antraštėje. Abu keliai palaikomi, o kuris pasiekiamas priklauso nuo kliento, ne nuo serverio.
-2. **Išvardinti ryšius.** Agentas kviečia `list_connections` ir gauna prijungtų paskyrų su jų identifikatoriais sąrašą.
-3. **Parengti juodraštį.** Agentas kviečia `create_post` *be* suplanuoto laiko. Įrašas saugomas kaip juodraštis — niekas nepaskelbiama.
-4. **Pridėti mediją.** Viešos nuotraukų URL siunčiamos tuo pačiu kvietimu; serveris atsisiunčia ir patikrina jas.
-5. **Suplanuoti.** Kai žmogus patvirtina, `update_post` nustato būseną kaip suplanuotą ISO 8601 laiku.
-6. **Išmatuoti.** LinkedIn metu `linkedin_post_stats` grąžina įsitraukimo duomenis, kai įrašas gyvena.
+1. **Prijunkite serverį.** Klientai, palaikantys OAuth, atlieka autorizacijos kodo srautą su PKCE prieš serverio sutikimo ekraną; klientai, kurie to nedaro, kaip ir „be galvos“ CLI, naudoja Publora API raktą antraštėje. Abu būdai palaikomi, o kurį gaunate, priklauso nuo kliento, o ne nuo serverio.
+2. **Išvardinkite prijungimus.** Agentas kviečia `list_connections` ir gauna prijungtas paskyras su jų identifikatoriais.
+3. **Rengimas.** Agentas kviečia `create_post` *be* suplanuoto laiko. Pranešimas saugomas kaip juodraštis – niekas nėra paskelbta.
+4. **Pridėti mediją.** Viešieji paveikslėlių URL perduodami tame pačiame kvietime; serveris juos atsisiunčia ir patikrina.
+5. **Planuoti.** Po žmogaus patvirtinimo, `update_post` nustato būseną kaip suplanuota su ISO 8601 laiku.
+6. **Matavimas.** LinkedIn atveju `linkedin_post_stats` grąžina įsitraukimo duomenis, kai pranešimas jau gyvas.
 
-## Pavyzdinis klausimas
+## Pavyzdinis užklausos tekstas
 
 ```text
 Which social accounts do I have connected?
@@ -42,14 +42,14 @@ https://example.com/changelog.png, and keep it as a draft — do not publish it.
 Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```
 
-## Mermaid blokas
+## Mermaid srauto diagrama
 
 ```mermaid
 flowchart TD
     A[Vartotojo užklausa MCP kliente] --> B[Klientas atlieka OAuth su serveriu]
     B --> C[list_connections]
-    C --> D{Tikslinės tinklo jungtys prijungtos?}
-    D -- No --> E[Agentas praneša, kurios trūksta]
+    C --> D{Ar tikslinės tinklai prijungti?}
+    D -- No --> E[Agentas praneša, kurie trūksta]
     D -- Yes --> F[create_post be scheduledTime -> juodraštis]
     F --> G[Žmogus peržiūri juodraštį]
     G -- Approved --> H[update_post: status=scheduled]
@@ -60,70 +60,80 @@ flowchart TD
 
 ## Techninė įgyvendinimo dalis
 
-Žemiau pateiktos pamokos yra perkeliamas šios atvejo analizės turinys.
+Toliau pateiktos pamokos yra perduodama šios atvejo analizės dalis.
 
 ### Atvira atranka, autentifikuotas vykdymas
 
-`tools/list` pateikiamas be kredencialų; kiekvienas `tools/call` reikalauja žetono, kitaip grąžina `401` su `WWW-Authenticate` antrašte, nurodančia apsaugotos išteklių metaduomenis. (Serveris taip pat atsako neautentifikuotam `initialize`, kuris svarbus tik klientams su protokolo versijomis iki `2026-07-28`; ši versija visiškai pašalino rankų paspaudimą.)
+`tools/list` teikiamas be kredencialų; kiekvienas `tools/call` reikalauja žetono
+ir kitaip grąžina `401` su `WWW-Authenticate` antrašte, nukreipiančia į
+apsaugoto ištekliaus meta duomenis. Serverio senesnis galinis taškas taip pat atsako į
+neautentifikuotą `initialize` klientams, naudojantiems protokolo versijas prieš
+`2026-07-28`; dabartiniai klientai to sinonimu nebevartoja.
 
-Šis padalijimas yra svarbus praktikoje. Registrai, katalogai ir klientai gali peržvelgti įrankių paviršių — pavadinimus, schemas, anotacijas — neturėdami paslapties, tuo tarpu jokio veiksmo negalima *vykdyti* anonimiškai. Serveris, kuris reikalauja žetono `initialize`, yra iš esmės nematomas įrankiams; serveris, leidžiantis anoniminį `tools/call`, yra rizikingas.
+Šis serveriui būdingas atskyrimas leidžia registrams, katalogams ir klientams be slapto rakto
+peržiūrėti įrankių pavadinimus, schemas ir anotacijas, tuo pat metu blokuojant anoniminį
+vykdymą. Atvira atranka yra diegimo pasirinkimas, o ne MCP reikalavimas; apsaugotas diegimas
+taip pat gali reikalauti autorizacijos `tools/list`.
 
-### Registracija: dinaminė kliento registracija ir jos pakaitalas
+### Registracija: dinaminė kliento registracija ir kas ją pakeičia
 
-Serveris deklaruoja `/.well-known/oauth-protected-resource` ir `/.well-known/oauth-authorization-server`, palaiko autorizacijos kodo srautą su PKCE (`S256`), atnaujinimo žetonus ir **dinaminę kliento registraciją**.
+Serveris reklamuoja `/.well-known/oauth-protected-resource` ir `/.well-known/oauth-authorization-server`, ir palaiko autorizacijos kodo srautą su PKCE (`S256`), atnaujinimo žetonus bei **dinaminę kliento registraciją**.
 
-Dinaminė registracija pašalina rankinį žingsnį: be jos kiekvienam klientui reikia iš anksto suteikto `client_id`, tai reiškia už klientą atliekamą atskirą prašymą tiekėjui.
+Dinaminė registracija pašalino rankinį žingsnį senuose klientuose: be jos
+kiekvienas klientas turėjo gauti iš tiekėjo išduotą `client_id`.
 
-Svarbu tai vertinti kaip suderinamumo elgesį, o ne kaip norimą kopijuoti dizainą. `2026-07-28` specifikacijos pataisa žymi dinaminę registraciją kaip pasenusią ir skatina naudoti Kliento ID metaduomenų dokumentus, kai klientas viešina metaduomenų dokumentą stabiliu HTTPS URL, kuris *yra* `client_id`. DCR šiuo metu dar veikia, bet šiandien kuriant serverį reikėtų planuoti CIMD naudojimą ir DCR laikyti tik senesniems klientams.
+Tai vertinkite kaip suderinamumo elgesį, o ne kaip kopijuotiną dizainą. 2026-07-28 specifikacijos pataisa nustoja naudoti dinaminę kliento registraciją ir vietoje jos rekomenduoja Kliento ID meta informacijos dokumentus, kai klientas talpina meta dokumentą stabiliu HTTPS URL adresu ir tas URL *yra* `client_id`. DCR šiandien veikia, bet naujai kuriamas serveris turėtų planuoti CIMD ir DCR naudoti tik vyresniems klientams.
 
-### Įrankių anotacijos nėra papuošimai
+### Įrankių anotacijos nėra tik papuošimai
 
-Kiekvienas įrankis turi `title` ir taikytinas užuominas: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Kiekvienas įrankis turi `title` ir taikomas užuominas: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Dvi priežastys jomis rūpintis. Pirma, klientai naudoja užuominas, kad nuspręstų, ką patvirtinti su vartotoju — klientas gali automatiškai vykdyti tik skaitymui skirtą užklausą ir sustoti patvirtinimui prieš trynimą. Specifikacija aiškiai nurodo, kad anotacijos yra nepatikimos užuominos, o ne autorizacijos mechanizmas: jos formuoja, ką klientas siūlo daryti, ir nieko nesustabdo serveryje, kuris vis tiek privalo taikyti savas taisykles. Antra, pagrindiniai jungčių katalogai dabar *reikalauja* jų apžvalgai; serveris, kurio įrankiai neturi pavadinimų ir užuominų, bus grąžintas nepriklausomai nuo sklandaus veikimo.
+Dvi priežastys investuoti į jas. Pirma, klientai naudoja užuominas, kad nuspręstų, ką patvirtinti su vartotoju – klientas gali automatiškai atlikti tik skaitymui skirtą užklausą ir sustoti patvirtinimui prieš trynimą. Specifikacija aiškiai nurodo, kad anotacijos yra nepatikimos užuominos, o ne autorizacijos mechanizmas: jos formuoja, ką klientas siūlo atlikti, jos nieko nesustabdo serveryje, o serveris vis tiek turi vykdyti savo taisykles. Antra, didžiosios jungiamųjų katalogų peržiūros dabar jų *reikalauja*; serveris, kurio įrankiai neturi antraščių ir užuominų, bus atmestas nepriklausomai nuo veikimo kokybės.
 
-### Padaryti identifikatorius neįmanomus sugalvoti
+### Padarykite identifikatorius neįmanomus išgalvoti
 
-Platformos identifikatoriai yra neaiškūs simbolių eilutės, grąžinami iš `list_connections`, ir schemos aprašymas aiškiai sako, kad jie turi būti tiesiog nukopijuojami be jokių spėjimų. Serveris atmeta viską kitą.
+Platformos identifikatoriai yra neaiškūs tekstiniai simboliai, grąžinami per `list_connections`, ir schemos aprašyme aiškiai nurodoma, kad juos būtina kopijuoti pažodžiui ir niekada nebandyti spėti. Serveris atmeta bet ką kitą.
 
-Modeliai yra įgudę spėliotojai. Bet koks rašymo galintis serveris turėtų manyti, kad identifikatorius galiausiai bus išgalvotas ir padaryti, kad ta kelionė baigtųsi triukšmingu ir ankstyvu klaidos pranešimu, o ne reaguotų į patraukliai atrodančią reikšmę.
+Modeliai moka spėlioti. Bet kuris rašyti galintis serveris turėtų manyti, kad kažkada identifikatorius bus sugalvotas ir tą klaidingą kelią reikia pripažinti kaip nesėkmę garsiai ir anksti, o ne veikti remiantis panašiu į teisingą vertimu.
 
-### Klaidos prieš publikavimą su aiškiu veiksmų pranešimu
+### Nepavykti prieš leidybą su aiškia klaidos žinute
 
-Kai kurie tinklai nepriima tik teksto įrašų ir reikalauja vaizdo ar video. Tai patikrinama kai įrašas suplanuojamas, o klaida nurodo platformą ir trūkstamą reikalavimą.
+Kai kurie tinklai nepriima tik teksto pranešimų ir reikalauja paveikslėlio arba vaizdo įrašo. Tai tikrinama, kai pranešimas planuojamas, ir klaidos pranešime nurodoma platforma ir trūkstamas reikalavimas.
 
-Agentas gali atsigauti iš "Instagram reikalauja medijos — pridėkite vaizdą ar video" be papildomo kelionės užklausti serverį. Ji negali atsigauti iš bendro `400`.
+Agentas gali atsigauti iš „Instagram reikalauja medijos – pridėkite paveikslėlį arba vaizdo įrašą“ be papildomo vėlinimo. Jis negali atsigauti iš bendros `400` klaidos.
 
-### Padaryti pakartojimus saugiais
+### Užtikrinkite pakartojimų saugumą
 
-Du įrankiai, kurie kuria turinį, `create_post` ir `update_post`, priima idempotencijos raktą: pakartotinai jį panaudojant identiškam užklausimui, serveris atkartoja originalų atsakymą užuot sukūręs antrą įrašą. Agentų vykdymo aplinkos bando pakartoti užklausas dėl laiko išeikvavimo; be idempotencijos ilgas atsakymas virsta daugybine publikacija. Kiti rašymo įrankiai — trynimai, medijos veiksmai, LinkedIn reakcijos ir komentarai — tokio rakto neturi, todėl pakartojimas nėra automatiškai saugus. Svarbu žinoti, kurios jūsų modifikacijos yra apsaugotos ir kurios ne.
+Du įrankiai, kurie kuria turinį, `create_post` ir `update_post`, priima idempotencijos raktą: pakartotinai jį panaudojus identišku užklausimu, grąžinamas originalus atsakymas vietoje antro pranešimo sukūrimo. Agentų vykdymo aplinkos bando iš naujo laukiant atsakymo; be idempotencijos, lėtas atsakymas tampa pasikartojančiu paskelbimu. Kiti rašymo įrankiai – trinimai, medijų veiksmai, LinkedIn reakcijos ir komentarai – neturi tokio rakto, todėl pakartojimas ten automatiškai nesaugus. Svarbu žinoti, kurie jūsų mutacijų veiksmai yra apsaugoti, o kurie ne.
 
-### Suteikti galimybę testuoti be jokių publikavimų
+### Suteikite galimybę testuoti be jokios leidybos
 
-Serveris priima rezervuotą tikslą, `publora-playground`, kuris yra patikrinamas ir patvirtinamas kaip tikras taikinys ir tada atmetamas — niekas neprasiskverbia į gyvą paskyrą. Tai aprašyta pačio įrankio schemoje, kurią bet kuris klientas gali perskaityti be kredencialų: `platforms` lauke `create_post` nurodoma kaip "jungties testavimo tikslas, nereikalaujantis realaus ryšio — įrašas patvirtinamas ir atmestas, niekas nepaskelbiama". Jį kvieskite pateikdami kaip vienintelį įrašą: `platforms: ["publora-playground"]`.
+Serveris priima rezervuotą tikslą `publora-playground`, kuris yra patikrinamas ir pripažįstamas kaip tikras tikslas, o tada atmestas – niekas nepatenka į gyvą paskyrą. Tai aprašyta pačioje įrankių schemoje, kurią bet kuris klientas gali perskaityti be kredencialų: `platforms` laukas `create_post` dokumente apibūdina tai kaip „prisijungimo testavimo tikslą, kuriam nereikia tikro prisijungimo – pranešimas pripažįstamas ir atmetamas, nieko nepaskelbiama“. Jį iškvieskite perduodami vienintelį įrašą: `platforms: ["publora-playground"]`.
 
-Tai pasirodė esanti viena naudingiausių viso paviršiaus detalių. Jungčių katalogų peržiūrėtojai, prisidėtojai ir CI gali atlikti visą rašymo kelią nuo pradžios iki pabaigos neturėdami jokios rizikos realiai auditorijai. Bet koks MCP serveris, atliekantis negrįžtamus veiksmus, gauna naudą iš dokumentuoto neoperacinio tikslo.
+Tai pasirodė esą viena iš naudingiausių visos sąsajos detalių. Jungiamųjų katalogų peržiūros, dalyviai ir CI gali išbandyti visą rašymo kelią nuo pradžios iki pabaigos be jokios žalos tikrai auditorijai. Bet kuris MCP serveris su negrįžtamais veiksmais naudos dokumentuotą neveikiančią paskirties vietą.
 
 ## Rezultatai ir poveikis
 
-- Publikavimo žingsnis persikėlė iš naršyklės į tą pačią pokalbio vietą, kur rašomas turinys, ir įprastas juodraščio prioritetas palaiko žmogų vykdyme. Būkite tikslūs, ką tai reiškia: juodraštis yra susitarimas, o ne riba. Tas pats kredencialas gali suplanuoti ar publikuoti, tad kam reikia tikro patvirtinimo vartų, tas tai turi taikyti už įrankio paviršiaus ribų — atskiros teisės arba politikos sluoksnis serverio priekyje.
-- Skirtingumai tarp tinklų — medijos reikalavimai, temavimas, atsakymų kontrolės — sprendžiami kartą serveryje, o ne kiekviename agento įrenginyje, kuris su juo kalbasi.
-- Tas pats serveris palaiko kelis MCP klientus be darbų kiekvienam klientui atskirai, nes atranka yra atvira ir registracija dinaminė.
-- Dizaino apribojimus formavo ne tik vartotojai, bet ir jungčių katalogų peržiūros: anotacijos, OAuth ir saugus testavimo tikslas buvo reikalavimai bent vieno iš jų.
+- Leidybos žingsnis perkeltas iš naršyklės į tą pačią pokalbių vietą, kur kuriamas turinys, o juodraščio pirmumo įprotis palaiko žmogaus kontrolę. Būkite tikslūs, ką tai reiškia: juodraštis yra sutartis, o ne riba. Tas pats kredencialas gali suplanuoti arba paskelbti, todėl kas nors, kam reikia tikro patvirtinimo, turi tai užtikrinti įrankio aplinkos ribose — atskiri kredencialai arba politikos sluoksnis prieš serverį.
+- Tinklo skirtumai — medijų reikalavimai, temų atskyrimas, atsakymų kontrolė — tvarkomi vieną kartą serveryje užuot kiekviename agentų kalbėjime su juo.
+- Tas pats serveris aptarnauja keletą MCP klientų be išduotų iš anksto kredencialų.
+    Dabartiniai klientai gali naudoti Kliento ID Meta informacijos dokumentus; DCR išlieka atsarginė
+    galimybė vyresniems klientams.
+- Aukščiau nurodytos dizaino nuostatos buvo formuotos tiek jungiamųjų katalogų peržiūrų, tiek vartotojų reikalavimų: anotacijos, OAuth ir saugus testavimo tikslas buvo patvirtinti bent vieno iš jų.
 
 ## Nuorodos
 
-- [Publora MCP serveris (šaltinis)](https://github.com/publora/mcp-server)
+- [Publora MCP Server (šaltinis)](https://github.com/publora/mcp-server)
 - [Publora API ir MCP dokumentacija](https://docs.publora.com)
-- [MCP registro įrašas: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP specifikacija — autorizacija](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [MCP registracijos įrašas: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP specifikacija — Autorizacija](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP specifikacija — Įrankių anotacijos](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## Kas toliau
 
-- Patikrinkite MCP serverį, kurį kuriate, atsižvelgdami į tris ekonomiškiausias laimėjimo vietas čia: anotacijas kiekviename įrankyje, idempotencijos raktą kiekviename rašyme ir dokumentuotą neoperacinį tikslą.
-- Išbandykite atvirą atrankos padalijimą: iškvieskite `tools/list` prieš viešą nuotolinį serverį be kredencialų, tada iškvieskite įrankį ir peržiūrėkite `401` iššūkį.
-- Pagalvokite, ką „atšaukti“ reiškia jūsų domenui. Publikavimas turi juodraščius ir trynimą; jei jūsų veiksmai neturi atitikmenų, patvirtinimas turi būti įrankio dizaino dalis, o ne užklausos.
+- Paimkite MCP serverį, kurį kuriate, ir patikrinkite tris pigiausius laimėjimus čia: anotacijas kiekvienam įrankiui, idempotencijos raktą kiekvienam rašymui ir dokumentuotą neveikiančią paskirties vietą.
+- Išbandykite atviros atrankos modelį: kvieskite `tools/list` viešam nuotoliniam serveriui be kredencialų, po to kvieskite įrankį ir peržiūrėkite `401` iššūkį.
+- Apsvarstykite, ką „atšaukimas“ reiškia jūsų srityje. Leidyboje yra juodraščiai ir trynimas; jei jūsų veiksmai neturi lygiaverčių, patvirtinimas turėtų būti įrankio dizaine, o ne užklausoje.
 
 ---
 

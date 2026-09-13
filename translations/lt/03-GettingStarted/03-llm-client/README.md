@@ -1,52 +1,57 @@
 # Kliento kūrimas su LLM
 
-Iki šiol matėte, kaip sukurti serverį ir klientą. Klientas galėjo tiesiogiai kreiptis į serverį, kad gautų jo įrankių, išteklių ir užklausų sąrašą. Tačiau tai nėra labai praktiškas metodas. Jūsų vartotojai gyvena agentiniu amžiuje ir tikisi naudoti užklausas bei bendrauti su LLM vietoje to. Jiems nesvarbu, ar jūs naudojate MCP savo galimybėms saugoti; jie tiesiog tikisi bendrauti natūralia kalba. Kaip tai išspręsti? Sprendimas yra pridėti LLM prie kliento.
+> [!NOTE]
+> Java klientų pavyzdžiai jungiasi per paveldėtą HTTP+SSE transportą ir
+> taiko MCP `2025-11-25` SDK API. Naujiems nuotoliniams klientams naudokite `2026-07-28` suderinamą SDK ir
+> Streamable HTTP.
+
+Iki šiol matėte, kaip sukurti serverį ir klientą. Klientas galėjo aiškiai kviesti serverį norėdamas gauti įrankių, išteklių ir užklausų sąrašą. Tačiau tai nėra labai praktiškas požiūris. Jūsų vartotojai gyvena agentiškoje eroje ir tikisi naudoti užklausas bei bendrauti su LLM. Jiems nerūpi, ar naudojate MCP funkcijoms saugoti; jie tiesiog tikisi sąveikos natūralia kalba. Taigi, kaip tai išspręsti? Sprendimas yra pridėti LLM prie kliento.
 
 ## Apžvalga
 
-Šioje pamokoje sutelksime dėmesį į LLM pridėjimą prie kliento ir parodysime, kaip tai gerokai pagerina vartotojo patirtį.
+Šioje pamokoje dėmesys skiriamas LLM pridėjimui prie kliento ir parodoma, kaip tai suteikia daug geresnę patirtį vartotojui.
 
 ## Mokymosi tikslai
 
-Baigę šią pamoką galėsite:
+Pamokos pabaigoje Jūs gebėsite:
 
 - Sukurti klientą su LLM.
-- Sklandžiai sąveikauti su MCP serveriu naudojant LLM.
-- Suteikti geresnę galutinio vartotojo patirtį kliento pusėje.
+- Sklandžiai bendrauti su MCP serveriu naudodami LLM.
+- Užtikrinti geresnę galutinio vartotojo patirtį kliento pusėje.
 
 ## Požiūris
 
-Pabandykime suprasti, kokį požiūrį turime taikyti. LLM pridėjimas skamba paprastai, bet ar iš tiesų tai padarysime?
+Pabandykime suprasti, kokį požiūrį turime taikyti. LLM pridėjimas atrodo paprastas, bet ar tikrai taip padarysime?
 
 Štai kaip klientas bendraus su serveriu:
 
 1. Užmegzti ryšį su serveriu.
 
-1. Gauti galimybių, užklausų, išteklių ir įrankių sąrašą bei išsaugoti jų schemą.
+1. Išvardinti galimybes, užklausas, išteklius ir įrankius bei išsaugoti jų schemą.
 
-1. Pridėti LLM ir perduoti išsaugotas galimybes ir jų schemą formatu, kurį LLM supranta.
+1. Pridėti LLM ir perduoti išsaugotas galimybes su jų schema formatu, kurį LLM supranta.
 
-1. Apdoroti vartotojo užklausą perduodant ją LLM kartu su kliento išvardytais įrankiais.
+1. Tvarkyti vartotojo užklausą perduodant ją LLM kartu su klientu nurodytais įrankiais.
 
-Puiku, dabar kai supratome, kaip tai padaryti aukštu lygiu, pabandykime žemiau esančiame pratime.
+Puiku, dabar suprantame, kaip tai galima padaryti aukštu lygiu, pabandykime tai praktiškai žemiau esančioje užduotyje.
 
-## Pratimas: kliento kūrimas su LLM
+## Užduotis: Kliento kūrimas su LLM
 
-Šiame pratime išmokysime pridėti LLM prie mūsų kliento.
+Šioje užduotyje mokysimės pridėti LLM prie mūsų kliento.
 
-### Autentifikacija naudojant GitHub Asmeninį Prieigos Raktą
+### Autentifikacija naudojant GitHub asmeninį prieigos raktą
 
-Sukurti GitHub raktą yra paprastas procesas. Štai kaip tai galite padaryti:
+GitHub rakto sukūrimas yra paprastas procesas. Štai kaip tai padaryti:
 
-- Eikite į GitHub Nustatymus – Spauskite savo profilio paveikslėlį viršutiniame dešiniajame kampe ir pasirinkite Nustatymai.
-- Eikite į Kūrėjo nustatymus – Slinkite žemyn ir spauskite Kūrėjo nustatymai.
-- Pasirinkite Asmeninius Prieigos Raktus – Spauskite Smulkiai nustatytus raktus ir tada Sukurti naują raktą.
-- Konfigūruokite savo raktą – Pridėkite pastabą referencijai, nustatykite galiojimo laiką ir pasirinkite reikalingas teises. Šiuo atveju būtinai pridėkite Models leidimą.
-- Sukurkite ir nukopijuokite raktą – Spauskite Sukurti raktą ir įsitikinkite, kad jį iš karto nukopijuojate, nes vėliau jo nebepamatysite.
+- Eikite į GitHub nustatymus – spustelėkite jūsų profilio paveikslėlį viršutiniame dešiniajame kampe ir pasirinkite Settings.
+- Pereikite į Developer Settings – nuslinkite žemyn ir pasirinkite Developer Settings.
+- Pasirinkite Personal Access Tokens – spustelėkite Fine-grained tokens ir tada Generate new token.
+- Suformuokite savo raktą – pridėkite pastabą dėl identifikavimo, nustatykite galiojimo datą ir pasirinkite reikalingus leidimus. Šiuo atveju būtinai pridėkite Models leidimą.
+- Sukurkite ir nukopijuokite raktą – spustelėkite Generate token ir būtinai iš karto nukopijuokite, kadangi vėliau jo nebus galima pamatyti.
 
 ### -1- Prisijungimas prie serverio
 
-Sukurkime pirmiausia savo klientą:
+Pradėkime nuo kliento sukūrimo:
 
 #### TypeScript
 
@@ -55,7 +60,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Importuokite zod schemai patikrinti
+import { z } from "zod"; // Importuokite zod schemos validavimui
 
 class MCPClient {
     private openai: OpenAI;
@@ -87,7 +92,7 @@ Ankstesniame kode mes:
 
 - Importavome reikalingas bibliotekas
 - Sukūrėme klasę su dviem nariais, `client` ir `openai`, kurie padės valdyti klientą ir bendrauti su LLM atitinkamai.
-- Sukonfigūrėme savo LLM egzempliorių naudoti GitHub modelius nustatydami `baseUrl` rodyti į inference API.
+- Sukonfigūravome savo LLM egzempliorių naudoti GitHub Modelius, nustatant `baseUrl`, nukreipiantį į inference API.
 
 #### Python
 
@@ -95,7 +100,7 @@ Ankstesniame kode mes:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Sukurti serverio parametrus stdio ryšiui
+# Sukurkite serverio parametrus stdio jungčiai
 server_params = StdioServerParameters(
     command="mcp",  # Vykdomasis failas
     args=["run", "server.py"],  # Pasirinktiniai komandų eilutės argumentai
@@ -108,7 +113,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Inicializuoti ryšį
+            # Inicializuokite jungtį
             await session.initialize()
 
 
@@ -146,7 +151,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Pirmiausia turite pridėti LangChain4j priklausomybes į savo `pom.xml` failą. Pridėkite šias priklausomybes, kad įgalintumėte MCP integraciją ir OpenAI suderinamą MiniMax API:
+Pirmiausia, pridėkite LangChain4j priklausomybes jūsų `pom.xml` faile. Šios priklausomybės įgalins MCP integraciją ir OpenAI suderinamą MiniMax API:
 
 ```xml
 <properties>
@@ -176,9 +181,9 @@ Pirmiausia turite pridėti LangChain4j priklausomybes į savo `pom.xml` failą. 
 </dependencies>
 ```
 
-Nustatykite savo MiniMax API raktą ir, jei reikia, galinį tašką bei modelį.
+Nustatykite savo MiniMax API raktą ir, jei pageidaujate, tašką ir modelį.
 `MINIMAX_MODEL_ID` palaiko `MiniMax-M3` ir `MiniMax-M2.7`. Jei
-`OPENAI_BASE_URL` nėra nustatytas, `MINIMAX_REGION` palaiko `global_en` ir `cn_zh`.
+`OPENAI_BASE_URL` nenurodyta, `MINIMAX_REGION` palaiko `global_en` ir `cn_zh`.
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
@@ -186,7 +191,7 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-Jei norite pasirinkti galinį tašką pagal regioną, praleiskite `OPENAI_BASE_URL`:
+Norėdami pasirinkti tašką pagal regioną, praleiskite `OPENAI_BASE_URL`:
 
 ```bash
 unset OPENAI_BASE_URL
@@ -286,18 +291,18 @@ public class LangChain4jClient {
 
 Ankstesniame kode mes:
 
-- **Pridėjome LangChain4j priklausomybes**: Reikalinga MCP integracijai ir OpenAI suderinamam MiniMax API
-- **Importavome LangChain4j bibliotekas**: MCP integracijai ir OpenAI pokalbių modelio funkcijoms
-- **Sukūrėme `ChatLanguageModel`**: Sukonfigūruotas naudoti MiniMax su jūsų MiniMax API raktu, galiniu tašku ir palaikomu modelio ID
-- **Nustatėme HTTP transportą**: Naudojant Server-Sent Events (SSE) prisijungti prie MCP serverio
-- **Sukūrėme MCP klientą**: Kuris tvarkys komunikaciją su serveriu
-- **Naudojome LangChain4j integruotą MCP palaikymą**: Kuris paprastina integalizaciją tarp LLM ir MCP serverių
+- **Pridėjome LangChain4j priklausomybes**: reikalingas MCP integracijai ir OpenAI suderinamam MiniMax API
+- **Importavome LangChain4j bibliotekas**: MCP integracijai ir OpenAI pokalbių modeliui
+- **Sukūrėme `ChatLanguageModel`**: sukonfigūruotą naudoti MiniMax su jūsų MiniMax API raktu, tašku ir palaikomu modelio ID
+- **Nustatėme HTTP transportą**: naudojant Server-Sent Events (SSE) prisijungimui prie MCP serverio
+- **Sukūrėme MCP klientą**: kuris tvarkys ryšį su serveriu
+- **Naudojome LangChain4j integruotą MCP palaikymą**: kuris supaprastina integraciją tarp LLM ir MCP serverių
 
 #### Rust
 
-Šis pavyzdys daro prielaidą, kad turite Rust pagrįstą MCP serverį. Jei neturite, žr. atgal į [01-first-server](../01-first-server/README.md) pamoką, kad sukurtumėte serverį.
+Šis pavyzdys daro prielaidą, kad turite veikiantį Rust MCP serverį. Jei neturite, peržiūrėkite [01-first-server](../01-first-server/README.md) pamoką, kaip sukurti serverį.
 
-Kai turėsite Rust MCP serverį, atidarykite terminalą ir pereikite į tą patį aplanką kaip serveris. Tada vykdykite šią komandą sukurti naują LLM kliento projektą:
+Turėdami Rust MCP serverį, atidarykite terminalą ir eikite į tą patį katalogą kaip serveris. Tada vykdykite šią komandą, kad sukurtumėte naują LLM kliento projektą:
 
 ```bash
 mkdir calculator-llmclient
@@ -305,7 +310,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-Pridėkite šias priklausomybes į savo `Cargo.toml` failą:
+Pridėkite šias priklausomybes į `Cargo.toml` failą:
 
 ```toml
 [dependencies]
@@ -316,7 +321,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Oficiali Rust biblioteka OpenAI nėra, tačiau `async-openai` paketas yra [bendruomenės prižiūrima biblioteka](https://platform.openai.com/docs/libraries/rust#rust), kurios dažnai naudojama.
+> Nėra oficialios Rust bibliotekos OpenAI, tačiau `async-openai` crate yra [bendruomenės palaikoma biblioteka](https://platform.openai.com/docs/libraries/rust#rust), kuri dažnai naudojama.
 
 Atidarykite `src/main.rs` failą ir pakeiskite jo turinį šiuo kodu:
 
@@ -368,14 +373,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Šis kodas sukuria pagrindinę Rust programą, kuri jungiasi prie MCP serverio ir GitHub modelių LLM sąveikai.
+Šis kodas sukuria bazinę Rust programą, kuri jungiasi prie MCP serverio ir GitHub Modelių LLM sąveikai.
 
 > [!IMPORTANT]
-> Įsitikinkite, kad nustatėte `OPENAI_API_KEY` aplinkos kintamąjį su savo GitHub raktu prieš paleisdami programą.
+> Prieš paleisdami programą būtinai nustatykite `OPENAI_API_KEY` aplinkos kintamąjį su savo GitHub raktu.
 
-Puiku, kitame žingsnyje išvardysime serverio galimybes.
+Puiku, kitas žingsnis – išvardinti serverio galimybes.
 
-### -2- Serverio galimybių išvardinimas
+### -2- Išvardinti serverio galimybes
 
 Dabar prisijungsime prie serverio ir paprašysime jo galimybių:
 
@@ -400,19 +405,19 @@ async run() {
 
 Ankstesniame kode mes:
 
-- Pridėjome kodą prisijungimui prie serverio, `connectToServer`.
-- Sukūrėme `run` metodą atsakingą už mūsų programos eigą. Iki šiol jis tik išvardina įrankius, bet netrukus pridėsime daugiau.
+- Pridėjome kodą jungčiai prie serverio, `connectToServer`.
+- Sukūrėme `run` metodą, atsakingą už programos veikimą. Šiuo metu jis tik išvardina įrankius, bet netrukus pridėsime daugiau.
 
 #### Python
 
 ```python
-# Išvardinti galimus išteklius
+# Išvardyti prieinamus išteklius
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Išvardinti galimus įrankius
+# Išvardyti prieinamus įrankius
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -449,8 +454,8 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 Ankstesniame kode mes:
 
-- Išvardinome MCP serveryje prieinamus įrankius
-- Kiekvienam įrankiui išvardinome pavadinimą, aprašymą ir jo schemą. Pastarąją naudosime netrukus įrankių kvietimui.
+- Išvardinome MCP serverio įrankius
+- Kiekvienam įrankiui nurodėme pavadinimą, aprašymą ir jo schemą. Pastarąją naudosime greitu metu kviesdami įrankius.
 
 #### Java
 
@@ -461,33 +466,33 @@ ToolProvider toolProvider = McpToolProvider.builder()
         .build();
 
 // MCP įrankių teikėjas automatiškai tvarko:
-// - MCP serverio pateiktų įrankių sąrašą
+// - Galimų įrankių iš MCP serverio sąrašą
 // - MCP įrankių schemų konvertavimą į LangChain4j formatą
 // - Įrankių vykdymo ir atsakymų valdymą
 ```
 
 Ankstesniame kode mes:
 
-- Sukūrėme `McpToolProvider`, kuri automatiškai atranda ir registruoja visus MCP serverio įrankius
+- Sukūrėme `McpToolProvider`, kuris automatiškai atranda ir registruoja visus įrankius iš MCP serverio
 - Įrankių tiekėjas viduje konvertuoja MCP įrankių schemas į LangChain4j įrankių formatą
-- Šis požiūris abstraktuoja rankinį įrankių išvardinimą ir konvertavimą
+- Šis požiūris sumenkina rankinio įrankių išvardijimo ir konvertavimo poreikį
 
 #### Rust
 
-Įrankių išgavimas iš MCP serverio atliekamas naudojant `list_tools` metodą. Savo `main` funkcijoje, sukūrę MCP klientą, pridėkite šį kodą:
+Įrankių gavimas iš MCP serverio atliekamas naudojant `list_tools` metodą. Savo `main` funkcijoje, po MCP kliento sukūrimo, pridėkite šį kodą:
 
 ```rust
 // Gauti MCP įrankių sąrašą
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Serverio galimybių konvertavimas į LLM įrankius
+### -3- Konvertuoti serverio galimybes į LLM įrankius
 
-Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į formatą, kurį supranta LLM. Tai leis pateikti šias galimybes kaip įrankius mūsų LLM.
+Kitas žingsnis po serverio galimybių išvardinimo yra jas konvertuoti į formatą, kurį supranta LLM. Kai tai padarysime, galėsime pateikti šias galimybes kaip įrankius mūsų LLM.
 
 #### TypeScript
 
-1. Pridėkite šį kodą konvertuoti MCP serverio atsakymą į LLM suprantamą įrankio formatą:
+1. Pridėkite šį kodą, kad konvertuotumėte atsakymą iš MCP serverio į įrankio formatą, kurį gali naudoti LLM:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -495,7 +500,7 @@ Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į for
         description?: string;
         input_schema: any;
         }) {
-        // Sukurkite zod schemą pagal įvesties schemą
+        // Sukurkite zod schemą pagal input_schema
         const schema = z.object(tool.input_schema);
     
         return {
@@ -514,9 +519,9 @@ Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į for
 
     ```
 
-    Aukščiau pateiktas kodas paima MCP serverio atsakymą ir konvertuoja į įrankio apibrėžimo formatą, kurį LLM supranta.
+    Aukščiau pateiktas kodas paima atsakymą iš MCP serverio ir konvertuoja jį į įrankio apibrėžimo formatą, kurį LLM supranta.
 
-2. Dabar atnaujinkime `run` metodą, kad išvardintų serverio galimybes:
+2. Toliau atnaujinkime `run` metodą, kad jis išvardintų serverio galimybes:
 
     ```typescript
     async run() {
@@ -532,7 +537,7 @@ Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į for
     }
     ```
 
-    Ankstesniame kode atnaujinome `run` metodą, kad jis praeitų per rezultatus ir kiekvienam įrašui kviečia `openAiToolAdapter`.
+    Ankstesniame kode atnaujinome `run` metodą, kad jis eitų per rezultatą ir kiekvienam įrašui kviečia `openAiToolAdapter`.
 
 #### Python
 
@@ -556,9 +561,9 @@ Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į for
         return tool_schema
     ```
 
-    Funkcijoje `convert_to_llm_tools` paimame MCP įrankio atsakymą ir konvertuojame į formatą, kurį LLM gali suprasti.
+    Aukščiau esančioje funkcijoje `convert_to_llm_tools` paimame MCP įrankio atsakymą ir konvertuojame jį į formatą, kurį LLM gali suprasti.
 
-2. Tada atnaujinkime kliento kodą taip, kad panaudotume šią funkciją:
+2. Tada atnaujinkime savo kliento kodą, kad naudotų šią funkciją taip:
 
     ```python
     functions = []
@@ -568,11 +573,11 @@ Kitas žingsnis po serverio galimybių išvardinimo yra jų konvertavimas į for
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Čia pridedame kvietimą `convert_to_llm_tool`, kad konvertuotume MCP įrankio atsakymą į ką nors, ką galime tiekti LLM vėliau.
+    Čia pridedame kvietimą `convert_to_llm_tool`, kad konvertuotume MCP įrankio atsakymą į kažką, ką galime vėliau perduoti LLM.
 
 #### .NET
 
-1. Pridėkime kodą konvertuoti MCP įrankio atsakymą į ką nors, ką LLM gali suprasti
+1. Pridėkime kodą, kad konvertuotume MCP įrankio atsakymą į kažką, ką LLM gali suprasti
 
 ```csharp
 ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
@@ -598,9 +603,9 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
 Ankstesniame kode mes:
 
 - Sukūrėme funkciją `ConvertFrom`, kuri priima pavadinimą, aprašymą ir įvesties schemą.
-- Apibrėžėme funkcionalumą, kuris sukuria `FunctionDefinition`, perduodamą `ChatCompletionsDefinition`. Pastarasis yra tai, ką LLM supranta.
+- Apibrėžėme funkcionalumą, kuris sukuria `FunctionDefinition` perduodamą `ChatCompletionsDefinition`. Šis pastarasis yra formatas, kurį LLM supranta.
 
-2. Pažiūrėkime, kaip galime atnaujinti tam tikrą esamą kodą, kad išnaudotume šią funkciją:
+2. Pažiūrėkime, kaip galime atnaujinti esamą kodą, kad išnaudotume šią funkciją:
 
     ```csharp
     async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
@@ -646,7 +651,7 @@ Ankstesniame kode mes:
 #### Java
 
 ```java
-// Sukurkite roboto sąsają natūraliam kalbos bendravimui
+// Sukurkite Bot sąsają natūralios kalbos sąveikai
 public interface Bot {
     String chat(String prompt);
 }
@@ -660,14 +665,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 Ankstesniame kode mes:
 
-- Apibrėžėme paprastą `Bot` sąsają natūralaus kalbos bendravimo funkcijoms
-- Naudojome LangChain4j `AiServices` automatiškai susieti LLM su MCP įrankių tiekėju
-- Ši sistema automatiškai tvarko įrankių schemų konvertavimą ir funkcijų iškvietimą užkulisiuose
-- Šis požiūris pašalina rankinį įrankių konvertavimą – LangChain4j tvarko visą MCP įrankių konvertavimo sudėtingumą į LLM suderinamą formatą
+- Apibrėžėme paprastą `Bot` sąsają natūralios kalbos sąveikai
+- Naudojome LangChain4j `AiServices`, kad automatiškai sujungtume LLM su MCP įrankių tiekėju
+- Sistema automatiškai tvarko įrankių schemų konvertavimą ir funkcijų kvietimą fone
+- Šis požiūris eliminuoja rankinį įrankių konvertavimą – LangChain4j valdo visą MCP įrankių konvertavimo sudėtingumą į LLM suderinamą formatą
 
 #### Rust
 
-Norėdami konvertuoti MCP įrankio atsakymą į formatą, kurį LLM gali suprasti, pridėsime pagalbinę funkciją, kuri suformatuos įrankių sąrašą. Pridėkite šį kodą į savo `main.rs` failą žemiau `main` funkcijos. Tai bus kviečiama atliekant užklausas LLM:
+Norėdami konvertuoti MCP įrankių atsakymą į formatą, kurį LLM supranta, pridėsime pagalbinę funkciją, formatuojančią įrankių sąrašą. Įtraukite šį kodą į `main.rs` failą po `main` funkcijos. Ši funkcija bus kviečiama daryti užklausas LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -702,11 +707,11 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
+Puiku, dabar esame pasiruošę tvarkyti vartotojo užklausas, todėl imkimės toliau.
 
-### -4- Naudotojo užklausos apdorojimas
+### -4- Tvarkyti vartotojo užklausą
 
-Šioje kodo dalyje apdorosime naudotojų užklausas.
+Šioje kodo dalyje tvarkysime vartotojo užklausas.
 
 #### TypeScript
 
@@ -733,7 +738,7 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
         console.log("Tool result: ", toolResult);
 
         // 3. Atlikite ką nors su rezultatu
-        // DARBAI
+        // DARYTI
 
         }
     }
@@ -742,7 +747,7 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
     Ankstesniame kode mes:
 
     - Pridėjome metodą `callTools`.
-    - Metodas gauna LLM atsakymą ir tikrina, kokie įrankiai buvo iškviečiami, jei išvis:
+    - Metodas priima LLM atsakymą ir tikrina, kuriuos įrankius reikėjo kviesti, jei tokių yra:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -751,14 +756,14 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // iškvieskite įrankį
+        // iškviesti įrankį
         }
         ```
 
-    - Kviečia įrankį, jei LLM rodo, kad jis turi būti iškviestas:
+    - Kvies įrankį, jei LLM nurodo jį kviesti:
 
         ```typescript
-        // 2. Iškvieskite serverio įrankį
+        // 2. Paskambinkite serverio įrankiui
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -767,14 +772,14 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
         console.log("Tool result: ", toolResult);
 
         // 3. Atlikite ką nors su rezultatu
-        // DAROMA
+        // DAR REIKIA PADARYTI
         ```
 
-2. Atnaujinkite `run` metodą įtraukdami LLM kvietimus ir `callTools` kvietimą:
+2. Atnaujinkite `run` metodą, kad įtrauktumėte kvietimus LLM ir `callTools` iškvietimą:
 
     ```typescript
 
-    // 1. Sukurkite žinutes, kurios bus įvestis LLM
+    // 1. Sukurkite žinutes, kurios yra įvestis LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -786,7 +791,7 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Iškvieskite LLM
+    // 2. Skambinimas LLM
     let response = this.openai.chat.completions.create({
         model: "gpt-4.1-mini",
         max_tokens: 1000,
@@ -796,7 +801,7 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
 
     let results: any[] = [];
 
-    // 3. Peržiūrėkite LLM atsakymą, kiekvienam pasirinkimui patikrinkite, ar yra įrankių iškvietimų
+    // 3. Peržiūrėkite LLM atsakymą, kiekvienam pasirinkimui patikrinkite, ar yra įrankio skambučių
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -806,21 +811,21 @@ Gerai, dabar esame pasiruošę apdoroti naudotojo užklausas, tad imkimės to.
     });
     ```
 
-Puiku, pateikiame visą kodą:
+Puiku, pateikiame pilną kodą:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Importuokite zod schemos patikrinimui
+import { z } from "zod"; // Importuokite zod schemai tikrinti
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // gali prireikti ateityje pakeisti į šį url: https://models.github.ai/inference
+            baseURL: "https://models.inference.ai.azure.com", // ateityje gali tekti pakeisti į šį URL: https://models.github.ai/inference
             apiKey: process.env.GITHUB_TOKEN,
         });
 
@@ -854,7 +859,7 @@ class MyClient {
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Aiškiai nurodykite tipą "function"
+            type: "function" as const, // Aiškiai nustatykite tipą kaip "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -886,8 +891,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. Atlikite kažką su rezultatu
-          // DAR PABAIGTI
+          // 3. Atlikite veiksmą su rezultatu
+          // ATLIKTI
     
          }
     }
@@ -922,7 +927,7 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 3. Peržiūrėkite LLM atsakymą, kiekvienam pasirinkimui patikrinkite, ar yra įrankių kvietimų
+        // 3. Peržiūrėkite LLM atsakymą, kiekvienam pasirinkimui patikrinkite, ar yra įrankio iškvietimų
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -945,7 +950,7 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Pridėkime keletą importų, reikalingų LLM kvietimui
+1. Pridėkime reikalingus importus, kad galėtume kviesti LLM
 
     ```python
     # llm
@@ -956,7 +961,7 @@ client.connectToServer(transport);
     import json
     ```
 
-2. Toliau pridėkime funkciją, kuri kvies LLM:
+2. Tada pridėkime funkciją, kuri kvies LLM:
 
     ```python
     # llm
@@ -1009,32 +1014,32 @@ client.connectToServer(transport);
     Ankstesniame kode mes:
 
     - Perdavėme funkcijas, rastas MCP serveryje ir konvertuotas, LLM.
-    - Tada iškvietėme LLM su tomis funkcijomis.
-    - Tada tikriname rezultatą, kad sužinotume, kurias funkcijas turime kviesti, jei išvis.
-    - Galiausiai perduodame masyvą funkcijų kvietimui.
+    - Tada kvietėme LLM su šiomis funkcijomis.
+    - Tada tikriname rezultatą, ar reikia kviesti funkcijas.
+    - Galų gale perduodame funkcijų masyvą kvietimui.
 
-3. Paskutinis žingsnis, atnaujinkime pagrindinį kodą:
+3. Galutinis žingsnis – atnaujinkime pagrindinį kodą:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # paklausk LLM, kokie įrankiai yra pasiekiami, jei tokių yra
+    # paklausk LLM, kokius įrankius visi, jei tokių yra
     functions_to_call = call_llm(prompt, functions)
 
-    # iškvieskite siūlomas funkcijas
+    # iškviesk siūlomas funkcijas
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    Štai tai buvo paskutinis žingsnis, aukščiau pateiktame kode mes:
+    Štai tai buvo paskutinis žingsnis, aukščiau esančiame kode mes:
 
-    - Kvietėme MCP įrankį per `call_tool`, naudodami funkciją, kurią LLM manė, kad turėtume kviesti pagal mūsų užklausą.
-    - Spausdinome rezultatą, gautą iš MCP serverio įrankio kvietimo.
+    - Kvietėme MCP įrankį per `call_tool` naudodami funkciją, kurią LLM pasirinko pagal mūsų užklausą.
+    - Išspausdinome įrankio atsakymą iš MCP serverio.
 
 #### .NET
 
-1. Parodysime šiek tiek kodo LLM užklausai atlikti:
+1. Parodysime kodą, kaip atlikti LLM užklausą:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1071,11 +1076,11 @@ client.connectToServer(transport);
     Ankstesniame kode mes:
 
     - Gavome įrankius iš MCP serverio, `var tools = await GetMcpTools()`.
-    - Apibrėžėme naudotojo užklausą `userMessage`.
-    - Sudarėme opcijų objektą, nurodantį modelį ir įrankius.
-    - Pateikėme užklausą LLM.
+    - Apibrėžėme vartotojo užklausą `userMessage`.
+    - Sukonstruojome options objektą, nustatydami modelį ir įrankius.
+    - Atlikome užklausą LLM.
 
-2. Paskutinis žingsnis, pažiūrėkime, ar LLM mano, kad reikia kviesti funkciją:
+2. Paskutinis žingsnis – patikrinkiime, ar LLM nori kviesti kokią funkciją:
 
     ```csharp
     // 4. Check if the response contains a function call
@@ -1100,8 +1105,8 @@ client.connectToServer(transport);
 
     Ankstesniame kode mes:
 
-    - Pereinėjome per funkcijų kvietimų sąrašą.
-    - Kiekvienam įrankio kvietimui išbierėme pavadinimą ir argumentus, pakvietėme įrankį MCP serveryje naudodami MCP klientą. Galiausiai pateikėme rezultatus.
+    - Peržvelgėme funkcijų kvietimų sąrašą.
+    - Kiekvienam įrankio kvietimui išgavome pavadinimą ir argumentus, kvietėme įrankį MCP serveryje naudodami MCP klientą. Galiausiai išspausdinome rezultatus.
 
 Štai visas kodas:
 
@@ -1251,13 +1256,13 @@ Ankstesniame kode mes:
 
 - Naudojome paprastas natūralios kalbos užklausas sąveikai su MCP serverio įrankiais
 - LangChain4j sistema automatiškai tvarko:
-  - Naudotojų užklausų konvertavimą į įrankių kvietimus, kai reikia
-  - Tinkamų MCP įrankių kvietimą, remiantis LLM sprendimu
-  - Pokalbio valdymą tarp LLM ir MCP serverio
+  - Vartotojo užklausų konvertavimą į įrankių kvietimus prireikus
+  - Atitinkamų MCP įrankių kvietimą pagal LLM sprendimą
+  - Pokalbio eigą tarp LLM ir MCP serverio valdo
 - `bot.chat()` metodas grąžina natūralios kalbos atsakymus, kurie gali apimti MCP įrankių vykdymo rezultatus
-- Šis požiūris suteikia sklandžią vartotojo patirtį, kai vartotojams nereikia žinoti apie MCP vidinę įgyvendinimą
+- Šis požiūris užtikrina sklandžią vartotojo patirtį, kai vartotojams nereikia žinoti apie MCP vidinę implementaciją
 
-Visa kodo pavyzdys:
+Viso kodo pavyzdys:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -1370,10 +1375,10 @@ public class LangChain4jClient {
 
 #### Rust
 
-Čia vyksta dauguma darbo. Mes kviesime LLM su pradiniu naudotojo užklausu, tada apdorosime atsakymą, pažiūrėti, ar reikia kvieti įrankius. Jei taip, kviesime tuos įrankius ir tęsiame pokalbį su LLM tol, kol nebeliks daugiau įrankių kvietimų ir turėsime galutinį atsakymą.
 
+Čia vyksta didžioji darbo dalis. Mes iškviesime LLM su pradiniu vartotojo užklausimu, tada apdorosime atsakymą, kad pamatytume, ar reikia iškviesti kokius nors įrankius. Jei taip, mes iškviesime tuos įrankius ir tęsisime pokalbį su LLM tol, kol nebereikės iškvietimų įrankiams ir turėsime galutinį atsakymą.
 
-Mes darysime keletą skambučių į LLM, todėl apibrėžkime funkciją, kuri tvarkys LLM skambutį. Pridėkite šią funkciją į savo `main.rs` failą:
+Mes darysime kelis kvietimus LLM, taigi apibrėžkime funkciją, kuri atliks LLM kvietimą. Pridėkite šią funkciją į savo `main.rs` failą:
 
 ```rust
 async fn call_llm(
@@ -1393,9 +1398,9 @@ async fn call_llm(
 }
 ```
 
-Ši funkcija priima LLM klientą, žinučių sąrašą (įskaitant vartotojo užklausą), įrankius iš MCP serverio ir siunčia užklausą LLM, grąžindama atsakymą.
+Ši funkcija priima LLM klientą, žinučių sąrašą (įskaitant vartotojo užklausimą), įrankius iš MCP serverio ir siunčia užklausą LLM, grąžindama atsakymą.
 
-Atsakyme iš LLM bus masyvas `choices`. Turėsime apdoroti rezultatą, kad pamatytume, ar yra `tool_calls`. Tai leidžia mums žinoti, kad LLM prašo iškviesti konkretų įrankį su argumentais. Pridėkite šį kodą į `main.rs` failo pabaigą, kad apibrėžtumėte funkciją, kuri apdoros LLM atsakymą:
+LLM atsakymas turės `choices` masyvą. Reikės apdoroti rezultatą, kad pamatytume, ar yra kokių nors `tool_calls`. Tai leidžia sužinoti, kad LLM prašo iškviesti konkretų įrankį su argumentais. Pridėkite šį kodą į savo `main.rs` failo pabaigą, kad apibrėžtumėte funkciją LLM atsakymui apdoroti:
 
 ```rust
 async fn process_llm_response(
@@ -1414,16 +1419,16 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // Spausdinti turinį, jei jis yra
+    // Spausdinti turinį, jei yra
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // Apdoroti įrankių iškvietimus
+    // Apdoroti įrankio kvietimus
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
         messages.push(message.clone()); // Pridėti asistento pranešimą
 
-        // Vykdyti kiekvieną įrankio iškvietimą
+        // Įvykdyti kiekvieną įrankio kvietimą
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1435,7 +1440,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Pridėti įrankio rezultatą į pranešimus
+            // Pridėti įrankio rezultatą prie pranešimų
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1443,7 +1448,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Tęsti pokalbį su įrankių rezultatais
+        // Tęsti pokalbį su įrankio rezultatais
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1458,9 +1463,9 @@ async fn process_llm_response(
 }
 ```
 
-Jei yra `tool_calls`, funkcija ištraukia įrankio informaciją, iškviečia MCP serverį su įrankio užklausa ir prideda rezultatus prie pokalbio žinučių. Tada ji tęsia pokalbį su LLM, o žinutės atnaujinamos su asistento atsakymu ir įrankio skambučio rezultatais.
+Jei yra `tool_calls`, ji ištraukia įrankio informaciją, iškviečia MCP serverį su įrankio užklausa ir prideda rezultatus prie pokalbio žinučių. Tada tęsia pokalbį su LLM, o žinutės atnaujinamos su asistento atsakymu ir įrankio kvietimo rezultatais.
 
-Norėdami išgauti įrankio skambučio informaciją, kurią LLM grąžina MCP skambučiams, pridėsime dar vieną pagalbinę funkciją, kuri ištrauks viską, ko reikia skambučiui atlikti. Pridėkite šį kodą į `main.rs` failo pabaigą:
+Norėdami išgauti įrankio kvieto informaciją, kurią LLM grąžina MCP kvietimams, pridėsime dar vieną pagalbinę funkciją, kad ištrauktume viską, kas reikalinga kvietimui atlikti. Pridėkite šį kodą į savo `main.rs` failo pabaigą:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1484,7 +1489,7 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Turėdami visas dalis, dabar galime apdoroti pradinę vartotojo užklausą ir iškviesti LLM. Atnaujinkite savo `main` funkciją taip, kad ji apimtų šį kodą:
+Turėdami visas dalis, dabar galime apdoroti pradinį vartotojo užklausimą ir iškviesti LLM. Atnaujinkite savo `main` funkciją, kad įtrauktumėte šį kodą:
 
 ```rust
 // LLM pokalbis su įrankių kvietimais
@@ -1499,37 +1504,37 @@ process_llm_response(
 .await?;
 ```
 
-Tai užklaus LLM su pradiniu vartotojo užklausa, klausdama dviejų skaičių sumos, ir apdoros atsakymą, kad dinamiškai apdorotų įrankių skambučius.
+Tai užklausia LLM su pradiniu vartotojo užklausimu, klausdama dviejų skaičių sumos, ir apdoroja atsakymą dinamiškai tvarkydama įrankių kvietimus.
 
-Puiku, jūs tai padarėte!
+Puiku, tu tai padarei!
 
 ## Užduotis
 
-Paimkite kodą iš pratimo ir sukurkite serverį su dar daugiau įrankių. Tada sukurkite klientą su LLM, kaip pratybose, ir išbandykite jį su skirtingomis užklausomis, kad įsitikintumėte, jog visi jūsų serverio įrankiai kviečiami dinamiškai. Tokiu būdu kuriant klientą galutinis vartotojas turės puikią naudotojo patirtį, nes galės naudotis užklausomis vietoje tikslių klientų komandų ir nematys, kad kviečiamas bet koks MCP serveris.
+Paimkite kodą iš pratimo ir išplėskite serverį su keliais papildomais įrankiais. Tada sukurkite klientą su LLM, kaip pratime, ir išbandykite su įvairiomis užklausomis, kad įsitikintumėte, jog visi serverio įrankiai dinaminiu būdu kviečiami. Toks kliento kūrimo būdas užtikrins puikią galutinio vartotojo patirtį, nes jis galės naudoti užklausas, o ne tikslines kliento komandas, ir nesijaus susijęs su jokiu MCP serverio kvietimu.
 
 ## Sprendimas
 
 [Sprendimas](./solution/README.md)
 
-## Svarbiausios mintys
+## Pagrindinės išvados
 
-- LLM pridėjimas į jūsų klientą suteikia geresnį būdą vartotojams bendrauti su MCP serveriais.
-- Turite konvertuoti MCP serverio atsakymą į ką nors, ką gali suprasti LLM.
+- Įdiegus LLM savo klientui, vartotojams suteikiama geresnė sąveika su MCP serveriais.
+- Reikia paversti MCP serverio atsakymą kažkuo, ką LLM gali suprasti.
 
 ## Pavyzdžiai
 
-- [Java Skaičiuoklė](../samples/java/calculator/README.md)
-- [.Net Skaičiuoklė](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Skaičiuoklė](../samples/javascript/README.md)
-- [TypeScript Skaičiuoklė](../samples/typescript/README.md)
-- [Python Skaičiuoklė](../../../../03-GettingStarted/samples/python)
-- [Rust Skaičiuoklė](../../../../03-GettingStarted/samples/rust)
+- [Java skaičiuoklė](../samples/java/calculator/README.md)
+- [.Net skaičiuoklė](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript skaičiuoklė](../samples/javascript/README.md)
+- [TypeScript skaičiuoklė](../samples/typescript/README.md)
+- [Python skaičiuoklė](../../../../03-GettingStarted/samples/python)
+- [Rust skaičiuoklė](../../../../03-GettingStarted/samples/rust)
 
-## Papildomi šaltiniai
+## Papildomi ištekliai
 
 ## Kas toliau
 
-- Toliau: [Serverio naudojimas Visual Studio Code aplinkoje](../04-vscode/README.md)
+- Toliau: [Serverio naudojimas Visual Studio Code](../04-vscode/README.md)
 
 ---
 
