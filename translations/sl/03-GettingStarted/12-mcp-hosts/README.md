@@ -1,10 +1,15 @@
 # Nastavitev priljubljenih MCP gostiteljskih odjemalcev
 
-Ta vodič zajema, kako konfigurirati in uporabljati MCP strežnike s priljubljenimi AI gostiteljskimi aplikacijami. Vsak gostitelj ima svoj pristop do konfiguracije, vendar ko je enkrat nastavljen, vsi komunicirajo z MCP strežniki z uporabo standardiziranega protokola.
+> [!NOTE]
+> Nastavitve gostiteljev, ki kažejo na `/sse`, so zastareli primeri HTTP+SSE za
+> MCP `2025-11-25`. Za MCP `2026-07-28` izberite Streamable HTTP pri gostiteljih, ki 
+> to podpirajo, in uporabite konec točke, ki jo nastavi strežnik.
+
+Ta vodič pokriva, kako konfigurirati in uporabljati MCP strežnike s priljubljenimi aplikacijami za gostitelje AI. Vsak gostitelj ima svoj pristop konfiguracije, a ko so nastavljeni, vsi komunicirajo z MCP strežniki s standardiziranim protokolom.
 
 ## Kaj je MCP gostitelj?
 
-**MCP gostitelj** je AI aplikacija, ki se lahko poveže z MCP strežniki za razširitev svojih zmogljivosti. Lahko si ga predstavljate kot "sprednji del", s katerim uporabniki komunicirajo, medtem ko MCP strežniki zagotavljajo "zadnji del" orodij in podatkov.
+**MCP gostitelj** je AI aplikacija, ki se lahko poveže z MCP strežniki za razširitev svojih zmogljivosti. Predstavljajte si ga kot "sprednji del", s katerim uporabniki upravljajo, medtem ko MCP strežniki nudijo "zadnji del" orodij in podatkov.
 
 ```mermaid
 flowchart LR
@@ -14,16 +19,17 @@ flowchart LR
     Host --> S3[MCP Strežnik C]
     
     subgraph "Priljubljeni gostitelji"
-        H1[Claude Namizje]
-        H2[VS Koda]
-        H3[Kursor]
+        H1[Claude Desktop]
+        H2[VS Code]
+        H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
-## Predpogoj
 
-- MCP strežnik, na katerega se želite povezati (glejte [Modul 3.1 - Prvi strežnik](../01-first-server/README.md))
+## Predpogoji
+
+- MCP strežnik, s katerim se boste povezali (glej [Modul 3.1 - Prvi strežnik](../01-first-server/README.md))
 - Gostiteljska aplikacija nameščena na vašem sistemu
 - Osnovno poznavanje JSON konfiguracijskih datotek
 
@@ -31,16 +37,16 @@ flowchart LR
 
 ## 1. Claude Desktop
 
-**Claude Desktop** je uradna namizna aplikacija podjetja Anthropic, ki nativno podpira MCP.
+**Claude Desktop** je uradna namizna aplikacija podjetja Anthropic, ki izvorno podpira MCP.
 
 ### Namestitev
 
-1. Prenesite Claude Desktop z [claude.ai/download](https://claude.ai/download)
-2. Namestite in se prijavite s svojim Anthropic računom
+1. Prenesite Claude Desktop s [claude.ai/download](https://claude.ai/download)
+2. Namestite in se prijavite z vašim Anthropic računom
 
 ### Konfiguracija
 
-Claude Desktop uporablja JSON konfiguracijsko datoteko za definicijo MCP strežnikov.
+Claude Desktop uporablja JSON konfiguracijsko datoteko za določanje MCP strežnikov.
 
 **Lokacija konfiguracijske datoteke:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -78,28 +84,28 @@ Claude Desktop uporablja JSON konfiguracijsko datoteko za definicijo MCP strežn
 
 | Polje | Opis | Primer |
 |-------|-------------|---------|
-| `command` | Izvršljiva datoteka, ki se zažene | `"python"`, `"node"`, `"npx"` |
+| `command` | Izvedljiva datoteka za zagon | `"python"`, `"node"`, `"npx"` |
 | `args` | Argumenti ukazne vrstice | `["-m", "my_server"]` |
-| `env` | Spremenljivke okolja | `{"API_KEY": "xxx"}` |
+| `env` | Spremeljivke okolja | `{"API_KEY": "xxx"}` |
 | `cwd` | Delovni imenik | `"/path/to/server"` |
 
-### Testiranje vaše nastavitve
+### Preizkus vaše nastavitve
 
 1. Shrani konfiguracijsko datoteko
-2. Popolnoma ponovno zaženi Claude Desktop (izhod in ponovno odprtje)
+2. Povsem ponovno zaženi Claude Desktop (izhod in ponovno odpri)
 3. Odpri nov pogovor
 4. Poišči ikono 🔌, ki označuje povezane strežnike
-5. Poskusi vprašati Claude, naj uporabi eno izmed vaših orodij
+5. Poskusi vprašati Claude, naj uporabi eno od tvojih orodij
 
 ### Odpravljanje težav pri Claude Desktop
 
 **Strežnik se ne prikaže:**
 - Preveri sintakso konfiguracijske datoteke z JSON validatorjem
 - Prepričaj se, da je pot do ukaza pravilna
-- Preveri dnevnike Claude Desktop: Pomoč → Pokaži dnevnike
+- Preveri dnevnike Claude Desktop: Pomoč → Prikaži dnevnike
 
 **Strežnik se zruši ob zagonu:**
-- Najprej testiraj strežnik ročno v terminalu
+- Najprej ročno preizkusi strežnik v terminalu
 - Preveri, da so okoljske spremenljivke pravilno nastavljene
 - Prepričaj se, da so vse odvisnosti nameščene
 
@@ -109,15 +115,15 @@ Claude Desktop uporablja JSON konfiguracijsko datoteko za definicijo MCP strežn
 
 VS Code podpira MCP preko razširitev GitHub Copilot Chat.
 
-### Predpogoj
+### Predpogoji
 
-1. Nameščen VS Code različice 1.99+
-2. Nameščena razširitev GitHub Copilot
-3. Nameščena razširitev GitHub Copilot Chat
+1. Nameščen VS Code verzije 1.99 ali višje
+2. Nameščena GitHub Copilot razširitev
+3. Nameščena GitHub Copilot Chat razširitev
 
 ### Konfiguracija
 
-VS Code uporablja `.vscode/mcp.json` v vaši delovni mapi ali uporabniških nastavitvah.
+VS Code uporablja `.vscode/mcp.json` v vašem delovnem prostoru ali uporabniških nastavitvah.
 
 **Konfiguracija delovnega prostora** (`.vscode/mcp.json`):
 
@@ -154,27 +160,27 @@ VS Code uporablja `.vscode/mcp.json` v vaši delovni mapi ali uporabniških nast
 
 ### Uporaba MCP v VS Code
 
-1. Odpri panel Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
-2. Vpiši `@` za prikaz razpoložljivih MCP orodij
-3. Uporabi naravni jezik za klic orodij: "Izračunaj 25 * 48 z kalkulatorjem"
+1. Odpri ploščo Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
+2. Vnesi `@` za prikaz razpoložljivih MCP orodij
+3. Uporabi naravni jezik za klicanje orodij: "Izračunaj 25 * 48 z uporabo kalkulatorja"
 
 ### Odpravljanje težav v VS Code
 
 **MCP strežniki se ne nalagajo:**
-- Preveri panel Izhod → "MCP" za napake
+- Preveri zavihek Izhod → "MCP" za zaznamke o napakah
 - Osveži okno: Ctrl+Shift+P → "Developer: Reload Window"
-- Najprej preveri, da strežnik teče samostojno
+- Najprej preveri, ali strežnik deluje samostojno
 
 ---
 
 ## 3. Cursor
 
-**Cursor** je AI-prednostni urejevalnik kode z vgrajeno podporo za MCP.
+**Cursor** je kodni urejevalnik, zasnovan za AI, z vgrajeno podporo MCP.
 
 ### Namestitev
 
-1. Prenesi Cursor z [cursor.sh](https://cursor.sh)
-2. Namesti in se prijavi
+1. Prenesite Cursor s [cursor.sh](https://cursor.sh)
+2. Namestite in se prijavite
 
 ### Konfiguracija
 
@@ -205,17 +211,17 @@ Cursor uporablja podoben format konfiguracije kot Claude Desktop.
 }
 ```
 
-### Uporaba MCP v Cursorju
+### Uporaba MCP v Cursor
 
 1. Odpri AI klepet Cursorja (Ctrl+L / Cmd+L)
-2. MCP orodja se samodejno pojavijo v predlogah
-3. Prosite AI, da opravi naloge z uporabo povezanih strežnikov
+2. Orodja MCP se samodejno pojavijo v predlogah
+3. Prosi AI, da opravi naloge z uporabo povezanih strežnikov
 
 ---
 
-## 4. Cline (na terminalu)
+## 4. Cline (na osnovi terminala)
 
-**Cline** je terminalski MCP odjemalec, idealen za ukazno vrstične delovne tokove.
+**Cline** je MCP odjemalec, ki temelji na terminalu, idealen za ukazne tokove.
 
 ### Namestitev
 
@@ -261,7 +267,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 # Začni interaktivno sejo
 cline
 
-# Enkratna poizvedba z MCP
+# Posamezen poizvedba z MCP
 cline "Calculate the square root of 144 using the calculator"
 
 # Naštej razpoložljiva orodja
@@ -272,16 +278,16 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** je še en AI-pogonjen urejevalnik kode z MCP podporo.
+**Windsurf** je še en urejevalnik kode, ki ga poganja AI, z MCP podporo.
 
 ### Namestitev
 
-1. Prenesi Windsurf z [codeium.com/windsurf](https://codeium.com/windsurf)
-2. Namesti in ustvari račun
+1. Prenesite Windsurf s [codeium.com/windsurf](https://codeium.com/windsurf)
+2. Namestite in ustvarite račun
 
 ### Konfiguracija
 
-Konfiguracijo Windsurfa upravljate preko uporabniškega vmesnika nastavitev:
+Konfiguracija Windsurfa se upravlja preko uporabniškega vmesnika nastavitev:
 
 1. Odpri Nastavitve (Ctrl+, / Cmd+,)
 2. Poišči "MCP"
@@ -304,9 +310,9 @@ Konfiguracijo Windsurfa upravljate preko uporabniškega vmesnika nastavitev:
 
 ---
 
-## Primerjava načinov prenosa
+## Primerjava vrst prenosov
 
-Različni gostitelji podpirajo različne mehanizme prenosa:
+Različni gostitelji podpirajo različne transportne mehanizme:
 
 | Gostitelj | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
@@ -316,16 +322,16 @@ Različni gostitelji podpirajo različne mehanizme prenosa:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standardni vhod/izhod): Najboljši za lokalne strežnike, ki jih zažene gostitelj  
-**SSE/HTTP**: Najboljši za oddaljene strežnike ali strežnike, ki jih uporablja več odjemalcev
+**stdio** (standardni vhod/izhod): Najboljše za lokalne strežnike, ki jih zažene gostitelj
+**SSE/HTTP**: Najboljše za oddaljene strežnike ali strežnike, ki jih uporablja več odjemalcev
 
 ---
 
-## Pogoste težave
+## Pogoste težave pri odpravljanju
 
 ### Strežnik se ne zažene
 
-1. **Najprej preizkusi strežnik ročno:**
+1. **Najprej ročno testirajte strežnik:**
    ```bash
    # Za Python
    python -m your_server_module
@@ -334,11 +340,11 @@ Različni gostitelji podpirajo različne mehanizme prenosa:
    node /path/to/server/index.js
    ```
 
-2. **Preveri pot do ukaza:**
-   - Po možnosti uporabi absolutne poti
-   - Prepričaj se, da je izvršljiva datoteka v tvoji poti PATH
+2. **Preverite pot ukaza:**
+   - Po potrebi uporabljajte absolutne poti
+   - Prepričajte se, da je izvršljiva datoteka v vaši poti PATH
 
-3. **Preveri odvisnosti:**
+3. **Preverite odvisnosti:**
    ```bash
    # Python
    pip list | grep mcp
@@ -347,48 +353,48 @@ Različni gostitelji podpirajo različne mehanizme prenosa:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Strežnik se poveže, a orodja ne delujejo
+### Strežnik se poveže, ampak orodja ne delujejo
 
-1. **Preveri dnevnike strežnika** - Večina gostiteljev ima možnosti dnevnikov
-2. **Preveri registracijo orodij** - Za test uporabi MCP Inspector
-3. **Preveri dovoljenja** - Nekatera orodja potrebujejo dostop do datotek/mreže
+1. **Preverite dnevnike strežnika** - Večina gostiteljev ima možnosti beleženja
+2. **Preverite registracijo orodij** - Uporabite MCP Inspector za testiranje
+3. **Preverite dovoljenja** - Nekatera orodja potrebujejo dostop do datotek/omrežja
 
 ### Okoljske spremenljivke niso posredovane
 
-- Nekateri gostitelji čistijo okoljske spremenljivke
-- Uporabi polje `env` za eksplicitno nastavitev
-- Izogibaj se občutljivim podatkom v konfiguracijskih datotekah (uporabi upravljanje skrivnosti)
+- Nekateri gostitelji očistijo okoljske spremenljivke
+- Izrecno uporabite polje za okolje `env` v konfiguraciji
+- Izogibajte se občutljivim podatkom v konfiguracijskih datotekah (uporabite upravljanje skrivnosti)
 
 ---
 
-## Najboljše varnostne prakse
+## Najboljše prakse varnosti
 
-1. **Nikoli ne dodajaj ključev API** v konfiguracijske datoteke
-2. **Uporabi okoljske spremenljivke** za občutljive podatke
-3. **Omeji strežniška dovoljenja** le na tisto, kar je potrebno
-4. **Preglej strežniško kodo** preden dovoliš dostop do sistema
-5. **Uporabi seznami dovoljenih lokacij** za dostop do datotečnega sistema in omrežja
+1. **Nikoli ne vključujte API ključev** v konfiguracijske datoteke
+2. **Uporabljajte okoljske spremenljivke** za občutljive podatke
+3. **Omejite dovoljenja strežnika** samo na potrebno
+4. **Preglejte strežniško kodo** pred podelitvijo dostopa do vašega sistema
+5. **Uporabite sezname dovoljenih** za dostop do datotečnega sistema in omrežja
 
 ---
 
 ## Kaj sledi
 
 - [3.13 - Razhroščevanje z MCP Inspector](../13-mcp-inspector/README.md)
-- [3.1 - Ustvari svoj prvi MCP strežnik](../01-first-server/README.md)
+- [3.1 - Ustvarite svoj prvi MCP strežnik](../01-first-server/README.md)
 - [Modul 5 - Napredne teme](../../05-AdvancedTopics/README.md)
 
 ---
 
 ## Dodatni viri
 
-- [Claude Desktop MCP dokumentacija](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
-- [VS Code MCP razširitev](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP specifikacija - Prenosi](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [Dokumentacija Claude Desktop MCP](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [VS Code MCP Razširitev](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [MCP specifikacija - Prenosi](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Uradni register MCP strežnikov](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Omejitev odgovornosti**:
-Ta dokument je bil preveden z uporabo storitve za avtomatski prevod [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatski prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvorni jezik se šteje za zavezujoč vir. Za pomembne informacije priporočamo strokovni človeški prevod. Nismo odgovorni za morebitna nesporazumevanja ali napačne razlage, ki izhajajo iz uporabe tega prevoda.
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

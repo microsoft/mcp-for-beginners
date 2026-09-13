@@ -1,5 +1,10 @@
 # Zaženi primer
 
+> [!WARNING]
+> Ta primer uporablja zastarelo vzorčenje in star HTTP+SSE konec. Ohranja se
+> za združljivost MCP `2025-11-25`. Nove implementacije naj neposredno kličejo
+> ponudnika LLM in uporabljajo pretočni HTTP za oddaljeni promet MCP.
+
 ## Ustvari virtualno okolje
 
 ```sh
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Preizkusi strežnik z GitHub Copilot in VS Code
 
-Dodaj vnos v mcp.json tako:
+Dodaj vnos v mcp.json takole:
 
 ```json
 "servers": {
@@ -32,15 +37,15 @@ Dodaj vnos v mcp.json tako:
 }
 ```
 
-Prepričaj se, da klikneš "start" na strežniku.
+Prepričaj se, da si kliknil "start" na strežniku.
 
-V GitHub Copilot prilepi naslednje navodilo:
+V GitHub Copilot prilepi naslednji poziv:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Prvič te bo vprašal, ali želiš sprejeti Sampling akcijo, nato pa te bo vprašal, ali dovoliš orodju, da zažene "create_blog". Videti bi moral odgovor, podoben temu:
+Prvič boš vprašal, ali želiš sprejeti dejanje Sampling, nato boš moral sprejeti orodje za zagon "create_blog". Moral bi videti odgovor, podoben temu:
 
 ```json
 {
@@ -51,6 +56,6 @@ Prvič te bo vprašal, ali želiš sprejeti Sampling akcijo, nato pa te bo vpra�
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Opozorilo**:
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Kljub prizadevanju za natančnost vas prosimo, da upoštevate, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v izvirnem jeziku velja za avtoritativni vir. Za pomembne informacije priporočamo strokoven človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

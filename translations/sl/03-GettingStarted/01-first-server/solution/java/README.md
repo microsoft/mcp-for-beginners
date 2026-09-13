@@ -1,20 +1,25 @@
 # Osnovna kalkulator MCP storitev
 
-Ta storitev omogoča osnovne kalkulator funkcije preko Model Context Protocol (MCP) z uporabo Spring Boot in WebFlux transporta. Namenjena je kot preprost primer za začetnike, ki se učijo o implementacijah MCP.
+> [!NOTE]
+> Ta Java rešitev uporablja zastarelo HTTP+SSE transportno plast in cilja na SDK
+> združljiv z MCP `2025-11-25`. Ohranjena je zaradi ustrezanja kodi tečaja;
+> novi oddaljeni strežniki naj uporabljajo `2026-07-28` Streamable HTTP podporo.
 
-Za več informacij si oglejte [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referenčno dokumentacijo.
+Ta storitev zagotavlja osnovne kalkulatorske operacije preko Model Context Protocol (MCP) z uporabo Spring Boot s prenosom WebFlux. Namenjena je kot preprost primer za začetnike, ki se učijo o implementacijah MCP.
+
+Za več informacij poglejte referenčno dokumentacijo [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 
 ## Uporaba storitve
 
-Storitev ponuja naslednje API končne točke preko MCP protokola:
+Storitev izpostavlja naslednje API končne točke preko MCP protokola:
 
 - `add(a, b)`: Sešteje dve števili
 - `subtract(a, b)`: Odšteje drugo število od prvega
 - `multiply(a, b)`: Pomnoži dve števili
-- `divide(a, b)`: Deli prvo število z drugim (s preverjanjem deljenja z nič)
+- `divide(a, b)`: Deli prvo število z drugim (s preverjanjem ničle)
 - `power(base, exponent)`: Izračuna potenco števila
-- `squareRoot(number)`: Izračuna kvadratni koren (s preverjanjem negativnih števil)
+- `squareRoot(number)`: Izračuna kvadratni koren (s preverjanjem negativnega števila)
 - `modulus(a, b)`: Izračuna ostanek pri deljenju
 - `absolute(number)`: Izračuna absolutno vrednost
 
@@ -31,7 +36,7 @@ Projekt zahteva naslednje ključne odvisnosti:
 
 ## Gradnja projekta
 
-Projekt zgradite z uporabo Mavena:
+Projekt sestavite z uporabo Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
@@ -44,9 +49,9 @@ Projekt zgradite z uporabo Mavena:
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### Uporaba MCP Inspectorja
+### Uporaba MCP Inspector
 
-MCP Inspector je uporabno orodje za interakcijo z MCP storitvami. Za uporabo s to kalkulator storitvijo:
+MCP Inspector je uporabno orodje za delo z MCP storitvami. Za uporabo s to kalkulatorsko storitvijo:
 
 1. **Namestite in zaženite MCP Inspector** v novem terminalskem oknu:
    ```bash
@@ -58,13 +63,17 @@ MCP Inspector je uporabno orodje za interakcijo z MCP storitvami. Za uporabo s t
 3. **Konfigurirajte povezavo**:
    - Nastavite tip transporta na "SSE"
    - Nastavite URL na SSE končno točko vašega strežnika: `http://localhost:8080/sse`
-   - Kliknite "Connect"
+   - Kliknite "Poveži"
 
 4. **Uporabite orodja**:
-   - Kliknite "List Tools" za prikaz razpoložljivih kalkulator funkcij
-   - Izberite orodje in kliknite "Run Tool" za izvedbo operacije
+   - Kliknite "Seznam orodij" za ogled razpoložljivih kalkulatorskih operacij
+   - Izberite orodje in kliknite "Zaženi orodje" za izvedbo operacije
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/sl/tool.40e180a7b0d0fe20.webp)
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za pomembne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
