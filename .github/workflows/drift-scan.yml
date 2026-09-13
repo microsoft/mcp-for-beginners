@@ -1,0 +1,21 @@
+# fail-on is empty on purpose: this job annotates findings and never fails CI.
+name: Drift scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  drift-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: 710git/course-drift-oracle@9684b10a47960744298b3c88b06379c6cfcf8cbc # v1.0.0
+        with:
+          fail-on: ""
