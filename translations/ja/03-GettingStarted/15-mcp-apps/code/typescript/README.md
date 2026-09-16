@@ -17,9 +17,9 @@ npx tsc --noEmit
 
 > MCP Apps ソリューションが `concurrently` ライブラリを使用しているため、Windows マシンでは少し追加作業が必要です。置き換えを見つける必要があります。MCP App の *package.json* の問題のある行は以下の通りです：
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
 このアプリはバックエンドパートとホストパートの2つに分かれています。
 
