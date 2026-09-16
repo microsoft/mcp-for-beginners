@@ -17,9 +17,9 @@ There should be no output if everything is fine.
 
 > This takes a bit of extra work if you're on a Windows machine as the MCP Apps solution uses `concurrently` library to run that you need to find a replacement for. Here's the offending line *package.json* on the MCP App:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
 This app has two parts, a backend part and a host part.
 
