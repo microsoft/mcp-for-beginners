@@ -81,26 +81,28 @@ The previous soultion is great when you have the .NET SDK installed, and all the
    ```bash
    docker build -t <YOUR-DOCKER-USERNAME>/mcp-calculator .
    ``` 
-1. After the image is built, let's upload it to Docker Hub. Run the following command:
+1. After the image is built, upload it to Docker Hub by running the following command:
    ```bash
-    docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
-  ```
+   docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
+   ```
 
 ## Use the Dockerized Version
 
-1. In the `.vscode/mcp.json` file, replace the server configuration by the following:
+1. In the `.vscode/mcp.json` file, replace the server configuration with the following:
    ```json
-    "mcp-calc": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "<YOUR-DOCKER-USERNAME>/mcp-calc"
-      ],
-      "envFile": "",
-      "env": {}
-    }
+   {
+     "mcp-calculator": {
+       "command": "docker",
+       "args": [
+         "run",
+         "--rm",
+         "-i",
+         "<YOUR-DOCKER-USERNAME>/mcp-calculator"
+       ],
+       "envFile": "",
+       "env": {}
+     }
+   }
    ```
    Looking at the configuration, you can see that the command is `docker` and the args are `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc`. The `--rm` flag ensures that the container is removed after it stops, and the `-i` flag allows you to interact with the container's standard input. The last argument is the name of the image we just built and pushed to Docker Hub.
 
