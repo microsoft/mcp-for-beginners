@@ -1,10 +1,10 @@
-# Basic Calculator MCP Service
+# 基本的な計算機能MCPサービス
 
 このサービスは、Model Context Protocol（MCP）を通じて基本的な計算機能を提供します。MCPの実装を学ぶ初心者向けのシンプルな例として設計されています。
 
 詳細は[C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)をご覧ください。
 
-## Features
+## 特徴
 
 この計算機サービスは以下の機能を提供します：
 
@@ -14,9 +14,9 @@
    - 2つの数の乗算
    - 1つの数を別の数で除算（ゼロ除算チェック付き）
 
-## Using `stdio` Type
+## `stdio` タイプの使用
   
-## Configuration
+## 設定
 
 1. **MCPサーバーの設定**：
    - VS Codeでワークスペースを開きます。
@@ -47,7 +47,7 @@
 
    - GitHubリポジトリのルートを入力するよう求められます。これはコマンド `git rev-parse --show-toplevel` で取得可能です。
 
-## Using the Service
+## サービスの利用
 
 このサービスはMCPプロトコルを通じて以下のAPIエンドポイントを公開しています：
 
@@ -57,7 +57,7 @@
 - `divide(a, b)`: 1番目の数を2番目の数で除算（ゼロチェック付き）
 - isPrime(n): 数が素数かどうかを判定
 
-## Test with Github Copilot Chat in VS Code
+## VS CodeでのGitHub Copilot Chatのテスト
 
 1. MCPプロトコルを使ってサービスにリクエストを送ってみましょう。例えば、以下のように尋ねることができます：
    - 「5と3を足して」
@@ -70,7 +70,7 @@
    - 「5と3を足して #MyCalculator」
    - 「4から10を引いて #MyCalculator」
 
-## Containerized Version
+## コンテナ化されたバージョン
 
 .NET SDKがインストールされ、すべての依存関係が整っている場合は前述の方法が便利です。しかし、ソリューションを共有したり別の環境で実行したい場合は、コンテナ版を利用できます。
 
@@ -82,28 +82,30 @@
    ``` 
 1. イメージのビルドが完了したら、Docker Hubにアップロードします。以下のコマンドを実行してください：
    ```bash
-    docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
-  ```
+   docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
+   ```
 
-## Use the Dockerized Version
+## Docker化されたバージョンを使用する
 
 1. `.vscode/mcp.json` ファイル内のサーバー設定を以下の内容に置き換えます：
    ```json
-    "mcp-calc": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "<YOUR-DOCKER-USERNAME>/mcp-calc"
-      ],
-      "envFile": "",
-      "env": {}
-    }
+   {
+     "mcp-calculator": {
+       "command": "docker",
+       "args": [
+         "run",
+         "--rm",
+         "-i",
+         "<YOUR-DOCKER-USERNAME>/mcp-calculator"
+       ],
+       "envFile": "",
+       "env": {}
+     }
+   }
    ```
    設定を見ると、コマンドは `docker`、引数は `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc` となっています。`--rm` フラグはコンテナ停止後に削除することを保証し、`-i` フラグはコンテナの標準入力と対話できるようにします。最後の引数は先ほどビルドしてDocker Hubにプッシュしたイメージ名です。
 
-## Test the Dockerized Version
+## Docker化したバージョンをテストする
 
 `"mcp-calc": {` の上にある小さなスタートボタンをクリックしてMCPサーバーを起動し、前と同様に計算機サービスに計算を依頼してみましょう。
 
