@@ -55,7 +55,7 @@
 - `subtract(a, b)`: 2番目の数を1番目の数から減算
 - `multiply(a, b)`: 2つの数を乗算
 - `divide(a, b)`: 1番目の数を2番目の数で除算（ゼロチェック付き）
-- isPrime(n): 数が素数かどうかを判定
+- `isPrime(n)`: 数が素数かどうかを判定
 
 ## VS CodeでのGitHub Copilot Chatのテスト
 
