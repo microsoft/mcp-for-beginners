@@ -73,7 +73,7 @@ The service exposes the following API endpoints through the MCP protocol:
 
 ## Containerized Version
 
-The previous soultion is great when you have the .NET SDK installed, and all the dependencies are in place. However, if you would like to share the solution or run it in a different environment, you can use the containerized version.
+The previous solution is great when you have the .NET SDK installed, and all the dependencies are in place. However, if you would like to share the solution or run it in a different environment, you can use the containerized version.
 
 1. Start Docker and make sure it's running.
 1. From a terminal, navigate in the folder `03-GettingStarted\samples\csharp\src` 
