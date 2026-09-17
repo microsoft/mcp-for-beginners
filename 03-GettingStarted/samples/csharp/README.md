@@ -81,14 +81,14 @@ The previous soultion is great when you have the .NET SDK installed, and all the
    ```bash
    docker build -t <YOUR-DOCKER-USERNAME>/mcp-calculator .
    ``` 
-1. After the image is built, upload it to Docker Hub by running the following command:
+1. After the image is built, let's upload it to Docker Hub. Run the following command:
    ```bash
    docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
    ```
 
 ## Use the Dockerized Version
 
-1. In the `.vscode/mcp.json` file, replace the server configuration with the following:
+1. In the `.vscode/mcp.json` file, replace the server configuration by the following:
    ```json
    {
      "mcp-calculator": {
