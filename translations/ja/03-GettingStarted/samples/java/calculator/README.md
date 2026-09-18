@@ -1,4 +1,4 @@
-# Basic Calculator MCP Service
+# 基本的な計算機能MCPサービス
 
 このサービスは、Spring BootのWebFluxトランスポートを使ってModel Context Protocol（MCP）経由で基本的な計算機能を提供します。MCPの実装を学ぶ初心者向けのシンプルな例として設計されています。
 
