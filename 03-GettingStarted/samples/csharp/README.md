@@ -90,22 +90,20 @@ The previous solution is great when you have the .NET SDK installed, and all the
 
 1. In the `.vscode/mcp.json` file, replace the server configuration by the following:
    ```json
-   {
-     "mcp-calculator": {
-       "command": "docker",
-       "args": [
-         "run",
-         "--rm",
-         "-i",
-         "<YOUR-DOCKER-USERNAME>/mcp-calculator"
-       ],
-       "envFile": "",
-       "env": {}
-     }
-   }
+    "mcp-calculator": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "<YOUR-DOCKER-USERNAME>/mcp-calculator"
+      ],
+      "envFile": "",
+      "env": {}
+    }
    ```
-   Looking at the configuration, you can see that the command is `docker` and the args are `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc`. The `--rm` flag ensures that the container is removed after it stops, and the `-i` flag allows you to interact with the container's standard input. The last argument is the name of the image we just built and pushed to Docker Hub.
+   Looking at the configuration, you can see that the command is `docker` and the args are `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calculator`. The `--rm` flag ensures that the container is removed after it stops, and the `-i` flag allows you to interact with the container's standard input. The last argument is the name of the image we just built and pushed to Docker Hub.
 
 ## Test the Dockerized Version
 
-Start the MCP Server by clicking the little Start button above `"mcp-calc": {`, and just like before you can ask the calculator service to do some math for you.
+Start the MCP Server by clicking the little Start button above `"mcp-calculator": {`, and just like before you can ask the calculator service to do some math for you.
