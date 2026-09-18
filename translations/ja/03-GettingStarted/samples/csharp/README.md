@@ -89,21 +89,19 @@
 
 1. `.vscode/mcp.json` ファイル内のサーバー設定を以下の内容に置き換えます：
    ```json
-   {
-     "mcp-calculator": {
-       "command": "docker",
-       "args": [
-         "run",
-         "--rm",
-         "-i",
-         "<YOUR-DOCKER-USERNAME>/mcp-calculator"
-       ],
-       "envFile": "",
-       "env": {}
-     }
-   }
+    "mcp-calculator": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "<YOUR-DOCKER-USERNAME>/mcp-calculator"
+      ],
+      "envFile": "",
+      "env": {}
+    }
    ```
-   設定を見ると、コマンドは `docker`、引数は `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc` となっています。`--rm` フラグはコンテナ停止後に削除することを保証し、`-i` フラグはコンテナの標準入力と対話できるようにします。最後の引数は先ほどビルドしてDocker Hubにプッシュしたイメージ名です。
+   設定を見ると、コマンドは `docker`、引数は `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calculator` となっています。`--rm` フラグはコンテナ停止後に削除することを保証し、`-i` フラグはコンテナの標準入力と対話できるようにします。最後の引数は先ほどビルドしてDocker Hubにプッシュしたイメージ名です。
 
 ## Docker化したバージョンをテストする
 
