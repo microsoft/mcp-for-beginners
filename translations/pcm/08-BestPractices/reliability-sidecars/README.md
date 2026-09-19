@@ -236,7 +236,6 @@ Predict result before you run di tests:
 | Path | Result after retry | Ticket count |
 | --- | --- | --- |
 | Blind retry | E go create `T-0002` after lose di response for `T-0001` | 2 |
-
 | Guarded retry | Finds and returns `T-0001` | 1 |
 
 Run:

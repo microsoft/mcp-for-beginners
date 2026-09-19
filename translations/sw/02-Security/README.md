@@ -81,7 +81,6 @@ Kwa **mafunzo ya vitendo ya usalama**, tunapendekeza sana **Warsha ya Mkutano wa
 | **MCP04** | Mashambulio kwa Mnyororo wa Usambazaji wa Programu & Mabadiliko ya Tegemezi | GitHub Advanced Security, ukaguzi wa tegemezi |
 | **MCP05** | Sindano na Utekelezaji wa Amri | Uthibitishaji wa data, kuweka kizuizi salama |
 | **MCP06** | Kupotoshwa kwa Mtiririko wa Nia | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | Uthibitisho na Uidhinishaji Usio wa Kutosha | Azure Entra ID, OAuth 2.1 na PKCE |
 | **MCP08** | Ukosefu wa Ukaguzi na Telemetri | Azure Monitor, Application Insights |
 | **MCP09** | Seva za MCP za Kivuli | Udhibiti wa Kituo cha API, upunguzaji wa mtandao |

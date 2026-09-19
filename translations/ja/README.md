@@ -185,7 +185,6 @@ MCPはAIアプリケーションのためのこの標準化を提供します。
 | 4.1 | ページネーション | カーソルベースのページネーションで大規模結果セットを扱う | [Guide](./04-PracticalImplementation/pagination/README.md) |
 | 05 | MCPの高度なトピック | マルチモーダルAI、スケーリング、エンタープライズ利用 | [Read more](./05-AdvancedTopics/README.md) |
 | 5.1 | Azure統合 | AzureとのMCP統合 | [Guide](./05-AdvancedTopics/mcp-integration/README.md) |
-
 | 5.2 | マルチモダリティ | 複数のモダリティを扱う | [ガイド](./05-AdvancedTopics/mcp-multi-modality/README.md) |
 | 5.3 | OAuth2 デモ | OAuth2 認証の実装 | [ガイド](./05-AdvancedTopics/mcp-oauth2-demo/README.md) |
 | 5.4 | ルートコンテキスト | ルートコンテキストの理解と実装 | [ガイド](./05-AdvancedTopics/mcp-root-contexts/README.md) |

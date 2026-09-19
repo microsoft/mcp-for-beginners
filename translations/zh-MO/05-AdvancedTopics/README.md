@@ -39,7 +39,6 @@ _(點擊上方圖片觀看本課程影片)_
 | [5.6 Sampling](./mcp-sampling/README.md) | 取樣 | 學習傳承 `2025-11-25` 的取樣原語與目前的遷移方案（於 `2026-07-28` 權廢止） |
 | [5.7 Scaling](./mcp-scaling/README.md) | 擴展 | 了解擴展方式 |
 | [5.8 Security](./mcp-security/README.md) | 安全 | 保護您的 MCP 伺服器 |
-
 | [5.9 網絡搜索範例](./web-search-mcp/README.md) | 網絡搜索 MCP | Python MCP 伺服器和客戶端整合 SerpAPI，實現實時網頁、新聞、產品搜索和問答。展示多工具協調、外部 API 整合及強健的錯誤處理。 |
 | [5.10 實時串流](./mcp-realtimestreaming/README.md) | 串流  | 實時數據串流已成為當今數據驅動世界的核心，企業和應用程式需要即時取得資訊以作出及時決策。|
 | [5.11 實時網絡搜索](./mcp-realtimesearch/README.md) | 網絡搜索 | 實時網絡搜索如何通過 MCP 提供標準化的方法，於 AI 模型、搜索引擎及應用程式間達成上下文管理。| 

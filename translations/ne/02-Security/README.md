@@ -81,7 +81,6 @@ _(यस पाठको भिडियो हेर्न माथिको �
 | **MCP04** | सफ्टवेयर आपूर्ति श्रृंखला आक्रमण र निर्भरता छेउछाउ | GitHub Advanced Security, निर्भरता स्क्यानिङ |
 | **MCP05** | आदेश इन्जेक्सन र कार्यान्वयन | इनपुट मान्यता, स्यान्डबक्सिङ |
 | **MCP06** | आशय प्रवाह उल्टफेर | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | अपर्याप्त प्रमाणीकरण र प्राधिकरण | Azure Entra ID, OAuth 2.1 with PKCE |
 | **MCP08** | लेखा परीक्षण र टेलीमेट्रीको अभाव | Azure Monitor, Application Insights |
 | **MCP09** | छायाँ MCP सर्भरहरू | API Center शासन, नेटवर्क पृथक्करण |

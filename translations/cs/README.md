@@ -225,7 +225,6 @@ Jednou z nejzajímavějších částí učení MCP je vidět, jak se vaše schop
 
 | Jazyk | Popis | Odkaz |
 |----------|-------------|------|
-
 | C# | MCP Server Příklad | [Zobrazit kód](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP Kalkulačka | [Zobrazit kód](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP Demo | [Zobrazit kód](./03-GettingStarted/samples/javascript/README.md) |

@@ -82,7 +82,6 @@ Model Context Protocol (MCP) သည် AI သုံးထားသော အပ�
 | **MCP04** | ဆော့ဖ်ဝဲလ် supply chain တိုက်ခိုက်မှုများနှင့် dependency ချိုးဖောက်မှု | GitHub Advanced Security, dependency စစ်ဆေးမှု |
 | **MCP05** | Command Injection နှင့် အကောင်အထည်ဖော်မှု | Input အတည်ပြုချက်, sandboxing |
 | **MCP06** | ရည်ရွယ်ချက်လှည့်လည်မှု | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | အတည်ပြုစစ်ေဆးခြင်းနှင့် အတည်ပြုခွင့်မပြည့်စုံမှု | Azure Entra ID, PKCE ဖြင့် OAuth 2.1 |
 | **MCP08** | စစ်ဆေးမှုနှင့် တယ်လီမက်ထရီ မရှိခြင်း | Azure Monitor, Application Insights |
 | **MCP09** | အမှောင်အမြွှာ MCP ဆာဗာများ | API Center အုပ်ချုပ်မှု, ကွန်ရက်သီးခြားမှု |

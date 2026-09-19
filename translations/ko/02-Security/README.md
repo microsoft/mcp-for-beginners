@@ -81,7 +81,6 @@ _(위 이미지 클릭 시 본 강의 영상 시청)_
 | **MCP04** | 소프트웨어 공급망 공격 및 의존성 변조 | GitHub Advanced Security, 의존성 스캔 |
 | **MCP05** | 명령어 인젝션 및 실행 | 입력 검증, 샌드박스 |
 | **MCP06** | 의도 흐름 전복 | Azure AI 콘텐츠 안전, Prompt Shields |
-
 | **MCP07** | 인증 및 권한 부여 불충분 | Azure Entra ID, PKCE가 포함된 OAuth 2.1 |
 | **MCP08** | 감사 및 원격 측정 부족 | Azure Monitor, Application Insights |
 | **MCP09** | 섀도우 MCP 서버 | API 센터 거버넌스, 네트워크 격리 |

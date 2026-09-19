@@ -178,7 +178,6 @@ O nosso servidor MCP implementa uma arquitetura em camadas otimizada para integr
 |-------------|-------------------|-------------|
 | **Base de Dados** | Azure Database for PostgreSQL | Serviço gerido de base de dados |
 | **Contentor** | Azure Container Apps | Alojamento serverless de contentores |
-
 | **Serviços de IA** | Microsoft Foundry | Modelos e endpoints OpenAI |
 | **Monitorização** | Application Insights | Observabilidade e diagnóstico |
 | **Segurança** | Azure Key Vault | Gestão de segredos e configuração |

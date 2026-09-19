@@ -81,7 +81,6 @@ Model Context Protocol (MCP) శక్తివంతమైన కొత్త �
 | **MCP04** | సాఫ్ట్‌వేర్ సరఫరా గొలుసు దాడులు & ఆధార పరిమాణం చెత్త | GitHub Advanced Security, ఆధార స్కానింగ్ |
 | **MCP05** | కమాండ్ ఇంజెక్షన్ & అమలు | ఇన్‌పుట్ ధృవీకరణ, శాండ్బాక్సింగ్ |
 | **MCP06** | ఉద్దేశ్య ప్రవాహం వ్యతిరేకం | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | ఆగిపోయిన ధృవీకరణ & అనుమతి | Azure Entra ID, OAuth 2.1 తో PKCE |
 | **MCP08** | ఆడిట్ మరియు టెలిమెట్రీ లో కొరత | Azure Monitor, Application Insights |
 | **MCP09** | షాడో MCP సర్వర్లు | API సెంటర్ పాలన, నెట్‌వర్క్ త్వరణం |

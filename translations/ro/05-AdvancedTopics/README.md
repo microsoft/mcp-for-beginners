@@ -39,7 +39,6 @@ Până la finalul acestei lecții, vei putea:
 | [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Învață despre primitiva legacy `2025-11-25` Sampling și opțiunile curente de migrație (deprecate în `2026-07-28`) |
 | [5.7 Scalare](./mcp-scaling/README.md) | Scalare  | Învață despre scalare |
 | [5.8 Securitate](./mcp-security/README.md) | Securitate  | Securizează-ți serverul MCP |
-
 | [5.9 Exemplu căutare web](./web-search-mcp/README.md) | Web Search MCP | Server și client MCP Python integrând SerpAPI pentru căutare web, știri, produse și întrebări și răspunsuri în timp real. Demonstrează orchestrarea multiplă a instrumentelor, integrarea API-urilor externe și gestionarea robustă a erorilor. |
 | [5.10 Streaming în timp real](./mcp-realtimestreaming/README.md) | Streaming  | Streaming-ul de date în timp real a devenit esențial în lumea actuală bazată pe date, unde companiile și aplicațiile necesită acces imediat la informații pentru a lua decizii în timp util.|
 | [5.11 Căutare web în timp real](./mcp-realtimesearch/README.md) | Web Search | Cum transformă MCP căutarea web în timp real, oferind o abordare standardizată a gestionării contextului între modele AI, motoare de căutare și aplicații.| 

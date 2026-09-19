@@ -81,7 +81,6 @@ Tõhusa **praktikal põhineva turvakoolituse** jaoks soovitame soojalt **MCP Tur
 | **MCP04** | Tarkvara tarneahela rünnakud ja sõltuvuste rikkumised | GitHub Advanced Security, sõltuvuste skanneerimine |
 | **MCP05** | Käskude süstimine ja käitamine | Sisendi valideerimine, liivakastimine |
 | **MCP06** | Eesmärgipõhine voo alistamine | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | Ebapiisav autentimine ja volitamine | Azure Entra ID, OAuth 2.1 koos PKCE-ga |
 | **MCP08** | Auditite ja telemeetria puudumine | Azure Monitor, Application Insights |
 | **MCP09** | Varjatud MCP serverid | API Centeri haldus, võrgu isoleerimine |

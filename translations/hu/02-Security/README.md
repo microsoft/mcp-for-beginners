@@ -81,7 +81,6 @@ A [OWASP MCP Azure Biztonsági Útmutató](https://microsoft.github.io/mcp-azure
 | **MCP04** | Szoftver ellátási lánc támadások és függőség manipulálás | GitHub Advanced Security, függőség szkennelés |
 | **MCP05** | Parancs injekció és végrehajtás | Bemeneti érvényesítés, sandboxing |
 | **MCP06** | Szándék áramló aláásás | Azure AI Content Safety, Prompt Shields |
-
 | **MCP07** | Nem megfelelő hitelesítés és engedélyezés | Azure Entra ID, OAuth 2.1 PKCE-vel |
 | **MCP08** | Auditálás és telemetria hiánya | Azure Monitor, Application Insights |
 | **MCP09** | Árnyék MCP szerverek | API Center irányítás, hálózati izoláció |

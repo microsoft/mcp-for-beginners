@@ -81,7 +81,6 @@ Model Context Protocol (MCP) は、AI駆動アプリケーションに強力な�
 | **MCP04** | ソフトウェアサプライチェーン攻撃および依存関係改ざん | GitHub Advanced Security、依存関係スキャン |
 | **MCP05** | コマンドインジェクションと実行 | 入力検証、サンドボックス |
 | **MCP06** | 意図フローの攪乱 | Azure AI Content Safety、Prompt Shields |
-
 | **MCP07** | 不十分な認証および認可 | Azure Entra ID、PKCE対応OAuth 2.1 |
 | **MCP08** | 監査およびテレメトリの欠如 | Azure Monitor、Application Insights |
 | **MCP09** | シャドウMCPサーバー | APIセンターガバナンス、ネットワーク分離 |

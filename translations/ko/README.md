@@ -225,7 +225,6 @@ MCP를 배우는 가장 흥미로운 부분 중 하나는 코드 실력이 점�
 
 | 언어 | 설명 | 링크 |
 |----------|-------------|------|
-
 | C# | MCP 서버 예제 | [코드 보기](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP 계산기 | [코드 보기](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP 데모 | [코드 보기](./03-GettingStarted/samples/javascript/README.md) |
