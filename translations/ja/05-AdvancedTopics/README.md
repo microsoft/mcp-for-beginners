@@ -82,9 +82,9 @@ _(このレッスンのビデオを見るには上の画像をクリックして
 
 ## 次に進むには
 
-このモジュールのレッスンを[5.1 MCP Integration](./mcp-integration/README.md)から開始してください
+このモジュールのレッスンを[5.1 MCP 統合](./mcp-integration/README.md)から開始してください
 
-このモジュールを完了したら、次は[Module 6: Community Contributions](../06-CommunityContributions/README.md)へ進みましょう
+このモジュールを完了したら、次は[モジュール6: コミュニティと貢献](../06-CommunityContributions/README.md)へ進みましょう
 
 ---
 
