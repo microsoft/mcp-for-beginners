@@ -8,7 +8,7 @@ Model Context Protocol (MCP) is an open standard that enables AI applications to
 
 This integration combines the flexibility of MCP's tool ecosystem with Microsoft Foundry's robust agent framework, providing enterprise-grade AI solutions with extensive customization capabilities.
 
-> **Note:**  If you want to use MCP in Microsoft Foundry Agent Service, currently only the following regions are supported: westus, westus2, uaenorth, southindia and switzerlandnorth
+> **Note:** If you want to use MCP in Microsoft Foundry Agent Service, currently only the following regions are supported: westus, westus2, uaenorth, southindia and switzerlandnorth
 
 ## Learning Objectives
 
