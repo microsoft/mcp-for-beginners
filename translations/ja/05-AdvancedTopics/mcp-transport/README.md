@@ -842,7 +842,7 @@ public async Task EventHubsTransport_IntegrationTest()
 
 
 ## 次に読むべき項目
-- [6. Community Contributions](../../06-CommunityContributions/README.md)
+- [6. コミュニティと貢献](../../06-CommunityContributions/README.md)
 
 ---
 
