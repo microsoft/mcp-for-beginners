@@ -410,7 +410,7 @@ MCPサーバー用の新しいアプリケーションを登録します。
 
 ## 次のステップ
 
-- [5.13 Model Context Protocol (MCP) Integration with Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
+- [5.13 Model Context Protocol (MCP) と Microsoft Foundry の統合](../mcp-foundry-agent-integration/README.md)
 
 ---
 
