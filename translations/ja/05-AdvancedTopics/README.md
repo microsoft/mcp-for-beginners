@@ -24,25 +24,25 @@ _(このレッスンのビデオを見るには上の画像をクリックして
 
 ## レッスンとサンプルプロジェクト
 
-| Link | タイトル | 説明 |
+| リンク | タイトル | 説明 |
 |------|-------|-------------|
-| [5.1 Integration with Azure](./mcp-integration/README.md) | Azureとの統合 | Azure上のMCPサーバーとの統合方法を学ぶ |
-| [5.2 Multi modal sample](./mcp-multi-modality/README.md) | MCPマルチモーダルサンプル | 音声、画像、マルチモーダル応答のサンプル |
-| [5.3 MCP OAuth2 sample](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 デモ | OAuth2を利用した最小限のSpring Bootアプリ。Authorization ServerとResource Server両方の役割を示し、安全なトークン発行、保護されたエンドポイント、Azure Container Appsへの展開、API管理統合を実演。 |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | ルートコンテキスト | ルートコンテキストについて学び、その実装方法を習得（`2026-07-28`リリース候補で非推奨; `2025-11-25`までは有効） |
-| [5.5 Routing](./mcp-routing/README.md) | ルーティング | さまざまなルーティングの種類を学ぶ |
-| [5.6 Sampling](./mcp-sampling/README.md) | サンプリング | サンプリングの扱い方を学ぶ（`2026-07-28`リリース候補で非推奨; `2025-11-25`までは有効） |
-| [5.7 Scaling](./mcp-scaling/README.md) | スケーリング | スケーリングについて学ぶ |
-| [5.8 Security](./mcp-security/README.md) | セキュリティ | MCPサーバーを安全に保つ方法 |
-| [5.9 Web Search sample](./web-search-mcp/README.md) | Web検索MCP | SerpAPIと連携するPythonのMCPサーバーとクライアントの例。リアルタイムのウェブ、ニュース、製品検索、Q&Aに対応。マルチツールのオーケストレーション、外部API連携、堅牢なエラー処理を実証。 |
-| [5.10 Realtime Streaming](./mcp-realtimestreaming/README.md) | ストリーミング | 現代のデータ駆動型世界では、ビジネスやアプリケーションがタイムリーな意思決定のために即時情報アクセスを必要とし、リアルタイムデータストリーミングが不可欠となっている |
-| [5.11 Realtime Web Search](./mcp-realtimesearch/README.md) | ウェブ検索 | MCPが提供する標準化されたコンテキスト管理を通じて、AIモデルや検索エンジン、アプリケーション間でリアルタイムウェブ検索がどのように変革されるかを学ぶ |
-| [5.12  Entra ID Authentication for Model Context Protocol Servers](./mcp-security-entra/README.md) | Entra ID認証 | Microsoft Entra IDは認証・アクセス管理の強力なクラウドベースソリューション。許可されたユーザーとアプリケーションのみがMCPサーバーとやり取りできるよう支援。 |
-| [5.13 Microsoft Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry統合 | Model Context ProtocolサーバーをMicrosoft Foundryエージェントと統合する方法を学ぶ。標準化された外部データソース接続により強力なツールオーケストレーションとエンタープライズAI機能を実現。 |
-| [5.14 Context Engineering](./mcp-contextengineering/README.md) | コンテキストエンジニアリング | MCPサーバーの将来におけるコンテキストエンジニアリング技術の可能性。コンテキスト最適化、動的コンテキスト管理、効果的なプロンプトエンジニアリング戦略を含む。 |
-| [5.15 MCP Custom Transport](./mcp-transport/README.md) | カスタムトランスポート | 特殊なMCP通信シナリオ向けにカスタムトランスポート機構を実装する方法を学ぶ。 |
-| [5.16 Protocol Features Deep Dive](./mcp-protocol-features/README.md) | プロトコル機能 | 進捗通知、リクエストキャンセル、リソーステンプレート、エラーハンドリングパターンなど、高度なプロトコル機能をマスターする。 |
-| [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | 対立するエージェント | 対立する立場の2エージェントが単一のMCPツールセットを共有し、幻覚の検出、エッジケースの表出、構造化された討論を通じてより精度の高い出力を生成。 |
+| [5.1 Azure との統合e](./mcp-integration/README.md) | Azureとの統合 | Azure上のMCPサーバーとの統合方法を学ぶ |
+| [5.2 マルチモーダル・サンプル](./mcp-multi-modality/README.md) | MCPマルチモーダルサンプル | 音声、画像、マルチモーダル応答のサンプル |
+| [5.3 MCP OAuth2 サンプル](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 デモ | OAuth2を利用した最小限のSpring Bootアプリ。Authorization ServerとResource Server両方の役割を示し、安全なトークン発行、保護されたエンドポイント、Azure Container Appsへの展開、API管理統合を実演。 |
+| [5.4 ルートコンテキスト](./mcp-root-contexts/README.md) | ルートコンテキスト | ルートコンテキストについて学び、その実装方法を習得（`2026-07-28`リリース候補で非推奨; `2025-11-25`までは有効） |
+| [5.5 ルーティング](./mcp-routing/README.md) | ルーティング | さまざまなルーティングの種類を学ぶ |
+| [5.6 サンプリング](./mcp-sampling/README.md) | サンプリング | サンプリングの扱い方を学ぶ（`2026-07-28`リリース候補で非推奨; `2025-11-25`までは有効） |
+| [5.7 スケーリング](./mcp-scaling/README.md) | スケーリング | スケーリングについて学ぶ |
+| [5.8 セキュリティ](./mcp-security/README.md) | セキュリティ | MCPサーバーを安全に保つ方法 |
+| [5.9 Web 検索サンプル](./web-search-mcp/README.md) | Web検索MCP | SerpAPIと連携するPythonのMCPサーバーとクライアントの例。リアルタイムのウェブ、ニュース、製品検索、Q&Aに対応。マルチツールのオーケストレーション、外部API連携、堅牢なエラー処理を実証。 |
+| [5.10 リアルタイム・ストリーミング](./mcp-realtimestreaming/README.md) | ストリーミング | 現代のデータ駆動型世界では、ビジネスやアプリケーションがタイムリーな意思決定のために即時情報アクセスを必要とし、リアルタイムデータストリーミングが不可欠となっている |
+| [5.11 リアルタイム Web 検索証](./mcp-realtimesearch/README.md) | ウェブ検索 | MCPが提供する標準化されたコンテキスト管理を通じて、AIモデルや検索エンジン、アプリケーション間でリアルタイムウェブ検索がどのように変革されるかを学ぶ |
+| [5.12 Model Context Protocol サーバー向け Entra ID 認証](./mcp-security-entra/README.md) | Entra ID認証 | Microsoft Entra IDは認証・アクセス管理の強力なクラウドベースソリューション。許可されたユーザーとアプリケーションのみがMCPサーバーとやり取りできるよう支援。 |
+| [5.13 Microsoft Foundry エージェントとの統合](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry統合 | Model Context ProtocolサーバーをMicrosoft Foundryエージェントと統合する方法を学ぶ。標準化された外部データソース接続により強力なツールオーケストレーションとエンタープライズAI機能を実現。 |
+| [5.14 コンテキスト・エンジニアリング](./mcp-contextengineering/README.md) | コンテキストエンジニアリング | MCPサーバーの将来におけるコンテキストエンジニアリング技術の可能性。コンテキスト最適化、動的コンテキスト管理、効果的なプロンプトエンジニアリング戦略を含む。 |
+| [5.15 MCP カスタム・トランスポート](./mcp-transport/README.md) | カスタムトランスポート | 特殊なMCP通信シナリオ向けにカスタムトランスポート機構を実装する方法を学ぶ。 |
+| [5.16 プロトコル機能の詳細解説](./mcp-protocol-features/README.md) | プロトコル機能 | 進捗通知、リクエストキャンセル、リソーステンプレート、エラーハンドリングパターンなど、高度なプロトコル機能をマスターする。 |
+| [5.17 敵対的マルチエージェント推論](./mcp-adversarial-agents/README.md) | 対立するエージェント | 対立する立場の2エージェントが単一のMCPツールセットを共有し、幻覚の検出、エッジケースの表出、構造化された討論を通じてより精度の高い出力を生成。 |
 
 > **MCP仕様 2025-11-25の新機能**: 仕様には実験的な<strong>Tasks</strong>（進捗追跡付きの長時間実行操作）、<strong>ツール注釈</strong>（安全性のためのツールの振る舞いに関するメタデータ）、**URLモード誘導**（クライアントからの特定URLコンテンツ要求）、および拡張された<strong>ルート</strong>（ワークスペースコンテキスト管理）が含まれています。詳細は[MCP仕様の変更履歴](https://spec.modelcontextprotocol.io/)を参照してください。
 
@@ -82,9 +82,9 @@ _(このレッスンのビデオを見るには上の画像をクリックして
 
 ## 次に進むには
 
-このモジュールのレッスンを[5.1 MCP Integration](./mcp-integration/README.md)から開始してください
+このモジュールのレッスンを[5.1 Model Context Protocol（MCP）統合](./mcp-integration/README.md)から開始してください
 
-このモジュールを完了したら、次は[Module 6: Community Contributions](../06-CommunityContributions/README.md)へ進みましょう
+このモジュールを完了したら、次は[モジュール6: コミュニティと貢献](../06-CommunityContributions/README.md)へ進みましょう
 
 ---
 
