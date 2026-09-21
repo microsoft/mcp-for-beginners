@@ -26,7 +26,7 @@ _(このレッスンのビデオを見るには上の画像をクリックして
 
 | リンク | タイトル | 説明 |
 |------|-------|-------------|
-| [5.1 Azure との統合e](./mcp-integration/README.md) | Azureとの統合 | Azure上のMCPサーバーとの統合方法を学ぶ |
+| [5.1 Azure との統合](./mcp-integration/README.md) | Azureとの統合 | Azure上のMCPサーバーとの統合方法を学ぶ |
 | [5.2 マルチモーダル・サンプル](./mcp-multi-modality/README.md) | MCPマルチモーダルサンプル | 音声、画像、マルチモーダル応答のサンプル |
 | [5.3 MCP OAuth2 サンプル](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 デモ | OAuth2を利用した最小限のSpring Bootアプリ。Authorization ServerとResource Server両方の役割を示し、安全なトークン発行、保護されたエンドポイント、Azure Container Appsへの展開、API管理統合を実演。 |
 | [5.4 ルートコンテキスト](./mcp-root-contexts/README.md) | ルートコンテキスト | ルートコンテキストについて学び、その実装方法を習得（`2026-07-28`リリース候補で非推奨; `2025-11-25`までは有効） |
