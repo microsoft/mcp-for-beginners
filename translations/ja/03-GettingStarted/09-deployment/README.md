@@ -102,7 +102,7 @@ Azure Container AppsはMCPサーバーのデプロイをサポートしていま
 
 ## 次に進むこと
 
-- 次へ：[高度なサーバートピック](../10-advanced/README.md)
+- 次へ：[サーバーに関する高度なトピック](../10-advanced/README.md)
 
 ---
 
