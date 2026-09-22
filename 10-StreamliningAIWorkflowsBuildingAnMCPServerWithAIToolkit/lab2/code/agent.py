@@ -121,11 +121,11 @@ class MCPClient:
             hasToolCall = False
 
             if response.choices[0].message.tool_calls:
+                messages.append(response.choices[0].message.model_dump(exclude_none=True))
                 for tool in response.choices[0].message.tool_calls:
                     hasToolCall = True
                     tool_name = tool.function.name
                     tool_args = json.loads(tool.function.arguments)
-                    messages.append(response.choices[0].message.model_dump(exclude_none=True))
                 
                 
                     # Find the appropriate server for this tool
