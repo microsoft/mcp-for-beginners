@@ -225,7 +225,6 @@ Jedan od najuzbudljivijih dijelova učenja MCP-a je vidjeti kako se vaše vješt
 
 | Jezik | Opis | Poveznica |
 |----------|-------------|------|
-
 | C# | MCP Primjer poslužitelja | [Pogledaj kod](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP Kalkulator | [Pogledaj kod](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP Demo | [Pogledaj kod](./03-GettingStarted/samples/javascript/README.md) |

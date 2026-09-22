@@ -1,4 +1,4 @@
-# A minta futtatása
+# Ennek a példának a futtatása
 
 Ajánlott telepíteni az `uv`-t, de nem kötelező, lásd a [utasításokat](https://docs.astral.sh/uv/#highlights)
 
@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- A virtuális környezet aktiválása
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- A függőségek telepítése
@@ -20,28 +20,32 @@ venv\Scrips\activate
 pip install "mcp[cli]"
 ```
 
-## -3- A minta futtatása
+## -3- A példa futtatása
 
 ```bash
 python client.py
 ```
 
-Hasonló kimenetet kell látnod:
+Hasonló kimenetet kell látnia:
 
 ```text
 LISTING RESOURCES
 Resource:  ('meta', None)
 Resource:  ('nextCursor', None)
 Resource:  ('resources', [])
-                    INFO     Processing request of type ListToolsRequest                                                                               server.py:534
+INFO Processing request of type ListToolsRequest server.py:534
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-                    INFO     Processing request of type ReadResourceRequest                                                                            server.py:534
+INFO Processing request of type ReadResourceRequest server.py:534
 CALL TOOL
-                    INFO     Processing request of type CallToolRequest                                                                                server.py:534
+INFO Processing request of type CallToolRequest server.py:534
 [TextContent(type='text', text='8', annotations=None)]
 ```
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,53 +1,59 @@
-# 人気のあるMCPホストクライアントの設定
+# 人気のMCPホストクライアントの設定
 
-このガイドでは、人気のあるAIホストアプリケーションでMCPサーバーを設定および使用する方法について説明します。各ホストは独自の設定方式を持っていますが、一度設定すればすべて標準化されたプロトコルを使用してMCPサーバーと通信します。
+> [!NOTE]
+> `/sse`を指すホスト構成は、MCP `2025-11-25`用のレガシーなHTTP+SSEの例です。MCP `2026-07-28`の場合は、対応しているホストでStreamable HTTPを選択し、サーバーによって構成されたエンドポイントを使用してください。
+> 
+> 
 
-## MCPホストとは何ですか？
+このガイドは、人気のAIホストアプリケーションでMCPサーバーを構成および使用する方法を扱います。各ホストにはそれぞれの構成方法がありますが、一度設定すれば、すべて標準化されたプロトコルを使ってMCPサーバーと通信します。
 
-**MCPホスト**は、機能拡張のためにMCPサーバーに接続できるAIアプリケーションです。これはユーザーが操作する「フロントエンド」と考え、MCPサーバーは「バックエンド」のツールやデータを提供します。
+## MCPホストとは？
+
+<strong>MCPホスト</strong>とは、MCPサーバーに接続してその機能を拡張できるAIアプリケーションです。ユーザーが対話する「フロントエンド」として機能し、MCPサーバーは「バックエンド」としてツールやデータを提供します。
 
 ```mermaid
 flowchart LR
-    User[👤 ユーザー] --> Host[🖥️ MCP ホスト]
-    Host --> S1[MCP サーバー A]
-    Host --> S2[MCP サーバー B]
-    Host --> S3[MCP サーバー C]
+    User[👤 ユーザー] --> Host[🖥️ MCPホスト]
+    Host --> S1[MCPサーバーA]
+    Host --> S2[MCPサーバーB]
+    Host --> S3[MCPサーバーC]
     
-    subgraph "人気のホスト"
-        H1[クロード デスクトップ]
-        H2[VS コード]
+    subgraph 「人気のホスト」
+        H1[Claudeデスクトップ]
+        H2[VSコード]
         H3[カーソル]
         H4[クライン]
         H5[ウィンドサーフ]
     end
 ```
+
 ## 前提条件
 
-- 接続するMCPサーバー（[Module 3.1 - First Server](../01-first-server/README.md)を参照）
-- お使いのシステムにホストアプリケーションがインストールされていること
-- JSON構成ファイルに関する基本的な知識
+- 接続するMCPサーバー（[Module 3.1 - First Server](../01-first-server/README.md)参照）
+- システムにインストールされたホストアプリケーション
+- JSON構成ファイルの基本的な知識
 
 ---
 
 ## 1. Claude Desktop
 
-**Claude Desktop**はAnthropicの公式デスクトップアプリで、ネイティブにMCPをサポートしています。
+<strong>Claude Desktop</strong>はAnthropicの公式デスクトップアプリケーションで、MCPをネイティブにサポートしています。
 
 ### インストール
 
-1. [claude.ai/download](https://claude.ai/download)からClaude Desktopをダウンロード
-2. インストールしてAnthropicアカウントでサインイン
+1. [claude.ai/download](https://claude.ai/download)からClaude Desktopをダウンロードします
+2. インストールしてAnthropicアカウントでサインインします
 
-### 設定
+### 構成
 
-Claude DesktopはMCPサーバーを定義するJSON構成ファイルを使います。
+Claude DesktopはJSON構成ファイルを使ってMCPサーバーを定義します。
 
-**構成ファイルの場所:**
+**構成ファイルの場所：**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
 
-**設定例:**
+**構成例：**
 
 ```json
 {
@@ -74,7 +80,7 @@ Claude DesktopはMCPサーバーを定義するJSON構成ファイルを使い�
 }
 ```
 
-### 設定オプション
+### 構成オプション
 
 | フィールド | 説明 | 例 |
 |-------|-------------|---------|
@@ -85,27 +91,27 @@ Claude DesktopはMCPサーバーを定義するJSON構成ファイルを使い�
 
 ### 設定のテスト
 
-1. 構成ファイルを保存
-2. Claude Desktopを完全に再起動（終了して再度開く）
-3. 新しい会話を開く
-4. 接続済みサーバーを示す🔌アイコンを確認
-5. Claudeにツールの使用を頼んでみる
+1. 構成ファイルを保存します
+2. Claude Desktopを完全に再起動します（終了して再オープン）
+3. 新しい会話を開きます
+4. 接続済みサーバーを示す🔌アイコンを確認します
+5. Claudeにツール使用を試みます
 
 ### Claude Desktopのトラブルシューティング
 
-**サーバーが表示されない場合:**
-- JSONバリデーターで構成ファイルの構文を確認
-- コマンドパスが正しいか確認
-- Claude Desktopログの確認：ヘルプ → ログを表示
+**サーバーが表示されない場合：**
+- JSONバリデーターで構成ファイルの構文を確認します
+- コマンドパスが正しいか確認します
+- Claude Desktopのログをチェックします：ヘルプ → ログの表示
 
-**起動時にサーバーがクラッシュする場合:**
-- 端末で手動でサーバーをテスト
-- 環境変数が正しく設定されているか確認
-- 依存関係が全てインストールされているか確認
+**起動時にサーバーがクラッシュする場合：**
+- まずターミナルでサーバーを手動でテストします
+- 環境変数が正しく設定されているか確認します
+- すべての依存関係がインストールされているか確認します
 
 ---
 
-## 2. GitHub Copilot搭載のVS Code
+## 2. GitHub Copilot付きVS Code
 
 VS CodeはGitHub Copilot Chat拡張機能を通じてMCPをサポートしています。
 
@@ -115,11 +121,11 @@ VS CodeはGitHub Copilot Chat拡張機能を通じてMCPをサポートしてい
 2. GitHub Copilot拡張機能がインストールされていること
 3. GitHub Copilot Chat拡張機能がインストールされていること
 
-### 設定
+### 構成
 
-VS Codeはワークスペースまたはユーザー設定の`.vscode/mcp.json`を使用します。
+VS Codeはワークスペースまたはユーザー設定の `.vscode/mcp.json` を使用します。
 
-**ワークスペース設定** (`.vscode/mcp.json`):
+<strong>ワークスペース構成</strong> (`.vscode/mcp.json`):
 
 ```json
 {
@@ -137,7 +143,7 @@ VS Codeはワークスペースまたはユーザー設定の`.vscode/mcp.json`�
 }
 ```
 
-**ユーザー設定** (`settings.json`):
+<strong>ユーザー設定</strong> (`settings.json`):
 
 ```json
 {
@@ -152,40 +158,40 @@ VS Codeはワークスペースまたはユーザー設定の`.vscode/mcp.json`�
 }
 ```
 
-### VS CodeでのMCPの使い方
+### VS CodeでのMCPの使用
 
 1. Copilot Chatパネルを開く（Ctrl+Shift+I / Cmd+Shift+I）
-2. `@`を入力して利用可能なMCPツールを表示
-3. 自然言語でツールを呼び出す：「計算機で25 * 48を計算して」
+2. `@`と入力して利用可能なMCPツールを表示
+3. 自然言語でツールを呼び出す : 「電卓で25 × 48を計算して」
 
 ### VS Codeのトラブルシューティング
 
-**MCPサーバーが読み込まれない:**
-- 出力パネルの「MCP」タブでエラーログを確認
-- ウィンドウをリロード：Ctrl+Shift+P → 「Developer: Reload Window」
-- サーバーが単独で動作するか先に確認
+**MCPサーバーが読み込まれない場合：**
+- 出力パネル→「MCP」でエラーログを確認
+- ウィンドウをリロード：Ctrl+Shift+P→「Developer: Reload Window」
+- まずサーバーが単独で動作するか確認
 
 ---
 
 ## 3. Cursor
 
-**Cursor**はMCPサポートが組み込まれたAIファーストのコードエディタです。
+<strong>Cursor</strong>は、MCPサポートを組み込んだAI優先のコードエディターです。
 
 ### インストール
 
-1. [cursor.sh](https://cursor.sh)からCursorをダウンロード
-2. インストールしてサインイン
+1. [cursor.sh](https://cursor.sh)からCursorをダウンロードします
+2. インストールしてサインインします
 
-### 設定
+### 構成
 
-CursorはClaude Desktopに似た構成フォーマットを使用します。
+CursorはClaude Desktopと似た構成形式を使用します。
 
-**構成ファイルの場所:**
+**構成ファイルの場所：**
 - **macOS**: `~/.cursor/mcp.json`
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
 
-**設定例:**
+**構成例：**
 
 ```json
 {
@@ -205,17 +211,17 @@ CursorはClaude Desktopに似た構成フォーマットを使用します。
 }
 ```
 
-### CursorでのMCPの使い方
+### CursorでのMCPの使用
 
 1. CursorのAIチャットを開く（Ctrl+L / Cmd+L）
-2. MCPツールが自動的に提案に表示される
-3. 接続されたサーバーを使ってAIにタスクを依頼
+2. MCPツールが自動的に提案に表示されます
+3. 接続されたサーバーを使ってAIにタスクを依頼します
 
 ---
 
 ## 4. Cline（ターミナルベース）
 
-**Cline**はコマンドラインワークフローに最適な、ターミナルベースのMCPクライアントです。
+<strong>Cline</strong>はターミナルベースのMCPクライアントで、コマンドライン作業に最適です。
 
 ### インストール
 
@@ -223,25 +229,25 @@ CursorはClaude Desktopに似た構成フォーマットを使用します。
 npm install -g @anthropic/cline
 ```
 
-### 設定
+### 構成
 
 Clineは環境変数とコマンドライン引数を使用します。
 
-**環境変数の使用例:**
+**環境変数を使用する場合：**
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**コマンドライン引数の使用例:**
+**コマンドライン引数を使用する場合：**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
       --mcp-server "weather:node /path/to/weather/index.js"
 ```
 
-**構成ファイル** (`~/.clinerc`):
+<strong>構成ファイル</strong> (`~/.clinerc`):
 
 ```json
 {
@@ -261,10 +267,10 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 # インタラクティブセッションを開始する
 cline
 
-# MCPを用いた単一クエリ
+# MCPでの単一クエリ
 cline "Calculate the square root of 144 using the calculator"
 
-# 利用可能なツールを一覧表示する
+# 利用可能なツールをリストする
 cline --list-tools
 ```
 
@@ -272,22 +278,22 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf**はMCPサポート付きの別のAIコードエディタです。
+<strong>Windsurf</strong>は、MCPをサポートする別のAI搭載コードエディターです。
 
 ### インストール
 
-1. [codeium.com/windsurf](https://codeium.com/windsurf)からWindsurfをダウンロード
-2. インストールしてアカウント作成
+1. [codeium.com/windsurf](https://codeium.com/windsurf)からWindsurfをダウンロードします
+2. インストールしてアカウントを作成します
 
-### 設定
+### 構成
 
-Windsurfの設定はUIの設定画面から行います：
+Windsurfの構成は設定UIから管理します：
 
 1. 設定を開く（Ctrl+, / Cmd+,）
-2. 「MCP」で検索
+2. 「MCP」を検索
 3. 「settings.jsonで編集」をクリック
 
-**設定例:**
+**構成例：**
 
 ```json
 {
@@ -304,9 +310,9 @@ Windsurfの設定はUIの設定画面から行います：
 
 ---
 
-## トランスポートタイプ比較
+## トランスポートタイプの比較
 
-ホストごとに対応するトランスポート方式は異なります：
+ホストによって対応するトランスポートメカニズムは異なります：
 
 | ホスト | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
@@ -316,16 +322,16 @@ Windsurfの設定はUIの設定画面から行います：
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio**（標準入出力）：ホストが起動するローカルサーバーに最適
-**SSE/HTTP**: リモートサーバーや複数クライアントで共有するサーバーに最適
+**stdio**（標準入出力）：ホストが開始するローカルサーバーに最適
+**SSE/HTTP**：リモートサーバーまたは複数クライアントと共有されるサーバーに最適
 
 ---
 
 ## よくあるトラブルシューティング
 
-### サーバーが起動しない場合
+### サーバーが起動しない
 
-1. **まずサーバーを手動でテスト:**
+1. **まずサーバーを手動でテスト：**
    ```bash
    # Python用
    python -m your_server_module
@@ -334,48 +340,48 @@ Windsurfの設定はUIの設定画面から行います：
    node /path/to/server/index.js
    ```
 
-2. **コマンドパスをチェック:**
-   - 可能な限り絶対パスを使用
-   - 実行ファイルがPATHにあることを確認
+2. **コマンドパスの確認：**
+   - 可能なら絶対パスを使用
+   - 実行ファイルがPATHに含まれていることを確認
 
-3. **依存関係を確認:**
+3. **依存関係の確認：**
    ```bash
-   # Python用
+   # パイソン
    pip list | grep mcp
    
-   # Node.js用
+   # ノード.js
    npm list @modelcontextprotocol/sdk
    ```
 
-### サーバーは接続するがツールが動作しない場合
+### サーバーには接続できるがツールが動作しない
 
-1. **サーバーログを確認** - 多くのホストにロギング機能あり
-2. **ツールの登録を確認** - MCP Inspectorでテスト可能
-3. **権限を確認** - 一部ツールはファイルやネットワークアクセスが必要
+1. <strong>サーバーログを確認</strong> - 多くのホストにログ機能があります
+2. <strong>ツール登録の確認</strong> - MCP Inspectorでテスト
+3. <strong>権限設定を確認</strong> - 一部ツールはファイル/ネットワークアクセスが必要
 
-### 環境変数が渡らない
+### 環境変数が渡されない
 
-- 一部ホストは環境変数をサニタイズする
-- `env`設定フィールドを明示的に利用
-- 構成ファイルに機密情報を入れない（シークレット管理を使用）
+- 一部ホストは環境変数をサニタイズします
+- `env`構成フィールドを明示的に使用してください
+- 機密情報は設定ファイルに含めず（シークレット管理を使用）
 
 ---
 
 ## セキュリティのベストプラクティス
 
-1. **APIキーを構成ファイルに決してコミットしない**
-2. **機密情報は環境変数で管理する**
-3. **サーバー権限は必要最低限に限定する**
-4. **サーバーコードをレビューしてからシステムにアクセス権を与える**
-5. **ファイルシステムおよびネットワークアクセスには許可リストを利用する**
+1. **APIキーを設定ファイルに絶対にコミットしないでください**
+2. <strong>機密情報は環境変数で管理してください</strong>
+3. <strong>サーバーの権限は必要最小限に制限してください</strong>
+4. <strong>システムアクセスを許可する前にサーバーコードをレビューしてください</strong>
+5. <strong>ファイルシステムやネットワークアクセスには許可リストを使用してください</strong>
 
 ---
 
-## 次に進むために
+## 次のステップ
 
-- [3.13 - MCP Inspectorでデバッグ](../13-mcp-inspector/README.md)
-- [3.1 - 最初のMCPサーバーを作成](../01-first-server/README.md)
-- [モジュール 5 - 高度なトピック](../../05-AdvancedTopics/README.md)
+- [3.13 - MCP Inspectorによるデバッグ](../13-mcp-inspector/README.md)
+- [3.1 - 最初のMCPサーバーの作成](../01-first-server/README.md)
+- [Module 5 - 高度なトピック](../../05-AdvancedTopics/README.md)
 
 ---
 
@@ -383,12 +389,12 @@ Windsurfの設定はUIの設定画面から行います：
 
 - [Claude Desktop MCPドキュメント](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP拡張機能](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP仕様 - トランスポート](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [MCP仕様 - トランスポート](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [公式MCPサーバーレジストリ](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責事項**：  
-本資料はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されています。正確性を期しておりますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文を権威ある情報源としてご参照ください。重要な情報については、専門の人間翻訳をご利用いただくことを推奨します。本翻訳の利用により生じたいかなる誤解や誤訳についても、当方は責任を負いかねます。
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

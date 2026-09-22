@@ -1,31 +1,37 @@
 # Népszerű MCP Host Kliensek Beállítása
 
-Ez az útmutató bemutatja, hogyan konfiguráljuk és használjuk az MCP szervereket népszerű AI hoszt alkalmazásokkal. Minden hosztnak megvan a maga konfigurációs módja, de egyszer beállítva mindegyik az MCP szerverekkel a szabványosított protokoll segítségével kommunikál.
+> [!NOTE]
+> A `/sse`-re mutató host konfigurációk a MCP `2025-11-25` verzióhoz tartozó hagyományos HTTP+SSE példák.
+> Az MCP `2026-07-28` esetén válassza a Streamable HTTP-t azokban a hosztokban, amelyek támogatják,
+> és használja a szerver által beállított végpontot.
+
+Ez az útmutató arra tér ki, hogyan lehet népszerű AI host alkalmazásokkal MCP szervereket konfigurálni és használni. Minden hostnak megvan a saját konfigurációs módja, de ha egyszer beállították, mindegyik szabványosított protokoll segítségével kommunikál az MCP szerverekkel.
 
 ## Mi az az MCP Host?
 
-Az **MCP Host** egy AI alkalmazás, amely képes csatlakozni MCP szerverekhez a képességeinek bővítéséhez. Gondolj rá úgy, mint a "felhasználói felületre", amellyel a felhasználók interakcióba lépnek, miközben az MCP szerverek biztosítják a "háttérben" működő eszközöket és adatokat.
+Az **MCP Host** egy olyan AI alkalmazás, amely képes kapcsolódni MCP szerverekhez képességeinek kibővítése érdekében. Olyan, mint a "front end", amelyet a felhasználók használnak, míg az MCP szerverek a "back end" eszközöket és adatokat szolgáltatják.
 
 ```mermaid
 flowchart LR
-    User[👤 Felhasználó] --> Host[🖥️ MCP Hoszt]
+    User[👤 Felhasználó] --> Host[🖥️ MCP Gazdagép]
     Host --> S1[MCP Szerver A]
     Host --> S2[MCP Szerver B]
     Host --> S3[MCP Szerver C]
     
-    subgraph "Népszerű hosztok"
-        H1[Claude Asztal]
-        H2[VS Kód]
+    subgraph "Népszerű gazdagépek"
+        H1[Claude Asztali]
+        H2[VS Code]
         H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
+
 ## Előfeltételek
 
-- Egy MCP szerver, amelyhez csatlakozni lehet (lásd: [3.1 modul - Első szerver](../01-first-server/README.md))
-- A hoszt alkalmazás telepítve a rendszereden
-- Alapvető ismeret JSON konfigurációs fájlokról
+- Egy MCP szerver, amelyhez kapcsolódni lehet (lásd [Module 3.1 - First Server](../01-first-server/README.md))
+- A host alkalmazás telepítve az Ön rendszerén
+- Alapvető ismeretek a JSON konfigurációs fájlokról
 
 ---
 
@@ -35,14 +41,14 @@ A **Claude Desktop** az Anthropic hivatalos asztali alkalmazása, amely natívan
 
 ### Telepítés
 
-1. Töltsd le a Claude Desktopot a [claude.ai/download](https://claude.ai/download) oldalról
-2. Telepítsd, majd jelentkezz be az Anthropic fiókoddal
+1. Töltse le a Claude Desktopot innen: [claude.ai/download](https://claude.ai/download)
+2. Telepítse, és jelentkezzen be Anthropic fiókjával
 
 ### Konfiguráció
 
-A Claude Desktop JSON konfigurációs fájlt használ az MCP szerverek meghatározásához.
+A Claude Desktop JSON konfigurációs fájlt használ az MCP szerverek definiálásához.
 
-**A konfigurációs fájl helye:**
+**Konfigurációs fájl helye:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
@@ -78,30 +84,30 @@ A Claude Desktop JSON konfigurációs fájlt használ az MCP szerverek meghatár
 
 | Mező | Leírás | Példa |
 |-------|-------------|---------|
-| `command` | A futtatandó végrehajtható fájl neve | `"python"`, `"node"`, `"npx"` |
+| `command` | A futtatandó végrehajtható fájl | `"python"`, `"node"`, `"npx"` |
 | `args` | Parancssori argumentumok | `["-m", "my_server"]` |
 | `env` | Környezeti változók | `{"API_KEY": "xxx"}` |
 | `cwd` | Munkakönyvtár | `"/path/to/server"` |
 
-### A beállítás tesztelése
+### A Beállítás Tesztelése
 
 1. Mentse el a konfigurációs fájlt
-2. Indítsa újra teljesen a Claude Desktopot (kilépés és újranyitás)
-3. Nyisson meg egy új beszélgetést
-4. Keresse a 🔌 ikont, ami a csatlakoztatott szervereket jelzi
-5. Próbálja meg kérni Claude-ot, hogy használja valamelyik eszközét
+2. Indítsa újra teljesen a Claude Desktopot (zárja be és nyissa meg újra)
+3. Nyisson új beszélgetést
+4. Keresse a 🔌 ikont, ami a kapcsolódó szervereket jelzi
+5. Próbálja meg megkérni Claudet, hogy használjon egy eszközt
 
-### Claude Desktop hibakeresés
+### Claude Desktop Hibakeresés
 
-**Nem jelenik meg a szerver:**
+**Szerver nem jelenik meg:**
 - Ellenőrizze a konfigurációs fájl szintaxisát JSON ellenőrzővel
-- Győződjön meg, hogy a parancs elérési útja helyes
-- Nézze meg a Claude Desktop naplóit: Súgó → Naplók megjelenítése
+- Győződjön meg a parancs elérési útjának helyességéről
+- Ellenőrizze a Claude Desktop naplóit: Help → Show Logs
 
-**A szerver induláskor összeomlik:**
-- Először kézzel tesztelje a szervert terminálban
-- Győződjön meg a környezeti változók helyes beállításáról
-- Ellenőrizze, hogy minden függőség telepítve van
+**Szerver induláskor összeomlik:**
+- Először kézzel tesztelje a szervert terminálon
+- Ellenőrizze, hogy helyesen vannak-e beállítva a környezeti változók
+- Győződjön meg róla, hogy minden függőség telepítve van
 
 ---
 
@@ -111,13 +117,13 @@ A VS Code támogatja az MCP-t a GitHub Copilot Chat kiterjesztéseken keresztül
 
 ### Előfeltételek
 
-1. Telepített VS Code 1.99+ verzió
+1. Telepített VS Code 1.99 vagy újabb
 2. Telepített GitHub Copilot kiterjesztés
 3. Telepített GitHub Copilot Chat kiterjesztés
 
 ### Konfiguráció
 
-A VS Code a `.vscode/mcp.json` fájlt használja a munkaterületen vagy a felhasználói beállításokban.
+A VS Code `.vscode/mcp.json` fájlt használ a munkaterületen vagy a felhasználói beállításokban.
 
 **Munkaterület konfiguráció** (`.vscode/mcp.json`):
 
@@ -154,27 +160,27 @@ A VS Code a `.vscode/mcp.json` fájlt használja a munkaterületen vagy a felhas
 
 ### MCP használata VS Code-ban
 
-1. Nyisd meg a Copilot Chat panelt (Ctrl+Shift+I / Cmd+Shift+I)
-2. Gépelj `@` jelzést az elérhető MCP eszközök listázásához
-3. Használj természetes nyelvet az eszközök meghívásához: "Számold ki 25 * 48 a számológép segítségével"
+1. Nyissa meg a Copilot Chat panelt (Ctrl+Shift+I / Cmd+Shift+I)
+2. Gépelje be az `@` jelet az elérhető MCP eszközök megjelenítéséhez
+3. Használjon természetes nyelvet az eszközök meghívásához: "Számold ki 25 * 48 a számológép segítségével"
 
-### VS Code hibakeresés
+### VS Code Hibakeresés
 
-**Nem töltődnek be az MCP szerverek:**
-- Ellenőrizze a Kimenet panelt → "MCP" hiba naplókért
-- Ablak újratöltése: Ctrl+Shift+P → "Developers: Reload Window"
-- Győződjön meg, hogy a szerver önállóan fut először
+**MCP szerverek nem töltődnek be:**
+- Ellenőrizze a Kimenet panel → "MCP" hibalogjait
+- Ablak újratöltése: Ctrl+Shift+P → "Developer: Reload Window"
+- Először ellenőrizze, hogy a szerver önállóan fut-e
 
 ---
 
 ## 3. Cursor
 
-A **Cursor** egy AI-központú kódszerkesztő, amely beépített MCP támogatással rendelkezik.
+A **Cursor** egy AI-központú kód-szerkesztő, beépített MCP támogatással.
 
 ### Telepítés
 
-1. Töltsd le a Cursort a [cursor.sh](https://cursor.sh) weboldalról
-2. Telepítsd és jelentkezz be
+1. Töltse le a Cursor-t innen: [cursor.sh](https://cursor.sh)
+2. Telepítse és jelentkezzen be
 
 ### Konfiguráció
 
@@ -207,15 +213,15 @@ A Cursor hasonló konfigurációs formátumot használ, mint a Claude Desktop.
 
 ### MCP használata Cursorban
 
-1. Nyisd meg a Cursor AI chat-et (Ctrl+L / Cmd+L)
-2. Az MCP eszközök automatikusan megjelennek a javaslatok között
-3. Kérd meg az AI-t, hogy végezzen feladatokat a csatlakoztatott szerverek segítségével
+1. Nyissa meg Cursor AI csetjét (Ctrl+L / Cmd+L)
+2. Az MCP eszközök automatikusan megjelennek a javaslatokban
+3. Kérje meg az AI-t, hogy végezze el a feladatokat a kapcsolódó szerverek segítségével
 
 ---
 
-## 4. Cline (Terminál-alapú)
+## 4. Cline (Terminál alapú)
 
-A **Cline** egy terminál-alapú MCP kliens, ideális parancssori munkafolyamatokhoz.
+A **Cline** egy terminál alapú MCP kliens, ideális parancssori workflow-khoz.
 
 ### Telepítés
 
@@ -258,7 +264,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 ### Cline használata
 
 ```bash
-# Indíts egy interaktív munkamenetet
+# Interaktív munkamenet indítása
 cline
 
 # Egyetlen lekérdezés MCP-vel
@@ -276,16 +282,16 @@ A **Windsurf** egy másik AI-alapú kódszerkesztő, amely MCP támogatással re
 
 ### Telepítés
 
-1. Töltsd le a Windsurffot a [codeium.com/windsurf](https://codeium.com/windsurf) oldalról
-2. Telepítsd és hozz létre fiókot
+1. Töltse le a Windsurf-et innen: [codeium.com/windsurf](https://codeium.com/windsurf)
+2. Telepítse és hozzon létre fiókot
 
 ### Konfiguráció
 
-A Windsurf konfigurációját a beállítási felületen kezelheted:
+A Windsurf konfigurációját a beállítások felületen keresztül kezelheti:
 
-1. Nyisd meg a Beállításokat (Ctrl+, / Cmd+,)
-2. Keresd meg az "MCP" kifejezést
-3. Kattints az "Edit in settings.json" lehetőségre
+1. Nyissa meg a Beállításokat (Ctrl+, / Cmd+,)
+2. Keressen rá a "MCP" kifejezésre
+3. Kattintson az "Edit in settings.json" gombra
 
 **Példa konfiguráció:**
 
@@ -304,11 +310,11 @@ A Windsurf konfigurációját a beállítási felületen kezelheted:
 
 ---
 
-## Szállítási típusok összehasonlítása
+## Szállítási Típusok Összehasonlítása
 
 Különböző hosztok különböző szállítási mechanizmusokat támogatnak:
 
-| Hoszt | stdio | SSE/HTTP | WebSocket |
+| Host | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
@@ -316,12 +322,12 @@ Különböző hosztok különböző szállítási mechanizmusokat támogatnak:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standard bemenet/kimenet): legjobb helyi szerverekhez, amelyeket a hoszt indít  
-**SSE/HTTP**: legjobb távoli szerverekhez vagy több kliens által megosztott szerverekhez
+**stdio** (standard bemenet/kimenet): A legjobb helyi szerverekhez, amelyeket a host indít
+**SSE/HTTP**: A legjobb távoli vagy több kliens között megosztott szerverekhez
 
 ---
 
-## Gyakori hibakeresés
+## Gyakori Hibakeresés
 
 ### A szerver nem indul el
 
@@ -335,8 +341,8 @@ Különböző hosztok különböző szállítási mechanizmusokat támogatnak:
    ```
 
 2. **Ellenőrizze a parancs elérési útját:**
-   - Használjon abszolút elérési utakat, ha lehetséges
-   - Győződjön meg, hogy a futtatható fájl a PATH-ban van
+   - Amennyiben lehetséges, használjon abszolút elérési utat
+   - Győződjön meg arról, hogy a végrehajtható a PATH-ban van
 
 3. **Ellenőrizze a függőségeket:**
    ```bash
@@ -347,48 +353,48 @@ Különböző hosztok különböző szállítási mechanizmusokat támogatnak:
    npm list @modelcontextprotocol/sdk
    ```
 
-### A szerver csatlakozik, de az eszközök nem működnek
+### A szerver kapcsolódik, de az eszközök nem működnek
 
-1. **Ellenőrizze a szerver naplókat** – A legtöbb hosztnak van naplózási lehetőség
-2. **Ellenőrizze az eszköz regisztrációját** – Használja az MCP Inspectort teszteléshez
-3. **Ellenőrizze az engedélyeket** – Néhány eszköznek fájl/hálózati hozzáférés szükséges
+1. **Ellenőrizze a szerver naplóit** - A legtöbb hoszt rendelkezik naplózási lehetőségekkel
+2. **Ellenőrizze az eszköz regisztrációját** - Használja az MCP Inspectort a teszteléshez
+3. **Ellenőrizze a jogosultságokat** - Néhány eszköznek szüksége van fájl vagy hálózati hozzáférésre
 
-### A környezeti változók nem kerülnek átadásra
+### A környezeti változók nem jutnak át
 
-- Néhány hoszt tisztítja a környezeti változókat
-- Használja szabályosan az `env` konfigurációs mezőt
-- Kerülje a bizalmas adatok tárolását konfigurációs fájlokban (használjon titkok kezelését)
-
----
-
-## Biztonsági jó gyakorlatok
-
-1. **Soha ne kötelezze el API kulcsokat** konfigurációs fájlokban
-2. **Használja a környezeti változókat** bizalmas adatokhoz
-3. **Korlátozza a szerver jogosultságait** csak a szükséges mértékben
-4. **Nézze át a szerver kódját**, mielőtt hozzáférést ad a rendszeréhez
-5. **Használjon engedélyezési listákat** fájlrendszer és hálózati hozzáféréshez
+- Egyes hosztok megtisztítják a környezeti változókat
+- Használja az `env` konfigurációs mezőt kifejezetten
+- Kerülje az érzékeny adatok konfigurációs fájlokban való tárolását (használjon titkoskezelést)
 
 ---
 
-## Mi következik
+## Biztonsági Legjobb Gyakorlatok
+
+1. **Sose adjon hozzá API kulcsokat** konfigurációs fájlokhoz
+2. **Használjon környezeti változókat** érzékeny adatokhoz
+3. **Korlátozza a szerver jogosultságait** csak a szükségesre
+4. **Nézze át a szerver kódját** mielőtt hozzáférést ad a rendszeréhez
+5. **Használjon engedélyezőlistákat** fájlrendszer és hálózati hozzáférésekhez
+
+---
+
+## Mi a következő?
 
 - [3.13 - Hibakeresés MCP Inspectorral](../13-mcp-inspector/README.md)
 - [3.1 - Első MCP szerver létrehozása](../01-first-server/README.md)
-- [5. modul - Haladó témák](../../05-AdvancedTopics/README.md)
+- [Modul 5 - Haladó témák](../../05-AdvancedTopics/README.md)
 
 ---
 
-## További források
+## További Források
 
 - [Claude Desktop MCP Dokumentáció](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP Kiterjesztés](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP Specifikáció - Szállítások](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Hivatalos MCP Szerver Regiszter](https://github.com/modelcontextprotocol/servers)
+- [MCP Specifikáció - Szállítások](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Hivatalos MCP Szerverek Regisztere](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Felelősségkizárás**:  
-Ezt a dokumentumot az AI fordító szolgáltatás [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével fordítottuk. Míg a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítás hibákat vagy pontatlanságokat tartalmazhat. Az eredeti, anyanyelvi dokumentum tekintendő hivatalos forrásnak. Fontos információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

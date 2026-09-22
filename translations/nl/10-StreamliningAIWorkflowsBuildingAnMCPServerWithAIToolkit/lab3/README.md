@@ -1,6 +1,11 @@
 # 🔧 Module 3: Geavanceerde MCP-ontwikkeling met Microsoft Foundry Toolkit
 
-![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
+> [!NOTE]
+> Inspector-URL's in deze lab gebruiken de legacy `/sse`-endpoint en richten zich op de
+> vastgezette MCP SDK `1.9.3` en Inspector `0.14.0` afhankelijkheden. Ze zijn niet
+> de huidige `2026-07-28` Streamable HTTP-voorbeelden.
+
+![Duur](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
@@ -8,41 +13,41 @@
 
 ## 🎯 Leerdoelen
 
-Aan het einde van deze lab ben je in staat om:
+Aan het einde van deze lab kun je:
 
-- ✅ Aangepaste MCP-servers te maken met behulp van de Microsoft Foundry Toolkit
-- ✅ De nieuwste MCP Python SDK (v1.9.3) te configureren en te gebruiken
-- ✅ De MCP Inspector in te stellen en te gebruiken voor debugging
-- ✅ MCP-servers te debuggen in zowel Agent Builder als Inspector omgevingen
-- ✅ Geavanceerde workflows voor MCP-serverontwikkeling te begrijpen
+- ✅ Aangepaste MCP-servers creëren met behulp van Microsoft Foundry Toolkit
+- ✅ De nieuwste MCP Python SDK (v1.9.3) configureren en gebruiken
+- ✅ Het MCP Inspector gebruiken voor debugging
+- ✅ MCP-servers debuggen in zowel Agent Builder als Inspector omgevingen
+- ✅ Geavanceerde MCP-server ontwikkelingsworkflows begrijpen
 
 ## 📋 Vereisten
 
 - Voltooiing van Lab 2 (MCP Fundamentals)
-- VS Code met geïnstalleerde Microsoft Foundry Toolkit extensie
+- VS Code met Microsoft Foundry Toolkit extensie geïnstalleerd
 - Python 3.10+ omgeving
-- Node.js en npm voor de Inspector installatie
+- Node.js en npm voor Inspector installatie
 
-## 🏗️ Wat je bouwt
+## 🏗️ Wat je gaat bouwen
 
-In deze lab maak je een **Weather MCP Server** die de volgende aspecten demonstreert:
-- Implementatie van een aangepaste MCP-server
+In deze lab maak je een **Weather MCP Server** die het volgende demonstreert:
+- Aangepaste MCP-server implementatie
 - Integratie met Microsoft Foundry Toolkit Agent Builder
-- Professionele debugging-workflows
+- Professionele debugging workflows
 - Moderne MCP SDK gebruikspatronen
 
 ---
 
-## 🔧 Overzicht Kerncomponenten
+## 🔧 Overzicht van Kerncomponenten
 
 ### 🐍 MCP Python SDK
-De Model Context Protocol Python SDK biedt de basis voor het bouwen van aangepaste MCP-servers. Je gebruikt versie 1.9.3 met verbeterde debugging-mogelijkheden.
+De Model Context Protocol Python SDK biedt de basis voor het bouwen van aangepaste MCP-servers. Je gebruikt versie 1.9.3 met verbeterde debugmogelijkheden.
 
 ### 🔍 MCP Inspector
-Een krachtig debugging-instrument dat het volgende biedt:
-- Real-time server monitoring
-- Visualisatie van tool-uitvoering
-- Inspectie van netwerkverzoeken/-antwoorden
+Een krachtig debughulpmiddel dat het volgende biedt:
+- Real-time servermonitoring
+- Visualisatie van tooluitvoering
+- Inspectie van netwerkverzoeken / -antwoorden
 - Interactieve testomgeving
 
 ---
@@ -53,21 +58,21 @@ Een krachtig debugging-instrument dat het volgende biedt:
 
 1. **Start Agent Builder** in VS Code via de Microsoft Foundry Toolkit extensie
 2. **Maak een nieuwe agent** met de volgende configuratie:
-   - Agent Naam: `WeatherAgent`
+   - Agentnaam: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/nl/Agent.c9c33f6a412b4cde.webp)
+![Agent Creatie](../../../../translated_images/nl/Agent.c9c33f6a412b4cde.webp)
 
 ### Stap 2: Initialiseer MCP Server Project
 
-1. **Ga naar Tools** → **Add Tool** in Agent Builder
+1. **Navigeer naar Tools** → **Add Tool** in Agent Builder
 2. **Selecteer "MCP Server"** uit de beschikbare opties
 3. **Kies "Create A new MCP Server"**
 4. **Selecteer de `python-weather` template**
-5. **Noem je server:** `weather_mcp`
+5. **Geef je server een naam:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/nl/Pythontemplate.9d0a2913c6491500.webp)
+![Python Template Selectie](../../../../translated_images/nl/Pythontemplate.9d0a2913c6491500.webp)
 
-### Stap 3: Open en Bekijken van het Project
+### Stap 3: Open en Onderzoek het Project
 
 1. **Open het gegenereerde project** in VS Code
 2. **Bekijk de projectstructuur:**
@@ -88,31 +93,31 @@ Een krachtig debugging-instrument dat het volgende biedt:
 
 ### Stap 4: Upgrade naar de nieuwste MCP SDK
 
-> **🔍 Waarom upgraden?** We willen de nieuwste MCP SDK (v1.9.3) en de Inspector service (0.14.0) gebruiken voor verbeterde functionaliteiten en betere debuggingmogelijkheden.
+> **🔍 Waarom upgraden?** We willen de nieuwste MCP SDK (v1.9.3) en Inspector service (0.14.0) gebruiken voor verbeterde functionaliteiten en betere debugmogelijkheden.
 
-#### 4a. Update Python Afhankelijkheden
+#### 4a. Update Python dependencies
 
 **Bewerk `pyproject.toml`:** update [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. Update Inspector Configuratie
+#### 4b. Update Inspector configuratie
 
 **Bewerk `inspector/package.json`:** update [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Update Inspector Afhankelijkheden
+#### 4c. Update Inspector dependencies
 
 **Bewerk `inspector/package-lock.json`:** update [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Opmerking:** Dit bestand bevat uitgebreide afhankelijkheidsdefinities. Hieronder staat de essentiële structuur – de volledige inhoud zorgt voor correcte afhankelijkheidsresolutie.
+> **📝 Opmerking:** Dit bestand bevat uitgebreide dependencydefinities. Hieronder staat de essentiële structuur – de volledige inhoud zorgt voor correcte dependencyresolutie.
 
 
-> **⚡ Volledige Package Lock:** Het volledige package-lock.json-bestand bevat ~3000 regels met afhankelijkheidsdefinities. Bovenstaand bevat de sleutelstructuur – gebruik het aangeleverde bestand voor volledige afhankelijkheidsresolutie.
+> **⚡ Volledige Package Lock:** De complete package-lock.json bevat ~3000 regels aan dependencydefinities. Bovenstaand toont de hoofdstructuur – gebruik het geleverde bestand voor volledige dependencyresolutie.
 
 ### Stap 5: Configureer VS Code Debugging
 
 *Opmerking: kopieer het bestand op het opgegeven pad om het overeenkomstige lokale bestand te vervangen*
 
-#### 5a. Update Launch Configuratie
+#### 5a. Update launch configuratie
 
 **Bewerk `.vscode/launch.json`:**
 
@@ -296,18 +301,18 @@ Een krachtig debugging-instrument dat het volgende biedt:
 
 ---
 
-## 🚀 Je MCP Server Uitvoeren en Testen
+## 🚀 Je MCP Server draaien en testen
 
-### Stap 6: Installeer Afhankelijkheden
+### Stap 6: Installeer dependencies
 
 Na het aanbrengen van de configuratiewijzigingen, voer je de volgende commando's uit:
 
-**Installeer Python-afhankelijkheden:**
+**Installeer Python dependencies:**
 ```bash
 uv sync
 ```
 
-**Installeer Inspector-afhankelijkheden:**
+**Installeer Inspector dependencies:**
 ```bash
 cd inspector
 npm install
@@ -315,10 +320,10 @@ npm install
 
 ### Stap 7: Debuggen met Agent Builder
 
-1. **Druk op F5** of gebruik de configuratie **"Debug in Agent Builder"**
-2. **Selecteer de samengestelde configuratie** vanuit het debugpaneel
-3. **Wacht tot de server is gestart** en Agent Builder opent
-4. **Test je weather MCP-server** met natuurlijke taal queries
+1. **Druk op F5** of gebruik de **"Debug in Agent Builder"** configuratie
+2. **Selecteer de compound configuratie** in het debugpaneel
+3. **Wacht tot de server start** en Agent Builder opent
+4. **Test je weather MCP server** met natuurlijke taalqueries
 
 Voer een prompt in zoals deze
 
@@ -334,17 +339,17 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/nl/Result.6ac570f7d2b1d538.webp)
+![Agent Builder Debug Resultaat](../../../../translated_images/nl/Result.6ac570f7d2b1d538.webp)
 
 ### Stap 8: Debuggen met MCP Inspector
 
-1. **Gebruik de configuratie "Debug in Inspector"** (Edge of Chrome)
-2. **Open de Inspector interface** via `http://localhost:6274`
+1. **Gebruik de "Debug in Inspector"** configuratie (Edge of Chrome)
+2. **Open de Inspector interface** op `http://localhost:6274`
 3. **Verken de interactieve testomgeving:**
    - Bekijk beschikbare tools
-   - Test tool-uitvoering
+   - Test tooluitvoering
    - Monitor netwerkverzoeken
-   - Debug serverantwoorden
+   - Debug serverresponses
 
 ![MCP Inspector Interface](../../../../translated_images/nl/Inspector.5672415cd02fe873.webp)
 
@@ -354,25 +359,25 @@ How's the weather like in Seattle
 
 Door deze lab te voltooien, heb je:
 
-- [x] **Een aangepaste MCP-server aangemaakt** met Microsoft Foundry Toolkit templates
+- [x] **Een aangepaste MCP-server gemaakt** met Microsoft Foundry Toolkit templates
 - [x] **Geüpgraded naar de nieuwste MCP SDK** (v1.9.3) voor verbeterde functionaliteit
 - [x] **Professionele debugging workflows geconfigureerd** voor zowel Agent Builder als Inspector
-- [x] **De MCP Inspector ingericht** voor interactieve servertests
-- [x] **VS Code debugging configuraties onder de knie gekregen** voor MCP-ontwikkeling
+- [x] **De MCP Inspector ingesteld** voor interactieve servertests
+- [x] **VS Code debugging configuraties beheerst** voor MCP-ontwikkeling
 
-## 🔧 Geavanceerde Functies Onderzocht
+## 🔧 Geavanceerde functies Verkend
 
 | Functie | Beschrijving | Gebruikssituatie |
-|---------|--------------|------------------|
-| **MCP Python SDK v1.9.3** | Laatste protocolimplementatie | Moderne serverontwikkeling |
-| **MCP Inspector 0.14.0** | Interactief debugging-instrument | Real-time servertests |
+|---------|-------------|----------|
+| **MCP Python SDK v1.9.3** | Nieuwste protocolimplementatie | Moderne serverontwikkeling |
+| **MCP Inspector 0.14.0** | Interactief debughulpmiddel | Real-time servertests |
 | **VS Code Debugging** | Geïntegreerde ontwikkelomgeving | Professionele debugging workflow |
-| **Agent Builder Integratie** | Directe Microsoft Foundry Toolkit koppeling | End-to-end agent testen |
+| **Agent Builder Integratie** | Directe Microsoft Foundry Toolkit verbinding | End-to-end agenttesten |
 
 ## 📚 Aanvullende Bronnen
 
 - [MCP Python SDK Documentatie](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit Extensiehandleiding](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [Microsoft Foundry Toolkit Extensie Gids](https://code.visualstudio.com/docs/ai/ai-toolkit)
 - [VS Code Debugging Documentatie](https://code.visualstudio.com/docs/editor/debugging)
 - [Model Context Protocol Specificatie](https://modelcontextprotocol.io/docs/concepts/architecture)
 
@@ -380,13 +385,13 @@ Door deze lab te voltooien, heb je:
 
 **🎉 Gefeliciteerd!** Je hebt Lab 3 succesvol afgerond en kunt nu aangepaste MCP-servers creëren, debuggen en uitrollen met professionele ontwikkelworkflows.
 
-### 🔜 Ga verder naar de volgende module
+### 🔜 Ga door naar de Volgende Module
 
-Klaar om je MCP-vaardigheden toe te passen in een echte ontwikkelworkflow? Ga verder naar **[Module 4: Praktische MCP-ontwikkeling - Aangepaste GitHub Clone Server](../lab4/README.md)**, waar je:
-- Een productieklare MCP-server bouwt die GitHub-repositorybewerkingen automatiseert
-- Functionaliteit implementeert voor het klonen van GitHub repositories via MCP
+Klaar om je MCP-vaardigheden toe te passen in een echte ontwikkelworkflow? Ga verder met **[Module 4: Praktische MCP-ontwikkeling - Aangepaste GitHub Clone Server](../lab4/README.md)** waar je:
+- Een productieklare MCP-server bouwt die GitHub repository-operaties automatiseert
+- GitHub repository kloonfunctionaliteit implementeert via MCP
 - Aangepaste MCP-servers integreert met VS Code en GitHub Copilot Agent Mode
-- Aangepaste MCP-servers test en uitrolt in productieomgevingen
+- Aangepaste MCP-servers test en in productie uitrolt
 - Praktische workflowautomatisering voor ontwikkelaars leert
 
 ---

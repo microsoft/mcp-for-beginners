@@ -1,6 +1,6 @@
-# Optimizarea Fluxurilor de Lucru AI: Construirea unui Server MCP cu Microsoft Foundry Toolkit
+# Simplificarea fluxurilor de lucru AI: Construirea unui server MCP cu Microsoft Foundry Toolkit
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
@@ -10,150 +10,156 @@
 
 [![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/ro/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Apasă pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
+_(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
-Bine ai venit la **Atelierul Model Context Protocol (MCP)**! Acest atelier practic cuprinzător combină două tehnologii de ultimă oră pentru a revoluționa dezvoltarea aplicațiilor AI:
+Bine ați venit la **Atelierul Model Context Protocol (MCP)**! Acest atelier practic cuprinzător combină două tehnologii de ultimă generație pentru a revoluționa dezvoltarea aplicațiilor AI:
 
-- **🔗 Model Context Protocol (MCP)**: Un standard deschis pentru integrarea fluidă a uneltelor AI
-- **🛠️ Extensia Microsoft Foundry Toolkit pentru VS Code**: Extensia puternică Microsoft pentru dezvoltarea AI
+> **Notă de compatibilitate:** codul atelierului a fost construit și testat cu MCP
+> `2025-11-25`, așa cum indică insigna de mai sus. Folosiți
+> [specificația actuală `2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28/)
+> pentru noile implementări ale protocolului și verificați notele de lansare ale SDK-ului înainte
+> de migrarea atelierelor.
+
+- **🔗 Model Context Protocol (MCP)**: Un standard deschis pentru integrarea fluentă a instrumentelor AI
+- **🛠️ Extensia Microsoft Foundry Toolkit pentru VS Code**: Extensia puternică de dezvoltare AI a Microsoft
 
 ### 🎓 Ce vei învăța
 
-La finalul acestui atelier, vei stăpâni arta construirii aplicațiilor inteligente care conectează modelele AI cu unelte și servicii din lumea reală. De la testare automată la integrări API personalizate, vei dobândi abilități practice pentru a rezolva provocări complexe de afaceri.
+Până la sfârșitul acestui atelier, vei stăpâni arta construirii aplicațiilor inteligente care leagă modelele AI de instrumente și servicii din lumea reală. De la testare automată până la integrări API personalizate, vei dobândi abilități practice pentru a rezolva provocări complexe de afaceri.
 
-## 🏗️ Stivă Tehnologică
+## 🏗️ Stivă tehnologică
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP este **„USB-C pentru AI”** - un standard universal care conectează modelele AI la unelte și surse de date externe.
+MCP este **„USB-C-ul pentru AI”** - un standard universal care conectează modelele AI la instrumente și surse de date externe.
 
 **✨ Caracteristici cheie:**
 
-- 🔄 **Integrare standardizată**: Interfață universală pentru conexiuni AI - unelte
+- 🔄 **Integrare standardizată**: Interfață universală pentru conexiuni AI-instrumente
 - 🏛️ **Arhitectură flexibilă**: Servere locale și la distanță prin transport stdio/SSE
-- 🧰 **Ecosistem bogat**: Unelte, prompturi și resurse într-un singur protocol
-- 🔒 **Pregătit pentru companii**: Securitate și fiabilitate integrate
+- 🧰 **Ecosistem bogat**: Instrumente, prompturi și resurse într-un singur protocol
+- 🔒 **Pregătit pentru întreprinderi**: Securitate și fiabilitate integrate
 
-**🎯 De ce contează MCP:**
-Asemenea USB-C care a eliminat haosul cablurilor, MCP elimină complexitatea integrațiilor AI. Un protocol, posibilități infinite.
+**🎯 De ce este important MCP:**
+La fel cum USB-C a eliminat dezordinea cablurilor, MCP elimină complexitatea integrărilor AI. Un protocol, posibilități infinite.
 
 ### 🤖 Extensia Microsoft Foundry Toolkit pentru VS Code
 
-Extensia emblematică Microsoft pentru dezvoltarea AI care transformă VS Code într-o putere AI.
+Extensia principală de dezvoltare AI a Microsoft, care transformă VS Code într-o putere AI.
 
-**🚀 Capacități principale:**
+**🚀 Capacități de bază:**
 
 - 📦 **Catalog de modele**: Acces la modele din Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Inferență locală**: Executare ONNX optimizată pentru CPU/GPU/NPU
-- 🏗️ **Agent Builder**: Dezvoltare vizuală de agenți AI cu integrare MCP
+- ⚡ **Inferență locală**: Execuție optimizată ONNX pe CPU/GPU/NPU
+- 🏗️ **Agent Builder**: Dezvoltare vizuală a agenților AI cu integrare MCP
 - 🎭 **Multi-modal**: Suport pentru text, viziune și output structurat
 
 **💡 Beneficii pentru dezvoltare:**
 
-- Implementare modele fără configurare
+- Implementare model fără configurare
 - Inginerie vizuală a prompturilor
-- Teren de testare în timp real
-- Integrare fluentă a serverului MCP
+- Mediu de testare în timp real
+- Integrare perfectă a serverelor MCP
 
 ## 📚 Parcurs de învățare
 
-### [🚀 Modul 1: Fundamente Microsoft Foundry Toolkit](./lab1/README.md)
+### [🚀 Modul 1: Fundamentele Microsoft Foundry Toolkit](./lab1/README.md)
 
 **Durată**: 15 minute
 
-- 🛠️ Instalează și configurează Microsoft Foundry Toolkit pentru VS Code
-- 🗂️ Explorează Catalogul de Modele (peste 100 modele de pe GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Stăpânește Playground-ul Interactiv pentru testare de modele în timp real
-- 🤖 Construiește primul tău agent AI cu Agent Builder
-- 📊 Evaluează performanța modelelor cu metrci încorporate (F1, relevanță, similaritate, coerență)
-- ⚡ Învață capabilitățile batch processing și suportul multi-modal
+- 🛠️ Instalare și configurare Microsoft Foundry Toolkit pentru VS Code
+- 🗂️ Explorarea Catalogului de modele (peste 100 de modele de pe GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Stăpânirea Playground-ului Interactiv pentru testarea modelelor în timp real
+- 🤖 Construirea primului agent AI cu Agent Builder
+- 📊 Evaluarea performanței modelului cu metrici încorporate (F1, relevanță, similitudine, coerență)
+- ⚡ Învățarea procesării batch și a suportului multi-modal
 
-**🎯 Rezultat de învățare**: Creează un agent AI funcțional cu înțelegere completă a capabilităților Microsoft Foundry Toolkit
+**🎯 Rezultat de învățare**: Crearea unui agent AI funcțional cu înțelegere completă a capacităților Microsoft Foundry Toolkit
 
 ### [🌐 Modul 2: MCP cu Fundamente Microsoft Foundry Toolkit](./lab2/README.md)
 
 **Durată**: 20 minute
 
-- 🧠 Stăpânește arhitectura și conceptele Model Context Protocol (MCP)
-- 🌐 Explorează ecosistemul serverelor MCP Microsoft
-- 🤖 Construiește un agent de automatizare browser folosind serverul MCP Playwright
-- 🔧 Integrează serverele MCP cu Agent Builder Microsoft Foundry Toolkit
-- 📊 Configurează și testează uneltele MCP în agenții tăi
-- 🚀 Exportă și implementează agenți MCP pentru utilizare în producție
+- 🧠 Stăpânirea arhitecturii și conceptelor Model Context Protocol (MCP)
+- 🌐 Explorarea ecosistemului serverelor MCP Microsoft
+- 🤖 Construirea unui agent de automatizare browser folosind Playwright MCP server
+- 🔧 Integrarea serverelor MCP cu Microsoft Foundry Toolkit Agent Builder
+- 📊 Configurarea și testarea instrumentelor MCP în agenții tăi
+- 🚀 Exportul și implementarea agenților impulsionați de MCP pentru utilizare în producție
 
-**🎯 Rezultat de învățare**: Implementează un agent AI potențat de unelte externe prin MCP
+**🎯 Rezultat de învățare**: Implementarea unui agent AI super-alimentat cu instrumente externe prin MCP
 
-### [🔧 Modul 3: Dezvoltare avansată MCP cu Microsoft Foundry Toolkit](./lab3/README.md)
+### [🔧 Modul 3: Dezvoltare MCP Avansată cu Microsoft Foundry Toolkit](./lab3/README.md)
 
 **Durată**: 20 minute
 
-- 💻 Creează servere MCP personalizate folosind Microsoft Foundry Toolkit
-- 🐍 Configurează și folosește cel mai recent SDK MCP Python (v1.9.3)
-- 🔍 Configurează și utilizează MCP Inspector pentru depanare
-- 🛠️ Construiește un Server Weather MCP cu fluxuri profesionale de depanare
-- 🧪 Depanează serverele MCP în Agent Builder și Inspector
+- 💻 Crearea serverelor MCP personalizate folosind Microsoft Foundry Toolkit
+- 🐍 Configurarea și utilizarea celui mai recent MCP Python SDK (v1.9.3)
+- 🔍 Configurarea și utilizarea MCP Inspector pentru depanare
+- 🛠️ Construirea unui Weather MCP Server cu fluxuri profesionale de depanare
+- 🧪 Depanarea serverelor MCP în medii Agent Builder și Inspector
 
-**🎯 Rezultat de învățare**: Dezvoltă și depanează servere MCP personalizate cu unelte moderne
+**🎯 Rezultat de învățare**: Dezvoltarea și depanarea serverelor MCP personalizate cu instrumente moderne
 
 ### [🐙 Modul 4: Dezvoltare practică MCP - Server personalizat GitHub Clone](./lab4/README.md)
 
 **Durată**: 30 minute
 
-- 🏗️ Construiește un server GitHub Clone MCP real pentru fluxuri de lucru de dezvoltare
-- 🔄 Implementează clonare inteligentă a repo-urilor cu validare și gestionare erori
-- 📁 Creează management inteligent al directoarelor și integrare VS Code
-- 🤖 Folosește modul agent GitHub Copilot cu unelte MCP personalizate
-- 🛡️ Aplică fiabilitate pregătită pentru producție și compatibilitate cross-platform
+- 🏗️ Construirea unui Server MCP GitHub Clone real pentru fluxuri de lucru de dezvoltare
+- 🔄 Implementarea clonării inteligente a depozitelor cu validare și gestionare a erorilor
+- 📁 Crearea gestionării inteligente a directoarelor și integrarea VS Code
+- 🤖 Utilizarea modului GitHub Copilot Agent cu instrumente MCP personalizate
+- 🛡️ Aplicarea fiabilității pregătite pentru producție și compatibilitatea cross-platform
 
-**🎯 Rezultat de învățare**: Implementează un server MCP gata pentru producție care optimizează fluxuri reale de lucru de dezvoltare
+**🎯 Rezultat de învățare**: Implementarea unui server MCP pregătit pentru producție care simplifică fluxuri reale de lucru în dezvoltare
 
-## 💡 Aplicații reale & Impact
+## 💡 Aplicații și impact în lumea reală
 
-### 🏢 Cazuri de utilizare în companii
+### 🏢 Cazuri de utilizare în întreprinderi
 
 #### 🔄 Automatizare DevOps
 
-Transformă fluxul de lucru de dezvoltare cu automatizare inteligentă:
+Transformă fluxul tău de lucru de dezvoltare cu automatizare inteligentă:
 
-- **Management inteligent al repo-urilor**: revizuire și decizii de merge asistate AI
-- **CI/CD inteligent**: optimizare automată a pipeline-ului pe baza schimbărilor din cod
-- **Triage probleme**: clasificare și atribuire automată a bug-urilor
+- **Gestionare inteligentă a depozitelor**: Revizuirea codului și decizii de îmbinare bazate pe AI
+- **CI/CD inteligent**: Optimizarea automată a pipeline-ului bazată pe modificările codului
+- **Triere probleme**: Clasificare automată și asignare a bug-urilor
 
-#### 🧪 Revoluția Asigurării Calității
+#### 🧪 Revoluție în asigurarea calității
 
-Ridică nivelul testării cu automatizare AI:
+Ridică testarea la nivelul următor cu automatizare AI:
 
-- **Generare inteligentă de teste**: crearea automată de suite de teste cuprinzătoare
-- **Testare vizuală de regresie**: detectarea AI a schimbărilor UI
-- **Monitorizare performanță**: identificare și rezolvare proactivă a problemelor
+- **Generare inteligentă de teste**: Crearea automată a suitei de teste complexe
+- **Testare vizuală a regresiei**: Detectarea AI a schimbărilor UI
+- **Monitorizarea performanței**: Identificarea și rezolvarea proactivă a problemelor
 
-#### 📊 Inteligența Pipeline-ului de Date
+#### 📊 Inteligența fluxului de date
 
-Construiește fluxuri de procesare a datelor mai inteligente:
+Construiește fluxuri inteligente de procesare a datelor:
 
-- **Procese ETL adaptive**: transformări de date care se auto-optimizează
-- **Detecție anomalii**: monitorizare calitate date în timp real
-- **Routare inteligentă**: gestionare inteligentă a fluxului de date
+- **Procese ETL adaptive**: Transformări de date auto-optimizante
+- **Detecție anomalii**: Monitorizare calitate date în timp real
+- **Rutare inteligentă**: Gestionarea inteligentă a fluxului de date
 
 #### 🎧 Îmbunătățirea experienței clienților
 
-Creează interacțiuni excepționale:
+Creează interacțiuni excepționale cu clienții:
 
-- **Suport context-aware**: agenți AI cu acces la istoricul clientului
-- **Rezolvare proactivă a problemelor**: servicii predictive clienți
-- **Integrare multi-canal**: experiență AI unificată pe toate platformele
+- **Suport conștient de context**: Agenți AI cu acces la istoricul clientului
+- **Rezolvare proactivă a problemelor**: Serviciu predictiv pentru clienți
+- **Integrare multi-canal**: Experiență AI unificată pe platforme
 
-## 🛠️ Cerințe și configurare
+## 🛠️ Cerințe preliminare & configurare
 
 ### 💻 Cerințe de sistem
 
 | Componentă | Cerință | Note |
 |-----------|-------------|-------|
-| **Sistem de operare** | Windows 10+, macOS 10.15+, Linux | Orice OS modern |
-| **Visual Studio Code** | Ultima versiune stabilă | Necesare pentru Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ și npm | Pentru dezvoltare server MCP |
-| **Python** | 3.10+ | Opțional pentru servere MCP Python |
-| **Memorie** | minim 8GB RAM | Recomandat 16GB pentru modele locale |
+| **Sistem de operare** | Windows 10+, macOS 10.15+, Linux | Orice sistem de operare modern |
+| **Visual Studio Code** | cea mai recentă versiune stabilă | Necesare pentru Microsoft Foundry Toolkit |
+| **Node.js** | v18.0+ și npm | Pentru dezvoltarea serverului MCP |
+| **Python** | 3.10+ | Opțional pentru servere MCP în Python |
+| **Memorie** | minimum 8GB RAM | 16GB recomandat pentru modele locale |
 
 ### 🔧 Mediu de dezvoltare
 
@@ -162,62 +168,62 @@ Creează interacțiuni excepționale:
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Opțional dar util
+- **GitHub Copilot** (GitHub.copilot) - Opțional, dar util
 
-#### Unelte opționale
+#### Instrumente opționale
 
-- **uv**: Manager modern de pachete Python
-- **MCP Inspector**: Unealtă vizuală de depanare pentru servere MCP
+- **uv**: Manager de pachete Python modern
+- **MCP Inspector**: Instrument vizual pentru depanare a serverelor MCP
 - **Playwright**: Pentru exemple de automatizare web
 
-## 🎖️ Rezultate de învățare și cale de certificare
+## 🎖️ Rezultate de învățare & cale de certificare
 
-### 🏆 Lista de verificare a competențelor
+### 🏆 Lista de competențe stăpânite
 
-Prin finalizarea acestui atelier, vei dobândi competențe în:
+Prin finalizarea acestui atelier, vei obține stăpânirea în:
 
 #### 🎯 Competențe de bază
 
-- [ ] **Stăpânire protocol MCP**: Înțelegere profundă a arhitecturii și a modelelor de implementare
-- [ ] **Proficiență Microsoft Foundry Toolkit**: Utilizare la nivel expert pentru dezvoltare rapidă
-- [ ] **Dezvoltare server personalizat**: Construcție, implementare și mentenanță servere MCP de producție
-- [ ] **Excelență integrare unelte**: Conectare fără probleme AI cu fluxuri de lucru existente
-- [ ] **Aplicare rezolvare probleme**: Folosirea abilităților pentru provocările reale de afaceri
+- [ ] **Stăpânirea Protocolului MCP**: Înțelegere profundă a arhitecturii și modelelor de implementare
+- [ ] **Competență Microsoft Foundry Toolkit**: Utilizare expertă a Microsoft Foundry Toolkit pentru dezvoltare rapidă
+- [ ] **Dezvoltare server personalizat**: Construiește, implementează și întreține servere MCP de producție
+- [ ] **Excelență în integrarea instrumentelor**: Conectează fără probleme AI cu fluxurile de dezvoltare existente
+- [ ] **Aplicarea soluționării problemelor**: Folosește abilitățile învățate pentru provocări reale de business
 
 #### 🔧 Abilități tehnice
 
-- [ ] Configurarea și folosirea Microsoft Foundry Toolkit în VS Code
-- [ ] Proiectarea și implementarea serverelor MCP personalizate
-- [ ] Integrarea modelelor GitHub cu arhitectura MCP
-- [ ] Construirea de fluxuri automate de testare cu Playwright
-- [ ] Implementarea agenților AI pentru producție
-- [ ] Depanare și optimizare performanță server MCP
+- [ ] Configurează și utilizează Microsoft Foundry Toolkit în VS Code
+- [ ] Proiectează și implementează servere MCP personalizate
+- [ ] Integrează modelele GitHub cu arhitectura MCP
+- [ ] Construiește fluxuri de testare automate cu Playwright
+- [ ] Implementează agenți AI pentru utilizare în producție
+- [ ] Depanează și optimizează performanța serverelor MCP
 
 #### 🚀 Capacități avansate
 
-- [ ] Arhitectură integrare AI la scară enterprise
-- [ ] Implementare practici de securitate pentru aplicații AI
-- [ ] Design arhitecturi scalabile pentru servere MCP
-- [ ] Crearea lanțurilor de unelte personalizate pentru domenii specifice
-- [ ] Mentorat în dezvoltare nativă AI
+- [ ] Arhitecturi de integrare AI la scară enterprise
+- [ ] Aplică cele mai bune practici de securitate pentru aplicații AI
+- [ ] Proiectează arhitecturi scalabile de server MCP
+- [ ] Creează lanțuri de instrumente personalizate pentru domenii specifice
+- [ ] Mentor pentru dezvoltare AI nativă
 
 ## 📖 Resurse suplimentare
 
-- [Specificația MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Repository Microsoft Foundry Toolkit GitHub](https://github.com/microsoft/vscode-ai-toolkit)
-- [Colectie Servere MCP Sample](https://github.com/modelcontextprotocol/servers)
-- [Ghid de bune practici](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Cele mai bune practici de securitate
+- [Specificația MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Repository GitHub Microsoft Foundry Toolkit](https://github.com/microsoft/vscode-ai-toolkit)
+- [Colecție Servere MCP Exemplu](https://github.com/modelcontextprotocol/servers)
+- [Ghidul celor mai bune practici](https://modelcontextprotocol.io/docs/best-practices)
+- [Top 10 OWASP MCP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Cele mai bune practici de securitate
 
 ---
 
-**🚀 Ești gata să revoluționezi fluxul tău de dezvoltare AI?**
+**🚀 Ești gata să revoluționezi fluxul tău de lucru pentru dezvoltarea AI?**
 
 Hai să construim împreună viitorul aplicațiilor inteligente cu MCP și Microsoft Foundry Toolkit!
 
 ## Ce urmează
 
-Continuă spre: [Modul 11: Laboratoare practice Server MCP](../11-MCPServerHandsOnLabs/README.md)
+Continuă la: [Modul 11: Laboratoare practice MCP Server](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

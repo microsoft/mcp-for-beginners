@@ -1,5 +1,10 @@
 # Creating a client with LLM
 
+> [!NOTE]
+> The Java client examples connect through the legacy HTTP+SSE transport and
+> target MCP `2025-11-25` SDK APIs. Use a `2026-07-28`-compatible SDK and
+> Streamable HTTP for new remote clients.
+
 So far, you've seen how to create a server and a client. The client has been able to call the server explicitly to list its tools, resources, and prompts. However, this is not a very practical approach. Your users live in the agentic era and expect to use prompts and communicate with an LLM instead. They do not care whether you use MCP to store your capabilities; they simply expect to interact using natural language. So how do we solve this? The solution is to add an LLM to the client.
 
 ## Overview
@@ -229,7 +234,7 @@ public class LangChain4jClient {
                 .modelName(resolveModelName())
                 .build();
 
-        // Create MCP transport for connecting to the server
+        // Create MCP transport for connecting to server
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -477,7 +482,7 @@ In the preceding code we've:
 Retrieving tools from the MCP server is done using the `list_tools` method. In your `main` function, after setting up the MCP client, add the following code:
 
 ```rust
-// Obtain MCP tool list
+// Get MCP tool listing
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
@@ -774,7 +779,7 @@ In this part of the code, we will handle user requests.
 
     ```typescript
 
-    // 1. Create messages that are input for the LLM
+    // 1. Create messages that's input for the LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -1018,7 +1023,7 @@ client.connectToServer(transport);
     ```python
     prompt = "Add 2 to 20"
 
-    # ask LLM what tools to all, if any
+    # ask LLM what tools to use, if any
     functions_to_call = call_llm(prompt, functions)
 
     # call suggested functions
@@ -1233,7 +1238,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Execute natural language requests that automatically use MCP tools
+    // Execute natural language queries automatically using MCP tools
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1370,8 +1375,8 @@ public class LangChain4jClient {
 
 #### Rust
 
-Here is where the majority of the work happens. We will call the LLM with the initial user prompt, then process the response to see if any tools need to be called. If so, we will call those tools and continue the conversation with the LLM until no more tool calls are needed and we have a final response.
 
+Here is where the majority of the work happens. We will call the LLM with the initial user prompt, then process the response to see if any tools need to be called. If so, we will call those tools and continue the conversation with the LLM until no more tool calls are needed and we have a final response.
 
 We will be making multiple calls to the LLM, so let's define a function that will handle the LLM call. Add the following function to your `main.rs` file:
 
@@ -1395,7 +1400,7 @@ async fn call_llm(
 
 This function takes the LLM client, a list of messages (including the user prompt), tools from the MCP server, and sends a request to the LLM, returning the response.
 
-The response from the LLM will contain an array of `choices`. We will need to process the result to see if any `tool_calls` are present. This lets us know the LLM is requesting a specific tool should be called with arguments. Add the following code to the bottom of your `main.rs` file to define a function to handle the LLM response:
+The response from the LLM will contain an array of `choices`. We will need to process the result to see if any `tool_calls` are present. This let's us know the LLM is requesting a specific tool should be called with arguments. Add the following code to the bottom of your `main.rs` file to define a function to handle the LLM response:
 
 ```rust
 async fn process_llm_response(
@@ -1505,7 +1510,7 @@ Great, you did it!
 
 ## Assignment
 
-Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools get called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
+Take the code from the exercise and build out the server with some more tools. Then create a client with an LLM, like in the exercise, and test it out with different prompts to make sure all your server tools gets called dynamically. This way of building a client means the end user will have a great user experience as they're able to use prompts, instead of exact client commands, and be oblivious to any MCP server being called.
 
 ## Solution
 

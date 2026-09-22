@@ -1,10 +1,15 @@
-# Menyiapkan Klien Host MCP Populer
+# Mengatur Klien Host MCP Populer
 
-Panduan ini membahas cara mengonfigurasi dan menggunakan server MCP dengan aplikasi host AI populer. Setiap host memiliki pendekatan konfigurasi sendiri, tetapi setelah diatur, semuanya berkomunikasi dengan server MCP menggunakan protokol standar.
+> [!NOTE]
+> Konfigurasi host yang mengarah ke `/sse` adalah contoh legasi HTTP+SSE untuk
+> MCP `2025-11-25`. Untuk MCP `2026-07-28`, pilih Streamable HTTP di host yang
+> mendukungnya dan gunakan endpoint yang dikonfigurasi oleh server.
+
+Panduan ini membahas cara mengonfigurasi dan menggunakan server MCP dengan aplikasi host AI populer. Setiap host memiliki pendekatan konfigurasi sendiri, tetapi setelah disiapkan, semuanya berkomunikasi dengan server MCP menggunakan protokol standar.
 
 ## Apa itu Host MCP?
 
-**Host MCP** adalah aplikasi AI yang dapat terhubung ke server MCP untuk memperluas kemampuannya. Anggap saja sebagai "antarmuka depan" yang digunakan pengguna, sementara server MCP menyediakan alat dan data "antarmuka belakang".
+**Host MCP** adalah aplikasi AI yang dapat terhubung ke server MCP untuk memperluas kemampuannya. Anggaplah sebagai "front end" yang berinteraksi dengan pengguna, sementara server MCP menyediakan alat dan data "back end".
 
 ```mermaid
 flowchart LR
@@ -21,28 +26,29 @@ flowchart LR
         H5[Windsurf]
     end
 ```
+
 ## Prasyarat
 
-- Sebuah server MCP untuk dihubungkan (lihat [Modul 3.1 - Server Pertama](../01-first-server/README.md))
+- Server MCP untuk dihubungkan (lihat [Modul 3.1 - Server Pertama](../01-first-server/README.md))
 - Aplikasi host terpasang di sistem Anda
-- Pemahaman dasar tentang berkas konfigurasi JSON
+- Familiaritas dasar dengan file konfigurasi JSON
 
 ---
 
 ## 1. Claude Desktop
 
-**Claude Desktop** adalah aplikasi desktop resmi dari Anthropic yang secara native mendukung MCP.
+**Claude Desktop** adalah aplikasi desktop resmi Anthropic yang mendukung MCP secara native.
 
 ### Instalasi
 
 1. Unduh Claude Desktop dari [claude.ai/download](https://claude.ai/download)
-2. Instal dan masuk dengan akun Anthropic Anda
+2. Instal dan masuk menggunakan akun Anthropic Anda
 
 ### Konfigurasi
 
-Claude Desktop menggunakan berkas konfigurasi JSON untuk mendefinisikan server MCP.
+Claude Desktop menggunakan file konfigurasi JSON untuk mendefinisikan server MCP.
 
-**Lokasi berkas konfigurasi:**
+**Lokasi file konfigurasi:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
@@ -76,32 +82,32 @@ Claude Desktop menggunakan berkas konfigurasi JSON untuk mendefinisikan server M
 
 ### Opsi Konfigurasi
 
-| Field | Deskripsi | Contoh |
-|-------|-----------|--------|
-| `command` | Executable yang dijalankan | `"python"`, `"node"`, `"npx"` |
+| Kolom | Deskripsi | Contoh |
+|-------|-------------|---------|
+| `command` | Executable yang akan dijalankan | `"python"`, `"node"`, `"npx"` |
 | `args` | Argumen baris perintah | `["-m", "my_server"]` |
 | `env` | Variabel lingkungan | `{"API_KEY": "xxx"}` |
 | `cwd` | Direktori kerja | `"/path/to/server"` |
 
 ### Menguji Pengaturan Anda
 
-1. Simpan berkas konfigurasi
-2. Restart Claude Desktop sepenuhnya (keluar dan buka kembali)
+1. Simpan file konfigurasi
+2. Mulai ulang Claude Desktop sepenuhnya (keluar lalu buka lagi)
 3. Buka percakapan baru
-4. Cari ikon 🔌 yang menandakan server terhubung
+4. Cari ikon 🔌 yang menandakan server tersambung
 5. Coba minta Claude menggunakan salah satu alat Anda
 
-### Pemecahan Masalah Claude Desktop
+### Memecahkan Masalah Claude Desktop
 
 **Server tidak muncul:**
-- Periksa sintaks berkas konfigurasi dengan validator JSON
+- Periksa sintaks file konfigurasi dengan validator JSON
 - Pastikan jalur perintah benar
 - Periksa log Claude Desktop: Bantuan → Tampilkan Log
 
-**Server crash saat mulai:**
-- Uji server Anda secara manual di terminal terlebih dahulu
-- Periksa variabel lingkungan sudah diatur dengan benar
-- Pastikan semua dependensi terinstal
+**Server crash saat startup:**
+- Uji server secara manual di terminal terlebih dahulu
+- Pastikan variabel lingkungan diatur dengan benar
+- Pastikan semua dependensi terpasang
 
 ---
 
@@ -111,15 +117,15 @@ VS Code mendukung MCP melalui ekstensi GitHub Copilot Chat.
 
 ### Prasyarat
 
-1. VS Code versi 1.99+ terinstal
+1. VS Code 1.99+ terpasang
 2. Ekstensi GitHub Copilot terpasang
 3. Ekstensi GitHub Copilot Chat terpasang
 
 ### Konfigurasi
 
-VS Code menggunakan `.vscode/mcp.json` di workspace atau pengaturan pengguna.
+VS Code menggunakan `.vscode/mcp.json` di workspace atau pengaturan pengguna Anda.
 
-**Konfigurasi Workspace** (`.vscode/mcp.json`):
+**Konfigurasi workspace** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -158,18 +164,18 @@ VS Code menggunakan `.vscode/mcp.json` di workspace atau pengaturan pengguna.
 2. Ketik `@` untuk melihat alat MCP yang tersedia
 3. Gunakan bahasa alami untuk memanggil alat: "Hitung 25 * 48 menggunakan kalkulator"
 
-### Pemecahan Masalah VS Code
+### Memecahkan Masalah VS Code
 
 **Server MCP tidak dimuat:**
-- Periksa panel Output → "MCP" untuk log error
-- Reload window: Ctrl+Shift+P → "Developer: Reload Window"
+- Periksa panel Output → "MCP" untuk log kesalahan
+- Muat ulang jendela: Ctrl+Shift+P → "Developer: Reload Window"
 - Pastikan server berjalan secara mandiri terlebih dahulu
 
 ---
 
 ## 3. Cursor
 
-**Cursor** adalah editor kode dengan dukungan MCP bawaan dan fokus pada AI.
+**Cursor** adalah editor kode berbasis AI pertama dengan dukungan MCP bawaan.
 
 ### Instalasi
 
@@ -180,7 +186,7 @@ VS Code menggunakan `.vscode/mcp.json` di workspace atau pengaturan pengguna.
 
 Cursor menggunakan format konfigurasi serupa dengan Claude Desktop.
 
-**Lokasi berkas konfigurasi:**
+**Lokasi file konfigurasi:**
 - **macOS**: `~/.cursor/mcp.json`
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
@@ -208,14 +214,14 @@ Cursor menggunakan format konfigurasi serupa dengan Claude Desktop.
 ### Menggunakan MCP di Cursor
 
 1. Buka chat AI Cursor (Ctrl+L / Cmd+L)
-2. Alat MCP otomatis muncul dalam saran
-3. Minta AI untuk menjalankan tugas menggunakan server terhubung
+2. Alat MCP muncul otomatis dalam saran
+3. Minta AI melakukan tugas menggunakan server terhubung
 
 ---
 
 ## 4. Cline (Berbasis Terminal)
 
-**Cline** adalah klien MCP berbasis terminal, ideal untuk alur kerja baris perintah.
+**Cline** adalah klien MCP berbasis terminal, ideal untuk alur kerja command-line.
 
 ### Instalasi
 
@@ -241,7 +247,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
       --mcp-server "weather:node /path/to/weather/index.js"
 ```
 
-**Berkas konfigurasi** (`~/.clinerc`):
+**File konfigurasi** (`~/.clinerc`):
 
 ```json
 {
@@ -261,7 +267,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 # Mulai sesi interaktif
 cline
 
-# Satu kueri dengan MCP
+# Kuery tunggal dengan MCP
 cline "Calculate the square root of 144 using the calculator"
 
 # Daftar alat yang tersedia
@@ -281,11 +287,11 @@ cline --list-tools
 
 ### Konfigurasi
 
-Konfigurasi Windsurf dikelola melalui UI pengaturan:
+Konfigurasi Windsurf diatur melalui UI pengaturan:
 
 1. Buka Pengaturan (Ctrl+, / Cmd+,)
 2. Cari "MCP"
-3. Klik "Edit in settings.json"
+3. Klik "Edit di settings.json"
 
 **Contoh konfigurasi:**
 
@@ -304,9 +310,9 @@ Konfigurasi Windsurf dikelola melalui UI pengaturan:
 
 ---
 
-## Perbandingan Tipe Transportasi
+## Perbandingan Jenis Transportasi
 
-Host yang berbeda mendukung mekanisme transportasi berbeda:
+Host yang berbeda mendukung mekanisme transportasi yang berbeda:
 
 | Host | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
@@ -316,7 +322,7 @@ Host yang berbeda mendukung mekanisme transportasi berbeda:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standard input/output): Terbaik untuk server lokal yang dijalankan oleh host  
+**stdio** (input/output standar): Terbaik untuk server lokal yang dimulai oleh host
 **SSE/HTTP**: Terbaik untuk server jarak jauh atau server yang dibagikan antara beberapa klien
 
 ---
@@ -347,48 +353,48 @@ Host yang berbeda mendukung mekanisme transportasi berbeda:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Server terhubung tetapi alat tidak berfungsi
+### Server terhubung tapi alat tidak berfungsi
 
-1. **Periksa log server** - Kebanyakan host memiliki opsi logging  
-2. **Verifikasi pendaftaran alat** - Gunakan MCP Inspector untuk pengujian  
+1. **Periksa log server** - Sebagian besar host memiliki opsi logging
+2. **Verifikasi pendaftaran alat** - Gunakan MCP Inspector untuk menguji
 3. **Periksa izin** - Beberapa alat memerlukan akses file/jaringan
 
 ### Variabel lingkungan tidak diteruskan
 
-- Beberapa host menyaring variabel lingkungan  
-- Gunakan bidang `env` secara eksplisit dalam konfigurasi  
-- Hindari data sensitif di berkas konfigurasi (gunakan manajemen rahasia)
+- Beberapa host memfilter variabel lingkungan
+- Gunakan bidang `env` dalam konfigurasi secara eksplisit
+- Hindari data sensitif dalam file konfigurasi (gunakan pengelolaan rahasia)
 
 ---
 
 ## Praktik Keamanan Terbaik
 
-1. **Jangan pernah commit kunci API** ke berkas konfigurasi  
-2. **Gunakan variabel lingkungan** untuk data sensitif  
-3. **Batasi izin server** hanya untuk yang dibutuhkan  
-4. **Tinjau kode server** sebelum memberikan akses ke sistem Anda  
-5. **Gunakan allowlist** untuk akses sistem file dan jaringan
+1. **Jangan pernah commit API key** ke file konfigurasi
+2. **Gunakan variabel lingkungan** untuk data sensitif
+3. **Batasi izin server** hanya pada kebutuhan yang diperlukan
+4. **Tinjau kode server** sebelum memberikan akses ke sistem Anda
+5. **Gunakan daftar izinkan** untuk akses sistem file dan jaringan
 
 ---
 
-## Selanjutnya
+## Apa Selanjutnya
 
-- [3.13 - Debugging dengan MCP Inspector](../13-mcp-inspector/README.md)  
-- [3.1 - Buat server MCP pertama Anda](../01-first-server/README.md)  
+- [3.13 - Debugging dengan MCP Inspector](../13-mcp-inspector/README.md)
+- [3.1 - Buat server MCP pertama Anda](../01-first-server/README.md)
 - [Modul 5 - Topik Lanjutan](../../05-AdvancedTopics/README.md)
 
 ---
 
 ## Sumber Daya Tambahan
 
-- [Dokumentasi Claude Desktop MCP](https://docs.anthropic.com/en/docs/claude-desktop/mcp)  
-- [Ekstensi VS Code MCP](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)  
-- [Spesifikasi MCP - Transport](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)  
+- [Dokumentasi Claude Desktop MCP](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [Ekstensi VS Code MCP](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [Spesifikasi MCP - Transportasi](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Registri Server MCP Resmi](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk akurasi, mohon diingat bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau salah tafsir yang timbul dari penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

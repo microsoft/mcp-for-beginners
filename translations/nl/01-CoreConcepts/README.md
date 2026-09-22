@@ -1,50 +1,58 @@
-# MCP Kernconcepten: Het Model Context Protocol Beheersen voor AI-integratie
+# MCP Kernconcepten: Het Model Context Protocol beheersen voor AI-integratie
 
 [![MCP Kernconcepten](../../../translated_images/nl/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)
 
 _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
-Het [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is een krachtig, gestandaardiseerd kader dat de communicatie tussen Large Language Models (LLM's) en externe tools, applicaties en databronnen optimaliseert.  
-Deze gids leidt je door de kernconcepten van MCP. Je leert over de client-serverarchitectuur, essentiële componenten, communicatie-mechanismen en implementatiebest practices.
+Het [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is een krachtig, gestandaardiseerd raamwerk dat de communicatie tussen Grote Taalmodellen (LLM's) en externe tools, applicaties en databronnen optimaliseert. 
+Deze gids leidt je door de kernconcepten van MCP. Je leert over de client-serverarchitectuur, essentiële componenten, communicatiemechanica en beste implementatiepraktijken.
 
-- **Expliciete gebruikersinstemming**: Alle data-toegang en operaties vereisen expliciete goedkeuring van de gebruiker vóór uitvoering. Gebruikers moeten duidelijk begrijpen welke data wordt geraadpleegd en welke acties worden uitgevoerd, met gedetailleerde controle over toestemmingen en autorisaties.
+- **Gebruikerscontrole en Toestemming**: Hosts moeten duidelijk laten zien welke data en tools een
+  server blootstelt, gebruikers toestaan om operaties te weigeren en expliciete bevestiging vragen
+  voor gevoelige of belangrijke acties. MCP vereist geen bevestigingsdialoog
+  voor elke tool-aanroep.
 
-- **Bescherming van gegevensprivacy**: Gebruikersdata wordt alleen blootgesteld met expliciete toestemming en moet worden beschermd door robuuste toegangcontroles gedurende de volledige interactiecyclus. Implementaties moeten ongeautoriseerde data-transmissie voorkomen en strikte privacygrenzen handhaven.
+- **Bescherming van Gegevensprivacy**: Gebruikersdata wordt alleen blootgesteld met expliciete toestemming en moet gedurende de gehele interactielifecycle beschermd worden met robuuste toegangscontroles. Implementaties moeten ongeautoriseerde datatransmissie voorkomen en strikte privacygrenzen handhaven.
 
-- **Veiligheid bij tooluitvoering**: Elke tool-aanroep vereist expliciete toestemming van de gebruiker met duidelijk begrip van de functionaliteit, parameters en potentieel effect van de tool. Robuuste beveiligingsgrenzen moeten onbedoelde, onveilige of kwaadaardige tooluitvoering voorkomen.
+- **Veiligheid bij Tooluitvoering**: Hosts moeten tool-aanroepen zichtbaar maken en
+  een mens in staat stellen deze te weigeren. Gevoelige operaties moeten de tool-inputs
+  en impact tonen vóór uitvoering, met beveiligingsgrenzen die onbedoelde
+  of kwaadaardige acties voorkomen.
 
-- **Transportlaagbeveiliging**: Alle communicatiekanalen dienen geschikte encryptie- en authenticatiemechanismen te gebruiken. Externe verbindingen moeten beveiligde transportprotocollen implementeren en correct omgang met inloggegevens.
+- **Transportsbeveiliging**: Externe verbindingen moeten HTTPS en het MCP
+  autorisatiemodel gebruiken. Lokale stdio-servers vertrouwen op procesisolatie, vertrouwde
+  configuratie en veilige afhandeling van geërfde credentials.
 
 #### Implementatierichtlijnen:
 
-- **Toestemmingsbeheer**: Implementeer fijnmazige toestemmingssystemen waarmee gebruikers kunnen bepalen welke servers, tools en bronnen toegankelijk zijn  
-- **Authenticatie & Autorisatie**: Gebruik veilige authenticatiemethoden (OAuth, API-sleutels) met correcte tokenbeheer en verlopen  
-- **Inputvalidatie**: Valideer alle parameters en data-inputs volgens de gedefinieerde schemas om injectie-aanvallen te voorkomen  
-- **Audit Logging**: Houd uitgebreide logboeken bij van alle operaties voor beveiligingsmonitoring en compliance
+- **Beheer van Machtigingen**: Implementeer fijnmazige machtigingssysteem dat gebruikers toestaat te bepalen welke servers, tools en bronnen toegankelijk zijn
+- **Authenticatie & Autorisatie**: Gebruik veilige authenticatiemethoden (OAuth, API-sleutels) met correct tokenbeheer en verlopen  
+- **Invoervalidatie**: Valideer alle parameters en data-inputs volgens gedefinieerde schema's om injectieaanvallen te voorkomen
+- **Auditlogging**: Houd uitgebreide logs bij van alle operaties voor beveiligingsmonitoring en naleving
 
 ## Overzicht
 
-Deze les verkent de fundamentele architectuur en componenten die het Model Context Protocol (MCP)-ecosysteem vormen. Je leert over de client-serverarchitectuur, kerncomponenten en communicatie-mechanismen die MCP-interacties aandrijven.
+Deze les onderzoekt de fundamentele architectuur en componenten die het Model Context Protocol (MCP) ecosysteem vormen. Je leert over de client-serverarchitectuur, belangrijke componenten en communicatie-mechanismen die MCP-interacties aansturen.
 
 ## Belangrijkste Leerdoelen
 
 Aan het einde van deze les zul je:
 
-- De MCP client-serverarchitectuur begrijpen.  
-- Rollen en verantwoordelijkheden van Hosts, Clients en Servers identificeren.  
-- De kernfeatures analyseren die MCP een flexibele integratielaag maken.  
-- Leren hoe informatie binnen het MCP-ecosysteem stroomt.  
+- De MCP client-serverarchitectuur begrijpen.
+- Rollen en verantwoordelijkheden van Hosts, Clients en Servers identificeren.
+- De kernkenmerken analyseren die MCP een flexibele integratielaag maken.
+- Leren hoe informatie binnen het MCP-ecosysteem stroomt.
 - Praktische inzichten verkrijgen via codevoorbeelden in .NET, Java, Python en JavaScript.
 
-## MCP Architectuur: Een Diepere Kijk
+## MCP Architectuur: Een Diepere Blik
 
-Het MCP-ecosysteem is gebouwd op een client-servermodel. Deze modulaire structuur stelt AI-applicaties in staat efficiënt te interacteren met tools, databases, API's en contextuele bronnen. Laten we deze architectuur opsplitsen in de kerncomponenten.
+Het MCP-ecosysteem is gebouwd op een client-server model. Deze modulaire structuur maakt het mogelijk dat AI-toepassingen efficiënt met tools, databases, API's en contextuele bronnen communiceren. Laten we deze architectuur opbreken in de kerncomponenten.
 
-MCP volgt in de kern een client-serverarchitectuur waarbij een hostapplicatie kan verbinden met meerdere servers:
+MCP volgt in de kern een client-serverarchitectuur waarbij een hostapplicatie verbinding kan maken met meerdere servers:
 
 ```mermaid
 flowchart LR
-    subgraph "Uw Computer"
+    subgraph "Jouw Computer"
         Host["Host met MCP (Visual Studio, VS Code, IDE's, Hulpmiddelen)"]
         S1["MCP Server A"]
         S2["MCP Server B"]
@@ -56,79 +64,97 @@ flowchart LR
         S2 <--> D2[("Lokaal\Gegevensbron B")]
     end
     subgraph "Internet"
-        S3 <-->|"Web APIs"| D3[("Afstandsdiensten")]
+        S3 <-->|"Web-API's"| D3[("Afstands\Services")]
     end
 ```
 
-- **MCP Hosts**: Programma’s zoals VSCode, Claude Desktop, IDE’s of AI-tools die via MCP toegang tot data willen  
-- **MCP Clients**: Protocolclients die 1:1 verbindingen onderhouden met servers  
-- **MCP Servers**: Lichtgewicht programma’s die elk specifieke mogelijkheden aanbieden via het gestandaardiseerde Model Context Protocol  
-- **Lokale Datasources**: Bestanden, databases en services van jouw computer waar MCP-servers veilig toegang toe kunnen krijgen  
-- **Externe Services**: Externe systemen beschikbaar via internet waarmee MCP-servers via API’s kunnen verbinden.
+- **MCP Hosts**: Programma's zoals VSCode, Claude Desktop, IDE's, of AI-tools die data via MCP willen benaderen
+- **MCP Clients**: Protocolcomponenten die één logische relatie onderhouden
+  met een server; MCP `2026-07-28` verzoeken zijn niet afhankelijk van een persistente
+  verbinding of sessie
+- **MCP Servers**: Lichtgewicht programma's die elk specifieke mogelijkheden blootstellen via het gestandaardiseerde Model Context Protocol
+- **Lokale Databronnen**: De bestanden, databases en services van jouw computer waarop MCP-servers veilig kunnen inloggen
+- **Externe Services**: Externe systemen beschikbaar via internet waarmee MCP-servers via API's kunnen verbinden.
 
-Het MCP Protocol is een evoluerende standaard die versiebeheer gebruikt op basis van datums (YYYY-MM-DD-formaat). De huidige protocolversie is **2025-11-25**. Je kunt de laatste updates zien in de [protocolspecificatie](https://modelcontextprotocol.io/specification/2025-11-25/)
+Het MCP-protocol is een evoluerende standaard die datumgebaseerde versiebeheer gebruikt
+(formaat JJJJ-MM-DD). De huidige protocolversie is **2026-07-28**. Zie de
+[2026-07-28 protocol specificatie](https://modelcontextprotocol.io/specification/2026-07-28/).
 
-> **Vooruitblik:** een releasekandidaat voor de volgende specificatieversie, **2026-07-28**, werd aangekondigd in mei 2026 en staat gepland voor release op 28 juli 2026. Het maakt het protocol stateless op transportlaag (verwijdert de `initialize`-handshake en sessie-ID’s), formaliseert het Extensies-framework, en deprecieert Roots, Sampling en Logging ten gunste van nieuwere patronen. Zie [Wat verandert er in MCP: De 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md) voor een volledige analyse.
+> **Huidige release:** MCP `2026-07-28` maakt het protocol stateless op het
+> transportniveau door de `initialize` handshake en protocolniveau
+> sessie-ID's te verwijderen. Het formaliseert ook een uitbreidingsraamwerk en deprecieert
+> Roots, Sampling en Logging ten gunste van nieuwere patronen. Zie
+> [Wat is veranderd in MCP: De 2026-07-28 Specificatie](./mcp-2026-07-28.md)
+> voor een volledige uitleg en migratiegids. Voorbeelden die expliciet `2025-11-25`
+> targeten, blijven gehandhaafd als legacy compatibiliteitslessen.
 
 ### 1. Hosts
 
-In het Model Context Protocol (MCP) zijn **Hosts** AI-toepassingen die de primaire interface vormen waarlangs gebruikers met het protocol interacteren. Hosts coördineren en beheren verbindingen met meerdere MCP-servers door voor elke serververbinding een dedicated MCP-client aan te maken. Voorbeelden van Hosts zijn:
+In het Model Context Protocol (MCP) zijn **Hosts** AI-toepassingen die de primaire interface vormen waarmee gebruikers met het protocol interageren. Hosts coördineren en beheren verbindingen met meerdere MCP-servers door voor elke serververbinding een toegewijde MCP-client aan te maken. Voorbeelden van Hosts zijn:
 
-- **AI Toepassingen**: Claude Desktop, Visual Studio Code, Claude Code  
-- **Ontwikkelomgevingen**: IDE’s en code-editors met MCP-integratie  
-- **Aangepaste Applicaties**: Speciaal gebouwde AI-agenten en tools
+- **AI-toepassingen**: Claude Desktop, Visual Studio Code, Claude Code
+- **Ontwikkelomgevingen**: IDE's en code-editors met MCP-integratie  
+- **Aangepaste toepassingen**: Speciaal gebouwde AI-agenten en tools
 
 **Hosts** zijn applicaties die AI-modelinteracties coördineren. Ze:
 
-- **Orkestreren AI-modellen**: Voeren LLM’s uit of interacteren ermee om reacties te genereren en AI-workflows te coördineren  
-- **Beheren clientverbindingen**: Maken en onderhouden één MCP-client per MCP-serververbinding  
-- **Beheersen gebruikersinterface**: Handelen conversatiestromen, gebruikersinteracties en responsweergave af  
-- **Handhaven beveiliging**: Controleren toestemming, beveiligingsbeperkingen en authenticatie  
-- **Behandelen gebruikersinstemming**: Beheren goedkeuring van gebruikers voor datadeling en tooluitvoering
+- **Orkestreren AI-modellen**: Voeren LLM's uit of interageren ermee om antwoorden te genereren en AI-workflows te coördineren
+- **Beheren klantrelaties**: Creëren en beheren één MCP-client per MCP
+  server die de host gebruikt
+- **Beheren gebruikersinterface**: Afhandelen van gespreksstromen, gebruikersinteracties en antwoordpresentatie  
+- **Handhaven beveiliging**: Controleren van machtigingen, beveiligingsbeperkingen en authenticatie
+- **Beheren gebruikersconsent**: Regelen van gebruikersgoedkeuring voor data delen en tooluitvoering
+
 
 ### 2. Clients
 
-**Clients** zijn essentiële componenten die dedicated één-op-één verbindingen onderhouden tussen Hosts en MCP-servers. Elke MCP-client wordt door de Host geïnitieerd om verbinding te maken met een specifieke MCP-server, zodat georganiseerde en beveiligde communicatiekanalen worden gegarandeerd. Meerdere clients maken het voor Hosts mogelijk om gelijktijdig met meerdere servers te verbinden.
+**Clients** zijn protocolcomponenten die door een host worden aangemaakt voor specifieke MCP
+servers. Dit is een logische één-op-één relatie, geen vereiste voor een
+persistente netwerkverbinding. In MCP `2026-07-28` is elk verzoek
+op zichzelf staand en kan door elke serverinstantie worden afgehandeld.
 
 **Clients** zijn connectorcomponenten binnen de hostapplicatie. Ze:
 
-- **Protocolcommunicatie**: Verzenden JSON-RPC 2.0-verzoeken naar servers met prompts en instructies  
-- **Capabiliteitsonderhandeling**: Onderhandelen ondersteunde features en protocolversies met servers bij initialisatie  
-- **Tooluitvoering**: Beheren tooluitvoeringsverzoeken van modellen en verwerken de reacties  
-- **Real-time Updates**: Handelen notificaties en realtime updates van servers af  
-- **Verwerkingsantwoorden**: Verwerken en formatteren serverantwoorden voor presentatie aan gebruikers
+- **Protocolcommunicatie**: Verzenden JSON-RPC 2.0-verzoeken naar servers met prompts en instructies
+- **Ontdekken van mogelijkheden**: Gebruik `server/discover` om ondersteunde
+  protocolversies, capabilities en extensies van een server te leren kennen
+- **Tooluitvoering**: Beheren verzoeken tot tooluitvoering van modellen en verwerken van antwoorden
+- **Realtime updates**: Afhandelen van notificaties en realtime updates van servers
+- **Verwerking van antwoorden**: Verwerken en formatteren van serverantwoorden voor weergave aan gebruikers
 
 ### 3. Servers
 
-**Servers** zijn programma’s die context, tools en mogelijkheden aan MCP-clients leveren. Ze kunnen lokaal draaien (op dezelfde machine als de Host) of extern (op externe platforms) en zijn verantwoordelijk voor het afhandelen van clientverzoeken en het aanbieden van gestructureerde antwoorden. Servers bieden specifieke functionaliteiten aan via het gestandaardiseerde Model Context Protocol.
+**Servers** zijn programma's die context, tools en mogelijkheden aan MCP-clients leveren. Ze kunnen lokaal draaien (op dezelfde machine als de Host) of extern (op externe platforms), en zijn verantwoordelijk voor het verwerken van clientverzoeken en het bieden van gestructureerde antwoorden. Servers bieden specifieke functionaliteit via het gestandaardiseerde Model Context Protocol.
 
-**Servers** zijn services die context en mogelijkheden leveren. Ze:
+**Servers** zijn diensten die context en mogelijkheden bieden. Ze:
 
-- **Feature-registratie**: Registreren en tonen beschikbare primitieve elementen (resources, prompts, tools) aan clients  
-- **Verzoekverwerking**: Ontvangen en voeren tool-aanroepen, resource-verzoeken en promptverzoeken van clients uit  
-- **Contextvoorziening**: Bieden contextuele informatie en data die modelantwoorden verbeteren  
-- **Statusbeheer**: Onderhouden sessiestatus en behandelen stateful interacties indien nodig  
-- **Real-time Notificaties**: Verzenden notificaties over veranderingen in capaciteiten en updates aan verbonden clients
 
-Servers kunnen door iedereen worden ontwikkeld om modelmogelijkheden uit te breiden met gespecialiseerde functionaliteit, en ondersteunen zowel lokale als externe inzetscenario’s.
+- **Functieregistratie**: Registreer en stel beschikbare primitieve elementen (bronnen, prompts, tools) bloot aan cliënten
+- **Verzoekverwerking**: Ontvang en voer tool-oproepen, bronverzoeken en promptverzoeken van cliënten uit
+- **Contextvoorziening**: Bied contextuele informatie en data om modelantwoorden te verbeteren
+- **Statusbeheer**: Onderhoud de applicatiestatus met expliciete verwijzingen die
+  indien nodig in verzoeken worden doorgegeven; MCP `2026-07-28` kent geen sessies op protocolniveau
+- **Realtime Meldingen**: Verstuur meldingen over capaciteitswijzigingen en updates aan verbonden cliënten
+
+Servers kunnen door iedereen worden ontwikkeld om functionaliteit te specialiseren en modelmogelijkheden uit te breiden, en ondersteunen zowel lokale als externe implementatiescenario’s.
 
 ### 4. Serverprimitieven
 
-Servers in het Model Context Protocol (MCP) bieden drie kern-**primitieven** die de fundamentele bouwstenen definiëren voor rijke interacties tussen clients, hosts en taalmodellen. Deze primitieven specificeren welke soorten contextuele informatie en acties via het protocol beschikbaar zijn.
+Servers binnen het Model Context Protocol (MCP) bieden drie kern-**primitieven** die de fundamentele bouwstenen definiëren voor rijke interacties tussen cliënten, hosts en taalmodellen. Deze primitieven specificeren de typen contextuele informatie en acties die via het protocol beschikbaar zijn.
 
-MCP-servers kunnen elke combinatie van onderstaande drie kernprimitieven exposen:
+MCP-servers kunnen elke combinatie van de volgende drie kernprimitieven blootstellen:
 
-#### Resources 
+#### Bronnen
 
-**Resources** zijn databronnen die contextuele informatie leveren aan AI-toepassingen. Ze vertegenwoordigen statische of dynamische inhoud die het modelbegrip en de besluitvorming kan verbeteren:
+**Bronnen** zijn gegevensbronnen die contextuele informatie aan AI-toepassingen verstrekken. Ze vertegenwoordigen statische of dynamische inhoud die het begrip van het model en de besluitvorming kunnen verbeteren:
 
-- **Contextuele Data**: Gestructureerde informatie en context voor AI-modellen  
-- **Kennisbases**: Documentreplicaties, artikelen, handleidingen en onderzoeksdocumenten  
-- **Lokale Datasources**: Bestanden, databases en lokale systeeminformatie  
-- **Externe Data**: API-antwoorden, webservices en data van externe systemen  
-- **Dynamische Inhoud**: Real-time data die bijgewerkt wordt op basis van externe condities
+- **Contextuele Data**: Gestructureerde informatie en context voor consumptie door AI-modellen
+- **Kennisbanken**: Documentrepositories, artikelen, handleidingen en onderzoeksartikelen
+- **Lokale Gegevensbronnen**: Bestanden, databases en lokale systeeminformatie  
+- **Externe Data**: API-antwoorden, webservices en gegevens van externe systemen
+- **Dynamische Inhoud**: Realtime data die geüpdatet wordt op basis van externe omstandigheden
 
-Resources worden geïdentificeerd met URI’s en ondersteund via de `resources/list`- en `resources/read`-methoden:
+Bronnen worden geïdentificeerd door URI’s en ondersteunen ontdekking via `resources/list` en opvraging via `resources/read` methoden:
 
 ```text
 file://documents/project-spec.md
@@ -138,15 +164,15 @@ api://weather/current
 
 #### Prompts
 
-**Prompts** zijn herbruikbare sjablonen die helpen interacties met taalmodellen te structureren. Ze bieden gestandaardiseerde interactiepatronen en voorgedefinieerde workflows:
+**Prompts** zijn herbruikbare sjablonen die helpen bij het structureren van interacties met taalmodellen. Ze bieden gestandaardiseerde interactiepatronen en sjabloongedreven workflows:
 
-- **Op sjablonen gebaseerde interacties**: Vooraf gestructureerde berichten en gespreksstarters  
-- **Workflow-sjablonen**: Gestandaardiseerde sequenties voor gangbare taken en interacties  
-- **Few-shot voorbeelden**: Voorbeeldgebaseerde templates voor modelinstructie  
-- **Systeemprompts**: Fundamentele prompts die het gedrag en de context van het model definiëren  
-- **Dynamische sjablonen**: Gepersonaliseerde prompts die zich aanpassen aan specifieke contexten
+- **Sjabloon-gebaseerde Interacties**: Vooraf gestructureerde berichten en gespreksstarters
+- **Workflow-sjablonen**: Gestandaardiseerde reeksen voor veelvoorkomende taken en interacties
+- **Few-shot Voorbeelden**: Op voorbeelden gebaseerde sjablonen voor modelinstructies
+- **Systeem-prompts**: Fundamentele prompts die modelgedrag en context definiëren
+- **Dynamische Sjablonen**: Geparametriseerde prompts die zich aanpassen aan specifieke contexten
 
-Prompts ondersteunen variabele substitutie en kunnen worden ontdekt via `prompts/list` en opgevraagd worden met `prompts/get`:
+Prompts ondersteunen variabele substitutie en kunnen worden ontdekt via `prompts/list` en opgevraagd met `prompts/get`:
 
 ```markdown
 Generate a {{task_type}} for {{product}} targeting {{audience}} with the following requirements: {{requirements}}
@@ -154,19 +180,20 @@ Generate a {{task_type}} for {{product}} targeting {{audience}} with the followi
 
 #### Tools
 
-**Tools** zijn uitvoerbare functies die AI-modellen kunnen aanroepen om specifieke acties uit te voeren. Ze vertegenwoordigen de "werkwoorden" van het MCP-ecosysteem en stellen modellen in staat externe systemen te bedienen:
+**Tools** zijn uitvoerbare functies die AI-modellen kunnen aanroepen om specifieke acties uit te voeren. Ze vormen de "werkwoorden" van het MCP-ecosysteem, waarmee modellen kunnen interacteren met externe systemen:
 
-- **Uitvoerbare functies**: Afgebakende operaties die modellen kunnen aanroepen met specifieke parameters  
-- **Integratie met externe systemen**: API-aanroepen, databasequery’s, bestandshandelingen, berekeningen  
-- **Unieke identiteit**: Elke tool heeft een unieke naam, beschrijving en parameterschema  
-- **Gestructureerde I/O**: Tools accepteren gevalideerde parameters en leveren gestructureerde, getypeerde antwoorden terug  
-- **Actiemogelijkheden**: Stellen modellen in staat real-world acties uit te voeren en live data te verkrijgen
+- **Uitvoerbare Functies**: Afgebakende operaties die modellen kunnen aanroepen met specifieke parameters
+- **Integratie Externe Systemen**: API-aanroepen, databasequeries, bestandshandelingen, berekeningen
+- **Unieke Identiteit**: Elke tool heeft een unieke naam, beschrijving en parameterschema
+- **Gestructureerde I/O**: Tools accepteren gevalideerde parameters en geven gestructureerde, getypeerde antwoorden terug
+- **Actiemogelijkheden**: Stellen modellen in staat om handelingen in de echte wereld uit te voeren en live data op te halen
 
-Tools worden gedefinieerd met JSON Schema voor parametervalidatie, gevonden via `tools/list` en aangeroepen via `tools/call`. Tools kunnen ook **iconen** bevatten als extra metadata voor betere UI-presentatie.
+Tools worden gedefinieerd met JSON Schema voor parameter-validatie en ontdekt via `tools/list` en uitgevoerd via `tools/call`. Tools kunnen ook **iconen** bevatten als extra metadata voor een betere UI-presentatie.
 
-**Toolannotaties**: Tools ondersteunen gedragsannotaties (bijv. `readOnlyHint`, `destructiveHint`) die aangeven of een tool alleen-lezen of destructief is, wat clients helpt geïnformeerde beslissingen te nemen over tooluitvoering.
+**Toolannotaties**: Tools ondersteunen gedragsannotaties (bijv. `readOnlyHint`, `destructiveHint`) die aangeven of een tool alleen-lezen of destructief is, wat cliënten helpt weloverwogen beslissingen te nemen over tooluitvoering.
 
-Voorbeeld van een tooldefinitie:
+
+Voorbeeld gereedschapsdefinitie:
 
 ```typescript
 server.tool(
@@ -177,7 +204,7 @@ server.tool(
     max_results: z.number().default(10).describe("Maximum results to return")
   }, 
   async (params) => {
-    // Voer zoekopdracht uit en retourneer gestructureerde resultaten
+    // Voer een zoekopdracht uit en retourneer gestructureerde resultaten
     return await productService.search(params);
   }
 );
@@ -185,151 +212,171 @@ server.tool(
 
 ## Clientprimitieven
 
-In het Model Context Protocol (MCP) kunnen **clients** primitieve functies exposen die servers in staat stellen aanvullende mogelijkheden van de hostapplicatie op te vragen. Deze client-side primitieven maken rijkere, interactieve serverimplementaties mogelijk die toegang hebben tot AI-modelmogelijkheden en gebruikersinteracties.
+In het Model Context Protocol (MCP) kunnen **clients** primitieve functies blootstellen die servers in staat stellen om aanvullende mogelijkheden van de hostapplicatie op te vragen. Deze client-side primitieve functies stellen servers in staat om rijkere, interactievere implementaties te maken die toegang hebben tot AI-modelmogelijkheden en gebruikersinteracties.
 
 ### Sampling
 
-> **Deprecated melding:** de `2026-07-28` releasekandidaat markeert Sampling als verouderd ten gunste van directe integratie met LLM-provider API’s. Het blijft werken in `2025-11-25` en minstens een jaar daarna, maar nieuwe ontwerpen dienen het vervangende patroon te verkiezen. Zie [Wat verandert er in MCP: De 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+> **Verouderd in MCP `2026-07-28`:** Sampling blijft beschikbaar voor
+> compatibiliteit, maar nieuwe implementaties dienen direct te integreren met een LLM
+> provider-API. Het kan verwijderd worden in de eerste specificatierevisie
+> uitgebracht op of na 28 juli 2027. Zie
+> [Wat is veranderd in MCP: De specificatie van 2026-07-28](./mcp-2026-07-28.md).
 
-**Sampling** stelt servers in staat om completions van taalmodellen aan te vragen van de AI-applicatie van de client. Deze primitive stelt servers in staat LLM-mogelijkheden te gebruiken zonder eigen modelafhankelijkheden:
+**Sampling** stelt servers in staat om taalmodel-completions aan te vragen bij de AI-toepassing van de client. Deze primitief maakt het voor servers mogelijk om toegang te krijgen tot LLM-mogelijkheden zonder hun eigen modelafhankelijkheden in te bouwen:
 
-- **Modelonafhankelijke toegang**: Servers kunnen completions opvragen zonder LLM-SDK’s mee te leveren of modeltoegang te beheren  
-- **Server-geïnitieerde AI**: Staat servers toe autonoom content te genereren met het AI-model van de client  
-- **Recursieve LLM-interacties**: Ondersteunt complexe scenario’s waarin servers AI-hulp nodig hebben voor verwerking  
-- **Dynamische contentgeneratie**: Laat servers contextuele antwoorden creëren met het model van de host  
-- **Ondersteuning voor toolaanroepen**: Servers kunnen `tools` en `toolChoice` parameters meesturen om toe te staan dat het clientmodel tools aanroept tijdens sampling
+- **Modelonafhankelijke Toegang**: Servers kunnen completions aanvragen zonder LLM SDK's te hoeven opnemen of modeltoegang te beheren
+- **Server-geïnitieerde AI**: Hiermee kunnen servers autonoom inhoud genereren met het AI-model van de client
+- **Recursieve LLM-interacties**: Ondersteunt complexe scenario's waarbij servers AI-assistentie nodig hebben voor verwerking
+- **Dynamische Inhoudsgeneratie**: Maakt het voor servers mogelijk contextuele antwoorden te creëren met het model van de host
+- **Ondersteuning voor Toolaanroep**: Servers kunnen `tools` en `toolChoice` parameters opnemen om het model van de client toe te staan tools aan te roepen tijdens sampling
 
-Sampling wordt geïnitieerd via de `sampling/complete`-methode, waarbij servers completion-aanvragen naar clients sturen.
+Sampling gebruikt de methode `sampling/createMessage`, waarbij servers een
+completion van clients aanvragen.
 
 ### Roots
 
-> **Deprecated melding:** de `2026-07-28` releasekandidaat markeert Roots als verouderd ten gunste van toolparameters, resource-URI’s of serverconfiguraties. Het blijft werken in `2025-11-25` en minstens een jaar daarna. Zie [Wat verandert er in MCP: De 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+> **Verouderd in MCP `2026-07-28`:** Roots blijven beschikbaar voor
+> compatibiliteit, maar nieuwe implementaties dienen directories of bestanden door te geven via
+> toolparameters, resource-URI's of serverconfiguratie. Roots kunnen worden
+> verwijderd in de eerste specificatierevisie uitgebracht op of na 28 juli
+> 2027. Zie
+> [Wat is veranderd in MCP: De specificatie van 2026-07-28](./mcp-2026-07-28.md).
 
-**Roots** bieden een gestandaardiseerde manier voor clients om bestandsysteemgrenzen aan servers bloot te stellen, waardoor servers begrijpen welke mappen en bestanden toegankelijk zijn:
+**Roots** bieden een gestandaardiseerde manier voor clients om bestandslocaties
+aan te wijzen die relevant zijn voor servers:
 
-- **Bestandssysteemgrenzen**: Definiëren de grenzen waarbinnen servers kunnen opereren in het bestandssysteem  
-- **Toegangscontrole**: Helpen servers te begrijpen tot welke mappen en bestanden ze toegang hebben  
-- **Dynamische updates**: Clients kunnen servers op de hoogte brengen wanneer de lijst met roots verandert  
-- **URI-gebaseerde identificatie**: Roots gebruiken `file://` URI’s om toegankelijke directories en bestanden te identificeren
+- **Bestandssysteem hints**: Identificeert mappen en bestanden die relevant zijn voor het verzoek
+- **Aparte autorisatie**: Verleen geen toegang en hanteer geen beveiligingsgrens
+- **Mogelijkheid per verzoek**: Clients geven Roots-ondersteuning aan in request-metadata
+- **URI-gebaseerde identificatie**: Roots gebruiken `file://` URI's om toegankelijke directories en bestanden te identificeren
 
-Roots worden ontdekt via de `roots/list`-methode, waarbij clients `notifications/roots/list_changed` sturen als roots veranderen.
+In MCP `2026-07-28` vraagt een server `roots/list` aan via een
+`InputRequiredResult` tijdens het verwerken van een ondersteund clientverzoek. De client
+retourneert de roots wanneer het dat oorspronkelijke verzoek opnieuw probeert.
 
 ### Elicitation  
 
-**Elicitation** stelt servers in staat aanvullende informatie of bevestiging van gebruikers aan te vragen via de interface van de client:
+**Elicitation** stelt servers in staat om aanvullende informatie of bevestiging aan gebruikers te vragen via de clientinterface:
 
-- **Verzoeken om gebruikersinput**: Servers kunnen aanvullende informatie vragen indien nodig voor tooluitvoering  
-- **Bevestigingsdialogen**: Vragen om goedkeuring van gebruikers voor gevoelige of impactvolle handelingen  
-- **Interactieve workflows**: Stellen servers in staat stapsgewijze gebruikersinteracties te creëren  
+- **Verzoeken om gebruikersinvoer**: Servers kunnen aanvullende informatie vragen wanneer dat nodig is voor tooluitvoering
+- **Bevestigingsdialogen**: Vraag gebruikersgoedkeuring voor gevoelige of impactvolle handelingen
+- **Interactieve workflows**: Maak het mogelijk voor servers om stapsgewijze gebruikersinteracties te creëren
 - **Dynamische parameterverzameling**: Verzamel ontbrekende of optionele parameters tijdens tooluitvoering
 
-Elicitation-verzoeken gebeuren via de `elicitation/request`-methode om gebruikersinput via de clientinterface te verzamelen.
+Elicitation gebruikt de methode `elicitation/create` binnen een
+`InputRequiredResult` om gebruikersinvoer te verzamelen via de interface van de client.
 
-**URL-modus Elicitation**: Servers kunnen ook URL-gebaseerde gebruikersinteracties aanvragen, waardoor ze gebruikers naar externe webpagina’s kunnen sturen voor authenticatie, bevestiging of data-invoer.
 
-### Logging
-> **Kennisgeving van veroudering:** de release candidate `2026-07-28` markeert Logging als verouderd ten gunste van `stderr` voor stdio-transports en OpenTelemetry voor gestructureerde observeerbaarheid. Het blijft werken in `2025-11-25` en minstens een jaar na iedere veroudering. Zie [Wat verandert er in MCP: De release candidate 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+**URL-moduselicitatie**: Servers kunnen ook URL-gebaseerde gebruikersinteracties aanvragen, waardoor servers gebruikers kunnen doorverwijzen naar externe webpagina's voor authenticatie, bevestiging of het invoeren van gegevens.
 
-**Logging** stelt servers in staat gestructureerde logberichten naar clients te sturen voor debugging, monitoring en operationele zichtbaarheid:
+### Logboekregistratie
 
-- **Ondersteuning voor debugging**: Staat servers toe gedetailleerde uitvoeringslogboeken te verstrekken voor probleemoplossing
-- **Operationele monitoring**: Verstuur statusupdates en prestatiestatistieken naar clients
-- **Foutenrapportage**: Biedt gedetailleerde foutcontext en diagnostische informatie
-- **Auditsporen**: Maak uitgebreide logboeken van serveractiviteiten en beslissingen
+> **Verouderd in MCP `2026-07-28`:** Logboekregistratie blijft beschikbaar voor
+> compatibiliteit, maar nieuwe implementaties moeten `stderr` met stdio en
+> OpenTelemetry gebruiken voor gestructureerde observatie. Logboekregistratie kan
+> worden verwijderd in de eerste specificatieherziening die op of na 28 juli 2027 wordt uitgebracht. Zie
+> [Wat is veranderd in MCP: De specificatie van 2026-07-28](./mcp-2026-07-28.md).
 
-Logging-berichten worden naar clients gestuurd om transparantie te bieden in serveractiviteiten en debugging te vergemakkelijken.
+**Logboekregistratie** stelt servers in staat om gestructureerde logberichten naar clients te sturen voor debugging, monitoring en operationele zichtbaarheid:
+
+- **Ondersteuning voor debugging**: Servers kunnen gedetailleerde uitvoeringslogs leveren voor probleemoplossing
+- **Operationele monitoring**: Statusupdates en prestatiestatistieken naar clients sturen
+- **Foutmeldingen**: Gedetailleerde foutcontext en diagnostische informatie geven
+- **Auditsporen**: Uitgebreide logs van serveractiviteiten en beslissingen aanmaken
+
+Logboekberichten worden naar clients gestuurd om transparantie te bieden in serveractiviteiten en debugging te vergemakkelijken.
 
 ## Informatiestroom in MCP
 
-Het Model Context Protocol (MCP) definieert een gestructureerde informatiestroom tussen hosts, clients, servers en modellen. Begrip van deze stroom helpt verduidelijken hoe gebruikersverzoeken worden verwerkt en hoe externe hulpmiddelen en data worden geïntegreerd in modelantwoorden.
+Het Model Context Protocol (MCP) definieert een gestructureerde stroom van informatie tussen hosts, clients, servers en modellen. Het begrijpen van deze stroom helpt te verduidelijken hoe gebruikersverzoeken worden verwerkt en hoe externe tools en gegevens worden geïntegreerd in modelantwoorden.
 
 - **Host initieert verbinding**  
-  De hostapplicatie (zoals een IDE of chatinterface) maakt een verbinding met een MCP-server, doorgaans via STDIO, WebSocket, of een andere ondersteunde transportmethode.
+  De hostapplicatie (zoals een IDE of chatinterface) maakt een verbinding met een MCP-server, doorgaans via STDIO, WebSocket of een ander ondersteund transportmiddel.
 
-- **Mogelijkhedenonderhandeling**  
+- **Mogelijkheden onderhandelen**  
   De client (ingebed in de host) en de server wisselen informatie uit over hun ondersteunde functies, tools, bronnen en protocolversies. Dit zorgt ervoor dat beide kanten begrijpen welke mogelijkheden beschikbaar zijn voor de sessie.
 
 - **Gebruikersverzoek**  
-  De gebruiker interageert met de host (bijv. een prompt of commando invoeren). De host verzamelt deze invoer en geeft deze door aan de client voor verwerking.
+  De gebruiker interacteert met de host (bijv. voert een prompt of commando in). De host verzamelt deze invoer en geeft deze door aan de client voor verwerking.
 
 - **Gebruik van bron of tool**  
-  - De client kan aanvullende context of bronnen van de server opvragen (zoals bestanden, database-items, of kennisbankartikelen) om het begrip van het model te verrijken.  
-  - Als het model bepaalt dat een tool nodig is (bijv. om data op te halen, een berekening uit te voeren, of een API aan te roepen), stuurt de client een toolaanroepverzoek naar de server, met specificatie van toolnaam en parameters.
+  - De client kan extra context of bronnen van de server opvragen (zoals bestanden, database-items of kennisbankartikelen) om het begrip van het model te verrijken.
+  - Indien het model bepaalt dat een tool nodig is (bijv. om data op te halen, een berekening uit te voeren of een API aan te roepen), stuurt de client een tool-aanroepverzoek naar de server, met de toolnaam en parameters.
 
 - **Serveruitvoering**  
-  De server ontvangt het bron- of toolverzoek, voert de benodigde bewerkingen uit (zoals het draaien van een functie, queryen van een database, of ophalen van een bestand) en retourneert de resultaten aan de client in een gestructureerd formaat.
+  De server ontvangt het bron- of toolverzoek, voert de benodigde handelingen uit (zoals het draaien van een functie, queryen van een database of ophalen van een bestand) en retourneert de resultaten aan de client in een gestructureerd formaat.
 
-- **Generatie van antwoord**  
-  De client verwerkt de reacties van de server (brongegevens, tooluitvoer, enz.) in de lopende modelinteractie. Het model gebruikt deze informatie om een uitgebreid en contextueel relevant antwoord te genereren.
+- **Genereren van antwoord**  
+  De client integreert de antwoorden van de server (data, tooloutputs, enz.) in de lopende modelinteractie. Het model gebruikt deze informatie om een uitgebreid en contextueel relevant antwoord te genereren.
 
 - **Presentatie van resultaat**  
-  De host ontvangt de uiteindelijke output van de client en presenteert deze aan de gebruiker, vaak inclusief zowel de door het model gegenereerde tekst als eventuele resultaten van tooluitvoeringen of bronopvragingen.
+  De host ontvangt de uiteindelijke output van de client en presenteert deze aan de gebruiker, vaak inclusief de door het model gegenereerde tekst en resultaten van tooluitvoeringen of bronopzoekingen.
 
-Deze stroom maakt het MCP mogelijk om geavanceerde, interactieve en contextbewuste AI-toepassingen te ondersteunen door modellen naadloos te verbinden met externe tools en gegevensbronnen.
+Deze stroom stelt MCP in staat geavanceerde, interactieve en contextbewuste AI-toepassingen te ondersteunen door modellen naadloos te verbinden met externe tools en databronnen.
 
-## Protocolarchitectuur & Lagen
+## Protocolarchitectuur & lagen
 
-MCP bestaat uit twee verschillende architecturale lagen die samenwerken om een complete communicatie-infrastructuur te bieden:
+MCP bestaat uit twee verschillende architectuurlagen die samenwerken om een volledig communicatieframework te bieden:
 
 ### Datalayer
 
-De **datalayer** implementeert het kern-MCP-protocol met **JSON-RPC 2.0** als basis. Deze laag definieert de berichtstructuur, semantiek en interactiepatronen:
+De **Datalayer** implementeert het kern-MCP-protocol met **JSON-RPC 2.0** als basis. Deze laag definieert de berichtstructuur, semantiek en interactiepatronen:
 
 #### Kerncomponenten:
 
-- **JSON-RPC 2.0 Protocol**: Alle communicatie gebruikt het gestandaardiseerde JSON-RPC 2.0 berichtformaat voor methodeaanroepen, reacties en notificaties  
-- **Levenscyclusbeheer**: Behandelt initiële verbinding, mogelijkhedenonderhandeling en sessiebeëindiging tussen clients en servers  
-- **Serverprimitieven**: Maakt het mogelijk dat servers kernfunctionaliteit leveren via tools, bronnen en prompts  
-- **Clientprimitieven**: Staat servers toe verzoeken te doen om sampling van LLM's, gebruikersinvoer op te vangen, en logberichten te versturen  
+- **JSON-RPC 2.0 Protocol**: Alle communicatie gebruikt gestandaardiseerd JSON-RPC 2.0 berichtenformaat voor methode-aanroepen, antwoorden en notificaties
+- **Levenscyclusbeheer**: Beheert verbindinginitialisatie, onderhandeling van mogelijkheden en sessiebeëindiging tussen clients en servers
+- **Serverprimitieven**: Maakt het servers mogelijk kernfunctionaliteit te bieden via tools, bronnen en prompts
+- **Clientprimitieven**: Maakt het servers mogelijk sampling van LLMs aan te vragen, gebruikersinput op te vragen en logberichten te versturen
 - **Realtime notificaties**: Ondersteunt asynchrone notificaties voor dynamische updates zonder polling
 
-#### Belangrijkste kenmerken:
+#### Belangrijkste eigenschappen:
 
-- **Protocolversieonderhandeling**: Gebruikt datum-gebaseerde versiebeheer (JJJJ-MM-DD) om compatibiliteit te waarborgen  
-- **Mogelijkhedendetectie**: Clients en servers wisselen tijdens initialisatie ondersteunde functies uit  
-- **Stateful sessies**: Houdt verbindingsstatus vast over meerdere interacties voor contextcontinuïteit
+- **Protocolversie-onderhandeling**: Maakt gebruik van datumgebaseerde versiebeheer (JJJJ-MM-DD) om compatibiliteit te waarborgen
+- **Mogelijkhedendetectie**: Clients en servers wisselen informatie over ondersteunde functies uit tijdens initialisatie
+- **Stateful Sessies**: Onderhoudt verbindingsstatus over meerdere interacties voor contextcontinuïteit
 
 ### Transportlaag
 
-De **transportlaag** beheert communicatiekanalen, berichtafbakening en authenticatie tussen MCP-deelnemers:
+De **Transportlaag** beheert communicatiekanalen, berichtafbakening en authenticatie tussen MCP-deelnemers:
 
 #### Ondersteunde transportmechanismen:
 
-1. **STDIO-transport**:
-   - Gebruikt standaard in-/uitvoerstromen voor directe procescommunicatie  
-   - Ideaal voor lokale processen op dezelfde machine zonder netwerkoverhead  
-   - Veelgebruikt voor lokale MCP-serverimplementaties
+1. **STDIO Transport**:
+   - Gebruikt standaard input/outputstromen voor directe procescommunicatie
+   - Optimaal voor lokale processen op dezelfde machine zonder netwerkoverhead
+   - Wordt vaak gebruikt voor lokale MCP-serverimplementaties
 
-2. **Streamable HTTP-transport**:
-   - Gebruikt HTTP POST voor berichten van client naar server  
-   - Optioneel Server-Sent Events (SSE) voor server-naar-client streaming  
-   - Maakt communicatie met externe servers over netwerken mogelijk  
-   - Ondersteunt standaard HTTP-authenticatie (bearer tokens, API-sleutels, aangepaste headers)  
-   - MCP beveelt OAuth aan voor veilige tokengebaseerde authenticatie
+2. **Streambare HTTP Transport**:
+   - Gebruikt HTTP POST voor client-naar-server berichten  
+   - Optionele Server-Sent Events (SSE) voor server-naar-client streaming
+   - Maakt communicatie met externe servers over netwerken mogelijk
+   - Ondersteunt standaard HTTP-authenticatie (bearer tokens, API-sleutels, aangepaste headers)
+   - MCP adviseert OAuth voor veilige token-gebaseerde authenticatie
 
 #### Transportabstractie:
 
-De transportlaag abstracteert communicatiedetails van de datalaag, waardoor hetzelfde JSON-RPC 2.0-berichtformaat gebruikt kan worden over alle transportsystemen. Deze abstractie maakt het mogelijk om naadloos te schakelen tussen lokale en externe servers.
+De transportlaag abstraheert communicatiedetails van de datalaag, waardoor hetzelfde JSON-RPC 2.0 berichtenformaat over alle transportmechanismen kan worden gebruikt. Deze abstractie maakt het mogelijk applicaties naadloos te laten schakelen tussen lokale en externe servers.
 
-### Beveiligingsoverwegingen
+### Veiligheidsoverwegingen
 
-MCP-implementaties moeten zich houden aan verschillende kritieke beveiligingsprincipes om veilige, betrouwbare en beveiligde interacties te waarborgen bij alle protocoloperaties:
+MCP-implementaties moeten voldoen aan verschillende kritieke beveiligingsprincipes om veilige, betrouwbare en beveiligde interacties over alle protocolhandelingen heen te garanderen:
 
-- **Toestemming en controle van gebruiker**: Gebruikers moeten expliciete toestemming geven voordat gegevens worden geraadpleegd of operaties worden uitgevoerd. Ze moeten duidelijke controle hebben over welke data wordt gedeeld en welke acties zijn toegestaan, ondersteund door intuïtieve gebruikersinterfaces voor het beoordelen en goedkeuren van activiteiten.
+- **Toestemming en controle van gebruikers**: Gebruikers moeten expliciete toestemming geven voordat gegevens worden benaderd of handelingen worden uitgevoerd. Ze moeten duidelijke controle hebben over welke data gedeeld wordt en welke acties zijn goedgekeurd, ondersteund door intuïtieve gebruikersinterfaces om activiteiten te beoordelen en goed te keuren.
 
-- **Gegevensprivacy**: Gebruikersgegevens mogen alleen met expliciete toestemming worden onthuld en moeten worden beschermd door passende toegangscontroles. MCP-implementaties moeten ongeautoriseerde overdracht van data voorkomen en privacy tijdens alle interacties waarborgen.
+- **Dataprivacy**: Gebruikersgegevens mogen alleen worden blootgesteld met expliciete toestemming en moeten beschermd zijn door passende toegangscontroles. MCP-implementaties moeten beschermen tegen ongeautoriseerde datatransmissie en ervoor zorgen dat privacy wordt gehandhaafd tijdens alle interacties.
 
-- **Veiligheid van tools**: Voor het aanroepen van een tool is expliciete toestemming van de gebruiker vereist. Gebruikers moeten duidelijk begrijpen wat elke tool doet, en er moeten stevige beveiligingsgrenzen worden gehandhaafd om onbedoelde of onveilige uitvoering van tools te voorkomen.
+- **Toolveiligheid**: Voor het aanroepen van een tool is expliciete toestemming van de gebruiker vereist. Gebruikers moeten een duidelijk begrip hebben van de functionaliteit van elke tool, en robuuste beveiligingsgrenzen moeten worden gehandhaafd om onbedoelde of onveilige tooluitvoering te voorkomen.
 
-Door deze beveiligingsprincipes te volgen, zorgt MCP ervoor dat gebruikersvertrouwen, privacy en veiligheid gehandhaafd blijven bij alle protocolinteracties en tegelijkertijd krachtige AI-integraties mogelijk worden gemaakt.
+Door deze beveiligingsprincipes te volgen, zorgt MCP ervoor dat vertrouwen, privacy en veiligheid van gebruikers behouden blijven in alle protocolinteracties, terwijl krachtige AI-integraties mogelijk worden gemaakt.
 
-## Codevoorbeelden: Kerncomponenten
+## Codevoorbeelden: Belangrijke componenten
 
-Hieronder staan codevoorbeelden in verschillende populaire programmeertalen die illustreren hoe belangrijke MCP-servercomponenten en tools kunnen worden geïmplementeerd.
+Hieronder staan codevoorbeelden in diverse populaire programmeertalen die illustreren hoe belangrijke MCP-servercomponenten en tools kunnen worden geïmplementeerd.
 
-### .NET voorbeeld: Een eenvoudige MCP-server maken met tools
+### .NET Voorbeeld: Een eenvoudige MCP-server met tools maken
 
-Hier is een praktisch .NET-codevoorbeeld dat laat zien hoe je een eenvoudige MCP-server met aangepaste tools implementeert. Dit voorbeeld toont hoe je tools definieert en registreert, verzoeken afhandelt en de server verbindt via het Model Context Protocol.
+Hier is een praktisch .NET-codevoorbeeld dat laat zien hoe je een eenvoudige MCP-server met aangepaste tools implementeert. Dit voorbeeld laat zien hoe je tools definieert en registreert, verzoeken afhandelt en de server verbindt met het Model Context Protocol.
 
 ```csharp
 using System;
@@ -388,9 +435,9 @@ public class WeatherData
 }
 ```
 
-### Java voorbeeld: MCP-servercomponenten
+### Java Voorbeeld: MCP-servercomponenten
 
-Dit voorbeeld toont dezelfde MCP-server en toolregistratie als het .NET-voorbeeld hierboven, maar dan geïmplementeerd in Java.
+Dit voorbeeld toont dezelfde MCP-server en toolregistratie als het .NET-voorbeeld hierboven, maar geïmplementeerd in Java.
 
 ```java
 import io.modelcontextprotocol.server.McpServer;
@@ -401,13 +448,13 @@ import io.modelcontextprotocol.server.tool.ToolResponse;
 
 public class WeatherMcpServer {
     public static void main(String[] args) throws Exception {
-        // Maak een MCP-server
+        // Maak een MCP-server aan
         McpServer server = McpServer.builder()
             .name("Weather MCP Server")
             .version("1.0.0")
             .build();
             
-        // Registreer een weergereedschap
+        // Registreer een weerhulpmiddel
         server.registerTool(McpToolDefinition.builder("weatherTool")
             .description("Gets current weather for a location")
             .parameter("location", String.class)
@@ -427,11 +474,11 @@ public class WeatherMcpServer {
             })
             .build());
         
-        // Verbind de server met stdio-transmissie
+        // Verbind de server via stdio-transport
         try (StdioServerTransport transport = new StdioServerTransport()) {
             server.connect(transport);
             System.out.println("Weather MCP Server started");
-            // Houd de server actief totdat het proces wordt beëindigd
+            // Houd de server draaiende totdat het proces wordt beëindigd
             Thread.currentThread().join();
         }
     }
@@ -468,9 +515,9 @@ class WeatherData {
 }
 ```
 
-### Python voorbeeld: Een MCP-server bouwen
+### Python Voorbeeld: Een MCP-server bouwen
 
-Dit voorbeeld gebruikt fastmcp, zorg dat je deze eerst installeert:
+Dit voorbeeld gebruikt fastmcp, zorg ervoor dat je dit eerst installeert:
 
 ```python
 pip install fastmcp
@@ -483,7 +530,7 @@ import asyncio
 from fastmcp import FastMCP
 from fastmcp.transports.stdio import serve_stdio
 
-# Maak een FastMCP-server
+# Maak een FastMCP-server aan
 mcp = FastMCP(
     name="Weather MCP Server",
     version="1.0.0"
@@ -498,7 +545,7 @@ def get_weather(location: str) -> dict:
         "location": location
     }
 
-# Alternatieve benadering met behulp van een klasse
+# Alternatieve benadering met een klasse
 class WeatherTools:
     @mcp.tool()
     def forecast(self, location: str, days: int = 1) -> dict:
@@ -511,7 +558,7 @@ class WeatherTools:
             ]
         }
 
-# Registreer klassehulpmiddelen
+# Registreer klasgereedschappen
 weather_tools = WeatherTools()
 
 # Start de server
@@ -519,15 +566,15 @@ if __name__ == "__main__":
     asyncio.run(serve_stdio(mcp))
 ```
 
-### JavaScript voorbeeld: Een MCP-server maken
+### JavaScript Voorbeeld: Een MCP-server maken
 
-Dit voorbeeld laat zien hoe een MCP-server in JavaScript wordt gemaakt en hoe twee weergerelateerde tools worden geregistreerd.
+Dit voorbeeld toont hoe een MCP-server in JavaScript wordt gemaakt en hoe twee weergerelateerde tools worden geregistreerd.
 
 ```javascript
-// Gebruikmakend van de officiële Model Context Protocol SDK
+// Gebruik van de officiële Model Context Protocol SDK
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod"; // Voor parameter validatie
+import { z } from "zod"; // Voor parametervalidatie
 
 // Maak een MCP-server aan
 const server = new McpServer({
@@ -543,7 +590,7 @@ server.tool(
   },
   async ({ location }) => {
     // Dit zou normaal gesproken een weer-API aanroepen
-    // Vereenvoudigd ter demonstratie
+    // Vereenvoudigd voor demonstratie
     const weatherData = await getWeatherData(location);
     
     return {
@@ -557,7 +604,7 @@ server.tool(
   }
 );
 
-// Definieer een voorspellingstool
+// Definieer een voorspellinghulpmiddel
 server.tool(
   "forecastTool",
   {
@@ -566,7 +613,7 @@ server.tool(
   },
   async ({ location, days }) => {
     // Dit zou normaal gesproken een weer-API aanroepen
-    // Vereenvoudigd ter demonstratie
+    // Vereenvoudigd voor demonstratie
     const forecast = await getForecastData(location, days);
     
     return {
@@ -599,104 +646,131 @@ async function getForecastData(location, days) {
   }));
 }
 
-// Verbind de server met behulp van stdio-transport
+// Verbind de server met behulp van stdio transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch(console.error);
 
 console.log("Weather MCP Server started");
 ```
 
-Dit JavaScript-voorbeeld demonstreert hoe je een MCP-server maakt met behulp van de Model Context Protocol SDK. Het toont hoe je twee tools met de namen `weatherTool` en `forecastTool` registreert en beschikbaar maakt voor MCP-clients via de `StdioServerTransport`.
+Dit JavaScript-voorbeeld demonstreert hoe je een MCP-server maakt met de Model Context Protocol SDK. Het laat zien hoe je twee tools genaamd `weatherTool` en `forecastTool` registreert en beschikbaar stelt aan MCP-clients via de `StdioServerTransport`.
 
-## Beveiliging en autorisatie
+## Veiligheid en autorisatie
 
-MCP bevat verschillende ingebouwde concepten en mechanismen voor het beheren van beveiliging en autorisatie door het hele protocol:
+MCP bevat verschillende ingebouwde concepten en mechanismen voor het beheren van beveiliging en autorisatie door het protocol heen:
 
-1. **Controle op toolpermissies**:  
-  Clients kunnen specificeren welke tools een model mag gebruiken gedurende een sessie. Dit zorgt ervoor dat alleen expliciet geautoriseerde tools toegankelijk zijn, waardoor het risico op onbedoelde of onveilige handelingen wordt verminderd. Permissies kunnen dynamisch worden geconfigureerd op basis van gebruikersvoorkeuren, organisatorische beleidslijnen, of de context van de interactie.
+1. **Controle van tooltoestemming**:  
+  Clients kunnen specificeren welke tools een model mag gebruiken voor elk verzoek of workflow.
+  Dit zorgt ervoor dat alleen expliciet geautoriseerde tools toegankelijk zijn, wat
+  het risico op onbedoelde of onveilige handelingen verkleint.
 
 2. **Authenticatie**:  
-  Servers kunnen authenticatie vereisen voordat toegang wordt verleend tot tools, bronnen of gevoelige operaties. Dit kan API-sleutels, OAuth-tokens of andere authenticatiemechanismen omvatten. Adequate authenticatie waarborgt dat alleen vertrouwde clients en gebruikers servermogelijkheden kunnen aanroepen.
+  Servers kunnen authenticatie vereisen voordat toegang wordt verleend tot tools, bronnen of gevoelige handelingen. Dit kan API-sleutels, OAuth-tokens of andere authenticatieschema’s omvatten. Juiste authenticatie zorgt ervoor dat alleen vertrouwde clients en gebruikers servercapaciteiten kunnen aanroepen.
 
 3. **Validatie**:  
-  Parametervalidatie wordt afgedwongen voor alle toolaanroepen. Elke tool definieert de verwachte types, formaten en beperkingen van zijn parameters, en de server valideert binnenkomende verzoeken dienovereenkomstig. Dit voorkomt dat onjuiste of kwaadaardige invoer bij toolimplementaties terechtkomt en helpt de integriteit van operaties te waarborgen.
+  Parametervalidatie wordt afgedwongen bij alle toolaanroepen. Elke tool definieert de verwachte types, formaten en beperkingen voor zijn parameters en de server valideert inkomende verzoeken overeenkomstig. Dit voorkomt dat foutieve of kwaadaardige invoer de toolimplementaties bereikt en helpt de integriteit van operaties te waarborgen.
 
-4. **Rate limiting**:  
-  Om misbruik te voorkomen en eerlijk gebruik van serverbronnen te garanderen, kunnen MCP-servers rate limiting toepassen op toolaanroepen en resource-toegang. Limieten kunnen per gebruiker, per sessie of globaal worden ingesteld en helpen beschermen tegen denial-of-service-aanvallen of overmatig gebruik van resources.
+4. **Snelheidsbeperking**:  
+  Om misbruik te voorkomen en eerlijk gebruik van serverbronnen te garanderen, kunnen MCP-servers
+  snelheidsbeperkingen toepassen op toolaanroepen en bronbenaderingen. Limieten kunnen
+  per gebruiker, credential, bewerking of globaal zijn.
 
-Door deze mechanismen te combineren, biedt MCP een veilig fundament voor het integreren van taalmodellen met externe tools en gegevensbronnen, terwijl gebruikers en ontwikkelaars gedetailleerde controle krijgen over toegang en gebruik.
+Door deze mechanismen te combineren biedt MCP een veilige basis voor het integreren van taalmodellen met externe tools en databronnen, terwijl gebruikers en ontwikkelaars fijne controle krijgen over toegang en gebruik.
 
-## Protocolberichten & Communicatiestroom
+## Protocolberichten & communicatieflow
 
-MCP-communicatie gebruikt gestructureerde **JSON-RPC 2.0**-berichten om duidelijke en betrouwbare interacties tussen hosts, clients en servers te faciliteren. Het protocol definieert specifieke berichtpatronen voor verschillende typen bewerkingen:
+MCP-communicatie gebruikt gestructureerde **JSON-RPC 2.0**-berichten om duidelijke en betrouwbare interacties tussen hosts, clients en servers te faciliteren. Het protocol definieert specifieke berichtpatronen voor verschillende soorten handelingen:
 
-### Kernberichttypen:
+### Kernberichttypen
 
-#### **Initialisatiieberichten**
-- **`initialize` Request**: Legt verbinding vast en onderhandelt over protocolversie en mogelijkheden  
-- **`initialize` Response**: Bevestigt ondersteunde functies en serverinformatie  
-- **`notifications/initialized`**: Geeft aan dat initialisatie voltooid is en de sessie klaar is
+#### **Verzoek-metadata en ontdekking**
+
+- **Per-verzoek metadata**: Elk `2026-07-28`-verzoek is zelfvoorzienend en
+  draagt protocolversie, clientidentiteit en clientmogelijkheden in `_meta`.
+- **`server/discover` Verzoek**: Haalt ondersteunde protocolversies, server
+  identiteit, mogelijkheden en extensies op wanneer de client deze nodig heeft.
+- **Streambare HTTP-headers**: HTTP-verzoeken bevatten `MCP-Protocol-Version` en
+  `Mcp-Method`; methoden die een benoemde tool of bron adresseren bevatten ook
+  `Mcp-Name`.
+
+De `initialize`/`initialized`-handshake en protocolniveau sessie-ID's behoren
+tot eerdere protocolherzieningen en maken geen deel uit van MCP `2026-07-28`.
 
 #### **Ontdekkingsberichten**
-- **`tools/list` Request**: Ontdekt beschikbare tools van de server  
-- **`resources/list` Request**: Lijst van beschikbare bronnen (datasources)  
-- **`prompts/list` Request**: Haalt beschikbare prompttemplates op
+- **`tools/list` Verzoek**: Ontdekt beschikbare tools van de server
+- **`resources/list` Verzoek**: Lijst aanwezige bronnen (databronnen)
+- **`prompts/list` Verzoek**: Haalt beschikbare prompttemplates op
 
 #### **Uitvoeringsberichten**  
-- **`tools/call` Request**: Voert een specifieke tool uit met meegegeven parameters  
-- **`resources/read` Request**: Haalt inhoud op uit een specifieke bron  
-- **`prompts/get` Request**: Haalt een prompttemplate op met optionele parameters
+- **`tools/call` Verzoek**: Voert een specifieke tool uit met opgegeven parameters
+- **`resources/read` Verzoek**: Haalt content op van een specifieke bron
+- **`prompts/get` Verzoek**: Haalt een prompttemplate met optionele parameters op
 
-#### **Client-side berichten**
-- **`sampling/complete` Request**: Server vraagt een LLM-completion van de client  
-- **`elicitation/request`**: Server vraagt gebruikersinvoer via de clientinterface  
-- **Logging-berichten**: Server stuurt gestructureerde logberichten naar de client
+#### **Client-side invoerverzoeken**
+
+- **`elicitation/create`**: Server vraagt gebruikersinput via de client-
+  interface tijdens het verwerken van een clientverzoek.
+- **`sampling/createMessage`**: Verouderd serververzoek voor een LLM-completion.
+- **`roots/list`**: Verouderd serververzoek voor clientfilesysteembreedtes.
+
+Onder `2026-07-28` gebruiken server-naar-client invoerverzoeken het multi-ronde-vraag
+`InputRequiredResult` patroon in plaats van te vertrouwen op een persistente sessie.
 
 #### **Notificatieberichten**
-- **`notifications/tools/list_changed`**: Server informeert client over wijzigingen in tools  
-- **`notifications/resources/list_changed`**: Server informeert client over wijzigingen in bronnen  
-- **`notifications/prompts/list_changed`**: Server informeert client over wijzigingen in prompts
+- **`notifications/tools/list_changed`**: Server meldt client toolwijzigingen
+- **`notifications/resources/list_changed`**: Server meldt client bronwijzigingen  
+- **`notifications/prompts/list_changed`**: Server meldt client promptwijzigingen
 
 ### Berichtstructuur:
 
-Alle MCP-berichten volgen JSON-RPC 2.0-formaat met:  
-- **Requestberichten**: Bevatten `id`, `method` en optionele `params`  
-- **Responseberichten**: Bevatten `id` en ofwel `result` of `error`  
-- **Notificatieberichten**: Bevatten `method` en optionele `params` (geen `id` en geen antwoord verwacht)
+Alle MCP-berichten volgen het JSON-RPC 2.0-formaat met:
+- **Verzoekberichten**: Bevatten `id`, `method` en optioneel `params`
+- **Antwoordberichten**: Bevatten `id` en ofwel `result` of `error`  
+- **Notificatieberichten**: Bevatten `method` en optioneel `params` (geen `id` of antwoord verwacht)
 
-Deze gestructureerde communicatie zorgt voor betrouwbare, traceerbare en uitbreidbare interacties die geavanceerde scenario’s ondersteunen zoals realtime updates, tool chaining en robuuste foutafhandeling.
+Deze gestructureerde communicatie zorgt voor betrouwbare, traceerbare en uitbreidbare interacties die geavanceerde scenario's ondersteunen zoals realtime updates, toolketens en robuuste foutafhandeling.
 
-### Taken (experimenteel)
+### Takenextensie
 
-> **Vooruitblik:** de release candidate `2026-07-28` brengt Taken uit de experimentele kernspecificatie naar een aparte Taken-uitbreiding met een herontworpen levenscyclus (`tasks/get`, `tasks/update`, `tasks/cancel`; `tasks/list` wordt verwijderd). Als je ontwikkelt met de hieronder beschreven experimentele API, plan dan een migratie. Zie [Wat verandert er in MCP: De release candidate 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+In MCP `2026-07-28` is Taken een officiële extensie in plaats van een experimentele
+kernfunctie. Het gebruikt een herontworpen `tasks/get`, `tasks/update` en
+`tasks/cancel` levenscyclus; `tasks/list` is verwijderd. De experimentele
+`2025-11-25` Tasks API is niet achterwaarts compatibel met deze extensie. Zie
+[Wat is veranderd in MCP: De specificatie van 2026-07-28](./mcp-2026-07-28.md).
 
-**Taken** zijn een experimentele functie die duurzame uitvoeringswrappers biedt waarmee uitgestelde resultaten kunnen worden opgehaald en status kunnen worden gevolgd voor MCP-verzoeken:
+**Taken** bieden duurzame uitvoering-omslagen voor uitgestelde resultaatsopvraging en
+statustracking:
 
-- **Langdurige operaties**: Volgt kostbare berekeningen, workflowautomatisering, en batchverwerking  
-- **Uitgestelde resultaten**: Poll status van taken en haal resultaten op wanneer operaties klaar zijn  
-- **Statusmonitoring**: Houd voortgang van taken bij via gedefinieerde levenscyclusstatussen  
-- **Meer-fasige operaties**: Ondersteunt complexe workflows die meerdere interacties omvatten
+- **Langdurige operaties**: Houdt zware berekeningen, workflowautomatisering en batchverwerking bij
+- **Uitgestelde resultaten**: Toont taakstatus en haalt resultaten op wanneer operaties zijn voltooid
+- **Statusbijhouding**: Bewaakt voortgang van taken via gedefinieerde levenscyclusstadia
+- **Meervoudige stappen operaties**: Ondersteunt complexe workflows die meerdere interacties omvatten
 
-Taken wikkelen standaard MCP-verzoeken in om asynchrone uitvoeringspatronen mogelijk te maken voor operaties die niet direct kunnen worden afgerond.
+Taken wikkelen standaard MCP-verzoeken in om asynchrone uitvoeringspatronen mogelijk te maken voor operaties die niet onmiddellijk kunnen worden afgerond.
 
-## Belangrijkste conclusies
+## Belangrijkste punten
 
-- **Architectuur**: MCP gebruikt een client-serverarchitectuur waarbij hosts meerdere clientverbindingen naar servers beheren  
-- **Deelnemers**: Het ecosysteem omvat hosts (AI-applicaties), clients (protocolkoppelingen), en servers (mogelijkheidsaanbieders)  
-- **Transportmechanismen**: Communicatie ondersteunt STDIO (lokaal) en Streamable HTTP met optionele SSE (extern)  
-- **Kernprimitieven**: Servers bieden tools (uitvoerbare functies), bronnen (datasources) en prompts (templates)  
-- **Clientprimitieven**: Servers kunnen sampling (LLM-completions met tools aanroepen), elicitation (gebruikersinvoer inclusief URL-modus), roots (bestandssysteemgrenzen) en logging van clients aanvragen  
-- **Experimentele functies**: Taken bieden duurzame uitvoeringswrappers voor langlopende operaties  
-- **Protocolbasis**: Gebouwd op JSON-RPC 2.0 met datum-gebaseerde versiebeheer (huidig: 2025-11-25)  
-- **Realtime mogelijkheden**: Ondersteunt notificaties voor dynamische updates en realtime synchronisatie  
-- **Beveiliging eerst**: Expliciete gebruikersvergoeding, dataprivacybescherming en veilige transport zijn kernvereisten
+- **Architectuur**: MCP gebruikt een client-serverarchitectuur waarbij hosts meerdere clientverbindingen met servers beheren
+- **Deelnemers**: Het ecosysteem omvat hosts (AI-applicaties), clients (protocolkoppelingen) en servers (mogelijkheidverleners)
+- **Transportmechanismen**: Communicatie ondersteunt stdio (lokaal) en Streamable
+  HTTP (extern); `2026-07-28` verwijdert de standalone GET-eventstream
+- **Kernprimitieven**: Servers bieden tools (uitvoerbare functies), bronnen (databronnen) en prompts (sjablonen)
+- **Clientprimitieven**: Elicitatie ondersteunt gebruikersinvoer, terwijl Sampling en
+  Roots alleen als verouderde compatibiliteitsfuncties behouden blijven
+- **Extensies**: De officiële Takenextensie biedt duurzame uitvoering-
+  omslagen voor langdurige operaties
+- **Protocolbasis**: Gebouwd op JSON-RPC 2.0 met datumgebaseerde versiebeheer
+  (huidig: `2026-07-28`)
+
+- **Realtime mogelijkheden**: Ondersteunt meldingen voor dynamische updates en realtime synchronisatie
+- **Beveiliging eerst**: Expliciete toestemming van de gebruiker, gegevensprivacybescherming en veilige overdracht zijn kernvereisten
 
 ## Oefening
 
-Ontwerp een eenvoudige MCP-tool die nuttig zou zijn in jouw domein. Definieer:  
-1. Hoe de tool genoemd zou worden  
-2. Welke parameters hij accepteert  
-3. Welke output hij teruggeeft  
+Ontwerp een eenvoudige MCP-tool die nuttig zou zijn in jouw domein. Definieer:
+1. Hoe de tool zou heten
+2. Welke parameters het zou accepteren
+3. Welke output het zou teruggeven
 4. Hoe een model deze tool zou kunnen gebruiken om gebruikersproblemen op te lossen
 
 
@@ -704,8 +778,10 @@ Ontwerp een eenvoudige MCP-tool die nuttig zou zijn in jouw domein. Definieer:
 
 ## Wat volgt
 
-Vervolg: [Hoofdstuk 2: Beveiliging](../02-Security/README.md)
-Benieuwd wat er komt na `2025-11-25`? Lees [Wat verandert er in MCP: De 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+Volgend: [Hoofdstuk 2: Beveiliging](../02-Security/README.md)
+
+Lees [Wat is er veranderd in MCP: De specificatie van 2026-07-28](./mcp-2026-07-28.md)
+voor migratie-instructies vanaf `2025-11-25`.
 
 ---
 

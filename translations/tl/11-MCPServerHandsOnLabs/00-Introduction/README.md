@@ -1,84 +1,89 @@
 # Panimula sa MCP Database Integration
 
+> [!NOTE]
+> Ang mga diagram o code sa learning path na ito na gumagamit ng HTTP/SSE o mga opsyon sa pagpapatakbo
+> ay nagrereflekta sa sample MCP `2025-11-25` dependencies. Para sa mga bagong
+> implementasyon, gamitin ang `2026-07-28` stateless requests at Streamable HTTP.
+
 ## 🎯 Ano ang Saklaw ng Lab na Ito
 
-Ang panimulang lab na ito ay nagbibigay ng komprehensibong pangkalahatang-ideya tungkol sa paggawa ng Model Context Protocol (MCP) servers na may integrasyon ng database. Maiintindihan mo ang kaso ng negosyo, teknikal na arkitektura, at mga aplikasyon sa totoong mundo sa pamamagitan ng Zava Retail analytics use case sa https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+Ang pambungad na lab na ito ay nagbibigay ng komprehensibong overview sa paggawa ng Model Context Protocol (MCP) servers na may database integration. Mauunawaan mo ang kaso ng negosyo, teknikal na arkitektura, at mga aplikasyon sa totoong mundo sa pamamagitan ng Zava Retail analytics use case sa https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Pangkalahatang-ideya
 
-**Model Context Protocol (MCP)** ay nagpapahintulot sa mga AI assistant na ligtas na ma-access at makipag-interact sa mga panlabas na pinagkukunan ng data nang real-time. Kapag pinagsama sa integrasyon ng database, binubuksan ng MCP ang mga makapangyarihang kakayahan para sa data-driven AI applications.
+**Model Context Protocol (MCP)** ay nagbibigay-daan sa AI assistants na ligtas na ma-access at makipag-ugnayan sa mga external na data source nang real-time. Kapag pinagsama sa database integration, binubuksan ng MCP ang makapangyarihang kakayahan para sa data-driven na AI applications.
 
-Itinuturo ng learning path na ito kung paano bumuo ng production-ready MCP servers na nag-uugnay sa mga AI assistant sa retail sales data gamit ang PostgreSQL, na nagpapatupad ng mga enterprise pattern tulad ng Row Level Security, semantic search, at multi-tenant data access.
+Itinuturo ng learning path na ito kung paano bumuo ng production-ready MCP servers na kumokonekta sa AI assistants sa retail sales data gamit ang PostgreSQL, na nagpapatupad ng mga enterprise pattern tulad ng Row Level Security, semantic search, at multi-tenant data access.
 
 ## Mga Layunin sa Pagkatuto
 
 Sa pagtatapos ng lab na ito, magagawa mong:
 
-- **Ilarawan** ang Model Context Protocol at ang mga pangunahing benepisyo nito para sa integrasyon ng database  
-- **Tukuyin** ang mga pangunahing bahagi ng arkitektura ng MCP server na may mga database  
-- **Maunawaan** ang Zava Retail use case at ang mga pangangailangan nito sa negosyo  
-- **Kilalanin** ang mga enterprise pattern para sa ligtas at scalable na pag-access sa database  
-- **Ilista** ang mga kagamitan at teknolohiya na ginamit sa buong learning path na ito  
+- **Ibigay ang Kahulugan sa** Model Context Protocol at ang pangunahing benepisyo nito para sa database integration
+- **Kilalanin** ang mga pangunahing bahagi ng isang MCP server architecture na may mga database
+- **Unawain** ang Zava Retail use case at ang mga pangangailangan sa negosyo nito
+- **Kilalanin** ang mga enterprise pattern para sa ligtas at scalable na database access
+- **Ilista** ang mga tool at teknolohiya na ginamit sa learning path na ito
 
-## 🧭 Ang Hamon: Pagtatagpo ng AI at Tunay na Mundo ng Data
+## 🧭 Ang Hamon: Pagsasanib ng AI at Totoong Mundo na Data
 
-### Mga Limitasyon ng Tradisyunal na AI
+### Mga Limitasyon ng Tradisyonal na AI
 
-Napakalakas ng mga modernong AI assistant ngunit may malalaking limitasyon kapag gumagawa sa tunay na data ng negosyo:
+Ang modernong AI assistants ay napakabisa ngunit nahaharap sa mga limitasyong malaki kapag nagtatrabaho sa totoong mundo ng data sa negosyo:
 
 | **Hamon** | **Paglalarawan** | **Epekto sa Negosyo** |
 |---------------|-----------------|-------------------|
-| **Static Knowledge** | AI models na sinanay sa mga fixed na dataset ay hindi makaka-access sa kasalukuyang data ng negosyo | Lumang insights, napalaktang mga oportunidad |
-| **Data Silos** | Mga impormasyong naka-lock sa mga database, API, at sistema na hindi maabot ng AI | Hindi kumpletong pagsusuri, pira-pirasong workflows |
-| **Security Constraints** | Direktang database access ay nagpapataas ng mga usapin sa seguridad at pagsunod | Limitadong deployment, manwal na paghahanda ng data |
-| **Complex Queries** | Kailangan ng teknikal na kaalaman ng mga business user para makakuha ng data insights | Bawas na paggamit, di-episyenteng proseso |
+| **Static Knowledge** | Ang mga AI model na tinrain sa fixed datasets ay hindi makaka-access ng kasalukuyang data ng negosyo | Mga luma na insight, mga na-miss na oportunidad |
+| **Data Silos** | Mga impormasyon na nakakulong sa mga database, API, at sistema na di maabot ng AI | Hindi kompletong pagsusuri, pira-pirasong workflow |
+| **Security Constraints** | Direktang access sa database ay nagdudulot ng mga isyu sa seguridad at pagsunod | Limitadong deployment, manu-manong paghahanda ng data |
+| **Complex Queries** | Kailangan ng teknikal na kaalaman ng mga business user para makuha ang data insights | Mabagal na pagtanggap, hindi mahusay na mga proseso |
 
 ### Ang Solusyon ng MCP
 
-Tinutugunan ng Model Context Protocol ang mga hamong ito sa pamamagitan ng:
+Nilulutas ng Model Context Protocol ang mga hamon na ito sa pamamagitan ng pagbibigay:
 
-- **Real-time Data Access**: Nag-q-query ang AI assistant sa mga live na database at API  
-- **Secure Integration**: Kontroladong access na may authentication at permissions  
-- **Natural Language Interface**: Nagtatanong ang mga business user gamit ang simpleng Ingles  
-- **Standardized Protocol**: Gumagana ito sa iba't ibang AI platform at tool  
+- **Access sa Data ng Real-time**: Ang AI assistants ay nag-que-ry sa live databases at APIs
+- **Ligtas na Integrasyon**: Kinokontrol na access gamit ang authentication at permissions
+- **Natural Language Interface**: Ang mga business user ay nagtatanong gamit ang payak na Ingles
+- **Standardized Protocol**: Gumagana sa iba't ibang AI platform at mga tool
 
 ## 🏪 Kilalanin ang Zava Retail: Ang Aming Learning Case Study https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Sa buong learning path na ito, bubuo tayo ng MCP server para sa **Zava Retail**, isang kathang-isip na DIY retail chain na may maraming lokasyon ng tindahan. Ipinapakita ng makatotohanang scenario na ito ang enterprise-grade MCP implementation.
+Sa kabuuan ng learning path na ito, gagawa tayo ng MCP server para sa **Zava Retail**, isang kathang-isip na DIY retail chain na may maraming mga lokasyon ng tindahan. Ipinapakita ng realistic na scenario na ito ang enterprise-grade na implementasyon ng MCP.
 
 ### Konteksto ng Negosyo
 
-**Zava Retail** ay nagpapatakbo ng:  
-- **8 pisikal na tindahan** sa iba't ibang lugar sa estado ng Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)  
-- **1 online store** para sa e-commerce sales  
-- **Iba't ibang produkto** kasama ang mga tools, hardware, garden supplies, at mga materyales sa konstruksyon  
-- **Multi-level management** na may mga store manager, regional manager, at mga executive  
+Ang **Zava Retail** ay nagpapatakbo ng:
+- **8 pisikal na tindahan** sa iba't ibang bahagi ng estado ng Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 online store** para sa e-commerce na mga benta
+- **Iba't ibang katalogo ng produkto** kabilang ang mga kasangkapan, hardware, mga gamit sa hardin, at mga materyales sa gusali
+- **Multi-level na pamamahala** na may mga store manager, regional manager, at mga ehekutibo
 
-### Mga Pangangailangan sa Negosyo
+### Mga Pangunahing Pangangailangan sa Negosyo
 
-Kailangan ng mga store manager at executive ng AI-powered analytics upang:  
+Kailangan ng mga store manager at mga ehekutibo ng AI-powered na analytics upang:
 
-1. **Suriin ang performance ng benta** sa iba't ibang tindahan at panahon  
-2. **Subaybayan ang lebel ng imbentaryo** at tukuyin ang mga kailangang punan  
-3. **Unawain ang kilos ng mga customer** at mga pattern sa pagbili  
-4. **Diskubrehin ang mga insight ng produkto** gamit ang semantic search  
-5. **Gumawa ng mga ulat** gamit ang mga tanong sa natural na wika  
-6. **Panatilihin ang seguridad ng data** gamit ang role-based access control  
+1. **Suriin ang performance ng benta** sa mga tindahan at mga period ng oras
+2. **Subaybayan ang mga lebel ng imbentaryo** at tukuyin ang pangangailangan sa restocking
+3. **Unawain ang ugali ng customer** at mga pattern ng pagbili
+4. **Tuklasin ang mga insight tungkol sa produkto** sa pamamagitan ng semantic search
+5. **Gumawa ng mga ulat** gamit ang natural language na mga query
+6. **Panatilihin ang seguridad ng data** gamit ang role-based access control
 
-### Mga Pangangailangan sa Teknikal
+### Mga Teknikal na Pangangailangan
 
-Dapat magbigay ang MCP server ng:
+Ang MCP server ay dapat magbigay ng:
 
-- **Multi-tenant data access** kung saan nakikita lang ng store manager ang data ng kanilang tindahan  
-- **Flexible querying** na sumusuporta sa mga komplikadong SQL operation  
-- **Semantic search** para sa pagtuklas ng produkto at mga rekomendasyon  
-- **Real-time data** na sumasalamin sa kasalukuyang estado ng negosyo  
-- **Secure authentication** gamit ang row-level security  
-- **Scalable architecture** na sumusuporta sa maraming sabay-sabay na user  
+- **Multi-tenant data access** kung saan ang mga store manager ay makakakita lamang ng data ng kanilang sariling tindahan
+- **Flexible querying** na sumusuporta sa mga komplikadong operasyon ng SQL
+- **Semantic search** para sa pagtuklas at rekomendasyon ng produkto
+- **Real-time data** na nagrereflekta ng kasalukuyang estado ng negosyo
+- **Ligtas na authentication** na may row-level security
+- **Scalable architecture** na sumusuporta sa maraming sabay-sabay na gumagamit
 
 ## 🏗️ Pangkalahatang-ideya ng Arkitektura ng MCP Server
 
-Ipinapatupad ng aming MCP server ang isang layered architecture na optimized para sa database integration:
+Isinasaayos ng aming MCP server ang layered architecture na optimized para sa database integration:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -121,28 +126,28 @@ Ipinapatupad ng aming MCP server ang isang layered architecture na optimized par
 ### Mga Pangunahing Bahagi
 
 #### **1. MCP Server Layer**
-- **FastMCP Framework**: Makabagong implementasyon ng Python MCP server  
-- **Tool Registration**: Declarative na paglalarawan ng mga tool na may type safety  
-- **Request Context**: Pamamahala ng identity at session ng user  
-- **Error Handling**: Matibay na pamamahala at pag-log ng error  
+- **FastMCP Framework**: Modernong implementasyon ng Python MCP server
+- **Tool Registration**: Deklaratibong pagtatakda ng tool na may type safety
+- **Request Context**: Pamamahala ng user identity at session
+- **Error Handling**: Matatag na pamamahala ng error at pag-log
 
 #### **2. Database Integration Layer**
-- **Connection Pooling**: Mahusay na pamamahala gamit ang asyncpg connection pooling  
-- **Schema Provider**: Dynamic na pagtuklas ng table schema  
-- **Query Executor**: Ligtas na pagpapatupad ng SQL kasama ang RLS context  
-- **Transaction Management**: Pagsunod sa ACID at paghawak ng rollback  
+- **Connection Pooling**: Mahusay na asyncpg connection management
+- **Schema Provider**: Dinamikong pagtuklas ng schema ng table
+- **Query Executor**: Ligtas na pagpapatupad ng SQL na may RLS context
+- **Transaction Management**: ACID compliance at pamamahala ng rollback
 
 #### **3. Security Layer**
-- **Row Level Security**: PostgreSQL RLS para sa multi-tenant data isolation  
-- **User Identity**: Authentication at authorization ng store manager  
-- **Access Control**: Pinong permissions at audit trail  
-- **Input Validation**: Pag-iwas sa SQL injection at pag-validate ng query  
+- **Row Level Security**: PostgreSQL RLS para sa multi-tenant na pag-isolate ng data
+- **User Identity**: Authentication at authorization ng store manager
+- **Access Control**: Pinong detalye ng permissions at audit trails
+- **Input Validation**: Pag-iwas sa SQL injection at pag-validate ng query
 
 #### **4. AI Enhancement Layer**
-- **Semantic Search**: Vector embeddings para sa pagtuklas ng produkto  
-- **Azure OpenAI Integration**: Pagbuo ng text embedding  
-- **Similarity Algorithms**: pgvector cosine similarity search  
-- **Search Optimization**: Indexing at pagpapahusay ng performance  
+- **Semantic Search**: Vector embeddings para sa pagtuklas ng produkto
+- **Azure OpenAI Integration**: Pagbuo ng text embedding
+- **Similarity Algorithms**: pgvector cosine similarity search
+- **Search Optimization**: Pag-index at tuning para sa performance
 
 ## 🔧 Teknolohiyang Ginamit
 
@@ -150,91 +155,91 @@ Ipinapatupad ng aming MCP server ang isang layered architecture na optimized par
 
 | **Bahagi** | **Teknolohiya** | **Layunin** |
 |---------------|----------------|-------------|
-| **MCP Framework** | FastMCP (Python) | Makabagong implementasyon ng MCP server |
+| **MCP Framework** | FastMCP (Python) | Modernong implementasyon ng MCP server |
 | **Database** | PostgreSQL 17 + pgvector | Relational data na may vector search |
 | **AI Services** | Azure OpenAI | Text embeddings at mga language model |
 | **Containerization** | Docker + Docker Compose | Development environment |
 | **Cloud Platform** | Microsoft Azure | Production deployment |
-| **IDE Integration** | VS Code | AI Chat at workflow sa development |
+| **IDE Integration** | VS Code | AI Chat at development workflow |
 
-### Development Tools
+### Mga Tool sa Pag-develop
 
 | **Tool** | **Layunin** |
 |----------|-------------|
 | **asyncpg** | Mataas na performance na PostgreSQL driver |
-| **Pydantic** | Data validation at serialization |
+| **Pydantic** | Pag-validate ng data at serialization |
 | **Azure SDK** | Integrasyon ng cloud service |
 | **pytest** | Testing framework |
 | **Docker** | Containerization at deployment |
 
 ### Production Stack
 
-| **Service** | **Azure Resource** | **Layunin** |
+| **Serbisyo** | **Azure Resource** | **Layunin** |
 |-------------|-------------------|-------------|
 | **Database** | Azure Database for PostgreSQL | Managed database service |
 | **Container** | Azure Container Apps | Serverless container hosting |
 | **AI Services** | Microsoft Foundry | OpenAI models at endpoints |
 | **Monitoring** | Application Insights | Observability at diagnostics |
-| **Security** | Azure Key Vault | Secrets at configuration management |
+| **Seguridad** | Azure Key Vault | Secrets at configuration management |
 
-## 🎬 Mga Senaryo ng Paggamit sa Totoong Mundo
+## 🎬 Mga Sitwasyon sa Totoong Mundo ng Paggamit
 
-Tuklasin natin kung paano nakikipag-interact ang iba't ibang user sa aming MCP server:
+Tuklasin natin kung paano nakikipag-ugnayan ang iba't ibang user sa aming MCP server:
 
-### Senaryo 1: Review ng Performance ng Store Manager
+### Scenario 1: Pagsusuri ng Performance ng Store Manager
 
-**User**: Sarah, Store Manager sa Seattle  
-**Layunin**: Suriin ang sales performance noong nakaraang quarter
+**User**: Sarah, Seattle Store Manager  
+**Layunin**: Suriin ang sales performance ng nakaraang quarter
 
-**Tanong sa Natural Language**:
-> "Ipakita ang top 10 produkto ayon sa kita para sa aking tindahan sa Q4 2024"
+**Natural Language Query**:
+> "Ipakita sa akin ang top 10 produkto ayon sa kita para sa aking tindahan sa Q4 2024"
 
 **Ano ang Nangyayari**:
-1. Nagpadala ang VS Code AI Chat ng query sa MCP server  
-2. Tinukoy ng MCP server ang konteksto ng tindahan ni Sarah (Seattle)  
-3. Pinili ng mga polisiya ng RLS ang data para sa tindahan sa Seattle lamang  
-4. Nalikha at naipatupad ang SQL query  
-5. Inayos ang mga resulta at ibinalik sa AI Chat  
-6. Nagbigay ang AI ng pagsusuri at insight  
+1. Nagpapadala ng query ang VS Code AI Chat sa MCP server
+2. Tinutukoy ng MCP server ang konteksto ng tindahan ni Sarah (Seattle)
+3. Pinipili ng RLS policies ang data ng Seattle store lamang
+4. Binubuo at pinapatupad ang SQL query
+5. Inaayos at ibinabalik ang mga resulta sa AI Chat
+6. Nagbibigay ang AI ng pagsusuri at mga insight
 
-### Senaryo 2: Pagtuklas ng Produkto gamit ang Semantic Search
+### Scenario 2: Pagtuklas ng Produkto gamit ang Semantic Search
 
 **User**: Mike, Inventory Manager  
-**Layunin**: Humanap ng mga produktong katulad sa request ng customer
+**Layunin**: Maghanap ng mga produktong kahawig ng hiling ng customer
 
-**Tanong sa Natural Language**:
-> "Anong mga produkto ang binebenta natin na katulad ng 'waterproof electrical connectors para sa panlabas na gamit'?"
+**Natural Language Query**:
+> "Anong mga produkto ang binebenta namin na kahawig ng 'waterproof electrical connectors para sa panlabas na gamit'?"
 
 **Ano ang Nangyayari**:
-1. Pinoproseso ang query ng semantic search tool  
-2. Gumagawa ng embedding vector ang Azure OpenAI  
-3. Gumagawa ng similarity search gamit ang pgvector  
-4. Rank ang mga kaugnay na produkto ayon sa relevance  
-5. Kasama sa resulta ang detalye ng produkto at availability  
-6. Nagsusulong ang AI ng alternatibo at mga bundling opportunity  
+1. Pinoproseso ng semantic search tool ang query
+2. Bumubuo ang Azure OpenAI ng embedding vector
+3. Nagsasagawa ng similarity search ang pgvector
+4. Niraranggo ang mga kaugnay na produkto ayon sa relevance
+5. Kasama sa resulta ang detalye ng produkto at availability
+6. Nagmumungkahi ang AI ng mga alternatibo at bundling opportunities
 
-### Senaryo 3: Cross-Store Analytics
+### Scenario 3: Cross-Store Analytics
 
 **User**: Jennifer, Regional Manager  
-**Layunin**: Ihambing ang performance sa lahat ng tindahan
+**Layunin**: Ihambing ang performance sa lahat ng mga tindahan
 
-**Tanong sa Natural Language**:
+**Natural Language Query**:
 > "Ihambing ang benta ayon sa kategorya para sa lahat ng tindahan sa nakaraang 6 na buwan"
 
 **Ano ang Nangyayari**:
-1. Naitakda ang RLS context para sa access ng regional manager  
-2. Nalikha ang komplikadong multi-store query  
-3. Nag-aggregate ang data mula sa iba’t ibang lokasyon ng tindahan  
-4. Naibigay ang mga resulta kasama ang trend at paghahambing  
-5. Nakilala ng AI ang mga insight at rekomendasyon  
+1. Itinatakda ang RLS context para sa access ng regional manager
+2. Binubuo ang komplikadong multi-store query
+3. Pinagsasama ang data mula sa iba't ibang lokasyon ng tindahan
+4. Kasama sa resulta ang mga trend at paghahambing
+5. Nakikilala ng AI ang mga insight at rekomendasyon
 
-## 🔒 Malalim na Pagtingin sa Seguridad at Multi-Tenancy
+## 🔒 Malalim na Pagsusuri sa Seguridad at Multi-Tenancy
 
-Pinapahalagahan ng aming implementasyon ang enterprise-grade security:
+Binibigyang-priyoridad ng aming implementasyon ang enterprise-grade na seguridad:
 
 ### Row Level Security (RLS)
 
-Siniguro ng PostgreSQL RLS ang isolation ng data:
+Tinitiyak ng PostgreSQL RLS ang isolation ng data:
 
 ```sql
 -- Store managers see only their store's data
@@ -248,61 +253,61 @@ CREATE POLICY regional_manager_policy ON retail.orders
   USING (store_id = ANY(get_user_store_list()));
 ```
 
-### Pamamahala ng Identity ng User
+### Pamamahala ng User Identity
 
-Kasama sa bawat koneksyon ng MCP ang:  
-- **Store Manager ID**: Natatanging identifier para sa konteksto ng RLS  
-- **Role Assignment**: Mga permiso at level ng access  
-- **Session Management**: Ligtas na authentication tokens  
-- **Audit Logging**: Kumpletong kasaysayan ng access  
+Kasama sa bawat koneksyon sa MCP:
+- **Store Manager ID**: Natatanging identifier para sa RLS context
+- **Role Assignment**: Mga permiso at antas ng access
+- **Session Management**: Ligtas na authentication tokens
+- **Audit Logging**: Kumpletong kasaysayan ng access
 
 ### Proteksyon ng Data
 
-Maraming layer ng seguridad:  
-- **Connection Encryption**: TLS para sa lahat ng koneksyon sa database  
-- **SQL Injection Prevention**: Parameterized queries lamang  
-- **Input Validation**: Komprehensibong pag-validate ng mga hiling  
-- **Error Handling**: Walang sensitibong data sa mga mensahe ng error  
+Maramihang layer ng seguridad:
+- **Connection Encryption**: TLS para sa lahat ng koneksyon sa database
+- **SQL Injection Prevention**: Parameterized queries lamang
+- **Input Validation**: Komprehensibong validation ng request
+- **Error Handling**: Walang sensitibong data sa mga mensahe ng error
 
-## 🎯 Pangunahing Mga Natutunan
+## 🎯 Mga Pangunahing Aral
 
-Pagkatapos ng panimulang ito, dapat mong maunawaan:
+Matapos makumpleto ang panimulang ito, dapat mong maunawaan ang:
 
-✅ **Halaga ng MCP**: Paano pinagdudugtong ng MCP ang AI assistant at tunay na data  
+✅ **MCP Value Proposition**: Paano pinagdurugtong ng MCP ang AI assistants at totoong mundo na data  
 ✅ **Konteksto ng Negosyo**: Mga pangangailangan at hamon ng Zava Retail  
-✅ **Pangkalahatang Arkitektura**: Pangunahing bahagi at ang kanilang ugnayan  
-✅ **Teknolohiyang Ginamit**: Mga kagamitan at framework na ginamit  
+✅ **Pangkalahatang-ideya ng Arkitektura**: Mga pangunahing bahagi at ang kanilang interaksyon  
+✅ **Teknolohiyang Ginamit**: Mga tool at framework na ginamit sa kabuuan  
 ✅ **Modelo ng Seguridad**: Multi-tenant data access at proteksyon  
-✅ **Mga Pattern ng Paggamit**: Mga senaryo ng query at workflow sa totoong mundo  
+✅ **Mga Pattern ng Paggamit**: Mga scenario ng real-world query at workflow  
 
 ## 🚀 Ano ang Susunod
 
-Handa ka na bang magpatuloy? Sundan ang:
+Handa ka na bang sumisid ng mas malalim? Magpatuloy sa:
 
 **[Lab 01: Core Architecture Concepts](../01-Architecture/README.md)**
 
-Matuto tungkol sa mga pattern ng arkitektura ng MCP server, prinsipyo sa disenyo ng database, at ang detalyadong teknikal na implementasyon na nagbibigay-lakas sa aming retail analytics solution.
+Alamin ang mga pattern ng arkitektura ng MCP server, prinsipyo ng database design, at detalyadong teknikal na implementasyon na nagpapagana sa aming retail analytics solution.
 
-## 📚 Karagdagang mga Sanggunian
+## 📚 Karagdagang Mga Mapagkukunan
 
-### MCP Dokumentasyon
-- [MCP Specification](https://modelcontextprotocol.io/docs/) - Opisyal na dokumentasyon ng protocol  
-- [MCP for Beginners](https://aka.ms/mcp-for-beginners) - Komprehensibong gabay sa MCP  
-- [FastMCP Documentation](https://github.com/modelcontextprotocol/python-sdk) - Dokumentasyon ng Python SDK  
+### Dokumentasyon ng MCP
+- [MCP Specification](https://modelcontextprotocol.io/docs/) - Opisyal na dokumentasyon ng protocol
+- [MCP for Beginners](https://aka.ms/mcp-for-beginners) - Komprehensibong gabay sa pag-aaral ng MCP
+- [FastMCP Documentation](https://github.com/modelcontextprotocol/python-sdk) - Dokumentasyon ng Python SDK
 
-### Integrasyon ng Database
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/) - Kumpletong sanggunian ng PostgreSQL  
-- [pgvector Guide](https://github.com/pgvector/pgvector) - Dokumentasyon ng vector extension  
-- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Gabay sa PostgreSQL RLS  
+### Database Integration
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/) - Kumpletong sanggunian ng PostgreSQL
+- [pgvector Guide](https://github.com/pgvector/pgvector) - Dokumentasyon ng vector extension
+- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Gabay sa PostgreSQL RLS
 
-### Mga Serbisyo ng Azure
-- [Azure OpenAI Documentation](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrasyon ng AI service  
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Managed database service  
-- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless containers  
+### Azure Services
+- [Azure OpenAI Documentation](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrasyon ng AI service
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Managed database service
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless containers
 
 ---
 
-**Paalala**: Ito ay isang learning exercise gamit ang kathang-isip na retail data. Laging sundin ang mga patakaran ng inyong organisasyon sa data governance at seguridad kapag nagsasagawa ng katulad na mga solusyon sa production environments.
+**Paunawa**: Ito ay isang pagsasanay na gumagamit ng kathang-isip na retail data. Laging sundin ang mga patakaran sa pamahalaan ng data at seguridad ng iyong organisasyon kapag nag-iimplementa ng katulad na mga solusyon sa production environment.
 
 ---
 

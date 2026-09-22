@@ -1,33 +1,33 @@
 # 🚀 MCP Eszközök
 
-## 🧠 Áttekintés az MCP Adatbázis Integrációs Tanulási Útjáról
+## 🧠 Áttekintés az MCP Adatbázis Integráció Tanulási Útvonalról
 
-Itt megtanulhatod, hogyan kell használni az MCP-t használó eszközöket. Az élményed ezen eszközök használatában javulni fog, ahogy MCP szervereket csatlakoztatsz hozzájuk.
+Itt megtanulhatod, hogyan használd az MCP-t alkalmazó eszközöket. Az élményed ezen eszközök használatakor javulni fog, ahogy MCP szervereket csatlakoztatsz hozzájuk.
 
 ## 🔗 Hivatalos MCP Források
 
 - 📘 [MCP Dokumentáció](https://modelcontextprotocol.io/) – Részletes oktatóanyagok és felhasználói útmutatók
-- 📜 [MCP Specifikáció (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokoll felépítés és műszaki hivatkozások
+- 📜 [MCP Specifikáció (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokoll architektúra és technikai hivatkozások
 - 🧑‍💻 [MCP GitHub Tároló](https://github.com/modelcontextprotocol) – Nyílt forráskódú SDK-k, eszközök és kódminták
-- 🌐 [MCP Közösség](https://github.com/orgs/modelcontextprotocol/discussions) – Csatlakozz a beszélgetésekhez és járulj hozzá a közösséghez
+- 🌐 [MCP Közösség](https://github.com/orgs/modelcontextprotocol/discussions) – Csatlakozz beszélgetésekhez és járulj hozzá a közösséghez
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Biztonsági legjobb gyakorlatok és kockázatcsökkentések
 
 
 
 ## 🌟 Közösség és Támogatás
 
-### Segítség Kérés
+### Kérj Segítséget
 
 - **Azure AI Discord**: [Csatlakozz szakértői támogatásért](https://discord.com/invite/ByRwuEEgH4)
 - **MCP Közösség**: [Csatlakozz az MCP szélesebb körű beszélgetéseihez](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Készen állsz a kezdésre?
 
-Indítsd el utadat a **[GitHub Copilot app](./01-copilot-app/README.md)** segítségével
+Kezdd utadat a **[GitHub Copilot alkalmazással](./01-copilot-app/README.md)**
 
 ---
 
-*Mesterkedj ezekkel az MCP-vel támogatott eszközökkel a megnövelt termelékenység és zökkenőmentes integráció érdekében.*
+*Sajátítsd el ezeket MCP használatával ezen eszközökkel a megnövelt termelékenységért és zökkenőmentes integrációért.*
 
 ---
 

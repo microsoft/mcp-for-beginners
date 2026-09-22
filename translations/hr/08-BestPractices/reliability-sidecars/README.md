@@ -235,7 +235,6 @@ Predvidite rezultat prije pokretanja testova:
 | Putanja | Rezultat nakon ponovnog pokušaja | Broj tiketa |
 | --- | --- | --- |
 | Slijepi ponovni pokušaj | Stvara `T-0002` nakon gubitka odgovora za `T-0001` | 2 |
-
 | Zaštićeni pokušaj ponovo | Pronalazi i vraća `T-0001` | 1 |
 
 Pokreni:

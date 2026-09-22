@@ -1,62 +1,70 @@
-> [OBSOLETO: CANDIDATO DE LANZAMIENTO 2026-07-28](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> El muestreo está desaprobado en MCP `2026-07-28`. Esta lección se mantiene para
+> implementaciones heredadas. Los nuevos servidores deben integrarse directamente con una API
+> de proveedor de LLM.
 
-# Muestreo en Model Context Protocol
+# Muestreo en el Protocolo de Contexto de Modelo
 
-> **Aviso de desuso:** el candidato de lanzamiento de la especificación MCP `2026-07-28` marca Muestreo como obsoleto en favor de la integración directa con las API de proveedores de LLM. El muestreo continúa funcionando en `2025-11-25` y durante al menos un año después de cualquier desuso formal, por lo que todo en esta lección sigue siendo válido, pero los nuevos diseños de servidor deberían evaluar el patrón de reemplazo. Véase [Qué cambia en MCP: El candidato de lanzamiento 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> El muestreo permanece en la especificación `2026-07-28` por compatibilidad y es
+> elegible para su eliminación en la primera revisión publicada en o después del 28 de julio de
+> 2027. Los ejemplos en esta lección pueden usar APIs del SDK que implementan `2025-11-25`.
+> Vea [Qué ha cambiado en MCP: La especificación 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-El muestreo es una característica poderosa de MCP que permite a los servidores solicitar completaciones de LLM a través del cliente, habilitando comportamientos agentes sofisticados mientras mantienen la seguridad y privacidad. La configuración correcta de muestreo puede mejorar dramáticamente la calidad de la respuesta y el rendimiento. MCP proporciona una forma estandarizada de controlar cómo los modelos generan texto con parámetros específicos que influyen en la aleatoriedad, creatividad y coherencia.
+En implementaciones heredadas de MCP, el muestreo permite a los servidores solicitar completaciones de LLM
+a través del cliente. Esta lección explica ese flujo de protocolo desaprobado
+para compatibilidad y trabajos de migración.
 
 ## Introducción
 
-En esta lección exploraremos cómo configurar parámetros de muestreo en solicitudes MCP y entender la mecánica subyacente del protocolo de muestreo.
+En esta lección, exploraremos cómo configurar parámetros de muestreo en solicitudes MCP y comprender la mecánica subyacente del protocolo de muestreo.
 
-## Objetivos de aprendizaje
+## Objetivos de Aprendizaje
 
-Al final de esta lección, podrás:
+Al final de esta lección, serás capaz de:
 
-- Entender los principales parámetros de muestreo disponibles en MCP.
+- Entender los parámetros clave de muestreo disponibles en MCP.
 - Configurar parámetros de muestreo para diferentes casos de uso.
 - Implementar muestreo determinista para resultados reproducibles.
-- Ajustar dinámicamente los parámetros de muestreo según el contexto y las preferencias del usuario.
+- Ajustar dinámicamente parámetros de muestreo según el contexto y preferencias del usuario.
 - Aplicar estrategias de muestreo para mejorar el rendimiento del modelo en varios escenarios.
 - Entender cómo funciona el muestreo en el flujo cliente-servidor de MCP.
 
-## Cómo funciona el muestreo en MCP
+## Cómo Funciona el Muestreo en MCP
 
 El flujo de muestreo en MCP sigue estos pasos:
 
 1. El servidor envía una solicitud `sampling/createMessage` al cliente
 2. El cliente revisa la solicitud y puede modificarla
-3. El cliente realiza el muestreo de un LLM
+3. El cliente muestrea desde un LLM
 4. El cliente revisa la completación
 5. El cliente devuelve el resultado al servidor
 
-Este diseño con la intervención humana asegura que los usuarios mantengan el control sobre qué ve y genera el LLM.
+Este diseño con intervención humana garantiza que los usuarios mantengan control sobre lo que el LLM ve y genera.
 
 ## Resumen de Parámetros de Muestreo
 
-MCP define los siguientes parámetros de muestreo que pueden configurarse en las solicitudes del cliente:
+MCP define los siguientes parámetros de muestreo que pueden configurarse en solicitudes cliente:
 
 | Parámetro | Descripción | Rango Típico |
-|-----------|-------------|---------------|
+|-----------|-------------|--------------|
 | `temperature` | Controla la aleatoriedad en la selección de tokens | 0.0 - 1.0 |
 | `maxTokens` | Número máximo de tokens a generar | Valor entero |
-| `stopSequences` | Secuencias personalizadas que detienen la generación al encontrarse | Array de cadenas |
+| `stopSequences` | Secuencias personalizadas que detienen la generación al ser encontradas | Arreglo de cadenas |
 | `metadata` | Parámetros adicionales específicos del proveedor | Objeto JSON |
 
 Muchos proveedores de LLM soportan parámetros adicionales a través del campo `metadata`, que pueden incluir:
 
-| Parámetro Común de Extensión | Descripción | Rango Típico |
-|-----------|-------------|---------------|
-| `top_p` | Muestreo nucleus - limita tokens a la probabilidad acumulada superior | 0.0 - 1.0 |
-| `top_k` | Limita la selección de tokens a las K opciones principales | 1 - 100 |
+| Parámetro de Extensión Común | Descripción | Rango Típico |
+|-----------|-------------|--------------|
+| `top_p` | Muestreo de núcleo - limita tokens a la probabilidad acumulada superior | 0.0 - 1.0 |
+| `top_k` | Limita la selección de tokens a las mejores K opciones | 1 - 100 |
 | `presence_penalty` | Penaliza tokens según su presencia en el texto hasta ahora | -2.0 - 2.0 |
 | `frequency_penalty` | Penaliza tokens según su frecuencia en el texto hasta ahora | -2.0 - 2.0 |
 | `seed` | Semilla aleatoria específica para resultados reproducibles | Valor entero |
 
-## Formato de solicitud de ejemplo
+## Formato de Solicitud de Ejemplo
 
-Aquí hay un ejemplo de cómo solicitar muestreo desde un cliente en MCP:
+Aquí hay un ejemplo de solicitar muestreo desde un cliente en MCP:
 
 ```json
 {
@@ -79,7 +87,7 @@ Aquí hay un ejemplo de cómo solicitar muestreo desde un cliente en MCP:
 }
 ```
 
-## Formato de respuesta
+## Formato de Respuesta
 
 El cliente devuelve un resultado de completación:
 
@@ -95,14 +103,14 @@ El cliente devuelve un resultado de completación:
 }
 ```
 
-## Controles de intervención humana
+## Controles Humanos en el Bucle
 
 El muestreo en MCP está diseñado con supervisión humana en mente:
 
 - **Para indicaciones**:
   - Los clientes deben mostrar a los usuarios la indicación propuesta
-  - Los usuarios deben poder modificar o rechazar indicaciones
-  - Las indicaciones del sistema pueden filtrarse o modificarse
+  - Los usuarios deben poder modificar o rechazar las indicaciones
+  - Las indicaciones del sistema pueden ser filtradas o modificadas
   - La inclusión del contexto es controlada por el cliente
 
 - **Para completaciones**:
@@ -111,24 +119,24 @@ El muestreo en MCP está diseñado con supervisión humana en mente:
   - Los clientes pueden filtrar o modificar completaciones
   - Los usuarios controlan qué modelo se usa
 
-Con estos principios en mente, veamos cómo implementar muestreo en diferentes lenguajes de programación, enfocándonos en los parámetros que suelen ser soportados por la mayoría de proveedores de LLM.
+Con estos principios en mente, veamos cómo implementar muestreo en diferentes lenguajes de programación, enfocándonos en los parámetros que comúnmente apoyan los proveedores de LLM.
 
-## Consideraciones de seguridad
+## Consideraciones de Seguridad
 
-Al implementar muestreo en MCP, considera estas mejores prácticas de seguridad:
+Al implementar muestreo en MCP, considere estas mejores prácticas de seguridad:
 
 - **Validar todo el contenido del mensaje** antes de enviarlo al cliente
 - **Sanitizar información sensible** de indicaciones y completaciones
 - **Implementar límites de tasa** para prevenir abusos
-- **Monitorear uso del muestreo** para detectar patrones inusuales
+- **Monitorear el uso de muestreo** para detectar patrones inusuales
 - **Encriptar datos en tránsito** usando protocolos seguros
-- **Gestionar privacidad de datos de usuario** según regulaciones aplicables
+- **Manejar la privacidad de datos del usuario** conforme a regulaciones relevantes
 - **Auditar solicitudes de muestreo** para cumplimiento y seguridad
 - **Controlar exposición de costos** con límites apropiados
 - **Implementar tiempos de espera** para solicitudes de muestreo
-- **Manejar errores del modelo con gracia** usando alternativas apropiadas
+- **Manejar errores del modelo con gracia** y con soluciones adecuadas
 
-Los parámetros de muestreo permiten afinar el comportamiento de los modelos de lenguaje para lograr un equilibrio deseado entre salidas deterministas y creativas.
+Los parámetros de muestreo permiten ajustar finamente el comportamiento de los modelos de lenguaje para lograr el equilibrio deseado entre salidas deterministas y creativas.
 
 Veamos cómo configurar estos parámetros en diferentes lenguajes de programación.
 
@@ -168,23 +176,23 @@ public class SamplingExample
 }
 ```
 
-En el código precedente hemos:
+En el código anterior hemos:
 
 - Creado un cliente MCP con una URL de servidor específica.
 - Configurado una solicitud con parámetros de muestreo como `temperature`, `top_p` y `top_k`.
 - Enviado la solicitud e impreso el texto generado.
 - Usado:
-    - `allowedTools` para especificar qué herramientas puede usar el modelo durante la generación. En este caso, permitimos las herramientas `ideaGenerator` y `marketAnalyzer` para ayudar a generar ideas creativas de aplicaciones.
+    - `allowedTools` para especificar qué herramientas puede usar el modelo durante la generación. En este caso, permitimos que las herramientas `ideaGenerator` y `marketAnalyzer` ayuden a generar ideas creativas para apps.
     - `frequencyPenalty` y `presencePenalty` para controlar la repetición y diversidad en la salida.
-    - `temperature` para controlar la aleatoriedad de la salida, donde valores más altos conducen a respuestas más creativas.
-    - `top_p` para limitar la selección de tokens a los que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
-    - `top_k` para restringir el modelo a los K tokens más probables, lo que puede ayudar a generar respuestas más coherentes.
+    - `temperature` para controlar la aleatoriedad de la salida, donde valores más altos generan respuestas más creativas.
+    - `top_p` para limitar la selección de tokens a aquellos que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
+    - `top_k` para restringir el modelo a los mejores K tokens más probables, lo que puede ayudar a generar respuestas más coherentes.
     - `frequencyPenalty` y `presencePenalty` para reducir la repetición y fomentar diversidad en el texto generado.
 
 # [JavaScript](#tab/javascript)
 
 ```javascript
-// Ejemplo de JavaScript: Configuración de temperatura y muestreo Top-P
+// Ejemplo de JavaScript: configuración de temperatura y muestreo Top-P
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
@@ -196,15 +204,15 @@ async function demonstrateSampling() {
   
   // Configurar la solicitud con diferentes parámetros de muestreo
   const creativeSampling = {
-    temperature: 0.9,    // Temperatura más alta = más aleatoriedad/creatividad
-    topP: 0.92,          // Considerar tokens con masa de probabilidad superior al 92%
+    temperature: 0.9,    // Mayor temperatura = más aleatoriedad/creatividad
+    topP: 0.92,          // Considerar tokens con masa de probabilidad del 92% superior
     frequencyPenalty: 0.6, // Reducir la repetición de secuencias de tokens
     presencePenalty: 0.4   // Penalizar tokens que han aparecido en el texto hasta ahora
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Temperatura más baja = más determinista/factual
-    topP: 0.85,          // Selección de tokens un poco más enfocada
+    temperature: 0.2,    // Temperatura baja = más determinista/factual
+    topP: 0.85,          // Selección de tokens ligeramente más enfocada
     frequencyPenalty: 0.2, // Penalización mínima por repetición
     presencePenalty: 0.1   // Penalización mínima por presencia
   };
@@ -241,30 +249,31 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-En el código precedente hemos:
+En el código anterior hemos:
 
-- Inicializado un cliente MCP con URL de servidor y clave API.
-- Configurado dos conjuntos de parámetros de muestreo: uno para tareas creativas y otro para tareas fácticas.
+- Inicializado un cliente MCP con una URL de servidor y clave API.
+- Configurado dos conjuntos de parámetros de muestreo: uno para tareas creativas y otro para tareas factual.
 - Enviado solicitudes con estas configuraciones, permitiendo que el modelo use herramientas específicas para cada tarea.
-- Impreso las respuestas generadas para demostrar los efectos de diferentes parámetros de muestreo.
-- Usado `allowedTools` para especificar qué herramientas puede usar el modelo durante la generación. En este caso, permitimos `ideaGenerator` y `environmentalImpactTool` para tareas creativas, y `factChecker` y `dataAnalysisTool` para tareas fácticas.
-- Usado `temperature` para controlar la aleatoriedad de la salida, donde valores más altos conducen a respuestas más creativas.
-- Usado `top_p` para limitar la selección de tokens a los que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
-- Usado `frequencyPenalty` y `presencePenalty` para reducir la repetición y fomentar diversidad en la salida.
+- Impreso las respuestas generadas para demostrar los efectos de distintos parámetros de muestreo.
+- Usado `allowedTools` para especificar qué herramientas puede usar el modelo durante la generación. En este caso, permitimos `ideaGenerator` y `environmentalImpactTool` para tareas creativas, y `factChecker` y `dataAnalysisTool` para tareas factuales.
+- Usado `temperature` para controlar la aleatoriedad de la salida, donde valores más altos generan respuestas más creativas.
+
+- Usado `top_p` para limitar la selección de tokens a aquellos que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
+- Usado `frequencyPenalty` y `presencePenalty` para reducir la repetición y fomentar la diversidad en la salida.
 - Usado `top_k` para restringir el modelo a los K tokens más probables, lo que puede ayudar a generar respuestas más coherentes.
 
 ---
 
-## Muestreo determinista
+## Muestreo Determinista
 
-Para aplicaciones que requieren salidas consistentes, el muestreo determinista asegura resultados reproducibles. Esto se logra usando una semilla aleatoria fija y configurando la temperatura a cero.
+Para aplicaciones que requieren salidas consistentes, el muestreo determinista asegura resultados reproducibles. Cómo lo hace es usando una semilla aleatoria fija y configurando la temperatura a cero.
 
-Veamos la siguiente implementación de ejemplo para demostrar muestreo determinista en diferentes lenguajes de programación.
+Vamos a ver la siguiente implementación de ejemplo para demostrar el muestreo determinista en diferentes lenguajes de programación.
 
 # [Java](#tab/java)
 
 ```java
-// Ejemplo en Java: respuestas deterministas con semilla fija
+// Ejemplo en Java: Respuestas deterministas con semilla fija
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
@@ -303,11 +312,11 @@ public class DeterministicSamplingExample {
 En el código precedente hemos:
 
 - Creado un cliente MCP con una URL de servidor especificada.
-- Configurado dos solicitudes con la misma indicación, semilla fija y temperatura cero.
+- Configurado dos solicitudes con el mismo prompt, semilla fija y temperatura cero.
 - Enviado ambas solicitudes e impreso el texto generado.
 - Demostrado que las respuestas son idénticas debido a la naturaleza determinista de la configuración de muestreo (misma semilla y temperatura).
 - Usado `setSeed` para especificar una semilla aleatoria fija, asegurando que el modelo genere la misma salida para la misma entrada cada vez.
-- Configurado `temperature` a cero para asegurar máxima determinismo, lo que significa que el modelo siempre seleccionará el token siguiente más probable sin aleatoriedad.
+- Configurado `temperature` a cero para asegurar máximo determinismo, es decir, el modelo siempre seleccionará el token siguiente más probable sin aleatoriedad.
 
 # [JavaScript](#tab/javascript-deterministic)
 
@@ -359,25 +368,25 @@ deterministicSampling();
 En el código precedente hemos:
 
 - Inicializado un cliente MCP con una URL de servidor.
-- Configurado dos solicitudes con la misma indicación, semilla fija y temperatura cero.
+- Configurado dos solicitudes con el mismo prompt, semilla fija y temperatura cero.
 - Enviado ambas solicitudes e impreso el texto generado.
 - Demostrado que las respuestas son idénticas debido a la naturaleza determinista de la configuración de muestreo (misma semilla y temperatura).
 - Usado `seed` para especificar una semilla aleatoria fija, asegurando que el modelo genere la misma salida para la misma entrada cada vez.
-- Configurado `temperature` a cero para asegurar máxima determinismo, lo que significa que el modelo siempre seleccionará el token siguiente más probable sin aleatoriedad.
-- Usado una semilla diferente para la tercera solicitud para mostrar que cambiar la semilla resulta en salidas diferentes, incluso con la misma indicación y temperatura.
+- Configurado `temperature` a cero para asegurar máximo determinismo, es decir, el modelo siempre seleccionará el token siguiente más probable sin aleatoriedad.
+- Usado una semilla diferente para la tercera solicitud para mostrar que cambiar la semilla resulta en salidas diferentes, incluso con el mismo prompt y temperatura.
 
 ---
 
-## Configuración dinámica de muestreo
+## Configuración Dinámica de Muestreo
 
-El muestreo inteligente adapta los parámetros basándose en el contexto y los requisitos de cada solicitud. Eso significa ajustar dinámicamente parámetros como temperature, top_p y las penalizaciones según el tipo de tarea, preferencias del usuario o desempeño histórico.
+El muestreo inteligente adapta los parámetros según el contexto y los requisitos de cada solicitud. Eso significa ajustar dinámicamente parámetros como temperatura, top_p y penalizaciones basadas en el tipo de tarea, preferencias del usuario o desempeño histórico.
 
-Veamos cómo implementar muestreo dinámico en diferentes lenguajes de programación.
+Vamos a ver cómo implementar el muestreo dinámico en diferentes lenguajes de programación.
 
 # [Python](#tab/python)
 
 ```python
-# Ejemplo en Python: Muestreo dinámico basado en el contexto de la solicitud
+# Ejemplo en Python: muestreo dinámico basado en el contexto de la solicitud
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +394,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Definir preajustes de muestreo para diferentes tipos de tareas
+        # Definir configuraciones de muestreo para diferentes tipos de tareas
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -393,18 +402,18 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # Seleccionar preajuste base
+        # Seleccionar configuración base
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Ajustar según las preferencias del usuario si se proporcionan
+        # Ajustar según preferencias del usuario si se proporcionan
         if user_preferences:
             if "creativity_level" in user_preferences:
-                # Escalar la temperatura según la preferencia de creatividad (1-10)
+                # Escalar la temperatura basándose en la preferencia de creatividad (1-10)
                 creativity = min(max(user_preferences["creativity_level"], 1), 10) / 10
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Ajustar top_p según la diversidad de respuesta deseada
+                # Ajustar top_p según la diversidad de respuestas deseada
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
@@ -416,7 +425,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Devolver la respuesta con metadatos de muestreo para transparencia
+        # Devolver respuesta con metadatos de muestreo para transparencia
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -427,29 +436,29 @@ class DynamicSamplingService:
 En el código precedente hemos:
 
 - Creado una clase `DynamicSamplingService` que gestiona el muestreo adaptativo.
-- Definido presets de muestreo para diferentes tipos de tareas (creativas, fácticas, código, analíticas).
-- Seleccionado un preset base de muestreo basándonos en el tipo de tarea.
-- Ajustado los parámetros de muestreo según preferencias de usuario, como nivel de creatividad y diversidad.
+- Definido presets de muestreo para diferentes tipos de tareas (creativa, factual, código, analítica).
+- Seleccionado un preset base de muestreo basado en el tipo de tarea.
+- Ajustado los parámetros de muestreo según las preferencias del usuario, como nivel de creatividad y diversidad.
 - Enviado la solicitud con los parámetros de muestreo configurados dinámicamente.
-- Devuelto el texto generado junto con los parámetros de muestreo aplicados y el tipo de tarea para transparencia.
+- Retornado el texto generado junto con los parámetros de muestreo aplicados y el tipo de tarea para transparencia.
 - Usado `temperature` para controlar la aleatoriedad de la salida, donde valores más altos conducen a respuestas más creativas.
-- Usado `top_p` para limitar la selección de tokens a los que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
-- Usado `frequency_penalty` para reducir la repetición y fomentar diversidad en la salida.
-- Usado `user_preferences` para permitir la personalización de los parámetros de muestreo basada en niveles definidos por el usuario de creatividad y diversidad.
-- Usado `task_type` para determinar la estrategia de muestreo apropiada para la solicitud, permitiendo respuestas más ajustadas basadas en la naturaleza de la tarea.
-- Usado el método `send_request` para enviar la indicación con los parámetros de muestreo configurados, asegurando que el modelo genere texto acorde a los requisitos especificados.
-- Usado `generated_text` para recuperar la respuesta del modelo, que luego se devuelve junto con los parámetros de muestreo y tipo de tarea para análisis o visualización.
-- Usado funciones `min` y `max` para asegurar que las preferencias del usuario estén dentro de rangos válidos, evitando configuraciones inválidas de muestreo.
+- Usado `top_p` para limitar la selección de tokens a aquellos que contribuyen a la masa de probabilidad acumulada superior, mejorando la calidad del texto generado.
+- Usado `frequency_penalty` para reducir la repetición y fomentar la diversidad en la salida.
+- Usado `user_preferences` para permitir la personalización de parámetros de muestreo basados en niveles de creatividad y diversidad definidos por el usuario.
+- Usado `task_type` para determinar la estrategia de muestreo adecuada para la solicitud, permitiendo respuestas más ajustadas según la naturaleza de la tarea.
+- Usado método `send_request` para enviar el prompt con los parámetros de muestreo configurados, asegurando que el modelo genere texto según los requisitos especificados.
+- Usado `generated_text` para recuperar la respuesta del modelo, que es devuelta junto con los parámetros de muestreo y el tipo de tarea para análisis o presentación posterior.
+- Usado funciones `min` y `max` para asegurar que las preferencias del usuario se mantengan dentro de rangos válidos, evitando configuraciones de muestreo inválidas.
 
 # [JavaScript Dinámico](#tab/javascript-dynamic)
 
 ```javascript
-// Ejemplo de JavaScript: Configuración de muestreo dinámico basada en el contexto del usuario
+// Ejemplo de JavaScript: configuración dinámica de muestreo basada en el contexto del usuario
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Definir perfiles base de muestreo
+    // Definir perfiles de muestreo base
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,11 +466,11 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Rastrear el rendimiento histórico
+    // Registrar el rendimiento histórico
     this.performanceHistory = [];
   }
   
-  // Detectar el tipo de tarea desde el prompt
+  // Detectar tipo de tarea a partir del prompt
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
@@ -486,11 +495,11 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Por defecto a conversacional si no se detecta un tipo claro
+    // Predeterminar a conversacional si no se detecta un tipo claro
     return 'conversational';
   }
   
-  // Calcular parámetros de muestreo basados en el contexto y preferencias del usuario
+  // Calcular parámetros de muestreo según el contexto y preferencias del usuario
   getSamplingParameters(prompt, context = {}) {
     // Detectar el tipo de tarea
     const taskType = this.detectTaskType(prompt, context);
@@ -498,17 +507,17 @@ class AdaptiveSamplingManager {
     // Obtener perfil base
     let params = {...this.samplingProfiles[taskType]};
     
-    // Ajustar según preferencias del usuario
+    // Ajustar según las preferencias del usuario
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Escalar de 1-10 al rango adecuado de temperatura
+        // Escalar de 1 a 10 al rango adecuado de temperatura
         params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
       if (precision !== undefined) {
-        // Mayor precisión significa menor topP (selección más enfocada)
+        // Mayor precisión significa topP más bajo (selección más enfocada)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
@@ -531,7 +540,7 @@ class AdaptiveSamplingManager {
       .slice(-5); // Considerar solo el historial reciente
     
     if (relevantHistory.length > 0) {
-      // Calcular puntuaciones promedio de rendimiento
+      // Calcular puntajes promedios de rendimiento
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
       // Si el rendimiento está por debajo del umbral, ajustar parámetros
@@ -550,7 +559,7 @@ class AdaptiveSamplingManager {
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // Calificación de 0-1 de la calidad de respuesta
+      score // Calificación de 0 a 1 de la calidad de la respuesta
     });
     
     // Limitar tamaño del historial
@@ -560,7 +569,7 @@ class AdaptiveSamplingManager {
   }
   
   async generateResponse(prompt, context = {}) {
-    // Obtener parámetros optimizados de muestreo
+    // Obtener parámetros de muestreo optimizados
     const samplingParams = this.getSamplingParameters(prompt, context);
     
     // Enviar solicitud con parámetros optimizados
@@ -569,7 +578,7 @@ class AdaptiveSamplingManager {
       allowedTools: context.allowedTools || []
     });
     
-    // Si el usuario proporciona retroalimentación, registrarla para optimización futura
+    // Si el usuario proporciona retroalimentación, registrarla para futura optimización
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -634,25 +643,25 @@ demonstrateAdaptiveSampling();
 
 En el código precedente hemos:
 
-- Creado una clase `AdaptiveSamplingManager` que gestiona muestreo dinámico basado en tipo de tarea y preferencias del usuario.
-- Definido perfiles de muestreo para diferentes tipos de tareas (creativas, fácticas, código, conversacionales).
-- Implementado un método para detectar el tipo de tarea a partir de la indicación usando heurísticas simples.
-- Calculado parámetros de muestreo basados en el tipo de tarea detectado y las preferencias del usuario.
+- Creado una clase `AdaptiveSamplingManager` que gestiona el muestreo dinámico basado en el tipo de tarea y preferencias del usuario.
+- Definido perfiles de muestreo para diferentes tipos de tareas (creativa, factual, código, conversacional).
+- Implementado un método para detectar el tipo de tarea desde el prompt usando heurísticas simples.
+- Calculado parámetros de muestreo basados en el tipo de tarea detectado y preferencias del usuario.
 - Aplicado ajustes aprendidos basados en el desempeño histórico para optimizar los parámetros de muestreo.
 - Registrado el desempeño para ajustes futuros, permitiendo que el sistema aprenda de interacciones pasadas.
-- Enviado solicitudes con parámetros de muestreo configurados dinámicamente y devuelto el texto generado junto con parámetros aplicados y tipo de tarea detectado.
+- Enviado solicitudes con parámetros de muestreo configurados dinámicamente y retornado el texto generado junto con los parámetros aplicados y tipo de tarea detectado.
 - Usado:
-    - `userPreferences` para permitir la personalización de los parámetros de muestreo basada en niveles definidos por el usuario de creatividad, precisión y consistencia.
-    - `detectTaskType` para determinar la naturaleza de la tarea basada en la indicación, permitiendo respuestas más ajustadas.
-    - `recordPerformance` para registrar el rendimiento de las respuestas generadas, habilitando que el sistema se adapte y mejore con el tiempo.
-    - `applyLearnedAdjustments` para modificar los parámetros de muestreo basados en el rendimiento histórico, mejorando la capacidad del modelo para generar respuestas de alta calidad.
-    - `generateResponse` para encapsular todo el proceso de generación de una respuesta con muestreo adaptativo, facilitando su llamada con diferentes indicaciones y contextos.
+    - `userPreferences` para permitir la personalización de los parámetros de muestreo basados en niveles definidos por el usuario de creatividad, precisión y consistencia.
+    - `detectTaskType` para determinar la naturaleza de la tarea basada en el prompt, permitiendo respuestas más ajustadas.
+    - `recordPerformance` para registrar el desempeño de las respuestas generadas, habilitando que el sistema se adapte y mejore con el tiempo.
+    - `applyLearnedAdjustments` para modificar parámetros de muestreo basados en desempeño histórico, mejorando la capacidad del modelo para generar respuestas de alta calidad.
+    - `generateResponse` para encapsular todo el proceso de generación de una respuesta con muestreo adaptativo, facilitando su uso con diferentes prompts y contextos.
     - `allowedTools` para especificar qué herramientas puede usar el modelo durante la generación, permitiendo respuestas más conscientes del contexto.
-    - `feedbackScore` para permitir que los usuarios proporcionen retroalimentación sobre la calidad de la respuesta generada, lo que puede usarse para refinar aún más el desempeño del modelo con el tiempo.
-    - `performanceHistory` para mantener un registro de interacciones pasadas, habilitando que el sistema aprenda de éxitos y fallos previos.
-    - `getSamplingParameters` para ajustar dinámicamente los parámetros de muestreo según el contexto de la solicitud, permitiendo un comportamiento de modelo más flexible y sensible.
-    - `detectTaskType` para clasificar la tarea basada en la indicación, permitiendo que el sistema aplique estrategias de muestreo apropiadas para diferentes tipos de solicitudes.
-    - `samplingProfiles` para definir configuraciones base de muestreo para diferentes tipos de tareas, permitiendo ajustes rápidos según la naturaleza de la solicitud.
+    - `feedbackScore` para permitir a los usuarios proporcionar retroalimentación sobre la calidad de la respuesta generada, que puede usarse para refinar aún más el desempeño del modelo con el tiempo.
+    - `performanceHistory` para mantener un registro de interacciones pasadas, permitiendo que el sistema aprenda de éxitos y fracasos anteriores.
+    - `getSamplingParameters` para ajustar dinámicamente los parámetros de muestreo según el contexto de la solicitud, permitiendo un comportamiento del modelo más flexible y receptivo.
+    - `detectTaskType` para clasificar la tarea según el prompt, habilitando que el sistema aplique estrategias de muestreo apropiadas para diferentes tipos de solicitudes.
+    - `samplingProfiles` para definir configuraciones base de muestreo para diferentes tipos de tareas, permitiendo ajustes rápidos basados en la naturaleza de la solicitud.
 
 ---
 

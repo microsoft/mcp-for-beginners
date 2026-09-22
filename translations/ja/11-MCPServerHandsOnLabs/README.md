@@ -1,164 +1,164 @@
-# 🚀 MCPサーバーとPostgreSQL - 完全学習ガイド
+# 🚀 PostgreSQLを用いたMCPサーバー - 完全学習ガイド
 
 ## 🧠 MCPデータベース統合学習パスの概要
 
-この包括的な学習ガイドでは、実践的な小売分析の実装を通じて、データベースと統合された本番対応の**Model Context Protocol (MCP)サーバー**の構築方法を学びます。**行レベルセキュリティ（RLS）**、**セマンティックサーチ**、**Azure AI連携**、および**マルチテナントデータアクセス**などの企業グレードのパターンを習得します。
+本総合学習ガイドでは、小売分析の実践的な実装を通じて、データベースと統合された本番対応の<strong>Model Context Protocol (MCP)サーバー</strong>の構築方法を学びます。**行レベルセキュリティ（RLS）**、<strong>セマンティック検索</strong>、**Azure AI統合**、<strong>マルチテナントデータアクセス</strong>など、エンタープライズ向けのパターンも習得できます。
 
-バックエンド開発者、AIエンジニア、データアーキテクトのいずれであっても、このガイドは構造化された学習を提供し、以下のMCPサーバー https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail を実際に操作しながらステップバイステップで進めます。
+バックエンド開発者、AIエンジニア、データアーキテクトを問わず、本ガイドは実際の例とハンズオン演習で構成され、以下のMCPサーバー https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail について順を追って説明します。
 
 ## 🔗 公式MCPリソース
 
 - 📘 [MCPドキュメント](https://modelcontextprotocol.io/) – 詳細なチュートリアルとユーザーガイド
-- 📜 [MCP仕様書 (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – プロトコルのアーキテクチャと技術リファレンス
+- 📜 [MCP仕様書 (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – プロトコルのアーキテクチャと技術参照
 - 🧑‍💻 [MCP GitHubリポジトリ](https://github.com/modelcontextprotocol) – オープンソースSDK、ツール、コードサンプル
 - 🌐 [MCPコミュニティ](https://github.com/orgs/modelcontextprotocol/discussions) – 議論に参加し、コミュニティに貢献
-- 🔒 [OWASP MCPトップ10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – セキュリティのベストプラクティスとリスク緩和策
+- 🔒 [OWASP MCPトップ10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – セキュリティのベストプラクティスとリスク軽減
 
 
 ## 🧭 MCPデータベース統合学習パス
 
-### 📚 https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail の完全学習構造
+### 📚 https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retailの完全学習構造
 
 | ラボ | トピック | 説明 | リンク |
 |--------|-------|-------------|------|
 | **ラボ 1-3: 基礎** | | | |
-| 00 | [MCPデータベース統合入門](./00-Introduction/README.md) | MCPの概要とデータベース統合、及び小売分析のユースケース | [ここから開始](./00-Introduction/README.md) |
-| 01 | [コアアーキテクチャの概念](./01-Architecture/README.md) | MCPサーバーアーキテクチャ、データベース層、セキュリティパターンの理解 | [学ぶ](./01-Architecture/README.md) |
-| 02 | [セキュリティとマルチテナンシー](./02-Security/README.md) | 行レベルセキュリティ、認証、マルチテナントデータアクセス | [学ぶ](./02-Security/README.md) |
-| 03 | [環境セットアップ](./03-Setup/README.md) | 開発環境設定、Docker、Azureリソース | [セットアップ](./03-Setup/README.md) |
+| 00 | [MCPデータベース統合入門](./00-Introduction/README.md) | MCPのデータベース連携と小売分析ユースケースの概要 | [ここから開始](./00-Introduction/README.md) |
+| 01 | [コアアーキテクチャ概念](./01-Architecture/README.md) | MCPサーバーアーキテクチャ、データベース層、セキュリティパターンの理解 | [学習](./01-Architecture/README.md) |
+| 02 | [セキュリティとマルチテナンシー](./02-Security/README.md) | 行レベルセキュリティ、認証、マルチテナントデータアクセス | [学習](./02-Security/README.md) |
+| 03 | [環境セットアップ](./03-Setup/README.md) | 開発環境、Docker、Azureリソースの設定 | [セットアップ](./03-Setup/README.md) |
 | **ラボ 4-6: MCPサーバー構築** | | | |
-| 04 | [データベース設計とスキーマ](./04-Database/README.md) | PostgreSQL設定、小売スキーマ設計、サンプルデータ | [構築](./04-Database/README.md) |
-| 05 | [MCPサーバー実装](./05-MCP-Server/README.md) | データベース統合によるFastMCPサーバーの構築 | [構築](./05-MCP-Server/README.md) |
+| 04 | [データベース設計とスキーマ](./04-Database/README.md) | PostgreSQLセットアップ、小売スキーマ設計、サンプルデータ | [構築](./04-Database/README.md) |
+| 05 | [MCPサーバー実装](./05-MCP-Server/README.md) | データベース連携を備えたFastMCPサーバーの構築 | [構築](./05-MCP-Server/README.md) |
 | 06 | [ツール開発](./06-Tools/README.md) | データベースクエリツールとスキーマイントロスペクションの作成 | [構築](./06-Tools/README.md) |
-| **ラボ 7-9: 高度な機能** | | | |
-| 07 | [セマンティックサーチ統合](./07-Semantic-Search/README.md) | Azure OpenAIとpgvectorを用いたベクトル埋め込みの実装 | [進める](./07-Semantic-Search/README.md) |
+| **ラボ 7-9: 高度機能** | | | |
+| 07 | [セマンティック検索統合](./07-Semantic-Search/README.md) | Azure OpenAIとpgvectorを使ったベクトル埋め込み実装 | [上級](./07-Semantic-Search/README.md) |
 | 08 | [テストとデバッグ](./08-Testing/README.md) | テスト戦略、デバッグツール、検証手法 | [テスト](./08-Testing/README.md) |
-| 09 | [VS Code統合](./09-VS-Code/README.md) | VS CodeのMCP統合とAIチャットの活用 | [統合](./09-VS-Code/README.md) |
-| **ラボ 10-12: 本番運用とベストプラクティス** | | | |
-| 10 | [デプロイ戦略](./10-Deployment/README.md) | Dockerデプロイ、Azure Container Apps、スケーリング考慮 | [デプロイ](./10-Deployment/README.md) |
-| 11 | [モニタリングと可観測性](./11-Monitoring/README.md) | Application Insights、ログ取得、性能監視 | [監視](./11-Monitoring/README.md) |
+| 09 | [VS Code統合](./09-VS-Code/README.md) | VS CodeのMCP統合設定とAIチャットの使い方 | [統合](./09-VS-Code/README.md) |
+| **ラボ 10-12: 本番環境とベストプラクティス** | | | |
+| 10 | [デプロイ戦略](./10-Deployment/README.md) | Dockerデプロイ、Azure Container Apps、スケーリング考慮事項 | [デプロイ](./10-Deployment/README.md) |
+| 11 | [モニタリングと可観測性](./11-Monitoring/README.md) | Application Insights、ログ記録、パフォーマンス監視 | [監視](./11-Monitoring/README.md) |
 | 12 | [ベストプラクティスと最適化](./12-Best-Practices/README.md) | パフォーマンス最適化、セキュリティ強化、本番運用のヒント | [最適化](./12-Best-Practices/README.md) |
 
 ### 💻 作成するもの
 
-この学習パスの終了時には、以下を含む完全な**Zava Retail Analytics MCPサーバー**を構築しています：
+この学習パスの終了時には、以下の機能を備えた完全な<strong>Zava Retail Analytics MCPサーバー</strong>を構築しています：
 
-- **複数テーブルの小売データベース**（顧客注文、製品、在庫）
-- **ストア単位のデータ分離のための行レベルセキュリティ**
-- **Azure OpenAI埋め込みを用いたセマンティック商品検索**
-- **自然言語クエリ用のVS Code AIチャット統合**
-- **DockerとAzureによる本番対応デプロイ**
-- **Application Insightsを利用した包括的なモニタリング**
+- **顧客注文、製品、在庫を含むマルチテーブル小売データベース**
+- 店舗ベースのデータ分離のための<strong>行レベルセキュリティ</strong>
+- Azure OpenAI埋め込みを用いた<strong>セマンティック製品検索</strong>
+- 自然言語クエリ用の<strong>VS Code AIチャット統合</strong>
+- DockerとAzureを使った<strong>本番対応のデプロイ</strong>
+- Application Insightsを用いた<strong>包括的モニタリング</strong>
 
-## 🎯 学習に必要な前提条件
+## 🎯 学習の前提条件
 
-この学習パスを最大限に活用するために以下を備えているべきです：
+この学習パスを最大限に活用するために、以下が望まれます：
 
-- **プログラミング経験**：Python（推奨）または類似言語の基礎知識
-- **データベース知識**：SQLやリレーショナルデータベースの基本理解
-- **API概念**：REST APIやHTTPの基礎理解
-- **開発ツール経験**：コマンドライン、Git、およびコードエディターの利用経験
-- **クラウドの基礎**：（任意）Azureや類似のクラウドプラットフォームの基本知識
-- **Dockerの知識**：（任意）コンテナ技術の理解
+- <strong>プログラミング経験</strong>：Python（推奨）または類似言語の知識
+- <strong>データベース知識</strong>：SQLおよびリレーショナルデータベースの基本理解
+- **API概念**：REST APIおよびHTTPの基礎知識
+- <strong>開発ツール</strong>：コマンドライン、Git、コードエディタの使用経験
+- <strong>クラウド基礎</strong>：（任意）Azureや類似クラウドプラットフォームの基本知識
+- **Dockerの知識**：（任意）コンテナ化の概念理解
 
 ### 必要なツール
 
-- **Docker Desktop** - PostgreSQLとMCPサーバーの実行用
-- **Azure CLI** - クラウドリソースのデプロイ用
+- **Docker Desktop** - PostgreSQLとMCPサーバーを実行するため
+- **Azure CLI** - クラウドリソースの展開用
 - **VS Code** - 開発およびMCP統合用
 - **Git** - バージョン管理用
 - **Python 3.8+** - MCPサーバー開発用
 
-## 📚 学習ガイドとリソース
+## 📚 学習ガイド＆リソース
 
-この学習パスは効果的に進めるための充実したリソースを含みます：
+本学習パスには、効果的に進めるための充実したリソースが含まれています：
 
 ### 学習ガイド
 
 各ラボには以下が含まれます：
-- **明確な学習目標** - 達成すべき内容
-- **ステップバイステップの手順書** - 詳細な実装ガイド
-- **コード例** - 動作サンプルと説明
-- **演習** - 実践的な課題
-- **トラブルシューティングガイド** - よくある問題の解決方法
-- **追加リソース** - さらなる学習資料や探求
+- <strong>明確な学習目標</strong> - 何を達成するか
+- <strong>ステップバイステップの手順</strong> - 詳細な実装ガイド
+- <strong>コード例</strong> - 解説付きの動作サンプル
+- <strong>演習</strong> - ハンズオンでの練習機会
+- <strong>トラブルシューティングガイド</strong> - よくある問題と解決策
+- <strong>追加リソース</strong> - さらなる読書と調査
 
 ### 前提条件チェック
 
-各ラボ開始前に以下を確認できます：
-- **必要知識** - 前もって理解しておくべきこと
-- **セットアップの検証** - 環境が整っているかの確認方法
-- **所要時間の見積もり** - 完了までの目安時間
-- **学習成果** - ラボ終了後に理解できる内容
+各ラボ開始前に：
+- <strong>必要な知識</strong> - 事前に知っておくべきこと
+- <strong>セットアップ検証</strong> - 環境が正しく整っているか確認
+- <strong>所要時間の目安</strong> - 完了までの予想時間
+- <strong>学習成果</strong> - 修了後に得られる知識
 
 ### 推奨学習パス
 
-経験レベル別に学習パスを選択可能：
+ご自身の経験レベルに応じて選択してください：
 
-#### 🟢 **初心者向けパス** (MCP未経験者向け)
-1. まず、[MCP for Beginners](https://aka.ms/mcp-for-beginners) の0〜10までを完了してください
-2. 00〜03のラボで基礎を再確認しましょう
-3. 04〜06で実践的な構築を行います
-4. 07〜09のラボで実際の活用方法を試します
+#### 🟢 <strong>初心者パス</strong>（MCP初学者向け）
+1. まず [MCP for Beginners](https://aka.ms/mcp-for-beginners) の0-10章を完了してください
+2. ラボ00-03で基礎知識を強化しましょう
+3. ラボ04-06でハンズオン構築を行います
+4. 実践的な利用に向けてラボ07-09に挑戦してください
 
-#### 🟡 **中級者向けパス** (MCPを少し経験した方へ)
-1. 00〜01のラボでデータベース特有の概念を見直します
-2. 02〜06のラボにフォーカスして実装を進めます
-3. 07〜12のラボで高度な機能を深掘りしましょう
+#### 🟡 <strong>中級者パス</strong>（ある程度MCP経験あり）
+1. ラボ00-01でデータベース特有の概念を復習
+2. ラボ02-06で実装に注力
+3. ラボ07-12で高度な機能を深掘り
 
-#### 🔴 **上級者向けパス** (MCP経験者向け)
-1. ラボ00〜03はざっと確認し文脈をつかみます
-2. 04〜09のラボでデータベース統合に重点を置きます
-3. 10〜12のラボで本番デプロイに集中します
+#### 🔴 <strong>上級者パス</strong>（MCP経験豊富）
+1. 文脈把握のためにラボ00-03をざっと確認
+2. ラボ04-09でデータベース統合に集中
+3. ラボ10-12で本番環境のデプロイに専念
 
-## 🛠️ この学習パスの効果的な使い方
+## 🛠️ 本学習パスの効果的活用法
 
-### 順序立てて学ぶ（推奨）
+### 順序立てた学習（推奨）
 
-ラボを順番に進めて総合的に理解：
+ラボを順番に進めて包括的に理解しましょう：
 
-1. **概要を読む** - 何を学ぶか理解する
-2. **前提条件を確認** - 必要な知識があるかチェック
-3. **ステップバイステップのガイドをたどる** - 学習しながら実装する
-4. **演習をこなす** - 理解を強化
-5. **重要ポイントを復習** - 学びを定着させる
+1. <strong>概要を読む</strong> - 学ぶ内容を把握
+2. <strong>前提条件を確認</strong> - 必要な知識の有無を確認
+3. <strong>手順に従う</strong> - 学びながら実装
+4. <strong>演習を完了</strong> - 理解を深める
+5. <strong>重要ポイントを振り返る</strong> - 学習成果を定着
 
-### 必要に応じた分野別学習
+### 特定分野の学習
 
-特定スキルが必要な場合：
+必要なスキルに応じて：
 
-- **データベース統合**：ラボ04〜06に集中
-- **セキュリティ実装**：ラボ02、08、12に注力
-- **AI／セマンティックサーチ**：ラボ07を深掘り
-- **本番デプロイ**：ラボ10〜12を学ぶ
+- <strong>データベース統合</strong>：ラボ04-06に注力
+- <strong>セキュリティ実装</strong>：ラボ02、08、12を重点的に
+- **AI/セマンティック検索**：ラボ07を深く学習
+- <strong>本番環境デプロイ</strong>：ラボ10-12を学習
 
-### 実践的なハンズオン
+### ハンズオン演習
 
-各ラボに含まれるもの：
-- **動作するコード例** - コピーして修正・実験可能
-- **実際のケーススタディ** - 小売分析の実用シナリオ
-- **段階的な難易度** - 簡単から高度まで段階的に構築
-- **検証手順** - 実装が機能するかどうか確認
+各ラボには：
+- <strong>動作するコード例</strong> - コピーして改変し試す
+- <strong>実践シナリオ</strong> - 小売分析のリアルケース
+- <strong>漸進的な難易度</strong> - シンプルから高度へ構築
+- <strong>検証ステップ</strong> - 実装が機能するか確認
 
 ## 🌟 コミュニティとサポート
 
 ### ヘルプを得るには
 
 - **Azure AI Discord**： [専門家サポートに参加](https://discord.com/invite/ByRwuEEgH4)
-- **GitHubリポジトリと実装サンプル**： [デプロイサンプルおよびリソース](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
-- **MCPコミュニティ**： [広範なMCPディスカッションに参加](https://github.com/orgs/modelcontextprotocol/discussions)
+- **GitHubリポジトリと実装サンプル**： [デプロイサンプルとリソース](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
+- **MCPコミュニティ**： [MCP全般のディスカッションに参加](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 はじめましょう！
+## 🚀 学習を始める準備はできましたか？
 
-まずは **[ラボ 00: MCPデータベース統合入門](./00-Introduction/README.md)** から始めましょう
+**[ラボ 00: MCPデータベース統合入門](./00-Introduction/README.md)** から旅を始めましょう
 
 ---
 
-*この包括的で実践的な学習体験を通じて、データベース統合による本番対応MCPサーバー構築を習得しましょう。*
+*本総合的で実践的な学習体験を通じて、データベース統合対応の本番向けMCPサーバー構築を極めましょう。*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責事項**：  
-本書類はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されました。正確性には努めておりますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文の言語で記載されたオリジナルの文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の使用により生じたいかなる誤解や解釈の相違についても、当方は一切の責任を負いません。
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

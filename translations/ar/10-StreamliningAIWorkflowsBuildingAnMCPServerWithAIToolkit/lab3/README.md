@@ -1,4 +1,9 @@
-# 🔧 الوحدة 3: تطوير متقدم لـ MCP باستخدام مجموعة أدوات Microsoft Foundry
+# 🔧 الوحدة 3: تطوير MCP المتقدم باستخدام Microsoft Foundry Toolkit
+
+> [!NOTE]
+> تستخدم عناوين URL الخاصة بالمفتش في هذا المختبر نقطة النهاية القديمة `/sse` وتستهدف
+> تبعيات MCP SDK المثبتة `1.9.3` و Inspector `0.14.0`. هذه ليست أمثلة HTTP Streamable الحالية بتاريخ `2026-07-28`.
+
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
@@ -10,36 +15,36 @@
 
 بنهاية هذا المختبر، ستكون قادرًا على:
 
-- ✅ إنشاء خوادم MCP مخصصة باستخدام مجموعة أدوات Microsoft Foundry
-- ✅ تكوين واستخدام أحدث إصدار من MCP Python SDK (النسخة 1.9.3)
+- ✅ إنشاء خوادم MCP مخصصة باستخدام Microsoft Foundry Toolkit
+- ✅ تكوين واستخدام أحدث MCP Python SDK (الإصدار 1.9.3)
 - ✅ إعداد واستخدام MCP Inspector لأغراض التصحيح
-- ✅ تصحيح خوادم MCP في بيئتي Agent Builder وInspector
-- ✅ فهم سير عمل تطوير خوادم MCP المتقدم
+- ✅ تصحيح خوادم MCP في كل من بيئات Agent Builder و Inspector
+- ✅ فهم سير عمل تطوير خوادم MCP المتقدمة
 
 ## 📋 المتطلبات الأساسية
 
 - إكمال المختبر 2 (أساسيات MCP)
-- وجود VS Code مع إضافة Microsoft Foundry Toolkit مثبتة
-- بيئة Python 3.10 أو أحدث
+- تثبيت امتداد Microsoft Foundry Toolkit في VS Code
+- بيئة Python 3.10+
 - Node.js و npm لإعداد Inspector
 
-## 🏗️ ما ستقوم ببنائه
+## 🏗️ ما ستبنيه
 
-في هذا المختبر، ستقوم بإنشاء **خادم MCP للطقس** يُظهر ما يلي:
+في هذا المختبر، ستنشئ **خادم MCP للطقس** يُظهر:
 - تنفيذ خادم MCP مخصص
-- التكامل مع Agent Builder في مجموعة أدوات Microsoft Foundry
-- سير عمل احترافي للتصحيح
-- أنماط استخدام حديثة لمكتبة MCP SDK
+- التكامل مع Microsoft Foundry Toolkit Agent Builder
+- سير عمل تصحيح احترافي
+- أنماط استخدام حديثة لـ MCP SDK
 
 ---
 
 ## 🔧 نظرة عامة على المكونات الأساسية
 
 ### 🐍 MCP Python SDK
-توفر مكتبة Model Context Protocol الخاصة بـ Python الأساس لبناء خوادم MCP مخصصة. ستستخدم النسخة 1.9.3 مع ميزات تصحيح محسنة.
+يوفر نموذج بروتوكول السياق Python SDK الأساس لبناء خوادم MCP مخصصة. ستستخدم الإصدار 1.9.3 مع إمكانيات تصحيح محسنة.
 
 ### 🔍 MCP Inspector
-أداة تصحيح قوية توفر:
+أداة تصحيح قوية تقدم:
 - مراقبة الخادم في الوقت الحقيقي
 - تصور تنفيذ الأدوات
 - فحص طلبات واستجابات الشبكة
@@ -51,25 +56,25 @@
 
 ### الخطوة 1: إنشاء WeatherAgent في Agent Builder
 
-1. **افتح Agent Builder** في VS Code عبر إضافة Microsoft Foundry Toolkit
+1. **ابدأ Agent Builder** في VS Code من خلال امتداد Microsoft Foundry Toolkit
 2. **أنشئ وكيلًا جديدًا** بالتكوين التالي:
    - اسم الوكيل: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/ar/Agent.c9c33f6a412b4cde.webp)
 
-### الخطوة 2: تهيئة مشروع MCP Server
+### الخطوة 2: تهيئة مشروع خادم MCP
 
 1. **انتقل إلى Tools** → **Add Tool** في Agent Builder
 2. **اختر "MCP Server"** من الخيارات المتاحة
 3. **اختر "Create A new MCP Server"**
-4. **حدد القالب `python-weather`**
-5. **قم بتسمية الخادم الخاص بك:** `weather_mcp`
+4. **اختر قالب `python-weather`**
+5. **قم بتسمية الخادم:** `weather_mcp`
 
 ![Python Template Selection](../../../../translated_images/ar/Pythontemplate.9d0a2913c6491500.webp)
 
-### الخطوة 3: افتح وتفحص المشروع
+### الخطوة 3: افتح وراجع المشروع
 
-1. **افتح المشروع الذي تم إنشاؤه** في VS Code
+1. **افتح المشروع المُنشأ** في VS Code
 2. **راجع هيكل المشروع:**
    ```
    weather_mcp/
@@ -86,34 +91,35 @@
    └── README.md
    ```
 
-### الخطوة 4: الترقية إلى أحدث إصدار من MCP SDK
+### الخطوة 4: الترقية إلى أحدث MCP SDK
 
-> **🔍 لماذا الترقية؟** نريد استخدام أحدث إصدار من MCP SDK (النسخة 1.9.3) وخدمة Inspector (الإصدار 0.14.0) لميزات محسنة وقدرات تصحيح أفضل.
+> **🔍 لماذا الترقية؟** نريد استخدام أحدث إصدار MCP SDK (الإصدار 1.9.3) وخدمة المفتش (0.14.0) لتحسين الميزات وقدرات التصحيح.
 
-#### 4a. تحديث تبعيات Python
+#### 4أ. تحديث تبعيات Python
 
-**عدل `pyproject.toml`:** تحديث الملف [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**حرر `pyproject.toml`:** تحديث [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. تحديث تكوين Inspector
+#### 4ب. تحديث تكوين المفتش
 
-**عدل `inspector/package.json`:** تحديث الملف [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**حرر `inspector/package.json`:** تحديث [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. تحديث تبعيات Inspector
+#### 4ج. تحديث تبعيات المفتش
 
-**عدل `inspector/package-lock.json`:** تحديث الملف [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**حرر `inspector/package-lock.json`:** تحديث [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 ملاحظة:** يحتوي هذا الملف على تعريفات تبعيات كبيرة. فيما يلي الهيكل الأساسي - المحتوى الكامل يضمن حل الاعتمادية بشكل صحيح.
+> **📝 ملاحظة:** يحتوي هذا الملف على تعريفات واسعة النطاق للتبعيات. أدناه الهيكل الأساسي - المحتوى الكامل يضمن حل التبعيات بشكل صحيح.
 
-> **⚡ قفل الحزمة الكامل:** يحتوي package-lock.json الكامل على حوالي 3000 سطر من تعريفات التبعيات. ما سبق يوضح الهيكل الرئيسي - استخدم الملف المرفق لحل كامل للتبعيات.
 
-### الخطوة 5: تكوين تصحيح الأخطاء في VS Code
+> **⚡ قفل الحزمة الكامل:** يحتوي ملف package-lock.json الكامل على حوالي 3000 سطر من تعريفات التبعيات. أعلاه الهيكل الرئيسي - استخدم الملف المقدم لحل التبعيات بالكامل.
 
-*ملاحظة: يرجى نسخ الملف في المسار المحدد لاستبدال الملف المحلي المقابل*
+### الخطوة 5: تكوين تصحيح VS Code
 
-#### 5a. تحديث تكوين الإطلاق
+*ملاحظة: يرجى نسخ الملف إلى المسار المحدد لاستبدال الملف المحلي المقابل*
 
-**عدل `.vscode/launch.json`:**
+#### 5أ. تحديث تكوين الإطلاق
+
+**حرر `.vscode/launch.json`:**
 
 ```json
 {
@@ -190,7 +196,7 @@
 }
 ```
 
-**عدل `.vscode/tasks.json`:**
+**حرر `.vscode/tasks.json`:**
 
 ```
 {
@@ -299,7 +305,7 @@
 
 ### الخطوة 6: تثبيت التبعيات
 
-بعد إجراء تغييرات التكوين، شغّل الأوامر التالية:
+بعد إجراء التغييرات في التكوين، شغّل الأوامر التالية:
 
 **تثبيت تبعيات Python:**
 ```bash
@@ -314,12 +320,12 @@ npm install
 
 ### الخطوة 7: التصحيح باستخدام Agent Builder
 
-1. **اضغط على F5** أو استخدم إعداد "Debug in Agent Builder"
+1. **اضغط F5** أو استخدم تكوين **"Debug in Agent Builder"**
 2. **اختر التكوين المركب** من لوحة التصحيح
-3. **انتظر حتى يبدأ الخادم** وفتح Agent Builder
-4. **اختبر خادم MCP الخاص بالطقس** باستخدام استفسارات اللغة الطبيعية
+3. **انتظر بدء تشغيل الخادم** وفتح Agent Builder
+4. **اختبر خادم MCP للطقس الخاص بك** باستخدام استعلامات اللغة الطبيعية
 
-أدخل مدخلات مثل هذه
+أدخل الموجه مثل هذا
 
 SYSTEM_PROMPT
 
@@ -337,8 +343,8 @@ How's the weather like in Seattle
 
 ### الخطوة 8: التصحيح باستخدام MCP Inspector
 
-1. **استخدم إعداد "Debug in Inspector"** (على متصفح Edge أو Chrome)
-2. **افتح واجهة Inspector** على العنوان `http://localhost:6274`
+1. **استخدم تكوين "Debug in Inspector"** (Edge أو Chrome)
+2. **افتح واجهة Inspector** على `http://localhost:6274`
 3. **استكشف بيئة الاختبار التفاعلية:**
    - عرض الأدوات المتاحة
    - اختبار تنفيذ الأدوات
@@ -351,41 +357,41 @@ How's the weather like in Seattle
 
 ## 🎯 النتائج الرئيسية للتعلم
 
-عند إتمام هذا المختبر، تكون قد:
+من خلال إكمال هذا المختبر، لقد قمت بـ:
 
-- [x] **أنشأت خادم MCP مخصص** باستخدام قوالب Microsoft Foundry Toolkit
-- [x] **قمت بالترقية إلى أحدث MCP SDK** (النسخة 1.9.3) لوظائف محسنة
-- [x] **كونت سير عمل احترافي للتصحيح** لكل من Agent Builder وInspector
-- [x] **أعددت MCP Inspector** لاختبار الخادم التفاعلي
-- [x] **أتقنت تكوينات تصحيح الأخطاء في VS Code** لتطوير MCP
+- [x] **إنشاء خادم MCP مخصص** باستخدام قوالب Microsoft Foundry Toolkit
+- [x] **الترقية إلى أحدث MCP SDK** (الإصدار 1.9.3) لوظائف محسنة
+- [x] **تكوين سير عمل تصحيح احترافي** لكل من Agent Builder و Inspector
+- [x] **إعداد MCP Inspector** لاختبار الخادم التفاعلي
+- [x] **إتقان تكوينات تصحيح VS Code** لتطوير MCP
 
-## 🔧 الميزات المتقدمة التي تم استكشافها
+## 🔧 الميزات المتقدمة المستكشفة
 
 | الميزة | الوصف | حالة الاستخدام |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | أحدث تنفيذ للبروتوكول | تطوير الخوادم الحديثة |
-| **MCP Inspector 0.14.0** | أداة تصحيح تفاعلية | اختبار الخوادم في الوقت الحقيقي |
+| **MCP Python SDK v1.9.3** | أحدث تنفيذ للبروتوكول | تطوير خادم حديث |
+| **MCP Inspector 0.14.0** | أداة تصحيح تفاعلية | اختبار الخادم في الوقت الفعلي |
 | **تصحيح VS Code** | بيئة تطوير متكاملة | سير عمل تصحيح احترافي |
-| **تكامل Agent Builder** | اتصال مباشر مع Microsoft Foundry Toolkit | اختبار الوكلاء من البداية إلى النهاية |
+| **تكامل Agent Builder** | اتصال مباشر بـ Microsoft Foundry Toolkit | اختبار الوكلاء من البداية للنهاية |
 
 ## 📚 موارد إضافية
 
 - [توثيق MCP Python SDK](https://modelcontextprotocol.io/docs/sdk/python)
-- [دليل إضافة Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [دليل امتداد Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
 - [توثيق تصحيح VS Code](https://code.visualstudio.com/docs/editor/debugging)
-- [مواصفات Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [مواصفة نموذج بروتوكول السياق](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 تهانينا!** لقد أكملت بنجاح المختبر 3 وأصبحت الآن قادرًا على إنشاء وتصحيح ونشر خوادم MCP مخصصة باستخدام سير عمل تطوير احترافي.
+**🎉 تهانينا!** لقد أكملت بنجاح المختبر 3 ويمكنك الآن إنشاء وتصحيح ونشر خوادم MCP مخصصة باستخدام سير عمل تطوير احترافي.
 
 ### 🔜 تابع إلى الوحدة التالية
 
-هل أنت مستعد لتطبيق مهارات MCP على سير عمل تطوير واقعي؟ تابع إلى **[الوحدة 4: تطوير MCP عملي - خادم استنساخ GitHub مخصص](../lab4/README.md)** حيث ستقوم بـ:
-- بناء خادم MCP جاهز للإنتاج لأتمتة عمليات مستودعات GitHub
+هل أنت مستعد لتطبيق مهارات MCP في سير عمل تطوير واقعي؟ تابع إلى **[الوحدة 4: تطوير MCP العملي - خادم استنساخ GitHub مخصص](../lab4/README.md)** حيث ستقوم بـ:
+- بناء خادم MCP جاهز للإنتاج يقوم بأتمتة عمليات مستودع GitHub
 - تنفيذ وظيفة استنساخ مستودعات GitHub عبر MCP
-- دمج خوادم MCP مخصصة مع VS Code ووضع GitHub Copilot Agent
-- اختبار ونشر خوادم MCP مخصصة في بيئات الإنتاج
+- دمج خوادم MCP المخصصة مع VS Code ووضع GitHub Copilot Agent
+- اختبار ونشر خوادم MCP المخصصة في بيئات الإنتاج
 - تعلم أتمتة سير العمل العملي للمطورين
 
 ---

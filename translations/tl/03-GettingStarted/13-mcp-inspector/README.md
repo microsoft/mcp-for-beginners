@@ -1,21 +1,26 @@
 # Pag-debug gamit ang MCP Inspector
 
-Ang **MCP Inspector** ay isang mahalagang kasangkapan sa pag-debug na nagpapahintulot sa iyo na subukan at ayusin nang interaktibo ang iyong mga MCP server nang hindi nangangailangan ng buong AI host application. Isipin ito bilang "Postman para sa MCP" - nagbibigay ito ng visual na interface upang magpadala ng mga kahilingan, tingnan ang mga tugon, at maunawaan kung paano kumikilos ang iyong server.
+> [!NOTE]
+> Ang mga utos na gumagamit ng `--sse` at mga URL na nagtatapos sa `/sse` ay sumusubok sa legacy HTTP+SSE
+> transport. Para sa bagong MCP `2026-07-28` server, gamitin ang isang bersyon ng Inspector na
+> sumusuporta sa Streamable HTTP at piliin ang transport na iyon sa halip.
+
+Ang **MCP Inspector** ay isang mahalagang kasangkapan sa pag-debug na nagpapahintulot sa iyo na subukan at ayusin ang iyong mga MCP server nang interaktibo nang hindi kinakailangang magkaroon ng buong AI host application. Isipin ito bilang "Postman para sa MCP" - nagbibigay ito ng isang biswal na interface upang magpadala ng mga kahilingan, tingnan ang mga tugon, at maunawaan kung paano kumikilos ang iyong server.
 
 ## Bakit Gamitin ang MCP Inspector?
 
-Kapag gumagawa ng mga MCP server, madalas kang makatagpo ng mga sumusunod na hamon:
+Kapag bumubuo ng mga MCP server, madalas mong mararanasan ang mga hamong ito:
 
-- **"Tumatakbo ba ang aking server?"** - Ipinapakita ng Inspector ang status ng koneksyon
-- **"Narehistro ba nang tama ang aking mga tool?"** - Ipinapakita ng Inspector ang lahat ng magagamit na tool
-- **"Ano ang format ng tugon?"** - Ipinapakita ng Inspector ang buong JSON na mga tugon
+- **"Tumutakba ba ang aking server?"** - Ipinapakita ng Inspector ang katayuan ng koneksyon
+- **"Tama ba ang pagrehistro ng aking mga tool?"** - Ipinapakita ng Inspector ang lahat ng magagamit na mga tool
+- **"Ano ang format ng tugon?"** - Ipinapakita ng Inspector ang buong mga tugon sa JSON
 - **"Bakit hindi gumagana ang tool na ito?"** - Ipinapakita ng Inspector ang detalyadong mga mensahe ng error
 
 ## Mga Kinakailangan
 
 - Nakainstall na Node.js 18+
 - npm (kasama sa Node.js)
-- Isang MCP server na susubukan (tingnan ang [Module 3.1 - First Server](../01-first-server/README.md))
+- Isang MCP server para subukan (tingnan ang [Module 3.1 - First Server](../01-first-server/README.md))
 
 ## Pag-install
 
@@ -25,7 +30,7 @@ Kapag gumagawa ng mga MCP server, madalas kang makatagpo ng mga sumusunod na ham
 npx @modelcontextprotocol/inspector
 ```
 
-### Opsyon 2: I-install Globally
+### Opsyon 2: I-install Nang Global
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -52,9 +57,9 @@ Idagdag sa `package.json`:
 
 ## Pagkonekta sa Iyong Server
 
-### stdio Servers (Local Process)
+### stdio Servers (Lokal na Proseso)
 
-Para sa mga server na nakikipag-usap gamit ang standard input/output:
+Para sa mga server na nakikipagkomunika sa pamamagitan ng standard input/output:
 
 ```bash
 # Server ng Python
@@ -63,29 +68,29 @@ npx @modelcontextprotocol/inspector python -m your_server_module
 # Server ng Node.js
 npx @modelcontextprotocol/inspector node ./build/index.js
 
-# May mga environment variable
+# Gamit ang mga environment variable
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
 ### SSE/HTTP Servers (Network)
 
-Para sa mga server na tumatakbo bilang HTTP na serbisyo:
+Para sa mga server na tumatakbo bilang mga serbisyo ng HTTP:
 
-1. Patakbuhin muna ang iyong server:
+1. Simulan muna ang iyong server:
    ```bash
    python server.py  # Server na tumatakbo sa http://localhost:8080
    ```
 
-2. Ilunsad ang Inspector at mag-konekta:
+2. Ilunsad ang Inspector at kumonekta:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Pangkalahatang-ideya ng Interface ng Inspector
+## Pangkalahatang Tanaw ng Interface ng Inspector
 
-Kapag nailunsad ang Inspector, makikita mo ang web interface (karaniwang sa `http://localhost:5173`):
+Kapag inilunsad ang Inspector, makikita mo ang isang web interface (karaniwang nasa `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Kapag nailunsad ang Inspector, makikita mo ang web interface (karaniwang sa `htt
 
 ---
 
-## Pagsusubok ng mga Tool
+## Pagsubok ng mga Tool
 
-### Paglilista ng mga Magagamit na Tool
+### Paglisting ng Magagamit na Mga Tool
 
 1. I-click ang tab na **Tools**
 2. Awtomatikong tatawagin ng Inspector ang `tools/list`
-3. Makikita mo ang lahat ng narehistrong mga tool kasama ang:
-   - Pangalan ng tool
-   - Deskripsyon
+3. Makikita mo ang lahat ng nakarehistrong tool na may:
+   - Pangalan ng Tool
+   - Paglalarawan
    - Input schema (mga parameter)
 
-### Pagtawag ng Isang Tool
+### Pagtawag sa isang Tool
 
 1. Piliin ang isang tool mula sa listahan
 2. Punan ang kinakailangang mga parameter sa form
 3. I-click ang **Run Tool**
-4. Tingnan ang tugon sa resulta na panel
+4. Tingnan ang tugon sa panel ng mga resulta
 
-**Halimbawa: Pagsusubok ng calculator tool**
+**Halimbawa: Pagsubok ng isang calculator tool**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Pag-debug sa Mga Error ng Tool
+### Pag-debug ng mga Error sa Tool
 
-Kapag pumalya ang isang tool, ipinapakita ng Inspector:
+Kapag nabigo ang isang tool, ipinapakita ng Inspector:
 
 ```
 Error Response:
@@ -162,35 +167,35 @@ Error Response:
 }
 ```
 
-Karaniwang mga kodigong error:
+Mga karaniwang code ng error:
 | Code | Kahulugan |
 |------|---------|
-| -32700 | Parse error (di-wastong JSON) |
+| -32700 | Parse error (hindi wastong JSON) |
 | -32600 | Hindi wastong kahilingan |
-| -32601 | Hindi natagpuang metodo |
+| -32601 | Hindi nakita ang pamamaraan |
 | -32602 | Hindi wastong mga parameter |
 | -32603 | Panloob na error |
 
 ---
 
-## Pagsusubok ng Mga Mapagkukunan
+## Pagsubok ng Mga Mapagkukunan
 
-### Paglilista ng Mga Mapagkukunan
+### Paglisting ng Mga Mapagkukunan
 
 1. I-click ang tab na **Resources**
 2. Tatawagin ng Inspector ang `resources/list`
-3. Makikita mo ang:
+3. Makikita mo:
    - Mga URI ng Resource
-   - Mga pangalan at deskripsyon
+   - Mga pangalan at paglalarawan
    - Mga MIME type
 
-### Pagbasa ng Isang Resource
+### Pagbasa ng isang Resource
 
 1. Piliin ang isang resource
 2. I-click ang **Read Resource**
-3. Tingnan ang nilalaman na ibinalik
+3. Tingnan ang ibinalik na nilalaman
 
-**Halimbawang output:**
+**Halimbawa ng output:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,18 +211,18 @@ Content-Type: application/json
 
 ---
 
-## Pagsusubok ng Mga Prompt
+## Pagsubok ng Mga Prompt
 
-### Paglilista ng Mga Prompt
+### Paglisting ng Mga Prompt
 
 1. I-click ang tab na **Prompts**
 2. Tatawagin ng Inspector ang `prompts/list`
-3. Tingnan ang magagamit na mga template ng prompt
+3. Tingnan ang mga magagamit na template ng prompt
 
-### Pagkuha ng Isang Prompt
+### Pagkuha ng Prompt
 
 1. Piliin ang isang prompt
-2. Punan ang anumang kinakailangang argumentong
+2. Punan ang anumang kinakailangang mga argumento
 3. I-click ang **Get Prompt**
 4. Tingnan ang na-render na mga mensahe ng prompt
 
@@ -225,7 +230,10 @@ Content-Type: application/json
 
 ## Pagsusuri ng Log ng Mensahe
 
-Ipinapakita ng log ng mensahe ang lahat ng mga mensahe ng MCP protocol:
+Ipinapakita ng log ng mensahe ang lahat ng MCP protocol messages. Ang transcript sa ibaba ay mula sa
+legacy `2025-11-25` server at kasama ang tinanggal na handshake na `initialize`. Ang isang
+`2026-07-28` server ay gumagamit ng self-contained request metadata at `server/discover`
+bilang kapalit.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Ipinapakita ng log ng mensahe ang lahat ng mga mensahe ng MCP protocol:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Ano ang Hanapin
+### Ano ang Titignan
 
-- **Mga pares ng Request/Response**: Ang bawat `→` ay dapat may katugmang `←`
+- **Mga pares ng Request/Response**: Bawat `→` ay dapat may katumbas na `←`
 - **Mga mensahe ng error**: Hanapin ang `"error"` sa mga tugon
-- **Oras**: Malalaking puwang ay maaaring magpahiwatig ng isyu sa pagganap
-- **Bersyon ng protocol**: Tiyakin na ang server at client ay magkasundo sa bersyon
+- **Timing**: Malalaking agwat ay maaaring magpahiwatig ng mga isyu sa performance
+- **Bersyon ng protocol**: Siguraduhin na nagkakasundo ang server at client sa bersyon
 
 ---
 
@@ -249,7 +257,7 @@ Ipinapakita ng log ng mensahe ang lahat ng mga mensahe ng MCP protocol:
 
 Maaari mong patakbuhin ang Inspector nang direkta mula sa VS Code:
 
-### Gamit ang launch.json
+### Paggamit ng launch.json
 
 Idagdag sa `.vscode/launch.json`:
 
@@ -280,7 +288,7 @@ Idagdag sa `.vscode/launch.json`:
 }
 ```
 
-### Gamit ang Tasks
+### Paggamit ng Mga Task
 
 Idagdag sa `.vscode/tasks.json`:
 
@@ -312,22 +320,22 @@ Idagdag sa `.vscode/tasks.json`:
 
 ## Karaniwang Mga Senaryo sa Pag-debug
 
-### Senaryo 1: Hindi Makakonekta ang Server
+### Senaryo 1: Hindi Kumokonekta ang Server
 
-**Sintomas:** Ipinapakita ng Inspector ang "Disconnected" o naghihintay sa "Connecting..."
+**Sintomas:** Ipinapakita ng Inspector ang "Disconnected" o naipit sa "Connecting..."
 
 **Checklist:**
-1. ✅ Tama ba ang command ng server?
+1. ✅ Tama ba ang utos ng server?
 2. ✅ Nakainstall ba lahat ng dependencies?
-3. ✅ Absoluto ba o kaugnay sa kasalukuyang direktoryo ang path ng server?
-4. ✅ Naayos ba ang mga kinakailangang environment variable?
+3. ✅ Ang path ba ng server ay absolute o relative sa kasalukuyang direktoryo?
+4. ✅ Nakaset ba ang mga kinakailangang environment variables?
 
-**Hakbang sa pag-debug:**
+**Mga hakbang sa pag-debug:**
 ```bash
-# Subukan muna ang server nang manu-mano
+# Manu-manong subukan muna ang server
 python -c "import your_server_module; print('OK')"
 
-# Suriin para sa mga error sa pag-import
+# Suriin ang mga error sa pag-import
 python -m your_server_module 2>&1 | head -20
 
 # Tiyaking naka-install ang MCP SDK
@@ -336,27 +344,27 @@ pip show mcp
 
 ### Senaryo 2: Hindi Lumalabas ang Mga Tool
 
-**Sintomas:** Walang laman ang tab ng Tools
+**Sintomas:** Walang laman ang listahan sa tab na Tools
 
 **Mga posibleng dahilan:**
-1. Hindi narehistro ang mga tool sa pagsisimula ng server
-2. Nag-crash ang server pagkatapos magsimula
-3. Nagbabalik ng empty array ang handler na `tools/list`
+1. Hindi narehistro ang mga tool sa panahon ng initialization ng server
+2. Nag-crash ang server pagkatapos ng startup
+3. Ang `tools/list` handler ay nagbabalik ng walang laman na array
 
-**Hakbang sa pag-debug:**
-1. Suriin ang log ng mensahe para sa tugon ng `tools/list`
-2. Magdagdag ng pag-log sa iyong code ng pagrerehistro ng tool
-3. Siguraduhing naroon ang mga dekorator na `@mcp.tool()` (Python)
+**Mga hakbang sa pag-debug:**
+1. Suriin ang message log para sa tugon ng `tools/list`
+2. Magdagdag ng logging sa iyong code para sa pagrehistro ng tool
+3. Tiyaking naroroon ang `@mcp.tool()` decorators (Python)
 
-### Senaryo 3: Nagbabalik ng Error ang Tool
+### Senaryo 3: Nagbibigay ng Error ang Tool
 
-**Sintomas:** Ang pagtawag sa tool ay nagbabalik ng error na tugon
+**Sintomas:** Nagbabalik ang tawag sa tool ng tugon na may error
 
-**Lapitan sa pag-debug:**
-1. Basahing mabuti ang mensahe ng error
-2. Suriing tugma ang mga uri ng parameter sa schema
-3. Magdagdag ng try/catch kasama ng detalyadong mga mensahe ng error
-4. Tingnan ang mga log ng server para sa mga stack trace
+**Pamamaraan sa pag-debug:**
+1. Basahin nang maigi ang mensahe ng error
+2. Suriin kung nagtutugma ang mga uri ng parameter sa schema
+3. Magdagdag ng try/catch na may detalyadong mga mensahe ng error
+4. Suriin ang mga log ng server para sa stack traces
 
 **Halimbawa ng pinahusay na paghawak ng error:**
 
@@ -364,7 +372,7 @@ pip show mcp
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Loģika ng kasangkapan dito
+        # Lohika ng kasangkapan dito
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -375,18 +383,18 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ### Senaryo 4: Walang Nilalaman ang Resource
 
-**Sintomas:** Nagbabalik ang resource ngunit walang nilalaman o null
+**Sintomas:** Nagbabalik ang resource ngunit walang laman o null ang nilalaman
 
 **Checklist:**
-1. ✅ Tama ang file path o URI
+1. ✅ Tama ang path ng file o URI
 2. ✅ May permiso ang server na basahin ang resource
-3. ✅ Tama ang pagbabalik ng nilalaman ng resource
+3. ✅ Tama ang pagbalik ng nilalaman ng resource
 
 ---
 
 ## Mga Advanced na Tampok ng Inspector
 
-### Custom Headers (SSE)
+### Custom na Mga Header (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -400,28 +408,28 @@ npx @modelcontextprotocol/inspector \
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Pagre-record ng Mga Session
+### Pagre-record ng mga Session
 
-Maaaring i-export ng Inspector ang mga log ng mensahe para sa susunod na pagsusuri:
-1. I-click ang **Export Log** sa panel ng mensahe
+Maaaring mag-export ang Inspector ng mga message log para sa susunod na pagsusuri:
+1. I-click ang **Export Log** sa message panel
 2. I-save ang JSON file
-3. Ibahagi sa mga kasamahan para sa pag-debug
+3. Ibahagi ito sa mga kasamahan para sa pag-debug
 
 ---
 
-## Mga Pinakamahusay na Praktis
+## Mga Pinakamahusay na Gawi
 
-1. **Subukan nang maaga at madalas** - Gamitin ang Inspector habang nagde-develop, hindi lang kapag may sira
-2. **Magsimula sa simple** - Subukan muna ang basic connectivity bago ang mga komplikadong pagtawag ng tool
-3. **Suriin ang schema** - Maraming error ay galing sa di-tugmang uri ng parameter
-4. **Basahin ang mga mensahe ng error** - Karaniwang deskriptibo ang mga error sa MCP
-5. **Panatilihing bukas ang Inspector** - Nakakatulong ito na makita agad ang mga problema habang nagde-develop
+1. **Subukan ng maaga at madalas** - Gamitin ang Inspector habang nagde-develop, hindi lang kapag may sira
+2. **Magsimula sa simple** - Subukan ang pangunahing koneksyon bago ang komplikadong mga tawag sa tool
+3. **Suriin ang schema** - Maraming error ang nagmumula sa hindi pagtutugmang uri ng parameter
+4. **Basahin ang mga mensahe ng error** - Karaniwan ay deskriptibo ang mga MCP error
+5. **Panatilihing bukas ang Inspector** - Nakakatulong ito sa pag-amo ng mga isyu habang nagde-develop
 
 ---
 
 ## Ano ang Susunod
 
-Natapos mo na ang Module 3: Getting Started! Ipagpatuloy ang iyong pag-aaral:
+Natapos mo na ang Module 3: Pagsisimula! Ipagpatuloy ang iyong pag-aaral:
 
 - [Module 4: Practical Implementation](../../04-PracticalImplementation/README.md)
 
@@ -430,12 +438,12 @@ Natapos mo na ang Module 3: Getting Started! Ipagpatuloy ang iyong pag-aaral:
 ## Karagdagang Mga Mapagkukunan
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP Specification - Protocol Messages](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Protocol Messages](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Paunawa**:
-Ang dokumentong ito ay isinalin gamit ang AI na serbisyo sa pagsasalin na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat aming pinagsisikapan ang katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o kamalian. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

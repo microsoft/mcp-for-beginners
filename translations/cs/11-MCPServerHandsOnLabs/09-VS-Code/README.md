@@ -1,27 +1,33 @@
 # Integrace VS Code
 
-## 🎯 Co tento workshop pokrývá
+> [!NOTE]
+> Nastavení `initializationOptions` v tomto labu cílí na MCP ukázku
+> s handshake verzí `2025-11-25`. MCP `2026-07-28` odstraní inicializační handshake;
+> při migraci této ukázky použijte hostitele a SDK, které podporují metadata na základě požadavku a `server/discover`.
 
-Tento workshop poskytuje komplexní návod, jak integrovat váš MCP server s VS Code, aby bylo možné provádět dotazy v přirozeném jazyce prostřednictvím AI Chat. Naučíte se konfigurovat VS Code pro optimální využití MCP, ladit připojení k serveru a využívat plný potenciál AI při práci s databázemi.
+
+## 🎯 Co tento lab pokrývá
+
+Tento lab poskytuje komplexní návod, jak integrovat váš MCP server s VS Code pro možnost použití dotazů v přirozeném jazyce prostřednictvím AI Chatu. Naučíte se, jak nakonfigurovat VS Code pro optimální využití MCP, ladit spojení se serverem a využívat plný potenciál AI při interakci s databázemi.
 
 ## Přehled
 
-Integrace MCP s VS Code mění způsob, jakým vývojáři pracují s databázemi a API pomocí přirozeného jazyka. Připojením vašeho maloobchodního MCP serveru k VS Code Chat umožníte inteligentní dotazování na prodejní data, katalogy produktů a obchodní analýzy prostřednictvím konverzační AI.
+Integrace MCP do VS Code mění způsob, jakým vývojáři pracují s databázemi a API pomocí přirozeného jazyka. Připojením vašeho maloobchodního MCP serveru k VS Code Chatu umožníte inteligentní dotazy na prodejní data, katalogy produktů a obchodní analýzy pomocí konverzační AI.
 
-Tato integrace umožňuje vývojářům klást otázky jako „Ukaž mi nejprodávanější produkty za tento měsíc“ nebo „Najdi zákazníky, kteří nenakoupili za posledních 90 dní“ a získat strukturované odpovědi bez nutnosti psát SQL dotazy.
+Tato integrace umožňuje vývojářům klást otázky jako „Ukáž mi nejprodávanější produkty za tento měsíc“ nebo „Najdi zákazníky, kteří nenakoupili za posledních 90 dní“ a získat strukturované odpovědi bez psaní SQL dotazů.
 
 ## Cíle učení
 
-Na konci tohoto workshopu budete schopni:
+Na konci tohoto labu budete schopni:
 
-- **Konfigurovat** nastavení MCP ve VS Code pro váš maloobchodní server
-- **Integrovat** MCP servery s funkcionalitou AI Chat ve VS Code
-- **Ladit** připojení k MCP serveru a řešit problémy
+- **Nakonfigurovat** VS Code MCP nastavení pro váš maloobchodní server
+- **Integrovat** MCP servery s funkcionalitou VS Code AI Chatu
+- **Ladit** spojení MCP serveru a řešit potíže
 - **Optimalizovat** vzory dotazů v přirozeném jazyce pro lepší výsledky
-- **Přizpůsobit** pracovní prostor VS Code pro vývoj MCP
-- **Nasadit** konfigurace pro více serverů v komplexních scénářích
+- **Přizpůsobit** pracovní prostředí VS Code pro vývoj MCP
+- **Nasadit** konfigurace s více servery pro složité scénáře
 
-## 🔧 Konfigurace MCP ve VS Code
+## 🔧 Konfigurace VS Code MCP
 
 ### Počáteční nastavení a instalace
 
@@ -65,23 +71,23 @@ Na konci tohoto workshopu budete schopni:
 ### Konfigurace prostředí
 
 ```bash
-# .env file for development
+# .env soubor pro vývoj
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Konfigurace Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Volitelné: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Konfigurace serveru
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Konfigurace úloh
+### Konfigurace úkolů
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 Integrace AI Chat
+## 💬 Integrace AI Chatu
 
 ### Vzory dotazů v přirozeném jazyce
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Příklad vzorů dotazů pro VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Klíčové metriky
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Ukazatele výkonnosti
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Nejlepší kategorie
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,7 +504,7 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Ladění a řešení problémů
+## 🔍 Ladění a řešení potíží
 
 ### Konfigurace ladění ve VS Code
 
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Vytvořit formátovač specifický pro VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konzolový handler pro terminál VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Globální debug logger
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Získejte parametry připojení z prostředí
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Otestujte připojení
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Otestujte základní dotaz
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Otestujte přístup ke schématu
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Otestujte generování vložení
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importujte komponenty MCP serveru
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Vytvořte testovací konfiguraci
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Inicializujte server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Získejte dostupné nástroje
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Otestujte jednoduchý nástroj
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Otestujte připojení k databázi
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Otestujte připojení Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Otestujte nástroje MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Celkový stav
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Vlastní rozšíření pro VS Code
+### Vlastní rozšíření VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Vlastní maloobchodní rozšíření MCP
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Registrace příkazů maloobchodního MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Registrace přepínače obchodů
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Aktualizace konfigurace
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Spuštění předdefinovaných dotazů v VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 Klíčové poznatky
 
-Po dokončení tohoto workshopu byste měli mít:
+Po dokončení tohoto labu byste měli mít:
 
-✅ **Konfiguraci MCP ve VS Code**: Kompletní nastavení pro optimální integraci MCP  
-✅ **Integraci AI Chat**: Schopnost provádět dotazy v přirozeném jazyce ve VS Code  
-✅ **Nástroje pro ladění**: Komplexní diagnostiku a řešení problémů s připojením  
-✅ **Nastavení více serverů**: Konfiguraci pro více instancí MCP serverů  
-✅ **Vlastní rozšíření**: Rozšířený zážitek z VS Code s funkcemi specifickými pro maloobchod  
-✅ **Připravenost na produkci**: Vývojové prostředí VS Code připravené pro podnikové nasazení  
+✅ **Konfiguraci VS Code MCP**: Kompletní nastavení pro optimální integraci MCP  
+✅ **Integraci AI Chatu**: Možnosti dotazování v přirozeném jazyce ve VS Code  
+✅ **Nástroje pro ladění**: Kompletní řešení problémů a diagnostika spojení  
+✅ **Nastavení více serverů**: Konfigurace pro více instancí MCP serveru  
+✅ **Vlastní rozšíření**: Vylepšené uživatelské prostředí VS Code s funkcemi specifickými pro maloobchod  
+✅ **Připravenost pro produkci**: Podnikové vývojové prostředí ve VS Code  
 
 ## 🚀 Co dál
 
-Pokračujte s **[Workshopem 10: Strategie nasazení](../10-Deployment/README.md)**, kde se naučíte:
+Pokračujte s **[Lab 10: Deployment Strategies](../10-Deployment/README.md)**, kde:
 
-- Nasadit MCP servery do produkčního prostředí
-- Konfigurovat cloudovou infrastrukturu pro škálovatelnost
-- Implementovat CI/CD pipeline pro automatizované nasazení
-- Monitorovat výkon produkčních MCP serverů
+- Nasadíte MCP servery do produkčního prostředí
+- Nakonfigurujete cloudovou infrastrukturu pro škálovatelnost
+- Implementujete CI/CD pipeline pro automatizované nasazení
+- Budete monitorovat výkon MCP serverů v produkci
 
 ## 📚 Další zdroje
 
 ### Vývoj ve VS Code
 - [VS Code Extension API](https://code.visualstudio.com/api) - Oficiální průvodce vývojem rozšíření
-- [Dokumentace MCP ve VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentace integrace MCP
+- [Dokumentace VS Code MCP](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Dokumentace k integraci MCP
 - [TypeScript pro VS Code](https://code.visualstudio.com/docs/languages/typescript) - Vývoj v TypeScriptu ve VS Code
 
-### Protokol MCP
+### MCP protokol
 - [Specifikace Model Context Protocol](https://modelcontextprotocol.io/specification) - Oficiální specifikace MCP
-- [Nejlepší praktiky MCP](https://modelcontextprotocol.io/docs/best-practices) - Doporučení pro implementaci
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Implementace MCP v Pythonu
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Nejlepší praktiky implementace
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python implementace MCP
 
 ### Vývojové nástroje
-- [Python ve VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Nastavení vývoje v Pythonu
+- [Python ve VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Nastavení Python vývoje
 - [Ladění ve VS Code](https://code.visualstudio.com/docs/editor/debugging) - Pokročilé techniky ladění
-- [Úlohy ve VS Code](https://code.visualstudio.com/docs/editor/tasks) - Automatizace a konfigurace úloh
+- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Automatizace a konfigurace úkolů
 
 ---
 
-**Předchozí**: [Workshop 08: Testování a ladění](../08-Testing/README.md)  
-**Další**: [Workshop 10: Strategie nasazení](../10-Deployment/README.md)
+**Předchozí**: [Lab 08: Testování a ladění](../08-Testing/README.md)  
+**Další**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
 
 ---
 
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí služby AI pro překlady [Co-op Translator](https://github.com/Azure/co-op-translator). I když se snažíme o přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Původní dokument v jeho původním jazyce by měl být považován za autoritativní zdroj. Pro důležité informace doporučujeme profesionální lidský překlad. Neodpovídáme za žádná nedorozumění nebo nesprávné interpretace vyplývající z použití tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

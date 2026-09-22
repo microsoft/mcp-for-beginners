@@ -1,25 +1,25 @@
-# Paginering och Stora Resultatset i MCP
+# Paginering och stora resultatuppsättningar i MCP
 
-När din MCP-server hanterar stora datamängder - oavsett om det är tusentals filer, databasposter eller sökresultat - behöver du paginering för att hantera minnet effektivt och ge en responsiv användarupplevelse. Denna guide täcker hur man implementerar och använder paginering i MCP.
+När din MCP-server hanterar stora datamängder – vare sig det är tusentals filer, databasposter eller sökresultat – behöver du paginering för att hantera minnet effektivt och erbjuda responsiva användarupplevelser. Denna guide täcker hur du implementerar och använder paginering i MCP.
 
-## Varför Paginering Är Viktigt
+## Varför paginering är viktigt
 
 Utan paginering kan stora svar orsaka:
 
-- **Minnesutarmning** - Läser in miljontals poster på en gång
-- **Långa svarstider** - Användare väntar medan all data laddas
-- **Timeout-fel** - Förfrågningar överskrider tidsgränser
-- **Dålig AI-prestanda** - LLM:er har svårt med massiv kontext
+- **Minnesutmattning** - Att ladda miljoner poster på en gång
+- **Långsamma svarstider** - Användare väntar medan all data laddas
+- **Timeout-fel** - Förfrågningar överskrider timeoutgränser
+- **Dålig AI-prestanda** - LLM:er har svårt med enorm kontext
 
-MCP använder **kursorbaserad paginering** för pålitlig, konsekvent sidindelning genom resultatset.
+MCP använder **kursorbaserad paginering** för pålitlig och konsekvent navigering genom resultatuppsättningar.
 
 ---
 
-## Hur MCP Paginering Fungerar
+## Hur MCP-paginering fungerar
 
 ### Kursorbegreppet
 
-En **kursor** är en ogenomskinlig sträng som markerar din position i ett resultatset. Tänk på det som en bokmärke i en tjock bok.
+En **kursor** är en ogenomskinlig sträng som markerar din position i en resultatuppsättning. Tänk på den som ett bokmärke i en lång bok.
 
 ```mermaid
 sequenceDiagram
@@ -35,20 +35,21 @@ sequenceDiagram
     Client->>Server: verktyg/lista (markör: "def456")
     Server-->>Client: verktyg [21-25], nästaMarkör: null (slut)
 ```
+
 ### Paginering i MCP-metoder
 
-Dessa MCP-metoder stödjer paginering:
+Dessa MCP-metoder stöder paginering:
 
-| Metod | Returnerar | Cursor-support |
+| Metod | Returnerar | Kursorstöd |
 |--------|---------|----------------|
 | `tools/list` | Verktygsdefinitioner | ✅ |
 | `resources/list` | Resursdefinitioner | ✅ |
-| `prompts/list` | Prompt-definitioner | ✅ |
+| `prompts/list` | Promptdefinitioner | ✅ |
 | `resources/templates/list` | Resursmallar | ✅ |
 
 ---
 
-## Serverimplementation
+## Serverimplementering
 
 ### Python (FastMCP)
 
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Hämta resultatsida
+    # Hämta sida med resultat
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Initiera stor dataset
+        // Initialisera stor datamängd
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // Avkoda markören
+        // Avkoda markör
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -163,7 +164,7 @@ public class PaginatedToolService {
             }
         }
         
-        // Hämta sida med resultat
+        // Hämta resultat sida
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Klientimplementation
+## Klientimplementering
 
 ### Python-klient
 
@@ -228,7 +229,7 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Lazy Loading-mönster
+### Lata laddningsmönstret
 
 För mycket stora datamängder, ladda sidor vid behov:
 
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Kontrollera om vi har gått igenom alla sidor
+        # Kontrollera om vi har använt alla sidor
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Användning - minnes-effektivt för stora datamängder
+# Användning - minneseffektiv för stora datamängder
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Paginering för Resurser
+## Paginering för resurser
 
-Resurser behöver ofta paginering för kataloger eller stora dataset:
+Resurser behöver ofta paginering för kataloger eller stora datamängder:
 
 ```python
 from mcp.server import Server
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Kursor-Designstrategier
+## Kursor designstrategier
 
-### Strategi 1: Index-baserad (Enkel)
+### Strategi 1: Indextbaserad (enkel)
 
 ```python
 # Markören är bara indexet
 cursor = "50"  # Börja vid objekt 50
 ```
 
-**Fördelar:** Enkel, statslös  
-**Nackdelar:** Resultat kan skifta om objekt läggs till/tas bort
+**Fördelar:** Enkel, tillståndslös
+**Nackdelar:** Resultaten kan skifta om objekt läggs till tas bort
 
-### Strategi 2: ID-baserad (Stabil)
+### Strategi 2: ID-baserad (stabil)
 
 ```python
 # Markören är det senast sedda ID:t
-cursor = "item_abc123"  # Börja efter denna post
+cursor = "item_abc123"  # Börja efter detta objekt
 ```
 
-**Fördelar:** Stabil även om objekt ändras  
+**Fördelar:** Stabil även om objekt ändras
 **Nackdelar:** Kräver ordnade ID:n
 
-### Strategi 3: Kodad Status (Komplex)
+### Strategi 3: Kodad tillstånd (komplex)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Markören innehåller flera statusfält
+# Markören innehåller flera tillståndsfält
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Fördelar:** Kan koda komplex status  
+**Fördelar:** Kan koda komplexa tillstånd
 **Nackdelar:** Mer komplex, större kursorsträngar
 
 ---
 
-## Bästa Praxis
+## Bästa praxis
 
-### 1. Välj Passande Sidstorlekar
+### 1. Välj lämpliga sidstorlekar
 
 ```python
-# Tänk på datas storlek
+# Tänk på datastorleken
 PAGE_SIZE_SMALL_ITEMS = 100   # Enkel metadata
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Mer detaljerade objekt
-PAGE_SIZE_LARGE_ITEMS = 5     # Komplext innehåll
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Rikare objekt
+PAGE_SIZE_LARGE_ITEMS = 5     # Komplexa innehåll
 ```
 
-### 2. Hantera Ogiltiga Kursorer Smidigt
+### 2. Hantera ogiltiga kursorer på ett smidigt sätt
 
 ```python
 @app.list_tools()
@@ -390,22 +391,22 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Inkludera Totalt Antal (Valfritt)
+### 3. Inkludera totalräkning (valfritt)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Vissa implementationer inkluderar totalt för UI-framsteg
+    # Vissa implementationer inkluderar total för UI-framsteg
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testa Gränsfall
+### 4. Testa kantfall
 
 ```python
 async def test_pagination():
-    # Tomt resultatuppsättning
+    # Tomt resultatset
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -421,19 +422,19 @@ async def test_pagination():
 
 ---
 
-## Vanliga Fallgropar
+## Vanliga fallgropar
 
-### ❌ Returnera Alla Resultat och Paginerar på Klientsidan
+### ❌ Returnera alla resultat och paginera sedan på klientsidan
 
 ```python
-# DÅLIGT: Laddar allt till minnet
+# DÅLIGT: Laddar allt i minnet
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 1 miljon verktyg!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Paginerar vid Datakällan
+### ✅ Paginera vid datakällan
 
 ```python
 # BRA: Laddar bara det som behövs
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Vad Är Nästa
+## Vad händer härnäst
 
-- [Modul 5.14 - Kontextteknik](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Modul 8 - Bästa Praxis](../../08-BestPractices/README.md)
-- [3.8 - Testa Din MCP-server](../../03-GettingStarted/08-testing/README.md)
+- [Modul 5.14 - Konteksteknik](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Modul 8 - Bästa praxis](../../08-BestPractices/README.md)
+- [3.8 - Testa din MCP-server](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## Ytterligare Resurser
+## Ytterligare resurser
 
-- [MCP-specifikation - Paginering](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Kursorbaserad Paginering Förklarad](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [MCP-specifikation - Paginering](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Förklaring av kursorbaserad paginering](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK paginerings tester](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfriskrivning**:
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Trots att vi strävar efter noggrannhet kan automatiska översättningar innehålla fel eller brister. Det ursprungliga dokumentet på dess ursprungliga språk bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,29 +1,34 @@
-# Skaičiuotuvo LLM klientas
+# Skaičiuotuvas LLM klientas
 
-Java programa, demonstruojanti, kaip naudoti LangChain4j, norint prijungti MCP (Modelio konteksto protokolo) skaičiuotuvo paslaugą per MiniMax OpenAI suderinamą API.
+> [!NOTE]
+> Šis sprendimas jungiasi prie kurso legacy HTTP+SSE skaičiuotuvo paslaugos ir
+> taikomas MCP `2025-11-25` SDK API. Tai nėra `2026-07-28` Streamable HTTP
+> pavyzdys.
 
-## Priešreikšmės
+Java programa, parodanti, kaip naudoti LangChain4j, kad būtų galima jungtis prie MCP (Modelio konteksto protokolo) skaičiuotuvo paslaugos per MiniMax OpenAI suderinamą API.
+
+## Reikalavimai
 
 - Java 21 arba naujesnė versija
-- Maven 3.6+ (arba naudokite pridėtą Maven wrapper)
+- Maven 3.6+ (arba naudoti pridėtą Maven wrapper)
 - MiniMax API raktas
 - MCP skaičiuotuvo paslauga veikianti adresu `http://localhost:8080`
 
 ## Kaip gauti API raktą
 
-Ši programa naudoja MiniMax OpenAI suderinamą API. Sekite šiuos žingsnius, kad gautumėte savo raktą ir galutinį tašką:
+Ši programa naudoja MiniMax OpenAI suderinamą API. Sekite šiuos veiksmus, kad gautumėte savo raktą ir pabaigos tašką:
 
-### 1. Pasirinkite galinį tašką
-1. Naudokite `https://api.minimax.io/v1` kaip globalų galinį tašką
-2. Naudokite `https://api.minimaxi.com/v1` kaip Kinijos galinį tašką
+### 1. Pasirinkite pabaigos tašką
+1. Naudokite `https://api.minimax.io/v1` globaliam pabaigos taškui
+2. Naudokite `https://api.minimaxi.com/v1` Kinijos regiono pabaigos taškui
 
 ### 2. Sukurkite API raktą
 1. Sukurkite MiniMax API raktą savo MiniMax paskyroje
-2. Laikykite raktą saugioje vietoje
+2. Saugokite raktą saugioje vietoje
 
 ### 3. Nustatykite aplinkos kintamuosius
 
-#### Windows (Komandų eilutė):
+#### Windows (Command Prompt):
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
@@ -44,7 +49,7 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Įdiegimas ir paruošimas
+## Diegimas ir paruošimas
 
 1. **Klonuokite arba eikite į projekto katalogą**
 
@@ -52,15 +57,15 @@ export MINIMAX_MODEL_ID=MiniMax-M3
    ```cmd
    mvnw clean install
    ```
-   Arba, jei turite Maven įdiegtą globaliai:
+   Arba jei Maven įdiegtas globaliai:
    ```cmd
    mvn clean install
    ```
 
-3. **Nustatykite aplinkos kintamuosius** (žr. skyrių „Kaip gauti API raktą“ aukščiau)
+3. **Nustatykite aplinkos kintamuosius** (žr. aukščiau skyrių "Kaip gauti API raktą")
 
 4. **Paleiskite MCP skaičiuotuvo paslaugą**:
-   Įsitikinkite, kad 1-ojo skyriaus MCP skaičiuotuvo paslauga veikia adresu `http://localhost:8080/sse`. Ji turi veikti prieš paleidžiant klientą.
+   Įsitikinkite, kad 1-oje skyriaus MCP skaičiuotuvo paslauga veikia adresu `http://localhost:8080/sse`. Ji turi veikti prieš paleidžiant klientą.
 
 ## Programos paleidimas
 
@@ -69,9 +74,9 @@ mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Ką programa atlieka
+## Ką daro programa
 
-Programa demonstruoja tris pagrindinius sąveikos su skaičiuotuvo paslauga būdus:
+Programa demonstruoja tris pagrindinius veiksmus su skaičiuotuvo paslauga:
 
 1. **Sudėtis**: Apskaičiuoja 24.5 ir 17.3 sumą
 2. **Kvadratinė šaknis**: Apskaičiuoja 144 kvadratinę šaknį
@@ -79,7 +84,7 @@ Programa demonstruoja tris pagrindinius sąveikos su skaičiuotuvo paslauga būd
 
 ## Tikėtinas rezultatas
 
-Sėkmingai paleidus turėtumėte matyti panašų rezultatą:
+Sėkmingai paleidus, ekrane turėtų atsirasti panašus išvesties rezultatas:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,52 +92,52 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Klaidų šalinimas
+## Problemų sprendimas
 
 ### Dažnos problemos
 
-1. **„OPENAI_API_KEY aplinkos kintamasis nenustatytas“**
+1. **"OPENAI_API_KEY aplinkos kintamasis nėra nustatytas"**
    - Įsitikinkite, kad nustatėte `OPENAI_API_KEY` aplinkos kintamąjį
-   - Perkraukite terminalą/komandų eilutę po kintamojo nustatymo
+   - Po nustatymo perkraukite terminalą/komandinę eilutę
 
-2. **„Ryšys su localhost:8080 atmestas“**
-   - Patikrinkite, ar MCP skaičiuotuvo paslauga veikia 8080 prievade
-   - Patikrinkite, ar kitas servisas nenaudoja 8080 prievado
+2. **"Nepavyksta prisijungti prie localhost:8080"**
+   - Patikrinkite, ar MCP skaičiuotuvo paslauga veikia uoste 8080
+   - Patikrinkite, ar kitas servisas neužima uosto 8080
 
-3. **„Autentifikavimas nesėkmingas“**
-   - Patikrinkite, ar jūsų API raktas galioja
-   - Įsitikinkite, kad `OPENAI_BASE_URL` atitinka norimą naudoti galinį tašką
+3. **"Autentifikacija nepavyko"**
+   - Patikrinkite, ar jūsų API raktas yra galiojantis
+   - Įsitikinkite, kad `OPENAI_BASE_URL` atitinka naudojamą pabaigos tašką
 
-4. **Maven kompiliavimo klaidos**
-   - Patikrinkite, ar naudojate Java 21 ar naujesnę: `java -version`
-   - Pabandykite išvalyti projektą: `mvnw clean`
+4. **Maven kūrimo klaidos**
+   - Įsitikinkite, kad naudojate Java 21 arba naujesnę: `java -version`
+   - Pabandykite išvalyti build: `mvnw clean`
 
 ### Derinimas
 
-Norėdami įjungti derinimo žurnalus, pridėkite šį JVM argumentą paleidžiant:
+Norėdami įjungti derinimo žurnalo įrašymą, paleisdami pridėkite šią JVM parinktį:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfigūracija
 
-Programa yra sukonfigūruota taip:
-- Pagal nutylėjimą naudoja MiniMax-M3; nustatykite `MINIMAX_MODEL_ID`, kad pasirinktumėte tarp `MiniMax-M3` arba `MiniMax-M2.7`
-- Jungiasi prie `OPENAI_BASE_URL`, jei jis nustatytas; kitaip naudoja `https://api.minimaxi.com/v1` kai `MINIMAX_REGION=cn_zh`, arba `https://api.minimax.io/v1` pagal nutylėjimą
-- Jungiasi prie MCP paslaugos adresu `http://localhost:8080/sse`
-- Naudoja 60 sekundžių laukimo limitą užklausoms
+Programa yra sukonfigūruota:
+- Pagal numatytuosius nustatymus naudoti MiniMax-M3; nustatykite `MINIMAX_MODEL_ID`, kad pasirinktumėte `MiniMax-M3` arba `MiniMax-M2.7`
+- Prisijungti prie `OPENAI_BASE_URL`, kai jis nustatytas; kitu atveju naudoti `https://api.minimaxi.com/v1` kai `MINIMAX_REGION=cn_zh`, arba `https://api.minimax.io/v1` pagal numatytuosius nustatymus
+- Prisijungti prie MCP paslaugos adresu `http://localhost:8080/sse`
+- Naudoti 60 sekundžių užklausų timeout
 
 ## Priklausomybės
 
-Pagrindinės šiame projekte naudojamos priklausomybės:
-- **LangChain4j**: AI integracijai ir įrankių valdymui
+Pagrindinės priklausomybės šiame projekte:
+- **LangChain4j**: dirbtinio intelekto integracijai ir įrankių valdymui
 - **LangChain4j MCP**: Modelio konteksto protokolo palaikymui
-- **LangChain4j OpenAI oficialus**: MiniMax OpenAI suderinamos API integracijai
-- **Spring Boot**: Programos karkasui ir priklausomybių injekcijai
+- **LangChain4j OpenAI official**: MiniMax OpenAI suderinamos API integracijai
+- **Spring Boot**: programos karkasui ir priklausomybių injekcijai
 
 ## Licencija
 
-Šis projektas licencijuotas pagal Apache licenciją 2.0 - žr. [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) failą detaliau.
+Šis projektas licencijuotas pagal Apache licenciją 2.0 - žr. [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) failą dėl detalių.
 
 ---
 

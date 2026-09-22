@@ -1,45 +1,50 @@
-# Debugiranje s MCP Inspectorom
+# Otklanjanje pogrešaka s MCP Inspektorom
 
-**MCP Inspector** je bitan alat za debugiranje koji vam omogućuje interaktivno testiranje i rješavanje problema vaših MCP poslužitelja bez potrebe za punom AI host aplikacijom. Zamislite ga kao "Postman za MCP" – pruža vizualno sučelje za slanje zahtjeva, pregled odgovora i razumijevanje kako se vaš poslužitelj ponaša.
+> [!NOTE]
+> Naredbe koje koriste `--sse` i URL-ovi koji završavaju na `/sse` testiraju naslijeđeni HTTP+SSE
+> transport. Za novi MCP `2026-07-28` poslužitelj, koristite verziju Inspektora koja
+> podržava Streamable HTTP i odaberite taj transport umjesto toga.
 
-## Zašto koristiti MCP Inspector?
+**MCP Inspektor** je nezaobilazan alat za otklanjanje pogrešaka koji vam omogućuje interaktivno testiranje i rješavanje problema vaših MCP poslužitelja bez potrebe za punom AI aplikacijom hosta. Zamislite ga kao "Postman za MCP" - pruža vizualno sučelje za slanje zahtjeva, pregled odgovora i razumijevanje ponašanja vašeg poslužitelja.
+
+## Zašto koristiti MCP Inspektor?
 
 Kada gradite MCP poslužitelje, često ćete naići na ove izazove:
 
-- **"Radi li moj poslužitelj uopće?"** – Inspector prikazuje status veze
-- **"Jesu li moji alati ispravno registrirani?"** – Inspector prikazuje sve dostupne alate
-- **"Kakav je format odgovora?"** – Inspector prikazuje potpune JSON odgovore
-- **"Zašto ovaj alat ne radi?"** – Inspector prikazuje detaljne poruke o pogrešci
+- **"Radi li uopće moj poslužitelj?"** - Inspektor prikazuje status veze
+- **"Jesu li moji alati pravilno registrirani?"** - Inspektor prikazuje sve dostupne alate
+- **"Koji je format odgovora?"** - Inspektor prikazuje cijele JSON odgovore
+- **"Zašto ovaj alat ne radi?"** - Inspektor prikazuje detaljne poruke o pogreškama
 
 ## Preduvjeti
 
-- Instaliran Node.js 18+
-- npm (dolazi uz Node.js)
-- MCP poslužitelj za testiranje (pogledajte [Modul 3.1 - Prvi poslužitelj](../01-first-server/README.md))
+- Node.js 18+ instaliran
+- npm (dolazi s Node.js-om)
+- MCP poslužitelj za testiranje (vidi [Modul 3.1 - Prvi poslužitelj](../01-first-server/README.md))
 
 ## Instalacija
 
-### Opcija 1: Pokretanje s npx (Preporučeno za brzo testiranje)
+### Opcija 1: Pokreni s npx (Preporučeno za brzo testiranje)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Opcija 2: Globalna instalacija
+### Opcija 2: Instaliraj globalno
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Opcija 3: Dodavanje u vaš projekt
+### Opcija 3: Dodaj u svoj projekt
 
 ```bash
 cd your-mcp-server-project
 npm install --save-dev @modelcontextprotocol/inspector
 ```
 
-Dodajte u `package.json`:
+Dodaj u `package.json`:
 ```json
 {
   "scripts": {
@@ -52,7 +57,7 @@ Dodajte u `package.json`:
 
 ## Povezivanje s vašim poslužiteljem
 
-### stdio poslužitelji (lokalni proces)
+### stdio Poslužitelji (lokalni proces)
 
 Za poslužitelje koji komuniciraju putem standardnog ulaza/izlaza:
 
@@ -67,25 +72,25 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP poslužitelji (mreža)
+### SSE/HTTP poslužitelji (mrežni)
 
 Za poslužitelje koji rade kao HTTP servisi:
 
-1. Prvo pokrenite poslužitelj:
+1. Prvo pokrenite svoj poslužitelj:
    ```bash
    python server.py  # Poslužitelj radi na http://localhost:8080
    ```
 
-2. Pokrenite Inspector i povežite se:
+2. Pokrenite Inspektor i povežite se:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Pregled sučelja Inspectora
+## Pregled sučelja Inspektora
 
-Kada se Inspector pokrene, vidjet ćete web sučelje (obično na `http://localhost:5173`):
+Kada se Inspektor pokrene, vidjet ćete web sučelje (obično na `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -115,10 +120,10 @@ Kada se Inspector pokrene, vidjet ćete web sučelje (obično na `http://localho
 
 ### Popis dostupnih alata
 
-1. Kliknite na karticu **Tools**
-2. Inspector automatski poziva `tools/list`
+1. Kliknite karticu **Tools** (Alati)
+2. Inspektor automatski poziva `tools/list`
 3. Vidjet ćete sve registrirane alate s:
-   - Ime alata
+   - Naziv alata
    - Opis
    - Ulazna shema (parametri)
 
@@ -126,10 +131,10 @@ Kada se Inspector pokrene, vidjet ćete web sučelje (obično na `http://localho
 
 1. Odaberite alat s popisa
 2. Ispunite potrebne parametre u obrascu
-3. Kliknite **Run Tool**
-4. Pogledajte odgovor u panelu s rezultatima
+3. Kliknite **Run Tool** (Pokreni alat)
+4. Pogledajte odgovor u panelu rezultata
 
-**Primjer: Testiranje kalkulator alata**
+**Primjer: Testiranje kalkulatora**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Debugiranje pogrešaka alata
+### Otklanjanje pogrešaka alata
 
-Kad alat ne uspije, Inspector prikazuje:
+Kad alat ne uspije, Inspektor prikazuje:
 
 ```
 Error Response:
@@ -162,13 +167,13 @@ Error Response:
 }
 ```
 
-Uobičajeni kodovi pogreške:
+Uobičajeni kodovi pogrešaka:
 | Kod | Značenje |
 |------|---------|
-| -32700 | Greška parsiranja (neispravan JSON) |
-| -32600 | Neispravan zahtjev |
+| -32700 | Pogreška parsimiranja (neispravan JSON) |
+| -32600 | Nevažeći zahtjev |
 | -32601 | Metoda nije pronađena |
-| -32602 | Neispravni parametri |
+| -32602 | Nevažeći parametri |
 | -32603 | Interna pogreška |
 
 ---
@@ -177,17 +182,17 @@ Uobičajeni kodovi pogreške:
 
 ### Popis resursa
 
-1. Kliknite na karticu **Resources**
-2. Inspector poziva `resources/list`
+1. Kliknite karticu **Resources** (Resursi)
+2. Inspektor poziva `resources/list`
 3. Vidjet ćete:
-   - URI resursa
-   - Imena i opise
+   - URI-jeve resursa
+   - Nazive i opise
    - MIME tipove
 
 ### Čitanje resursa
 
 1. Odaberite resurs
-2. Kliknite **Read Resource**
+2. Kliknite **Read Resource** (Pročitaj resurs)
 3. Pogledajte vraćeni sadržaj
 
 **Primjer izlaza:**
@@ -210,22 +215,25 @@ Content-Type: application/json
 
 ### Popis promptova
 
-1. Kliknite na karticu **Prompts**
-2. Inspector poziva `prompts/list`
+1. Kliknite karticu **Prompts** (Promptovi)
+2. Inspektor poziva `prompts/list`
 3. Pregledajte dostupne predloške promptova
 
 ### Dohvaćanje prompta
 
 1. Odaberite prompt
-2. Ispunite eventualne potrebne argumente
-3. Kliknite **Get Prompt**
+2. Ispunite potrebne argumente
+3. Kliknite **Get Prompt** (Dohvati prompt)
 4. Pogledajte prikazane poruke prompta
 
 ---
 
-## Analiza zapisnika poruka
+## Analiza dnevnika poruka
 
-Zapisnik poruka prikazuje sve MCP protokol poruke:
+Dnevnik poruka prikazuje sve MCP protokol poruke. Donji transkript je s
+naslijeđenog `2025-11-25` poslužitelja i uključuje uklonjeni `initialize` handshake. 
+`2026-07-28` poslužitelj koristi samostalne metapodatke zahtjeva i `server/discover`
+umjesto toga.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -240,14 +248,14 @@ Zapisnik poruka prikazuje sve MCP protokol poruke:
 
 - **Parovi zahtjev/odgovor**: Svaki `→` treba imati odgovarajući `←`
 - **Poruke o pogrešci**: Potražite `"error"` u odgovorima
-- **Vremenski razmaci**: Velike praznine mogu ukazivati na probleme s performansama
+- **Vrijeme**: Veliki razmaci mogu ukazivati na probleme s izvedbom
 - **Verzija protokola**: Provjerite slažu li se verzije poslužitelja i klijenta
 
 ---
 
-## Integracija s VS Codeom
+## Integracija s VS Code-om
 
-Inspector možete pokretati direktno iz VS Codea:
+Inspektor možete pokrenuti izravno iz VS Code-a:
 
 ### Korištenje launch.json
 
@@ -280,7 +288,7 @@ Dodajte u `.vscode/launch.json`:
 }
 ```
 
-### Korištenje Tasks
+### Korištenje zadataka (Tasks)
 
 Dodajte u `.vscode/tasks.json`:
 
@@ -310,24 +318,24 @@ Dodajte u `.vscode/tasks.json`:
 
 ---
 
-## Uobičajeni scenariji debugiranja
+## Uobičajeni scenariji otklanjanja pogrešaka
 
-### Scenarij 1: Poslužitelj se ne može povezati
+### Scenarij 1: Poslužitelj se ne povezuje
 
-**Simptomi:** Inspector prikazuje „Disconnected“ ili se "vječno" spaja na "Connecting..."
+**Simptomi:** Inspektor pokazuje "Disconnected" ili se zaglavi na "Connecting..."
 
-**Kontrolna lista:**
-1. ✅ Je li naredba za poslužitelj točna?
+**Popis za provjeru:**
+1. ✅ Je li naredba za poslužitelj ispravna?
 2. ✅ Jesu li sve ovisnosti instalirane?
-3. ✅ Je li put do poslužitelja apsolutan ili relativan na trenutni direktorij?
+3. ✅ Je li put do poslužitelja apsolutan ili relativan u odnosu na trenutni direktorij?
 4. ✅ Jesu li potrebne varijable okoline postavljene?
 
-**Koraci debugiranja:**
+**Koraci za otklanjanje pogrešaka:**
 ```bash
 # Prvo ručno testirajte poslužitelj
 python -c "import your_server_module; print('OK')"
 
-# Provjerite ima li pogrešaka u uvozu
+# Provjerite ima li pogrešaka pri uvozu
 python -m your_server_module 2>&1 | head -20
 
 # Provjerite je li MCP SDK instaliran
@@ -339,24 +347,24 @@ pip show mcp
 **Simptomi:** Kartica Alati prikazuje prazan popis
 
 **Mogući uzroci:**
-1. Alati nisu registrirani prilikom inicijalizacije poslužitelja
+1. Alati nisu registrirani tijekom inicijalizacije poslužitelja
 2. Poslužitelj se srušio nakon pokretanja
-3. Handler za `tools/list` vraća prazan niz
+3. `tools/list` handler vraća prazni niz
 
-**Koraci debugiranja:**
-1. Provjerite zapisnik poruka za odgovor na `tools/list`
-2. Dodajte logiranje u kod registracije vašeg alata
+**Koraci za otklanjanje pogrešaka:**
+1. Provjerite dnevnik poruka za odgovor `tools/list`
+2. Dodajte zapisivanje u kod registracije alata
 3. Provjerite jesu li prisutni `@mcp.tool()` dekoratori (Python)
 
 ### Scenarij 3: Alat vraća pogrešku
 
 **Simptomi:** Poziv alata vraća odgovor s pogreškom
 
-**Pristup debugiranju:**
+**Pristup otklanjanju:**
 1. Pažljivo pročitajte poruku o pogrešci
-2. Provjerite slažu li se tipovi parametara sa shemom
-3. Dodajte try/catch blok s detaljnim porukama o pogrešci
-4. Provjerite zapisnike poslužitelja za stogove poziva
+2. Provjerite slažu li se tipovi parametara s shemom
+3. Dodajte try/catch s detaljnim porukama o pogrešci
+4. Provjerite zapisnike poslužitelja za stack trace
 
 **Primjer poboljšanog rukovanja pogreškama:**
 
@@ -377,14 +385,14 @@ async def my_tool(param1: str, param2: int) -> str:
 
 **Simptomi:** Resurs se vraća, ali sadržaj je prazan ili null
 
-**Kontrolna lista:**
-1. ✅ Put ili URI datoteke je točan
-2. ✅ Poslužitelj ima dopuštenje za čitanje resursa
-3. ✅ Sadržaj resursa se ispravno vraća
+**Popis za provjeru:**
+1. ✅ Put do datoteke ili URI je točan
+2. ✅ Poslužitelj ima dozvolu za čitanje resursa
+3. ✅ Sadržaj resursa se pravilno vraća
 
 ---
 
-## Napredne značajke Inspectora
+## Napredne značajke Inspektora
 
 ### Prilagođeni zaglavlja (SSE)
 
@@ -394,7 +402,7 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Detaljno logiranje
+### Detaljno zapisivanje (verbose logging)
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
@@ -402,26 +410,26 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Snimanje sesija
 
-Inspector može izvesti zapisnike poruka za kasniju analizu:
+Inspektor može izvesti dnevnike poruka za kasniju analizu:
 1. Kliknite **Export Log** u panelu poruka
 2. Spremite JSON datoteku
-3. Podijelite s članovima tima za debugiranje
+3. Podijelite s članovima tima za otklanjanje pogrešaka
 
 ---
 
 ## Najbolje prakse
 
-1. **Testirajte rano i često** – Koristite Inspector tijekom razvoja, ne samo kad stvari zakažu
-2. **Počnite jednostavno** – Testirajte osnovnu povezivost prije složenih poziva alata
-3. **Provjerite shemu** – Mnogo pogrešaka nastaje zbog neusklađenosti tipova parametara
-4. **Čitajte poruke o pogrešci** – MCP pogreške su obično opisne
-5. **Držite Inspector otvorenim** – Pomaže otkriti probleme dok razvijate
+1. **Testirajte rano i često** - Koristite Inspektor tijekom razvoja, ne samo kad stvari zakažu
+2. **Počnite jednostavno** - Testirajte osnovnu povezanost prije složenih poziva alata
+3. **Provjerite shemu** - Mnoge pogreške dolaze od neslaganja tipova parametara
+4. **Čitajte poruke o pogrešci** - MCP pogreške su obično opisne
+5. **Držite Inspektor otvorenim** - Pomaže uhvatiti probleme tijekom razvoja
 
 ---
 
-## Što dalje
+## Što je sljedeće
 
-Završili ste Modul 3: Početak rada! Nastavite s učenjem:
+Završili ste Modul 3: Početak! Nastavite s učenjem:
 
 - [Modul 4: Praktična implementacija](../../04-PracticalImplementation/README.md)
 
@@ -429,13 +437,13 @@ Završili ste Modul 3: Početak rada! Nastavite s učenjem:
 
 ## Dodatni resursi
 
-- [MCP Inspector GitHub spremište](https://github.com/modelcontextprotocol/inspector)
-- [MCP specifikacija - Protokol poruke](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Inspector GitHub repozitorij](https://github.com/modelcontextprotocol/inspector)
+- [MCP specifikacija - protokol poruke](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 specifikacija](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje od odgovornosti**:
-Ovaj dokument preveden je pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, molimo imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvornik dokumenta na njegovom izvornom jeziku treba smatrati službenim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakve nesporazume ili kriva tumačenja koja proizlaze iz korištenja ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,16 +1,18 @@
 # 🚀 Orodja MCP
 
-## 🧠 Pregled učne poti integracije MCP baze podatkov
+## 🧠 Pregled učne poti integracije baze podatkov MCP
 
-Tukaj se boste naučili, kako uporabljati orodja, ki uporabljajo MCP. Vaše izkušnje z uporabo teh orodij se bodo izboljšale, ko boste povezali MCP strežnike z njimi.
+Tukaj se boste naučili, kako uporabljati orodja, ki uporabljajo MCP. Vaša izkušnja z uporabo teh orodij se bo izboljšala, ko boste z njimi povezali strežnike MCP.
 
 ## 🔗 Uradni viri MCP
 
 - 📘 [Dokumentacija MCP](https://modelcontextprotocol.io/) – Podrobna navodila in uporabniški vodiči
-- 📜 [Specifikacija MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arhitektura protokola in tehnične reference
-- 🧑‍💻 [MCP GitHub repozitorij](https://github.com/modelcontextprotocol) – SDK-ji z odprto kodo, orodja in primeri kode
+- 📜 [Specifikacija MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arhitektura protokola in tehnične reference
+- 🧑‍💻 [GitHub repozitorij MCP](https://github.com/modelcontextprotocol) – Orodja, SDK-ji z odprto kodo in vzorci kode
 - 🌐 [Skupnost MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Pridružite se razpravam in prispevajte skupnosti
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Najboljše varnostne prakse in omejitve tveganj
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Najboljše prakse varnosti in zmanjševanje tveganj
+
+
 
 ## 🌟 Skupnost in podpora
 
@@ -19,13 +21,13 @@ Tukaj se boste naučili, kako uporabljati orodja, ki uporabljajo MCP. Vaše izku
 - **Azure AI Discord**: [Pridružite se za strokovno podporo](https://discord.com/invite/ByRwuEEgH4)
 - **Skupnost MCP**: [Pridružite se širšim razpravam MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Pripravljeni za začetek?
+## 🚀 Ste pripravljeni začeti?
 
 Začnite svojo pot z **[aplikacijo GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Obvladujte to z uporabo MCP s temi orodji za izboljšano produktivnost in nemoteno integracijo.*
+*Obvladujte to z uporabo MCP s temi orodji za večjo produktivnost in nemoteno integracijo.*
 
 ---
 

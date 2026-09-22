@@ -2,15 +2,17 @@
 
 ## 🧠 MCP Veritabanı Entegrasyon Öğrenme Yolunun Genel Bakışı
 
-Burada MCP kullanan araçları nasıl kullanacağınızı öğreneceksiniz. MCP sunucularını bu araçlara bağladıkça deneyiminiz gelişecektir.
+Burada MCP kullanan araçları nasıl kullanacağınızı öğrenacaksınız. MCP sunucularını bu araçlara bağladıkça deneyiminiz gelişecektir.
 
 ## 🔗 Resmi MCP Kaynakları
 
-- 📘 [MCP Dokümantasyonu](https://modelcontextprotocol.io/) – Detaylı öğreticiler ve kullanıcı kılavuzları
-- 📜 [MCP Spesifikasyonu (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokol mimarisi ve teknik referanslar
+- 📘 [MCP Dokümantasyonu](https://modelcontextprotocol.io/) – Detaylı eğitimler ve kullanıcı rehberleri
+- 📜 [MCP Spesifikasyonu (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokol mimarisi ve teknik referanslar
 - 🧑‍💻 [MCP GitHub Deposu](https://github.com/modelcontextprotocol) – Açık kaynak SDK'lar, araçlar ve kod örnekleri
 - 🌐 [MCP Topluluğu](https://github.com/orgs/modelcontextprotocol/discussions) – Tartışmalara katılın ve topluluğa katkıda bulunun
-- 🔒 [OWASP MCP İlk 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Güvenlik en iyi uygulamaları ve risk azaltma yöntemleri
+- 🔒 [OWASP MCP İlk 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Güvenlik en iyi uygulamaları ve risk azaltmaları
+
+
 
 ## 🌟 Topluluk ve Destek
 
@@ -25,7 +27,7 @@ Yolculuğunuza **[GitHub Copilot uygulaması](./01-copilot-app/README.md)** ile 
 
 ---
 
-*Gelişmiş verimlilik ve kesintisiz entegrasyon için bu araçları MCP ile ustalaşın.*
+*Üretkenliği arttırmak ve sorunsuz entegrasyon için bu araçlarla MCP'yi ustalaşın.*
 
 ---
 

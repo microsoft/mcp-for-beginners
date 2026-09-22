@@ -426,7 +426,7 @@ graph TD
 
 ## 次のステップ
 
-- [5.15 MCP Custom Transport](../mcp-transport/README.md)
+- [5.15 MCP カスタムトランスポート](../mcp-transport/README.md)
 
 ---
 

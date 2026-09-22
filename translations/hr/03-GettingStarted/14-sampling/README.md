@@ -1,12 +1,20 @@
-> [ZASTARJELO: IZDANJE KANDIDATA 2026-07-28](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Uzorkovanje je zastarjelo u MCP `2026-07-28`. Ova lekcija se zadržava zbog
+> naslijeđenih implementacija. Novi serveri trebaju se izravno integrirati s API-jem
+> pružatelja LLM.
 
-# Uzorkovanje - delegiranje značajki Klijentu
+# Uzorkovanje - prepuštanje značajki Klijentu
 
-> **Obavijest o zastarijevanju:** MCP specifikacija kandidata za izdanje `2026-07-28` označava uzorkovanje kao zastarjelo u korist izravne integracije s API-jima davatelja LLM-a. Uzorkovanje i dalje radi u `2025-11-25` i najmanje godinu dana nakon bilo kojeg službenog zastarijevanja, pa je sve u ovoj lekciji i dalje valjano — ali novi dizajni poslužitelja trebaju procijeniti obrazac zamjene. Pogledajte [Što se mijenja u MCP-u: Kandidat za izdanje 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Uzorkovanje ostaje u specifikaciji `2026-07-28` radi kompatibilnosti i
+> može biti uklonjeno u prvom revidiranom izdanju objavljenom 28. srpnja
+> 2027. Primjeri u ovoj lekciji mogu koristiti SDK API-je koji implementiraju `2025-11-25`.
+> Pogledajte [Što je promijenjeno u MCP-u: Specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Ponekad je potrebno da MCP Klijent i MCP Poslužitelj surađuju kako bi postigli zajednički cilj. Možete imati slučaj gdje poslužitelj treba pomoć LLM-a koji se nalazi na klijentu. Za ovu situaciju, uzorkovanje je ono što biste trebali koristiti.
+U naslijeđenim implementacijama, Uzorkovanje omogućuje MCP serveru da zatraži pomoć od LLM-a
+kojeg upravlja klijent. Za nove implementacije pozovite odabranog pružatelja LLM-a
+izravno.
 
-Pogledajmo neke primjere i kako izgraditi rješenje koje uključuje uzorkovanje.
+Pogledajmo neke primjere upotrebe i kako izgraditi rješenje koje uključuje uzorkovanje.
 
 ## Pregled
 
@@ -17,12 +25,12 @@ U ovoj lekciji fokusiramo se na objašnjenje kada i gdje koristiti Uzorkovanje i
 U ovom poglavlju ćemo:
 
 - Objasniti što je Uzorkovanje i kada ga koristiti.
-- Pokazati kako konfigurirati Uzorkovanje u MCP-u.
-- Pružiti primjere Uzorkovanja u praksi.
+- Pokažite kako konfigurirati Uzorkovanje u MCP-u.
+- Prikazati primjere Uzorkovanja u praksi.
 
 ## Što je Uzorkovanje i zašto ga koristiti?
 
-Uzorkovanje je napredna značajka koja funkcionira na sljedeći način:
+Uzorkovanje je napredna značajka koja radi na sljedeći način:
 
 ```mermaid
 sequenceDiagram
@@ -31,19 +39,19 @@ sequenceDiagram
     participant LLM
     participant MCP Server
 
-    User->>MCP Client: Autorova objava na blogu
-    MCP Client->>MCP Server: Poziv alatu (nacrt objave na blogu)
-    MCP Server->>MCP Client: Zahtjev za uzorkovanjem (izradi sažetak)
-    MCP Client->>LLM: Generiraj sažetak objave na blogu
+    User->>MCP Client: Autorov blog post
+    MCP Client->>MCP Server: Poziv alatu (nacrt blog posta)
+    MCP Server->>MCP Client: Zahtjev uzorkovanja (izradi sažetak)
+    MCP Client->>LLM: Generiraj sažetak blog posta
     LLM->>MCP Client: Rezultat sažetka
-    MCP Client->>MCP Server: Odgovor na uzorkovanje (sažetak)
-    MCP Server->>MCP Client: Završena objava na blogu (nacrt + sažetak)
-    MCP Client->>User: Objava na blogu spremna
+    MCP Client->>MCP Server: Odgovor uzorkovanja (sažetak)
+    MCP Server->>MCP Client: Kompletan blog post (nacrt + sažetak)
+    MCP Client->>User: Blog post spreman
 ```
 
 ### Zahtjev za uzorkovanje
 
-Ok, sada imamo pregled vjerodostojnog scenarija, razgovarajmo o zahtjevu za uzorkovanje koji poslužitelj šalje natrag klijentu. Evo kako takav zahtjev može izgledati u JSON-RPC formatu:
+OK, sada kada imamo općeniti pregled vjerodostojnog scenarija, razgovarajmo o zahtjevu za uzorkovanjem koji server šalje natrag klijentu. Evo kako takav zahtjev može izgledati u JSON-RPC formatu:
 
 ```json
 {
@@ -75,17 +83,17 @@ Ok, sada imamo pregled vjerodostojnog scenarija, razgovarajmo o zahtjevu za uzor
 }
 ```
 
-Ovdje je nekoliko stvari vrijednih isticanja:
+Vrijedno je istaknuti nekoliko stvari:
 
-- Prompt, pod content -> text, je naš zahtjev koji je uputa LLM-u da sažme sadržaj blog posta.
+- Upit, pod content -> text, je naš upit koji je uputa za LLM da sažme sadržaj blog posta.
 
-- **modelPreferences**. Ovaj odjeljak služi kao preferenca, preporuka konfiguracije za LLM. Korisnik može odlučiti hoće li prihvatiti ove preporuke ili ih promijeniti. U ovom slučaju postoje preporuke za model koji se koristi te prioritet brzine i inteligencije.
-- **systemPrompt**, to je vaš uobičajeni sistemski prompt koji daje LLM-u osobnost i sadrži upute.
-- **maxTokens**, još jedna značajka koja govori koliko tokena se preporučuje koristiti za ovaj zadatak.
+- **modelPreferences**. Ovaj odjeljak je upravo to, preferenca, preporuka o kojoj konfiguraciji koristiti s LLM-om. Korisnik može odabrati hoće li prihvatiti ove preporuke ili ih promijeniti. U ovom slučaju postoje preporuke o modelu za korištenje te prioritetu brzine i inteligencije.
+- **systemPrompt**, ovo je vaš uobičajeni sistemski upit koji daje vašem LLM-u osobnost i sadrži upute za vođenje.
+- **maxTokens**, ovo je još jedno svojstvo koje kaže koliko tokena se preporučuje koristiti za ovaj zadatak.
 
 ### Odgovor na uzorkovanje
 
-Ovaj odgovor je ono što MCP Klijent na kraju pošalje natrag MCP Poslužitelju i rezultat je poziva LLM-u, čekanja na odgovor i zatim sastavljanja ove poruke. Evo kako može izgledati u JSON-RPC formatu:
+Ovaj odgovor je ono što MCP Klijent šalje natrag MCP Serveru i rezultat je poziva LLM-a od strane klijenta, čekanja na taj odgovor i zatim oblikovanja ove poruke. Evo kako to može izgledati u JSON-RPC formatu:
 
 ```json
 {
@@ -103,13 +111,13 @@ Ovaj odgovor je ono što MCP Klijent na kraju pošalje natrag MCP Poslužitelju 
 }
 ```
 
-Primijetite kako je odgovor sažetak blog posta, upravo kao što smo tražili. Također primijetite da korišteni `model` nije onaj koji smo tražili već "gpt-5" umjesto "claude-3-sonnet". To ilustrira da korisnik može promijeniti svoj izbor i da je vaš zahtjev za uzorkovanje samo preporuka.
+Primijetite kako je odgovor sažetak blog posta baš kako smo tražili. Također primijetite kako korišteni `model` nije onaj koji smo tražili, nego "gpt-5" umjesto "claude-3-sonnet". Ovo ilustrira da korisnik može promijeniti mišljenje o tome što koristiti i da je vaš zahtjev za uzorkovanjem samo preporuka.
 
-Ok, sada kada razumijemo glavni tijek i korisnu zadaću za "izrada blog posta + sažetak", pogledajmo što treba učiniti da to funkcionira.
+Dobro, sada kada razumijemo glavni tijek i koristan zadatak za koji ga koristiti "izrada blog posta + sažetak", pogledajmo što trebamo napraviti da bismo ga pokrenuli.
 
 ### Vrste poruka
 
-Poruke za uzorkovanje nisu ograničene samo na tekst, već možete također slati slike i audio. Evo kako JSON-RPC izgleda drugačije:
+Poruke uzorkovanja nisu ograničene samo na tekst već možete slati i slike i zvuk. Evo kako JSON-RPC izgleda drugačije:
 
 **Tekst**
 
@@ -140,13 +148,14 @@ Poruke za uzorkovanje nisu ograničene samo na tekst, već možete također slat
 }
 ```
 
-> NAPOMENA: za detaljnije informacije o Uzorkovanju, pogledajte [službenu dokumentaciju](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> NAPOMENA: Za trenutni status i smjernice za migraciju pogledajte
+> [zastarjelu dokumentaciju o Uzorkovanju](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
 ## Kako konfigurirati Uzorkovanje u Klijentu
 
-> Napomena: ako gradite samo poslužitelj, ne trebate mnogo raditi ovdje.
+> Napomena: ako gradite samo server, ovdje ne trebate puno raditi.
 
-U klijentu trebate specificirati sljedeću značajku na sljedeći način:
+U klijentu trebate specificirati sljedeću značajku na ovaj način:
 
 ```json
 {
@@ -156,20 +165,20 @@ U klijentu trebate specificirati sljedeću značajku na sljedeći način:
 }
 ```
 
-Ovo će se zatim registrirati kada se vaš odabrani klijent inicijalizira s poslužiteljem.
+Ovo će se zatim uzeti u obzir kada se vaš odabrani klijent pokrene s serverom.
 
-## Primjer Uzorkovanja u praksi - Izrada Blog posta
+## Primjer Uzorkovanja u praksi - Izrada blog posta
 
-Kodirajmo zajedno poslužitelj za uzorkovanje, morat ćemo napraviti sljedeće:
+Kodirajmo zajedno server za uzorkovanje, morat ćemo napraviti sljedeće:
 
-1. Kreirati alat na Poslužitelju.
-1. Taj alat treba kreirati zahtjev za uzorkovanje.
-1. Alat treba čekati na odgovor klijentskog zahtjeva za uzorkovanjem.
-1. Zatim treba proizvesti rezultat alata.
+1. Kreirati alat na Serveru.
+1. Taj alat treba kreirati zahtjev za uzorkovanje
+1. Alat treba čekati odgovor na zahtjev za uzorkovanje klijenta.
+1. Zatim rezultat alata treba biti proizveden.
 
 Pogledajmo kod korak po korak:
 
-### -1- Kreirajte alat
+### -1- Kreiraj alat
 
 **python**
 
@@ -180,7 +189,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Kreirajte zahtjev za uzorkovanje
+### -2- Kreiraj zahtjev za uzorkovanje
 
 Proširite svoj alat sljedećim kodom:
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Čekajte odgovor i vratite odgovor
+### -3- Čekaj odgovor i vrati odgovor
 
 **python**
 
@@ -297,14 +306,14 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# pokreni aplikaciju s: python server.py
+# pokreni app s: python server.py
 ```
 
-### -5- Testiranje u Visual Studio Code-u
+### -5- Testiranje u Visual Studio Code
 
-Za testirati ovo u Visual Studio Code-u, napravite sljedeće:
+Da biste testirali ovo u Visual Studio Code, napravite sljedeće:
 
-1. Pokrenite poslužitelj u terminalu
+1. Pokrenite server u terminalu
 1. Dodajte ga u *mcp.json* (i osigurajte da je pokrenut) npr. ovako:
 
    ```json
@@ -316,29 +325,29 @@ Za testirati ovo u Visual Studio Code-u, napravite sljedeće:
    }
    ```
 
-1. Upisati prompt:
+1. Upisati upit:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Dopustite da se dogodi uzorkovanje. Prvi put kada ovo testirate pojavit će se dodatni dijalog koji morate prihvatiti, zatim ćete vidjeti normalni dijalog za pokretanje alata.
+1. Dopustite da uzorkovanje može započeti. Prvi put kada to testirate, bit će vam prikazan dodatni dijalog koji trebate prihvatiti, zatim ćete vidjeti uobičajeni dijalog za pokretanje alata.
 
-1. Pregledajte rezultate. Vidjet ćete rezultate lijepo prikazane u GitHub Copilot Chatu, ali možete i pregledati sirovi JSON odgovor.
+1. Pregledajte rezultate. Vidjet ćete rezultate lijepo prikazane u GitHub Copilot Chat-u, ali možete i pregledati sirovi JSON odgovor.
 
-**Bonus**. Alati Visual Studio Code-a imaju izvrsnu podršku za uzorkovanje. Možete konfigurirati pristup uzorkovanju na instaliranom poslužitelju tako da odete na:
+**Bonus**. Visual Studio Code alati imaju izvrsnu podršku za uzorkovanje. Možete konfigurirati pristup Uzorkovanju na vašem instaliranom serveru tako što ćete otići ovako:
 
-1. Idite na odjeljak ekstenzija.
-1. Odaberite ikonu zupčanika za vaš instalirani poslužitelj u odjeljku "MCP SERVERS - INSTALLED".
-1 Odaberite "Configure Model Access", ovdje možete odabrati koje modele GitHub Copilot smije koristiti prilikom uzorkovanja. Također možete vidjeti sve nedavne zahtjeve za uzorkovanjem klikom na "Show Sampling requests".
+1. Otvorite odjeljak ekstenzija.
+1. Odaberite ikonu zupčanika za vaš instalirani server u odjeljku "MCP SERVERS - INSTALLED".
+1 Odaberite "Configure Model Access", ovdje možete odabrati koje modele GitHub Copilot smije koristiti prilikom uzorkovanja. Također možete vidjeti sve zahtjeve za uzorkovanje koji su se nedavno dogodili klikom na "Show Sampling requests".
 
 ## Zadatak
 
-U ovom zadatku izgradit ćete nešto malo drugačije uzorkovanje, naime integraciju za uzorkovanje koja podržava generiranje opisa proizvoda. Evo vašeg scenarija:
+U ovom zadatku izgradit ćete malo drugačije Uzorkovanje, naime integraciju uzorkovanja koja podržava generiranje opisa proizvoda. Evo vašeg scenarija:
 
-**Scenarij**: Radnik u back officeu e-trgovine treba pomoć jer generiranje opisa proizvoda traje previše vremena. Stoga trebate izgraditi rješenje gdje možete pozvati alat "create_product" s argumentima "title" i "keywords" i on bi trebao proizvesti potpuni proizvod uključujući polje "description" koje bi trebao popuniti LLM klijenta.
+**Scenarij**: Radnik u back officeu e-trgovine treba pomoć jer generiranje opisa proizvoda oduzima previše vremena. Stoga trebate izgraditi rješenje gdje možete pozvati alat "create_product" s argumentima "title" i "keywords", a on bi trebao proizvesti kompletan proizvod uključujući polje "description" koje će popuniti LLM klijenta.
 
-SAVJET: koristite ono što ste ranije naučili za konstrukciju ovog poslužitelja i njegovog alata koristeći zahtjev za uzorkovanjem.
+SAVJET: upotrijebite ono što ste ranije naučili za konstrukciju ovog servera i njegovog alata koristeći zahtjev za uzorkovanjem.
 
 ## Rješenje
 
@@ -346,9 +355,9 @@ SAVJET: koristite ono što ste ranije naučili za konstrukciju ovog poslužitelj
 
 ## Ključni zaključci
 
-Uzorkovanje je moćna značajka koja omogućuje poslužitelju da delegira zadatke klijentu kada mu treba pomoć LLM-a.
+Uzorkovanje je moćna značajka koja omogućuje serveru da prenese zadatke klijentu kada mu je potrebna pomoć LLM-a.
 
-## Što je dalje
+## Što dalje
 
 - [Poglavlje 4 - Praktična implementacija](../../04-PracticalImplementation/README.md)
 

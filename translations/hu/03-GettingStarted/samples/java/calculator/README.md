@@ -1,96 +1,102 @@
-# Basic Calculator MCP Service
+# Alap Számológép MCP Szolgáltatás
 
-Ez a szolgáltatás alapvető számológép műveleteket biztosít a Model Context Protocol (MCP) segítségével, Spring Boot és WebFlux transport használatával. Egyszerű példaként készült kezdők számára, akik az MCP implementációkat tanulják.
+> [!NOTE]
+> Ez a minta a régi HTTP+SSE szállítást használja, és egy MCP `2025-11-25` kompatibilis SDK-t céloz meg.
+> Az új távoli szervereknek a `2026-07-28` Streamable HTTP támogatást kell használniuk.
 
-További információkért lásd a [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referencia dokumentációt.
 
-## Áttekintés
 
-A szolgáltatás bemutatja:
-- SSE (Server-Sent Events) támogatását
-- Automatikus eszközregisztrációt a Spring AI `@Tool` annotációjával
-- Alapvető számológép funkciókat:
+
+
+
+
+
+- SSE (Server-Sent Events) támogatást
+- Automatikus eszközregisztráció Spring AI `@Tool` annotációval
+- Alap számológép funkciók:
   - Összeadás, kivonás, szorzás, osztás
-  - Hatványozás és négyzetgyök számítás
-  - Maradékos osztás (modulus) és abszolút érték
-  - Segítség funkció a műveletek leírásához
+  - Hatványozás és négyzetgyök
+  - Maradékos osztás és abszolút érték
+  - Segítség funkció az műveletek leírásához
 
-## Jellemzők
 
-Ez a számológép szolgáltatás a következő képességeket kínálja:
 
-1. **Alapvető aritmetikai műveletek**:
+
+
+
    - Két szám összeadása
    - Egy szám kivonása egy másikból
    - Két szám szorzása
    - Egy szám osztása egy másikkal (nullával való osztás ellenőrzéssel)
 
-2. **Haladó műveletek**:
-   - Hatványozás (alap emelése kitevőre)
+
+   - Hatványozás (alap hatványra emelése)
    - Négyzetgyök számítás (negatív szám ellenőrzéssel)
-   - Maradékos osztás (modulus) számítása
+   - Maradékos osztás számítása
    - Abszolút érték számítása
 
-3. **Segítség rendszer**:
-   - Beépített segítség funkció, amely elmagyarázza az összes elérhető műveletet
 
-## A szolgáltatás használata
+   - Beépített segítség funkció, amely megmagyarázza az összes elérhető műveletet
 
-A szolgáltatás a következő API végpontokat teszi elérhetővé az MCP protokollon keresztül:
 
-- `add(a, b)`: Két szám összeadása
+
+
+
+
 - `subtract(a, b)`: A második szám kivonása az elsőből
 - `multiply(a, b)`: Két szám szorzása
 - `divide(a, b)`: Az első szám osztása a másodikkal (nulla ellenőrzéssel)
-- `power(base, exponent)`: Hatvány számítása
+- `power(base, exponent)`: Szám hatványozása
 - `squareRoot(number)`: Négyzetgyök számítása (negatív szám ellenőrzéssel)
-- `modulus(a, b)`: Maradék számítása osztáskor
+- `modulus(a, b)`: Osztás utáni maradék számítása
 - `absolute(number)`: Abszolút érték számítása
-- `help()`: Információk az elérhető műveletekről
+- `help()`: Információ kérés az elérhető műveletekről
 
-## Teszt kliens
 
-Egy egyszerű teszt kliens megtalálható a `com.microsoft.mcp.sample.client` csomagban. A `SampleCalculatorClient` osztály bemutatja a számológép szolgáltatás elérhető műveleteit.
 
-## A LangChain4j kliens használata
 
-A projekt tartalmaz egy LangChain4j példaklienset a `com.microsoft.mcp.sample.client.LangChain4jClient` osztályban, amely bemutatja, hogyan lehet integrálni a számológép szolgáltatást a LangChain4j-vel és GitHub modellekkel:
 
-### Előfeltételek
 
-1. **GitHub token beállítása**:
+
+
+
+
+
+
    
-   A GitHub AI modellek (például phi-4) használatához szükséged van egy GitHub személyes hozzáférési tokenre:
+   A GitHub AI modellek (például phi-4) használatához személyes hozzáférési token szükséges:
 
-   a. Lépj be a GitHub fiókod beállításaiba: https://github.com/settings/tokens
+
    
-   b. Kattints a "Generate new token" → "Generate new token (classic)" gombra
+   b. Kattints az "Új token generálása" → "Új token generálása (klasszikus)" opcióra
    
-   c. Adj a tokennek egy beszédes nevet
+   c. Adj a tokennek egy leíró nevet
    
    d. Válaszd ki a következő jogosultságokat:
       - `repo` (Teljes hozzáférés privát tárolókhoz)
-      - `read:org` (Szervezet és csapat tagság olvasása, szervezeti projektek olvasása)
-      - `gist` (Gist-ek létrehozása)
-      - `user:email` (Felhasználói email címek elérése (csak olvasás))
+      - `read:org` (Olvasási jog szervezethez és csapathoz, szervezeti projektek olvasása)
+      - `gist` (Gist létrehozása)
+
+
+      - `user:email` (Felhasználói email címek elérése (csak olvasható))
    
-   e. Kattints a "Generate token" gombra, majd másold ki az új tokent
+   e. Kattintson a "Generate token" gombra, és másolja ki az új tokenjét
    
-   f. Állítsd be környezeti változóként:
+   f. Állítsa be környezeti változóként:
       
-      Windows alatt:
+      Windows esetén:
       ```
       set GITHUB_TOKEN=your-github-token
       ```
       
-      macOS/Linux alatt:
+      macOS/Linux esetén:
       ```bash
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. Tartós beállításhoz add hozzá a rendszer környezeti változóihoz
+   g. Tartós beállításhoz adja hozzá a rendszerbeállításokon keresztül a környezeti változókhoz
 
-2. Add hozzá a LangChain4j GitHub függőséget a projektedhez (már benne van a pom.xml-ben):
+2. Adja hozzá a LangChain4j GitHub függőséget a projektjéhez (már benne van a pom.xml-ben):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -99,25 +105,25 @@ A projekt tartalmaz egy LangChain4j példaklienset a `com.microsoft.mcp.sample.c
    </dependency>
    ```
 
-3. Győződj meg róla, hogy a számológép szerver fut a `localhost:8080` címen
+3. Győződjön meg róla, hogy a számológép szerver fut a `localhost:8080` címen
 
 ### A LangChain4j kliens futtatása
 
 Ez a példa bemutatja:
-- Kapcsolódást a számológép MCP szerverhez SSE transporton keresztül
-- LangChain4j használatát egy chat bot létrehozásához, amely a számológép műveleteit használja
-- Integrációt a GitHub AI modellekkel (jelenleg a phi-4 modellel)
+- Kapcsolódás a számológép MCP szerverhez SSE protokollon keresztül
+- LangChain4j használata egy chat bot létrehozásához, amely kihasználja a számológép műveleteit
+- Integráció GitHub AI modellekkel (jelenleg a phi-4 modell használata)
 
-A kliens a következő mintakéréseket küldi a működés bemutatására:
+A kliens a következő példakérdéseket küldi a működés bemutatására:
 1. Két szám összegének kiszámítása
 2. Egy szám négyzetgyökének meghatározása
-3. Segítség kérése az elérhető számológép műveletekről
+3. Súgó információk lekérése az elérhető számológép műveletekről
 
-Futtasd a példát, és nézd meg a konzol kimenetet, hogy az AI modell hogyan használja a számológép eszközöket a válaszadáshoz.
+Futtassa a példát, és ellenőrizze a konzol kimenetet, hogy lássa, hogyan használja az AI modell a számológép eszközöket a kérdések megválaszolásához.
 
 ### GitHub modell konfiguráció
 
-A LangChain4j kliens a GitHub phi-4 modelljét használja az alábbi beállításokkal:
+A LangChain4j kliens a GitHub phi-4 modelljét használja a következő beállításokkal:
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,11 +135,11 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Ha más GitHub modelleket szeretnél használni, egyszerűen módosítsd a `modelName` paramétert egy másik támogatott modellre (pl. "claude-3-haiku-20240307", "llama-3-70b-8192" stb.).
+Különböző GitHub modellek használatához egyszerűen változtassa meg a `modelName` paramétert egy másik támogatott modellre (pl. "claude-3-haiku-20240307", "llama-3-70b-8192" stb.).
 
 ## Függőségek
 
-A projekt a következő kulcsfontosságú függőségeket igényli:
+A projekthez a következő kulcsfüggőségek szükségesek:
 
 ```xml
 <!-- For MCP Server -->
@@ -159,12 +165,12 @@ A projekt a következő kulcsfontosságú függőségeket igényli:
 
 ## A projekt építése
 
-A projekt Maven használatával építhető:
+Építse meg a projektet Maven segítségével:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## A szerver indítása
+## A szerver futtatása
 
 ### Java használatával
 
@@ -176,34 +182,34 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 Az MCP Inspector egy hasznos eszköz az MCP szolgáltatásokkal való interakcióhoz. A számológép szolgáltatás használatához:
 
-1. **Telepítsd és indítsd el az MCP Inspectort** egy új terminál ablakban:
+1. **Telepítse és indítsa el az MCP Inspectort** egy új terminál ablakban:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Nyisd meg a webes felületet** a megjelenő URL-re kattintva (általában http://localhost:6274)
+2. **Nyissa meg a webes felületet** az alkalmazás által megjelenített URL-re kattintva (általában http://localhost:6274)
 
-3. **Állítsd be a kapcsolatot**:
-   - Válaszd a "SSE" transport típust
-   - Állítsd be az URL-t a futó szerver SSE végpontjára: `http://localhost:8080/sse`
-   - Kattints a "Connect" gombra
+3. **Konfigurálja a kapcsolatot**:
+   - Állítsa be a szállítás típusát "SSE"-re
+   - Állítsa be az URL-t a futó szerver SSE végpontjára: `http://localhost:8080/sse`
+   - Kattintson a "Connect" gombra
 
-4. **Használd az eszközöket**:
-   - Kattints a "List Tools" gombra az elérhető számológép műveletek megtekintéséhez
-   - Válassz ki egy eszközt, majd kattints a "Run Tool" gombra a művelet végrehajtásához
+4. **Használja az eszközöket**:
+   - Kattintson a "List Tools"-ra az elérhető számológép műveletek megtekintéséhez
+   - Válasszon eszközt és kattintson a "Run Tool"-ra egy művelet végrehajtásához
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/hu/tool.c75a0b2380efcf1a.webp)
 
 ### Docker használata
 
-A projekt tartalmaz egy Dockerfile-t konténeres telepítéshez:
+A projekt tartalmaz egy Dockerfile-t a konténeres telepítéshez:
 
-1. **Építsd meg a Docker képet**:
+1. **Építse meg a Docker képet**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
 
-2. **Futtasd a Docker konténert**:
+2. **Futtassa a Docker konténert**:
    ```bash
    docker run -p 8080:8080 calculator-mcp-service
    ```
@@ -211,24 +217,29 @@ A projekt tartalmaz egy Dockerfile-t konténeres telepítéshez:
 Ez a következőket teszi:
 - Többlépcsős Docker képet épít Maven 3.9.9 és Eclipse Temurin 24 JDK használatával
 - Optimalizált konténer képet hoz létre
-- Kiszolgálót a 8080-as porton teszi elérhetővé
-- Elindítja az MCP számológép szolgáltatást a konténerben
+- A szolgáltatást a 8080-as porton teszi elérhetővé
+- Elindítja az MCP számológép szolgáltatást a konténeren belül
 
-A szolgáltatás elérhető lesz a `http://localhost:8080` címen, amint a konténer fut.
+A konténer futása után elérheti a szolgáltatást a `http://localhost:8080` címen.
 
 ## Hibakeresés
 
 ### Gyakori problémák a GitHub tokennel kapcsolatban
 
-1. **Token jogosultsági problémák**: Ha 403 Forbidden hibát kapsz, ellenőrizd, hogy a token megfelelő jogosultságokkal rendelkezik az előfeltételek szerint.
 
-2. **Token hiánya**: Ha "No API key found" hiba jelenik meg, győződj meg róla, hogy a GITHUB_TOKEN környezeti változó helyesen van beállítva.
+1. **Token jogosultsági problémák**: Ha 403 Forbidden hibát kap, ellenőrizze, hogy a tokenje a feltételeknek megfelelő jogosultságokkal rendelkezik-e.
 
-3. **Korlátozások (Rate limiting)**: A GitHub API-nak vannak használati korlátai. Ha 429-es hibát kapsz, várj néhány percet, majd próbáld újra.
+2. **Token nem található**: Ha a "No API key found" hibát kapja, győződjön meg arról, hogy a GITHUB_TOKEN környezeti változó megfelelően be van állítva.
 
-4. **Token lejárata**: A GitHub tokenek lejárhatnak. Ha hitelesítési hibákat tapasztalsz idővel, generálj új tokent és frissítsd a környezeti változót.
+3. **Korlátozások (Rate Limiting)**: A GitHub API-nak van korlátozása. Ha korlátozási hibával találkozik (429-es státuszkód), várjon néhány percet, majd próbálkozzon újra.
 
-Ha további segítségre van szükséged, nézd meg a [LangChain4j dokumentációt](https://github.com/langchain4j/langchain4j) vagy a [GitHub API dokumentációt](https://docs.github.com/en/rest).
+4. **Token lejárata**: A GitHub tokenek lejárhatnak. Ha azonosítási hibákat kap egy idő után, generáljon új tokent, és frissítse a környezeti változót.
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+Ha további segítségre van szüksége, nézze meg a [LangChain4j dokumentációját](https://github.com/langchain4j/langchain4j) vagy a [GitHub API dokumentációját](https://docs.github.com/en/rest).
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,19 +1,24 @@
 # Spusťte ukázku
 
-## Vytvoření virtuálního prostředí
+> [!WARNING]
+> Tato ukázka používá zastaralý Sampling a starší HTTP+SSE endpoint. Je
+> zachována pro kompatibilitu MCP `2025-11-25`. Nové implementace by měly volat
+> poskytovatele LLM přímo a používat Streamable HTTP pro vzdálený provoz MCP.
+
+## Vytvořte virtuální prostředí
 
 ```sh
 python -m venv venv
 source ./venv/bin/activate
 ```
 
-## Instalace závislostí
+## Nainstalujte závislosti
 
 ```sh
 pip install "mcp[cli]"
 ```
 
-## Spuštění serveru
+## Spusťte server
 
 ```sh
 uvicorn server:app --port 8000
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Otestujte server s GitHub Copilot a VS Code
 
-Přidejte záznam do mcp.json takto:
+Přidejte položku do mcp.json takto:
 
 ```json
 "servers": {
@@ -32,7 +37,7 @@ Přidejte záznam do mcp.json takto:
 }
 ```
 
-Ujistěte se, že kliknete na "start" na serveru.
+Ujistěte se, že na serveru kliknete na "start".
 
 V GitHub Copilot vložte následující prompt:
 
@@ -40,7 +45,7 @@ V GitHub Copilot vložte následující prompt:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Poprvé budete vyzváni, abyste přijali Sampling akci, poté budete vyzváni k přijetí spuštění nástroje "create_blog". Měli byste vidět odpověď podobnou:
+Poprvé budete dotázáni, zda chcete přijmout akci Sampling, poté budete požádáni o povolení spuštění nástroje "create_blog". Měli byste vidět odpověď podobnou:
 
 ```json
 {
@@ -51,6 +56,6 @@ Poprvé budete vyzváni, abyste přijali Sampling akci, poté budete vyzváni k 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Prohlášení o vyloučení odpovědnosti**:
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Ačkoliv usilujeme o přesnost, mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakákoliv nedorozumění nebo nesprávné výklady vyplývající z použití tohoto překladu.
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

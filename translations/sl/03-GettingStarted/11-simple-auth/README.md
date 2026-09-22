@@ -1,25 +1,25 @@
-# Preprosta avtentikacija
+# Enostavna avtentikacija
 
-MCP SDK-ji podpirajo uporabo OAuth 2.1, kar je pravzaprav precej zapleten proces, ki vključuje koncepte, kot so avtentikacijski strežnik, strežnik virov, pošiljanje poverilnic, pridobivanje kode, izmenjava kode za žeton nosilca, dokler končno ne dobite podatke o vašem viru. Če niste vajeni OAuth, kar je odlična stvar za implementacijo, je dobro, da začnete z osnovnim nivojem avtentikacije in postopoma gradite do vedno boljše varnosti. Zato obstaja ta poglavje, da vas pripravi na bolj napredno avtentikacijo.
+MCP SDK-ji podpirajo uporabo OAuth 2.1, kar je, resnici na ljubo, precej zapleten proces, ki vključuje koncepte, kot so avtentikacijski strežnik, strežnik z viri, pošiljanje poverilnic, pridobivanje kode, zamenjava kode za žeton nosilca, dokler končno ne dobite podatkov o viru. Če OAuth ni nekaj, na kar ste navajeni (kar je odlična stvar za implementacijo), je dobra ideja začeti z osnovno raven avtentikacije in graditi na boljši in boljši varnosti. Zato ta poglavje obstaja, da vas vodi do bolj napredne avtentikacije.
 
-## Avtentikacija, kaj to pomeni?
+## Avtentikacija, kaj s tem mislimo?
 
-Avtentikacija je kratica za avtentikacijo in avtorizacijo. Idea je, da moramo narediti dve stvari:
+Avtentikacija je kratica za avtentikacijo in avtorizacijo. Ideja je, da moramo narediti dve stvari:
 
-- **Avtentikacija**, kar je proces ugotavljanja, ali osebi dovolimo vstop v naš dom, da ima pravico biti "tukaj", torej ima dostop do našega strežnika virov, kjer živijo funkcije MCP strežnika.
-- **Avtorizacija**, je proces ugotavljanja, ali naj ima uporabnik dostop do teh specifičnih virov, ki jih zahteva, na primer teh naročil ali teh izdelkov, ali pa je dovoljena le branje vsebine, ne pa brisanje kot drugi primer.
+- **Avtentikacija**, kar je proces ugotavljanja, ali osebi dovolimo vstop v naš dom, torej ali ima pravico biti "tukaj", to je imeti dostop do našega strežnika z viri, kjer živijo naše funkcije MCP strežnika.
+- **Avtorizacija**, je proces ugotavljanja, ali bi uporabnik moral imeti dostop do teh specifičnih virov, ki jih zahteva, na primer do teh naročil ali teh izdelkov, ali pa sme brati vsebino, vendar ne brisati, kot drugi primer.
 
 ## Poverilnice: kako sistemu povemo, kdo smo
 
-No, večina spletnih razvijalcev začne razmišljati v smislu zagotavljanja poverilnice strežniku, običajno skrivnosti, ki pravi, ali jim je dovoljeno biti tukaj "Avtentikacija". Ta poverilnica je običajno base64 kodirana različica uporabniškega imena in gesla ali API ključ, ki edinstveno identificira določenega uporabnika.
+Večina spletnih razvijalcev začne razmišljati v smislu zagotavljanja poverilnice strežniku, običajno skrivnosti, ki pove, ali jim je dovoljeno biti tukaj ("Avtentikacija"). Ta poverilnica je običajno base64 kodirana različica uporabniškega imena in gesla ali API ključ, ki enolično identificira določenega uporabnika.
 
-To vključuje pošiljanje preko glave z imenom "Authorization" takole:
+To vključuje pošiljanje preko glave z imenom "Authorization" tako:
 
 ```json
 { "Authorization": "secret123" }
 ```
 
-To se običajno imenuje osnovna avtentikacija. Kako potem splošni potek deluje, je takole:
+To se običajno imenuje osnovna avtentikacija. Celoten potek deluje tako:
 
 ```mermaid
 sequenceDiagram
@@ -33,7 +33,7 @@ sequenceDiagram
    Server-->>Client: 1b, ne poznam te, 401 
 ```
 
-Zdaj, ko razumemo, kako deluje iz poteka, kako to implementiramo? No, večina spletnih strežnikov ima koncept, imenovan middleware, kos kode, ki teče kot del zahteve in lahko preveri poverilnice ter, če so poverilnice veljavne, dovoli zahtevi prehod. Če zahteva nima veljavnih poverilnic, dobite avtentikacijsko napako. Poglejmo, kako lahko to implementiramo:
+Zdaj ko razumemo, kako deluje z vidika poteka, kako to izvedemo? Večina spletnih strežnikov ima koncept, imenovan middleware, del kode, ki teče kot del zahteve in lahko preveri poverilnice, in če so poverilnice veljavne, dovoli zahtevi, da gre naprej. Če zahteva nima veljavnih poverilnic, prejmete napako avtentikacije. Poglejmo, kako to lahko izvedemo:
 
 **Python**
 
@@ -53,7 +53,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         print("Valid token, proceeding...")
        
         response = await call_next(request)
-        # dodajte poljubne uporabniške glave ali kako drugače spremenite odziv
+        # dodajte poljubne uporabniške glave ali na nek način spremenite odziv
         return response
 
 
@@ -62,14 +62,14 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
 
 Tukaj imamo:
 
-- Ustvarjen middleware z imenom `AuthMiddleware`, katerega metoda `dispatch` se kliče s strani spletnega strežnika.
+- Ustvarjen middleware z imenom `AuthMiddleware`, kjer metoda `dispatch` kliče spletni strežnik.
 - Middleware dodan spletnemu strežniku:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Napisana logika preverjanja, ki preverja, ali je glava Authorization prisotna in če je posredovana skrivnost veljavna:
+- Napisana logika validacije, ki preverja, ali je prisotna glava Authorization in ali je poslano skrivnost veljavna:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -82,19 +82,19 @@ Tukaj imamo:
         return Response(status_code=403, content="Forbidden")
     ```
 
-    če je skrivnost prisotna in veljavna, potem dovolimo zahtevo, da preide, z klicem `call_next` in vrnemo odgovor.
+    če je skrivnost prisotna in veljavna, dovolimo prehod zahteve s klicem `call_next` in vrnemo odgovor.
 
     ```python
     response = await call_next(request)
-    # dodajte katerikoli kupčev header ali nekaj spremenite v odgovoru na kakršen koli način
+    # dodajte poljubne uporabniške glave ali na nek način spremenite odgovor
     return response
     ```
 
-Kako deluje je to, da se, če je spletni zahtevek poslan na strežnik, middleware sproži in glede na svojo implementacijo bodisi dopušča zahtevek ali pa vrne napako, ki kaže, da stranka ni dovoljena za nadaljevanje.
+Deluje tako, da če je spletna zahteva poslana strežniku, se middleware sproži in glede na njegovo implementacijo ali dovoli zahtevku prehod ali vrne napako, ki kaže, da stranki ni dovoljeno nadaljevati.
 
 **TypeScript**
 
-Tukaj ustvarimo middleware s priljubljenim ogrodjem Express in prestrežemo zahtevo, preden doseže MCP strežnik. Tukaj je koda za to:
+Tukaj ustvarimo middleware z priljubljenim ogrodjem Express in prestrežemo zahtevo, preden doseže MCP strežnik. Tukaj je koda za to:
 
 ```typescript
 function isValid(secret) {
@@ -102,7 +102,7 @@ function isValid(secret) {
 }
 
 app.use((req, res, next) => {
-    // 1. Je prisotna avtentikacijska glava?
+    // 1. Ali obstaja avtentikacijski header?
     if(!req.headers["Authorization"]) {
         res.status(401).send('Unauthorized');
     }
@@ -123,32 +123,37 @@ app.use((req, res, next) => {
 
 V tej kodi:
 
-1. Preverimo, ali je glava Authorization prisotna na prvem mestu, če ni, pošljemo napako 401.
-2. Zagotovimo, da je poverilnica/žeton veljaven, če ni, pošljemo napako 403.
-3. Nazadnje posreduje zahtevo v cevovodu in vrne iskani vir.
+1. Preverimo, ali je glava Authorization sploh prisotna, če ne, pošljemo napako 401.
+2. Zagotovimo, da je poverilnica/žeton veljaven, če ne, pošljemo napako 403.
+3. Na koncu pošljemo zahtevo naprej po cevi zahteve in vrnemo zahtevan vir.
 
-## Vaja: Implementiraj avtentikacijo
+## Vaja: Implementirajte avtentikacijo
 
-Vzemimo svoje znanje in poskusimo implementirati. Tukaj je načrt:
+Vzemimo naše znanje in poskusimo implementirati. Tukaj je načrt:
 
 Strežnik
 
-- Ustvari spletni strežnik in MCP instanco.
-- Implementiraj middleware za strežnik.
+- Ustvarite spletni strežnik in MCP instanco.
+- Implementirajte middleware za strežnik.
 
 Odjemalec
 
-- Pošljite spletni zahtevek z poverilnico prek glave.
+- Pošljite spletno zahtevo s poverilnico preko glave.
 
-### -1- Ustvari spletni strežnik in MCP instanco
+### -1- Ustvarite spletni strežnik in MCP instanco
 
-> **Pogled naprej:** spodnji primer TypeScript sledi HTTP prenosom v mapi `transports` po ključu `mcp-session-id`, skladno z **MCP specifikacijo 2025-11-25**. Kandidat za izdajo `2026-07-28` odstrani roko stiskanja in ID seje povsem, zato ta zemljevid prenosov na sejo izgine v prid brezstanja in samostojnih zahtev. Glej [Kaj se spreminja v MCP: Kandidat za izdajo 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [!WARNING]
+> Spodnji primer TypeScript cilja MCP `2025-11-25`. Sledi prevozom
+> preko `mcp-session-id` in ni trenutni primer prevoza `2026-07-28`. MCP
+> `2026-07-28` odstrani rokovanje inicializacije in protokol session ID; nove
+> implementacije uporabljajo samo-vsebuječe zahteve. Več v
+> [Kaj se je spremenilo v MCP: Specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-V prvem koraku moramo ustvariti primerek spletnega strežnika in MCP strežnika.
+V prvem koraku moramo ustvariti instanco spletnega strežnika in MCP strežnika.
 
 **Python**
 
-Tukaj ustvarimo MCP strežnik, ustvarimo starlette spletno aplikacijo in jo gostimo z uvicorn.
+Tukaj ustvarimo MCP strežniško instanco, ustvarimo starlette spletno aplikacijo in jo gostimo z uvicorn.
 
 ```python
 # ustvarjanje MCP strežnika
@@ -164,7 +169,7 @@ app = FastMCP(
 # ustvarjanje starlette spletne aplikacije
 starlette_app = app.streamable_http_app()
 
-# poganjanje aplikacije preko uvicorn
+# storitev aplikacije preko uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
@@ -181,13 +186,13 @@ run(starlette_app)
 
 V tej kodi:
 
-- Ustvarite MCP strežnik.
-- Konstruirajte starlette spletno aplikacijo iz MCP strežnika, `app.streamable_http_app()`.
-- Gostite in strežite spletno aplikacijo z uvicorn `server.serve()`.
+- Ustvarimo MCP strežnik.
+- Sestavimo starlette spletno aplikacijo iz MCP strežnika, `app.streamable_http_app()`.
+- Gostimo in strežemo spletno aplikacijo z uvicorn `server.serve()`.
 
 **TypeScript**
 
-Tukaj ustvarimo MCP strežniški primerek.
+Tukaj ustvarimo MCP strežniško instanco.
 
 ```typescript
 const server = new McpServer({
@@ -198,7 +203,7 @@ const server = new McpServer({
     // ... nastavite strežniške vire, orodja in pozive ...
 ```
 
-Ta ustvarjanje MCP strežnika se bo moralo zgoditi znotraj definicije poti POST /mcp, zato vzemimo zgornjo kodo in jo premaknimo tako:
+To ustvarjanje MCP strežnika mora potekati znotraj definicije naše poti POST /mcp, zato vzamemo zgornjo kodo in jo premaknemo tako:
 
 ```typescript
 import express from "express";
@@ -213,14 +218,14 @@ app.use(express.json());
 // Zemljevid za shranjevanje transportov po ID-ju seje
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
-// Obdelava POST zahtevkov za komunikacijo od odjemalca do strežnika
+// Obravnavaj POST zahteve za komunikacijo od odjemalca do strežnika
 app.post('/mcp', async (req, res) => {
   // Preveri obstoječi ID seje
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   let transport: StreamableHTTPServerTransport;
 
   if (sessionId && transports[sessionId]) {
-    // Ponovna uporaba obstoječega transporta
+    // Ponovno uporabi obstoječi transport
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
     // Nova zahteva za inicializacijo
@@ -230,13 +235,13 @@ app.post('/mcp', async (req, res) => {
         // Shrani transport po ID-ju seje
         transports[sessionId] = transport;
       },
-      // Zaščita pred DNS ponovno vezavo je privzeto onemogočena zaradi združljivosti z nazaj. Če poganjate ta strežnik
-      // lokalno, zagotovite, da nastavite:
+      // Zaščita pred DNS ponovnim vezanjem je privzeto onemogočena zaradi združljivosti z preteklimi različicami. Če ta strežnik poganjaš
+      // lokalno, poskrbi, da nastaviš:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Očisti transport ob zaprtju
+    // Očisti transport, ko je zaprt
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -264,11 +269,11 @@ app.post('/mcp', async (req, res) => {
     return;
   }
 
-  // Obdelaj zahtevo
+  // Obravnavaj zahtevo
   await transport.handleRequest(req, res, req.body);
 });
 
-// Ponovno uporabljiv upravljalec za GET in DELETE zahtevke
+// Ponovno uporaben obdelovalec za GET in DELETE zahteve
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -280,10 +285,10 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// Obdelaj GET zahtevke za obveščanje strežnika do odjemalca preko SSE
+// Obravnavaj GET zahteve za obvestila s strežnika do odjemalca preko SSE
 app.get('/mcp', handleSessionRequest);
 
-// Obdelaj DELETE zahtevke za prekinitev seje
+// Obravnavaj DELETE zahteve za zaključek seje
 app.delete('/mcp', handleSessionRequest);
 
 app.listen(3000);
@@ -291,31 +296,31 @@ app.listen(3000);
 
 Zdaj vidite, kako je bilo ustvarjanje MCP strežnika premaknjeno znotraj `app.post("/mcp")`.
 
-Nadaljujmo na naslednji korak ustvarjanja middleware-a, da lahko preverimo prihajajoče poverilnice.
+Nadaljujmo s naslednjim korakom ustvarjanja middleware, da bomo lahko preverjali prihajajoče poverilnice.
 
-### -2- Implementiraj middleware za strežnik
+### -2- Implementirajte middleware za strežnik
 
-Poskrbimo za del middleware-a. Tukaj bomo ustvarili middleware, ki išče poverilnico v glavi `Authorization` in jo validira. Če je sprejemljiva, bo zahteva nadaljevala z izvajanjem tistega, kar mora (npr. seznam orodij, branje vira ali kakršnakoli MCP funkcionalnost, ki jo kliče odjemalec).
+Nadaljujmo s delom za middleware. Tukaj bomo ustvarili middleware, ki išče poverilnico v glavi `Authorization` in jo preveri. Če je sprejemljiva, bo zahteva nadaljevala, da bo naredila, kar je treba (npr. naštela orodja, prebrala vir ali karkoli, kar zahteva MCP funkcionalnost).
 
 **Python**
 
-Za ustvarjanje middleware-a moramo ustvariti razred, ki podeduje `BaseHTTPMiddleware`. Obstajata dva zanimiva dela:
+Za ustvarjanje middleware potrebujemo ustvariti razred, ki podeduje `BaseHTTPMiddleware`. Obstajata dve zanimivi stvari:
 
 - Zahteva `request`, iz katere preberemo informacije iz glave.
-- `call_next`, povratni klic, ki ga moramo sprožiti, če je stranka prinesla sprejemljivo poverilnico.
+- `call_next`, klic, ki ga moramo izvesti, če stranka prinese sprejemljivo poverilnico.
 
-Najprej moramo obravnavati situacijo, če glava `Authorization` manjka:
+Najprej moramo obravnavati primer, če glava `Authorization` manjka:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# ni glave, neuspeh s 401, sicer nadaljuj.
+# glava ni prisotna, zavrži z 401, sicer nadaljuj.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Tukaj pošljemo sporočilo 401 neavtorizirano, saj stranka spodleti pri avtentikaciji.
+Tukaj pošljemo sporočilo 401 unauthorized, saj stranka ne uspe avtentikacijo.
 
 Nato, če je bila predložena poverilnica, moramo preveriti njeno veljavnost tako:
 
@@ -325,7 +330,7 @@ Nato, če je bila predložena poverilnica, moramo preveriti njeno veljavnost tak
     return Response(status_code=403, content="Forbidden")
 ```
 
-Opazite, da zgoraj pošljemo sporočilo 403 prepovedano. Poglejmo celoten middleware spodaj, ki implementira vse, kar smo omenili:
+Opažajte, da zgoraj pošljemo sporočilo 403 forbidden. Poglejmo celoten middleware spodaj, ki izvaja vse, kar smo omenili zgoraj:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -348,10 +353,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Super, ampak kaj pa funkcija `valid_token`? Tukaj je:
+Super, ampak kaj pa funkcija `valid_token`? Tukaj je spodaj:
 
 ```python
-# NE uporabljajte za produkcijo - izboljšajte to !!
+# NE uporabljajte v produkciji - izboljšajte to !!
 def valid_token(token: str) -> bool:
     # odstranite predpono "Bearer "
     if token.startswith("Bearer "):
@@ -360,20 +365,20 @@ def valid_token(token: str) -> bool:
     return False
 ```
 
-To je seveda za izboljšati.
+To bi seveda moralo biti izboljšano.
 
-POMEMBNO: Nikoli ne bi smeli imeti takih skrivnosti v kodi. Idealno bi bilo, da vrednost, s katero primerjamo, pridobite iz podatkovnega vira ali od IDP (ponudnik identitete) ali še bolje, naj IDP opravi preverjanje.
+POMEMBNO: Nikoli ne bi smeli imeti takšnih skrivnosti v kodi. Idealno je, da vrednost za primerjavo pridobite iz podatkovnega vira ali od IDP (ponudnik identitete) ali še bolje, da validation prepustite IDP-ju.
 
 **TypeScript**
 
-Za implementacijo s Express moramo poklicati metodo `use`, ki sprejema middleware funkcije.
+Za implementacijo tega s Expressom moramo poklicati metodo `use`, ki sprejema funkcije middleware.
 
 Moramo:
 
-- Interaktirati z zahtevo in preveriti posredovano poverilnico v lastnosti `Authorization`.
-- Validirati poverilnico in če je veljavna, dovoliti nadaljevanje zahtevka ter izvajanje zahtev MCP stranke (npr. seznam orodij, branje vira ali karkoli drugega, povezano z MCP).
+- Komunicirati z objektnim `request`, da preverimo posredovano poverilnico v lastnosti `Authorization`.
+- Validirati poverilnico, in če je sprejemljiva, dovoliti zahtevi nadaljevanje in naj MCP zahteva stranke naredi, kar mora (npr. navajanje orodij, branje vira ali karkoli drugega za MCP).
 
-Tukaj preverjamo, ali je glava `Authorization` prisotna in če ni, ustavimo zahtevo:
+Tukaj preverjamo, ali je glava `Authorization` prisotna, in če ni, ustavimo zahtevo:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -382,9 +387,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Če glava ni poslana, prejmete napako 401.
+Če glava sploh ni poslana, prejmete napako 401.
 
-Nato preverimo, ali je poverilnica veljavna, če ne, ponovno ustavimo zahtevo s nekoliko drugačnim sporočilom:
+Nato preverimo, če je poverilnica veljavna, če ni, ponovno ustavimo zahtevo, a s malo drugačnim sporočilom:
 
 ```typescript
 if(!isValid(token)) {
@@ -418,18 +423,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Nastavili smo spletni strežnik, da sprejema middleware za preverjanje poverilnic, ki jih upamo, da nam jih stranka pošlje. Kaj pa stranka sama?
+Nastavili smo spletni strežnik, da sprejme middleware za preverjanje poverilnice, ki naj bi nam jo stranka poslala. Kaj pa sam odjemalec?
 
-### -3- Pošlji spletni zahtevek s poverilnico prek glave
+### -3- Pošljite spletno zahtevo s poverilnico preko glave
 
-Moramo zagotoviti, da stranka posreduje poverilnico preko glave. Ker bomo uporabili MCP odjemalca, moramo ugotoviti, kako se to naredi.
+Moramo zagotoviti, da stranka prenese poverilnico preko glave. Ker bomo uporabili MCP odjemalca za to, moramo ugotoviti, kako se to naredi.
 
 **Python**
 
-Za odjemalca moramo predati glavo s poverilnico tako:
+Za odjemalca moramo posredovati glavo s poverilnico tako:
 
 ```python
-# NE trdo kodirajte vrednosti, vsaj shranite jo v okoljsko spremenljivko ali bolj varno shrambo
+# NE trdo kodiraj vrednosti, naj bo vsaj v okoljski spremenljivki ali varnejšem shranjevanju
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -446,24 +451,24 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # NAREDIMO, kaj želite, da se naredi v odjemalcu, npr. seznam orodij, klic orodij itd.
+            # NAREDITI, kaj želite narediti na odjemalcu, npr. seznam orodij, klicanje orodij itd.
 ```
 
-Opazite, kako napolnimo lastnost `headers` takole ` headers = {"Authorization": f"Bearer {token}"}`.
+Opažajte, kako napolnimo lastnost `headers` tako, da damo ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
 To lahko rešimo v dveh korakih:
 
 1. Napolnimo konfiguracijski objekt z našo poverilnico.
-2. Predamo konfiguracijski objekt transportu.
+2. Posredujemo konfiguracijski objekt transportu.
 
 ```typescript
 
-// NE trdo kodirajte vrednosti, kot je prikazano tukaj. Najmanj, kar lahko naredite, je, da jo imate kot okoljsko spremenljivko in uporabite nekaj, kot je dotenv (v razvojnem načinu).
+// NE pritrdite vrednosti na trdo, kot je prikazano tukaj. Najmanj, kar lahko storite, je, da jo imate kot spremenljivko okolja in uporabite nekaj takega kot dotenv (v načinu za razvijalce).
 let token = "secret123"
 
-// definirajte objekt možnosti za transport odjemalca
+// definirajte objekt možnosti transporta za odjemalca
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -473,7 +478,7 @@ let options: StreamableHTTPClientTransportOptions = {
   }
 };
 
-// posredujte objekt možnosti transportu
+// prenesite objekt možnosti v transport
 async function main() {
    const transport = new StreamableHTTPClientTransport(
       new URL(serverUrl),
@@ -481,46 +486,46 @@ async function main() {
    );
 ```
 
-Tukaj zgoraj vidite, kako smo morali ustvariti objekt `options` in postaviti naše glave pod lastnost `requestInit`.
+Tukaj zgoraj vidite, kako smo morali ustvariti `options` objekt in naše glave postaviti pod lastnost `requestInit`.
 
-POMEMBNO: Kako to izboljšati od tu naprej? Trenutna implementacija ima nekaj težav. Najprej, pošiljanje poverilnice tako je precej tvegano, razen če imate vsaj HTTPS. Tudi takrat lahko poverilnica postane ukradena, zato potrebujete sistem, kjer lahko preprosto prekličete žeton in dodate dodatne preglede, kot na primer, od kod na svetu prihaja, ali se zahtevek pojavlja preveč pogosto (obnašanje kot bot), na kratko, obstaja cel kup skrbi.
+POMEMBNO: Kako pa to izboljšati? Trenutna implementacija ima nekaj težav. Prvič, posredovanje poverilnice na ta način je precej tvegano, razen če imate vsaj HTTPS. Tudi takrat lahko poverilnica ukradena, zato potrebujete sistem, kjer lahko žeton enostavno prekličete in dodate dodatne preverbe, kot je, od kod v svetu prihaja, ali se zahteva dogaja prepogosto (obnašanje kot bot), na kratko, ima veliko varnostnih pomislekov.
 
-Vendar pa je treba povedati, za zelo preproste API-je, kjer nočete, da kdorkoli kliče vašo API brez avtentikacije, je to dober začetek.
+Kljub temu pa je za zelo enostavne API-je, kjer nočete, da kdorkoli kliče vaš API brez avtentikacije, to dober začetek.
 
-S tem rečeno, poskusimo malo okrepiti varnost z uporabo standardiziranega formata, kot je JSON Web Token, znan tudi kot JWT ali "JOT" žetoni.
+Zato poskusimo malo okrepiti varnost z uporabo standardiziranega formata, kot je JSON Web Token, znan tudi kot JWT ali "JOT" žetoni.
 
-## JSON Web žetoni, JWT
+## JSON Web Tokens, JWT
 
-Torej poskušamo izboljšati stvari od pošiljanja zelo enostavnih poverilnic. Kakšne so neposredne izboljšave, ki jih dobimo z uvedbo JWT?
+Torej, poskušamo izboljšati stvari od pošiljanja zelo enostavnih poverilnic. Kakšne so takojšnje izboljšave, ki jih dobimo z uporabo JWT?
 
-- **Varnostne izboljšave**. Pri osnovni avtentikaciji pošiljate uporabniško ime in geslo kot base64 kodiran žeton (ali pošljete API ključ) vedno znova, kar povečuje tveganje. Z JWT pošljete svoje uporabniško ime in geslo in dobite žeton v zameno, ki je tudi časovno omejen, kar pomeni, da poteče. JWT omogoča enostavno uporabo finozrnate kontrole dostopa z uporabo vlog, obsegov in dovoljenj.
-- **Brezstanje in skalabilnost**. JWT-ji so samostojni, vsebujejo vse uporabniške podatke in odpravlja potrebo po shranjevanju sej na strežniku. Žeton se lahko preverja tudi lokalno.
-- **Medoperabilnost in federacija**. JWT-ji so osrednji del Open ID Connect in se uporabljajo z znanimi ponudniki identitete, kot so Entra ID, Google Identity in Auth0. Prav tako omogočajo uporabo enotne prijave in še veliko več, zaradi česar so primerni za podjetja.
-- **Modularnost in prilagodljivost**. JWT-ji se lahko uporabljajo tudi z API Gateway-i, kot so Azure API Management, NGINX in drugi. Podpira tudi scenarije avtentikacije in komunikacijo strežnik-storitev, vključno s scenariji pooblastitev in delegacij.
-- **Izvedba in predpomnjenje**. JWT-je lahko predpomnite po dekodiranju, kar zmanjša potrebo po analizi. To posebej pomaga pri aplikacijah z veliko prometa, saj izboljša prepustnost in zmanjša obremenitev izbrane infrastrukture.
-- **Napredne funkcije**. Podpira tudi introspekcijo (preverjanje veljavnosti na strežniku) in preklic (neveljavnost žetona).
+- **Izboljšave varnosti**. Pri osnovni avtentikaciji pošiljate uporabniško ime in geslo kot base64 kodiran žeton (ali pošljete API ključ) vedno znova, kar povečuje tveganje. Pri JWT pošljete svoje uporabniško ime in geslo in dobite žeton v zameno, ki je tudi časovno omejen in poteče. JWT vam omogoča enostavno uporabo natančno določenega dostopa z vlogami, obsegom in dovoljenji.
+- **Brezstatičnost in skalabilnost**. JWT-ji so samostojni, nosijo vse uporabniške podatke in odpravijo potrebo po strežniškem shranjevanju sej. Žeton je mogoče tudi localno validirati.
+- **Medsebojna povezljivost in federacija**. JWT-ji so srce Open ID Connect in se uporabljajo z znanimi ponudniki identitete, kot so Entra ID, Google Identity in Auth0. Prav tako omogočajo enotni prijavi in še veliko več, kar jih naredi podjetniško raven.
+- **Modularnost in prilagodljivost**. JWT-ji se lahko uporabljajo tudi z API prehodi, kot so Azure API Management, NGINX in drugi. Podpirajo tudi scenarije avtentikacije in komunikacije strežnik-do-strežnik, vključno z izmestitvijo in delegacijo.
+- **Zmogljivost in predpomnjenje**. JWT-je je mogoče predpomniti po dekodiranju, kar zmanjša potrebo po parsiranju. To posebej pomaga aplikacijam z visoko obremenitvijo, saj izboljšuje prepustnost in zmanjšuje obremenitev izbrane infrastrukture.
+- **Napredne funkcije**. Prav tako podpirajo introspekcijo (preverjanje veljavnosti na strežniku) in preklic (naredi žeton neveljaven).
 
-Z vsemi temi koristmi si poglejmo, kako lahko našo implementacijo dvignemo na višjo raven.
+Ob vseh teh prednostih poglejmo, kako lahko našo implementacijo ponesemo na višjo raven.
 
-## Pretvarjanje osnovne avtentikacije v JWT
+## Pretvorba osnovne avtentikacije v JWT
 
-Torej spremembe, ki jih moramo narediti na širokem nivoju, so:
+Torej spremembe, ki jih moramo narediti na splošni ravni, so:
 
 - **Naučiti se sestaviti JWT žeton** in ga pripraviti za pošiljanje od odjemalca do strežnika.
 - **Validirati JWT žeton**, in če je veljaven, dovoliti odjemalcu dostop do naših virov.
-- **Varen shranjevanje žetona**. Kako varno shraniti ta žeton.
-- **Zaščititi poti**. Moramo zaščititi poti, v našem primeru zaščititi poti in specifične MCP funkcije.
-- **Dodati osvežitvene žetone**. Poskrbimo, da ustvarimo žetone, ki so kratkotrajni, ter osvežitvene žetone, ki so dolgoročni in se lahko uporabijo za pridobivanje novih, če potečejo. Prav tako poskrbimo za osvežitveni konec in strategijo rotacije.
+- **Varno shranjevanje žetonov**. Kako ta žeton shranjujemo.
+- **Zaščititi poti**. Potrebujemo zaščito poti, v našem primeru specifične poti in funkcije MCP.
+- **Dodati osvežitvene žetone**. Zagotoviti ustvarjanje žetonov z kratko življenjsko dobo, hkrati pa dolgoročne osvežitvene žetone, ki se lahko uporabijo za pridobivanje novih žetonov, če potečejo. Prav tako zagotoviti osvežitveni endpoint in strategijo rotacije.
 
-### -1- Sestavi JWT žeton
+### -1- Sestavite JWT žeton
 
-Najprej JWT žeton vsebuje naslednje dele:
+Najprej JWT žeton sestavlja sledeče dele:
 
-- **glavo**, algoritem, ki se uporablja, in tip žetona.
-- **tovor**, trditve, kot so sub (uporabnik ali entiteta, ki jo žeton predstavlja. V avtentikacijskem scenariju je to običajno uporabniški ID), exp (kadar poteče), role (vloga)
-- **podpis**, podpisan s skrivnostjo ali zasebnim ključem.
+- **glava (header)**, uporabljen algoritem in tip žetona.
+- **vsebina (payload)**, trditve, kot so sub (uporabnik ali entiteta, ki jo žeton predstavlja. V avtentikacijskem scenariju je to običajno uporabniški ID), exp (konec veljavnosti), role (vloga).
+- **podpis (signature)**, podpisan z skrivnostjo ali zasebnim ključem.
 
-Za to bomo morali sestaviti glavo, tovor in kodiran žeton.
+Za to bomo morali sestaviti glavo, vsebino in kodiran žeton.
 
 **Python**
 
@@ -531,7 +536,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 import datetime
 
-# Skrivni ključ, uporabljen za podpis JWT
+# Skrivni ključ, uporabljen za podpisovanje JWT
 secret_key = 'your-secret-key'
 
 header = {
@@ -539,13 +544,13 @@ header = {
     "typ": "JWT"
 }
 
-# informacije o uporabniku in njegove trditve ter čas poteka
+# informacije o uporabniku ter njegove trditve in čas poteka
 payload = {
     "sub": "1234567890",               # Predmet (ID uporabnika)
-    "name": "User Userson",                # Prilagojena trditev
-    "admin": True,                     # Prilagojena trditev
+    "name": "User Userson",                # Po meri določena trditev
+    "admin": True,                     # Po meri določena trditev
     "iat": datetime.datetime.utcnow(),# Datum izdaje
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Potek
+    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Datum poteka
 }
 
 # kodiraj to
@@ -554,12 +559,12 @@ encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 
 V zgornji kodi smo:
 
-- Definirali glavo z uporabo HS256 kot algoritma in tip JWT.
-- Sestavili tovor, ki vsebuje subjekt ali ID uporabnika, uporabniško ime, vlogo, čas izdaje in čas poteka, s čimer implementiramo časovno omejenost, ki smo jo prej omenili.
+- Določili glavo, ki uporablja HS256 kot algoritem in tip JWT.
+- Sestavili vsebino, ki vsebuje subjekta ali uporabniški ID, uporabniško ime, vlogo, kdaj je bil žeton izdan in kdaj poteče, s tem smo implementirali časovno omejitev, o kateri smo prej govorili.
 
 **TypeScript**
 
-Tukaj bomo potrebovali nekaj odvisnosti, ki nam bodo pomagale sestaviti JWT žeton.
+Tukaj bomo potrebovali nekaj odvisnosti, ki nam pomagajo sestaviti JWT žeton.
 
 Odvisnosti
 
@@ -569,29 +574,29 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Zdaj, ko imamo to, ustvarimo glavo, tovor in preko tega sestavimo kodiran žeton.
+Zdaj, ko imamo to, ustvarimo glavo, vsebino in skozi to ustvarimo kodiran žeton.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Uporabite okoljske spremenljivke v produkciji
+const secretKey = 'your-secret-key'; // Uporabi okoljske spremenljivke v produkciji
 
-// Določite vsebino
+// Določi vsebino
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
   iat: Math.floor(Date.now() / 1000), // Izdan ob
-  exp: Math.floor(Date.now() / 1000) + 60 * 60 // Poteka čez 1 uro
+  exp: Math.floor(Date.now() / 1000) + 60 * 60 // Poteče v 1 uri
 };
 
-// Določite glavo (opcijsko, jsonwebtoken nastavi privzete vrednosti)
+// Določi glavo (izbirno, jsonwebtoken nastavi privzete vrednosti)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
 };
 
-// Ustvarite žeton
+// Ustvari žeton
 const token = jwt.sign(payload, secretKey, {
   algorithm: 'HS256',
   header: header
@@ -602,15 +607,15 @@ console.log('JWT:', token);
 
 Ta žeton je:
 
-Podpisan z uporabo HS256
+Podpisan s HS256
 Veljaven 1 uro
-Vsebuje trditve kot sub, name, admin, iat in exp.
+Vključuje trditve kot sub, name, admin, iat in exp.
 
-### -2- Validiraj žeton
+### -2- Validacija žetona
 
-Prav tako bomo morali validirati žeton, to je nekaj, kar bi morali narediti na strežniku, da zagotovimo, da je tisto, kar nam stranka pošilja, dejansko veljavno. Obstaja veliko preverjanj, ki jih moramo narediti tukaj, od validacije strukture do veljavnosti. Spodbujeni ste tudi, da dodate druga preverjanja, na primer, ali je uporabnik v vašem sistemu in podobno.
+Potrebovali bomo tudi validirati žeton, kar je nekaj, kar bi morali storiti na strežniku, da zagotovimo, da nam stranka pošilja dejansko veljavne podatke. Obstaja veliko preverjanj, ki jih je treba narediti, od preverjanja strukture do veljavnosti. Spodbuja se tudi dodajanje drugih preverjanj, na primer, ali je uporabnik v vašem sistemu in še več.
 
-Za validacijo žetona ga moramo dekodirati, da ga lahko preberemo, nato začnemo preverjati njegovo veljavnost:
+Za validacijo žetona ga moramo dekodirati, da ga preberemo, in potem začnemo preverjati njegovo veljavnost:
 
 **Python**
 
@@ -631,11 +636,11 @@ except InvalidTokenError as e:
 ```
 
 
-V tej kodi kličemo `jwt.decode` z uporabo žetona, skrivnega ključa in izbranega algoritma kot vhod. Opazite, kako uporabljamo konstrukcijo try-catch, saj neuspešna validacija povzroči sprožitev napake.
+V tej kodi kličemo `jwt.decode` z uporabo žetona, skrivnega ključa in izbranega algoritma kot vhodnih podatkov. Opazite, da uporabljamo konstrukcijo try-catch, saj neuspešna validacija povzroči sprožitev napake.
 
 **TypeScript**
 
-Tukaj moramo poklicati `jwt.verify`, da dobimo razkodirano različico žetona, ki jo lahko dodatno analiziramo. Če ta klic ne uspe, to pomeni, da je struktura žetona nepravilna ali pa ni več veljaven.
+Tukaj moramo klicati `jwt.verify`, da dobimo dekodirano različico žetona, ki jo lahko dodatno analiziramo. Če ta klic ne uspe, to pomeni, da je struktura žetona nepravilna ali da ni več veljavna.
 
 ```typescript
 
@@ -647,19 +652,19 @@ try {
 }
 ```
 
-OPOZORILO: kot smo že omenili, bi morali izvesti dodatne kontrole, da zagotovimo, da ta žeton kaže na uporabnika v našem sistemu in da ima uporabnik pravice, ki jih trdi, da jih ima.
+OPOZORILO: kot je bilo že omenjeno, moramo izvesti dodatne preglede, da zagotovimo, da ta žeton ustreza uporabniku v našem sistemu in zagotoviti, da ima uporabnik pravice, ki jih trdi, da jih ima.
 
-Nadalje si oglejmo nadzor dostopa na podlagi vlog, znan tudi kot RBAC.
+Nadalje si poglejmo upravljanje dostopa, temelječe na vlogah, znano tudi kot RBAC.
 
-## Dodajanje nadzora dostopa na podlagi vlog
+## Dodajanje upravljanja dostopa, temelječega na vlogah
 
-Ideja je, da želimo izraziti, da imajo različne vloge različne pravice. Na primer, predvidevamo, da lahko admin naredi vse, običajni uporabnik lahko bere/piše, gost pa lahko samo bere. Zato so tukaj nekaj možnih nivojev dovoljenj:
+Ideja je, da želimo izraziti, da imajo različne vloge različna dovoljenja. Na primer, predpostavimo, da lahko skrbnik naredi vse, običajni uporabnik lahko prebere/pise, gost pa lahko samo bere. Torej, tukaj je nekaj možnih stopenj dovoljenj:
 
-- Admin.Write
+- Admin.Write 
 - User.Read
 - Guest.Read
 
-Poglejmo, kako lahko tak nadzor implementiramo z middleware-jem. Middleware lahko dodamo na posamezno pot ali za vse poti.
+Poglejmo, kako lahko takšno upravljanje nadzorujemo z uporabo vmesnih programov (middleware). Vmesni programi se lahko dodajo na posamezne poti pa tudi za vse poti.
 
 **Python**
 
@@ -668,8 +673,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# NE imejte skrivnosti v kodi, kot je ta, to je samo za demonstracijo. Preberite jo iz varnega mesta.
-SECRET_KEY = "your-secret-key" # postavite to v okoljsko spremenljivko
+# NE imejte skrivnosti v kodi, kot je ta, je samo za namene demonstracije. Preberite jo z varnega mesta.
+SECRET_KEY = "your-secret-key" # to dajte v spremenljivko okolja
 REQUIRED_PERMISSION = "User.Read"
 
 class JWTPermissionMiddleware(BaseHTTPMiddleware):
@@ -696,25 +701,25 @@ class JWTPermissionMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Obstaja nekaj različnih načinov, kako dodati middleware, kot spodaj:
+Obstaja nekaj različnih načinov za dodajanje vmesnega programa, kot spodaj:
 
 ```python
 
-# Alt 1: dodaj vmesnik medgradnika med gradnjo aplikacije starlette
+# Alt 1: dodaj middleware med gradnjo starlette aplikacije
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Alt 2: dodaj vmesnik medgradnika po tem, ko je aplikacija starlette že zgrajena
+# Alt 2: dodaj middleware potem, ko je starlette aplikacija že zgrajena
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Alt 3: dodaj vmesnik medgradnika na posamezno pot
+# Alt 3: dodaj middleware za vsako pot posebej
 routes = [
     Route(
         "/mcp",
-        endpoint=..., # upravljavec
+        endpoint=..., # upravljalec
         middleware=[Middleware(JWTPermissionMiddleware)]
     )
 ]
@@ -722,14 +727,14 @@ routes = [
 
 **TypeScript**
 
-Lahko uporabimo `app.use` in middleware, ki bo tekel za vse zahteve.
+Uporabimo lahko `app.use` in vmesni program, ki bo deloval za vse zahteve.
 
 ```typescript
 app.use((req, res, next) => {
     console.log('Request received:', req.method, req.url, req.headers);
     console.log('Headers:', req.headers["authorization"]);
 
-    // 1. Preverite, ali je bil poslan autorizacijski glava
+    // 1. Preverite, ali je avtentikacijski glavi poslan
 
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
@@ -765,11 +770,11 @@ app.use((req, res, next) => {
 
 ```
 
-Obstaja kar nekaj stvari, ki jih lahko pustimo našemu middleware-ju in ki naj jih middleware NAJ naredi, in sicer:
+Obstaja kar nekaj stvari, ki jih lahko dovolimo našemu vmesnemu programu in jih NAJ bi opravil, in sicer:
 
-1. Preveri, ali je prisoten authorization header
-2. Preveri, ali je žeton veljaven, pokličemo `isValid`, kar je metoda, ki smo jo napisali in preverja celovitost in veljavnost JWT žetona.
-3. Preveri, ali uporabnik obstaja v našem sistemu, to bi morali preveriti.
+1. Preveri, ali obstaja avtentikacijski header
+2. Preveri, ali je žeton veljaven; kličemo `isValid`, metodo, ki smo jo napisali in preverja integriteto ter veljavnost JWT žetona.
+3. Preveri, ali uporabnik obstaja v našem sistemu; to moramo preveriti.
 
    ```typescript
     // uporabniki v podatkovni bazi
@@ -786,9 +791,9 @@ Obstaja kar nekaj stvari, ki jih lahko pustimo našemu middleware-ju in ki naj j
    }
    ```
 
-   Zgoraj smo ustvarili zelo enostaven seznam `users`, ki bi moral biti seveda v bazi podatkov.
+   Zgoraj smo ustvarili zelo preprosto listo `users`, ki bi morala biti seveda shranjena v podatkovni bazi.
 
-4. Poleg tega bi morali tudi preveriti, ali ima žeton ustrezna dovoljenja.
+4. Poleg tega moramo preveriti tudi, ali ima žeton ustrezna dovoljenja.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -796,7 +801,7 @@ Obstaja kar nekaj stvari, ki jih lahko pustimo našemu middleware-ju in ki naj j
    }
    ```
 
-   V kodi zgoraj znotraj middleware-ja preverjamo, da žeton vsebuje dovoljenje User.Read, če ne, vrnemo napako 403. Spodaj je pomočna metoda `hasScopes`.
+   V zgornji kodi v vmesnem programu preverjamo, ali žeton vsebuje dovoljenje User.Read, če ne, pošljemo napako 403. Spodaj je pomočna metoda `hasScopes`.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -845,15 +850,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Zdaj ste videli, kako se middleware lahko uporablja tako za preverjanje pristnosti kot za avtorizacijo, kako pa MCP vpliva na način, kako izvajamo avtentikacijo? To bomo izvedeli v naslednjem poglavju.
+Sedaj ste videli, kako se vmesni program lahko uporablja za avtentikacijo in avtorizacijo, kaj pa MCP, ali to spremeni način, kako izvajamo avtentikacijo? Oglejmo si v naslednjem razdelku.
 
-### -3- Dodajanje RBAC za MCP
+### -3- Dodajanje RBAC v MCP
 
-Do zdaj ste videli, kako dodati RBAC prek middleware-ja, vendar za MCP ni enostavnega načina za dodajanje RBAC na raven posamezne funkcije v MCP, kaj torej naredimo? Preprosto moramo dodati kodo, ki preveri, ali ima odjemalec pravice za klic določenega orodja:
+Do sedaj ste videli, kako lahko dodate RBAC preko vmesnega programa, vendar za MCP ni enostavnega načina za dodajanje RBAC na funkcijo MCP, kaj torej storimo? Preprosto dodamo kodo, kot je ta, ki v tem primeru preverja, ali ima odjemalec pravice do klica določenega orodja:
 
-Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj je nekaj:
+Imate nekaj različnih možnosti, kako doseči RBAC na nivoju posamezne funkcije, tukaj je nekaj:
 
-- Dodajte preverjanje za vsako orodje, vir, poziv, kjer morate preveriti nivo dovoljenja.
+- Dodajte preverjanje za vsako orodje, vir, poziv, kjer morate preveriti raven dovoljenj.
 
    **python**
 
@@ -863,7 +868,7 @@ Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj 
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # stranka ni uspela pri avtorizaciji, sproži napako avtorizacije
+        pass # odjemalec ni uspel pri pooblaščanju, sproži napako pooblastila
    ```
 
    **typescript**
@@ -880,7 +885,7 @@ Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj 
       
       try {
         checkPermissions("Admin.Write", request);
-        // todo, pošlji id v productService in oddaljeno vnos
+        // Naredi, pošlji ID v productService in oddaljeno vnos
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -893,7 +898,7 @@ Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj 
    ```
 
 
-- Uporabite napreden strežniški pristop in request handlerje, da zmanjšate mesta, kjer morate narediti preverjanje.
+- Uporabite napreden strežniški pristop in obdelovalce zahtev, da zmanjšate število mest, kjer morate izvajati preverjanje.
 
    **Python**
 
@@ -913,11 +918,11 @@ Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj 
    async def handle_call_tool(
      name: str, arguments: dict[str, str] | None
    ) -> list[types.TextContent]:
-    # Predpostavite, da je request.user.permissions seznam dovoljenj za uporabnika
+    # Predpostavimo, da je request.user.permissions seznam dovoljenj uporabnika
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):
-        # Vrzi napako "Nimate dovoljenja za uporabo orodja {name}"
+        # Sproži napako "Nimate dovoljenja za uporabo orodja {name}"
         raise Exception(f"You don't have permission to call tool {name}")
      # nadaljuj in pokliči orodje
      # ...
@@ -947,13 +952,13 @@ Imate več različnih možnosti, kako doseči RBAC za posamezno funkcijo, tukaj 
    });
    ```
 
-   Opomba, morate zagotoviti, da vaš middleware dodeli razkodiran žeton lastnosti user v zahtevku, da je zgornja koda poenostavljena.
+   Opomba, morate zagotoviti, da vaš vmesni program dodeli dekodiran žeton lastnosti uporabnika v zahtevi, da je zgornja koda enostavna in berljiva.
 
 ### Povzetek
 
-Zdaj, ko smo razpravljali, kako na splošno dodati podporo za RBAC in posebej za MCP, je čas, da poskusite sami implementirati varnost, da boste zagotovili razumevanje predstavljenih konceptov.
+Zdaj, ko smo razpravljali o tem, kako splošno in za MCP posebej dodati podporo za RBAC, je čas, da poskusite sami implementirati varnost, da boste zagotovili, da ste razumeli predstavljene koncepte.
 
-## Naloga 1: Zgradite MCP strežnik in MCP odjemalca z osnovno avtentikacijo
+## Naloga 1: Ustvarite MCP strežnik in MCP odjemalca z osnovno avtentikacijo
 
 Tukaj boste uporabili, kar ste se naučili o pošiljanju poverilnic prek headerjev.
 
@@ -961,11 +966,11 @@ Tukaj boste uporabili, kar ste se naučili o pošiljanju poverilnic prek headerj
 
 [Rešitev 1](./code/basic/README.md)
 
-## Naloga 2: Nadgradite rešitev iz Naloge 1 na uporabo JWT
+## Naloga 2: Nadgradite rešitev iz Naloge 1 z uporabo JWT
 
 Vzemite prvo rešitev, a tokrat jo izboljšajte.
 
-Namesto uporabe Basic Auth uporabimo JWT.
+Namesto Basic Auth uporabite JWT.
 
 ## Rešitev 2
 
@@ -973,15 +978,15 @@ Namesto uporabe Basic Auth uporabimo JWT.
 
 ## Izziv
 
-Dodajte RBAC za posamezno orodje, kot opisano v poglavju "Dodaj RBAC za MCP".
+Dodajte RBAC na nivoju orodja, kot smo opisali v razdelku "Dodajanje RBAC v MCP".
 
 ## Povzetek
 
-Upamo, da ste se v tem poglavju veliko naučili, od nobene varnosti, do osnovne varnosti, do JWT in kako ga lahko dodamo MCP.
+Upamo, da ste se v tem poglavju veliko naučili, od popolne odsotnosti varnosti, do osnovne varnosti, do JWT in kako ga dodati MCP.
 
-Zgradili smo trdno osnovo s prilagojenimi JWT-ji, a ko rastemo, se premikamo k modelu identitete, ki temelji na standardih. Sprejemanje IdP-ja, kot sta Entra ali Keycloak, nam omogoča sprostitev izdaje, preverjanja in upravljanja življenjskega cikla žetonov na zaupanja vredni platformi — kar nas osvobaja, da se osredotočimo na logiko aplikacije in uporabniško izkušnjo.
+Zgradili smo trdne temelje s prilagojenimi JWT, vendar ko se širimo, prehajamo k modelu identitete, ki temelji na standardih. Sprejetje IdP, kot sta Entra ali Keycloak, nam omogoča izločitev izdaje, validacije in upravljanja življenjske dobe žetonov na zaupanja vredni platformi — kar nam osvobodi roke za osredotočanje na logiko aplikacije in uporabniško izkušnjo.
 
-Za to imamo naprednejše [poglavje o Entro](../../05-AdvancedTopics/mcp-security-entra/README.md)
+Za to imamo še bolj [napredno poglavje o Entri](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
 ## Kaj sledi
 

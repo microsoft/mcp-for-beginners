@@ -1,77 +1,81 @@
 # 🔧 Module 3: Microsoft Foundry Toolkit ဖြင့် အဆင့်မြင့် MCP ဖွံ့ဖြိုးမှု
 
+> [!NOTE]
+> ဤလက်တွေ့လုပ်ငန်းခွင်တွင် Inspector URLs သည် အဟောင်း `/sse` endpoint ကို အသုံးပြုသည်နှင့်
+> pinned MCP SDK `1.9.3` နှင့် Inspector `0.14.0` မှတ်တမ်းများကို ရည်ညွှန်းသည်။ ၎င်းတို့သည်
+> လက်ရှိ `2026-07-28` Streamable HTTP ဥပမာများ မဟုတ်ပါ။
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
-## 🎯 သင်ယူရမည့် ရည်မှန်းချက်များ
+## 🎯 သင်ယူရမည့်ရည်မှန်းချက်များ
 
-ဤဓာတ်သိမ်းပြီးတော့ သင်အောက်ပါအရာများကို လုပ်ဆောင်နိုင်ပါလိမ့်မည်-
+ဤလက်တွေ့လုပ်ငန်းခွင် အဆုံးသတ်ချိန်တွင် သင်သည် အောက်ပါအရာများ ပြုလုပ်နိုင်လိမ့်မည်-
 
-- ✅ Microsoft Foundry Toolkit ကို အသုံးပြု၍ စိတ်ကြိုက် MCP ဆာဗာများ ဖန်တီးနိုင်ခြင်း
-- ✅ နောက်ဆုံး MCP Python SDK (v1.9.3) ကို ပြင်ဆင် အသုံးပြုနိုင်မှု
-- ✅ MCP Inspector ကို စနစ်တကျ ဖွင့်၍ ပြတ်သားသေချာစွာ အသုံးပြုနိုင်ခြင်း
-- ✅ Agent Builder နှင့် Inspector ပတ်ဝန်းကျင်များတွင် MCP ဆာဗာများကို ပြဿနာရှာဖွေပြင်ဆင်နိုင်ခြင်း
-- ✅ အဆင့်မြင့် MCP ဆာဗာ ဖွံ့ဖြိုးမှုလုပ်ငန်းစဉ်များ နားလည်ခြင်း
+- ✅ Microsoft Foundry Toolkit ကို အသုံးပြု၍ မိမိကိုယ်ပိုင် MCP စာဝန်ဆောင်မှုများ ဖန်တီးနိုင်ခြင်း
+- ✅ နောက်ဆုံးပေါ် MCP Python SDK (v1.9.3) ကို ပြင်ဆင်၍ သုံးစွဲနိုင်ခြင်း
+- ✅ MCP Inspector ကို သုံး၍ အမှားရှာဖွေမှု ပြုလုပ်နိုင်ခြင်း
+- ✅ Agent Builder နှင့် Inspector ပတ်ဝန်းကျင်များတွင် MCP စာဝန်ဆောင်မှုများကို debug ပြုလုပ်နိုင်ခြင်း
+- ✅ အဆင့်မြင့် MCP စာဝန်ဆောင်မှု ဖွံ့ဖြိုးမှု လုပ်ငန်းစဉ်များကို နားလည်ခြင်း
 
-## 📋 လိုအပ်ချက်များ
+## 📋 မရှိမဖြစ်လိုအပ်ချက်များ
 
-- Lab 2 (MCP အခြေခံစနစ်) ပြီးမြောက်ပြီးသား ဖြစ်ရမည်
-- VS Code တွင် Microsoft Foundry Toolkit ထည့်သွင်းပြီး အသုံးပြုနိုင်ခြင်း
+- Lab 2 (MCP အခြေခံများ) ပြီးမြောက်ပြီးသားဖြစ်ရပါမည်
+- Microsoft Foundry Toolkit extension ပါရှိသော VS Code
 - Python 3.10+ ပတ်ဝန်းကျင်
-- Inspector အသုံးပြုရန် Node.js နှင့် npm တပ်ဆင်ပြီးဖြစ်ရမည်
+- Inspector စီစဉ်ရန် Node.js နှင့် npm
 
-## 🏗️ သင်တည်ဆောက်မည့် အရာ
+## 🏗️ သင်တည်ဆောက်မယ့် အရာ
 
-ဤလက်တွေ့လေ့ကျင့်မှုပြုလုပ်ကာ သင် တည်ဆောက်မည့် **ဟာသဝေ MCP ဆာဗာ** သည်-
-
-- စိတ်ကြိုက် MCP ဆာဗာ အကောင်အထည်ဖော်ခြင်း
-- Microsoft Foundry Toolkit Agent Builder နဲ့ ပေါင်းစပ် ဆက်သွယ်ခြင်း
-- အလုပ်ကျွမ်းကျင်သည့် ပြဿနာရှာ‌ဖွေရန် လုပ်ငန်းစဉ်များ
-- ခေတ်မီ MCP SDK အသုံးပြုပုံ များ
-
----
-
-## 🔧 အဓိကအစိတ်အပိုင်းများ ကြည့်ရှုခြင်း
-
-### 🐍 MCP Python SDK  
-Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP ဆာဗာများ တည်ဆောက်ရာ အခြေခံဖြစ်သည်။ သင်သည် version 1.9.3 ကို ပြဿနာရှာဖွေမှုတိုးတက်မှုများနှင့် အသုံးပြုပါမည်။
-
-### 🔍 MCP Inspector  
-ပြဿနာရှာဖွေရေးအတွက် စူးစမ်းစစ်ဆေးမှုကိရိယာ အလိုအလျောက် ရရှိသည်-  
-- အချိန်နဲ့တပြေးညီ ဆာဗာစောင့်ကြည့်ခြင်း  
-- ကိရိယာ လည်ပတ်မှုမြင်ကွင်း  
-- ကွန်ယက် တောင်းဆိုမှု/တုံ့ပြန်မှု စစ်ဆေးမှု  
-- အပြန်အလှန် စမ်းသပ်နိုင်သော ပတ်ဝန်းကျင်  
+ဤလက်တွေ့လုပ်ငန်းခွင်တွင် သင်တည်ဆောက်မည့် **Weather MCP Server** သည် အောက်ပါများကို ပြသပါမည်-
+- မိမိကိုယ်ပိုင် MCP စာဝန်ဆောင်မှု အကောင်အထည်ဖော်ခြင်း
+- Microsoft Foundry Toolkit Agent Builder နှင့် ပေါင်းစပ်ခြင်း
+- ပညာရှင်အဆင့် debugging လုပ်ငန်းစဉ်များ
+- နောက်ဆုံးပေါ် MCP SDK အသုံးပြုမှု ပုံစံများ
 
 ---
 
-## 📖 အဆင့်ချင်းဆင့် အကောင်အထည်ဖော်ခြင်း
+## 🔧 အဓိကအစိတ်အပိုင်းများအကျဉ်းချုပ်
 
-### အဆင့် ၁: Agent Builder တွင် WeatherAgent ဖန်တီးခြင်း
+### 🐍 MCP Python SDK
+Model Context Protocol Python SDK သည် မိမိကိုယ်ပိုင် MCP စာဝန်ဆောင်မှုများ တည်ဆောက်ရန် အခြေခံထားသည်။ သင်သည် ဗားရှင်း 1.9.3 နှင့် debugging စွမ်းဆောင်ရည်မြှင့်တင်ထားသည့် ဗားရှင်းကို အသုံးပြုမှာဖြစ်သည်။
 
-1. VS Code တွင် Microsoft Foundry Toolkit extension မှတဆင့် **Agent Builder ကို ဖွင့်ပါ**  
-2. အောက်ပါရည်ညွှန်းချက်ဖြင့် **အေးဂျင့်အသစ်တစ်ခု ဖန်တီးပါ**  
-   - အေးဂျင့်အမည်: `WeatherAgent`  
+### 🔍 MCP Inspector
+ပြင်းထန်ကျယ်ပြန့်သော debugging ကိရိယာဖြစ်ပြီး အောက်ပါအရာများကို ပံ့ပိုးပေးသည်-
+- တိုက်ရိုက် စာဝန်ဆောင်မှု စောင့်ကြည့်မှု
+- ကိရိယာဆောင်ရွက်ချက် မြင်ကွင်းပြခြင်း
+- ကွန်ယက် တောင်းဆိုမှု/တုံ့ပြန်မှု စစ်ဆေးမှု
+- လက်တွေ့စမ်းသပ်ရန် ပတ်ဝန်းကျင် ပေးခြင်း
+
+---
+
+## 📖 အဆင့်ဆင့် ဆောင်ရွက်နည်း
+
+### အဆင့် 1: Agent Builder တွင် WeatherAgent တည်ဆောက်ခြင်း
+
+1. **VS Code ထဲတွင် Microsoft Foundry Toolkit extension မှတဆင့် Agent Builder ကို စတင်ဖွင့်ပါ**
+2. **အောက်ပါပြင်ဆင်ချက်ဖြင့် agent အသစ်တစ်ခုဖန်တီးပါ:**
+   - Agent Name: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/my/Agent.c9c33f6a412b4cde.webp)
 
-### အဆင့် ၂: MCP ဆာဗာ ပရောဂျက် စတင်တည်ဆောက်ခြင်း
+### အဆင့် 2: MCP Server Project သတ်မှတ်ခြင်း
 
-1. Agent Builder တွင် **Tools → Add Tool** သို့ သွားပါ  
-2. ရွေးချယ်မှုအဖြစ် **“MCP Server”** ကိုရွေးပါ  
-3. **“Create A new MCP Server”** ကို ရွေးချယ်ပါ  
-4. `python-weather` နမူနာကို ရွေးချယ်ပါ  
-5. ဆာဗာအမည်ကိုရေးပါ - `weather_mcp`  
+1. **Agent Builder တွင် Tools → Add Tool သို့ သွားပါ**
+2. **ရရှိနိုင်သော ရွေးချယ်စရာများထဲမှ "MCP Server" ကို ရွေးချယ်ပါ**
+3. **"Create A new MCP Server" ကို ရွေးချယ်ပါ**
+4. **`python-weather` template ကို ရွေးချယ်ပါ**
+5. **သင်၏ server အမည်အား `weather_mcp` ဟု သတ်မှတ်ပါ**
 
 ![Python Template Selection](../../../../translated_images/my/Pythontemplate.9d0a2913c6491500.webp)
 
-### အဆင့် ၃: ပရောဂျက်ကို ဖွင့်ပြီး စစ်ဆေးပါ
+### အဆင့် 3: ပရောဂျက်ဖွင့်၍ စစ်ဆေးခြင်း
 
-1. VS Code တွင် ဖန်တီးထားသော ပရောဂျက်ဖိုင်များကို ဖွင့်ပါ  
-2. ပရောဂျက်အဆောက်အအုံကို သုံးသပ်ပါ။  
+1. **ဖန်တီးထားသည့် ပရောဂျက်ကို VS Code တွင် ဖွင့်ပါ**
+2. **ပရောဂျက်၏ ဖွဲ့စည်းတည်ဆောက်ပုံကို ပြန်လည်ကြည့်ရှုပါ။**
    ```
    weather_mcp/
    ├── src/
@@ -86,34 +90,36 @@ Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP �
    ├── pyproject.toml
    └── README.md
    ```
-  
-### အဆင့် ၄: နောက်ဆုံး MCP SDK သို့ အဆင့်မြှင့်တင်ခြင်း
 
-> **🔍 အဆင့်မြှင့်တင်ရန် အကြောင်းရင်း**: နောက်ဆုံး MCP SDK (v1.9.3) နှင့် Inspector ဝန်ဆောင်မှု (0.14.0) ကို အသုံးပြု၍ လုပ်ဆောင်ချက်များ မြှင့်တင်ရန်ဖြစ်သည်။
+### အဆင့် 4: နောက်ဆုံးပေါ် MCP SDK သို့ မြှင့်တင်ခြင်း
 
-#### 4a. Python Dependencies များကို ပြင်ဆင်ခြင်း
+> **🔍 ဘာကြောင့်မြှင့်တင်ရတာလဲ?** နောက်ဆုံး MCP SDK (v1.9.3) နှင့် Inspector ဝန်ဆောင်မှု (0.14.0) ကို အသုံးပြုရန်ဖြစ်ပြီး Enhanced အင်္ဂါရပ်များနှင့် Debugging စွမ်းဆောင်ရည်များအတွက်ဖြစ်သည်။
 
-**`pyproject.toml` ကို ပြင်ပါ:** [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml) မှ
+#### 4a. Python မှ ဂရုတစိုက်နေခြင်း
 
-#### 4b. Inspector ဖိုင်ပြင်ဆင်ခြင်း
+**`pyproject.toml` ကို ပြင်ဆင်ပါ:** အောက်ပါလိပ်စာတွင် ပြင်ဆင်ရန် [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
-**`inspector/package.json` ကို ပြင်ပါ:** [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Inspector Dependencies ပြင်ဆင်ခြင်း
+#### 4b. Inspector ပြင်ဆင်မှု
 
-**`inspector/package-lock.json` ကို ပြင်ပါ:** [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**`inspector/package.json` ကို ပြင်ဆင်ပါ:** အောက်ပါလိပ်စာတွင် ပြင်ဆင်ရန် [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-> **📝 မှတ်ချက်:** ဤဖိုင်တွင် ခိုင်မာသော dependency ဖော်ပြချက်များပါဝင်သည်။ အောက်တွင် လိုအပ်သော အချိုးအစားပုံစံကို ဖော်ပြထားပြီး စုံလင်သောဖိုင်ပေးထားပါသည်။
+#### 4c. Inspector တွင် သတ်မှတ်ထားသည့် မလိုအပ်ချက်များ ပြင်ဆင်ခြင်း
 
-> **⚡ ပြည့်စုံသော Package Lock:** ပြည့်စုံသော package-lock.json တွင် dependency ဖော်ပြချက် ~3000 လိုင်းရှိသည်။ အထက်ဖော်ပြသည့်အတိုင်း လိုအပ်ချက်ကို အသေးစိတ်သိရန် ဖိုင်အား အသုံးပြုပါ။
+**`inspector/package-lock.json` ကို ပြင်ဆင်ပါ:** အောက်ပါလိပ်စာတွင် ပြင်ဆင်ရန် [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-### အဆင့် ၅: VS Code Debugging ပြင်ဆင်ခြင်း
+> **📝 မှတ်ချက်:** ဤဖိုင်တွင် မလိုအပ်ချက်များအများအပြား သတ်မှတ်ထားသည်။ အောက်တွင် အရေးကြီးသော ဖွဲ့စည်းပုံဖြစ်ပြီး စိစစ်မှု တိကျမှုအတွက် အပြည့်အစုံပါရှိသည်။
 
-*မှတ်ချက်: ဖိုင်များကို သတ်မှတ်နေရာတွင် ကူးယူ ထည့်သွင်းပေးပါ*
 
-#### 5a. Launch Configuration ပြင်ဆင်ခြင်း
+> **⚡ အပြည့်အစုံ Package Lock:** package-lock.json စာမျက်နှာ ၃၀၀၀ ကျော်သော မလိုအပ်ချက်များ သတ်မှတ်ချက်ပါရှိသည်။ အထက်ပါ ဖော်ပြချက်မှာ အဓိက ဖွဲ့စည်းပုံဖြစ်သည် - လိုအပ်ပါက အပြည့်အစုံ ဖိုင်ကို အသုံးပြုပါ။
 
-**`.vscode/launch.json` ကို ပြင်ပါ။**
+### အဆင့် 5: VS Code တွင် Debugging ပြင်ဆင်ခြင်း
+
+*မှတ်ချက်: သတ်မှတ်ထားသည့်လမ်းကြောင်းရှိ ဖိုင်ကို ကူးယူ ပြင်ဆင်ရန် ကျေးဇူးပြု၍ ဆောင်ရွက်ပါ*
+
+#### 5a. Launch ပြင်ဆင်မှု သတင်းအချက်အလက် ပြင်ဆင်ခြင်း
+
+**`.vscode/launch.json` ကို ပြင်ဆင်ပါ:**
 
 ```json
 {
@@ -189,8 +195,8 @@ Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP �
   ]
 }
 ```
-  
-**`.vscode/tasks.json` ကို ပြင်ဆင်ပါ။**
+
+**`.vscode/tasks.json` ကို ပြင်ဆင်ပါ:**
 
 ```
 {
@@ -295,99 +301,98 @@ Model Context Protocol Python SDK သည် စိတ်ကြိုက် MCP �
 
 ---
 
-## 🚀 MCP ဆာဗာကို ပြေးဆွဲပြီး စမ်းသပ်ခြင်း
+## 🚀 သင်၏ MCP စာဝန်ဆောင်မှု ကို စတင်ရန်နှင့် စမ်းသပ်ရန်
 
-### အဆင့် ၆: Dependencies များ ထည့်သွင်းခြင်း
+### အဆင့် 6: မလိုအပ်ချက်များ ထည့်သွင်းတပ်ဆင်ခြင်း
 
-ပြင်ဆင်မှုများ ပြီးဆုံး၍ အောက်ပါ command များကို ပြုလုပ်ပါ-
+ပြင်ဆင်မှုများ ပြုလုပ်ပြီးနောက် အောက်ပါ command များကို လုပ်ဆောင်ပါ-
 
-**Python dependencies ထည့်သွင်းရန်:**  
+**Python မလိုအပ်ချက်များ တပ်ဆင်ပါ:**
 ```bash
 uv sync
 ```
-  
-**Inspector dependencies ထည့်သွင်းရန်:**  
+
+**Inspector မလိုအပ်ချက်များ တပ်ဆင်ပါ:**
 ```bash
 cd inspector
 npm install
 ```
 
+### အဆင့် 7: Agent Builder ဖြင့် Debug ပြုလုပ်ခြင်း
 
-### အဆင့် ၇: Agent Builder ဖြင့် Debug ပြုလုပ်ခြင်း
+1. **F5 ကိုနှိပ်မည် သို့မဟုတ် "Debug in Agent Builder" ပြင်ဆင်မှုကို အသုံးပြုပါ**
+2. **Debug panel မှ compound ပြင်ဆင်မှုကို ရွေးချယ်ပါ**
+3. **စာဝန်ဆောင်မှုစတင်သည့်အချိန်နှင့် Agent Builder ဖွင့်လှစ်မှုကို စောင့်ဆိုင်းပါ**
+4. **သင့် weather MCP server ကို သဘာဝ ဘာသာ စကားဖြင့် စမ်းသပ်ပါ**
 
-1. **F5 ခလုတ်ကို နှိပ်ပါ** သို့မဟုတ် **"Debug in Agent Builder"** configuration ကို အသုံးပြုပါ  
-2. Debug panel မှ compound configuration ကို ရွေးချယ်ပါ  
-3. ဆာဗာ စတင်ပြီး Agent Builder ဖွင့်လှစ်မှသာ စောင့်ပါ  
-4. သဘာဝဘာသာ စကားဖြင့် weather MCP ဆာဗာကို စမ်းသပ် ကြည့်ပါ
-
-အောက်ပါပုံစံဖြင့် input ပေးပါ
+ဤလို Input prompt ကို အသုံးပြုပါ
 
 SYSTEM_PROMPT
 
 ```
 You are my weather assistant
 ```
-  
+
 USER_PROMPT
 
 ```
 How's the weather like in Seattle
 ```
-  
+
 ![Agent Builder Debug Result](../../../../translated_images/my/Result.6ac570f7d2b1d538.webp)
 
-### အဆင့် ၈: MCP Inspector ဖြင့် Debug ပြုလုပ်ခြင်း
+### အဆင့် 8: MCP Inspector ဖြင့် Debug ပြုလုပ်ခြင်း
 
-1. **"Debug in Inspector"** configuration ကို သုံးပါ (Edge သို့ Chrome)  
-2. Inspector အင်တာဖေ့စ်ကို `http://localhost:6274` တွင် ဖွင့်ပါ  
-3. အပြန်အလှန် စမ်းသပ်နိုင်သော ပတ်ဝန်းကျင်များကို ရှာဖွေလိုက်ပါ-  
-   - ရရှိနိုင်သည့် ကိရိယာများ ကြည့်ရှုခြင်း  
-   - ကိရိယာ လည်ပတ်မှု စမ်းသပ်ခြင်း  
-   - ကွန်ယက် တောင်းဆိုမှုများ စောင့်ကြည့်ခြင်း  
-   - ဆာဗာ တုံ့ပြန်မှုများ ပြဿနာရှာဖွေရေး  
+1. **"Debug in Inspector" ပြင်ဆင်မှုကို အသုံးပြုပါ (Edge သို့မဟုတ် Chrome)**
+2. **Inspector အင်တာဖေ့စ်ကို `http://localhost:6274` တွင် ဖွင့်ပါ**
+3. **လက်တွေ့စမ်းသပ်ပတ်ဝန်းကျင် ကို လေ့လာကြည့်ရှုပါ:**
+   - ရရှိနိုင်သော ကိရိယာများ ကြည့်ရှုခြင်း
+   - ကိရိယာ ဆောင်ရွက်ချက် စမ်းသပ်ခြင်း
+   - ကွန်ယက် တောင်းဆိုမှုများ စောင့်ကြည့်ခြင်း
+   - စာဝန်ဆောင်မှုတုံ့ပြန်မှုများ Debug ပြုလုပ်ခြင်း
 
 ![MCP Inspector Interface](../../../../translated_images/my/Inspector.5672415cd02fe873.webp)
 
 ---
 
-## 🎯 အဓိကသင်ယူသည့်အချက်များ
+## 🎯 အဓိက သင်ယူရမည့် ရလဒ်များ
 
-ဤလက်တွေ့လေ့ကျင့်မှုပြီးဆုံးရာတွင် သင်မှာ-
+ဤလက်တွေ့လုပ်ငန်းခွင် ပြီးမြောက်ခြင်းဖြင့် သင်သည်-
 
-- [x] Microsoft Foundry Toolkit နမူနာများကို အသုံးပြု၍ စိတ်ကြိုက် MCP ဆာဗာ ဖန်တီးတတ်ခြင်း  
-- [x] လုပ်ဆောင်ချက်များ မြှင့်တင်ရန် နောက်ဆုံး MCP SDK (v1.9.3) သို့ အဆင့်မြှင့်တင်ထားခြင်း  
-- [x] Agent Builder နှင့် Inspector နှစ်ခုလုံးအတွက် အလုပ်ကျွမ်းကျင်သည့် ပြဿနာရှာဖွေရေး လုပ်ငန်းစဉ်များ ပြင်ဆင်ထားခြင်း  
-- [x] အပြန်အလှန် စမ်းသပ်နိုင်ရန် MCP Inspector သတ်မှတ်ထားခြင်း  
-- [x] MCP ဖွံ့ဖြိုးမှုအတွက် VS Code debugging ဖြေရှင်းချက်များကျွမ်းကျင်စွာ အသုံးပြုနိုင်ခြင်း  
+- [x] Microsoft Foundry Toolkit template များကို အသုံးပြု၍ မိမိကိုယ်ပိုင် MCP စာဝန်ဆောင်မှု တည်ဆောက်နိုင်ခဲ့သည်
+- [x] အင်္ဂါရပ်များ မြှင့်တင်ထားသည့် နောက်ဆုံး MCP SDK (v1.9.3) သို့ ပြောင်းလဲနိုင်ခဲ့သည်
+- [x] Agent Builder နှင့် Inspector နှစ်ခုစလုံးအတွက် ပညာရှင်အဆင့် Debugging လုပ်ငန်းစဉ်များ စီမံနိုင်ခဲ့သည်
+- [x] MCP Inspector ကို တည်ဆောက်ကာ လက်တွေ့ စမ်းသပ်မှုတွင် အသုံးပြုနိုင်ခဲ့သည်
+- [x] MCP ဖွံ့ဖြိုးမှုအတွက် VS Code debugging ပြင်ဆင်မှုများ သေချာကျွမ်းကျင်စွာ အသုံးပြုနိုင်ခဲ့သည်
 
-## 🔧 အဆင့်မြင့် လုပ်ဆောင်ချက်များ ရှာဖွေမှု
+## 🔧 ရှာဖွေတင်သွင်းထားသည့် အဆင့်မြင့် အင်္ဂါရပ်များ
 
-| လုပ်ဆောင်ချက် | ဖေါ်ပြချက် | အသုံးပြုမှု |
+| အင်္ဂါရပ် | ဖော်ပြချက် | အသုံးပြုမှု |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | နောက်ဆုံး protocol အကောင်အထည်ဖော်မှု | ခေတ်မီဆာဗာဖွံ့ဖြိုးမှု |
-| **MCP Inspector 0.14.0** | အပြန်အလှန် ပြဿနာရှာဖွေရေးကိရိယာ | အချိန်နဲ့တပြေးညီ ဆာဗာ စမ်းသပ်မှု |
-| **VS Code Debugging** | ပေါင်းစပ်တာဝန်ခံဖွံ့ဖြိုးရေးပတ်ဝန်းကျင် | အလုပ်ကျွမ်းကျင် ပြဿနာရှာဖွေရေး |
-| **Agent Builder ပေါင်းစပ်မှု** | Microsoft Foundry Toolkit နဲ့ တိုက်ရိုက်ချိတ်ဆက်မှု | အေးဂျင့် စမ်းသပ်မှု အဆုံးအဖြတ် |
+| **MCP Python SDK v1.9.3** | နောက်ဆုံး protocol အကောင်အထည်ဖော်မှု | ခေတ်မှီစာဝန်ဆောင်မှု ဖွံ့ဖြိုးမှု |
+| **MCP Inspector 0.14.0** | လက်တွေ့ Debugging ကိရိယာ | တိုက်ရိုက် စာဝန်ဆောင်မှု စမ်းသပ်မှု |
+| **VS Code Debugging** | ပေါင်းစပ်ဖွံ့ဖြိုးရေး ပတ်ဝန်းကျင် | ပညာရှင်အဆင့် Debugging လုပ်ငန်းစဉ် |
+| **Agent Builder ပေါင်းစပ်မှု** | Microsoft Foundry Toolkit ဖြင့် တိုက်ရိုက်ချိတ်ဆက်မှု | အကျုံးဝင်ထားသော agent စမ်းသပ်မှု |
 
-## 📚 ထပ်ဆင့် အရင်းအမြစ်များ
+## 📚 အပို အရင်းအမြစ်များ
 
-- [MCP Python SDK Documentation](https://modelcontextprotocol.io/docs/sdk/python)  
-- [Microsoft Foundry Toolkit Extension Guide](https://code.visualstudio.com/docs/ai/ai-toolkit)  
-- [VS Code Debugging Documentation](https://code.visualstudio.com/docs/editor/debugging)  
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/docs/concepts/architecture)  
+- [MCP Python SDK စာတမ်းများ](https://modelcontextprotocol.io/docs/sdk/python)
+- [Microsoft Foundry Toolkit Extension လမ်းညွှန်](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [VS Code Debugging စာတမ်းများ](https://code.visualstudio.com/docs/editor/debugging)
+- [Model Context Protocol ဖော်ပြချက်](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 ဂုဏ်ယူပါတယ်!** သင် Lab 3 ကို အောင်မြင်စွာပြီးမြောက်ပြီး စိတ်ကြိုက် MCP ဆာဗာများ ဖန်တီး၊ ပြဿနာရှာဖွေရေးနှင့် ထုတ်အုံးခြင်းတို့ကို အလုပ်ကျွမ်းကျင်စွာ လုပ်ဆောင်နိုင်ပြီဖြစ်သည်။
+**🎉 ဂုဏ်ပြုပါတယ်!** Lab 3 ကို အောင်မြင်စွာ ပြီးမြောက်ပြီးဖြစ်သည်။ သင်သည် အခုမှ ပညာရှင်ဖွံ့ဖြိုးမှု လုပ်ငန်းစဉ်များကို အသုံးပြုကာ မိမိလက်တွင် MCP စာဝန်ဆောင်မှုများ တည်ဆောက်၊ debug နှင့် ဖြန့်ချိနိုင်ပါပြီ။
 
-### 🔜 နောက် Module ကို ဆက်လုပ်ရန်
+### 🔜 နောက်ထပ် Module သို့ ဆက်လက်ရန်
 
-သင်၏ MCP ကျွမ်းကျင်မှုများကို လက်တွေ့လုပ်ငန်းစဉ်တွင် အသုံးပြုရန် ပြင်ဆင်လျှက်ရှိပါသလား? **[Module 4: Practical MCP Development - Custom GitHub Clone Server](../lab4/README.md)** သို့ ဆက်လက်သွားပါ။ အဲဒီမှာ သင်သည်-  
-- ထုတ်လုပ်မှုအသင့် MCP ဆာဗာ တည်ဆောက်၍ GitHub repository လုပ်ငန်းစဉ်များကို အလိုအလျောက်စီမံနိုင်ပါမည်  
-- MCP မှတစ်ဆင့် GitHub repository ကို ကလုန်းလုပ်ဆောင်ချက် ထည့်သွင်းနိုင်မည်  
-- စိတ်ကြိုက် MCP ဆာဗာများကို VS Code နှင့် GitHub Copilot Agent Mode တို့နှင့် ပေါင်းစပ်အသုံးပြုနိုင်မည်  
-- စိတ်ကြိုက် MCP ဆာဗာများကို ထုတ်လုပ်မှု ပတ်ဝန်းကျင်များတွင် စမ်းသပ်၊ ထုတ်လုပ်နိုင်မည်  
-- ဖွံ့ဖြိုးသူများအတွက် လက်တွေ့ workflow automation ပညာရပ်များ သင်ယူနိုင်မည်
+သင်၏ MCP ကျွမ်းကျင်မှုများကို အပြည့်အစုံအသုံးချ၍ စိပွဲလုပ်ငန်းစဉ်ကို စတင်လိုပါသလား? ကျေးဇူးပြု၍ **[Module 4: Practical MCP Development - Custom GitHub Clone Server](../lab4/README.md)** သို့ ဆက်လက်ပါ။ ဤModule တွင်-
+- GitHub repository လုပ်ငန်းစဉ်များကို အလိုအလျောက်ဆောင်ရွက်နိုင်သော ထုတ်လုပ်မှုပတ်ဝန်းကျင်အတွက် MCP စာဝန်ဆောင်မှု တည်ဆောက်မည်
+- MCP ဖြင့် GitHub repository cloning လုပ်ဆောင်မှု ထည့်သွင်းမည်
+- VS Code နှင့် GitHub Copilot Agent Mode တွင် မိမိကိုယ်ပိုင် MCP စာဝန်ဆောင်မှုများ ပေါင်းစပ်မည်
+- ထုတ်လုပ်မှုပတ်ဝန်းကျင်တွင် MCP စာဝန်ဆောင်မှုများ စမ်းသပ်ခြင်းနှင့် ဖြန့်ချိခြင်း ပြုလုပ်မည်
+- ဖွံ့ဖြိုးသူများအတွက် လုံလောက်သော လုပ်ငန်းစဉ် အလိုအလျောက်ဖြစ်စေရေးသင်ကြားမည်
 
 ---
 
