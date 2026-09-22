@@ -1,215 +1,216 @@
-# Giao thức Bối cảnh Mô hình (MCP) cho Người mới bắt đầu - Hướng dẫn học
+# Giao Thức Bối Cảnh Mô Hình (MCP) cho Người Mới Bắt Đầu - Hướng Dẫn Học Tập
 
-Hướng dẫn học này cung cấp tổng quan về cấu trúc và nội dung của kho lưu trữ cho chương trình "Giao thức Bối cảnh Mô hình (MCP) cho Người mới bắt đầu". Sử dụng hướng dẫn này để điều hướng kho lưu trữ một cách hiệu quả và tận dụng tối đa các tài nguyên có sẵn.
+Hướng dẫn học tập này cung cấp tổng quan về cấu trúc và nội dung kho lưu trữ cho chương trình "Giao Thức Bối Cảnh Mô Hình (MCP) cho Người Mới Bắt Đầu". Sử dụng hướng dẫn này để điều hướng kho lưu trữ một cách hiệu quả và tận dụng tối đa các tài nguyên có sẵn.
 
-## Tổng quan kho lưu trữ
+## Tổng Quan Kho Lưu Trữ
 
-Giao thức Bối cảnh Mô hình (MCP) là một khuôn khổ chuẩn hóa cho các tương tác giữa các mô hình AI và ứng dụng khách. Ban đầu được tạo bởi Anthropic, MCP hiện được cộng đồng MCP rộng lớn hơn duy trì thông qua tổ chức chính thức trên GitHub. Kho lưu trữ này cung cấp một chương trình học toàn diện với các ví dụ mã thực hành bằng C#, Java, JavaScript, Python và TypeScript, thiết kế dành cho các nhà phát triển AI, kiến trúc sư hệ thống và kỹ sư phần mềm.
+Giao Thức Bối Cảnh Mô Hình (MCP) là một khuôn khổ tiêu chuẩn hóa cho các tương tác giữa các mô hình AI và các ứng dụng khách. Ban đầu được tạo bởi Anthropic, MCP hiện được duy trì bởi cộng đồng MCP rộng hơn thông qua tổ chức chính thức trên GitHub. Kho lưu trữ này cung cấp một chương trình học tập toàn diện với các ví dụ mã thực hành bằng C#, Java, JavaScript, Python và TypeScript, dành cho các nhà phát triển AI, kiến trúc sư hệ thống và kỹ sư phần mềm.
 
-## Bản đồ chương trình học trực quan
+## Bản Đồ Chương Trình Học Trực Quan
 
 ```mermaid
 mindmap
-  root((MCP dành cho Người mới bắt đầu))
-    00. Giới thiệu
+  root((MCP for Beginners))
+    00. Introduction
       ::icon(fa fa-book)
-      (Tổng quan Giao thức)
-      (Lợi ích Chuẩn hóa)
-      (Các Trường hợp Sử dụng Thực tế)
-      (Cơ bản về Tích hợp AI)
-    01. Khái niệm Cốt lõi
+      (Protocol Overview)
+      (Standardization Benefits)
+      (Real-world Use Cases)
+      (AI Integration Fundamentals)
+    01. Core Concepts
       ::icon(fa fa-puzzle-piece)
-      (Kiến trúc Client-Server)
-      (Thành phần Giao thức)
-      (Mẫu Tin nhắn)
-      (Cơ chế Truyền tải)
-      (Tác vụ - Thử nghiệm)
-      (Chú thích Công cụ)
-    02. Bảo mật
+      (Client-Server Architecture)
+      (Protocol Components)
+      (Messaging Patterns)
+      (Transport Mechanisms)
+      (Tasks - Experimental)
+      (Tool Annotations)
+    02. Security
       ::icon(fa fa-shield)
-      (Các Mối đe dọa AI Đặc thù)
-      (Thực hành Tốt nhất 2025)
-      (An toàn Nội dung Azure)
-      (Xác thực & Ủy quyền)
-      (Lá chắn Prompt Microsoft)
+      (AI-Specific Threats)
+      (Best Practices 2025)
+      (Azure Content Safety)
+      (Auth & Authorization)
+      (Microsoft Prompt Shields)
       (OWASP MCP Top 10)
-      (Hội thảo Bảo mật Sherpa)
-    03. Bắt đầu
+      (Sherpa Security Workshop)
+    03. Getting Started
       ::icon(fa fa-rocket)
-      (Cài đặt Server Đầu tiên)
-      (Phát triển Client)
-      (Tích hợp Client LLM)
-      (Mở rộng VS Code)
-      (Cài đặt Server SSE)
+      (First Server Implementation)
+      (Client Development)
+      (LLM Client Integration)
+      (VS Code Extensions)
+      (SSE Server Setup)
       (HTTP Streaming)
-      (Tích hợp Bộ công cụ AI)
-      (Khung thử nghiệm)
-      (Sử dụng Server Nâng cao)
-      (Xác thực Đơn giản)
-      (Chiến lược Triển khai)
-      (Cài đặt Máy chủ MCP)
-      (Trình kiểm tra MCP)
-    04. Triển khai Thực tế
+      (AI Toolkit Integration)
+      (Testing Frameworks)
+      (Advanced Server Usage)
+      (Simple Auth)
+      (Deployment Strategies)
+      (MCP Hosts Setup)
+      (MCP Inspector)
+    04. Practical Implementation
       ::icon(fa fa-code)
-      (SDK Đa ngôn ngữ)
-      (Kiểm thử & Gỡ lỗi)
-      (Mẫu Prompt)
-      (Dự án Mẫu)
-      (Mẫu Sản xuất)
-      (Chiến lược Phân trang)
-    05. Chủ đề Nâng cao
+      (Multi-Language SDKs)
+      (Testing & Debugging)
+      (Prompt Templates)
+      (Sample Projects)
+      (Production Patterns)
+      (Pagination Strategies)
+    05. Advanced Topics
       ::icon(fa fa-graduation-cap)
-      (Kỹ thuật Context)
-      (Tích hợp Đặc vụ Foundry)
-      (Quy trình AI Đa phương thức)
-      (Xác thực OAuth2)
-      (Tìm kiếm Thời gian Thực)
-      (Giao thức Streaming)
-      (Context Gốc)
-      (Chiến lược Định tuyến)
-      (Kỹ thuật Lấy mẫu)
-      (Giải pháp Mở rộng)
-      (Củng cố Bảo mật)
-      (Tích hợp Entra ID)
-      (Tìm kiếm Web MCP)
-      (Phân tích Chức năng Giao thức)
-      (Lý luận Đa đại lý Đối kháng)
+      (Context Engineering)
+      (Foundry Agent Integration)
+      (Multi-modal AI Workflows)
+      (OAuth2 Authentication)
+      (Real-time Search)
+      (Streaming Protocols)
+      (Root Contexts)
+      (Routing Strategies)
+      (Sampling Techniques)
+      (Scaling Solutions)
+      (Security Hardening)
+      (Entra ID Integration)
+      (Web Search MCP)
+      (Protocol Features Deep Dive)
+      (Adversarial Multi-Agent Reasoning)
       
-    06. Cộng đồng
+    06. Community
       ::icon(fa fa-users)
-      (Đóng góp Mã nguồn)
-      (Tài liệu)
-      (Hệ sinh thái Client MCP)
-      (Đăng ký Server MCP)
-      (Công cụ Tạo hình ảnh)
-      (Hợp tác GitHub)
-    07. Áp dụng Sớm
+      (Code Contributions)
+      (Documentation)
+      (MCP Client Ecosystem)
+      (MCP Server Registry)
+      (Image Generation Tools)
+      (GitHub Collaboration)
+    07. Early Adoption
       ::icon(fa fa-lightbulb)
-      (Triển khai Sản xuất)
-      (Server MCP Microsoft)
-      (Dịch vụ Azure MCP)
-      (Nghiên cứu Trường hợp Doanh nghiệp)
-      (Lộ trình Tương lai)
-    08. Thực hành Tốt nhất
+      (Production Deployments)
+      (Microsoft MCP Servers)
+      (Azure MCP Service)
+      (Enterprise Case Studies)
+      (Future Roadmap)
+    08. Best Practices
       ::icon(fa fa-check)
-      (Tối ưu Hiệu suất)
-      (Chịu lỗi)
-      (Độ bền Hệ thống)
-      (Giám sát & Quan sát)
-    09. Nghiên cứu Trường hợp
+      (Performance Optimization)
+      (Fault Tolerance)
+      (System Resilience)
+      (Monitoring & Observability)
+    09. Case Studies
       ::icon(fa fa-file-text)
-      (Quản lý API Azure)
-      (Đại lý Du lịch AI)
-      (Tích hợp Azure DevOps)
-      (Tài liệu MCP)
-      (Đăng ký MCP GitHub)
-      (Tích hợp VS Code)
-      (Triển khai Thực tế)
-    10. Hội thảo Thực hành
+      (Azure API Management)
+      (AI Travel Agent)
+      (Azure DevOps Integration)
+      (Documentation MCP)
+      (GitHub MCP Registry)
+      (VS Code Integration)
+      (Real-world Implementations)
+    10. Hands-on Workshop
       ::icon(fa fa-laptop)
-      (Cơ bản Server MCP)
-      (Phát triển Nâng cao)
-      (Tích hợp Bộ công cụ AI)
-      (Triển khai Sản xuất)
-      (Cấu trúc 4 phòng thí nghiệm)
-    11. Phòng thí nghiệm Tích hợp Cơ sở dữ liệu
+      (MCP Server Fundamentals)
+      (Advanced Development)
+      (AI Toolkit Integration)
+      (Production Deployment)
+      (4-Lab Structure)
+    11. Database Integration Labs
       ::icon(fa fa-database)
-      (Tích hợp PostgreSQL)
-      (Trường hợp Phân tích Bán lẻ)
-      (Bảo mật Cấp hàng)
-      (Tìm kiếm Ngữ nghĩa)
-      (Triển khai Sản xuất)
-      (Cấu trúc 13 phòng thí nghiệm)
-      (Học Thực hành)
-    12. Công cụ
+      (PostgreSQL Integration)
+      (Retail Analytics Use Case)
+      (Row Level Security)
+      (Semantic Search)
+      (Production Deployment)
+      (13-Lab Structure)
+      (Hands-on Learning)
+    12. Tooling
       ::icon(fa fa-wrench)
-      (MCP trong ứng dụng Copilot)
+      (MCP in Copilot app)
 ```
 
-## Cấu trúc kho lưu trữ
+## Cấu Trúc Kho Lưu Trữ
 
 Kho lưu trữ được tổ chức thành mười hai phần chính, mỗi phần tập trung vào các khía cạnh khác nhau của MCP:
 
-1. **Giới thiệu (00-Introduction/)**
-   - Tổng quan về Giao thức Bối cảnh Mô hình
-   - Tại sao việc chuẩn hóa lại quan trọng trong các pipeline AI
-   - Các trường hợp sử dụng và lợi ích thực tiễn
+1. **Giới Thiệu (00-Introduction/)**
+   - Tổng quan về Giao Thức Bối Cảnh Mô Hình
+   - Tại sao chuẩn hóa lại quan trọng trong các pipeline AI
+   - Các trường hợp sử dụng thực tiễn và lợi ích
 
-2. **Khái niệm cốt lõi (01-CoreConcepts/)**
-   - Kiến trúc khách-chủ
+2. **Khái Niệm Cốt Lõi (01-CoreConcepts/)**
+   - Kiến trúc client-server
    - Các thành phần chính của giao thức
-   - Các kiểu mẫu tin nhắn trong MCP
-   - Nhìn về phía trước: [Những thay đổi trong MCP: Bản thử nghiệm phát hành 2026-07-28](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — lõi giao thức không trạng thái, khuôn khổ Extensions, và kế hoạch loại bỏ Roots/Sampling/Logging trong phiên bản đặc tả tiếp theo
+   - Các mẫu tin nhắn trong MCP
+   - Đặc tả hiện tại: [Có gì thay đổi trong MCP: Đặc tả ngày 2026-07-28](./01-CoreConcepts/mcp-2026-07-28.md) — lõi giao thức không trạng thái, khuôn khổ mở rộng, và việc loại bỏ Roots/Sampling/Logging
 
-3. **Bảo mật (02-Security/)**
-   - Các mối đe dọa an ninh trong hệ thống dựa trên MCP
-   - Các thực hành tốt nhất để bảo mật triển khai
+3. **Bảo Mật (02-Security/)**
+   - Các mối đe dọa bảo mật trong hệ thống dựa trên MCP
+   - Các thực hành tốt nhất để bảo vệ triển khai
    - Chiến lược xác thực và ủy quyền
-   - **Tài liệu bảo mật toàn diện**:
-     - Thực hành bảo mật MCP tốt nhất 2025
+   - Thực hành với [mẫu ủy quyền CIMD và DCR](./02-Security/samples/cimd-dcr-auth/README.md)
+   - **Tài liệu Bảo mật Toàn diện**:
+     - Thực hành bảo mật MCP tốt nhất
      - Hướng dẫn triển khai Azure Content Safety
-     - Các kiểm soát và kỹ thuật bảo mật MCP
-     - Tham khảo nhanh các thực hành tốt nhất MCP
-   - **Chủ đề bảo mật chính**:
-     - Tấn công tiêm lệnh (prompt injection) và đầu độc công cụ
-     - Chiếm quyền phiên và vấn đề confused deputy
-     - Lỗ hổng chuyển token
-     - Quyền truy cập và kiểm soát quá mức
-     - An ninh chuỗi cung ứng cho các thành phần AI
+     - Kiểm soát và kỹ thuật bảo mật MCP
+     - Tóm tắt nhanh các thực hành tốt nhất MCP
+   - **Các chủ đề bảo mật chính**:
+     - Tấn công tiêm lệnh (prompt injection) và nhiễm độc công cụ
+     - Chiếm đoạt phiên làm việc và vấn đề đại diện nhầm lẫn
+     - Lỗ hổng truyền token
+     - Quyền vượt mức và kiểm soát truy cập
+     - Bảo mật chuỗi cung ứng cho các thành phần AI
      - Tích hợp Microsoft Prompt Shields
 
-4. **Bắt đầu (03-GettingStarted/)**
+4. **Bắt Đầu (03-GettingStarted/)**
    - Cài đặt và cấu hình môi trường
-   - Tạo máy chủ và ứng dụng khách MCP cơ bản
+   - Tạo máy chủ và khách MCP cơ bản
    - Tích hợp với các ứng dụng hiện có
-   - Bao gồm các phần về:
+   - Bao gồm các phần:
      - Triển khai máy chủ đầu tiên
-     - Phát triển ứng dụng khách
-     - Tích hợp ứng dụng khách LLM
-     - Tích hợp với VS Code
-     - Máy chủ sử dụng Server-Sent Events (SSE)
-     - Sử dụng nâng cao máy chủ
-     - Streaming HTTP
-     - Tích hợp Bộ công cụ AI (AI Toolkit)
+     - Phát triển khách hàng
+     - Tích hợp khách hàng LLM
+     - Tích hợp VS Code
+     - Máy chủ sự kiện gửi (SSE)
+     - Sử dụng máy chủ nâng cao
+     - Truyền tải HTTP
+     - Tích hợp Bộ công cụ AI
      - Chiến lược kiểm thử
      - Hướng dẫn triển khai
 
-5. **Triển khai thực tế (04-PracticalImplementation/)**
+5. **Triển Khai Thực Tiễn (04-PracticalImplementation/)**
    - Sử dụng SDK trên các ngôn ngữ lập trình khác nhau
    - Kỹ thuật gỡ lỗi, kiểm thử và xác thực
-   - Tạo mẫu lời nhắc và quy trình làm việc có thể tái sử dụng
+   - Tạo mẫu prompt và quy trình làm việc có thể tái sử dụng
    - Dự án mẫu với ví dụ triển khai
 
-6. **Chủ đề nâng cao (05-AdvancedTopics/)**
-   - Kỹ thuật kỹ sư bối cảnh
-   - Tích hợp tác nhân Foundry
-   - Quy trình làm việc AI đa phương thức
+6. **Chủ Đề Nâng Cao (05-AdvancedTopics/)**
+   - Kỹ thuật xây dựng bối cảnh
+   - Tích hợp agent Foundry
+   - Các quy trình AI đa phương thức
    - Demo xác thực OAuth2
    - Khả năng tìm kiếm thời gian thực
-   - Streaming thời gian thực
-   - Triển khai bối cảnh gốc (Root contexts)
-   - Chiến lược định tuyến
-   - Kỹ thuật lấy mẫu (Sampling)
+   - Truyền phát thời gian thực
+   - Triển khai bối cảnh gốc
+   - Chiến lược điều hướng
+   - Kỹ thuật lấy mẫu
    - Phương pháp mở rộng
-   - Các cân nhắc về bảo mật
+   - Các cân nhắc bảo mật
    - Tích hợp bảo mật Entra ID
    - Tích hợp tìm kiếm web
-   - Lập luận đa tác nhân đối kháng (mô hình tranh luận)
+   - Lý luận đa tác nhân đối kháng (mẫu tranh luận)
 
-7. **Đóng góp cộng đồng (06-CommunityContributions/)**
+7. **Đóng Góp Cộng Đồng (06-CommunityContributions/)**
    - Cách đóng góp mã và tài liệu
    - Hợp tác qua GitHub
-   - Cải tiến và phản hồi do cộng đồng điều khiển
-   - Sử dụng các ứng dụng khách MCP khác nhau (Claude Desktop, Cline, VSCode)
-   - Làm việc với các máy chủ MCP phổ biến kể cả tạo hình ảnh
+   - Cải tiến và phản hồi do cộng đồng thúc đẩy
+   - Sử dụng các khách hàng MCP khác nhau (Claude Desktop, Cline, VSCode)
+   - Làm việc với các máy chủ MCP phổ biến bao gồm tạo hình ảnh
 
-8. **Bài học từ áp dụng sớm (07-LessonsfromEarlyAdoption/)**
-   - Các triển khai thực tế và câu chuyện thành công
+8. **Bài Học Từ Việc Áp Dụng Sớm (07-LessonsfromEarlyAdoption/)**
+   - Triển khai thực tế và câu chuyện thành công
    - Xây dựng và triển khai giải pháp dựa trên MCP
    - Xu hướng và lộ trình tương lai
-   - **Hướng dẫn máy chủ MCP Microsoft**: Hướng dẫn toàn diện về 10 máy chủ MCP Microsoft sẵn sàng sản xuất bao gồm:
-     - Máy chủ MCP Microsoft Learn Docs
-     - Máy chủ MCP Azure (hơn 15 connector chuyên biệt)
+   - **Hướng dẫn Máy chủ MCP của Microsoft**: Hướng dẫn toàn diện cho 10 máy chủ MCP Microsoft sẵn sàng sản xuất bao gồm:
+     - Máy chủ MCP tài liệu Microsoft Learn
+     - Máy chủ MCP Azure (15+ kết nối chuyên biệt)
      - Máy chủ MCP GitHub
      - Máy chủ MCP Azure DevOps
      - Máy chủ MCP MarkItDown
@@ -217,138 +218,140 @@ Kho lưu trữ được tổ chức thành mười hai phần chính, mỗi ph�
      - Máy chủ MCP Playwright
      - Máy chủ MCP Dev Box
      - Máy chủ MCP Microsoft Foundry
-     - Máy chủ MCP Bộ công cụ tác nhân Microsoft 365
+     - Máy chủ MCP Bộ công cụ Đại lý Microsoft 365
 
-9. **Thực hành tốt nhất (08-BestPractices/)**
-   - Tối ưu hiệu năng và hiệu quả hoạt động
+9. **Thực Hành Tốt Nhất (08-BestPractices/)**
+   - Tinh chỉnh hiệu suất và tối ưu hóa
    - Thiết kế hệ thống MCP chịu lỗi
-   - Chiến lược kiểm thử và khả năng phục hồi
+   - Chiến lược kiểm thử và độ bền
 
-10. **Nghiên cứu tình huống (09-CaseStudy/)**
-    - **Bảy nghiên cứu tình huống toàn diện** thể hiện tính linh hoạt của MCP trong nhiều bối cảnh:
-    - **Đại lý du lịch Azure AI**: Điều phối đa tác nhân với Azure OpenAI và AI Search
-    - **Tích hợp Azure DevOps**: Tự động hóa quy trình workflow với cập nhật dữ liệu YouTube
-    - **Truy xuất tài liệu thời gian thực**: Ứng dụng dòng lệnh Python với streaming HTTP
-    - **Trình tạo kế hoạch học tập tương tác**: Ứng dụng web Chainlit với AI hội thoại
-    - **Tài liệu trong trình soạn thảo**: Tích hợp VS Code với workflow GitHub Copilot
-    - **Quản lý API Azure**: Tích hợp API doanh nghiệp với việc tạo máy chủ MCP
+10. **Nghiên Cứu Tình Huống (09-CaseStudy/)**
+    - **Bảy nghiên cứu tình huống toàn diện** thể hiện tính đa dụng của MCP trong nhiều kịch bản:
+    - **Đại lý Du lịch Azure AI**: Điều phối đa tác nhân với Azure OpenAI và AI Search
+    - **Tích hợp Azure DevOps**: Tự động hóa quy trình làm việc với cập nhật dữ liệu YouTube
+    - **Truy xuất tài liệu thời gian thực**: Khách hàng console Python với truyền HTTP
+    - **Máy phát kế hoạch học tập tương tác**: Ứng dụng web Chainlit với AI hội thoại
+    - **Tài liệu trong trình chỉnh sửa**: Tích hợp VS Code với quy trình GitHub Copilot
+    - **Quản lý API Azure**: Tích hợp API doanh nghiệp với tạo máy chủ MCP
     - **Đăng ký MCP GitHub**: Phát triển hệ sinh thái và nền tảng tích hợp tác nhân
-    - Ví dụ triển khai trải dài từ tích hợp doanh nghiệp, năng suất nhà phát triển, đến phát triển hệ sinh thái
+    - Ví dụ triển khai trải rộng tích hợp doanh nghiệp, năng suất nhà phát triển và phát triển hệ sinh thái
 
-11. **Hội thảo thực hành (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
+11. **Hội Thảo Thực Hành (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
     - Hội thảo thực hành toàn diện kết hợp MCP với Bộ công cụ AI
-    - Xây dựng ứng dụng thông minh kết nối mô hình AI với công cụ thế giới thực
-    - Các mô-đun thực tiễn về nền tảng, phát triển máy chủ tùy chỉnh, và chiến lược triển khai sản xuất
-    - **Cấu trúc phòng lab**:
-      - Lab 1: Nền tảng máy chủ MCP
-      - Lab 2: Phát triển máy chủ MCP nâng cao
-      - Lab 3: Tích hợp Bộ công cụ AI
-      - Lab 4: Triển khai sản xuất và mở rộng
-    - Phương pháp học qua lab kèm hướng dẫn từng bước
+    - Xây dựng ứng dụng thông minh kết nối mô hình AI với công cụ thực tế
+    - Các mô-đun thực tế bao gồm nguyên tắc cơ bản, phát triển máy chủ tùy chỉnh và chiến lược triển khai sản xuất
+    - **Cấu trúc phòng thí nghiệm**:
+      - Phòng thí nghiệm 1: Nguyên tắc Máy chủ MCP
+      - Phòng thí nghiệm 2: Phát triển Máy chủ MCP Nâng cao
+      - Phòng thí nghiệm 3: Tích hợp Bộ công cụ AI
+      - Phòng thí nghiệm 4: Triển khai sản xuất và mở rộng
+    - Phương pháp học qua phòng thí nghiệm với hướng dẫn từng bước
 
-12. **Phòng lab tích hợp cơ sở dữ liệu máy chủ MCP (11-MCPServerHandsOnLabs/)**
-    - **Lộ trình học 13 phòng lab toàn diện** xây dựng máy chủ MCP sẵn sàng sản xuất tích hợp PostgreSQL
-    - **Triển khai phân tích bán lẻ thực tế** sử dụng trường hợp Zava Retail
-    - **Mẫu mô hình cấp doanh nghiệp** bao gồm Bảo mật Cấp dòng (RLS), tìm kiếm ngữ nghĩa, và truy cập dữ liệu đa người thuê
-    - **Cấu trúc phòng lab hoàn chỉnh**:
-      - **Labs 00-03: Nền tảng** - Giới thiệu, Kiến trúc, Bảo mật, Cài đặt môi trường
-      - **Labs 04-06: Xây dựng máy chủ MCP** - Thiết kế cơ sở dữ liệu, Triển khai máy chủ MCP, Phát triển công cụ
-      - **Labs 07-09: Tính năng nâng cao** - Tìm kiếm ngữ nghĩa, Kiểm thử & Gỡ lỗi, Tích hợp VS Code
-      - **Labs 10-12: Sản xuất & Thực hành tốt nhất** - Triển khai, Giám sát, Tối ưu hóa
-    - **Công nghệ áp dụng**: Framework FastMCP, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Kết quả học tập**: Máy chủ MCP sẵn sàng sản xuất, mẫu tích hợp cơ sở dữ liệu, phân tích AI, bảo mật cấp doanh nghiệp
+12. **Phòng Thí Nghiệm Tích Hợp Cơ Sở Dữ Liệu Máy Chủ MCP (11-MCPServerHandsOnLabs/)**
+    - **Lộ trình học 13 phòng thí nghiệm toàn diện** để xây dựng các máy chủ MCP sẵn sàng sản xuất với tích hợp PostgreSQL
+    - **Triển khai phân tích bán lẻ thực tế** sử dụng trường hợp sử dụng Zava Retail
+    - **Mẫu chuẩn cấp doanh nghiệp** bao gồm bảo mật cấp hàng (RLS), tìm kiếm ngữ nghĩa và truy cập dữ liệu đa khách thuê
+    - **Cấu trúc phòng thí nghiệm hoàn chỉnh**:
+      - **Phòng thí nghiệm 00-03: Nền tảng** - Giới thiệu, Kiến trúc, Bảo mật, Cài đặt môi trường
+      - **Phòng thí nghiệm 04-06: Xây dựng Máy chủ MCP** - Thiết kế cơ sở dữ liệu, Triển khai Máy chủ MCP, Phát triển công cụ
+
+      - **Thí nghiệm 07-09: Các Tính năng Nâng cao** - Tìm kiếm Ngữ nghĩa, Kiểm thử & Gỡ lỗi, Tích hợp VS Code
+      - **Thí nghiệm 10-12: Sản xuất & Thực hành Tốt nhất** - Triển khai, Giám sát, Tối ưu hóa
+    - **Công nghệ Bao gồm**: khung FastMCP, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Kết quả Học tập**: Máy chủ MCP sẵn sàng sản xuất, mẫu tích hợp cơ sở dữ liệu, phân tích hỗ trợ AI, bảo mật doanh nghiệp
 
 13. **Công cụ (12-tooling/)**
     - Học cách sử dụng MCP trong ứng dụng Copilot và các công cụ khác
 
-## Tài nguyên bổ sung
+## Tài nguyên Bổ sung
 
 Kho lưu trữ bao gồm các tài nguyên hỗ trợ:
 
-- **Thư mục hình ảnh**: Chứa sơ đồ và minh họa được sử dụng xuyên suốt chương trình học
-- **Bản dịch**: Hỗ trợ đa ngôn ngữ với tài liệu tự động dịch
-- **Tài nguyên MCP chính thức**:
+- **Thư mục Hình ảnh**: Chứa sơ đồ và minh họa được sử dụng trong toàn bộ chương trình học
+- **Dịch thuật**: Hỗ trợ đa ngôn ngữ với bản dịch tự động của tài liệu
+- **Tài nguyên MCP Chính thức**:
   - [Tài liệu MCP](https://modelcontextprotocol.io/)
-  - [Đặc tả MCP](https://spec.modelcontextprotocol.io/)
-  - [Kho lưu trữ MCP GitHub](https://github.com/modelcontextprotocol)
+  - [Đặc tả MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
+  - [Kho lưu trữ GitHub MCP](https://github.com/modelcontextprotocol)
 
-## Cách sử dụng kho lưu trữ này
+## Cách Sử dụng Kho lưu trữ này
 
-1. **Học tuần tự**: Theo dõi các chương theo thứ tự (00 đến 11) để có trải nghiệm học tập có cấu trúc.
-2. **Tập trung theo ngôn ngữ**: Nếu bạn quan tâm đến một ngôn ngữ lập trình cụ thể, khám phá các thư mục mẫu để xem các triển khai trong ngôn ngữ bạn chọn.
-3. **Triển khai thực hành**: Bắt đầu với phần "Bắt đầu" để thiết lập môi trường và tạo máy chủ và ứng dụng khách MCP đầu tiên của bạn.
-4. **Khám phá nâng cao**: Khi đã nắm vững căn bản, hãy đi sâu vào các chủ đề nâng cao để mở rộng kiến thức.
-5. **Tham gia cộng đồng**: Tham gia cộng đồng MCP qua các thảo luận GitHub và kênh Discord để kết nối với chuyên gia và các nhà phát triển khác.
+1. **Học theo tuần tự**: Theo dõi các chương theo thứ tự (00 đến 11) để có trải nghiệm học tập có cấu trúc.
+2. **Tập trung theo Ngôn ngữ**: Nếu bạn quan tâm đến một ngôn ngữ lập trình cụ thể, khám phá các thư mục mẫu cho các triển khai bằng ngôn ngữ bạn ưa thích.
+3. **Thực hành Triển khai**: Bắt đầu với phần "Bắt đầu" để thiết lập môi trường và tạo máy chủ và khách MCP đầu tiên của bạn.
+4. **Khám phá Nâng cao**: Khi đã vững cơ bản, khám phá các chủ đề nâng cao để mở rộng kiến thức.
+5. **Tham gia Cộng đồng**: Tham gia cộng đồng MCP qua các thảo luận GitHub và kênh Discord để kết nối với chuyên gia và các lập trình viên đồng hành.
 
-## Ứng dụng khách và công cụ MCP
+## Khách hàng và Công cụ MCP
 
-Chương trình học bao gồm các ứng dụng khách và công cụ MCP khác nhau:
+Chương trình học bao gồm các khách hàng và công cụ MCP khác nhau:
 
-1. **Ứng dụng khách chính thức**:
-   - Visual Studio Code
-   - MCP trên Visual Studio Code
+1. **Khách hàng Chính thức**:
+   - Visual Studio Code 
+   - MCP trong Visual Studio Code
    - Claude Desktop
-   - Claude trên VSCode
+   - Claude trong VSCode 
    - Claude API
 
-2. **Ứng dụng khách cộng đồng**:
-   - Cline (dòng lệnh)
-   - Cursor (trình soạn thảo mã)
+2. **Khách hàng Cộng đồng**:
+   - Cline (dựa trên terminal)
+   - Cursor (trình chỉnh sửa mã)
    - ChatMCP
    - Windsurf
 
-3. **Công cụ quản lý MCP**:
+3. **Công cụ Quản lý MCP**:
    - MCP CLI
    - MCP Manager
    - MCP Linker
    - MCP Router
 
-## Máy chủ MCP phổ biến
+## Máy chủ MCP Phổ biến
 
 Kho lưu trữ giới thiệu nhiều máy chủ MCP khác nhau, bao gồm:
 
-1. **Máy chủ MCP chính thức của Microsoft**:
-   - Máy chủ MCP Microsoft Learn Docs
-   - Máy chủ MCP Azure (hơn 15 connector chuyên biệt)
-   - Máy chủ MCP GitHub
-   - Máy chủ MCP Azure DevOps
-   - Máy chủ MCP MarkItDown
-   - Máy chủ MCP SQL Server
-   - Máy chủ MCP Playwright
-   - Máy chủ MCP Dev Box
-   - Máy chủ MCP Microsoft Foundry
-   - Máy chủ MCP Bộ công cụ tác nhân Microsoft 365
+1. **Máy chủ MCP Chính thức của Microsoft**:
+   - Microsoft Learn Docs MCP Server
+   - Azure MCP Server (hơn 15 connector chuyên biệt)
+   - GitHub MCP Server
+   - Azure DevOps MCP Server
+   - MarkItDown MCP Server
+   - SQL Server MCP Server
+   - Playwright MCP Server
+   - Dev Box MCP Server
+   - Microsoft Foundry MCP Server
+   - Microsoft 365 Agents Toolkit MCP Server
 
-2. **Máy chủ tham chiếu chính thức**:
+2. **Máy chủ Tham khảo Chính thức**:
    - Filesystem
    - Fetch
    - Memory
    - Sequential Thinking
 
-3. **Tạo hình ảnh**:
+3. **Tạo Hình ảnh**:
    - Azure OpenAI DALL-E 3
    - Stable Diffusion WebUI
    - Replicate
 
-4. **Công cụ phát triển**:
+4. **Công cụ Phát triển**:
    - Git MCP
    - Terminal Control
    - Code Assistant
 
-5. **Máy chủ chuyên biệt**:
+5. **Máy chủ Chuyên biệt**:
    - Salesforce
    - Microsoft Teams
    - Jira & Confluence
 
 ## Đóng góp
 
-Kho lưu trữ này hoan nghênh sự đóng góp từ cộng đồng. Xem phần Đóng góp cộng đồng để biết hướng dẫn cách đóng góp hiệu quả cho hệ sinh thái MCP.
+Kho lưu trữ này hoan nghênh các đóng góp từ cộng đồng. Xem phần Đóng góp Cộng đồng để hướng dẫn cách đóng góp hiệu quả vào hệ sinh thái MCP.
 
 ----
 
-*Hướng dẫn học này được cập nhật lần cuối vào ngày 5 tháng 2 năm 2026, phản ánh đặc tả MCP mới nhất 2025-11-25 và cung cấp tổng quan về kho lưu trữ tính đến ngày đó. Nội dung kho lưu trữ có thể được cập nhật sau ngày này.*
-
-*Bổ sung (2 tháng 7, 2026): một bài học về Bản thử nghiệm phát hành Đặc tả MCP `2026-07-28` đã được thêm vào phần [01-CoreConcepts](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md); nền tảng chương trình học vẫn giữ là 2025-11-25 cho đến khi đặc tả mới được phát hành.*
+*Hướng dẫn học tập này được cập nhật lần cuối vào ngày 9 tháng 9 năm 2026. Nó phản ánh đặc tả MCP
+`2026-07-28`, phiên bản giao thức hiện tại. Một số ví dụ thực hành
+vẫn được phiên bản rõ ràng là `2025-11-25` trong khi SDK và công cụ của chúng
+áp dụng các API giao thức không trạng thái.*
 
 ---
 

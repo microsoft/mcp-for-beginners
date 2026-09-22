@@ -1,17 +1,17 @@
 # Xác thực đơn giản
 
-SDK MCP hỗ trợ sử dụng OAuth 2.1, thực ra là một quy trình khá phức tạp bao gồm các khái niệm như máy chủ xác thực, máy chủ tài nguyên, gửi thông tin đăng nhập, lấy mã, trao đổi mã lấy token bearer cho đến khi bạn cuối cùng có thể lấy dữ liệu tài nguyên. Nếu bạn chưa quen với OAuth mà thực sự là một điều tuyệt vời cần triển khai, thì nên bắt đầu với một mức xác thực cơ bản và dần dần xây dựng lên độ bảo mật tốt hơn và tốt hơn. Đó là lý do chương này tồn tại, để xây dựng bạn lên các xác thực nâng cao hơn.
+Các SDK MCP hỗ trợ việc sử dụng OAuth 2.1, một quá trình khá phức tạp bao gồm các khái niệm như máy chủ xác thực, máy chủ tài nguyên, gửi thông tin xác thực, lấy mã rồi đổi mã lấy token bearer cho đến khi bạn cuối cùng có thể lấy dữ liệu tài nguyên của mình. Nếu bạn chưa quen với OAuth, việc triển khai nó là điều tuyệt vời, nhưng tốt nhất nên bắt đầu với một mức độ xác thực cơ bản và dần xây dựng lên bảo mật tốt hơn. Đó là lý do chương này tồn tại, để giúp bạn tiến tới xác thực nâng cao hơn.
 
-## Xác thực, chúng ta nói đến điều gì?
+## Xác thực, chúng ta nói gì?
 
-Xác thực là tên ngắn của quá trình xác thực danh tính và ủy quyền. Ý tưởng là chúng ta cần làm hai việc:
+Xác thực là viết tắt của authentication và authorization. Ý tưởng là chúng ta cần làm hai việc:
 
-- **Xác thực (Authentication)**, là quá trình xác định xem liệu chúng ta có cho phép một người vào nhà của mình, họ có quyền được "ở đây", tức là có quyền truy cập vào máy chủ tài nguyên nơi các tính năng MCP Server của chúng ta hoạt động.
-- **Ủy quyền (Authorization)**, là quá trình tìm hiểu xem người dùng có nên có quyền truy cập các tài nguyên cụ thể mà họ yêu cầu, ví dụ như các đơn hàng hoặc các sản phẩm này hay họ chỉ được phép đọc nội dung mà không được xóa chẳng hạn.
+- **Authentication** (xác thực), là quá trình xác định xem chúng ta có cho phép một người vào nhà mình không, tức họ có quyền “ở đây” hay không, tức là có quyền truy cập vào máy chủ tài nguyên nơi các tính năng MCP Server của chúng ta sống.
+- **Authorization** (ủy quyền), là quá trình kiểm tra xem người dùng có nên được truy cập vào các tài nguyên cụ thể mà họ yêu cầu hay không, ví dụ như các đơn hàng này hoặc các sản phẩm này, hoặc liệu họ có được phép đọc nội dung nhưng không được phép xóa làm ví dụ khác.
 
-## Thông tin đăng nhập: cách chúng ta xác định hệ thống biết ta là ai
+## Thông tin xác thực: cách chúng ta cho biết hệ thống chúng ta là ai
 
-Hầu hết các nhà phát triển web đều bắt đầu nghĩ đến việc cung cấp thông tin đăng nhập cho máy chủ, thường là một bí mật cho biết họ có được phép ở đây hay không "Xác thực". Thông tin đăng nhập này thường là một phiên bản mã hóa base64 của tên đăng nhập và mật khẩu hoặc một khóa API xác định duy nhất một người dùng cụ thể.
+Hầu hết các nhà phát triển web thường nghĩ đến việc cung cấp một thông tin xác thực cho máy chủ, thường là một bí mật cho biết họ có được phép ở đây hay không “Xác thực”. Thông tin xác thực này thường là phiên bản mã hóa base64 của tên người dùng và mật khẩu hoặc một khóa API xác định duy nhất một người dùng cụ thể.
 
 Điều này liên quan đến việc gửi nó qua một header gọi là "Authorization" như sau:
 
@@ -19,7 +19,7 @@ Hầu hết các nhà phát triển web đều bắt đầu nghĩ đến việc 
 { "Authorization": "secret123" }
 ```
 
-Thông thường đây được gọi là xác thực cơ bản (basic authentication). Quy trình tổng thể hoạt động như sau:
+Đây thường được gọi là xác thực cơ bản. Cách thức luồng tổng thể hoạt động như sau:
 
 ```mermaid
 sequenceDiagram
@@ -33,7 +33,7 @@ sequenceDiagram
    Server-->>Client: 1b, tôi không biết bạn, 401 
 ```
 
-Bây giờ chúng ta đã hiểu nó hoạt động như thế nào từ góc độ quy trình, vậy làm thế nào để chúng ta triển khai nó? Hầu hết các máy chủ web có khái niệm gọi là middleware, một đoạn code chạy trong phần yêu cầu có thể kiểm tra thông tin đăng nhập, và nếu thông tin đăng nhập hợp lệ thì cho phép yêu cầu đi qua. Nếu yêu cầu không có thông tin đăng nhập hợp lệ thì bạn sẽ nhận được lỗi xác thực. Hãy xem cách triển khai điều này:
+Bây giờ chúng ta đã hiểu cách thức hoạt động từ góc độ luồng, làm thế nào để triển khai nó? Hầu hết máy chủ web đều có khái niệm middleware, một đoạn mã chạy như một phần của yêu cầu có thể xác minh thông tin xác thực, và nếu thông tin xác thực hợp lệ thì cho phép yêu cầu đi qua. Nếu yêu cầu không có thông tin xác thực hợp lệ thì sẽ nhận được lỗi xác thực. Hãy xem cách triển khai điều này:
 
 **Python**
 
@@ -62,14 +62,14 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
 
 Ở đây chúng ta có:
 
-- Tạo middleware gọi là `AuthMiddleware` với phương thức `dispatch` được máy chủ web gọi.
+- Tạo một middleware gọi là `AuthMiddleware` với phương thức `dispatch` được máy chủ web gọi.
 - Thêm middleware vào máy chủ web:
 
     ```python
     starlette_app.add_middleware(AuthMiddleware)
     ```
 
-- Viết logic kiểm tra xem header Authorization có tồn tại không và bí mật gửi đến có hợp lệ hay không:
+- Viết logic kiểm tra nếu header Authorization có mặt và nếu bí mật gửi đến hợp lệ:
 
     ```python
     has_header = request.headers.get("Authorization")
@@ -82,7 +82,7 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
         return Response(status_code=403, content="Forbidden")
     ```
 
-    nếu bí mật tồn tại và hợp lệ thì ta cho phép yêu cầu đi qua bằng cách gọi `call_next` và trả về phản hồi.
+    nếu bí mật có mặt và hợp lệ thì cho phép yêu cầu đi qua bằng cách gọi `call_next` và trả về phản hồi.
 
     ```python
     response = await call_next(request)
@@ -90,11 +90,11 @@ starlette_app.add_middleware(CustomHeaderMiddleware)
     return response
     ```
 
-Cách hoạt động là nếu có một yêu cầu web được gửi tới máy chủ thì middleware sẽ được kích hoạt và dựa trên cách triển khai, nó sẽ cho phép yêu cầu đi qua hoặc trả về lỗi báo rằng client không được phép tiếp tục.
+Cách thức hoạt động là nếu có một yêu cầu web gửi tới máy chủ thì middleware sẽ được gọi và dựa trên cách triển khai, nó sẽ hoặc cho phép yêu cầu đi qua hoặc trả về lỗi cho biết client không được phép tiếp tục.
 
 **TypeScript**
 
-Ở đây chúng ta tạo middleware với framework phổ biến Express và chặn yêu cầu trước khi đến MCP Server. Dưới đây là mã cho việc đó:
+Ở đây chúng ta tạo middleware với framework phổ biến Express và chặn yêu cầu trước khi nó tới MCP Server. Đây là đoạn mã:
 
 ```typescript
 function isValid(secret) {
@@ -102,7 +102,7 @@ function isValid(secret) {
 }
 
 app.use((req, res, next) => {
-    // 1. Header xác thực có mặt?
+    // 1. Có tiêu đề ủy quyền không?
     if(!req.headers["Authorization"]) {
         res.status(401).send('Unauthorized');
     }
@@ -116,42 +116,47 @@ app.use((req, res, next) => {
 
    
     console.log('Middleware executed');
-    // 3. Chuyển yêu cầu đến bước tiếp theo trong quy trình yêu cầu.
+    // 3. Chuyển tiếp yêu cầu đến bước tiếp theo trong quy trình xử lý yêu cầu.
     next();
 });
 ```
 
-Trong code này chúng ta:
+Trong đoạn mã này chúng ta:
 
-1. Kiểm tra xem header Authorization có tồn tại không, nếu không sẽ gửi lỗi 401.
-2. Đảm bảo thông tin đăng nhập/token hợp lệ, nếu không sẽ gửi lỗi 403.
-3. Cuối cùng chuyển tiếp yêu cầu trong pipeline và trả về tài nguyên được yêu cầu.
+1. Kiểm tra xem header Authorization có mặt hay không, nếu không thì gửi lỗi 401.
+2. Đảm bảo thông tin xác thực/token hợp lệ, nếu không thì gửi lỗi 403.
+3. Cuối cùng cho phép yêu cầu tiếp tục trong pipeline và trả về tài nguyên được yêu cầu.
 
 ## Bài tập: Triển khai xác thực
 
-Hãy lấy kiến thức chúng ta có và thử triển khai nó. Kế hoạch như sau:
+Hãy lấy kiến thức và thử triển khai nó. Kế hoạch như sau:
 
 Máy chủ
 
-- Tạo máy chủ web và một instance MCP.
+- Tạo một máy chủ web và một instance MCP.
 - Triển khai middleware cho máy chủ.
 
 Client
 
-- Gửi yêu cầu web với thông tin đăng nhập qua header.
+- Gửi yêu cầu web, với thông tin xác thực, qua header.
 
 ### -1- Tạo máy chủ web và instance MCP
 
-> **Nhìn trước:** ví dụ TypeScript dưới đây theo dõi các transport HTTP trong một map `transports` được khóa bởi `mcp-session-id`, theo **MCP Specification 2025-11-25**. Phiên bản ứng viên phát hành `2026-07-28` bỏ qua handshake `initialize` và session ID hoàn toàn, nên map transport theo phiên này sẽ biến mất để chuyển sang yêu cầu tự chứa, không trạng thái. Xem [Có gì thay đổi trong MCP: Phiên bản ứng viên 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [!WARNING]
+> Ví dụ TypeScript dưới đây nhắm đến MCP `2025-11-25`. Nó theo dõi các kết nối
+> theo `mcp-session-id` và không phải là mô hình kết nối vận chuyển hiện tại `2026-07-28`. MCP
+> `2026-07-28` bỏ qua bước bắt tay `initialize` và ID phiên giao thức; các triển khai mới
+> sử dụng các yêu cầu tự chứa. Xem thêm
+> [Điều gì đã thay đổi trong MCP: Đặc tả 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Bước đầu tiên, chúng ta cần tạo instance máy chủ web và máy chủ MCP.
+Trong bước đầu tiên, chúng ta cần tạo instance máy chủ web và MCP Server.
 
 **Python**
 
-Ở đây tạo instance MCP server, tạo ứng dụng web starlette và host nó bằng uvicorn.
+Ở đây chúng ta tạo một MCP server instance, tạo ứng dụng web starlette và host nó bằng uvicorn.
 
 ```python
-# tạo máy chủ MCP
+# tạo MCP Server
 
 app = FastMCP(
     name="MCP Resource Server",
@@ -179,7 +184,7 @@ async def run(starlette_app):
 run(starlette_app)
 ```
 
-Trong đoạn code này chúng ta:
+Trong đoạn mã này chúng ta:
 
 - Tạo MCP Server.
 - Tạo ứng dụng web starlette từ MCP Server, `app.streamable_http_app()`.
@@ -187,7 +192,7 @@ Trong đoạn code này chúng ta:
 
 **TypeScript**
 
-Ở đây tạo instance MCP Server.
+Ở đây chúng ta tạo một instance MCP Server.
 
 ```typescript
 const server = new McpServer({
@@ -195,10 +200,10 @@ const server = new McpServer({
       version: "1.0.0"
     });
 
-    // ... thiết lập tài nguyên máy chủ, công cụ và lời nhắc ...
+    // ... thiết lập tài nguyên máy chủ, công cụ và gợi ý ...
 ```
 
-Việc tạo MCP Server này sẽ cần diễn ra trong định nghĩa route POST /mcp, vậy hãy lấy đoạn code trên và di chuyển như sau:
+Việc tạo MCP Server này cần diễn ra trong định nghĩa route POST /mcp, vậy hãy lấy đoạn mã trên và chuyển như sau:
 
 ```typescript
 import express from "express";
@@ -210,7 +215,7 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js"
 const app = express();
 app.use(express.json());
 
-// Bản đồ để lưu trữ các kết nối theo ID phiên
+// Bản đồ để lưu trữ các phương tiện theo ID phiên
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
 // Xử lý các yêu cầu POST cho giao tiếp từ client đến server
@@ -220,23 +225,23 @@ app.post('/mcp', async (req, res) => {
   let transport: StreamableHTTPServerTransport;
 
   if (sessionId && transports[sessionId]) {
-    // Tái sử dụng kết nối đã tồn tại
+    // Tái sử dụng phương tiện hiện có
     transport = transports[sessionId];
   } else if (!sessionId && isInitializeRequest(req.body)) {
     // Yêu cầu khởi tạo mới
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
       onsessioninitialized: (sessionId) => {
-        // Lưu kết nối theo ID phiên
+        // Lưu trữ phương tiện theo ID phiên
         transports[sessionId] = transport;
       },
-      // Bảo vệ tái liên kết DNS bị tắt theo mặc định để tương thích ngược. Nếu bạn đang chạy server này
-      // cục bộ, hãy chắc chắn thiết lập:
+      // Bảo vệ DNS rebinding mặc định bị tắt để tương thích ngược. Nếu bạn đang chạy server này
+      // cục bộ, hãy đảm bảo đặt:
       // enableDnsRebindingProtection: true,
       // allowedHosts: ['127.0.0.1'],
     });
 
-    // Dọn dẹp kết nối khi đóng
+    // Dọn dẹp phương tiện khi bị đóng
     transport.onclose = () => {
       if (transport.sessionId) {
         delete transports[transport.sessionId];
@@ -247,7 +252,7 @@ app.post('/mcp', async (req, res) => {
       version: "1.0.0"
     });
 
-    // ... thiết lập tài nguyên server, công cụ, và lời nhắc ...
+    // ... thiết lập tài nguyên, công cụ và lệnh nhắc cho server ...
 
     // Kết nối đến server MCP
     await server.connect(transport);
@@ -268,7 +273,7 @@ app.post('/mcp', async (req, res) => {
   await transport.handleRequest(req, res, req.body);
 });
 
-// Trình xử lý có thể tái sử dụng cho các yêu cầu GET và DELETE
+// Bộ xử lý có thể tái sử dụng cho các yêu cầu GET và DELETE
 const handleSessionRequest = async (req: express.Request, res: express.Response) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
@@ -280,7 +285,7 @@ const handleSessionRequest = async (req: express.Request, res: express.Response)
   await transport.handleRequest(req, res);
 };
 
-// Xử lý yêu cầu GET cho thông báo từ server đến client qua SSE
+// Xử lý yêu cầu GET để nhận thông báo từ server đến client qua SSE
 app.get('/mcp', handleSessionRequest);
 
 // Xử lý yêu cầu DELETE để kết thúc phiên làm việc
@@ -289,35 +294,35 @@ app.delete('/mcp', handleSessionRequest);
 app.listen(3000);
 ```
 
-Bây giờ bạn thấy việc tạo MCP Server được di chuyển vào trong `app.post("/mcp")`.
+Bây giờ bạn thấy cách tạo MCP Server được chuyển vào bên trong `app.post("/mcp")`.
 
-Hãy chuyển sang bước tiếp theo là tạo middleware để có thể xác thực thông tin đăng nhập gửi đến.
+Hãy chuyển sang bước tiếp theo là tạo middleware để xác thực thông tin xác thực đến.
 
 ### -2- Triển khai middleware cho máy chủ
 
-Tiếp theo, chúng ta sẽ tạo middleware để tìm kiếm thông tin đăng nhập trong header `Authorization` và xác thực nó. Nếu hợp lệ, yêu cầu sẽ được xử lý tiếp (ví dụ: liệt kê công cụ, đọc tài nguyên hoặc các chức năng MCP mà client yêu cầu).
+Tiếp theo chúng ta sẽ tới phần middleware. Ở đây ta sẽ tạo một middleware tìm kiếm thông tin xác thực trong header `Authorization` và xác thực nó. Nếu chấp nhận được thì yêu cầu sẽ tiếp tục thực hiện chức năng được yêu cầu (ví dụ liệt kê công cụ, đọc tài nguyên hoặc bất kỳ tính năng MCP nào client yêu cầu).
 
 **Python**
 
-Để tạo middleware, chúng ta cần tạo một lớp kế thừa từ `BaseHTTPMiddleware`. Có hai phần thú vị:
+Để tạo middleware, ta cần tạo một class kế thừa từ `BaseHTTPMiddleware`. Có hai phần đáng chú ý:
 
-- Yêu cầu `request` mà chúng ta đọc thông tin header từ đó.
-- `call_next` là callback cần gọi nếu client gửi thông tin đăng nhập mà chúng ta chấp nhận.
+- Yêu cầu `request`, từ đó ta đọc thông tin header.
+- `call_next` là callback cần gọi nếu client mang theo thông tin xác thực mà ta chấp nhận.
 
-Đầu tiên, cần xử lý trường hợp thiếu header `Authorization`:
+Đầu tiên, ta cần xử lý trường hợp header `Authorization` bị thiếu:
 
 ```python
 has_header = request.headers.get("Authorization")
 
-# không có tiêu đề, trả về lỗi 401, nếu không thì tiếp tục.
+# không có tiêu đề, lỗi với 401, nếu không tiếp tục.
 if not has_header:
     print("-> Missing Authorization header!")
     return Response(status_code=401, content="Unauthorized")
 ```
 
-Ở đây ta gửi thông báo 401 unauthorized khi client không xác thực đúng.
+Ở đây chúng ta gửi thông báo 401 unauthorized vì client không xác thực được.
 
-Tiếp theo, nếu có thông tin đăng nhập được gửi, ta cần kiểm tra tính hợp lệ như sau:
+Tiếp theo, nếu có thông tin xác thực gửi lên, ta cần kiểm tra tính hợp lệ như sau:
 
 ```python
  if not valid_token(has_header):
@@ -325,7 +330,7 @@ Tiếp theo, nếu có thông tin đăng nhập được gửi, ta cần kiểm 
     return Response(status_code=403, content="Forbidden")
 ```
 
-Lưu ý ta gửi thông báo 403 forbidden ở trên. Đây là toàn bộ middleware triển khai tất cả những gì đã đề cập:
+Lưu ý cách gửi thông báo 403 forbidden ở trên. Dưới đây là toàn bộ middleware triển khai mọi thứ chúng ta đã đề cập:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -348,10 +353,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 ```
 
-Tuyệt vời, nhưng hàm `valid_token` thì sao? Đây là nó:
+Tuyệt, nhưng còn hàm `valid_token` thì sao? Đây là hàm dưới đây:
 
 ```python
-# KHÔNG sử dụng cho sản xuất - hãy cải thiện nó !!
+# KHÔNG sử dụng cho sản xuất - cải thiện nó !!
 def valid_token(token: str) -> bool:
     # loại bỏ tiền tố "Bearer "
     if token.startswith("Bearer "):
@@ -360,20 +365,20 @@ def valid_token(token: str) -> bool:
     return False
 ```
 
-Đương nhiên cần cải thiện thêm.
+Điều này tất nhiên cần cải thiện hơn nữa.
 
-QUAN TRỌNG: Bạn KHÔNG BAO GIỜ nên để bí mật như thế trong code. Nên lấy giá trị so sánh từ nguồn dữ liệu hoặc từ một nhà cung cấp dịch vụ nhận dạng (IDP) hoặc tốt hơn, để IDP đứng ra xác thực.
+IMPORTANT: Bạn KHÔNG BAO GIỜ nên để các bí mật như thế này trong mã nguồn. Nên lấy giá trị để so sánh từ một nguồn dữ liệu hoặc từ nhà cung cấp dịch vụ định danh (IDP) hoặc tốt nhất là để IDP thực hiện việc xác thực.
 
 **TypeScript**
 
-Để triển khai với Express, ta cần gọi phương thức `use` nhận các hàm middleware.
+Để triển khai điều này với Express, cần gọi phương thức `use` nhận các middleware function.
 
-Chúng ta cần:
+Cần:
 
-- Tương tác với biến request để kiểm tra thông tin đăng nhập ở thuộc tính `Authorization`.
-- Xác thực thông tin đăng nhập, nếu hợp lệ cho phép yêu cầu tiếp tục và client thực hiện các tính năng MCP được yêu cầu.
+- Tương tác với biến request để kiểm tra thông tin xác thực truyền trong thuộc tính `Authorization`.
+- Xác thực thông tin xác thực, nếu được thì cho phép yêu cầu tiếp tục và yêu cầu MCP của client thực hiện chức năng mong muốn (ví dụ liệt kê công cụ, đọc tài nguyên hoặc mọi gì liên quan MCP).
 
-Ở đây, ta kiểm tra xem header `Authorization` có tồn tại không, nếu không, ngừng yêu cầu:
+Ở đây, ta kiểm tra xem header `Authorization` có mặt không, nếu không thì ngăn yêu cầu đi tiếp:
 
 ```typescript
 if(!req.headers["authorization"]) {
@@ -382,9 +387,9 @@ if(!req.headers["authorization"]) {
 }
 ```
 
-Nếu header không gửi ngay từ đầu, bạn nhận lỗi 401.
+Nếu header không được gửi từ đầu, bạn sẽ nhận được lỗi 401.
 
-Tiếp đến, kiểm tra thông tin đăng nhập có hợp lệ không, nếu không lại ngừng yêu cầu với thông báo khác:
+Tiếp theo ta kiểm tra tính hợp lệ của thông tin xác thực, nếu không hợp lệ lại ngăn yêu cầu với thông báo khác:
 
 ```typescript
 if(!isValid(token)) {
@@ -393,9 +398,9 @@ if(!isValid(token)) {
 } 
 ```
 
-Bạn sẽ nhận lỗi 403.
+Lưu ý bạn sẽ nhận được lỗi 403.
 
-Đây là toàn bộ mã:
+Đây là đoạn mã đầy đủ:
 
 ```typescript
 app.use((req, res, next) => {
@@ -418,18 +423,18 @@ app.use((req, res, next) => {
 });
 ```
 
-Chúng ta đã thiết lập máy chủ web để chấp nhận middleware kiểm tra thông tin đăng nhập mà client hi vọng gửi đến. Còn client thì sao?
+Chúng ta đã thiết lập máy chủ web để chấp nhận middleware kiểm tra thông tin xác thực mà client gửi. Còn phía client thì sao?
 
-### -3- Gửi yêu cầu web với thông tin đăng nhập qua header
+### -3- Gửi yêu cầu web với thông tin xác thực qua header
 
-Chúng ta cần đảm bảo client truyền thông tin đăng nhập qua header. Vì ta dùng client MCP nên cần tìm cách làm điều này.
+Cần đảm bảo client truyền thông tin xác thực qua header. Vì sẽ sử dụng client MCP nên cần biết làm thế nào để làm điều đó.
 
 **Python**
 
-Với client, ta cần truyền header với thông tin đăng nhập như sau:
+Với client, ta cần truyền một header với thông tin xác thực như sau:
 
 ```python
-# ĐỪNG mã hóa cứng giá trị, ít nhất hãy đặt nó trong biến môi trường hoặc lưu trữ an toàn hơn
+# ĐỪNG mã hóa cứng giá trị, ít nhất hãy để nó trong biến môi trường hoặc một nơi lưu trữ an toàn hơn
 token = "secret-token"
 
 async with streamablehttp_client(
@@ -446,24 +451,24 @@ async with streamablehttp_client(
         ) as session:
             await session.initialize()
       
-            # TODO, những gì bạn muốn thực hiện ở phía client, ví dụ liệt kê công cụ, gọi công cụ v.v.
+            # TODO, bạn muốn làm gì trên client, ví dụ liệt kê công cụ, gọi công cụ, v.v.
 ```
 
-Lưu ý cách ta điền thuộc tính `headers` như `headers = {"Authorization": f"Bearer {token}"}`.
+Lưu ý cách ta gán thuộc tính `headers` như ` headers = {"Authorization": f"Bearer {token}"}`.
 
 **TypeScript**
 
-Có thể giải quyết trong hai bước:
+Ta có thể làm điều này qua hai bước:
 
-1. Tạo một đối tượng cấu hình chứa thông tin đăng nhập.
-2. Truyền đối tượng cấu hình này cho transport.
+1. Gán một đối tượng cấu hình chứa thông tin xác thực.
+2. Truyền đối tượng cấu hình đó cho transport.
 
 ```typescript
 
-// ĐỪNG cứng mã hóa giá trị như ví dụ ở đây. Tối thiểu hãy để nó như một biến môi trường và sử dụng thứ gì đó như dotenv (trong chế độ phát triển).
+// ĐỪNG mã hóa cứng giá trị như được hiển thị ở đây. Ít nhất hãy để nó là một biến môi trường và sử dụng thứ gì đó như dotenv (trong chế độ phát triển).
 let token = "secret123"
 
-// định nghĩa một đối tượng tùy chọn giao vận khách hàng
+// định nghĩa một đối tượng tùy chọn giao thức khách hàng
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
@@ -473,7 +478,7 @@ let options: StreamableHTTPClientTransportOptions = {
   }
 };
 
-// truyền đối tượng tùy chọn cho giao vận
+// truyền đối tượng tùy chọn vào giao thức
 async function main() {
    const transport = new StreamableHTTPClientTransport(
       new URL(serverUrl),
@@ -481,46 +486,46 @@ async function main() {
    );
 ```
 
-Ở đây bạn thấy ta phải tạo `options` và đặt header trong thuộc tính `requestInit`.
+Ở trên bạn thấy ta tạo đối tượng `options` và đặt headers vào thuộc tính `requestInit`.
 
-QUAN TRỌNG: Vậy làm thế nào để cải thiện từ đây? Triển khai hiện tại có một số vấn đề. Đầu tiên, việc gửi thông tin đăng nhập như vậy khá rủi ro trừ khi ít nhất bạn dùng HTTPS. Dù vậy, thông tin đăng nhập có thể bị đánh cắp nên bạn cần một hệ thống cho phép dễ thu hồi token và thêm các kiểm tra như token đến từ đâu trên thế giới, yêu cầu xảy ra quá thường xuyên (hành vi bot), nói chung còn nhiều lo ngại khác.
+IMPORTANT: Làm thế nào để cải thiện từ đây? Thực tế là cách triển khai hiện tại có vấn đề. Trước hết, truyền thông tin xác thực thế này khá rủi ro trừ khi bạn có HTTPS tối thiểu. Dù vậy thông tin xác thực vẫn có thể bị đánh cắp nên bạn cần hệ thống để thu hồi token dễ dàng và thêm nhiều kiểm tra như token đang được dùng từ đâu trên thế giới, yêu cầu có quá thường xuyên (hành vi kiểu bot) hay không, tóm lại có nhiều mối lo khác.
 
-Tuy nhiên, với các API rất đơn giản mà bạn không muốn ai cũng có thể gọi API mà không xác thực thì cách làm này là khởi đầu tốt.
+Cần nói thêm rằng với API rất đơn giản, nơi bạn không muốn ai gọi API của bạn mà không xác thực, thì những gì có ở đây đã là khởi đầu tốt.
 
-Với điều đó, hãy tăng cường bảo mật bằng cách dùng định dạng chuẩn hóa như JSON Web Token, còn gọi là JWT hay token "JOT".
+Với điều đó, hãy cùng cố gắng tăng cường bảo mật bằng cách sử dụng định dạng chuẩn như JSON Web Token, còn gọi là JWT hoặc token "JOT".
 
-## JSON Web Token, JWT
+## JSON Web Tokens, JWT
 
-Vậy ta muốn cải thiện so với việc gửi thông tin đăng nhập đơn giản. Cải tiến ngay lập tức khi dùng JWT là gì?
+Vậy, ta đang cố gắng cải thiện từ cách gửi thông tin xác thực rất đơn giản. Lợi ích ngay lập tức khi sử dụng JWT là gì?
 
-- **Cải thiện bảo mật**. Trong xác thực cơ bản, bạn gửi lại tên đăng nhập và mật khẩu dưới dạng base64 (hoặc gửi khóa API) lặp đi lặp lại làm tăng rủi ro. Với JWT, bạn gửi tên đăng nhập và mật khẩu một lần để lấy token rồi gửi token này, token còn có thời hạn hết hạn rõ ràng. JWT cho phép kiểm soát truy cập chi tiết bằng vai trò, phạm vi và quyền.
-- **Không trạng thái và khả năng mở rộng**. JWT tự chứa toàn bộ thông tin người dùng, loại bỏ việc lưu trữ trạng thái phiên máy chủ. Token cũng có thể được xác thực cục bộ.
-- **Khả năng liên kết và liên bang hóa**. JWT là trung tâm của Open ID Connect và dùng với các nhà cung cấp dịch vụ nhận dạng phổ biến như Entra ID, Google Identity và Auth0. Chúng còn cho phép đăng nhập một lần (SSO) và nhiều tiện ích khác đạt tiêu chuẩn doanh nghiệp.
-- **Tính mô-đun và linh hoạt**. JWT còn có thể dùng với API Gateway như Azure API Management, NGINX và nhiều công nghệ khác. Nó hỗ trợ kịch bản xác thực sử dụng và giao tiếp máy chủ-dịch vụ bao gồm giả mạo và ủy quyền.
-- **Hiệu suất và bộ nhớ đệm**. JWT có thể được lưu bộ nhớ đệm sau khi giải mã, giảm việc phân tích trên mỗi lần yêu cầu. Điều này giúp ứng dụng có lưu lượng cao tăng thông lượng và giảm tải cho hạ tầng.
-- **Tính năng nâng cao**. JWT cũng hỗ trợ introspection (kiểm tra tính hợp lệ trên server) và thu hồi (làm token không còn hợp lệ).
+- **Cải thiện bảo mật**. Trong xác thực cơ bản, bạn gửi tên người dùng và mật khẩu mã hóa base64 (hoặc khóa API) liên tục làm tăng rủi ro. Với JWT, bạn gửi tên người dùng và mật khẩu để lấy token, token này có giới hạn thời gian hết hạn. JWT cho phép kiểm soát truy cập rất chi tiết qua vai trò, phạm vi và quyền hạn.
+- **Không trạng thái và khả năng mở rộng**. JWT là tự chứa, mang toàn bộ thông tin người dùng và loại bỏ nhu cầu lưu trữ phiên phía máy chủ. Token có thể được xác thực tại chỗ.
+- **Tương tác và liên kết hệ thống**. JWT là trung tâm của Open ID Connect và được sử dụng với các IDP nổi tiếng như Entra ID, Google Identity và Auth0. JWT cũng cho phép đăng nhập một lần và nhiều hơn nữa, phù hợp cho doanh nghiệp.
+- **Tính mô-đun và linh hoạt**. JWT cũng dùng được với API Gateway như Azure API Management, NGINX và hơn thế. Nó hỗ trợ kịch bản xác thực người dùng và giao tiếp server-to-service bao gồm mạo danh và ủy quyền.
+- **Hiệu năng và bộ nhớ đệm**. JWT có thể được lưu đệm sau khi giải mã giúp giảm cần phân tích lại. Giúp đặc biệt với ứng dụng nhiều lưu lượng vì tăng thông lượng và giảm tải cho hạ tầng.
+- **Tính năng nâng cao**. Nó còn hỗ trợ introspection (kiểm tra hợp lệ trên server) và revocation (thu hồi token).
 
-Với tất cả các lợi ích trên, hãy cùng xem cách nâng cấp triển khai của ta lên tầm cao mới.
+Với tất cả lợi ích đó, hãy xem cách ta có thể nâng cấp việc triển khai.
 
-## Chuyển xác thực cơ bản thành JWT
+## Biến xác thực cơ bản thành JWT
 
-Nên làm những bước thay đổi chính:
+Những thay đổi ở cấp độ tổng quát ta cần thực hiện là:
 
-- **Học cách tạo token JWT** và chuẩn bị sẵn để gửi từ client đến server.
-- **Xác thực token JWT**, nếu hợp lệ cho phép client truy cập tài nguyên.
-- **Lưu trữ token an toàn**. Cách ta lưu giữ token.
-- **Bảo vệ các route**. Ta cần bảo vệ route và các tính năng MCP cụ thể.
-- **Thêm refresh token**. Tạo token có thời hạn ngắn nhưng có token làm mới dài hạn để lấy token mới khi hết hạn. Đảm bảo có endpoint làm mới và chiến lược xoay vòng token.
+- **Học cách tạo token JWT** và sẵn sàng gửi nó từ client lên server.
+- **Xác thực token JWT**, nếu hợp lệ thì cho client truy cập tài nguyên.
+- **Lưu trữ token an toàn**. Cách ta lưu trữ token này.
+- **Bảo vệ các route**. Ta cần bảo vệ các đường dẫn, với trường hợp ta bảo vệ các route và tính năng MCP cụ thể.
+- **Thêm refresh token**. Đảm bảo tạo token có thời hạn ngắn và refresh token có thời gian dài hơn dùng để lấy token mới khi token hết hạn. Cần có điểm cuối refresh và chiến lược luân phiên token.
 
 ### -1- Tạo token JWT
 
-Trước tiên, token JWT có các phần:
+Trước hết, token JWT có các phần sau:
 
-- **header**, thuật toán và loại token.
-- **payload**, các claims, ví dụ như sub (người dùng hoặc thực thể đại diện, thường là userid trong xác thực), exp (thời gian hết hạn), role (vai trò).
-- **signature**, được ký bằng bí mật hoặc khóa riêng tư.
+- **header**, thuật toán và kiểu token.
+- **payload**, các claims, ví dụ sub (người dùng hay thực thể đại diện token, trong xác thực thường là userid), exp (thời gian hết hạn), role (vai trò)
+- **signature**, được ký bằng bí mật hoặc khóa riêng.
 
-Chúng ta cần tạo header, payload và token mã hóa.
+Để làm điều này ta cần tạo header, payload và token mã hóa.
 
 **Python**
 
@@ -539,12 +544,12 @@ header = {
     "typ": "JWT"
 }
 
-# thông tin người dùng và các tuyên bố cùng thời gian hết hạn của nó
+# thông tin người dùng và các tuyên bố cùng thời gian hết hạn
 payload = {
     "sub": "1234567890",               # Chủ đề (ID người dùng)
     "name": "User Userson",                # Tuyên bố tùy chỉnh
     "admin": True,                     # Tuyên bố tùy chỉnh
-    "iat": datetime.datetime.utcnow(),# Thời điểm phát hành
+    "iat": datetime.datetime.utcnow(),# Thời gian phát hành
     "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Thời gian hết hạn
 }
 
@@ -552,16 +557,16 @@ payload = {
 encoded_jwt = jwt.encode(payload, secret_key, algorithm="HS256", headers=header)
 ```
 
-Trong đoạn code trên ta đã:
+Trong đoạn mã trên ta:
 
-- Định nghĩa header với thuật toán HS256 và loại là JWT.
-- Tạo payload chứa subject hoặc user id, tên người dùng, vai trò, thời gian phát hành và thời gian hết hạn, bao gồm khía cạnh giới hạn thời gian.
+- Định nghĩa header dùng thuật toán HS256 và kiểu là JWT.
+- Tạo payload chứa subject hoặc user id, tên người dùng, vai trò, thời điểm phát hành và thời điểm hết hạn, thể hiện tính giới hạn thời gian đã nói.
 
 **TypeScript**
 
-Ở đây ta cần một số phụ thuộc giúp tạo token JWT.
+Ở đây ta cần một số thư viện hỗ trợ tạo token JWT.
 
-Phụ thuộc
+Thư viện phụ thuộc
 
 ```sh
 
@@ -569,23 +574,23 @@ npm install jsonwebtoken
 npm install --save-dev @types/jsonwebtoken
 ```
 
-Bây giờ đã có, hãy tạo header, payload và từ đó tạo token mã hóa.
+Bây giờ ta đã có thư viện, hãy tạo header, payload và qua đó tạo token mã hóa.
 
 ```typescript
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'your-secret-key'; // Sử dụng biến môi trường trong sản xuất
+const secretKey = 'your-secret-key'; // Sử dụng biến môi trường trong môi trường sản xuất
 
-// Định nghĩa payload
+// Định nghĩa dữ liệu gửi đi
 const payload = {
   sub: '1234567890',
   name: 'User usersson',
   admin: true,
-  iat: Math.floor(Date.now() / 1000), // Được phát hành lúc
+  iat: Math.floor(Date.now() / 1000), // Thời điểm phát hành
   exp: Math.floor(Date.now() / 1000) + 60 * 60 // Hết hạn trong 1 giờ
 };
 
-// Định nghĩa phần header (tùy chọn, jsonwebtoken thiết lập mặc định)
+// Định nghĩa tiêu đề (tùy chọn, jsonwebtoken đặt mặc định)
 const header = {
   alg: 'HS256',
   typ: 'JWT'
@@ -603,14 +608,14 @@ console.log('JWT:', token);
 Token này:
 
 Ký bằng HS256
-Có hiệu lực trong 1 giờ
-Bao gồm các claims như sub, name, admin, iat, exp.
+Hợp lệ trong 1 giờ
+Bao gồm các claims như sub, name, admin, iat, và exp.
 
 ### -2- Xác thực token
 
-Ta cũng cần xác thực token, việc này nên làm trên server để đảm bảo client gửi token hợp lệ. Có nhiều kiểm tra cần thực hiện, từ xác thực cấu trúc đến tính hợp lệ. Bạn cũng nên thêm các kiểm tra khác xem người dùng có trong hệ thống của bạn không và hơn thế nữa.
+Ta cũng cần xác thực token, việc này nên làm trên server để đảm bảo client gửi cho ta token đúng. Cần làm nhiều kiểm tra từ cấu trúc tới tính hợp lệ. Bạn cũng nên thêm kiểm tra xem user có trong hệ thống bạn không và hơn thế nữa.
 
-Để xác thực token, ta cần giải mã trước để đọc rồi bắt đầu kiểm tra tính hợp lệ của nó:
+Để xác thực token, ta cần giải mã nó để đọc và bắt đầu kiểm tra tính hợp lệ:
 
 **Python**
 
@@ -630,11 +635,12 @@ except InvalidTokenError as e:
 
 ```
 
-Trong đoạn mã này, chúng ta gọi `jwt.decode` sử dụng token, khóa bí mật và thuật toán đã chọn làm đầu vào. Hãy chú ý cách chúng ta sử dụng cấu trúc try-catch vì việc xác thực không thành công sẽ dẫn đến lỗi được ném ra.
+
+Trong đoạn mã này, chúng ta gọi `jwt.decode` sử dụng token, khóa bí mật và thuật toán đã chọn làm đầu vào. Lưu ý cách chúng ta sử dụng cấu trúc try-catch vì việc xác thực thất bại dẫn đến lỗi được đưa ra.
 
 **TypeScript**
 
-Ở đây chúng ta cần gọi `jwt.verify` để lấy phiên bản giải mã của token mà chúng ta có thể phân tích tiếp. Nếu cuộc gọi này thất bại, điều đó có nghĩa là cấu trúc của token không đúng hoặc nó không còn hợp lệ nữa.
+Ở đây chúng ta cần gọi `jwt.verify` để lấy phiên bản token đã giải mã mà chúng ta có thể phân tích thêm. Nếu cuộc gọi này thất bại, điều đó có nghĩa là cấu trúc của token không đúng hoặc nó không còn hợp lệ nữa.
 
 ```typescript
 
@@ -646,19 +652,19 @@ try {
 }
 ```
 
-NOTE: như đã đề cập trước đó, chúng ta nên thực hiện các kiểm tra bổ sung để đảm bảo token này chỉ đến một người dùng trong hệ thống của chúng ta và đảm bảo người dùng đó có các quyền mà nó tuyên bố có.
+LƯU Ý: như đã đề cập trước đó, chúng ta nên thực hiện các kiểm tra bổ sung để đảm bảo token này trỏ tới một người dùng trong hệ thống của chúng ta và đảm bảo người dùng đó có các quyền mà nó tuyên bố.
 
-Tiếp theo, hãy cùng tìm hiểu về kiểm soát truy cập dựa trên vai trò, còn được biết đến là RBAC.
+Tiếp theo, hãy xem xét kiểm soát truy cập dựa trên vai trò, còn gọi là RBAC.
 
 ## Thêm kiểm soát truy cập dựa trên vai trò
 
-Ý tưởng là chúng ta muốn biểu đạt rằng các vai trò khác nhau sẽ có các quyền khác nhau. Ví dụ, chúng ta giả định một quản trị viên có thể làm mọi thứ, người dùng bình thường có thể đọc/ghi và khách chỉ có thể đọc. Do đó, đây là một số mức quyền có thể có:
+Ý tưởng là chúng ta muốn biểu thị rằng các vai trò khác nhau có các quyền khác nhau. Ví dụ, chúng ta giả định một admin có thể làm mọi việc và một người dùng bình thường có thể đọc/ghi còn một khách chỉ có thể đọc. Do đó, đây là một số cấp quyền có thể có:
 
-- Admin.Write
+- Admin.Write 
 - User.Read
 - Guest.Read
 
-Hãy xem cách chúng ta có thể triển khai kiểm soát như vậy bằng middleware. Middleware có thể được thêm vào từng tuyến đường cụ thể cũng như cho tất cả các tuyến.
+Hãy xem cách chúng ta có thể triển khai kiểm soát như vậy với middleware. Middleware có thể được thêm cho từng route cũng như cho tất cả các route.
 
 **Python**
 
@@ -667,7 +673,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import jwt
 
-# ĐỪNG để bí mật trong mã như thế này, đây chỉ là để minh họa. Hãy đọc nó từ một nơi an toàn.
+# KHÔNG nên để bí mật trong code như thế này, đây chỉ là để minh họa. Hãy đọc nó từ nơi an toàn.
 SECRET_KEY = "your-secret-key" # đặt cái này vào biến môi trường
 REQUIRED_PERMISSION = "User.Read"
 
@@ -699,17 +705,17 @@ Có một vài cách khác nhau để thêm middleware như dưới đây:
 
 ```python
 
-# Phương án 1: thêm middleware trong khi xây dựng ứng dụng starlette
+# Lựa chọn 1: thêm middleware trong khi xây dựng ứng dụng starlette
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Phương án 2: thêm middleware sau khi ứng dụng starlette đã được xây dựng
+# Lựa chọn 2: thêm middleware sau khi ứng dụng starlette đã được xây dựng
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Phương án 3: thêm middleware cho từng route
+# Lựa chọn 3: thêm middleware cho từng tuyến đường
 routes = [
     Route(
         "/mcp",
@@ -721,7 +727,7 @@ routes = [
 
 **TypeScript**
 
-Chúng ta có thể dùng `app.use` và một middleware sẽ chạy cho tất cả các yêu cầu.
+Chúng ta có thể sử dụng `app.use` và một middleware sẽ chạy cho tất cả các yêu cầu.
 
 ```typescript
 app.use((req, res, next) => {
@@ -737,13 +743,13 @@ app.use((req, res, next) => {
     
     let token = req.headers["authorization"];
 
-    // 2. Kiểm tra xem mã thông báo có hợp lệ không
+    // 2. Kiểm tra xem token có hợp lệ không
     if(!isValid(token)) {
         res.status(403).send('Forbidden');
         return;
     }  
 
-    // 3. Kiểm tra xem người dùng mã thông báo có tồn tại trong hệ thống của chúng tôi không
+    // 3. Kiểm tra xem người dùng token có tồn tại trong hệ thống của chúng tôi không
     if(!isExistingUser(token)) {
         res.status(403).send('Forbidden');
         console.log("User does not exist");
@@ -751,7 +757,7 @@ app.use((req, res, next) => {
     }
     console.log("User exists");
 
-    // 4. Xác minh mã thông báo có quyền thích hợp không
+    // 4. Xác minh token có quyền thích hợp không
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
     }
@@ -764,14 +770,14 @@ app.use((req, res, next) => {
 
 ```
 
-Có khá nhiều việc chúng ta có thể và middleware CẦN làm, cụ thể là:
+Có khá nhiều điều chúng ta có thể cho middleware thực hiện và middleware NÊN làm, cụ thể:
 
-1. Kiểm tra xem header authorization có tồn tại hay không
-2. Kiểm tra token có hợp lệ không, chúng ta gọi `isValid` là một phương thức tự viết để kiểm tra tính toàn vẹn và hợp lệ của JWT token.
-3. Xác thực người dùng tồn tại trong hệ thống, chúng ta nên kiểm tra điều này.
+1. Kiểm tra xem header authorization có tồn tại không
+2. Kiểm tra xem token có hợp lệ không, chúng ta gọi `isValid` là một phương thức mà chúng ta viết để kiểm tra tính toàn vẹn và hợp lệ của token JWT.
+3. Xác minh người dùng có tồn tại trong hệ thống của chúng ta không, chúng ta nên kiểm tra điều này.
 
    ```typescript
-    // người dùng trong CSDL
+    // người dùng trong cơ sở dữ liệu
    const users = [
      "user1",
      "User usersson",
@@ -780,14 +786,14 @@ Có khá nhiều việc chúng ta có thể và middleware CẦN làm, cụ th�
    function isExistingUser(token) {
      let decodedToken = verifyToken(token);
 
-     // TODO, kiểm tra xem người dùng có tồn tại trong CSDL không
+     // CẦN LÀM, kiểm tra xem người dùng có tồn tại trong cơ sở dữ liệu không
      return users.includes(decodedToken?.name || "");
    }
    ```
 
-   Ở trên, chúng ta đã tạo danh sách `users` rất đơn giản, tất nhiên phải lưu trong cơ sở dữ liệu.
+   Ở trên, chúng ta đã tạo một danh sách `users` rất đơn giản, dĩ nhiên danh sách đó nên nằm trong một cơ sở dữ liệu.
 
-4. Ngoài ra, chúng ta cũng nên kiểm tra token có quyền phù hợp hay không.
+4. Thêm vào đó, chúng ta cũng nên kiểm tra token có quyền phù hợp không.
 
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
@@ -795,7 +801,7 @@ Có khá nhiều việc chúng ta có thể và middleware CẦN làm, cụ th�
    }
    ```
 
-   Trong đoạn mã trên từ middleware, chúng ta kiểm tra token có quyền User.Read, nếu không có thì gửi lỗi 403. Dưới đây là phương thức trợ giúp `hasScopes`.
+   Trong đoạn mã ở trên từ middleware, chúng ta kiểm tra rằng token chứa quyền User.Read, nếu không chúng ta gửi lỗi 403. Dưới đây là phương thức trợ giúp `hasScopes`.
 
    ```typescript
    function hasScopes(scope: string, requiredScopes: string[]) {
@@ -844,15 +850,15 @@ app.use((err, req, res, next) => {
 
 ```
 
-Bây giờ bạn đã thấy middleware có thể dùng cho cả xác thực và phân quyền, còn MCP thì sao, nó có làm thay đổi cách chúng ta làm auth không? Hãy cùng tìm hiểu trong phần tiếp theo.
+Bây giờ bạn đã thấy middleware có thể được sử dụng cho cả xác thực và ủy quyền, còn MCP thì sao, nó có thay đổi cách chúng ta làm auth không? Hãy tìm hiểu trong phần tiếp theo.
 
 ### -3- Thêm RBAC vào MCP
 
-Bạn đã thấy cho đến giờ chúng ta có thể thêm RBAC thông qua middleware, tuy nhiên với MCP thì không có cách dễ dàng để thêm RBAC theo từng tính năng MCP, vậy chúng ta phải làm gì? Chúng ta chỉ cần thêm mã kiểm tra trong trường hợp này xem client có quyền gọi một công cụ cụ thể hay không:
+Bạn đã thấy cho tới giờ bạn có thể thêm RBAC qua middleware, tuy nhiên với MCP không có cách dễ dàng để thêm RBAC tính năng riêng cho từng MCP, vậy chúng ta làm gì? Chúng ta chỉ cần thêm đoạn mã như thế này để kiểm tra trong trường hợp này liệu client có quyền gọi một công cụ cụ thể không:
 
-Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính năng, ví dụ như:
+Bạn có một số lựa chọn khác nhau để thực hiện RBAC theo tính năng, dưới đây là một số:
 
-- Thêm kiểm tra cho từng công cụ, tài nguyên, prompt mà bạn cần kiểm tra cấp độ quyền.
+- Thêm kiểm tra cho từng công cụ, tài nguyên, prompt nơi bạn cần kiểm tra cấp quyền.
 
    **python**
 
@@ -862,7 +868,7 @@ Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính
       try:
           check_permissions(role="Admin.Write", request)
       catch:
-        pass # khách hàng không được phép, phát sinh lỗi xác thực
+        pass # khách hàng không xác thực được, báo lỗi xác thực
    ```
 
    **typescript**
@@ -879,7 +885,7 @@ Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính
       
       try {
         checkPermissions("Admin.Write", request);
-        // làm, gửi id đến productService và điểm nhập từ xa
+        // todo, gửi id đến productService và mục nhập từ xa
       } catch(Exception e) {
         console.log("Authorization error, you're not allowed");  
       }
@@ -892,7 +898,7 @@ Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính
    ```
 
 
-- Sử dụng phương pháp server nâng cao và các request handler để giảm thiểu số nơi cần thực hiện kiểm tra.
+- Sử dụng phương pháp máy chủ nâng cao và các trình xử lý yêu cầu để bạn giảm thiểu số nơi cần thực hiện kiểm tra.
 
    **Python**
 
@@ -904,7 +910,7 @@ Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính
    }
 
    def has_permission(user_permissions, required_permissions) -> bool:
-      # user_permissions: danh sách quyền của người dùng
+      # user_permissions: danh sách quyền mà người dùng có
       # required_permissions: danh sách quyền cần thiết cho công cụ
       return any(perm in user_permissions for perm in required_permissions)
 
@@ -946,45 +952,45 @@ Bạn có một vài lựa chọn khác nhau để thực hiện RBAC theo tính
    });
    ```
 
-   Lưu ý, bạn cần đảm bảo middleware của bạn gán token đã giải mã cho thuộc tính user trong request để đoạn mã trên trở nên đơn giản.
+   Lưu ý, bạn sẽ cần đảm bảo middleware của mình gán token đã giải mã cho thuộc tính user của yêu cầu để đoạn mã trên được đơn giản.
 
-### Tóm tắt
+### Tóm lại
 
-Bây giờ chúng ta đã bàn về cách thêm hỗ trợ RBAC nói chung và cho MCP nói riêng, đã đến lúc thử triển khai bảo mật tự mình để đảm bảo bạn đã hiểu các khái niệm đã trình bày.
+Bây giờ chúng ta đã thảo luận về cách thêm hỗ trợ cho RBAC nói chung và cho MCP nói riêng, đã đến lúc thử tự mình triển khai bảo mật để đảm bảo bạn đã hiểu các khái niệm đã trình bày.
 
 ## Bài tập 1: Xây dựng một server mcp và client mcp sử dụng xác thực cơ bản
 
-Ở đây bạn sẽ áp dụng những gì đã học về gửi thông tin đăng nhập qua header.
+Ở đây bạn sẽ áp dụng những gì đã học về việc gửi thông tin đăng nhập qua header.
 
 ## Giải pháp 1
 
-[Solution 1](./code/basic/README.md)
+[Giải pháp 1](./code/basic/README.md)
 
-## Bài tập 2: Nâng cấp giải pháp từ Bài tập 1 sử dụng JWT
+## Bài tập 2: Nâng cấp giải pháp từ Bài tập 1 để sử dụng JWT
 
-Dùng giải pháp đầu tiên nhưng lần này cải tiến hơn.
+Lấy giải pháp đầu tiên nhưng lần này, hãy cải thiện nó.
 
-Thay vì dùng Basic Auth, hãy dùng JWT.
+Thay vì sử dụng Basic Auth, hãy sử dụng JWT.
 
 ## Giải pháp 2
 
-[Solution 2](./solution/jwt-solution/README.md)
+[Giải pháp 2](./solution/jwt-solution/README.md)
 
-## Thách thức
+## Thử thách
 
-Thêm RBAC theo từng công cụ như đã mô tả trong phần "Thêm RBAC vào MCP".
+Thêm RBAC cho từng công cụ như chúng ta mô tả trong phần "Thêm RBAC vào MCP".
 
-## Tổng kết
+## Tóm tắt
 
-Hy vọng bạn đã học được rất nhiều trong chương này, từ không có bảo mật, đến bảo mật cơ bản, tới JWT và cách thêm nó vào MCP.
+Hy vọng bạn đã học được rất nhiều trong chương này, từ không có bảo mật gì, đến bảo mật cơ bản, đến JWT và cách nó có thể được thêm vào MCP.
 
-Chúng ta đã xây dựng nền tảng vững chắc với JWT tuỳ chỉnh, nhưng khi mở rộng, chúng ta sẽ chuyển sang mô hình định danh chuẩn. Việc áp dụng IdP như Entra hoặc Keycloak cho phép chúng ta chuyển giao việc phát hành token, xác thực và quản lý vòng đời token cho nền tảng đáng tin cậy — giúp chúng ta tập trung vào logic ứng dụng và trải nghiệm người dùng.
+Chúng ta đã xây dựng nền tảng vững chắc với JWT tùy chỉnh, nhưng khi mở rộng quy mô, chúng ta đang hướng tới mô hình nhận dạng dựa trên tiêu chuẩn. Việc áp dụng một IdP như Entra hoặc Keycloak cho phép chúng ta chuyển giao việc phát hành token, kiểm tra và quản lý vòng đời cho một nền tảng tin cậy — giải phóng chúng ta tập trung vào logic ứng dụng và trải nghiệm người dùng.
 
-Về điều này, chúng ta có [chương nâng cao hơn về Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
+Vì thế, chúng ta có một [chương nâng cao hơn về Entra](../../05-AdvancedTopics/mcp-security-entra/README.md)
 
-## Tiếp theo
+## Tiếp theo là gì
 
-- Tiếp theo: [Cài đặt MCP Hosts](../12-mcp-hosts/README.md)
+- Tiếp theo: [Cài đặt các máy chủ MCP](../12-mcp-hosts/README.md)
 
 ---
 

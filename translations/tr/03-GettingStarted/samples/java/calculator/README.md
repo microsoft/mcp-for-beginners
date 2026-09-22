@@ -1,96 +1,102 @@
-# Temel Hesap Makinesi MCP Servisi
+# Temel Hesap Makinesi MCP Hizmeti
 
-Bu servis, Model Context Protocol (MCP) üzerinden Spring Boot ve WebFlux taşıma katmanını kullanarak temel hesap makinesi işlemleri sağlar. MCP uygulamalarını öğrenen yeni başlayanlar için basit bir örnek olarak tasarlanmıştır.
+> [!NOTE]
+> Bu örnek, eski HTTP+SSE taşıma yöntemi kullanmaktadır ve MCP `2025-11-25` ile uyumlu bir SDK'yı hedeflemektedir.
+> Yeni uzak sunucular `2026-07-28` Streamable HTTP desteğini kullanmalıdır.
 
-Daha fazla bilgi için [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referans dokümantasyonuna bakabilirsiniz.
 
-## Genel Bakış
 
-Servis şunları gösterir:
+
+
+
+
+
 - SSE (Server-Sent Events) desteği
-- Spring AI'nin `@Tool` anotasyonu ile otomatik araç kaydı
+- Spring AI'nin `@Tool` açıklaması kullanılarak otomatik araç kaydı
 - Temel hesap makinesi fonksiyonları:
   - Toplama, çıkarma, çarpma, bölme
-  - Üs alma ve karekök
+  - Üs hesaplama ve karekök
   - Modül (kalan) ve mutlak değer
   - İşlem açıklamaları için yardım fonksiyonu
 
-## Özellikler
 
-Bu hesap makinesi servisi aşağıdaki yetenekleri sunar:
 
-1. **Temel Aritmetik İşlemler**:
+
+
+
    - İki sayının toplanması
    - Bir sayının diğerinden çıkarılması
    - İki sayının çarpılması
    - Bir sayının diğerine bölünmesi (sıfıra bölme kontrolü ile)
 
-2. **Gelişmiş İşlemler**:
-   - Üs alma (tabanı kuvvetle yükseltme)
+
+   - Üs hesaplama (tabanın üste yükseltilmesi)
    - Karekök hesaplama (negatif sayı kontrolü ile)
    - Modül (kalan) hesaplama
    - Mutlak değer hesaplama
 
-3. **Yardım Sistemi**:
+
    - Mevcut tüm işlemleri açıklayan yerleşik yardım fonksiyonu
 
-## Servisin Kullanımı
 
-Servis, MCP protokolü üzerinden aşağıdaki API uç noktalarını sunar:
 
-- `add(a, b)`: İki sayıyı toplar
+
+
+
 - `subtract(a, b)`: İkinci sayıyı birinciden çıkarır
 - `multiply(a, b)`: İki sayıyı çarpar
 - `divide(a, b)`: Birinci sayıyı ikinciye böler (sıfır kontrolü ile)
 - `power(base, exponent)`: Bir sayının üssünü hesaplar
-- `squareRoot(number)`: Karekök hesaplar (negatif sayı kontrolü ile)
-- `modulus(a, b)`: Bölme işleminde kalanı hesaplar
+- `squareRoot(number)`: Karekökünü hesaplar (negatif sayı kontrolü ile)
+- `modulus(a, b)`: Bölümünden kalan değeri hesaplar
 - `absolute(number)`: Mutlak değeri hesaplar
-- `help()`: Mevcut işlemler hakkında bilgi verir
+- `help()`: Mevcut işlemler hakkında bilgi alır
 
-## Test İstemcisi
 
-`com.microsoft.mcp.sample.client` paketinde basit bir test istemcisi bulunmaktadır. `SampleCalculatorClient` sınıfı, hesap makinesi servisinin mevcut işlemlerini gösterir.
 
-## LangChain4j İstemcisinin Kullanımı
 
-Projede, hesap makinesi servisini LangChain4j ve GitHub modelleri ile entegre etmeyi gösteren `com.microsoft.mcp.sample.client.LangChain4jClient` adlı bir LangChain4j örnek istemcisi bulunmaktadır:
 
-### Ön Koşullar
 
-1. **GitHub Token Ayarı**:
+
+
+
+
+
+
    
-   GitHub'ın AI modellerini (örneğin phi-4) kullanmak için bir GitHub kişisel erişim token'ına ihtiyacınız var:
+   GitHub AI modellerini (phi-4 gibi) kullanmak için bir GitHub kişisel erişim token’ına ihtiyacınız vardır:
 
-   a. GitHub hesap ayarlarınıza gidin: https://github.com/settings/tokens
+
    
-   b. "Generate new token" → "Generate new token (classic)" seçeneğine tıklayın
+   b. "Generate new token" → "Generate new token (classic)" tıklayın
    
-   c. Token'ınıza açıklayıcı bir isim verin
+   c. Token’a açıklayıcı bir isim verin
    
-   d. Aşağıdaki izinleri seçin:
+   d. Aşağıdaki yetkileri seçin:
       - `repo` (Özel depolar üzerinde tam kontrol)
-      - `read:org` (Organizasyon ve ekip üyeliklerini okuma, organizasyon projelerini okuma)
+      - `read:org` (Organizasyon ve ekip üyeliğini okuma, organizasyon projelerini okuma)
       - `gist` (Gist oluşturma)
-      - `user:email` (Kullanıcı e-posta adreslerine erişim (sadece okuma))
+
+
+      - `user:email` (Kullanıcı e-posta adreslerine erişim (yalnızca okuma))
    
    e. "Generate token" butonuna tıklayın ve yeni token'ınızı kopyalayın
    
-   f. Ortam değişkeni olarak ayarlayın:
+   f. Çevre değişkeni olarak ayarlayın:
       
-      Windows için:
+      Windows'ta:
       ```
       set GITHUB_TOKEN=your-github-token
       ```
       
-      macOS/Linux için:
+      macOS/Linux'ta:
       ```bash
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. Kalıcı kullanım için sistem ayarlarından ortam değişkenlerine ekleyin
+   g. Kalıcı kurulum için, sistem ayarlarından çevre değişkenlerine ekleyin
 
-2. LangChain4j GitHub bağımlılığını projenize ekleyin (pom.xml içinde zaten mevcut):
+2. LangChain4j GitHub bağımlılığını projenize ekleyin (zaten pom.xml içinde var):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -99,25 +105,25 @@ Projede, hesap makinesi servisini LangChain4j ve GitHub modelleri ile entegre et
    </dependency>
    ```
 
-3. Hesap makinesi sunucusunun `localhost:8080` adresinde çalıştığından emin olun
+3. Calculator sunucusunun `localhost:8080` adresinde çalıştığından emin olun
 
-### LangChain4j İstemcisinin Çalıştırılması
+### LangChain4j İstemcisini Çalıştırma
 
 Bu örnek şunları gösterir:
-- Hesap makinesi MCP sunucusuna SSE taşıma katmanı ile bağlanma
-- LangChain4j kullanarak hesap makinesi işlemlerini kullanan bir sohbet botu oluşturma
-- GitHub AI modelleri ile entegrasyon (şu anda phi-4 modeli kullanılıyor)
+- Calculator MCP sunucusuna SSE protokolü üzerinden bağlanmak
+- LangChain4j kullanarak calculator işlemlerini kullanan bir sohbet botu oluşturmak
+- GitHub AI modelleri ile entegrasyon (şimdi phi-4 modeli kullanılıyor)
 
-İstemci, işlevselliği göstermek için aşağıdaki örnek sorguları gönderir:
+İstemci işlevselliği göstermek için aşağıdaki örnek sorguları gönderir:
 1. İki sayının toplamını hesaplama
 2. Bir sayının karekökünü bulma
-3. Mevcut hesap makinesi işlemleri hakkında yardım bilgisi alma
+3. Mevcut calculator işlemleri hakkında yardım bilgisi alma
 
-Örneği çalıştırın ve konsol çıktısını kontrol ederek AI modelinin hesap makinesi araçlarını nasıl kullandığını görün.
+Örneği çalıştırın ve AI modelinin sorulara nasıl calculator araçlarını kullanarak yanıt verdiğini görmek için konsol çıktısını kontrol edin.
 
 ### GitHub Model Yapılandırması
 
-LangChain4j istemcisi, GitHub'ın phi-4 modeli ile aşağıdaki ayarlarla yapılandırılmıştır:
+LangChain4j istemcisi GitHub'ın phi-4 modelini aşağıdaki ayarlarla kullanacak şekilde yapılandırılmıştır:
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,7 +135,7 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Farklı GitHub modellerini kullanmak için `modelName` parametresini desteklenen başka bir modele (örneğin "claude-3-haiku-20240307", "llama-3-70b-8192" vb.) değiştirmeniz yeterlidir.
+Farklı GitHub modelleri kullanmak için `modelName` parametresini desteklenen başka bir modele değiştirmek yeterlidir (örneğin, "claude-3-haiku-20240307", "llama-3-70b-8192" vb.).
 
 ## Bağımlılıklar
 
@@ -157,14 +163,14 @@ Proje aşağıdaki temel bağımlılıkları gerektirir:
 </dependency>
 ```
 
-## Projenin Derlenmesi
+## Projeyi Derleme
 
-Projeyi Maven ile derleyin:
+Maven kullanarak projeyi derleyin:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## Sunucunun Çalıştırılması
+## Sunucuyu Çalıştırma
 
 ### Java Kullanarak
 
@@ -174,29 +180,29 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### MCP Inspector Kullanarak
 
-MCP Inspector, MCP servisleri ile etkileşim için faydalı bir araçtır. Bu hesap makinesi servisi ile kullanmak için:
+MCP Inspector, MCP servisleri ile etkileşimde bulunmak için kullanışlı bir araçtır. Bu calculator servisi ile kullanmak için:
 
 1. **MCP Inspector'ı kurun ve yeni bir terminal penceresinde çalıştırın**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Uygulamanın gösterdiği URL'ye tıklayarak web arayüzüne erişin** (genellikle http://localhost:6274)
+2. **Uygulamanın gösterdiği URL'e tıklayarak web arayüzüne erişin** (genellikle http://localhost:6274)
 
 3. **Bağlantıyı yapılandırın**:
    - Taşıma türünü "SSE" olarak ayarlayın
-   - URL'yi çalışan sunucunuzun SSE uç noktası olarak ayarlayın: `http://localhost:8080/sse`
+   - URL'yi çalışan sunucunuzun SSE uç noktasına ayarlayın: `http://localhost:8080/sse`
    - "Connect" butonuna tıklayın
 
 4. **Araçları kullanın**:
-   - "List Tools" butonuna tıklayarak mevcut hesap makinesi işlemlerini görün
-   - Bir aracı seçip "Run Tool" ile işlemi çalıştırın
+   - Mevcut calculator işlemlerini görmek için "List Tools" butonuna tıklayın
+   - Bir araç seçin ve işlemi yürütmek için "Run Tool" butonuna tıklayın
 
-![MCP Inspector Ekran Görüntüsü](../../../../../../translated_images/tr/tool.c75a0b2380efcf1a.webp)
+![MCP Inspector Screenshot](../../../../../../translated_images/tr/tool.c75a0b2380efcf1a.webp)
 
 ### Docker Kullanarak
 
-Projede konteyner tabanlı dağıtım için bir Dockerfile bulunmaktadır:
+Proje, konteyner tabanlı dağıtım için bir Dockerfile içerir:
 
 1. **Docker imajını oluşturun**:
    ```bash
@@ -208,27 +214,32 @@ Projede konteyner tabanlı dağıtım için bir Dockerfile bulunmaktadır:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Bu işlemler:
+Bu şunları yapacaktır:
 - Maven 3.9.9 ve Eclipse Temurin 24 JDK ile çok aşamalı bir Docker imajı oluşturur
-- Optimize edilmiş bir konteyner imajı yaratır
-- Servisi 8080 portunda açar
-- Konteyner içinde MCP hesap makinesi servisini başlatır
+- Optimize edilmiş bir konteyner imajı oluşturur
+- Servisi 8080 portu üzerinde erişilebilir hale getirir
+- Konteyner içinde MCP calculator servisini başlatır
 
 Konteyner çalışmaya başladıktan sonra servise `http://localhost:8080` adresinden erişebilirsiniz.
 
 ## Sorun Giderme
 
-### GitHub Token ile İlgili Yaygın Sorunlar
+### GitHub Token ile Yaygın Sorunlar
 
-1. **Token İzin Sorunları**: 403 Forbidden hatası alırsanız, token'ın ön koşullarda belirtilen izinlere sahip olduğundan emin olun.
 
-2. **Token Bulunamadı**: "No API key found" hatası alırsanız, GITHUB_TOKEN ortam değişkeninin doğru şekilde ayarlandığını kontrol edin.
+1. **Jeton İzin Sorunları**: 403 Forbidden hatası alırsanız, jetonunuzun ön koşullarda belirtilen doğru izinlere sahip olup olmadığını kontrol edin.
 
-3. **Oran Sınırı (Rate Limiting)**: GitHub API'si oran sınırlarına sahiptir. 429 hata kodu alırsanız, birkaç dakika bekleyip tekrar deneyin.
+2. **Jeton Bulunamadı**: "No API key found" hatası alırsanız, GITHUB_TOKEN ortam değişkeninin doğru şekilde ayarlandığından emin olun.
 
-4. **Token Süresi Dolması**: GitHub token'ları zamanla geçerliliğini yitirebilir. Kimlik doğrulama hataları alırsanız yeni bir token oluşturup ortam değişkeninizi güncelleyin.
+3. **Oran Sınırlaması**: GitHub API'sinin oran sınırları vardır. Bir oran sınırı hatası (durum kodu 429) ile karşılaşırsanız, tekrar denemeden önce birkaç dakika bekleyin.
 
-Daha fazla yardım için [LangChain4j dokümantasyonuna](https://github.com/langchain4j/langchain4j) veya [GitHub API dokümantasyonuna](https://docs.github.com/en/rest) bakabilirsiniz.
+4. **Jetonun Süresi Dolması**: GitHub jetonlarının süresi dolabilir. Bir süre sonra kimlik doğrulama hataları alırsanız, yeni bir jeton oluşturun ve ortam değişkeninizi güncelleyin.
 
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Daha fazla yardıma ihtiyacınız varsa, [LangChain4j dokümantasyonuna](https://github.com/langchain4j/langchain4j) veya [GitHub API dokümantasyonuna](https://docs.github.com/en/rest) bakın.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

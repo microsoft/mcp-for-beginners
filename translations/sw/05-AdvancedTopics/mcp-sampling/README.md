@@ -1,62 +1,70 @@
-> [IMEZUIWA: 2026-07-28 OMBI LA TOLEO](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Kutoa sampuli kumeachwa katika MCP `2026-07-28`. Somo hili linahifadhiwa kwa ajili ya
+> utekelezaji wa urithi. Seva mpya zinapaswa kuunganisha moja kwa moja na API ya
+> mtoa huduma wa LLM.
 
-# Kuchanganya Sampuli katika Itifaki ya Muktadha wa Mfano
+# Kutoa Sampuli katika Itifaki ya Muktadha wa Mfano
 
-> **Kiarifa cha kuachwa:** mgombea wa toleo la sifa ya MCP `2026-07-28` unaweka Sampuli kama imeachwa kwa ajili ya muingiliano wa moja kwa moja na API za wasambazaji wa LLM. Sampuli inaendelea kufanya kazi katika `2025-11-25` na kwa angalau mwaka mmoja baada ya kuachwa rasmi, kwa hivyo kila kitu katika somo hili kinabaki halali - lakini miundo mipya ya seva inapaswa kutathmini mfano wa mbadala. Angalia [Nini Kinabadilika katika MCP: Mgombea wa Toleo la 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Kutoa sampuli bado kuna katika sifa ya `2026-07-28` kwa ajili ya ulinganifu na ni
+> sifa ya kuondolewa katika marekebisho ya kwanza yatakayotolewa kufikia au baada ya Julai 28,
+> 2027. Mifano katika somo hili inaweza kutumia API za SDK zinazotekeleza `2025-11-25`.
+> Angalia [Nini Kimebadilika katika MCP: Sifa ya 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Sampuli ni kipengele chenye nguvu cha MCP kinachoruhusu seva kutuma maombi ya ukamilishaji wa LLM kupitia mteja, kuwezesha tabia za wakala zilizo na ubunifu huku zikidumisha usalama na faragha. Mipangilio sahihi ya sampuli inaweza kuboresha sana ubora na utendaji wa majibu. MCP hutoa njia sanifu ya kudhibiti jinsi mifano inavyotengeneza maandishi kwa vigezo maalum vinavyoathiri urandikaji, ubunifu, na mlingano.
+Katika utekelezaji wa urithi wa MCP, Kutoa Sampuli huruhusu seva kuomba ukamilishaji wa LLM
+kupitia mteja. Somo hili linaelezea mtiririko wa itifaki uliovunjika wa zamani
+kwa ajili ya ulinganifu na kazi ya uhamishaji.
 
 ## Utangulizi
 
-Katika somo hili, tutaangalia jinsi ya kuweka mipangilio ya sampuli katika maombi ya MCP na kuelewa mbinu za msingi za itifaki ya sampuli.
+Katika somo hili, tutaangazia jinsi ya kusanidi vigezo vya kutoa sampuli katika maombi ya MCP na kuelewa mbinu za msingi za itifaki ya kutoa sampuli.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa somo hili, utakuwa na uwezo wa:
 
-- Kuelewa vigezo muhimu vya sampuli vinavyopatikana katika MCP.
-- Kuweka mipangilio ya sampuli kwa matumizi tofauti.
-- Kutekeleza sampuli ya uhakika kwa matokeo yanayoweza kurudiwa.
-- Kurekebisha kwa nguvu vigezo vya sampuli kulingana na muktadha na mapendeleo ya mtumiaji.
-- Kutumia mikakati ya sampuli kuboresha utendaji wa mfano katika hali tofauti.
-- Kuelewa jinsi sampuli inavyofanya kazi katika mzunguko wa mteja-seva wa MCP.
+- Kuelewa vigezo muhimu vya kutoa sampuli vinavyopatikana katika MCP.
+- Kusanidi vigezo vya kutoa sampuli kwa matumizi mbalimbali.
+- Kutekeleza kutoa sampuli kwa usahihi kwa matokeo yanayoweza kurudiwa.
+- Kurekebisha vigezo vya kutoa sampuli kwa nguvu kulingana na muktadha na mapendeleo ya mtumiaji.
+- Kutumia mikakati ya kutoa sampuli kuboresha utendaji wa mfano katika hali mbalimbali.
+- Kuelewa jinsi kutoa sampuli kunavyofanya kazi katika mtiririko wa mteja-seva wa MCP.
 
-## Jinsi Sampuli Inavyofanya Kazi katika MCP
+## Jinsi Kutoa Sampuli Kwanza KCP Kunavyofanya Kazi
 
-Mzunguko wa sampuli katika MCP unafuata hatua hizi:
+Mtiririko wa kutoa sampuli katika MCP unafuata hatua hizi:
 
 1. Seva inatuma ombi la `sampling/createMessage` kwa mteja
-2. Mteja anapitia ombi na anaweza kuibadilisha
-3. Mteja huchangamsha sampuli kutoka kwa LLM
-4. Mteja anapitia ukamilishaji
+2. Mteja anakagua ombi na anaweza kulibadilisha
+3. Mteja huchukua sampuli kutoka kwa LLM
+4. Mteja anakagua ukamilishaji
 5. Mteja hurudisha matokeo kwa seva
 
-Muundo huu wa binadamu-katika-mzunguko unahakikisha watumiaji wanadhibiti kile LLM inachoona na kinachotengeneza.
+Muundo huu wa mtu-kuingilia-mdogo huhakikisha watumiaji wanadhibiti kile ambacho LLM inaona na inazalisha.
 
-## Muhtasari wa Vigezo vya Sampuli
+## Muhtasari wa Vigezo vya Kutoa Sampuli
 
-MCP inafafanua vigezo vifuatavyo vya sampuli vinavyoweza kuwekwa katika maombi ya mteja:
+MCP inafafanua vigezo vifuatavyo vya kutoa sampuli ambavyo vinaweza kusanidiwa katika maombi ya mteja:
 
-| Kigezo | Maelezo | Kiwango cha Kawaida |
+| Kigezo | Maelezo | Anuwai ya Kawaida |
 |-----------|-------------|---------------|
-| `temperature` | Hudhibiti urandikaji katika uteuzi wa tokeni | 0.0 - 1.0 |
-| `maxTokens` | Idadi kubwa kabisa ya tokeni kutengeneza | Thamani ya nambari kamili |
-| `stopSequences` | Mraba wa mfuatano unaosimamisha uundaji wakati unapotokea | Safu ya mistari |
-| `metadata` | Vigezo vya ziada vya kihususi kwa mtoa huduma | Kielelezo cha JSON |
+| `temperature` | Hukontrol randomness katika uteuzi wa tokeni | 0.0 - 1.0 |
+| `maxTokens` | Idadi kubwa ya tokeni kuzalisha | Thamani ya nambari nzima |
+| `stopSequences` | Mfuatano maalum unaoacha uzalishaji ukiukikumbwa | Safu ya mstringi |
+| `metadata` | Vigezo vya ziada maalum kwa mtoa huduma | Kifaa cha JSON |
 
-Watoa huduma wengi wa LLM wanaunga mkono vigezo za ziada kupitia uwanja wa `metadata`, ambazo zinaweza kujumuisha:
+Watoa huduma wengi wa LLM huunga mkono vigezo vya ziada kupitia uwanja wa `metadata`, ambao unaweza kujumuisha:
 
-| Kigezo cha Ziada Kinachotumika | Maelezo | Kiwango cha Kawaida |
+| Kigezo cha Kiongezaji Cha Kawaida | Maelezo | Anuwai ya Kawaida |
 |-----------|-------------|---------------|
-| `top_p` | Sampuli ya nyufa - inazuia tokeni kwa uwezekano wa juu zaidi wa thamani ya jumla | 0.0 - 1.0 |
-| `top_k` | Inazuia uteuzi wa tokeni kwa chaguzi K bora | 1 - 100 |
-| `presence_penalty` | Inakemea tokeni kulingana na uwepo wao katika maandishi hadi sasa | -2.0 - 2.0 |
-| `frequency_penalty` | Inakemea tokeni kulingana na mara ngapi zinaonekana katika maandishi hadi sasa | -2.0 - 2.0 |
-| `seed` | Mchanga maalum wa nasibu kwa matokeo yanayoweza kurudiwa | Thamani ya nambari kamili |
+| `top_p` | Sampuli ya nyuklia - hukomo tokeni kwa uwezekano wa juu zaidi kwa pamoja | 0.0 - 1.0 |
+| `top_k` | Hukomo chaguo za tokeni hadi K za juu | 1 - 100 |
+| `presence_penalty` | Hukemea tokeni kulingana na uwepo wao katika maandishi hadi sasa | -2.0 - 2.0 |
+| `frequency_penalty` | Hukemea tokeni kulingana na mara ngapi zimeonekana katika maandishi hadi sasa | -2.0 - 2.0 |
+| `seed` | Mbegu maalum ya bahati nasibu kwa matokeo yanayoweza kurudiwa | Thamani ya nambari nzima |
 
 ## Mfano wa Muundo wa Ombi
 
-Hapa kuna mfano wa kuomba sampuli kutoka kwa mteja katika MCP:
+Hapa ni mfano wa kuomba sampuli kutoka kwa mteja katika MCP:
 
 ```json
 {
@@ -95,42 +103,42 @@ Mteja hurudisha matokeo ya ukamilishaji:
 }
 ```
 
-## Udhibiti wa Binadamu katika Mzunguko
+## Udhibiti wa Mtu Katika Mzunguko
 
-Sampuli ya MCP imesanifiwa kwa kuzingatia uangalizi wa binadamu:
+Sampuli ya MCP imeundwa kwa kufikiria usimamizi wa binadamu:
 
-- **Kwa msukumo**:
-  - Wateja wanapaswa kuwaonyesha watumiaji msukumo uliopendekezwa
-  - Watumiaji wanapaswa kuweza kubadilisha au kukataa misukumo
-  - Misukumo ya mfumo inaweza kuchujwa au kubadilishwa
+- **Kwa maagizo**:
+  - Wateja wanapaswa kuonyesha watumiaji maombi yaliyopendekezwa
+  - Watumiaji wanapaswa kuwa na uwezo wa kubadilisha au kukataa maagizo
+  - Maagizo ya mfumo yanaweza kuchujwa au kubadilishwa
   - Ujumuishaji wa muktadha unadhibitiwa na mteja
 
-- **Kwa makamilisho**:
-  - Wateja wanapaswa kuwaonyesha watumiaji ukamilishaji
-  - Watumiaji wanapaswa kuweza kubadilisha au kukataa makamilisho
-  - Wateja wanaweza kuchuja au kubadilisha makamilisho
-  - Watumiaji wanadhibiti ni mfano gani unapotumika
+- **Kwa ukamilishaji**:
+  - Wateja wanapaswa kuonyesha watumiaji ukamilishaji
+  - Watumiaji wanapaswa kuwa na uwezo wa kubadilisha au kukataa ukamilishaji
+  - Wateja wanaweza kuchuja au kubadilisha ukamilishaji
+  - Watumiaji wanadhibiti mfano gani unatumika
 
-Kwa misingi hii, tuchukulie jinsi ya kutekeleza sampuli katika lugha mbalimbali za programu, tukizingatia vigezo vinavyoungwa mkono kawaida na watoa huduma wa LLM.
+Pamoja na kanuni hizi akilini, tutaangalia jinsi ya kutekeleza kutoa sampuli katika lugha mbalimbali za programu, tukizingatia vigezo vinavyounga mkono kwa kawaida watoa huduma wa LLM.
 
-## Kujali Usalama
+## Mambo ya Usalama
 
-Unapotekeleza sampuli katika MCP, zizingatie kanuni hizi bora za usalama:
+Unapotekeleza kutoa sampuli katika MCP, zingatia taratibu hizi bora za usalama:
 
-- **Thibitisha maudhui yote ya ujumbe** kabla ya kuutuma kwa mteja
-- **Safisha taarifa nyeti** kutoka katika misukumo na makamilisho
-- **Tekeleza mipaka ya kasi** kuzuia matumizi mabaya
-- **Fuatilia matumizi ya sampuli** kwa mifumo isiyo ya kawaida
-- **Ficha data inayosafiri** kwa kutumia itifaki salama
-- **Dhibiti faragha ya data ya mtumiaji** kulingana na kanuni husika
-- **Kagua maombi ya sampuli** kwa ulinganifu na usalama
-- **Dhibiti mfiduo wa gharama** kwa mipaka inayofaa
-- **Tekeleza muda wa kusubiri** kwa maombi ya sampuli
-- **Shughulikia makosa ya mfano kwa upole** kwa mbadala zinazofaa
+- **Thibitisha maudhui yote ya ujumbe** kabla ya kuyatuma kwa mteja
+- **Safisha taarifa nyeti** kutoka kwa maagizo na ukamilishaji
+- **Tekeleza mipaka ya kiwango** ili kuzuia matumizi mabaya
+- **Simamia matumizi ya sampuli** kwa mifumo isiyo ya kawaida
+- **Fichua data ikiwa inasafiri** kwa kutumia itifaki salama
+- **Shughulikia faragha ya data ya mtumiaji** kulingana na kanuni husika
+- **Fanya ukaguzi wa maombi ya sampuli** kwa ajili ya uzingatiaji na usalama
+- **Dhibiti uwekaji wa gharama** kwa mipaka inayofaa
+- **Tekeleza mipaka ya muda** kwa maombi ya sampuli
+- **Shughulikia makosa ya mfano kwa hati safi** na mbadala unaofaa
 
-Vigezo vya sampuli huruhusu kurekebisha tabia za mifano ya lugha ili kupata usawa unaotakiwa kati ya matokeo ya uhakika na ubunifu.
+Vigezo vya kutoa sampuli huruhusu kurekebisha kwa uangalifu mwenendo wa mifano ya lugha ili kufikia usawa unaotaka kati ya matokeo ya uhakika na ya ubunifu.
 
-Tuchukulie jinsi ya kuweka vigezo hivi katika lugha tofauti za programu.
+Tuchunguze jinsi ya kusanidi vigezo hivi katika lugha mbalimbali za programu.
 
 # [.NET](#tab-dotnet)
 
@@ -168,23 +176,23 @@ public class SamplingExample
 }
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuunda mteja wa MCP kwa URL maalum ya seva.
-- Kuweka ombi na vigezo vya sampuli kama `temperature`, `top_p`, na `top_k`.
+- Kuunda mteja wa MCP na URL maalum ya seva.
+- Kusanidi ombi lenye vigezo vya kutoa sampuli kama `temperature`, `top_p`, na `top_k`.
 - Kutuma ombi na kuchapisha maandishi yaliyotengenezwa.
 - Kutumia:
-    - `allowedTools` kubainisha zana gani mfano unaweza kutumia wakati wa uundaji. Katika kesi hii, tuliruhusu zana za `ideaGenerator` na `marketAnalyzer` kusaidia kuunda mawazo ya ubunifu ya programu.
-    - `frequencyPenalty` na `presencePenalty` kudhibiti rudia na utofauti katika matokeo.
-    - `temperature` kudhibiti urandikaji wa matokeo, ambapo thamani kubwa hupelekea majibu ya ubunifu zaidi.
-    - `top_p` kuzuia uteuzi wa tokeni kwa zile zinazochangia wingi wa uwezekano wa kilele, kuboresha ubora wa maandishi yaliyotengenezwa.
-    - `top_k` kupunguza mfano kwa tokeni K bora kabisa, ambayo inaweza kusaidia kuzalisha majibu yenye mlingano bora zaidi.
-    - `frequencyPenalty` na `presencePenalty` kupunguza rudia na kuhamasisha utofauti katika maandishi yaliyotengenezwa.
+    - `allowedTools` kubainisha zana ambazo mfano unaweza kutumia wakati wa uzalishaji. Katika kesi hii, tuliwaruhusu zana `ideaGenerator` na `marketAnalyzer` kusaidia katika kuzalisha mawazo ya programu za ubunifu.
+    - `frequencyPenalty` na `presencePenalty` kudhibiti kurudiwa na utofauti wa matokeo.
+    - `temperature` kudhibiti randomness ya matokeo, ambapo thamani kubwa huleta majibu ya ubunifu zaidi.
+    - `top_p` kupunguza uteuzi wa tokeni kwa zile zinazochangia uzito mkubwa wa uwezekano, kuboresha ubora wa maandishi yaliyotengenezwa.
+    - `top_k` kuzuia mfano kufunguliwa kwa tokeni K zilizohesabiwa kuwa za juu zaidi, kusaidia kuzalisha majibu yaliyo na muktadha mzuri zaidi.
+    - `frequencyPenalty` na `presencePenalty` kupunguza kurudiwa na kuhimiza utofauti wa maandishi yaliyotengenezwa.
 
 # [JavaScript](#tab/javascript)
 
 ```javascript
-// Mfano wa JavaScript: Mipangilio ya Sampuli ya Joto na Top-P
+// Mfano wa JavaScript: Hali ya joto na usanidi wa sampuli za Top-P
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
@@ -196,21 +204,21 @@ async function demonstrateSampling() {
   
   // Sanidi ombi kwa vigezo tofauti vya sampuli
   const creativeSampling = {
-    temperature: 0.9,    // Joto kubwa = randomness/ubunifu zaidi
-    topP: 0.92,          // Zingatia tokeni zenye nafasi ya juu ya 92%
-    frequencyPenalty: 0.6, // Punguza kurudiwa kwa mfuatano wa tokeni
-    presencePenalty: 0.4   // Laana tokeni ambazo zimetokea katika maandishi hadi sasa
+    temperature: 0.9,    // Joto kubwa zaidi = upotevu/bunifu zaidi
+    topP: 0.92,          // Angalia tokeni zenye uzito wa uwezekano wa asilimia 92
+    frequencyPenalty: 0.6, // Punguza kurudiwa kwa mfululizo wa tokeni
+    presencePenalty: 0.4   // Adhabu tokeni zilizojitokeza katika maandishi hadi sasa
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Joto la chini = utabiri sahihi/wa kweli zaidi
-    topP: 0.85,          // Uchaguzi kidogo wa tokeni ulio na lengo zaidi
-    frequencyPenalty: 0.2, // Adhabu kidogo kwa kurudiwa
-    presencePenalty: 0.1   // Adhabu kidogo kwa uwepo
+    temperature: 0.2,    // Joto la chini = zaidi thabiti/kwenye ukweli
+    topP: 0.85,          // Uchaguzi kidogo zaidi wa tokeni wenye umakini
+    frequencyPenalty: 0.2, // Adhabu ndogo sana ya kurudiwa
+    presencePenalty: 0.1   // Adhabu ndogo sana ya kuwepo
   };
   
   try {
-    // Tuma maombi mawili yenye mipangilio tofauti ya sampuli
+    // Tuma maombi mawili yenye usanidi tofauti wa sampuli
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -241,46 +249,46 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuanzisha mteja wa MCP na URL ya seva na ufunguo wa API.
-- Kuweka seti mbili za vigezo vya sampuli: moja kwa kazi za ubunifu na nyingine kwa kazi za ukweli.
-- Kutuma maombi na mipangilio hii, kuwezesha mfano kutumia zana maalum kwa kila kazi.
-- Kuchapisha majibu yaliyotengenezwa kuonyesha athari za vigezo tofauti vya sampuli.
-- Kutumia `allowedTools` kubainisha zana gani mfano unaweza kutumia wakati wa uundaji. Katika kesi hii, tuliruhusu `ideaGenerator` na `environmentalImpactTool` kwa kazi za ubunifu, na `factChecker` na `dataAnalysisTool` kwa kazi za ukweli.
-- Kutumia `temperature` kudhibiti urandikaji wa matokeo, ambapo thamani kubwa hupelekea majibu ya ubunifu zaidi.
-- Kutumia `top_p` kuzuia uteuzi wa tokeni kwa zile zinazochangia wingi wa uwezekano wa kilele, kuboresha ubora wa maandishi yaliyotengenezwa.
-- Kutumia `frequencyPenalty` na `presencePenalty` kupunguza rudia na kuhamasisha utofauti katika matokeo.
-- Kutumia `top_k` kupunguza mfano kwa tokeni K bora kabisa, ambayo inaweza kusaidia kuzalisha majibu yenye mlingano bora zaidi.
+- Kuanza mteja wa MCP na URL ya seva na funguo ya API.
+- Kusanidi seti mbili za vigezo vya kutoa sampuli: moja kwa kazi za ubunifu na nyingine kwa kazi za ukweli.
+- Kutuma maombi yenye usanidi huo, kuruhusu mfano kutumia zana maalum kwa kila kazi.
+- Kuchapisha majibu yaliyotengenezwa kuonyesha athari za vigezo tofauti vya kutoa sampuli.
+- Kutumia `allowedTools` kubainisha zana ambazo mfano unaweza kutumia wakati wa uzalishaji. Katika kesi hii, tuliwaruhusu `ideaGenerator` na `environmentalImpactTool` kwa kazi za ubunifu, na `factChecker` na `dataAnalysisTool` kwa kazi za ukweli.
+- Kutumia `temperature` kudhibiti randomness ya matokeo, ambapo thamani kubwa huleta majibu ya ubunifu zaidi.
+- Kutumia `top_p` kupunguza uteuzi wa tokeni kwa zile zinazochangia uzito mkubwa wa uwezekano, kuboresha ubora wa maandishi yaliyotengenezwa.
+- Kutumia `frequencyPenalty` na `presencePenalty` kupunguza kurudiwa na kuhimiza utofauti wa matokeo.
+- Kutumia `top_k` kuzuia mfano kufunguliwa kwa tokeni K zilizohesabiwa kuwa za juu zaidi, kusaidia kuzalisha majibu yaliyo na muktadha mzuri zaidi.
 
 ---
 
-## Sampuli ya Uhakika
+## Kutoa Sampuli kwa Usahihi
 
-Kwa matumizi yanayohitaji matokeo yanayojirudia, sampuli ya uhakika huhakikisha matokeo yanayoweza kurudiwa. Inayofanya hivyo ni kwa kutumia mbegu ya nasibu thabiti na kuweka joto (temperature) kuwa sifuri.
+Kwa programu zinazohitaji matokeo thabiti, kutoa sampuli kwa usahihi huhakikisha matokeo yanayoweza kurudiwa. Hufanya hivyo kwa kutumia mbegu thabiti ya bahati nasibu na kuweka joto (temperature) hadi sifuri.
 
-Tuchukulie mfano wa utekelezaji hapa chini kuonyesha sampuli ya uhakika katika lugha mbalimbali za programu.
+Tuchunguze utekelezaji wa sampuli sahihi katika lugha mbalimbali za programu hapa chini.
 
 # [Java](#tab/java)
 
 ```java
-// Mfano wa Java: Majibu ya uhakika yenye mbegu thabiti
+// Mfano wa Java: Majibu ya uhakika kwa mbegu iliyowekwa
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Kutumia mbegu thabiti kwa matokeo ya uhakika
+        long fixedSeed = 12345; // Kutumia mbegu iliyowekwa kwa matokeo ya uhakika
         
-        // Ombi la kwanza na mbegu thabiti
+        // Ombi la kwanza kwa mbegu iliyowekwa
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Joto sifuri kwa uhakika wa juu zaidi
+            .setTemperature(0.0) // Joto sifuri kwa uhakika wa juu kabisa
             .build();
             
-        // Ombi la pili na mbegu moja
+        // Ombi la pili kwa mbegu ile ile
         McpRequest request2 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
@@ -291,7 +299,7 @@ public class DeterministicSamplingExample {
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Majibu yanapaswa kuwa sawa kutokana na mbegu na joto sawa = 0
+        // Majibu yanapaswa kuwa sawa kutokana na mbegu na joto=0 sawa
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -300,19 +308,19 @@ public class DeterministicSamplingExample {
 }
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuunda mteja wa MCP na URL maalum ya seva.
-- Kuweka maombi mawili na msukumo ule ule, mbegu thabiti, na joto la sifuri.
-- Kutuma maombi yote mawili na kuchapisha maandishi yaliyotengenezwa.
-- Kuonyesha kuwa majibu ni sawa kwa sababu ya asili ya uhakika ya mipangilio ya sampuli (mbegu na joto zile zile).
-- Kutumia `setSeed` kubainisha mbegu thabiti ya nasibu, kuhakikisha mfano unazalisha matokeo yale yale kwa pembejeo ile ile kila wakati.
-- Kuweka `temperature` kuwa sifuri kuhakikisha uhakika wa juu, ikimaanisha mfano daima huchagua tokeni inayowezekana zaidi ifuatayo bila urandikaji.
+- Kuunda mteja wa MCP na URL ya seva iliyotajwa.
+- Kusanidi maombi mawili yenye prompt sawa, mbegu thabiti, na joto sifuri.
+- Kutuma maombi yote na kuchapisha maandishi yaliyotengenezwa.
+- Kuonyesha kuwa majibu ni sawa kutokana na asili ya usahihi katika usanidi wa sampuli (mbegu na joto sawa).
+- Kutumia `setSeed` kubainisha mbegu thabiti ya bahati nasibu, kuhakikisha mfano unazalisha matokeo sawa kwa data sawa kila wakati.
+- Kuweka `temperature` hadi sifuri kuhakikisha usahihi wa hali ya juu, ikimaanisha mfano kila mara atachagua tokeni inayoweza kutarajiwa zaidi bila randomness.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// Mfano wa JavaScript: Majibu ya uhakika kwa udhibiti wa mbegu
+// Mfano wa JavaScript: Majibu ya kuamua kwa udhibiti wa mbegu
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -327,16 +335,16 @@ async function deterministicSampling() {
     // Ombi la kwanza lenye mbegu iliyowekwa
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Halijoto sifuri kwa uhakika mkubwa
+      temperature: 0.0  // Joto sifuri kwa udhaifu wa juu kabisa
     });
     
-    // Ombi la pili lenye mbegu na halijoto sawa
+    // Ombi la pili lenye mbegu na joto sawa
     const response2 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0
     });
     
-    // Ombi la tatu lenye mbegu tofauti lakini halijoto ile ile
+    // Ombi la tatu lenye mbegu tofauti lakini joto sawa
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -356,28 +364,28 @@ async function deterministicSampling() {
 deterministicSampling();
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuanzisha mteja wa MCP na URL ya seva.
-- Kuweka maombi mawili na msukumo ule ule, mbegu thabiti, na joto la sifuri.
-- Kutuma maombi yote mawili na kuchapisha maandishi yaliyotengenezwa.
-- Kuonyesha kuwa majibu ni sawa kwa sababu ya asili ya uhakika ya mipangilio ya sampuli (mbegu na joto zile zile).
-- Kutumia `seed` kubainisha mbegu thabiti ya nasibu, kuhakikisha mfano unazalisha matokeo yale yale kwa pembejeo ile ile kila wakati.
-- Kuweka `temperature` kuwa sifuri kuhakikisha uhakika wa juu, ikimaanisha mfano daima huchagua tokeni inayowezekana zaidi ifuatayo bila urandikaji.
-- Kutumia mbegu tofauti kwa ombi la tatu kuonyesha kuwa kubadilisha mbegu kunaleta matokeo tofauti, hata kwa msukumo na joto lile lile.
+- Kuanza mteja wa MCP na URL ya seva.
+- Kusanidi maombi mawili yenye prompt sawa, mbegu thabiti, na joto sifuri.
+- Kutuma maombi yote na kuchapisha maandishi yaliyotengenezwa.
+- Kuonyesha kuwa majibu ni sawa kutokana na asili ya usahihi katika usanidi wa sampuli (mbegu na joto sawa).
+- Kutumia `seed` kubainisha mbegu thabiti ya bahati nasibu, kuhakikisha mfano unazalisha matokeo sawa kwa data sawa kila wakati.
+- Kuweka `temperature` hadi sifuri kuhakikisha usahihi wa hali ya juu, ikimaanisha mfano kila mara atachagua tokeni inayoweza kutarajiwa zaidi bila randomness.
+- Kutumia mbegu tofauti kwa ombi la tatu kuonyesha kuwa kubadilisha mbegu husababisha matokeo tofauti, hata kwa prompt na joto sawa.
 
 ---
 
-## Mipangilio ya Sampuli Inayobadilika
+## Usanidi wa Kutoa Sampuli kwa Msururu
 
-Sampuli ya akili hubadilisha vigezo kulingana na muktadha na mahitaji ya kila ombi. Hii inamaanisha kurekebisha vigezo kama joto, top_p, na adhabu kulingana na aina ya kazi, mapendeleo ya mtumiaji, au utendaji wa kihistoria.
+Sampuli ya akili hubadilisha vigezo kulingana na muktadha na mahitaji ya kila ombi. Hii inamaanisha kurekebisha kwa nguvu vigezo kama joto (temperature), top_p, na vikwazo kulingana na aina ya kazi, mapendeleo ya mtumiaji, au utendaji wa kihistoria.
 
-Tuchukulie jinsi ya kutekeleza sampuli inayobadilika katika lugha tofauti za programu.
+Tuchunguze jinsi ya kutekeleza kutoa sampuli kwa msururu katika lugha mbalimbali za programu.
 
 # [Python](#tab/python)
 
 ```python
-# Mfano wa Python: Sampuli inayobadilika kulingana na muktadha wa ombi
+# Mfano wa Python: Sampuli ya mabadiliko kulingana na muktadha wa ombi
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Eleza mipangilio ya sampuli kwa aina tofauti za kazi
+        # Eleza presets za sampuli kwa aina mbalimbali za kazi
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -393,10 +401,10 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # Chagua mpangilio msingi
+        # Chagua preset msingi
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Rekebisha kulingana na mapendeleo ya mtumiaji ikiwa yametolewa
+        # Rekebisha kulingana na mapendeleo ya mtumiaji ikiwa yatatolewa
         if user_preferences:
             if "creativity_level" in user_preferences:
                 # Pima joto kulingana na upendeleo wa ubunifu (1-10)
@@ -408,7 +416,7 @@ class DynamicSamplingService:
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Tengeneza na tuma ombi lenye vigezo vya sampuli maalum
+        # Unda na tuma ombi kwa vigezo maalum vya sampuli
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -416,7 +424,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Rudisha jibu lenye metadata ya sampuli kwa uwazi
+        # Rudisha jibu na metadata ya sampuli kwa uwazi
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -424,32 +432,32 @@ class DynamicSamplingService:
         }
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuunda darasa la `DynamicSamplingService` linalosimamia sampuli inayobadilika.
-- Kufafanua mipangilio ya sampuli kwa aina tofauti za kazi (ubunifu, ukweli, msimbo, uchambuzi).
-- Kuchagua mipangilio ya msingi ya sampuli kulingana na aina ya kazi.
-- Kurekebisha vigezo vya sampuli kulingana na mapendeleo ya mtumiaji, kama kiwango cha ubunifu na utofauti.
-- Kutuma ombi na vigezo vya sampuli vilivyorekebishwa kwa nguvu.
-- Kurudisha maandishi yaliyotengenezwa pamoja na vigezo vya sampuli vilivyotumika na aina ya kazi kwa uwazi.
-- Kutumia `temperature` kudhibiti urandikaji wa matokeo, ambapo thamani kubwa hupelekea majibu ya ubunifu zaidi.
-- Kutumia `top_p` kuzuia uteuzi wa tokeni kwa zile zinazochangia wingi wa uwezekano wa kilele, kuboresha ubora wa maandishi yaliyotengenezwa.
-- Kutumia `frequency_penalty` kupunguza rudia na kuhamasisha utofauti katika matokeo.
-- Kutumia `user_preferences` kuruhusu ubinafsishaji wa vigezo vya sampuli kulingana na viwango vya ubunifu na utofauti vilivyoainishwa na mtumiaji.
-- Kutumia `task_type` kubainisha mkakati sahihi wa sampuli kwa ombi, kuruhusu majibu yaliyobinafsishwa zaidi kulingana na sifa ya kazi.
-- Kutumia njia ya `send_request` kutuma msukumo na vigezo vilivyorekebishwa vya sampuli, kuhakikisha mfano unazalisha maandishi kulingana na mahitaji yaliyobainishwa.
-- Kutumia `generated_text` kupata jibu la mfano, ambalo hurudishwa pamoja na vigezo na aina ya kazi kwa uchambuzi zaidi au kuonyesha.
-- Kutumia `min` na `max` kuhakikisha mapendeleo ya mtumiaji yamezuiwa ndani ya mipaka halali, kuzuia mipangilio isiyo halali ya sampuli.
+- Kuunda darasa la `DynamicSamplingService` linalosimamia utoaji wa sampuli unaobadilika.
+- Kufafanua mapreset ya kutoa sampuli kwa aina tofauti za kazi (ubunifu, ukweli, msimbo, uchambuzi).
+- Kuchagua preset ya msingi ya sampuli kulingana na aina ya kazi.
+- Kurekebisha vigezo vya sampuli kulingana na mapendeleo ya mtumiaji, kama viwango vya ubunifu na utofauti.
+- Kutuma ombi lenye vigezo vya sampuli vilivyopangwa kwa njia ya msururu.
+- Kurudisha maandishi yaliyotengenezwa pamoja na vigezo vya sampuli vilivyotumika na aina ya kazi kwa uwazi zaidi.
+- Kutumia `temperature` kudhibiti randomness ya matokeo, ambapo thamani kubwa huleta majibu ya ubunifu zaidi.
+- Kutumia `top_p` kupunguza uteuzi wa tokeni kwa zile zinazochangia uzito mkubwa wa uwezekano, kuboresha ubora wa maandishi yaliyotengenezwa.
+- Kutumia `frequency_penalty` kupunguza kurudiwa na kuhimiza utofauti wa matokeo.
+- Kutumia `user_preferences` kuruhusu kubinafsisha vigezo vya sampuli kulingana na viwango vya ubunifu na utofauti vilivyoainishwa na mtumiaji.
+- Kutumia `task_type` kuamua mkakati wa sampuli unaofaa kwa ombi, kuruhusu majibu yaliyo na muktadha wa aina ya kazi.
+- Kutumia njia ya `send_request` kutuma prompt na vigezo vya sampuli vilivyopangwa, kuhakikisha mfano unazalisha maandishi kulingana na mahitaji yaliyobainishwa.
+- Kutumia `generated_text` kupata jibu la mfano, ambalo hurudishwa pamoja na vigezo vya sampuli na aina ya kazi kwa uchambuzi au maonyesho zaidi.
+- Kutumia kazi za `min` na `max` kuhakikisha mapendeleo ya mtumiaji yamefikiriwa ndani ya anuwai halali, kuzuzuia usanidi batili wa sampuli.
 
 # [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
-// Mfano wa JavaScript: usanidi wa sampuli unaobadilika kulingana na muktadha wa mtumiaji
+// Mfano wa JavaScript: Mipangilio ya sampuli inayobadilika kulingana na muktadha wa mtumiaji
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Eleza wasifu wa msingi wa sampuli
+    // Eleza profaili za msingi za sampuli
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,15 +465,15 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Fuatilia utendaji wa kihistoria
+    // Fuata utendaji wa kihistoria
     this.performanceHistory = [];
   }
   
-  // Gundua aina ya kazi kutoka kwa maelekezo
+  // Tambua aina ya kazi kutoka kwenye tamko
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // Ugunduzi rahisi wa kanuni - unaweza kuboreshwa kwa matumizi ya uainishaji wa ML
+    // Ugunduzi rahisi wa kanuni - unaweza kuboreshwa kwa uainishaji wa ML
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,16 +494,16 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Chagua mazungumzo kama chaguo la msingi ikiwa hakuna aina wazi inayotambulika
+    // Chagua mazungumzo kwa default endapo hakuna aina wazi inayotambulika
     return 'conversational';
   }
   
   // Hesabu vigezo vya sampuli kulingana na muktadha na mapendeleo ya mtumiaji
   getSamplingParameters(prompt, context = {}) {
-    // Gundua aina ya kazi
+    // Tambua aina ya kazi
     const taskType = this.detectTaskType(prompt, context);
     
-    // Pata wasifu wa msingi
+    // Pata profaili ya msingi
     let params = {...this.samplingProfiles[taskType]};
     
     // Rekebisha kulingana na mapendeleo ya mtumiaji
@@ -508,17 +516,17 @@ class AdaptiveSamplingManager {
       }
       
       if (precision !== undefined) {
-        // Uhakika zaidi maana ya topP chini (uchaguzi uliolengwa zaidi)
+        // Usahihi mkubwa unamaanisha topP ndogo (uchaguzi ulio makini zaidi)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
       if (consistency !== undefined) {
-        // Ulinganifu wa juu maana adhabu za chini
+        // Uthabiti mkubwa unamaanisha adhabu ndogo
         params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0.1-0.9
       }
     }
     
-    // Tumia marekebisho yaliyojifunza kutoka kwa historia ya utendaji
+    // Weka marekebisho yaliyojifunza kutoka historia ya utendaji
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
@@ -528,15 +536,15 @@ class AdaptiveSamplingManager {
     // Mantiki rahisi inayobadilika - inaweza kuboreshwa kwa algoriti za hali ya juu zaidi
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Chukua tu historia ya hivi karibuni
+      .slice(-5); // Chukulia tu historia ya karibuni
     
     if (relevantHistory.length > 0) {
-      // Hesabu alama za wastani za utendaji
+      // Hesabu wastani wa alama za utendaji
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Ikiwa utendaji uko chini ya kiwango, rekebisha vigezo
+      // Ikiwa utendaji uko chini ya kikomo, rekebisha vigezo
       if (avgScore < 0.7) {
-        // Marekebisho kidogo kuelekea thamani salama zaidi
+        // Marekebisho kidogo kuelekea thamani salama
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,13 +552,13 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Rekodi utendaji kwa ajili ya marekebisho ya baadaye
+    // Rekodi utendaji kwa marekebisho ya baadaye
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // Upimaji wa ubora wa majibu 0-1
+      score // Kiwango cha 0-1 cha ubora wa jibu
     });
     
     // Punguza ukubwa wa historia
@@ -560,16 +568,16 @@ class AdaptiveSamplingManager {
   }
   
   async generateResponse(prompt, context = {}) {
-    // Pata vigezo vya sampuli vilivyoboreshwa
+    // Pata vigezo vya sampuli vilivyo bora zaidi
     const samplingParams = this.getSamplingParameters(prompt, context);
     
-    // Tuma ombi lenye vigezo vilivyoboreshwa
+    // Tuma ombi kwa vigezo vilivyo bora zaidi
     const response = await this.client.sendPrompt(prompt, {
       ...samplingParams,
       allowedTools: context.allowedTools || []
     });
     
-    // Ikiwa mtumiaji anatoa maoni, rekodi kwa uboreshaji wa baadaye
+    // Ikiwa mtumiaji anatoa maoni, yazingalie kwa uboreshaji wa baadaye
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -582,7 +590,7 @@ class AdaptiveSamplingManager {
   }
 }
 
-// Mfano wa matumizi
+// Mifano ya matumizi
 async function demonstrateAdaptiveSampling() {
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com'
@@ -591,13 +599,13 @@ async function demonstrateAdaptiveSampling() {
   const samplingManager = new AdaptiveSamplingManager(client);
   
   try {
-    // Kazi ya ubunifu yenye mapendeleo ya mtumiaji ya kawaida
+    // Kazi ya ubunifu na mapendeleo maalum ya mtumiaji
     const creativeResult = await samplingManager.generateResponse(
       "Write a short poem about artificial intelligence",
       {
         userPreferences: {
-          creativity: 9,  // Ubunifu wa hali ya juu (1-10)
-          consistency: 3  // Ulinganifu mdogo (1-10)
+          creativity: 9,  // Ubunifu mkubwa (1-10)
+          consistency: 3  // Uthabiti mdogo (1-10)
         }
       }
     );
@@ -607,14 +615,14 @@ async function demonstrateAdaptiveSampling() {
     console.log('Applied sampling:', creativeResult.appliedSamplingParams);
     console.log(creativeResult.response.generatedText);
     
-    // Kazi ya uandishi wa msimbo
+    // Kazi ya kuzalisha msimbo
     const codeResult = await samplingManager.generateResponse(
       "Write a JavaScript function to calculate the Fibonacci sequence",
       {
         userPreferences: {
           creativity: 2,  // Ubunifu mdogo
-          precision: 8,   // Uhakika wa juu
-          consistency: 9  // Ulinganifu wa juu
+          precision: 8,   // Usahihi mkubwa
+          consistency: 9  // Uthabiti mkubwa
         }
       }
     );
@@ -632,31 +640,31 @@ async function demonstrateAdaptiveSampling() {
 demonstrateAdaptiveSampling();
 ```
 
-Katika msimbo uliotangulia tumefanya:
+Katika msimbo uliopita tumefanya:
 
-- Kuunda darasa la `AdaptiveSamplingManager` linalosimamia sampuli inayobadilika kulingana na aina ya kazi na mapendeleo ya mtumiaji.
-- Kufafanua wasifu wa sampuli kwa aina tofauti za kazi (ubunifu, ukweli, msimbo, mazungumzo).
-- Kutekeleza njia ya kugundua aina ya kazi kutoka kwa msukumo kwa kutumia sheria rahisi.
-- Kukokotoa vigezo vya sampuli kulingana na aina ya kazi iliyogunduliwa na mapendeleo ya mtumiaji.
-- Kutumia marekebisho yaliyojifunza kulingana na utendaji wa kihistoria kuboresha vigezo vya sampuli.
+- Kuunda darasa la `AdaptiveSamplingManager` linalosimamia sampuli ya msururu kulingana na aina ya kazi na mapendeleo ya mtumiaji.
+- Kufafanua profaili za sampuli kwa aina tofauti za kazi (ubunifu, kweli, msimbo, mazungumzo).
+- Kutekeleza njia ya kugundua aina ya kazi kutoka kwa prompt kwa kutumia heuristics rahisi.
+- Kuhesabu vigezo vya sampuli kulingana na aina ya kazi iliyobaini na mapendeleo ya mtumiaji.
+- Kutumia marekebisho yaliyopatikana kutoka kwa utendaji wa kihistoria kuboresha vigezo vya sampuli.
 - Kurekodi utendaji kwa marekebisho ya baadaye, kuruhusu mfumo kujifunza kutokana na mwingiliano ya zamani.
-- Kutuma maombi na vigezo vya sampuli vilivyorekebishwa kwa nguvu na kurudisha maandishi yaliyotengenezwa pamoja na vigezo na aina ya kazi iliyogunduliwa.
+- Kutuma maombi yenye vigezo vya sampuli vilivyopangwa na kurudisha maandishi yaliyotengenezwa pamoja na vigezo vilivyotumika na aina ya kazi iliyogunduliwa.
 - Kutumia:
-    - `userPreferences` kuruhusu ubinafsishaji wa vigezo vya sampuli kulingana na viwango vya ubunifu, usahihi, na uthabiti vilivyoainishwa na mtumiaji.
-    - `detectTaskType` kubainisha asili ya kazi kutoka kwa msukumo, kuruhusu majibu yaliyobinafsishwa zaidi.
+    - `userPreferences` kuruhusu kubinafsisha vigezo vya sampuli kulingana na viwango vya ubunifu, usahihi, na uthabiti vilivyoainishwa na mtumiaji.
+    - `detectTaskType` kuamua asili ya kazi kulingana na prompt, kuruhusu majibu yaliyo na muktadha wa aina ya kazi.
     - `recordPerformance` kurekodi utendaji wa majibu yaliyotengenezwa, kuwezesha mfumo kubadilika na kuboresha kwa muda.
-    - `applyLearnedAdjustments` kurekebisha vigezo vya sampuli kulingana na utendaji wa kihistoria, kuboresha uwezo wa mfano kutoa majibu ya ubora wa juu.
-    - `generateResponse` kuhusisha mchakato mzima wa kutoa jibu na sampuli inayobadilika, kurahisisha kuitwa na misukumo na muktadha tofauti.
-    - `allowedTools` kubainisha zana gani mfano unaweza kutumia wakati wa uundaji, kuruhusu majibu yenye ufahamu zaidi wa muktadha.
-    - `feedbackScore` kuruhusu watumiaji kutoa maoni juu ya ubora wa jibu lililotengenezwa, ambalo linaweza kutumika kuboresha utendaji wa mfano kwa muda.
-    - `performanceHistory` kudumisha rekodi ya mwingiliano wa zamani, kuwezesha mfumo kujifunza kutoka kwa mafanikio na matatizo ya zamani.
-    - `getSamplingParameters` kurekebisha vigezo vya sampuli kiurahisi kulingana na muktadha wa ombi, kuruhusu tabia ya mfano kuwa nyepesi na yenye uwajibikaji zaidi.
-    - `detectTaskType` kuainisha kazi kulingana na msukumo, kuwezesha mfumo kutumia mikakati sahihi ya sampuli kwa aina tofauti za maombi.
+    - `applyLearnedAdjustments` kubadilisha vigezo vya sampuli kulingana na utendaji wa kihistoria, kuboresha uwezo wa mfano kuzalisha majibu bora.
+    - `generateResponse` kuzingatia mchakato mzima wa kutoa jibu kwa sampuli ya msururu, kurahisisha kuita kazi kwa promoti na muktadha tofauti.
+    - `allowedTools` kubainisha zana zinazoweza kutumika na mfano wakati wa uzalishaji, kuruhusu majibu yaliyo na uelewa mzito wa muktadha.
+    - `feedbackScore` kuruhusu watumiaji kutoa maoni juu ya ubora wa jibu lililotengenezwa, ambalo linaweza kutumika kuboresha zaidi utendaji wa mfano kwa muda.
+    - `performanceHistory` kuhifadhi rekodi ya mwingiliano ya zamani, kuwezesha mfumo kujifunza kutokana na mafanikio na kushindwa kwa awali.
+    - `getSamplingParameters` kurekebisha vigezo vya sampuli kwa msururu kulingana na muktadha wa ombi, kuruhusu mwenendo wa mfano kuwa bendi na jibu zaidi.
+    - `detectTaskType` kutambua kazi kulingana na prompt, kuwezesha mfumo kutumia mikakati inayofaa ya sampuli kwa aina tofauti za maombi.
     - `samplingProfiles` kufafanua usanidi wa msingi wa sampuli kwa aina tofauti za kazi, kuruhusu marekebisho ya haraka kulingana na asili ya ombi.
 
 ---
 
-## Nini kifuatacho
+## Nini kinachofuata
 
 - [5.7 Kupanua](../mcp-scaling/README.md)
 

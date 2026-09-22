@@ -1,29 +1,34 @@
 # Calculator LLM-klient
 
-En Java-applikation som demonstrerar hur man använder LangChain4j för att ansluta till en MCP (Model Context Protocol) kalkylatortjänst via MiniMax OpenAI-kompatibla API.
+> [!NOTE]
+> Denna lösning ansluter till kursens äldre HTTP+SSE kalkylatortjänst och
+> riktar sig mot MCP `2025-11-25` SDK APIs. Det är inte ett `2026-07-28` Streamable HTTP
+> exempel.
+
+Ett Java-program som demonstrerar hur man använder LangChain4j för att ansluta till en MCP (Model Context Protocol) kalkylatortjänst via MiniMax OpenAI-kompatibla API.
 
 ## Förutsättningar
 
 - Java 21 eller högre
-- Maven 3.6+ (eller använd medföljande Maven-wrapper)
+- Maven 3.6+ (eller använd den medföljande Maven-wrappern)
 - En MiniMax API-nyckel
 - En MCP kalkylatortjänst som körs på `http://localhost:8080`
 
 ## Skaffa API-nyckeln
 
-Denna applikation använder MiniMax OpenAI-kompatibla API. Följ dessa steg för att få din nyckel och endpoint:
+Detta program använder MiniMax OpenAI-kompatibla API. Följ dessa steg för att få din nyckel och slutpunkt:
 
-### 1. Välj en endpoint
-1. Använd `https://api.minimax.io/v1` för global endpoint
-2. Använd `https://api.minimaxi.com/v1` för Kina-endpoint
+### 1. Välj en slutpunkt
+1. Använd `https://api.minimax.io/v1` för den globala slutpunkten
+2. Använd `https://api.minimaxi.com/v1` för Kina-slutpunkten
 
 ### 2. Skapa en API-nyckel
 1. Skapa en MiniMax API-nyckel från ditt MiniMax-konto
-2. Spara nyckeln på en säker plats
+2. Förvara nyckeln säkert
 
 ### 3. Ställ in miljövariablerna
 
-#### På Windows (Kommandotolk):
+#### På Windows (Kommandoprompt):
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
@@ -44,7 +49,7 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Installation och setup
+## Installations- och konfigurationsinstruktioner
 
 1. **Klona eller navigera till projektmappen**
 
@@ -59,27 +64,27 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 3. **Ställ in miljövariablerna** (se avsnittet "Skaffa API-nyckeln" ovan)
 
-4. **Starta MCP kalkylatortjänsten**:
-   Se till att du har kapitel 1:s MCP kalkylatortjänst igång på `http://localhost:8080/sse`. Den bör vara igång innan du startar klienten.
+4. **Starta MCP Kalkylatortjänsten**:
+   Kontrollera att du har kapitel 1:s MCP kalkylatortjänst igång på `http://localhost:8080/sse`. Den bör vara igång innan du startar klienten.
 
-## Köra applikationen
+## Köra programmet
 
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Vad applikationen gör
+## Vad programmet gör
 
-Applikationen demonstrerar tre huvudsakliga interaktioner med kalkylatortjänsten:
+Programmet demonstrerar tre huvudinteraktioner med kalkylatortjänsten:
 
-1. **Addition**: Beräknar summan av 24,5 och 17,3
+1. **Addition**: Beräknar summan av 24.5 och 17.3
 2. **Kvadratrot**: Beräknar kvadratroten av 144
 3. **Hjälp**: Visar tillgängliga kalkylatorfunktioner
 
 ## Förväntat resultat
 
-Vid lyckad körning bör du se ett liknande utdata som:
+När det körs framgångsrikt bör du se utdata liknande:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,48 +96,48 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Vanliga problem
 
-1. **”OPENAI_API_KEY miljövariabel är inte satt”**
+1. **"OPENAI_API_KEY miljövariabeln är inte satt"**
    - Kontrollera att du har satt `OPENAI_API_KEY` miljövariabeln
-   - Starta om din terminal/kommandotolk efter att variabeln satts
+   - Starta om terminalen/kommandoprompten efter att du satt variabeln
 
-2. **”Anslutning nekad till localhost:8080”**
-   - Kontrollera att MCP kalkylatortjänsten körs på port 8080
+2. **"Anslutning nekad till localhost:8080"**
+   - Säkerställ att MCP kalkylatortjänsten körs på port 8080
    - Kontrollera om en annan tjänst använder port 8080
 
-3. **”Autentisering misslyckades”**
+3. **"Autentisering misslyckades"**
    - Verifiera att din API-nyckel är giltig
-   - Kontrollera att `OPENAI_BASE_URL` stämmer överens med den endpoint du tänkt använda
+   - Kontrollera att `OPENAI_BASE_URL` matchar den slutpunkt du tänkte använda
 
-4. **Fel vid Maven-kompilering**
-   - Kontrollera att du använder Java 21 eller högre: `java -version`
-   - Prova att rensa bygget: `mvnw clean`
+4. **Maven-byggfel**
+   - Säkerställ att du använder Java 21 eller högre: `java -version`
+   - Försök att rensa bygget: `mvnw clean`
 
 ### Debugging
 
-För att aktivera debug-loggning, lägg till följande JVM-argument vid körning:
+För att aktivera debug-logging, lägg till följande JVM-argument vid körning:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguration
 
-Applikationen är konfigurerad för att:
-- Använda MiniMax-M3 som standard; ställ in `MINIMAX_MODEL_ID` för att välja mellan `MiniMax-M3` eller `MiniMax-M2.7`
-- Ansluta till `OPENAI_BASE_URL` när den är satt; annars använd `https://api.minimaxi.com/v1` när `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
-- Ansluta till MCP-tjänst på `http://localhost:8080/sse`
-- Använda 60 sekunders timeout för förfrågningar
+Programmet är konfigurerat för att:
+- Använda MiniMax-M3 som standard; ställ in `MINIMAX_MODEL_ID` för att välja `MiniMax-M3` eller `MiniMax-M2.7`
+- Ansluta till `OPENAI_BASE_URL` när den är satt; annars använda `https://api.minimaxi.com/v1` när `MINIMAX_REGION=cn_zh`, eller `https://api.minimax.io/v1` som standard
+- Ansluta till MCP-tjänsten på `http://localhost:8080/sse`
+- Använda en 60-sekunders timeout för förfrågningar
 
 ## Beroenden
 
 Viktiga beroenden som används i detta projekt:
 - **LangChain4j**: För AI-integration och verktygshantering
 - **LangChain4j MCP**: För Model Context Protocol-stöd
-- **LangChain4j OpenAI official**: För MiniMax OpenAI-kompatibel API-integration
+- **LangChain4j OpenAI officiell**: För MiniMax OpenAI-kompatibel API-integration
 - **Spring Boot**: För applikationsramverk och beroendeinjektion
 
 ## Licens
 
-Detta projekt är licensierat under Apache License 2.0 - se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)-filen för detaljer.
+Detta projekt är licensierat under Apache License 2.0 - se [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) filen för detaljer.
 
 ---
 

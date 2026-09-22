@@ -1,27 +1,32 @@
-# Kalkulaatori LLM kliendi rakendus
+# Kalkulaatori LLM klient
 
-Java rakendus, mis demonstreerib, kuidas kasutada LangChain4j MCP (Mudeli Konteksti Protokolli) kalkulaatoriteenusega ühenduse loomiseks läbi MiniMax OpenAI-ühilduva API.
+> [!NOTE]
+> See lahendus ühendub kursuse pärand HTTP+SSE kalkulaatori teenusega ja
+> sihib MCP `2025-11-25` SDK API-sid. See ei ole `2026-07-28` Streamable HTTP
+> näide.
 
-## Eeltingimused
+Java rakendus, mis demonstreerib, kuidas kasutada LangChain4j MCP (Model Context Protocol) kalkulaatori teenusega ühenduse loomiseks MiniMax OpenAI-ühilduva API kaudu.
+
+## Eeldused
 
 - Java 21 või uuem versioon
-- Maven 3.6+ (või kasuta kaasasolevat Maven wrapperit)
+- Maven 3.6+ (või kasuta kaasas olevat Maven wrapperit)
 - MiniMax API võti
-- MCP kalkulaatori teenus töötab aadressil `http://localhost:8080`
+- MCP kalkulaatori teenus, mis töötab aadressil `http://localhost:8080`
 
-## API võtme saamine
+## API võtme hankimine
 
-See rakendus kasutab MiniMax OpenAI-ühilduvat API-t. Järgi neid samme, et saada oma võti ja lõpp-punkt:
+See rakendus kasutab MiniMax OpenAI-ühilduvat API-t. Järgige neid samme, et saada oma võti ja lõpp-punkt:
 
-### 1. Vali lõpp-punkt
-1. Kasuta globaalset lõpp-punkti `https://api.minimax.io/v1`
-2. Kasuta Hiina lõpp-punkti `https://api.minimaxi.com/v1`
+### 1. Valige lõpp-punkt
+1. Kasutage globaalse lõpp-punkti jaoks aadressi `https://api.minimax.io/v1`
+2. Kasutage Hiina lõpp-punkti jaoks aadressi `https://api.minimaxi.com/v1`
 
-### 2. Loo API võti
-1. Loo MiniMax API võti oma MiniMax kontolt
-2. Säilita võti turvalises kohas
+### 2. Looge API võti
+1. Looge MiniMax API võti oma MiniMax konto alt
+2. Hoidke võti turvalises kohas
 
-### 3. Määra keskkonnamuutujad
+### 3. Määrake keskkonnamuutujad
 
 #### Windowsis (Command Prompt):
 ```cmd
@@ -44,23 +49,23 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Paigaldamine ja seadistamine
+## Seadistamine ja paigaldus
 
-1. **Klooni või liigu projekti kausta**
+1. **Kloonige või minge projekti kataloogi**
 
-2. **Paigalda sõltuvused**:
+2. **Paigaldage sõltuvused**:
    ```cmd
    mvnw clean install
    ```
-   Või kui sul on Maven üle süsteemi paigaldatud:
+   Või kui teil on Maven globaalne paigaldus:
    ```cmd
    mvn clean install
    ```
 
-3. **Sea keskkonnamuutujad** (vt ülal "API võtme saamine" osa)
+3. **Seadistage keskkonnamuutujad** (vt eelnevalt "API võtme hankimine" jaotist)
 
-4. **Käivita MCP kalkulaatori teenus**:
-   Veendu, et peatüki 1 MCP kalkulaatori teenus töötab aadressil `http://localhost:8080/sse`. See peab töötama enne kliendi käivitamist.
+4. **Käivitage MCP kalkulaatori teenus**:
+   Veenduge, et peatüki 1 MCP kalkulaatori teenus töötab aadressil `http://localhost:8080/sse`. See peaks olema aktiivne enne kliendi käivitamist.
 
 ## Rakenduse käivitamine
 
@@ -74,12 +79,12 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 Rakendus demonstreerib kolme peamist suhtlust kalkulaatori teenusega:
 
 1. **Liitmine**: Arvutab summa 24.5 ja 17.3 vahel
-2. **Ruudujuur**: Arvutab ruutjuure arvust 144
-3. **Abi**: Kuvab saadaval olevad kalkulaatori funktsioonid
+2. **Ruudujuur**: Arvutab arvu 144 ruutjuure
+3. **Abi**: Kuvab olemasolevad kalkulaatori funktsioonid
 
 ## Oodatav väljund
 
-Kui rakendus jookseb edukalt, näed väljundit, mis on sarnane:
+Õnnestunud käivituse korral peaksite nägema väljundit, mis sarnaneb järgmisega:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,52 +92,52 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## Tõrkeotsing
+## Vigade lahendamine
 
-### Tüüpilised probleemid
+### Levinumad probleemid
 
 1. **"OPENAI_API_KEY keskkonnamuutuja ei ole määratud"**
-   - Veendu, et `OPENAI_API_KEY` keskkonnamuutuja on defineeritud
-   - Taaskäivita konsool või käsurea aken muutujate seadistamise järel
+   - Veenduge, et olete määranud `OPENAI_API_KEY` keskkonnamuutuja
+   - Taaskäivitage terminal/käsureaaken pärast muutuja seadistamist
 
 2. **"Ühendus localhost:8080 on keelatud"**
-   - Kontrolli, et MCP kalkulaatori teenus töötab pordil 8080
-   - Veendu, et midagi muud ei kasuta porti 8080
+   - Veenduge, et MCP kalkulaatori teenus töötab pordil 8080
+   - Kontrollige, kas mõni teine teenus kasutab porti 8080
 
 3. **"Autentimine ebaõnnestus"**
-   - Kontrolli, et sinu API võti on kehtiv
-   - Veendu, et `OPENAI_BASE_URL` vastab valitud lõpp-punktile
+   - Kontrollige, kas teie API võti on kehtiv
+   - Kontollige, et `OPENAI_BASE_URL` vastab soovitud lõpp-punktile
 
-4. **Maven ehitusvead**
-   - Veendu, et kasutad Java 21 või uuemat: `java -version`
-   - Proovi ehitust puhastada: `mvnw clean`
+4. **Maveni ehitusvead**
+   - Veenduge, et kasutate Java 21 või uuemat: `java -version`
+   - Proovige ehitust puhastada: `mvnw clean`
 
-### Silumise võimaldamine
+### Silumine
 
-Luba silumise logimine, lisades käivitamisel järgmise JVM argumendi:
+Silumislogi lubamiseks lisage käivitamisel järgmine JVM argument:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfiguratsioon
 
-Rakendus on seadistatud nii:
-- Vaikimisi kasutab MiniMax-M3 mudelit; vali `MINIMAX_MODEL_ID` abil kas `MiniMax-M3` või `MiniMax-M2.7`
-- Ühendub `OPENAI_BASE_URL` aadressile, kui see on määratud; muul juhul kasutab `https://api.minimaxi.com/v1`, kui `MINIMAX_REGION=cn_zh`, või vaikimisi `https://api.minimax.io/v1`
+Rakendus on konfigureeritud järgmiselt:
+- Vaikimisi kasutab MiniMax-M3; valimiseks seadke `MINIMAX_MODEL_ID` kas `MiniMax-M3` või `MiniMax-M2.7`
+- Ühendub `OPENAI_BASE_URL`-iga, kui see on määratud; vastasel juhul kasutab `MINIMAX_REGION=cn_zh` korral `https://api.minimaxi.com/v1` või vaikimisi `https://api.minimax.io/v1`
 - Ühendub MCP teenusega aadressil `http://localhost:8080/sse`
-- Kasutab päringute ajal 60-sekundilist taimerit
+- Kasutab päringute jaoks 60-sekundilist ajapiirangut
 
 ## Sõltuvused
 
-Peamised selles projektis kasutatavad sõltuvused:
-- **LangChain4j**: AI integreerimiseks ja tööriistade haldamiseks
-- **LangChain4j MCP**: Mudeli konteksti protokolli toeks
-- **LangChain4j OpenAI ametlik**: MiniMax OpenAI-ühilduva API integreerimiseks
-- **Spring Boot**: Rakenduse raamistik ja sõltuvuste süstimine
+Projekti võtmesõltuvused:
+- **LangChain4j**: tehisintellekti integreerimiseks ja tööriistade haldamiseks
+- **LangChain4j MCP**: Model Context Protocol toe jaoks
+- **LangChain4j OpenAI official**: MiniMax OpenAI-ühilduva API integreerimiseks
+- **Spring Boot**: rakenduse raamistikuks ja sõltuvuste süstimiseks
 
 ## Litsents
 
-See projekt on litsentseeritud Apache litsentsi 2.0 all - vt üksikasju failist [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
+See projekt on litsentseeritud Apache License 2.0 alusel - üksikasjade jaoks vaadake faili [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
 
 ---
 

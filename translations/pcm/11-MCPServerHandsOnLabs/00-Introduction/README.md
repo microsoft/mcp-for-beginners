@@ -1,84 +1,89 @@
 # Introduction to MCP Database Integration
 
-## 🎯 Wetin Dis Lab Go Cover
+> [!NOTE]
+> Diagrams or code wey dey dis learning path wey dey use HTTP/SSE or initialization
+> options na di sample MCP `2025-11-25` dependencies. For new
+> implementations, use `2026-07-28` stateless requests and Streamable HTTP.
 
-Dis introduction lab go give you full overview on how to build Model Context Protocol (MCP) servers wey dey integrate with database. You go sabi the business case, technical architecture, and real-world applications through the Zava Retail analytics use case for https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+## 🎯 Wetin Dis Lab Dey Cover
+
+Dis introduction lab go give you full overview on how to build Model Context Protocol (MCP) servers wey get database integration. You go understand di business case, technical architecture, plus real-world applications through di Zava Retail analytics use case at https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Overview
 
-**Model Context Protocol (MCP)** dey enable AI assistants make dem fit securely access and interact with external data sources for real-time. When you join am with database integration, MCP dey unlock powerful capabilities for data-driven AI applications.
+**Model Context Protocol (MCP)** dey enable AI assistants access data sources outside securely and interact with dem for real-time. When e join wit database integration, MCP dey unlock strong capabilities for AI applications wey dey depend on data.
 
-Dis learning path go teach you how to build production-ready MCP servers wey connect AI assistants to retail sales data through PostgreSQL, and how to implement enterprise patterns like Row Level Security, semantic search, and multi-tenant data access.
+Dis learning path go teach you how to build production-ready MCP servers wey dey connect AI assistants to retail sales data through PostgreSQL, implement enterprise patterns like Row Level Security, semantic search, and multi-tenant data access.
 
 ## Learning Objectives
 
-By the time you finish dis lab, you go fit:
+By di end of dis lab, you go fit:
 
-- **Define** Model Context Protocol and the main benefits e get for database integration
-- **Identify** key parts for MCP server architecture wey get databases
-- **Understand** the Zava Retail use case and wetin dem business need
+- **Define** Model Context Protocol and di core benefits for database integration
+- **Identify** key components of MCP server architecture with databases
+- **Understand** di Zava Retail use case and im business requirements
 - **Recognize** enterprise patterns for secure, scalable database access
-- **List** the tools and technology wey we use for dis learning path
+- **List** di tools and technologies wey dem use for dis whole learning path
 
-## 🧭 The Challenge: AI Meet Real-World Data
+## 🧭 Di Challenge: AI Meets Real-World Data
 
 ### Traditional AI Limitations
 
-Modern AI assistants powerful, but dem get big wahala when dem dey work with real-world business data:
+Modern AI assistants powerful no be small but dem get some serious yawa wen dem dey work with real-world business data:
 
 | **Challenge** | **Description** | **Business Impact** |
 |---------------|-----------------|-------------------|
-| **Static Knowledge** | AI models wey dem train with fixed datasets no fit access current business data | Outdated insights, missed chances |
-| **Data Silos** | Information wey lock for databases, APIs, and systems wey AI no fit reach | Incomplete analysis, broken workflows |
-| **Security Constraints** | Direct database access dey cause security and compliance wahala | Limited deployment, manual data preparation |
-| **Complex Queries** | Business users need technical knowledge to pull out data insights | Reduced usage, inefficient processes |
+| **Static Knowledge** | AI models wey dem train on fixed datasets no fit access current business data | Outdated insights, missed opportunities |
+| **Data Silos** | Information wey lockdown for databases, APIs, and systems wey AI no fit reach | Incomplete analysis, fragmented workflows |
+| **Security Constraints** | Direct database access fit cause security and compliance palava | Limited deployment, manual data preparation |
+| **Complex Queries** | Business people need technical know-how to get data insights | Reduced adoption, inefficient processes |
 
-### The MCP Solution
+### Di MCP Solution
 
-Model Context Protocol dey tackle all dis wahala by giving:
+Model Context Protocol dey tackle these wahala by giving:
 
-- **Real-time Data Access**: AI assistants fit query live databases and APIs
+- **Real-time Data Access**: AI assistants dey query live databases and APIs
 - **Secure Integration**: Controlled access with authentication and permissions
-- **Natural Language Interface**: Business users fit ask questions for plain English
-- **Standardized Protocol**: E dey work for different AI platforms and tools
+- **Natural Language Interface**: Business people fit ask questions for plain English
+- **Standardized Protocol**: E dey work across different AI platforms and tools
 
 ## 🏪 Meet Zava Retail: Our Learning Case Study https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-As we dey go through dis learning path, we go build MCP server for **Zava Retail**, one fictional DIY retail chain with plenty store locations. Dis realistic scenario dey show how enterprise-grade MCP implementation be.
+Inside dis learning path, we go build MCP server for **Zava Retail**, wey be fictional DIY retail chain wey get plenty store locations. Dis real-like scenario dey show enterprise-level MCP implementation.
 
 ### Business Context
 
 **Zava Retail** dey operate:
-- **8 physical stores** for different parts of Washington state (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
-- **1 online store** wey dey do e-commerce sales
-- **Wide product catalog** wey get tools, hardware, garden supplies, and building materials
+- **8 physical stores** for Washington state (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 online store** for e-commerce sales
+- **Plenty product catalog** wey get tools, hardware, garden supplies, and building materials
 - **Multi-level management** with store managers, regional managers, and executives
 
 ### Business Requirements
 
 Store managers and executives need AI-powered analytics to:
 
-1. **Check sales performance** across stores and different time periods
-2. **Monitor inventory levels** and know when to restock
-3. **Understand customer behavior** and how dem dey buy thing dem
-4. **Find product insights** using semantic search
-5. **Make reports** with natural language queries
+1. **Analyze sales performance** across stores and time periods
+2. **Track inventory levels** and see wetin dem need to restock
+3. **Understand customer behavior** and how dem dey buy tins
+4. **Discover product insights** using semantic search
+5. **Generate reports** with natural language queries
 6. **Keep data secure** with role-based access control
 
 ### Technical Requirements
 
-The MCP server must give:
+Di MCP server must provide:
 
-- **Multi-tenant data access** so store managers go only see data for their store
-- **Flexible querying** wey fit support complex SQL operations
-- **Semantic search** to find products and give recommendations
-- **Real-time data** wey reflect current business condition
-- **Secure authentication** with row-level security (RLS)
-- **Scalable architecture** to support many users at once
+- **Multi-tenant data access** so store managers go only see their own store data
+- **Flexible querying** wey support complex SQL operations
+- **Semantic search** for product discovery and recommendations
+- **Real-time data** wey show current business state
+- **Secure authentication** using row-level security
+- **Scalable architecture** wey fit handle many users at the same time
 
 ## 🏗️ MCP Server Architecture Overview
 
-Our MCP server dey run layered architecture wey dem design well for database integration:
+Our MCP server get layers for architecture wey dem optimize for database integration:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -122,9 +127,9 @@ Our MCP server dey run layered architecture wey dem design well for database int
 
 #### **1. MCP Server Layer**
 - **FastMCP Framework**: Modern Python MCP server implementation
-- **Tool Registration**: Declarative tool definitions with type safety
+- **Tool Registration**: Declarative tool definitions wey dey type safe
 - **Request Context**: User identity and session management
-- **Error Handling**: Robust error management and logging
+- **Error Handling**: Strong error management and logging
 
 #### **2. Database Integration Layer**
 - **Connection Pooling**: Efficient asyncpg connection management
@@ -179,62 +184,62 @@ Our MCP server dey run layered architecture wey dem design well for database int
 
 ## 🎬 Real-World Usage Scenarios
 
-Make we look how different users dey interact with our MCP server:
+Make we check how different users dey interact with our MCP server:
 
 ### Scenario 1: Store Manager Performance Review
 
 **User**: Sarah, Seattle Store Manager  
-**Goal**: Analyze last quarter's sales performance
+**Goal**: Analyze sales performance for last quarter
 
 **Natural Language Query**:
 > "Show me the top 10 products by revenue for my store in Q4 2024"
 
-**Wetin Dey Happen**:
-1. VS Code AI Chat send query go MCP server
-2. MCP server understand say na Sarah store context (Seattle)
-3. RLS policies filter data make e only show Seattle store
-4. SQL query generate and run
-5. Results make dem ready and send back to AI Chat
-6. AI give analysis and insights
+**Wetin Go Happen**:
+1. VS Code AI Chat go send query go MCP server
+2. MCP server go identify Sarah store context (Seattle)
+3. RLS policies go filter data make e be only for Seattle store
+4. SQL query go generate and execute
+5. Results go format and return to AI Chat
+6. AI go provide analysis and insights
 
 ### Scenario 2: Product Discovery with Semantic Search
 
 **User**: Mike, Inventory Manager  
-**Goal**: Find products wey similar to wetin customer ask for
+**Goal**: Find products wey similar to wetin customer ask
 
 **Natural Language Query**:
 > "What products do we sell that are similar to 'waterproof electrical connectors for outdoor use'?"
 
-**Wetin Dey Happen**:
-1. Query go through semantic search tool
-2. Azure OpenAI generate embedding vector
-3. pgvector do similarity search
-4. Related products rank by relevance
-5. Results get product details and availability
-6. AI suggest alternatives and bundling chances
+**Wetin Go Happen**:
+1. Query go pass through semantic search tool
+2. Azure OpenAI go generate embedding vector
+3. pgvector go perform similarity search
+4. Related products go arrange by how e relate
+5. Results go contain product details and availability
+6. AI go suggest alternatives and bundling chances
 
 ### Scenario 3: Cross-Store Analytics
 
 **User**: Jennifer, Regional Manager  
-**Goal**: Compare performance across all stores
+**Goal**: Compare performance for all stores
 
 **Natural Language Query**:
 > "Compare sales by category for all stores in the last 6 months"
 
-**Wetin Dey Happen**:
-1. RLS context set for regional manager access
-2. Complex multi-store query generate
-3. Data aggregate across store locations
-4. Results show trends and comparisons
-5. AI identify insights and give recommendations
+**Wetin Go Happen**:
+1. RLS context go set for regional manager access
+2. Complex multi-store query go generate
+3. Data go aggregate across store locations
+4. Results go show trends and comparisons
+5. AI go identify insights and give recommendations
 
 ## 🔒 Security and Multi-Tenancy Deep Dive
 
-Our implementation dey prioritize enterprise-grade security:
+Our implementation dey focus on enterprise-grade security:
 
 ### Row Level Security (RLS)
 
-PostgreSQL RLS dey ensure data isolation:
+PostgreSQL RLS dey ensure say data separate well:
 
 ```sql
 -- Store managers see only their store's data
@@ -251,43 +256,43 @@ CREATE POLICY regional_manager_policy ON retail.orders
 ### User Identity Management
 
 Every MCP connection get:
-- **Store Manager ID**: Unique identifier for RLS context
+- **Store Manager ID**: Unique ID for RLS context
 - **Role Assignment**: Permissions and access levels
 - **Session Management**: Secure authentication tokens
-- **Audit Logging**: Complete access history
+- **Audit Logging**: Complete access record
 
 ### Data Protection
 
-Different layers of security:
+Plenty layers of security:
 - **Connection Encryption**: TLS for all database connections
 - **SQL Injection Prevention**: Parameterized queries only
 - **Input Validation**: Full request validation
-- **Error Handling**: No sensitive info for error messages
+- **Error Handling**: No sensitive data dey error messages
 
 ## 🎯 Key Takeaways
 
-After dis introduction, you go sabi:
+After you finish dis introduction, you go understand:
 
-✅ **MCP Value Proposition**: How MCP dey bridge AI assistants and real-world data  
-✅ **Business Context**: Zava Retail requirements and wahala  
-✅ **Architecture Overview**: Key parts and how dem dey work  
-✅ **Technology Stack**: Tools and frameworks wey we use all through  
+✅ **MCP Value Proposition**: How MCP dey connect AI assistants and real-world data  
+✅ **Business Context**: Zava Retail’s requirements and challenges  
+✅ **Architecture Overview**: Key components and how dem take work together  
+✅ **Technology Stack**: Tools and frameworks wey dem use throughout  
 ✅ **Security Model**: Multi-tenant data access and protection  
-✅ **Usage Patterns**: Real-world query examples and workflows  
+✅ **Usage Patterns**: Real-world query scenarios and workflows  
 
-## 🚀 Wetin Dey Next
+## 🚀 Wetin Next
 
-Ready to learn more? Continue with:
+You ready to go deeper? Continue with:
 
 **[Lab 01: Core Architecture Concepts](../01-Architecture/README.md)**
 
-Learn about MCP server architecture patterns, database design principles, and the detailed technical implementation wey power our retail analytics solution.
+Learn about MCP server architecture patterns, database design principles, and di detailed technical implementation wey power our retail analytics solution.
 
 ## 📚 Additional Resources
 
 ### MCP Documentation
 - [MCP Specification](https://modelcontextprotocol.io/docs/) - Official protocol documentation
-- [MCP for Beginners](https://aka.ms/mcp-for-beginners) - Full MCP learning guide
+- [MCP for Beginners](https://aka.ms/mcp-for-beginners) - Comprehensive MCP learning guide
 - [FastMCP Documentation](https://github.com/modelcontextprotocol/python-sdk) - Python SDK documentation
 
 ### Database Integration
@@ -302,7 +307,7 @@ Learn about MCP server architecture patterns, database design principles, and th
 
 ---
 
-**Disclaimer**: Dis na learning exercise wey use fictional retail data. Always follow your organization's data governance and security policies when you dey implement similar solutions for production environments.
+**Disclaimer**: Dis na learning exercise wey dey use fictional retail data. Always follow your organization data governance and security policies wen you dey implement similar solutions for production environments.
 
 ---
 

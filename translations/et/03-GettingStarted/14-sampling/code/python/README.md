@@ -1,4 +1,9 @@
-# Käivita näide
+# Käivita näidis
+
+> [!WARNING]
+> See näidis kasutab aegunud proovi võtmist (Sampling) ja vananenud HTTP+SSE lõpp-punkti. See on
+> säilitatud MCP `2025-11-25` ühilduvuse jaoks. Uued rakendused peaksid kutsuma otse LLM pakkujat
+> ja kasutama voogedastatavat HTTP-d kaug-MCP liikluseks.
 
 ## Loo virtuaalne keskkond
 
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Testi serverit GitHub Copiloti ja VS Code'iga
 
-Lisa kirje mcp.json faili nii:
+Lisa kirje mcp.json faili selliselt:
 
 ```json
 "servers": {
@@ -32,15 +37,15 @@ Lisa kirje mcp.json faili nii:
 }
 ```
 
-Veendu, et oled serveris vajutanud "start".
+Veendu, et oled serveris klikkinud "start".
 
-GitHub Copiloti kleepige järgmine päring:
+GitHub Copiloti liidesesse kleebi järgmine prompt:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Esimest korda küsitakse sinult, kas aktsepteerida Sampling tegevust, seejärel palutakse lubada tööriist "create_blog" käivitada. Sa peaksid nägema sarnast vastust:
+Esimest korda küsitakse sinult, kas aktsepteerida proovi võtmise tegevust, seejärel kas aktsepteerida tööriista "create_blog" käivitamist. Sa peaksid nägema vastust sarnaselt:
 
 ```json
 {
@@ -51,6 +56,6 @@ Esimest korda küsitakse sinult, kas aktsepteerida Sampling tegevust, seejärel 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tähelepanek**:
-See dokument on tõlgitud tehisintellekti tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automatiseeritud tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument oma emakeeles peaks olema käsitatav autoriteetse allikana. Kriitilise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta käesoleva tõlke kasutamisest tulenevate arusaamatuste ega valesti tõlgendamise eest.
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

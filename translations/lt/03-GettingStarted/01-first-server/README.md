@@ -1,60 +1,65 @@
 # Pradžia su MCP
 
-Sveiki atvykę į pirmuosius Model Context Protocol (MCP) žingsnius! Nesvarbu, ar esate naujokas MCP, ar norite gilinti savo žinias, ši pamoka padės jums peržengti esminį aplinkos nustatymą ir vystymo procesą. Sužinosite, kaip MCP leidžia sklandžiai integruoti DI modelius ir programas, bei išmoksite greitai paruošti savo aplinką MCP pagrįstų sprendimų kūrimui ir testavimui.
+> [!NOTE]
+> Šiame pamokoje pateiktas Java HTTP pavyzdys naudoja senąjį HTTP+SSE transportą ir
+> taikomas MCP `2025-11-25` suderinamam SDK. Naujiems nuotoliniams serveriams naudokite
+> `2026-07-28` Streamable HTTP transportą ir patikrinkite SDK palaikymą.
 
-> TLDR; Jei kuriate DI programas, žinote, kad galite pridėti įrankių ir kitų išteklių prie savo LLM (didelio kalbos modelio), kad LLM būtų išmanesnis. Tačiau jei šiuos įrankius ir išteklius dedate į serverį, programos ir serverio galimybės gali būti naudojamos bet kurio kliento su/ be LLM.
+Sveiki atvykę į savo pirmuosius Modelio Konteksto Protokolo (MCP) žingsnius! Nesvarbu, ar esate naujokas MCP, ar norite gilinti savo supratimą, šis vadovas padės jums per svarbiausius diegimo ir kūrimo procesus. Sužinosite, kaip MCP leidžia sklandžiai integruoti AI modelius su programomis ir kaip greitai paruošti savo aplinką MCP pagrįstų sprendimų kūrimui ir testavimui.
+
+> SANTRAUKA; Jei kuriate AI programas, žinote, kad galite pridėti įrankius ir kitus išteklius prie savo LLM (didelio kalbos modelio), kad modelis taptų žinojesnis. Tačiau, jei šiuos įrankius ir išteklius talpinate serveryje, programa ir serverio galimybės gali būti naudojamos bet kurio kliento su ar be LLM.
 
 ## Apžvalga
 
-Ši pamoka pateikia praktines rekomendacijas, kaip nustatyti MCP aplinkas ir kurti pirmąsias MCP programas. Sužinosite, kaip įdiegti reikiamus įrankius ir karkasus, sukurti pagrindinius MCP serverius, kurti pagrindines programas ir testuoti savo įgyvendinimus.
+Šioje pamokoje pateikiamos praktinės rekomendacijos, kaip nustatyti MCP aplinkas ir kurti pirmąsias MCP programas. Sužinosite, kaip paruošti reikalingus įrankius ir pagrindinius karkasus, kaip kurti paprastus MCP serverius, kurti host aplikacijas ir testuoti savo įgyvendinimus.
 
-Model Context Protocol (MCP) yra atviras protokolas, standartizuojantis, kaip programos suteikia kontekstą LLM. Įsivaizduokite MCP kaip USB-C lizdą DI programoms – jis suteikia standartizuotą būdą prijungti DI modelius prie skirtingų duomenų šaltinių ir įrankių.
+Modelio Konteksto Protokolas (MCP) yra atviras protokolas, standartizuojantis būdą, kaip programos pateikia kontekstą LLM. Galvokite apie MCP kaip apie USB-C jungtį AI programoms – jis suteikia standartizuotą būdą prijungti AI modelius prie įvairių duomenų šaltinių ir įrankių.
 
 ## Mokymosi tikslai
 
-Pamokos pabaigoje galėsite:
+Iki šios pamokos pabaigos galėsite:
 
-- Nustatyti MCP kūrimo aplinkas C#, Java, Python, TypeScript ir Rust kalbomis
-- Kurti ir diegti pagrindinius MCP serverius su pasirinktomis funkcijomis (ištekliai, užklausos ir įrankiai)
-- Kurti pagrindines programas, kurios jungiasi prie MCP serverių
+- Nustatyti MCP kūrimo aplinkas C#, Java, Python, TypeScript ir Rust kalboms
+- Kurti ir diegti paprastus MCP serverius su individualiomis funkcijomis (ištekliais, užuominomis ir įrankiais)
+- Kurti host aplikacijas, jungiančias prie MCP serverių
 - Testuoti ir derinti MCP įgyvendinimus
 
-## MCP aplinkos nustatymas
+## MCP aplinkos paruošimas
 
-Prieš pradėdami dirbti su MCP, svarbu pasiruošti kūrimo aplinką ir suprasti pagrindinį darbo procesą. Ši dalis padės jums žingsnis po žingsnio pradėti MCP darbą sklandžiai.
+Prieš pradėdami darbą su MCP, svarbu pasiruošti kūrimo aplinką ir suprasti pagrindinį darbo eigą. Šiame skyriuje jus nuvesime per pradinius nustatymo žingsnius, kad MCP pradžia būtų sklandi.
 
 ### Reikalavimai
 
 Prieš pradėdami MCP kūrimą, įsitikinkite, kad turite:
 
-- **Kūrimo aplinka**: Jūsų pasirinkta kalba (C#, Java, Python, TypeScript arba Rust)
-- **IDE / Redaktorius**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm arba bet koks šiuolaikinis kodo redaktorius
-- **Paketo valdytojai**: NuGet, Maven/Gradle, pip, npm/yarn arba Cargo
-- **API raktai**: Bet kokioms DI paslaugoms, kurias planuojate naudoti pagrindinėse programose
+- **Kūrimo aplinka**: pasirinktos kalbos (C#, Java, Python, TypeScript ar Rust) aplinka
+- **IDE/Redaktorius**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ar bet kokį modernų kodo redaktorių
+- **Paketo valdytojai**: NuGet, Maven/Gradle, pip, npm/yarn ar Cargo
+- **API raktai**: bet kuriai AI paslaugai, kurią planuojate naudoti host aplikacijose
 
 ## Pagrindinė MCP serverio struktūra
 
-MCP serveris paprastai turi:
+MCP serveris paprastai apima:
 
-- **Serverio konfigūracija**: Prievado, autentifikacijos ir kitų nustatymų paruošimas
-- **Ištekliai**: Duomenys ir kontekstas, suteikiamas LLM
-- **Įrankiai**: Funkcionalumas, kurį modeliai gali iškviesti
-- **Užklausos**: Šablonai tekstui generuoti arba struktūrizuoti
+- **Serverio konfigūracija**: nustatyti prievadą, autentifikaciją ir kitus parametrus
+- **Ištekliai**: duomenys ir kontekstas, pasiekiami LLM
+- **Įrankiai**: funkcionalumas, kurį modeliai gali iškviesti
+- **Užuominos**: tekstų generavimo ar struktūrizavimo šablonai
 
-Štai supaprastintas pavyzdys TypeScript kalba:
+Štai supaprastintas pavyzdys TypeScript:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Sukurkite MCP serverį
+// Sukurti MCP serverį
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Pridėti papildomą įrankį
+// Pridėti sudėjimo įrankį
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -62,10 +67,10 @@ server.tool("add",
   })
 );
 
-// Pridėti dinaminį pasveikinimo išteklių
+// Pridėti dinamišką pasveikinimo resursą
 server.resource(
   "file",
-  // Parametras 'list' nustato, kaip išteklius pateikia galimus failus. Nustačius jį į undefined, išvardijimas šiam ištekliui išjungiamas.
+  // Parametras 'list' valdo, kaip resursas pateikia galimus failus. Nustatymas į undefined išjungia šio resurso failų sąrašą.
   new ResourceTemplate("file://{path}", { list: undefined }),
   async (uri, { path }) => ({
     contents: [{
@@ -75,7 +80,7 @@ server.resource(
   })
 );
 
-// Pridėti failo išteklių, kuris skaito failo turinį
+// Pridėti failo resursą, kuris skaito failo turinį
 server.resource(
   "file",
   new ResourceTemplate("file://{path}", { list: undefined }),
@@ -116,93 +121,93 @@ await server.connect(transport);
 
 Ankstesniame kode mes:
 
-- Importuojame reikiamas MCP TypeScript SDK klases.
-- Kuriame ir konfigūruojame naują MCP serverio egzempliorių.
-- Registruojame pasirinktinį įrankį (`calculator`) su apdorojimo funkcija.
-- Pradedame serverį klausytis atvykstančių MCP užklausų.
+- Importavome reikalingas klases iš MCP TypeScript SDK.
+- Sukūrėme ir sukonfigūravome naują MCP serverio egzempliorių.
+- Užregistravome individualų įrankį (`calculator`) su apdorojimo funkcija.
+- Paleidome serverį, kad klausytų MCP užklausų.
 
 ## Testavimas ir derinimas
 
-Prieš pradėdami testuoti savo MCP serverį, svarbu suprasti turimus įrankius ir geriausias derinimo praktikas. Efektyvus testavimas užtikrina, kad serveris veikia pagal lūkesčius, ir padeda greitai identifikuoti bei spręsti problemas. Toliau pateikiami siūlomi metodai MCP įgyvendinimo patikrinimui.
+Prieš pradėdami testuoti savo MCP serverį, svarbu suprasti turimus įrankius ir geriausias derinimo praktikas. Efektyvus testavimas užtikrina, kad serveris veiks kaip tikėtasi ir padeda greitai identifikuoti bei išspręsti problemas. Toliau pateikiamos rekomenduojamos MCP įgyvendinimo patikros priemonės.
 
-MCP siūlo įrankius, kurie padeda testuoti ir derinti serverius:
+MCP suteikia įrankius jūsų serveriams testuoti ir derinti:
 
-- **Inspector įrankis**, ši grafinė sąsaja leidžia prisijungti prie serverio ir testuoti įrankius, užklausas ir išteklius.
-- **curl**, taip pat galite prisijungti prie serverio naudodami komandų eilutės įrankį kaip curl ar kitus klientus, kurie gali kurti ir vykdyti HTTP komandas.
+- **Inspector įrankis** – ši grafinė sąsaja leidžia prisijungti prie serverio ir testuoti jūsų įrankius, užuominas bei išteklius.
+- **curl** – taip pat galite prisijungti prie serverio naudodami komandų eilutės įrankį curl arba kitus klientus, kurie gali vykdyti HTTP komandas.
 
-### MCP Inspector naudojimas
+### Naudojant MCP Inspector
 
-[MCP Inspector](https://github.com/modelcontextprotocol/inspector) yra vizualinis testavimo įrankis, kuris padeda jums:
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector) yra vizualus testavimo įrankis, kuris leidžia:
 
-1. **Aptikti serverio galimybes**: Automatiškai surasti prieinamus išteklius, įrankius ir užklausas
-2. **Testuoti įrankių vykdymą**: Išbandyti skirtingus parametrus ir stebėti atsakymus realiu laiku
-3. **Peržiūrėti serverio metaduomenis**: Peržvelgti serverio informaciją, schemas ir konfigūracijas
+1. **Aptikti serverio galimybes**: automatiškai nustatyti galimus išteklius, įrankius ir užuominas
+2. **Išbandyti įrankių vykdymą**: išbandyti įvairius parametrus ir matyti atsakymus realiu laiku
+3. **Peržiūrėti serverio metaduomenis**: ištirti serverio informaciją, schemas ir konfigūracijas
 
 ```bash
-# pvz., TypeScript, MCP Inspector įdiegimas ir vykdymas
+# pvz., TypeScript, MCP Inspector diegimas ir paleidimas
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Kai paleidžiate aukščiau pateiktas komandas, MCP Inspector paleidžia vietinę žiniatinklio sąsają jūsų naršyklėje. Galite tikėtis pamatyti prietaisų skydelį, rodantį jūsų registruotus MCP serverius, juose prieinamus įrankius, išteklius ir užklausas. Sąsaja leidžia interaktyviai testuoti įrankių vykdymą, tikrinti serverio metaduomenis ir matyti atsakymus realiu laiku, taip palengvinant MCP serverio įgyvendinimų validavimą ir derinimą.
+Vykdant aukščiau nurodytas komandas MCP Inspector atidarys vietinę žiniatinklio sąsają jūsų naršyklėje. Galite tikėtis matyti informacinę skydelį, rodantį jūsų registruotus MCP serverius, jų turimus įrankius, išteklius ir užuominas. Sąsaja leidžia interaktyviai testuoti įrankių vykdymą, apžiūrėti serverio metaduomenis ir matyti atsakymus realiu laiku, kas palengvina MCP serverio įgyvendinimų patikrinimą ir derinimą.
 
-Štai kaip tai gali atrodyti:
+Štai ekrano nuotrauka, kaip tai gali atrodyti:
 
-![MCP Inspector serverio prisijungimas](../../../../translated_images/lt/connected.73d1e042c24075d3.webp)
+![MCP Inspector serverio ryšys](../../../../translated_images/lt/connected.73d1e042c24075d3.webp)
 
-## Dažniausios klaidos diegiant ir sprendimai
+## Dažnos konfigūracijos problemos ir sprendimai
 
-| Klaida | Galimas sprendimas |
+| Problema | Galimas sprendimas |
 |-------|-------------------|
-| Prisijungimas atmestas | Patikrinkite, ar serveris veikia ir ar prievadas teisingas |
-| Įrankių vykdymo klaidos | Peržiūrėkite parametrų validavimą ir klaidų apdorojimą |
-| Autentifikacijos klaidos | Patikrinkite API raktus ir teises |
-| Schema klaidų validavimas | Įsitikinkite, kad parametrai atitinka apibrėžtą schemą |
-| Serveris neprasideda | Patikrinkite, ar nėra prievadų konfliktų ar trūksta priklausomybių |
-| CORS klaidos | Sukonfigūruokite tinkamus CORS antraštes tarpdomens užklausoms |
-| Autentifikacijos problemos | Patikrinkite žetono galiojimą ir teises |
+| Ryšys atmestas | Patikrinkite ar serveris veikia ir ar prievadas teisingas |
+| Įrankio vykdymo klaidos | Peržiūrėkite parametrų validaciją ir klaidų valdymą |
+| Autentifikacijos klaidos | Patikrinkite API raktus ir leidimus |
+| Schemos validacijos klaidos | Įsitikinkite, kad parametrai atitinka apibrėžtą schemą |
+| Serveris neįsijungia | Patikrinkite prievadų konfliktus ar trūkstamas priklausomybes |
+| CORS klaidos | Sukonfigūruokite tinkamus CORS antraštes tarpkryptiniams užklausimams |
+| Autentifikacijos problemos | Patikrinkite tokenų galiojimą ir leidimus |
 
-## Vietinis vystymas
+## Vietinis kūrimas
 
-Vietiniam vystymui ir testavimui galite paleisti MCP serverius tiesiogiai savo kompiuteryje:
+Vietiniam kūrimui ir testavimui galite paleisti MCP serverius tiesiog savo mašinoje:
 
 1. **Paleiskite serverio procesą**: Vykdykite savo MCP serverio programą
-2. **Sukurti tinklą**: Įsitikinkite, kad serveris yra pasiekiamas numatytu prievadu
-3. **Prijungti klientus**: Naudokite vietinius prisijungimo URL kaip `http://localhost:3000`
+2. **Sukonfigūruokite tinklą**: Įsitikinkite, kad serveris pasiekiamas per numatytą prievadą
+3. **Prisijunkite klientus**: Naudokite vietinius ryšio URL, pvz., `http://localhost:3000`
 
 ```bash
-# Pavyzdys: TypeScript MCP serverio paleidimas vietoje
+# Pavyzdys: TypeScript MCP serverio paleidimas vietiniame kompiuteryje
 npm run start
 # Serveris veikia adresu http://localhost:3000
 ```
 
 ## Pirmojo MCP serverio kūrimas
 
-Ankstesnėje pamokoje apžvelgėme [Pagrindines sąvokas](../../01-CoreConcepts/README.md), dabar laikas tą žinią pritaikyti.
+Ankstesnėje pamokoje apėmėme [Pagrindines sąvokas](../../01-CoreConcepts/README.md), dabar metas šias žinias pritaikyti.
 
 ### Ką gali serveris
 
-Prieš rašydami kodą, prisiminkime, ką gali serveris:
+Prieš pradedant rašyti kodą, priminkime, ką serveris gali daryti:
 
 MCP serveris gali, pavyzdžiui:
 
-- Prieiti prie vietinių failų ir duomenų bazių
+- Pasiekti vietinius failus ir duomenų bazes
 - Jungtis prie nuotolinių API
 - Atlikti skaičiavimus
 - Integruotis su kitais įrankiais ir paslaugomis
-- Teikti vartotojo sąsają bendraujant
+- Suteikti sąsają naudotojui sąveikai
 
-Šaunu, kad žinome ko galime siekti, pradėkime koduoti.
+Puiku, dabar, kai žinome ko galime tikėtis, pradėkime rašyti kodą.
 
-## Pratybos: Serverio kūrimas
+## Užduotis: Serverio kūrimas
 
-Norint sukurti serverį, reikia atlikti šiuos žingsnius:
+Norėdami sukurti serverį, turite atlikti šiuos veiksmus:
 
-- Įdiegti MCP SDK.
-- Sukurti projektą ir nustatyti projekto struktūrą.
-- Parašyti serverio kodą.
-- Testuoti serverį.
+- Įdiekite MCP SDK.
+- Sukurkite projektą ir nustatykite jo struktūrą.
+- Parašykite serverio kodą.
+- Išbandykite serverį.
 
-### -1- Projekto sukūrimas
+### -1- Projekto kūrimas
 
 #### TypeScript
 
@@ -219,7 +224,7 @@ npm init -y
 # Sukurkite projekto katalogą
 mkdir calculator-server
 cd calculator-server
-# Atidarykite aplanką Visual Studio Code – jei naudojate kitą IDE, praleiskite šį veiksmą
+# Atidarykite aplanką Visual Studio Code - praleiskite, jei naudojate kitą IDE
 code .
 ```
 
@@ -246,7 +251,7 @@ curl https://start.spring.io/starter.zip \
   -o calculator-server.zip
 ```
 
-Išskleiskite zip failą:
+Išarchyvuokite zip failą:
 
 ```bash
 unzip calculator-server.zip -d calculator-server
@@ -365,15 +370,15 @@ cargo init
 
 ### -2- Pridėti priklausomybes
 
-Dabar, kai projektas sukurtas, pridėkime priklausomybes:
+Dabar, kai turite sukurtą projektą, pridėkime priklausomybes:
 
 #### TypeScript
 
 ```sh
-# Jei dar neįdiegta, įdiekite TypeScript globaliai
+# Jei dar nėra įdiegta, įdiekite TypeScript globaliai
 npm install typescript -g
 
-# Įdiekite MCP SDK ir Zod schemos patikrinimui
+# Įdiekite MCP SDK ir Zod schemai tikrinti
 npm install @modelcontextprotocol/sdk zod
 npm install -D @types/node typescript
 ```
@@ -402,11 +407,11 @@ cargo add serde
 cargo add tokio --features rt-multi-thread
 ```
 
-### -3- Projekto failų kūrimas
+### -3- Sukurti projekto failus
 
 #### TypeScript
 
-Atidarykite *package.json* failą ir pakeiskite turinį taip, kad galėtumėte konstruoti ir vykdyti serverį:
+Atverkite *package.json* failą ir pakeiskite turinį taip, kad galėtumėte kurti ir paleisti serverį:
 
 ```json
 {
@@ -433,7 +438,7 @@ Atidarykite *package.json* failą ir pakeiskite turinį taip, kad galėtumėte k
 }
 ```
 
-Sukurkite *tsconfig.json* su tokiu turiniu:
+Sukurkite *tsconfig.json* su šiuo turiniu:
 
 ```json
 {
@@ -470,7 +475,7 @@ touch server.py
 
 #### .NET
 
-Įdiekite reikalingas NuGet paketas:
+Įdiekite būtinus NuGet paketus:
 
 ```sh
 dotnet add package ModelContextProtocol --prerelease
@@ -479,17 +484,17 @@ dotnet add package Microsoft.Extensions.Hosting
 
 #### Java
 
-Java Spring Boot projektų struktūra susikuria automatiškai.
+Java Spring Boot projektuose projekto struktūra sukuriama automatiškai.
 
 #### Rust
 
-Rust atveju faile *src/main.rs* bus sukurtas numatytasis failas, kai vykdysite `cargo init`. Atidarykite failą ir ištrinkite numatytąjį kodą.
+Rust atveju *src/main.rs* failas sukuriamas pagal nutylėjimą paleidus `cargo init`. Atidarykite failą ir ištrinkite numatytąjį kodą.
 
-### -4- Serverio kodo kūrimas
+### -4- Kurti serverio kodą
 
 #### TypeScript
 
-Sukurkite failą *index.ts* ir įdėkite šį kodą:
+Sukurkite failą *index.ts* ir pridėkite šį kodą:
 
 ```typescript
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -503,7 +508,7 @@ const server = new McpServer({
 });
 ```
 
-Dabar turite serverį, bet jis dar nedaug ką daro, pataisykime tai.
+Dabar turite serverį, bet jis nedaug ką daro, pataisykime tai.
 
 #### Python
 
@@ -511,7 +516,7 @@ Dabar turite serverį, bet jis dar nedaug ką daro, pataisykime tai.
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Sukurti MCP serverį
+# Sukurkite MCP serverį
 mcp = FastMCP("Demo")
 ```
 
@@ -570,7 +575,7 @@ public class McpServerApplication {
 }
 ```
 
-Sukurkite skaičiuotuvo servisą *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
+Sukurkite kalkuliatoriaus servisą *src/main/java/com/microsoft/mcp/sample/server/service/CalculatorService.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.service;
@@ -716,7 +721,7 @@ public class CalculatorService {
 }
 ```
 
-**Pasirinktiniai komponentai gamybinei paslaugai:**
+**Pasirenkami komponentai gamybai paruoštai paslaugai:**
 
 Sukurkite paleidimo konfigūraciją *src/main/java/com/microsoft/mcp/sample/server/config/StartupConfig.java*:
 
@@ -743,7 +748,7 @@ public class StartupConfig {
 }
 ```
 
-Sukurkite sveikatos kontrolerį *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
+Sukurkite sveikatos valdiklį *src/main/java/com/microsoft/mcp/sample/server/controller/HealthController.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.controller;
@@ -769,7 +774,7 @@ public class HealthController {
 }
 ```
 
-Sukurkite išimčių tvarkytoją *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
+Sukurkite išimčių tvarkyklę *src/main/java/com/microsoft/mcp/sample/server/exception/GlobalExceptionHandler.java*:
 
 ```java
 package com.microsoft.mcp.sample.server.exception;
@@ -799,14 +804,14 @@ public class GlobalExceptionHandler {
             this.message = message;
         }
 
-        // Gavimo metodai
+        // Gaukėjai
         public String getCode() { return code; }
         public String getMessage() { return message; }
     }
 }
 ```
 
-Sukurkite pasirinktinį banerį *src/main/resources/banner.txt*:
+Sukurkite individualų baneriuką *src/main/resources/banner.txt*:
 
 ```text
 _____      _            _       _             
@@ -824,7 +829,7 @@ Spring Boot MCP Application
 
 #### Rust
 
-Pridėkite šį kodą į *src/main.rs* failo viršų. Tai importuoja reikiamas bibliotekas ir modulius jūsų MCP serveriui.
+Pridėkite šį kodą prie *src/main.rs* failo pradžios. Tai importuoja reikalingas bibliotekas ir modulius jūsų MCP serveriui.
 
 ```rust
 use rmcp::{
@@ -837,7 +842,7 @@ use rmcp::{
 use std::error::Error;
 ```
 
-Skaičiuotuvo serveris bus paprastas ir galės sudėti du skaičius. Sukurkime struktūrą, kuri reprezentuos skaičiuotuvo užklausą.
+Kalkuliatoriaus serveris bus paprastas, galintis sudėti du skaičius. Sukurkime struktūrą, atstovaujančią kalkuliatoriaus užklausą.
 
 ```rust
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -847,7 +852,7 @@ pub struct CalculatorRequest {
 }
 ```
 
-Toliau sukurkite struktūrą, kuri reprezentuos skaičiuotuvo serverį. Ši struktūra saugos įrankių maršrutizatorių, kuris naudojamas įrankių registravimui.
+Toliau sukurkime struktūrą, atstovaujančią kalkuliatoriaus serverį. Ši struktūra laikys įrankių maršrutizatorių, kuris naudojamas įrankiams registruoti.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -856,7 +861,7 @@ pub struct Calculator {
 }
 ```
 
-Dabar galime įgyvendinti `Calculator` struktūrą, sukurti naują serverio egzempliorių ir įgyvendinti serverio apdorotoją, kuris pateikia serverio informaciją.
+Dabar galime įgyvendinti `Calculator` struktūrą, kad sukurtume naują serverio egzempliorių ir įgyvendintume serverio apdorojimą, pateikdami serverio informaciją.
 
 ```rust
 #[tool_router]
@@ -880,7 +885,7 @@ impl ServerHandler for Calculator {
 }
 ```
 
-Galiausiai įgyvendinkite pagrindinę funkciją serverio paleidimui. Ši funkcija sukurs `Calculator` struktūros egzempliorių ir aptarnaus jį per standartinę įvestį/išvestį.
+Galiausiai reikia įgyvendinti pagrindinę funkciją, kuri paleis serverį. Ši funkcija sukurs `Calculator` egzempliorių ir aptarnaus jį per standartinę įėjimo/išėjimo srautus.
 
 ```rust
 #[tokio::main]
@@ -891,9 +896,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-Serveris dabar paruoštas pateikti pagrindinę informaciją apie save. Toliau pridėsime įrankį, kuris vykdys sudėjimą.
+Serveris dabar paruoštas pateikti pagrindinę informaciją apie save. Toliau pridėsime įrankį, kuris atlieka sudėtį.
 
-### -5- Įrankio ir ištekliaus pridėjimas
+### -5- Įrankio ir išteklių pridėjimas
 
 Pridėkite įrankį ir išteklių pridėdami šį kodą:
 
@@ -920,7 +925,7 @@ server.resource(
 );
 ```
 
-Jūsų įrankis priima parametrus `a` ir `b` ir vykdo funkciją, kuri pateikia atsakymą tokia forma:
+Jūsų įrankis priima parametrus `a` ir `b` ir vykdo funkciją, kuri sukuria atsakymą tokiu formatu:
 
 ```typescript
 {
@@ -930,7 +935,7 @@ Jūsų įrankis priima parametrus `a` ir `b` ir vykdo funkciją, kuri pateikia a
 }
 ```
 
-Jūsų išteklius pasiekiamas per eilutę „greeting“ ir priima parametrą `name`, bei pateikia panašų atsakymą kaip įrankis:
+Jūsų išteklius pasiekiamas per string'ą "greeting" ir priima parametrą `name`, kuris sukuria panašų atsakymą kaip įrankis:
 
 ```typescript
 {
@@ -949,7 +954,7 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Pridėti dinamišką pasveikinimo išteklių
+# Pridėti dinamišką pasveikinimo šaltinį
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -963,7 +968,7 @@ Ankstesniame kode mes:
 
 #### .NET
 
-Pridėkite šį kodą į savo Program.cs failą:
+Pridėkite tai į savo Program.cs failą:
 
 ```csharp
 [McpServerToolType]
@@ -976,7 +981,7 @@ public static class CalculatorTool
 
 #### Java
 
-Įrankiai jau sukurti ankstesniame žingsnyje.
+Įrankiai jau buvo sukurti ankstesniame žingsnyje.
 
 #### Rust
 
@@ -994,17 +999,17 @@ async fn add(
 
 ### -6- Galutinis kodas
 
-Pridėkime paskutinį reikalingą kodą, kad serveris galėtų startuoti:
+Pridėkime paskutinį reikiamą kodą, kad serveris galėtų paleisti:
 
 #### TypeScript
 
 ```typescript
-// Pradėti gauti pranešimus per stdin ir siųsti pranešimus per stdout
+// Pradėti gauti žinutes per stdin ir siųsti žinutes per stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
 ```
 
-Čia pilnas kodas:
+Štai pilnas kodas:
 
 ```typescript
 // index.ts
@@ -1012,13 +1017,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Sukurkite MCP serverį
+// Sukurti MCP serverį
 const server = new McpServer({
   name: "Calculator MCP Server",
   version: "1.0.0"
 });
 
-// Pridėkite papildomą įrankį
+// Pridėti papildomą įrankį
 server.tool(
   "add",
   { a: z.number(), b: z.number() },
@@ -1027,7 +1032,7 @@ server.tool(
   })
 );
 
-// Pridėkite dinaminį sveikinimosi išteklių
+// Pridėti dinaminį pasveikinimo išteklių
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -1039,7 +1044,7 @@ server.resource(
   })
 );
 
-// Pradėkite gauti žinutes per stdin ir siųsti žinutes per stdout
+// Pradėti gauti žinutes per stdin ir siųsti žinutes per stdout
 const transport = new StdioServerTransport();
 server.connect(transport);
 ```
@@ -1054,27 +1059,27 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
-# Pridėti papildomą įrankį
+# Pridėkite sudėjimo įrankį
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Pridėti dinamišką pasveikinimo išteklių
+# Pridėkite dinaminį pasveikinimo resursą
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
     return f"Hello, {name}!"
 
-# Pagrindinė vykdymo dalis - tai būtina, kad serveris veiktų
+# Pagrindinis vykdymo blokas - tai būtina serverio paleidimui
 if __name__ == "__main__":
     mcp.run()
 ```
 
 #### .NET
 
-Sukurkite Program.cs failą su tokiu turiniu:
+Sukurkite Program.cs failą su šiuo turiniu:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -1196,7 +1201,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 ### -7- Serverio testavimas
 
-Paleiskite serverį su šia komanda:
+Paleiskite serverį šia komanda:
 
 #### TypeScript
 
@@ -1210,11 +1215,11 @@ npm run build
 mcp run server.py
 ```
 
-> Naudojant MCP Inspector, naudokite `mcp dev server.py`, kuris automatiškai paleidžia Inspector ir pateikia reikiamą proxy sesijos žetoną. Jei naudojate `mcp run server.py`, reikės rankiniu būdu paleisti Inspector ir sukonfigūruoti ryšį.
+> Naudojant MCP Inspector, naudokite `mcp dev server.py`, kuris automatiškai paleidžia Inspector ir suteikia reikalingą proxy sesijos žetoną. Jei naudojate `mcp run server.py`, reikės rankiniu būdu paleisti Inspector ir sukonfigūruoti ryšį.
 
 #### .NET
 
-Įsitikinkite, kad esate savo projekto kataloge:
+Įsitikinkite, kad esate projekto kataloge:
 
 ```sh
 cd McpCalculatorServer
@@ -1230,7 +1235,7 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 #### Rust
 
-Vykdykite šias komandas sukonstravimui ir serverio paleidimui:
+Vykdykite šias komandas, kad suformatuotumėte ir paleistumėte serverį:
 
 ```sh
 cargo fmt
@@ -1239,10 +1244,10 @@ cargo run
 
 ### -8- Paleidimas naudojant Inspector
 
-Inspector yra puikus įrankis, kuris gali paleisti jūsų serverį ir leidžia su juo bendrauti, kad galėtumėte testuoti, ar jis veikia. Pradėkime:
+Inspector yra puikus įrankis, kuris gali paleisti jūsų serverį ir leidžia jums su juo sąveikauti, kad patikrintumėte veikimą. Paleiskime jį:
 
 > [!NOTE]
-> komanda lauke gali atrodyti kitaip, nes ji priklauso nuo jūsų paleidimo aplinkos/
+> komanda lauke gali atrodyti kitaip, nes jis yra komanda serveriui paleisti su jūsų konkrečia vykdymo aplinka/
 
 #### TypeScript
 
@@ -1250,28 +1255,29 @@ Inspector yra puikus įrankis, kuris gali paleisti jūsų serverį ir leidžia s
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-arba pridėkite į savo *package.json* panašiai: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ir tada vykdykite `npm run inspector`
+arba pridėkite tai į savo *package.json* failą taip: `"inspector": "npx @modelcontextprotocol/inspector node build/index.js"` ir tada vykdykite `npm run inspector`
 
 #### Python
 
-Python naudoja Node.js įrankį inspector. Galima paleisti šį įrankį taip:
+Python naudoja Node.js įrankį inspector. Šį įrankį galima iškviesti taip:
 
 ```sh
 mcp dev server.py
 ```
 
-Tačiau jis nepalaiko visų metodų, prieinamų šioje priemonėje, tad rekomenduojama tiesiogiai paleisti Node.js įrankį, kaip parodyta žemiau:
+
+Tačiau jis neįgyvendina visų įrankyje esančių metodų, todėl rekomenduojama paleisti Node.js įrankį tiesiogiai taip, kaip parodyta žemiau:
 
 ```sh
 npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
-Jei naudojate įrankį ar IDE, kuris leidžia konfigūruoti komandų paleidimą bei argumentus,
-įsitikinkite, kad `Command` laukelyje yra nustatytas `python`, o kaip „Arguments“ – `server.py`. Tai užtikrina, kad scenarijus veiktų tinkamai.
+Jei naudojate įrankį ar IDE, leidžiančią konfigūruoti komandas ir argumentus skriptams paleisti, 
+įsitikinkite, kad laukelyje „Command“ (Komanda) nustatytas `python`, o kaip „Arguments“ (Argumentai) — `server.py`. Tai užtikrina, kad skriptas bus paleistas tinkamai.
 
 #### .NET
 
-Įsitikinkite, kad esate savo projekto kataloge:
+Įsitikinkite, kad esate savo projekto aplanke:
 
 ```sh
 cd McpCalculatorServer
@@ -1280,8 +1286,8 @@ npx @modelcontextprotocol/inspector dotnet run
 
 #### Java
 
-Įsitikinkite, kad jūsų skaičiuotuvo serveris veikia
-Tada paleiskite inspektorių:
+Įsitikinkite, kad jūsų kalkuliatoriaus serveris veikia
+Paleiskite inspektorių:
 
 ```cmd
 npx @modelcontextprotocol/inspector
@@ -1289,33 +1295,33 @@ npx @modelcontextprotocol/inspector
 
 Inspektoriaus žiniatinklio sąsajoje:
 
-1. Pasirinkite „SSE“ kaip transporto tipą
+1. Pasirinkite „SSE“ kaip perdavimo tipą
 2. Nustatykite URL į: `http://localhost:8080/sse`
-3. Spustelėkite „Connect“
+3. Spauskite „Connect“ (Prisijungti)
 
 ![Connect](../../../../translated_images/lt/tool.163d33e3ee307e20.webp)
 
-**Dabar esate prisijungę prie serverio**
-**Java serverio testavimo skiltis dabar baigta**
+**Jūs dabar esate prisijungę prie serverio**
+**Java serverio testavimo skyrius dabar baigtas**
 
-Kitas skyrius skirtas sąveikai su serveriu.
+Toliau aprašoma sąveika su serveriu.
 
-Turėtumėte matyti tokią vartotojo sąsają:
+Turėtumėte matyti šią vartotojo sąsają:
 
 ![Connect](../../../../translated_images/lt/connect.141db0b2bd05f096.webp)
 
-1. Prisijunkite prie serverio pasirinkdami mygtuką Connect
-  Prisijungus prie serverio, turėtumėte pamatyti tai:
+1. Prisijunkite prie serverio paspausdami mygtuką „Connect“ (Prisijungti)
+  Prisijungus prie serverio, turėtumėte matyti šį vaizdą:
 
   ![Connected](../../../../translated_images/lt/connected.73d1e042c24075d3.webp)
 
-1. Pasirinkite „Tools“ ir „listTools“, turėtumėte matyti „Add“, pasirinkite „Add“ ir užpildykite parametro reikšmes.
+1. Pasirinkite „Tools“ (Įrankiai) ir „listTools“, turėtumėte pamatyti „Add“ (Pridėti), pasirinkite „Add“ ir užpildykite parametro reikšmes.
 
-  Turėtumėte pamatyti tokį atsakymą, t.y. „add“ įrankio rezultatą:
+  Turėtumėte matyti tokį atsakymą, t.y. „add“ įrankio rezultatą:
 
   ![Result of running add](../../../../translated_images/lt/ran-tool.a5a6ee878c1369ec.webp)
 
-Sveikiname, jums pavyko sukurti ir paleisti savo pirmąjį serverį!
+Sveikiname, jums pavyko sukurti ir paleisti pirmąjį serverį!
 
 #### Rust
 
@@ -1327,26 +1333,26 @@ npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-n
 
 ### Oficialūs SDK
 
-MCP teikia oficialius SDK kelioms programavimo kalboms:
+MCP teikia oficialius SDK kelioms kalboms:
 
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - palaikomas bendradarbiaujant su Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - palaikomas bendradarbiaujant su Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - oficiali TypeScript implementacija
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - oficiali Python implementacija
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - oficiali Kotlin implementacija
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - palaikomas bendradarbiaujant su Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - oficiali Rust implementacija
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - prižiūrimas kartu su Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - prižiūrimas kartu su Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - oficialus TypeScript įgyvendinimas
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - oficialus Python įgyvendinimas
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - oficialus Kotlin įgyvendinimas
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - prižiūrimas kartu su Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - oficialus Rust įgyvendinimas
 
-## Pagrindinės Mintys
+## Svarbiausi dalykai
 
-- MCP kūrimo aplinka yra paprastai įrengiama naudojant kalbai skirtus SDK
+- MCP kūrimo aplinkos nustatymas yra paprastas naudojant konkrečiai kalbai skirtus SDK
 - MCP serverių kūrimas apima įrankių kūrimą ir registravimą su aiškiomis schemomis
-- Testavimas ir derinimas yra būtini patikimoms MCP implementacijoms
+- Testavimas ir derinimas yra būtini patikimoms MCP įgyvendinimo sprendimams
 
 ## Pavyzdžiai
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
@@ -1354,30 +1360,30 @@ MCP teikia oficialius SDK kelioms programavimo kalboms:
 
 ## Užduotis
 
-Sukurkite paprastą MCP serverį su jums patinkančiu įrankiu:
+Sukurkite paprastą MCP serverį su pasirinktiniu įrankiu:
 
-1. Įgyvendinkite įrankį pasirinktoje kalboje (.NET, Java, Python, TypeScript arba Rust).
+1. Įgyvendinkite įrankį pasirinkta kalba (.NET, Java, Python, TypeScript arba Rust).
 2. Apibrėžkite įvesties parametrus ir grąžinimo reikšmes.
-3. Paleiskite inspektorių, kad įsitikintumėte, jog serveris veikia tinkamai.
+3. Paleiskite inspektoriaus įrankį, kad įsitikintumėte, jog serveris veikia tinkamai.
 4. Išbandykite įgyvendinimą su įvairiomis įvestimis.
 
 ## Sprendimas
 
-[Solution](./solution/README.md)
+[Sprendimas](./solution/README.md)
 
-## Papildomi Šaltiniai
+## Papildomi šaltiniai
 
-- [Agentų kūrimas naudojant Model Context Protocol Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Agentų kūrimas naudojant Model Context Protocol Azure platformoje](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Nuotolinis MCP su Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [.NET OpenAI MCP agentas](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Kas toliau
 
-Toliau: [Getting Started with MCP Clients](../02-client/README.md)
+Toliau: [Kaip pradėti dirbti su MCP klientais](../02-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome turėti omenyje, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus atliekamas vertimas. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kylančią naudojant šį vertimą.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

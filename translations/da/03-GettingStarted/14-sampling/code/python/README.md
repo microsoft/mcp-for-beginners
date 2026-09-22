@@ -1,5 +1,10 @@
 # Kør eksemplet
 
+> [!WARNING]
+> Dette eksempel bruger forældet Sampling og en legacy HTTP+SSE-endpoint. Det er
+> bevaret for MCP `2025-11-25` kompatibilitet. Nye implementeringer bør kalde
+> en LLM-udbyder direkte og bruge Streamable HTTP til fjern-MCP-trafik.
+
 ## Opret virtuelt miljø
 
 ```sh
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Test serveren med GitHub Copilot og VS Code
 
-Tilføj indgangen til mcp.json som følger:
+Tilføj posten til mcp.json som følger:
 
 ```json
 "servers": {
@@ -32,7 +37,7 @@ Tilføj indgangen til mcp.json som følger:
 }
 ```
 
-Sørg for at klikke "start" på serveren.
+Sørg for at klikke på "start" på serveren.
 
 Indsæt følgende prompt i GitHub Copilot:
 
@@ -40,7 +45,7 @@ Indsæt følgende prompt i GitHub Copilot:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Første gang vil du blive spurgt, om du vil acceptere en Sampling-handling, derefter bliver du bedt om at acceptere værktøjet til at køre "create_blog". Du bør se et svar, der ligner:
+Første gang bliver du spurgt, om du vil acceptere en Sampling-handling, og derefter bliver du bedt om at acceptere værktøjet til at køre "create_blog". Du bør se et svar der ligner:
 
 ```json
 {
@@ -51,6 +56,6 @@ Første gang vil du blive spurgt, om du vil acceptere en Sampling-handling, dere
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Ansvarsfraskrivelse**:  
-Dette dokument er oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på originalsproget bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der måtte opstå som følge af brugen af denne oversættelse.
+**Ansvarsfraskrivelse**:
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

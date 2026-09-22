@@ -1,14 +1,20 @@
 # VS Code Integration
 
+> [!NOTE]
+> The `initializationOptions` settings in this lab target the sample's MCP
+> `2025-11-25` handshake. MCP `2026-07-28` removes the initialization handshake;
+> use a host and SDK that support per-request metadata and `server/discover`
+> when migrating this sample.
+
 ## 🎯 What This Lab Covers
 
-This lab provides detailed instructions on integrating your MCP server with VS Code to enable natural language queries via AI Chat. You'll learn how to configure VS Code for optimal MCP usage, debug server connections, and fully utilize AI-assisted database interactions.
+This lab provides comprehensive guidance on integrating your MCP server with VS Code to enable natural language queries through AI Chat. You'll learn to configure VS Code for optimal MCP usage, debug server connections, and leverage the full power of AI-assisted database interactions.
 
 ## Overview
 
-The MCP integration with VS Code revolutionizes how developers interact with databases and APIs using natural language. By connecting your retail MCP server to VS Code Chat, you can intelligently query sales data, product catalogs, and business analytics through conversational AI.
+VS Code's MCP integration transforms how developers interact with databases and APIs through natural language. By connecting your retail MCP server to VS Code Chat, you enable intelligent querying of sales data, product catalogs, and business analytics using conversational AI.
 
-This integration allows developers to ask questions like "Show me the top-selling products this month" or "Find customers who haven't made a purchase in 90 days" and receive structured data responses without needing to write SQL queries.
+This integration allows developers to ask questions like "Show me top selling products this month" or "Find customers who haven't purchased in 90 days" and get structured data responses without writing SQL queries.
 
 ## Learning Objectives
 
@@ -16,9 +22,9 @@ By the end of this lab, you will be able to:
 
 - **Configure** VS Code MCP settings for your retail server
 - **Integrate** MCP servers with VS Code AI Chat functionality
-- **Debug** MCP server connections and resolve issues
-- **Optimize** natural language query patterns for improved results
-- **Customize** the VS Code workspace for MCP development
+- **Debug** MCP server connections and troubleshoot issues
+- **Optimize** natural language query patterns for better results
+- **Customize** VS Code workspace for MCP development
 - **Deploy** multi-server configurations for complex scenarios
 
 ## 🔧 VS Code MCP Configuration
@@ -1009,26 +1015,26 @@ export function deactivate() {}
 
 After completing this lab, you should have:
 
-✅ **VS Code MCP Configuration**: Fully set up for seamless MCP integration  
+✅ **VS Code MCP Configuration**: Complete setup for optimal MCP integration  
 ✅ **AI Chat Integration**: Natural language querying capabilities in VS Code  
-✅ **Debugging Tools**: Robust troubleshooting and connection diagnostics  
-✅ **Multi-Server Setup**: Configurations for multiple MCP server instances  
+✅ **Debugging Tools**: Comprehensive troubleshooting and connection diagnostics  
+✅ **Multi-Server Setup**: Configuration for multiple MCP server instances  
 ✅ **Custom Extensions**: Enhanced VS Code experience with retail-specific features  
-✅ **Production Readiness**: Enterprise-grade VS Code development environment  
+✅ **Production Readiness**: Enterprise-ready VS Code development environment  
 
 ## 🚀 What's Next
 
-Proceed to **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** to:
+Continue with **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** to:
 
-- Deploy MCP servers in production environments
+- Deploy MCP servers to production environments
 - Configure cloud infrastructure for scalability
 - Implement CI/CD pipelines for automated deployment
-- Monitor MCP server performance in production
+- Monitor production MCP server performance
 
 ## 📚 Additional Resources
 
 ### VS Code Development
-- [VS Code Extension API](https://code.visualstudio.com/api) - Official guide for extension development
+- [VS Code Extension API](https://code.visualstudio.com/api) - Official extension development guide
 - [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integration documentation
 - [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript development in VS Code
 
@@ -1049,5 +1055,7 @@ Proceed to **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** to:
 
 ---
 
-**Disclaimer**:  
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we aim for accuracy, please note that automated translations may contain errors or inaccuracies. The original document in its native language should be regarded as the authoritative source. For critical information, professional human translation is recommended. We are not responsible for any misunderstandings or misinterpretations resulting from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

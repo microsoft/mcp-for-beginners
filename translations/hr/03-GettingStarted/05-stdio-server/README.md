@@ -1,39 +1,41 @@
-# MCP Server sa stdio transportom
+# MCP poslužitelj sa stdio transportom
 
-> **⚠️ Važna obavijest**: Od MCP specifikacije 2025-06-18, samostalni SSE (Server-Sent Events) transport je **zastarjel** i zamijenjen "Streamable HTTP" transportom. Trenutna MCP specifikacija definira dva primarna transportna mehanizma:
-> 1. **stdio** - Standardni ulaz/izlaz (preporučeno za lokalne servere)
-> 2. **Streamable HTTP** - Za udaljene servere koji mogu unutarnje koristiti SSE
+> **⚠️ Važna obavijest**: Od MCP specifikacije 2025-06-18, samostalni SSE (Server-Sent Events) transport je **zastarjeli** i zamijenjen "Streamable HTTP" transportom. Trenutna MCP specifikacija definira dva osnovna transportna mehanizma:
+> 1. **stdio** - Standardni ulaz/izlaz (preporučeno za lokalne poslužitelje)
+> 2. **Streamable HTTP** - Za udaljene poslužitelje koji mogu interno koristiti SSE
 >
-> Ova lekcija je ažurirana da se fokusira na **stdio transport**, koji je preporučeni pristup za većinu MCP implementacija servera.
+> Ova lekcija je ažurirana da se fokusira na **stdio transport**, koji je preporučeni pristup za većinu implementacija MCP poslužitelja.
 
-stdio transport omogućava MCP serverima komunikaciju s klijentima putem standardnih ulaznih i izlaznih tokova. Ovo je najčešće korišteni i preporučeni transportni mehanizam u trenutnoj MCP specifikaciji, pružajući jednostavan i učinkovit način za izgradnju MCP servera koji se lako integriraju s raznim klijentskim aplikacijama.
+Stdio transport omogućava MCP poslužiteljima komunikaciju s klijentima putem standardnih ulaznih i izlaznih tokova. To je najčešće korišten i preporučeni transportni mehanizam u trenutnoj MCP specifikaciji, pružajući jednostavan i učinkovit način za izgradnju MCP poslužitelja koji se lako mogu integrirati s raznim klijentskim aplikacijama.
 
 ## Pregled
 
-Ova lekcija pokriva kako izgraditi i koristiti MCP servere koristeći stdio transport.
+Ova lekcija obuhvaća kako izgraditi i koristiti MCP poslužitelje koristeći stdio transport.
 
 ## Ciljevi učenja
 
-Do kraja ove lekcije moći ćete:
+Na kraju ove lekcije, moći ćete:
 
-- Izgraditi MCP server koristeći stdio transport.
-- Debugirati MCP server koristeći Inspector.
-- Koristiti MCP server u Visual Studio Code-u.
+- Izgraditi MCP poslužitelj koristeći stdio transport.
+- Otkloniti pogreške MCP poslužitelja koristeći Inspektor.
+- Koristiti MCP poslužitelj u Visual Studio Code.
 - Razumjeti trenutne MCP transportne mehanizme i zašto je stdio preporučen.
 
-## stdio transport - Kako radi
 
-stdio transport je jedan od dva podržana tipa transporta u trenutnoj MCP specifikaciji (2025-11-25). Evo kako radi:
+## stdio Transport - Kako radi
 
-- **Jednostavna komunikacija**: Server čita JSON-RPC poruke sa standardnog ulaza (`stdin`) i šalje poruke na standardni izlaz (`stdout`).
-- **Baziran na procesu**: Klijent pokreće MCP server kao podproces.
-- **Format poruke**: Poruke su pojedinačni JSON-RPC zahtjevi, obavijesti ili odgovori, razdvojeni novim redovima.
-- **Dnevnik događaja**: Server MOŽE pisati UTF-8 stringove na standardnu grešku (`stderr`) za potrebe logiranja.
+Stdio transport je jedan od dva standardna transporta u MCP specifikaciji
+`2026-07-28`. Evo kako radi:
 
-### Ključni zahtjevi:
-- Poruke MORAJU biti razdvojene novim redcima i NEMAJU sadržavati ugrađene nove redove
-- Server NE SMIJE pisati ništa na `stdout` što nije valjana MCP poruka
-- Klijent NE SMIJE pisati ništa na serverski `stdin` što nije valjana MCP poruka
+- **Jednostavna komunikacija**: Poslužitelj čita JSON-RPC poruke sa standardnog ulaza (`stdin`) i šalje poruke na standardni izlaz (`stdout`).
+- **Temeljeno na procesu**: Klijent pokreće MCP poslužitelj kao podproces.
+- **Format poruke**: Poruke su pojedinačni JSON-RPC zahtjevi, notifikacije ili odgovori, odvojeni novim redovima.
+- **Logiranje**: Poslužitelj MOŽE pisati UTF-8 stringove na standardnu grešku (`stderr`) za potrebe logiranja.
+
+### Ključni uvjeti:
+- Poruke MORAJU biti odvojene novim redovima i NE SMIJU sadržavati ugrađene nove redove
+- Poslužitelj NE SMIJE pisati ništa na `stdout` što nije valjana MCP poruka
+- Klijent NE SMIJE pisati ništa u poslužiteljev `stdin` što nije valjana MCP poruka
 
 ### TypeScript
 
@@ -64,8 +66,8 @@ runServer().catch(console.error);
 U prethodnom kodu:
 
 - Uvozimo `Server` klasu i `StdioServerTransport` iz MCP SDK-a
-- Kreiramo instancu servera s osnovnom konfiguracijom i mogućnostima
-- Kreiramo instancu `StdioServerTransport` i povezujemo server s njim, omogućujući komunikaciju preko stdin/stdout
+- Kreiramo instancu poslužitelja s osnovnom konfiguracijom i mogućnostima
+- Kreiramo instancu `StdioServerTransport` i povezujemo poslužitelja s njim, omogućujući komunikaciju preko stdin/stdout
 
 ### Python
 
@@ -75,7 +77,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Kreiraj instancu poslužitelja
+# Kreiraj instancu servera
 server = Server("example-server")
 
 @server.tool()
@@ -97,9 +99,9 @@ if __name__ == "__main__":
 
 U prethodnom kodu:
 
-- Kreiramo instancu servera koristeći MCP SDK
+- Kreiramo instancu poslužitelja koristeći MCP SDK
 - Definiramo alate koristeći dekoratore
-- Koristimo context manager stdio_server za upravljanje transportom
+- Koristimo stdio_server kontekstni menadžer za upravljanje transportom
 
 ### .NET
 
@@ -122,22 +124,21 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Ključna razlika u odnosu na SSE je da stdio serveri:
+Ključna razlika od SSE-a je u tome da stdio poslužitelji:
 
-- Ne zahtijevaju postavljanje web servera ili HTTP endpointa
+- Ne zahtijevaju postavljanje web poslužitelja ni HTTP endpointa
 - Pokreću se kao podprocesi od strane klijenta
-- Komuniciraju putem stdin/stdout tokova
-- Lakši su za implementaciju i debugiranje
+- Komuniciraju preko stdin/stdout tokova
+- Jednostavniji su za implementaciju i otklanjanje pogrešaka
 
-## Vježba: Kreiranje stdio servera
+## Vježba: Kreiranje stdio poslužitelja
 
-Da bismo kreirali naš server, trebamo imati na umu dvije stvari:
+Za kreiranje našeg poslužitelja, moramo imati na umu dvije stvari:
 
-- Potreban nam je web server za izlaganje endpointa za povezivanje i poruke.
+- Trebamo koristiti web poslužitelj da izložimo endpointove za vezu i poruke.
+## Laboratorij: Kreiranje jednostavnog MCP stdio poslužitelja
 
-## Laboratorij: Kreiranje jednostavnog MCP stdio servera
-
-U ovom laboratoriju, stvorit ćemo jednostavan MCP server koristeći preporučeni stdio transport. Ovaj server će izložiti alate koje klijenti mogu pozivati koristeći standardni Model Context Protocol.
+U ovom laboratoriju ćemo kreirati jednostavan MCP poslužitelj koristeći preporučeni stdio transport. Ovaj poslužitelj će izložiti alate koje klijenti mogu pozivati koristeći standardni Model Context Protocol.
 
 ### Preduvjeti
 
@@ -145,7 +146,7 @@ U ovom laboratoriju, stvorit ćemo jednostavan MCP server koristeći preporučen
 - MCP Python SDK: `pip install mcp`
 - Osnovno razumijevanje asinhronog programiranja
 
-Započnimo s kreiranjem našeg prvog MCP stdio servera:
+Počnimo s kreiranjem našeg prvog MCP stdio poslužitelja:
 
 ```python
 import asyncio
@@ -187,31 +188,31 @@ if __name__ == "__main__":
 ## Ključne razlike u odnosu na zastarjeli SSE pristup
 
 **Stdio transport (trenutni standard):**
-- Jednostavan model podprocesa - klijent pokreće server kao podproces
+- Jednostavan model podprocesa - klijent pokreće poslužitelj kao dječji proces
 - Komunikacija preko stdin/stdout koristeći JSON-RPC poruke
-- Nema potrebe za postavljanjem HTTP servera
+- Nije potrebno postavljanje HTTP poslužitelja
 - Bolje performanse i sigurnost
-- Jednostavnije debugiranje i razvoj
+- Lakše otklanjanje pogrešaka i razvoj
 
 **SSE transport (zastarjelo od MCP 2025-06-18):**
-- Zahtijevao HTTP server s SSE endpointima
-- Složenije postavljanje s web server infrastrukturom
-- Dodatne sigurnosne mjere za HTTP endpointove
-- Sada je zamijenjen Streamable HTTP-om za web scenarije
+- Potreban HTTP poslužitelj s SSE endpointima
+- Složenija konfiguracija s web poslužiteljskom infrastrukturom
+- Dodatni sigurnosni izazovi za HTTP endpointove
+- Sada zamijenjeno Streamable HTTP-om za web-scenarije
 
-### Kreiranje servera sa stdio transportom
+### Kreiranje poslužitelja sa stdio transportom
 
-Za kreiranje našeg stdio servera trebamo:
+Za kreiranje našeg stdio poslužitelja, trebamo:
 
-1. **Uvesti potrebne biblioteke** – Potrebni su MCP server komponenti i stdio transport
-2. **Kreirati instancu servera** – Definirati server s njegovim mogućnostima
-3. **Definirati alate** – Dodati funkcionalnosti koje želimo izložiti
-4. **Postaviti transport** – Konfigurirati stdio komunikaciju
-5. **Pokrenuti server** – Startati server i obrađivati poruke
+1. **Uvesti potrebne biblioteke** - Trebamo MCP poslužiteljske komponente i stdio transport
+2. **Kreirati instancu poslužitelja** - Definirati poslužitelj s njegovim sposobnostima
+3. **Definirati alate** - Dodati funkcionalnosti koje želimo izložiti
+4. **Postaviti transport** - Konfigurirati stdio komunikaciju
+5. **Pokrenuti poslužitelj** - Startati poslužitelj i obrađivati poruke
 
-Izgradimo to korak po korak:
+Izgradimo ovo korak po korak:
 
-### Korak 1: Kreiraj osnovni stdio server
+### Korak 1: Kreirajte osnovni stdio poslužitelj
 
 ```python
 import asyncio
@@ -219,7 +220,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Konfigurirajte zapisivanje logova
+# Konfigurirajte zapisivanje dnevnika
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -243,7 +244,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Korak 2: Dodaj više alata
+### Korak 2: Dodajte više alata
 
 ```python
 @server.tool()
@@ -267,22 +268,22 @@ def get_server_info() -> dict:
     }
 ```
 
-### Korak 3: Pokretanje servera
+### Korak 3: Pokretanje poslužitelja
 
-Spremi kod kao `server.py` i pokreni ga u naredbenom retku:
+Spremite kod kao `server.py` i pokrenite ga iz komandne linije:
 
 ```bash
 python server.py
 ```
 
-Server će se pokrenuti i čekati ulaz sa stdin. Komunicira koristeći JSON-RPC poruke preko stdio transporta.
+Poslužitelj će se pokrenuti i čekati unos s stdin. Komunicira koristeći JSON-RPC poruke preko stdio transporta.
 
-### Korak 4: Testiranje s Inspectorom
+### Korak 4: Testiranje s Inspektorom
 
-Možete testirati vaš server koristeći MCP Inspector:
+Možete testirati svoj poslužitelj koristeći MCP Inspektor:
 
-1. Instalirajte Inspector: `npx @modelcontextprotocol/inspector`
-2. Pokrenite Inspector i usmjerite ga na vaš server
+1. Instalirajte Inspektor: `npx @modelcontextprotocol/inspector`
+2. Pokrenite Inspektor i usmjerite ga na svoj poslužitelj
 3. Testirajte alate koje ste kreirali
 
 ### .NET
@@ -292,34 +293,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
+## Otklanjanje pogrešaka vašeg stdio poslužitelja
 
-## Debugiranje vašeg stdio servera
+### Korištenje MCP Inspektora
 
-### Korištenje MCP Inspectora
+MCP Inspektor je vrijedan alat za otklanjanje pogrešaka i testiranje MCP poslužitelja. Evo kako ga koristiti sa svojim stdio poslužiteljem:
 
-MCP Inspector je vrijedan alat za debugiranje i testiranje MCP servera. Evo kako ga koristiti s vašim stdio serverom:
-
-1. **Instalirajte Inspector**:
+1. **Instalirajte Inspektor**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Pokrenite Inspector**:
+2. **Pokrenite Inspektor**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Testirajte server**: Inspector daje web sučelje gdje možete:
-   - Pregledati mogućnosti servera
+3. **Testirajte svoj poslužitelj**: Inspektor pruža web sučelje gdje možete:
+   - Pregledati sposobnosti poslužitelja
    - Testirati alate s različitim parametrima
    - Pratiti JSON-RPC poruke
-   - Debugirati probleme s povezivanjem
+   - Otklanjati probleme s vezom
 
-### Korištenje VS Code-a
+### Korištenje VS Code
 
-Također možete debugirati vaš MCP server direktno u VS Code-u:
+Također možete otklanjati pogreške vašeg MCP poslužitelja direktno u VS Code:
 
-1. Kreirajte launch konfiguraciju u `.vscode/launch.json`:
+1. Kreirajte konfiguraciju za pokretanje u `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -335,23 +335,23 @@ Također možete debugirati vaš MCP server direktno u VS Code-u:
    }
    ```
 
-2. Postavite breakpointe u kodu servera
-3. Pokrenite debugger i testirajte sa Inspectorom
+2. Postavite točke za prekid u svom kodu poslužitelja
+3. Pokrenite otklanjanje pogrešaka i testirajte s Inspektorom
 
-### Česti savjeti za debugiranje
+### Česti savjeti za otklanjanje pogrešaka
 
-- Koristite `stderr` za logiranje – nemojte pisati na `stdout` jer je rezerviran za MCP poruke
-- Osigurajte da su sve JSON-RPC poruke razdvojene novim redovima
-- Testirajte prvo s jednostavnim alatima prije dodavanja složenijih funkcionalnosti
-- Koristite Inspector za potvrdu formata poruka
+- Koristite `stderr` za logiranje - nikada ne pišite na `stdout` jer je rezerviran za MCP poruke
+- Osigurajte da su sve JSON-RPC poruke odvojene novim redovima
+- Prvo testirajte jednostavne alate prije dodavanja kompleksne funkcionalnosti
+- Koristite Inspektor za provjeru formata poruka
 
-## Korištenje vašeg stdio servera u VS Code
+## Korištenje vašeg stdio poslužitelja u VS Code
 
-Nakon što ste izgradili vaš MCP stdio server, možete ga integrirati s VS Code-om da biste ga koristili s Claudeom ili drugim MCP kompatibilnim klijentima.
+Nakon što ste izgradili svoj MCP stdio poslužitelj, možete ga integrirati s VS Code za korištenje s Claude-om ili drugim MCP-kompatibilnim klijentima.
 
 ### Konfiguracija
 
-1. **Napravite MCP konfiguracijsku datoteku** na `%APPDATA%\Claude\claude_desktop_config.json` (Windows) ili `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Kreirajte MCP konfiguracijsku datoteku** na `%APPDATA%\Claude\claude_desktop_config.json` (Windows) ili `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -364,16 +364,16 @@ Nakon što ste izgradili vaš MCP stdio server, možete ga integrirati s VS Code
    }
    ```
 
-2. **Restartajte Claude**: Zatvorite i ponovno otvorite Claude da učita novu konfiguraciju servera.
+2. **Restartajte Claude**: Zatvorite i ponovno otvorite Claude kako bi se učitala nova konfiguracija poslužitelja.
 
-3. **Testirajte vezu**: Zapocnite razgovor s Claudeom i isprobajte alate vašeg servera:
+3. **Testirajte vezu**: Započnite razgovor s Claude-om i pokušajte koristiti alate vašeg poslužitelja:
    - "Možeš li me pozdraviti koristeći alat za pozdrav?"
    - "Izračunaj zbroj 15 i 27"
-   - "Koje su informacije o serveru?"
+   - "Koje su informacije o poslužitelju?"
 
-### Primjer TypeScript stdio servera
+### Primjer stdio poslužitelja u TypeScriptu
 
-Evo kompletnog TypeScript primjera za referencu:
+Evo kompletnog primjera u TypeScriptu za referencu:
 
 ```typescript
 #!/usr/bin/env node
@@ -438,7 +438,7 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-### Primjer .NET stdio servera
+### Primjer stdio poslužitelja u .NET
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -476,19 +476,20 @@ public class Tools
 
 ## Sažetak
 
-U ovoj ažuriranoj lekciji naučili ste:
+U ovoj ažuriranoj lekciji naučili ste kako:
 
-- Izgraditi MCP servere koristeći trenutni **stdio transport** (preporučeni pristup)
-- Razumjeti zašto je SSE transport zastarjelo u korist stdio i Streamable HTTP
-- Kreirati alate koji se mogu pozvati od strane MCP klijenata
-- Debugirati vaš server koristeći MCP Inspector
-- Integrirati vaš stdio server s VS Code-om i Claudeom
+- Izgraditi MCP poslužitelje koristeći trenutni **stdio transport** (preporučeni pristup)
+- Razumjeti zašto je SSE transport zastario u korist stdio i Streamable HTTP
+- Kreirati alate koje MCP klijenti mogu pozivati
+- Otkloniti pogreške vašeg poslužitelja koristeći MCP Inspektor
+- Integrirati vaš stdio poslužitelj s VS Code i Claude-om
 
-stdio transport pruža jednostavniji, sigurniji i učinkovitiji način za izgradnju MCP servera u odnosu na zastarjeli SSE pristup. Preporučeni je transport za većinu MCP server implementacija sa specifikacijom od 2025-06-18.
+Stdio transport pruža jednostavniji, sigurniji i efikasniji način za izgradnju MCP poslužitelja u usporedbi s zastarjelim SSE pristupom. To je preporučeni transport za većinu MCP implementacija od specifikacije 2025-06-18.
+
 
 ### .NET
 
-1. Prvo kreirajmo neke alate, za to ćemo napisati datoteku *Tools.cs* sa sljedećim sadržajem:
+1. Prvo ćemo kreirati neke alate, za to ćemo kreirati datoteku *Tools.cs* sa sljedećim sadržajem:
 
   ```csharp
   using System.ComponentModel;
@@ -496,83 +497,82 @@ stdio transport pruža jednostavniji, sigurniji i učinkovitiji način za izgrad
   using ModelContextProtocol.Server;
   ```
 
-## Vježba: Testiranje vašeg stdio servera
+## Vježba: Testiranje vašeg stdio poslužitelja
 
-Nakon što ste izgradili vaš stdio server, testirajmo ga da bismo bili sigurni da ispravno radi.
+Sada kada ste kreirali svoj stdio poslužitelj, testirat ćemo ga kako bismo provjerili da radi ispravno.
 
 ### Preduvjeti
 
-1. Provjerite imate li instaliran MCP Inspector:
+1. Provjerite imate li instaliran MCP Inspektor:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Vaš kod servera treba biti spremljen (npr. kao `server.py`)
+2. Vaš kod poslužitelja treba biti spremljen (npr. kao `server.py`)
 
-### Testiranje s Inspectorom
+### Testiranje s Inspektorom
 
-1. **Pokrenite Inspector s vašim serverom**:
+1. **Pokrenite Inspektor s vašim poslužiteljem**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Otvorite web sučelje**: Inspector će otvoriti preglednik koji prikazuje mogućnosti vašeg servera.
+2. **Otvorite web sučelje**: Inspektor će otvoriti preglednik koji prikazuje sposobnosti vašeg poslužitelja.
 
 3. **Testirajte alate**: 
    - Isprobajte alat `get_greeting` s različitim imenima
-   - Testirajte alat `calculate_sum` s raznim brojevima
-   - Pozovite alat `get_server_info` za prikaz metapodataka servera
+   - Testirajte alat `calculate_sum` s različitim brojevima
+   - Pozovite alat `get_server_info` da vidite metapodatke poslužitelja
 
-4. **Pratite komunikaciju**: Inspector prikazuje JSON-RPC poruke koje se razmjenjuju između klijenta i servera.
+4. **Pratite komunikaciju**: Inspektor prikazuje JSON-RPC poruke koje se razmjenjuju između klijenta i poslužitelja.
 
 ### Što biste trebali vidjeti
 
-Kad se vaš server ispravno pokrene, trebali biste vidjeti:
-- Mogućnosti servera navedene u Inspectoru
+Kada se vaš poslužitelj ispravno pokrene, trebali biste vidjeti:
+- Sposobnosti poslužitelja navedene u Inspektoru
 - Alate dostupne za testiranje
-- Uspješne JSON-RPC razmjene poruka
-- Odgovore alata prikazane u sučelju
+- Uspješne razmjene JSON-RPC poruka
+- Prikaz odgovora alata u sučelju
 
 ### Česti problemi i rješenja
 
-**Server se ne pokreće:**
+**Poslužitelj se neće pokrenuti:**
 - Provjerite da su sve ovisnosti instalirane: `pip install mcp`
-- Provjerite Python sintaksu i uvlačenje koda
-- Potražite poruke o greškama na konzoli
+- Provjerite Python sintaksu i uvlačenje
+- Potražite poruke o pogreškama u konzoli
 
-**Alati se ne pojavljuju:**
-- Provjerite da su `@server.tool()` dekoratori prisutni
-- Provjerite da su alatne funkcije definirane prije `main()`
-- Provjerite da je server pravilno konfiguriran
+**Alati se ne prikazuju:**
+- Osigurajte da su dekoratori `@server.tool()` prisutni
+- Provjerite da su funkcije alata definirane prije `main()`
+- Provjerite da je poslužitelj pravilno konfiguriran
 
 **Problemi s vezom:**
-- Provjerite da server koristi stdio transport ispravno
-- Provjerite da nema drugih procesa koji ometaju
-- Provjerite sintaksu naredbi Inspectora
+- Provjerite koristi li poslužitelj ispravno stdio transport
+- Provjerite da nijedan drugi proces ne ometa
+- Provjerite sintaksu naredbe za Inspektor
 
 ## Zadatak
 
-Pokušajte proširiti vaš server s više funkcionalnosti. Pogledajte [ovu stranicu](https://api.chucknorris.io/) da, na primjer, dodate alat koji poziva API. Vi odlučujete kako će server izgledati. Zabavite se :)
-
+Pokušajte proširiti svoj poslužitelj s više funkcionalnosti. Pogledajte [ovu stranicu](https://api.chucknorris.io/) kako biste, na primjer, dodali alat koji poziva API. Vi odlučujete kako vaš poslužitelj treba izgledati. Zabavite se :)
 ## Rješenje
 
 [Rješenje](./solution/README.md) Evo jednog mogućeg rješenja s radnim kodom.
 
-## Ključne spoznaje
+## Ključne pouke
 
-Ključne spoznaje ovog poglavlja su:
+Ključne pouke iz ovog poglavlja su sljedeće:
 
-- stdio transport je preporučeni mehanizam za lokalne MCP servere.
-- stdio transport omogućava neprimjetnu komunikaciju između MCP servera i klijenata koristeći standardne ulazne i izlazne tokove.
-- Možete koristiti i Inspector i Visual Studio Code za direktno korištenje stdio servera, čineći debugiranje i integraciju jednostavnima.
+- Stdio transport je preporučeni mehanizam za lokalne MCP poslužitelje.
+- Stdio transport omogućava neprimjetnu komunikaciju između MCP poslužitelja i klijenata koristeći standardne ulazne i izlazne tokove.
+- Možete koristiti i Inspektor i Visual Studio Code za direktnu potrošnju stdio poslužitelja, što olakšava otklanjanje pogrešaka i integraciju.
 
 ## Primjeri
 
-- [Java kalkulator](../samples/java/calculator/README.md)
-- [.Net kalkulator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript kalkulator](../samples/javascript/README.md)
-- [TypeScript kalkulator](../samples/typescript/README.md)
-- [Python kalkulator](../../../../03-GettingStarted/samples/python) 
+- [Java Kalkulator](../samples/java/calculator/README.md)
+- [.Net Kalkulator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulator](../samples/javascript/README.md)
+- [TypeScript Kalkulator](../samples/typescript/README.md)
+- [Python Kalkulator](../../../../03-GettingStarted/samples/python) 
 
 ## Dodatni resursi
 
@@ -582,17 +582,17 @@ Ključne spoznaje ovog poglavlja su:
 
 ## Sljedeći koraci
 
-Sada kada ste naučili kako graditi MCP servere sa stdio transportom, možete istražiti naprednije teme:
+Sada kada znate kako izgraditi MCP poslužitelje sa stdio transportom, možete istražiti naprednije teme:
 
-- **Sljedeće**: [HTTP Streaming s MCP (Streamable HTTP)](../06-http-streaming/README.md) - Naučite o drugom podržanom transport mehanizmu za udaljene servere
-- **Napredno**: [Najbolje sigurnosne prakse MCP-a](../../02-Security/README.md) - Implementirajte sigurnost u vaše MCP servere
-- **Produkcija**: [Strategija postavljanja](../09-deployment/README.md) - Postavite servere za produkcijsku upotrebu
+- **Sljedeće**: [HTTP streaming s MCP (Streamable HTTP)](../06-http-streaming/README.md) - Naučite o drugom podržanom transportnom mehanizmu za udaljene poslužitelje
+- **Napredno**: [MCP sigurnosne najbolje prakse](../../02-Security/README.md) - Implementirajte sigurnost u svoje MCP poslužitelje
+- **Produkcija**: [Strategije postavljanja](../09-deployment/README.md) - Postavite svoje poslužitelje za produkcijsko korištenje
 
 ## Dodatni resursi
 
-- [MCP Specifikacija 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) - Službena specifikacija
-- [MCP SDK Dokumentacija](https://github.com/modelcontextprotocol/sdk) - SDK reference za sve jezike
-- [Primjeri iz zajednice](../../06-CommunityContributions/README.md) - Više primjera servera iz zajednice
+- [MCP specifikacija 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Trenutna specifikacija
+- [MCP SDK dokumentacija](https://github.com/modelcontextprotocol/sdk) - SDK reference za sve jezike
+- [Primjeri iz zajednice](../../06-CommunityContributions/README.md) - Još primjera poslužitelja iz zajednice
 
 ---
 

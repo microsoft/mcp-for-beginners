@@ -1,16 +1,16 @@
-# 🚀 MCP-Tooling
+# 🚀 MCP-Tools
 
 ## 🧠 Überblick über den Lernpfad zur MCP-Datenbankintegration
 
-Hier lernen Sie, wie Sie Werkzeuge verwenden, die MCP nutzen. Ihre Erfahrung mit diesen Werkzeugen wird besser, wenn Sie MCP-Server mit ihnen verbinden.
+Hier lernst du, wie man Werkzeuge verwendet, die MCP nutzen. Deine Erfahrung mit diesen Werkzeugen verbessert sich, indem du MCP-Server mit ihnen verbindest.
 
 ## 🔗 Offizielle MCP-Ressourcen
 
-- 📘 [MCP-Dokumentation](https://modelcontextprotocol.io/) – Detaillierte Tutorials und Benutzerhandbücher
-- 📜 [MCP-Spezifikation (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokollarchitektur und technische Referenzen
-- 🧑‍💻 [MCP GitHub-Repository](https://github.com/modelcontextprotocol) – Open-Source-SDKs, Werkzeuge und Codebeispiele
-- 🌐 [MCP-Community](https://github.com/orgs/modelcontextprotocol/discussions) – Nehmen Sie an Diskussionen teil und tragen Sie zur Community bei
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Sicherheits-Best-Practices und Risikominderungen
+- 📘 [MCP-Dokumentation](https://modelcontextprotocol.io/) – Detaillierte Tutorials und Benutzeranleitungen
+- 📜 [MCP-Spezifikation (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokollarchitektur und technische Referenzen
+- 🧑‍💻 [MCP-GitHub-Repository](https://github.com/modelcontextprotocol) – Open-Source-SDKs, Werkzeuge und Codebeispiele
+- 🌐 [MCP-Community](https://github.com/orgs/modelcontextprotocol/discussions) – Nimm an Diskussionen teil und trage zur Community bei
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Sicherheits-Best-Practices und Risikoabwehrmaßnahmen
 
 
 
@@ -18,16 +18,16 @@ Hier lernen Sie, wie Sie Werkzeuge verwenden, die MCP nutzen. Ihre Erfahrung mit
 
 ### Hilfe erhalten
 
-- **Azure AI Discord**: [Treten Sie für Expertenunterstützung bei](https://discord.com/invite/ByRwuEEgH4)
-- **MCP-Community**: [Nehmen Sie an umfangreicheren MCP-Diskussionen teil](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [Tritt für Experten-Support bei](https://discord.com/invite/ByRwuEEgH4)
+- **MCP-Community**: [Nimm an breiteren MCP-Diskussionen teil](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Bereit zum Start?
+## 🚀 Bereit loszulegen?
 
-Beginnen Sie Ihre Reise mit der **[GitHub Copilot App](./01-copilot-app/README.md)**
+Beginne deine Reise mit **[GitHub Copilot App](./01-copilot-app/README.md)**
 
 ---
 
-*Meistern Sie diese mit MCP für höhere Produktivität und nahtlose Integration.*
+*Beherrsche diese Werkzeuge mit MCP für erhöhte Produktivität und nahtlose Integration.*
 
 ---
 

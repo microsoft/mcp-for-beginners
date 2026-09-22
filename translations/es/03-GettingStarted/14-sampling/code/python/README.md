@@ -1,5 +1,10 @@
 # Ejecutar el ejemplo
 
+> [!WARNING]
+> Este ejemplo usa Sampling obsoleto y un endpoint HTTP+SSE heredado. Se mantiene 
+> para compatibilidad con MCP `2025-11-25`. Las nuevas implementaciones deben llamar 
+> a un proveedor LLM directamente y usar HTTP transmisible para tráfico remoto MCP.
+
 ## Crear entorno virtual
 
 ```sh
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Probar el servidor con GitHub Copilot y VS Code
 
-Agrega la entrada a mcp.json de la siguiente manera:
+Añade la entrada a mcp.json así:
 
 ```json
 "servers": {
@@ -40,7 +45,7 @@ En GitHub Copilot pega el siguiente prompt:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-La primera vez se te preguntará si aceptas una acción de Sampling, luego se te pedirá aceptar que la herramienta ejecute "create_blog". Deberías ver una respuesta similar a:
+La primera vez te preguntarán si aceptas una acción de Sampling, luego se te preguntará si aceptas la herramienta para ejecutar "create_blog". Deberías ver una respuesta similar a:
 
 ```json
 {
@@ -51,6 +56,6 @@ La primera vez se te preguntará si aceptas una acción de Sampling, luego se te
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso legal**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por la exactitud, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No somos responsables de ningún malentendido o interpretación errónea que surja del uso de esta traducción.
+**Descargo de responsabilidad**:
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o inexactitudes. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional humana. No somos responsables de cualquier malentendido o interpretación errónea que surja del uso de esta traducción.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

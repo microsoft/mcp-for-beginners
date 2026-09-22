@@ -1,32 +1,32 @@
-# Puslapiavimas ir dideli duomenų rinkiniai MCP
+# Puslapiavimas ir dideli rezultatų rinkiniai MCP
 
-Kai jūsų MCP serveris tvarko didelius duomenų rinkinius – ar tai būtų tūkstančių failų, duomenų bazių įrašų ar paieškos rezultatų sąrašas – jums reikalingas puslapiavimas, kad efektyviai valdyti atmintį ir suteikti greitą naudotojo patirtį. Šiame vadove aprašoma, kaip įgyvendinti ir naudoti puslapiavimą MCP.
+Kai jūsų MCP serveris tvarko didelius duomenų rinkinius – nesvarbu, ar rodo tūkstančius failų, duomenų bazės įrašų, ar paieškos rezultatus – jums reikia puslapiavimo, kad efektyviai valdytumėte atmintį ir užtikrintumėte greitą naudotojo patirtį. Šiame vadove aprašoma, kaip įgyvendinti ir naudoti puslapiavimą MCP.
 
 ## Kodėl puslapiavimas svarbus
 
-Be puslapiavimo dideli atsakymai gali sukelti:
+Be puslapiavimo didelės apimties atsakymai gali sukelti:
 
-- **Atminties išeikvojimą** – vienu metu užkraunant milijonus įrašų
-- **Lėtą atsakymo laiką** – vartotojai laukia, kol visi duomenys užsikraus
-- **Timeout klaidas** – užklausos viršija maksimalią laiką
-- **Prastą DI veikimą** – didelėse konteksto apimtyse LLM modeliai sunkiai dirba
+- **Atminties išsekimą** – vienu metu užkraunant milijonus įrašų
+- **Lėtą atsako laiką** – vartotojai laukia, kol visi duomenys bus įkelti
+- **Timeout klaidas** – užklausos viršija laiko limitus
+- **Prastą DI našumą** – LLM modeliai sunkiai tvarkosi su milžinišku kontekstu
 
-MCP naudoja **kursoriaus pagrindu veikiantį puslapiavimą**, kad patikimai ir nuosekliai pereitų per rezultatų rinkinius.
+MCP naudoja **kursorių pagrįstą puslapiavimą**, kad patikimai ir nuosekliai būtų galima naršyti per rezultatų rinkinius.
 
 ---
 
 ## Kaip veikia MCP puslapiavimas
 
-### Kursoriaus sąvoka
+### Kurso sąvoka
 
-**Kursorius** yra neaiški eilutė, žyminti jūsų vietą rezultatų rinkinyje. Galite įsivaizduoti ją kaip žymeklį ilgose knygose.
+**Kursoris** yra nepermatomas tekstinis ženklas, pažymintis jūsų vietą rezultatų rinkinyje. Įsivaizduokite tai kaip žymą knygoje.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (nėra žymeklio)
+    Client->>Server: tools/list (be žymeklio)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
     Client->>Server: tools/list (žymeklis: "abc123")
@@ -35,14 +35,15 @@ sequenceDiagram
     Client->>Server: tools/list (žymeklis: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (pabaiga)
 ```
-### Puslapiavimas MCP metoduose
+
+### Puslapiavimas MCP metodais
 
 Šie MCP metodai palaiko puslapiavimą:
 
 | Metodas | Grąžina | Kursoriaus palaikymas |
-|--------|---------|-----------------------|
+|--------|---------|----------------------|
 | `tools/list` | Įrankių aprašymai | ✅ |
-| `resources/list` | Išteklių aprašymai | ✅ |
+| `resources/list` | Ištekliai aprašymai | ✅ |
 | `prompts/list` | Užklausų aprašymai | ✅ |
 | `resources/templates/list` | Išteklių šablonai | ✅ |
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Iššifruoti žymeklį, kad gautumėte pradinį indeksą
+    # Dekoduoti žymeklį norint gauti pradinį indeksą
     start_index = 0
     if cursor:
         try:
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Tingus užkrovimo modelis
+### Tingus įkėlimas
 
-Labai dideliems duomenų rinkiniams puslapius kraukite pagal poreikį:
+Labai dideliems duomenų rinkiniams puslapius įkelkite pagal poreikį:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Grąžinti iš buferio, jei yra
+        # Grįžti iš buferio, jei yra
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Patikrinti, ar išnaudojome visas puslapius
+        # Patikrinti, ar išnaudojome visas puslapių
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Naudojimas – atminties efektyvu didelėms duomenų bazėms
+# Naudojimo - atminties efektyvu didelėms duomenų rinkinėms
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## Puslapiavimas ištekliams
 
-Ištekliai dažnai turi puslapiuoti katalogus ar didelius duomenų rinkinius:
+Ištekliai dažnai reikalauja puslapiavimo katalogams ar dideliems duomenų rinkiniams:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Iššifruoti žymeklį (failo indeksą)
+    # Dekoduoti žymeklį (failo indeksas)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Sukurti šio puslapio resursų sąrašą
+    # Sukurti šios puslapio išteklių sąrašą
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -320,25 +321,25 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## Kursoriaus dizaino strategijos
 
-### Strategija 1: Pagal indeksą (paprasta)
+### Strategija 1: Indekso pagrindu (paprasta)
 
 ```python
 # Žymeklis yra tik indeksas
 cursor = "50"  # Pradėti nuo 50 elemento
 ```
 
-**Privalumai:** Paprasta, be būsenos
-**Trūkumai:** Rezultatai gali pasislinkti, jei įrašai pridedami ar pašalinami
+**Privalumai:** Paprasta, be valstybės saugojimo
+**Trūkumai:** Rezultatai gali keistis, jei elementai pridedami/šalinami
 
-### Strategija 2: Pagal ID (stabili)
+### Strategija 2: ID pagrindu (stabili)
 
 ```python
 # Žymeklis yra paskutinis matytas ID
 cursor = "item_abc123"  # Pradėti po šio elemento
 ```
 
-**Privalumai:** Stabili net keičiantis įrašams
-**Trūkumai:** Reikalauja tvarkingų ID
+**Privalumai:** Stabili, net jei elementai keičiasi
+**Trūkumai:** Reikia tvarkingų ID
 
 ### Strategija 3: Užkoduota būsena (sudėtinga)
 
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Žymeklis turi kelis būsenos laukus
+# Žymeklis turi kelis būseno laukus
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,14 +361,14 @@ cursor = encode_cursor({
 })
 ```
 
-**Privalumai:** Leidžia koduoti sudėtingą būseną
-**Trūkumai:** Sudėtingesnė, kursorius ilgesnis
+**Privalumai:** Gali užkoduoti sudėtingą būseną
+**Trūkumai:** Sudėtingesnė, ilgesni kursoriai
 
 ---
 
-## Geros praktikos
+## Geriausios praktikos
 
-### 1. Rinkitės tinkamą puslapio dydį
+### 1. Pasirinkite tinkamus puslapio dydžius
 
 ```python
 # Apsvarstykite duomenų dydį
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Turtingesni objektai
 PAGE_SIZE_LARGE_ITEMS = 5     # Sudėtingas turinys
 ```
 
-### 2. Tvarkykite netinkamus kursorius tolerantiškai
+### 2. Tvarkykite netinkamus kursorius maloniai
 
 ```python
 @app.list_tools()
@@ -384,24 +385,24 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # Atstatyti į pradžią
+            start_index = 0  # Nustatyti į pradžią
     except (ValueError, TypeError):
         start_index = 0  # Neteisingas žymeklis, pradėti iš naujo
     # ...
 ```
 
-### 3. Įtraukite bendrą įrašų skaičių (pasirinktinai)
+### 3. Pateikite bendrą kiekį (neprivaloma)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Kai kurios įgyvendinimo versijos apima bendrą UI pažangos rodiklį
+    # Kai kurios įgyvendinimo versijos apima bendrą UI progreso rodiklį
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Išbandykite ribines situacijas
+### 4. Testuokite kraštutines situacijas
 
 ```python
 async def test_pagination():
@@ -423,7 +424,7 @@ async def test_pagination():
 
 ## Dažnos klaidos
 
-### ❌ Grąžinti visus rezultatus ir puslapiuoti kliento pusėje
+### ❌ Grąžinti visus rezultatus, o paskui puslapiuoti kliento pusėje
 
 ```python
 # BLOGAI: Įkelia viską į atmintį
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Puslapiuoti duomenų šaltinyje
+### ✅ Puslapiuoti prie duomenų šaltinio
 
 ```python
-# GERAI: Įkelia tik tai, kas reikia
+# GERAI: Įkelia tik tai, kas reikalinga
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -448,21 +449,21 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Kas toliau
 
-- [Modulis 5.14 - Konteksto inžinerija](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Modulis 8 - Geros praktikos](../../08-BestPractices/README.md)
-- [3.8 - Testavimas MCP serveryje](../../03-GettingStarted/08-testing/README.md)
+- [5.14 modulis - Konteksto inžinerija](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [8 modulis - Geriausios praktikos](../../08-BestPractices/README.md)
+- [3.8 - MCP serverio testavimas](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## Papildomi ištekliai
+## Papildomi resursai
 
-- [MCP specifikacija - Puslapiavimas](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Kursoriaus pagrindu veikiantis puslapiavimas paaiškintas](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [MCP specifikacija - Puslapiavimas](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Paaiškinta kursoriaus pagrindu veikiantis puslapiavimas](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK puslapiavimo testai](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neatsakome už jokius nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

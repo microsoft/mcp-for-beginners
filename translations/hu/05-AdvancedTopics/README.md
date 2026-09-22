@@ -1,23 +1,28 @@
-# Haladó témák az MCP-ben
+# Fejlett témák az MCP-ben
 
-[![Haladó MCP: Biztonságos, skálázható és multimodális AI ügynökök](../../../translated_images/hu/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
+[![Fejlett MCP: Biztonságos, skálázható és többmodalitású AI ügynökök](../../../translated_images/hu/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
-_(A fenti képre kattintva megtekintheti az óra videóját)_
+_(Kattintson a fenti képre a tanóra videójának megtekintéséhez)_
 
-Ez a fejezet a Model Context Protocol (MCP) megvalósításának számos haladó témáját öleli fel, beleértve a multimodális integrációt, a skálázhatóságot, a biztonsági legjobb gyakorlatokat és a vállalati integrációt. Ezek a témák alapvetőek olyan robusztus és éles környezetre kész MCP alkalmazások építéséhez, amelyek megfelelnek a modern AI rendszerek követelményeinek.
+Ez a fejezet az Model Context Protocol (MCP) megvalósításának számos fejlett témáját öleli fel, beleértve a többmodalitású integrációt, a skálázhatóságot, a biztonsági legjobb gyakorlatokat és a vállalati integrációt. Ezek a témák kulcsfontosságúak a robusztus és éles környezetbe alkalmas MCP alkalmazások építéséhez, amelyek megfelelnek a modern AI rendszerek követelményeinek.
 
 ## Áttekintés
 
-Ez az óra az MCP megvalósításának haladó koncepcióit vizsgálja, különös tekintettel a multimodális integrációra, a skálázhatóságra, a biztonsági legjobb gyakorlatokra és a vállalati integrációra. Ezek a témák elengedhetetlenek olyan termelési szintű MCP alkalmazások építéséhez, amelyek képesek kezelni a vállalati környezetek komplex követelményeit.
+Ez a tanóra az Model Context Protocol megvalósításának fejlett koncepcióit vizsgálja, különös tekintettel a többmodalitású integrációra, a skálázhatóságra, a biztonsági legjobb gyakorlatokra és a vállalati integrációra. Ezek a témák elengedhetetlenek a termelési szintű MCP alkalmazások létrehozásához, amelyek képesek kezelni az összetett követelményeket vállalati környezetekben.
 
-> **Előretekintés:** az alábbi néhány témát érinti az MCP `2026-07-28` specifikációs jelölt verziója — a Root Contexts (5.4) és a Sampling (5.6) olyan primitíveken alapulnak, amelyeket a jelölt verzió elavultnak jelöl, az Protocol Features (5.16) hivatkozott kísérleti Tasks funkció pedig egy dedikált Tasks kiterjesztésbe költözik. Részletekért lásd a [Mi változik az MCP-ben: 2026-07-28 jelölt verzió](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) című dokumentumot.
+> **Jelenlegi specifikációs megjegyzés:** Az MCP `2026-07-28` elavulttá teszi a Gyökér és
+> Mintavételezés primitíveket, amelyeket az 5.4 és 5.6. leckék tárgyalnak. Emellett az
+> kísérleti Feladatok funkciót, amely a Protokoll funkciókban (5.16) szerepel, áthelyezi egy
+> dedikált Feladatok kiterjesztéshez. Ezeket a leckéket megőrizték a régebbi
+> `2025-11-25` implementációkhoz, és migrációs útmutatót tartalmaznak. Lásd
+> [Mi változott az MCP-ben: A 2026-07-28 specifikáció](../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Tanulási célok
 
-A lecke végére képes leszel:
+A tanóra végére képes lesz:
 
-- Multi-modális képességek megvalósítása MCP keretrendszereken belül
-- Skálázható MCP architektúrák tervezése nagy terhelésű helyzetekhez
+- Többmodalitású képességek megvalósítása az MCP keretrendszerekben
+- Skálázható MCP architektúrák tervezése nagy igényű helyzetekhez
 - Biztonsági legjobb gyakorlatok alkalmazása az MCP biztonsági elveinek megfelelően
 - MCP integrálása vállalati AI rendszerekkel és keretrendszerekkel
 - Teljesítmény és megbízhatóság optimalizálása éles környezetben
@@ -26,52 +31,57 @@ A lecke végére képes leszel:
 
 | Link | Cím | Leírás |
 |------|-------|-------------|
-| [5.1 Integráció az Azure-rel](./mcp-integration/README.md) | Integráció az Azure-rel | Ismerd meg, hogyan integrálhatod az MCP szerveredet az Azure-on |
-| [5.2 Multimodális minta](./mcp-multi-modality/README.md) | MCP multimodális minták | Minták hang, kép és multimodális válaszokra |
-| [5.3 MCP OAuth2 minta](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 demó | Minimális Spring Boot alkalmazás, amely bemutatja az OAuth2 használatát MCP-vel, mind mint Engedélyező, mind mint Erőforrás szerver. Bemutatja a biztonságos token kibocsátást, védett végpontokat, Azure Container Apps telepítést és API-kezelési integrációt. |
-| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Root kontextusok | Ismerd meg jobban a root kontextust és annak megvalósítását (`2026-07-28` jelölt verzióban elavult; `2025-11-25` verzióig érvényes) |
-| [5.5 Routing](./mcp-routing/README.md) | Routing | Ismerd meg a routing különböző típusait |
-| [5.6 Sampling](./mcp-sampling/README.md) | Sampling | Ismerd meg a sampling használatát (`2026-07-28` jelölt verzióban elavult; `2025-11-25` verzióig érvényes) |
-| [5.7 Skálázás](./mcp-scaling/README.md) | Skálázás | Ismerd meg a skálázást |
-| [5.8 Biztonság](./mcp-security/README.md) | Biztonság | Biztosítsd az MCP szervered |
-| [5.9 Web keresés minta](./web-search-mcp/README.md) | Web kereső MCP | Python MCP szerver és kliens, amely integrálja a SerpAPI-t valós idejű web, hírek, termék keresés és kérdések-válaszok számára. Bemutatja a multimodális eszközök koordinációját, külső API integrációt és robusztus hibakezelést. |
-| [5.10 Valós idejű streaming](./mcp-realtimestreaming/README.md) | Streaming | A valós idejű adatstreaming fontossá vált a mai adatvezérelt világban, ahol a vállalkozásoknak és alkalmazásoknak azonnali hozzáférésre van szükségük az információkhoz a gyors döntéshozatalhoz.|
-| [5.11 Valós idejű web keresés](./mcp-realtimesearch/README.md) | Web keresés | Valós idejű web keresés: hogyan alakítja át az MCP a valós idejű web keresést egy egységes megközelítéssel a kontextuskezelésben AI modellek, keresőmotorok és alkalmazások között.| 
-| [5.12 Entra ID hitelesítés Model Context Protocol szerverekhez](./mcp-security-entra/README.md) | Entra ID hitelesítés | A Microsoft Entra ID egy robusztus felhőalapú identitás- és hozzáféréskezelési megoldást kínál, amely segít biztosítani, hogy csak jogosult felhasználók és alkalmazások férhessenek hozzá az MCP szerveredhez.|
-| [5.13 Microsoft Foundry ügynök integráció](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry integráció | Ismerd meg, hogyan integrálhatók az MCP szerverek a Microsoft Foundry ügynökeivel, lehetővé téve hatékony eszközkoordinációt és vállalati AI képességeket szabványosított külső adatforrás-kapcsolatokkal.|
-| [5.14 Kontextusmérnökség](./mcp-contextengineering/README.md) | Kontextusmérnökség | A kontextusmérnökségi technikák jövőbeni lehetőségei MCP szerverek számára, beleértve a kontextus optimalizálást, dinamikus kontextuskezelést és hatékony prompttervezési stratégiákat MCP keretrendszereken belül.|
-| [5.15 Egyedi szállítás MCP-hez](./mcp-transport/README.md) | Egyedi szállítás | Tanuld meg, hogyan valósíthatsz meg egyedi szállítási mechanizmusokat speciális MCP kommunikációs helyzetekhez.|
-| [5.16 Protokoll funkciók mélyrehatóan](./mcp-protocol-features/README.md) | Protokoll funkciók | Sajátítsd el a haladó protokoll funkciókat, beleértve az előrehaladási értesítéseket, lekérdezés törlést, erőforrás sablonokat és hibakezelési mintákat.|
-| [5.17 Versengő többügynökös érvelés](./mcp-adversarial-agents/README.md) | Versengő ügynökök | Két ellentétes álláspontú ügynök használata ugyanazzal az MCP eszközkészlettel, hogy kiszűrjék a téves információkat, feltárják a szélsőséges eseteket és jobb kalibrált eredményeket érjenek el strukturált vitán keresztül.|
+| [5.1 Integration with Azure](./mcp-integration/README.md) | Integráció Azure-ral | Tanulja meg, hogyan integrálja MCP szerverét Azure-on |
+| [5.2 Multi modal sample](./mcp-multi-modality/README.md) | MCP többmodalitású minták | Minták hang, kép és többmodalitású válaszokhoz |
+| [5.3 MCP OAuth2 sample](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 bemutató | Minimális Spring Boot alkalmazás, amely bemutatja az OAuth2-t MCP-vel, mind mint engedélyező, mind mint erőforrás szerver. Bemutatja a biztonságos token kiadást, védett végpontokat, Azure Container Apps telepítést és API Menedzsment integrációt. |
+| [5.4 Root Contexts](./mcp-root-contexts/README.md) | Gyökér kontextusok | Tanulja meg a régi `2025-11-25` Gyökér primitívet és az aktuális migrációs lehetőségeket (elavult a `2026-07-28` szerint) |
+| [5.5 Routing](./mcp-routing/README.md) | Csomagküldés | Tanulja meg a különböző csomagküldési típusokat |
+| [5.6 Sampling](./mcp-sampling/README.md) | Mintavételezés | Tanulja meg a régi `2025-11-25` Mintavételezés primitívet és az aktuális migrációs lehetőségeket (elavult a `2026-07-28` szerint) |
+| [5.7 Scaling](./mcp-scaling/README.md) | Skálázás | Ismerje meg a skálázás fogalmát |
+| [5.8 Security](./mcp-security/README.md) | Biztonság | Biztosítsa MCP szerverét |
+| [5.9 Web Search sample](./web-search-mcp/README.md) | Web keresés MCP | Python MCP szerver és kliens, amely integrál a SerpAPI-val valós idejű web, hír, termék kereséshez és kérdés-válaszhoz. Bemutatja a többeszközös összehangolást, külső API integrációt és a robusztus hibakezelést. |
+| [5.10 Realtime Streaming](./mcp-realtimestreaming/README.md) | Streaming | A valós idejű adatfolyam elengedhetetlen a mai adatközpontú világban, ahol a vállalkozásoknak és alkalmazásoknak azonnali hozzáférésre van szükségük az információkhoz, hogy időben döntéseket hozzanak.|
+| [5.11 Realtime Web Search](./mcp-realtimesearch/README.md) | Web keresés | Valós idejű webkeresés – hogyan alakítja át az MCP a valós idejű webkeresést azáltal, hogy szabványosított megközelítést nyújt a kontextuskezeléshez AI modellek, keresőmotorok és alkalmazások között.| 
+| [5.12  Entra ID Authentication for Model Context Protocol Servers](./mcp-security-entra/README.md) | Entra ID hitelesítés | A Microsoft Entra ID robusztus, felhőalapú identitás- és hozzáféréskezelési megoldást kínál, amely biztosítja, hogy csak jogosult felhasználók és alkalmazások léphessenek kapcsolatba MCP szerverével.|
+| [5.13 Microsoft Foundry Agent Integration](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry integráció | Tanulja meg, hogyan integrálja az MCP szervereket a Microsoft Foundry ügynökökkel, lehetővé téve az erőteljes eszköz-összehangolást és vállalati AI képességeket szabványosított külső adatforrás csatlakozásokkal.|
+| [5.14 Context Engineering](./mcp-contextengineering/README.md) | Kontextus mérnökség | A kontextus mérnökségi technikák jövőbeli lehetőségei MCP szerverekhez, beleértve a kontextus optimalizálást, dinamikus kontextuskezelést, és hatékony prompt tervezési stratégiákat az MCP keretrendszerekben.|
+| [5.15 MCP Custom Transport](./mcp-transport/README.md) | Egyedi adatátvitel | Tanulja meg, hogyan valósítson meg egyéni adatátviteli mechanizmusokat speciális MCP kommunikációs helyzetekhez.|
+| [5.16 Protocol Features Deep Dive](./mcp-protocol-features/README.md) | Protokoll funkciók | Sajátítsa el a fejlett protokoll funkciókat, beleértve az előrehaladási értesítéseket, kérés visszavonást, erőforrás sablonokat és hibakezelési mintákat.|
+| [5.17 Adversarial Multi-Agent Reasoning](./mcp-adversarial-agents/README.md) | Ellenséges ügynökök | Használjon két olyan ügynököt, akik ellentétes álláspontot képviselnek, és megosztanak egy MCP eszközkészletet, hogy kiszűrjék a hamis eredményeket, megjelenítsék a szélsőséges eseteket, és jobban kalibrált kimeneteket hozzanak létre strukturált vitán keresztül.|
 
-> **Újdonság az MCP 2025-11-25 specifikációban**: A specifikáció most kísérleti támogatást tartalmaz a **Tasks** (hosszú futamidejű műveletek előrehaladás-követéssel), **Tool Annotations** (eszköz viselkedésének metainformációi a biztonság érdekében), **URL Mode Elicitation** (kliensből konkrét URL tartalom kérése) és továbbfejlesztett **Roots** (munkaterület kontextuskezeléshez) tekintetében. Részletekért lásd az [MCP specifikáció változásnaplóját](https://spec.modelcontextprotocol.io/).
+> **Történelmi `2025-11-25` megjegyzés:** az a revízió bevezette a kísérleti
+> Feladatokat, és kibővítette a protokoll néhány funkcióját. A `2026-07-28` verzióban a Feladatok
+> hivatalos kiterjesztésbe kerültek, és a Gyökér elavulttá vált. Ne használja a
+> `2025-11-25` funkció állapotot aktuális útmutatásként; lásd a
+> [2026-07-28 változásnaplót](https://modelcontextprotocol.io/specification/2026-07-28/changelog).
 
 ## További hivatkozások
 
-A legfrissebb információkért haladó MCP témákban lásd:
+A legfrissebb információkért a fejlett MCP témákról, kérjük, tekintse meg:
 - [MCP dokumentáció](https://modelcontextprotocol.io/)
-- [MCP specifikáció (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [GitHub tároló](https://github.com/modelcontextprotocol)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Biztonsági kockázatok és enyhítések
-- [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/) - Gyakorlati biztonsági képzés
+- [MCP specifikáció (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [GitHub tárhely](https://github.com/modelcontextprotocol)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Biztonsági kockázatok és kivédésük
+- [MCP Biztonsági Csúcstalálkozó Műhely (Sherpa)](https://azure-samples.github.io/sherpa/) - Gyakorlati biztonsági képzés
 
 ## Főbb tanulságok
 
-- A multimodális MCP megvalósítások kiterjesztik az AI képességeit a szövegfeldolgozáson túl
-- A skálázhatóság alapvető a vállalati telepítéseknél, és vízszintes és függőleges skálázással kezelhető
-- Átfogó biztonsági intézkedések védik az adatokat és biztosítják a megfelelő hozzáférési kontrollt
-- A vállalati integráció Azure OpenAI-val és Microsoft AI Foundry-val fokozza az MCP lehetőségeit
-- Haladó MCP megvalósítások előnyösek optimalizált architektúrákból és gondos erőforrás-kezelésből
+
+- A többmodalitású MCP megvalósítások kibővítik a mesterséges intelligencia képességeit a szövegfeldolgozáson túl
+- A skálázhatóság elengedhetetlen a vállalati telepítésekhez, és vízszintes és függőleges skálázással érhető el
+- Átfogó biztonsági intézkedések védik az adatokat és biztosítják a megfelelő hozzáférés-szabályozást
+- A vállalati integráció olyan platformokkal, mint az Azure OpenAI és a Microsoft AI Foundry, fokozza az MCP képességeit
+- Az előrehaladott MCP megvalósítások optimalizált architektúrákból és gondos erőforrás-kezelésből profitálnak
 
 ## Gyakorlat
 
-Tervezzen egy vállalati szintű MCP megvalósítást egy konkrét használati esethez:
+Tervezzen egy vállalati szintű MCP megvalósítást egy konkrét felhasználási esetre:
 
-1. Azonosítsa a multimodális követelményeket az adott használati esethez
-2. Vázolja fel a biztonsági ellenőrzéseket a kényes adatok védelmére
-3. Tervezzen skálázható architektúrát, amely kezeli a változó terhelést
-4. Tervezze meg az integrációs pontokat a vállalati AI rendszerekkel
-5. Dokumentálja a potenciális teljesítménybeli szűk keresztmetszeteket és az enyhítési stratégiákat
+1. Határozza meg a többmodalitású követelményeket az adott felhasználási esethez
+2. Vázolja fel a biztonsági kontrollokat az érzékeny adatok védelmére
+3. Tervezzen egy skálázható architektúrát, amely képes kezelni a változó terhelést
+4. Tervezze meg az integrációs pontokat a vállalati MI rendszerekkel
+5. Dokumentálja a potenciális teljesítménybeli szűk keresztmetszeteket és a mérséklési stratégiákat
 
 ## További források
 
@@ -80,11 +90,11 @@ Tervezzen egy vállalati szintű MCP megvalósítást egy konkrét használati e
 
 ---
 
-## Mi jön ezután
+## Mi következik
 
-Fedezd fel a modul leckéit az alábbi kezdőponttal: [5.1 MCP integráció](./mcp-integration/README.md)
+Fedezze fel a modul leckéit az alábbi kezdőponttól: [5.1 MCP Integration](./mcp-integration/README.md)
 
-Miután befejezted ezt a modult, folytasd a következővel: [6. modul: Közösségi hozzájárulások](../06-CommunityContributions/README.md)
+Miután befejezte ezt a modult, folytassa a következővel: [6. modul: Közösségi hozzájárulások](../06-CommunityContributions/README.md)
 
 ---
 

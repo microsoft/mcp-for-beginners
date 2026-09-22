@@ -1,6 +1,6 @@
-# Effektivisera AI-arbetsflöden: Bygg en MCP-server med Microsoft Foundry Toolkit
+# Effektivisera AI-arbetsflöden: Bygga en MCP-server med Microsoft Foundry Toolkit
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
@@ -8,80 +8,86 @@
 
 ## 🎯 Översikt
 
-[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/sv/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
+[![Bygg AI-agenter i VS Code: 4 Praktiska Laborationer med MCP och Microsoft Foundry Toolkit](../../../translated_images/sv/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Klicka på bilden ovan för att se videon för denna lektion)_
+_(Klicka på bilden ovan för att se video av denna lektion)_
 
-Välkommen till **Model Context Protocol (MCP) Workshop**! Denna omfattande praktiska workshop kombinerar två banbrytande teknologier för att revolutionera AI-applikationsutveckling:
+Välkommen till **Model Context Protocol (MCP) Workshop**! Denna omfattande praktiska workshop kombinerar två banbrytande tekniker för att revolutionera AI-applikationsutveckling:
 
-- **🔗 Model Context Protocol (MCP)**: En öppen standard för sömlös integration av AI-verktyg
-- **🛠️ Microsoft Foundry Toolkit Extension för VS Code**: Microsofts kraftfulla AI-utvecklingsutvidgning
+> **Kompatibilitetsnotis:** workshopens kod byggdes och testades med MCP
+> `2025-11-25`, som visas av märket ovan. Använd
+> [aktuella `2026-07-28` specifikationen](https://modelcontextprotocol.io/specification/2026-07-28/)
+> för nya protokollimplementationer och granska SDK-släppnoterna innan
+> du migrerar laborationerna.
+
+- **🔗 Model Context Protocol (MCP)**: En öppen standard för sömlös AI-verktygsintegration
+- **🛠️ Microsoft Foundry Toolkit Extension för VS Code**: Microsofts kraftfulla AI-utvecklingsförlängning
 
 ### 🎓 Vad du kommer att lära dig
 
-I slutet av denna workshop kommer du att bemästra konsten att bygga intelligenta applikationer som förenar AI-modeller med verkliga verktyg och tjänster. Från automatiserad testning till anpassade API-integrationer får du praktiska färdigheter för att lösa komplexa affärsutmaningar.
+Vid slutet av denna workshop kommer du att bemästra konsten att bygga intelligenta applikationer som kopplar AI-modeller till verkliga verktyg och tjänster. Från automatiserade tester till anpassade API-integrationer får du praktiska färdigheter för att lösa komplexa affärsutmaningar.
 
-## 🏗️ Teknikstack
+## 🏗️ Teknologistack
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP är **"USB-C för AI"** – en universalstandard som kopplar AI-modeller till externa verktyg och datakällor.
+MCP är **"USB-C för AI"** - en universell standard som ansluter AI-modeller till externa verktyg och datakällor.
 
-**✨ Huvudfunktioner:**
+**✨ Viktiga funktioner:**
 
-- 🔄 **Standardiserad integration**: Universellt gränssnitt för AI-verktygsanslutningar
-- 🏛️ **Flexibel arkitektur**: Lokala och fjärrservrar via stdio/SSE-transport
-- 🧰 **Rik ekosystem**: Verktyg, prompts och resurser i ett protokoll
-- 🔒 **Företagsredo**: Inbyggd säkerhet och tillförlitlighet
+- 🔄 **Standardiserad integration**: Universellt gränssnitt för AI-verktygskopplingar
+- 🏛️ **Flexibel arkitektur**: Lokala & fjärrservrar via stdio/SSE-transport
+- 🧰 **Rikt ekosystem**: Verktyg, uppmaningar och resurser i ett protokoll
+- 🔒 **Färdig för företag**: Inbyggd säkerhet och tillförlitlighet
 
 **🎯 Varför MCP är viktigt:**
 Precis som USB-C eliminerade kabelkaos, eliminerar MCP komplexiteten i AI-integrationer. Ett protokoll, oändliga möjligheter.
 
 ### 🤖 Microsoft Foundry Toolkit Extension för VS Code
 
-Microsofts flaggskepp för AI-utveckling som förvandlar VS Code till en AI-kraftfull plattform.
+Microsofts flagship AI-utvecklingsförlängning som förvandlar VS Code till en AI-kraftstation.
 
 **🚀 Kärnfunktioner:**
 
 - 📦 **Model Catalog**: Tillgång till modeller från Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Lokal inferens**: ONNX-optimerad CPU/GPU/NPU-exekvering
+- ⚡ **Lokal inferens**: ONNX-optimerad CPU/GPU/NPU-körning
 - 🏗️ **Agent Builder**: Visuell AI-agentutveckling med MCP-integration
-- 🎭 **Multi-modalt**: Stöd för text, bild och strukturerad output
+- 🎭 **Multimodal**: Stöd för text, vision och strukturerad utdata
 
 **💡 Utvecklingsfördelar:**
 
-- Nollkonfiguration för modellutrullning
+- Nollkonfigurations modellutrullning
 - Visuell promptdesign
-- Realtidstestningsmiljö
-- Sömlös MCP-serverintegration
+- Realtids testmiljö
+- Sömlös integration med MCP-server
 
-## 📚 Lärupplevelse
+## 📚 Inlärningsresa
 
-### [🚀 Modul 1: Microsoft Foundry Toolkit-grunder](./lab1/README.md)
+### [🚀 Modul 1: Microsoft Foundry Toolkit Grunder](./lab1/README.md)
 
 **Varaktighet**: 15 minuter
 
 - 🛠️ Installera och konfigurera Microsoft Foundry Toolkit för VS Code
 - 🗂️ Utforska Model Catalog (100+ modeller från GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Bemästra den interaktiva playgrounden för realtidstestning av modeller
+- 🎮 Bemästra den interaktiva lekplatsen för realtidstestning av modeller
 - 🤖 Bygg din första AI-agent med Agent Builder
-- 📊 Utvärdera modellprestanda med inbyggda mått (F1, relevans, likhet, koherens)
-- ⚡ Lär dig batchhantering och multi-modalt stöd
+- 📊 Utvärdera modellprestanda med inbyggda mått (F1, relevans, likhet, sammanhang)
+- ⚡ Lär dig batchbearbetning och multimodala stöd
 
-**🎯 Lärandemål**: Skapa en fungerande AI-agent med full förståelse för Microsoft Foundry Toolkits kapaciteter
+**🎯 Läranderesultat**: Skapa en fungerande AI-agent med omfattande förståelse för Microsoft Foundry Toolkits möjligheter
 
-### [🌐 Modul 2: MCP med Microsoft Foundry Toolkit-grunder](./lab2/README.md)
+### [🌐 Modul 2: MCP med Microsoft Foundry Toolkit Grunder](./lab2/README.md)
 
 **Varaktighet**: 20 minuter
 
 - 🧠 Bemästra Model Context Protocol (MCP) arkitektur och koncept
-- 🌐 Utforska Microsofts MCP-server-ekosystem
+- 🌐 Utforska Microsofts MCP-serverekosystem
 - 🤖 Bygg en webbläsarautomationsagent med Playwright MCP-server
 - 🔧 Integrera MCP-servrar med Microsoft Foundry Toolkit Agent Builder
-- 📊 Konfigurera och testa MCP-verktyg i dina agenter
+- 📊 Konfigurera och testa MCP-verktyg inom dina agenter
 - 🚀 Exportera och distribuera MCP-drivna agenter för produktion
 
-**🎯 Lärandemål**: Distribuera en AI-agent med kraftfulla externa verktyg via MCP
+**🎯 Läranderesultat**: Distribuera en AI-agent driven av externa verktyg via MCP
 
 ### [🔧 Modul 3: Avancerad MCP-utveckling med Microsoft Foundry Toolkit](./lab3/README.md)
 
@@ -90,66 +96,66 @@ Microsofts flaggskepp för AI-utveckling som förvandlar VS Code till en AI-kraf
 - 💻 Skapa anpassade MCP-servrar med Microsoft Foundry Toolkit
 - 🐍 Konfigurera och använd senaste MCP Python SDK (v1.9.3)
 - 🔍 Sätt upp och använd MCP Inspector för felsökning
-- 🛠️ Bygg en Weather MCP Server med professionella felsökningsflöden
+- 🛠️ Bygg en Weather MCP Server med professionella felsökningsarbetsflöden
 - 🧪 Felsök MCP-servrar i både Agent Builder och Inspector-miljöer
 
-**🎯 Lärandemål**: Utveckla och felsök anpassade MCP-servrar med moderna verktyg
+**🎯 Läranderesultat**: Utveckla och felsök anpassade MCP-servrar med moderna verktyg
 
-### [🐙 Modul 4: Praktisk MCP-utveckling – Anpassad GitHub Clone Server](./lab4/README.md)
+### [🐙 Modul 4: Praktisk MCP-utveckling - Anpassad GitHub Clone Server](./lab4/README.md)
 
 **Varaktighet**: 30 minuter
 
-- 🏗️ Bygg en verklighetsnära GitHub Clone MCP Server för utvecklingsarbetsflöden
-- 🔄 Implementera smart lagringskloning med validering och felhantering
+- 🏗️ Bygg en verklig GitHub Clone MCP Server för utvecklingsarbetsflöden
+- 🔄 Implementera smart kloning av repos med validering och felhantering
 - 📁 Skapa intelligent kataloghantering och VS Code-integration
-- 🤖 Använd GitHub Copilot Agent-läge med anpassade MCP-verktyg
-- 🛡️ Använd produktionsredo tillförlitlighet och plattformsoberoende kompatibilitet
+- 🤖 Använd GitHub Copilot Agent Mode med anpassade MCP-verktyg
+- 🛡️ Tillämpa produktionsklar tillförlitlighet och plattformsoberoende kompatibilitet
 
-**🎯 Lärandemål**: Distribuera en produktionsredo MCP-server som effektiviserar verkliga utvecklingsarbetsflöden
+**🎯 Läranderesultat**: Distribuera en produktionsklar MCP-server som effektiviserar riktiga utvecklingsarbetsflöden
 
-## 💡 Verkliga tillämpningar & påverkan
+## 💡 Verkliga Användningsområden & Påverkan
 
-### 🏢 Företagsanvändning
+### 🏢 Företagsanvändningsfall
 
-#### 🔄 DevOps-automation
+#### 🔄 DevOps Automation
 
-Transformera ditt utvecklingsarbetsflöde med intelligent automation:
+Förändra ditt utvecklingsarbetsflöde med intelligent automation:
 
-- **Smart lagringshantering**: AI-driven kodgranskning och sammanslagningsbeslut
-- **Intelligent CI/CD**: Automatiserad pipelineoptimering baserat på kodändringar
-- **Issue-triage**: Automatisk klassificering och tilldelning av buggar
+- **Smart Repositoryhantering**: AI-driven kodgranskning och sammanslagningsbeslut
+- **Intelligent CI/CD**: Automatiserad pipelineoptimering baserad på kodändringar
+- **Issue Triage**: Automatisk buggklassificering och tilldelning
 
-#### 🧪 Kvalitetssäkringens revolution
+#### 🧪 Revolution inom Kvalitetssäkring
 
 Höj testningen med AI-driven automation:
 
-- **Intelligent testgenerering**: Skapa omfattande testsatser automatiskt
-- **Visuell regressionstestning**: AI-driven UI-förändringsdetektion
+- **Intelligent testgenerering**: Skapa omfattande testsuiter automatiskt
+- **Visuell regressionstestning**: AI-driven upptäckt av UI-förändringar
 - **Prestandaövervakning**: Proaktiv identifiering och lösning av problem
 
-#### 📊 Data pipeline-intelligens
+#### 📊 Data Pipeline Intelligens
 
 Bygg smartare datahanteringsarbetsflöden:
 
 - **Adaptiva ETL-processer**: Självoptimerande datatransformationer
-- **Avvikelsedetektion**: Realtidsövervakning av datakvalitet
-- **Intelligent styrning**: Smart hantering av datatrafik
+- **Anomalidetektion**: Realtidsövervakning av datakvalitet
+- **Intelligent dirigering**: Smart hantering av dataflöde
 
-#### 🎧 Förbättrad kundupplevelse
+#### 🎧 Förbättring av kundupplevelse
 
 Skapa exceptionella kundinteraktioner:
 
 - **Kontextmedveten support**: AI-agenter med tillgång till kundhistorik
 - **Proaktiv problemlösning**: Prediktiv kundservice
-- **Multi-kanalsintegration**: Enhetlig AI-upplevelse över plattformar
+- **Multikanalsintegration**: Enhetlig AI-upplevelse över plattformar
 
-## 🛠️ Förutsättningar & installation
+## 🛠️ Förutsättningar & Installation
 
 ### 💻 Systemkrav
 
-| Komponent | Krav | Noteringar |
+| Komponent | Krav | Anteckningar |
 |-----------|-------------|-------|
-| **Operativsystem** | Windows 10+, macOS 10.15+, Linux | Valfritt modernt OS |
+| **Operativsystem** | Windows 10+, macOS 10.15+, Linux | Alla moderna OS |
 | **Visual Studio Code** | Senaste stabila versionen | Krävs för Microsoft Foundry Toolkit |
 | **Node.js** | v18.0+ och npm | För MCP-serverutveckling |
 | **Python** | 3.10+ | Valfritt för Python MCP-servrar |
@@ -161,53 +167,53 @@ Skapa exceptionella kundinteraktioner:
 
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
-- **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) – valfritt men användbart
+- **Python-debugger** (ms-python.debugpy)
+- **GitHub Copilot** (GitHub.copilot) - Valfritt men hjälpsamt
 
 #### Valfria verktyg
 
-- **uv**: Modern Python-pakethanterare
+- **uv**: Modernt Python-pakethanteringsverktyg
 - **MCP Inspector**: Visuellt felsökningsverktyg för MCP-servrar
-- **Playwright**: För exempel på webbautomation
+- **Playwright**: För exempel på webbautomatisering
 
-## 🎖️ Lärandemål & certifieringsväg
+## 🎖️ Läranderesultat & Certifieringsväg
 
 ### 🏆 Kompetenschecklista
 
-Genom att slutföra denna workshop uppnår du expertis inom:
+Genom att slutföra denna workshop kommer du att uppnå behärskning i:
 
 #### 🎯 Kärnkompetenser
 
-- [ ] **MCP-protokollets mästerskap**: Djup förståelse för arkitektur och implementeringsmönster
-- [ ] **Microsoft Foundry Toolkit-färdigheter**: Expertanvändning för snabb utveckling
+- [ ] **MCP-protokollbehärskning**: Djup förståelse av arkitektur och implementeringsmönster
+- [ ] **Microsoft Foundry Toolkit-färdighet**: Expertanvändning av Microsoft Foundry Toolkit för snabb utveckling
 - [ ] **Anpassad serverutveckling**: Bygga, distribuera och underhålla produktions-MCP-servrar
-- [ ] **Verktygsintegration**: Sömlös koppling av AI till befintliga utvecklingsarbetsflöden
-- [ ] **Problemlösning i praktiken**: Använda inlärda färdigheter för verkliga affärsutmaningar
+- [ ] **Verktygsintegrationsexcellens**: Sömlös anslutning av AI till befintliga utvecklingsarbetsflöden
+- [ ] **Problemlösningsapplikation**: Använd lärda färdigheter på verkliga affärsutmaningar
 
 #### 🔧 Tekniska färdigheter
 
-- [ ] Installera och konfigurera Microsoft Foundry Toolkit i VS Code
+- [ ] Sätt upp och konfigurera Microsoft Foundry Toolkit i VS Code
 - [ ] Designa och implementera anpassade MCP-servrar
 - [ ] Integrera GitHub-modeller med MCP-arkitektur
-- [ ] Bygga automatiserade testarbetsflöden med Playwright
-- [ ] Distribuera AI-agenter för produktion
-- [ ] Felsöka och optimera MCP-serverprestanda
+- [ ] Bygg automatiserade testarbetsflöden med Playwright
+- [ ] Distribuera AI-agenter för produktionsanvändning
+- [ ] Felsök och optimera MCP-serverprestanda
 
-#### 🚀 Avancerade färdigheter
+#### 🚀 Avancerade funktioner
 
-- [ ] Arkitektera företagsomfattande AI-integrationer
+- [ ] Arkitektera AI-integrationer i företagsklass
 - [ ] Implementera säkerhetsbästa praxis för AI-applikationer
 - [ ] Designa skalbara MCP-serverarkitekturer
-- [ ] Skapa anpassade verktygskedjor för specifika domäner
-- [ ] Vägleda andra i AI-native utveckling
+- [ ] Skapa anpassade verktygskedjor för specifika områden
+- [ ] Mentorera andra inom AI-native utveckling
 
 ## 📖 Ytterligare resurser
 
-- [MCP-specifikation (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Microsoft Foundry Toolkit GitHub-repository](https://github.com/microsoft/vscode-ai-toolkit)
-- [Samling av MCP-servrar](https://github.com/modelcontextprotocol/servers)
-- [Bästa praxis-guide](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Säkerhetsbästa praxis
+- [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
+- [Sample MCP Servers Collection](https://github.com/modelcontextprotocol/servers)
+- [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Säkerhetsbästa praxis
 
 ---
 
@@ -217,7 +223,7 @@ Låt oss tillsammans bygga framtidens intelligenta applikationer med MCP och Mic
 
 ## Vad händer härnäst
 
-Fortsätt till: [Modul 11: MCP Server Hands-On Labs](../11-MCPServerHandsOnLabs/README.md)
+Fortsätt till: [Modul 11: MCP Server Praktiska Laborationer](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

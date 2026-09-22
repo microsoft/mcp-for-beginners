@@ -1,31 +1,33 @@
 # 🚀 MCP টুলিং
 
-## 🧠 MCP ডাটাবেস ইন্টিগ্রেশন লার্নিং পাথে ওভারভিউ
+## 🧠 MCP ডাটাবেস ইন্টিগ্রেশন লার্নিং পাথের ওভারভিউ
 
-এখানে আপনি শেখবেন কিভাবে MCP ব্যবহার করে এমন টুল ব্যবহার করতে হয়। MCP সার্ভারগুলোকে এগুলোর সাথে যুক্ত করার মাধ্যমে আপনার টুল ব্যবহারের অভিজ্ঞতা উন্নত হবে।
+এখানে আপনি শিখবেন কিভাবে MCP ব্যবহার করে টুলগুলি ব্যবহার করতে হয়। MCP সার্ভারগুলিকে এসব টুলের সাথে সংযুক্ত করলে আপনার এই টুলগুলি ব্যবহারের অভিজ্ঞতা উন্নত হবে।
 
-## 🔗 অফিসিয়াল MCP রিসোর্স
+## 🔗 অফিসিয়াল MCP রিসোর্সসমূহ
 
-- 📘 [MCP ডকুমেন্টেশন](https://modelcontextprotocol.io/) – বিস্তারিত টিউটোরিয়াল এবং ইউজার গাইড
-- 📜 [MCP স্পেসিফিকেশন (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – প্রটোকল আর্কিটেকচার এবং টেকনিক্যাল রেফারেন্সসমূহ
-- 🧑‍💻 [MCP গিটহাব রিপোজিটরি](https://github.com/modelcontextprotocol) – ওপেন-সোর্স SDK, টুল, এবং কোড স্যাম্পল
-- 🌐 [MCP কমিউনিটি](https://github.com/orgs/modelcontextprotocol/discussions) – আলোচনায় যোগদান এবং কমিউনিটিতে অবদান রাখুন
-- 🔒 [OWASP MCP টপ ১০](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – সিকিউরিটি সেরা চর্চা এবং ঝুঁকি প্রতিরোধ
+- 📘 [MCP ডকুমেন্টেশন](https://modelcontextprotocol.io/) – বিস্তারিত টিউটোরিয়াল এবং ব্যবহারকারী গাইড
+- 📜 [MCP স্পেসিফিকেশন (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – প্রোটোকল আর্কিটেকচার এবং প্রযুক্তিগত রেফারেন্স
+- 🧑‍💻 [MCP গিটহাব রেপোজিটোরি](https://github.com/modelcontextprotocol) – ওপেন-সোর্স SDK, টুলস এবং কোড স্যাম্পল
+- 🌐 [MCP কমিউনিটি](https://github.com/orgs/modelcontextprotocol/discussions) – আলোচনায় যোগ দিন এবং কমিউনিটিতে অবদান রাখুন
+- 🔒 [OWASP MCP টপ ১০](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – নিরাপত্তার সেরা অনুশীলন এবং ঝুঁকি নিরসন
+
+
 
 ## 🌟 কমিউনিটি এবং সাপোর্ট
 
 ### সাহায্য নিন
 
-- **Azure AI Discord**: [বিশেষজ্ঞ সাপোর্টের জন্য যোগ দিন](https://discord.com/invite/ByRwuEEgH4)
+- **Azure AI Discord**: [বিশেষজ্ঞ সমর্থনের জন্য যোগ দিন](https://discord.com/invite/ByRwuEEgH4)
 - **MCP কমিউনিটি**: [বিস্তৃত MCP আলোচনায় যোগ দিন](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 শুরু করতে প্রস্তুত?
 
-আপনার যাত্রা শুরু করুন **[GitHub Copilot অ্যাপ](./01-copilot-app/README.md)** দিয়ে
+আপনার যাত্রা শুরু করুন **[GitHub Copilot অ্যাপ](./01-copilot-app/README.md)**
 
 ---
 
-*এই টুলগুলো ব্যবহার করে MCP মাস্টার করুন উন্নত উৎপাদনশীলতা এবং নির্বিঘ্ন ইন্টিগ্রেশনের জন্য।*
+*এগুলি MCP ব্যবহার করে দক্ষতা বাড়াতে এবং নির্বিঘ্ন ইন্টিগ্রেশনের জন্য মাস্টার করুন।*
 
 ---
 

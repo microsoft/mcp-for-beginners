@@ -1,27 +1,33 @@
 # Интеграция с VS Code
 
-## 🎯 Какво обхваща този лабораторен урок
+> [!NOTE]
+> Настройките `initializationOptions` в тази лабораторна работа са насочени към ръкостискането на MCP
+> `2025-11-25` в този пример. MCP `2026-07-28` премахва инициализационното ръкостискане;
+> използвайте хост и SDK, които поддържат метаданни по заявка и `server/discover`
+> при мигриране на този пример.
 
-Този лабораторен урок предоставя подробни указания за интегриране на вашия MCP сървър с VS Code, за да активирате заявки на естествен език чрез AI Chat. Ще научите как да конфигурирате VS Code за оптимално използване на MCP, да отстранявате проблеми със сървърните връзки и да използвате пълния потенциал на AI за взаимодействие с бази данни.
+## 🎯 Какво покрива тази лабораторна работа
 
-## Обзор
+Тази лабораторна работа предоставя изчерпателни указания за интегриране на вашия MCP сървър с VS Code, за да се активират заявки на естествен език чрез AI чат. Ще научите как да конфигурирате VS Code за оптимално използване на MCP, да отстранявате проблеми с връзката към сървъра и да използвате пълната мощ на AI-съдържателните взаимодействия с бази данни.
 
-Интеграцията на MCP с VS Code променя начина, по който разработчиците взаимодействат с бази данни и API чрез естествен език. Свързвайки вашия MCP сървър за търговия на дребно с VS Code Chat, вие активирате интелигентно запитване за данни за продажби, продуктови каталози и бизнес анализи чрез разговорен AI.
+## Преглед
 
-Тази интеграция позволява на разработчиците да задават въпроси като „Покажи ми най-продаваните продукти този месец“ или „Намери клиенти, които не са купували през последните 90 дни“ и да получават структурирани отговори без да пишат SQL заявки.
+Интеграцията на VS Code с MCP променя начина, по който разработчиците взаимодействат с бази данни и API-та чрез естествен език. Свързвайки вашия търговски MCP сървър с VS Code Chat, вие позволявате интелигентно запитване на данни за продажби, продуктови каталози и бизнес анализи чрез разговорен AI.
 
-## Цели на обучението
+Тази интеграция позволява на разработчиците да задават въпроси като "Покажи ми най-продаваните продукти този месец" или "Намери клиенти, които не са пазарували през последните 90 дни" и да получават структурирани данни без да пишат SQL заявки.
 
-До края на този лабораторен урок ще можете:
+## Учебни цели
 
-- **Да конфигурирате** настройките на MCP в VS Code за вашия сървър за търговия на дребно
-- **Да интегрирате** MCP сървъри с функционалността AI Chat в VS Code
-- **Да отстранявате проблеми** със сървърните връзки и да решавате възникнали проблеми
-- **Да оптимизирате** модели на заявки на естествен език за по-добри резултати
-- **Да персонализирате** работното пространство на VS Code за разработка с MCP
-- **Да внедрите** конфигурации с множество сървъри за сложни сценарии
+В края на тази лабораторна работа ще можете да:
 
-## 🔧 Конфигурация на MCP в VS Code
+- **Конфигурирате** настройки за VS Code MCP за вашия търговски сървър
+- **Интегрирате** MCP сървъри с функционалността на VS Code AI Chat
+- **Отстранявате проблеми** с връзките към MCP сървъра и решавате други проблеми
+- **Оптимизирате** модели на заявки на естествен език за по-добри резултати
+- **Персонализирате** работната среда на VS Code за разработка с MCP
+- **Деплойвате** конфигурации с множество сървъри за комплексни сценарии
+
+## 🔧 Конфигурация на VS Code MCP
 
 ### Първоначална настройка и инсталация
 
@@ -62,32 +68,32 @@
 }
 ```
 
-### Конфигурация на средата
+### Конфигуриране на средата
 
 ```bash
-# .env file for development
+# .env файл за разработка
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Конфигурация на Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# По избор: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Конфигурация на сървъра
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Конфигурация на работното пространство
+### Конфигуриране на работната среда
 
 ```json
 // .vscode/launch.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 Интеграция с AI Chat
+## 💬 Интеграция на AI чат
 
 ### Модели на заявки на естествен език
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Примерни модели на заявки за VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Примери за интеграция с чат
+### Примери за интеграция на чат
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Форматиране на отговори от чат
+### Форматиране на чат отговори
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Ключови показатели
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Индикатори за ефективност
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Водеща категория
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Отстраняване на проблеми
+## 🔍 Отстраняване на грешки и диагностика
 
-### Конфигурация за дебъгване в VS Code
+### Конфигурация на VS Code за отстраняване на грешки
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Създаване на специфичен форматиращ за VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Конзолен обработчик за терминала на VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Глобален логер за отстраняване на грешки
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Вземете параметрите на връзката от околната среда
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Тествайте връзката
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Тествайте основна заявка
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Тествайте достъпа до схема
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Тествайте генериране на вграждане
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Импортирайте компоненти на MCP сървъра
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Създайте тестова конфигурация
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Инициализирайте сървъра
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Вземете наличните инструменти
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Тествайте прост инструмент
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Тествайте връзката с базата данни
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Тествайте връзката с Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Тествайте MCP инструментите
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Общо състояние
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 Разширена конфигурация
 
-### Настройка с множество сървъри
+### Настройка на множество сървъри
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### Персонализирано разширение за VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Потребителско разширение за MCP retail
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Регистриране на команди за MCP retail
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Регистриране на превключвателя на магазина
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Актуализиране на конфигурацията
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Изпълнение на предварително дефинирани заявки в VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 Основни изводи
 
-След завършване на този лабораторен урок, трябва да имате:
+След приключване на тази лабораторна работа трябва да имате:
 
-✅ **Конфигурация на MCP в VS Code**: Пълна настройка за оптимална интеграция на MCP  
-✅ **Интеграция с AI Chat**: Възможности за заявки на естествен език в VS Code  
-✅ **Инструменти за дебъгване**: Пълноценни инструменти за отстраняване на проблеми и диагностика на връзки  
-✅ **Настройка с множество сървъри**: Конфигурация за множество инстанции на MCP сървъри  
-✅ **Персонализирани разширения**: Подобрено изживяване в VS Code с функции, специфични за търговията на дребно  
-✅ **Готовност за производство**: Среда за разработка в VS Code, готова за корпоративна употреба  
+✅ **Конфигурация на VS Code MCP**: Пълна настройка за оптимална интеграция на MCP  
+✅ **Интеграция на AI чат**: Възможности за заявки на естествен език в VS Code  
+✅ **Инструменти за отстраняване на грешки**: Изчерпателна диагностика и решаване на проблеми с връзките  
+✅ **Настройка с множество сървъри**: Конфигурация за множество MCP сървърни инстанции  
+✅ **Персонализирани разширения**: Подобрено изживяване с VS Code със специфични функции за търговия  
+✅ **Готовност за продукция**: Производствена среда за разработка с VS Code подходяща за предприятия  
 
 ## 🚀 Какво следва
 
-Продължете с **[Лабораторен урок 10: Стратегии за внедряване](../10-Deployment/README.md)**, за да:
+Продължете с **[Лаборатория 10: Стратегии за внедряване](../10-Deployment/README.md)** за:
 
-- Внедрите MCP сървъри в производствени среди
-- Конфигурирате облачна инфраструктура за мащабируемост
-- Реализирате CI/CD процеси за автоматизирано внедряване
-- Наблюдавате производителността на MCP сървъри в производство
+- Внедряване на MCP сървъри в продукционни среди
+- Конфигуриране на облачна инфраструктура за мащабируемост
+- Изграждане на CI/CD пайплайни за автоматизирано внедряване
+- Наблюдение на производителността на MCP сървъра в продукция
 
 ## 📚 Допълнителни ресурси
 
-### Разработка с VS Code
+### Разработка за VS Code
 - [VS Code Extension API](https://code.visualstudio.com/api) - Официално ръководство за разработка на разширения
-- [Документация за MCP в VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Документация за интеграция на MCP
-- [TypeScript за VS Code](https://code.visualstudio.com/docs/languages/typescript) - Разработка с TypeScript в VS Code
+- [VS Code MCP документация](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Документация за интеграция на MCP
+- [TypeScript за VS Code](https://code.visualstudio.com/docs/languages/typescript) - Разработка на TypeScript в VS Code
 
-### MCP Протокол
+### MCP протокол
 - [Спецификация на Model Context Protocol](https://modelcontextprotocol.io/specification) - Официална спецификация на MCP
-- [Най-добри практики за MCP](https://modelcontextprotocol.io/docs/best-practices) - Най-добри практики за внедряване
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python имплементация на MCP
+- [Най-добри практики за MCP](https://modelcontextprotocol.io/docs/best-practices) - Най-добри практики за изпълнение
+- [FastMCP рамка](https://github.com/jlowin/fastmcp) - Python реализация на MCP
 
 ### Инструменти за разработка
-- [Python в VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Настройка за разработка с Python
-- [Дебъгване в VS Code](https://code.visualstudio.com/docs/editor/debugging) - Разширени техники за дебъгване
-- [Задачи в VS Code](https://code.visualstudio.com/docs/editor/tasks) - Автоматизация и конфигурация на задачи
+- [Python в VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Настройка за разработка на Python
+- [Отстраняване на грешки в VS Code](https://code.visualstudio.com/docs/editor/debugging) - Разширени техники за отстраняване на грешки
+- [VS Code задачи](https://code.visualstudio.com/docs/editor/tasks) - Автоматизация и конфигуриране на задачи
 
 ---
 
-**Предишен**: [Лабораторен урок 08: Тестване и дебъгване](../08-Testing/README.md)  
-**Следващ**: [Лабораторен урок 10: Стратегии за внедряване](../10-Deployment/README.md)
+**Предишна**: [Лаборатория 08: Тестване и отстраняване на грешки](../08-Testing/README.md)  
+**Следваща**: [Лаборатория 10: Стратегии за внедряване](../10-Deployment/README.md)
 
 ---
 
-**Отказ от отговорност**:  
-Този документ е преведен с помощта на AI услуга за превод [Co-op Translator](https://github.com/Azure/co-op-translator). Въпреки че се стремим към точност, моля, имайте предвид, че автоматизираните преводи може да съдържат грешки или неточности. Оригиналният документ на неговия роден език трябва да се счита за авторитетен източник. За критична информация се препоръчва професионален човешки превод. Не носим отговорност за недоразумения или погрешни интерпретации, произтичащи от използването на този превод.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Отказ от отговорност**:
+Този документ е преведен с помощта на AI преводачески услуга [Co-op Translator](https://github.com/Azure/co-op-translator). Въпреки че се стремим към точност, моля имайте предвид, че автоматизираните преводи могат да съдържат грешки или неточности. Оригиналният документ на неговия роден език трябва да се счита за авторитетен източник. За критична информация се препоръчва професионален човешки превод. Ние не носим отговорност за каквито и да е недоразумения или неправилни тълкувания, произтичащи от използването на този превод.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

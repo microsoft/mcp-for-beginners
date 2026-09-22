@@ -1,23 +1,23 @@
 # Integracja Model Context Protocol (MCP) z Microsoft Foundry
 
-Ten przewodnik pokazuje, jak zintegrować serwery Model Context Protocol (MCP) z agentami Microsoft Foundry, umożliwiając potężną orkiestrację narzędzi i funkcje AI na poziomie przedsiębiorstwa.
+Ten przewodnik pokazuje, jak zintegrować serwery Model Context Protocol (MCP) z agentami Microsoft Foundry, umożliwiając zaawansowaną orkiestrację narzędzi oraz możliwości AI dla przedsiębiorstw.
 
 ## Wprowadzenie
 
-Model Context Protocol (MCP) to otwarty standard, który umożliwia aplikacjom AI bezpieczne łączenie się z zewnętrznymi źródłami danych i narzędziami. Po integracji z Microsoft Foundry, MCP pozwala agentom na dostęp i interakcję z różnymi zewnętrznymi usługami, API i źródłami danych w ustandaryzowany sposób.
+Model Context Protocol (MCP) to otwarty standard umożliwiający aplikacjom AI bezpieczne łączenie się z zewnętrznymi źródłami danych i narzędziami. Po integracji z Microsoft Foundry, MCP pozwala agentom na dostęp do różnych usług, API i źródeł danych w ustandaryzowany sposób.
 
-Ta integracja łączy elastyczność ekosystemu narzędzi MCP z solidnym frameworkiem agentów Microsoft Foundry, oferując rozwiązania AI na poziomie przedsiębiorstwa z szerokimi możliwościami dostosowywania.
+Ta integracja łączy elastyczność ekosystemu narzędzi MCP z solidnym frameworkiem agentów Microsoft Foundry, zapewniając rozwiązania AI klasy przedsiębiorstw z szerokimi możliwościami dostosowywania.
 
-**Uwaga:** Jeśli chcesz używać MCP w usłudze Microsoft Foundry Agent Service, obecnie obsługiwane są tylko następujące regiony: westus, westus2, uaenorth, southindia oraz switzerlandnorth
+**Uwagi:** Jeśli chcesz korzystać z MCP w Microsoft Foundry Agent Service, obecnie obsługiwane są tylko następujące regiony: westus, westus2, uaenorth, southindia oraz switzerlandnorth
 
 ## Cele nauki
 
-Po zakończeniu tego przewodnika będziesz potrafił:
+Po zakończeniu tego przewodnika będziesz umiał:
 
 - Zrozumieć Model Context Protocol i jego zalety
 - Skonfigurować serwery MCP do użycia z agentami Microsoft Foundry
 - Tworzyć i konfigurować agentów z integracją narzędzi MCP
-- Implementować praktyczne przykłady wykorzystujące rzeczywiste serwery MCP
+- Wdrażać praktyczne przykłady z użyciem rzeczywistych serwerów MCP
 - Obsługiwać odpowiedzi narzędzi i cytowania w rozmowach agentów
 
 ## Wymagania wstępne
@@ -26,16 +26,16 @@ Przed rozpoczęciem upewnij się, że posiadasz:
 
 - Subskrypcję Azure z dostępem do Microsoft Foundry
 - Python 3.10+ lub .NET 8.0+
-- Zainstalowany i skonfigurowany Azure CLI
+- Zainstalowane i skonfigurowane Azure CLI
 - Odpowiednie uprawnienia do tworzenia zasobów AI
 
 ## Czym jest Model Context Protocol (MCP)?
 
-Model Context Protocol to ustandaryzowany sposób, w jaki aplikacje AI łączą się z zewnętrznymi źródłami danych i narzędziami. Kluczowe zalety to:
+Model Context Protocol to ustandaryzowany sposób łączenia aplikacji AI z zewnętrznymi źródłami danych i narzędziami. Kluczowe korzyści to:
 
-- **Ustandaryzowana integracja**: Spójny interfejs dla różnych narzędzi i usług
-- **Bezpieczeństwo**: Zabezpieczone mechanizmy uwierzytelniania i autoryzacji
-- **Elastyczność**: Wsparcie dla różnych źródeł danych, API i niestandardowych narzędzi
+- **Ustandaryzowana integracja**: Spójny interfejs między różnymi narzędziami i usługami
+- **Bezpieczeństwo**: Bezpieczne mechanizmy uwierzytelniania i autoryzacji
+- **Elastyczność**: Obsługa różnych źródeł danych, API i narzędzi niestandardowych
 - **Rozszerzalność**: Łatwe dodawanie nowych funkcji i integracji
 
 ## Konfiguracja MCP z Microsoft Foundry
@@ -44,14 +44,14 @@ Model Context Protocol to ustandaryzowany sposób, w jaki aplikacje AI łączą 
 
 Wybierz preferowane środowisko programistyczne:
 
-- [Implementacja w Python](#implementacja-w-python)
+- [Implementacja w Pythonie](#implementacja-w-pythonie)
 - [Implementacja w .NET](#codeblock5)
 
 ---
 
-## Implementacja w Python
+## Implementacja w Pythonie
 
-***Uwaga*** Możesz uruchomić ten [notebook](./mcp_support_python.ipynb)
+***Uwaga*** Możesz uruchomić ten [notatnik](./mcp_support_python.ipynb)
 
 ### 1. Instalacja wymaganych pakietów
 
@@ -97,7 +97,7 @@ mcp_tool = McpTool(
 )
 ```
 
-### 6. Kompletny przykład w Python
+### 6. Kompletny przykład w Pythonie
 
 ```python
 with project_client:
@@ -180,7 +180,7 @@ with project_client:
 
 ## Implementacja w .NET
 
-***Uwaga*** Możesz uruchomić ten [notebook](./mcp_support_dotnet.ipynb)
+***Uwaga*** Możesz uruchomić ten [notatnik](./mcp_support_dotnet.ipynb)
 
 ### 1. Instalacja wymaganych pakietów
 
@@ -299,9 +299,9 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## Opcje konfiguracji narzędzi MCP
 
-Podczas konfiguracji narzędzi MCP dla swojego agenta możesz określić kilka istotnych parametrów:
+Podczas konfiguracji narzędzi MCP dla agenta możesz określić kilka ważnych parametrów:
 
-### Konfiguracja w Python
+### Konfiguracja w Pythonie
 
 ```python
 mcp_tool = McpTool(
@@ -335,30 +335,30 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Rozwiązywanie typowych problemów
+## Rozwiązywanie najczęstszych problemów
 
 ### 1. Problemy z połączeniem
-- Sprawdź, czy adres URL serwera MCP jest dostępny
+- Sprawdź dostępność adresu URL serwera MCP
 - Zweryfikuj dane uwierzytelniające
-- Upewnij się o stabilności połączenia sieciowego
+- Upewnij się, że sieć działa prawidłowo
 
-### 2. Błędy wywołań narzędzi
-- Przejrzyj argumenty narzędzia i ich formatowanie
-- Sprawdź wymagania specyficzne dla serwera
-- Zaimplementuj odpowiednią obsługę błędów
+### 2. Niepowodzenia wywołań narzędzi
+- Sprawdź argumenty narzędzi i ich formatowanie
+- Zweryfikuj wymagania specyficzne dla serwera
+- Zaimplementuj właściwą obsługę błędów
 
 ### 3. Problemy z wydajnością
 - Optymalizuj częstotliwość wywołań narzędzi
-- Wdroż cache tam, gdzie to stosowne
+- Wprowadź buforowanie tam, gdzie jest to zasadne
 - Monitoruj czasy odpowiedzi serwera
 
 ## Kolejne kroki
 
-Aby jeszcze bardziej wzbogacić integrację MCP:
+Aby dalej usprawnić integrację MCP:
 
-1. **Eksploruj niestandardowe serwery MCP**: Buduj własne serwery MCP dla źródeł danych własnościowych
+1. **Poznaj własne serwery MCP**: Buduj własne serwery MCP do zastrzeżonych źródeł danych
 2. **Wdroż zaawansowane zabezpieczenia**: Dodaj OAuth2 lub niestandardowe mechanizmy uwierzytelniania
-3. **Monitorowanie i analityka**: Implementuj logowanie i monitorowanie korzystania z narzędzi
+3. **Monitorowanie i analityka**: Wprowadź logowanie i monitorowanie użycia narzędzi
 4. **Skaluj swoje rozwiązanie**: Rozważ równoważenie obciążenia i rozproszone architektury serwerów MCP
 
 ## Dodatkowe zasoby
@@ -366,17 +366,17 @@ Aby jeszcze bardziej wzbogacić integrację MCP:
 - [Dokumentacja Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
 - [Przykłady Model Context Protocol](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Przegląd agentów Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [Specyfikacja MCP](https://spec.modelcontextprotocol.io/)
+- [Specyfikacja MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Wsparcie
 
-W celu uzyskania dodatkowego wsparcia i pytań:
-- Zapoznaj się z [dokumentacją Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
+W celu dodatkowego wsparcia i pytań:
+- Przejrzyj [dokumentację Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
 - Sprawdź [zasoby społeczności MCP](https://modelcontextprotocol.io/)
 
 ## Co dalej
 
-- [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
+- [5.14 Inżynieria kontekstu MCP](../mcp-contextengineering/README.md)
 
 ---
 

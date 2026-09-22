@@ -1,10 +1,15 @@
 # Nastavenie populárnych MCP host klientov
 
-Tento sprievodca popisuje, ako nakonfigurovať a používať MCP servery s populárnymi AI hosťovskými aplikáciami. Každý host má svoj vlastný spôsob konfigurácie, ale po nastavení všetky komunikujú s MCP servermi pomocou štandardizovaného protokolu.
+> [!NOTE]
+> Konfigurácie hostiteľov, ktoré smerujú na `/sse`, sú staršie príklady HTTP+SSE pre
+> MCP `2025-11-25`. Pre MCP `2026-07-28` vyberte Streamable HTTP v hostiteľoch, ktorí
+> to podporujú, a použite koncový bod nakonfigurovaný serverom.
+
+Tento sprievodca pokrýva, ako nastaviť a používať MCP servery s populárnymi AI hostiteľskými aplikáciami. Každý hostiteľ má svoj vlastný spôsob konfigurácie, ale po nastavení všetci komunikujú so servermi MCP pomocou štandardizovaného protokolu.
 
 ## Čo je MCP Host?
 
-**MCP Host** je AI aplikácia, ktorá sa môže pripojiť k MCP serverom, aby rozšírila svoje schopnosti. Predstavte si ho ako „front end“, s ktorým používateľ interaguje, zatiaľ čo MCP servery poskytujú „back end“ nástroje a údaje.
+**MCP Host** je AI aplikácia, ktorá sa môže pripojiť k MCP serverom, aby rozšírila svoje schopnosti. Predstavte si to ako "front end", s ktorým používatelia interagujú, zatiaľ čo MCP servery poskytujú "back end" nástroje a dáta.
 
 ```mermaid
 flowchart LR
@@ -21,22 +26,23 @@ flowchart LR
         H5[Windsurf]
     end
 ```
+
 ## Predpoklady
 
-- MCP server, ku ktorému sa pripojíte (pozri [Modul 3.1 - Prvý server](../01-first-server/README.md))
-- Hosťovská aplikácia nainštalovaná vo vašom systéme
-- Základná znalosť JSON konfiguračných súborov
+- MCP server, ku ktorému sa chcete pripojiť (pozri [Module 3.1 - First Server](../01-first-server/README.md))
+- Hostiteľská aplikácia nainštalovaná vo vašom systéme
+- Základná znalosť konfiguračných súborov JSON
 
 ---
 
 ## 1. Claude Desktop
 
-**Claude Desktop** je oficiálna desktopová aplikácia od Anthropic, ktorá natívne podporuje MCP.
+**Claude Desktop** je oficiálna desktopová aplikácia Anthropic, ktorá natívne podporuje MCP.
 
 ### Inštalácia
 
-1. Stiahnite si Claude Desktop z [claude.ai/download](https://claude.ai/download)
-2. Nainštalujte a prihláste sa pomocou svojho účtu Anthropic
+1. Stiahnite Claude Desktop z [claude.ai/download](https://claude.ai/download)
+2. Nainštalujte a prihláste sa pomocou účtu Anthropic
 
 ### Konfigurácia
 
@@ -74,22 +80,22 @@ Claude Desktop používa JSON konfiguračný súbor na definovanie MCP serverov.
 }
 ```
 
-### Konfiguračné možnosti
+### Možnosti konfigurácie
 
 | Pole | Popis | Príklad |
 |-------|-------------|---------|
-| `command` | Spustiteľný súbor, ktorý sa má spustiť | `"python"`, `"node"`, `"npx"` |
+| `command` | Spustiteľný súbor, ktorý sa spustí | `"python"`, `"node"`, `"npx"` |
 | `args` | Argumenty príkazového riadku | `["-m", "my_server"]` |
 | `env` | Premenné prostredia | `{"API_KEY": "xxx"}` |
 | `cwd` | Pracovný adresár | `"/path/to/server"` |
 
-### Testovanie nastavenia
+### Testovanie vášho nastavenia
 
 1. Uložte konfiguračný súbor
 2. Úplne reštartujte Claude Desktop (ukončite a znovu otvorte)
-3. Otvorte nový rozhovor
+3. Otvorte novú konverzáciu
 4. Vyhľadajte ikonu 🔌 indikujúcu pripojené servery
-5. Skúste požiadať Clauda, aby použil jeden z vašich nástrojov
+5. Vyskúšajte požiadať Claude, aby použil jeden z vašich nástrojov
 
 ### Riešenie problémov s Claude Desktop
 
@@ -98,26 +104,26 @@ Claude Desktop používa JSON konfiguračný súbor na definovanie MCP serverov.
 - Uistite sa, že cesta ku príkazu je správna
 - Skontrolujte logy Claude Desktop: Pomoc → Zobraziť logy
 
-**Server padá pri spustení:**
-- Najprv si server otestujte manuálne v termináli
-- Skontrolujte, či sú premenné prostredia správne nastavené
+**Server havaruje pri spustení:**
+- Najprv otestujte server manuálne v termináli
+- Skontrolujte správne nastavenie premenných prostredia
 - Uistite sa, že všetky závislosti sú nainštalované
 
 ---
 
 ## 2. VS Code s GitHub Copilot
 
-VS Code podporuje MCP cez rozšírenie GitHub Copilot Chat.
+VS Code podporuje MCP prostredníctvom rozšírení GitHub Copilot Chat.
 
 ### Predpoklady
 
-1. Nainštalovaný VS Code verzia 1.99+
+1. Nainštalovaný VS Code verzie 1.99+
 2. Nainštalované rozšírenie GitHub Copilot
 3. Nainštalované rozšírenie GitHub Copilot Chat
 
 ### Konfigurácia
 
-VS Code používa `.vscode/mcp.json` v pracovnom priestore alebo používateľských nastaveniach.
+VS Code používa `.vscode/mcp.json` vo vašom pracovnom priestore alebo v používateľských nastaveniach.
 
 **Konfigurácia pracovného priestoru** (`.vscode/mcp.json`):
 
@@ -152,24 +158,24 @@ VS Code používa `.vscode/mcp.json` v pracovnom priestore alebo používateľsk
 }
 ```
 
-### Používanie MCP vo VS Code
+### Použitie MCP vo VS Code
 
 1. Otvorte panel Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
 2. Napíšte `@` pre zobrazenie dostupných MCP nástrojov
-3. Použite prirodzený jazyk na vyvolanie nástrojov: „Vypočítaj 25 * 48 pomocou kalkulačky“
+3. Použite prirodzený jazyk na vyvolanie nástrojov: "Vypočítaj 25 * 48 pomocou kalkulačky"
 
 ### Riešenie problémov vo VS Code
 
-**MCP servery sa nenačítavajú:**
-- Skontrolujte panel Výstup → „MCP“ pre chybové logy
-- Obnovte okno: Ctrl+Shift+P → „Developer: Reload Window“
-- Overte, že server funguje samostatne
+**MCP servery sa nerešpektujú:**
+- Skontrolujte panel Výstup → "MCP" pre chybové logy
+- Znovu načítajte okno: Ctrl+Shift+P → "Developer: Reload Window"
+- Overte, že server beží samostatne na začiatku
 
 ---
 
 ## 3. Cursor
 
-**Cursor** je kódovací editor orientovaný na AI s natívnou podporou MCP.
+**Cursor** je AI-prvá editor kódu s natívnou podporou MCP.
 
 ### Inštalácia
 
@@ -205,17 +211,17 @@ Cursor používa podobný formát konfigurácie ako Claude Desktop.
 }
 ```
 
-### Používanie MCP v Cursor
+### Použitie MCP v Cursor
 
 1. Otvorte AI chat Cursor (Ctrl+L / Cmd+L)
 2. MCP nástroje sa automaticky zobrazia v návrhoch
-3. Požiadajte AI, aby vykonal úlohy pomocou pripojených serverov
+3. Požiadajte AI o vykonávanie úloh pomocou pripojených serverov
 
 ---
 
 ## 4. Cline (terminálový)
 
-**Cline** je terminálový MCP klient, ideálny pre prácu v príkazovom riadku.
+**Cline** je terminálový MCP klient, ideálny pre prácu cez príkazový riadok.
 
 ### Inštalácia
 
@@ -255,13 +261,13 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Použitie Cline
+### Používanie Cline
 
 ```bash
-# Začať interaktívnu reláciu
+# Spustiť interaktívnu reláciu
 cline
 
-# Jediný dopyt s MCP
+# Jediný dotaz s MCP
 cline "Calculate the square root of 144 using the calculator"
 
 # Zoznam dostupných nástrojov
@@ -272,20 +278,20 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** je ďalší AI-poháňaný kódovací editor s podporou MCP.
+**Windsurf** je ďalší editor kódu poháňaný AI s podporou MCP.
 
 ### Inštalácia
 
 1. Stiahnite Windsurf z [codeium.com/windsurf](https://codeium.com/windsurf)
-2. Nainštalujte a vytvorte účet
+2. Nainštalujte a vytvorte si účet
 
 ### Konfigurácia
 
-Windsurf konfigurácia je spravovaná cez UI nastavení:
+Konfigurácia Windsurf sa spravuje cez rozhranie nastavení:
 
 1. Otvorte Nastavenia (Ctrl+, / Cmd+,)
-2. Vyhľadajte „MCP“
-3. Kliknite na „Upraviť v settings.json“
+2. Vyhľadajte "MCP"
+3. Kliknite na "Edit in settings.json"
 
 **Príklad konfigurácie:**
 
@@ -306,9 +312,9 @@ Windsurf konfigurácia je spravovaná cez UI nastavení:
 
 ## Porovnanie typov transportov
 
-Rôzni hostitelia podporujú rôzne typy transportu:
+Rôzni hostitelia podporujú rôzne mechanizmy prenosu:
 
-| Host | stdio | SSE/HTTP | WebSocket |
+| Hostiteľ | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
@@ -316,8 +322,8 @@ Rôzni hostitelia podporujú rôzne typy transportu:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (štandardný vstup/výstup): Najlepšie pre lokálne servery spustené hostiteľom  
-**SSE/HTTP**: Najlepšie pre vzdialené servery alebo serveri zdieľané medzi viacerými klientmi
+**stdio** (štandardný vstup/výstup): Najvhodnejšie pre lokálne servery spustené hostiteľom
+**SSE/HTTP**: Najvhodnejšie pre vzdialené servery alebo servery zdieľané viacerými klientmi
 
 ---
 
@@ -335,8 +341,8 @@ Rôzni hostitelia podporujú rôzne typy transportu:
    ```
 
 2. **Skontrolujte cestu ku príkazu:**
-   - Používajte absolútne cesty, keď je to možné
-   - Uistite sa, že spustiteľný súbor je v PATH
+   - Používajte, ak je možné, absolútne cesty
+   - Uistite sa, že spustiteľný súbor je vo vašom PATH
 
 3. **Overte závislosti:**
    ```bash
@@ -349,46 +355,46 @@ Rôzni hostitelia podporujú rôzne typy transportu:
 
 ### Server sa pripojí, ale nástroje nefungujú
 
-1. **Skontrolujte logy servera** - Väčšina hostiteľov poskytuje možnosti logovania  
-2. **Overte registráciu nástrojov** - Použite MCP Inspector na testovanie  
-3. **Skontrolujte oprávnenia** - Niektoré nástroje vyžadujú prístup k súborom/sieti
+1. **Skontrolujte logy servera** - Väčšina hostiteľov umožňuje zapisovanie logov
+2. **Overte registráciu nástrojov** - Použite MCP Inspector na testovanie
+3. **Skontrolujte oprávnenia** - Niektoré nástroje potrebujú prístup k súborom alebo sieti
 
 ### Premenné prostredia sa neprenášajú
 
-- Niektoré hostiteľské aplikácie čistia premenné prostredia  
-- Výslovne použite pole `env` v konfigurácii  
-- Vyhýbajte sa citlivým údajom v konfiguračných súboroch (používajte správu tajomstiev)
+- Niektorí hostitelia sanitizujú premenné prostredia
+- Výslovne používajte pole `env` v konfigurácii
+- Nepoužívajte citlivé údaje v konfiguračných súboroch (používajte správu tajomstiev)
 
 ---
 
-## Bezpečnostné odporúčania
+## Najlepšie bezpečnostné praktiky
 
-1. **Nikdy nezverejňujte API kľúče** v konfiguračných súboroch  
-2. **Používajte premenné prostredia** pre citlivé údaje  
-3. **Obmedzte oprávnenia servera** len na nevyhnutné  
-4. **Revidujte kód servera** pred udelením prístupu k systému  
-5. **Používajte zoznamy povolených položiek** pre prístup k súborovému systému a sieti
+1. **Nikdy neukladajte API kľúče** v konfiguračných súboroch
+2. **Používajte premenné prostredia** pre citlivé údaje
+3. **Obmedzte oprávnenia servera** len na to, čo je potrebné
+4. **Preverte kód servera** pred udelením prístupu do vášho systému
+5. **Používajte zoznamy povolených** pre prístup k súborovému systému a sieti
 
 ---
 
 ## Čo ďalej
 
-- [3.13 - Ladenie s MCP Inspector](../13-mcp-inspector/README.md)  
-- [3.1 - Vytvorte svoj prvý MCP server](../01-first-server/README.md)  
+- [3.13 - Ladenie s MCP Inspector](../13-mcp-inspector/README.md)
+- [3.1 - Vytvorte svoj prvý MCP server](../01-first-server/README.md)
 - [Modul 5 - Pokročilé témy](../../05-AdvancedTopics/README.md)
 
 ---
 
 ## Ďalšie zdroje
 
-- [Claude Desktop MCP dokumentácia](https://docs.anthropic.com/en/docs/claude-desktop/mcp)  
-- [VS Code MCP rozšírenie](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)  
-- [MCP špecifikácia - Transporty](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)  
+- [Dokumentácia MCP Claude Desktop](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [VS Code MCP Rozšírenie](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [Špecifikácia MCP - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Oficiálny register MCP serverov](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vyhlásenie o zodpovednosti**:
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, majte prosím na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho originálnom jazyku by mal byť považovaný za autoritatívny zdroj. Pri kritických informáciách sa odporúča odborný ľudský preklad. Nezodpovedáme za žiadne nedorozumenia alebo nesprávne výklady vyplývajúce z používania tohto prekladu.
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, vezmite prosím na vedomie, že automatické preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho natívnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za žiadne nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

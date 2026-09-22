@@ -1,29 +1,35 @@
 # Integrarea VS Code
 
-## 🎯 Ce Acoperă Acest Laborator
+> [!NOTE]
+> Setările `initializationOptions` din acest laborator vizează handshake-ul MCP
+> `2025-11-25` al exemplului. MCP `2026-07-28` elimină handshake-ul de inițializare;
+> folosiți un host și SDK care suportă metadata per cerere și `server/discover`
+> când migrați acest exemplu.
 
-Acest laborator oferă îndrumări complete pentru integrarea serverului MCP cu VS Code, permițând interogări în limbaj natural prin AI Chat. Vei învăța să configurezi VS Code pentru utilizarea optimă a MCP, să depanezi conexiunile serverului și să valorifici pe deplin puterea interacțiunilor asistate de AI cu baza de date.
+## 🎯 Ce acoperă acest laborator
 
-## Prezentare Generală
+Acest laborator oferă îndrumări complete pentru integrarea serverului dvs. MCP cu VS Code pentru a permite interogări în limbaj natural prin AI Chat. Veți învăța să configurați VS Code pentru utilizarea optimă a MCP, să depanați conexiunile serverului și să valorificați întreaga putere a interacțiunilor asistate de AI cu baza de date.
 
-Integrarea MCP în VS Code transformă modul în care dezvoltatorii interacționează cu bazele de date și API-urile prin limbaj natural. Prin conectarea serverului MCP de retail la VS Code Chat, vei putea realiza interogări inteligente asupra datelor de vânzări, cataloagelor de produse și analizelor de afaceri folosind AI conversațional.
+## Prezentare generală
 
-Această integrare permite dezvoltatorilor să pună întrebări precum „Arată-mi produsele cele mai vândute luna aceasta” sau „Găsește clienții care nu au cumpărat în ultimele 90 de zile” și să obțină răspunsuri structurate fără a scrie interogări SQL.
+Integrarea MCP în VS Code transformă modul în care dezvoltatorii interacționează cu bazele de date și API-urile prin limbaj natural. Conectând serverul dvs. retail MCP la VS Code Chat, permiteți interogări inteligente ale datelor de vânzări, catalogelor de produse și analizelor de afaceri folosind AI conversațional.
 
-## Obiective de Învățare
+Această integrare permite dezvoltatorilor să pună întrebări precum „Arată-mi cele mai bine vândute produse în această lună” sau „Găsește clienții care nu au cumpărat în ultimele 90 de zile” și să obțină răspunsuri structurate fără a scrie interogări SQL.
 
-Până la finalul acestui laborator, vei putea:
+## Obiectivele de învățare
 
-- **Configura** setările MCP în VS Code pentru serverul tău de retail
-- **Integra** serverele MCP cu funcționalitatea AI Chat din VS Code
-- **Depana** conexiunile serverului MCP și rezolva problemele
-- **Optimiza** modelele de interogare în limbaj natural pentru rezultate mai bune
-- **Personaliza** spațiul de lucru VS Code pentru dezvoltarea MCP
-- **Implementa** configurații multi-server pentru scenarii complexe
+La finalul acestui laborator, veți putea să:
+
+- **Configurați** setările MCP din VS Code pentru serverul dvs. retail  
+- **Integrați** serverele MCP cu funcționalitatea VS Code AI Chat  
+- **Depanați** conexiunile serverului MCP și rezolvați problemele  
+- **Optimizați** modelele de interogare în limbaj natural pentru rezultate mai bune  
+- **Personalizați** spațiul de lucru VS Code pentru dezvoltarea MCP  
+- **Implementați** configurații multi-server pentru scenarii complexe  
 
 ## 🔧 Configurarea MCP în VS Code
 
-### Configurare Inițială și Instalare
+### Configurare inițială și instalare
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@ Până la finalul acestui laborator, vei putea:
 }
 ```
 
-### Configurarea Mediului
+### Configurarea mediului
 
 ```bash
-# .env file for development
+# fișier .env pentru dezvoltare
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Configurare Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Opțional: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Configurare server
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Configurarea Spațiului de Lucru
+### Configurarea spațiului de lucru
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Configurarea Task-urilor
+### Configurarea task-urilor
 
 ```json
 // .vscode/tasks.json
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 Integrarea AI Chat
 
-### Modele de Interogare în Limbaj Natural
+### Modele de interogare în limbaj natural
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Exemple de modele de interogare pentru VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Exemple de Integrare Chat
+### Exemple de integrare în chat
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Formatarea Răspunsurilor Chat
+### Formatarea răspunsurilor în chat
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Metrice cheie
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Indicatori de performanță
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Categoria principală
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Depanare și Rezolvarea Problemelor
+## 🔍 Depanare și rezolvare probleme
 
-### Configurarea Debug în VS Code
+### Configurarea pentru depanare în VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Creează un formator specific pentru VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Handler de consolă pentru terminalul VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Logger global pentru depanare
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Rezolvarea Problemelor de Conexiune
+### Rezolvarea problemelor de conexiune
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Obține parametrii de conexiune din mediul de lucru
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Testează conexiunea
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Testează o interogare de bază
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Testează accesul la schemă
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Testează generarea de embedding-uri
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importă componentele serverului MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Creează configurația de test
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Inițializează serverul
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Obține uneltele disponibile
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Testează un instrument simplu
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Testează conexiunea la baza de date
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Testează conexiunea Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Testează uneltele MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Status general
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Configurare Avansată
+## 🚀 Configurare avansată
 
-### Configurare Multi-Server
+### Configurare multi-server
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Extensie Personalizată VS Code
+### Extensie personalizată VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Extensie personalizată MCP retail
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Înregistrează comenzile MCP retail
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Înregistrează comutatorul magazinului
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Actualizează configurația
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Execută interogări predefinite în VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Configurarea Pachetului de Extensie
+### Configurarea pachetului de extensie
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Concluzii Cheie
+## 🎯 Concluzii cheie
 
-După finalizarea acestui laborator, ar trebui să ai:
+După finalizarea acestui laborator, ar trebui să aveți:
 
-✅ **Configurare MCP în VS Code**: Setare completă pentru integrarea optimă a MCP  
-✅ **Integrare AI Chat**: Capacități de interogare în limbaj natural în VS Code  
-✅ **Instrumente de Depanare**: Diagnosticare completă și rezolvarea problemelor de conexiune  
-✅ **Configurare Multi-Server**: Configurație pentru instanțe multiple de server MCP  
-✅ **Extensii Personalizate**: Experiență îmbunătățită în VS Code cu funcționalități specifice retailului  
-✅ **Pregătire pentru Producție**: Mediu de dezvoltare VS Code gata pentru utilizare în întreprinderi  
+✅ **Configurarea MCP în VS Code**: Setare completă pentru integrare optimă MCP  
+✅ **Integrarea AI Chat**: Capacități de interogare în limbaj natural în VS Code  
+✅ **Instrumente de depanare**: Diagnosticare completă și rezolvare conexiuni  
+✅ **Configurare multi-server**: Configurație pentru mai multe instanțe MCP  
+✅ **Extensii personalizate**: Experiență VS Code îmbunătățită cu funcții specifice retailului  
+✅ **Pregătire pentru producție**: Mediu de dezvoltare VS Code gata pentru utilizare enterprise  
 
-## 🚀 Ce Urmează
+## 🚀 Ce urmează
 
-Continuă cu **[Laboratorul 10: Strategii de Implementare](../10-Deployment/README.md)** pentru:
+Continuați cu **[Laboratorul 10: Strategii de implementare](../10-Deployment/README.md)** pentru a:
 
-- Implementarea serverelor MCP în medii de producție
-- Configurarea infrastructurii cloud pentru scalabilitate
-- Implementarea pipeline-urilor CI/CD pentru automatizarea implementării
-- Monitorizarea performanței serverului MCP în producție
+- Implementa servere MCP în medii de producție  
+- Configura infrastructura cloud pentru scalabilitate  
+- Implementa pipeline-uri CI/CD pentru implementare automată  
+- Monitoriza performanța serverelor MCP în producție  
 
-## 📚 Resurse Suplimentare
+## 📚 Resurse suplimentare
 
 ### Dezvoltare VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - Ghid oficial pentru dezvoltarea extensiilor
-- [Documentația MCP pentru VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Documentație pentru integrarea MCP
-- [TypeScript pentru VS Code](https://code.visualstudio.com/docs/languages/typescript) - Dezvoltare TypeScript în VS Code
+- [VS Code Extension API](https://code.visualstudio.com/api) - Ghid oficial de dezvoltare a extensiilor  
+- [Documentația MCP pentru VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Documentație integrare MCP  
+- [TypeScript pentru VS Code](https://code.visualstudio.com/docs/languages/typescript) - Dezvoltare TypeScript în VS Code  
 
 ### Protocol MCP
-- [Specificația Protocolului Model Context](https://modelcontextprotocol.io/specification) - Specificația oficială MCP
-- [Cele Mai Bune Practici MCP](https://modelcontextprotocol.io/docs/best-practices) - Cele mai bune practici de implementare
-- [Framework-ul FastMCP](https://github.com/jlowin/fastmcp) - Implementare MCP în Python
+- [Specificația Model Context Protocol](https://modelcontextprotocol.io/specification) - Specificația oficială MCP  
+- [Cele mai bune practici MCP](https://modelcontextprotocol.io/docs/best-practices) - Cele mai bune practici de implementare  
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Implementare MCP în Python  
 
-### Instrumente de Dezvoltare
-- [Python în VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Configurare pentru dezvoltarea Python
-- [Depanare în VS Code](https://code.visualstudio.com/docs/editor/debugging) - Tehnici avansate de depanare
-- [Task-uri în VS Code](https://code.visualstudio.com/docs/editor/tasks) - Automatizare și configurare task-uri
-
----
-
-**Anterior**: [Laboratorul 08: Testare și Depanare](../08-Testing/README.md)  
-**Următorul**: [Laboratorul 10: Strategii de Implementare](../10-Deployment/README.md)
+### Instrumente de dezvoltare
+- [Python în VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Configurare dezvoltare Python  
+- [Depanare în VS Code](https://code.visualstudio.com/docs/editor/debugging) - Tehnici avansate de depanare  
+- [Task-uri VS Code](https://code.visualstudio.com/docs/editor/tasks) - Automatizare și configurare task-uri  
 
 ---
 
-**Declinare de responsabilitate**:  
-Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim să asigurăm acuratețea, vă rugăm să fiți conștienți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa natală ar trebui considerat sursa autoritară. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care pot apărea din utilizarea acestei traduceri.
+**Anterior**: [Laboratorul 08: Testare și depanare](../08-Testing/README.md)  
+**Următor**: [Laboratorul 10: Strategii de implementare](../10-Deployment/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Declinare a responsabilității**:
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

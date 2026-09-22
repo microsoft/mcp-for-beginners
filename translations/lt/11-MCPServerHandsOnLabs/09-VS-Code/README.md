@@ -1,27 +1,33 @@
-# VS Code integracija
+# VS Code Integracija
 
-## 🎯 Ką apima šis praktinis užsiėmimas
+> [!NOTE]
+> Šio labo `initializationOptions` nustatymai skirti pavyzdžio MCP
+> `2025-11-25` rankos spaudimui. MCP `2026-07-28` pašalina inicijavimo rankos spaudimą;
+> migracijos metu naudokite šeimininką ir SDK, kurie palaiko užklausos metaduomenis ir `server/discover`
+> šiam pavyzdžiui.
 
-Šiame praktiniame užsiėmime pateikiamos išsamios instrukcijos, kaip integruoti savo MCP serverį su VS Code, kad būtų galima naudoti natūralios kalbos užklausas per AI Chat. Sužinosite, kaip sukonfigūruoti VS Code optimaliai MCP naudojimui, šalinti serverio ryšio problemas ir maksimaliai išnaudoti AI pagalbą sąveikaujant su duomenų bazėmis.
+## 🎯 Ką aptaria šis laboratorinis darbas
+
+Šis laboratorinis darbas suteikia išsamią informaciją, kaip integruoti savo MCP serverį su VS Code, kad būtų užtikrinti natūralios kalbos užklausos per AI Chat. Išmoksite konfigūruoti VS Code optimaliai MCP naudojimui, derinti serverio jungtis ir išnaudoti dirbtinio intelekto pagalbos galimybes dirbant su duomenų bazėmis.
 
 ## Apžvalga
 
-VS Code MCP integracija keičia būdą, kaip programuotojai sąveikauja su duomenų bazėmis ir API, naudodami natūralią kalbą. Prijungus savo mažmeninės prekybos MCP serverį prie VS Code Chat, galėsite protingai užklausti pardavimų duomenų, produktų katalogų ir verslo analitikos, naudodami pokalbių AI.
+VS Code MCP integracija transformuoja kūrėjų sąveiką su duomenų bazėmis ir API natūralia kalba. Susiejus jūsų mažmeninės prekybos MCP serverį su VS Code Chat, bus galima išmaniai užklausti pardavimų duomenis, produktų katalogus ir verslo analitikos informaciją naudojant pokalbių AI.
 
-Ši integracija leidžia programuotojams užduoti klausimus, tokius kaip „Parodyk geriausiai parduodamus produktus šį mėnesį“ arba „Rask klientus, kurie nepirko per 90 dienų“, ir gauti struktūrizuotus duomenų atsakymus be SQL užklausų rašymo.
+Ši integracija leidžia kūrėjams užduoti klausimus, tokius kaip „Parodyk man šio mėnesio geriausiai parduodamus produktus“ arba „Rask klientus, kurie nebuvo pirkę 90 dienų“, ir gauti struktūrizuotus duomenų atsakymus be SQL užklausų rašymo.
 
 ## Mokymosi tikslai
 
-Baigę šį praktinį užsiėmimą, galėsite:
+Šio darbo pabaigoje sugebėsite:
 
 - **Konfigūruoti** VS Code MCP nustatymus savo mažmeninės prekybos serveriui
 - **Integruoti** MCP serverius su VS Code AI Chat funkcionalumu
-- **Šalinti problemas** MCP serverio ryšiuose ir spręsti trikdžius
-- **Optimizuoti** natūralios kalbos užklausų modelius geresniems rezultatams
-- **Pritaikyti** VS Code darbo aplinką MCP kūrimui
-- **Diegti** kelių serverių konfigūracijas sudėtingiems scenarijams
+- **Derinti** MCP serverio jungtis ir spręsti problemas
+- **Optimizuoti** natūralios kalbos užklausų šablonus geresniems rezultatams
+- **Priderinti** VS Code darbo aplinką MCP vystymui
+- **Diegti** kelių serverių konfigūraciją sudėtingoms situacijoms
 
-## 🔧 VS Code MCP konfigūracija
+## 🔧 VS Code MCP Konfigūracija
 
 ### Pradinis nustatymas ir diegimas
 
@@ -65,29 +71,29 @@ Baigę šį praktinį užsiėmimą, galėsite:
 ### Aplinkos konfigūracija
 
 ```bash
-# .env file for development
+# .env failas kūrimui
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure konfigūracija
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Neprivaloma: Azure rakto sandėlis
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Serverio konfigūracija
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Darbo aplinkos konfigūracija
+### Darbo erdvės konfigūracija
 
 ```json
 // .vscode/launch.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI Chat integracija
+## 💬 AI Chat Integracija
 
-### Natūralios kalbos užklausų modeliai
+### Natūralios kalbos užklausų šablonai
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Pavyzdiniai užklausų šablonai VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Pagrindiniai rodikliai
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Veiklos indikatoriai
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Pirmaujanti kategorija
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,7 +504,7 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Problemų šalinimas ir trikčių diagnostika
+## 🔍 Derinimas ir trikčių šalinimas
 
 ### VS Code derinimo konfigūracija
 
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Sukurti VS Code specifinį formatavimo įrankį
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konsolės tvarkyklė VS Code terminalui
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Pasaulinis derinimo registratorius
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Ryšio trikčių diagnostika
+### Jungties trikčių šalinimas
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Gauti prisijungimo parametrus iš aplinkos
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Išbandyti prisijungimą
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Išbandyti pagrindinį užklausimą
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Išbandyti schemos prieigą
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Išbandyti įterpinių generavimą
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importuoti MCP serverio komponentus
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Sukurti testavimo konfigūraciją
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Inicializuoti serverį
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Gauti turimus įrankius
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Išbandyti paprastą įrankį
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Išbandyti duomenų bazės prisijungimą
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Išbandyti Azure OpenAI prisijungimą
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Išbandyti MCP įrankius
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Bendroji būklė
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,7 +787,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Išplėstinė konfigūracija
+## 🚀 Pažangi konfigūracija
 
 ### Kelių serverių nustatymas
 
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Pritaikyta VS Code plėtinė
+### Pasirinktinis VS Code plėtinys
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Tinkinta MCP mažmeninės prekybos plėtinys
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Užregistruoti MCP mažmeninės prekybos komandas
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Užregistruoti parduotuvės perjungiklį
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Atnaujinti konfigūraciją
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Vykdyti iš anksto apibrėžtus užklausimus VS Code pokalbiuose
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Plėtinio paketų konfigūracija
+### Plėtinio paketo konfigūracija
 
 ```json
 // package.json for VS Code extension
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 Pagrindinės išvados
 
-Baigę šį praktinį užsiėmimą, turėtumėte:
+Įveikę šį laboratorinį darbą, turėtumėte turėti:
 
-✅ **VS Code MCP konfigūracija**: Pilnai sukonfigūruota MCP integracija  
-✅ **AI Chat integracija**: Natūralios kalbos užklausų galimybės VS Code  
-✅ **Problemų šalinimo įrankiai**: Išsamūs trikčių diagnostikos ir ryšio sprendimo įrankiai  
-✅ **Kelių serverių nustatymas**: Konfigūracija keliems MCP serverio egzemplioriams  
-✅ **Pritaikyti plėtiniai**: Patobulinta VS Code patirtis su mažmeninės prekybos funkcijomis  
-✅ **Parengta gamybai**: Įmonės lygio VS Code kūrimo aplinka  
+✅ **VS Code MCP konfigūraciją**: Pilną nustatymą optimaliai MCP integracijai  
+✅ **AI Chat integraciją**: Natūralios kalbos užklausų galimybes VS Code  
+✅ **Derinimo įrankius**: Išsamias trikčių šalinimo ir jungties diagnostikos priemones  
+✅ **Kelių serverių nustatymą**: Konfigūraciją keliems MCP serverių egzemplioriams  
+✅ **Pasirinktinius plėtinius**: Pagerintą VS Code patirtį su mažmeninės prekybos funkcijomis  
+✅ **Parengtį gamybai**: Įmonių lygio VS Code vystymo aplinką  
 
 ## 🚀 Kas toliau
 
-Tęskite **[10 praktinis užsiėmimas: Diegimo strategijos](../10-Deployment/README.md)**, kad:
+Tęskite su **[Laboratoriniu darbu 10: Diegimo strategijos](../10-Deployment/README.md)**, kad:
 
-- Diegtumėte MCP serverius gamybos aplinkoje
-- Konfigūruotumėte debesų infrastruktūrą mastelio didinimui
-- Įgyvendintumėte CI/CD procesus automatizuotam diegimui
-- Stebėtumėte MCP serverio našumą gamybos aplinkoje
+- Diegti MCP serverius gamybinėse aplinkose
+- Konfigūruoti debesų infrastruktūrą skalavimui
+- Įdiegti CI/CD procesus automatiniam diegimui
+- Stebėti MCP serverio veikimą gamyboje
 
 ## 📚 Papildomi ištekliai
 
-### VS Code kūrimas
-- [VS Code Extension API](https://code.visualstudio.com/api) - Oficialus plėtinių kūrimo vadovas
+### VS Code vystymas
+- [VS Code Extension API](https://code.visualstudio.com/api) - Oficialus plėtinių vystymo vadovas
 - [VS Code MCP dokumentacija](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integracijos dokumentacija
-- [TypeScript VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript kūrimas VS Code
+- [TypeScript VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript vystymas VS Code aplinkoje
 
 ### MCP protokolas
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Oficialus MCP specifikacijos dokumentas
-- [MCP geriausios praktikos](https://modelcontextprotocol.io/docs/best-practices) - Įgyvendinimo geriausios praktikos
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP įgyvendinimas
+- [Model Context Protocol specifikacija](https://modelcontextprotocol.io/specification) - Oficialus MCP aprašymas
+- [MCP geriausios praktikos](https://modelcontextprotocol.io/docs/best-practices) - Geriausios įgyvendinimo praktikos
+- [FastMCP karkasas](https://github.com/jlowin/fastmcp) - Python MCP įgyvendinimas
 
-### Kūrimo įrankiai
-- [Python VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python kūrimo nustatymas
+### Vystymo įrankiai
+- [Python VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python vystymo aplinka
 - [Derinimas VS Code](https://code.visualstudio.com/docs/editor/debugging) - Išplėstinės derinimo technikos
 - [VS Code užduotys](https://code.visualstudio.com/docs/editor/tasks) - Užduočių automatizavimas ir konfigūracija
 
 ---
 
-**Ankstesnis**: [08 praktinis užsiėmimas: Testavimas ir trikčių diagnostika](../08-Testing/README.md)  
-**Kitas**: [10 praktinis užsiėmimas: Diegimo strategijos](../10-Deployment/README.md)
+**Ankstesnis**: [Laboratorinis darbas 08: Testavimas ir derinimas](../08-Testing/README.md)  
+**Tolimesnis**: [Laboratorinis darbas 10: Diegimo strategijos](../10-Deployment/README.md)
 
 ---
 
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

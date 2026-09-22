@@ -1,16 +1,16 @@
 # 🚀 MCP Tooling
 
-## 🧠 Pangkalahatang Ideya ng MCP Database Integration Learning Path
+## 🧠 Pangkalahatang-ideya ng MCP Database Integration Learning Path
 
-Dito matututuhan mo kung paano gamitin ang mga tool na gumagamit ng MCP. Bubutihin ang iyong karanasan sa paggamit ng mga tool na ito habang kinokonekta mo ang mga MCP server sa kanila.
+Dito, matututuhan mo kung paano gamitin ang mga tool na gumagamit ng MCP. Ang iyong karanasan sa paggamit ng mga tool na ito ay mapapabuti habang ikinakonekta mo ang mga MCP server sa mga ito.
 
-## 🔗 Opisyal na Mga Mapagkukunan ng MCP
+## 🔗 Opisyal na Mga Pinagkukunan ng MCP
 
-- 📘 [MCP Documentation](https://modelcontextprotocol.io/) – Detalyadong mga tutorial at gabay ng gumagamit
-- 📜 [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arkitektura ng protocol at mga teknikal na reperensya
-- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source na mga SDK, tool, at mga halimbawa ng code
+- 📘 [MCP Documentation](https://modelcontextprotocol.io/) – Mga detalyadong tutorial at gabay sa gumagamit
+- 📜 [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arkitektura ng protocol at mga teknikal na reperensya
+- 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Mga open-source SDK, tool, at mga halimbawa ng code
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Sumali sa mga talakayan at mag-ambag sa komunidad
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Pinakamahuhusay na gawi sa seguridad at mga mitigasyon ng panganib
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Pinakamahuhusay na gawi sa seguridad at pag-iwas sa panganib
 
 
 
@@ -27,7 +27,7 @@ Simulan ang iyong paglalakbay gamit ang **[GitHub Copilot app](./01-copilot-app/
 
 ---
 
-*Pagmaster ang mga ito gamit ang MCP sa mga tool na ito para sa pinalawak na produktibidad at tuloy-tuloy na integrasyon.*
+*Masanin ang mga ito gamit ang MCP sa mga tool na ito para sa pinahusay na produktibidad at tuloy-tuloy na integrasyon.*
 
 ---
 

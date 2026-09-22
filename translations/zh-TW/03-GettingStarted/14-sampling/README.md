@@ -1,28 +1,36 @@
-> [已棄用：2026-07-28 釋出候選版](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> MCP `2026-07-28` 規範中已不建議使用 Sampling。本課程保留供舊有實作參考。新伺服器應直接與 LLM 供應商 API 整合。
+> 
+> 
 
-# 採樣 - 將功能委派給用戶端
+# Sampling - 將功能委派給客戶端
 
-> **棄用通知：** `2026-07-28` MCP 規範釋出候選版將採樣標記為棄用，改為直接整合 LLM 供應商 API。採樣在 `2025-11-25` 版本及正式棄用後至少一年內仍可使用，因此本課程內容依然有效 — 但新的伺服器設計應評估替代方案。詳見 [MCP 的變更：2026-07-28 釋出候選版](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md)。
+> Sampling 仍在 `2026-07-28` 規範中以維持相容性，且可於 2027 年 7 月 28 日或之後釋出的首次修訂版中移除。本課程的範例可能使用實作了 `2025-11-25` 的 SDK API。請參閱 [MCP 變更說明：2026-07-28 規範](../../01-CoreConcepts/mcp-2026-07-28.md)。
 
-有時，你需要 MCP 用戶端與 MCP 伺服器合作來達成共同目標。你可能會遇到伺服器需要客戶端上的 LLM 協助的情況。針對此情境，應使用採樣功能。
 
-讓我們來探討一些使用案例以及如何建構包含採樣的解決方案。
 
-## 概述
 
-在本課程中，我們將聚焦說明何時何地使用採樣以及如何設定它。
+
+
+
+
+
+
+## 概覽
+
+本課程重點說明何時以及何處使用 Sampling 並說明其配置方法。
 
 ## 學習目標
 
-在本章中，我們會：
+在本章節中，我們將：
 
-- 解釋什麼是採樣以及何時使用它。
-- 示範如何在 MCP 中配置採樣。
-- 提供採樣應用的範例。
+- 解釋 Sampling 是什麼以及何時使用。
+- 示範如何在 MCP 中配置 Sampling。
+- 提供 Sampling 實作的範例。
 
-## 什麼是採樣及為何使用它？
+## Sampling 是什麼，為什麼使用它？
 
-採樣是一項進階功能，其運作方式如下：
+Sampling 是一項進階功能，其運作方式如下：
 
 ```mermaid
 sequenceDiagram
@@ -32,18 +40,18 @@ sequenceDiagram
     participant MCP Server
 
     User->>MCP Client: 作者部落格文章
-    MCP Client->>MCP Server: 工具調用（部落格文章草稿）
-    MCP Server->>MCP Client: 取樣請求（建立摘要）
+    MCP Client->>MCP Server: 工具呼叫（部落格文章草稿）
+    MCP Server->>MCP Client: 抽樣請求（建立摘要）
     MCP Client->>LLM: 產生部落格文章摘要
     LLM->>MCP Client: 摘要結果
-    MCP Client->>MCP Server: 取樣回應（摘要）
-    MCP Server->>MCP Client: 完整部落格文章（草稿 + 摘要）
-    MCP Client->>User: 部落格文章準備完成
+    MCP Client->>MCP Server: 抽樣回應（摘要）
+    MCP Server->>MCP Client: 完成的部落格文章（草稿＋摘要）
+    MCP Client->>User: 部落格文章已準備好
 ```
 
-### 採樣請求
+### Sampling 請求
 
-好的，現在我們對一個可信場景有了大致了解，接下來談談伺服器發回給用戶端的採樣請求。此類請求在 JSON-RPC 格式下可能長這樣：
+好的，現在我們對一個合理場景有了宏觀了解，接著來談談伺服器發送回客戶端的 Sampling 請求。以下是該請求可能的 JSON-RPC 格式：
 
 ```json
 {
@@ -75,17 +83,17 @@ sequenceDiagram
 }
 ```
 
-這裡有幾點值得說明：
+這裡有幾點值得注意：
 
-- Prompt 中 content -> text 是我們用來指示 LLM 對部落格文章內容進行摘要的提示。
+- 提示 (prompt)，位於 content -> text，是給 LLM 的指示，用於摘要部落格文章內容。
 
-- **modelPreferences**。此區域即為偏好設置，是對應使用哪種 LLM 配置的建議。使用者可決定是否接受或修改這些建議。本例中建議了要使用的模型，以及速度與智慧優先的設定。
-- **systemPrompt**，這是常規的系統提示，用以賦予 LLM 個性並包含指導性說明。
-- **maxTokens**，此屬性用於表示推薦在此任務中使用的最大 token 數量。
+- **modelPreferences**。這部分僅是偏好，建議用於 LLM 的設定，使用者可以選擇採納或更改。在本例中建議了使用的模型、速度優先與智慧優先。
+- **systemPrompt**，這是正常的系統提示，給 LLM 注入人格特質及指導說明。
+- **maxTokens**，此屬性指定建議用於此任務的最大 token 數量。
 
-### 採樣回應
+### Sampling 回應
 
-這個回應即為 MCP 客戶端經過呼叫 LLM，等待結果後構造並返回給 MCP 伺服器的訊息。它在 JSON-RPC 格式中可能長這樣：
+這個回應是 MCP 客戶端最後傳回給 MCP 伺服器的訊息，是客戶端呼叫 LLM、等待回應後組成的結果。以下為其 JSON-RPC 格式範例：
 
 ```json
 {
@@ -103,13 +111,13 @@ sequenceDiagram
 }
 ```
 
-請注意回應正是如我們所要求的部落格文章摘要。同時注意所使用的模型並非我們原先請求的，而是使用 "gpt-5" 而非 "claude-3-sonnet"。此範例用以說明使用者可以改變所用模型，而你的採樣請求為一種建議。
+請注意，回應是部落格文章的摘要，與我們的要求相符。另請注意使用的 `model` 不是請求時指定的，而是選擇了 "gpt-5" 而非 "claude-3-sonnet"。這是用來說明使用者สามารถ改變使用的模型，您的 sampling 請求只是建議。
 
-好，了解主要流程與用於「部落格文章撰寫 + 摘要」的實用任務後，接著看看啟用此功能需要做什麼。
+好的，現在我們了解了主要流程及一個實用任務 "部落格文章創作＋摘要"，接著看如何實作使其運作。
 
 ### 訊息類型
 
-採樣訊息並不限於純文字，還可以傳送圖片和音訊。下面示範 JSON-RPC 的差異：
+Sampling 訊息不限於文字，也可以傳送圖片及音訊。以下為不同的 JSON-RPC 範例呈現：
 
 <strong>文字</strong>
 
@@ -140,13 +148,14 @@ sequenceDiagram
 }
 ```
 
-> 注意：欲取得更詳細的採樣資訊，請參閱[官方文件](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> 注意：關於目前狀態及遷移指引，請參閱
+> [已棄用的 Sampling 文件](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling)。
 
-## 如何在用戶端配置採樣
+## 如何在客戶端配置 Sampling
 
-> 注意：如果你只構建伺服器端，這裡幾乎不需多做什麼。
+> 注意：如果您僅構建伺服器，此處不需太多操作。
 
-在用戶端，你需要像下面這樣指定以下功能：
+在客戶端，您需如下指定此功能：
 
 ```json
 {
@@ -156,18 +165,18 @@ sequenceDiagram
 }
 ```
 
-這樣一來，當你選擇的用戶端初始化連接至伺服器時便會採用此設定。
+這將在您選擇的客戶端與伺服器初始化時被讀取。
 
-## 採樣實戰範例 - 建立部落格文章
+## Sampling 實作範例 - 創建部落格文章
 
-讓我們一起編寫採樣伺服器，將需要執行的步驟如下：
+我們來一起寫一個 sampling 伺服器，需做以下幾件事：
 
 1. 在伺服器上建立一個工具。
-1. 這個工具應建立採樣請求。
-1. 工具需等待用戶端對採樣請求的回應。
-1. 最後產生工具的結果。
+1. 該工具應發出 sampling 請求。
+1. 工具應等待客戶端回應 sampling 請求。
+1. 然後產出工具結果。
 
-讓我們分步看看程式碼：
+讓我們一步步看程式碼：
 
 ### -1- 建立工具
 
@@ -180,9 +189,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- 建立採樣請求
+### -2- 發出 sampling 請求
 
-在你的工具中加入以下程式碼：
+扩展您的工具，加入以下程式碼：
 
 **python**
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- 等待回應並返回
+### -3- 等待回應並返回結果
 
 **python**
 
@@ -217,7 +226,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# 返回完整產品
+# 返回完整的產品
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -286,7 +295,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # 返回完整的部落格文章
+    # 回傳完整的部落格文章
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -297,15 +306,15 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# 使用以下指令執行應用程式：python server.py
+# 使用以下方式執行應用程式：python server.py
 ```
 
-### -5- 在 Visual Studio Code 測試
+### -5- 在 Visual Studio Code 中測試
 
-若要在 Visual Studio Code 中測試，請依照以下步驟：
+在 Visual Studio Code 中測試，請執行以下步驟：
 
-1. 在終端機啟動伺服器
-1. 將其加入 *mcp.json*（並確認已啟動），例如：
+1. 在終端啟動伺服器
+1. 將其加入 *mcp.json* （並確保啟動），大致如下：
 
    ```json
    "servers": {
@@ -316,41 +325,41 @@ if __name__ == "__main__":
    }
    ```
 
-1. 輸入提示詞：
+1. 輸入提示：
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. 允許採樣進行。首次測試時，你會看到一個需接受的額外對話框，之後會看到正常的執行工具對話框。
+1. 允許 sampling 發生。首次測試時您會看到額外對話框需接受，隨後會出現正常詢問是否執行工具的對話框。
 
-1. 檢查結果。在 GitHub Copilot Chat 中可看到格式良好的結果呈現，亦可檢視原始 JSON 回應。
+1. 檢視結果。您不僅會在 GitHub Copilot Chat 美觀呈現結果，也可檢視原始 JSON 回應。
 
-<strong>額外資訊</strong>。Visual Studio Code 工具對採樣有良好支援。你可以這樣配置已安裝伺服器的採樣存取權限：
+<strong>獎勵</strong>。Visual Studio Code 工具支援 Sampling 非常完備。您可透過下列方式在已安裝伺服器上配置 Sampling 存取：
 
-1. 前往擴充功能區。
-1. 在「MCP SERVERS - INSTALLED」區域，選擇你已安裝伺服器的齒輪圖示。
-1. 選擇「Configure Model Access」，此處可選擇 GitHub Copilot 在執行採樣時允許使用哪些模型。你也可以選擇「Show Sampling requests」查看近期發生的採樣請求。
+1. 進入擴充功能區。
+1. 在 "MCP SERVERS - INSTALLED" 區段選擇您安裝的伺服器的齒輪圖示。
+1 選擇「Configure Model Access」，此處可選擇 GitHub Copilot 在執行 Sampling 時允許使用的模型。您也可點選「Show Sampling requests」查看近期所有 Sampling 請求。
 
 ## 作業
 
-本作業中，你將建立稍微不同的採樣整合——支援生成產品描述的採樣。以下是你的場景：
+在本作業中，您將構建一個稍不同的 Sampling，亦即支持生成產品描述的 sampling 整合。您的情境如下：
 
-<strong>場景</strong>：電商後台工作者需要協助，產出產品描述花費太多時間。因此，你將建立一個方案，可以呼叫名為 "create_product" 的工具，並以 "title" 和 "keywords" 做為參數，產出完整產品，包括需由用戶端 LLM 填寫的 "description" 欄位。
+<strong>情境</strong>：電商後台人員感到生成產品描述耗時過長。因此，您要建構一個解決方案，允許以「title」與「keywords」作為參數呼叫一個名為 "create_product" 的工具，該工具會產出完整產品資料，其中 "description" 欄位由客戶端的 LLM 產生。
 
-提示：利用前面所學，透過採樣請求構建此伺服器及其工具。
+提示：利用先前所學，透過 sampling 請求來構建此伺服器及工具。
 
-## 解答
+## 解決方案
 
-[解答](./solution/README.md)
+[解決方案](./solution/README.md)
 
-## 重要重點
+## 主要結論
 
-採樣是一項強大功能，允許伺服器在需要 LLM 協助時，將任務委派給用戶端。
+Sampling 是一項強大的功能，讓伺服器在需要 LLM 協助時，能將任務委派給客戶端執行。
 
-## 後續步驟
+## 下一步
 
-- [第四章 - 實務實作](../../04-PracticalImplementation/README.md)
+- [第 4 章 - 實務實作](../../04-PracticalImplementation/README.md)
 
 ---
 

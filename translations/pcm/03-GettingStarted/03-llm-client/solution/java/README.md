@@ -1,25 +1,30 @@
 # Calculator LLM Client
 
-Java application wey dey show how to use LangChain4j to connect to MCP (Model Context Protocol) calculator service through MiniMax OpenAI-compatible API.
+> [!NOTE]
+> Dis solution dey connect to di course legacy HTTP+SSE calculator service an
+> e dey target MCP `2025-11-25` SDK APIs. E no be `2026-07-28` Streamable HTTP
+> example.
 
-## Wetin You Need Before
+Java application wey dey show how to use LangChain4j take connect MCP (Model Context Protocol) calculator service through di MiniMax OpenAI-compatible API.
 
-- Java 21 or pass am
-- Maven 3.6+ (or fit use di Maven wrapper wey dey inside)
+## Prerequisites
+
+- Java 21 or higher
+- Maven 3.6+ (or use di included Maven wrapper)
 - MiniMax API key
 - MCP calculator service wey dey run for `http://localhost:8080`
 
-## How To Get di API Key
+## How to Get the API Key
 
-Dis application dey use MiniMax OpenAI-compatible API. Follow dis steps to get your key and endpoint:
+Dis application dey use MiniMax OpenAI-compatible API. Follow dis steps to get your key an endpoint:
 
-### 1. Pick endpoint
-1. Use `https://api.minimax.io/v1` for global endpoint
-2. Use `https://api.minimaxi.com/v1` for China endpoint
+### 1. Choose di endpoint
+1. Use `https://api.minimax.io/v1` for di global endpoint
+2. Use `https://api.minimaxi.com/v1` for di China endpoint
 
 ### 2. Create API key
-1. Create MiniMax API key from your MiniMax account
-2. Keep your key for somewhere wey safe
+1. Make MiniMax API key from your MiniMax account
+2. Keep di key somewhere wey safe
 
 ### 3. Set Environment Variables
 
@@ -44,25 +49,25 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## How To Setup and Install
+## Setup and Installation
 
-1. **Clone or go enter the project directory**
+1. **Clone or waka go di project directory**
 
 2. **Install dependencies**:
    ```cmd
    mvnw clean install
    ```
-   Or if you get Maven globally installed:
+   Or if you get Maven installed globally:
    ```cmd
    mvn clean install
    ```
 
-3. **Set di environment variables** (check "How To Get di API Key" section above)
+3. **Setup environment variables** (see di "Getting the API Key" section above)
 
 4. **Start di MCP Calculator Service**:
-   Make sure say di chapter 1 MCP calculator service dey run for `http://localhost:8080/sse`. E suppose dey run before you start the client.
+   Make sure sey di chapter 1 MCP calculator service dey run for `http://localhost:8080/sse`. E suppose dey run before you start di client.
 
-## How To Run di Application
+## How to Run di Application
 
 ```cmd
 mvnw clean package
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Wetin di Application Dey Do
 
-Di application dey show three main ways to take interact with di calculator service:
+Di application go show three main things wey e fit do with di calculator service:
 
-1. **Addition**: Calculate the sum of 24.5 and 17.3
-2. **Square Root**: Calculate square root of 144
-3. **Help**: Show all di calculator functions wey dey available
+1. **Addition**: E go calculate sum of 24.5 and 17.3
+2. **Square Root**: E go calculate di square root of 144
+3. **Help**: E go show di calculator functions wey dey available
 
-## Wetin You Go Expect as Output
+## Wetin You Go See as Output
 
-When e run well, you go see output wey resemble dis one:
+When e run well, you suppose see output like dis:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -87,52 +92,52 @@ The square root of 144 is 12.
 The calculator service provides the following functions: add, subtract, multiply, divide, sqrt, power...
 ```
 
-## How To Solve Wahala
+## Troubleshooting
 
-### Wahala wey dey happen often
+### Common Wahala
 
-1. **"OPENAI_API_KEY environment variable no set"**
-   - Make sure say you don set `OPENAI_API_KEY` environment variable
-   - Restart your terminal/command prompt after you set am
+1. **"OPENAI_API_KEY environment variable no dey set"**
+   - Make sure sey you don set di `OPENAI_API_KEY` environment variable
+   - Restart your terminal/command prompt after you don set di variable
 
-2. **"Connection refuse localhost:8080"**
-   - Confirm say MCP calculator service dey run for port 8080
-   - Check if another service no dey use port 8080
+2. **"Connection refused to localhost:8080"**
+   - Make sure di MCP calculator service dey run for port 8080
+   - Check if another service dey use port 8080
 
 3. **"Authentication failed"**
-   - Confirm say your API key dey correct
-   - Check say `OPENAI_BASE_URL` match di endpoint wey you suppose use
+   - Check if your API key valid
+   - Make sure say `OPENAI_BASE_URL` match di endpoint wey you mean to use
 
 4. **Maven build errors**
-   - Confirm say you dey use Java 21 or above: `java -version`
-   - Try clean di build: `mvnw clean`
+   - Make sure you dey use Java 21 or pass: `java -version`
+   - Try cleaning di build: `mvnw clean`
 
-### How To Debug
+### Debugging
 
-To enable debug logging, add dis JVM argument wen you dey run am:
+To enable debug logging, add dis JVM argument when you dey run:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Configuration
 
-Di application don set to:
-- Use MiniMax-M3 as default; fit set `MINIMAX_MODEL_ID` to choose either `MiniMax-M3` or `MiniMax-M2.7`
+Di application dey configured to:
+- Use MiniMax-M3 as default; set `MINIMAX_MODEL_ID` to choose whether `MiniMax-M3` or `MiniMax-M2.7`
 - Connect to `OPENAI_BASE_URL` if e set; otherwise use `https://api.minimaxi.com/v1` if `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` as default
 - Connect to MCP service for `http://localhost:8080/sse`
 - Use 60 seconds timeout for requests
 
 ## Dependencies
 
-Important dependencies wey this project dey use:
-- **LangChain4j**: For AI integration and tool management
+Main dependencies wey dis project use:
+- **LangChain4j**: For AI integration an tool management
 - **LangChain4j MCP**: For Model Context Protocol support
 - **LangChain4j OpenAI official**: For MiniMax OpenAI-compatible API integration
-- **Spring Boot**: For app framework and dependency injection
+- **Spring Boot**: For application framework and dependency injection
 
 ## License
 
-Dis project get license under Apache License 2.0 - see di [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) file for more details.
+Dis project dey licensed under Apache License 2.0 - check [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) file for details.
 
 ---
 

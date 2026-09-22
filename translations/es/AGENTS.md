@@ -1,35 +1,35 @@
 # AGENTS.md
 
-## Descripción general del proyecto
+## Descripción del Proyecto
 
-**MCP para principiantes** es un currículo educativo de código abierto para aprender el Protocolo de Contexto del Modelo (MCP), un marco estandarizado para las interacciones entre modelos de IA y aplicaciones cliente. Este repositorio proporciona materiales completos de aprendizaje con ejemplos prácticos de código en varios lenguajes de programación.
+**MCP para Principiantes** es un currículo educativo de código abierto para aprender el Model Context Protocol (MCP) - un marco estandarizado para las interacciones entre modelos de IA y aplicaciones cliente. Este repositorio proporciona materiales de aprendizaje completos con ejemplos prácticos de código en múltiples lenguajes de programación.
 
-### Tecnologías clave
+### Tecnologías Clave
 
-- **Lenguajes de programación**: C#, Java, JavaScript, TypeScript, Python, Rust
+- **Lenguajes de Programación**: C#, Java, JavaScript, TypeScript, Python, Rust
 - **Frameworks y SDKs**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
   - FastMCP (Python)
   - LangChain4j (Java)
-- **Bases de datos**: PostgreSQL con extensión pgvector
-- **Plataformas en la nube**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
-- **Herramientas de construcción**: npm, Maven, pip, Cargo
-- **Documentación**: Markdown con traducción automática en múltiples idiomas (más de 48 idiomas)
+- **Bases de Datos**: PostgreSQL con extensión pgvector
+- **Plataformas en la Nube**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
+- **Herramientas de Construcción**: npm, Maven, pip, Cargo
+- **Documentación**: Markdown con traducción automatizada en múltiples idiomas (más de 48 idiomas)
 
 ### Arquitectura
 
-- **11 Módulos principales (00-11)**: Ruta de aprendizaje secuencial desde fundamentos hasta temas avanzados
-- **Laboratorios prácticos**: Ejercicios prácticos con código de solución completo en varios idiomas
-- **Proyectos de ejemplo**: Implementaciones funcionales de servidor y cliente MCP
-- **Sistema de traducción**: Flujo de trabajo automatizado con GitHub Actions para soporte multi-idioma
+- **11 Módulos Principales (00-11)**: Ruta de aprendizaje secuencial desde fundamentos hasta temas avanzados
+- **Laboratorios Prácticos**: Ejercicios prácticos con código completo de solución en varios lenguajes
+- **Proyectos de Ejemplo**: Implementaciones funcionales de servidores y clientes MCP
+- **Sistema de Traducción**: Flujo de trabajo automatizado con GitHub Actions para soporte multilingüe
 - **Recursos de imágenes**: Directorio centralizado de imágenes con versiones traducidas
 
-## Comandos de configuración
+## Comandos de Configuración
 
-Este es un repositorio enfocado en documentación. La mayoría de las configuraciones ocurren dentro de proyectos de ejemplo individuales y laboratorios.
+Este es un repositorio enfocado en la documentación. La configuración principal ocurre dentro de proyectos de ejemplo y laboratorios individuales.
 
-### Configuración del repositorio
+### Configuración del Repositorio
 
 ```bash
 # Clonar el repositorio
@@ -37,13 +37,13 @@ git clone https://github.com/microsoft/mcp-for-beginners.git
 cd mcp-for-beginners
 ```
 
-### Trabajando con proyectos de ejemplo
+### Trabajando con Proyectos de Ejemplo
 
-Los proyectos de ejemplo están ubicados en:
-- `03-GettingStarted/samples/` - Ejemplos específicos por lenguaje
-- `03-GettingStarted/01-first-server/solution/` - Primeras implementaciones del servidor
+Los proyectos de ejemplo se encuentran en:
+- `03-GettingStarted/samples/` - Ejemplos específicos para cada lenguaje
+- `03-GettingStarted/01-first-server/solution/` - Implementaciones del primer servidor
 - `03-GettingStarted/02-client/solution/` - Implementaciones de cliente
-- `11-MCPServerHandsOnLabs/` - Laboratorios completos de integración con base de datos
+- `11-MCPServerHandsOnLabs/` - Laboratorios integrales de integración con bases de datos
 
 Cada proyecto de ejemplo contiene sus propias instrucciones de configuración:
 
@@ -70,18 +70,18 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Flujo de trabajo de desarrollo
+## Flujo de Trabajo de Desarrollo
 
 ### Preparación para MCP 7-28
 
-#### Lista de verificación de preparación del repositorio
+#### Lista de verificación para preparación del repo
 
-- [x] **Claridad para nuevos colaboradores**: Este archivo define el propósito del repositorio,
+- [x] **Claridad para nuevos contribuyentes**: Este archivo define el propósito del repositorio,
   estructura, reglas de contribución y rutas de configuración de ejemplo.
-- [x] **Comandos de compilación/prueba/lint con flags exactos**:
+- [x] **Comandos de construcción/prueba/lint con banderas exactas**:
   - Lint de documentación del repositorio:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Auditoría de patrones de enlaces en la documentación del repositorio:
+  - Auditoría de patrones de enlaces en la documentación:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
   - Validación de ejemplo TypeScript:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
@@ -91,25 +91,25 @@ mvn spring-boot:run
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
 - [x] **Un flujo de trabajo realista que puede convertirse en una herramienta MCP**:
   `validate_curriculum_change`
-- [x] **Entradas/salidas son explícitas** (ver especificación abajo).
-- [x] **Permisos y modos de fallo están documentados** (ver especificación abajo).
-- [x] **Testabilidad CI es explícita** (comandos deterministas, códigos de salida explícitos,
+- [x] **Entradas/salidas explícitas** (ver especificación abajo).
+- [x] **Permisos y modos de falla documentados** (ver especificación abajo).
+- [x] **Pruebas CI explícitas** (comandos determinísticos, códigos de salida explícitos
   y salidas legibles por máquina).
 
 #### Flujo de trabajo candidato para herramienta MCP: `validate_curriculum_change`
 
 ##### Objetivo
 
-Validar cambios en la documentación del currículo y en el código de muestra representativo
+Validar la salud de los cambios en documentación del currículo y código de ejemplo
 antes de hacer merge.
 
 ##### Entradas
 
-- `changed_paths: string[]` (requerido) - rutas relativas modificadas en el PR.
+- `changed_paths: string[]` (obligatorio) - rutas relativas modificadas en el PR.
 - `run_docs_lint: boolean` (por defecto `true`)
 - `run_links_audit: boolean` (por defecto `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
-  (por defecto todos en `false`)
+  (por defecto todo `false`)
 
 ##### Salidas
 
@@ -122,105 +122,105 @@ antes de hacer merge.
 ##### Permisos
 
 - Leer archivos del espacio de trabajo y escribir artefactos generados por la herramienta (por ejemplo, reportes de lint,
-  logs de prueba) solamente; no escribir en `translations/` ni en
+  logs de prueba) solamente; no se permiten escrituras en `translations/` ni
   `translated_images/`.
-- Ejecutar comandos shell locales.
-- Acceso de red opcional solo para restauración de paquetes (`npm ci`,
+- Ejecutar comandos locales en shell.
+- Acceso a red opcional solamente para restaurar paquetes (`npm ci`,
   `python -m pip install`, resolución de dependencias `mvn`).
 - Sin permiso para hacer push, merge o modificar `translations/` ni
   `translated_images/`.
 
-##### Modos de fallo
+##### Modos de falla
 
 - `E_NO_INPUT_PATHS`: `changed_paths` está vacío.
-- `E_INVALID_PATH`: ruta de entrada escapa del raíz del repositorio.
-- `E_LINT_FAILED`: el lint de markdown terminó con código distinto de cero.
-- `E_LINK_AUDIT_FAILED`: el comando de auditoría de enlaces terminó con código distinto de cero.
-- `E_SAMPLE_TEST_FAILED`: la prueba/compilación del ejemplo terminó con código distinto de cero.
+- `E_INVALID_PATH`: la ruta de entrada escapa la raíz del repositorio.
+- `E_LINT_FAILED`: lint markdown termina con código distinto de cero.
+- `E_LINK_AUDIT_FAILED`: comando de auditoría de enlaces termina con código distinto de cero.
+- `E_SAMPLE_TEST_FAILED`: prueba/construcción de ejemplo termina con código distinto de cero.
 - `E_TIMEOUT`: el comando excedió el tiempo de espera configurado.
 
 ##### Contrato recomendado para CI
 
-Para automatizar la validación, configure un job de CI que:
+Para automatizar la validación, configure un trabajo CI que:
 
-- Se active en pull requests que afecten a `*.md`, código de muestra o este archivo.
+- Se active en pull requests que modifiquen `*.md`, código de ejemplo o este archivo.
 - Ejecute los comandos exactos listados arriba.
-- Mantenga los logs como artefactos.
-- Falla el job con cualquier código de salida distinto de cero.
+- Persista logs como artefactos.
+- Falla el trabajo ante cualquier código de salida distinto de cero.
 
-#### Si distribuyes un servidor MCP de este repo
+#### Si distribuyes un servidor MCP desde este repo
 
-- [ ] Lee el borrador del registro de cambios para MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Ejecuta tu servidor contra las betas del SDK:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Elimina las suposiciones sobre sesión y handshake; trata cada solicitud como
+- [ ] Lee el changelog final de MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Verifica que la versión del SDK seleccionada soporte MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] Elimina suposiciones de sesión y handshake; trata cada petición como
   autocontenida:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
-- [ ] Envía los encabezados `Mcp-Method` y `Mcp-Name` para solicitudes HTTP en crudo:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Audita los códigos de error codificados (el error `missing resource` se movió de `-32002` a `-32602`).
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
+- [ ] Envía cabeceras `Mcp-Method` y `Mcp-Name` para peticiones HTTP sin procesar:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Revisa códigos de error codificados (por ejemplo, `missing resource` cambió de `-32002` a `-32602`).
 
-- [ ] Marcar y planificar la migración para raíces, muestreo y
-  registro obsoletos:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Migrar de la API experimental `2025-11-25` de Tareas:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Revisar la autorización para el endurecimiento de OAuth y OpenID Connect:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+- [ ] Migrar Roots, Muestreo, Registro y Cliente Dinámico obsoletos
+  Registro:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Migrar fuera de la API experimental `2025-11-25` de Tareas:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Revisar autorización para el endurecimiento de OAuth y OpenID Connect:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
-### Estructura de la documentación
+### Estructura de la Documentación
 
-- **Módulos 00-11**: Contenido del currículo principal en orden secuencial
-- **translations/**: Versiones específicas por idioma (autogeneradas, no editar directamente)
-- **translated_images/**: Versiones localizadas de imágenes (autogeneradas)
+- **Módulos 00-11**: Contenido principal del currículo en orden secuencial
+- **translations/**: Versiones específicas de idioma (auto-generadas, no editar directamente)
+- **translated_images/**: Versiones localizadas de imágenes (auto-generadas)
 - **images/**: Imágenes y diagramas fuente
 
-### Cómo realizar cambios en la documentación
+### Realizar Cambios en la Documentación
 
-1. Editar solo los archivos markdown en inglés en los directorios raíz de los módulos (00-11)
+1. Editar sólo los archivos markdown en inglés en los directorios raíz de módulo (00-11)
 2. Actualizar imágenes en el directorio `images/` si es necesario
 3. La acción de GitHub co-op-translator generará automáticamente las traducciones
-4. Las traducciones se regeneran al hacer push a la rama principal
+4. Las traducciones se regeneran al hacer push a la rama main
 
-### Trabajando con traducciones
+### Trabajando con Traducciones
 
-- **Traducción automatizada**: El flujo de trabajo de GitHub Actions maneja todas las traducciones
-- **No editar manualmente** los archivos en el directorio `translations/`
+- **Traducción Automatizada**: El flujo de trabajo de GitHub Actions gestiona todas las traducciones
+- **NO editar manualmente** los archivos en el directorio `translations/`
 - Los metadatos de traducción están incrustados en cada archivo traducido
 - Idiomas soportados: más de 48 idiomas incluyendo árabe, chino, francés, alemán, hindi, japonés, coreano, portugués, ruso, español y muchos más
 
-## Instrucciones para pruebas
+## Instrucciones de Prueba
 
-### Validación de documentación
+### Validación de la Documentación
 
-Dado que este es principalmente un repositorio de documentación, las pruebas se centran en:
+Dado que esto es principalmente un repositorio de documentación, las pruebas se enfocan en:
 
-1. **Auditoría de patrones de enlaces**: Listar enlaces Markdown para revisión
+1. **Auditoría de Patrones de Enlaces**: Listar enlaces en Markdown para revisión
 
    ```bash
-   # Enumerar enlaces Markdown (auditoría de patrones)
+   # Listar enlaces Markdown (auditoría de patrones)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Validación de ejemplos de código**: Probar que los ejemplos de código compilen/ejecuten
+2. **Validación de Ejemplos de Código**: Probar que los ejemplos de código compilan/ejecutan
 
    ```bash
-   # Navegar a la muestra específica y ejecutar sus pruebas
+   # Navegar a una muestra específica y ejecutar sus pruebas
    cd 03-GettingStarted/samples/typescript
    npm install && npm test
    ```
 
-3. **Linting de Markdown**: Verificar consistencia en el formato
+3. **Linting de Markdown**: Verificar la consistencia del formato
 
    ```bash
    # Usa markdownlint si es necesario
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
-### Pruebas de proyectos de muestra
+### Pruebas de Proyectos de Ejemplo
 
-Cada muestra específica por idioma incluye su propio enfoque de pruebas:
+Cada muestra específica de idioma incluye su propio enfoque de prueba:
 
 #### TypeScript/JavaScript
 ```bash
@@ -240,39 +240,39 @@ mvn test
 mvn verify
 ```
 
-## Guías de estilo de código
+## Guías de Estilo de Código
 
-### Estilo de documentación
+### Estilo de Documentación
 
 - Usar un lenguaje claro y amigable para principiantes
-- Incluir ejemplos de código en varios idiomas cuando sea aplicable
-- Seguir las mejores prácticas de markdown:
-  - Usar encabezados estilo ATX (sintaxis `#`)
-  - Usar bloques de código delimitados con identificadores de idioma
-  - Incluir texto alternativo descriptivo para imágenes
-  - Mantener una longitud razonable de las líneas (sin límite estricto, pero con sentido)
+- Incluir ejemplos de código en varios lenguajes cuando sea aplicable
+- Seguir las mejores prácticas de Markdown:
+  - Usar encabezados estilo ATX (sintaxis con `#`)
+  - Usar bloques de código con lenguajes identificados
+  - Incluir texto alternativo descriptivo para las imágenes
+  - Mantener longitudes de línea razonables (sin límite estricto, pero con sentido)
 
-### Estilo de ejemplos de código
+### Estilo de Ejemplos de Código
 
 #### TypeScript/JavaScript
 - Usar módulos ES (`import`/`export`)
-- Seguir las convenciones del modo estricto de TypeScript
-- Incluir anotaciones de tipo
-- Apuntar a ES2022
+- Seguir las convenciones en modo estricto de TypeScript
+- Incluir anotaciones de tipos
+- Orientado a ES2022
 
 #### Python
 - Seguir las pautas de estilo PEP 8
-- Usar hints de tipo cuando corresponda
+- Usar hints de tipo cuando sea adecuado
 - Incluir docstrings para funciones y clases
 - Usar características modernas de Python (3.8+)
 
 #### Java
 - Seguir las convenciones de Spring Boot
 - Usar características de Java 21
-- Seguir la estructura estándar de proyectos Maven
+- Seguir estructura estándar de proyectos Maven
 - Incluir comentarios Javadoc
 
-### Organización de archivos
+### Organización de Archivos
 
 ```
 <module-number>-<ModuleName>/
@@ -286,48 +286,48 @@ mvn verify
     └── <language>/
 ```
 
-## Construcción y despliegue
+## Compilación y Despliegue
 
-### Despliegue de documentación
+### Despliegue de Documentación
 
-El repositorio utiliza GitHub Pages o similar para hospedaje de documentación (si aplica). Los cambios en la rama principal desencadenan:
+El repositorio usa GitHub Pages o similar para alojar la documentación (si aplica). Los cambios en la rama principal disparan:
 
 1. Flujo de trabajo de traducción (`.github/workflows/co-op-translator.yml`)
-2. Traducción automática de todos los archivos markdown en inglés
+2. Traducción automatizada de todos los archivos markdown en inglés
 3. Localización de imágenes según sea necesario
 
 ### No se requiere proceso de compilación
 
-Este repositorio contiene principalmente documentación en markdown. No se necesita paso de compilación para el contenido del currículo principal.
+Este repositorio contiene principalmente documentación markdown. No se necesita compilación ni paso de construcción para el contenido principal del currículo.
 
-### Despliegue de proyectos de muestra
+### Despliegue de Proyectos de Ejemplo
 
-Proyectos de muestra individuales pueden tener instrucciones de despliegue:
+Los proyectos de ejemplo individuales pueden tener instrucciones de despliegue:
 - Ver `03-GettingStarted/09-deployment/` para guía de despliegue del servidor MCP
-- Ejemplos de despliegue de Azure Container Apps en `11-MCPServerHandsOnLabs/`
+- Ejemplos de despliegue con Azure Container Apps en `11-MCPServerHandsOnLabs/`
 
-## Guías para contribuir
+## Guías para Contribuir
 
-### Proceso de pull request
+### Proceso de Pull Request
 
-1. **Fork y clonación**: Haz fork del repositorio y clona tu fork localmente
-2. **Crear rama**: Usar nombres descriptivos para las ramas (ej. `fix/typo-module-3`, `add/python-example`)
-3. **Realizar cambios**: Editar solo archivos markdown en inglés (no las traducciones)
-4. **Probar localmente**: Verificar que el markdown se renderice correctamente
-5. **Enviar PR**: Usar títulos y descripciones claras para el PR
-6. **CLA**: Firmar el Acuerdo de Licencia de Contribuidor de Microsoft cuando sea solicitado
+1. **Fork y Clona**: Haz fork del repositorio y clona tu fork localmente
+2. **Crear una Rama**: Usa nombres descriptivos para las ramas (e.g., `fix/typo-module-3`, `add/python-example`)
+3. **Realiza Cambios**: Edita sólo los archivos markdown en inglés (no las traducciones)
+4. **Prueba Localmente**: Verifica que markdown se renderice correctamente
+5. **Envía el PR**: Usa títulos y descripciones claras para el PR
+6. **CLA**: Firma el Acuerdo de Licencia de Contribución de Microsoft cuando se solicite
 
-### Formato del título del PR
+### Formato del Título del PR
 
-Usar títulos claros y descriptivos:
-- `[Module XX] Breve descripción` para cambios específicos de módulos
-- `[Samples] Descripción` para cambios en ejemplos de código
+Usa títulos claros y descriptivos:
+- `[Módulo XX] Breve descripción` para cambios específicos de módulo
+- `[Ejemplos] Descripción` para cambios en código de muestra
 - `[Docs] Descripción` para actualizaciones generales de documentación
 
-### Qué contribuir
+### Qué Contribuir
 
 - Correcciones de errores en documentación o ejemplos de código
-- Nuevos ejemplos de código en idiomas adicionales
+- Nuevos ejemplos de código en lenguajes adicionales
 - Aclaraciones y mejoras al contenido existente
 - Nuevos estudios de caso o ejemplos prácticos
 - Reportes de problemas por contenido poco claro o incorrecto
@@ -339,62 +339,63 @@ Usar títulos claros y descriptivos:
 - No agregar archivos binarios grandes sin discusión previa
 - No cambiar archivos del flujo de trabajo de traducción sin coordinación
 
-## Notas adicionales
+## Notas Adicionales
 
-### Mantenimiento del repositorio
+### Mantenimiento del Repositorio
 
-- **Registro de cambios**: Todos los cambios significativos se documentan en `changelog.md`
-- **Guía de estudio**: Usar `study_guide.md` para una vista general de navegación del currículo
-- **Plantillas de issues**: Usar plantillas de issues de GitHub para reportes de errores y solicitudes de funciones
-- **Código de conducta**: Todos los contribuidores deben cumplir el Código de Conducta de código abierto de Microsoft
+- **Registro de Cambios**: Todos los cambios significativos están documentados en `changelog.md`
+- **Guía de Estudio**: Usa `study_guide.md` para la navegación general del currículo
+- **Plantillas de Issues**: Usa plantillas de GitHub para reportes de bugs y solicitudes de características
+- **Código de Conducta**: Todos los contribuyentes deben seguir el Código de Conducta de código abierto de Microsoft
 
-### Ruta de aprendizaje
+### Ruta de Aprendizaje
 
-Seguir los módulos en orden secuencial (00-11) para un aprendizaje óptimo:
-1. **00-02**: Fundamentos (Introducción, Conceptos básicos, Seguridad)
-2. **03**: Primeros pasos con implementación práctica
+Sigue los módulos en orden secuencial (00-11) para un aprendizaje óptimo:
+1. **00-02**: Fundamentos (Introducción, Conceptos Clave, Seguridad)
+2. **03**: Introducción con implementación práctica
 3. **04-05**: Implementación práctica y temas avanzados
 4. **06-10**: Comunidad, mejores prácticas y aplicaciones del mundo real
-5. **11**: Laboratorios integrales de base de datos (13 laboratorios secuenciales)
+5. **11**: Laboratorios completos de integración de base de datos (13 laboratorios secuenciales)
 
-### Recursos de soporte
+### Recursos de Soporte
 
 - **Documentación**: https://modelcontextprotocol.io/
-- **Especificación**: https://spec.modelcontextprotocol.io/
+- **Especificación**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Comunidad**: https://github.com/orgs/modelcontextprotocol/discussions
-- **Discord**: Servidor Discord Microsoft Foundry
-- **Cursos relacionados**: Ver README.md para otras rutas de aprendizaje de Microsoft
+- **Discord**: Servidor Discord de Microsoft Foundry
+- **Cursos Relacionados**: Ver README.md para otras rutas de aprendizaje de Microsoft
 
-### Solución común de problemas
+### Problemas Comunes y Soluciones
 
-**P: Mi PR está fallando la verificación de traducción**
-R: Asegúrate de haber editado solo archivos markdown en inglés en los directorios raíz de los módulos, no versiones traducidas.
+**P: Mi PR falla la comprobación de traducción**
+R: Asegúrate de haber editado sólo archivos markdown en inglés en los directorios raíz de los módulos, no versiones traducidas.
 
 **P: ¿Cómo agrego un nuevo idioma?**
 R: El soporte de idiomas se gestiona mediante el flujo de trabajo co-op-translator. Abre un issue para discutir agregar nuevos idiomas.
 
 **P: Los ejemplos de código no funcionan**
+R: Asegúrate de seguir las instrucciones de configuración en el README específico de la muestra. Verifica que tengas las versiones correctas de las dependencias instaladas.
 
-R: Asegúrate de haber seguido las instrucciones de configuración en el README de la muestra específica. Verifica que tienes instaladas las versiones correctas de las dependencias.
 
 **P: Las imágenes no se muestran**
-R: Verifica que las rutas de las imágenes sean relativas y usen barras inclinadas hacia adelante. Las imágenes deben estar en el directorio `images/` o en `translated_images/` para las versiones localizadas.
 
-### Consideraciones de Rendimiento
+A: Verifique que las rutas de las imágenes sean relativas y usen barras inclinadas hacia adelante. Las imágenes deben estar en el directorio `images/` o en `translated_images/` para versiones localizadas.
+
+### Consideraciones de rendimiento
 
 - El flujo de trabajo de traducción puede tardar varios minutos en completarse
-- Las imágenes grandes deben optimizarse antes de hacer commit
-- Mantén los archivos markdown individuales enfocados y de tamaño razonable
-- Usa enlaces relativos para mejor portabilidad
+- Las imágenes grandes deben optimizarse antes de ser confirmadas
+- Mantenga los archivos markdown individuales enfocados y de tamaño razonable
+- Use enlaces relativos para mejor portabilidad
 
-### Gobernanza del Proyecto
+### Gobernanza del proyecto
 
 Este proyecto sigue las prácticas de código abierto de Microsoft:
 - Licencia MIT para código y documentación
 - Código de Conducta de Código Abierto de Microsoft
 - CLA requerida para contribuciones
-- Problemas de seguridad: Sigue las pautas de SECURITY.md
-- Soporte: Consulta SUPPORT.md para recursos de ayuda
+- Problemas de seguridad: Siga las directrices de SECURITY.md
+- Soporte: Consulte SUPPORT.md para recursos de ayuda
 
 ---
 

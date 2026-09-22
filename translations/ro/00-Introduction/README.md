@@ -1,110 +1,117 @@
-# Introducere în Model Context Protocol (MCP): De ce este important pentru aplicațiile AI scalabile
+# Introducere în Model Context Protocol (MCP): De ce contează pentru aplicațiile AI scalabile
 
 [![Introducere în Model Context Protocol](../../../translated_images/ro/01.a467036d886b5fb5.webp)](https://youtu.be/agBbdiOPLQA)
 
-_(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
+_(Click pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
-Aplicațiile AI generative reprezintă un pas important înainte, deoarece adesea permit utilizatorului să interacționeze cu aplicația folosind comenzi în limbaj natural. Totuși, pe măsură ce se investesc mai mult timp și resurse în astfel de aplicații, vrei să te asiguri că poți integra cu ușurință funcționalități și resurse într-un mod care să fie ușor de extins, ca aplicația ta să poată suporta mai mult de un model folosit și să gestioneze diverse subtilități ale modelelor. Pe scurt, construirea aplicațiilor Gen AI este ușoară la început, dar pe măsură ce acestea cresc și devin mai complexe, trebuie să începi să definești o arhitectură și probabil va fi nevoie să te bazezi pe un standard pentru a asigura că aplicațiile tale sunt construite într-un mod consistent. Aici intervine MCP pentru a organiza lucrurile și a oferi un standard.
+Aplicațiile AI generative sunt un mare pas înainte, deoarece adesea permit utilizatorului să interacționeze cu aplicația folosind instrucțiuni în limbaj natural. Totuși, pe măsură ce se investește mai mult timp și resurse în astfel de aplicații, vrei să te asiguri că poți integra funcționalități și resurse în mod facil, astfel încât să fie ușor de extins, ca aplicația ta să poată deservi mai mult de un model utilizat și să gestioneze diversele particularități ale modelelor. Pe scurt, construirea aplicațiilor Gen AI este ușoară la început, dar pe măsură ce acestea cresc și devin mai complexe, trebuie să începi să definiți o arhitectură și probabil vei avea nevoie să te bazezi pe un standard pentru a asigura că aplicațiile tale sunt construite într-un mod consecvent. Aici intervine MCP pentru a organiza lucrurile și a oferi un standard.
 
 ---
 
 ## **🔍 Ce este Model Context Protocol (MCP)?**
 
-**Model Context Protocol (MCP)** este o **interfață deschisă, standardizată** care permite modelelor de limbaj mare (LLM-uri) să interacționeze fără întreruperi cu unelte externe, API-uri și surse de date. Oferă o arhitectură consistentă pentru a îmbunătăți funcționalitatea modelelor AI dincolo de datele lor de antrenament, permițând sisteme AI mai inteligente, scalabile și mai responsive.
+**Model Context Protocol (MCP)** este o **interfață deschisă, standardizată** care permite modelelor lingvistice mari (LLM) să interacționeze fără probleme cu instrumente externe, API-uri și surse de date. Oferă o arhitectură consistentă pentru a extinde funcționalitatea modelelor AI dincolo de datele lor de antrenament, permițând sisteme AI mai inteligente, scalabile și mai receptive.
 
 ---
 
-## **🎯 Importanța standardizării în AI**
+## **🎯 De ce contează standardizarea în AI**
 
-Pe măsură ce aplicațiile AI generative devin mai complexe, este esențial să adopți standarde care să asigure **scalabilitatea, extensibilitatea, întreținerea** și **evitarea dependenței de un singur furnizor**. MCP abordează aceste nevoi prin:
+Pe măsură ce aplicațiile AI generative devin mai complexe, este esențial să adopți standarde care să asigure **scalabilitate, extensibilitate, întreținere** și **evitarea blocării în furnizori**. MCP răspunde acestor nevoi prin:
 
-- Unificarea integrărilor model-unelte
-- Reducerea soluțiilor personalizate fragile și unice
-- Permisiunea ca mai multe modele de la diferiți furnizori să coexiste în același ecosistem
+- Unificarea integrărilor model-instrument
+- Reducerea soluțiilor fragile și personalizate, unice
+- Permite coexistența mai multor modele de la furnizori diferiți într-un singur ecosistem
 
-**Notă:** Deși MCP se prezintă ca un standard deschis, nu există planuri pentru standardizarea MCP prin organisme de standardizare existente precum IEEE, IETF, W3C, ISO sau orice alt organism de standardizare.
+**Notă:** Deși MCP se promovează ca un standard deschis, nu există planuri pentru standardizarea MCP prin vreun organism de standardizare existent precum IEEE, IETF, W3C, ISO sau alt organism de standardizare.
 
 ---
 
-## **📚 Obiectivele de învățare**
+## **📚 Obiective de învățare**
 
-Până la finalul acestui articol, vei fi capabil să:
+La sfârșitul acestui articol, vei putea:
 
 - Definiți **Model Context Protocol (MCP)** și cazurile sale de utilizare
-- Înțelegeți cum MCP standardizează comunicarea model-unealtă
-- Identificați componentele de bază ale arhitecturii MCP
-- Explorați aplicații din lumea reală ale MCP în contexte de întreprinderi și dezvoltare
+- Înțelegeți cum MCP standardizează comunicarea model-instrument
+- Identifica componentele principale ale arhitecturii MCP
+- Explora aplicații reale ale MCP în contexte enterprise și de dezvoltare
 
 ---
 
-## **💡 De ce Model Context Protocol (MCP) este revoluționar**
+## **💡 De ce Model Context Protocol (MCP) este un schimbător de joc**
 
 ### **🔗 MCP rezolvă fragmentarea în interacțiunile AI**
 
-Înainte de MCP, integrarea modelelor cu unelte necesită:
+Înainte de MCP, integrarea modelelor cu instrumente necesita:
 
-- Cod personalizat pentru fiecare pereche unealtă-model
-- API-uri non-standard pentru fiecare furnizor
-- Avem întreruperi frecvente din cauza actualizărilor
-- Scalabilitate slabă la adăugarea mai multor unelte
+- Cod personalizat pentru fiecare pereche instrument-model
+- API-uri nestandardizate pentru fiecare furnizor
+- Frecvente întreruperi cauzate de actualizări
+- Scalabilitate slabă pe măsură ce apar mai multe instrumente
 
 ### **✅ Beneficiile standardizării MCP**
 
-| **Beneficiu**              | **Descriere**                                                                 |
-|---------------------------|-------------------------------------------------------------------------------|
-| Interoperabilitate        | LLM-urile lucrează perfect cu unelte de la diferiți furnizori                |
-| Consistență               | Comportament uniform între platforme și unelte                              |
-| Reutilizabilitate         | Uneltele construite o dată pot fi utilizate în mai multe proiecte și sisteme |
-| Dezvoltare accelerată     | Se reduce timpul de dezvoltare folosind interfețe standard, plug-and-play    |
+| **Beneficiu**            | **Descriere**                                                                 |
+|--------------------------|-------------------------------------------------------------------------------|
+| Interoperabilitate       | LLM-urile lucrează fără probleme cu instrumente de la diferiți furnizori     |
+| Consistență              | Comportament uniform pe platforme și instrumente                            |
+| Reutilizabilitate        | Instrumentele construite o dată pot fi folosite în proiecte și sisteme multiple |
+| Dezvoltare accelerată    | Reduce timpul de dezvoltare folosind interfețe standardizate și plug-and-play |
 
 ---
 
-## **🧱 Prezentare generală a arhitecturii MCP la nivel înalt**
+## **🧱 Prezentare generală arhitectură MCP la nivel înalt**
 
 MCP urmează un **model client-server**, unde:
 
 - **Gazdele MCP** rulează modelele AI
-- **Clienții MCP** inițiază cererile
-- **Serverele MCP** oferă context, unelte și capabilități
+- **Clienții MCP** inițiază solicitările
+- **Serverele MCP** oferă context, instrumente și capabilități
 
 ### **Componente cheie:**
 
 - **Resurse** – Date statice sau dinamice pentru modele  
-- **Comenzi** – Fluxuri de lucru predefinite pentru generare ghidată  
-- **Unelte** – Funcții executabile precum căutare, calcule  
-- **Eșantionare** – Comportament agentic prin interacțiuni recursive (învechit în candidatul pentru lansare `2026-07-28`)
-- **Solicitări** – Cereri inițiate de server pentru inputul utilizatorului
-- **Rădăcini** – Limitele sistemului de fișiere pentru controlul accesului serverului (învechit în candidatul pentru lansare `2026-07-28`)
+- **Prompts** – Fluxuri de lucru predefinite pentru generare ghidată  
+- **Instrumente** – Funcții executabile cum ar fi căutare, calcule  
+- **Sampling** – Comportament agentic prin interacțiuni recursive (învechit în
+    MCP `2026-07-28`; implementările noi ar trebui să integreze direct un furnizor LLM)
+
+- **Elicitation** – Solicitări inițiate de server pentru input de la utilizator
+- **Roots** – Locații informaționale în sistemul de fișiere relevante pentru un server
+    (învechit în MCP `2026-07-28`; se recomandă parametri ai instrumentelor, URI-uri de resurse sau
+    configurare de server)
 
 ### **Arhitectura protocolului:**
 
-MCP folosește o arhitectură cu două straturi:
-- **Stratul de date**: Comunicare bazată pe JSON-RPC 2.0 cu managementul ciclului de viață și primitive
-- **Stratul de transport**: Canale de comunicare STDIO (local) și HTTP Streamable cu SSE (remote)
+MCP folosește o arhitectură în două straturi:
+- **Stratul de date**: Mesaje JSON-RPC 2.0, metadata per solicitare, descoperire și
+    primitive de protocol
+- **Stratul de transport**: stdio pentru subprocese locale și Streamable HTTP pentru
+    servere remote. Streamable HTTP poate folosi încadrare SSE pentru răspunsuri
+    în flux, dar transportul mai vechi HTTP+SSE este învechit.
 
 ---
 
 ## Cum funcționează Serverele MCP
 
-Serverele MCP operează în următorul mod:
+Serverele MCP operează după cum urmează:
 
-- **Fluxul cererii**:
-    1. O cerere este inițiată de un utilizator final sau de un software care acționează în numele său.
-    2. **Clientul MCP** trimite cererea către un **Gazdă MCP**, care gestionează rularea Modelului AI.
-    3. **Modelul AI** primește comanda utilizatorului și poate solicita acces la unelte externe sau date prin una sau mai multe apeluri de unelte.
-    4. **Gazda MCP**, nu modelul direct, comunică cu **Serverul/Serverele MCP** potrivite folosind protocolul standardizat.
+- **Fluxul solicitării**:
+    1. O solicitare este inițiată de un utilizator final sau un software care acționează în numele său.
+    2. **Clientul MCP** trimite solicitarea către un **Gazdă MCP**, care gestionează runtime-ul modelului AI.
+    3. **Modelul AI** primește promptul utilizatorului și poate cere acces la instrumente sau date externe prin una sau mai multe apeluri către instrumente.
+    4. **Gazda MCP**, nu modelul direct, comunică cu **Serverele MCP** corespunzătoare folosind protocolul standardizat.
 - **Funcționalitatea Gazdei MCP**:
-    - **Registrul Uneltelor**: Menține un catalog al uneltelor disponibile și al capabilităților lor.
-    - **Autentificare**: Verifică permisiunile de acces la unelte.
-    - **Gestionarea Cererilor**: Procesează cererile de unelte primite de la model.
-    - **Formatator Răspunsuri**: Structurează rezultatele uneltelor într-un format pe care modelul îl poate înțelege.
-- **Executarea pe Serverul MCP**:
-    - **Gazda MCP** direcționează apelurile către una sau mai multe **Servere MCP**, fiecare oferind funcții specializate (ex: căutare, calcule, interogări baze de date).
-    - **Serverele MCP** își îndeplinesc respectivele operațiuni și returnează rezultatele către **Gazda MCP** într-un format consistent.
-    - **Gazda MCP** formatează și transmite aceste rezultate către **Modelul AI**.
+    - **Registrul Instrumentelor**: Menține un catalog de instrumente disponibile și capabilitățile lor.
+    - **Autentificare**: Verifică permisiunile pentru accesul la instrumente.
+    - **Gestionarea solicitărilor**: Procesează solicitările de instrumente primite de la model.
+    - **Formatarea răspunsurilor**: Structurează rezultatele instrumentelor într-un format înțeles de model.
+- **Executarea Serverului MCP**:
+    - **Gazda MCP** direcționează apelurile către unul sau mai multe **Servere MCP**, fiecare expunând funcții specializate (de exemplu căutare, calcule, interogări baze de date).
+    - **Serverele MCP** efectuează operațiunile respective și returnează rezultatele către **Gazda MCP** într-un format consistent.
+    - **Gazda MCP** formatează și transmit aceste rezultate către **Modelul AI**.
 - **Finalizarea răspunsului**:
-    - **Modelul AI** încorporează rezultatele uneltelor într-un răspuns final.
-    - **Gazda MCP** trimite acest răspuns înapoi către **Clientul MCP**, care îl livrează utilizatorului final sau software-ului care a făcut apelul.
+    - **Modelul AI** încorporează rezultatele instrumentelor într-un răspuns final.
+    - **Gazda MCP** trimite acest răspuns înapoi către **Clientul MCP**, care îl livrează utilizatorului final sau software-ului care a apelat.
     
 
 ```mermaid
@@ -115,16 +122,16 @@ description: A diagram showing the flows of the components in MCP.
 graph TD
     Client[Client/Aplicație MCP] -->|Trimite Cerere| H[Gazdă MCP]
     H -->|Invocă| A[Model AI]
-    A -->|Cerere Apel Unealtă| H
-    H -->|MCP Protocol| T1[MCP Server Tool 01: Căutare Web]
-    H -->|MCP Protocol| T2[MCP Server Tool 02: Unealtă Calculator]
-    H -->|MCP Protocol| T3[MCP Server Tool 03: Unealtă Acces Bază de date]
-    H -->|MCP Protocol| T4[MCP Server Tool 04: Unealtă Sistem de Fișiere]
+    A -->|Cerere Apel Instrument| H
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Căutare Web
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Instrument Calculator
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Instrument Acces Bază de Date
+    H -->|MCP Protocol| T4[MCP Server Tool 04: Instrument Sistem de Fișiere
     H -->|Trimite Răspuns| Client
 
-    subgraph "Componente Gazdă MCP"
+    subgraph "Componentele Gazdei MCP"
         H
-        G[Registru Unealtă]
+        G[Registru Instrumente]
         I[Autentificare]
         J[Gestionar Cereri]
         K[Formatare Răspuns]
@@ -148,46 +155,46 @@ graph TD
     style T4 fill:#c2f0c2,stroke:#333,stroke-width:1px
 ```
 
-## 👨‍💻 Cum să construiești un server MCP (cu exemple)
+## 👨‍💻 Cum să construiești un Server MCP (Cu exemple)
 
-Serverele MCP îți permit să extinzi capabilitățile LLM-urilor oferind date și funcționalitate.
+Serverele MCP îți permit să extinzi capabilitățile LLM oferind date și funcționalitate.
 
-Pregătit să încerci? Iată SDK-uri specifice limbajului și/sau stack-ului cu exemple de creare a unor servere MCP simple în diferite limbaje/stack-uri:
+Ești gata să încerci? Iată SDK-uri specifice limbajelor și/sau stack-urilor cu exemple de creare a unor servere MCP simple în diferite limbaje/stack-uri:
 
-- **Python SDK**: https://github.com/modelcontextprotocol/python-sdk
+- **SDK Python**: https://github.com/modelcontextprotocol/python-sdk
 
-- **TypeScript SDK**: https://github.com/modelcontextprotocol/typescript-sdk
+- **SDK TypeScript**: https://github.com/modelcontextprotocol/typescript-sdk
 
-- **Java SDK**: https://github.com/modelcontextprotocol/java-sdk
+- **SDK Java**: https://github.com/modelcontextprotocol/java-sdk
 
-- **C#/.NET SDK**: https://github.com/modelcontextprotocol/csharp-sdk
+- **SDK C#/.NET**: https://github.com/modelcontextprotocol/csharp-sdk
 
 
-## 🌍 Cazuri de utilizare din lumea reală pentru MCP
+## 🌍 Cazuri reale de utilizare ale MCP
 
 MCP permite o gamă largă de aplicații prin extinderea capabilităților AI:
 
-| **Aplicație**                | **Descriere**                                                                |
-|-----------------------------|-------------------------------------------------------------------------------|
-| Integrare date în întreprinderi | Conectează LLM-uri la baze de date, CRM-uri sau unelte interne                |
-| Sisteme AI agentice          | Permite agenților autonomi acces la unelte și fluxuri decizionale             |
-| Aplicații multimodale        | Combină unelte pentru text, imagine și audio într-o singură aplicație AI unificată |
-| Integrare date în timp real  | Adu date live în interacțiunile AI pentru rezultate mai exacte și actuale     |
+| **Aplicație**                 | **Descriere**                                                               |
+|------------------------------|-----------------------------------------------------------------------------|
+| Integrarea datelor enterprise | Conectează LLM-uri la baze de date, CRM-uri sau instrumente interne         |
+| Sisteme AI agentice          | Permite agenți autonomi cu acces la instrumente și fluxuri decizionale      |
+| Aplicații multi-modale       | Combină instrumente de text, imagine și audio într-o singură aplicație AI  |
+| Integrarea datelor în timp real | Adu date live în interacțiunile AI pentru rezultate mai precise și actuale |
 
 
 ### 🧠 MCP = Standard universal pentru interacțiunile AI
 
-Model Context Protocol (MCP) acționează ca un standard universal pentru interacțiunile AI, similar modului în care USB-C a standardizat conexiunile fizice pentru dispozitive. În lumea AI, MCP oferă o interfață consistentă, permițând modelelor (client) să se integreze fără probleme cu uneltele externe și furnizorii de date (servere). Aceasta elimină nevoia unor protocoale diverse, personalizate pentru fiecare API sau sursa de date.
+Model Context Protocol (MCP) acționează ca un standard universal pentru interacțiunile AI, la fel cum USB-C a standardizat conexiunile fizice pentru dispozitive. În lumea AI, MCP oferă o interfață consistentă, permițând modelelor (clienți) să se integreze fără probleme cu instrumente externe și furnizori de date (servere). Aceasta elimină necesitatea unor protocoale diverse, personalizate pentru fiecare API sau sursă de date.
 
-În cadrul MCP, o unealtă compatibilă MCP (numită server MCP) urmează un standard unificat. Aceste servere pot lista uneltele sau acțiunile oferite și execută aceste acțiuni când sunt solicitate de un agent AI. Platformele agent AI care suportă MCP pot descoperi uneltele disponibile de la servere și le pot invoca prin acest protocol standard.
+Sub MCP, un instrument compatibil MCP (denumit server MCP) urmează un standard unificat. Aceste servere pot lista instrumentele sau acțiunile pe care le oferă și pot executa aceste acțiuni când sunt solicitate de un agent AI. Platformele agent AI care suportă MCP sunt capabile să descopere instrumentele disponibile de la servere și să le invoce prin acest protocol standard.
 
-### 💡 Facilitează accesul la cunoștințe
+### 💡 Facilitează accesul la cunoaștere
 
-Dincolo de oferirea uneltelor, MCP facilitează și accesul la cunoaștere. Permite aplicațiilor să ofere context modelelor de limbaj mare (LLM) prin conectarea lor la diverse surse de date. De exemplu, un server MCP poate reprezenta un depozit de documente al unei companii, permițând agenților să extragă informații relevante la cerere. Un alt server ar putea gestiona acțiuni specifice precum trimiterea de emailuri sau actualizarea înregistrărilor. Din perspectiva agentului, acestea sunt doar unelte ce pot fi folosite – unele unelte furnizează date (context de cunoaștere), iar altele execută acțiuni. MCP gestionează eficient ambele.
+Dincolo de oferirea instrumentelor, MCP facilitează și accesul la cunoaștere. Permite aplicațiilor să ofere context modelelor lingvistice mari (LLM) prin conectarea lor la diverse surse de date. De exemplu, un server MCP ar putea reprezenta un depozit de documente al unei companii, permițând agenților să obțină informații relevante la cerere. Un alt server ar putea gestiona acțiuni specifice, cum ar fi trimiterea de e-mailuri sau actualizarea înregistrărilor. Din perspectiva agentului, acestea sunt pur și simplu instrumente pe care le poate folosi – unele instrumente returnează date (context de cunoaștere), altele execută acțiuni. MCP gestionează eficient ambele.
 
-Un agent care se conectează la un server MCP învață automat capabilitățile disponibile ale serverului și datele accesibile printr-un format standard. Această standardizare permite disponibilitatea dinamică a uneltelor. De exemplu, adăugarea unui nou server MCP în sistemul agentului face ca funcțiile sale să fie imediat utilizabile fără a necesita personalizări suplimentare ale instrucțiunilor agentului.
+Un agent care se conectează la un server MCP învață automat capabilitățile serverului și datele accesibile printr-un format standard. Această standardizare permite disponibilitatea dinamică a instrumentelor. De exemplu, adăugarea unui nou server MCP în sistemul unui agent face funcțiile acestuia imediat utilizabile fără a necesita personalizări suplimentare ale instrucțiunilor agentului.
 
-Această integrare simplificată se aliniază cu fluxul ilustrat în diagrama următoare, unde serverele oferă atât unelte cât și cunoaștere, asigurând colaborare fără întreruperi între sisteme.
+Această integrare simplificată se aliniază fluxului ilustrat în diagrama următoare, unde serverele oferă atât instrumente cât și cunoaștere, asigurând o colaborare fără probleme între sisteme.
 
 ### 👉 Exemplu: Soluție agent scalabilă
 
@@ -209,22 +216,22 @@ graph TD
 
     subgraph Server A
         KnowledgeA[Cunoștințe]
-        ToolsA[Unelte]
+        ToolsA[Instrumente]
     end
 
     subgraph Server B
         KnowledgeB[Cunoștințe]
-        ToolsB[Unelte]
+        ToolsB[Instrumente]
     end
 ```
-Connectorul Universal permite serverelor MCP să comunice și să partajeze capabilități între ele, permițând ServerA să delege sarcini către ServerB sau să acceseze uneltele și cunoștințele acestuia. Aceasta federare a uneltelor și datelor între servere susține arhitecturi agentice scalabile și modulare. Deoarece MCP standardizează expunerea uneltelor, agenții pot descoperi și direcționa dinamic cererile între servere fără integrări codate manual.
+Conectorul Universal permite serverelor MCP să comunice și să își partajeze capabilitățile, permițând ServerA să delegheze sarcini lui ServerB sau să îi acceseze instrumentele și cunoștințele. Aceasta federă instrumentele și datele între servere, sprijinind arhitecturi agentice scalabile și modulare. Deoarece MCP standardizează expunerea instrumentelor, agenții pot descoperi dinamic și direcționa solicitările între servere fără integrări hardcodate.
 
 
-Federarea uneltelor și cunoștințelor: Uneltele și datele pot fi accesate prin servere diferite, permițând arhitecturi agentice mai scalabile și modulare.
+Federația instrumentelor și cunoștințelor: Instrumentele și datele pot fi accesate între servere, permițând arhitecturi agentice mai scalabile și modulare.
 
-### 🔄 Scenarii avansate MCP cu integrarea LLM pe partea clientului
+### 🔄 Scenarii avansate MCP cu integrare LLM pe partea clientului
 
-Dincolo de arhitectura MCP de bază, există scenarii avansate unde atât clientul, cât și serverul conțin LLM-uri, permițând interacțiuni mai sofisticate. În diagrama următoare, **Aplicația Client** ar putea fi un IDE cu un număr de unelte MCP disponibile pentru utilizarea de către LLM:
+Dincolo de arhitectura MCP de bază, există scenarii avansate în care atât clientul, cât și serverul conțin LLM-uri, permițând interacțiuni mai sofisticate. În diagrama următoare, **Aplicația Client** ar putea fi un IDE cu un număr de instrumente MCP disponibile pentru utilizarea de către LLM:
 
 ```mermaid
 ---
@@ -242,38 +249,38 @@ sequenceDiagram
     
     %% Faza de Descoperire
     rect rgb(220, 240, 255)
-        Note over ClientApp, Server2: FAZA DE DESCOPERIRE A UNEI UNELTE
-        ClientApp->>+Server1: Cerere pentru unelte/resurse disponibile
+        Note over ClientApp, Server2: FAZA DE DESCOPERIRE A UNEI UNELETE
+        ClientApp->>+Server1: Solicită unelte/resurse disponibile
         Server1-->>-ClientApp: Returnează lista de unelte (JSON)
-        ClientApp->>+Server2: Cerere pentru unelte/resurse disponibile
+        ClientApp->>+Server2: Solicită unelte/resurse disponibile
         Server2-->>-ClientApp: Returnează lista de unelte (JSON)
-        Note right of ClientApp: Stochează catalogul<br/>combinat de unelte local
+        Note right of ClientApp: Stochează catalogul combinat<br/>de unelte local
     end
     
-    %% Interacțiunea cu Utilizatorul
+    %% Interacțiune cu Utilizatorul
     rect rgb(255, 240, 220)
         Note over User, ClientLLM: FAZA DE INTERACȚIUNE CU UTILIZATORUL
         User->>+ClientApp: Introdu prompt în limbaj natural
-        ClientApp->>+ClientLLM: Trimite mai departe promptul + catalogul de unelte
+        ClientApp->>+ClientLLM: Trimite prompt + catalog de unelte
         ClientLLM->>-ClientLLM: Analizează promptul și selectează uneltele
     end
     
-    %% Scenariul A: Apel Direct al Uneletei
-    alt Apel Direct al Uneletei
+    %% Scenariu A: Apelare Directă a Uneletei
+    alt Apelare Directă a Uneletei
         rect rgb(220, 255, 220)
-            Note over ClientApp, Server1: SCENARIUL A: APEL DIRECT AL UNELETEI
-            ClientLLM->>+ClientApp: Solicită execuția unei unelte
+            Note over ClientApp, Server1: SCENARIU A: APEL DIRECT LA UNEALTĂ
+            ClientLLM->>+ClientApp: Solicită executarea uneltei
             ClientApp->>+Server1: Execută unealta specifică
             Server1-->>-ClientApp: Returnează rezultatele
             ClientApp->>+ClientLLM: Procesează rezultatele
-            ClientLLM-->>-ClientApp: Generează răspunsul
+            ClientLLM-->>-ClientApp: Generează răspuns
             ClientApp-->>-User: Afișează răspunsul final
         end
     
-    %% Scenariul B: Negocierea Funcționalităților (stil VS Code)
-    else Negocierea Funcționalităților (stil VS Code)
+    %% Scenariu B: Negociere de Funcționalități (stil VS Code)
+    else Negociere de Funcționalități (stil VS Code)
         rect rgb(255, 220, 220)
-            Note over ClientApp, ServerLLM: SCENARIUL B: NEGOCIEREA FUNCȚIONALITĂȚILOR
+            Note over ClientApp, ServerLLM: SCENARIU B: NEGOCIERE DE FUNCȚIONALITĂȚI
             ClientLLM->>+ClientApp: Identifică capabilitățile necesare
             ClientApp->>+Server2: Negociază funcționalități/capabilități
             Server2->>+ServerLLM: Solicită context suplimentar
@@ -282,7 +289,7 @@ sequenceDiagram
             ClientApp->>+Server2: Apelează uneltele negociate
             Server2-->>-ClientApp: Returnează rezultatele
             ClientApp->>+ClientLLM: Procesează rezultatele
-            ClientLLM-->>-ClientApp: Generează răspunsul
+            ClientLLM-->>-ClientApp: Generează răspuns
             ClientApp-->>-User: Afișează răspunsul final
         end
     end
@@ -293,34 +300,34 @@ sequenceDiagram
 Iată beneficiile practice ale utilizării MCP:
 
 - **Actualitate**: Modelele pot accesa informații actualizate dincolo de datele lor de antrenament
-- **Extinderea capacităților**: Modelele pot folosi unelte specializate pentru sarcini pentru care nu au fost antrenate
-- **Reducerea halucinațiilor**: Sursele externe de date oferă o bază factuală
-- **Confidențialitate**: Datele sensibile pot rămâne în medii securizate în loc să fie încorporate în comenzi
+- **Extinderea capabilităților**: Modelele pot folosi instrumente specializate pentru sarcini pentru care nu au fost antrenate
+- **Reducerea halucinațiilor**: Sursele de date externe oferă fundament factual
+- **Confidențialitate**: Datele sensibile pot rămâne în medii securizate în loc să fie încorporate în prompturi
 
 ## 📌 Concluzii cheie
 
 Următoarele sunt concluzii cheie pentru utilizarea MCP:
 
-- **MCP** standardizează modul în care modelele AI interacționează cu uneltele și datele
+- **MCP** standardizează modul în care modelele AI interacționează cu instrumente și date
 - Promovează **extensibilitate, consistență și interoperabilitate**
-- MCP ajută la **reducerea timpului de dezvoltare, îmbunătățirea fiabilității și extinderea capacităților modelelor**
+- MCP ajută la **reducerea timpului de dezvoltare, îmbunătățirea fiabilității și extinderea capabilităților modelului**
 - Arhitectura client-server **permite aplicații AI flexibile și extensibile**
 
 ## 🧠 Exercițiu
 
-Gândește-te la o aplicație AI pe care dorești să o construiești.
+Gândește-te la o aplicație AI pe care ești interesat să o construiești.
 
-- Ce **unelte externe sau date** ar putea să-i îmbunătățească capabilitățile?
+- Ce **instrumente externe sau date** ar putea îmbunătăți capabilitățile acesteia?
 - Cum ar putea MCP să facă integrarea **mai simplă și mai fiabilă?**
 
 ## Resurse suplimentare
 
-- [Repository MCP GitHub](https://github.com/modelcontextprotocol)
+- [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 
 
-## Ce urmează
+## Următorul pas
 
-Următor: [Capitolul 1: Concepte de bază](../01-CoreConcepts/README.md)
+Următorul: [Capitolul 1: Concepte de bază](../01-CoreConcepts/README.md)
 
 ---
 

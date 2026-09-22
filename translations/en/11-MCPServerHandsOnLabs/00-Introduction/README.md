@@ -1,5 +1,10 @@
 # Introduction to MCP Database Integration
 
+> [!NOTE]
+> Diagrams or code in this learning path that use HTTP/SSE or initialization
+> options reflect the sample's MCP `2025-11-25` dependencies. For new
+> implementations, use `2026-07-28` stateless requests and Streamable HTTP.
+
 ## 🎯 What This Lab Covers
 
 This introduction lab provides a comprehensive overview of building Model Context Protocol (MCP) servers with database integration. You'll understand the business case, technical architecture, and real-world applications through the Zava Retail analytics use case at https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.

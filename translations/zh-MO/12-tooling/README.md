@@ -1,31 +1,33 @@
 # 🚀 MCP 工具
 
-## 🧠 MCP 數據庫整合學習路徑概覽
+## 🧠 MCP 數據庫整合學習路徑概述
 
-在這裡你將學習如何使用採用 MCP 的工具。當你將 MCP 伺服器連接到這些工具時，你的使用體驗將會提升。
+在這裡你將學習如何使用使用 MCP 的工具。當你將 MCP 伺服器連接到這些工具時，使用體驗將會提升。
 
 ## 🔗 官方 MCP 資源
 
-- 📘 [MCP 文件](https://modelcontextprotocol.io/) – 詳盡的教學和使用指南
-- 📜 [MCP 規範 (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – 協議架構和技術參考
-- 🧑‍💻 [MCP GitHub 倉庫](https://github.com/modelcontextprotocol) – 開源 SDK、工具和程式碼範例
-- 🌐 [MCP 社區](https://github.com/orgs/modelcontextprotocol/discussions) – 加入討論並為社區做出貢獻
-- 🔒 [OWASP MCP 前十名](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 安全最佳實務與風險緩解措施
+- 📘 [MCP 文件](https://modelcontextprotocol.io/) – 詳細教學與使用者指南
+- 📜 [MCP 規範 (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – 協議架構與技術參考
+- 🧑‍💻 [MCP GitHub 倉庫](https://github.com/modelcontextprotocol) – 開源 SDK、工具及範例程式碼
+- 🌐 [MCP 社區](https://github.com/orgs/modelcontextprotocol/discussions) – 參加討論並貢獻社群
+- 🔒 [OWASP MCP 十大](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 安全最佳實踐與風險緩解
+
+
 
 ## 🌟 社區與支援
 
-### 尋求協助
+### 獲取幫助
 
-- **Azure AI Discord**: [加入以獲得專家支援](https://discord.com/invite/ByRwuEEgH4)
-- **MCP 社區**: [加入更廣泛的 MCP 討論](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**： [加入取得專家支援](https://discord.com/invite/ByRwuEEgH4)
+- **MCP 社區**： [加入更廣泛的 MCP 討論](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 準備開始了嗎？
 
-開始你的旅程，使用 **[GitHub Copilot 應用](./01-copilot-app/README.md)**
+開始你的旅程，使用 **[GitHub Copilot 應用程式](./01-copilot-app/README.md)**
 
 ---
 
-*掌握這些使用 MCP 的工具，提升生產力並實現無縫整合。*
+*掌握這些工具中的 MCP 以提升生產力及實現無縫整合。*
 
 ---
 

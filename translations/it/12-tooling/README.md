@@ -2,12 +2,12 @@
 
 ## 🧠 Panoramica del Percorso di Apprendimento sull'Integrazione del Database MCP
 
-Qui imparerai come usare gli strumenti che utilizzano MCP. La tua esperienza nell'usare questi strumenti migliorerà man mano che collegherai i server MCP a essi.
+Qui imparerai come utilizzare gli strumenti che usano MCP. La tua esperienza con questi strumenti migliorerà man mano che collegherai i server MCP ad essi.
 
 ## 🔗 Risorse Ufficiali MCP
 
-- 📘 [Documentazione MCP](https://modelcontextprotocol.io/) – Tutorial dettagliati e guide per utenti
-- 📜 [Specifiche MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Architettura del protocollo e riferimenti tecnici
+- 📘 [Documentazione MCP](https://modelcontextprotocol.io/) – Tutorial dettagliati e guide per l'utente
+- 📜 [Specifiche MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Architettura del protocollo e riferimenti tecnici
 - 🧑‍💻 [Repository GitHub MCP](https://github.com/modelcontextprotocol) – SDK open-source, strumenti e esempi di codice
 - 🌐 [Comunità MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Partecipa alle discussioni e contribuisci alla comunità
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Best practice di sicurezza e mitigazioni dei rischi
@@ -23,11 +23,11 @@ Qui imparerai come usare gli strumenti che utilizzano MCP. La tua esperienza nel
 
 ## 🚀 Pronto a Iniziare?
 
-Inizia il tuo percorso con **[app GitHub Copilot](./01-copilot-app/README.md)**
+Inizia il tuo viaggio con **[app GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Padroneggia questi strumenti che utilizzano MCP per una produttività migliorata e un'integrazione senza problemi.*
+*Padroneggia questi strumenti usando MCP per una produttività migliorata e un'integrazione senza soluzione di continuità.*
 
 ---
 

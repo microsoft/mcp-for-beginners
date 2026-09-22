@@ -1,31 +1,31 @@
-# Asiakkaan luominen
+# Asiakasohjelman luominen
 
-Asiakkaat ovat räätälöityjä sovelluksia tai skriptejä, jotka kommunikoivat suoraan MCP-palvelimen kanssa pyytääkseen resursseja, työkaluja ja kehotteita. Toisin kuin tarkastustyökalun käyttäminen, joka tarjoaa graafisen käyttöliittymän palvelimen kanssa vuorovaikutukseen, oman asiakkaan kirjoittaminen mahdollistaa ohjelmalliset ja automatisoidut toiminnot. Tämä antaa kehittäjille mahdollisuuden integroida MCP-ominaisuuksia omiin työnkulkuihinsa, automatisoida tehtäviä ja rakentaa erityistarpeisiin räätälöityjä ratkaisuja.
+Asiakasohjelmat ovat mukautettuja sovelluksia tai skriptejä, jotka kommunikoivat suoraan MCP-palvelimen kanssa pyytääkseen resursseja, työkaluja ja kehotteita. Toisin kuin tarkastustyökalun käyttäminen, joka tarjoaa graafisen käyttöliittymän palvelimen kanssa vuorovaikutukseen, oman asiakasohjelman kirjoittaminen mahdollistaa ohjelmallisen ja automaattisen vuorovaikutuksen. Tämä antaa kehittäjille mahdollisuuden integroida MCP:n ominaisuudet omiin työnkulkuihinsa, automatisoida tehtäviä ja rakentaa erityistarpeisiin räätälöityjä ratkaisuja.
 
 ## Yleiskatsaus
 
-Tämä oppitunti esittelee asiakkaiden käsitteen Model Context Protocol (MCP) -ekosysteemissä. Opit kirjoittamaan oman asiakkaan ja liittämään sen MCP-palvelimeen.
+Tässä oppitunnissa esitellään asiakkaiden käsite Model Context Protocol (MCP) -ekosysteemissä. Opit kirjoittamaan oman asiakkaan ja yhdistämään sen MCP-palvelimeen.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopuksi osaat:
+Oppitunnin lopussa osaat:
 
 - Ymmärtää, mitä asiakas voi tehdä.
-- Kirjoittaa oman asiakkaan.
-- Yhdistää ja testata asiakasta MCP-palvelimen kanssa varmistaaksesi, että palvelin toimii odotetusti.
+- Kirjoittaa oman asiakasohjelman.
+- Yhdistää ja testata asiakas MCP-palvelimella varmistaaksesi, että palvelin toimii odotetusti.
 
-## Mitä asiakkaan kirjoittamiseen kuuluu?
+## Mitä asiakasohjelman kirjoittaminen sisältää?
 
-Asiakkaan kirjoittamiseksi sinun tulee tehdä seuraavat asiat:
+Asiakasohjelman kirjoittamiseksi sinun tulee tehdä seuraavat asiat:
 
-- **Tuoda oikeat kirjastot**. Käytät samaa kirjastoa kuin aiemmin, mutta erilaisia rakenteita.
-- **Ilmentää asiakas**. Tämä sisältää asiakkaan instanssin luomisen ja sen liittämisen valittuun siirtomenetelmään.
-- **Päättää, mitä resursseja listataan**. MCP-palvelimellasi on resursseja, työkaluja ja kehotteita, sinun täytyy päättää, mitä niistä listataan.
-- **Integroida asiakas isäntäohjelmaan**. Kun tiedät palvelimen ominaisuudet, sinun tulee integroida tämä isäntäohjelmaasi niin, että jos käyttäjä kirjoittaa kehotteen tai muun komennon, vastaava palvelimen toiminto kutsutaan.
+- **Tuoda oikeat kirjastot**. Käytät samaa kirjastoa kuin aiemmin, vain eri rakenteilla.
+- **Luoda asiakasinstanssi**. Tämä tarkoittaa asiakasinstanssin luomista ja sen yhdistämistä valittuun siirtomenetelmään.
+- **Päättää, mitä resursseja listataan**. MCP-palvelimessasi on resursseja, työkaluja ja kehotteita, sinun täytyy päättää, mitä niistä listaat.
+- **Integroida asiakas isäntäohjelmaan**. Kun tiedät palvelimen ominaisuudet, sinun täytyy integroida tämä isäntäohjelmaasi, jotta jos käyttäjä kirjoittaa kehotteen tai muun komennon, vastaava palvelinominaisuus kutsutaan.
 
-Nyt kun ymmärrämme yleisellä tasolla, mitä olemme tekemässä, katsotaan seuraavaksi esimerkkiä.
+Nyt kun tiedämme korkean tason käsityksen siitä, mitä olemme tekemässä, katsotaan seuraavaksi esimerkkiasiakas.
 
-### Esimerkki asiakkaasta
+### Esimerkkiasiakas
 
 Katsotaan tätä esimerkkiasiakasta:
 
@@ -52,7 +52,7 @@ await client.connect(transport);
 // Listaa kehotteet
 const prompts = await client.listPrompts();
 
-// Hae kehote
+// Hae kehotetta
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 Edellisessä koodissa me:
 
-- Tuomme kirjastot
-- Luomme asiakkaan instanssin ja yhdistämme sen käyttämällä stdio-siirtoa.
-- Listaamme kehotteet, resurssit ja työkalut ja kutsumme niitä kaikkia.
+- Toimme kirjastot
+- Loimme asiakkaan instanssin ja yhdistimme sen käyttäen stdio-siirtoa.
+- Listasimme kehotteet, resurssit ja työkalut ja kutsuimme ne kaikki.
 
-Siinä se, asiakas, joka voi keskustella MCP-palvelimen kanssa.
+Tässä se on, asiakas, joka voi puhua MCP-palvelimelle.
 
-Käydään seuraavassa harjoitustehtävässä rauhassa läpi kukin koodinpätkä ja selitetään, mitä tapahtuu.
+Otetaan seuraavassa harjoituksessa aikaa käydä läpi jokainen koodinpätkä ja selittää, mitä siellä tapahtuu.
 
-## Harjoitus: Asiakkaan kirjoittaminen
+## Harjoitus: Asiakasohjelman kirjoittaminen
 
-Kuten edellä mainittiin, otetaan aikaa koodin selittämiseen, ja voit ehdottomasti koodata mukana, jos haluat.
+Kuten edellä sanottiin, otetaan aikaa koodin selittämiseen, ja voit ehdottomasti kokeilla koodata samalla.
 
 ### -1- Kirjastojen tuonti
 
-Tuodaan tarvitsemamme kirjastot, tarvitsemme viitteet asiakkaaseen ja valittuun siirtoprotokollaan, stdio. stdio on protokolla paikallisella koneella ajettaville asioille. SSE on toinen siirtoprotokolla, jota esitämme tulevissa luvuissa, mutta se on toinen vaihtoehtosi. Nyt jatketaan kuitenkin stdio:n kanssa.
+Tuodaan tarvitsemamme kirjastot, tarvitsemme viittaukset asiakkaaseen ja valittuun siirtoprotokollaan, stdioon. stdio on protokolla paikallisella koneella ajettaville asioille. SSE on toinen siirtoprotokolla, jonka esittelemme tulevissa luvuissa, mutta toistaiseksi käytetään stdioa.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Javalla luot asiakkaan, joka yhdistyy MCP-palvelimeen edellisestä harjoituksesta. Käyttäen samaa Java Spring Boot -projektirakennetta kuin [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) -osiossa, luo uusi Java-luokka nimeltä `SDKClient` kansioon `src/main/java/com/microsoft/mcp/sample/client/` ja lisää seuraavat importit:
+Javassa luot asiakkaan, joka yhdistyy edellisen harjoituksen MCP-palvelimeen. Käyttäen samaa Java Spring Boot -projektirakennetta kuin [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), luo uusi Java-luokka nimeltä `SDKClient` kansioon `src/main/java/com/microsoft/mcp/sample/client/` ja lisää seuraavat importit:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Sinun täytyy lisätä seuraavat riippuvuudet `Cargo.toml`-tiedostoosi.
+Sinun tulee lisätä seuraavat riippuvuudet `Cargo.toml`-tiedostoosi.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Tästä voit tuoda tarvittavat kirjastot asiakkaasi koodiin.
+Tämän jälkeen voit tuoda tarvittavat kirjastot asiakaskoodissasi.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Siirrytään instansointiin.
+Siirrytään instansiointiin.
 
-### -2- Asiakkaan ja siirron instansointi
+### -2- Asiakkaan ja siirron instansiointi
 
-Meidän täytyy luoda instanssit siirrolle ja asiakkaalle:
+Luomme instanssit siirrolle ja asiakkaalle:
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Loimme stdio-siirto-instanssin. Huomaa, miten se määrittää komennon ja argumentit palvelimen löytämiseksi ja käynnistämiseksi, koska se on asia, jonka meidän täytyy tehdä kirjoittaessamme asiakasta.
+- Luoneet stdio-siirto-instanssin. Huomaa, miten siinä määritellään komento ja argumentit palvelimen löytämiseksi ja käynnistämiseksi, koska se on tehtävä, kun luomme asiakkaan.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ Edellisessä koodissa me:
     });
     ```
 
-- Ilmestyimme asiakkaan antamalla sille nimen ja version.
+- Instansioineet asiakkaan antamalla sille nimi ja versio.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ Edellisessä koodissa me:
     });
     ```
 
-- Yhdistimme asiakkaan valittuun siirtoon.
+- Yhdistäneet asiakkaan valittuun siirtoon.
 
     ```typescript
     await client.connect(transport);
@@ -218,7 +218,7 @@ Edellisessä koodissa me:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Luo palvelimen parametrit stdio-yhteydelle
+# Luo palvelinparametrit stdio-yhteydelle
 server_params = StdioServerParameters(
     command="mcp",  # Suoritettava tiedosto
     args=["run", "server.py"],  # Valinnaiset komentoriviparametrit
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Toimme tarvittavat kirjastot
-- Instansioimme palvelimen parametrien olion, koska käytämme sitä palvelimen ajamiseksi, jotta voimme yhdistää siihen asiakkaalla.
-- Määrittelimme metodin `run`, joka puolestaan kutsuu `stdio_client`-funktiota, joka käynnistää asiakassession.
-- Loimme sisäänkäyntipisteen, jossa annamme `run`-metodin `asyncio.run`-funktiolle.
+- Tuoneet tarvittavat kirjastot
+- Instansioineet palvelimen parametrien objektin, jota käytämme palvelimen ajamiseen, jotta voimme yhdistää siihen asiakkaallamme.
+- Määritelleet metodin `run`, joka puolestaan kutsuu `stdio_client`-funktiota, joka käynnistää asiakassession.
+- Luoneet pääsynkäännöspisteen, jossa annamme `run`-metodin `asyncio.run`-funktiolle.
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Toimme tarvittavat kirjastot.
-- Loimme stdio-siirron ja asiakkaan `mcpClient`. Tätä käytämme työkalujen listaamiseen ja käynnistämiseen MCP-palvelimella.
+- Tuoneet tarvittavat kirjastot.
+- Luoneet stdio-siirron ja asiakasobjektin `mcpClient`. Tätä käytämme työkaluominaisuuksien listaamiseen ja kutsumiseen MCP-palvelimella.
 
-Huomaa, että "Arguments"-kentässä voit osoittaa joko *.csproj*-tiedostoon tai suoritettavaan tiedostoon.
+Huomaa, että "Arguments"-kohtaan voi antaa joko *.csproj*-tiedoston tai suoritustiedoston.
 
 #### Java
 
@@ -306,20 +306,20 @@ public class SDKClient {
 }
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Loimme päämetodin, joka asettaa SSE-siirron osoittamaan `http://localhost:8080`-osoitteeseen, missä MCP-palvelimemme toimii.
-- Loimme asiakkaan luokan, joka ottaa siirron konstruktoriparametrina.
-- `run`-metodissa loimme synkronisen MCP-asiakkaan käyttäen siirtoa ja alustimme yhteyden.
-- Käytimme SSE (Server-Sent Events) siirtoa, joka soveltuu HTTP-pohjaisiin yhteyksiin Java Spring Boot MCP-palvelimien kanssa.
+- Luoneet päämetodin, joka asettaa SSE-siirron osoitteeseen `http://localhost:8080`, missä MCP-palvelimemme on käynnissä.
+- Luoneet asiakasluokan, joka ottaa siirron konstruktoriparametrina.
+- `run`-metodissa luotu synkroninen MCP-asiakas käyttäen tätä siirtoa ja alustettu yhteys.
+- Käytetty SSE (Server-Sent Events) -siirtoa, joka sopii HTTP-pohjaiseen kommunikointiin Java Spring Boot MCP-palvelimien kanssa.
 
 #### Rust
 
-Huomaa, että tämä Rust-asiakas olettaa palvelimen olevan samaan hakemistoon sijoittuva sisaraprojekti nimeltä "calculator-server". Alla oleva koodi käynnistää palvelimen ja yhdistää siihen.
+Huomioi, että tämä Rust-asiakas olettaa palvelimen olevan samaan hakemistoon sijoittuva "calculator-server" -niminen sisarprojekti. Alla oleva koodi käynnistää palvelimen ja yhdistää siihen.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Oleta, että palvelin on samaan hakemistoon sijoitettu sisarprojekti nimeltä "calculator-server"
+    // Oleta, että palvelin on sisarprojekti nimeltä "calculator-server" samassa hakemistossa
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -334,51 +334,51 @@ async fn main() -> Result<(), RmcpError> {
         )
         .await?;
 
-    // TODO: Alusta
+    // TEE: Alusta
 
-    // TODO: Listaa työkalut
+    // TEE: Listaa työkalut
 
-    // TODO: Kutsu add-työkalu argumenteilla = {"a": 3, "b": 2}
+    // TEE: Kutsu lisää työkalu argumenteilla = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Palvelimen ominaisuuksien listaaminen
+### -3- Palvelinominaisuuksien listaaminen
 
-Nyt meillä on asiakas, joka voi yhdistää, jos ohjelma ajetaan. Kuitenkaan se ei vielä listaa ominaisuuksiaan, tehdään se seuraavaksi:
+Nyt meillä on asiakas, joka voi yhdistää ohjelman ajaessa. Se ei kuitenkaan vielä listaa ominaisuuksiaan, tehdään se seuraavaksi:
 
 #### TypeScript
 
 ```typescript
-// Luo kehotteita
+// Luettele kehotteet
 const prompts = await client.listPrompts();
 
-// Luo resursseja
+// Luettele resurssit
 const resources = await client.listResources();
 
-// luo työkaluja
+// luettele työkalut
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# Listaa käytettävissä olevat resurssit
+# Listaa saatavilla olevat resurssit
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Listaa käytettävissä olevat työkalut
+# Listaa saatavilla olevat työkalut
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Tässä listaamme saatavilla olevat resurssit `list_resources()` ja työkalut `list_tools` ja tulostamme ne.
+Tässä listataan saatavilla olevat resurssit `list_resources()` ja työkalut `list_tools`, ja tulostetaan ne.
 
 #### .NET
 
@@ -389,7 +389,7 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Yllä esimerkki, miten voimme listata työkalut palvelimella. Jokaiselle työkalulle tulostamme sen nimen.
+Alla esimerkki siitä, kuinka voimme listata palvelimen työkalut. Tulostamme kunkin työkalun nimen.
 
 #### Java
 
@@ -402,17 +402,17 @@ System.out.println("Available Tools = " + toolsList);
 client.ping();
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Kutsumme `listTools()` saadaksemme kaikki saatavilla olevat työkalut MCP-palvelimelta.
-- Käytämme `ping()` vahvistaaksemme, että palvelimeen yhdistäminen toimii.
-- `ListToolsResult` sisältää tietoa kaikista työkaluista, mukaan lukien nimet, kuvaukset ja syöttökaaviot.
+- Kutsuneet `listTools()` saadaksemme kaikki saatavilla olevat työkalut MCP-palvelimelta.
+- Käyttäneet `ping()` varmistaaksemme, että yhteys palvelimeen toimii.
+- `ListToolsResult` sisältää tiedot kaikista työkaluista, mukaan lukien nimet, kuvaukset ja syöteskeemat.
 
-Hienoa, nyt olemme saaneet kaikki ominaisuudet talteen. Kysymys on, milloin käytämme niitä? Tämä asiakas on melko yksinkertainen siinä mielessä, että meidän täytyy nimenomaan kutsua ominaisuudet, kun haluamme niitä. Seuraavassa luvussa luomme edistyneemmän asiakkaan, jolla on käytössään oma suuri kielimalli, LLM. Nyt kuitenkin katsotaan, miten voimme kutsua palvelimen ominaisuuksia:
+Hienoa, nyt olemme saaneet kaikki ominaisuudet talteen. Milloin sitten käytämme niitä? Tämä asiakas on melko yksinkertainen, se tarvitsee kutsut selvästi, kun haluamme käyttää ominaisuuksia. Seuraavassa luvussa luomme edistyneemmän asiakkaan, jolla on oma suuri kielimalli, LLM. Nyt kuitenkin katsotaan, kuinka voimme kutsua palvelimen ominaisuuksia:
 
 #### Rust
 
-Pääfunktiossa, kun asiakas on alustettu, voimme alustaa palvelimen ja listata joitakin sen ominaisuuksia.
+Pääfunktiossa asiakasinstanssin alustamisen jälkeen voimme alustaa palvelimen ja listata joitakin sen ominaisuuksia.
 
 ```rust
 // Alusta
@@ -426,7 +426,7 @@ println!("Available tools: {:?}", tools);
 
 ### -4- Ominaisuuksien kutsuminen
 
-Ominaisuuksien kutsumiseen meidän täytyy varmistaa, että määrittelemme oikeat argumentit ja joissakin tapauksissa nimen sille, mitä yritämme kutsua.
+Jotta voimme kutsua ominaisuuksia, meidän täytyy varmistaa, että annamme oikeat argumentit ja joissakin tapauksissa kutsuttavan nimen.
 
 #### TypeScript
 
@@ -456,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 Edellisessä koodissa me:
 
-- Luemme resurssin, kutsumme resurssia `readResource()`-metodilla ja määritämme `uri`. Tässä miten palvelin todennäköisesti käsittelee sen:
+- Luemme resurssin kutsumalla `readResource()`, jolla annetaan `uri`. Näin palvelin todennäköisesti käsittelee sitä:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ Edellisessä koodissa me:
     );
     ```
 
-    Arvomme `uri` `file://example.txt` vastaa palvelimen `file://{name}` mallia. `example.txt` sovitetaan `name`-arvoksi.
+    `uri`-arvomme `file://example.txt` vastaa palvelimen `file://{name}`. `example.txt` sidotaan `name`-muuttujaan.
 
-- Kutsumme työkalua, määrittelemme sen `name` ja `arguments` näin:
+- Kutsumme työkalua määrittelemällä sen `name` ja `arguments` näin:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ Edellisessä koodissa me:
     });
     ```
 
-- Haemme kehotteen, kutsumme `getPrompt()` metodilla, jolla annamme `name` ja `arguments`. Palvelin näyttää tältä:
+- Saamme kehotteen kutsumalla `getPrompt()` antamalla `name` ja `arguments`. Palvelinkoodi näyttää tältä:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ Edellisessä koodissa me:
     );
     ```
 
-    ja siitä syntyy lopullinen koodi asiakkaallasi, vastaamaan palvelimella määriteltyä:
+    ja tuloksena oleva koodi asiakkaassa on seuraava vastaamaan palvelinta:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -526,14 +526,14 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Kutsumme resurssia nimeltä `greeting` käyttäen `read_resource`.
-- Käytämme työkalua nimeltä `add` kutsumalla `call_tool`.
+- Kutsuneet resurssia `greeting` `read_resource`-funktiolla.
+- Kutsuneet työkalua `add` `call_tool`-funktiolla.
 
 #### .NET
 
-1. Lisätään koodia työkalun kutsumiseen:
+1. Lisätään koodi työkalun kutsumiseksi:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ Edellisessä koodissa me:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Tulostetaan tulos, tässä koodi sen käsittelyyn:
+1. Tuloksen tulostamiseksi tässä on siihen tarvittava koodi:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ Edellisessä koodissa me:
 #### Java
 
 ```java
-// Kutsu erilaisia laskutyökaluja
+// Kutsu erilaisia laskin työkaluja
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -569,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Edellisessä koodissa me:
+Edellisessä koodissa olemme:
 
-- Kutsumme useita laskutyökaluja käyttämällä `callTool()`-metodia `CallToolRequest` -objektien kanssa.
-- Jokainen työkalu määrittelee työkalun nimen ja tarvittavien argumenttien `Map`-kartan.
-- Palvelimen työkalut odottavat tiettyjä parametrien nimiä (kuten "a", "b" matemaattisissa laskutoimituksissa).
-- Tulokset palautetaan `CallToolResult`-objekteina, jotka sisältävät palvelimen vastauksen.
+- Kutsuneet useita laskentatyökaluja `callTool()`-metodilla `CallToolRequest`-olioilla.
+- Jokainen työkalu kutsu määrittelee työkalun nimen ja tarvittavat argumentit `Map`-objektina.
+- Palvelimen työkalut odottavat erityisiä parametrien nimiä (kuten "a", "b" matemaattisissa operaatioissa).
+- Tulokset palautetaan `CallToolResult`-olioina, jotka sisältävät palvelimen vastauksen.
 
 #### Rust
 
 ```rust
-// Kutsu lisää työkalu argumenteilla = {"a": 3, "b": 2}
+// Kutsu lisää työkalua argumenteilla = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -591,9 +591,9 @@ let tool_result = client
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
 
-### -5- Asiakkaan ajo
+### -5- Asiakkaan ajaminen
 
-Asiakkaan ajamiseksi kirjoita seuraava komento terminaaliin:
+Ajaaksesi asiakasta, kirjoita seuraava komento terminaaliin:
 
 #### TypeScript
 
@@ -623,17 +623,17 @@ dotnet run
 
 #### Java
 
-Varmista ensin, että MCP-palvelimesi on käynnissä osoitteessa `http://localhost:8080`. Sitten aja asiakas:
+Varmista ensin, että MCP-palvelimesi on käynnissä osoitteessa `http://localhost:8080`. Aja sitten asiakas:
 
 ```bash
-# Käännä projektisi
+# Rakenna projektisi
 ./mvnw clean compile
 
-# Suorita asiakasohjelma
+# Aja asiakasohjelma
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Vaihtoehtoisesti voit ajaa täydellisen asiakasprojektin, joka on mukana ratkaisukansiossa `03-GettingStarted\02-client\solution\java`:
+Vaihtoehtoisesti voit ajaa koko asiakasprojektin, joka löytyy ratkaisukansiosta `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Siirry ratkaisuhakemistoon
@@ -653,9 +653,9 @@ cargo run
 
 ## Tehtävä
 
-Tässä tehtävässä käytät oppimaasi asiakkaan luomiseksi, mutta luot oman asiakkaan.
+Tässä tehtävässä käytät oppimaasi luodaksesi oman asiakasohjelman.
 
-Tässä on palvelin, jota voit käyttää ja johon sinun täytyy kutsua asiakaskoodillasi. Katso, voitko lisätä palvelimeen lisää ominaisuuksia tehdäkseen siitä kiinnostavamman.
+Tässä on palvelin, jota voit käyttää ja johon sinun täytyy tehdä kutsuja asiakkaallasi. Katso, voitko lisätä palvelimeen lisää ominaisuuksia, jotta se olisi mielenkiintoisempi.
 
 ### TypeScript
 
@@ -670,7 +670,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Lisää lisäystyökalu
+// Lisää lisäystoiminto
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -710,11 +710,11 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Luo MCP-palvelimen
+# Luo MCP-palvelin
 mcp = FastMCP("Demo")
 
 
-# Lisää lisäystyökalu
+# Lisää yhteenlaskutyökalu
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
@@ -759,17 +759,17 @@ public static class CalculatorTool
 }
 ```
 
-Katso tämä projekti nähdäksesi, kuinka voit [lisätä kehotteita ja resursseja](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Katso tätä projektia nähdäksesi, kuinka voit [lisätä kehotteita ja resursseja](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Tarkista myös tämä linkki siitä, miten kutsua [kehotteita ja resursseja](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Tarkista myös tämä linkki ohjeisiin [kehotteiden ja resurssien kutsumisesta](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Edellisessä osassa [previous section](../../../../03-GettingStarted/01-first-server) opit, miten luodaan yksinkertainen MCP-palvelin Rustilla. Voit jatkaa sen rakentamista tai tarkistaa nämä Rust-pohjaiset MCP-palvelin-esimerkit: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+[Edellisessä osiossa](../../../../03-GettingStarted/01-first-server) opit luomaan yksinkertaisen MCP-palvelimen Rustilla. Voit jatkaa rakentamista sen pohjalta tai tarkastella tätä linkkiä saadaksesi lisää Rust-pohjaisia MCP-palvelin-esimerkkejä: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Ratkaisu
 
-**Ratkaisukansio** sisältää valmiit, ajettavat asiakasimplementaatiot, jotka demonstroivat kaikkia tässä opetusohjelmassa käsiteltyjä konsepteja. Jokainen ratkaisu sisältää sekä asiakas- että palvelinkoodin erillisissä, itsenäisissä projekteissa.
+**Ratkaisukansio** sisältää valmiit, ajettavat asiakasohjelman toteutukset, jotka demonstroivat tässä opetusohjelmassa käsitellyt käsitteet. Jokainen ratkaisu sisältää sekä asiakas- että palvelinkoodin erillisinä, itsenäisinä projekteina.
 
 ### 📁 Ratkaisun rakenne
 
@@ -805,17 +805,17 @@ solution/
 
 ### 🚀 Mitä kukin ratkaisu sisältää
 
-Kunkin kielikohtainen ratkaisu sisältää:
+Jokainen kielikohtainen ratkaisu tarjoaa:
 
-- **Täydellisen asiakasimplementaation**, jossa ovat kaikki opetusohjelman toiminnot
-- **Toimivan projektirakenteen** oikeilla riippuvuuksilla ja konfiguraatiolla
-- **Käännä ja aja -skriptit** helppoa käyttöönottoa ja suorittamista varten
+- **Täydellisen asiakasohjelman**, jossa ovat kaikki opetusohjelman ominaisuudet
+- **Toimivan projektirakenteen** oikeilla riippuvuuksilla ja konfiguraatioilla
+- **Rakennus- ja ajoskriptit** helppoa käyttöönottoa ja suorittamista varten
 - **Yksityiskohtaisen README-tiedoston** kielikohtaisilla ohjeilla
-- **Virheenkäsittelyn** ja tulosten käsittelyn esimerkit
+- **Virheenkäsittelyn** ja tulosten prosessoinnin esimerkit
 
-### 📖 Ratkaisujen käyttäminen
+### 📖 Ratkaisun käyttäminen
 
-1. **Siirry haluamaasi kielikansioon**:
+1. **Siirry valitsemaasi kielikansioon**:
 
    ```bash
    cd solution/typescript/    # TypeScriptille
@@ -824,12 +824,12 @@ Kunkin kielikohtainen ratkaisu sisältää:
    cd solution/dotnet/        # .NET:lle
    ```
 
-2. **Noudata kunkin kansion README-ohjeita**:
-   - Riippuvuuksien asentamiseen
-   - Projektin kääntämiseen
-   - Asiakkaan suorittamiseen
+2. **Noudata kunkin kansion README-ohjeita seuraavasti**:
+   - Riippuvuuksien asennus
+   - Projektin rakentaminen
+   - Asiakasohjelman ajaminen
 
-3. **Esimerkkituloste**, jonka näet:
+3. **Esimerkki odotetusta tulosteesta**:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,66 +837,68 @@ Kunkin kielikohtainen ratkaisu sisältää:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Täydelliseen dokumentaatioon ja vaiheittaiseen opastukseen tutustu: **[📖 Ratkaisudokumentaatio](./solution/README.md)**
+Täydellisen dokumentaation ja vaiheittaiset ohjeet löydät: **[📖 Ratkaisun dokumentaatio](./solution/README.md)**
 
 ## 🎯 Täydelliset esimerkit
 
-Olemme toimittaneet täydelliset ja toimivat asiakasimplementaatiot kaikilla tässä opetusohjelmassa käsitellyillä ohjelmointikielillä. Nämä esimerkit demonstroivat edellä kuvatun koko toiminnallisuuden ja niitä voi käyttää viitteinä tai lähtökohtina omille projekteillesi.
+Tarjoamme täydelliset, toimivat asiakasohjelman toteutukset kaikilla tämän opetusohjelman käsittelemillä ohjelmointikielillä. Nämä esimerkit osoittavat täydellisen toiminnallisuuden yllä kuvatusti ja toimivat viitteenä tai lähtökohtana omille projekteillesi.
 
 ### Saatavilla olevat täydelliset esimerkit
 
-| Kieli    | Tiedosto                      | Kuvaus                                                          |
-|----------|-------------------------------|-----------------------------------------------------------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Täydellinen Java-asiakas SSE-siirrolla, sisältäen kattavan virheenkäsittelyn |
-| **C#**   | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Täydellinen C#-asiakas stdio-siirrolla, joka käynnistää palvelimen automaattisesti |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Täydellinen TypeScript-asiakas, joka tukee MCP-protokollaa kokonaisuudessaan |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Täydellinen Python-asiakas, joka käyttää async/await -kuvioita |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Täydellinen Rust-asiakas, joka käyttää Tokio-kirjastoa asynkronisiin operaatioihin |
+| Kieli | Tiedosto | Kuvaus |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Täydellinen Java-asiakas SSE-siirrolla ja kattavalla virheenkäsittelyllä |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Täydellinen C#-asiakas stdio-siirrolla ja automaattisella palvelimen käynnistyksellä |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Täydellinen TypeScript-asiakas täydellisellä MCP-protokollatuella |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Täydellinen Python-asiakas käyttäen async/await-malleja |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Täydellinen Rust-asiakas käyttäen Tokio-kirjastoa asynkronisiin operaatioihin |
 
 Jokainen täydellinen esimerkki sisältää:
-- ✅ **Yhteyden muodostaminen** ja virheiden käsittely
-- ✅ **Palvelimen löytäminen** (työkalut, resurssit, kehotteet tarvittaessa)
-- ✅ **Laskinoperaatiot** (yhteenlasku, vähennyslasku, kertolasku, jakolasku, apu)
-- ✅ **Tulosten käsittely** ja muotoiltu tulostus
-- ✅ **Kattava virheiden käsittely**
-- ✅ **Selkeä, dokumentoitu koodi** vaiheittaisilla kommenteilla
 
-### Aloittaminen täydellisten esimerkkien avulla
+- ✅ **Yhteyden muodostamisen** ja virheenkäsittelyn
+- ✅ **Palvelimen löytämisen** (työkalut, resurssit, kehotteet, jos sovellettavissa)
+- ✅ **Laskutoimitukset** (yhteenlasku, vähennyslasku, kertolasku, jakolasku, apu)
+- ✅ **Tulosten käsittelyn** ja muotoillun tulostuksen
+- ✅ **Kattavan virheenkäsittelyn**
+
+- ✅ **Puhdas, dokumentoitu koodi** vaihe vaiheelta -kommenteilla
+
+### Aloittaminen täydellisillä esimerkeillä
 
 1. **Valitse haluamasi kieli** yllä olevasta taulukosta
-2. **Tutustu täydelliseen esimerkkitiedostoon** ymmärtääksesi koko toteutus
+2. **Tutustu täydelliseen esimerkkitiedostoon** ymmärtääksesi koko toteutuksen
 3. **Suorita esimerkki** noudattamalla ohjeita tiedostossa [`complete_examples.md`](./complete_examples.md)
-4. **Muokkaa ja laajenna** esimerkkiä omaa käyttötarkoitustasi varten
+4. **Muokkaa ja laajenna** esimerkkiä omaa käyttötapaustasi varten
 
-Yksityiskohtaista dokumentaatiota esimerkkien suorittamisesta ja muokkaamisesta löydät: **[📖 Täydellisten esimerkkien dokumentaatio](./complete_examples.md)**
+Tarkkaa dokumentaatiota esimerkkien suorittamisesta ja muokkaamisesta löydät osoitteesta: **[📖 Täydellisten esimerkkien dokumentaatio](./complete_examples.md)**
 
 ### 💡 Ratkaisu vs. täydelliset esimerkit
 
 | **Ratkaisukansio** | **Täydelliset esimerkit** |
-|--------------------|------------------------- |
-| Kokonaisrakenne projektille rakennustiedostoineen | Yksittäisen tiedoston toteutuksia |
-| Valmis ajettavaksi riippuvuuksineen | Keskittyneet koodiesimerkit |
-| Tuotantoluokan ympäristö | Opetuksellinen viite |
-| Kielikohtaiset työkalut | Kielten välinen vertailu |
+|--------------------|--------------------- |
+| Koko projektirakenne build-tiedostoineen | Yksittäiset tiedostototeutukset |
+| Valmis ajettavaksi riippuvuuksineen | Tarkoitukseen keskittyneet koodiesimerkit |
+| Tuotantomaailmaa muistuttava käyttöönotto | Opettavaista viitetietoa |
+| Kieli- ja työkalukohtaiset välineet | Kielten välinen vertailu |
 
-Molemmat lähestymistavat ovat hyödyllisiä – käytä **ratkaisukansiota** kokonaisiin projekteihin ja **täydellisiä esimerkkejä** oppimiseen ja vertailuun.
+Molemmat lähestymistavat ovat arvokkaita – käytä **ratkaisukansiota** täydellisiin projekteihin ja **täydellisiä esimerkkejä** oppimiseen ja viitetarkoituksiin.
 
 ## Tärkeimmät opit
 
-Tämän luvun tärkeimmät opit client-sovelluksista:
+Tässä luvussa keskeiset opit liittyen klientteihin ovat seuraavat:
 
-- Niillä voidaan sekä löytää että kutsua palvelimen ominaisuuksia.
-- Ne voivat käynnistää palvelimen samalla kun itse käynnistyvät (kuten tässä luvussa), mutta clientit voivat myös yhdistää jo käynnissä oleviin palvelimiin.
-- Ne ovat loistava tapa testata palvelimen toiminnallisuuksia vaihtoehtojen, kuten Inspectorin, rinnalla kuten edellisessä luvussa kuvattiin.
+- Voidaan käyttää sekä palvelimen ominaisuuksien löytämiseen että kutsumiseen.
+- Voi käynnistää palvelimen samalla kun se itse käynnistyy (kuten tässä luvussa), mutta klientit voivat myös yhdistää jo käynnissä oleviin palvelimiin.
+- Erinomainen tapa testata palvelinmahdollisuuksia vaihtoehtojen, kuten Inspectorin, rinnalla kuten edellisessä luvussa kuvattiin.
 
 ## Lisäresurssit
 
-- [Clientien rakentaminen MCP:ssä](https://modelcontextprotocol.io/quickstart/client)
+- [Klienttien rakentaminen MCP:llä](https://modelcontextprotocol.io/quickstart/client)
 
-## Näytteitä
+## Esimerkit
 
 - [Java-laskin](../samples/java/calculator/README.md)
-- [.Net-laskin](../../../../03-GettingStarted/samples/csharp)
+- [.NET-laskin](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript-laskin](../samples/javascript/README.md)
 - [TypeScript-laskin](../samples/typescript/README.md)
 - [Python-laskin](../../../../03-GettingStarted/samples/python)
@@ -904,11 +906,11 @@ Tämän luvun tärkeimmät opit client-sovelluksista:
 
 ## Mitä seuraavaksi
 
-- Seuraavaksi: [Clientin luominen LLM:n kanssa](../03-llm-client/README.md)
+- Seuraava: [Clientin luominen LLM:llä](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää auktoritatiivisena lähteenä. Tärkeissä asioissa suositellaan ammattimaisen ihmiskääntäjän käyttöä. Emme ole vastuussa mistään väärinymmärryksistä tai tulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -72,15 +72,22 @@ MCP follows a **client-server model**, where:
 - **Resources** – Static or dynamic data for models  
 - **Prompts** – Predefined workflows for guided generation  
 - **Tools** – Executable functions like search, calculations  
-- **Sampling** – Agentic behavior via recursive interactions (deprecated in `2026-07-28` release candidate)
+- **Sampling** – Agentic behavior via recursive interactions (deprecated in
+    MCP `2026-07-28`; new implementations should integrate directly with an LLM
+    provider)
 - **Elicitation** – Server-initiated requests for user input
-- **Roots** – Filesystem boundaries for server access control (deprecated in `2026-07-28` release candidate)
+- **Roots** – Informational filesystem locations relevant to a server
+    (deprecated in MCP `2026-07-28`; prefer tool parameters, resource URIs, or
+    server configuration)
 
 ### **Protocol Architecture:**
 
 MCP uses a two-layer architecture:
-- **Data Layer**: JSON-RPC 2.0 based communication with lifecycle management and primitives
-- **Transport Layer**: STDIO (local) and Streamable HTTP with SSE (remote) communication channels
+- **Data Layer**: JSON-RPC 2.0 messages, per-request metadata, discovery, and
+    protocol primitives
+- **Transport Layer**: stdio for local subprocesses and Streamable HTTP for
+    remote servers. Streamable HTTP can use SSE framing for streamed responses,
+    but the older HTTP+SSE transport is deprecated.
 
 ---
 
@@ -116,10 +123,10 @@ graph TD
     Client[MCP Client/Application] -->|Sends Request| H[MCP Host]
     H -->|Invokes| A[AI Model]
     A -->|Tool Call Request| H
-    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search
-    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool
-    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool
-    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool
+    H -->|MCP Protocol| T1[MCP Server Tool 01: Web Search]
+    H -->|MCP Protocol| T2[MCP Server Tool 02: Calculator tool]
+    H -->|MCP Protocol| T3[MCP Server Tool 03: Database Access tool]
+    H -->|MCP Protocol| T4[MCP Server Tool 04: File System tool]
     H -->|Sends Response| Client
 
     subgraph "MCP Host Components"

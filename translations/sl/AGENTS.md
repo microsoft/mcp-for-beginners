@@ -2,7 +2,7 @@
 
 ## Pregled projekta
 
-**MCP za začetnike** je odprtokurni izobraževalni kurikulum za učenje Model Context Protocol (MCP) - standardiziranega okvira za interakcije med AI modeli in odjemalskimi aplikacijami. Ta repozitorij ponuja obsežne učne materiale s praktičnimi primeri kode v več programskih jezikih.
+**MCP za začetnike** je odprtokurri edukativni načrt za učenje Model Context Protocol (MCP) - standardiziran okvir za interakcije med AI modeli in odjemalskimi aplikacijami. Ta repozitorij zagotavlja obsežne učne materiale s praktičnimi primeri kode v več programskih jezikih.
 
 ### Ključne tehnologije
 
@@ -12,22 +12,22 @@
   - Spring Boot (Java)
   - FastMCP (Python)
   - LangChain4j (Java)
-- **Baze podatkov**: PostgreSQL z razširitvijo pgvector
-- **Oblačne platforme**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
+- **Podatkovne zbirke**: PostgreSQL z razširitvijo pgvector
+- **Oblačne platforme**: Azure (Container Apps, OpenAI, Varnost vsebin, Application Insights)
 - **Orodja za gradnjo**: npm, Maven, pip, Cargo
-- **Dokumentacija**: Markdown z avtomatiziranim večjezičnim prevodom (več kot 48 jezikov)
+- **Dokumentacija**: Markdown z avtomatiziranim prevajanjem v več jezikov (več kot 48 jezikov)
 
 ### Arhitektura
 
-- **11 jedrnih modulov (00-11)**: zaporedna učna pot od osnov do naprednih tem
-- **Praktične vaje**: praktične naloge s popolno rešitvijo kode v več jezikih
-- **Vzorec projektov**: delujoče implementacije MCP strežnika in odjemalca
-- **Sistem prevajanja**: avtomatiziran potek dela prek GitHub Actions za podporo več jezikom
-- **Slikovni viri**: centralizirana mapa slik z prevedenimi različicami
+- **11 osnovnih modulov (00-11)**: Zaporedna učna pot od osnov do naprednih tem
+- **Praktične delavnice**: Praktične vaje s popolnimi rešitvami v več jezikih
+- **Vzorec projektov**: Delujoče implementacije MCP strežnika in odjemalca
+- **Sistem prevajanja**: Avtomatiziran GitHub Actions potek za podporo več jezikov
+- **Slike**: Centralizirani imenik slik z prevedenimi različicami
 
-## Ukazi za nastavitev
+## Ukazi za namestitev
 
-Ta repozitorij je osredotočen na dokumentacijo. Večina nastavitev poteka znotraj posameznih vzorčnih projektov in vaj.
+To je repozitorij osredotočen na dokumentacijo. Večina nastavitev poteka znotraj posameznih vzorčnih projektov in delavnic.
 
 ### Nastavitev repozitorija
 
@@ -40,21 +40,21 @@ cd mcp-for-beginners
 ### Delo z vzorčnimi projekti
 
 Vzorčni projekti so locirani v:
-- `03-GettingStarted/samples/` - primeri za posamezne jezike
-- `03-GettingStarted/01-first-server/solution/` - prve strežniške implementacije
-- `03-GettingStarted/02-client/solution/` - odjemalske implementacije
-- `11-MCPServerHandsOnLabs/` - obsežne vaje za integracijo baz podatkov
+- `03-GettingStarted/samples/` - Primeri po posameznih jezikih
+- `03-GettingStarted/01-first-server/solution/` - Prve implementacije strežnika
+- `03-GettingStarted/02-client/solution/` - Implementacije odjemalcev
+- `11-MCPServerHandsOnLabs/` - Celovite delavnice z integracijo podatkovnih zbirk
 
-Vsak vzorčni projekt vsebuje navodila za nastavitev:
+Vsak vzorčni projekt vsebuje lastna navodila za nastavitev:
 
-#### Projekti TypeScript/JavaScript
+#### Projekti v TypeScript/JavaScript
 ```bash
 cd <project-directory>
 npm install
 npm start
 ```
 
-#### Projekti Python
+#### Projekti v Pythonu
 ```bash
 cd <project-directory>
 pip install -r requirements.txt
@@ -63,7 +63,7 @@ pip install -e .
 python main.py
 ```
 
-#### Projekti Java
+#### Projekti v Javi
 ```bash
 cd <project-directory>
 mvn clean install
@@ -72,44 +72,44 @@ mvn spring-boot:run
 
 ## Razvojni potek
 
-### Pripravljenost MCP 7-28
+### Priprava MCP 7-28
 
 #### Kontrolni seznam pripravljenosti repozitorija
 
-- [x] **Jasnost za nove prispevke**: ta datoteka opredeljuje namen repozitorija,
+- [x] **Jasnost za nove prispevke**: Ta datoteka določa namen repozitorija,
   strukturo, pravila prispevkov in poti za nastavitev vzorcev.
 - [x] **Ukazi za gradnjo/testiranje/lint z natančnimi zastavicami**:
   - Lint dokumentacije repozitorija:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
-  - Pregled vzorca povezav dokumentacije:
+  - Pregled vzorca povezav v dokumentaciji:
     `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
-  - Validacija vzorca TypeScript:
+  - Validacija vzorca v TypeScript:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
-  - Validacija vzorca Python:
+  - Validacija vzorca v Pythonu:
     `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
-  - Validacija vzorca Java:
+  - Validacija vzorca v Javi:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
-- [x] **Ena realistična delovna poteza, ki lahko postane MCP orodje**:
+- [x] **Eden realističen potek dela, ki lahko postane MCP orodje**:
   `validate_curriculum_change`
-- [x] **Vhodi/izhodi so eksplicitni** (glej specifikacijo spodaj).
-- [x] **Dovoljenja in načini napak so dokumentirani** (glej specifikacijo spodaj).
-- [x] **Testabilnost CI je jasna** (deterministični ukazi, eksplicitni
-  izhodni kodi in strojno berljivi izhodi).
+- [x] **Vhodi/izhodi so izrecni** (glej specifikacijo spodaj).
+- [x] **Dovoljenja in načini za neuspeh so dokumentirani** (glej specifikacijo spodaj).
+- [x] **Testabilnost v CI je izrecna** (deterministični ukazi, izrecne
+  izhodne kode in za stroj berljivi izhodi).
 
-#### Kandidat za MCP orodje delovni potek: `validate_curriculum_change`
+#### Kandidat za MCP orodje poteka dela: `validate_curriculum_change`
 
 ##### Cilj
 
-Validirati spremembe v dokumentaciji kurikuluma in zdravstveno stanje reprezentativne vzorčne kode
+Validacija sprememb kurikuluma in splošno zdravje predstavitvene kode
 pred združitvijo.
 
 ##### Vhodi
 
-- `changed_paths: string[]` (zahtevano) - relativne poti, spremenjene v PR.
+- `changed_paths: string[]` (obvezno) - relativne poti spremenjene v PR.
 - `run_docs_lint: boolean` (privzeto `true`)
 - `run_links_audit: boolean` (privzeto `true`)
 - `run_samples: { typescript?: boolean, python?: boolean, java?: boolean }`
-  (privzeto vsi `false`)
+  (privzeto vse `false`)
 
 ##### Izhodi
 
@@ -121,89 +121,89 @@ pred združitvijo.
 
 ##### Dovoljenja
 
-- Branje datotek delovnega prostora in pisanje artefaktov, ki jih ustvari orodje (npr. poročila o lintu,
-  dnevniške datoteke testov) le; brez zapisov v `translations/` ali
+- Branje datotek delovnega prostora in zapis orodjem ustvarjenih artefaktov (npr., poročila linterja,
+  dnevniki testov) samo; brez zapisovanja v `translations/` ali
   `translated_images/`.
-- Izvajanje lokalnih ukazov shell.
-- Izbiren dostop do mreže samo za obnovitev paketov (`npm ci`,
+- Izvajanje lokalnih ukazov v shellu.
+- Omrežni dostop je dovoljen samo za obnovitev paketov (`npm ci`,
   `python -m pip install`, reševanje odvisnosti `mvn`).
-- Ni dovoljenja za push, merge ali spreminjanje `translations/` ali
+- Brez dovoljenja za potiskanje, združevanje ali spreminjanje `translations/` ali
   `translated_images/`.
 
-##### Načini napak
+##### Načini neuspeha
 
-- `E_NO_INPUT_PATHS`: `changed_paths` prazen.
-- `E_INVALID_PATH`: vhodna pot beži iz korena repozitorija.
-- `E_LINT_FAILED`: lint markdowna se zaključi z nenicelno kodo.
-- `E_LINK_AUDIT_FAILED`: ukaz za pregled povezav se zaključi z nenicelno kodo.
-- `E_SAMPLE_TEST_FAILED`: testiranje/gradnja vzorca se zaključi z nenicelno kodo.
+- `E_NO_INPUT_PATHS`: `changed_paths` je prazen.
+- `E_INVALID_PATH`: vhodna pot izhaja izven korena repozitorija.
+- `E_LINT_FAILED`: markdown lint se zaključi z napako.
+- `E_LINK_AUDIT_FAILED`: ukaz pregleda povezav se zaključi z napako.
+- `E_SAMPLE_TEST_FAILED`: test/gradnja vzorca se zaključi z napako.
 - `E_TIMEOUT`: ukaz je presegel nastavljeni časovni limit.
 
-##### Priporočena pogodba CI
+##### Priporočena pogodba za CI
 
-Za avtomatizacijo validacije nastavite CI opravek, ki:
+Za avtomatizacijo validacije konfigurirajte CI opravilo, ki:
 
-- Sproži ob pull requestih, ki se dotikajo `*.md`, vzorčne kode ali te datoteke.
-- Izvede zgoraj navedene natančne ukaze.
+- Zažene ob pull requestih, ki posegajo v `*.md`, vzorčno kodo ali to datoteko.
+- Izvede natančno zgoraj navedene ukaze.
 - Shrani dnevnike kot artefakte.
-- Neuspeh opravka ob kateri koli nenicelni izhodni kodi.
+- Opravilo se označi kot neuspešno ob kateri koli ne-nični izhodni kodi.
 
-#### Če omogočite MCP strežnik iz tega repozitorija
+#### Če iz tega repozitorija izpeljete MCP strežnik
 
-- [ ] Preberite osnutek zapisnika sprememb za MCP 7-28:
-  <https://modelcontextprotocol.io/specification/draft/changelog>
-- [ ] Preverite vaš strežnik z SDK betami:
-  <https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/>
-- [ ] Odstranite domneve o sejah in stiskanju rok; vsak zahtevek obdelujte kot
+- [ ] Preberite končni MCP `2026-07-28` dnevnik sprememb:
+  <https://modelcontextprotocol.io/specification/2026-07-28/changelog>
+- [ ] Preverite, da izbrana izdaja SDK podpira MCP `2026-07-28`:
+  <https://modelcontextprotocol.io/docs/sdk>
+- [ ] Odstranite predpostavke seje in potrditve; obravnavajte vsak zahtevek kot
   samostojen:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#a-stateless-protocol>
-- [ ] Pošljite glave `Mcp-Method` in `Mcp-Name` za surove HTTP zahteve:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#routable-cacheable-traceable>
-- [ ] Preglejte trdo kodirane kode napak (`missing resource` je bil prestavljen iz `-32002` v `-32602`).
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/lifecycle>
+- [ ] Pošljite glavi `Mcp-Method` in `Mcp-Name` za surove HTTP zahtevke:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http>
+- [ ] Preglejte trdo kodirane kode napak (`missing resource` premaknjena iz `-32002` na `-32602`).
 
-- [ ] Označi in načrtuj migracijo za zastarele korenine, vzorčenje in
-  beleženje:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated>
-- [ ] Migriraj s poskusnega `2025-11-25` Tasks API:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#tasks-graduates-to-an-extension>
-- [ ] Preglej avtorizacijo za ojačitev OAuth in OpenID Connect:
-  <https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#authorization-hardening>
+- [ ] Migrirajte zastarele korenine, vzorčenje, beleženje in dinamično registracijo odjemalcev
+  Registracija:
+  <https://modelcontextprotocol.io/specification/2026-07-28/deprecated>
+- [ ] Prestavite s preizkusnega API-ja opravil `2025-11-25`:
+  <https://modelcontextprotocol.io/extensions/tasks>
+- [ ] Pregled avtorizacije za okrepitev OAuth in OpenID Connect:
+  <https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization>
 
 ### Struktura dokumentacije
 
-- **Moduli 00-11**: Jedrna vsebina učnega načrta v zaporednem vrstnem redu
-- **translations/**: Jezikovno specifične različice (samodejno generirane, ne urejajte neposredno)
-- **translated_images/**: Lokalizirane različice slik (samodejno generirane)
+- **Moduli 00-11**: Vsebina osnovnega kurikuluma v zaporednem vrstnem redu
+- **translations/**: Jezikovno specifične različice (samodejno ustvarjene, ne urejajte neposredno)
+- **translated_images/**: Lokalizirane različice slik (samodejno ustvarjene)
 - **images/**: Izvorne slike in diagrami
 
 ### Spreminjanje dokumentacije
 
 1. Urejajte samo angleške markdown datoteke v korenskih modulnih imenikih (00-11)
 2. Po potrebi posodobite slike v imeniku `images/`
-3. GitHub Action co-op-translator bo samodejno generiral prevode
-4. Prevajanja se ponovno ustvarjajo ob potisku v glavno vejo
+3. GitHub Action co-op-translator bo samodejno ustvaril prevode
+4. Prevodi se samodejno regenerirajo ob pushu v glavno vejo
 
 ### Delo s prevodi
 
-- **Samodejni prevod**: Potek dela GitHub Actions upravlja vse prevode
+- **Samodejni prevod**: delovni tok GitHub Actions upravlja vse prevode
 - **Ne urejajte ročno** datotek v imeniku `translations/`
-- Metapodatki prevajanja so vključeni v vsako prevedeno datoteko
-- Podprti jeziki: več kot 48 jezikov, vključno z arabščino, kitajščino, francoščino, nemščino, hindijščino, japonščino, korejščino, portugalščino, ruščino, španščino in mnogimi več
+- Metapodatki prevodov so vgrajeni v vsako prevedeno datoteko
+- Podprti jeziki: več kot 48 jezikov, vključno z arabščino, kitajščino, francoščino, nemščino, hindijščino, japonščino, korejščino, portugalščino, ruščino, španščino in mnogimi drugimi
 
 ## Navodila za testiranje
 
-### Validacija dokumentacije
+### Preverjanje dokumentacije
 
-Ker gre pretežno za repozitorij dokumentacije, testi zajemajo:
+Ker gre predvsem za repozitorij dokumentacije, se testiranje osredotoča na:
 
-1. **Pregled vzorcev povezav**: Seznam povezav Markdown za pregled
+1. **Pregled povezav**: Izpiši Markdown povezave za pregled
 
    ```bash
-   # Naštej Markdown povezave (preverjanje vzorca)
+   # Naštej Markdown povezave (revizija vzorcev)
    find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
    ```
 
-2. **Validacija primerov kode**: Testiranje, da primeri kode uspešno sestavijo/izvedejo
+2. **Preverjanje vzorcev kode**: Preverite, da se primeri kode sestavijo/izvedejo
 
    ```bash
    # Pomaknite se do določenega vzorca in zaženite njegove teste
@@ -211,16 +211,16 @@ Ker gre pretežno za repozitorij dokumentacije, testi zajemajo:
    npm install && npm test
    ```
 
-3. **Preverjanje sintakse Markdown**: Preverjanje skladnosti oblikovanja
+3. **Lintanje Markdowna**: Preverite skladnost oblikovanja
 
    ```bash
-   # Uporabite markdownlint, če je potrebno
+   # Po potrebi uporabite markdownlint
    npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
    ```
 
 ### Testiranje vzorčnega projekta
 
-Vsak jezikovno specifični vzorec vključuje svoj pristop k testiranju:
+Vsak jezikovno specifični vzorec vključuje lasten pristop k testiranju:
 
 #### TypeScript/JavaScript
 ```bash
@@ -240,37 +240,37 @@ mvn test
 mvn verify
 ```
 
-## Smernice stila kode
+## Smernice za slog kode
 
-### Stil dokumentacije
+### Slog dokumentacije
 
-- Uporabljajte jasen jezik, prijazen začetnikom
-- Vključite primere kode v več jezikih kjer je primerno
+- Uporabljajte jasno, začetnikom prijazno jezikovno obliko
+- Vključite primere kode v več jezikih, kjer je primerno
 - Upoštevajte najboljše prakse za markdown:
-  - Uporabljajte naslove v slogu ATX (`#` sintaksa)
+  - Uporabljajte naslove v ATX slogu (`#` sintaksa)
   - Uporabljajte ograjene bloke kode z označbami jezika
-  - Vključite opisni nadomestni tekst za slike
-  - Ohranjajte razumne dolžine vrstic (ni stroge omejitve, a bodite razumni)
+  - Vključite opisne alt tekste za slike
+  - Ohranite razumne dolžine vrstic (brez stroge meje, a bodite razumni)
 
-### Stil primerov kode
+### Slog vzorcev kode
 
 #### TypeScript/JavaScript
 - Uporabljajte ES module (`import`/`export`)
-- Upoštevajte stroge konvencije TypeScript-a
-- Vključite oznake tipov
+- Upoštevajte stroge konvencije TypeScript načina
+- Vključite tipne anotacije
 - Ciljajte ES2022
 
 #### Python
-- Upoštevajte smernice stila PEP 8
-- Uporabljajte tipizirane namige kjer je primerno
+- Upoštevajte smernice sloga PEP 8
+- Uporabite namige za tipe, kjer je primerno
 - Vključite docstringe za funkcije in razrede
-- Uporabljajte sodobne Python funkcije (3.8+)
+- Uporabljajte sodobne funkcionalnosti Pythona (3.8+)
 
 #### Java
 - Upoštevajte konvencije Spring Boot
 - Uporabljajte funkcije Java 21
-- Sledite standardni strukturi Maven projektov
-- Vključite Javadoc komentarje
+- Sledite standardni strukturi Maven projekta
+- Vključite komentarje Javadoc
 
 ### Organizacija datotek
 
@@ -286,115 +286,116 @@ mvn verify
     └── <language>/
 ```
 
-## Gradnja in nameščanje
+## Gradnja in uvajanje
 
-### Namestitev dokumentacije
+### Uvajanje dokumentacije
 
-Repozitorij uporablja GitHub Pages ali podobno za gostovanje dokumentacije (če je primerno). Spremembe v glavni veji sprožijo:
+Repozitorij uporablja GitHub Pages ali podoben sistem za gostovanje dokumentacije (če je primerno). Spremembe v glavni veji sprožijo:
 
-1. Potek dela prevajanja (`.github/workflows/co-op-translator.yml`)
+1. Delovni tok prevajanja (`.github/workflows/co-op-translator.yml`)
 2. Samodejni prevod vseh angleških markdown datotek
 3. Lokalizacijo slik po potrebi
 
-### Ni potrebno graditi
+### Ni potrebnega gradbenega postopka
 
-Ta repozitorij vsebuje pretežno markdown dokumentacijo. Za jedrno vsebino učnega načrta ni potrebna kompilacija ali gradnja.
+Ta repozitorij vsebuje predvsem markdown dokumentacijo. Za vsebino osnovnega kurikuluma ni potrebna sestava ali gradnja.
 
-### Namestitev vzorčnih projektov
+### Uvajanje vzorčnega projekta
 
-Posamezni vzorčni projekti imajo lahko navodila za nameščanje:
-- Glej `03-GettingStarted/09-deployment/` za usmeritve za namestitev strežnika MCP
-- Primeri namestitve Azure Container Apps v `11-MCPServerHandsOnLabs/`
+Posamezni vzorčni projekti morda imajo navodila za uvajanje:
+- Glejte `03-GettingStarted/09-deployment/` za navodila za uvajanje MCP strežnika
+- Primeri uvajanja Azure Container Apps v `11-MCPServerHandsOnLabs/`
 
-## Smernice prispevkov
+## Smernice za prispevanje
 
-### Postopek za Pull Request
+### Postopek pull requesta
 
-1. **Fork in Kloniranje**: Naredite fork repozitorija in klonirajte vaš fork lokalno
-2. **Ustvarite vejo**: Uporabljajte opisna imena vej (npr. `fix/typo-module-3`, `add/python-example`)
-3. **Naredite spremembe**: Urejajte samo angleške markdown datoteke (ne prevedene)
-4. **Testirajte lokalno**: Preverite, da markdown pravilno upodablja vsebino
-5. **Oddajte PR**: Uporabljajte jasne naslove in opise PR-jev
-6. **CLA**: Podpišite Microsoft Contributor License Agreement, ko ste pozvani
+1. **Fork in kloniranje**: naredite fork repozitorija in lokalno klonirajte svoj fork
+2. **Ustvarite vejo**: uporabite opisna imena vej (npr. `fix/typo-module-3`, `add/python-example`)
+3. **Naredite spremembe**: uredite samo angleške markdown datoteke (ne prevode)
+4. **Testirajte lokalno**: preverite pravilno upodabljanje markdowna
+5. **Pošljite PR**: uporabite jasne naslove in opise PR-jev
+6. **CLA**: podpišite Microsoft Contributor License Agreement, ko se od vas zahteva
 
-### Oblika naslova PR-ja
+### Format naslova PR
 
 Uporabljajte jasne, opisne naslove:
-- `[Module XX] Kratek opis` za modulsko specifične spremembe
-- `[Samples] Opis` za spremembe vzorčne kode
+- `[Module XX] Kratek opis` za spremembe, specifične za modul
+- `[Samples] Opis` za spremembe primerov kode
 - `[Docs] Opis` za splošne posodobitve dokumentacije
 
 ### Kaj prispevati
 
 - Popravki napak v dokumentaciji ali primerih kode
 - Novi primeri kode v dodatnih jezikih
-- Pojasnila in izboljšave obstoječe vsebine
-- Novi primeri primerov ali študij primerov
-- Poročila o težavah glede nejasne ali napačne vsebine
+- Razjasnitve in izboljšave obstoječe vsebine
+- Novi primeri študij primerov ali praktični primeri
+- Poročila o težavah zaradi nejasne ali napačne vsebine
 
-### Česa NE delati
+### Česa NE početi
 
 - Ne urejajte neposredno datotek v imeniku `translations/`
 - Ne urejajte imenika `translated_images/`
-- Ne dodajajte velikih binarnih datotek brez predhodnih pogovorov
-- Ne spreminjajte datotek potekov prevajanja brez koordinacije
+- Ne dodajajte velikih binarnih datotek brez usklajevanja
+- Ne spreminjajte datotek delovnega toka prevajanja brez koordinacije
 
 ## Dodatne opombe
 
 ### Vzdrževanje repozitorija
 
-- **Zapis sprememb**: Vse pomembne spremembe so dokumentirane v `changelog.md`
-- **Vodnik za študij**: Uporabite `study_guide.md` za pregled navigacije po učnem načrtu
-- **Predloge za težave**: Uporabite GitHub predloge za prijavo napak in zahtev funkcij
-- **Kodeks vedenja**: Vsi sodelujoči morajo slediti Microsoftovemu kodeksu vedenja za odprto kodo
+- **Dnevnik sprememb**: Vse pomembne spremembe so dokumentirane v `changelog.md`
+- **Vodnik za študij**: uporabite `study_guide.md` za pregled navigacije po kurikulumu
+- **Predloge za vprašanja**: uporabite GitHub predloge za poročila o napakah in zahteve za funkcije
+- **Kodeks vedenja**: vsi sodelujoči morajo upoštevati Microsoft Open Source kodeks vedenja
 
-### Pot učenja
+### Učilna pot
 
-Sledite modulom zaporedno (00-11) za optimalno učenje:
-1. **00-02**: Osnove (Uvod, jedrne koncepte, varnost)
-2. **03**: Začetek z aktivno implementacijo
+Sledite modulom v zaporednem vrstnem redu (00-11) za optimalno učenje:
+1. **00-02**: Osnove (Uvod, osnovni koncepti, varnost)
+2. **03**: Začetek s praktično implementacijo
 3. **04-05**: Praktična implementacija in napredne teme
 4. **06-10**: Skupnost, najboljše prakse in aplikacije v resničnem svetu
-5. **11**: Celovite laboratorijske vaje za integracijo podatkovnih baz (13 zaporednih vaj)
+5. **11**: Celoviti laboratoriji za integracijo podatkovnih baz (13 zaporednih laboratorijev)
 
-### Viri podpore
+### Podporni viri
 
 - **Dokumentacija**: https://modelcontextprotocol.io/
-- **Specifikacija**: https://spec.modelcontextprotocol.io/
+- **Specifikacija**: https://modelcontextprotocol.io/specification/2026-07-28/
 - **Skupnost**: https://github.com/orgs/modelcontextprotocol/discussions
 - **Discord**: Microsoft Foundry Discord strežnik
-- **Sorodni tečaji**: Glejte README.md za ostale Microsoft učne poti
+- **Sorodni tečaji**: glejte README.md za ostale Microsoft učne poti
 
-### Pogoste težave
+### Pogoste težave in reševanje
 
-**V: Moj PR ne uspe pri preverjanju prevoda**
-O: Prepričajte se, da ste urejali samo angleške markdown datoteke v korenskih modulnih imenikih, ne prevedenih verzij.
+**V: Moj PR ne prestane preverjanja prevoda**
+O: Preverite, da ste uredili samo angleške markdown datoteke v korenskih modulnih imenikih, ne prevedene različice.
 
 **V: Kako dodam nov jezik?**
-O: Podporo jezikom upravlja potek dela co-op-translator. Odprite težavo za pogovor o dodajanju novih jezikov.
+O: Podporo jezikov upravlja delovni tok co-op-translator. Odprite vprašanje za razpravo o dodajanju novih jezikov.
 
 **V: Primeri kode ne delujejo**
+O: Preverite, da ste sledili navodilom za nastavitev v README-ju specifičnega vzorca. Preverite, da imate nameščene pravilne različice odvisnosti.
 
-A: Prepričajte se, da ste sledili navodilom za namestitev v README za določen primer. Preverite, da imate nameščene pravilne različice odvisnosti.
 
-**V: Slike se ne prikazujejo**
-A: Preverite, da so poti do slik relativne in uporabljajo poševnice naprej. Slike morajo biti v mapi `images/` ali `translated_images/` za lokalizirane različice.
+**V: Slike se ne prikazujejo** 
 
-### Premisleki glede uspešnosti
+A: Preverite, ali so poti do slik relativne in uporabljajo poševnice naprej. Slike naj bodo v imeniku `images/` ali `translated_images/` za lokalizirane različice.
 
-- Postopek prevajanja lahko traja več minut
-- Velike slike je treba optimizirati pred potrditvijo sprememb
-- Posamične markdown datoteke naj bodo osredotočene in razumno velike
+### Premisleki glede zmogljivosti
+
+- Prevodni potek lahko traja več minut
+- Velike slike je treba pred potrditvijo optimizirati
+- Posamezne markdown datoteke naj bodo osredotočene in razmeroma velike
 - Uporabljajte relativne povezave za boljšo prenosljivost
 
-### Upravljanje projekta
+### Vodenje projekta
 
 Ta projekt sledi Microsoftovim praksam odprte kode:
-- MIT licenca za kodo in dokumentacijo
-- Microsoftov kodeks ravnanja za odprto kodo
-- Za prispevke je potrebna podpisana pogodba o prispevku (CLA)
-- Varnostna vprašanja: Sledite smernicam v SECURITY.md
-- Podpora: Glejte SUPPORT.md za vire pomoči
+- Licenca MIT za kodo in dokumentacijo
+- Microsoftova Kodeks ravnanja odprte kode
+- Za prispevke je potreben CLA
+- Varnostni problemi: upoštevajte smernice iz SECURITY.md
+- Podpora: glejte SUPPORT.md za vire pomoči
 
 ---
 

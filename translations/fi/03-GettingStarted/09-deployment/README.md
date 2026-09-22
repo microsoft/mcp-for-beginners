@@ -1,51 +1,56 @@
 # MCP-palvelimien käyttöönotto
 
-MCP-palvelimen käyttöönotto mahdollistaa sen työkalujen ja resurssien käytön paikallisen ympäristösi ulkopuolella. Käyttöönottoon on useita strategioita, riippuen vaatimuksistasi skaalautuvuuden, luotettavuuden ja hallinnan helppouden suhteen. Alla löydät ohjeita MCP-palvelimien käyttöönottoon paikallisesti, konteissa ja pilveen.
+> [!NOTE]
+> Konfigurointiesimerkit, jotka käyttävät `/sse`-päätepistettä, kohdistuvat perinteiseen HTTP+SSE
+> tiedonsiirtoon. MCP `2026-07-28` etäpalvelimet käyttävät Streamable HTTP:tä, yleensä palvelimen määrittelemässä
+> päätepisteessä, kuten `/mcp`.
+
+MCP-palvelimesi käyttöönotto mahdollistaa muiden pääsyn sen työkaluihin ja resursseihin paikallisen ympäristösi ulkopuolella. On olemassa useita käyttöönotto-strategioita, jotka kannattaa ottaa huomioon riippuen skaalautuvuuden, luotettavuuden ja hallinnan helppouden vaatimuksistasi. Seuraavassa löydät ohjeita MCP-palvelimien käyttöönottoon paikallisesti, konteissa ja pilvipalveluihin.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa käsitellään, miten MCP Server -sovelluksesi otetaan käyttöön.
+Tässä oppitunnissa käydään läpi, miten MCP Server -sovelluksesi otetaan käyttöön.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopuksi osaat:
+Oppitunnin lopussa osaat:
 
-- Arvioida erilaisia käyttöönotto lähestymistapoja.
+- Arvioida erilaisia käyttöönotto-menetelmiä.
 - Ottaa sovelluksesi käyttöön.
 
 ## Paikallinen kehitys ja käyttöönotto
 
-Jos palvelimesi on tarkoitettu käytettäväksi käyttäjän koneella, voit seurata seuraavia vaiheita:
+Jos palvelimesi on tarkoitettu ajettavaksi käyttäjän koneella, voit seurata seuraavia vaiheita:
 
-1. **Lataa palvelin**. Jos et itse kirjoittanut palvelinta, lataa se ensin koneellesi.  
-1. **Käynnistä palvelinprosessi**: Käynnistä MCP-palvelinsovelluksesi 
+1. **Lataa palvelin**. Jos et ole kirjoittanut palvelinta, lataa se ensin koneellesi.
+1. **Käynnistä palveluprosessi**: Aja MCP-palvelinsovelluksesi
 
-SSE:lle (ei tarvita stdio-tyyppiselle palvelimelle)
+SSE:tä varten (ei tarvita stdio-tyyppisille palvelimille)
 
-1. **Konfiguroi verkko**: Varmista, että palvelimeen pääsee odotetulla portilla  
-1. **Yhdistä asiakkaat**: Käytä paikallisia URL-osoitteita kuten `http://localhost:3000`
+1. **Määritä verkko**: Varmista, että palvelin on saavutettavissa odotetulla portilla
+1. **Yhdistä asiakkaat**: Käytä paikallisia yhteys-URL-osoitteita kuten `http://localhost:3000`
 
 ## Pilvikäyttöönotto
 
-MCP-palvelimia voidaan ottaa käyttöön erilaisilla pilvialustoilla:
+MCP-palvelimia voidaan ottaa käyttöön eri pilvialustoilla:
 
-- **Serverless Functions**: Ota käyttöön kevyitä MCP-palvelimia serverless-toimintoina
+- **Palvelimettomat funktiot**: Käyttöön kevyitä MCP-palvelimia palvelimettomina funktioina
 - **Konttipalvelut**: Käytä palveluita kuten Azure Container Apps, AWS ECS tai Google Cloud Run
-- **Kubernetes**: Ota käyttöön ja hallitse MCP-palvelimia Kubernetes-klustereissa korkean käytettävyyden varmistamiseksi
+- **Kubernetes**: Ota MCP-palvelimet käyttöön ja hallinnoi niitä Kubernetes-klustereissa korkean käytettävyyden takaamiseksi
 
 ### Esimerkki: Azure Container Apps
 
-Azure Container Apps tukee MCP-palvelimien käyttöönottoa. Se on vielä työn alla, ja tällä hetkellä se tukee SSE-palvelimia.
+Azure Container Apps tukee MCP-palvelimien käyttöönottoa. Se on vielä työn alla, ja tällä hetkellä tukee SSE-palvelimia.
 
 Näin voit toimia:
 
-1. Kloonaa repositorio:
+1. Kopioi repository:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Käynnistä se paikallisesti testataksesi:
+1. Aja se paikallisesti testataksesi:
 
   ```sh
   uv venv
@@ -59,7 +64,7 @@ Näin voit toimia:
   uv run fastapi dev main.py
   ```
 
-1. Jotta voit kokeilla paikallisesti, luo *mcp.json* tiedosto *.vscode* hakemistoon ja lisää seuraava sisältö:
+1. Kokeillaksesi paikallisesti, luo *mcp.json* -tiedosto *.vscode*-kansioon ja lisää seuraava sisältö:
 
   ```json
   {
@@ -83,30 +88,30 @@ Näin voit toimia:
   }
   ```
 
-  Kun SSE-palvelin on käynnistetty, voit klikata JSON-tiedostossa play-kuvaketta, ja nyt GitHub Copilot tunnistaa palvelimella olevat työkalut, katso työkalukuvaketta.
+  Kun SSE-palvelin on käynnistetty, voit klikata play-kuvaketta JSON-tiedostossa, sinun pitäisi nyt nähdä palvelimen työkalut tulevan GitHub Copilotin käyttöön, katso Työkalu-kuvake.
 
-1. Ota käyttöön suorittamalla seuraava komento:
+1. Ota käyttöön ajamalla seuraava komento:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Siinä se, käytä nämä vaiheet ottaaksesi palvelimen käyttöön paikallisesti tai Azureen.
+Siinä se, ota käyttöön paikallisesti tai Azureen näiden ohjeiden avulla.
 
 ## Lisäresurssit
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
-- [Azure Container Apps artikkeli](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
+- [Azure Container Apps -artikkeli](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
 - [Azure Container Apps MCP repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
-## Seuraavaksi
+## Mitä seuraavaksi
 
-- Seuraava: [Advanced Server Topics](../10-advanced/README.md)
+- Seuraavaksi: [Kehittyneet palvelinaiheet](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälykäännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää auktoriteettisena lähteenä. Tärkeiden tietojen osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tästä käännöksestä johtuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

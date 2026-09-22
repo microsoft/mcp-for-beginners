@@ -1,27 +1,33 @@
-# Sujuvoita tekoälytyönkulkuja: MCP-palvelimen rakentaminen Microsoft Foundry Toolkitin avulla
+# Tekoälyn työnkulkujen virtaviivaistaminen: MCP-palvelimen rakentaminen Microsoft Foundry Toolkitilla
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
 ![logo](../../../translated_images/fi/logo.ec93918ec338dadd.webp)
 
-## 🎯 Yleiskatsaus
+## 🎯 Yleiskuvaus
 
-[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/fi/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
+[![Rakenna tekoälyagentteja VS Codessa: 4 käytännön laboratoriota MCP:llä ja Microsoft Foundry Toolkitilla](../../../translated_images/fi/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
 _(Napsauta yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
 
-Tervetuloa **Model Context Protocol (MCP) -työpajaan**! Tämä kattava käytännön työpaja yhdistää kaksi huippuluokan teknologiaa mullistaakseen tekoälysovelluskehityksen:
+Tervetuloa **Model Context Protocol (MCP) -työpajaan**! Tämä kattava käytännön työpaja yhdistää kaksi huippuluokan teknologiaa mullistaakseen tekoälysovellusten kehityksen:
+
+> **Yhteensopivuusohje:** työpajan koodi on rakennettu ja testattu MCP:n
+> `2025-11-25` version kanssa, kuten yllä oleva merkki osoittaa. Käytä
+> [nykyistä `2026-07-28` spesifikaatiota](https://modelcontextprotocol.io/specification/2026-07-28/)
+> uusissa protokollan toteutuksissa ja tarkista SDK:n julkaisutiedot ennen
+> laboratorioiden siirtoa.
 
 - **🔗 Model Context Protocol (MCP)**: Avoin standardi saumattomaan tekoälytyökalujen integrointiin
-- **🛠️ Microsoft Foundry Toolkit -laajennus VS Codeen**: Microsoftin tehokas tekoälykehityksen laajennus
+- **🛠️ Microsoft Foundry Toolkit -laajennus VS Codeen**: Microsoftin tehokas tekoälyn kehitystyökalu
 
 ### 🎓 Mitä opit
 
-Tämän työpajan lopussa hallitset älykkäiden sovellusten rakentamisen, jotka yhdistävät tekoälymallit todellisiin työkaluihin ja palveluihin. Automaattisesta testauksesta räätälöityihin API-integraatioihin saat käytännön taitoja monimutkaisten liiketoimintahaasteiden ratkaisemiseen.
+Tämän työpajan jälkeen hallitset älykkäiden sovellusten rakentamisen, jotka yhdistävät tekoälymallit todellisiin työkaluihin ja palveluihin. Automaattisesta testauksesta räätälöityihin API-integraatioihin saat käytännön taitoja monimutkaisten liiketoimintahaasteiden ratkaisuun.
 
-## 🏗️ Teknologiapino
+## 🏗️ Teknologiakokonaisuus
 
 ### 🔌 Model Context Protocol (MCP)
 
@@ -29,131 +35,131 @@ MCP on **"USB-C tekoälylle"** – universaali standardi, joka yhdistää tekoä
 
 **✨ Keskeiset ominaisuudet:**
 
-- 🔄 **Standardoitu integraatio**: Yleinen rajapinta tekoäly- ja työkaluyhteyksiin
+- 🔄 **Standardoitu integraatio**: Universaali rajapinta tekoäly- ja työkaluyhteyksille
 - 🏛️ **Joustava arkkitehtuuri**: Paikalliset ja etäpalvelimet stdio/SSE-siirrolla
-- 🧰 **Rikas ekosysteemi**: Työkaluja, kehotteita ja resursseja yhdessä protokollassa
-- 🔒 **Yrityskäyttöön valmis**: Sisäänrakennettu turvallisuus ja luotettavuus
+- 🧰 **Rikas ekosysteemi**: Työkalut, komennot ja resurssit yhteen protokollaan
+- 🔒 **Yritystason valmius**: Sisäänrakennettu turvallisuus ja luotettavuus
 
 **🎯 Miksi MCP on tärkeä:**
-Kuten USB-C poisti kaapelihässäkän, MCP poistaa tekoälyintegraatioiden monimutkaisuuden. Yksi protokolla, loputtomat mahdollisuudet.
+Aivan kuten USB-C poisti kaoskaapelit, MCP poistaa tekoälyn integraatioiden monimutkaisuuden. Yksi protokolla, lukemattomat mahdollisuudet.
 
 ### 🤖 Microsoft Foundry Toolkit -laajennus VS Codeen
 
-Microsoftin lippulaivana toimiva tekoälykehityksen laajennus, joka muuttaa VS Coden tekoälyvoimaksi.
+Microsoftin lippulaivalaajennus tekoälyn kehitykseen, joka muuttaa VS Coden tekoälyvoimakeskukseksi.
 
 **🚀 Keskeiset ominaisuudet:**
 
-- 📦 **Malli-katalogi**: Pääsy malleihin Azure AI:sta, GitHubista, Hugging Facesta, Ollamasta
+- 📦 **Malliluettelo**: Pääsy malleihin Azure AI:sta, GitHubista, Hugging Facesta, Ollamasta
 - ⚡ **Paikallinen päättely**: ONNX-optimoitu CPU/GPU/NPU-suoritus
-- 🏗️ **Agent Builder**: Visuaalinen tekoälyagenttien kehitys MCP-integraatiolla
-- 🎭 **Monimodaalinen**: Teksti-, näkö- ja rakenteisen tulosteen tuki
+- 🏗️ **Agenttirakentaja**: Visuaalinen tekoälyagenttien kehitys MCP-integraatiolla
+- 🎭 **Monimuotoinen**: Teksti-, näkö- ja rakenteisen tulosteen tuki
 
 **💡 Kehityksen edut:**
 
-- Nollakonfiguraatio mallien käyttöönotolle
-- Visuaalinen kehotteiden suunnittelu
+- Mallin käyttöönotto ilman konfigurointia
+- Visuaalinen kehoteinsinöörityö
 - Reaaliaikainen testausympäristö
-- Saumaton MCP-palvelimen integrointi
+- Saumaton MCP-palvelimen integraatio
 
-## 📚 Oppimismatka
+## 📚 Oppimispolku
 
-### [🚀 Moduuli 1: Microsoft Foundry Toolkitin perusteet](./lab1/README.md)
+### [🚀 Jakso 1: Microsoft Foundry Toolkitin perusteet](./lab1/README.md)
 
 **Kesto**: 15 minuuttia
 
 - 🛠️ Asenna ja konfiguroi Microsoft Foundry Toolkit VS Codeen
-- 🗂️ Tutustu Mallikatalogiin (yli 100 mallia GitHubista, ONNX:stä, OpenAI:sta, Anthropicista, Googlelta)
-- 🎮 Hallitse Interaktiivinen leikkikenttä reaaliaikaiseen mallien testaukseen
-- 🤖 Rakenna ensimmäinen tekoälyagenttisi Agent Builder -työkalulla
-- 📊 Arvioi mallin suorituskykyä sisäänrakennetuilla mittareilla (F1, merkityksellisyys, samankaltaisuus, johdonmukaisuus)
-- ⚡ Opi eräajon ja monimodaalituen ominaisuudet
+- 🗂️ Tutustu Malliluetteloon (100+ mallia GitHubista, ONNX:stä, OpenAI:sta, Anthropista, Googlesta)
+- 🎮 Hallitse Interaktiivinen Leikkikenttä reaaliaikaiseen mallin testaukseen
+- 🤖 Rakenna ensimmäinen tekoälyagenttisi Agenttirakentajalla
+- 📊 Arvioi mallin suorituskyky sisäänrakennetuilla mittareilla (F1, relevanssi, samankaltaisuus, johdonmukaisuus)
+- ⚡ Opettele eräprosessointi ja monimuotoisuuden tukeminen
 
-**🎯 Oppimistavoite**: Luo toimiva tekoälyagentti ja saavuta kattava ymmärrys Microsoft Foundry Toolkitin ominaisuuksista
+**🎯 Oppimistavoite**: Luo toimiva tekoälyagentti Microsoft Foundry Toolkitin ominaisuuksilla
 
-### [🌐 Moduuli 2: MCP ja Microsoft Foundry Toolkitin perusteet](./lab2/README.md)
+### [🌐 Jakso 2: MCP Microsoft Foundry Toolkitin perusteilla](./lab2/README.md)
 
 **Kesto**: 20 minuuttia
 
-- 🧠 Hallitse Model Context Protocolin (MCP) arkkitehtuuri ja käsitteet
-- 🌐 Tutustu Microsoftin MCP-palvelinekosysteemiin
-- 🤖 Rakenna selainautomaattinen agentti Playwright MCP -palvelimella
-- 🔧 Integroi MCP-palvelimet Microsoft Foundry Toolkitin Agent Builderiin
+- 🧠 Hallitse Model Context Protocol (MCP) -arkkitehtuuri ja käsitteet
+- 🌐 Tutustu Microsoftin MCP-palvelinen ekosysteemiin
+- 🤖 Rakenna selainautomaatiovelho Playwright MCP -palvelimella
+- 🔧 Integroi MCP-palvelimet Microsoft Foundry Toolkit Agent Builderiin
 - 📊 Konfiguroi ja testaa MCP-työkaluja agenteissasi
-- 🚀 Vie ja ota MCP-vuorovaikutteiset agentit tuotantoon
+- 🚀 Vie ja ota MCP-vahvistetut agentit tuotantoon
 
-**🎯 Oppimistavoite**: Ota käyttöön tekoälyagentti, joka on vahvistettu ulkoisilla työkaluilla MCP:n avulla
+**🎯 Oppimistavoite**: Ota käyttöön AI-agentti, joka on tehostettu ulkoisilla työkaluilla MCP:n kautta
 
-### [🔧 Moduuli 3: Edistynyt MCP-kehitys Microsoft Foundry Toolkitilla](./lab3/README.md)
+### [🔧 Jakso 3: Edistynyt MCP-kehitys Microsoft Foundry Toolkitilla](./lab3/README.md)
 
 **Kesto**: 20 minuuttia
 
-- 💻 Luo räätälöityjä MCP-palvelimia Microsoft Foundry Toolkitilla
-- 🐍 Käytä uusinta MCP Python SDK:ta (v1.9.3)
-- 🔍 Ota MCP Inspector käyttöön virheiden etsintään
-- 🛠️ Rakenna Sää MCP -palvelin ammattimaisilla debuggaustyökaluilla
-- 🧪 Debuggaa MCP-palvelimia sekä Agent Builder- että Inspector-ympäristöissä
+- 💻 Luo räätälöityjä MCP-palvelimia käyttäen Microsoft Foundry Toolkitia
+- 🐍 Konfiguroi ja käytä uusinta MCP Python SDK:ta (v1.9.3)
+- 🔍 Ota käyttöön MCP Inspector virheenkorjausta varten
+- 🛠️ Rakenna Sää MCP-palvelin ammattimaisin virheenkorjausprosessein
+- 🧪 Virheenkorjaa MCP-palvelimia sekä Agent Builder- että Inspector-ympäristöissä
 
-**🎯 Oppimistavoite**: Kehitä ja debuggaa räätälöityjä MCP-palvelimia moderneilla työkaluilla
+**🎯 Oppimistavoite**: Kehitä ja virheenkorjaa räätälöityjä MCP-palvelimia moderneilla työkaluilla
 
-### [🐙 Moduuli 4: Käytännön MCP-kehitys – Nimettömän GitHub Clone -palvelimen rakentaminen](./lab4/README.md)
+### [🐙 Jakso 4: Käytännön MCP-kehitys - Räätälöity GitHub Clone -palvelin](./lab4/README.md)
 
 **Kesto**: 30 minuuttia
 
-- 🏗️ Rakenna oikean maailman GitHub Clone MCP -palvelin kehitysprosessien sujuvoittamiseksi
-- 🔄 Toteuta älykäs arkistojen kloonaus validoinnilla ja virheenkäsittelyllä
+- 🏗️ Rakenna todellisen maailman GitHub Clone MCP -palvelin kehitystyönkuluille
+- 🔄 Toteuta älykäs repositorion kloonaus validoinnilla ja virhehandlauksella
 - 📁 Luo älykäs hakemistonhallinta ja VS Code -integraatio
 - 🤖 Käytä GitHub Copilot Agent Modea räätälöityjen MCP-työkalujen kanssa
-- 🛡️ Käytä tuotantovalmiita luotettavuus- ja monialustayhteensopivuuksia
+- 🛡️ Ota käyttöön tuotantovalmiit luotettavuus- ja monialustayhteensopivuusratkaisut
 
-**🎯 Oppimistavoite**: Käyttöönotto tuotantovalmiista MCP-palvelimesta, joka tehostaa todellisia kehitysprosesseja
+**🎯 Oppimistavoite**: Ota käyttöön tuotantovalmiiksi MCP-palvelimeksi, joka virtaviivaistaa aitoja kehityksen työnkulkuja
 
-## 💡 Käytännön sovellukset ja vaikutus
+## 💡 Käytännön sovellukset ja vaikutukset
 
 ### 🏢 Yrityskäyttötapaukset
 
 #### 🔄 DevOps-automaatio
 
-Muunna kehitysprosessi älykkäällä automaatiolla:
+Muuta kehitystyönkulku älykkäällä automaatiolla:
 
-- **Älykäs arkistohallinta**: Tekoälypohjainen koodin tarkastus ja yhdistämispäätökset
-- **Älykäs CI/CD**: Automaattinen putkien optimointi koodimuutosten perusteella
-- **Ongelmatriage**: Automaattinen virheiden luokittelu ja tehtävien jakaminen
+- **Älykäs repositorionhallinta**: Tekoälyn ohjaama koodin arviointi ja yhdistämispäätökset
+- **Älykäs CI/CD**: Koodimuutoksiin perustuva automaattinen putkien optimointi
+- **Virheiden lajittelu**: Automaattinen bugiluokittelu ja -määritys
 
-#### 🧪 Laadunvarmistuksen vallankumous
+#### 🧪 Laadunvarmistuksen mullistus
 
-Nosta testauksen tasoa tekoälyllä:
+Nosta testaus uudelle tasolle tekoälypohjaisella automaatiolla:
 
-- **Älykäs testien generointi**: Luo kattavia testisarjoja automaattisesti
-- **Visuaalinen regressiotestaus**: Tekoälypohjainen käyttöliittymän muutosten tunnistus
-- **Suorituskyvyn seuranta**: Ennakoiva ongelmien tunnistus ja ratkaisu
+- **Älykäs testien luonti**: Luo kattavat testiautomaatit automaattisesti
+- **Visuaalinen regressiotestaus**: Tekoälypohjainen käyttöliittymän muutosten havaitseminen
+- **Suorituskyvyn seuranta**: Ennakoiva ongelmien tunnistus ja korjaus
 
-#### 📊 Tietoputken älykkyys
+#### 📊 Tiedonputken älykkyys
 
-Rakenna älykkäämpiä tietojenkäsittelytyönkulkuja:
+Rakenna älykkäämpiä tiedonkäsittelyn työnkulkuja:
 
-- **Mukautuvat ETL-prosessit**: Itsensä optimoivat tiedonsiirrot
-- **Poikkeaman havaitseminen**: Reaaliaikainen datan laadun valvonta
+- **Mukautuva ETL-prosessi**: Itseoptimoituvat tiedonmuunnokset
+- **Poikkeamien tunnistus**: Reaaliaikainen tiedon laadun seuranta
 - **Älykäs reititys**: Älykäs tiedon kulun hallinta
 
 #### 🎧 Asiakaskokemuksen parantaminen
 
-Luo poikkeuksellisia asiakasvuorovaikutuksia:
+Luo poikkeuksellisia asiakaskohtaamisia:
 
-- **Kontekstin tunteva tuki**: Tekoälyagentit, joilla on pääsy asiakashistoriaan
+- **Kontekstitietoinen tuki**: Tekoälyagentit pääsylajeen asiakashistoriaan
 - **Ennakoiva ongelmanratkaisu**: Ennustava asiakaspalvelu
-- **Monikanavainen integraatio**: Yhtenäinen tekoälykokemus eri alustoilla
+- **Monikanavainen integraatio**: Yhtenäinen tekoälykokemus kaikilla alustoilla
 
-## 🛠️ Ennen aloittamista ja asennus
+## 🛠️ Esivaatimukset ja asennus
 
 ### 💻 Järjestelmävaatimukset
 
-| Osa | Vaatimus | Huomautukset |
-|-----------|-------------|-------|
-| **Käyttöjärjestelmä** | Windows 10+, macOS 10.15+, Linux | Mikä tahansa nykyaikainen käyttöjärjestelmä |
-| **Visual Studio Code** | Uusin vakaa versio | Tarvitaan Microsoft Foundry Toolkitille |
-| **Node.js** | v18.0+ ja npm | MCP-palvelimen kehitykseen |
-| **Python** | 3.10+ | Valinnainen Python MCP -palvelimille |
-| **Muisti** | Vähintään 8GB RAM | 16GB suositeltu paikallisille malleille |
+| Osa          | Vaatimus         | Huomautukset                      |
+|--------------|------------------|---------------------------------|
+| **Käyttöjärjestelmä** | Windows 10+, macOS 10.15+, Linux | Mikä tahansa nykyaikainen OS     |
+| **Visual Studio Code** | Viimeisin vakaa versio | Vaaditaan Microsoft Foundry Toolkitille |
+| **Node.js**    | v18.0+ ja npm    | MCP-palvelimen kehitykseen       |
+| **Python**    | 3.10+            | Valinnainen Python MCP -palvelimille |
+| **Muisti**     | Vähintään 8GB RAM | 16GB suositellaan paikallisille malleille |
 
 ### 🔧 Kehitysympäristö
 
@@ -162,62 +168,62 @@ Luo poikkeuksellisia asiakasvuorovaikutuksia:
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Valinnainen mutta hyödyllinen
+- **GitHub Copilot** (GitHub.copilot) - Valinnainen, mutta hyödyllinen
 
 #### Valinnaiset työkalut
 
 - **uv**: Moderni Python-pakettien hallinta
-- **MCP Inspector**: Visuaalinen virheiden etsintä MCP-palvelimille
-- **Playwright**: Verkkoselaimen automaatioesimerkkeihin
+- **MCP Inspector**: Visuaalinen virheenkorjaustyökalu MCP-palvelimille
+- **Playwright**: Web-automaatiokokeiluihin
 
-## 🎖️ Oppimistulokset ja sertifiointipolku
+## 🎖️ Oppimistulokset & Sertifiointipolku
 
 ### 🏆 Taitojen hallinnan tarkistuslista
 
-Tämän työpajan jälkeen hallitset:
+Tämän työpajan suorittamisen jälkeen hallitset:
 
-#### 🎯 Ydinosaaminen
+#### 🎯 Keskeiset osaamiset
 
-- [ ] **MCP-protokollan hallinta**: Syvä arkkitehtuurin ja toteutusmallien ymmärrys
-- [ ] **Microsoft Foundry Toolkit -osaaminen**: Asiantuntijatasoinen käyttö nopeaan kehitykseen
-- [ ] **Räätälöity palvelinkehitys**: Rakentaminen, käyttöönotto ja ylläpito tuotantokäyttöön
-- [ ] **Työkalujen integroinnin huippuosaaminen**: Tekoälyn saumaton yhdistäminen olemassa oleviin kehitysprosesseihin
-- [ ] **Ongelmanratkaisu käytännössä**: Opittujen taitojen soveltaminen liiketoiminnan haasteisiin
+- [ ] **MCP-protokollan hallinta**: Syvällinen arkkitehtuurin ja toteutusmallien ymmärrys
+- [ ] **Microsoft Foundry Toolkitin osaaminen**: Asiantuntijatasoinen käyttö nopeassa kehityksessä
+- [ ] **Räätälöityjen palvelinten kehitys**: Rakennus, käyttöönotto ja ylläpito tuotantopalvelimille
+- [ ] **Työkalujen integroinnin erinomaisuus**: Saumaton tekoälyn yhdistäminen nykyisiin kehitystyönkulkuihin
+- [ ] **Ongelmanratkaisun soveltaminen**: Opittujen taitojen soveltaminen aidossa liiketoimintaympäristössä
 
 #### 🔧 Tekninen osaaminen
 
-- [ ] Microsoft Foundry Toolkitin asennus ja konfigurointi VS Codessa
-- [ ] Räätälöityjen MCP-palvelimien suunnittelu ja toteutus
-- [ ] GitHub-mallien integrointi MCP-arkkitehtuuriin
-- [ ] Automaattisten testausprosessien rakentaminen Playwrightilla
-- [ ] Tekoälyagenttien käyttöönotto tuotannossa
-- [ ] MCP-palvelimen suorituskyvyn virheenkorjaus ja optimointi
+- [ ] Asenna ja konfiguroi Microsoft Foundry Toolkit VS Codessa
+- [ ] Suunnittele ja toteuta räätälöityjä MCP-palvelimia
+- [ ] Integroi GitHub-mallit MCP-arkkitehtuuriin
+- [ ] Rakenna automatisoituja testausprosesseja Playwrightilla
+- [ ] Ota tekoälyagentit käyttöön tuotannossa
+- [ ] Virheenkorjaa ja optimoi MCP-palvelimen suorituskykyä
 
-#### 🚀 Edistyneet taidot
+#### 🚀 Edistyneet kyvyt
 
-- [ ] Suunnittele yritystason tekoälyintegraatioita
-- [ ] Toteuta turvallisuuden parhaat käytännöt tekoälysovelluksiin
-- [ ] Suunnittele skaalautuvia MCP-palvelinarkkitehtuureja
-- [ ] Luo räätälöityjä työkaluketjuja tietyille toimialoille
-- [ ] Mentoroi muita tekoälykehityksessä
+- [ ] Suunnittele yritystason tekoälyintegraatioiden arkkitehtuuri
+- [ ] Toteuta tekoälysovellusten parhaat tietoturvakäytännöt
+- [ ] Rakenna skaalautuvia MCP-palvelinarkkitehtuureja
+- [ ] Luo räätälöityjä työkaluketjuja spesifisiin käyttötarkoituksiin
+- [ ] Mentoroi muita natiivissa tekoälyn kehityksessä
 
 ## 📖 Lisäresurssit
 
-- [MCP-spesifikaatio (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Microsoft Foundry Toolkit GitHub-repositorio](https://github.com/microsoft/vscode-ai-toolkit)
-- [EsimerkkimCP-palvelimet](https://github.com/modelcontextprotocol/servers)
-- [Parhaiden käytäntöjen opas](https://modelcontextprotocol.io/docs/best-practices)
+- [MCP-spesifikaatio (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Microsoft Foundry Toolkitin GitHub-repositorio](https://github.com/microsoft/vscode-ai-toolkit)
+- [Esimerkkimallit MCP-palvelimista](https://github.com/modelcontextprotocol/servers)
+- [Parhaat käytännöt -opas](https://modelcontextprotocol.io/docs/best-practices)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Turvallisuuden parhaat käytännöt
 
 ---
 
-**🚀 Valmiina mullistamaan tekoälykehityksen työnkulun?**
+**🚀 Valmiina mullistamaan tekoälykehityksen työnkulku?**
 
 Rakennetaan yhdessä älykkäiden sovellusten tulevaisuus MCP:n ja Microsoft Foundry Toolkitin avulla!
 
 ## Mitä seuraavaksi
 
-Jatka: [Moduuli 11: MCP-palvelimen käytännön työpajat](../11-MCPServerHandsOnLabs/README.md)
+Jatka: [Jakso 11: MCP-palvelimen käytännön laboratoriot](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

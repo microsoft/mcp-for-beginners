@@ -1,25 +1,30 @@
 # Детаљан преглед карактеристика MCP протокола
 
-Овај водич истражује напредне функције MCP протокола које превазилазе основно руковање алатима и ресурсима. Разумевање ових функција вам помаже да изградите робусније, пријатније за кориснике и спремне за производну употребу MCP сервере.
+Овај водич истражује напредне карактеристике MCP протокола које превазилазе основно управљање алатима и ресурсима. Разумевање ових функција помаже вам да изградите робусније, пријатније за кориснике и спремније за производњу MCP сервере.
 
-> **Поглед унапред:** издање кандидата за `2026-07-28` означава као застарелу примитиву Logging (преферирајући `stderr` за stdio и OpenTelemetry за структурирану посматраност), уклања модел `initialize`/сесије наведен у наставку под Догађаји животног циклуса сервера, и премешта експерименталну функцију Tasks у посебну екстензију Tasks са новим животним циклусом `tasks/get`/`tasks/update`/`tasks/cancel`. Погледајте [Шта се мења у MCP: Издање кандидата за 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Обим MCP `2026-07-28`:** покретање и гашење процеса сервера остају
+> брине апликације, али MCP `initialize` руковање и сесије на нивоу протокола
+> су уклоњене. Одељак о евидентирању испод је задржан за наслеђе
+> имплементације; нови сервери треба да користе `stderr` или OpenTelemetry. Задатке је
+> сада одвојено верзионирани екстензија. Погледајте
+> [Шта се променило у MCP: Спецификација 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Обрађене функције
+## Обухваћене карактеристике
 
-1. **Обавештења о напретку** - Прикажи напредак за дуготрајне операције
-2. **Отказивање захтева** - Омогући клијентима да отказују активне захтеве
-3. **Шаблони ресурса** - Динамички URI-ји ресурса са параметрима
-4. **Догађаји животног циклуса сервера** - Правилна иницијализација и гашење
-5. **Контрола логовања** - Конфигурација логовања на страни сервера
+1. **Обавештења о напредовању** - Извештавање о напретку дуготрајних операција
+2. **Отказивање захтева** - Омогућава клијентима да отказују захтеве у току
+3. **Шаблони ресурса** - Динамички URI ресурса са параметрима
+4. **Животни циклус апликације** - Покретање и гашење процеса сервера
+5. **Контрола евидентирања (наследна)** - Застарела конфигурација MCP евидентирања
 6. **Обрасци руковања грешкама** - Конзистентни одговори на грешке
 
 ---
 
-## 1. Обавештења о напретку
+## 1. Обавештења о напредовању
 
-За операције које трају (обрада података, преузимање фајлова, API позиви), обавештења о напретку држе кориснике информисаним.
+За операције које захтевају време (обрада података, преузимање фајлова, API позиви), обавештења о напредовању држе кориснике информисаним.
 
-### Како ради
+### Како функционише
 
 ```mermaid
 sequenceDiagram
@@ -27,13 +32,13 @@ sequenceDiagram
     participant Server
     
     Client->>Server: tools/call (дужа операција)
-    Server-->>Client: обавештење: напретка 10%
-    Server-->>Client: обавештење: напретка 50%
-    Server-->>Client: обавештење: напретка 90%
+    Server-->>Client: обавештење: напредак 10%
+    Server-->>Client: обавештење: напредак 50%
+    Server-->>Client: обавештење: напредак 90%
     Server->>Client: резултат (завршено)
 ```
 
-### Python имплементација
+### Питхон имплементација
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Добити величину фајла за рачунање напретка
+    # Добиј величину фајла за прорачун напретка
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Обрадити део
+            # Обради део
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Послати обавештење о напретку
+            # Пошаљи обавештење о напретку
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Пријавити напредак након сваке ставке
+        # Пријави напредак након сваког предмета
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -126,7 +131,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Руководство клијентом (Python)
+### Руковање на клијентској страни (Питхон)
 
 ```python
 async def handle_progress(notification):
@@ -147,7 +152,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 Омогућите клијентима да отказују захтеве који више нису потребни или трају предуго.
 
-### Python имплементација
+### Питхон имплементација
 
 ```python
 from mcp.server import Server
@@ -163,8 +168,8 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Претражуј кроз више страна
-            # Провери да ли је захтевано отказивање
+        for page in range(100):  # Претражи кроз много страница
+            # Проверити да ли је захтевано отказивање
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
@@ -172,7 +177,7 @@ async def long_running_search(query: str, ctx) -> str:
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Мало одлагање омогућава проверу отказивања
+            # Мала пауза омогућава провере отказивања
             await asyncio.sleep(0.1)
             
     except CancelledError:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Нормално време чекања, настави
+            pass  # Нормално време истека, настави
 ```
 
-### Отказивање на страни клијента
+### Отказивање на клијентској страни
 
 ```python
 import asyncio
@@ -265,7 +270,7 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Шаблони ресурса
 
-Шаблони ресурса омогућавају динамичку конструкцију URI-јева са параметрима, корисно за API-је и базе података.
+Шаблони ресурса омогућавају динамичку конструкцију URI-ја са параметрима, корисно за API и базе података.
 
 ### Дефинисање шаблона
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Парсирај УРИ да би издвојио параметре
+    # Анализирај URI да извучеш параметре
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -365,11 +370,13 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Догађаји животног циклуса сервера
+## 4. Животни циклус апликације
 
-Правилна иницијализација и гашење обезбеђују чисто руковање ресурсима.
+Овај одељак покрива покретање и гашење процеса апликације, а не уклоњени
+MCP `initialize` руковање. Правилно руковање животним циклусом обезбеђује чисто управљање ресурсима.
 
-### Управљање животним циклусом у Python-у
+
+### Управљање животним циклусом у Питхон-у
 
 ```python
 from mcp.server import Server
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Безбедно користи this.dbConnection
+      // Користи this.dbConnection безбедно
       // ...
     });
   }
 }
 
-// Коришћење са мирним искључењем
+// Коришћење са благим искључењем
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Контрола логовања
+## 5. Контрола евидентирања (наследна)
 
-MCP подржава нивое логовања са стране сервера које клијенти могу контролисати.
+> [!WARNING]
+> Писање логова у MCP је застарело у `2026-07-28` и може бити уклоњено
+> у првој ревизији спецификације издатој 28. јула 2027. или након ње. Примери
+> испод су за компатибилност са старијим имплементацијама. Користите `stderr` уз
+> stdio и OpenTelemetry за структуирану видљивост у новим серверима.
 
-### Имплементација нивоа логовања
+Наслеђене верзије MCP подржавају нивое евидентирања са сервера које клијенти могу контролисати.
+
+### Имплементација нивоа евидентирања
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Мапирајте MCP нивое на Python нивое логовања
+# Мапирајте MCP нивое на Питхон нивое логовања
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -519,7 +532,7 @@ async def debug_operation(data: str) -> str:
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Пошаљи обавештење о логовању клијенту
+    # Пошаљи обавештење о запису клијенту
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
@@ -572,7 +585,7 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Структурисани одговори на грешке
+### Структурирани одговори на грешке
 
 ```python
 @app.tool()
@@ -587,7 +600,7 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Провери дозволе
+        # Провера дозвола
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
@@ -604,12 +617,12 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Запиши неочекиване грешке
+        # Забележи необјашњиве грешке
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
 
-### Руководство грешкама у TypeScript-у
+### Руковање грешкама у TypeScript-у
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -636,10 +649,10 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Већ грешка MCP-а
+      throw error;  // Већ MCP грешка
     }
     
-    // Претвори друге грешке
+    // Конвертуј друге грешке
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
@@ -656,51 +669,21 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Експерименталне функције (MCP 2025-11-25)
+## Карактеристике осетљиве на верзију
 
-Ове функције су означене као експерименталне у спецификацији:
+### Задатци Екстензија
 
-### Tasks (Дуготрајне операције)
-
-```python
-# Задатке омогућавају праћење дуготрајних операција са стањем
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Пријави покретање задатка
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Петља тренирања
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+Задатци су званична, одвојено верзионирана екстензија у MCP `2026-07-28`. Сервер може
+вратити контролу задатка из позива алата, а клијент управља задатком преко `tasks/get`,
+`tasks/update` и `tasks/cancel`. Експериментални
+API за задатке `2025-11-25` није уназад компатибилан, и `tasks/list` више
+не постоји.
 
 ### Аннотације алата
 
-```python
-# Аннотације пружају метаподатке о понашању алата
-@app.tool(
-    annotations={
-        "destructive": False,      # Не мења податке
-        "idempotent": True,        # Безбедно за поновни покушај
-        "timeout_seconds": 30,     # Очекујано максимално трајање
-        "requires_approval": False # Није потребно одобрење корисника
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Аннотације алата описују понашање као што су само за читање, деструктивно, идемпотентно,
+или отворени свет операција. То су наговештаји и не смеју се третирати као поуздана
+овлашћења или гаранције безбедности осим ако не долазе са поузданог сервера.
 
 ---
 
@@ -708,15 +691,15 @@ async def safe_query(query: str) -> str:
 
 - [Модул 8 - Најбоље праксе](../../08-BestPractices/README.md)
 - [5.14 - Инжењеринг контекста](../mcp-contextengineering/README.md)
-- [Дневник измена спецификације MCP](https://spec.modelcontextprotocol.io/)
+- [MCP ревизија спецификације](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Додатни ресурси
 
-- [Спецификација MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [JSON-RPC 2.0 кодови грешака](https://www.jsonrpc.org/specification#error_object)
-- [Python SDK примери](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
+- [MCP спецификација 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 Кодови грешака](https://www.jsonrpc.org/specification#error_object)
+- [Питхон SDK примери](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK примери](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---

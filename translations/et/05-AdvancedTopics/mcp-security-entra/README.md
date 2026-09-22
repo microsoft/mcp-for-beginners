@@ -1,131 +1,137 @@
-# AI töövoogude turvamine: Entra ID autentimine Model Context Protocol serveritele
+# AI-töövoogude turvamine: Entra ID autentimine mudeli konteksti protokolli serveritele
+
+> [!NOTE]
+> Selle õppetüki kaugserveri kood kaitseb pärand `/sse` ja `/message`
+> lõpp-punkte ning sihib MCP `2025-11-25`. Säilita selle identiteedi- ja tokeni valideerimise
+> meetodid, kuid uute rakenduste puhul kasuta `2026-07-28`-ühilduvat Streamable HTTP transporti.
+
 
 ## Sissejuhatus
-Sinu Model Context Protocol (MCP) serveri turvamine on sama oluline kui kodu esivärava lukustamine. Kui jätta MCP server avatuks, võib see tööriistu ja andmeid volitamata juurdepääsu ohvriks tuua, mis võib viia turvarikkumisteni. Microsoft Entra ID pakub tugevat pilvepõhist identiteedi ja juurdepääsu haldamise lahendust, mis tagab, et ainult volitatud kasutajad ja rakendused saavad MCP serveriga suhelda. Selles osas õpid, kuidas kaitsta oma AI töövooge Entra ID autentimise abil.
+Mudeli konteksti protokolli (MCP) serveri turvamine on sama oluline kui oma maja esiukse lukustamine. Kui jätta oma MCP server avatud, on su tööriistad ja andmed volitamata juurdepääsuks avatud, mis võib viia turvarikkumisteni. Microsoft Entra ID pakub tugevat pilvepõhist identiteedi ja juurdepääsu haldamise lahendust, aidates tagada, et ainult volitatud kasutajad ja rakendused suudavad MCP serveriga suhelda. Selles peatükis õpid, kuidas kaitsta oma AI töövooge Entra ID autentimise abil.
 
 ## Õpieesmärgid
-Selle osa lõpuks suudad:
+Selle peatüki lõpus saad:
 
-- Mõista MCP serverite turvamise olulisust.
+- Mõista MCP serverite turvamise tähtsust.
 - Selgitada Microsoft Entra ID ja OAuth 2.0 autentimise põhialuseid.
-- Erinevusi tuvastada avaliku ja konfidentsiaalse kliendi vahel.
-- Rakendada Entra ID autentimist nii kohalikus (avaliku kliendi) kui ka kaug-MCP serveri (konfidentsiaalse kliendi) stsenaariumides.
-- Kasutada turvalisi parimaid praktikaid AI töövoogude arendamisel.
+- Teadvustada avaliku ja konfidentsiaalse kliendi erinevust.
+- Rakendada Entra ID autentimist nii lokaalsel (avalik klient) kui ka kaugserveri (konfidentsiaalne klient) MCP serveri stsenaariumis.
+- Kasutada turvalisuse parimaid tavasid AI töövoogude arendamisel.
 
 ## Turvalisus ja MCP
 
-Nagu sa ei jätaks oma kodu esiväravat lukustamata, ei tohiks sa jätta MCP serverit avatuks kõigile. AI töövoogude turvamine on hädavajalik, et luua vastupidavaid, usaldusväärseid ja turvalisi rakendusi. Käesolevas peatükis tutvustame Microsoft Entra ID kasutamist MCP serverite turvamiseks, tagades, et ainult volitatud kasutajad ja rakendused pääsevad sinu tööriistadele ja andmetele ligi.
+Nii nagu sa ei jätaks oma maja esiuks lukustamata, ei tohiks sa jätta oma MCP serverit inimestele vaba ligipääsuga. AI töövoogude turvamine on hädavajalik usaldusväärsete, turvaliste ja tugeva rakenduste ehitamiseks. See peatükk tutvustab sulle, kuidas kasutada Microsoft Entra ID-d MCP serverite turvamiseks, tagades, et ainult volitatud kasutajad ja rakendused saavad sinu tööriistade ja andmetega suhelda.
 
 ## Miks MCP serverite turvalisus on oluline
 
-Kujuta ette, et sinu MCP serveril on tööriist, mis suudab saata e-kirju või pääseda kliendi infosüsteemi andmetele ligi. Turvamata server võiks lubada kellel tahes seda tööriista kasutada, mis tooks kaasa volitamata andmete juurdepääsu, rämpsposti või muid pahatahtlikke tegevusi.
+Kujuta ette, et su MCP serveril on tööriist, mis saab saata e-kirju või pääseda ligi kliendi andmebaasile. Turvamata server tähendaks, et igaüks võiks seda tööriista kasutada, mis viib volitamata andmete juurde pääsemise, rämpsposti või muude pahatahtlike tegevusteni.
 
-Autentimise rakendamisega tagad, et iga päring serverile on kontrollitud ja kinnitab kasutaja või rakenduse identiteedi. See on esimene ja kõige olulisem samm sinu AI töövoogude turvamisel.
+Autentimise rakendamisel tagad, et iga serverile esitatud päring on kontrollitud, kinnitades päringu tegija kasutaja või rakenduse identiteedi. See on esimene ja kõige olulisem samm AI töövoogude turvamisel.
 
-## Sissejuhatus Microsoft Entra ID-sse
+## Tutvustus Microsoft Entra ID-le
 
-[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) on pilvepõhine identiteedi ja juurdepääsu haldamise teenus. Mõtle sellele kui universaalsele turvamehele sinu rakendustes. See haldab keerukat protsessi kasutaja identiteedi kinnitamiseks (autentimine) ja määrab, mida need kasutajad teha võivad (autorisatsioon).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) on pilvepõhine identiteedi ja juurdepääsu haldamise teenus. Mõtle sellele kui universaalsele turvamehhanismile oma rakenduste jaoks. See haldab keerulist protsessi, kus kontrollitakse kasutajate identiteete (autentimine) ja määratakse, mida neile lubatakse teha (autoriseerimine).
 
-Entra ID kasutamisega saad:
+Entra ID kasutamisel saad:
 
-- Lubada kasutajatele turvalist sisselogimist.
+- Lubada kasutajate turvalist sisselogimist.
 - Kaitsta API-sid ja teenuseid.
-- Hallata juurdepääsupoliitikaid ühest kesksest kohast.
+- Hallata juurdepääsupoliitikaid tsentraalselt.
 
-MCP serverite puhul annab Entra ID usaldusväärse ja laialdaselt aktsepteeritud lahenduse selleks, kes saab serveris olevaid võimalusi kasutada.
+MCP serverite puhul pakub Entra ID tugevat ja laialdaselt usaldatavat lahendust, kes saab sinu serveri võimeid kasutada.
 
 ---
 
-## Mõistmine: Kuidas Entra ID autentimine toimib
+## Selle maagia mõistmine: kuidas Entra ID autentimine töötab
 
-Entra ID kasutab autentimiseks avatud standardeid, näiteks **OAuth 2.0**. Kuigi detailsed aspektid võivad olla keerukad, on põhiline kontseptsioon lihtne ja seda saab mõista järgnevast võrdlusest.
+Entra ID kasutab autentimiseks avatud standardeid nagu **OAuth 2.0**. Kuigi detailid võivad olla keerukad, on põhimõte lihtne ja seda saab mõista võrdluse kaudu.
 
-### Õrn sissejuhatus OAuth 2.0-sse: Võtmehoidja võti
+### Õrn sissejuhatus OAuth 2.0: Valeti võti
 
-Mõtle OAuth 2.0-le nagu võtmehoidja teenusele sinu auto jaoks. Kui jõuad restorani, ei anna sa võtmehoidjale oma peamist võtit. Selle asemel annad talle **võtmehoidja võtme**, millel on piiratud õigused – see võib autot käivitada ja uksi lukustada, kuid ei saa pagasnikku ega kindalaekat avada.
+Mõtle OAuth 2.0-le nagu valetiteenusele auto juures. Kui jõuad restorani, ei anna sa valetile oma peamist võtit. Selle asemel annad talle **valeti võtme**, millel on piiratud õigused — see võib autot käivitada ja uksi lukustada, aga ei saa avada pagasnikku ega kindalaegast.
 
 Selles võrdluses:
 
 - **Sina** oled **kasutaja**.
-- **Sinu auto** on **MCP server** koos tema väärtuslike tööriistade ja andmetega.
-- **Võtmehoidja** on **Microsoft Entra ID**.
-- **Parkimisvõtja** on **MCP klient** (rakendus, mis üritab serverile ligi pääseda).
-- **Võtmehoidja võti** on **juurdepääsutoken**.
+- **Sinu auto** on **MCP server** oma väärtuslike tööriistade ja andmetega.
+- **Valet** on **Microsoft Entra ID**.
+- **Parkla teenindaja** on **MCP klient** (rakendus, mis proovib serverile ligi pääseda).
+- **Valetivõti** on **juurdepääsu token**.
 
-Juurdepääsutoken on turvaline tekstijada, mille MCP klient saab Entra ID-lt pärast sisselogimist. Klient esitab selle tokeni igal päringul MCP serverile. Server saab tokeni kinnitada, tagamaks, et päring on legitiimne ja kliendil on vajalikud õigused, ilma et peaks kunagi sinu tegeliku salasõna käsitlema.
+Juurdepääsu token on turvaline tekstijada, mille MCP klient saab Entra ID-lt pärast sinu sisselogimist. Klient esitab selle tokeni iga päringu juures MCP serverile. Server saab tokeni valideerida, veendumaks, et päring on õiguspärane ja et kliendil on vajalikud õigused — kõik see ilma sinu tegelikke mandaate (nt parooli) käsitlemata.
 
-### Autentimisvoog
+### Autentimise voog
 
-Nii see protsess praktikas toimib:
+Protsess töötab praktikas järgmiselt:
 
 ```mermaid
 sequenceDiagram
     actor User as 👤 Kasutaja
-    participant Client as 🖥️ MCP Klient
+    participant Client as 🖥️ MCP klient
     participant Entra as 🔐 Microsoft Entra ID
-    participant Server as 🔧 MCP Server
+    participant Server as 🔧 MCP server
 
     Client->>+User: Palun logi sisse, et jätkata.
     User->>+Entra: Sisestab mandaadid (kasutajanimi/parool).
-    Entra-->>Client: Siin on sinu juurdepääsu token.
-    User-->>-Client: (Tagastub rakendusse)
+    Entra-->>Client: Siin on sinu ligipääsutoken.
+    User-->>-Client: (Tagasi rakendusse)
 
-    Client->>+Server: Vajan tööriista kasutamist. Siin on minu juurdepääsu token.
-    Server->>+Entra: Kas see juurdepääsu token on kehtiv?
-    Entra-->>-Server: Jah, see on.
+    Client->>+Server: Ma pean tööriista kasutama. Siin on minu ligipääsutoken.
+    Server->>+Entra: Kas see ligipääsutoken on kehtiv?
+    Entra-->>-Server: Jah, on.
     Server-->>-Client: Token on kehtiv. Siin on tööriista tulemus.
 ```
 
 ### Microsoft Authentication Library (MSAL) tutvustus
 
-Enne koodi vaatamist on tähtis tutvustada peamist komponendi, mida näed näidetes: **Microsoft Authentication Library (MSAL)**.
+Enne koodi vaatamist on oluline tutvustada võtmekomponenti, mida näed näidetes: **Microsoft Authentication Library (MSAL)**.
 
-MSAL on Microsofti poolt loodud teek, mis lihtsustab oluliselt arendajate autentimise haldamist. Selle asemel, et sina peaksid kirjutama keeruka koodi turvatokenite käsitlemiseks, sisselogimiste haldamiseks ja sessioonide uuendamiseks, võtab MSAL selle raske töö enda peale.
+MSAL on Microsofti arendatud raamatukogu, mis teeb autentimise haldamise arendajatele palju lihtsamaks. Selle asemel, et sa peaksid kirjutama kogu keeruka koodi, mis haldab turvatoekeneid, sisselogimisi ja sessioonide uuendamist, teeb MSAL selle töö sinu eest ära.
 
-MSAL kasutamine on väga soovitatav, sest:
+MSAL kasutamise soovitused põhinevad järgmisel:
 
-- **See on turvaline:** Rakendab tööstusharu standardprotokolle ja turvaliseimad praktikad, vähendades koodi haavatavusi.
-- **See lihtsustab arendust:** Peidab OAuth 2.0 ja OpenID Connect keerukuse, võimaldades autentimist lisada mõne koodirea abil.
-- **See on hooldatud:** Microsoft uuendab MSAL-i aktiivselt, et reageerida uutele turvaohtudele ja platvormimuudatustele.
+- **See on turvaline:** Rakendab tööstusharu standardprotokolle ja parimaid turbetavasid, vähendades koodi haavatavusi.
+- **Lihtsustab arendust:** Abstraktiseerib OAuth 2.0 ja OpenID Connect protokollide keerukuse, võimaldades lisada autentimist mõne koodireaga.
+- **See on hooldatud:** Microsoft uuendab MSAL-i aktiivselt, vastates uutele turvaohtudele ja platvormimuudatustele.
 
-MSAL toetab laias valikus programmeerimiskeeli ja rakendusraamistikke, sealhulgas .NET, JavaScript/TypeScript, Python, Java, Go ning mobiilplatvorme nagu iOS ja Android. See tähendab, et saad kasutada samasugust autentimise mustrit kogu tehnoloogiapagas.
+MSAL toetab mitmeid programmeerimiskeeli ja raamistikuid nagu .NET, JavaScript/TypeScript, Python, Java, Go ja mobiiliplatvormid (iOS ja Android). See võimaldab sul kasutada ühtseid autentimismustreid kogu tehnoloogiast kui virnas.
 
-Lisaks MSAL-le loe ametlikku [MSAL ülevaate dokumentatsiooni](https://learn.microsoft.com/entra/identity-platform/msal-overview).
+Rohkem infot MSAL-i kohta leiad ametlikust [MSAL ülevaate dokumentatsioonist](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## MCP serveri turvamine Entra ID abil: Samm-sammult juhend
+## MCP serveri turvamine Entra ID-ga: samm-sammuline juhend
 
-Vaatame nüüd, kuidas turvata kohalik MCP server (mis suhtleb `stdio` kaudu) Entra ID kasutades. See näide kasutab **avalikku klienti**, mis sobib rakendustele, mis töötavad kasutaja arvutis, näiteks lauaarvuti rakendus või kohalik arendusserver.
+Käime nüüd üle, kuidas turvata lokaalne MCP server (`stdio` suhtlusega) Entra ID abil. Näites kasutatakse **avatud klienti**, mis sobib rakendustele, mis töötavad kasutaja masinas, nt töölauarakendus või kohalik arenduse server.
 
-### Stsenaarium 1: Kohaliku MCP serveri turvamine (avaliku kliendi kasutamine)
+### Stsenaarium 1: Lokaalse MCP serveri turvamine (avatud klient)
 
-Selles stsenaariumis vaatleme MCP serverit, mis töötab lokaalselt, suhtleb `stdio` kaudu ja kasutab Entra ID autentimiseks enne tööriistadele ligipääsu lubamist kasutajat. Serveril on üks tööriist, mis hangib kasutaja profiili Microsoft Graph API kaudu.
+Selle stsenaariumi puhul vaatame MCP serverit, mis töötab kohapeal, suhtleb üle `stdio` ja kasutab Entra ID-d kasutaja autentimiseks enne tööriistade kasutamist. Serveril on üks tööriist, mis hangib Microsoft Graph API kaudu kasutaja profiiliandmed.
 
 #### 1. Rakenduse registreerimine Entra ID-s
 
-Enne koodi kirjutamist tuleb registreerida rakendus Microsoft Entra ID-s. See annab Entra ID-le info sinu rakenduse kohta ja lubab adutentimise teenust kasutada.
+Enne koodi kirjutamist pead registreerima oma rakenduse Microsoft Entra ID-s. See annab Entra ID-le informatsiooni sinu rakendusest ja lubab autentimisteenuse kasutamise.
 
 1. Mine **[Microsoft Entra portaali](https://entra.microsoft.com/)**.
-2. Ava **App registrations** ja klõpsa **New registration**.
-3. Pane rakendusele nimi (nt "Minu kohalik MCP server").
-4. Vali **Supported account types**'s **Accounts in this organizational directory only**.
-5. Selle näite jaoks võib **Redirect URI** tühjaks jätta.
-6. Klõpsa **Register**.
+2. Vali **App registrations** ja kliki **New registration**.
+3. Anna oma rakendusele nimi (nt "My Local MCP Server").
+4. **Supported account types** juures vali **Accounts in this organizational directory only**.
+5. Selle näite puhul võid **Redirect URI** tühjaks jätta.
+6. Kliki **Register**.
 
-Pärast registreerimist märgi üles **Application (client) ID** ja **Directory (tenant) ID**, neid vajad koodis.
+Pärast registreerimist märgi üles **Application (client) ID** ja **Directory (tenant) ID**, mida vajad koodis.
 
-#### 2. Koodi selgitus
+#### 2. Kood: ülevaade
 
-Vaatame koodi põhiosasid, mis tegelevad autentimisega. Selle näite täielik kood on saadaval [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) kaustas [mcp-auth-servers GitHubi hoidlas](https://github.com/Azure-Samples/mcp-auth-servers).
+Vaatame koodi peamisi osi, mis tegelevad autentimisega. Selle näite täieliku koodi leiad [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) kaustast [mcp-auth-servers GitHubi hoidlas](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-See klass vastutab suhtluse eest Entra ID-ga.
+Klass tegeleb Entra ID-ga suhtlemisega.
 
-- **`CreateAsync`**: Initsialiseerib `PublicClientApplication` MSAL-ist. Konfigureeritakse sinu rakenduse `clientId` ja `tenantId` järgi.
-- **`WithBroker`**: Võimaldab brokera kasutamist (nt Windows Web Account Manager), mis pakub turvalisemat ja sujuvamat sisselogimiskogemust.
-- **`AcquireTokenAsync`**: Peamine meetod. Esiteks püüab vaiksel viisil tokenit hankida (kasutaja ei pea uuesti sisselogima, kui kehtiv sessioon olemas). Kui see ebaõnnestub, suunatakse kasutajat interaktiivselt sisselogima.
+- **`CreateAsync`**: Meetod initsialiseerib MSAL-i `PublicClientApplication` objekti, kasutades rakenduse `clientId` ja `tenantId`.
+- **`WithBroker`**: Võimaldab kasutada vahendajat (nt Windows Web Account Manager), pakkudes turvalisemat ja sujuvamat ühtse sisselogimise kogemust.
+- **`AcquireTokenAsync`**: Põhimeetod. Esiteks proovib hankida tokeni vaikselt (kasutajalt sisselogimist nõudmata, kui kehtiv sessioon on olemas). Kui vaikne tokeni hankimine ebaõnnestub, kutsub see kasutaja interaktiivselt sisse logima.
 
 ```csharp
 // Simplified for clarity
@@ -175,10 +181,10 @@ public async Task<string> AcquireTokenAsync()
 
 **`Program.cs`**
 
-Siin seadistatakse MCP server ja integreeritakse autentimisteenus.
+Siin määratletakse MCP server ja liidetakse autentimisteenus.
 
-- **`AddSingleton<AuthenticationService>`**: Registreerib `AuthenticationService` sõltuvuste konteinerisse, et teised rakenduse osad saaks seda kasutada (nt tööriist).
-- **`GetUserDetailsFromGraph` tööriist**: See tööriist vajab `AuthenticationService` instantsi. Enne tegevust kutsub see `authService.AcquireTokenAsync()`, et saada kehtiv juurdepääsutoken. Kui autentimine õnnestub, kasutab see tokenit, et kutsuda Microsoft Graph API ja hankida kasutaja andmed.
+- **`AddSingleton<AuthenticationService>`**: Registreerib `AuthenticationService` sõltuvuste konteineris, nii et teised komponendid (nt tööriist) saavad seda kasutada.
+- **`GetUserDetailsFromGraph` tööriist**: See tööriist vajab `AuthenticationService` eksemplari. Enne tööriista kasutamist kutsub see `authService.AcquireTokenAsync()`, et saada kehtiv juurdepääsu token. Kui autentimine õnnestub, kasutab tokenit Microsoft Graph API kutsumiseks ja kasutaja andmete hankimiseks.
 
 ```csharp
 // Simplified for clarity
@@ -206,51 +212,51 @@ public static async Task<string> GetUserDetailsFromGraph(
 }
 ```
 
-#### 3. Kuidas see kõik kokku töötab
+#### 3. Kuidas see kõik koos töötab
 
-1. Kui MCP klient üritab kasutada `GetUserDetailsFromGraph` tööriista, kutsub tööriist esmalt `AcquireTokenAsync`.
-2. `AcquireTokenAsync` sunnib MSAL-i kontrollima, kas kehtiv token on olemas.
-3. Kui tokenit ei leita, suunab MSAL brokera kaudu kasutaja Entra ID sisselogimislehele.
-4. Kui kasutaja sisse logib, väljastab Entra ID juurdepääsutokeni.
-5. Tööriist saab tokeni ja kasutab seda turvalise kõne tegemiseks Microsoft Graph API-le.
+1. Kui MCP klient kutsub `GetUserDetailsFromGraph` tööriista, helistab tööriist esmalt `AcquireTokenAsync`-le.
+2. `AcquireTokenAsync` käivitab MSAL-i tokeni kehtivuse kontrollimise.
+3. Kui tokeni ei leita, palub MSAL vahendaja abil kasutajal logida sisse oma Entra ID kontoga.
+4. Pärast kasutaja sisselogimist väljastab Entra ID juurdepääsu tokeni.
+5. Tööriist saab selle tokeni ja kasutab seda turvaliseks kõneks Microsoft Graph API-le.
 6. Kasutaja andmed tagastatakse MCP kliendile.
 
-See protsess tagab, et tööriista saavad kasutada ainult autentitud kasutajad, mis turvab efektiivselt sinu kohaliku MCP serveri.
+See protsess tagab, et tööriista saavad kasutada ainult autentitud kasutajad, turvates efektiivselt sinu lokaalset MCP serverit.
 
-### Stsenaarium 2: Kaug-MCP serveri turvamine (konfidentsiaalse kliendiga)
+### Stsenaarium 2: Kaug-MCP serveri turvamine (konfidentsiaalne klient)
 
-Kui MCP server töötab kaugmasinas (nt pilveserver) ja suhtleb näiteks HTTP Streaming protokolli kaudu, on turvanõuded erinevad. Sellisel juhul peaksid kasutama **konfidentsiaalset klienti** ja **Authorization Code Flow'd**. See on turvalisem meetod, kuna rakenduse saladused ei suleta kunagi brauserisse.
+Kui su MCP server töötab kaugmasinal (nt pilveserver) ja suhtleb HTTP streaming protokolli kaudu, siis on turvanõuded erinevad. Sel juhul peaksid kasutama **konfidentsiaalset klienti** ja **Authorization Code Flow** meetodit. See on turvalisem, kuna rakenduse saladused ei avaldu brauserile.
 
-See näide kasutab TypeScriptil põhinevat MCP serverit, mis kasutab Express.js HTTP päringute haldamiseks.
+Näiteks kasutatakse TypeScript-il põhinevat MCP serverit, mis haldab HTTP päringuid Express.js abil.
 
-#### 1. Rakenduse registreerimine Entra ID-s
+#### 1. Rakenduse seadistamine Entra ID-s
 
-Entra ID seadistamine on sarnane avaliku kliendiga, küll aga on üks oluline erinevus: vaja on luua **kliendi saladus**.
+Seadistus Entra ID-s on sarnane avaliku kliendi omaga, kuid ühe olulise erinevusega — pead looma **kliendi saladuse**.
 
 1. Mine **[Microsoft Entra portaali](https://entra.microsoft.com/)**.
-2. Oma rakenduse registreerimisel ava **Certificates & secrets** vahekaart.
-3. Klõpsa **New client secret**, lisa kirjeldus ja klõpsa **Add**.
-4. **Oluline:** Kopeeri saladus kohe ära. Edaspidi seda enam näha ei saa.
-5. Samuti tuleb seadistada **Redirect URI**. Mine **Authentication** vahekaardile, klõpsa **Add a platform**, vali **Web** ja sisesta oma rakenduse suunamis-URI (nt `http://localhost:3001/auth/callback`).
+2. Oma rakenduse registreeringus mine vahekaardile **Certificates & secrets**.
+3. Kliki **New client secret**, anna sellele kirjeldus ja vajuta **Add**.
+4. **Tähtis:** Kopeeri saladuse väärtus kohe üles. Seda ei nähta enam hiljem.
+5. Konfigureeri **Redirect URI**. Mine **Authentication** vahekaardile, kliki **Add a platform**, vali **Web** ja sisesta oma rakenduse suunav URI (nt `http://localhost:3001/auth/callback`).
 
-> **⚠️ Oluline turvahoiatus:** Tootmiskeskkonna rakendustele soovitab Microsoft tugevalt kasutada **saladusvabu autentimismeetodeid** nagu **Managed Identity** või **Workload Identity Federation** kliendisaladuste asemel. Kliendisaladused kujutavad endast turvaohtu, kuna neid võib lekitada või rünnata. Hallatud identiteedid pakuvad turvalisemat lahendust, kuna salajasi andmeid ei pea koodis või konfiguratsioonis hoidma.
+> **⚠️ Turvalisuse oluline märkus:** Tootearenduses soovitab Microsoft tugevalt kasutada **saladustevaba autentimist** meetodeid, nagu **hallatud identiteet** või **töökoormuste identiteedi föderatsioon**, mitte kliendi saladusi. Kliendi saladused on turvaoht, kuna neid võib lekkida või rünnata. Hallatud identiteedid pakuvad turvalisemat lähenemist, elimineerides vajaduse hoida mandaate koodis või seadistuses.
 >
-> Rohkem infot hallatud identiteetide kohta ja nende rakendamise kohta leiad siit: [Managed identities for Azure resources overview](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> Rohkem infot hallatud identiteetide ja nende rakendamise kohta leiad lehelt [Managed identities for Azure resources overview](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
 
-#### 2. Koodi selgitus
+#### 2. Kood: ülevaade
 
-See näide kasutab sessioonipõhist lähenemist. Kui kasutaja autentib, salvestab server juurdepääsutokeni ja värskendustokeni sessiooni ning annab kasutajale sessioonitokeni. Seda sessioonitokenit kasutatakse edaspidi päringutes. Näite täielik kood on saadaval [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) kaustas [mcp-auth-servers GitHubi hoidlas](https://github.com/Azure-Samples/mcp-auth-servers).
+Selles näites kasutatakse sessioonipõhist lähenemist. Pärast kasutaja autentimist salvestab server juurdepääsu ja värskendamise tokeni sessiooni ning annab kasutajale sessiooni tokeni. Seda sessioonitokenit kasutatakse edasistes päringutes. Näite täieliku koodi leiad [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) kaustast [mcp-auth-servers GitHubi hoidlas](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
-See fail seadistab Express serveri ja MCP transpordikihi.
+Fail seadistab Express serveri ja MCP transpordikihi.
 
-- **`requireBearerAuth`**: See on middleware, mis kaitseb `/sse` ja `/message` otspunktid. Kontrollib päringu `Authorization` päises kehtivat beareri tokenit.
-- **`EntraIdServerAuthProvider`**: Kohandatud klass, mis rakendab `McpServerAuthorizationProvider` liidest. Vastutab OAuth 2.0 voo käsitlemise eest.
-- **`/auth/callback`**: See otspunkt tegeleb Entra ID-st tagasi suunamisega pärast seda, kui kasutaja on autentitud. Vahetab autoriseerimiskoodi juurdepääsu- ja värskendustokeniks.
+- **`requireBearerAuth`**: Vahevara, mis kaitseb `/sse` ja `/message` lõpp-punkte. Kontrollib `Authorization` päises kehtiva kandja-tokeni olemasolu.
+- **`EntraIdServerAuthProvider`**: Kohandatud klass, mis rakendab `McpServerAuthorizationProvider` liidest. Vastutab OAuth 2.0 voo haldamise eest.
+- **`/auth/callback`**: Lõpp-punkt, mis käsitleb Entra ID-st tulevat suunamist pärast kasutaja autentimist. Vahetab autoriseerimiskoodi juurdepääsu- ja värskendustokeni vastu.
 
 ```typescript
-// Lihtsustatud selguse huvides
+// Selguse huvides lihtsustatud
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
@@ -263,29 +269,29 @@ app.get("/sse", requireBearerAuth({
   // ... ühenda transpordiga ...
 });
 
-// Kaitse sõnumi lõpp-punkti
+// Kaitse sõnumite lõpp-punkti
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... käsitle sõnumit ...
+  // ... käitle sõnumit ...
 });
 
-// Käsitle OAuth 2.0 tagasikutsumist
+// Käitle OAuth 2.0 tagasihelistust
 app.get("/auth/callback", (req, res) => {
   provider.handleCallback(req.query.code, req.query.state)
     .then(result => {
-      // ... käsitle edukust või ebaõnnestumist ...
+      // ... käitle edu või ebaõnnestumist ...
     });
 });
 ```
 
 **`Tools.ts`**
 
-See fail määratleb tööriistad, mida MCP server pakub. `getUserDetails` tööriist on sünonüüm eelmisele näitele, kuid võtab juurdepääsutokeni sessioonist.
+Fail määratleb tööriistad, mida MCP server pakub. `getUserDetails` tööriist sarnaneb eelneva näitega, kuid kasutab sessioonist juurdepääsutokenit.
 
 ```typescript
-// Lihtsustatud selguse huvides
+// Selguse huvides lihtsustatud
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name } = request.params;
   const context = request.params?.context as { token?: string } | undefined;
@@ -296,7 +302,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       throw new AuthenticationError("Authentication token is missing or invalid. Ensure the token is provided in the request context.");
     }
 
-    // Hangi Entra ID token sessioonipoeist
+    // Hangi Entra ID token sessioonipõhisest salvestusest
     const tokenData = tokenStore.getToken(sessionToken);
     const entraIdToken = tokenData.accessToken;
 
@@ -315,108 +321,109 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 **`auth/EntraIdServerAuthProvider.ts`**
 
-See klass tegeleb:
+Klass haldab järgmist loogikat:
 
-- Kasutaja suunamisega Entra ID sisselogimislehele.
-- Autoriseerimiskoodi vahetamisega juurdepääsu tokeni vastu.
-- Tokenite salvestamisega `tokenStore` 'sse.
-- Juurdepääsutokeni värskendamisega, kui see aegub.
+- Kasutaja suunamine Entra ID sisselogimislehele.
+- Autoriseerimiskoodi vahetamine juurdepääsu tokeni vastu.
+- Tokenite salvestamine `tokenStore`-i.
+- Juurdepääsu tokeni värskendamine aegumisel.
 
-#### 3. Kuidas see kõik koos töötab
 
-1. Kui kasutaja üritab esimest korda MCP serveriga ühenduda, märgib `requireBearerAuth` middleware, et kehtivat sessiooni pole ja suunab kasutaja Entra ID sisselogimislehele.
+#### 3. Kuidas see kõik koos toimib
+
+1. Kui kasutaja üritab esimest korda MCP serveriga ühendust luua, näeb `requireBearerAuth` vahemüür, et tal ei ole kehtivat seanssi, ja suunab ta ümber Entra ID sisselogimislehele.
 2. Kasutaja logib sisse oma Entra ID kontoga.
 3. Entra ID suunab kasutaja tagasi `/auth/callback` lõpp-punkti koos autoriseerimiskoodiga.
-4. Server vahetab koodi ligipääsutokeni ja värskendustokeni vastu, salvestab need ning loob sessioonitokeni, mis saadetakse kliendile.
-5. Klient saab nüüd seda sessioonitokenit kasutada `Authorization` päises kõigi tulevaste päringute jaoks MCP serverisse.
-6. Kui kutsutakse tööriista `getUserDetails`, kasutab see sessioonitokenit Entra ID ligipääsutokeni leidmiseks ja seejärel kutsub Microsoft Graph API-d.
+4. Server vahetab selle koodi juurdepääsutokeni ja värskendustokeni vastu, salvestab need ja loob seanssistokeni, mis saadetakse kliendile.
+5. Klient saab nüüd seda seanssistokenit kasutada `Authorization` päises kõigi tulevaste MCP serveri päringute puhul.
+6. Kui kutsutakse tööriista `getUserDetails`, kasutab see seanssistokenit Entra ID juurdepääsutokeni leidmiseks ja seejärel kasutab seda Microsoft Graph API kutsumiseks.
 
-See voog on keerukam kui avaliku kliendi voog, kuid on vajalik internetipõhiste lõpp-punktide jaoks. Kuna kaug-MCP serverid on ligipääsetavad avaliku interneti kaudu, vajavad nad tugevamaid turvameetmeid loata juurdepääsu ja võimalike rünnakute vastu kaitsmiseks.
+See protsess on keerukam kui avaliku kliendi protsess, kuid on vajalik internetipõhiste lõpp-punktide jaoks. Kuna kaug-MCP serverid on avaliku interneti kaudu kättesaadavad, vajavad nad tugevamaid turvameetmeid, et kaitsta volitamata juurdepääsu ja võimalike rünnakute eest.
 
 
-## Turvalisuse parimad tavad
+## Turbe parimad tavad
 
-- **Kasuta alati HTTPS-i**: Krüpteeri kliendi ja serveri vaheline suhtlus, et kaitsta tokeneid vaheltlugemise eest.
-- **Rakenda rollipõhist juurdepääsukontrolli (RBAC)**: Ära kontrolli ainult seda, *kas* kasutaja on autentitud; kontrolli, *mida* tal on õigus teha. Võid määratleda rolle Entra ID-s ja kontrollida neid oma MCP serveris.
-- **Jälgi ja auditeeri**: Logi kõik autentimise sündmused, et saaksid jälgida ja reageerida kahtlasele tegevusele.
-- **Käsitle päringupiiranguid ja kiirusepiiranguid**: Microsoft Graph ja teised API-d rakendavad päringupiiranguid, et vältida kuritarvitamist. Rakenda oma MCP serveris eksponentsiaalset tagasilööki ja kordamise loogikat HTTP 429 (liiga palju päringuid) vastuste haldamiseks. Mõtle sagedasti kasutatava andme vahemällu salvestamisele API päringute vähendamiseks.
-- **Tokeni turvaline hoiustamine**: Hoia ligipääsu- ja värskendustokeneid turvaliselt. Kohalike rakenduste puhul kasuta süsteemi turvalisi hoiustamismehhanisme. Serveripõhiste rakenduste puhul kaalu krüpteeritud hoiustamist või turvaliste võtmehaldusteenuste kasutamist nagu Azure Key Vault.
-- **Tokeni aegumise käsitlemine**: Ligipääsutokenitel on piiratud kehtivusaeg. Rakenda automaatset tokeni värskendust värskendustokeneid kasutades, et säilitada sujuv kasutajakogemus ilma uuesti autentimiseta.
-- **Kaalu Azure API Management kasutamist**: Kuigi turva rakendamine otse MCP serveris annab sulle täpsema kontrolli, suudavad API väravad nagu Azure API Management automaatselt lahendada paljusid turvaprobleeme, sealhulgas autentimist, volitamist, päringupiiranguid ja jälgimist. Need pakuvad keskset turbekihti, mis paikneb sinu klientide ja MCP serverite vahel. Lisateabe saamiseks MVC-ga API väravate kasutamise kohta vaata meie artiklit [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Kasuta alati HTTPS-i**: krüpteeri side kliendi ja serveri vahel, et kaitsta tokeneid pealtkuulamise eest.
+- **Rakenda rollipõhine juurdepääsu kontroll (RBAC)**: ära kontrolli ainult *kas* kasutaja on autentitud, vaid ka *mida* ta on volitatud tegema. Saad määratleda rolle Entra ID-s ja neid MCP serveris kontrollida.
+- **Jälgi ja auditeeri**: logi kõik autentimisüritused, et saaksid kahtlast tegevust tuvastada ja sellele reageerida.
+- **Käsitle määramispiiranguid ja piiranguid**: Microsoft Graph ja muud API-d rakendavad määramispiiranguid kuritarvitamise vältimiseks. Rakenda MCP serveris eksponentsiaalset tagasiminekut ja korduskatseid HTTP 429 (liiga palju päringuid) vastuste korral. Mõtle sageli kasutatava andmevahemälu kasutamisele, et vähendada API-kõnesid.
+- **Turvaline tokendite salvestamine**: hoia juurdepääsu- ja värskendustokeneid turvaliselt. Kohalike rakenduste puhul kasuta süsteemi turvalisi salvestusmehhanisme. Serveri rakenduste puhul kaalu krüpteeritud salvestust või turvalisi võtmehaldusteenuseid, näiteks Azure Key Vault’i.
+- **Tokeni aegumise haldamine**: juurdepääsutokenitel on piiratud kehtivus. Rakenda automaatne tokendi värskendamine värskendustokeneid kasutades, et tagada sujuv kasutajakogemus ilma uuesti autentimiseta.
+- **Kaalu Azure API Management'i kasutamist**: Kuigi otse MCP serveris turvalisuse rakendamine annab sulle peene juhtimise, suudavad API lüüsid nagu Azure API Management käsitleda paljusid turbeküsimusi automaatselt, sealhulgas autentimist, autoriseerimist, määramispiiranguid ja jälgimist. Need pakuvad tsentraliseeritud turbekihi, mis asub sinu klientide ja MCP serverite vahel. Rohkem infot API lüüside kasutamise kohta MCP-ga leiad meie [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) artiklist.
 
 
 ## Peamised järeldused
 
-- MCP serveri turvamine on hädavajalik sinu andmete ja tööriistade kaitseks.
+- MCP serveri turvamine on hädavajalik andmete ja tööriistade kaitsmiseks.
 - Microsoft Entra ID pakub tugevat ja skaleeritavat lahendust autentimiseks ja autoriseerimiseks.
-- Kasuta **avalikku klienti** kohalikes rakendustes ja **konfidentsiaalset klienti** kaugserverite jaoks.
-- **Autoriseerimiskoodi voog** on veebirakenduste jaoks kõige turvalisem valik.
+- Kasuta **avatud klienti** kohalike rakenduste jaoks ja **usaldusväärset klienti** kaugserverite jaoks.
+- **Autoriseerimiskoodi protsess** on veebirakenduste jaoks kõige turvalisem valik.
 
 
 ## Harjutus
 
-1. Mõtle MCP serveri peale, mida võid ehitada. Kas see on kohalik või kaugserver?
-2. Sinu vastuse põhjal, kas kasutaksid avalikku või konfidentsiaalset klienti?
-3. Millist luba su MCP server Microsoft Graphi vastu toimingute tegemiseks küsiks?
+1. Mõtle MCP serverile, mida võid ehitada. Kas see oleks kohalik server või kaugserver?
+2. Vastavalt sellele, kas kasutaksid avatud või usaldusväärset klienti?
+3. Milliste õigustega taotleks su MCP server Microsoft Grapphi vastu tegutsemiseks?
 
 
 ## Praktilised harjutused
 
-### Harjutus 1: Rakenduse registreerimine Entra ID-s
-Mine Microsoft Entra portaalile.
+### Harjutus 1: Registreeri rakendus Entra ID-s
+Mine Microsoft Entra portaali.
 Registreeri uus rakendus oma MCP serveri jaoks.
-Kanna üles Rakenduse (kliendi) ID ja Kausta (üürniku) ID.
+Kirjuta üles Rakenduse (klient) ID ja Kataloogi (üürniku) ID.
 
-### Harjutus 2: Kohaliku MCP serveri turvamine (avalik klient)
-- Järgi koodinäidet MSAL-i (Microsoft Authentication Library) integreerimiseks kasutaja autentimiseks.
-- Testi autentimisvoogu, kutsudes MCP tööriista, mis hangib kasutajaandmed Microsoft Graphist.
+### Harjutus 2: Turvalise kohaliku MCP serveri seadistamine (avalik klient)
+- Järgi koodinäidet, et integreerida MSAL (Microsoft Authentication Library) kasutaja autentimiseks.
+- Testi autentimisvoogu, kutsudes MCP tööriista, mis toob kasutajaandmed Microsoft Graphist.
 
-### Harjutus 3: Kaug-MCP serveri turvamine (konfidentsiaalne klient)
-- Registreeri konfidentsiaalne klient Entra ID-s ja loo kliendi saladus.
-- Konfigureeri oma Express.js MCP server kasutama autoriseerimise koodi voogu.
-- Testi kaitstud lõpp-punkte ja kinnita tokenipõhist ligipääsu.
+### Harjutus 3: Turvalise kaug-MCP serveri seadistamine (usaldusväärne klient)
+- Registreeri usaldusväärne klient Entra ID-s ja loo kliendi saladus.
+- Konfigureeri oma Express.js MCP server kasutama autoriseerimiskoodi protsessi.
+- Testi kaitstud lõpp-punktid ja kinnita tokendipõhist juurdepääsu.
 
-### Harjutus 4: Turvalisuse parimate tavade rakendamine
-- Luba HTTPS oma kohalikus või kaugserveris.
-- Rakenda rollipõhine juurdepääsukontroll (RBAC) serveri loogikas.
-- Lisa tokeni aegumise käsitlemine ja turvaline tokeni hoiustamine.
+### Harjutus 4: Rakenda turbe parimaid tavasid
+- Luba HTTPS-i kasutamine nii kohalikus kui kaugses serveris.
+- Rakenda rollipõhist juurdepääsu kontrolli (RBAC) oma serveri loogikas.
+- Lisa tokendi aegumise haldamine ja turvaline tokendite salvestamine.
 
 ## Ressursid
 
 1. **MSAL ülevaate dokumentatsioon**  
-Õpi, kuidas Microsoft Authentication Library (MSAL) võimaldab turvalist tokenite hankimist eri platvormidel:  
-[MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
+   Õpi, kuidas Microsoft Authentication Library (MSAL) võimaldab turvalist tokendi hankimist platvormide vahel:  
+   [MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
-2. **Azure-Samples/mcp-auth-servers GitHubi hoidla**  
-MCP serverite näidisrakendused, mis demonstreerivad autentimismeetodeid:  
-[Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
+2. **Azure-Samples/mcp-auth-servers GitHub hoidla**  
+   MCP serverite näidete jaotused, mis demonstreerivad autentimisvoogusid:  
+   [Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
 
-3. **Haldusega identiteedid Azure ressursidele ülevaade**  
-Saa teada, kuidas süsteemile või kasutajale määratud haldussubjektidega salajasi andmeid eemaldada:  
-[Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
+3. **Hallatud identiteedid Azure ressursside jaoks ülevaade**  
+   Saa aru, kuidas elimineerida saladusi, kasutades süsteemi- või kasutajapõhiseid hallatud identiteete:  
+   [Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
-4. **Azure API Management: sinu autentimislüüs MCP serveritele**  
-Sügav ülevaade APIM kasutamisest turvalise OAuth2 väravana MCP serveritele:  
-[Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
+4. **Azure API Management: Sinu autentimislüüs MCP serveritele**  
+   Põhjalik ülevaade APIM kasutamisest kui turvalisest OAuth2 lüüsi MCP serveritele:  
+   [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
 5. **Microsoft Graphi õiguste viide**  
-Üksikasjalik nimekiri volitatud ja rakenduseõigustest Microsoft Graphi jaoks:  
-[Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
+   Põhjalik loetelu volitatud ja rakenduse õigustest Microsoft Graphi jaoks:  
+   [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
 
 ## Õpitulemused
-Pärast selle jaotise läbimist oskad:
+Selle lõigu lõpetamisel suudad:
 
-- Selgitada, miks autentimine on MCP serverite ja tehisintellekti töövoogude jaoks kriitiline.
-- Seadistada ja konfigureerida Entra ID autentimist nii kohalike kui ka kaug-MCP serverite stsenaariumides.
-- Vali oma serveri paigalduse põhjal sobiv klienditüüp (avalik või konfidentsiaalne).
-- Rakendada turvalise koodi tavasid, sealhulgas tokenite hoiustamist ja rollipõhist autoriseerimist.
-- Turvaliselt kaitsta oma MCP serverit ja selle tööriistu loata juurdepääsu eest.
+- Selgitada, miks autentimine on MCP serverite ja AI töövoogude jaoks kriitilise tähtsusega.
+- Seadistada ja konfigureerida Entra ID autentimist nii kohalike kui kaug-MCP serverite stsenaariumites.
+- Valida oma serveri paigalduse põhjal sobiv klienditüüp (avaldatud või usaldusväärne).
+- Rakendada turvalisi programmeerimistavasid, sealhulgas tokendite salvestamist ja rollipõhist autoriseerimist.
+- Kaitsta oma MCP serverit ja selle tööriistu volitamata juurdepääsu eest enesekindlalt.
 
-## Mis järgmiseks 
+## Järgmised sammud 
 
-- [5.13 Mudeli konteksti protokolli (MCP) integratsioon Microsoft Foundryga](../mcp-foundry-agent-integration/README.md)
+- [5.13 Mudeli kontekstiprotokolli (MCP) integratsioon Microsoft Foundryga](../mcp-foundry-agent-integration/README.md)
 
 ---
 

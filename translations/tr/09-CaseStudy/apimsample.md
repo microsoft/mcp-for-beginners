@@ -1,68 +1,68 @@
-# Vaka İncelemesi: REST API'yi API Yönetiminde MCP sunucusu olarak ortaya çıkarma
+# Vaka Çalışması: REST API’yi API Yönetiminde MCP sunucusu olarak açığa çıkarma
 
-Azure API Management, API Uç Noktalarınızın üzerinde bir Geçit sağlayan bir hizmettir. Azure API Management’ın çalışma şekli, API'lerinizin önünde bir vekil gibi hareket etmesi ve gelen isteklerle ne yapılacağına karar vermesidir.
+Azure API Management, API Uç Noktalarınızın üstünde bir Ağ Geçidi sağlayan bir hizmettir. Çalışma şekli, Azure API Management'ın API'lerinizin önünde bir vekil gibi davranması ve gelen isteklerle ne yapılacağına karar vermesidir.
 
-Bunu kullanarak, şunlar gibi birçok özelliği eklersiniz:
+Bunu kullanarak, şunlar gibi birçok özellik eklersiniz:
 
-- **Güvenlik**, API anahtarlarından JWT'ye ve yönetilen kimliğe kadar her şeyi kullanabilirsiniz.
-- **Oran sınırlama (rate limiting)**, belirli bir zaman birimi başına kaç çağrının geçmesine izin verileceğine karar verebilme harika bir özelliktir. Bu, tüm kullanıcıların mükemmel bir deneyim yaşamasını sağlarken servisinizin isteklerle aşırı yüklenmemesine de yardımcı olur.
-- **Ölçeklendirme ve Yük dengeleme**. Yükü dengelemek için birden çok uç nokta yapılandırabilir ve "yük dengeleme" yöntemini de seçebilirsiniz.
-- **Anlamsal önbellekleme gibi AI özellikleri**, token limiti ve token izleme ve daha fazlası. Bunlar, yanıt hızını artıran ve token harcamanızı takip etmenize yardımcı olan harika özelliklerdir. [Buradan daha fazla bilgi edinin](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Güvenlik**, API anahtarlarından JWT’ye ve yönetilen kimliğe kadar her şeyi kullanabilirsiniz.
+- **Oran sınırlaması (Rate limiting)**, harika bir özellik, belirli bir zaman biriminde kaç çağrının geçeceğine karar verebilmenizdir. Bu, tüm kullanıcıların iyi bir deneyim yaşamasını sağlarken hizmetinizin isteklerle aşırı yüklenmesini de önler.
+- **Ölçeklendirme ve Yük dengeleme**. Yükü dengelemek için birden çok uç nokta ayarlayabilir ve "yük dengelemesini" nasıl yapacağınıza karar verebilirsiniz.
+- **Anlamsal önbellekleme (semantic caching), token limiti ve token izlemesi gibi AI özellikleri** ve daha fazlası. Bunlar, yanıt verme hızını artıran ve token harcamalarınızın kontrolünde yardımcı olan harika özelliklerdir. [Buradan daha fazlasını okuyun](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
-## Neden MCP + Azure API Yönetimi?
+## Neden MCP + Azure API Management?
 
-Model Context Protocol, ajan tabanlı AI uygulamaları için ve araçlar ile verileri tutarlı bir şekilde ortaya çıkarmak için hızla standart haline geliyor. Azure API Management, API’leri "yönetmeniz" gerektiğinde doğal bir tercihtir. MCP Sunucuları genellikle istekleri bir araca çözümlemek için diğer API’lerle entegre olur. Bu nedenle Azure API Management ile MCP’yi birleştirmek çok mantıklıdır.
+Model Context Protocol, ajan tabanlı AI uygulamaları ve araçları tutarlı bir şekilde açığa çıkarma yöntemleri için hızla bir standart haline geliyor. Azure API Management, API'leri "yönetmeniz" gerektiğinde doğal bir seçimdir. MCP Sunucuları genellikle bir aracın isteğini çözmek için diğer API’lerle entegre olur. Bu nedenle Azure API Management ile MCP birleşimi çok mantıklıdır.
 
 ## Genel Bakış
 
-Bu spesifik kullanım senaryosunda API uç noktalarını bir MCP Sunucusu olarak ortaya çıkarmayı öğreneceğiz. Böylece, bu uç noktaları kolayca bir ajan tabanlı uygulamanın parçası haline getirebilir ve aynı zamanda Azure API Management’ın özelliklerinden faydalanabiliriz.
+Bu özel kullanım durumunda, API uç noktalarını MCP Sunucusu olarak açığa çıkarmayı öğreneceğiz. Böylece bu uç noktaları kolayca ajan tabanlı bir uygulamanın parçası haline getirebilir ve Azure API Management özelliklerinden faydalanabiliriz.
 
 ## Temel Özellikler
 
-- Erişime açmak istediğiniz uç nokta yöntemlerini seçersiniz.
-- Ek özellikler, API'niz için politika bölümünde yapılandırdıklarınıza bağlıdır. Ancak burada oran sınırlama eklemenin nasıl yapılacağını göstereceğiz.
+- Açığa çıkarmak istediğiniz uç nokta yöntemlerini seçersiniz.
+- Aldığınız ek özellikler, API'niz için politika bölümünde yapılandırdıklarınıza bağlıdır. Burada ise oran sınırlama nasıl eklenir göstereceğiz.
 
-## Ön Adım: Bir API İçe Aktarma
+## Ön adım: bir API içe aktarın
 
-Azure API Management’ta halihazırda bir API'nız varsa harika, bu adımı atlayabilirsiniz. Yoksa, şu bağlantıya bakın, [Azure API Management'a API içe aktarma](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Eğer Azure API Management’da zaten bir API'niz varsa harika, bu adımı atlayabilirsiniz. Yoksa bu bağlantıya göz atın, [Azure API Management’a API içe aktarma](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
-## API'yi MCP Sunucusu olarak ortaya çıkarma
+## API’yi MCP Sunucusu olarak açığa çıkarma
 
-API uç noktalarını ortaya çıkarmak için şu adımları izleyelim:
+API uç noktalarını açığa çıkarmak için şu adımları izleyelim:
 
-1. Azure Portal'a gidin ve şu adrese erişin: <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
-API Yönetimi örneğinize gidin.
+1. Azure Portal’a gidin ve şu adrese erişin <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>
+API Yönetim örneğinize gidin.
 
-1. Sol menüde, APIs > MCP Servers > + Create new MCP Server seçeneğini seçin.
+1. Sol menüde, API'ler > MCP Sunucular > + Yeni MCP Sunucusu Oluştur’u seçin.
 
-1. API’de, MCP sunucusu olarak ortaya çıkarılacak bir REST API seçin.
+1. API bölümünde, MCP sunucusu olarak açığa çıkarılacak REST API’yi seçin.
 
-1. Araç olarak ortaya çıkarılacak bir veya birden çok API İşlem (Operation) seçin. Tüm işlemleri veya sadece belirli işlemleri seçebilirsiniz.
+1. Araç olarak açığa çıkarılacak bir veya daha fazla API İşlemini seçin. Tüm işlemleri veya sadece belirli işlemleri seçebilirsiniz.
 
     ![Açığa çıkarılacak yöntemleri seçin](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 
-1. **Create** seçeneğine tıklayın.
+1. **Oluştur** seçeneğine tıklayın.
 
-1. Menüden **APIs** ve **MCP Servers** seçeneklerine gidin, aşağıdakini görmelisiniz:
+1. Menüden **API’ler** ve ardından **MCP Sunucular**’a gidin, aşağıdaki görünmelidir:
 
-    ![Ana ekranda MCP Sunucusunu görün](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Ana panelde MCP Sunucuyu görün](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    MCP sunucusu oluşturuldu ve API işlemleri araç olarak ortaya çıkarıldı. MCP sunucusu MCP Servers bölümünde listelenir. URL sütunu, test etmek veya bir istemci uygulaması içinde çağırmak için kullanabileceğiniz MCP sunucusunun uç noktasını gösterir.
+    MCP sunucusu oluşturuldu ve API işlemleri araçlar olarak açığa çıkarıldı. MCP sunucusu MCP Sunucular panelinde listelenir. URL sütunu, test yapmak veya istemci uygulaması içinde çağırmak için kullanabileceğiniz MCP sunucusunun uç noktasını gösterir.
 
 ## İsteğe bağlı: Politikaları yapılandırma
 
-Azure API Management, uç noktalarınız için farklı kurallar belirlediğiniz temel olarak politikalar (policies) kavramına sahiptir, örneğin oran sınırlama veya anlamsal önbellekleme gibi. Bu politikalar XML formatında yazılır.
+Azure API Management, uç noktalarınız için oran sınırlama veya anlamsal önbellekleme gibi farklı kuralları ayarladığınız politika kavramına sahiptir. Bu politikalar XML formatında yazılır.
 
-İşte MCP Sunucunuzda oran sınırlama politikası kurmanın yolu:
+MCP Sunucunuzda oran sınırlama uygulamak için şöyle yapabilirsiniz:
 
-1. Portalda, APIs altında **MCP Servers** seçin.
+1. Portalda, API’ler altında **MCP Sunucular**’ı seçin.
 
 1. Oluşturduğunuz MCP sunucusunu seçin.
 
-1. Sol menüde MCP altında **Policies** seçin.
+1. Sol menüde MCP altında **Politikalar**’ı seçin.
 
-1. Politika düzenleyicide MCP sunucusunun araçlarına uygulamak istediğiniz politikaları ekleyin veya düzenleyin. Politikalar XML formatında tanımlanır. Örneğin, MCP sunucusunun araçlarına yapılan çağrıları sınırlandırmak için bir politika ekleyebilirsiniz (bu örnekte, istemci IP adresi başına 30 saniyede 5 çağrı). Aşağıdaki XML oran sınırlaması sağlar:
+1. Politika düzenleyicide, MCP sunucusunun araçlarına uygulamak istediğiniz politikaları ekleyin veya düzenleyin. Politikalar XML formatındadır. Örneğin, MCP sunucusunun araçlarına yapılacak çağrıları 30 saniyede 5 ile sınırlandırmak için bir politika ekleyebilirsiniz. İşte sınırlandırmayı sağlayan XML:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -72,42 +72,38 @@ Azure API Management, uç noktalarınız için farklı kurallar belirlediğiniz 
     />
     ```
 
-    İşte politika düzenleyicisinin bir resmi:
+    İşte politika düzenleyicinin bir resmi:
 
-    ![Politika düzenleyicisi](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+    ![Politika düzenleyici](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
  
 ## Deneyin
 
-MCP Sunucumuzun beklendiği gibi çalıştığını doğrulayalım.
+MCP Sunucumuzun amaçlandığı gibi çalıştığından emin olalım.
 
-Bunun için Visual Studio Code ve GitHub Copilot'un Agent modu kullanılacaktır. MCP sunucusunu *mcp.json* dosyasına ekleyeceğiz. Böylece Visual Studio Code, ajan özellikli bir istemci olarak davranacak ve son kullanıcılar bir istem yazıp bu sunucu ile etkileşimde bulunabilecek.
+> [!NOTE]
+> Azure API Management şu anda bu sunucuyu Streamable
+> HTTP `/mcp` uç noktası üzerinden açığa çıkarıyor. Eski HTTP+SSE `/sse` taşıması kullanımdan kaldırılmıştır
+> ve yalnızca eski istemcilerle kullanılmalıdır.
 
-MCP sunucusunu Visual Studio Code’a nasıl ekleyeceğimize bakalım:
+Bunun için Visual Studio Code ve GitHub Copilot ile Agent modunu kullanacağız. MCP sunucusunu bir *mcp.json* dosyasına ekleyeceğiz. Böylece Visual Studio Code ajan özelliklerine sahip bir istemci gibi davranacak ve son kullanıcılar bir komut yazıp sunucu ile etkileşime girebilecek.
 
-1. Komut Paletinden MCP: **Add Server komutunu kullanın**.
+MCP sunucusunu Visual Studio Code’a eklemenin yolu şöyle:
 
-1. İstendiğinde sunucu türünü seçin: **HTTP (HTTP veya Server Sent Events)**.
+1. Komut Paletinden MCP: **Sunucu Ekle komutunu kullanın**.
 
-1. API Management içindeki MCP sunucusunun URL'sini girin. Örnek: **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse** (SSE uç noktası için) veya **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp** (MCP uç noktası için), taşıma aracı farkının `/sse` veya `/mcp` olduğunu unutmayın.
+1. İstendiğinde, sunucu türünü seçin: **HTTP (HTTP veya Server Sent Events)**.
+
+1. API Management'da gösterilen MCP sunucusunun Streamable HTTP URL’sini girin.
+    Örneğin:
+    `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
 1. İstediğiniz bir sunucu kimliği girin. Bu önemli bir değer değildir ama bu sunucu örneğinin ne olduğunu hatırlamanıza yardımcı olur.
 
-1. Yapılandırmayı çalışma alanı ayarlarına mı yoksa kullanıcı ayarlarına mı kaydedeceğinizi seçin.
+1. Yapılandırmanın çalışma alanı ayarlarına mı yoksa kullanıcı ayarlarına mı kaydedileceğini seçin.
 
-  - **Çalışma alanı ayarları** - Sunucu yapılandırması, sadece geçerli çalışma alanında kullanılabilen bir .vscode/mcp.json dosyasına kaydedilir.
+  - **Çalışma alanı ayarları** - Sunucu yapılandırması yalnızca mevcut çalışma alanında bulunan .vscode/mcp.json dosyasına kaydedilir.
 
     *mcp.json*
-
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "sse",
-            "url": "url-to-mcp-server/sse"
-        }
-    }
-    ```
-
-    ya da taşıma olarak streaming HTTP seçerseniz, biraz farklı olur:
 
     ```json
     "servers": {
@@ -118,17 +114,17 @@ MCP sunucusunu Visual Studio Code’a nasıl ekleyeceğimize bakalım:
     }
     ```
 
-  - **Kullanıcı ayarları** - Sunucu yapılandırması, küresel *settings.json* dosyanıza eklenir ve tüm çalışma alanlarında kullanılabilir. Yapılandırma aşağıdakine benzer:
+  - **Kullanıcı ayarları** - Sunucu yapılandırması küresel *settings.json* dosyanıza eklenir ve tüm çalışma alanlarında kullanılabilir. Yapılandırma şöyle görünür:
 
     ![Kullanıcı ayarı](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Ayrıca yapılandırmaya, Azure API Management’a doğru düzgün kimlik doğrulaması için bir başlık eklemeniz gerekir. **Ocp-Apim-Subscription-Key** adlı bir başlık kullanılır.
+1. Ayrıca Azure API Management'a doğru düzgün kimlik doğrulaması yapılmasını sağlamak için bir üstbilgi eklemeniz gerekir. Bu, **Ocp-Apim-Subscription-Key** adlı bir üstbilgi kullanır.
 
-    - Ayarlara nasıl ekleyebileceğiniz:
+    - İşte bunu ayarlara nasıl ekleyebileceğiniz:
 
-    ![Kimlik doğrulama için başlık ekleme](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), bu, sizden Azure API Management örneğiniz için Azure Portal'da bulabileceğiniz API anahtarı değerini girmeniz istenen bir istem görüntülenmesini sağlar.
+    ![Kimlik doğrulama için üstbilgi ekleme](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), bu, Azure Portal'da Azure API Management örneğiniz için bulabileceğiniz API anahtarı değerini sormak üzere bir istemin gösterilmesine neden olur.
 
-   - Bunu *mcp.json* dosyasına eklemek için şöyle ekleyebilirsiniz:
+   - Bunun yerine *mcp.json* dosyasına eklemek için şöyle yapabilirsiniz:
 
     ```json
     "inputs": [
@@ -150,54 +146,54 @@ MCP sunucusunu Visual Studio Code’a nasıl ekleyeceğimize bakalım:
     }
     ```
 
-### Agent modunu kullanma
+### Agent modunu kullanın
 
-Şimdi ya ayarlarda ya da *.vscode/mcp.json* içerisinde yapılandırmayı tamamladık. Şimdi deneyelim.
+Artık ya ayarlarda ya da *.vscode/mcp.json* içinde her şey hazır. Hadi deneyelim.
 
-Araçların listelendiği aşağıdaki gibi bir Araçlar simgesi olmalıdır:
+Sunucunuzdan açığa çıkarılan araçların listelendiği şunlara benzer bir Araçlar simgesi olmalıdır:
 
 ![Sunucudan araçlar](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Araçlar simgesine tıklayın, aşağıdaki gibi bir araç listesi görmelisiniz:
+1. Araçlar simgesine tıklayın ve aşağıdaki gibi bir araçlar listesi görmelisiniz:
 
     ![Araçlar](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Sohbete bir istem girerek aracı çağırın. Örneğin, bir sipariş hakkında bilgi almak için bir araç seçtiyseniz, ajandan sipariş hakkında sorabilirsiniz. İşte örnek bir istem:
+1. Aracı çağırmak için sohbete bir komut girin. Örneğin, bir sipariş bilgisi almak için bir araç seçtiyseniz, ajanla sipariş hakkında sorabilirsiniz. İşte örnek bir komut:
 
     ```text
     get information from order 2
     ```
 
-    Size bir araçtırma uyarısı ile bir araç simgesi gösterilecek. Aracı çalıştırmaya devam etmeyi seçin, aşağıdaki gibi bir çıktı görmelisiniz:
+    Şimdi bir araç çağrısı yapmanızı isteyen bir araçlar simgesi gösterilecektir. Aracı çalıştırmaya devam etmeyi seçin, aşağıdaki gibi bir çıktı görmelisiniz:
 
-    ![İstem sonucundan çıktı](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![Komut sonuçları](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **Yukarıda gördüğünüz, kurduğunuz araçlara bağlıdır, ancak amaç yukarıdaki gibi metinsel bir yanıt almaktır**
+    **Yukarıda gördüğünüz, kurduğunuz araçlara bağlıdır, ama amaç yukarıdaki gibi metinsel yanıt almanızdır**
 
 
 ## Referanslar
 
-Daha fazla nasıl öğrenebileceğiniz:
+Daha fazla öğrenmek için:
 
-- [Azure API Management ve MCP üzerine Eğitim](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
+- [Azure API Management ve MCP üzerine eğitim](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
 - [Python örneği: Azure API Management kullanarak güvenli uzak MCP sunucuları (deneysel)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 - [MCP istemci yetkilendirme laboratuvarı](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Azure API Management uzantısını kullanarak VS Code'da API içe aktarımı ve yönetimi](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [VS Code için Azure API Management uzantısını kullanarak API’leri içe aktarın ve yönetin](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Azure API Center'da uzak MCP sunucularını kaydetme ve keşfetme](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Azure API Management ile birçok AI yeteneğini gösteren harika bir depo
-- [AI Gateway atölyeleri](https://azure-samples.github.io/AI-Gateway/) Azure Portal kullanılarak yapılan atölyeleri içerir, AI özelliklerini değerlendirmek için harika bir başlangıçtır.
+- [Azure API Center’da uzak MCP sunucularını kaydedin ve keşfedin](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Azure API Management ile birçok AI özelliğini gösteren harika bir depo
+- [AI Gateway atölyeleri](https://azure-samples.github.io/AI-Gateway/) Azure Portal kullanımıyla atölyeler içerir, AI özelliklerini değerlendirmeye başlamak için harika bir yöntem.
 
-## Sonraki Ne Var
+## Sonraki Adımlar
 
-- Geri: [Vaka İncelemeleri Genel Bakış](./README.md)
+- Geri: [Vaka Çalışmaları Genel Bakış](./README.md)
 - Sonraki: [Azure AI Seyahat Acenteleri](./travelagentsample.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde otoriter kaynak olarak kabul edilmelidir. Önemli bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda oluşabilecek yanlış anlamalar veya yanlış yorumlamalar nedeniyle sorumluluk kabul edilmemektedir.
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

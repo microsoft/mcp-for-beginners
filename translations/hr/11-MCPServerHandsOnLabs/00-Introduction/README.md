@@ -1,84 +1,89 @@
-# Uvod u MCP integraciju baze podataka
+# Uvod u integraciju baze podataka MCP
 
-## 🎯 Što ovaj laboratorij obuhvaća
+> [!NOTE]
+> Dijagrami ili kod u ovom putu učenja koji koriste HTTP/SSE ili opcije inicijalizacije
+> odražavaju uzorke MCP `2025-11-25` ovisnosti. Za nove
+> implementacije koristite `2026-07-28` stateless zahtjeve i Streamable HTTP.
 
-Ovaj uvodni laboratorij pruža sveobuhvatan pregled izgradnje Model Context Protocol (MCP) poslužitelja s integracijom baze podataka. Razumjet ćete poslovni slučaj, tehničku arhitekturu i primjere iz stvarnog svijeta kroz Zava Retail analitički slučaj na https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+## 🎯 Što ovaj laboratorij pokriva
+
+Ovaj uvodni laboratorij pruža sveobuhvatni pregled izgradnje Model Context Protocol (MCP) servera s integracijom baza podataka. Razumjet ćete poslovni slučaj, tehničku arhitekturu i stvarne primjene kroz Zava Retail analitiku na https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
 ## Pregled
 
-**Model Context Protocol (MCP)** omogućuje AI asistentima siguran pristup i interakciju s vanjskim izvorima podataka u stvarnom vremenu. U kombinaciji s integracijom baze podataka, MCP otključava moćne mogućnosti za AI aplikacije vođene podacima.
+**Model Context Protocol (MCP)** omogućuje AI asistentima siguran pristup i interakciju s vanjskim izvorima podataka u stvarnom vremenu. Kada se kombinira s integracijom baza podataka, MCP otključava moćne mogućnosti za AI aplikacije vođene podacima.
 
-Ovaj put učenja vas uči kako izgraditi MCP poslužitelje spremne za produkciju koji povezuju AI asistente s maloprodajnim prodajnim podacima putem PostgreSQL-a, implementirajući enterprise obrasce poput Row Level Security, semantičko pretraživanje i višekorisnički pristup podacima.
+Ovaj put učenja vas uči kako izgraditi MCP servere spremne za proizvodnju koji povezuju AI asistente s podacima o maloprodajnoj prodaji putem PostgreSQL-a, implementirajući enterprise obrasce poput Row Level Security, semantičkog pretraživanja i višekorisničkog pristupa podacima.
 
 ## Ciljevi učenja
 
-Na kraju ovog laboratorija moći ćete:
+Do kraja ovog laboratorija moći ćete:
 
-- **Definirati** Model Context Protocol i njegove ključne prednosti za integraciju baza podataka  
-- **Prepoznati** ključne komponente MCP poslužiteljske arhitekture s bazama podataka  
-- **Razumjeti** Zava Retail slučaj uporabe i njegove poslovne zahtjeve  
-- **Priznati** enterprise obrasce za siguran, skalabilan pristup bazama podataka  
-- **Nabrojati** alate i tehnologije korištene tijekom ovog puta učenja  
+- **Definirati** Model Context Protocol i njegove ključne prednosti za integraciju baza podataka
+- **Identificirati** ključne komponente MCP server arhitekture s bazama podataka
+- **Razumjeti** Zava Retail slučaj i njegove poslovne zahtjeve
+- **Prepoznati** enterprise obrasce za siguran, skalabilan pristup bazi podataka
+- **Navesti** alate i tehnologije korištene kroz ovaj put učenja
 
-## 🧭 Izazov: AI susreće podatke iz stvarnog svijeta
+## 🧭 Izazov: AI susreće stvarne podatke
 
-### Ograničenja tradicionalnog AI-ja
+### Ograničenja tradicionalnog AI
 
-Moderni AI asistenti su iznimno moćni, ali se suočavaju sa značajnim ograničenjima kada rade sa stvarnim poslovnim podacima:
+Moderni AI asistenti su nevjerojatno moćni, ali suočavaju se sa značajnim ograničenjima pri radu sa stvarnim poslovnim podacima:
 
-| **Izazov** | **Opis** | **Poslovni utjecaj** |
-|------------|----------|---------------------|
-| **Statistično znanje** | AI modeli trenirani na fiksnim skupovima podataka nemaju pristup aktualnim poslovnim podacima | Zastarjeli uvidi, propuštene prilike |
-| **Podatkovni silosi** | Informacije zaključane u bazama, API-ima i sustavima do kojih AI ne može doći | Nepotpune analize, fragmentirani radni tijekovi |
-| **Sigurnosna ograničenja** | Izravni pristup bazama podataka izaziva sigurnosne i usklađenosne zabrinutosti | Ograničena primjena, ručna priprema podataka |
-| **Složeni upiti** | Poslovni korisnici trebaju tehničko znanje za izvlačenje podataka i uvida | Smanjena primjena, neučinkoviti procesi |
+| **Izazov** | **Opis** | **Poslovni učinak** |
+|---------------|-----------------|-------------------|
+| **Statističko znanje** | AI modeli trenirani na fiksnim skupovima podataka ne mogu pristupiti aktualnim poslovnim podacima | Zastarjeli uvidi, propuštene prilike |
+| **Podatkovni silosi** | Informacije zaključane u bazama podataka, API-jima i sustavima do kojih AI ne može doći | Nepotpuna analiza, fragmentirani radni tokovi |
+| **Sigurnosna ograničenja** | Direktni pristup bazama podataka podiže sigurnosna i usklađenostna pitanja | Ograničena primjena, ručna priprema podataka |
+| **Složeni upiti** | Poslovni korisnici trebaju tehničko znanje za izvlačenje uvida iz podataka | Smanjena prihvaćenost, neefikasni procesi |
 
 ### MCP rješenje
 
 Model Context Protocol rješava ove izazove pružajući:
 
-- **Pristup podacima u stvarnom vremenu**: AI asistenti izvještavaju uživo iz baza podataka i API-ja  
-- **Sigurna integracija**: Kontrolirani pristup s autentifikacijom i dopuštenjima  
-- **Sučelje prirodnog jezika**: Poslovni korisnici postavljaju pitanja na običnom engleskom  
-- **Standardizirani protokol**: Radi preko različitih AI platformi i alata  
+- **Pristup podacima u stvarnom vremenu**: AI asistenti upitaju žive baze podataka i API-je
+- **Sigurna integracija**: Kontrolirani pristup s autentifikacijom i dozvolama
+- **Sučelje prirodnog jezika**: Poslovni korisnici postavljaju pitanja običnim jezikom
+- **Standardizirani protokol**: Radi na različitim AI platformama i alatima
 
-## 🏪 Upoznajte Zava Retail: Naš studijski slučaj na https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 Upoznajte Zava Retail: Naš studijski slučaj https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Tijekom ovog puta učenja gradit ćemo MCP poslužitelj za **Zava Retail**, izmišljenu maloprodajnu DIY lanac s više prodajnih mjesta. Ovaj realističan scenarij demonstrira implementaciju MCP-ja na razini poduzeća.
+Tijekom ovog puta učenja izgradit ćemo MCP server za **Zava Retail**, fiktivni DIY maloprodajni lanac s više prodajnih mjesta. Ovaj realističan scenarij demonstrira enterprise implementaciju MCP-a.
 
 ### Poslovni kontekst
 
-**Zava Retail** pokreće:  
-- **8 fizičkih trgovina** širom države Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)  
-- **1 online trgovinu** za e-trgovinu  
-- **Raznoliki katalog proizvoda** uključujući alate, hardver, vrtne potrepštine i građevinski materijal  
-- **Višerazinsko upravljanje** s voditeljima trgovina, regionalnim menadžerima i izvršnim direktorima  
+**Zava Retail** posluje s:
+- **8 fizičkih trgovina** diljem savezne države Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
+- **1 online trgovinom** za e-trgovinu
+- **Raznolikim katalogom proizvoda** koji uključuje alate, hardver, vrtne potrepštine i građevinski materijal
+- **Višerazinskim upravljanjem** s voditeljima trgovina, regionalnim menadžerima i izvršnim osobama
 
 ### Poslovni zahtjevi
 
-Voditelji trgovina i izvršni direktori trebaju AI-pokretanu analitiku za:
+Voditelji trgovina i izvršni menadžeri trebaju AI-pokretanu analitiku da:
 
-1. **Analizu prodajnih performansi** kroz trgovine i vremenska razdoblja  
-2. **Praćenje razina zaliha** i identifikaciju potreba za dopunom  
-3. **Razumijevanje ponašanja kupaca** i uzoraka kupnje  
-4. **Otkrivanje uvida u proizvode** putem semantičkog pretraživanja  
-5. **Generiranje izvještaja** pomoću upita prirodnog jezika  
-6. **Očuvanje sigurnosti podataka** uz kontrolu pristupa na temelju uloga  
+1. **Analiziraju prodajne rezultate** kroz trgovine i vremenske periode
+2. **Prate razine zaliha** i identificiraju potrebe za ponovnim naručivanjem
+3. **Razumiju ponašanje kupaca** i obrasce kupovine
+4. **Otkrivaju uvide o proizvodima** kroz semantičko pretraživanje
+5. **Generiraju izvještaje** koristeći pitanja prirodnim jezikom
+6. **Održavaju sigurnost podataka** s kontrolom pristupa temeljenu na ulogama
 
 ### Tehnički zahtjevi
 
-MCP poslužitelj mora pružiti:
+MCP server mora pružiti:
 
-- **Višekorisnički pristup podacima** gdje voditelji trgovina vide samo podatke svoje trgovine  
-- **Fleksibilno upitavanje** podržavajuće složene SQL operacije  
-- **Semantičko pretraživanje** za otkrivanje proizvoda i preporuke  
-- **Podatke u stvarnom vremenu** koji odražavaju trenutačno stanje poslovanja  
-- **Sigurnu autentifikaciju** s row-level security (RLS)  
-- **Skalabilnu arhitekturu** koja podržava više istovremenih korisnika  
+- **Višekorisnički pristup podacima** gdje voditelji trgovina vide samo podatke svoje trgovine
+- **Fleksibilno upitavanje** koje podržava složene SQL operacije
+- **Semantičko pretraživanje** za otkrivanje proizvoda i preporuke
+- **Podatke u stvarnom vremenu** koji odražavaju aktualno stanje poslovanja
+- **Sigurnu autentifikaciju** s row-level security
+- **Skalabilnu arhitekturu** koja podržava više istovremenih korisnika
 
-## 🏗️ Pregled arhitekture MCP poslužitelja
+## 🏗️ Pregled arhitekture MCP servera
 
-Naš MCP poslužitelj implementira slojevitu arhitekturu optimiziranu za integraciju baza podataka:
+Naš MCP server implementira slojevitu arhitekturu optimiziranu za integraciju baza podataka:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -120,117 +125,117 @@ Naš MCP poslužitelj implementira slojevitu arhitekturu optimiziranu za integra
 
 ### Ključne komponente
 
-#### **1. MCP sloj poslužitelja**
-- **FastMCP Framework**: Moderna Python implementacija MCP poslužitelja  
-- **Registracija alata**: Deklarativne definicije alata s tipnom sigurnošću  
-- **Kontekst zahtjeva**: Upravljanje identitetom korisnika i sesijom  
-- **Rukovanje pogreškama**: Robusno upravljanje greškama i zapisivanje  
+#### **1. MCP Server sloj**
+- **FastMCP Framework**: Moderna Python implementacija MCP servera
+- **Registracija alata**: Deklarativne definicije alata s tipnom sigurnošću
+- **Kontekst zahtjeva**: Identitet korisnika i upravljanje sesijom
+- **Rukovanje pogreškama**: Robusno upravljanje i zapisivanje pogrešaka
 
 #### **2. Sloj integracije baze podataka**
-- **Pooling veza**: Efikasno upravljanje asyncpg vezama  
-- **Provider sheme**: Dinamičko otkrivanje sheme tablica  
-- **Izvršitelj upita**: Sigurno izvršavanje SQL-a s RLS kontekstom  
-- **Upravljanje transakcijama**: ACID usklađenost i rukovanje povratom  
+- **Povezivanje putem pool-a**: Efikasno upravljanje asinhronim pg vezama
+- **Pružatelj šeme**: Dinamičko otkrivanje šema tablica
+- **Izvršitelj upita**: Sigurno izvođenje SQL-a s RLS kontekstom
+- **Upravljanje transakcijama**: ACID usklađenost i obrada povrata
 
 #### **3. Sigurnosni sloj**
-- **Row Level Security**: PostgreSQL RLS za izolaciju višekorisničkih podataka  
-- **Identitet korisnika**: Autentifikacija i autorizacija voditelja trgovine  
-- **Kontrola pristupa**: Precizna dopuštenja i revizijske evidencije  
-- **Validacija unosa**: Prevencija SQL injekcija i validacija upita  
+- **Row Level Security**: PostgreSQL RLS za višekorisničku izolaciju podataka
+- **Identitet korisnika**: Autentifikacija i autorizacija voditelja trgovine
+- **Kontrola pristupa**: Detaljne dozvole i revizijski zapisi
+- **Validacija unosa**: Prevencija SQL injekcija i validacija upita
 
-#### **4. AI sloj poboljšanja**
-- **Semantičko pretraživanje**: Vektorska ugradnja za otkrivanje proizvoda  
-- **Integracija Azure OpenAI**: Generiranje tekstualnih ugradnji  
-- **Algoritmi sličnosti**: pgvector pretraživanje kosinusne sličnosti  
-- **Optimizacija pretraživanja**: Indeksiranje i podešavanje performansi  
+#### **4. AI sloj za poboljšanja**
+- **Semantičko pretraživanje**: Vektorski ugrađeni prikazi za otkrivanje proizvoda
+- **Azure OpenAI integracija**: Generiranje tekstualnih ugrađivanja
+- **Algoritmi sličnosti**: pgvector cosinusno pretraživanje sličnosti
+- **Optimizacija pretraživanja**: Indeksiranje i podešavanje performansi
 
 ## 🔧 Tehnološki paket
 
-### Temeljne tehnologije
+### Osnovne tehnologije
 
 | **Komponenta** | **Tehnologija** | **Namjena** |
-|----------------|-----------------|-------------|
-| **MCP Framework** | FastMCP (Python) | Moderna implementacija MCP poslužitelja |
+|---------------|----------------|-------------|
+| **MCP Framework** | FastMCP (Python) | Moderna implementacija MCP servera |
 | **Baza podataka** | PostgreSQL 17 + pgvector | Relacijski podaci s vektorskim pretraživanjem |
-| **AI usluge** | Azure OpenAI | Tekstualne ugradnje i jezični modeli |
+| **AI usluge** | Azure OpenAI | Tekstualna ugrađivanja i jezični modeli |
 | **Kontejnerizacija** | Docker + Docker Compose | Razvojno okruženje |
-| **Cloud platforma** | Microsoft Azure | Produkcijsko postavljanje |
-| **Integracija IDE-a** | VS Code | AI chat i razvojni tijek |
+| **Cloud platforma** | Microsoft Azure | Proizvodno okruženje |
+| **IDE integracija** | VS Code | AI chat i razvojni tijek rada |
 
 ### Alati za razvoj
 
 | **Alat** | **Namjena** |
 |----------|-------------|
-| **asyncpg** | Visokoučinkoviti PostgreSQL upravljač |
+| **asyncpg** | Visokoperformansni PostgreSQL driver |
 | **Pydantic** | Validacija i serijalizacija podataka |
 | **Azure SDK** | Integracija cloud usluga |
 | **pytest** | Okvir za testiranje |
-| **Docker** | Kontejnerizacija i postavljanje |
+| **Docker** | Kontejnerizacija i implementacija |
 
 ### Produkcijski paket
 
 | **Usluga** | **Azure resurs** | **Namjena** |
-|------------|------------------|-------------|
-| **Baza podataka** | Azure Database for PostgreSQL | Upravljana usluga baza podataka |
-| **Kontejner** | Azure Container Apps | Serverless hosting kontejnera |
-| **AI usluge** | Microsoft Foundry | OpenAI modeli i endpointi |
-| **Nadzor** | Application Insights | Promatranje i dijagnostika |
+|-------------|-------------------|-------------|
+| **Baza podataka** | Azure Database for PostgreSQL | Upravljačka baza podataka |
+| **Kontejner** | Azure Container Apps | Bezbrižno hostiranje kontejnera |
+| **AI usluge** | Microsoft Foundry | OpenAI modeli i krajnje točke |
+| **Nadzor** | Application Insights | Praćenje i dijagnostika |
 | **Sigurnost** | Azure Key Vault | Upravljanje tajnama i konfiguracijom |
 
-## 🎬 Scenariji korištenja iz stvarnog svijeta
+## 🎬 Stvarni scenariji korištenja
 
-Pogledajmo kako različiti korisnici komuniciraju s našim MCP poslužiteljem:
+Pogledajmo kako različiti korisnici komuniciraju s našim MCP serverom:
 
 ### Scenarij 1: Pregled performansi voditelja trgovine
 
-**Korisnik**: Sarah, voditeljica trgovine Seattle  
-**Cilj**: Analizirati prodajne performanse prošlog kvartala
+**Korisnik**: Sarah, voditeljica trgovine u Seattleu  
+**Cilj**: Analizirati prodajne rezultate zadnjeg kvartala
 
-**Upit prirodnim jezikom**:  
-> "Pokaži mi top 10 proizvoda po prihodu za moju trgovinu u Q4 2024"
+**Upit prirodnim jezikom**:
+> "Pokaži mi top 10 proizvoda po prihodima za moju trgovinu u četvrtom kvartalu 2024."
 
-**Što se događa**:  
-1. VS Code AI Chat šalje upit MCP poslužitelju  
-2. MCP poslužitelj prepoznaje Sarahin kontekst trgovine (Seattle)  
-3. RLS pravila filtriraju podatke samo za trgovinu Seattle  
-4. SQL upit se generira i izvršava  
-5. Rezultati se formatiraju i vraćaju AI Chatu  
-6. AI daje analizu i uvide  
+**Što se događa**:
+1. VS Code AI Chat šalje upit MCP serveru
+2. MCP server prepoznaje kontekst trgovine Sarah (Seattle)
+3. RLS pravila filtriraju podatke samo za trgovinu Seattle
+4. Generira se i izvršava SQL upit
+5. Rezultati se formatiraju i vraćaju AI Chatu
+6. AI pruža analizu i uvide
 
-### Scenarij 2: Otkrivanje proizvoda putem semantičkog pretraživanja
+### Scenarij 2: Otkrivanje proizvoda s semantičkim pretraživanjem
 
 **Korisnik**: Mike, voditelj zaliha  
 **Cilj**: Pronaći proizvode slične zahtjevu kupca
 
-**Upit prirodnim jezikom**:  
-> "Koje proizvode prodajemo koji su slični 'vodootpornim električnim konektorima za vanjsku upotrebu'?"
+**Upit prirodnim jezikom**:
+> "Koje proizvode prodajemo slične 'vodootpornim električnim konektorima za vanjsku upotrebu'?"
 
-**Što se događa**:  
-1. Upit obrađuje alat za semantičko pretraživanje  
-2. Azure OpenAI generira vektorsku ugradnju  
-3. pgvector provodi pretraživanje po sličnosti  
-4. Povezani proizvodi rangirani po relevantnosti  
-5. Rezultati uključuju detalje o proizvodima i dostupnost  
-6. AI predlaže alternative i mogućnosti pakiranja  
+**Što se događa**:
+1. Upit obrađuje alat za semantičko pretraživanje
+2. Azure OpenAI generira vektorski prikaz
+3. pgvector izvršava pretraživanje po sličnosti
+4. Povezani proizvodi rangiraju se po relevantnosti
+5. Rezultati uključuju detalje i dostupnost proizvoda
+6. AI predlaže alternative i mogućnosti pakiranja
 
-### Scenarij 3: Analize između trgovina
+### Scenarij 3: Analitika preko više trgovina
 
 **Korisnik**: Jennifer, regionalna menadžerica  
 **Cilj**: Usporediti performanse svih trgovina
 
-**Upit prirodnim jezikom**:  
+**Upit prirodnim jezikom**:
 > "Usporedi prodaju po kategorijama za sve trgovine u zadnjih 6 mjeseci"
 
-**Što se događa**:  
-1. RLS kontekst postavljen za regionalni pristup  
-2. Generira se složen upit za više trgovina  
-3. Podaci se agregiraju preko lokacija trgovina  
-4. Rezultati uključuju trendove i usporedbe  
-5. AI identificira uvide i preporuke  
+**Što se događa**:
+1. RLS kontekst postavlja se za pristup regionalne menadžerice
+2. Generira se složeni upit za više trgovina
+3. Podaci se agregiraju preko lokacija trgovina
+4. Rezultati uključuju trendove i usporedbe
+5. AI identificira uvide i preporuke
 
-## 🔒 Sigurnost i detaljno višekorisničko okruženje
+## 🔒 Detaljni pregled sigurnosti i višekorisničkog pristupa
 
-Naša implementacija stavlja prioritet na sigurnost na razini enterprise-a:
+Naša implementacija stavlja naglasak na sigurnost razine enterprise:
 
 ### Row Level Security (RLS)
 
@@ -248,61 +253,61 @@ CREATE POLICY regional_manager_policy ON retail.orders
   USING (store_id = ANY(get_user_store_list()));
 ```
 
-### Upravljanje korisničkim identitetom
+### Upravljanje identitetom korisnika
 
-Svaka MCP veza uključuje:  
-- **ID voditelja trgovine**: Jedinstveni identifikator za RLS kontekst  
-- **Dodjela uloga**: Dopuštenja i razine pristupa  
-- **Upravljanje sesijom**: Sigurni autentikacijski tokeni  
-- **Revizijsko zapisivanje**: Potpuna evidencija pristupa  
+Svaka MCP veza uključuje:
+- **ID voditelja trgovine**: Jedinstveni identifikator za RLS kontekst
+- **Dodjela uloga**: Dozvole i razine pristupa
+- **Upravljanje sesijom**: Sigurnosni tokeni za autentifikaciju
+- **Audit zapisivanje**: Potpuna povijest pristupa
 
 ### Zaštita podataka
 
-Višeslojna sigurnost:  
-- **Šifriranje veza**: TLS za sve veze prema bazi podataka  
-- **Prevencija SQL injekcija**: Samo parametarizirani upiti  
-- **Validacija unosa**: Sveobuhvatno validiranje zahtjeva  
-- **Rukovanje greškama**: Bez prikaza osjetljivih podataka u porukama greške  
+Višeslojna sigurnost:
+- **Šifriranje veza**: TLS za sve veze prema bazi podataka
+- **Prevencija SQL injekcija**: Isključivo parametarski upiti
+- **Validacija unosa**: Sveobuhvatna validacija zahtjeva
+- **Upravljanje pogreškama**: Bez osjetljivih podataka u porukama greške
 
 ## 🎯 Ključni zaključci
 
-Nakon dovršetka ovog uvoda trebali biste razumjeti:
+Nakon završetka ovog uvoda trebali biste razumjeti:
 
-✅ **Vrijednost MCP-a**: Kako MCP povezuje AI asistente i podatke iz stvarnog svijeta  
+✅ **Vrijednost MCP-a**: Kako MCP povezuje AI asistente i stvarne podatke  
 ✅ **Poslovni kontekst**: Zahtjeve i izazove Zava Retaila  
 ✅ **Pregled arhitekture**: Ključne komponente i njihove interakcije  
-✅ **Tehnološki paket**: Alate i okvire korištene tijekom puta  
-✅ **Sigurnosni model**: Višekorisnički pristup i zaštitu podataka  
-✅ **Obrasce uporabe**: Scenarije stvarnog upita i radne tokove  
+✅ **Tehnološki paket**: Alate i okvire korištene kroz cijeli put  
+✅ **Sigurnosni model**: Višekorisnički pristup podacima i zaštita  
+✅ **Obrasci korištenja**: Stvarni scenariji upita i radnih tijekova  
 
 ## 🚀 Što slijedi
 
 Spremni za dublje uranjanje? Nastavite s:
 
-**[Lab 01: Osnovni koncepti arhitekture](../01-Architecture/README.md)**
+**[Laboratorij 01: Osnovni pojmovi arhitekture](../01-Architecture/README.md)**
 
-Saznajte više o MCP arhitektonskim obrascima, principima dizajna baza podataka i detaljnoj tehničkoj implementaciji koja pokreće naše rješenje za maloprodajnu analitiku.
+Naučite o MCP arhitektonskim obrascima servera, principima dizajna baza podataka i detaljnoj tehničkoj implementaciji koja pokreće naše maloprodajne analitičke rješenje.
 
-## 📚 Dodatni izvori
+## 📚 Dodatni resursi
 
 ### MCP dokumentacija
-- [MCP specifikacija](https://modelcontextprotocol.io/docs/) - Službena dokumentacija protokola  
-- [MCP za početnike](https://aka.ms/mcp-for-beginners) - Sveobuhvatan vodič za učenje MCP-a  
-- [FastMCP dokumentacija](https://github.com/modelcontextprotocol/python-sdk) - Dokumentacija Python SDK-a  
+- [MCP specifikacija](https://modelcontextprotocol.io/docs/) - Službena dokumentacija protokola
+- [MCP za početnike](https://aka.ms/mcp-for-beginners) - Sveobuhvatan vodič za učenje MCP-a
+- [FastMCP dokumentacija](https://github.com/modelcontextprotocol/python-sdk) - Dokumentacija Python SDK-a
 
-### Integracija baza podataka
-- [PostgreSQL dokumentacija](https://www.postgresql.org/docs/) - Kompletna PostgreSQL referenca  
-- [pgvector vodič](https://github.com/pgvector/pgvector) - Dokumentacija proširenja vektora  
-- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Vodič za PostgreSQL RLS  
+### Integracija baze podataka
+- [PostgreSQL dokumentacija](https://www.postgresql.org/docs/) - Kompletna referenca PostgreSQL-a
+- [pgvector vodič](https://github.com/pgvector/pgvector) - Dokumentacija za vektorski dodatak
+- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Vodič za PostgreSQL RLS
 
 ### Azure usluge
-- [Azure OpenAI dokumentacija](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integracija AI usluga  
-- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Upravljana usluga baze podataka  
-- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Serverless kontejneri  
+- [Azure OpenAI dokumentacija](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integracija AI usluga
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Upravljačka baza podataka
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Bezbrižni kontejneri
 
 ---
 
-**Odricanje**: Ovo je vježba učenja koristeći izmišljene maloprodajne podatke. Uvijek slijedite pravila upravljanja podacima i sigurnosne politike vaše organizacije pri implementaciji sličnih rješenja u produkcijskim okruženjima.
+**Odricanje od odgovornosti**: Ovo je vježba učenja koja koristi fiktivne maloprodajne podatke. Uvijek slijedite politike upravljanja podacima i sigurnosti vaše organizacije prilikom implementacije sličnih rješenja u produkcijskim okruženjima.
 
 ---
 

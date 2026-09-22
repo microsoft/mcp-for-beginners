@@ -236,7 +236,6 @@ Nuspėkite rezultatą prieš vykdydami testus:
 | Kelias | Rezultatas po pakartotinio bandymo | Bilietų skaičius |
 | --- | --- | --- |
 | Aklas pakartotinis bandymas | Sukuria `T-0002` po atsakymo praradimo dėl `T-0001` | 2 |
-
 | Apsaugotas bandymas iš naujo | Suranda ir grąžina `T-0001` | 1 |
 
 Vykdyti:

@@ -1,43 +1,48 @@
 # Wdrażanie serwerów MCP
 
-Wdrażanie serwera MCP pozwala innym na dostęp do jego narzędzi i zasobów poza Twoim lokalnym środowiskiem. Istnieje kilka strategii wdrażania do rozważenia, w zależności od Twoich wymagań dotyczących skalowalności, niezawodności i łatwości zarządzania. Poniżej znajdziesz wskazówki dotyczące wdrażania serwerów MCP lokalnie, w kontenerach oraz w chmurze.
+> [!NOTE]
+> Przykłady konfiguracji korzystające z punktu końcowego `/sse` dotyczą starszego transportu HTTP+SSE.
+> Zdalne serwery MCP `2026-07-28` korzystają ze Streamable HTTP, zwykle na
+> serwerowo zdefiniowanym punkcie końcowym, takim jak `/mcp`.
+
+Wdrążenie Twojego serwera MCP umożliwia innym dostęp do jego narzędzi i zasobów poza Twoim lokalnym środowiskiem. Istnieje kilka strategii wdrażania, które warto rozważyć, w zależności od wymagań dotyczących skalowalności, niezawodności i łatwości zarządzania. Poniżej znajdziesz wskazówki dotyczące wdrażania serwerów MCP lokalnie, w kontenerach oraz w chmurze.
 
 ## Przegląd
 
-Ta lekcja obejmuje sposób wdrażania aplikacji serwera MCP.
+Ta lekcja obejmuje informacje, jak wdrożyć aplikację MCP Server.
 
 ## Cele nauki
 
-Pod koniec tej lekcji będziesz umiał:
+Do końca tej lekcji będziesz potrafił:
 
-- Ocenić różne podejścia do wdrożenia.
+- Ocenić różne podejścia do wdrażania.
 - Wdrożyć swoją aplikację.
 
 ## Lokalny rozwój i wdrożenie
 
-Jeśli serwer ma być używany na komputerach użytkowników, możesz postępować według poniższych kroków:
+Jeśli Twój serwer ma być używany na maszynie użytkownika, możesz wykonać następujące kroki:
 
-1. **Pobierz serwer**. Jeśli nie napisałeś serwera, najpierw pobierz go na swój komputer.  
-1. **Uruchom proces serwera**: Uruchom aplikację serwera MCP.
+1. **Pobierz serwer**. Jeśli nie napisałeś serwera, najpierw pobierz go na swoją maszynę.
+1. **Uruchom proces serwera**: Uruchom swoją aplikację serwera MCP
 
-Dla SSE (niepotrzebne dla serwera typu stdio)
+Dla SSE (nie dotyczy serwera typu stdio)
 
-1. **Skonfiguruj sieć**: Upewnij się, że serwer jest dostępny na oczekiwanym porcie  
-1. **Połącz klientów**: Używaj lokalnych adresów URL, takich jak `http://localhost:3000`
+1. **Skonfiguruj sieć**: Upewnij się, że serwer jest dostępny na oczekiwanym porcie
+1. **Połącz klientów**: Użyj lokalnych adresów URL połączenia, takich jak `http://localhost:3000`
 
 ## Wdrażanie w chmurze
 
 Serwery MCP można wdrażać na różnych platformach chmurowych:
 
-- **Funkcje serverless**: Wdrażaj lekkie serwery MCP jako funkcje serverless  
-- **Usługi kontenerowe**: Używaj usług takich jak Azure Container Apps, AWS ECS lub Google Cloud Run  
-- **Kubernetes**: Wdrażaj i zarządzaj serwerami MCP w klastrach Kubernetes dla wysokiej dostępności
+- **Funkcje bezserwerowe (Serverless Functions)**: Wdróż lekkie serwery MCP jako funkcje bezserwerowe
+- **Usługi kontenerowe**: Użyj usług takich jak Azure Container Apps, AWS ECS lub Google Cloud Run
+- **Kubernetes**: Wdróż i zarządzaj serwerami MCP w klastrach Kubernetes dla wysokiej dostępności
 
 ### Przykład: Azure Container Apps
 
-Azure Container Apps obsługuje wdrażanie serwerów MCP. To nadal praca w toku i obecnie obsługuje serwery SSE.
+Azure Container Apps obsługuje wdrażanie serwerów MCP. To wciąż praca w toku i obecnie obsługuje serwery SSE.
 
-Oto jak możesz to zrobić:
+Oto, jak możesz to zrobić:
 
 1. Sklonuj repozytorium:
 
@@ -45,7 +50,7 @@ Oto jak możesz to zrobić:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Uruchom go lokalnie, aby przetestować działanie:
+1. Uruchom lokalnie, aby przetestować:
 
   ```sh
   uv venv
@@ -59,7 +64,7 @@ Oto jak możesz to zrobić:
   uv run fastapi dev main.py
   ```
 
-1. Aby uruchomić lokalnie, stwórz plik *mcp.json* w katalogu *.vscode* i dodaj następującą zawartość:
+1. Aby spróbować lokalnie, utwórz plik *mcp.json* w katalogu *.vscode* i dodaj następującą zawartość:
 
   ```json
   {
@@ -83,7 +88,7 @@ Oto jak możesz to zrobić:
   }
   ```
 
-  Po uruchomieniu serwera SSE możesz kliknąć ikonę odtwarzania w pliku JSON, powinieneś teraz zobaczyć, że narzędzia na serwerze są wykrywane przez GitHub Copilot, zobacz ikonę Narzędzia. 
+  Po uruchomieniu serwera SSE, możesz kliknąć ikonę odtwarzania w pliku JSON, powinieneś teraz zobaczyć, że narzędzia serwera są wykrywane przez GitHub Copilot, zobacz ikonę narzędzi.
 
 1. Aby wdrożyć, uruchom następujące polecenie:
 
@@ -91,13 +96,13 @@ Oto jak możesz to zrobić:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Oto masz, wdroż go lokalnie lub wdroż do Azure według tych kroków.
+I już, wdroż to lokalnie lub do Azure krok po kroku.
 
 ## Dodatkowe zasoby
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Artykuł o Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
-- [Repozytorium MCP Azure Container Apps](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+- [Repozytorium Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
 ## Co dalej
@@ -107,6 +112,6 @@ Oto masz, wdroż go lokalnie lub wdroż do Azure według tych kroków.
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony przy użyciu usługi tłumaczeń AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dokładamy starań, aby tłumaczenie było jak najbardziej precyzyjne, prosimy mieć na uwadze, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Źródłem ostatecznym i wiążącym jest oryginalny dokument w języku źródłowym. W przypadku informacji o krytycznym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do dokładności, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w jego języku źródłowym należy uznawać za autorytatywne źródło. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

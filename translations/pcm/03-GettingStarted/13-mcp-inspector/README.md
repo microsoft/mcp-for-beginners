@@ -1,25 +1,30 @@
 # Debugging wit MCP Inspector
 
-Di **MCP Inspector** na important debugging tool wey dey allow you test an troubleshoot your MCP servers gidigba without di need for full AI host application. E be like "Postman for MCP" - e get visual interface to send request, see response, an sabi how your server dey behave.
+> [!NOTE]
+> Command wey dey use `--sse` an URLs wey end for `/sse` dey test di old HTTP+SSE
+> transport. For new MCP `2026-07-28` server, make you use Inspector version wey
+> support Streamable HTTP an choose dat transport instead.
 
-## Why You Go Use MCP Inspector?
+Di **MCP Inspector** na important debugging tool wey make you fit test an troubleshoot yo MCP servers without to get full AI host application. Think am like "Postman for MCP" - e dey provide visual interface to send requests, see responses, an understand how yo server dey behave.
 
-When you dey build MCP servers, you go dey face dis kind wahala:
+## Why Use MCP Inspector?
 
-- **"My server dey run at all?"** - Inspector dey show connection status
-- **"My tools don register correct?"** - Inspector dey list all di available tools
-- **"Wetin be di response format?"** - Inspector dey show full JSON responses
-- **"Why dis tool no dey work?"** - Inspector dey show detailed error messages
+When you dey build MCP servers, you go often meet dis kain wahala dem:
 
-## Wetin You Need
+- **"My server even dey run?"** - Inspector go show connection status
+- **"My tools dem register correct?"** - Inspector go list all tools wey dey
+- **"Wetin be di response format?"** - Inspector go show full JSON responses
+- **"Why dis tool no dey work?"** - Inspector go show detailed error messages
 
-- Node.js 18+ installed
+## Prerequisites
+
+- Node.js 18+ don install
 - npm (e dey come wit Node.js)
-- MCP server wey you fit test (see [Module 3.1 - First Server](../01-first-server/README.md))
+- One MCP server wey you fit test (see [Module 3.1 - First Server](../01-first-server/README.md))
 
 ## Installation
 
-### Option 1: Run wit npx (Recommended for Quick Testing)
+### Option 1: Run wit npx (Beta Quick Testing)
 
 ```bash
 npx @modelcontextprotocol/inspector
@@ -32,14 +37,14 @@ npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Option 3: Add to Your Project
+### Option 3: Add to Yo Project
 
 ```bash
 cd your-mcp-server-project
 npm install --save-dev @modelcontextprotocol/inspector
 ```
 
-Add am for `package.json`:
+Add to `package.json`:
 ```json
 {
   "scripts": {
@@ -50,7 +55,7 @@ Add am for `package.json`:
 
 ---
 
-## How To Connect To Your Server
+## Connecting to Yo Server
 
 ### stdio Servers (Local Process)
 
@@ -71,7 +76,7 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 For servers wey dey run as HTTP services:
 
-1. Start your server first:
+1. Start yo server first:
    ```bash
    python server.py  # Server dey run for http://localhost:8080
    ```
@@ -85,7 +90,7 @@ For servers wey dey run as HTTP services:
 
 ## Inspector Interface Overview
 
-When Inspector open, you go see web interface (normally at `http://localhost:5173`):
+When Inspector open, you go see web interface (typically for `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,23 +118,23 @@ When Inspector open, you go see web interface (normally at `http://localhost:517
 
 ## Testing Tools
 
-### How To List Available Tools
+### Listing Available Tools
 
 1. Click di **Tools** tab
 2. Inspector go automatically call `tools/list`
-3. You go see all di registered tools wit:
+3. You go see all registered tools wit:
    - Tool name
    - Description
    - Input schema (parameters)
 
-### How To Use A Tool
+### Invoking a Tool
 
 1. Select one tool from di list
 2. Fill di required parameters for di form
 3. Click **Run Tool**
 4. See di response for di results panel
 
-**Example: Testing calculator tool**
+**Example: Testing one calculator tool**
 
 ```
 Tool: add
@@ -150,7 +155,7 @@ Response:
 
 ### Debugging Tool Errors
 
-When tool no work, Inspector go show:
+When tool fail, Inspector go show:
 
 ```
 Error Response:
@@ -167,7 +172,7 @@ Common error codes:
 |------|---------|
 | -32700 | Parse error (invalid JSON) |
 | -32600 | Invalid request |
-| -32601 | Method not found |
+| -32601 | Method no find |
 | -32602 | Invalid params |
 | -32603 | Internal error |
 
@@ -175,20 +180,20 @@ Common error codes:
 
 ## Testing Resources
 
-### How To List Resources
+### Listing Resources
 
 1. Click di **Resources** tab
 2. Inspector go call `resources/list`
 3. You go see:
    - Resource URIs
-   - Names an descriptions
+   - Names and descriptions
    - MIME types
 
-### How To Read Resource
+### Reading one Resource
 
 1. Select one resource
 2. Click **Read Resource**
-3. See di content wey e return
+3. See di content wey dem return
 
 **Example output:**
 
@@ -208,16 +213,16 @@ Content-Type: application/json
 
 ## Testing Prompts
 
-### How To List Prompts
+### Listing Prompts
 
 1. Click di **Prompts** tab
 2. Inspector go call `prompts/list`
-3. You go see available prompt templates
+3. View available prompt templates
 
-### How To Get Prompt
+### Getting one Prompt
 
 1. Select one prompt
-2. Fill any required arguments
+2. Fill any argument wey dem require
 3. Click **Get Prompt**
 4. See di rendered prompt messages
 
@@ -225,7 +230,10 @@ Content-Type: application/json
 
 ## Message Log Analysis
 
-Di message log dey show all MCP protocol messages:
+Di message log dey show all MCP protocol messages. Di transcript below na from one
+legacy `2025-11-25` server an e include di removed `initialize` handshake. One
+`2026-07-28` server dey use self-contained request metadata an `server/discover`
+instead.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Di message log dey show all MCP protocol messages:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Wetin To Look For
+### Wetin to Look Out For
 
 - **Request/Response pairs**: Each `→` suppose get matching `←`
-- **Error messages**: Look for `"error"` inside responses
-- **Timing**: Big gaps fit mean say performance get wahala
-- **Protocol version**: Make sure server an client dey agree on version
+- **Error messages**: Look out for `"error"` inside responses
+- **Timing**: Big gaps fit mean say performance get problem
+- **Protocol version**: Make sure server an client dem agree on version
 
 ---
 
@@ -312,59 +320,59 @@ Add to `.vscode/tasks.json`:
 
 ## Common Debugging Scenarios
 
-### Scenario 1: Server No Fit Connect
+### Scenario 1: Server No Go Connect
 
-**Symptoms:** Inspector show "Disconnected" or e just hang for "Connecting..."
+**Symptoms:** Inspector dey show "Disconnected" or e hang for "Connecting..."
 
 **Checklist:**
 1. ✅ Server command correct?
 2. ✅ All dependencies don install?
-3. ✅ Server path na absolute or e correct relative path to current directory?
-4. ✅ Required environment variables don set?
+3. ✅ Server path na absolute or relative to current directory?
+4. ✅ All required environment variables set?
 
 **Debug steps:**
 ```bash
-# Test di server by hand first
+# Test di server manuli fɔs
 python -c "import your_server_module; print('OK')"
 
-# Check for import wahala
+# Check fɔ import erɔs
 python -m your_server_module 2>&1 | head -20
 
-# Make sure say MCP SDK don install
+# Make sure say MCP SDK dey installed
 pip show mcp
 ```
 
-### Scenario 2: Tools No Show
+### Scenario 2: Tools No Dey Show
 
-**Symptoms:** Tools tab empty list
+**Symptoms:** Tools tab dey empty
 
 **Possible causes:**
-1. Tools no register when server start
+1. Tools no register during server initialization
 2. Server crash after e start
 3. `tools/list` handler dey return empty array
 
 **Debug steps:**
 1. Check message log for `tools/list` response
 2. Add logging to your tool registration code
-3. Verify `@mcp.tool()` decorators dey (for Python)
+3. Check say `@mcp.tool()` decorators dey (Python)
 
-### Scenario 3: Tool Returns Error
+### Scenario 3: Tool Dey Return Error
 
-**Symptoms:** Tool call return error response
+**Symptoms:** Tool call dey return error response
 
 **Debug approach:**
-1. Read the error message well well
-2. Check say parameter types match schema
-3. Add try/catch with detailed error messages
+1. Read error message well well
+2. Check parameter types match the schema
+3. Add try/catch wit detailed error messages
 4. Check server logs for stack traces
 
-**Example improved error handling:**
+**Example better error handling:**
 
 ```python
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Tool kain tin wey dey happen for here
+        # Tool logic deh here
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -375,12 +383,12 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ### Scenario 4: Resource Content Empty
 
-**Symptoms:** Resource return but content na empty or null
+**Symptoms:** Resource return, but content empty or null
 
 **Checklist:**
-1. ✅ File path or URI correct?
-2. ✅ Server get permission to read di resource?
-3. ✅ Resource content dey return correctly?
+1. ✅ File path or URI correct
+2. ✅ Server get permission to read resource
+3. ✅ Resource content dey return the right way
 
 ---
 
@@ -402,40 +410,40 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Recording Sessions
 
-Inspector fit export message logs for later check:
+Inspector fit export message logs make you analyze later:
 1. Click **Export Log** for the message panel
-2. Save the JSON file
-3. Share am with team members to help debug
+2. Save di JSON file
+3. Share am wit your team mates for debugging
 
 ---
 
 ## Best Practices
 
-1. **Test early an often** - Use Inspector as you dey develop, no wait make thing break
-2. **Start simple** - Test basic connectivity before you do complex tool calls
-3. **Check di schema** - Many error dey come from parameters wey no match type
-4. **Read di error messages** - MCP errors usually dey descriptive
-5. **Keep Inspector open** - E go help catch problems as you dey develop
+1. **Test early and often** - Use Inspector as you dey develop, no wait till wahala show
+2. **Start simple** - Test basic connectivity before you try complex tool calls
+3. **Check di schema** - Many errors dey come from wrong parameter types
+4. **Read error messages** - MCP errors dey usually explain wetin happen
+5. **Keep Inspector open** - E go help you catch wahala quick quick as you dey work
 
 ---
 
 ## Wetin Next
 
-You don complete Module 3: Getting Started! Continue your learning:
+You don finish Module 3: Getting Started! Continue to dey learn:
 
 - [Module 4: Practical Implementation](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Extra Resources
+## Additional Resources
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP Specification - Protocol Messages](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Protocol Messages](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we dey try make am correct, abeg sabi say automated translation fit get small errors or mistakes. Di original document wey dey dia for im correct language na di real authority. For important mata, e beta make professional human translation take do am. We no go take responsibility for any kind misunderstanding or wrong interpretation wey fit happen from using dis translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

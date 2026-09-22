@@ -1,51 +1,56 @@
 # MCP serverite juurutamine
 
-MCP serveri juurutamine võimaldab teistel juurdepääsu saada selle tööriistadele ja ressurssidele väljaspool teie kohalikku keskkonda. Juurutamise strateegiaid on mitmeid, sõltuvalt skaleeritavuse, töökindluse ja haldamise lihtsuse nõuetest. Allpool leiate juhiseid MCP serverite juurutamiseks kohapeal, konteinerites ja pilve.
+> [!NOTE]
+> Konfiguratsiooninäited, mis kasutavad lõpp-punkti `/sse`, sihivad pärand HTTP+SSE
+> transporti. MCP `2026-07-28` kaugserverid kasutavad tavaliselt serveri määratud
+> lõpp-punkti nagu `/mcp` streamitavat HTTP-d.
+
+MCP serveri juurutamine võimaldab teistel ligipääsu selle tööriistadele ja ressurssidele väljaspool teie kohalikku keskkonda. Võimalike juurutamisstrateegiate valik sõltub teie skaleeritavuse, töökindluse ja haldusmugavuse nõuetest. Allpool leiate juhiseid MCP serverite juurutamiseks kohapeal, konteinerites ja pilves.
 
 ## Ülevaade
 
-See õppetund käsitleb, kuidas MCP Serveri rakendust juurutada.
+See õppetund käsitleb, kuidas juurutada oma MCP serverirakendus.
 
 ## Õpieesmärgid
 
 Selle õppetunni lõpuks oskate:
 
-- Hinnata erinevaid juurutusmeetodeid.
-- Juurutada oma rakendust.
+- Hinnata erinevaid juurutamisviise.
+- Oma rakendust juurutada.
 
 ## Kohalik arendus ja juurutamine
 
-Kui teie server on mõeldud kasutamiseks otse kasutaja masinas, saate järgida järgmisi samme:
+Kui teie server on mõeldud kasutamiseks otse kasutaja arvutis, saate järgida järgmisi samme:
 
-1. **Laadige server alla**. Kui te serverit ei kirjutanud, laadige see esmalt oma masinasse alla.  
-1. **Käivitage serveriprotsess**: Käivitage oma MCP serveri rakendus 
+1. **Laadige server alla**. Kui te ei kirjutanud serverit ise, siis laadige see esmalt oma masinasse alla.
+1. **Käivitage serveri protsess**: Käivitage oma MCP serverirakendus
 
 SSE jaoks (ei ole vajalik stdio tüüpi serveri puhul)
 
-1. **Konfigureerige võrk**: Tagage, et server on juurdepääsetav oodatud pordil  
+1. **Konfigureerige võrgustik**: Veenduge, et server oleks ligipääsetav oodatud pordil
 1. **Ühendage kliendid**: Kasutage kohalikke ühenduse URL-e nagu `http://localhost:3000`
 
-## Pilve juurutamine
+## Pilvejuurutus
 
-MCP servereid saab juurutada mitmetesse pilveplatvormidesse:
+MCP serverid saab juurutada mitmetesse pilveplatvormidesse:
 
-- **Serverivabad funktsioonid**: Juurutage kergekaalulisi MCP servereid serverivabade funktsioonidena  
-- **Konteineriteenused**: Kasutage teenuseid nagu Azure Container Apps, AWS ECS või Google Cloud Run  
+- **Serverita funktsioonid**: Juurutage kergekaalulised MCP serverid serverita funktsioonidena
+- **Konteineriteenused**: Kasutage teenuseid nagu Azure Container Apps, AWS ECS või Google Cloud Run
 - **Kubernetes**: Juurutage ja haldage MCP servereid Kubernetes klastrites kõrge kättesaadavuse tagamiseks
 
 ### Näide: Azure Container Apps
 
-Azure Container Apps toetab MCP Serverite juurutamist. See on veel pooleli ja toetab hetkel SSE servereid.
+Azure Container Apps toetab MCP serverite juurutamist. See on endiselt arengujärgus ning toetab praegu SSE servereid.
 
-Siin on, kuidas seda teha:
+Siin on, kuidas saate seda teha:
 
-1. Klooni reposti:
+1. Kloneerige repo:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Käivitage see kohapeal, et asja proovida:
+1. Käivitage see kohapeal, et proovida asju:
 
   ```sh
   uv venv
@@ -59,7 +64,7 @@ Siin on, kuidas seda teha:
   uv run fastapi dev main.py
   ```
 
-1. Kohapeal proovimiseks looge kataloogi *.vscode* fail *mcp.json* ja lisage sinna järgmine sisu:
+1. Kohaliku proovimise jaoks looge *mcp.json* fail kataloogi *.vscode* ja lisage järgmine sisu:
 
   ```json
   {
@@ -83,15 +88,15 @@ Siin on, kuidas seda teha:
   }
   ```
 
-  Kui SSE server on käivitatud, võite JSON-failis vajutada esitusikooni, nüüd peaks GitHub Copilot tuvastama serveri tööriistad, vaadake tööriista ikooni.
+  Kui SSE server on käivitatud, saate JSON faili mängimisikooni klõpsata, peaks nüüd nägema, et tööriistad serveris võetakse GitHub Copiloti poolt kasutusele – vaadake tööriista ikooni. 
 
 1. Juurutamiseks käivitage järgmine käsk:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
-  
-Nii see ongi, juurutage see kohapeal, juurutage see Azure'i sellisel viisil.
+
+Siin see on, juurutage kohalikult, juurutage Azure’i kaudu nende sammude abil.
 
 ## Täiendavad ressursid
 
@@ -100,13 +105,13 @@ Nii see ongi, juurutage see kohapeal, juurutage see Azure'i sellisel viisil.
 - [Azure Container Apps MCP repo](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
-## Mis järgmisena
+## Mis järgmiseks
 
-- Järgmine: [Täpsemad serveri teemad](../10-advanced/README.md)
+- Järgmine: [Täpsemad serveriteemad](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Lahtiütlus**:
-See dokument on tõlgitud AI tõlke teenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun pidage meeles, et automatiseeritud tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Kriitilise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgendamise eest.
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

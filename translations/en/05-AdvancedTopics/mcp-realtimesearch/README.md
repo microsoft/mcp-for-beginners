@@ -225,7 +225,7 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Create a FastMCP server for web searching
+# Create a FastMCP server for web search
 search_server = FastMCP("WebSearch")
 
 # Class to handle web search operations
@@ -251,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # Build search parameters
+        # Construct search parameters
         search_params = {
             "q": query,
             "limit": max_results,
@@ -264,7 +264,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # Execute the search request
+        # Perform the search request
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Convert API-specific response to a standard format
+                # Transform API-specific response to a standard format
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -302,7 +302,7 @@ search_handler = WebSearchHandler(
     api_key="your-api-key-here"
 )
 
-# Configure lifespan to manage the search handler
+# Setup lifespan to manage the search handler
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -355,7 +355,7 @@ async def client_example():
             # Initialize the connection
             await session.initialize()
             
-            # Invoke the web_search tool
+            # Call the web_search tool
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -368,7 +368,7 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Server run example
+# Server execution example
 if __name__ == "__main__":
     # Run the server with Streamable HTTP transport
     search_server.run(transport="streamable-http")
@@ -571,7 +571,9 @@ console.log('Search server running at http://localhost:8000/mcp');
 > 
 > These examples would require additional error handling, authentication, and specific API integration code for production use. The search API endpoints shown (`https://api.search-service.example/search`) are placeholders and would need to be replaced with actual search service endpoints.
 > 
-> For complete implementation details and the most up-to-date approaches, please refer to the [official MCP specification](https://spec.modelcontextprotocol.io/) and SDK documentation.
+> For complete implementation details and the most up-to-date approaches,
+> refer to the [official MCP specification](https://modelcontextprotocol.io/specification/2026-07-28/)
+> and SDK documentation.
 
 ## Core Concepts
 
@@ -726,7 +728,7 @@ Advanced exercise covering:
 
 ## Additional Resources
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Official MCP specification and detailed protocol documentation
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Official MCP specification and detailed protocol documentation
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Detailed tutorials and implementation guides
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Official Python implementation of the MCP protocol
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Official TypeScript implementation of the MCP protocol
@@ -764,7 +766,8 @@ When implementing MCP-based web search solutions, remember these important princ
 
 5. **Robust Consent Flows**: Build robust consent and authorization flows that clearly explain what each tool does before authorizing its use, especially for tools that interact with external web resources.
 
-For complete details on MCP security and trust considerations, refer to the [official documentation](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+For complete details on MCP security and trust considerations, refer to the
+[official documentation](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## What's next 
 

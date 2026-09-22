@@ -1,31 +1,36 @@
-# MCP Inspektoriga silumine
+# Silumine MCP Inspectoriga
 
-**MCP Inspektor** on oluline silumistöökalu, mis võimaldab teil interaktiivselt testida ja tõrkeotsingut teha oma MCP-serveritega ilma täielikku AI hostrakendust vajamata. Mõelge sellele kui "Postman MCP jaoks" – see pakub visuaalset liidest päringute saatmiseks, vastuste vaatamiseks ja serveri käitumise mõistmiseks.
+> [!NOTE]
+> Käsklused, mis kasutavad `--sse` ja URL-id, mis lõpevad `/sse`, testivad pärandatud HTTP+SSE
+> transporti. Uue MCP `2026-07-28` serveri puhul kasutage Inspector'i versiooni, mis
+> toetab voogedastatavat HTTP-d ja valige selle asemel see transpordimeetod.
 
-## Miks kasutada MCP Inspektorit?
+**MCP Inspector** on oluline silumistöökalu, mis võimaldab teil interaktiivselt testida ja veadiagnostikat teha oma MCP serveritel ilma täismahus AI hosti rakendust vajamata. Võrrelge seda kui „Postman MCP jaoks“ — see pakub visuaalset liidest päringute saatmiseks, vastuste vaatamiseks ja serveri käitumise mõistmiseks.
 
-MCP-serverite ehitamisel puutute sageli kokku järgmiste väljakutsetega:
+## Miks kasutada MCP Inspectorit?
 
-- **"Kas mu server üldse töötab?"** – Inspektor näitab ühenduse staatust
-- **"Kas minu tööriistad on õigesti registreeritud?"** – Inspektor kuvab kõik saadaolevad tööriistad
-- **"Mis on vastuse formaat?"** – Inspektor kuvab täielikud JSON-vastused
-- **"Miks see tööriist ei tööta?"** – Inspektor näitab üksikasjalikke veateateid
+MCP serverite loomisel puutute sageli kokku järgmiste väljakutsetega:
 
-## Nõuded
+- **„Kas minu server üldse töötab?“** – Inspector kuvab ühenduse oleku
+- **„Kas minu tööriistad on õigesti registreeritud?“** – Inspector loetleb kõik saadaval olevad tööriistad
+- **„Mis on vastuse formaat?“** – Inspector näitab täielikke JSON-vastuseid
+- **„Miks see tööriist ei tööta?“** – Inspector kuvab detailseid veateateid
 
-- Node.js 18+ installitud
+## Eeldused
+
+- Paigaldatud Node.js versioon 18 või uuem
 - npm (tuleb koos Node.js-ga)
-- Testimiseks MCP-server (vt [Moodul 3.1 - Esimene server](../01-first-server/README.md))
+- Testimiseks MCP server (vt [Moodul 3.1 – Esimene server](../01-first-server/README.md))
 
 ## Paigaldus
 
-### Valik 1: Käivita npx-ga (Soovitatav kiireks testimiseks)
+### Valik 1: Käivita npx-iga (Soovitatav kiireks testimiseks)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Valik 2: Paigalda globaalsetena
+### Valik 2: Globaalne paigaldus
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -39,7 +44,7 @@ cd your-mcp-server-project
 npm install --save-dev @modelcontextprotocol/inspector
 ```
 
-Lisa `package.json`-i:
+Lisa `package.json` faili:
 ```json
 {
   "scripts": {
@@ -50,14 +55,14 @@ Lisa `package.json`-i:
 
 ---
 
-## Ühenduse loomine serveriga
+## Ühendamine oma serveriga
 
 ### stdio serverid (kohalik protsess)
 
-Serverite jaoks, mis suhtlevad standardse sisendi/väljundi kaudu:
+Serverite puhul, mis suhtlevad standardse sisendi/väljundi kaudu:
 
 ```bash
-# Pythoni server
+# Python server
 npx @modelcontextprotocol/inspector python -m your_server_module
 
 # Node.js server
@@ -69,23 +74,23 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ### SSE/HTTP serverid (võrk)
 
-Serverite puhul, mis töötavad HTTP-teenustena:
+Serverite puhul, mis töötavad HTTP teenustena:
 
-1. Alusta esmalt oma serverit:
+1. Käivitage esmalt oma server:
    ```bash
    python server.py  # Server töötab aadressil http://localhost:8080
    ```
 
-2. Käivita Inspektor ja ühendu:
+2. Käivitage Inspector ja ühendage:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Inspektori liidese ülevaade
+## Inspectori liidese ülevaade
 
-Kui Inspektor käivitub, näete veebiliidest (tavaliselt aadressil `http://localhost:5173`):
+Inspector käivitamisel näete veebiliidest (tavaliselt aadressil `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,19 +118,19 @@ Kui Inspektor käivitub, näete veebiliidest (tavaliselt aadressil `http://local
 
 ## Tööriistade testimine
 
-### Saadaval olevate tööriistade loend
+### Saadaval olevate tööriistade loetelu
 
-1. Klõpsake vahekaardil **Tools**
-2. Inspektor kutsub automaatselt `tools/list`
+1. Klõpsake **Tools** vahekaarti
+2. Inspector kutsub automaatselt `tools/list`
 3. Näete kõiki registreeritud tööriistu koos:
-   - Tööriista nimega
-   - Kirjeldusega
-   - Sisendiskeemiga (parameetrid)
+   - Tööriista nimedega
+   - Kirjeldustega
+   - Sissepääsu skeemiga (parameetrid)
 
 ### Tööriista kutsumine
 
 1. Valige tööriist nimekirjast
-2. Täitke vajalikud parameetrid vormis
+2. Täitke vormis nõutud parameetrid
 3. Klõpsake **Run Tool**
 4. Vaadake vastust tulemuste paneelis
 
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Tööriistade vigade silumine
+### Tööriista vigade silumine
 
-Kui tööriist ebaõnnestub, näitab Inspektor:
+Kui tööriist ebaõnnestub, kuvab Inspector:
 
 ```
 Error Response:
@@ -162,23 +167,23 @@ Error Response:
 }
 ```
 
-Tavalised veakoodid:
+Levinumad veakoodid:
 | Kood | Tähendus |
-|------|----------|
-| -32700 | Sünstaksiviga (kehtetu JSON) |
-| -32600 | Kehtetu päring |
+|------|---------|
+| -32700 | Parsimisviga (kehtetu JSON) |
+| -32600 | Vigane päring |
 | -32601 | Meetodit ei leitud |
-| -32602 | Kehtetud parameetrid |
-| -32603 | Sisemine viga |
+| -32602 | Vigased parameetrid |
+| -32603 | Sisemine tõrge |
 
 ---
 
 ## Ressursside testimine
 
-### Ressursside loend
+### Ressursside loetelu
 
-1. Klõpsake vahekaardil **Resources**
-2. Inspektor kutsub `resources/list`
+1. Klõpsake **Resources** vahekaarti
+2. Inspector kutsub `resources/list`
 3. Näete:
    - Ressursside URI-sid
    - Nimesid ja kirjeldusi
@@ -190,7 +195,7 @@ Tavalised veakoodid:
 2. Klõpsake **Read Resource**
 3. Vaadake tagastatud sisu
 
-**Näidistulemus:**
+**Näite väljund:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Käskluste testimine
+## Promptide testimine
 
-### Käskluste loend
+### Promptide loetelu
 
-1. Klõpsake vahekaardil **Prompts**
-2. Inspektor kutsub `prompts/list`
-3. Vaadake saadaolevaid käskluse malle
+1. Klõpsake **Prompts** vahekaarti
+2. Inspector kutsub `prompts/list`
+3. Vaadake saadaolevaid promptimalle
 
-### Käskluse pärimine
+### Prompti hankimine
 
-1. Valige käsklus
-2. Täitke kõik vajalikud argumendid
+1. Valige prompt
+2. Täitke vajadusel nõutud argumendid
 3. Klõpsake **Get Prompt**
-4. Vaadake renderdatud käskluse sõnumeid
+4. Vaadake renderdatud promptisõnumeid
 
 ---
 
-## Sõnumilogi analüüs
+## Sõnumilogide analüüs
 
-Sõnumilogi kuvab kõik MCP protokolli sõnumid:
+Sõnumilogis kuvatakse kõik MCP protokollisõnumid. Allolev vestlus pärineb
+pärandatud `2025-11-25` serverist ja sisaldab eemaldatud `initialize` käepigistust. 
+`2026-07-28` server kasutab iseseisvat päringu metaandmeid ning `server/discover` kõnet
+selle asemel.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,22 +244,22 @@ Sõnumilogi kuvab kõik MCP protokolli sõnumid:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Millele tähelepanu pöörata
+### Mida jälgida
 
-- **Päring/vastus paarid**: Igal `→`-l peaks olema vastav `←`
-- **Veateated**: Otsige vastustes `"error"` sõnu
-- **Ajastus**: Suured vahed võivad viidata jõudlusprobleemidele
-- **Protokolli versioon**: Kontrollige, et server ja klient oleksid sama versiooni peal
+- **Päringu/vastuse paarid**: Iga `→` peaks omama vastavat `←`
+- **Veateated**: Otsige vastustest sõna `"error"`
+- **Ajastus**: Suured pausid võivad viidata jõudlusprobleemidele
+- **Protokolli versioon**: Veenduge, et server ja klient on versioonis ühel meelel
 
 ---
 
 ## VS Code integratsioon
 
-Saate Inspektorit käivitada otse VS Code’ist:
+Võite Inspectori käivitada otse VS Code'st:
 
 ### launch.json kasutamine
 
-Lisa `.vscode/launch.json`:
+Lisage `.vscode/launch.json`:
 
 ```json
 {
@@ -282,7 +290,7 @@ Lisa `.vscode/launch.json`:
 
 ### Tasks kasutamine
 
-Lisa `.vscode/tasks.json`:
+Lisage `.vscode/tasks.json`:
 
 ```json
 {
@@ -310,19 +318,19 @@ Lisa `.vscode/tasks.json`:
 
 ---
 
-## Levinumad silumistsenaariumid
+## Levinumad silumissituatsioonid
 
-### Stsenaarium 1: Server ei ühendu
+### Situatsioon 1: Server ei ühendu
 
-**Sümptomid:** Inspektor näitab "Disconnected" või jääb “Connecting...” juurde kinni
+**Sümptomid:** Inspector kuvab "Disconnected" või jääb seisma "Connecting..." peal
 
 **Kontrollnimekiri:**
 1. ✅ Kas serveri käsk on õige?
 2. ✅ Kas kõik sõltuvused on paigaldatud?
-3. ✅ Kas serveri tee on absoluutne või suhteline jooksvale kaustale?
-4. ✅ Kas vajalised keskkonnamuutujad on seatud?
+3. ✅ Kas serveri rada on absoluutne või suhteline jooksvale kataloogile?
+4. ✅ Kas vajalikud keskkonnamuutujad on seatud?
 
-**Silumisastep #1:**
+**Silumissammud:**
 ```bash
 # Testi serverit esmalt käsitsi
 python -c "import your_server_module; print('OK')"
@@ -330,35 +338,35 @@ python -c "import your_server_module; print('OK')"
 # Kontrolli importimise vigu
 python -m your_server_module 2>&1 | head -20
 
-# Veendu, et MCP SDK on paigaldatud
+# Kinnita, et MCP SDK on paigaldatud
 pip show mcp
 ```
 
-### Stsenaarium 2: Tööriistad ei ilmu
+### Situatsioon 2: Tööriistad ei ilmu
 
-**Sümptomid:** Tööriistade vahekaart on tühi
+**Sümptomid:** Tööriistade vahekaart kuvab tühja nimekirja
 
 **Võimalikud põhjused:**
-1. Tööriistu ei registreeritud serveri alustamise ajal
-2. Server kukkus käivitamisel kokku
-3. `tools/list` käitleja tagastab tühja massiivi
+1. Tööriistu ei registreeritud serveri käivitamisel
+2. Server kukkus pärast käivitamist kokku
+3. `tools/list` käsitsemisfunktsioon tagastab tühja massiivi
 
-**Silumisammud:**
-1. Kontrolli sõnumilogis `tools/list` vastust
-2. Lisa logimine oma tööriistade registreerimise koodile
-3. Veendu, et `@mcp.tool()` dekoratsioonid on olemas (Python)
+**Silumissammud:**
+1. Kontrollige sõnumilogist `tools/list` vastust
+2. Lisage oma tööriista registreerimiskoodi logimine
+3. Veenduge, et `@mcp.tool()` dekoratsioonid on olemas (Python)
 
-### Stsenaarium 3: Tööriist tagastab vea
+### Situatsioon 3: Tööriist tagastab vea
 
-**Sümptomid:** Tööriista kutsumine annab veateate vastuse
+**Sümptomid:** Tööriista kutsumine tagastab veavastuse
 
-**Silumisstrateegia:**
-1. Loe veateadet tähelepanelikult
-2. Kontrolli, kas parameetrite tüübid vastavad skeemile
-3. Lisa try/catch plokid üksikasjalike veateadetega
-4. Uuri serveri logisid virnastrateegiate (stack traces) jaoks
+**Silumisviis:**
+1. Lugege veateadet hoolikalt
+2. Kontrollige, et parameetritüüp vastab skeemile
+3. Lisage katse/bloki lõks üksikasjalike veateadetega
+4. Kontrollige serveri logisid peenekohtade leidmiseks
 
-**Näide parandatud veakäsitlusest:**
+**Näide parendatud veakäsitlusest:**
 
 ```python
 @mcp.tool()
@@ -373,18 +381,18 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Stsenaarium 4: Ressursisisu tühi
+### Situatsioon 4: Ressursi sisu tühi
 
-**Sümptomid:** Ressurss tagastab tühja või null sisu
+**Sümptomid:** Ressurss tagastab, kuid sisu on tühi või null
 
 **Kontrollnimekiri:**
 1. ✅ Failitee või URI on õige
 2. ✅ Serveril on õigus ressurssi lugeda
-3. ✅ Ressursisisu tagastatakse korrektselt
+3. ✅ Ressursi sisu tagastatakse korrektselt
 
 ---
 
-## Täiustatud Inspektori funktsioonid
+## Täiustatud Inspectori omadused
 
 ### Kohandatud päised (SSE)
 
@@ -400,42 +408,42 @@ npx @modelcontextprotocol/inspector \
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Seansside salvestamine
+### Sessioonide salvestamine
 
-Inspektor võimaldab sõnumiloge eksportida edasiseks analüüsiks:
+Inspector võimaldab eksportida sõnumiloge hilisemaks analüüsiks:
 1. Klõpsake sõnumipaneelil **Export Log**
 2. Salvestage JSON-fail
-3. Jagage meeskonnaliikmetega silumise hõlbustamiseks
+3. Jagage meeskonnaliikmetega vigade analüüsimiseks
 
 ---
 
 ## Parimad praktikad
 
-1. **Testi varakult ja sageli** – kasuta Inspektorit arengu käigus, mitte ainult riketega silumise ajal
-2. **Alusta lihtsast** – testi esmalt põhikonnektsiooni enne keerulisi tööriistakutseid
-3. **Kontrolli skeemi** – paljud vead tulenevad parameetrite tüübi mittevastavusest
-4. **Loe veateateid** – MCP vead on reeglina kirjeldavad
-5. **Hoia Inspektor avatud** – see aitab probleemid varakult märgata
+1. **Testige vara ja tihti** – Kasutage Inspectorit arenduse käigus, mitte ainult vigade ilmnemisel
+2. **Alustage lihtsast** – Testige esmalt põhikonnektiivsust enne keerukate tööriistade kutsumist
+3. **Kontrollige skeemi** – Paljud vead tulenevad parameetritüüpide mittevastavusest
+4. **Lugege veateateid** – MCP vead on enamasti kirjeldavad
+5. **Hoidke Inspector avatud** – See aitab vigasid varakult märgata arengu ajal
 
 ---
 
 ## Mis järgmiseks
 
-Oled lõpetanud Mooduli 3: Algus! Jätka õppimist:
+Olete lõpetanud Mooduli 3: Alustamine! Jätkake õppimist:
 
 - [Moodul 4: Praktiline rakendamine](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Lisamaterjalid
+## Täiendavad ressursid
 
-- [MCP Inspektori GitHubi hoidla](https://github.com/modelcontextprotocol/inspector)
-- [MCP Spetsifikatsioon - Protokolli sõnumid](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Inspectori GitHub hoidla](https://github.com/modelcontextprotocol/inspector)
+- [MCP spetsifikatsioon – protokollisõnumid](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 spetsifikatsioon](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest loobumine**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palun arvestage, et automatiseeritud tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Tähtsa teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta käesoleva tõlke kasutamisest tulenevate arusaamatuste või valesti mõistmiste eest.
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

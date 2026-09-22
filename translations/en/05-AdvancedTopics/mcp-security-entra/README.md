@@ -1,5 +1,11 @@
 # Securing AI Workflows: Entra ID Authentication for Model Context Protocol Servers
 
+> [!NOTE]
+> The remote server code in this lesson protects legacy `/sse` and `/message`
+> endpoints and targets MCP `2025-11-25`. Keep its identity and token-validation
+> practices, but use a `2026-07-28`-compatible Streamable HTTP transport for new
+> implementations.
+
 ## Introduction
 Securing your Model Context Protocol (MCP) server is as important as locking the front door of your house. Leaving your MCP server open exposes your tools and data to unauthorized access, which can lead to security breaches. Microsoft Entra ID provides a robust cloud-based identity and access management solution, helping ensure that only authorized users and applications can interact with your MCP server. In this section, you’ll learn how to protect your AI workflows using Entra ID authentication.
 
@@ -250,32 +256,32 @@ This file sets up the Express server and the MCP transport layer.
 - **`/auth/callback`**: This endpoint handles the redirect from Entra ID after the user has authenticated. It exchanges the authorization code for an access token and a refresh token.
 
 ```typescript
-// Simplified for clarity
+// Simplificado para claridad
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
 
-// Protect the SSE endpoint
+// Proteger el endpoint SSE
 app.get("/sse", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... connect to the transport ...
+  // ... conectar al transporte ...
 });
 
-// Protect the message endpoint
+// Proteger el endpoint de mensajes
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... handle the message ...
+  // ... manejar el mensaje ...
 });
 
-// Handle the OAuth 2.0 callback
+// Manejar la devolución de llamada OAuth 2.0
 app.get("/auth/callback", (req, res) => {
   provider.handleCallback(req.query.code, req.query.state)
     .then(result => {
-      // ... handle success or failure ...
+      // ... manejar éxito o fracaso ...
     });
 });
 ```
@@ -321,6 +327,7 @@ This class handles the logic for:
 - Exchanging the authorization code for an access token.
 - Storing the tokens in the `tokenStore`.
 - Refreshing the access token when it expires.
+
 
 #### 3. How It All Works Together
 

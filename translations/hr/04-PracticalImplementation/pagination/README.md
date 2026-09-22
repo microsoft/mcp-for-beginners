@@ -1,46 +1,47 @@
-# Straničenje i Veliki Skupovi Rezultata u MCP-u
+# Pagiranje i Veliki Skupovi Rezultata u MCP-u
 
-Kada vaš MCP poslužitelj obrađuje velike skupove podataka - bilo da je riječ o listanju tisuća datoteka, zapisa iz baze podataka ili rezultata pretraživanja - potrebni su straničenje za efikasno upravljanje memorijom i pružanje responzivnog korisničkog iskustva. Ovaj vodič pokriva kako implementirati i koristiti straničenje u MCP-u.
+Kada vaš MCP poslužitelj upravlja velikim skupovima podataka - bilo da se radi o popisivanju tisuća datoteka, zapisa u bazi podataka ili rezultata pretraživanja - trebate paginaciju kako biste učinkovito upravljali memorijom i osigurali brzo korisničko iskustvo. Ovaj vodič objašnjava kako implementirati i koristiti paginaciju u MCP-u.
 
-## Zašto je Straničenje Važno
+## Zašto je paginacija važna
 
-Bez straničenja, veliki odgovori mogu uzrokovati:
+Bez paginacije, veliki odgovori mogu uzrokovati:
 
-- **Ispraznjenje memorije** - Učitavanje milijuna zapisa odjednom
-- **Spora vremena odziva** - Korisnici čekaju dok se svi podatci učitaju
-- **Greške zbog isteka vremena** - Zahtjevi prelaze vremenska ograničenja
-- **Loše performanse AI-a** - LLM-ovi imaju poteškoća s masivnim kontekstom
+- **Iscrpljivanje memorije** - Učitavanje milijuna zapisa odjednom
+- **Spori odgovori** - Korisnici čekaju dok se svi podaci učitaju
+- **Greške zbog isteka vremena** - Zahtjevi premašuju vremenska ograničenja
+- **Loše AI performanse** - LLM-ovi imaju poteškoće s ogromnim kontekstom
 
-MCP koristi **straničenje bazirano na kursoru** za pouzdano i konzistentno listanje kroz skupove rezultata.
+MCP koristi **paginaciju temeljenu na pokazivaču (cursor-based pagination)** za pouzdano i dosljedno listanje skupova rezultata.
 
 ---
 
-## Kako MCP Straničenje Radi
+## Kako radi MCP paginacija
 
-### Koncept Kursora
+### Koncept pokazivača (cursor)
 
-**Kursor** je neprozirni niz znakova koji označava vašu poziciju u skupu rezultata. Zamislite ga kao oznaku stranice u dugoj knjizi.
+**Pokazivač** je neproziran niz znakova koji označava vašu poziciju u skupu rezultata. Zamislite ga kao oznaku u dugoj knjizi.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (bez pokazivača)
+    Client->>Server: alati/lista (bez pokazivača)
     Server-->>Client: alati [1-10], sljedećiPokazivač: "abc123"
     
-    Client->>Server: tools/list (pokazivač: "abc123")
+    Client->>Server: alati/lista (pokazivač: "abc123")
     Server-->>Client: alati [11-20], sljedećiPokazivač: "def456"
     
-    Client->>Server: tools/list (pokazivač: "def456")
+    Client->>Server: alati/lista (pokazivač: "def456")
     Server-->>Client: alati [21-25], sljedećiPokazivač: null (kraj)
 ```
-### Straničenje u MCP Metodama
 
-Sljedeće MCP metode podržavaju straničenje:
+### Paginacija u MCP metodama
 
-| Metoda | Vraća | Podrška za Kursor |
-|--------|--------|-------------------|
+Ove MCP metode podržavaju paginaciju:
+
+| Metoda | Vraća | Podrška za pokazivač |
+|--------|---------|----------------|
 | `tools/list` | Definicije alata | ✅ |
 | `resources/list` | Definicije resursa | ✅ |
 | `prompts/list` | Definicije prompta | ✅ |
@@ -48,7 +49,7 @@ Sljedeće MCP metode podržavaju straničenje:
 
 ---
 
-## Implementacija na Poslužitelju
+## Implementacija na poslužitelju
 
 ### Python (FastMCP)
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Dekodiraj pokazivač da dobiješ početni indeks
+    # Dekodiraj kursor za početni indeks
     start_index = 0
     if cursor:
         try:
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Izračunaj sljedeći pokazivač
+    # Izračunaj sljedeći kursor
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## Implementacija na Klijentu
+## Implementacija na klijentu
 
-### Python Klijent
+### Python klijent
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript Klijent
+### TypeScript klijent
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -223,14 +224,14 @@ async function getAllTools(client: Client): Promise<Tool[]> {
   return allTools;
 }
 
-// Korištenje
+// Uporaba
 const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Uzorak Lijenog Učitavanja
+### obrazac lijenog učitavanja (Lazy Loading Pattern)
 
-Za vrlo velike skupove podataka, učitavajte stranice na zahtjev:
+Za vrlo velike skupove podataka, učitajte stranice po potrebi:
 
 ```python
 class PaginatedToolIterator:
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Upotreba - memorijski učinkovito za velike skupove podataka
+# Korištenje - memorijski učinkovito za velike skupove podataka
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Straničenje za Resurse
+## Paginacija za resurse
 
-Resursi često trebaju straničenje za direktorije ili velike skupove podataka:
+Resursi često trebaju paginaciju za direktorije ili velike skupove podataka:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Dekodiraj pokazivač (indeks datoteke)
+    # Dekodiraj kursor (indeks datoteke)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Napravi listu resursa za ovu stranicu
+    # Napravi popis resursa za ovu stranicu
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Izračunaj sljedeći pokazivač
+    # Izračunaj sljedeći kursor
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Strategije Dizajna Kursora
+## Strategije dizajna pokazivača
 
-### Strategija 1: Na temelju indeksa (Jednostavno)
+### Strategija 1: Na osnovi indeksa (jednostavna)
 
 ```python
 # Kursor je samo indeks
-cursor = "50"  # Počni s artiklom 50
+cursor = "50"  # Počni na stavci 50
 ```
 
-**Prednosti:** Jednostavno, bez stanja
-**Nedostaci:** Rezultati se mogu pomaknuti ako se dodaju/uklone stavke
+**Prednosti:** Jednostavna, bez stanja
+**Nedostaci:** Rezultati se mogu pomaknuti ako se stavke dodaju/uklanjaju
 
-### Strategija 2: Na temelju ID-a (Stabilno)
+### Strategija 2: Na osnovi ID-a (stabilna)
 
 ```python
 # Kursor je zadnji viđeni ID
 cursor = "item_abc123"  # Počni nakon ove stavke
 ```
 
-**Prednosti:** Stabilno čak i ako se stavke mijenjaju
-**Nedostaci:** Potrebni su uređeni ID-ovi
+**Prednosti:** Stabilna čak i ako se stavke mijenjaju
+**Nedostaci:** Zahtijeva uređene ID-eve
 
-### Strategija 3: Kodirano stanje (Kompleksno)
+### Strategija 3: Kodirano stanje (kompleksna)
 
 ```python
 import base64
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Prednosti:** Može kodirati kompleksno stanje
-**Nedostaci:** Složenije, veći nizovi kursora
+**Prednosti:** Može kodirati složeno stanje
+**Nedostaci:** Složenija, veći nizovi pokazivača
 
 ---
 
-## Najbolje Prakse
+## Najbolje prakse
 
-### 1. Odaberite Primjerene Veličine Stranica
+### 1. Odaberite odgovarajuće veličine stranica
 
 ```python
 # Razmotrite veličinu podataka
 PAGE_SIZE_SMALL_ITEMS = 100   # Jednostavni metapodaci
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Složeniji objekti
-PAGE_SIZE_LARGE_ITEMS = 5     # Kompleksan sadržaj
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Bogatiji objekti
+PAGE_SIZE_LARGE_ITEMS = 5     # Složeni sadržaj
 ```
 
-### 2. Graceful Rukovanje Neispravnim Kursorima
+### 2. Obradite nevažeće pokazivače na prikladan način
 
 ```python
 @app.list_tools()
@@ -386,22 +387,22 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # Resetiraj na početak
     except (ValueError, TypeError):
-        start_index = 0  # Neispravan pokazivač, započni ispočetka
+        start_index = 0  # Nevažeći pokazivač, kreni ispočetka
     # ...
 ```
 
-### 3. Uključite Ukupan Broj (Opcionalno)
+### 3. Uključite ukupan broj (opcionalno)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Neke implementacije uključuju ukupno za napredak sučelja
+    # Neke implementacije uključuju ukupno za napredak korisničkog sučelja
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testirajte Krajnje Slučajeve
+### 4. Testirajte rubne slučajeve
 
 ```python
 async def test_pagination():
@@ -414,16 +415,16 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Nevažeći kursor
+    # Nevažeći pokazivač
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Trebao bi vratiti prvu stranicu
+    assert result.tools  # Trebalo bi vratiti prvu stranicu
 ```
 
 ---
 
-## Česte Zamke
+## Česte zamke
 
-### ❌ Vraćanje Svim Rezultata pa Straničenje na Klijentu
+### ❌ Vraćanje svih rezultata pa paginacija na strani klijenta
 
 ```python
 # LOŠE: Učitava sve u memoriju
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Straničenje na Izvoru Podataka
+### ✅ Paginacija na izvoru podataka
 
 ```python
 # DOBRO: Učitava samo ono što je potrebno
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Što Slijedi
+## Što slijedi
 
-- [Modul 5.14 - Inženjerstvo Konteksta](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Modul 8 - Najbolje Prakse](../../08-BestPractices/README.md)
-- [3.8 - Testiranje Vašeg MCP Poslužitelja](../../03-GettingStarted/08-testing/README.md)
+- [Modul 5.14 - Inženjerstvo konteksta](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Modul 8 - Najbolje prakse](../../08-BestPractices/README.md)
+- [3.8 - Testiranje vašeg MCP poslužitelja](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## Dodatni Resursi
+## Dodatni resursi
 
-- [MCP Specifikacija - Straničenje](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Objašnjenje Straničenja Baziranog na Kursoru](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK testovi straničenja](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP specifikacija - Paginacija](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Objašnjenje paginacije temeljene na pokazivaču](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK testovi paginacije](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje odgovornosti**:  
-Ovaj dokument preveden je pomoću AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na njegovom izvornom jeziku smatra se službenim i autoritativnim izvorom. Za ključne informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakve nesporazume ili kriva tumačenja koja proizlaze iz upotrebe ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
