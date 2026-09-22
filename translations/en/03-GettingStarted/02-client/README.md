@@ -358,7 +358,7 @@ const prompts = await client.listPrompts();
 // List resources
 const resources = await client.listResources();
 
-// list tools
+// List tools
 const tools = await client.listTools();
 ```
 
@@ -854,11 +854,13 @@ We've provided complete, working client implementations for all programming lang
 | **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Complete Rust client using Tokio for async operations |
 
 Each complete example includes:
+
 - ✅ **Connection establishment** and error handling
 - ✅ **Server discovery** (tools, resources, prompts where applicable)
 - ✅ **Calculator operations** (add, subtract, multiply, divide, help)
 - ✅ **Result processing** and formatted output
 - ✅ **Comprehensive error handling**
+
 - ✅ **Clean, documented code** with step-by-step comments
 
 ### Getting Started with Complete Examples
@@ -896,7 +898,7 @@ The key takeaways for this chapter is the following about clients:
 ## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
@@ -910,5 +912,5 @@ The key takeaways for this chapter is the following about clients:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

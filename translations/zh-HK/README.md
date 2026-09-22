@@ -225,7 +225,6 @@ MCP 為 AI 應用提供這樣的標準化。AI 模型不用針對每種工具寫
 
 | 語言 | 描述 | 連結 |
 |----------|-------------|------|
-
 | C# | MCP 伺服器範例 | [觀看程式碼](./03-GettingStarted/samples/csharp/README.md) |
 | Java | MCP 計算機 | [觀看程式碼](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | MCP 演示 | [觀看程式碼](./03-GettingStarted/samples/javascript/README.md) |

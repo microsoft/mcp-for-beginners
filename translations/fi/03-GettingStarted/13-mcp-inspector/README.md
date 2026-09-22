@@ -1,25 +1,30 @@
 # Virheenkorjaus MCP Inspectorilla
 
-**MCP Inspector** on olennainen virheenkorjaustyökalu, jonka avulla voit interaktiivisesti testata ja selvittää MCP-palvelimiasi ilman tarvetta täysimittaiselle AI-host-sovellukselle. Voit ajatella sitä "Postmanina MCP:lle" – se tarjoaa visuaalisen käyttöliittymän pyyntöjen lähettämiseen, vastausten tarkasteluun ja palvelimen toiminnan ymmärtämiseen.
+> [!NOTE]
+> Komennot, jotka käyttävät `--sse` ja URL-osoitteet, jotka päättyvät `/sse`, testaavat perinteistä HTTP+SSE
+> -siirtoa. Uudelle MCP `2026-07-28` -palvelimelle käytä Inspectorin versiota, joka
+> tukee suoritettavaa HTTP:ta ja valitse se siirtotapa sen sijaan.
+
+**MCP Inspector** on olennainen virheenkorjaustyökalu, joka antaa sinun testata ja korjata MCP-palvelimiasi vuorovaikutteisesti ilman täyttä tekoälysovellusta. Ajattele sitä kuin "Postman MCP:lle" - se tarjoaa visuaalisen käyttöliittymän pyyntöjen lähettämiseen, vastausten katseluun ja palvelimesi käyttäytymisen ymmärtämiseen.
 
 ## Miksi käyttää MCP Inspectoria?
 
-Kun rakennat MCP-palvelimia, kohtaat usein seuraavat haasteet:
+MCP-palvelimia rakentaessasi kohtaat usein seuraavat haasteet:
 
-- **”Onko palvelimeni edes käynnissä?”** – Inspector näyttää yhteystilan
-- **”Ovatko työkaluni rekisteröity oikein?”** – Inspector listaa kaikki saatavilla olevat työkalut
-- **”Mikä on vastausmuoto?”** – Inspector näyttää täydelliset JSON-vastaukset
-- **”Miksi tämä työkalu ei toimi?”** – Inspector näyttää yksityiskohtaiset virheilmoitukset
+- **"Onko palvelimeni edes käynnissä?"** - Inspector näyttää yhteyden tilan
+- **"Ovatko työkaluni rekisteröity oikein?"** - Inspector listaa kaikki saatavilla olevat työkalut
+- **"Millainen vastausmuoto on?"** - Inspector näyttää täydet JSON-vastaukset
+- **"Miksi tämä työkalu ei toimi?"** - Inspector näyttää yksityiskohtaiset virheilmoitukset
 
 ## Esivaatimukset
 
 - Node.js 18+ asennettuna
 - npm (sisältyy Node.js:ään)
-- Testattava MCP-palvelin (katso [Moduuli 3.1 - Ensimmäinen palvelin](../01-first-server/README.md))
+- MCP-palvelin testattavaksi (katso [Module 3.1 - Ensimmäinen palvelin](../01-first-server/README.md))
 
 ## Asennus
 
-### Vaihtoehto 1: Suorita npx:llä (Suositeltu nopeaan testaukseen)
+### Vaihtoehto 1: Aja npx:llä (suositeltu nopeaan testaukseen)
 
 ```bash
 npx @modelcontextprotocol/inspector
@@ -52,9 +57,9 @@ Lisää `package.json`-tiedostoon:
 
 ## Yhteyden muodostaminen palvelimeesi
 
-### stdio-palvelimet (Paikallinen prosessi)
+### stdio-palvelimet (paikallinen prosessi)
 
-Palvelimille, jotka kommunikoivat standardin sisään- ja ulostulon kautta:
+Palvelimille, jotka kommunikoivat standard input/output -kanavien kautta:
 
 ```bash
 # Python-palvelin
@@ -67,7 +72,7 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP-palvelimet (Verkko)
+### SSE/HTTP-palvelimet (verkko)
 
 Palvelimille, jotka toimivat HTTP-palveluina:
 
@@ -76,7 +81,7 @@ Palvelimille, jotka toimivat HTTP-palveluina:
    python server.py  # Palvelin käynnissä osoitteessa http://localhost:8080
    ```
 
-2. Käynnistä Inspector ja yhdistä:
+2. Käynnistä Inspector ja muodosta yhteys:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
@@ -85,7 +90,7 @@ Palvelimille, jotka toimivat HTTP-palveluina:
 
 ## Inspectorin käyttöliittymän yleiskatsaus
 
-Kun Inspector käynnistyy, näet verkkokäyttöliittymän (tyypillisesti osoitteessa `http://localhost:5173`):
+Kun Inspector käynnistyy, näet web-käyttöliittymän (tyypillisesti osoitteessa `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -120,16 +125,16 @@ Kun Inspector käynnistyy, näet verkkokäyttöliittymän (tyypillisesti osoitte
 3. Näet kaikki rekisteröidyt työkalut:
    - Työkalun nimi
    - Kuvaus
-   - Tulomuodon skeema (parametrit)
+   - Syötteen skeema (parametrit)
 
 ### Työkalun kutsuminen
 
 1. Valitse työkalu listasta
-2. Täytä tarvittavat parametrit lomakkeeseen
+2. Täytä lomakkeeseen vaaditut parametrit
 3. Klikkaa **Run Tool**
-4. Näe vastaus tulospaneelissa
+4. Katso vastaus tulosruudussa
 
-**Esimerkki: Laskimen testaaminen**
+**Esimerkki: laskutyökalun testaus**
 
 ```
 Tool: add
@@ -148,7 +153,7 @@ Response:
 }
 ```
 
-### Työkalun virheiden selvittäminen
+### Työkalun virheiden vianmääritys
 
 Kun työkalu epäonnistuu, Inspector näyttää:
 
@@ -162,9 +167,9 @@ Error Response:
 }
 ```
 
-Yleiset virhekoodit:
+Yleisiä virhekoodistoja:
 | Koodi | Merkitys |
-|-------|----------|
+|------|----------|
 | -32700 | Jäsentämisvirhe (virheellinen JSON) |
 | -32600 | Virheellinen pyyntö |
 | -32601 | Metodia ei löydy |
@@ -188,7 +193,7 @@ Yleiset virhekoodit:
 
 1. Valitse resurssi
 2. Klikkaa **Read Resource**
-3. Näe palautettu sisältö
+3. Katso palautettu sisältö
 
 **Esimerkkivastaus:**
 
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Kehotteiden testaaminen
+## Kehoteiden testaaminen
 
-### Kehotteiden listaaminen
+### Kehoteiden listaaminen
 
 1. Klikkaa **Prompts**-välilehteä
 2. Inspector kutsuu `prompts/list`
-3. Näe saatavilla olevat kehote-mallit
+3. Näytä saatavilla olevat kehotepohjat
 
 ### Kehotteen hakeminen
 
-1. Valitse kehote
-2. Täytä tarvittaessa argumentit
+1. Valitse kehotepohja
+2. Täytä vaadittavat argumentit
 3. Klikkaa **Get Prompt**
-4. Näe renderöidyt kehotteet
+4. Näytä tuotetut kehotteet
 
 ---
 
 ## Viestilokin analysointi
 
-Viestilokissa näkyvät kaikki MCP-protokollaviestit:
+Viestiloki näyttää kaikki MCP-protokollaviestit. Alla oleva keskustelu on peräisin
+perinteiseltä `2025-11-25` -palvelimelta, ja sisältää poistetun `initialize`-kättelyn. 
+`2026-07-28` -palvelin käyttää itsenäistä pyyntömeta-dataa ja kutsua `server/discover`
+sen sijaan.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,20 +244,20 @@ Viestilokissa näkyvät kaikki MCP-protokollaviestit:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Mitä tarkkailla
+### Mitä tarkastella
 
-- **Pyyntö-/vastausparit**: Jokaisella `→`-merkillä pitäisi olla vastaava `←`
-- **Virheilmoitukset**: Etsi vastausten joukosta `"error"`
-- **Ajastukset**: Suuret tauot voivat viitata suorituskykyongelmiin
-- **Protokollaversio**: Varmista, että palvelin ja asiakas käyttävät samaa versiota
+- **Pyyntö/vastaus-parit**: Jokaisella `→`-merkillä pitäisi olla vastaava `←`
+- **Virheilmoitukset**: Tarkista vastausten `"error"`-osat
+- **Ajastus**: Suuret aukot voivat viitata suorituskykyongelmiin
+- **Protokollan versio**: Varmista, että palvelin ja asiakas ovat samassa versiossa
 
 ---
 
 ## VS Code -integraatio
 
-Voit suorittaa Inspectorin suoraan VS Codesta:
+Voit käyttää Inspectoria suoraan VS Codesta:
 
-### launch.json:n käyttö
+### Käyttäen launch.json-tiedostoa
 
 Lisää `.vscode/launch.json`-tiedostoon:
 
@@ -280,7 +288,7 @@ Lisää `.vscode/launch.json`-tiedostoon:
 }
 ```
 
-### Tasksin käyttö
+### Käyttäen tehtäviä (Tasks)
 
 Lisää `.vscode/tasks.json`-tiedostoon:
 
@@ -310,19 +318,19 @@ Lisää `.vscode/tasks.json`-tiedostoon:
 
 ---
 
-## Yleiset virheenkorjaustilanteet
+## Yleisiä virheenkorjaustilanteita
 
-### Tilanne 1: Palvelimeen ei saada yhteyttä
+### Tilanne 1: Palvelin ei yhdistä
 
-**Oireet:** Inspector näyttää "Disconnected" tai jumittuu tilaan "Connecting..."
+**Oireet:** Inspector näyttää "Disconnected" tai jumittuu "Connecting..."-tilaan
 
 **Tarkistuslista:**
-1. ✅ Onko palvelinkomento oikein?
-2. ✅ Ovatko kaikki riippuvuudet asennettu?
-3. ✅ Onko palvelimen polku absoluuttinen tai nykyiseen hakemistoon suhteutettu?
-4. ✅ Ovatko tarvittavat ympäristömuuttujat asetettu?
+1. ✅ Onko palvelimen komento oikein?
+2. ✅ Onko kaikki riippuvuudet asennettu?
+3. ✅ Onko palvelimen polku absoluuttinen tai suhteessa nykyiseen hakemistoon?
+4. ✅ Onko tarvittavat ympäristömuuttujat asetettu?
 
-**Virheenetsintä:**
+**Virheen selvitys:**
 ```bash
 # Testaa palvelin manuaalisesti ensin
 python -c "import your_server_module; print('OK')"
@@ -336,35 +344,35 @@ pip show mcp
 
 ### Tilanne 2: Työkalut eivät näy
 
-**Oireet:** Työkaluvälilehti näyttää tyhjää listaa
+**Oireet:** Tools-välilehti näyttää tyhjän listan
 
 **Mahdolliset syyt:**
-1. Työkaluja ei rekisteröity palvelimen käynnistyksen aikana
+1. Työkaluja ei rekisteröity palvelimen käynnistyessä
 2. Palvelin kaatui käynnistyksen jälkeen
 3. `tools/list`-käsittelijä palauttaa tyhjän taulukon
 
-**Virheenetsintä:**
-1. Tarkista viestilokista `tools/list`-vastaus
+**Virheen selvitys:**
+1. Tarkista viestiloki `tools/list`-vastauksesta
 2. Lisää lokitus työkalujen rekisteröintikoodiin
 3. Varmista, että `@mcp.tool()`-koristeet ovat paikallaan (Python)
 
 ### Tilanne 3: Työkalu palauttaa virheen
 
-**Oireet:** Työkalukutsu palauttaa virhevastaus
+**Oireet:** Työkalun kutsu palauttaa virhevastauksen
 
-**Virheenetsintätapa:**
+**Virheen selvitystapa:**
 1. Lue virheilmoitus huolellisesti
-2. Tarkista parametrityyppien yhteensopivuus skeeman kanssa
-3. Lisää try/catch-lauseet yksityiskohtaisilla virheilmoituksilla
-4. Tarkista palvelinlokit pinon jäljityksiä varten
+2. Tarkista, että parametrityypit vastaavat skeemaa
+3. Lisää try/catch-yksityiskohdilla virheilmoituksista
+4. Tarkista palvelimen lokit jäljityksiä varten
 
-**Esimerkki parannetusta virheenkäsittelystä:**
+**Parannettu virheenkäsittelyn esimerkki:**
 
 ```python
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Työkalun logiikka täällä
+        # Työkalun logiikka tässä
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -373,18 +381,18 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Tilanne 4: Resurssin sisältö on tyhjä
+### Tilanne 4: Resurssin sisältö tyhjä
 
-**Oireet:** Resurssi palauttaa, mutta sisältö on tyhjä tai null
+**Oireet:** Resurssi palautuu, mutta sisältö on tyhjä tai null
 
 **Tarkistuslista:**
-1. ✅ Tiedostopolku tai URI on oikein
-2. ✅ Palvelimella on oikeudet lukea resurssi
+1. ✅ Tiedostopolku tai URI on oikea
+2. ✅ Palvelimella on lupa lukea resurssi
 3. ✅ Resurssin sisältö palautuu oikein
 
 ---
 
-## Kehittyneet Inspectorin ominaisuudet
+## Kehittyneet Inspector-ominaisuudet
 
 ### Mukautetut otsikot (SSE)
 
@@ -400,28 +408,28 @@ npx @modelcontextprotocol/inspector \
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Istuntojen tallennus
+### Istuntojen tallentaminen
 
-Inspector voi viedä viestilokit myöhempää analyysiä varten:
+Inspector voi viedä viestilokit myöhempää analyysia varten:
 1. Klikkaa **Export Log** viestipaneelissa
 2. Tallenna JSON-tiedosto
-3. Jaa tiimin jäsenten kanssa virheenkorjaukseen
+3. Jaa tiimin jäsenten kanssa virheenkorjausta varten
 
 ---
 
 ## Parhaat käytännöt
 
-1. **Testaa aikaisin ja usein** – Käytä Inspectoria kehityksen aikana, ei vain vikatilanteissa
-2. **Aloita yksinkertaisesta** – Testaa perusyhteys ennen monimutkaisia työkalukutsuja
-3. **Tarkista skeema** – Monet virheet johtuvat parametrityyppien ristiriidoista
-4. **Lue virheilmoitukset** – MCP-virheet ovat yleensä kuvaavia
-5. **Pidä Inspector auki** – Se auttaa löytämään ongelmat kehityksen aikana
+1. **Testaa ajoissa ja usein** - Käytä Inspectoria kehityksen aikana, ei vain virhetilanteissa
+2. **Aloita yksinkertaisesti** - Testaa yhteydet ennen monimutkaisia työkalukutsuja
+3. **Tarkista skeema** - Monet virheet johtuvat parametrityyppien ristiriidoista
+4. **Lue virheilmoitukset** - MCP-virheet ovat yleensä kuvaavia
+5. **Pidä Inspector auki** - Se auttaa havaitsemaan ongelmat kehityksen aikana
 
 ---
 
-## Mitä seuraavaksi
+## Seuraavat askeleet
 
-Olet suorittanut Moduulin 3: Aloittaminen! Jatka oppimista:
+Olet suorittanut Moduulin 3: Aloittelijan opas! Jatka oppimista:
 
 - [Moduuli 4: Käytännön toteutus](../../04-PracticalImplementation/README.md)
 
@@ -429,13 +437,13 @@ Olet suorittanut Moduulin 3: Aloittaminen! Jatka oppimista:
 
 ## Lisäresurssit
 
-- [MCP Inspector GitHub-repositorio](https://github.com/modelcontextprotocol/inspector)
-- [MCP-määritys – Protokollaviestit](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [JSON-RPC 2.0 -määritys](https://www.jsonrpc.org/specification)
+- [MCP Inspector GitHub -varasto](https://github.com/modelcontextprotocol/inspector)
+- [MCP Spesifikaatio - Protokollaviestit](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 Spesifikaatio](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty tekoälypohjaisella käännöspalvelulla [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, on hyvä huomioida, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja omalla kielellään on aina ensisijainen lähde. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinkäsityksistä tai tulkinnoista.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

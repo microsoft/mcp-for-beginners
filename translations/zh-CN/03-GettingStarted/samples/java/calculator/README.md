@@ -1,52 +1,57 @@
-# Basic Calculator MCP Service
+# 基础计算器 MCP 服务
 
-该服务通过使用 Spring Boot 和 WebFlux 传输的 Model Context Protocol (MCP) 提供基本的计算器操作。它设计为一个简单示例，适合初学者学习 MCP 实现。
+> [!NOTE]
+> 此示例使用传统的 HTTP+SSE 传输，并面向兼容 MCP `2025-11-25` 的 SDK。新的远程服务器应使用 `2026-07-28` 流式 HTTP 支持。
+> 
 
-更多信息请参见 [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) 参考文档。
+
+
+
+
 
 ## 概述
 
 该服务展示了：
 - 支持 SSE（服务器发送事件）
-- 使用 Spring AI 的 `@Tool` 注解实现自动工具注册
-- 基本计算器功能：
+- 利用 Spring AI 的 `@Tool` 注解实现自动工具注册
+- 基础计算器功能：
   - 加法、减法、乘法、除法
   - 幂运算和平方根
   - 取模（余数）和绝对值
-  - 帮助功能，提供操作说明
+  - 帮助函数，说明操作内容
 
-## 功能特点
+## 功能
 
 该计算器服务提供以下功能：
 
-1. **基本算术运算**：
+1. <strong>基础算术运算</strong>：
    - 两数相加
-   - 一数减去另一数
+   - 一个数减去另一个数
    - 两数相乘
-   - 一数除以另一数（含除零检查）
+   - 一个数除以另一个数（包含除零检查）
 
-2. **高级运算**：
-   - 幂运算（底数的指数次方）
-   - 平方根计算（含负数检查）
+2. <strong>高级运算</strong>：
+   - 幂运算（底数的指数次幂）
+   - 平方根计算（包含负数检查）
    - 取模（余数）计算
    - 绝对值计算
 
-3. **帮助系统**：
+3. <strong>帮助系统</strong>：
    - 内置帮助函数，解释所有可用操作
 
 ## 使用该服务
 
 该服务通过 MCP 协议暴露以下 API 端点：
 
-- `add(a, b)`：两个数相加
-- `subtract(a, b)`：第一个数减去第二个数
-- `multiply(a, b)`：两个数相乘
-- `divide(a, b)`：第一个数除以第二个数（含除零检查）
+- `add(a, b)`：加两数
+- `subtract(a, b)`：从第一个数减去第二个数
+- `multiply(a, b)`：两数相乘
+- `divide(a, b)`：第一个数除以第二个数（含除零检测）
 - `power(base, exponent)`：计算幂
-- `squareRoot(number)`：计算平方根（含负数检查）
-- `modulus(a, b)`：计算除法余数
+- `squareRoot(number)`：计算平方根（含负数检测）
+- `modulus(a, b)`：计算取模（余数）
 - `absolute(number)`：计算绝对值
-- `help()`：获取可用操作的信息
+- `help()`：获取可用操作说明
 
 ## 测试客户端
 
@@ -54,43 +59,44 @@
 
 ## 使用 LangChain4j 客户端
 
-项目中包含了一个 LangChain4j 示例客户端 `com.microsoft.mcp.sample.client.LangChain4jClient`，演示如何将计算器服务与 LangChain4j 及 GitHub 模型集成：
+本项目包含一个 LangChain4j 示例客户端，位于 `com.microsoft.mcp.sample.client.LangChain4jClient`，演示如何将计算器服务与 LangChain4j 和 GitHub 模型集成：
 
 ### 前提条件
 
-1. **GitHub 令牌设置**：
+1. **GitHub Token 设置**：
+   
+   要使用 GitHub 的 AI 模型（如 phi-4），您需要一个 GitHub 个人访问令牌：
 
-   要使用 GitHub 的 AI 模型（如 phi-4），需要 GitHub 个人访问令牌：
-
-   a. 访问你的 GitHub 账户设置：https://github.com/settings/tokens
-
-   b. 点击“Generate new token” → “Generate new token (classic)”
-
+   a. 前往您的 GitHub 账户设置：https://github.com/settings/tokens
+   
+   b. 点击“生成新令牌”→“生成新令牌（经典）”
+   
    c. 给令牌起一个描述性名称
-
+   
    d. 选择以下权限范围：
-      - `repo`（私有仓库的完全控制权限）
-      - `read:org`（读取组织和团队成员资格，读取组织项目）
-      - `gist`（创建 Gist）
-      - `user:email`（访问用户邮箱地址（只读））
+      - `repo`（完全控制私有仓库）
+      - `read:org`（读取组织和团队成员身份，读取组织项目）
+      - `gist`（创建代码片段）
 
-   e. 点击“Generate token”并复制新令牌
-
-   f. 设置为环境变量：
-
-      Windows 系统：
+      - `user:email`（访问用户电子邮件地址（只读））
+   
+   e. 点击“生成令牌”并复制您的新令牌
+   
+   f. 将其设置为环境变量：
+      
+      在 Windows 上：
       ```
       set GITHUB_TOKEN=your-github-token
       ```
-
-      macOS/Linux 系统：
+      
+      在 macOS/Linux 上：
       ```bash
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. 若需持久化设置，请通过系统设置将其添加到环境变量中
+   g. 为了持久化设置，通过系统设置将其添加到环境变量中
 
-2. 将 LangChain4j GitHub 依赖添加到项目中（已包含在 pom.xml）：
+2. 将 LangChain4j GitHub 依赖添加到您的项目中（已包含在 pom.xml 中）：
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -99,25 +105,25 @@
    </dependency>
    ```
 
-3. 确保计算器服务器正在 `localhost:8080` 运行
+3. 确保计算器服务器正在 `localhost:8080` 上运行
 
 ### 运行 LangChain4j 客户端
 
-该示例演示了：
-- 通过 SSE 传输连接计算器 MCP 服务器
+此示例演示：
+- 通过 SSE 传输连接到计算器 MCP 服务器
 - 使用 LangChain4j 创建一个利用计算器操作的聊天机器人
-- 集成 GitHub AI 模型（当前使用 phi-4 模型）
+- 集成 GitHub AI 模型（现使用 phi-4 模型）
 
 客户端发送以下示例查询以展示功能：
 1. 计算两个数字的和
-2. 计算一个数字的平方根
-3. 获取关于可用计算器操作的帮助信息
+2. 求一个数字的平方根
+3. 获取有关可用计算器操作的帮助信息
 
 运行示例并查看控制台输出，了解 AI 模型如何使用计算器工具响应查询。
 
 ### GitHub 模型配置
 
-LangChain4j 客户端配置为使用 GitHub 的 phi-4 模型，配置如下：
+LangChain4j 客户端配置为使用 GitHub 的 phi-4 模型，设置如下：
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,11 +135,11 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-若要使用其他 GitHub 模型，只需将 `modelName` 参数更改为支持的其他模型（例如 "claude-3-haiku-20240307"、"llama-3-70b-8192" 等）。
+要使用其他 GitHub 模型，只需将 `modelName` 参数更改为另一个支持的模型（例如“claude-3-haiku-20240307”、“llama-3-70b-8192”等）。
 
-## 依赖项
+## 依赖
 
-项目需要以下关键依赖：
+该项目需要以下关键依赖：
 
 ```xml
 <!-- For MCP Server -->
@@ -174,29 +180,29 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### 使用 MCP Inspector
 
-MCP Inspector 是一个方便与 MCP 服务交互的工具。使用该计算器服务时：
+MCP Inspector 是一个用于与 MCP 服务交互的有用工具。要与此计算器服务一起使用：
 
-1. **安装并运行 MCP Inspector**，在新终端窗口执行：
+1. **安装并运行 MCP Inspector**，在新终端窗口中：
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **通过应用显示的 URL 访问 Web UI**（通常是 http://localhost:6274）
+2. **访问网页 UI**，点击应用显示的 URL（通常是 http://localhost:6274）
 
-3. **配置连接**：
-   - 传输类型选择“SSE”
-   - URL 设置为正在运行服务器的 SSE 端点：`http://localhost:8080/sse`
-   - 点击“Connect”
+3. <strong>配置连接</strong>：
+   - 将传输类型设置为“SSE”
+   - 将 URL 设置为您正在运行的服务器的 SSE 端点：`http://localhost:8080/sse`
+   - 点击“连接”
 
-4. **使用工具**：
-   - 点击“List Tools”查看可用的计算器操作
-   - 选择一个工具，点击“Run Tool”执行操作
+4. <strong>使用工具</strong>：
+   - 点击“列出工具”查看可用的计算器操作
+   - 选择一个工具并点击“运行工具”执行操作
 
-![MCP Inspector Screenshot](../../../../../../translated_images/zh-CN/tool.c75a0b2380efcf1a.webp)
+![MCP Inspector 截图](../../../../../../translated_images/zh-CN/tool.c75a0b2380efcf1a.webp)
 
 ### 使用 Docker
 
-项目包含用于容器化部署的 Dockerfile：
+该项目包含用于容器化部署的 Dockerfile：
 
 1. **构建 Docker 镜像**：
    ```bash
@@ -210,25 +216,30 @@ MCP Inspector 是一个方便与 MCP 服务交互的工具。使用该计算器�
 
 这将：
 - 使用 Maven 3.9.9 和 Eclipse Temurin 24 JDK 构建多阶段 Docker 镜像
-- 创建优化后的容器镜像
-- 开放 8080 端口
+- 创建优化的容器镜像
+- 在端口 8080 上暴露服务
 - 在容器内启动 MCP 计算器服务
 
-容器启动后，可通过 `http://localhost:8080` 访问服务。
+容器运行后，您可以通过 `http://localhost:8080` 访问该服务。
 
 ## 故障排除
 
 ### GitHub 令牌常见问题
 
-1. **令牌权限问题**：如果出现 403 Forbidden 错误，请检查令牌是否具有前述权限。
 
-2. **找不到令牌**：如果出现“No API key found”错误，确认 GITHUB_TOKEN 环境变量已正确设置。
+1. <strong>令牌权限问题</strong>：如果您收到403禁止访问错误，请检查您的令牌是否具有先决条件中概述的正确权限。
 
-3. **速率限制**：GitHub API 有调用频率限制，遇到 429 错误时，请等待几分钟后重试。
+2. <strong>未找到令牌</strong>：如果您收到“未找到API密钥”错误，请确保已正确设置GITHUB_TOKEN环境变量。
 
-4. **令牌过期**：GitHub 令牌可能会过期，若出现认证错误，请生成新令牌并更新环境变量。
+3. <strong>速率限制</strong>：GitHub API有速率限制。如果遇到速率限制错误（状态码429），请等待几分钟后再试。
 
-如需更多帮助，请查阅 [LangChain4j 文档](https://github.com/langchain4j/langchain4j) 或 [GitHub API 文档](https://docs.github.com/en/rest)。
+4. <strong>令牌过期</strong>：GitHub令牌可能会过期。如果一段时间后收到身份验证错误，请生成新令牌并更新您的环境变量。
 
-**免责声明**：  
-本文件使用 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。虽然我们力求准确，但请注意自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于重要信息，建议使用专业人工翻译。对于因使用本翻译而产生的任何误解或误释，我们不承担任何责任。
+如果您需要进一步帮助，请查看[LangChain4j文档](https://github.com/langchain4j/langchain4j)或[GitHub API文档](https://docs.github.com/en/rest)。
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免责声明**：
+本文件由 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译完成。尽管我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言版文件应视为权威来源。对于重要信息，建议使用专业人工翻译。我们对因使用本翻译而产生的任何误解或误释不承担责任。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

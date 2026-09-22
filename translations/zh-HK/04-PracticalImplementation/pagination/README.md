@@ -1,17 +1,17 @@
-# MCP 中的分頁與大型結果集
+# MCP 中的分頁與大量結果集
 
-當您的 MCP 伺服器處理大量資料集時—無論是列出數千個檔案、資料庫紀錄或搜尋結果—您需要分頁來有效管理記憶體並提供回應迅速的使用者體驗。本指南涵蓋如何在 MCP 中實作和使用分頁。
+當你的 MCP 伺服器處理大量資料集時——無論是列出數千個檔案、資料庫紀錄還是搜尋結果——你都需要分頁來有效管理記憶體並提供流暢的使用者體驗。本指南涵蓋如何在 MCP 中實作與使用分頁。
 
 ## 為什麼分頁很重要
 
-沒有分頁，大量的回應可能導致：
+若沒有分頁，大量回應可能會導致：
 
-- **記憶體耗盡** — 同時載入數百萬筆紀錄
-- **回應時間變慢** — 使用者需等待全部資料載入完成
-- **逾時錯誤** — 請求超出逾時限制
-- **AI 性能下降** — LLM 在巨量上下文下運作困難
+- <strong>記憶體耗盡</strong> - 一次載入數百萬筆紀錄
+- <strong>回應速度緩慢</strong> - 使用者須等待所有資料載入完畢
+- <strong>逾時錯誤</strong> - 請求超過逾時限制
+- **AI 性能低落** - 大型語言模型難以處理龐大上下文
 
-MCP 使用 **基於游標的分頁** 來可靠且一致地分頁瀏覽結果集。
+MCP 採用 <strong>基於游標的分頁</strong> 來可靠且一致地分頁瀏覽結果集。
 
 ---
 
@@ -19,27 +19,28 @@ MCP 使用 **基於游標的分頁** 來可靠且一致地分頁瀏覽結果集�
 
 ### 游標概念
 
-**游標** 是一個不透明的字串，標示您在結果集中的位置。可以把它想像成一本長書中的書籤。
+<strong>游標</strong> 是一個不透明的字串，用來標示你在結果集中的位置。可想像成一本長書中的書籤。
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (無指標)
-    Server-->>Client: 工具 [1-10], nextCursor: "abc123"
+    Client->>Server: tools/list (無游標)
+    Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (指標: "abc123")
-    Server-->>Client: 工具 [11-20], nextCursor: "def456"
+    Client->>Server: tools/list (游標: "abc123")
+    Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (指標: "def456")
-    Server-->>Client: 工具 [21-25], nextCursor: null (結束)
+    Client->>Server: tools/list (游標: "def456")
+    Server-->>Client: tools [21-25], nextCursor: null (結束)
 ```
+
 ### MCP 方法中的分頁
 
-這些 MCP 方法支援分頁：
+這些 MCP 方法支援分頁功能：
 
-| 方法 | 回傳 | 是否支援游標 |
+| 方法 | 回傳內容 | 是否支援游標 |
 |--------|---------|----------------|
 | `tools/list` | 工具定義 | ✅ |
 | `resources/list` | 資源定義 | ✅ |
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### 慢載入模式
+### 延遲載入模式
 
-針對非常大型的資料集，依需求載入頁面：
+對於極大量資料集，按需載入頁面：
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # 如果可用，從緩衝區返回
+        # 如果有緩衝區則返回
         if self.buffer:
             return self.buffer.pop(0)
         
-        # 檢查是否已經讀完所有頁面
+        # 檢查是否已使用完所有頁面
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# 用法 - 對於大型數據集的記憶體高效使用
+# 用法 - 對大型數據集的記憶體高效處理
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## 資源的分頁
 
-資源通常需要對目錄或大型資料集進行分頁：
+資源常常需要針對資料夾或大型資料集進行分頁：
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # 解碼游標（檔案索引）
+    # 解碼游標（文件索引）
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## 游標設計策略
 
-### 策略 1：基於索引（簡單）
+### 策略一：基於索引（簡單）
 
 ```python
 # 游標只是索引
-cursor = "50"  # 從第50項開始
+cursor = "50"  # 從第 50 項開始
 ```
 
-**優點：** 簡單、無狀態  
-**缺點：** 若有項目新增或刪除，結果可能會移位
+**優點：** 簡單、無狀態
+**缺點：** 若加入或移除項目，結果可能會位移
 
-### 策略 2：基於 ID（穩定）
+### 策略二：基於 ID（穩定）
 
 ```python
 # 游標是最後看到的 ID
-cursor = "item_abc123"  # 從此項目之後開始
+cursor = "item_abc123"  # 從這個項目之後開始
 ```
 
-**優點：** 即使項目變動也穩定  
-**缺點：** 需要有序的 ID
+**優點：** 即使項目改變也穩定
+**缺點：** 需要有排序的 ID
 
-### 策略 3：編碼狀態（複雜）
+### 策略三：編碼狀態（複雜）
 
 ```python
 import base64
@@ -360,8 +361,8 @@ cursor = encode_cursor({
 })
 ```
 
-**優點：** 能編碼複雜狀態  
-**缺點：** 較複雜、游標字串較長
+**優點：** 可編碼複雜狀態
+**缺點：** 較複雜，游標字串較大
 
 ---
 
@@ -371,7 +372,7 @@ cursor = encode_cursor({
 
 ```python
 # 考慮數據大小
-PAGE_SIZE_SMALL_ITEMS = 100   # 簡單元數據
+PAGE_SIZE_SMALL_ITEMS = 100   # 簡單的元數據
 PAGE_SIZE_MEDIUM_ITEMS = 20   # 更豐富的物件
 PAGE_SIZE_LARGE_ITEMS = 5     # 複雜內容
 ```
@@ -384,33 +385,33 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # 重設到開始位置
+            start_index = 0  # 重設至開始位置
     except (ValueError, TypeError):
         start_index = 0  # 游標無效，重新開始
     # ...
 ```
 
-### 3. 包含總數（選用）
+### 3. 包含總數（可選）
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # 一些實現包括用於用戶界面進度的總數
+    # 部分實現包含作為 UI 進度的總數
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. 測試邊緣案例
+### 4. 測試邊界情況
 
 ```python
 async def test_pagination():
-    # 空結果集
+    # 結果集為空
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # 單頁
+    # 單一頁面
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
@@ -423,20 +424,20 @@ async def test_pagination():
 
 ## 常見陷阱
 
-### ❌ 回傳所有結果再在用戶端分頁
+### ❌ 先回傳所有結果，再在客戶端分頁
 
 ```python
-# 壞處：將所有東西載入記憶體
+# 不好：將所有東西載入記憶體中
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 一百萬個工具！
+    all_tools = load_all_tools()  # 一百萬件工具！
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ 在資料源端分頁
+### ✅ 從資料源頭分頁
 
 ```python
-# 好：只加載所需內容
+# 好：只加載所需的內容
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## 往下學習
+## 下一步
 
 - [模組 5.14 - 上下文工程](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [模組 8 - 最佳實踐](../../08-BestPractices/README.md)
-- [3.8 - 測試您的 MCP 伺服器](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - 測試你的 MCP 伺服器](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## 附加資源
+## 其他資源
 
-- [MCP 規範 - 分頁](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [基於游標的分頁說明](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [MCP 規範 - 分頁](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [基於游標的分頁解說](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK 分頁測試](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責聲明**：
-本文件使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於準確性，請注意自動翻譯可能包含錯誤或不準確之處。原始文件的原文版本應視為權威來源。對於重要資訊，建議採用專業人工翻譯。因使用本翻譯而導致的任何誤解或錯譯，我們概不負責。
+本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於確保準確性，但請注意，機器自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議進行專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

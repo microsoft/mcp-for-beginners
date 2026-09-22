@@ -1,84 +1,89 @@
 # Introducere în Integrarea Bazei de Date MCP
 
-## 🎯 Ce Acoperă Acest Laborator
+> [!NOTE]
+> Diagramele sau codul din acest traseu de învățare care utilizează HTTP/SSE sau opțiuni de inițializare reflectă dependențele de MCP `2025-11-25` ale exemplului. Pentru implementările noi, utilizați cererile stateless `2026-07-28` și HTTP Streamable.
+> 
 
-Acest laborator introductiv oferă o prezentare cuprinzătoare a construirii serverelor Model Context Protocol (MCP) cu integrare în baze de date. Vei înțelege cazul de afaceri, arhitectura tehnică și aplicațiile din lumea reală prin cazul de utilizare Zava Retail analytics la https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
-## Prezentare Generală
+## 🎯 Ce acoperă acest laborator
 
-**Model Context Protocol (MCP)** permite asistenților AI să acceseze și să interacționeze în siguranță cu surse externe de date în timp real. Când este combinat cu integrarea bazei de date, MCP deblochează capacități puternice pentru aplicații AI bazate pe date.
+Acest laborator introductiv oferă o prezentare cuprinzătoare pentru construirea serverelor Model Context Protocol (MCP) cu integrare în baze de date. Veți înțelege cazul de afaceri, arhitectura tehnică și aplicații reale prin exemplul de analiză Zava Retail la https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
-Acest parcurs de învățare te învață să construiești servere MCP pregătite pentru producție care conectează asistenții AI la datele de vânzări din retail prin PostgreSQL, implementând modele enterprise precum Row Level Security, căutare semantică și acces multi-chiriaș la date.
+## Prezentare generală
 
-## Obiective de Învățare
+**Model Context Protocol (MCP)** permite asistenților AI să acceseze și să interacționeze în siguranță cu surse externe de date în timp real. Combinat cu integrarea bazei de date, MCP oferă capabilități puternice pentru aplicații AI bazate pe date.
 
-La finalul acestui laborator, vei putea să:
+Acest traseu de învățare vă învață să construiți servere MCP gata de producție care conectează asistenții AI la date de vânzări retail prin PostgreSQL, implementând modele enterprise precum Row Level Security, căutare semantică și acces multi-tenant la date.
 
-- **Definești** Model Context Protocol și beneficiile sale esențiale pentru integrarea bazelor de date
-- **Identifici** componentele cheie ale unei arhitecturi de server MCP cu baze de date
-- **Înțelegi** cazul de utilizare Zava Retail și cerințele sale de business
-- **Recunoști** modele enterprise pentru acces securizat și scalabil la baze de date
-- **Listezi** uneltele și tehnologiile folosite pe parcursul acestui parcurs de învățare
+## Obiectivele de învățare
 
-## 🧭 Provocarea: AI Întâlnește Date din Lumea Reală
+La finalul acestui laborator, veți putea:
 
-### Limitările AI Tradițional
+- **Definiți** Model Context Protocol și beneficiile sale cheie pentru integrarea bazelor de date
+- **Identificați** componentele principale ale arhitecturii serverului MCP cu baze de date
+- **Înțelegeți** cazul de utilizare Zava Retail și cerințele sale de afaceri
+- **Recunoașteți** modelele enterprise pentru acces securizat și scalabil la baze de date
+- **Enumerați** instrumentele și tehnologiile folosite pe parcursul acestui traseu de învățare
 
-Asistenții AI moderni sunt extrem de puternici, dar se confruntă cu limitări semnificative când lucrează cu date reale de business:
+## 🧭 Provocarea: AI se întâlnește cu date reale
 
-| **Provocare** | **Descriere** | **Impact asupra Afacerii** |
-|---------------|---------------|----------------------------|
-| **Cunoștințe Statice** | Modelele AI antrenate pe seturi fixe de date nu pot accesa datele curente de business | Informații învechite, oportunități ratate |
-| **Silo-uri de Date** | Informații blocate în baze de date, API-uri și sisteme inaccesibile AI | Analiză incompletă, fluxuri de lucru fragmentate |
-| **Constrângeri de Securitate** | Accesul direct la baze de date ridică probleme de securitate și conformitate | Implementări limitate, pregătire manuală a datelor |
-| **Interogări Complexe** | Utilizatorii de business au nevoie de cunoștințe tehnice pentru extragerea informațiilor | Adoptare redusă, procese ineficiente |
+### Limitările tradiționale ale AI
+
+Asistenții AI moderni sunt incredibil de puternici, dar se confruntă cu limitări serioase când lucrează cu date reale de afaceri:
+
+| **Provocare** | **Descriere** | **Impact de afaceri** |
+|---------------|-----------------|-------------------|
+| **Cunoștințe statice** | Modelele AI antrenate pe seturi fixe de date nu pot accesa datele curente de afaceri | Informații depășite, oportunități ratate |
+| **Silo-uri de date** | Informații blocate în baze de date, API-uri și sisteme inaccesibile AI | Analize incomplete, fluxuri de lucru fragmentate |
+| **Constrângeri de securitate** | Accesul direct la bază de date ridică probleme de securitate și conformitate | Implementare limitată, pregătire manuală a datelor |
+| **Interogări complexe** | Utilizatorii de business au nevoie de cunoștințe tehnice pentru a extrage perspectivele datelor | Adoptare redusă, procese ineficiente |
 
 ### Soluția MCP
 
 Model Context Protocol abordează aceste provocări oferind:
 
-- **Acces la Date în Timp Real**: Asistenții AI interoghează baze de date și API-uri live
-- **Integrare Securizată**: Acces controlat cu autentificare și permisiuni
-- **Interfață în Limbaj Natural**: Utilizatorii de business pun întrebări în limbaj obișnuit
-- **Protocol Standardizat**: Funcționează pe diverse platforme și unelte AI
+- **Acces în timp real la date**: Asistenții AI interoghează baze de date și API-uri live
+- **Integrare securizată**: Acces controlat cu autentificare și permisiuni
+- **Interfață în limbaj natural**: Utilizatorii de business pun întrebări în limba engleză comună
+- **Protocol standardizat**: Funcționează pe diverse platforme și instrumente AI
 
-## 🏪 Cunoaște Zava Retail: Studiul Nostru de Caz https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+## 🏪 Faceți cunoștință cu Zava Retail: Studiul nostru de caz https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-Pe parcursul acestui parcurs de învățare, vom construi un server MCP pentru **Zava Retail**, un lanț imaginar de retail DIY cu mai multe locații de magazine. Acest scenariu realist demonstrează implementarea MCP la nivel enterprise.
+Pe parcursul acestui traseu de învățare, vom construi un server MCP pentru **Zava Retail**, un lanț de retail DIY fictiv cu locații multiple. Acest scenariu realist demonstrează implementarea MCP la nivel enterprise.
 
-### Contextul Afacerii
+### Context de afaceri
 
 **Zava Retail** operează:
 - **8 magazine fizice** în statul Washington (Seattle, Bellevue, Tacoma, Spokane, Everett, Redmond, Kirkland)
 - **1 magazin online** pentru vânzări e-commerce
-- **Catalog diversificat de produse** incluzând scule, materiale, produse de grădinărit și materiale de construcție
-- **Management pe mai multe niveluri** cu manageri de magazine, manageri regionali și executivi
+- **Catalog diversificat de produse** incluzând unelte, materiale hardware, produse pentru grădină și materiale de construcții
+- **Management pe mai multe niveluri** cu manageri de magazin, manageri regionali și executivi
 
-### Cerințe de Business
+### Cerințe de afaceri
 
-Managerii de magazin și executivii au nevoie de analize asistate AI pentru a:
+Managerii de magazin și executivii au nevoie de analize alimentate de AI pentru a:
 
-1. **Analiza performanței vânzărilor** pe magazine și perioade de timp
-2. **Monitoriza nivelurile de stoc** și identifica nevoile de reaprovizionare
-3. **Înțelege comportamentul clienților** și tiparele de cumpărare
-4. **Descoperi informații despre produse** prin căutare semantică
-5. **Genera rapoarte** cu interogări în limbaj natural
-6. **Menține securitatea datelor** prin controlul accesului bazat pe roluri
+1. **Analiza performanței vânzărilor** în toate magazinele și perioadele de timp
+2. **Urmărirea nivelului de inventar** și identificarea necesarului de reaprovizionare
+3. **Înțelegerea comportamentului clienților** și a tiparelor de cumpărare
+4. **Descoperirea perspectivelor produselor** prin căutare semantică
+5. **Generarea rapoartelor** cu interogări în limbaj natural
+6. **Menținerea securității datelor** prin controlul accesului bazat pe roluri
 
-### Cerințe Tehnice
+### Cerințe tehnice
 
 Serverul MCP trebuie să ofere:
 
-- **Acces multi-chiriaș** unde managerii de magazin văd doar datele propriului magazin
-- **Interogări flexibile** cu suport pentru operații SQL complexe
+- **Acces multi-tenant la date** unde managerii de magazin văd doar datele magazinului lor
+- **Interogare flexibilă** suportând operațiuni SQL complexe
 - **Căutare semantică** pentru descoperirea produselor și recomandări
-- **Date în timp real** care reflectă starea curentă a afacerii
-- **Autentificare securizată** cu row-level security
-- **Arhitectură scalabilă** care susține utilizatori concurenți multipli
+- **Date în timp real** reflectând starea curentă a afacerii
+- **Autentificare securizată** cu Row Level Security
+- **Arhitectură scalabilă** ce suportă mulți utilizatori concurenți
 
-## 🏗️ Prezentare Generală Arhitectură Server MCP
+## 🏗️ Prezentare arhitectură server MCP
 
-Serverul nostru MCP implementează o arhitectură stratificată optimizată pentru integrarea bazelor de date:
+Serverul nostru MCP implementează o arhitectură stratificată optimizată pentru integrarea bazei de date:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -118,123 +123,123 @@ Serverul nostru MCP implementează o arhitectură stratificată optimizată pent
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Componente Cheie
+### Componente esențiale
 
-#### **1. Strat Server MCP**
+#### **1. Strat server MCP**
 - **FastMCP Framework**: Implementare modernă a serverului MCP în Python
-- **Înregistrare Unelte**: Definirea declarativă a uneltelor cu siguranță de tipuri
-- **Context Cerere**: Identitate utilizator și gestionare sesiune
-- **Gestionare Erori**: Management robust al erorilor și jurnalizare
+- **Înregistrare unelte**: Definiții declarative ale uneltelor cu tipuri sigure
+- **Context cerere**: Identitatea utilizatorului și gestionarea sesiunii
+- **Gestionare erori**: Management robust al erorilor și logare
 
-#### **2. Strat de Integrare Bază de Date**
-- **Pooling Conexiuni**: Management eficient asyncpg al conexiunilor
-- **Furnizor Schema**: Descoperire dinamică a schemelor tabelelor
-- **Executor Interogări**: Executare securizată SQL cu context RLS
-- **Management Tranzacții**: Conformitate ACID și gestionare rollback
+#### **2. Strat integrare bază de date**
+- **Pooling conexiuni**: Administrare eficientă a conexiunilor asyncpg
+- **Furnizor schemă**: Descoperirea dinamică a schemei tabelelor
+- **Executor interogări**: Execuție SQL securizată cu context RLS
+- **Gestionare tranzacții**: Conformitate ACID și rollback
 
-#### **3. Strat de Securitate**
-- **Row Level Security**: PostgreSQL RLS pentru izolarea datelor multi-chiriaș
-- **Identitate Utilizator**: Autentificare și autorizare manager magazin
-- **Control Acces**: Permisiuni fine-grained și auditare acces
-- **Validare Input**: Prevenție SQL injection și validare interogări
+#### **3. Strat de securitate**
+- **Row Level Security**: Izolare multi-tenant a datelor cu RLS în PostgreSQL
+- **Identitate utilizator**: Autentificare și autorizare manager magazin
+- **Control acces**: Permisiuni fine-grained și audit
+- **Validare input**: Prevenție SQL injection și validare interogări
 
-#### **4. Strat de Îmbunătățire AI**
-- **Căutare Semantică**: Embeddings vectoriale pentru descoperire produse
-- **Integrare Azure OpenAI**: Generare embeddings text
-- **Algoritmi Similaritate**: Căutare similaritate cosine cu pgvector
-- **Optimizare Căutare**: Indexare și tuning performanță
+#### **4. Strat de îmbunătățire AI**
+- **Căutare semantică**: Vector embeddings pentru descoperirea produselor
+- **Integrare Azure OpenAI**: Generarea embedărilor textuale
+- **Algoritmi de similaritate**: Căutare similitudine cosine cu pgvector
+- **Optimizare căutare**: Indexare și tuning performanță
 
-## 🔧 Stiva Tehnologică
+## 🔧 Stack tehnologic
 
-### Tehnologii de Bază
+### Tehnologii de bază
 
 | **Componentă** | **Tehnologie** | **Scop** |
-|----------------|----------------|----------|
+|---------------|----------------|-------------|
 | **Framework MCP** | FastMCP (Python) | Implementare modernă server MCP |
-| **Bază de Date** | PostgreSQL 17 + pgvector | Date relaționale cu căutare vectorială |
-| **Servicii AI** | Azure OpenAI | Embeddings text și modele lingvistice |
+| **Bază de date** | PostgreSQL 17 + pgvector | Date relaționale cu căutare vectorială |
+| **Servicii AI** | Azure OpenAI | Embedări text și modele de limbaj |
 | **Containerizare** | Docker + Docker Compose | Mediu de dezvoltare |
-| **Platformă Cloud** | Microsoft Azure | Deploy în producție |
-| **Integrare IDE** | VS Code | Chat AI și workflow dezvoltare |
+| **Platformă cloud** | Microsoft Azure | Deploy în producție |
+| **Integrare IDE** | VS Code | Chat AI și flux dezvoltare |
 
-### Unelte de Dezvoltare
+### Unelte de dezvoltare
 
 | **Unealtă** | **Scop** |
-|-------------|-----------|
+|----------|-------------|
 | **asyncpg** | Driver performant PostgreSQL |
 | **Pydantic** | Validare și serializare date |
 | **Azure SDK** | Integrare servicii cloud |
 | **pytest** | Framework testare |
-| **Docker** | Containerizare și deploy |
+| **Docker** | Containerizare și deployment |
 
-### Stiva de Producție
+### Stack pentru producție
 
 | **Serviciu** | **Resursă Azure** | **Scop** |
-|--------------|-------------------|----------|
-| **Bază de Date** | Azure Database for PostgreSQL | Serviciu gestionat de baze de date |
-| **Container** | Azure Container Apps | Hosting container serverless |
+|-------------|-------------------|-------------|
+| **Bază de date** | Azure Database for PostgreSQL | Serviciu gestionat de baze de date |
+| **Container** | Azure Container Apps | Gazduire containere fără server |
 | **Servicii AI** | Microsoft Foundry | Modele și endpoint-uri OpenAI |
-| **Monitorizare** | Application Insights | Observabilitate și diagnosticare |
-| **Securitate** | Azure Key Vault | Management secrete și configurare |
+| **Monitorizare** | Application Insights | Observabilitate și diagnostic |
+| **Securitate** | Azure Key Vault | Gestionare secrete și configurare |
 
-## 🎬 Scenarii de Utilizare din Lumea Reală
+## 🎬 Scenarii de utilizare reale
 
 Să explorăm cum interacționează diferiți utilizatori cu serverul nostru MCP:
 
-### Scenariul 1: Evaluare Performanță Manager Magazin
+### Scenariul 1: Evaluarea performanței managerului de magazin
 
-**Utilizator**: Sarah, Manager Magazin Seattle  
-**Scop**: Analiza performanței vânzărilor din ultimul trimestru
+**Utilizator**: Sarah, manager magazin Seattle  
+**Obiectiv**: Analiza performanței vânzărilor din ultimul trimestru
 
-**Interogare în Limbaj Natural**:
+**Interogare în limbaj natural**:
 > "Arată-mi top 10 produse după venit pentru magazinul meu în T4 2024"
 
-**Ce se Întâmplă**:
-1. VS Code AI Chat trimite interogarea către server MCP
-2. Server MCP identifică contextul magazinului Sarah (Seattle)
+**Ce se întâmplă**:
+1. VS Code AI Chat trimite interogarea către serverul MCP
+2. Serverul MCP identifică contextul magazinului lui Sarah (Seattle)
 3. Politicile RLS filtrează datele doar pentru magazinul Seattle
-4. Interogare SQL generată și executată
-5. Rezultatele formatate și trimise către AI Chat
+4. Interogarea SQL este generată și executată
+5. Rezultatele sunt formatate și returnate AI Chat
 6. AI oferă analiză și perspective
 
-### Scenariul 2: Descoperirea Produselor prin Căutare Semantică
+### Scenariul 2: Descoperirea produselor prin căutare semantică
 
-**Utilizator**: Mike, Manager Inventar  
-**Scop**: Găsirea produselor similare unei cereri client
+**Utilizator**: Mike, manager inventar  
+**Obiectiv**: Găsirea produselor similare unui cereri a clientului
 
-**Interogare în Limbaj Natural**:
+**Interogare în limbaj natural**:
 > "Ce produse vindem care sunt similare cu 'conectori electrici impermeabili pentru utilizare în exterior'?"
 
-**Ce se Întâmplă**:
+**Ce se întâmplă**:
 1. Interogarea este procesată de unealta de căutare semantică
-2. Azure OpenAI generează vector embedding
-3. pgvector efectuează căutarea de similaritate
-4. Produsele relevante clasificate după relevanță
-5. Rezultatele includ detalii produs și disponibilitate
-6. AI sugerează alternative și posibilități de pachete
+2. Azure OpenAI generează vectorul embedding
+3. pgvector realizează căutarea de similaritate
+4. Produsele conexe sunt clasificate după relevanță
+5. Rezultatele includ detalii și disponibilitate produse
+6. AI sugerează alternative și oportunități de pachete
 
-### Scenariul 3: Analize Cross-Store
+### Scenariul 3: Analize cross-store
 
-**Utilizator**: Jennifer, Manager Regional  
-**Scop**: Compararea performanței între toate magazinele
+**Utilizator**: Jennifer, manager regional  
+**Obiectiv**: Compararea performanței între toate magazinele
 
-**Interogare în Limbaj Natural**:
+**Interogare în limbaj natural**:
 > "Compară vânzările pe categorii pentru toate magazinele în ultimele 6 luni"
 
-**Ce se Întâmplă**:
-1. Context RLS setat pentru accesul managerului regional
-2. Interogare complexă multi-magazin generată
-3. Date agregate pe locațiile magazinelor
-4. Rezultatele includ tendințe și comparații
+**Ce se întâmplă**:
+1. Contextul RLS este setat pentru accesul managerului regional
+2. Este generată o interogare complexă multi-magazin
+3. Datele sunt agregate pe locațiile magazinelor
+4. Rezultatele includ trenduri și comparații
 5. AI identifică perspective și recomandări
 
-## 🔒 Detaliu despre Securitate și Multi-Chiriaș
+## 🔒 Securitate și Multi-Tenancy în detaliu
 
-Implementarea noastră prioritizează securitatea de nivel enterprise:
+Implementarea noastră prioritizează securitatea la nivel enterprise:
 
 ### Row Level Security (RLS)
 
-PostgreSQL RLS asigură izolarea datelor:
+PostgreSQL RLS asigură izolare a datelor:
 
 ```sql
 -- Store managers see only their store's data
@@ -248,61 +253,61 @@ CREATE POLICY regional_manager_policy ON retail.orders
   USING (store_id = ANY(get_user_store_list()));
 ```
 
-### Managementul Identității Utilizatorului
+### Gestionarea identității utilizatorului
 
 Fiecare conexiune MCP include:
-- **ID Manager Magazin**: Identificator unic pentru contextul RLS
-- **Atribuirea Rolului**: Permisiuni și niveluri de acces
-- **Managementul Sesiunii**: Tokenuri securizate de autentificare
-- **Auditarea Accesului**: Istoric complet al accesului
+- **ID manager magazin**: Identificator unic pentru contextul RLS
+- **Asignare roluri**: Permisiuni și niveluri de acces
+- **Gestionare sesiune**: Tokenuri de autentificare securizate
+- **Logare audit**: Istoric complet de acces
 
-### Protecția Datelor
+### Protecția datelor
 
-Straturi multiple de securitate:
-- **Criptarea Conexiunilor**: TLS pentru toate conexiunile la bază de date
-- **Prevenție SQL Injection**: Numai interogări parametrizate
-- **Validarea Input**: Validare cuprinzătoare a cererilor
-- **Gestionarea Erorilor**: Fără date sensibile în mesaje de eroare
+Mai multe straturi de securitate:
+- **Criptare conexiune**: TLS pentru toate conexiunile la baza de date
+- **Prevenție SQL injection**: Doar interogări parametrizate
+- **Validare input**: Validare completă a cererilor
+- **Gestionare erori**: Fără date sensibile în mesajele de eroare
 
-## 🎯 Elemente Cheie de Reținut
+## 🎯 Concluzii cheie
 
-După ce termini această introducere, ar trebui să înțelegi:
+După finalizarea acestei introduceri, ar trebui să înțelegeți:
 
-✅ **Propoziția de Valoare MCP**: Cum conectează MCP asistenții AI cu datele reale  
-✅ **Contextul de Business**: Cerințele și provocările Zava Retail  
-✅ **Prezentarea Arhitecturii**: Componentele cheie și interacțiunile lor  
-✅ **Stiva Tehnologică**: Uneltele și framework-urile folosite  
-✅ **Modelul de Securitate**: Accesul multi-chiriaș și protecția datelor  
-✅ **Modele de Utilizare**: Scenarii reale de interogare și fluxuri de lucru  
+✅ **Propoziția de valoare MCP**: Cum MCP face legătura între asistenții AI și datele reale  
+✅ **Contextul de afaceri**: Cerințele și provocările Zava Retail  
+✅ **Prezentare arhitectură**: Componentele cheie și interacțiunile lor  
+✅ **Stack tehnologic**: Instrumentele și framework-urile utilizate  
+✅ **Model de securitate**: Acces și protecție multi-tenant la date  
+✅ **Modele de utilizare**: Scenarii reale de interogare și fluxuri de lucru  
 
-## 🚀 Ce Urmează
+## 🚀 Ce urmează
 
-Pregătit să mergi mai departe? Continuă cu:
+Sunteți gata să aprofundați? Continuați cu:
 
-**[Laborator 01: Concepte de Arhitectură de Bază](../01-Architecture/README.md)**
+**[Laboratorul 01: Concepte de arhitectură de bază](../01-Architecture/README.md)**
 
-Află despre tiparele arhitecturale ale serverului MCP, principiile de design al bazei de date și implementarea tehnică detaliată care alimentează soluția noastră de analiză pentru retail.
+Aflați despre modelele arhitecturale ale serverelor MCP, principiile de design ale bazelor de date și implementarea tehnică detaliată care susține soluția noastră de analiză retail.
 
-## 📚 Resurse Suplimentare
+## 📚 Resurse suplimentare
 
 ### Documentație MCP
-- [Specificația MCP](https://modelcontextprotocol.io/docs/) - Documentația oficială a protocolului  
-- [MCP pentru Începători](https://aka.ms/mcp-for-beginners) - Ghid complet de învățare MCP  
-- [Documentația FastMCP](https://github.com/modelcontextprotocol/python-sdk) - Documentația SDK Python
+- [Specificația MCP](https://modelcontextprotocol.io/docs/) - Documentație oficială a protocolului
+- [MCP pentru începători](https://aka.ms/mcp-for-beginners) - Ghid cuprinzător de învățare MCP
+- [Documentație FastMCP](https://github.com/modelcontextprotocol/python-sdk) - Documentație SDK Python
 
-### Integrarea Bazei de Date
-- [Documentația PostgreSQL](https://www.postgresql.org/docs/) - Referință completă PostgreSQL  
-- [Ghid pgvector](https://github.com/pgvector/pgvector) - Documentație extensie vectorială  
-- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Ghid PostgreSQL RLS
+### Integrarea bazelor de date
+- [Documentație PostgreSQL](https://www.postgresql.org/docs/) - Referință completă PostgreSQL
+- [Ghid pgvector](https://github.com/pgvector/pgvector) - Documentația extensiei vectoriale
+- [Row Level Security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) - Ghid RLS PostgreSQL
 
 ### Servicii Azure
-- [Documentația Azure OpenAI](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrare servicii AI  
-- [Azure Database pentru PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Serviciu gestionat baze de date  
-- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Containere serverless
+- [Documentație Azure OpenAI](https://docs.microsoft.com/azure/cognitive-services/openai/) - Integrare servicii AI
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/) - Serviciu gestionat de baze de date
+- [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/) - Containere fără server
 
 ---
 
-**Disclaimer**: Acesta este un exercițiu de învățare folosind date fictive din retail. Urmează întotdeauna politicile de guvernanță și securitate a datelor din organizația ta atunci când implementezi soluții similare în medii de producție.
+**Declinarea responsabilității**: Acesta este un exercițiu de învățare folosind date fictive de retail. Urmați întotdeauna politicile organizației privind guvernanța și securitatea datelor la implementarea unor soluții similare în medii de producție.
 
 ---
 

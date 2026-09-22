@@ -1,5 +1,10 @@
 # Getting Started with MCP
 
+> [!NOTE]
+> The Java HTTP example in this lesson uses the legacy HTTP+SSE transport and
+> targets an SDK compatible with MCP `2025-11-25`. For new remote servers, use
+> the `2026-07-28` Streamable HTTP transport and verify support in your SDK.
+
 Welcome to your first steps with the Model Context Protocol (MCP)! Whether you're new to MCP or looking to deepen your understanding, this guide will walk you through the essential setup and development process. You'll discover how MCP enables seamless integration between AI models and applications, and learn how to quickly get your environment ready for building and testing MCP-powered solutions.
 
 > TLDR; If you build AI apps, you know that you can add tools and other resources to your LLM (large language model), to make the LLM more knowledgeable. However if you place those tools and resources on a server, the app and the server capabilities can be used by any client with/without an LLM.
@@ -216,7 +221,7 @@ npm init -y
 #### Python
 
 ```sh
-# Create project directory
+# Create project dir
 mkdir calculator-server
 cd calculator-server
 # Open the folder in Visual Studio Code - Skip this if you are using a different IDE
@@ -503,7 +508,7 @@ const server = new McpServer({
 });
 ```
 
-Now you have a server, but it doesn't do much, let' fix that.
+Now you have a server, but it doesn't do much, let's fix that.
 
 #### Python
 
@@ -1260,6 +1265,7 @@ Python wraps a Node.js tool called inspector. It's possible to call said tool li
 mcp dev server.py
 ```
 
+
 However, it doesn't implement all the methods available on the tool so you're recommended to run the Node.js tool directly like below:
 
 ```sh
@@ -1267,7 +1273,6 @@ npx @modelcontextprotocol/inspector mcp run server.py
 ```
 
 If you're using a tool or IDE that allows you to configure commands and arguments for running scripts, 
-
 make sure to set `python` in the `Command` field and `server.py` as `Arguments`. This ensures the script runs correctly.
 
 #### .NET
@@ -1312,7 +1317,7 @@ You should see the following user interface:
 
 1. Select "Tools" and "listTools", you should see "Add" show up, select "Add" and fill in the parameter values.
 
-  You should see the following response, i.e. a result from the "add" tool:
+  You should see the following response, i.e a result from the "add" tool:
 
   ![Result of running add](../../../../translated_images/en/ran-tool.a5a6ee878c1369ec.webp)
 
@@ -1347,7 +1352,7 @@ MCP provides official SDKs for multiple languages:
 ## Samples
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)
@@ -1379,6 +1384,6 @@ Next: [Getting Started with MCP Clients](../02-client/README.md)
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
+**Disclaimer**:
 This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

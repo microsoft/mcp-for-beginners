@@ -1,26 +1,31 @@
-# Alap Számológép MCP Szolgáltatás
+# Alapvető Számológép MCP Szolgáltatás
 
-Ez a szolgáltatás alapvető számológép műveleteket biztosít a Model Context Protocol (MCP) segítségével, Spring Boot és WebFlux transport használatával. Egyszerű példaként készült kezdők számára, akik az MCP megvalósításokat tanulják.
+> [!NOTE]
+> Ez a Java megoldás a régi HTTP+SSE szállítást használja, és a MCP `2025-11-25` verzióval kompatibilis SDK-ra céloz.
+> Megőrizve a tanfolyami kódhoz való illesztés érdekében;
+> új távoli szervereknek a `2026-07-28` Streamable HTTP támogatást kell használniuk.
 
-További információkért lásd a [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referencia dokumentációt.
+Ez a szolgáltatás alapvető számológép műveleteket nyújt a Model Context Protocol (MCP) segítségével, Spring Boot WebFlux szállítással. Egyszerű példaként készült kezdőknek, akik az MCP megvalósításokat tanulják.
+
+További információkért lásd az [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referencia dokumentációt.
 
 
 ## A szolgáltatás használata
 
-A szolgáltatás az alábbi API végpontokat teszi elérhetővé az MCP protokollon keresztül:
+A szolgáltatás a következő API végpontokat kínálja az MCP protokollon keresztül:
 
 - `add(a, b)`: Két szám összeadása
-- `subtract(a, b)`: Az első számból kivonja a másodikat
-- `multiply(a, b)`: Két szám szorzása
-- `divide(a, b)`: Az első szám osztása a másodikkal (nulla ellenőrzéssel)
-- `power(base, exponent)`: Hatványozás
+- `subtract(a, b)`: Kivonja a második számot az elsőből
+- `multiply(a, b)`: Két szám összeszorzása
+- `divide(a, b)`: Az első szám elosztása a másodikkal (nulla ellenőrzéssel)
+- `power(base, exponent)`: Egy szám hatványozása
 - `squareRoot(number)`: Négyzetgyök számítása (negatív szám ellenőrzéssel)
-- `modulus(a, b)`: Maradékos osztás
+- `modulus(a, b)`: Maradék számítása osztáskor
 - `absolute(number)`: Abszolút érték számítása
 
 ## Függőségek
 
-A projekt az alábbi kulcsfontosságú függőségeket igényli:
+A projekthez a következő főbb függőségek szükségesek:
 
 ```xml
 <dependency>
@@ -31,14 +36,14 @@ A projekt az alábbi kulcsfontosságú függőségeket igényli:
 
 ## A projekt építése
 
-A projekt Maven használatával építhető:
+A projekt építése Maven segítségével:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
 ## A szerver indítása
 
-### Java használatával
+### Java használata
 
 ```bash
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
@@ -46,25 +51,29 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### MCP Inspector használata
 
-Az MCP Inspector egy hasznos eszköz az MCP szolgáltatásokkal való interakcióhoz. A számológép szolgáltatás használatához:
+Az MCP Inspector egy hasznos eszköz az MCP szolgáltatásokkal való interakcióhoz. Ennek a számológép szolgáltatásnak a használatához:
 
-1. **Telepítsd és indítsd el az MCP Inspectort** egy új terminál ablakban:
+1. **Telepítse és indítsa el az MCP Inspectort** egy új terminál ablakban:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Nyisd meg a webes felületet** az alkalmazás által megjelenített URL-re kattintva (általában http://localhost:6274)
+2. **Lépjen be a webes felületre** az alkalmazás által megjelenített URL-re kattintva (általában http://localhost:6274)
 
-3. **Állítsd be a kapcsolatot**:
-   - Állítsd a transport típust "SSE"-re
-   - Állítsd be az URL-t a futó szerver SSE végpontjára: `http://localhost:8080/sse`
-   - Kattints a "Connect" gombra
+3. **Állítsa be a kapcsolatot**:
+   - A szállítás típusát állítsa "SSE"-re
+   - URL-ként adja meg a futó szerver SSE végpontját: `http://localhost:8080/sse`
+   - Kattintson a "Kapcsolódás"-ra
 
-4. **Használd az eszközöket**:
-   - Kattints a "List Tools"-ra az elérhető számológép műveletek megtekintéséhez
-   - Válassz egy eszközt, majd kattints a "Run Tool"-ra a művelet végrehajtásához
+4. **Használja az eszközöket**:
+   - Kattintson az "Eszközök listázása"-ra a rendelkezésre álló számológép műveletek megtekintéséhez
+   - Válasszon eszközt, majd kattintson a "Eszköz futtatása"-ra egy művelet végrehajtásához
 
-![MCP Inspector Screenshot](../../../../../../translated_images/hu/tool.40e180a7b0d0fe20.webp)
+![MCP Inspector Képernyőkép](../../../../../../translated_images/hu/tool.40e180a7b0d0fe20.webp)
 
-**Jogi nyilatkozat**:  
-Ez a dokumentum az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár a pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén szakmai, emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből a fordításból eredő félreértésekért vagy téves értelmezésekért.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

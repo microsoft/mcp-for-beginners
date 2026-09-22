@@ -2,23 +2,23 @@
 
 ## 🧠 Ülevaade MCP Andmebaasi Integratsiooni Õppeteest
 
-Siin õpid, kuidas kasutada tööriistu, mis kasutavad MCP-d. Sinu kogemus nende tööriistade kasutamisel paraneb, kui ühendada MCP serverid nendega.
+Siin õpid kasutama tööriistu, mis kasutavad MCP-d. Sinu kogemus nende tööriistade kasutamisel paraneb, kui ühendad MCP serverid nendega.
 
 ## 🔗 Ametlikud MCP Ressursid
 
-- 📘 [MCP Dokumentatsioon](https://modelcontextprotocol.io/) – Põhjalikud juhendid ja kasutusjuhendid
-- 📜 [MCP Spetsifikatsioon (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokolli arhitektuur ja tehnilised viited
-- 🧑‍💻 [MCP GitHub Repositoorium](https://github.com/modelcontextprotocol) – Avatud lähtekoodiga SDK-d, tööriistad ja koodinäited
+- 📘 [MCP Dokumentatsioon](https://modelcontextprotocol.io/) – Detailiseeritud juhendid ja kasutusjuhendid
+- 📜 [MCP Spetsifikatsioon (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokolli arhitektuur ja tehnilised viited
+- 🧑‍💻 [MCP GitHub Reposiit](https://github.com/modelcontextprotocol) – Avatud lähtekoodiga SDK-d, tööriistad ja koodinäited
 - 🌐 [MCP Kogukond](https://github.com/orgs/modelcontextprotocol/discussions) – Liitu aruteludega ja panusta kogukonda
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Turvalisuse parimad tavad ja riskide vähendamine
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Turvalisuse parimad tavad ja riskide leevendamine
 
 
 
 ## 🌟 Kogukond ja Tugi
 
-### Abisaamiseks
+### Saage Abi
 
-- **Azure AI Discord**: [Liitu ekspertide toega](https://discord.com/invite/ByRwuEEgH4)
+- **Azure AI Discord**: [Liitu eksperttoe saamiseks](https://discord.com/invite/ByRwuEEgH4)
 - **MCP Kogukond**: [Liitu laiemate MCP aruteludega](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Valmis alustama?
@@ -27,7 +27,7 @@ Alusta oma teekonda **[GitHub Copilot rakendusega](./01-copilot-app/README.md)**
 
 ---
 
-*Meisterda neid MCP abil nende tööriistadega, et suurendada tootlikkust ja sujuvat integratsiooni.*
+*Valda neid MCP-ga nende tööriistadega parema tootlikkuse ja sujuvama integratsiooni nimel.*
 
 ---
 

@@ -1,19 +1,24 @@
-# Popüler MCP Ana Bilgisayar İstemcilerinin Kurulumu
+# Popüler MCP Host İstemcilerinin Kurulumu
 
-Bu rehber, popüler yapay zeka ana bilgisayar uygulamalarıyla MCP sunucularını nasıl yapılandıracağınızı ve kullanacağınızı kapsar. Her ana bilgisayarın kendi yapılandırma yaklaşımı vardır, ancak kurulduktan sonra hepsi MCP sunucularıyla standart bir protokol kullanarak iletişim kurar.
+> [!NOTE]
+> `/sse` adresine işaret eden host yapılandırmaları MCP `2025-11-25` için eski HTTP+SSE örnekleridir. MCP `2026-07-28` için, destekleyen hostlarda Streamable HTTP seçin ve sunucu tarafından yapılandırılan uç noktayı kullanın.
+> 
+> 
 
-## MCP Ana Bilgisayarı Nedir?
+Bu rehber, popüler AI host uygulamaları ile MCP sunucularını nasıl yapılandıracağınızı ve kullanacağınızı anlatır. Her bir hostun kendine özgü bir yapılandırma yöntemi vardır, ancak kurulduktan sonra hepsi standartlaştırılmış protokolü kullanarak MCP sunucularıyla iletişim kurar.
 
-**MCP Ana Bilgisayarı**, yeteneklerini genişletmek için MCP sunucularına bağlanabilen bir yapay zeka uygulamasıdır. Bunu, kullanıcıların etkileşimde bulunduğu "ön uç" olarak düşünün; MCP sunucuları ise "arka uç" araçları ve verileri sağlar.
+## MCP Host Nedir?
+
+**MCP Host**, yeteneklerini genişletmek için MCP sunucularına bağlanabilen bir AI uygulamasıdır. Bunu, kullanıcıların etkileşimde bulunduğu "ön yüz" olarak, MCP sunucularının ise "arka uç" araçlar ve veriler sağladığı yer olarak düşünebilirsiniz.
 
 ```mermaid
 flowchart LR
-    User[👤 Kullanıcı] --> Host[🖥️ MCP Sunucusu]
-    Host --> S1[MCP Sunucu A]
-    Host --> S2[MCP Sunucu B]
-    Host --> S3[MCP Sunucu C]
+    User[👤 Kullanıcı] --> Host[🖥️ MCP Ana Bilgisayarı]
+    Host --> S1[MCP Sunucusu A]
+    Host --> S2[MCP Sunucusu B]
+    Host --> S3[MCP Sunucusu C]
     
-    subgraph "Popüler Sunucular"
+    subgraph "Popüler Ana Bilgisayarlar"
         H1[Claude Masaüstü]
         H2[VS Code]
         H3[İmleç]
@@ -21,28 +26,29 @@ flowchart LR
         H5[Windsurf]
     end
 ```
-## Ön Koşullar
+
+## Önkoşullar
 
 - Bağlanılacak bir MCP sunucusu (bkz. [Modül 3.1 - İlk Sunucu](../01-first-server/README.md))
-- Sisteminize yüklü ana bilgisayar uygulaması
+- Sisteminizde yüklü olan host uygulaması
 - JSON yapılandırma dosyalarına temel aşinalık
 
 ---
 
 ## 1. Claude Desktop
 
-**Claude Desktop**, Anthropic'in MCP'yi yerel olarak destekleyen resmi masaüstü uygulamasıdır.
+**Claude Desktop**, Anthropic'in yerel olarak MCP'yi destekleyen resmi masaüstü uygulamasıdır.
 
 ### Kurulum
 
-1. Claude Desktop'u [claude.ai/download](https://claude.ai/download) adresinden indirin
-2. Yükleyin ve Anthropic hesabınızla giriş yapın
+1. Claude Desktop'ı [claude.ai/download](https://claude.ai/download) adresinden indirin
+2. Kurun ve Anthropic hesabınızla giriş yapın
 
 ### Yapılandırma
 
 Claude Desktop, MCP sunucularını tanımlamak için bir JSON yapılandırma dosyası kullanır.
 
-**Yapılandırma dosyası konumu:**
+**Yapılandırma dosyasının yeri:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
@@ -86,40 +92,41 @@ Claude Desktop, MCP sunucularını tanımlamak için bir JSON yapılandırma dos
 ### Kurulumunuzu Test Etme
 
 1. Yapılandırma dosyasını kaydedin
-2. Claude Desktop'u tamamen yeniden başlatın (kapatıp tekrar açın)
-3. Yeni bir sohbet başlatın
+2. Claude Desktop'ı tamamen yeniden başlatın (kapatıp tekrar açın)
+3. Yeni bir konuşma açın
 4. Bağlı sunucuları gösteren 🔌 simgesini arayın
-5. Claude'dan araçlarınızı kullanmasını isteyin
+5. Claude'dan araçlarınızdan birini kullanmasını isteyin
 
 ### Claude Desktop Sorun Giderme
 
-**Sunucu görünmüyor:**
+**Sunucu görünmüyorsa:**
 - Yapılandırma dosyası sözdizimini bir JSON doğrulayıcı ile kontrol edin
-- Komut yolunun doğru olduğundan emin olun
+- Komut yolu doğru olduğundan emin olun
 - Claude Desktop günlüklerini kontrol edin: Yardım → Günlükleri Göster
 
-**Sunucu başlatılırken çöküyor:**
-- Önce terminalde sunucunuzu manuel olarak test edin
+**Sunucu başlangıçta çökerse:**
+- Sunucunuzu önce terminalde manuel olarak test edin
 - Ortam değişkenlerinin doğru ayarlandığını kontrol edin
 - Tüm bağımlılıkların kurulu olduğundan emin olun
 
 ---
 
-## 2. GitHub Copilot ile VS Code
+## 2. VS Code ile GitHub Copilot
 
 VS Code, GitHub Copilot Chat uzantıları aracılığıyla MCP'yi destekler.
 
-### Ön Koşullar
+### Önkoşullar
 
-1. VS Code 1.99+ yüklü olmalı
-2. GitHub Copilot uzantısı yüklü olmalı
-3. GitHub Copilot Chat uzantısı yüklü olmalı
+1. VS Code 1.99+ kurulu
+2. GitHub Copilot uzantısı kurulu
+3. GitHub Copilot Chat uzantısı kurulu
 
 ### Yapılandırma
 
 VS Code, çalışma alanınızda veya kullanıcı ayarlarında `.vscode/mcp.json` dosyasını kullanır.
 
 **Çalışma alanı yapılandırması** (`.vscode/mcp.json`):
+
 
 ```json
 {
@@ -152,40 +159,40 @@ VS Code, çalışma alanınızda veya kullanıcı ayarlarında `.vscode/mcp.json
 }
 ```
 
-### VS Code'da MCP Kullanımı
+### VS Code'da MCP kullanımı
 
-1. Copilot Chat panelini açın (Ctrl+Shift+I / Cmd+Shift+I)
+1. Copilot Sohbet panelini açın (Ctrl+Shift+I / Cmd+Shift+I)
 2. Kullanılabilir MCP araçlarını görmek için `@` yazın
-3. Araçları doğal dil ile çağırın: "Hesap makinesi ile 25 * 48 hesapla"
+3. Araçları çağırmak için doğal dil kullanın: "Kalkülatör kullanarak 25 * 48 hesapla"
 
-### VS Code Sorun Giderme
+### VS Code sorun giderme
 
 **MCP sunucuları yüklenmiyor:**
-- Çıkış panelinde → "MCP" hata günlüklerini kontrol edin
-- Pencereyi yenileyin: Ctrl+Shift+P → "Geliştirici: Pencereyi Yenile"
-- Önce sunucunun bağımsız olarak çalıştığını doğrulayın
+- Hata kayıtları için Çıktı panelini → "MCP" kontrol edin
+- Pencereyi yeniden yükleyin: Ctrl+Shift+P → "Geliştirici: Pencereyi Yeniden Yükle"
+- İlk önce sunucunun bağımsız çalıştığını doğrulayın
 
 ---
 
 ## 3. Cursor
 
-**Cursor**, yerleşik MCP desteğine sahip yapay zekâ öncelikli bir kod editörüdür.
+**Cursor** yerleşik MCP desteği olan yapay zeka öncelikli bir kod editörüdür.
 
 ### Kurulum
 
-1. Cursor'u [cursor.sh](https://cursor.sh) adresinden indirin
-2. Yükleyin ve giriş yapın
+1. Cursor'ı [cursor.sh](https://cursor.sh) üzerinden indirin
+2. Kurun ve oturum açın
 
-### Yapılandırma
+### Konfigürasyon
 
-Cursor, Claude Desktop'a benzer bir yapılandırma formatı kullanır.
+Cursor, Claude Desktop ile benzer bir konfigürasyon formatı kullanır.
 
-**Yapılandırma dosyası konumu:**
+**Konfigürasyon dosyası konumu:**
 - **macOS**: `~/.cursor/mcp.json`
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
 
-**Örnek yapılandırma:**
+**Örnek konfigürasyon:**
 
 ```json
 {
@@ -205,17 +212,17 @@ Cursor, Claude Desktop'a benzer bir yapılandırma formatı kullanır.
 }
 ```
 
-### Cursor'da MCP Kullanımı
+### Cursor'da MCP kullanımı
 
-1. Cursor'un yapay zeka sohbetini açın (Ctrl+L / Cmd+L)
-2. MCP araçları otomatik olarak önerilerde görünür
-3. Bağlı sunucuları kullanarak yapay zekadan görev yapmasını isteyin
+1. Cursor'ın Yapay Zeka sohbetini açın (Ctrl+L / Cmd+L)
+2. MCP araçları önerilerde otomatik olarak görünür
+3. Bağlı sunucuları kullanarak Yapay Zekadan görev yapmasını isteyin
 
 ---
 
 ## 4. Cline (Terminal Tabanlı)
 
-**Cline**, komut satırı iş akışları için ideal olan terminal tabanlı bir MCP istemcisidir.
+**Cline**, komut satırı iş akışları için ideal terminal tabanlı bir MCP istemcisidir.
 
 ### Kurulum
 
@@ -223,11 +230,11 @@ Cursor, Claude Desktop'a benzer bir yapılandırma formatı kullanır.
 npm install -g @anthropic/cline
 ```
 
-### Yapılandırma
+### Konfigürasyon
 
-Cline, ortam değişkenleri ve komut satırı argümanları kullanır.
+Cline, çevre değişkenleri ve komut satırı argümanlarını kullanır.
 
-**Ortam değişkenleri kullanımı:**
+**Çevre değişkenleri kullanımı:**
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key"
@@ -241,7 +248,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
       --mcp-server "weather:node /path/to/weather/index.js"
 ```
 
-**Yapılandırma dosyası** (`~/.clinerc`):
+**Konfigürasyon dosyası** (`~/.clinerc`):
 
 ```json
 {
@@ -255,7 +262,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Cline Kullanımı
+### Cline kullanımı
 
 ```bash
 # Etkileşimli bir oturum başlat
@@ -264,7 +271,7 @@ cline
 # MCP ile tek sorgu
 cline "Calculate the square root of 144 using the calculator"
 
-# Kullanılabilir araçları listele
+# Mevcut araçları listele
 cline --list-tools
 ```
 
@@ -272,22 +279,22 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf**, MCP desteğine sahip bir diğer yapay zekâ destekli kod editörüdür.
+**Windsurf**, MCP desteği olan başka bir yapay zeka destekli kod editörüdür.
 
 ### Kurulum
 
 1. Windsurf'u [codeium.com/windsurf](https://codeium.com/windsurf) adresinden indirin
-2. Yükleyin ve hesap oluşturun
+2. Kurun ve bir hesap oluşturun
 
-### Yapılandırma
+### Konfigürasyon
 
-Windsurf yapılandırması ayarlar arayüzü üzerinden yönetilir:
+Windsurf konfigürasyonu ayarlar kullanıcı arayüzü üzerinden yönetilir:
 
 1. Ayarları açın (Ctrl+, / Cmd+,)
-2. "MCP" araması yapın
-3. "settings.json içinde Düzenle"ye tıklayın
+2. "MCP" için arama yapın
+3. "settings.json içinde düzenle"ye tıklayın
 
-**Örnek yapılandırma:**
+**Örnek konfigürasyon:**
 
 ```json
 {
@@ -306,9 +313,9 @@ Windsurf yapılandırması ayarlar arayüzü üzerinden yönetilir:
 
 ## Taşıma Türleri Karşılaştırması
 
-Farklı ana bilgisayarlar farklı taşıma mekanizmalarını destekler:
+Farklı sunucular farklı taşıma mekanizmalarını destekler:
 
-| Ana Bilgisayar | stdio | SSE/HTTP | WebSocket |
+| Sunucu | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
@@ -316,8 +323,8 @@ Farklı ana bilgisayarlar farklı taşıma mekanizmalarını destekler:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standart giriş/çıkış): Ana bilgisayar tarafından başlatılan yerel sunucular için en iyisi  
-**SSE/HTTP**: Uzaktaki sunucular veya birden fazla istemci arasında paylaşılan sunucular için en iyisi
+**stdio** (standart giriş/çıkış): Sunucunun ev sahibi tarafından yerel olarak başlatılması için en iyisi
+**SSE/HTTP**: Uzak sunucular veya birden fazla istemci arasında paylaşılan sunucular için en iyisi
 
 ---
 
@@ -325,7 +332,7 @@ Farklı ana bilgisayarlar farklı taşıma mekanizmalarını destekler:
 
 ### Sunucu başlamıyor
 
-1. **Önce sunucuyu manuel test edin:**
+1. **Önce sunucuyu manuel olarak test edin:**
    ```bash
    # Python için
    python -m your_server_module
@@ -335,10 +342,11 @@ Farklı ana bilgisayarlar farklı taşıma mekanizmalarını destekler:
    ```
 
 2. **Komut yolunu kontrol edin:**
-   - Mümkünse mutlak yollar kullanın
-   - Yürütülebilir dosyanın PATH'te olduğundan emin olun
 
-3. **Bağımlılıkları kontrol edin:**
+   - Mümkün olduğunda mutlak yolları kullanın
+   - Yürütülebilir dosyanın PATH'inizde olduğundan emin olun
+
+3. **Bağımlılıkları doğrulayın:**
    ```bash
    # Python
    pip list | grep mcp
@@ -349,46 +357,46 @@ Farklı ana bilgisayarlar farklı taşıma mekanizmalarını destekler:
 
 ### Sunucu bağlanıyor ama araçlar çalışmıyor
 
-1. **Sunucu günlüklerini kontrol edin** - Çoğu ana bilgisayarda günlük tutma seçenekleri vardır  
-2. **Araç kaydını doğrulayın** - MCP Inspector kullanarak test edin  
-3. **İzinleri kontrol edin** - Bazı araçlar dosya/ağ erişimi gerektirir  
+1. **Sunucu günlüklerini kontrol edin** - Çoğu barındırıcı günlükleme seçeneklerine sahiptir
+2. **Araç kaydını doğrulayın** - Test etmek için MCP Inspector'ı kullanın
+3. **İzinleri kontrol edin** - Bazı araçlar dosya/ağ erişimi gerektirir
 
-### Ortam değişkenleri geçmiyor
+### Ortam değişkenleri iletilmiyor
 
-- Bazı ana bilgisayarlar ortam değişkenlerini temizler  
-- `env` yapılandırma alanını açıkça kullanın  
-- Yapılandırma dosyalarında hassas verilerden kaçının (gizli yönetimi kullanın)  
+- Bazı barındırıcılar ortam değişkenlerini temizler
+- `env` yapılandırma alanını açıkça kullanın
+- Yapılandırma dosyalarında hassas verilerden kaçının (gizli yönetimi kullanın)
 
 ---
 
 ## Güvenlik En İyi Uygulamaları
 
-1. API anahtarlarını yapılandırma dosyalarına asla eklemeyin  
-2. Hassas veriler için ortam değişkenlerini kullanın  
-3. Sunucu izinlerini yalnızca gerekli olanlarla sınırlandırın  
-4. Sisteminize erişim vermeden önce sunucu kodunu inceleyin  
-5. Dosya sistemi ve ağ erişimi için izin listeleri kullanın  
+1. **API anahtarlarını asla** yapılandırma dosyalarına göndermeyin
+2. **Hassas veriler için ortam değişkenlerini kullanın**
+3. **Sunucu izinlerini yalnızca gerekenle sınırlayın**
+4. **Sisteminize erişim vermeden önce sunucu kodunu gözden geçirin**
+5. **Dosya sistemi ve ağ erişimi için izin listelerini kullanın**
 
 ---
 
-## Sonraki Adımlar
+## Sırada Ne Var
 
-- [3.13 - MCP Inspector ile Hata Ayıklama](../13-mcp-inspector/README.md)  
-- [3.1 - İlk MCP Sunucunuzu Oluşturun](../01-first-server/README.md)  
-- [Modül 5 - İleri Konular](../../05-AdvancedTopics/README.md)  
+- [3.13 - MCP Inspector ile Hata Ayıklama](../13-mcp-inspector/README.md)
+- [3.1 - İlk MCP sunucunuzu oluşturun](../01-first-server/README.md)
+- [Modül 5 - İleri Konular](../../05-AdvancedTopics/README.md)
 
 ---
 
-## Ek Kaynaklar
+## Ekstra Kaynaklar
 
-- [Claude Desktop MCP Belgeleri](https://docs.anthropic.com/en/docs/claude-desktop/mcp)  
-- [VS Code MCP Uzantısı](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)  
-- [MCP Spesifikasyonu - Taşıma Yöntemleri](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)  
+- [Claude Masaüstü MCP Dokümantasyonu](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [VS Code MCP Uzantısı](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [MCP Spesifikasyonu - Taşıyıcılar](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Resmi MCP Sunucuları Kaydı](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanılması sonucu oluşabilecek yanlış anlamalar veya yanlış yorumlamalardan dolayı sorumluluk kabul edilmemektedir.
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

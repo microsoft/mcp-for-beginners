@@ -1,33 +1,33 @@
-# Oprettelse af en klient
+# Oprette en klient
 
-Klienter er brugerdefinerede applikationer eller scripts, der kommunikerer direkte med en MCP-server for at anmode om ressourcer, værktøjer og prompts. I modsætning til at bruge inspektørværktøjet, som giver en grafisk grænseflade til at interagere med serveren, gør det at skrive din egen klient det muligt med programmatiske og automatiserede interaktioner. Dette giver udviklere mulighed for at integrere MCP-funktionaliteter i deres egne arbejdsprocesser, automatisere opgaver og bygge brugerdefinerede løsninger skræddersyet til specifikke behov.
+Klienter er brugerdefinerede applikationer eller scripts, der kommunikerer direkte med en MCP-server for at anmode om ressourcer, værktøjer og prompts. I modsætning til at bruge inspektørværktøjet, som giver en grafisk brugerflade til interaktion med serveren, giver det at skrive din egen klient mulighed for programmerbar og automatiseret interaktion. Dette gør det muligt for udviklere at integrere MCP-funktionalitet i deres egne arbejdsprocesser, automatisere opgaver og opbygge brugerdefinerede løsninger tilpasset specifikke behov.
 
 ## Oversigt
 
-Denne lektion introducerer konceptet klienter inden for Model Context Protocol (MCP) økosystemet. Du lærer at skrive din egen klient og få den til at forbinde til en MCP-server.
+Denne lektion introducerer konceptet klienter inden for Model Context Protocol (MCP)-økosystemet. Du vil lære at skrive din egen klient og få den til at oprette forbindelse til en MCP-server.
 
 ## Læringsmål
 
 Ved afslutningen af denne lektion vil du kunne:
 
-- Forstå hvad en klient kan gøre.
+- Forstå, hvad en klient kan gøre.
 - Skrive din egen klient.
-- Forbinde og teste klienten med en MCP-server for at sikre, at denne fungerer som forventet.
+- Oprette forbindelse og teste klienten med en MCP-server for at sikre, at sidstnævnte fungerer som forventet.
 
 ## Hvad indebærer det at skrive en klient?
 
-For at skrive en klient, skal du gøre følgende:
+For at skrive en klient skal du gøre følgende:
 
-- **Importere de korrekte biblioteker**. Du vil bruge det samme bibliotek som før, bare forskellige konstruktioner.
-- **Instantierer en klient**. Dette vil involvere at oprette en klientinstans og forbinde den til den valgte transportmetode.
-- **Beslutte hvilke ressourcer der skal listes**. Din MCP-server kommer med ressourcer, værktøjer og prompts, du skal beslutte, hvilke der skal listes.
-- **Integrere klienten til en værtapplikation**. Når du kender serverens kapaciteter, skal du integrere dette i din værtapplikation, så hvis en bruger skriver en prompt eller en anden kommando, bliver den tilsvarende serverfunktion kaldt.
+- **Importer de korrekte biblioteker**. Du vil bruge det samme bibliotek som før, blot med forskellige konstruktioner.
+- **Instantier en klient**. Dette indebærer at oprette en klientinstans og forbinde den til den valgte transportmetode.
+- **Beslut hvilke ressourcer der skal listes**. Din MCP-server kommer med ressourcer, værktøjer og prompts, du skal beslutte, hvilke af disse der skal listes.
+- **Integrer klienten i en vært-applikation**. Når du ved, hvad serverens muligheder er, skal du integrere dette med din vært-applikation, så hvis en bruger indtaster en prompt eller en anden kommando, bliver den tilsvarende serverfunktion aktiveret.
 
-Nu hvor vi på et overordnet niveau forstår, hvad vi skal gøre, lad os se på et eksempel næste.
+Nu hvor vi på overordnet niveau forstår, hvad vi skal gøre, lad os se på et eksempel næste.
 
 ### Et eksempel på en klient
 
-Lad os kigge på dette eksempel på en klient:
+Lad os se på dette eksempel på en klient:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// List prompts
+// Liste over opfordringer
 const prompts = await client.listPrompts();
 
-// Hent en prompt
+// Hent en opfordring
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -60,7 +60,7 @@ const prompt = await client.getPrompt({
   }
 });
 
-// Liste ressourcer
+// Liste over ressourcer
 const resources = await client.listResources();
 
 // Læs en ressource
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 I den foregående kode:
 
-- Importerer vi bibliotekerne
-- Opretter en instans af en klient og forbinder den med stdio som transport.
+- Importerer bibliotekerne
+- Opretter en instans af en klient og forbinder den ved hjælp af stdio til transport.
 - Lister prompts, ressourcer og værktøjer og kalder dem alle.
 
-Der har du det, en klient, der kan tale med en MCP-server.
+Så har du en klient, der kan tale med en MCP-server.
 
-Lad os tage os tid i næste øvelsesafsnit og gennemgå hvert kodesnit og forklare, hvad der sker.
+Lad os tage os god tid i den næste øvelsessektion og gennemgå hver kodeudsnit og forklare, hvad der foregår.
 
 ## Øvelse: Skrive en klient
 
-Som sagt ovenfor, lad os tage os tid til at forklare koden, og føl dig endelig fri til at kode med, hvis du vil.
+Som nævnt ovenfor, lad os tage os tid til at forklare koden, og du kan for alt i verden også følge med i koden, hvis du vil.
 
-### -1- Importere bibliotekerne
+### -1- Importer bibliotekerne
 
-Lad os importere de nødvendige biblioteker; vi skal bruge referencer til en klient og til vores valgte transportprotokol, stdio. stdio er en protokol til ting, der er tænkt til at køre på din lokale maskine. SSE er en anden transportprotokol, som vi vil vise i kommende kapitler, men det er din anden mulighed. For nu, lad os fortsætte med stdio.
+Lad os importere de biblioteker, vi har brug for; vi skal bruge referencer til en klient og til vores valgte transportprotokol, stdio. stdio er en protokol til ting, der skal køre på din lokale maskine. SSE er en anden transportprotokol, som vi vil vise i fremtidige kapitler, men det er din anden mulighed. For nu fortsætter vi dog med stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-For Java opretter du en klient, der forbinder til MCP-serveren fra den tidligere øvelse. Brug den samme Java Spring Boot projektstruktur fra [Kom godt i gang med MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), opret en ny Java-klasse kaldet `SDKClient` i mappen `src/main/java/com/microsoft/mcp/sample/client/` og tilføj følgende imports:
+For Java skal du oprette en klient, der forbinder til MCP-serveren fra den forrige øvelse. Brug den samme Java Spring Boot-projektstruktur fra [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), opret en ny Java-klasse kaldet `SDKClient` i mappen `src/main/java/com/microsoft/mcp/sample/client/` og tilføj følgende imports:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Du skal tilføje følgende afhængigheder til din `Cargo.toml` fil.
+Du skal tilføje følgende afhængigheder til din `Cargo.toml`-fil.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Derfra kan du importere de nødvendige biblioteker i din klientkode.
+Derefter kan du importere de nødvendige biblioteker i din klientkode.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Lad os gå videre til instantiering.
+Lad os gå videre til instantiationen.
 
 ### -2- Instantiering af klient og transport
 
-Vi skal oprette en instans af transporten og en af vores klient:
+Vi skal oprette en instans af transporten og af vores klient:
 
 #### TypeScript
 
@@ -187,7 +187,7 @@ await client.connect(transport);
 
 I den foregående kode har vi:
 
-- Oprettet en stdio transport instans. Bemærk hvordan den specificerer kommando og argumenter for, hvordan serveren findes og startes, da det er noget, vi skal gøre, når vi opretter klienten.
+- Oprettet en stdio-transportinstans. Bemærk hvordan den specificerer kommando og argumenter for, hvordan man finder og starter serveren, da det er noget, vi skal gøre, når vi opretter klienten.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ I den foregående kode har vi:
     });
     ```
 
-- Instantieret en klient ved at give den navn og version.
+- Instantieret en klient ved at give den et navn og en version.
 
     ```typescript
     const client = new Client(
@@ -218,10 +218,10 @@ I den foregående kode har vi:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Opret serverparametre til stdio-forbindelse
+# Opret serverparametre for stdio-forbindelse
 server_params = StdioServerParameters(
-    command="mcp",  # Kørbar fil
-    args=["run", "server.py"],  # Valgfrie kommandolinjeparametre
+    command="mcp",  # Eksekverbart fil
+    args=["run", "server.py"],  # Valgfrie kommandolinjeargumenter
     env=None,  # Valgfrie miljøvariabler
 )
 
@@ -244,9 +244,9 @@ if __name__ == "__main__":
 I den foregående kode har vi:
 
 - Importeret de nødvendige biblioteker
-- Instantieret et serverparameterobjekt, da vi vil bruge dette til at køre serveren, så vi kan forbinde til den med vores klient.
-- Defineret en metode `run`, der til gengæld kalder `stdio_client`, som starter en klientsession.
-- Oprettet et entry point, hvor vi leverer `run` metoden til `asyncio.run`.
+- Instantieret et serverparametre-objekt, da vi vil bruge dette til at køre serveren, så vi kan forbinde os til den med vores klient.
+- Defineret en metode `run` der igen kalder `stdio_client`, som starter en klientsession.
+- Oprettet et indgangspunkt, hvor vi leverer `run`-metoden til `asyncio.run`.
 
 #### .NET
 
@@ -277,7 +277,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 I den foregående kode har vi:
 
 - Importeret de nødvendige biblioteker.
-- Oprettet en stdio transport og oprettet en klient `mcpClient`. Sidstnævnte bruger vi til at liste og kalde funktioner på MCP-serveren.
+- Oprettet en stdio-transport og oprettet en klient `mcpClient`. Sidstnævnte er noget, vi vil bruge til at liste og anvende funktioner på MCP-serveren.
 
 Bemærk, i "Arguments" kan du enten pege på *.csproj* eller på det eksekverbare program.
 
@@ -308,18 +308,18 @@ public class SDKClient {
 
 I den foregående kode har vi:
 
-- Oprettet en main-metode, der sætter en SSE transport op, som peger på `http://localhost:8080`, hvor vores MCP-server kører.
-- Oprettet en klientklasse, der tager transporten som konstruktørparameter.
-- I `run` metoden opretter vi en synkron MCP klient ved hjælp af transporten og initialiserer forbindelsen.
-- Brugte SSE (Server-Sent Events) transport, som passer til HTTP-baseret kommunikation med Java Spring Boot MCP-servere.
+- Oprettet en main-metode, der opsætter en SSE-transport, der peger på `http://localhost:8080`, hvor vores MCP-server vil køre.
+- Oprettet en klientklasse, som tager transporten som en konstruktørparameter.
+- I `run`-metoden opretter vi en synkron MCP-klient ved hjælp af transporten og initialiserer forbindelsen.
+- Brugt SSE (Server-Sent Events) transport, som er egnet til HTTP-baseret kommunikation med Java Spring Boot MCP-servere.
 
 #### Rust
 
-Bemærk, at denne Rust-klient antager, at serveren er et søskendeprojekt kaldet "calculator-server" i samme mappe. Koden nedenfor vil starte serveren og forbinde til den.
+Bemærk, at denne Rust-klient antager, at serveren er et søsterprojekt kaldet "calculator-server" i samme mappe. Koden nedenfor vil starte serveren og forbinde til den.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Antag at serveren er et søskendeprojekt kaldet "calculator-server" i samme mappe
+    // Antag at serveren er et søsterprojekt med navnet "calculator-server" i samme mappe
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -338,16 +338,16 @@ async fn main() -> Result<(), RmcpError> {
 
     // TODO: List værktøjer
 
-    // TODO: Kald tilføj værktøj med argumenter = {"a": 3, "b": 2}
+    // TODO: Kald add værktøj med argumenter = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Liste serverens funktioner
+### -3- Liste serverfunktionerne
 
-Nu har vi en klient, der kan forbinde til serveren, hvis programmet køres. Den lister dog ikke dens funktioner, så lad os gøre det næste:
+Nu har vi en klient, der kan forbinde til programmet, hvis det køres. Men den lister faktisk ikke sine funktioner, så lad os gøre det næste:
 
 #### TypeScript
 
@@ -365,13 +365,13 @@ const tools = await client.listTools();
 #### Python
 
 ```python
-# List tilgængelige ressourcer
+# Liste over tilgængelige ressourcer
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# List tilgængelige værktøjer
+# Liste over tilgængelige værktøjer
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -389,12 +389,12 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Ovenfor er et eksempel på, hvordan vi kan liste værktøjerne på serveren. For hvert værktøj printer vi så navnet ud.
+Ovenfor er et eksempel på, hvordan vi kan liste værktøjerne på serveren. For hvert værktøj printer vi derefter dets navn ud.
 
 #### Java
 
 ```java
-// Liste og demonstrere værktøjer
+// Liste og demonstrer værktøjer
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
@@ -405,28 +405,28 @@ client.ping();
 I den foregående kode har vi:
 
 - Kaldt `listTools()` for at få alle tilgængelige værktøjer fra MCP-serveren.
-- Brugte `ping()` for at verificere, at forbindelsen til serveren fungerer.
-- `ListToolsResult` indeholder information om alle værktøjer, inklusive deres navne, beskrivelser og inputskemaer.
+- Brug `ping()` for at verificere, at forbindelsen til serveren virker.
+- `ListToolsResult` indeholder information om alle værktøjer inklusive deres navne, beskrivelser og inputskemaer.
 
-Fint, nu har vi fanget alle funktionerne. Nu er spørgsmålet, hvornår bruger vi dem? Denne klient er ret simpel, simpel i den forstand, at vi eksplicit skal kalde funktionerne, når vi ønsker dem. I næste kapitel vil vi oprette en mere avanceret klient, der har adgang til sin egen store sprogmodel, LLM. Men for nu, lad os se, hvordan vi kan kalde funktionerne på serveren:
+Fantastisk, nu har vi fanget alle funktionerne. Nu spørger du måske, hvornår bruger vi dem? Nå, denne klient er ret simpel, simpel i den forstand, at vi eksplicit skal kalde funktionerne, når vi ønsker dem. I næste kapitel vil vi skabe en mere avanceret klient, der har adgang til sin egen store sprogmodel, LLM. For nu, lad os se, hvordan vi kan anvende funktionerne på serveren:
 
 #### Rust
 
-I main-funktionen, efter initialisering af klienten, kan vi initialisere serveren og liste nogle af dens funktioner.
+I hovedfunktionen, efter klienten er initialiseret, kan vi initialisere serveren og liste nogle af dens funktioner.
 
 ```rust
 // Initialiser
 let server_info = client.peer_info();
 println!("Server info: {:?}", server_info);
 
-// Listeværktøjer
+// Liste over værktøjer
 let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Kald funktioner
+### -4- Anvende funktioner
 
-For at kalde funktionerne skal vi sikre, at vi angiver de rigtige argumenter og i nogle tilfælde navnet på det, vi forsøger at kalde.
+For at anvende funktionerne skal vi sikre os at angive de korrekte argumenter og i nogle tilfælde navnet på, hvad vi prøver at anvende.
 
 #### TypeScript
 
@@ -456,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 I den foregående kode:
 
-- Læser vi en ressource ved at kalde `readResource()` og angive `uri`. Her ser det ud, som det sandsynligvis gør på serversiden:
+- Læser en ressource, vi kalder ressourcen ved at kalde `readResource()` og angive `uri`. Her er hvad det sandsynligvis ligner på serversiden:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ I den foregående kode:
     );
     ```
 
-    Vores `uri` værdi `file://example.txt` matcher `file://{name}` på serveren. `example.txt` kortlægges til `name`.
+    Vores `uri`-værdi `file://example.txt` matcher `file://{name}` på serveren. `example.txt` vil blive matchet til `name`.
 
-- Kalder et værktøj, vi kalder det ved at angive dets `name` og dets `arguments` som følger:
+- Kalder et værktøj, vi kalder det ved at specificere dets `name` og dets `arguments` sådan:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ I den foregående kode:
     });
     ```
 
-- Henter prompt, for at hente en prompt kalder du `getPrompt()` med `name` og `arguments`. Serverkoden ser sådan ud:
+- Hent prompt, for at få en prompt kalder du `getPrompt()` med `name` og `arguments`. Serverkoden ser således ud:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ I den foregående kode:
     );
     ```
 
-    og din resulterende klientkode ser derfor sådan ud for at matche det, der er deklareret på serveren:
+    og din resulterende klientkode ser derfor således ud for at matche hvad der er deklareret på serveren:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -528,8 +528,8 @@ print(result.content)
 
 I den foregående kode har vi:
 
-- Kaldt en ressource kaldet `greeting` med `read_resource`.
-- Invokeret et værktøj kaldet `add` med `call_tool`.
+- Kaldt en ressource kaldet `greeting` ved hjælp af `read_resource`.
+- Anvendt et værktøj kaldet `add` ved hjælp af `call_tool`.
 
 #### .NET
 
@@ -542,7 +542,7 @@ I den foregående kode har vi:
       cancellationToken:CancellationToken.None);
   ```
 
-1. For at printe resultatet, her er noget kode til at håndtere det:
+1. For at udskrive resultatet, her er noget kode til at håndtere det:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ I den foregående kode har vi:
 #### Java
 
 ```java
-// Kald forskellige lommeregnerværktøjer
+// Kald forskellige lommeregnerfunktioner
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -571,10 +571,10 @@ System.out.println("Help = " + resultHelp);
 
 I den foregående kode har vi:
 
-- Kaldt flere kalkulatorværktøjer ved hjælp af `callTool()` metoden med `CallToolRequest` objekter.
+- Kaldt flere regneværktøjer ved hjælp af `callTool()`-metoden med `CallToolRequest`-objekter.
 - Hver værktøjskald specificerer værktøjets navn og et `Map` af argumenter, som værktøjet kræver.
-- Serverværktøjerne forventer specifikke parameternavne (som "a", "b" for matematiske operationer).
-- Resultater returneres som `CallToolResult` objekter, der indeholder serverens svar.
+- Serverværktøjerne forventer specifikke parameter-navne (som "a", "b" for matematiske operationer).
+- Resultater returneres som `CallToolResult`-objekter, der indeholder svaret fra serveren.
 
 #### Rust
 
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Kør klienten
 
-For at køre klienten skal du skrive følgende kommando i terminalen:
+For at køre klienten, skriv følgende kommando i terminalen:
 
 #### TypeScript
 
-Tilføj følgende entry til din "scripts" sektion i *package.json*:
+Tilføj følgende entry til din "scripts"-sektion i *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -623,7 +623,7 @@ dotnet run
 
 #### Java
 
-Sørg først for, at din MCP-server kører på `http://localhost:8080`. Kør derefter klienten:
+Først skal du sikre dig, at din MCP-server kører på `http://localhost:8080`. Derefter kør klienten:
 
 ```bash
 # Byg dit projekt
@@ -633,13 +633,13 @@ Sørg først for, at din MCP-server kører på `http://localhost:8080`. Kør der
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternativt kan du køre det komplette klientprojekt, som findes i løsningsmappen `03-GettingStarted\02-client\solution\java`:
+Alternativt kan du køre det komplette klientprojekt, der er leveret i løsningsmappen `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Naviger til løsningsmappen
 cd 03-GettingStarted/02-client/solution/java
 
-# Byg og kør JAR'en
+# Byg og kør JAR-filen
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -653,7 +653,7 @@ cargo run
 
 ## Opgave
 
-I denne opgave vil du bruge det, du har lært, til at oprette en klient, men oprette din egen klient.
+I denne opgave vil du bruge det, du har lært om at oprette en klient, men skabe en klient på egen hånd.
 
 Her er en server, du kan bruge, som du skal kalde via din klientkode, se om du kan tilføje flere funktioner til serveren for at gøre den mere interessant.
 
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Tilføj en dynamisk hilsensressource
+// Tilføj en dynamisk hilsenressource
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -721,7 +721,7 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Tilføj en dynamisk hilsen-ressource
+# Tilføj en dynamisk hilsensressource
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -761,15 +761,15 @@ public static class CalculatorTool
 
 Se dette projekt for at se, hvordan du kan [tilføje prompts og ressourcer](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Tjek også dette link for, hvordan du kalder [prompts og ressourcer](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Tjek også dette link for, hvordan man anvender [prompts og ressourcer](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-I [forrige afsnit](../../../../03-GettingStarted/01-first-server) lærte du, hvordan man opretter en simpel MCP-server med Rust. Du kan fortsætte med at bygge videre på det eller tjekke dette link for flere Rust-baserede MCP-server eksempler: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+I [det forrige afsnit](../../../../03-GettingStarted/01-first-server) lærte du at oprette en simpel MCP-server med Rust. Du kan bygge videre på det eller tjekke dette link for flere Rust-baserede MCP-server eksempler: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Løsning
 
-**løsningsmappen** indeholder komplette, klar-til-kørsel klientimplementeringer, der demonstrerer alle koncepterne dækket i denne tutorial. Hver løsning inkluderer både klient- og serverkode organiseret i separate, selvstændige projekter.
+**Løsningsmappen** indeholder komplette, klar-til-kørsel klientimplementeringer, som demonstrerer alle de koncepter, der dækkes i denne vejledning. Hver løsning inkluderer både klient- og serverkode organiseret i separate, selvstændige projekter.
 
 ### 📁 Løsningsstruktur
 
@@ -807,29 +807,29 @@ solution/
 
 Hver sprog-specifik løsning indeholder:
 
-- **Komplet klientimplementering** med alle funktioner fra tutorialen
+- **Komplet klientimplementering** med alle funktioner fra vejledningen
 - **Fungerende projektstruktur** med korrekte afhængigheder og konfiguration
-- **Build- og kørescripts** for nem opsætning og eksekvering
+- **Bygge- og kør-script** for nem opsætning og udførsel
 - **Detaljeret README** med sprog-specifikke instruktioner
 - **Fejlhåndtering** og eksempler på resultatbehandling
 
-### 📖 Brug af løsningerne
+### 📖 Brug af løsningene
 
 1. **Naviger til din foretrukne sprogmappe**:
 
    ```bash
-   cd solution/typescript/    # Til TypeScript
-   cd solution/java/          # Til Java
-   cd solution/python/        # Til Python
-   cd solution/dotnet/        # Til .NET
+   cd solution/typescript/    # For TypeScript
+   cd solution/java/          # For Java
+   cd solution/python/        # For Python
+   cd solution/dotnet/        # For .NET
    ```
 
-2. **Følg README instruktionerne** i hver mappe for:
+2. **Følg instruktionerne i README’en** i hver mappe for:
    - Installation af afhængigheder
    - Bygning af projektet
    - Kørsel af klienten
 
-3. **Eksempelkørsel**, som du bør se:
+3. **Eksempeloutput** du bør se:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,78 +837,80 @@ Hver sprog-specifik løsning indeholder:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-For komplet dokumentation og trin-for-trin instruktioner, se: **[📖 Løsningsdokumentation](./solution/README.md)**
+For komplet dokumentation og trin-for-trin-instruktioner, se: **[📖 Løsningsdokumentation](./solution/README.md)**
 
-## 🎯 Komplette eksempler
+## 🎯 Komplette Eksempler
 
-Vi har leveret komplette, fungerende klientimplementeringer for alle programmeringssprog dækket i denne tutorial. Disse eksempler demonstrerer den fulde funktionalitet beskrevet ovenfor og kan bruges som referenceimplementeringer eller udgangspunkter for dine egne projekter.
+Vi har leveret komplette, fungerende klientimplementeringer for alle programmeringssprog dækket i denne vejledning. Disse eksempler demonstrerer den fulde funktionalitet beskrevet ovenfor og kan bruges som referenceimplementeringer eller udgangspunkter for dine egne projekter.
 
 ### Tilgængelige komplette eksempler
 
 | Sprog | Fil | Beskrivelse |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kompleks Java-klient med SSE-transport og omfattende fejlhåndtering |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Kompleks C#-klient med stdio transport og automatisk serverstart |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Kompleks TypeScript-klient med fuld MCP-protokol support |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Kompleks Python-klient med async/await mønstre |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Kompleks Rust-klient med Tokio til async operationer |
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Komplets Java-klient med SSE-transport og omfattende fejlhåndtering |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Komplets C#-klient med stdio-transport og automatisk serverstart |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Komplets TypeScript-klient med fuld MCP-protokol support |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Komplets Python-klient med async/await mønstre |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Komplets Rust-klient med Tokio til asynkrone operationer |
 
-Hvert komplet eksempel inkluderer:
-- ✅ **Oprettelse af forbindelse** og fejlhåndtering  
-- ✅ **Serveropdagelse** (værktøjer, ressourcer, prompts hvor relevant)  
-- ✅ **Lommeregneroperationer** (plus, minus, gange, divider, hjælp)  
-- ✅ **Resultatbehandling** og formateret output  
-- ✅ **Omfattende fejlhåndtering**  
-- ✅ **Ren, dokumenteret kode** med trin-for-trin kommentarer  
+Hvert komplet eksempel indeholder:
+
+- ✅ **Etablering af forbindelse** og fejlhåndtering
+- ✅ **Serveropdagelse** (værktøjer, ressourcer, prompts hvor relevant)
+- ✅ **Lommeregneroperationer** (add, subtract, multiply, divide, help)
+- ✅ **Resultatbehandling** og formateret output
+- ✅ **Omfattende fejlhåndtering**
+
+- ✅ **Ren, dokumenteret kode** med trin-for-trin kommentarer
 
 ### Kom godt i gang med komplette eksempler
 
-1. **Vælg dit foretrukne sprog** fra tabellen ovenfor  
-2. **Gennemgå den komplette eksempel-fil** for at forstå den fulde implementering  
-3. **Kør eksemplet** ved at følge instruktionerne i [`complete_examples.md`](./complete_examples.md)  
-4. **Tilpas og udvid** eksemplet til dit specifikke brugstilfælde  
+1. **Vælg dit foretrukne sprog** fra tabellen ovenfor
+2. **Gennemgå den komplette eksempelfil** for at forstå den fulde implementering
+3. **Kør eksemplet** ved at følge instruktionerne i [`complete_examples.md`](./complete_examples.md)
+4. **Tilpas og udvid** eksemplet til din specifikke anvendelse
 
-For detaljeret dokumentation om kørsel og tilpasning af disse eksempler, se: **[📖 Kompletdokumentation for eksempler](./complete_examples.md)**  
+For detaljeret dokumentation om at køre og tilpasse disse eksempler, se: **[📖 Kompletdokumentation for eksempler](./complete_examples.md)**
 
 ### 💡 Løsning vs. komplette eksempler
 
-| **Løsningsmappe**     | **Komplette eksempler**  |
-|----------------------|-------------------------|
-| Fuld projektstruktur med build-filer | Enkel-fil implementeringer  |
-| Klar til kørsel med afhængigheder | Fokuserede kodeeksempler       |
-| Produktionslignende setup  | Læringsreference                |
-| Sprog-specifikke værktøjer | Tvær-sproglig sammenligning    |
+| **Løsningsmappe** | **Komplette eksempler** |
+|--------------------|--------------------- |
+| Fuld projektstruktur med build-filer | Implementeringer i enkelte filer |
+| Klar til at køre med afhængigheder | Fokuserede kodeeksempler |
+| Produktionlignende opsætning | Uddannelsesreference |
+| Sprog-specifikke værktøjer | Tværsprogslig sammenligning |
 
 Begge tilgange er værdifulde - brug **løsningsmappen** til komplette projekter og **komplette eksempler** til læring og reference.
 
 ## Vigtige pointer
 
-De vigtigste pointer i dette kapitel om clients er følgende:
+De vigtigste pointer for dette kapitel om klienter er som følger:
 
-- Kan bruges til både at opdage og kalde funktioner på serveren.  
-- Kan starte en server, mens den selv starter (som i dette kapitel), men clients kan også forbinde til kørende servere.  
-- Er en fremragende måde at teste serverkapaciteter ved siden af alternativer som Inspector, som blev beskrevet i det forrige kapitel.  
+- Kan bruges til både at opdage og kalde funktioner på serveren.
+- Kan starte en server mens den selv starter (som i dette kapitel), men klienter kan også tilslutte sig kørende servere.
+- Er en fremragende måde at teste serverkapabiliteter ved siden af alternativer som Inspector, som blev beskrevet i det foregående kapitel.
 
 ## Yderligere ressourcer
 
-- [Byg clients i MCP](https://modelcontextprotocol.io/quickstart/client)  
+- [Byg klienter i MCP](https://modelcontextprotocol.io/quickstart/client)
 
 ## Eksempler
 
-- [Java Lommeregner](../samples/java/calculator/README.md)  
-- [.Net Lommeregner](../../../../03-GettingStarted/samples/csharp)  
-- [JavaScript Lommeregner](../samples/javascript/README.md)  
-- [TypeScript Lommeregner](../samples/typescript/README.md)  
-- [Python Lommeregner](../../../../03-GettingStarted/samples/python)  
-- [Rust Lommeregner](../../../../03-GettingStarted/samples/rust)  
+- [Java Lommeregner](../samples/java/calculator/README.md)
+- [.NET Lommeregner](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Lommeregner](../samples/javascript/README.md)
+- [TypeScript Lommeregner](../samples/typescript/README.md)
+- [Python Lommeregner](../../../../03-GettingStarted/samples/python)
+- [Rust Lommeregner](../../../../03-GettingStarted/samples/rust)
 
 ## Hvad er det næste
 
-- Næste: [Opret en client med en LLM](../03-llm-client/README.md)
+- Næste: [Opret en klient med en LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, bedes du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det oprindelige dokument på dets oprindelige sprog skal betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for eventuelle misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
+Dette dokument er blevet oversat ved hjælp af AI-oversættelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selvom vi bestræber os på nøjagtighed, skal du være opmærksom på, at automatiserede oversættelser kan indeholde fejl eller unøjagtigheder. Det originale dokument på dets oprindelige sprog bør betragtes som den autoritative kilde. For kritisk information anbefales professionel menneskelig oversættelse. Vi påtager os intet ansvar for misforståelser eller fejltolkninger, der opstår som følge af brugen af denne oversættelse.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,29 +1,35 @@
-# دمج VS Code
+# تكامل VS Code
+
+> [!NOTE]
+> إعدادات `initializationOptions` في هذا المختبر تستهدف اتصال MCP للعيّنة
+> بتاريخ `2025-11-25`. MCP بتاريخ `2026-07-28` يزيل اتصال التهيئة؛
+> استخدم مضيفًا وSDK يدعمان بيانات وصفية لكل طلب و`server/discover`
+> عند ترحيل هذه العينة.
 
 ## 🎯 ما يغطيه هذا المختبر
 
-يوفر هذا المختبر إرشادات شاملة لدمج خادم MCP الخاص بك مع VS Code لتمكين الاستفسارات باللغة الطبيعية من خلال AI Chat. ستتعلم كيفية إعداد VS Code لاستخدام MCP بشكل مثالي، تصحيح اتصالات الخادم، والاستفادة من القوة الكاملة للتفاعل مع قواعد البيانات بمساعدة الذكاء الاصطناعي.
+يقدم هذا المختبر إرشادات شاملة لدمج خادم MCP الخاص بك مع VS Code لتمكين استعلامات اللغة الطبيعية عبر AI Chat. ستتعلم كيفية تكوين VS Code للاستخدام الأمثل لـ MCP، وتصحيح اتصال الخادم، والاستفادة من القوة الكاملة للتفاعل مع قواعد البيانات بمساعدة الذكاء الاصطناعي.
 
 ## نظرة عامة
 
-يُحدث دمج MCP مع VS Code تحولًا في طريقة تفاعل المطورين مع قواعد البيانات وواجهات البرمجة باستخدام اللغة الطبيعية. من خلال ربط خادم MCP الخاص بالتجزئة مع VS Code Chat، يمكنك تمكين استفسارات ذكية لبيانات المبيعات، كتالوجات المنتجات، وتحليلات الأعمال باستخدام الذكاء الاصطناعي.
+يحول تكامل MCP في VS Code طريقة تفاعل المطورين مع قواعد البيانات وAPIs عبر اللغة الطبيعية. من خلال ربط خادم MCP للبيع بالتجزئة الخاص بك بـ VS Code Chat، يمكنك تمكين الاستعلام الذكي عن بيانات المبيعات، وكatalog المنتجات، وتحليلات الأعمال باستخدام AI المحادثي.
 
-يتيح هذا الدمج للمطورين طرح أسئلة مثل "أظهر لي المنتجات الأكثر مبيعًا هذا الشهر" أو "ابحث عن العملاء الذين لم يشتروا خلال 90 يومًا" والحصول على ردود بيانات منظمة دون الحاجة إلى كتابة استعلامات SQL.
+يسمح هذا التكامل للمطورين بطرح أسئلة مثل "أرني أكثر المنتجات مبيعًا هذا الشهر" أو "اعثر على العملاء الذين لم يشتروا خلال 90 يومًا" والحصول على استجابات بيانات منظمة بدون كتابة استعلامات SQL.
 
 ## أهداف التعلم
 
-بنهاية هذا المختبر، ستكون قادرًا على:
+في نهاية هذا المختبر، ستكون قادرًا على:
 
-- **إعداد** إعدادات MCP في VS Code لخادم التجزئة الخاص بك  
-- **دمج** خوادم MCP مع وظيفة AI Chat في VS Code  
-- **تصحيح الأخطاء** في اتصالات خادم MCP وحل المشكلات  
-- **تحسين** أنماط الاستفسارات باللغة الطبيعية للحصول على نتائج أفضل  
-- **تخصيص** مساحة العمل في VS Code لتطوير MCP  
-- **نشر** إعدادات متعددة الخوادم لسيناريوهات معقدة  
+- **تكوين** إعدادات MCP في VS Code لخادم التجزئة الخاص بك
+- **دمج** خوادم MCP مع وظيفة AI Chat في VS Code
+- **تصحيح** اتصالات خادم MCP وحل المشكلات
+- **تحسين** نماذج استعلامات اللغة الطبيعية لنتائج أفضل
+- **تخصيص** مساحة عمل VS Code لتطوير MCP
+- **نشر** تكوينات خوادم متعددة للسيناريوهات المعقدة
 
-## 🔧 إعداد MCP في VS Code
+## 🔧 تكوين MCP في VS Code
 
-### الإعداد الأولي والتثبيت
+### الإعداد والتثبيت الأولي
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@
 }
 ```
 
-### إعداد البيئة
+### تكوين البيئة
 
 ```bash
-# .env file for development
+# ملف .env للتطوير
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# إعدادات أزور
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# اختياري: خزنة مفاتيح أزور
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# إعدادات الخادم
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### إعداد مساحة العمل
+### تكوين مساحة العمل
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### إعداد المهام
+### تكوين المهام
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 دمج AI Chat
+## 💬 تكامل AI Chat
 
-### أنماط الاستفسارات باللغة الطبيعية
+### نماذج استعلامات اللغة الطبيعية
 
 ```typescript
-// Example query patterns for VS Code Chat
+// أمثلة لأنماط الاستعلام لـ VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### أمثلة على دمج الدردشة
+### أمثلة على التكامل في الدردشة
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### تنسيق ردود الدردشة
+### تنسيق استجابات الدردشة
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # المقاييس الرئيسية
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # مؤشرات الأداء
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # الفئة الأعلى
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -500,7 +506,7 @@ class ChatResponseFormatter:
 
 ## 🔍 تصحيح الأخطاء وحل المشكلات
 
-### إعداد تصحيح الأخطاء في VS Code
+### تكوين التصحيح في VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # إنشاء منسق خاص بـ VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # معالج وحدة التحكم لمحطة VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# مسجل تصحيح أخطاء عالمي
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### حل مشكلات الاتصال
+### استكشاف مشكلات الاتصال وإصلاحها
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # الحصول على معلمات الاتصال من البيئة
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # اختبار الاتصال
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # اختبار استعلام أساسي
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # اختبار الوصول إلى المخطط
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # اختبار توليد التضمين
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # استيراد مكونات خادم MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # إنشاء تكوين اختبار
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # تهيئة الخادم
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # الحصول على الأدوات المتاحة
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # اختبار أداة بسيطة
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # اختبار اتصال قاعدة البيانات
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # اختبار اتصال Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # اختبار أدوات MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # الحالة العامة
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 إعدادات متقدمة
+## 🚀 التكوين المتقدم
 
-### إعداد متعدد الخوادم
+### إعداد خوادم متعددة
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### امتداد مخصص لـ VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - امتداد MCP للبيع بالتجزئة مخصص
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // تسجيل أوامر MCP للبيع بالتجزئة
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // تسجيل مفتاح تبديل المتجر
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // تحديث التكوين
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // تنفيذ استعلامات محددة مسبقًا في دردشة VS Code
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### إعداد حزمة الامتداد
+### تكوين حزمة الامتداد
 
 ```json
 // package.json for VS Code extension
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 النقاط الرئيسية
 
-بعد إكمال هذا المختبر، يجب أن تكون قد حققت:
+بعد إكمال هذا المختبر، يجب أن تكون قد حصلت على:
 
-✅ **إعداد MCP في VS Code**: إعداد كامل لدمج MCP بشكل مثالي  
-✅ **دمج AI Chat**: قدرات الاستفسار باللغة الطبيعية في VS Code  
-✅ **أدوات تصحيح الأخطاء**: تشخيص شامل لحل المشكلات واتصالات الخادم  
-✅ **إعداد متعدد الخوادم**: تكوين لخوادم MCP متعددة  
-✅ **امتدادات مخصصة**: تحسين تجربة VS Code بميزات خاصة بالتجزئة  
+✅ **تكوين MCP في VS Code**: إعداد كامل للتكامل الأمثل لـ MCP  
+✅ **تكامل AI Chat**: قدرات الاستعلام بلغة طبيعية في VS Code  
+✅ **أدوات التصحيح**: استكشاف شامل للمشكلات وتشخيص الاتصالات  
+✅ **إعداد خوادم متعددة**: تكوين لعشرات خوادم MCP  
+✅ **الامتدادات المخصصة**: تجربة VS Code محسنة مع ميزات خاصة بالتجزئة  
 ✅ **جاهزية الإنتاج**: بيئة تطوير VS Code جاهزة للمؤسسات  
 
-## 🚀 ما التالي
+## 🚀 ما هو التالي
 
 تابع مع **[المختبر 10: استراتيجيات النشر](../10-Deployment/README.md)** لـ:
 
-- نشر خوادم MCP في بيئات الإنتاج  
-- إعداد بنية تحتية سحابية للتوسع  
-- تنفيذ خطوط CI/CD للنشر التلقائي  
-- مراقبة أداء خادم MCP في الإنتاج  
+- نشر خوادم MCP إلى بيئات الإنتاج
+- تكوين البنية التحتية السحابية للتوسع
+- تنفيذ خطوط CI/CD للنشر التلقائي
+- مراقبة أداء خادم MCP في الإنتاج
 
 ## 📚 موارد إضافية
 
 ### تطوير VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - دليل تطوير الامتدادات الرسمي  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - وثائق دمج MCP  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - تطوير TypeScript في VS Code  
+- [VS Code Extension API](https://code.visualstudio.com/api) - دليل التطوير الرسمي للامتدادات
+- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - توثيق تكامل MCP
+- [TypeScript لـ VS Code](https://code.visualstudio.com/docs/languages/typescript) - تطوير TypeScript في VS Code
 
 ### بروتوكول MCP
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - مواصفات MCP الرسمية  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - أفضل الممارسات للتنفيذ  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - تنفيذ MCP باستخدام Python  
+- [مواصفات بروتوكول سياق النموذج](https://modelcontextprotocol.io/specification) - المواصفات الرسمية لـ MCP
+- [أفضل ممارسات MCP](https://modelcontextprotocol.io/docs/best-practices) - أفضل ممارسات التنفيذ
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - تنفيذ MCP بلغة Python
 
 ### أدوات التطوير
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - إعداد تطوير Python  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - تقنيات تصحيح الأخطاء المتقدمة  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - أتمتة المهام وإعدادها  
+- [Python في VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - إعداد تطوير Python
+- [التصحيح في VS Code](https://code.visualstudio.com/docs/editor/debugging) - تقنيات التصحيح المتقدمة
+- [مهام VS Code](https://code.visualstudio.com/docs/editor/tasks) - أتمتة وتكوين المهام
 
 ---
 
-**السابق**: [المختبر 08: الاختبار وتصحيح الأخطاء](../08-Testing/README.md)  
-**التالي**: [المختبر 10: استراتيجيات النشر](../10-Deployment/README.md)  
+**السابق**: [المختبر 08: الاختبار والتصحيح](../08-Testing/README.md)  
+**التالي**: [المختبر 10: استراتيجيات النشر](../10-Deployment/README.md)
 
 ---
 
-**إخلاء المسؤولية**:  
-تم ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى لتحقيق الدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي. للحصول على معلومات حاسمة، يُوصى بالاستعانة بترجمة بشرية احترافية. نحن غير مسؤولين عن أي سوء فهم أو تفسيرات خاطئة ناتجة عن استخدام هذه الترجمة.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**تنويه**:
+تمت ترجمة هذا المستند باستخدام خدمة الترجمة بالذكاء الاصطناعي [Co-op Translator](https://github.com/Azure/co-op-translator). بينما نسعى للدقة، يرجى العلم أن الترجمات الآلية قد تحتوي على أخطاء أو عدم دقة. يجب اعتبار المستند الأصلي بلغته الأصلية المصدر الرسمي والمعتمد. للمعلومات الهامة، يُنصح بالاستعانة بترجمة بشرية محترفة. نحن غير مسؤولين عن أي سوء فهم أو تفسير ناتج عن استخدام هذه الترجمة.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,62 +1,68 @@
-# Osiguravanje AI radnih tokova: Entra ID autentifikacija za MCP servere
+# Sigurnost AI Radnih Tijekova: Autentikacija Entra ID za Servere Model Context Protocola
+
+> [!NOTE]
+> Kod udaljenog servera u ovoj lekciji štiti naslijeđene `/sse` i `/message`
+> krajnje točke i cilja MCP `2025-11-25`. Zadržite njegove prakse identiteta i provjere tokena,
+> ali koristite `2026-07-28`-kompatibilni Streamable HTTP transport za nove
+> implementacije.
 
 ## Uvod
-Sigurnost vašeg Model Context Protocol (MCP) servera jednako je važna kao i zaključavanje ulaznih vrata vaše kuće. Ostaviti MCP server otvoren izlaže vaše alate i podatke neovlaštenom pristupu, što može dovesti do sigurnosnih propusta. Microsoft Entra ID pruža snažno rješenje za upravljanje identitetom i pristupom u oblaku, pomažući osigurati da samo ovlašteni korisnici i aplikacije mogu komunicirati s vašim MCP serverom. U ovom dijelu naučit ćete kako zaštititi svoje AI radne tokove korištenjem Entra ID autentifikacije.
+Osiguravanje vašeg Model Context Protocol (MCP) servera jednako je važno kao zaključavanje glavnih vrata vašeg doma. Ostaviti MCP server otvorenim izlaže vaše alate i podatke neovlaštenom pristupu, što može dovesti do sigurnosnih proboja. Microsoft Entra ID pruža snažno, u oblaku bazirano rješenje za upravljanje identitetom i pristupom, pomažući da samo ovlašteni korisnici i aplikacije mogu komunicirati s vašim MCP serverom. U ovom dijelu naučit ćete kako zaštititi svoje AI radne tijekove koristeći Entra ID autentikaciju.
 
 ## Ciljevi učenja
-Na kraju ovog dijela moći ćete:
+Do kraja ovog dijela, moći ćete:
 
-- Razumjeti važnost osiguranja MCP servera.
-- Objasniti osnove Microsoft Entra ID i OAuth 2.0 autentifikacije.
+- Razumjeti važnost osiguravanja MCP servera.
+- Objasniti osnove Microsoft Entra ID i OAuth 2.0 autentikacije.
 - Prepoznati razliku između javnih i povjerljivih klijenata.
-- Implementirati Entra ID autentifikaciju u lokalnim (javni klijent) i udaljenim (povjerljivi klijent) scenarijima MCP servera.
-- Primijeniti najbolje sigurnosne prakse pri razvoju AI radnih tokova.
+- Implementirati Entra ID autentikaciju u lokalnim (javni klijent) i udaljenim (povjerljivi klijent) MCP server scenarijima.
+- Primijeniti najbolje sigurnosne prakse pri razvoju AI radnih tijekova.
 
 ## Sigurnost i MCP
 
-Baš kao što ne biste ostavili vrata svoje kuće otključana, ne biste trebali ostaviti MCP server otvoren za pristup bilo kome. Sigurnost vaših AI radnih tokova ključna je za izgradnju robusnih, pouzdanih i sigurnih aplikacija. Ova glava će vas upoznati s korištenjem Microsoft Entra ID za osiguranje vaših MCP servera, osiguravajući da samo ovlašteni korisnici i aplikacije mogu pristupiti vašim alatima i podacima.
+Kao što ne biste ostavili vrata svog doma otključana, tako ne biste trebali ostaviti MCP server otvorenog za pristup bilo kome. Osiguravanje vaših AI radnih tijekova je ključno za izgradnju robusnih, pouzdanih i sigurnih aplikacija. Ovo poglavlje će vas upoznati s korištenjem Microsoft Entra ID za osiguranje vaših MCP servera, osiguravajući da samo ovlašteni korisnici i aplikacije mogu komunicirati s vašim alatima i podacima.
 
 ## Zašto je sigurnost važna za MCP servere
 
-Zamislite da vaš MCP server ima alat koji može slati e-poštu ili pristupiti bazi podataka korisnika. Nesiguran server značilo bi da bilo tko potencijalno može koristiti taj alat, što može dovesti do neovlaštenog pristupa podacima, neželjene pošte ili drugih zlonamjernih aktivnosti.
+Zamislite da vaš MCP server ima alat koji može slati e-poštu ili pristupiti bazi podataka kupaca. Nesiguran server bi značio da bi bilo tko mogao potencijalno koristiti taj alat, što vodi do neovlaštenog pristupa podacima, neželjene pošte ili drugih zlonamjernih aktivnosti.
 
-Implementacijom autentifikacije osiguravate da se svaki zahtjev prema vašem serveru provjerava, potvrđujući identitet korisnika ili aplikacije koja šalje zahtjev. Ovo je prvi i najvažniji korak u osiguranju vaših AI radnih tokova.
+Implementiranjem autentikacije osiguravate da je svaki zahtjev prema vašem serveru provjeren, potvrđujući identitet korisnika ili aplikacije koja šalje zahtjev. Ovo je prvi i najvažniji korak u osiguravanju vaših AI radnih tijekova.
 
 ## Uvod u Microsoft Entra ID
 
-[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) je usluga za upravljanje identitetom i pristupom u oblaku. Zamislite ga kao univerzalnog sigurnosnog čuvara za vaše aplikacije. Rukuje složenim procesom provjere korisničkog identiteta (autentifikacija) i određivanja što smiju raditi (autorizacija).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) je usluga upravljanja identitetom i pristupom bazirana na oblaku. Zamislite ga kao univerzalnog čuvara sigurnosti za vaše aplikacije. On se bavi složenim procesom provjere korisničkih identiteta (autentikacija) i određivanjem što im je dopušteno raditi (autorizacija).
 
-Korištenjem Entra ID-a možete:
+Korištenjem Entra ID, možete:
 
-- Omogućiti siguran prijavu korisnika.
+- Omogućiti siguran prijavljivanje za korisnike.
 - Zaštititi API-je i usluge.
-- Upravljati pravilima pristupa s jednog mjesta.
+- Upravljati politikama pristupa s jednog mjesta.
 
-Za MCP servere, Entra ID pruža robusno i široko prihvaćeno rješenje za upravljanje tko može pristupiti funkcionalnostima vašeg servera.
+Za MCP servere, Entra ID pruža robusno i široko pouzdano rješenje za upravljanje tko može pristupiti mogućnostima vašeg servera.
 
 ---
 
-## Razumijevanje Magije: Kako Entra ID autentifikacija funkcionira
+## Razumijevanje Čarolije: Kako Entra ID Autentikacija Funkcionira
 
-Entra ID koristi otvorene standarde poput **OAuth 2.0** za upravljanje autentifikacijom. Iako detalji mogu biti složeni, osnovni koncept je jednostavan i može se razumjeti kroz analogiju.
+Entra ID koristi otvorene standarde kao što je **OAuth 2.0** za rukovanje autentikacijom. Iako su detalji kompleksni, osnovni koncept je jednostavan i može se razumjeti pomoću analogije.
 
-### Blagi uvod u OAuth 2.0: Ključ službenika za parkiranje
+### Blagi uvod u OAuth 2.0: Ključ za parkiranje
 
-Zamislite OAuth 2.0 kao uslugu parkiranja za vaš auto. Kada stignete u restoran, ne dajete službeniku glavni ključ od auta. Umjesto toga, dajete mu **ključ službenika za parkiranje** koji ima ograničene ovlasti — može upaliti auto i zaključati vrata, ali ne može otvoriti prtljažnik ili pretinac za rukavice.
+Zamislite OAuth 2.0 kao uslugu valet parkiranja za vaš auto. Kada stignete u restoran, ne dajete valet parkera vaš glavni ključ. Umjesto toga, dajete **valet ključ** koji ima ograničena dopuštenja — može upaliti auto i zaključati vrata, ali ne može otvoriti prtljažnik ili pretinac za rukavice.
 
 U ovoj analogiji:
 
 - **Vi** ste **Korisnik**.
-- **Vaš auto** je **MCP Server** s vrijednim alatima i podacima.
-- **Službenik za parkiranje** je **Microsoft Entra ID**.
-- **Osoblje za parkiranje** je **MCP Klijent** (aplikacija koja pokušava pristupiti serveru).
-- **Ključ službenika za parkiranje** je **Access Token** (pristupni token).
+- **Vaš auto** je **MCP Server** sa svojim vrijednim alatima i podacima.
+- **Valet** je **Microsoft Entra ID**.
+- **Parkirni sluga** je **MCP Klijent** (aplikacija koja pokušava pristupiti serveru).
+- **Valet ključ** je **Pristupni token**.
 
-Pristupni token je siguran niz znakova koji MCP klijent prima od Entra ID-a nakon što se prijavite. Klijent zatim predaje taj token MCP serveru pri svakom zahtjevu. Server može provjeriti token kako bi potvrdio da je zahtjev legitiman i da klijent ima potrebne ovlasti, sve to bez da ikada mora rukovati vašim stvarnim vjerodajnicama (poput lozinke).
+Pristupni token je sigurnosni niz teksta koji MCP klijent prima od Entra ID nakon što se prijavite. Klijent zatim predaje taj token MCP serveru uz svaki zahtjev. Server može provjeriti token kako bi potvrdio da je zahtjev legitimni i da klijent ima potrebna dopuštenja, sve bez potrebe da server ikada rukuje vašim stvarnim vjerodajnicama (kao što je lozinka).
 
-### Tijek autentifikacije
+### Tijek Autentikacije
 
-Evo kako proces funkcionira u praksi:
+Evo kako taj proces funkcionira u praksi:
 
 ```mermaid
 sequenceDiagram
@@ -68,64 +74,64 @@ sequenceDiagram
     Client->>+User: Molimo prijavite se za nastavak.
     User->>+Entra: Unosi vjerodajnice (korisničko ime/lozinku).
     Entra-->>Client: Evo vašeg pristupnog tokena.
-    User-->>-Client: (Vraća se aplikaciji)
+    User-->>-Client: (Vraća se u aplikaciju)
 
-    Client->>+Server: Trebam koristiti alat. Evo mog pristupnog tokena.
+    Client->>+Server: Moram koristiti alat. Evo mog pristupnog tokena.
     Server->>+Entra: Je li ovaj pristupni token valjan?
-    Entra-->>-Server: Da, valjan je.
+    Entra-->>-Server: Da, jest.
     Server-->>-Client: Token je valjan. Evo rezultata alata.
 ```
 
-### Uvod u Microsoft Authentication Library (MSAL)
+### Predstavljanje Microsoft Authentication Library (MSAL)
 
-Prije nego što uđemo u kod, važno je upoznati ključni dio koji ćete vidjeti u primjerima: **Microsoft Authentication Library (MSAL)**.
+Prije nego zaronimo u kod, važno je predstaviti ključni komponentu koju ćete vidjeti u primjerima: **Microsoft Authentication Library (MSAL)**.
 
-MSAL je biblioteka koju je razvio Microsoft i koja znatno olakšava programerima rukovanje autentifikacijom. Umjesto da sami napišete sav složeni kod koji upravlja sigurnosnim tokenima, prijavama i osvježavanjem sesija, MSAL to preuzima na sebe.
+MSAL je knjižnica koju je razvio Microsoft i koja znatno olakšava programerima rukovanje autentikacijom. Umjesto da sami pišete sav složeni kod za upravljanje sigurnosnim tokenima, prijavama i osvježavanjem sesija, MSAL preuzima taj težak posao.
 
-Korištenje biblioteke poput MSAL se snažno preporučuje jer:
+Korištenje knjižnice poput MSAL-a je jako preporučljivo jer:
 
 - **Sigurna je:** Implementira industrijske standarde i najbolje sigurnosne prakse, smanjujući rizik od ranjivosti u vašem kodu.
-- **Pojednostavljuje razvoj:** Apstrahira složenost OAuth 2.0 i OpenID Connect protokola, omogućujući vam da dodate robusnu autentifikaciju u aplikaciju uz svega nekoliko linija koda.
-- **Održava se:** Microsoft aktivno održava i ažurira MSAL kako bi se nosio s novim sigurnosnim prijetnjama i promjenama platformi.
+- **Pojednostavljuje razvoj:** Apstrahira složenost OAuth 2.0 i OpenID Connect protokola, omogućujući vam da s nekoliko redaka koda dodate robusnu autentikaciju u vašu aplikaciju.
+- **Održava se:** Microsoft aktivno održava i ažurira MSAL kako bi riješio nove sigurnosne prijetnje i promjene platformi.
 
-MSAL podržava širok raspon programskih jezika i razvojnih okvira, uključujući .NET, JavaScript/TypeScript, Python, Java, Go, kao i mobilne platforme poput iOS-a i Androida. To znači da možete koristiti iste dosljedne obrasce autentifikacije kroz cijeli svoj tehnološki sloj.
+MSAL podržava veliki broj jezika i razvojnih okvira, uključujući .NET, JavaScript/TypeScript, Python, Java, Go, kao i mobilne platforme poput iOS-a i Androida. To znači da možete koristiti iste konzistentne obrasce autentikacije kroz cijeli vaš tehnološki sloj.
 
-Za više informacija o MSAL-u, možete pogledati službenu [MSAL opis dokumentacije](https://learn.microsoft.com/entra/identity-platform/msal-overview).
+Za više informacija o MSAL-u, možete pogledati službenu [MSAL dokumentaciju za pregled](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## Osiguravanje vašeg MCP servera s Entra ID: korak po korak vodič
+## Osiguravanje vašeg MCP servera pomoću Entra ID: Vodič korak po korak
 
-Sada ćemo proći kroz kako osigurati lokalni MCP server (onaj koji komunicira preko `stdio`) koristeći Entra ID. Ovaj primjer koristi **javni klijent**, što je prikladno za aplikacije koje se izvode na korisničkom računalu, poput desktop aplikacije ili lokalnog razvojog servera.
+Sada, prođimo kroz proces osiguravanja lokalnog MCP servera (koji komunicira preko `stdio`) koristeći Entra ID. Ovaj primjer koristi **javni klijent**, prikladan za aplikacije koje se pokreću na korisnikovom računalu, poput desktop aplikacije ili lokalnog razvojog servera.
 
 ### Scenarij 1: Osiguravanje lokalnog MCP servera (s javnim klijentom)
 
-U ovom scenariju pogledat ćemo MCP server koji se izvodi lokalno, komunicira preko `stdio` i koristi Entra ID za autentifikaciju korisnika prije nego što dopusti pristup njegovim alatima. Server će imati jedan alat koji dohvaća korisničke informacije s Microsoft Graph API-ja.
+U ovom scenariju, razmatramo MCP server koji radi lokalno, komunicira preko `stdio` i koristi Entra ID za autentikaciju korisnika prije nego što dopušta pristup svojim alatima. Server će imati jedan alat koji dohvaća informacije o korisnikovom profilu s Microsoft Graph API-ja.
 
 #### 1. Postavljanje aplikacije u Entra ID
 
-Prije nego što napišete bilo kakav kod, potrebno je registrirati vašu aplikaciju u Microsoft Entra ID. To obavještava Entra ID o vašoj aplikaciji i daje joj dozvolu za korištenje autentifikacijskog servisa.
+Prije pisanja bilo kakvog koda, potrebno je registrirati vašu aplikaciju u Microsoft Entra ID. Time obavještavate Entra ID o vašoj aplikaciji i dajete joj dopuštenje da koristi uslugu autentikacije.
 
-1. Otvorite **[Microsoft Entra portal](https://entra.microsoft.com/)**.
-2. Idite na **App registrations** i kliknite **New registration**.
-3. Dajte aplikaciji ime (npr. "My Local MCP Server").
-4. Za **Supported account types** odaberite **Accounts in this organizational directory only**.
-5. Polje **Redirect URI** možete ostaviti praznim za ovaj primjer.
-6. Kliknite **Register**.
+1. Idite na **[Microsoft Entra portal](https://entra.microsoft.com/)**.
+2. Idite na **Registracije aplikacija** i kliknite **Nova registracija**.
+3. Dajte aplikaciji ime (npr. "Moj lokalni MCP server").
+4. Za **Vrste podržanih računa** odaberite **Računi samo u ovom organizacijskom direktoriju**.
+5. Za ovaj primjer možete ostaviti **URI preusmjeravanja** praznim.
+6. Kliknite **Registriraj**.
 
-Nakon registracije, zabilježite **Application (client) ID** i **Directory (tenant) ID**. Trebat će vam u kodu.
+Nakon registracije, zabilježite **ID aplikacije (klijenta)** i **ID direktorija (najmodavca)**. Trebat će vam u kodu.
 
-#### 2. Kod: analiza
+#### 2. Kod: Pregled
 
-Pogledajmo ključne dijelove koda koji upravljaju autentifikacijom. Cijeli kod ovog primjera dostupan je u [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) mapi na [mcp-auth-servers GitHub repozitoriju](https://github.com/Azure-Samples/mcp-auth-servers).
+Pogledajmo ključne dijelove koda koji upravljaju autentikacijom. Cijeli kod ovog primjera dostupan je u mapi [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) GitHub spremišta [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-Ova klasa upravlja interakcijom s Entra ID-om.
+Ova klasa je odgovorna za rukovanje interakcijom s Entra ID.
 
-- **`CreateAsync`**: Ova metoda inicijalizira `PublicClientApplication` iz MSAL-a. Konfigurirana je s vašim `clientId` i `tenantId` aplikacije.
-- **`WithBroker`**: Omogućava korištenje posrednika (kao Windows Web Account Manager), što pruža sigurnije i neprimjetnije iskustvo jedinstvene prijave.
-- **`AcquireTokenAsync`**: Osnovna metoda. Prvo pokušava dobiti token tiho (bez ponovne prijave korisnika ako već postoji važeća sesija). Ako tiho preuzimanje tokena ne uspije, tražit će od korisnika interaktivnu prijavu.
+- **`CreateAsync`**: Ova metoda inicijalizira `PublicClientApplication` iz MSAL-a (Microsoft Authentication Library). Konfigurirana je s `clientId` i `tenantId` vaše aplikacije.
+- **`WithBroker`**: Omogućava korištenje brokera (kao što je Windows Web Account Manager), što pruža sigurnije i besprijekorno jedinstveno prijavljivanje (SSO).
+- **`AcquireTokenAsync`**: Ovo je osnovna metoda. Prvo pokušava tiho dohvatiti token (što znači da korisnik neće morati ponovno prijavljivati ako već postoji valjana sesija). Ako se tihim putem ne može dobiti token, od korisnika će se tražiti interaktivno prijavljivanje.
 
 ```csharp
 // Simplified for clarity
@@ -175,10 +181,10 @@ public async Task<string> AcquireTokenAsync()
 
 **`Program.cs`**
 
-Ovdje se postavlja MCP server i integrira servis za autentifikaciju.
+Ovdje se postavlja MCP server i integrira usluga autentikacije.
 
-- **`AddSingleton<AuthenticationService>`**: Registrira `AuthenticationService` u kontejner za injekciju ovisnosti, kako bi ga drugi dijelovi aplikacije (npr. naš alat) mogli koristiti.
-- **`GetUserDetailsFromGraph` alat**: Ovaj alat traži instancu `AuthenticationService`. Prije bilo kakvog postupka, poziva `authService.AcquireTokenAsync()` da dobije važeći pristupni token. Ako je autentifikacija uspješna, koristi token za poziv Microsoft Graph API-ja radi dohvata korisničkih detalja.
+- **`AddSingleton<AuthenticationService>`**: Registrira `AuthenticationService` u kontejner za ovisnosti, tako da druge dijelove aplikacije (kao što je naš alat) mogu koristiti ovu uslugu.
+- **Alat `GetUserDetailsFromGraph`**: Ovaj alat zahtijeva instancu `AuthenticationService`. Prije bilo kakvog rada poziva `authService.AcquireTokenAsync()` za dobivanje valjanog pristupnog tokena. Ako je autentikacija uspješna, koristi taj token za pozivanje Microsoft Graph API-ja i dohvaća podatke korisnika.
 
 ```csharp
 // Simplified for clarity
@@ -208,46 +214,46 @@ public static async Task<string> GetUserDetailsFromGraph(
 
 #### 3. Kako sve funkcionira zajedno
 
-1. Kad MCP klijent pokušava koristiti alat `GetUserDetailsFromGraph`, alat prvo poziva `AcquireTokenAsync`.
-2. `AcquireTokenAsync` aktivira MSAL biblioteku da provjeri postoji li važeći token.
-3. Ako token nije pronađen, MSAL preko posrednika traži od korisnika da se prijavi sa svojim Entra ID računom.
+1. Kada MCP klijent pokuša koristiti alat `GetUserDetailsFromGraph`, alat prvo poziva `AcquireTokenAsync`.
+2. `AcquireTokenAsync` pokreće MSAL knjižnicu da provjeri postoji li valjani token.
+3. Ako token nije pronađen, MSAL preko brokera traži od korisnika da se prijavi sa svojim Entra ID računom.
 4. Nakon prijave, Entra ID izdaje pristupni token.
 5. Alat prima token i koristi ga za siguran poziv Microsoft Graph API-ja.
-6. Korisnički detalji se vraćaju MCP klijentu.
+6. Podaci o korisniku vraćaju se MCP klijentu.
 
-Ovim se procesom osigurava da samo autentificirani korisnici mogu koristiti alat, učinkovito osiguravajući vaš lokalni MCP server.
+Ovaj proces osigurava da samo autentificirani korisnici mogu koristiti alat, učinkovito osiguravajući vaš lokalni MCP server.
 
 ### Scenarij 2: Osiguravanje udaljenog MCP servera (s povjerljivim klijentom)
 
-Kada vaš MCP server radi na udaljenom stroju (npr. cloud serveru) i komunicira preko protokola poput HTTP streaminga, sigurnosni zahtjevi su drugačiji. U tom slučaju trebate koristiti **povjerljivog klijenta** i **Authorization Code Flow**. Ovo je sigurnija metoda jer se tajne aplikacije nikada ne izlažu pregledniku.
+Kada vaš MCP server radi na udaljenom računalu (poput cloud servera) i komunicira preko protokola kao što je HTTP Streaming, sigurnosni zahtjevi su drugačiji. U tom slučaju trebate koristiti **povjerljivog klijenta** i **Authorization Code Flow**. Ovo je sigurnija metoda jer se tajne aplikacije nikad ne izlažu pregledniku.
 
-Ovaj primjer koristi MCP server baziran na TypeScript-u koji koristi Express.js za rukovanje HTTP zahtjevima.
+Ovaj primjer koristi MCP server temeljen na TypeScriptu koji koristi Express.js za rukovanje HTTP zahtjevima.
 
 #### 1. Postavljanje aplikacije u Entra ID
 
-Postavljanje u Entra ID je slično kao kod javnog klijenta, ali s jednom ključnom razlikom: morate stvoriti **client secret** (tajnu klijenta).
+Postavljanje u Entra ID je slično kao za javnog klijenta, ali s jednom ključnom razlikom: potrebno je stvoriti **tajnu klijenta (client secret)**.
 
-1. Otvorite **[Microsoft Entra portal](https://entra.microsoft.com/)**.
-2. U registraciji vaše aplikacije idite na karticu **Certificates & secrets**.
-3. Kliknite **New client secret**, dajte joj opis i kliknite **Add**.
-4. **Važno:** Odmah kopirajte vrijednost tajne. Nećete je moći ponovo vidjeti.
-5. Također trebate konfigurirati **Redirect URI**. Idite na karticu **Authentication**, kliknite **Add a platform**, odaberite **Web** i unesite redirect URI za vašu aplikaciju (npr. `http://localhost:3001/auth/callback`).
+1. Idite na **[Microsoft Entra portal](https://entra.microsoft.com/)**.
+2. U registraciji aplikacije idite na karticu **Sertifikati i tajne**.
+3. Kliknite **Nova tajna klijenta**, dajte opis i kliknite **Dodaj**.
+4. **Važno:** Odmah kopirajte vrijednost tajne. Nećete je moći više vidjeti.
+5. Također, morate konfigurirati **URI preusmjeravanja**. Idite na karticu **Autentikacija**, kliknite **Dodaj platformu**, odaberite **Web** i unesite URI preusmjeravanja za vašu aplikaciju (npr. `http://localhost:3001/auth/callback`).
 
-> **⚠️ Važna sigurnosna napomena:** Za produkcijske aplikacije Microsoft snažno preporučuje korištenje metoda autentifikacije bez tajni (secretless), poput **Managed Identity** ili **Workload Identity Federation** umjesto klijentskih tajni. Klijentske tajne predstavljaju sigurnosni rizik jer se mogu otkriti ili kompromitirati. Managed identity pristupi nude sigurniji način uklanjanjem potrebe za pohranom vjerodajnica u vašem kodu ili konfiguraciji.
+> **⚠️ Važna sigurnosna napomena:** Za produkcijske aplikacije Microsoft snažno preporučuje korištenje metoda autentikacije bez tajni kao što su **Managed Identity** ili **Workload Identity Federation** umjesto tajni klijenata. Tajne klijenata predstavljaju sigurnosni rizik jer se mogu izložiti ili kompromitirati. Managed identiteti nude sigurniji pristup eliminiranjem potrebe za pohranom vjerodajnica u kod ili konfiguraciju.
 >
-> Za više informacija o managed identitetima i njihovoj implementaciji pogledajte [Pregled managed identities for Azure resources](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> Za više informacija o upravljanim identitetima i načinu implementacije, pogledajte [Pregled upravljanih identiteta za Azure resurse](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
 
-#### 2. Kod: analiza
+#### 2. Kod: Pregled
 
-Ovaj primjer koristi pristup temeljen na sesiji. Kada se korisnik autentificira, server pohranjuje pristupni token i osvježavajući token u sesiju i daje korisniku sesijski token. Taj sesijski token se onda koristi za daljnje zahtjeve. Cijeli kod ovog primjera dostupan je u [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) mapi na [mcp-auth-servers GitHub repozitoriju](https://github.com/Azure-Samples/mcp-auth-servers).
+Ovaj primjer koristi pristup temeljen na sesiji. Kada se korisnik autentificira, server pohranjuje pristupni token i osvježavajući token u sesiju te korisniku daje token sesije. Taj token sesije se onda koristi za sljedeće zahtjeve. Cijeli kod ovog primjera dostupan je u mapi [Entra ID - Povjerljivi klijent](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) GitHub spremišta [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
-Ova datoteka postavlja Express server i MCP transportni sloj.
+Ova datoteka postavlja Express server i MCP transport sloj.
 
-- **`requireBearerAuth`**: Middleware koji štiti `/sse` i `/message` endpointove. Provjerava postoji li valjani bearer token u zaglavlju `Authorization`.
-- **`EntraIdServerAuthProvider`**: Prilagođena klasa koja implementira sučelje `McpServerAuthorizationProvider`. Odgovorna je za upravljanje OAuth 2.0 tijekovima.
-- **`/auth/callback`**: Endpoint koji rukuje preusmjeravanjem s Entra ID-a nakon korisnikove autentifikacije. Razmjenjuje authorization code za pristupni i osvježavajući token.
+- **`requireBearerAuth`**: Ovo je middleware koji štiti `/sse` i `/message` krajnje točke. Provjerava valjani bearer token u `Authorization` zaglavlju zahtjeva.
+- **`EntraIdServerAuthProvider`**: Ovo je prilagođena klasa koja implementira interfejs `McpServerAuthorizationProvider`. Odgovorna je za rukovanje OAuth 2.0 tokom.
+- **`/auth/callback`**: Ova krajnja točka rukuje preusmjeravanjem s Entra ID nakon što se korisnik autentificira. Razmjenjuje autorizacijski kod za pristupni i osvježavajući token.
 
 ```typescript
 // Pojednostavljeno radi jasnoće
@@ -255,7 +261,7 @@ const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
 
-// Zaštitite SSE krajnju točku
+// Zaštitite SSE endpoint
 app.get("/sse", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
@@ -263,7 +269,7 @@ app.get("/sse", requireBearerAuth({
   // ... povežite se s transportom ...
 });
 
-// Zaštitite krajnju točku poruke
+// Zaštitite endpoint poruke
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
@@ -282,7 +288,7 @@ app.get("/auth/callback", (req, res) => {
 
 **`Tools.ts`**
 
-Ovdje su definirani alati koje MCP server pruža. Alat `getUserDetails` je sličan onom iz prethodnog primjera, ali pristupni token dohvaća iz sesije.
+Ova datoteka definira alate koje MCP server pruža. Alat `getUserDetails` je sličan onom iz prethodnog primjera, ali pristupni token dobiva iz sesije.
 
 ```typescript
 // Pojednostavljeno radi jasnoće
@@ -308,114 +314,116 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const user = await graphClient.api('/me').get();
 
-    // ... vrati detalje korisnika ...
+    // ... vrati podatke o korisniku ...
   }
 });
 ```
 
 **`auth/EntraIdServerAuthProvider.ts`**
 
-Ova klasa upravlja logikom:
+Ova klasa upravlja logikom za:
 
-- Preusmjeravanja korisnika na Entra ID stranicu za prijavu.
-- Razmjene authorization code za pristupni token.
-- Pohrane tokena u `tokenStore`.
-- Osvježavanja pristupnog tokena kad istekne.
+- Preusmjeravanje korisnika na Entra ID stranicu za prijavu.
+- Razmjenu autorizacijskog koda za pristupni token.
+- Pohranu tokena u `tokenStore`.
+- Osvježavanje pristupnog tokena kada istekne.
 
-#### 3. Kako to sve funkcionira zajedno
 
-1. Kada korisnik prvi put pokuša povezati se s MCP serverom, `requireBearerAuth` middleware uoči da nema važeću sesiju i preusmjeri ga na Entra ID stranicu za prijavu.
-2. Korisnik se prijavljuje sa svojim Entra ID računom.
-3. Entra ID preusmjerava korisnika natrag na `/auth/callback` endpoint s autorizacijskim kodom.  
-4. Poslužitelj zamjenjuje kod za pristupni token i refresh token, pohranjuje ih i stvara sesijski token koji se šalje klijentu.  
-5. Klijent sada može koristiti ovaj sesijski token u zaglavlju `Authorization` za sve buduće zahtjeve prema MCP poslužitelju.  
-6. Kad se pozove alat `getUserDetails`, koristi sesijski token za dohvat Entra ID pristupnog tokena, a zatim koristi taj token za poziv Microsoft Graph API-ja.
+#### 3. Kako sve to funkcionira zajedno
 
-Ovaj tijek je složeniji od toka javnog klijenta, ali je potreban za internetom dostupne endpointove. Budući da su udaljeni MCP poslužitelji dostupni preko javnog interneta, trebaju jače sigurnosne mjere kako bi se zaštitili od neovlaštenog pristupa i potencijalnih napada.
+1. Kada se korisnik prvi put pokuša povezati na MCP poslužitelj, middleware `requireBearerAuth` će uočiti da nema valjanu sesiju i preusmjerit će ga na stranicu za prijavu Entra ID-a.
+2. Korisnik se prijavljuje svojim Entra ID računom.
+3. Entra ID preusmjerava korisnika natrag na `/auth/callback` krajnju točku s autorizacijskim kodom.
+4. Poslužitelj zamjenjuje kod za pristupni token i osvježavajući token, pohranjuje ih i stvara token sesije koji se šalje klijentu.
+5. Klijent sada može koristiti taj token sesije u zaglavlju `Authorization` za sve buduće zahtjeve MCP poslužitelju.
+6. Kada se pozove alat `getUserDetails`, on koristi token sesije da potraži pristupni token Entra ID-a, a zatim ga koristi za pozivanje Microsoft Graph API-ja.
+
+Ovaj tijek je složeniji od tijeka javnog klijenta, ali je potreban za krajnje točke javnog interneta. Budući da su udaljeni MCP poslužitelji dostupni preko javnog interneta, potrebne su jače sigurnosne mjere za zaštitu od neautoriziranog pristupa i potencijalnih napada.
 
 
 ## Najbolje sigurnosne prakse
 
-- **Uvijek koristite HTTPS**: Šifrirajte komunikaciju između klijenta i poslužitelja kako biste zaštitili tokene od presretanja.  
-- **Implementirajte kontrolu pristupa temeljenu na ulogama (RBAC)**: Ne provjeravajte samo *je li* korisnik autentificiran; provjerite *što* smije raditi. Možete definirati uloge u Entra ID-u i provjeravati ih u vašem MCP poslužitelju.  
-- **Pratite i nadgledajte**: Zabilježite sve događaje autentifikacije kako biste mogli otkriti i reagirati na sumnjive aktivnosti.  
-- **Rukovanje ograničenjem i usporavanjem zahtjeva**: Microsoft Graph i drugi API-ji provode ograničenja broja zahtjeva kako bi spriječili zlouporabu. Implementirajte eksponencijalni backoff i logiku ponovnog pokušaja u vašem MCP poslužitelju kako biste na primjeren način obradili HTTP 429 (Previše zahtjeva) odgovore. Razmotrite keširanje često pristupanih podataka kako biste smanjili pozive API-u.  
-- **Sigurna pohrana tokena**: Pohranite pristupne i osvježavajuće tokene sigurno. Za lokalne aplikacije koristite sigurnosne mehanizme sustava. Za poslužiteljske aplikacije razmotrite korištenje enkriptirane pohrane ili sigurnih usluga upravljanja ključevima poput Azure Key Vault-a.  
-- **Rukovanje istekom tokena**: Pristupni tokeni imaju ograničen životni vijek. Implementirajte automatsko osvježavanje tokena pomoću refresh tokena kako bi korisničko iskustvo bilo neometano bez potrebe za ponovnim prijavljivanjem.  
-- **Razmotrite korištenje Azure API Managementa**: Dok implementacija sigurnosti direktno u vašem MCP poslužitelju pruža finu kontrolu, API Gateway-jevi poput Azure API Managementa mogu automatski rukovati mnogim sigurnosnim pitanjima, uključujući autentifikaciju, autorizaciju, ograničenje broja zahtjeva i nadzor. Oni pružaju centralizirani sloj sigurnosti koji stoji između vaših klijenata i MCP poslužitelja. Za više detalja o korištenju API Gateway-ja s MCP, pogledajte naš [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Uvijek koristite HTTPS**: Šifrirajte komunikaciju između klijenta i poslužitelja kako biste zaštitili tokene od presretanja.
+- **Implementirajte kontrolu pristupa temeljenu na ulogama (RBAC)**: Nemojte samo provjeravati *je li* korisnik autentificiran; provjerite *što* mu je dopušteno raditi. U Entra ID-u možete definirati uloge i provjeravati ih na MCP poslužitelju.
+- **Nadzor i revizija**: Zapisujte sve događaje autentifikacije kako biste mogli otkriti i reagirati na sumnjive aktivnosti.
+- **Rukovanje ograničenjima i prekoračenjima brzine**: Microsoft Graph i ostali API-ji implementiraju ograničenja brzine da spriječe zloupotrebu. Implementirajte eksponencijalni povratak i logiku ponovnog pokušaja na vašem MCP poslužitelju kako biste elegantno rukovali odgovorima HTTP 429 (Previše zahtjeva). Razmotrite keširanje često pristupanih podataka za smanjenje poziva API-ju.
+- **Sigurna pohrana tokena**: Sigurno pohranite pristupne i obnoviteljske tokene. Za lokalne aplikacije koristite sigurnosne mehanizme sustava. Za poslužiteljske aplikacije razmotrite korištenje šifrirane pohrane ili servisa za upravljanje ključevima poput Azure Key Vaulta.
+- **Rukovanje istekom tokena**: Pristupni tokeni imaju ograničeno trajanje. Implementirajte automatsko osvježavanje tokena pomoću obnoviteljskih tokena kako biste održali neprimjetno korisničko iskustvo bez potrebe za ponovnom autentifikacijom.
+- **Razmotrite korištenje Azure API Managementa**: Iako implementacija sigurnosti izravno u vašem MCP poslužitelju daje vam finu kontrolu, API Gatewayji poput Azure API Managementa mogu mnoge ove sigurnosne aspekte automatski preuzeti, uključujući autentifikaciju, autorizaciju, ograničavanje brzine i nadzor. Oni pružaju centralizirani sigurnosni sloj između vaših klijenata i MCP poslužitelja. Za više detalja o korištenju API Gatewayja s MCP-jem pogledajte naš [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
 
 
-## Ključne točke
+## Ključni sažeci
 
-- Zaštita vašeg MCP poslužitelja ključna je za sigurnost vaših podataka i alata.  
-- Microsoft Entra ID pruža robusno i skalabilno rješenje za autentifikaciju i autorizaciju.  
-- Koristite **javnog klijenta** za lokalne aplikacije i **povjerljivog klijenta** za udaljene poslužitelje.  
-- **Authorization Code Flow** je najsigurnija opcija za web aplikacije.  
+- Sigurnost vašeg MCP poslužitelja od presudne je važnosti za zaštitu podataka i alata.
+- Microsoft Entra ID nudi robusno i skalabilno rješenje za autentifikaciju i autorizaciju.
+- Koristite **javni klijent** za lokalne aplikacije i **povjerljivi klijent** za udaljene poslužitelje.
+- **Authorization Code Flow** je najsigurnija opcija za web aplikacije.
 
 
 ## Vježba
 
-1. Razmislite o MCP poslužitelju koji biste mogli izgraditi. Bi li to bio lokalni ili udaljeni poslužitelj?  
-2. Na temelju vašeg odgovora, biste li koristili javnog ili povjerljivog klijenta?  
-3. Koju bi dozvolu vaš MCP poslužitelj tražio za izvođenje radnji prema Microsoft Graphu?  
+1. Razmislite o MCP poslužitelju koji biste mogli izraditi. Bi li to bio lokalni ili udaljeni poslužitelj?
+2. Na temelju odgovora, biste li koristili javnog ili povjerljivog klijenta?
+3. Koju bi dozvolu vaš MCP poslužitelj tražio za izvođenje radnji prema Microsoft Graphu?
 
 
 ## Praktične vježbe
 
-### Vježba 1: Registracija aplikacije u Entra ID-u  
-Navigirajte do Microsoft Entra portala.  
-Registrirajte novu aplikaciju za vaš MCP poslužitelj.  
+### Vježba 1: Registrirajte aplikaciju u Entra ID-u
+Idite na Microsoft Entra portal.
+Registrirajte novu aplikaciju za svoj MCP poslužitelj.
 Zabilježite Application (client) ID i Directory (tenant) ID.
 
-### Vježba 2: Osiguranje lokalnog MCP poslužitelja (javnog klijenta)  
-- Slijedite primjer koda za integraciju MSAL-a (Microsoft Authentication Library) za autentifikaciju korisnika.  
-- Testirajte autentifikacijski tijek pozivom MCP alata koji dohvaća detalje korisnika iz Microsoft Grapha.
+### Vježba 2: Osigurajte lokalni MCP poslužitelj (javni klijent)
+- Slijedite primjer koda za integraciju MSAL-a (Microsoft Authentication Library) za autentifikaciju korisnika.
+- Testirajte tijek autentifikacije pozivom MCP alata koji dohvaća detalje korisnika iz Microsoft Grapha.
 
-### Vježba 3: Osiguranje udaljenog MCP poslužitelja (povjerljivog klijenta)  
-- Registrirajte povjerljivog klijenta u Entra ID-u i kreirajte klijentsku tajnu.  
-- Konfigurirajte svoj Express.js MCP poslužitelj za korištenje Authorization Code Flow-a.  
-- Testirajte zaštićene endpointove i potvrdite pristup temeljen na tokenu.
+### Vježba 3: Osigurajte udaljeni MCP poslužitelj (povjerljivi klijent)
+- Registrirajte povjerljivog klijenta u Entra ID-u i stvorite klijentsku tajnu.
+- Konfigurirajte svoj Express.js MCP poslužitelj za korištenje Authorization Code Flow.
+- Testirajte zaštićene krajnje točke i potvrdite pristup temeljen na tokenima.
 
-### Vježba 4: Primjena najboljih sigurnosnih praksi  
-- Omogućite HTTPS za lokalni ili udaljeni poslužitelj.  
-- Implementirajte kontrolu pristupa temeljenu na ulogama (RBAC) u logici poslužitelja.  
+### Vježba 4: Primijenite najbolje sigurnosne prakse
+- Omogućite HTTPS za lokalni ili udaljeni poslužitelj.
+- Implementirajte kontrolu pristupa temeljenu na ulogama (RBAC) u logiku poslužitelja.
 - Dodajte rukovanje istekom tokena i sigurnu pohranu tokena.
 
 ## Resursi
 
-1. **MSAL Pregledna dokumentacija**  
-   Naučite kako Microsoft Authentication Library (MSAL) omogućuje sigurnu akviziciju tokena na više platformi:  
+1. **MSAL Pregled Dokumentacije**  
+   Naučite kako Microsoft Authentication Library (MSAL) omogućuje sigurnu nabavu tokena na različitim platformama:  
    [MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
 2. **Azure-Samples/mcp-auth-servers GitHub repozitorij**  
-   Referentne implementacije MCP poslužitelja koje prikazuju tokove autentifikacije:  
+   Referentne implementacije MCP poslužitelja koji demonstriraju tokove autentifikacije:  
    [Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
 
-3. **Pregled Managed Identities for Azure Resources**  
-   Razumijte kako ukloniti tajne korištenjem sustavom ili korisnikom dodijeljenih upravljanih identiteta:  
+3. **Pregled upravljanih identiteta za Azure resurse**  
+   Razumite kako eliminirati tajne korištenjem sustavom ili korisnikom dodijeljenih upravljanih identiteta:  
    [Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
 4. **Azure API Management: Vaš Auth Gateway za MCP poslužitelje**  
-   Detaljan pregled korištenja APIM-a kao sigurnosnog OAuth2 gateway-ja za MCP poslužitelje:  
+   Detaljan prikaz korištenja APIM-a kao sigurnog OAuth2 gatewayja za MCP poslužitelje:  
    [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
-5. **Microsoft Graph Popis dozvola**  
+5. **Referenca dozvola za Microsoft Graph**  
    Sveobuhvatan popis delegiranih i aplikacijskih dozvola za Microsoft Graph:  
    [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
+
 ## Ishodi učenja
-Nakon završetka ovog dijela moći ćete:
+Nakon dovršetka ovog dijela moći ćete:
 
-- Objasniti zašto je autentifikacija ključna za MCP poslužitelje i AI tijekove rada.  
-- Postaviti i konfigurirati Entra ID autentifikaciju za lokalne i udaljene MCP poslužitelje.  
-- Izabrati odgovarajući tip klijenta (javnog ili povjerljivog) ovisno o implementaciji poslužitelja.  
-- Implementirati sigurne prakse kodiranja, uključujući pohranu tokena i autorizaciju temeljenu na ulogama.  
-- S pouzdanjem zaštititi vaš MCP poslužitelj i njegove alate od neovlaštenog pristupa.
+- Objasniti zašto je autentifikacija ključna za MCP poslužitelje i AI tijekove rada.
+- Postaviti i konfigurirati Entra ID autentifikaciju za lokalne i udaljene scenarije MCP poslužitelja.
+- Odabrati odgovarajući tip klijenta (javni ili povjerljivi) na temelju implementacije poslužitelja.
+- Implementirati sigurne prakse kodiranja, uključujući pohranu tokena i autorizaciju temeljenu na ulogama.
+- Pouzdano zaštititi svoj MCP poslužitelj i njegove alate od neautoriziranog pristupa.
 
-## Što slijedi
+## Što dalje 
 
-- [5.13 Model Context Protocol (MCP) Integracija s Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
+- [5.13 Integracija protokola Model Context (MCP) s Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
 
 ---
 

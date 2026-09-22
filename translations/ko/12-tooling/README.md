@@ -2,30 +2,32 @@
 
 ## 🧠 MCP 데이터베이스 통합 학습 경로 개요
 
-여기에서는 MCP를 사용하는 도구들을 어떻게 사용하는지 배울 수 있습니다. MCP 서버를 이 도구들과 연결하면 도구 사용 경험이 향상됩니다.
+여기서는 MCP를 사용하는 도구를 사용하는 방법을 배웁니다. MCP 서버를 이 도구에 연결할수록 도구 사용 경험이 향상됩니다.
 
 ## 🔗 공식 MCP 리소스
 
 - 📘 [MCP 문서](https://modelcontextprotocol.io/) – 자세한 튜토리얼 및 사용자 가이드
-- 📜 [MCP 사양 (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – 프로토콜 아키텍처 및 기술 참조
-- 🧑‍💻 [MCP GitHub 저장소](https://github.com/modelcontextprotocol) – 오픈 소스 SDK, 도구 및 코드 샘플
-- 🌐 [MCP 커뮤니티](https://github.com/orgs/modelcontextprotocol/discussions) – 토론에 참여하고 커뮤니티에 기여하기
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 보안 모범 사례 및 위험 완화
+- 📜 [MCP 사양 (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – 프로토콜 아키텍처 및 기술 참조
+- 🧑‍💻 [MCP GitHub 저장소](https://github.com/modelcontextprotocol) – 오픈 소스 SDK, 도구, 코드 샘플
+- 🌐 [MCP 커뮤니티](https://github.com/orgs/modelcontextprotocol/discussions) – 토론에 참여하고 커뮤니티에 기여하세요
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – 보안 모범 사례 및 위험 완화책
+
+
 
 ## 🌟 커뮤니티 및 지원
 
 ### 도움 받기
 
-- **Azure AI Discord**: [전문가 지원을 위해 참여하기](https://discord.com/invite/ByRwuEEgH4)
-- **MCP 커뮤니티**: [보다 넓은 MCP 토론에 참여하기](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [전문가 지원을 위해 가입하기](https://discord.com/invite/ByRwuEEgH4)
+- **MCP 커뮤니티**: [넓은 MCP 토론에 참여하기](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 시작할 준비가 되었나요?
+## 🚀 시작할 준비가 되셨나요?
 
-**[GitHub Copilot 앱](./01-copilot-app/README.md)** 으로 여정을 시작하세요
+<strong>[GitHub Copilot 앱](./01-copilot-app/README.md)</strong>으로 여정을 시작하세요
 
 ---
 
-*MCP를 사용하여 이 도구들을 마스터하면 생산성이 향상되고 원활한 통합이 가능합니다.*
+*이 도구들을 사용하여 MCP를 마스터하고 생산성을 높이며 원활한 통합을 경험하세요.*
 
 ---
 

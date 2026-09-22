@@ -236,7 +236,6 @@ Hulaan ang resulta bago patakbuhin ang mga pagsusulit:
 | Path | Resulta pagkatapos ng retry | Bilang ng Ticket |
 | --- | --- | --- |
 | Blind retry | Lumilikha ng `T-0002` pagkatapos mawala ang tugon para sa `T-0001` | 2 |
-
 | Guarded retry | Nakakahanap at nagbabalik ng `T-0001` | 1 |
 
 Patakbuhin:

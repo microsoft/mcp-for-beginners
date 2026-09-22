@@ -1,40 +1,41 @@
-# Stránkování a velké sady výsledků v MCP
+# Paginace a velké množiny výsledků v MCP
 
-Když váš MCP server zpracovává velké datové sady – ať už se jedná o tisíce souborů, záznamů v databázi nebo výsledků vyhledávání – potřebujete stránkování, abyste efektivně spravovali paměť a poskytli rychlou reakci uživatelského rozhraní. Tento průvodce pokrývá, jak implementovat a používat stránkování v MCP.
+Když váš MCP server zpracovává velké datové sady - ať už jde o tisíce souborů, záznamy v databázi nebo výsledky vyhledávání - potřebujete stránkování k efektivní správě paměti a zajištění rychlé odezvy uživatelského rozhraní. Tento průvodce popisuje, jak stránkování v MCP implementovat a používat.
 
 ## Proč je stránkování důležité
 
-Bez stránkování mohou velké odpovědi způsobit:
+Bez stránkování může docházet k:
 
-- **Vyčerpání paměti** – Načítání milionů záznamů najednou
-- **Pomalé reakční časy** – Uživatelé čekají, zatímco se načtou všechna data
-- **Chyby časového limitu** – Požadavky překročí limity čekání
-- **Špatný výkon AI** – LLM mají problém s masivním kontextem
+- **Vyčerpání paměti** - Načítání milionů záznamů najednou
+- **Pomalé odezvy** - Uživatelé čekají, než se načtou všechna data
+- **Chyby časového limitu** - Požadavky překročí časový limit
+- **Špatný výkon AI** - LLM mají problém s obrovským kontextem
 
-MCP používá **stránkování založené na kurzoru** pro spolehlivé a konzistentní procházení sad výsledků.
+MCP používá **stránkování založené na kurzorech** pro spolehlivé a konzistentní listování výsledky.
 
 ---
 
-## Jak MCP stránkování funguje
+## Jak funguje stránkování v MCP
 
 ### Koncept kurzoru
 
-**Kurzor** je neprůhledný řetězec, který označuje vaši pozici v sadě výsledků. Představte si ho jako záložku v dlouhé knize.
+**Kurzor** je neprůhledný řetězec, který označuje vaši pozici ve výsledkové sadě. Přemýšlejte o něm jako o záložce v dlouhé knize.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (bez kurzoru)
+    Client->>Server: nástroje/seznam (bez kurzoru)
     Server-->>Client: nástroje [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (kurzor: "abc123")
+    Client->>Server: nástroje/seznam (kurzor: "abc123")
     Server-->>Client: nástroje [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (kurzor: "def456")
+    Client->>Server: nástroje/seznam (kurzor: "def456")
     Server-->>Client: nástroje [21-25], nextCursor: null (konec)
 ```
+
 ### Stránkování v MCP metodách
 
 Tyto MCP metody podporují stránkování:
@@ -48,7 +49,7 @@ Tyto MCP metody podporují stránkování:
 
 ---
 
-## Implementace na serveru
+## Implementace serveru
 
 ### Python (FastMCP)
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Dekódujte kurzor pro získání počátečního indexu
+    # Dekódovat kurzor pro získání počátečního indexu
     start_index = 0
     if cursor:
         try:
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementace na klientovi
+## Implementace klienta
 
 ### Python klient
 
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### Vzor Lazy Loading
 
-Pro velmi velké datové sady načítejte stránky na vyžádání:
+Pro velmi velké datové sady načítejte stránky na požádání:
 
 ```python
 class PaginatedToolIterator:
@@ -247,11 +248,11 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Zkontrolovat, zda jsme prozkoumali všechny stránky
+        # Zkontrolujte, zda jsme vyčerpali všechny stránky
         if self.exhausted:
             raise StopAsyncIteration
         
-        # Načíst další stránku
+        # Načíst následující stránku
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Použití - úsporné na paměť pro velké datové sady
+# Použití - efektivní z hlediska paměti pro velké datové sady
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Dekódujte kurzor (index souboru)
+    # Dekódovat kurzor (index souboru)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Vytvořte seznam zdrojů pro tuto stránku
+    # Vytvořit seznam zdrojů pro tuto stránku
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Vypočítejte další kurzor
+    # Vypočítat další kurzor
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,25 +321,25 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## Strategie návrhu kurzoru
 
-### Strategie 1: Indexové (jednoduché)
+### Strategie 1: Na základě indexu (jednoduchá)
 
 ```python
 # Kurzor je pouze index
 cursor = "50"  # Začít u položky 50
 ```
 
-**Klady:** Jednoduché, bezstavové  
-**Zápory:** Výsledky se mohou změnit, pokud jsou položky přidány/odebrány
+**Výhody:** Jednoduché, bez stavového uložení
+**Nevýhody:** Výsledky se posunují při přidání nebo odebrání položek
 
-### Strategie 2: ID založené (stabilní)
+### Strategie 2: Na základě ID (stabilní)
 
 ```python
-# Kurzor je poslední viděné ID
+# Kurzor je poslední zaznamenané ID
 cursor = "item_abc123"  # Začněte po této položce
 ```
 
-**Klady:** Stabilní i při změně položek  
-**Zápory:** Vyžaduje seřazená ID
+**Výhody:** Stabilní i při změně položek
+**Nevýhody:** Vyžaduje řazená ID
 
 ### Strategie 3: Zakódovaný stav (komplexní)
 
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Kurzor obsahuje více stavových polí
+# Kurzor obsahuje více polí stavu
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Klady:** Může kódovat složitý stav  
-**Zápory:** Složitější, větší řetězce kurzoru
+**Výhody:** Může zakódovat složitý stav
+**Nevýhody:** Komplexnější, delší řetězce kurzorů
 
 ---
 
 ## Nejlepší postupy
 
-### 1. Vyberte vhodnou velikost stránky
+### 1. Zvolte odpovídající velikosti stránek
 
 ```python
 # Zvažte velikost dat
-PAGE_SIZE_SMALL_ITEMS = 100   # Jednoduché metadata
+PAGE_SIZE_SMALL_ITEMS = 100   # Jednoduchá metadata
 PAGE_SIZE_MEDIUM_ITEMS = 20   # Bohatší objekty
-PAGE_SIZE_LARGE_ITEMS = 5     # Složitý obsah
+PAGE_SIZE_LARGE_ITEMS = 5     # Komplexní obsah
 ```
 
-### 2. Ošetřete neplatné kurzory elegantně
+### 2. Zvládejte neplatné kurzory elegantně
 
 ```python
 @app.list_tools()
@@ -386,22 +387,22 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # Resetovat na začátek
     except (ValueError, TypeError):
-        start_index = 0  # Neplatný kurzor, začněte znovu
+        start_index = 0  # Neplatný kurzor, začít znovu
     # ...
 ```
 
-### 3. Zahrňte celkový počet (volitelné)
+### 3. Zahrňte počet výsledků (volitelné)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Některé implementace zahrnují celkový počet pro pokrok uživatelského rozhraní
+    # Některé implementace zahrnují celkový počet pro pokrok UI
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testujte hraniční případy
+### 4. Testujte okrajové případy
 
 ```python
 async def test_pagination():
@@ -421,12 +422,12 @@ async def test_pagination():
 
 ---
 
-## Časté chyby
+## Běžné chyby
 
-### ❌ Vrácení všech výsledků a následné stránkování na klientovi
+### ❌ Vrácení všech výsledků a stránky na straně klienta
 
 ```python
-# ŠPATNĚ: Načítá všechno do paměti
+# ŠPATNĚ: Načítá vše do paměti
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 1 milion nástrojů!
@@ -448,7 +449,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Co dál
 
-- [Modul 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [Modul 5.14 - Kontextové inženýrství](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Modul 8 - Nejlepší postupy](../../08-BestPractices/README.md)
 - [3.8 - Testování vašeho MCP serveru](../../03-GettingStarted/08-testing/README.md)
 
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Další zdroje
 
-- [Specifikace MCP - Stránkování](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Specifikace MCP - stránkování](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Vysvětlení stránkování založeného na kurzoru](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Testy stránkování v Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Testy stránkování Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Prohlášení**:  
-Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Snažíme se o přesnost, ale mějte prosím na paměti, že automatické překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho rodném jazyce by měl být považován za závazný zdroj. Pro důležité informace se doporučuje využít profesionální lidský překlad. Nejsme zodpovědní za jakékoliv nedorozumění nebo chybné interpretace vyplývající z použití tohoto překladu.
+**Prohlášení o omezení odpovědnosti**:
+Tento dokument byl přeložen pomocí AI překladatelské služby [Co-op Translator](https://github.com/Azure/co-op-translator). Přestože usilujeme o co největší přesnost, mějte prosím na paměti, že automatizované překlady mohou obsahovat chyby nebo nepřesnosti. Originální dokument v jeho mateřském jazyce by měl být považován za autoritativní zdroj. Pro kritické informace se doporučuje profesionální lidský překlad. Nejsme odpovědní za jakékoli nedorozumění nebo nesprávné interpretace vzniklé použitím tohoto překladu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

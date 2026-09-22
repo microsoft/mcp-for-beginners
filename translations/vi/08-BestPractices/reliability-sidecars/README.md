@@ -236,7 +236,6 @@ Dự đoán kết quả trước khi chạy các bài kiểm tra:
 | Đường dẫn | Kết quả sau khi thử lại | Số lượng vé |
 | --- | --- | --- |
 | Thử lại mù | Tạo `T-0002` sau khi mất phản hồi cho `T-0001` | 2 |
-
 | Thử lại có bảo vệ | Tìm và trả về `T-0001` | 1 |
 
 Chạy:

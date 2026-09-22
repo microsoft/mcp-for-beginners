@@ -1,17 +1,22 @@
 # Calculator LLM Client
 
-Isang Java application na nagpapakita kung paano gamitin ang LangChain4j upang kumonekta sa isang MCP (Model Context Protocol) na serbisyo ng calculator sa pamamagitan ng MiniMax OpenAI-compatible API.
+> [!NOTE]
+> Ang solusyong ito ay kumokonekta sa legacy HTTP+SSE calculator service ng kurso at
+> tinatarget ang MCP `2025-11-25` SDK APIs. Hindi ito isang `2026-07-28` Streamable HTTP
+> na halimbawa.
+
+Isang Java application na nagpapakita kung paano gamitin ang LangChain4j para kumonekta sa isang MCP (Model Context Protocol) calculator service sa pamamagitan ng MiniMax OpenAI-compatible API.
 
 ## Mga Kinakailangan
 
 - Java 21 o mas mataas pa
-- Maven 3.6+ (o gamitin ang kasama na Maven wrapper)
+- Maven 3.6+ (o gamitin ang kasamang Maven wrapper)
 - Isang MiniMax API key
 - Isang MCP calculator service na tumatakbo sa `http://localhost:8080`
 
 ## Pagkuha ng API Key
 
-Ginagamit ng application na ito ang MiniMax OpenAI-compatible API. Sundin ang mga hakbang na ito upang makuha ang iyong key at endpoint:
+Ginagamit ng application na ito ang MiniMax OpenAI-compatible API. Sundin ang mga hakbang na ito para makuha ang iyong key at endpoint:
 
 ### 1. Pumili ng endpoint
 1. Gamitin ang `https://api.minimax.io/v1` para sa global endpoint
@@ -21,7 +26,7 @@ Ginagamit ng application na ito ang MiniMax OpenAI-compatible API. Sundin ang mg
 1. Gumawa ng MiniMax API key mula sa iyong MiniMax account
 2. Itago ang key sa isang ligtas na lugar
 
-### 3. Itakda ang Mga Environment Variables
+### 3. I-set ang Mga Environment Variables
 
 #### Sa Windows (Command Prompt):
 ```cmd
@@ -44,25 +49,25 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-## Pagsasaayos at Pag-install
+## Setup at Pag-install
 
-1. **I-clone o pumunta sa direktoryo ng proyekto**
+1. **I-clone o mag-navigate sa direktoryo ng proyekto**
 
 2. **I-install ang mga dependencies**:
    ```cmd
    mvnw clean install
    ```
-   O kung naka-install ang Maven globally:
+   O kung mayroon kang Maven na naka-install globally:
    ```cmd
    mvn clean install
    ```
 
-3. **I-set up ang mga environment variables** (tingnan ang seksyong "Pagkuha ng API Key" sa itaas)
+3. **I-set up ang environment variables** (tingnan ang seksyong "Pagkuha ng API Key" sa itaas)
 
 4. **Simulan ang MCP Calculator Service**:
-   Siguraduhing tumatakbo ang MCP calculator service mula sa kabanata 1 sa `http://localhost:8080/sse`. Dapat ito ay tumatakbo bago mo simulan ang client.
+   Siguraduhing tumatakbo ang MCP calculator service ng kabanata 1 sa `http://localhost:8080/sse`. Dapat itong tumakbo bago mo simulan ang client.
 
-## Paano Patakbuhin ang Application
+## Pagpapatakbo ng Application
 
 ```cmd
 mvnw clean package
@@ -73,13 +78,13 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 Ipinapakita ng application ang tatlong pangunahing interaksyon sa calculator service:
 
-1. **Addition**: Kinakalkula ang kabuuan ng 24.5 at 17.3
+1. **Pagdaragdag**: Kinakalkula ang suma ng 24.5 at 17.3
 2. **Square Root**: Kinakalkula ang square root ng 144
-3. **Help**: Ipinapakita ang mga magagamit na function ng calculator
+3. **Tulong**: Ipinapakita ang mga magagamit na function ng calculator
 
 ## Inaasahang Output
 
-Kapag matagumpay ang pagtakbo, makikita mo ang output na katulad ng:
+Kapag matagumpay na tumakbo, makikita mo ang output na katulad nito:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -89,50 +94,50 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## Pag-troubleshoot
 
-### Karaniwang Suliranin
+### Mga Karaniwang Isyu
 
 1. **"OPENAI_API_KEY environment variable is not set"**
-   - Siguraduhing naitakda mo ang `OPENAI_API_KEY` environment variable
-   - I-restart ang terminal/command prompt matapos itakda ang variable
+   - Siguraduhing na-set mo ang `OPENAI_API_KEY` environment variable
+   - I-restart ang iyong terminal/command prompt pagkatapos i-set ang variable
 
 2. **"Connection refused to localhost:8080"**
-   - Tiyakin na tumatakbo ang MCP calculator service sa port 8080
-   - Suriin kung may ibang serbisyo na gumagamit ng port 8080
+   - Siguraduhing tumatakbo ang MCP calculator service sa port 8080
+   - Tignan kung may ibang serbisyo na gumagamit ng port 8080
 
 3. **"Authentication failed"**
-   - I-verify kung valid ang iyong API key
-   - Suriin na ang `OPENAI_BASE_URL` ay tumutugma sa endpoint na iyong nilayon gamitin
+   - Siguraduhing valid ang iyong API key
+   - Suriin na ang `OPENAI_BASE_URL` ay tumutugma sa endpoint na nais mong gamitin
 
-4. **Mga error sa Maven build**
-   - Tiyakin na gumagamit ka ng Java 21 o mas mataas: `java -version`
+4. **Maven build errors**
+   - Siguraduhing gumagamit ka ng Java 21 o mas mataas: `java -version`
    - Subukang linisin ang build: `mvnw clean`
 
 ### Pag-debug
 
-Upang paganahin ang debug logging, idagdag ang sumusunod na JVM argument kapag nagpapagana:
+Para i-enable ang debug logging, idagdag ang sumusunod na JVM argument pag nagpapatakbo:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfigurasyon
 
-Ang application ay naka-configure upang:
-- Gumamit ng MiniMax-M3 bilang default; itakda ang `MINIMAX_MODEL_ID` upang piliin ang `MiniMax-M3` o `MiniMax-M2.7`
-- Kumonekta sa `OPENAI_BASE_URL` kapag ito ay nakaset; kung hindi ay gamitin ang `https://api.minimaxi.com/v1` kapag `MINIMAX_REGION=cn_zh`, o `https://api.minimax.io/v1` bilang default
+Nakakonpigurang ang application upang:
+- Gamitin ang MiniMax-M3 bilang default; i-set ang `MINIMAX_MODEL_ID` para pumili sa pagitan ng `MiniMax-M3` o `MiniMax-M2.7`
+- Kumonekta sa `OPENAI_BASE_URL` kapag naka-set; kung hindi ay gagamit ng `https://api.minimaxi.com/v1` kapag `MINIMAX_REGION=cn_zh`, o `https://api.minimax.io/v1` bilang default
 - Kumonekta sa MCP service sa `http://localhost:8080/sse`
-- Gumamit ng 60-segundong timeout para sa mga request
+- Gamitin ang 60-segundong timeout para sa mga request
 
 ## Mga Dependencies
 
-Mga pangunahing dependencies na ginagamit sa proyektong ito:
-- **LangChain4j**: Para sa AI integration at pamamahala ng tools
-- **LangChain4j MCP**: Para sa suporta ng Model Context Protocol
-- **LangChain4j OpenAI official**: Para sa integrasyon ng MiniMax OpenAI-compatible API
+Pangunahing mga dependencies na ginamit sa proyektong ito:
+- **LangChain4j**: Para sa AI integration at pamamahala ng tool
+- **LangChain4j MCP**: Para sa suporta sa Model Context Protocol
+- **LangChain4j OpenAI official**: Para sa integration ng MiniMax OpenAI-compatible API
 - **Spring Boot**: Para sa application framework at dependency injection
 
 ## Lisensya
 
-Ang proyektong ito ay inililisensyahan sa ilalim ng Apache License 2.0 - tingnan ang [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) na file para sa mga detalye.
+Nalilisansehan ang proyektong ito sa ilalim ng Apache License 2.0 - tingnan ang [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) file para sa mga detalye.
 
 ---
 

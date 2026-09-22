@@ -1,19 +1,24 @@
-# Serviço Básico de Calculadora MCP
+# Serviço MCP de Calculadora Básica
 
-Este serviço oferece operações básicas de calculadora através do Model Context Protocol (MCP) usando Spring Boot com transporte WebFlux. Foi criado como um exemplo simples para iniciantes que estão aprendendo sobre implementações MCP.
+> [!NOTE]
+> Este exemplo usa o transporte HTTP+SSE legado e é direcionado a um SDK compatível
+> com MCP `2025-11-25`. Novos servidores remotos devem usar o suporte HTTP Streamable
+> `2026-07-28`.
+
+Este serviço fornece operações básicas de calculadora através do Protocolo de Contexto de Modelo (MCP) usando Spring Boot com transporte WebFlux. Foi projetado como um exemplo simples para iniciantes que aprendem sobre implementações MCP.
 
 Para mais informações, consulte a documentação de referência do [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 ## Visão Geral
 
 O serviço demonstra:
-- Suporte a SSE (Server-Sent Events)
+- Suporte para SSE (Server-Sent Events)
 - Registro automático de ferramentas usando a anotação `@Tool` do Spring AI
-- Funções básicas de calculadora:
+- Funções básicas da calculadora:
   - Adição, subtração, multiplicação, divisão
   - Cálculo de potência e raiz quadrada
   - Módulo (resto) e valor absoluto
-  - Função de ajuda para descrição das operações
+  - Função de ajuda para descrições das operações
 
 ## Funcionalidades
 
@@ -23,20 +28,20 @@ Este serviço de calculadora oferece as seguintes capacidades:
    - Adição de dois números
    - Subtração de um número por outro
    - Multiplicação de dois números
-   - Divisão de um número pelo outro (com verificação de divisão por zero)
+   - Divisão de um número por outro (com verificação de divisão por zero)
 
 2. **Operações Avançadas**:
    - Cálculo de potência (elevar uma base a um expoente)
    - Cálculo de raiz quadrada (com verificação de número negativo)
-   - Cálculo do módulo (resto da divisão)
-   - Cálculo do valor absoluto
+   - Cálculo de módulo (resto da divisão)
+   - Cálculo de valor absoluto
 
 3. **Sistema de Ajuda**:
-   - Função de ajuda integrada explicando todas as operações disponíveis
+   - Função de ajuda embutida que explica todas as operações disponíveis
 
 ## Usando o Serviço
 
-O serviço expõe os seguintes endpoints da API através do protocolo MCP:
+O serviço expõe os seguintes endpoints API através do protocolo MCP:
 
 - `add(a, b)`: Soma dois números
 - `subtract(a, b)`: Subtrai o segundo número do primeiro
@@ -54,27 +59,27 @@ Um cliente de teste simples está incluído no pacote `com.microsoft.mcp.sample.
 
 ## Usando o Cliente LangChain4j
 
-O projeto inclui um exemplo de cliente LangChain4j em `com.microsoft.mcp.sample.client.LangChain4jClient` que demonstra como integrar o serviço de calculadora com LangChain4j e modelos do GitHub:
+O projeto inclui um cliente de exemplo LangChain4j em `com.microsoft.mcp.sample.client.LangChain4jClient` que demonstra como integrar o serviço de calculadora com LangChain4j e modelos do GitHub:
 
 ### Pré-requisitos
 
-1. **Configuração do Token do GitHub**:
+1. **Configuração do Token GitHub**:
    
-   Para usar os modelos de IA do GitHub (como o phi-4), você precisa de um token de acesso pessoal do GitHub:
+   Para usar os modelos de IA do GitHub (como phi-4), você precisa de um token de acesso pessoal do GitHub:
 
-   a. Acesse as configurações da sua conta no GitHub: https://github.com/settings/tokens
+   a. Acesse as configurações da sua conta GitHub: https://github.com/settings/tokens
    
    b. Clique em "Generate new token" → "Generate new token (classic)"
    
-   c. Dê um nome descritivo para o seu token
+   c. Dê um nome descritivo ao seu token
    
    d. Selecione os seguintes escopos:
-      - `repo` (Controle total dos repositórios privados)
-      - `read:org` (Ler membros da organização e equipes, ler projetos da organização)
+      - `repo` (Controle total de repositórios privados)
+      - `read:org` (Ler organização e filiação de times, ler projetos da organização)
       - `gist` (Criar gists)
-      - `user:email` (Acesso aos endereços de e-mail do usuário (somente leitura))
+      - `user:email` (Acesso a endereços de email do usuário (somente leitura))
    
-   e. Clique em "Generate token" e copie o novo token
+   e. Clique em "Generate token" e copie seu novo token
    
    f. Defina-o como uma variável de ambiente:
       
@@ -88,7 +93,7 @@ O projeto inclui um exemplo de cliente LangChain4j em `com.microsoft.mcp.sample.
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. Para configuração persistente, adicione-o às variáveis de ambiente pelo sistema operacional
+   g. Para configuração persistente, adicione-o às variáveis de ambiente via configurações do sistema
 
 2. Adicione a dependência LangChain4j GitHub ao seu projeto (já incluída no pom.xml):
    ```xml
@@ -109,11 +114,11 @@ Este exemplo demonstra:
 - Integração com modelos de IA do GitHub (agora usando o modelo phi-4)
 
 O cliente envia as seguintes consultas de exemplo para demonstrar a funcionalidade:
-1. Calcular a soma de dois números
-2. Encontrar a raiz quadrada de um número
-3. Obter informações de ajuda sobre as operações disponíveis da calculadora
+1. Calculando a soma de dois números
+2. Encontrando a raiz quadrada de um número
+3. Obtendo informações de ajuda sobre as operações disponíveis na calculadora
 
-Execute o exemplo e verifique a saída no console para ver como o modelo de IA usa as ferramentas da calculadora para responder às consultas.
+Execute o exemplo e confira a saída do console para ver como o modelo de IA utiliza as ferramentas da calculadora para responder às consultas.
 
 ### Configuração do Modelo GitHub
 
@@ -129,7 +134,7 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Para usar outros modelos do GitHub, basta alterar o parâmetro `modelName` para outro modelo suportado (ex.: "claude-3-haiku-20240307", "llama-3-70b-8192", etc.).
+Para usar modelos diferentes do GitHub, basta alterar o parâmetro `modelName` para outro modelo suportado (ex.: "claude-3-haiku-20240307", "llama-3-70b-8192", etc.).
 
 ## Dependências
 
@@ -159,7 +164,7 @@ O projeto requer as seguintes dependências principais:
 
 ## Construindo o Projeto
 
-Compile o projeto usando Maven:
+Construa o projeto usando Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
@@ -184,15 +189,15 @@ O MCP Inspector é uma ferramenta útil para interagir com serviços MCP. Para u
 2. **Acesse a interface web** clicando na URL exibida pelo app (normalmente http://localhost:6274)
 
 3. **Configure a conexão**:
-   - Defina o tipo de transporte como "SSE"
+   - Defina o tipo de transporte para "SSE"
    - Defina a URL para o endpoint SSE do seu servidor em execução: `http://localhost:8080/sse`
    - Clique em "Connect"
 
 4. **Use as ferramentas**:
-   - Clique em "List Tools" para ver as operações disponíveis da calculadora
+   - Clique em "List Tools" para ver as operações disponíveis na calculadora
    - Selecione uma ferramenta e clique em "Run Tool" para executar uma operação
 
-![Captura de tela do MCP Inspector](../../../../../../translated_images/pt-BR/tool.c75a0b2380efcf1a.webp)
+![Captura de Tela do MCP Inspector](../../../../../../translated_images/pt-BR/tool.c75a0b2380efcf1a.webp)
 
 ### Usando Docker
 
@@ -208,27 +213,31 @@ O projeto inclui um Dockerfile para implantação em container:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Isso irá:
+Isto irá:
 - Construir uma imagem Docker multi-stage com Maven 3.9.9 e Eclipse Temurin 24 JDK
 - Criar uma imagem de container otimizada
 - Expor o serviço na porta 8080
 - Iniciar o serviço MCP da calculadora dentro do container
 
-Você poderá acessar o serviço em `http://localhost:8080` assim que o container estiver em execução.
+Você pode acessar o serviço em `http://localhost:8080` uma vez que o container esteja em execução.
 
 ## Solução de Problemas
 
 ### Problemas Comuns com o Token do GitHub
 
-1. **Problemas de Permissão do Token**: Se receber um erro 403 Forbidden, verifique se seu token tem as permissões corretas conforme descrito nos pré-requisitos.
+1. **Problemas de Permissão do Token**: Se você receber um erro 403 Forbidden, verifique se seu token possui as permissões corretas conforme descrito nos pré-requisitos.
 
-2. **Token Não Encontrado**: Se receber um erro "No API key found", certifique-se de que a variável de ambiente GITHUB_TOKEN está corretamente configurada.
+2. **Token Não Encontrado**: Se você receber um erro "No API key found", certifique-se de que a variável de ambiente GITHUB_TOKEN está configurada corretamente.
 
-3. **Limite de Requisições**: A API do GitHub possui limites de requisições. Se encontrar um erro de limite (código 429), aguarde alguns minutos antes de tentar novamente.
+3. **Limites de Taxa**: A API do GitHub tem limites de taxa. Se você encontrar um erro de limite de taxa (código de status 429), espere alguns minutos antes de tentar novamente.
 
-4. **Expiração do Token**: Tokens do GitHub podem expirar. Se receber erros de autenticação após algum tempo, gere um novo token e atualize sua variável de ambiente.
+4. **Expiração do Token**: Tokens do GitHub podem expirar. Se você receber erros de autenticação após algum tempo, gere um novo token e atualize sua variável de ambiente.
 
-Se precisar de mais ajuda, consulte a [documentação do LangChain4j](https://github.com/langchain4j/langchain4j) ou a [documentação da API do GitHub](https://docs.github.com/en/rest).
+Se precisar de mais assistência, consulte a [documentação do LangChain4j](https://github.com/langchain4j/langchain4j) ou a [documentação da API do GitHub](https://docs.github.com/en/rest).
 
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Aviso Legal**:
+Este documento foi traduzido usando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

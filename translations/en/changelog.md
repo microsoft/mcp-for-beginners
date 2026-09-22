@@ -2,6 +2,49 @@
 
 This document serves as a record of all significant changes made to the Model Context Protocol (MCP) for Beginners curriculum. Changes are documented in reverse chronological order (newest changes first).
 
+## September 9th, 2026
+
+### MCP 2026-07-28 Final Specification Alignment
+
+Updated the English curriculum from release-candidate and `2025-11-25`
+baseline guidance to the final MCP `2026-07-28` specification.
+
+- **Updated**: Current-version references, specification links, stateless
+  request guidance, `server/discover`, Streamable HTTP headers, and the Tasks
+  extension lifecycle across 38 English documentation files.
+- **Corrected**: Elicitation now uses `elicitation/create`, Sampling uses
+  `sampling/createMessage`, and `InputRequiredResult.resultType` uses
+  `"input_required"`.
+- **Replaced**: The inaccurate Root Context conversation-state lesson with a
+  protocol-accurate Roots lesson covering informational filesystem hints, the
+  current multi-round-trip flow, security boundaries, and migration options.
+- **Clarified**: Roots, Sampling, Logging, and Dynamic Client Registration are
+  deprecated in `2026-07-28`, with their recommended replacements and earliest
+  removal date documented.
+- **Labeled**: Samples that still depend on MCP `2025-11-25`, HTTP+SSE,
+  initialization handshakes, or protocol sessions are retained as legacy
+  compatibility examples rather than presented as current implementations.
+- **Security guidance**: Updated the standalone security guides to use
+  per-request authorization and explicit application state handles instead of
+  removed protocol session IDs. Client ID Metadata Documents are now the
+  preferred registration path, with DCR documented as compatibility-only.
+- **Supporting material**: Updated the study guide, contributor checklist,
+  Publora case study, and APIM case study. The APIM walkthrough now recommends
+  its current Streamable HTTP `/mcp` endpoint instead of deprecated `/sse`.
+- **Canonical links**: Replaced retired and draft specification URLs in English
+  source Markdown with versioned `2026-07-28` links, while preserving explicit
+  links to legacy versions where a sample remains pinned to older tooling.
+- **Stable filenames**: Renamed the final specification guide and two security
+  guides to remove release-candidate and year suffixes, then updated all English
+  hyperlinks to their stable paths.
+- **New authorization sample**: Added a tested
+  [TypeScript MCP `2026-07-28` resource server](./02-Security/samples/cimd-dcr-auth/README.md)
+  that compares preferred Client ID Metadata Documents with deprecated Dynamic
+  Client Registration fallback. The sample includes RFC 9728 discovery, JWKS
+  validation, per-tool scopes, twelve tests, and an Auth0 setup walkthrough.
+- **Translation scope**: Only English source files were edited; generated
+  translations and translated images remain unchanged as these are auto-translated.
+
 ## July 29th, 2026
 
 ### New Module 08 Companion: Reliability Sidecars and Safe Retries
@@ -34,7 +77,7 @@ effects, aligned with the final `2026-07-28` specification.
 
 Added coverage of the upcoming `2026-07-28` MCP specification release candidate (announced May 21, 2026; final release scheduled July 28, 2026), summarized from the [official announcement blog post](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/). The curriculum's baseline remains **MCP Specification 2025-11-25** until the new version ships, so this is presented as forward-looking guidance rather than a rewrite of existing lessons.
 
-- **New**: [01-CoreConcepts/mcp-2026-07-28-release-candidate.md](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — a full lesson covering the stateless protocol core (removal of the `initialize` handshake and `Mcp-Session-Id`), the new `Mcp-Method`/`Mcp-Name` routing headers, `ttlMs`/`cacheScope` caching metadata, W3C Trace Context in `_meta`, the formal Extensions framework (MCP Apps and the new Tasks extension), six authorization-hardening SEPs, the deprecation of Roots/Sampling/Logging, and the move to full JSON Schema 2020-12 for tool schemas.
+- **New**: [01-CoreConcepts/mcp-2026-07-28.md](./01-CoreConcepts/mcp-2026-07-28.md) — a full lesson covering the stateless protocol core (removal of the `initialize` handshake and `Mcp-Session-Id`), the new `Mcp-Method`/`Mcp-Name` routing headers, `ttlMs`/`cacheScope` caching metadata, W3C Trace Context in `_meta`, the formal Extensions framework (MCP Apps and the new Tasks extension), six authorization-hardening SEPs, the deprecation of Roots/Sampling/Logging, and the move to full JSON Schema 2020-12 for tool schemas.
 - **Updated** with forward-looking callouts linking to the new lesson:
   - [01-CoreConcepts/README.md](./01-CoreConcepts/README.md): protocol version note, Sampling/Roots/Logging/Tasks sections, and "What's next"
   - [02-Security/README.md](./02-Security/README.md): authorization hardening callout
@@ -98,6 +141,7 @@ Ran a full security pass across every dependency manifest and the sample source 
 #### npm Dependency Vulnerabilities (transitive) — Fixed
 
 Audited all 15 committed `package-lock.json` files. Vulnerabilities were limited to transitive dependencies pulled in by the MCP Inspector dev tool, the OpenAI client, and the MCP SDK; all are now resolved without breaking the samples:
+
 - **10-StreamliningAIWorkflows.../lab4/code/github_mcp_server/inspector** and **lab3/code/weather_mcp/inspector**: Bumped `@modelcontextprotocol/inspector` (`0.16.6` / `0.14.1` → `0.22.0`), which cleared the bundled `ajv`, `brace-expansion`, `diff`, `path-to-regexp` and `ws` advisories. Added an npm `overrides` entry forcing the patched `shell-quote@1.8.4` to eliminate the remaining critical advisory carried by `concurrently`; regenerated both lockfiles (now 0 vulnerabilities)
 - **03-GettingStarted/samples/typescript**: `npm audit fix` updated the transitive `qs` (moderate) to a patched release
 - **03-GettingStarted/samples/javascript**: `npm audit fix` updated the transitive `hono` (moderate) to a patched release
@@ -119,7 +163,6 @@ Updated all curriculum content to reflect Microsoft's product rebranding:
 
 #### Azure AI Foundry → Microsoft Foundry
 - **SUPPORT.md**: Updated Discord community link
-
 - **AGENTS.md**: Updated Discord server reference
 - **README.md**: Updated technology ecosystem references
 - **study_guide.md**: Updated case study references
@@ -290,6 +333,7 @@ Added lessons 5.15 (Custom Transport) and 5.16 (Protocol Features)
 - **Tool Calling in Sampling**: Updated Sampling documentation to include `tools` and `toolChoice` parameters for model-driven tool invocation during sampling requests
 - **URL Mode Elicitation**: Added documentation on URL-based elicitation for server-initiated external web interactions
 - **Tasks (Experimental)**: Added new section documenting the experimental Tasks feature for durable execution wrappers and deferred result retrieval
+
 - **Icons Support**: Noted that tools, resources, resource templates, and prompts can now include icons as additional metadata
 
 #### Documentation Updates
@@ -331,7 +375,6 @@ Added lessons 5.15 (Custom Transport) and 5.16 (Protocol Features)
 
 #### New Resource Links Added
 - [MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)
-
 - [OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)
 - Individual OWASP MCP risk pages (MCP01-MCP10)
@@ -476,6 +519,7 @@ These additions provide practical, hands-on guidance for building more robust, s
     - Azure DevOps Integration: Workflow automation focus
     - Real-Time Documentation Retrieval: Python console client implementation
     - Interactive Study Plan Generator: Chainlit conversational web app
+
     - In-Editor Documentation: VS Code and GitHub Copilot integration
     - Azure API Management: Enterprise API integration patterns
     - GitHub MCP Registry: Ecosystem development and community platform
@@ -528,7 +572,6 @@ These additions provide practical, hands-on guidance for building more robust, s
 #### Context Engineering (05-AdvancedTopics/mcp-contextengineering/) - Emerging AI Discipline
 - **README.md**: Comprehensive exploration of context engineering as an emerging field
   - **Core Principles**: Complete context sharing, action decision awareness, and context window management
-
   - **MCP Protocol Alignment**: How MCP design addresses context engineering challenges
     - Context window limitations and progressive loading strategies
     - Relevance determination and dynamic context retrieval
@@ -695,6 +738,7 @@ These additions provide practical, hands-on guidance for building more robust, s
 
 ### Initial Creation
 - Released first version of the MCP for Beginners curriculum
+
 - Created basic structure for all 10 main sections
 - Implemented Visual Curriculum Map for navigation
 - Added initial sample projects in multiple programming languages

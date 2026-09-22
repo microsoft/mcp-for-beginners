@@ -1,31 +1,33 @@
-# 🚀 Zana za MCP
+# 🚀 Vifaa vya MCP
 
-## 🧠 Muhtasari wa Njia ya Kujifunza Uunganishaji wa Hifadhidata ya MCP
+## 🧠 Muhtasari wa Njia ya Kujifunza Uingizaji wa Hifadhidata za MCP
 
-Hapa utajifunza jinsi ya kutumia zana zinazotumia MCP. Uzoefu wako wa kutumia zana hizi utaimarika unapounganisha seva za MCP nazo.
+Hapa utajifunza jinsi ya kutumia zana zinazotumia MCP. Uzoefu wako wa kutumia zana hizi utaimarika unapoziunganisha seva za MCP nazo.
 
-## 🔗 Vyanzo Rasmi vya MCP
+## 🔗 Rasilimali Rasmi za MCP
 
 - 📘 [Nyaraka za MCP](https://modelcontextprotocol.io/) – Mafunzo ya kina na miongozo ya mtumiaji
-- 📜 [Maelekezo ya MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Muundo wa itifaki na marejeleo ya kiufundi
-- 🧑‍💻 [Hifadhi ya MCP GitHub](https://github.com/modelcontextprotocol) – SDK za chanzo wazi, zana, na mifano ya msimbo
-- 🌐 [Jumuiya ya MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Jiunge na mijadala na changia jamii
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Mbinu bora za usalama na upunguzaji wa hatari
+- 📜 [Maelezo ya MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Muundo wa itifaki na marejeleo ya kiufundi
+- 🧑‍💻 [Hifadhidata ya MCP GitHub](https://github.com/modelcontextprotocol) – SDK za chanzo huria, zana, na sampuli za msimbo
+- 🌐 [Jumuiya ya MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Jiunge na mijadala na changia jumuiya
+- 🔒 [Orodha Kuu 10 za MCP za OWASP](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Mazoezi bora ya usalama na kupunguza hatari
+
+
 
 ## 🌟 Jumuiya na Msaada
 
 ### Pata Msaada
 
-- **Azure AI Discord**: [Jiunge kwa msaada wa kitaalamu](https://discord.com/invite/ByRwuEEgH4)
-- **Jumuiya ya MCP**: [Jiunge na mijadala pana ya MCP](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [Jiunge kwa msaada wa wataalamu](https://discord.com/invite/ByRwuEEgH4)
+- **Jumuiya ya MCP**: [Jiunge na mijadala mikubwa ya MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Tayari Kuanzia?
+## 🚀 Tayari Kuanza?
 
-Anza safari yako na **[app ya GitHub Copilot](./01-copilot-app/README.md)**
+Anza safari yako na **[App ya GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Jifunze kutumia hizi kwa MCP kwa ufanisi mkubwa na ushirikiano usio na mshono.*
+*Tumia haya kwa MCP na zana hizi ili kuongeza ufanisi na muingiliano laini.*
 
 ---
 

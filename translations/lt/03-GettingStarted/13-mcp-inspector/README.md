@@ -1,38 +1,43 @@
 # Derinimas su MCP Inspector
 
-**MCP Inspector** yra svarbi derinimo priemonė, leidžianti interaktyviai testuoti ir spręsti problemas jūsų MCP serveriuose, nereikalaujant pilnos AI pagrindinės programos. Galvokite apie tai kaip apie „Postman“ MCP – ji suteikia vizualią sąsają užklausoms siųsti, atsakymams peržiūrėti ir serverio elgesio supratimui.
+> [!NOTE]
+> Komandos naudojant `--sse` ir URL, kurie baigiasi `/sse`, tikrina senąjį HTTP+SSE
+> transportą. Naujam MCP `2026-07-28` serveriui naudokite Inspector versiją, kuri
+> palaiko Streamable HTTP, ir pasirinkite tą transportą.
+
+**MCP Inspector** yra svarbi derinimo priemonė, leidžianti interaktyviai testuoti ir spręsti problemas savo MCP serveriuose be pilnos AI host aplikacijos poreikio. Galvokite apie tai kaip „Postman MCP“ – jis suteikia vizualią sąsają užklausoms siųsti, atsakymams peržiūrėti ir suprasti, kaip veikia jūsų serveris.
 
 ## Kodėl naudoti MCP Inspector?
 
-Kuriant MCP serverius dažnai susidursite su šiomis problemomis:
+Kuriant MCP serverius, dažnai susiduriate su šiais iššūkiais:
 
-- **„Ar mano serveris iš vis veikia?“** - Inspector rodo ryšio būseną
-- **„Ar mano įrankiai tinkamai užregistruoti?“** - Inspector rodo visus galimus įrankius
-- **„Koks atsakymo formatas?“** - Inspector rodo pilnus JSON atsakymus
-- **„Kodėl šis įrankis neveikia?“** - Inspector pateikia išsamius klaidų pranešimus
+- **„Ar mano serveris išvis veikia?“** – Inspector rodo prisijungimo būseną
+- **„Ar mano įrankiai teisingai užregistruoti?“** – Inspector pateikia visų įrankių sąrašą
+- **„Koks atsakymo formatas?“** – Inspector rodo pilnus JSON atsakymus
+- **„Kodėl šis įrankis neveikia?“** – Inspector parodo išsamius klaidų pranešimus
 
-## Prieš sąlygos
+## Reikalavimai
 
-- Įdiegta Node.js 18+
-- npm (pridedamas su Node.js)
-- MCP serveris testavimui (žr. [3.1 Modulis - Pirmas Serveris](../01-first-server/README.md))
+- Įdiegta Node.js 18 ar naujesnė versija
+- npm (įeina į Node.js paketą)
+- MCP serveris testavimui (žr. [3.1 modulis – Pirmasis serveris](../01-first-server/README.md))
 
 ## Įdiegimas
 
-### 1 variantas: paleisti su npx (Rekomenduojama greitam testavimui)
+### Parinktis 1: Paleisti su npx (Rekomenduojama greitam testavimui)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### 2 variantas: įdiegti globaliai
+### Parinktis 2: Įdiegti globaliai
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### 3 variantas: pridėti prie jūsų projekto
+### Parinktis 3: Įtraukti į savo projektą
 
 ```bash
 cd your-mcp-server-project
@@ -50,9 +55,9 @@ Pridėkite į `package.json`:
 
 ---
 
-## Ryšys su jūsų serveriu
+## Prisijungimas prie jūsų serverio
 
-### stdio Serveriai (vietinis procesas)
+### stdio serveriai (vietinis procesas)
 
 Serveriams, kurie komunikuoja per standartinę įvestį/išvestį:
 
@@ -69,7 +74,7 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ### SSE/HTTP serveriai (tinklas)
 
-Serveriams, veikiančioms kaip HTTP paslaugoms:
+Serveriams, veikiančiam kaip HTTP paslaugos:
 
 1. Pirmiausia paleiskite savo serverį:
    ```bash
@@ -85,7 +90,7 @@ Serveriams, veikiančioms kaip HTTP paslaugoms:
 
 ## Inspector sąsajos apžvalga
 
-Paleidus Inspector, matysite žiniatinklio sąsają (įprastai adresu `http://localhost:5173`):
+Paleidus Inspector, matysite žiniatinklio sąsają (dažniausiai adresu `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,9 +118,9 @@ Paleidus Inspector, matysite žiniatinklio sąsają (įprastai adresu `http://lo
 
 ## Įrankių testavimas
 
-### Galimų įrankių sąrašas
+### Pasiekiamų įrankių sąrašas
 
-1. Spauskite skirtuką **Tools**
+1. Spustelėkite skirtuką **Tools**
 2. Inspector automatiškai iškviečia `tools/list`
 3. Matysite visus užregistruotus įrankius su:
    - Įrankio pavadinimu
@@ -124,12 +129,12 @@ Paleidus Inspector, matysite žiniatinklio sąsają (įprastai adresu `http://lo
 
 ### Įrankio kvietimas
 
-1. Pasirinkite įrankį sąraše
+1. Pasirinkite įrankį iš sąrašo
 2. Užpildykite reikalingus parametrus formoje
-3. Spauskite **Run Tool**
-4. Peržiūrėkite atsakymą rezultatų skydelyje
+3. Spustelėkite **Run Tool**
+4. Žiūrėkite atsakymą rezultatų skydelyje
 
-**Pavyzdys: Skaičiuoklio įrankio testavimas**
+**Pavyzdys: skaičiuoklio įrankio testavimas**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Įrankio klaidų derinimas
+### Įrankių klaidų derinimas
 
-Kai įrankis nepavyksta, Inspector rodo:
+Kai įrankis sugenda, Inspector rodo:
 
 ```
 Error Response:
@@ -162,22 +167,22 @@ Error Response:
 }
 ```
 
-Dažniausios klaidų kodai:
+Dažniausios klaidų kodų reikšmės:
 | Kodas | Reikšmė |
-|------|---------|
+|------|----------|
 | -32700 | Analizės klaida (neteisingas JSON) |
-| -32600 | Neteisingas užklausimas |
+| -32600 | Neteisinga užklausa |
 | -32601 | Metodas nerastas |
-| -32602 | Netinkami parametrai |
+| -32602 | Neteisingi parametrai |
 | -32603 | Vidinė klaida |
 
 ---
 
 ## Išteklių testavimas
 
-### Išteklių sąrašo rodymas
+### Išteklių sąrašo peržiūra
 
-1. Spauskite skirtuką **Resources**
+1. Spustelėkite skirtuką **Resources**
 2. Inspector iškviečia `resources/list`
 3. Matysite:
    - Išteklių URI
@@ -187,10 +192,10 @@ Dažniausios klaidų kodai:
 ### Išteklių skaitymas
 
 1. Pasirinkite išteklių
-2. Spauskite **Read Resource**
-3. Peržiūrėkite grąžintą turinį
+2. Spustelėkite **Read Resource**
+3. Peržiūrėkite grąžinamą turinį
 
-**Pavyzdinis išėjimas:**
+**Pavyzdinis išvesties pavyzdys:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Promptų testavimas
+## Prompts testavimas
 
-### Promptų sąrašo rodymas
+### Prompts sąrašo peržiūra
 
-1. Spauskite skirtuką **Prompts**
+1. Spustelėkite skirtuką **Prompts**
 2. Inspector iškviečia `prompts/list`
-3. Peržiūrėkite galimus promptų šablonus
+3. Peržiūrėkite prieinamus promptų šablonus
 
-### Promptų gavimas
+### Gauti promptą
 
 1. Pasirinkite promptą
-2. Užpildykite reikiamus argumentus
-3. Spauskite **Get Prompt**
+2. Užpildykite visus būtinus argumentus
+3. Spustelėkite **Get Prompt**
 4. Peržiūrėkite sugeneruotus promptų pranešimus
 
 ---
 
 ## Pranešimų žurnalo analizė
 
-Pranešimų žurnalas rodo visus MCP protokolo pranešimus:
+Pranešimų žurnalas rodo visas MCP protokolo žinutes. Žemiau pateikiama transkripcija iš
+seno `2025-11-25` serverio, įskaitant pašalintą `initialize` rankos paspaudimą. Naujas
+`2026-07-28` serveris naudoja savarankiškus užklausos metaduomenis ir vietoj to
+`server/discover`.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,22 +244,22 @@ Pranešimų žurnalas rodo visus MCP protokolo pranešimus:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Ką stebėti
+### Į ką atkreipti dėmesį
 
-- **Užklausos/atsakymo poros**: Kiekvienam `→` turi būti atitinkamas `←`
-- **Klaidų pranešimai**: Stebėkite `"error"` atsakymuose
-- **Laiko tarpai**: Didelės pertraukos gali reikšti našumo problemas
-- **Protokolo versija**: Užtikrinkite, kad serveris ir klientas sutartų dėl versijos
+- **Užklausos/atsakymai porose**: Kiekvienam `→` turi atitikti `←`
+- **Klaidų pranešimai**: Ieškokite `"error"` atsakymuose
+- **Laiko intervalai**: Didelės pauzės gali rodyti veikimo problemas
+- **Protokolo versija**: Įsitikinkite, kad serveris ir klientas sutaria versiją
 
 ---
 
 ## VS Code integracija
 
-Galite paleisti Inspector tiesiogiai iš VS Code:
+Inspector galite tiesiogiai paleisti iš VS Code:
 
 ### Naudojant launch.json
 
-Pridėkite prie `.vscode/launch.json`:
+Pridėkite į `.vscode/launch.json`:
 
 ```json
 {
@@ -282,7 +290,7 @@ Pridėkite prie `.vscode/launch.json`:
 
 ### Naudojant Tasks
 
-Pridėkite prie `.vscode/tasks.json`:
+Pridėkite į `.vscode/tasks.json`:
 
 ```json
 {
@@ -310,42 +318,42 @@ Pridėkite prie `.vscode/tasks.json`:
 
 ---
 
-## Dažniausios derinimo situacijos
+## Įprastos derinimo situacijos
 
-### Situacija 1: Serveris nesijungia
+### Situacija 1: Serveris neprisijungia
 
 **Simptomai:** Inspector rodo „Disconnected“ arba užstringa prie „Connecting...“
 
 **Kontrolinis sąrašas:**
-1. ✅ Ar komanda serveriui teisinga?
-2. ✅ Ar visos priklausomybės įdiegtos?
-3. ✅ Ar serverio kelias absoliutus ar susijęs su dabartiniu katalogu?
-4. ✅ Ar nustatyti reikiami aplinkos kintamieji?
+1. ✅ Ar teisinga serverio komanda?
+2. ✅ Ar įdiegtos visos priklausomybės?
+3. ✅ Ar serverio kelias yra absoliutus ar santykinis esamai direktorijai?
+4. ✅ Ar nustatyti reikalingi aplinkos kintamieji?
 
-**Derinimo veiksmai:**
+**Derinimo žingsniai:**
 ```bash
-# Pirmiausia rankiniu būdu išbandykite serverį
+# Išbandykite serverį rankiniu būdu pirmiausia
 python -c "import your_server_module; print('OK')"
 
-# Patikrinkite importavimo klaidas
+# Patikrinkite, ar nėra importavimo klaidų
 python -m your_server_module 2>&1 | head -20
 
-# Patikrinkite, ar įdiegtas MCP SDK
+# Patvirtinkite, kad MCP SDK yra įdiegtas
 pip show mcp
 ```
 
-### Situacija 2: Įrankiai nerodomi
+### Situacija 2: Įrankiai nepasiekiami
 
-**Simptomai:** Įrankių skirtuke rodomas tuščias sąrašas
+**Simptomai:** Tools skirtuke rodomas tuščias sąrašas
 
 **Galimos priežastys:**
-1. Įrankiai nebuvo registruoti serverio inicializacijos metu
-2. Serveris sudužo po paleidimo
-3. `tools/list` apdorojimo funkcija grąžina tuščią masyvą
+1. Įrankiai neužregistruoti serverio inicializavimo metu
+2. Serveris sugriuvo po paleidimo
+3. `tools/list` tvarkyklė grąžina tuščią masyvą
 
-**Derinimo veiksmai:**
-1. Patikrinkite pranešimų žurnalą dėl `tools/list` atsakymo
-2. Pridėkite žurnalavimą į savo įrankių registracijos kodą
+**Derinimo žingsniai:**
+1. Patikrinkite žinutės žurnalą dėl `tools/list` atsakymo
+2. Įjunkite žurnalavimą įrankių registravimo kode
 3. Patikrinkite, ar yra `@mcp.tool()` dekoratoriai (Python)
 
 ### Situacija 3: Įrankis grąžina klaidą
@@ -354,11 +362,11 @@ pip show mcp
 
 **Derinimo būdas:**
 1. Atidžiai perskaitykite klaidos pranešimą
-2. Patikrinkite, ar parametrų tipai atitinka schemą
-3. Pridėkite try/catch bloką su išsamesniais klaidos pranešimais
-4. Patikrinkite serverio žurnalus dėl stack trace
+2. Patikrinkite, ar parametro tipai atitinka schemą
+3. Pridėkite try/catch blokus su išsamesniais klaidų pranešimais
+4. Patikrinkite serverio žurnalus dėl klaidų sekų
 
-**Pavyzdys: patobulintas klaidų valdymas:**
+**Pavyzdys kaip patobulinti klaidų valdymą:**
 
 ```python
 @mcp.tool()
@@ -375,18 +383,18 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ### Situacija 4: Išteklių turinys tuščias
 
-**Simptomai:** Išteklius grąžinamas, bet turinys yra tuščias arba null
+**Simptomai:** Išteklius grąžinamas, bet turinys tuščias arba null
 
 **Kontrolinis sąrašas:**
-1. ✅ Failo kelias arba URI yra teisingas
-2. ✅ Serveris turi leidimą skaityti išteklius
-3. ✅ Išteklių turinys grąžinamas teisingai
+1. ✅ Ar failo kelias arba URI yra teisingas
+2. ✅ Ar serveris turi leidimą skaityti išteklių
+3. ✅ Ar ištekliaus turinys teisingai grąžinamas
 
 ---
 
-## Pažangios Inspector funkcijos
+## Išplėstiniai Inspector funkcionalumai
 
-### Tinkinti antraštės (SSE)
+### Pasirinktini antraštiniai duomenys (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -402,40 +410,41 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Sesijų įrašymas
 
-Inspector gali eksportuoti pranešimų žurnalus vėlesnei analizei:
-1. Spauskite **Export Log** pranešimų skydelyje
+Inspector gali eksportuoti žinučių žurnalus vėlesnei analizei:
+1. Spustelėkite **Export Log** pranešimų skydelyje
 2. Išsaugokite JSON failą
-3. Dalinkitės su komandos nariais derinimui
+3. Pasidalinkite su komandos nariais derinimui
 
 ---
 
+
 ## Geriausios praktikos
 
-1. **Testuokite anksti ir dažnai** – Naudokite Inspector kūrimo metu, ne tik kai kažkas sugenda
-2. **Pradėkite nuo paprastumo** – Išbandykite pagrindinį ryšį prieš sudėtingus įrankių kvietimus
-3. **Patikrinkite schemą** – Daug klaidų kyla dėl parametro tipo neatitikimų
-4. **Skaitykite klaidų pranešimus** – MCP klaidos paprastai yra aprašomos
-5. **Palikite Inspector atidarytą** – Tai padeda greitai pastebėti problemas kūrimo metu
+1. **Testuokite anksti ir dažnai** - Naudokite Inspector kūrimo metu, ne tik kai kažkas sugenda
+2. **Pradėkite nuo paprasto** - Išbandykite pagrindinį ryšį prieš sudėtingus įrankių kvietimus
+3. **Patikrinkite schemą** - Daug klaidų kyla dėl parametrų tipų neatitikimų
+4. **Skaitykite klaidų pranešimus** - MCP klaidos paprastai yra aprašomos
+5. **Laikykite Inspector atidarytą** - Tai padeda pastebėti problemas vystymosi metu
 
 ---
 
 ## Kas toliau
 
-Jūs baigėte 3 modulį: Pradžia! Toliau tęskite mokymąsi:
+Baigėte 3 modulį: Pradžia! Tęskite mokymąsi:
 
 - [4 modulis: Praktinė įgyvendinimas](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Papildomi šaltiniai
+## Papildomi ištekliai
 
 - [MCP Inspector GitHub saugykla](https://github.com/modelcontextprotocol/inspector)
-- [MCP specifikacija – protokolo pranešimai](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP specifikacija - protokolo žinutės](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 specifikacija](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, atkreipkite dėmesį, kad automatizuoti vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritiniais atvejais rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

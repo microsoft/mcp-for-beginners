@@ -1,45 +1,46 @@
-# MCP中的分页和大结果集
+# MCP 中的分页和大型结果集
 
-当您的MCP服务器处理大型数据集时——无论是列出数千个文件、数据库记录还是搜索结果——您都需要分页来有效管理内存并提供响应快速的用户体验。本指南介绍如何在MCP中实现和使用分页。
+当您的 MCP 服务器处理大型数据集时——无论是列出数千个文件、数据库记录还是搜索结果——都需要分页来高效管理内存并提供响应式的用户体验。本指南介绍如何在 MCP 中实现和使用分页。
 
-## 为什么分页很重要
+## 分页的重要性
 
-没有分页，大量响应可能导致：
+如果没有分页，庞大的响应可能导致：
 
-- **内存耗尽**——一次加载数百万条记录
-- **响应时间变慢**——用户等待所有数据加载完成
-- **超时错误**——请求超出超时限制
-- **AI性能下降**——大型语言模型难以处理庞大的上下文
+- <strong>内存耗尽</strong> —— 一次加载数百万条记录
+- <strong>响应时间缓慢</strong> —— 用户须等待所有数据加载完成
+- <strong>超时错误</strong> —— 请求超出超时限制
+- **AI 性能差** —— 大型语言模型在庞大的上下文中表现不佳
 
-MCP使用**基于游标的分页**来可靠、一致地遍历结果集。
+MCP 使用<strong>基于游标的分页</strong>来可靠且一致地分页浏览结果集。
 
 ---
 
-## MCP分页的工作原理
+## MCP 分页工作原理
 
 ### 游标概念
 
-**游标**是一个不透明字符串，标记您在结果集中的位置。可以把它看作是一本厚书中的书签。
+<strong>游标</strong> 是一个不透明的字符串，用于标记您在结果集中的位置。可以把它想象成长篇书籍中的书签。
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list （无游标）
-    Server-->>Client: 工具 [1-10], nextCursor: "abc123"
+    Client->>Server: tools/list（无光标）
+    Server-->>Client: tools [1-10]，nextCursor: "abc123"
     
-    Client->>Server: tools/list （游标: "abc123"）
-    Server-->>Client: 工具 [11-20], nextCursor: "def456"
+    Client->>Server: tools/list（光标: "abc123"）
+    Server-->>Client: tools [11-20]，nextCursor: "def456"
     
-    Client->>Server: tools/list （游标: "def456"）
-    Server-->>Client: 工具 [21-25], nextCursor: null （结束）
+    Client->>Server: tools/list（光标: "def456"）
+    Server-->>Client: tools [21-25]，nextCursor: null（结束）
 ```
-### MCP方法中的分页
 
-以下MCP方法支持分页：
+### MCP 方法中的分页
 
-| 方法 | 返回值 | 游标支持 |
+以下 MCP 方法支持分页：
+
+| 方法 | 返回值 | 是否支持游标 |
 |--------|---------|----------------|
 | `tools/list` | 工具定义 | ✅ |
 | `resources/list` | 资源定义 | ✅ |
@@ -50,7 +51,7 @@ sequenceDiagram
 
 ## 服务器端实现
 
-### Python (FastMCP)
+### Python（FastMCP）
 
 ```python
 from mcp.server import Server
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # 解码光标以获取起始索引
+    # 解码游标以获取起始索引
     start_index = 0
     if cursor:
         try:
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # 计算下一个光标
+    # 计算下一个游标
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // 解码光标
+  // 解码游标
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // 计算下一个光标
+  // 计算下一个游标
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -135,7 +136,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
 });
 ```
 
-### Java (Spring MCP)
+### Java（Spring MCP）
 
 ```java
 @Service
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // 解码光标
+        // 解码游标
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // 计算下一个光标
+        // 计算下一个游标
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -179,7 +180,7 @@ public class PaginatedToolService {
 
 ## 客户端实现
 
-### Python客户端
+### Python 客户端
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript客户端
+### TypeScript 客户端
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -223,14 +224,14 @@ async function getAllTools(client: Client): Promise<Tool[]> {
   return allTools;
 }
 
-// 使用方法
+// 用法
 const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### 惰性加载模式
+### 延迟加载模式
 
-对于非常大的数据集，按需加载页面：
+对于非常大的数据集，可按需加载页面：
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # 如果缓冲区可用则返回
+        # 如果可用，从缓冲区返回
         if self.buffer:
             return self.buffer.pop(0)
         
-        # 检查是否已经遍历所有页面
+        # 检查是否已用尽所有页面
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -274,9 +275,9 @@ async for tool in PaginatedToolIterator(session):
 
 ---
 
-## 资源的分页
+## 资源分页
 
-资源通常需要为目录或大型数据集进行分页：
+资源通常需要对目录或大型数据集进行分页：
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # 解码光标（文件索引）
+    # 解码游标（文件索引）
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # 计算下一个光标
+    # 计算下一个游标
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -324,21 +325,21 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ```python
 # 光标只是索引
-cursor = "50"  # 从第50个项目开始
+cursor = "50"  # 从第50项开始
 ```
 
-**优点：** 简单，无状态  
-**缺点：** 如果项目被添加或删除，结果可能会偏移
+**优点：** 简单，无状态
+**缺点：** 如果有条目添加或移除，结果可能发生偏移
 
-### 策略 2：基于ID（稳定）
+### 策略 2：基于 ID（稳定）
 
 ```python
-# Cursor 是最后看到的ID
+# 光标是上次看到的ID
 cursor = "item_abc123"  # 从此项之后开始
 ```
 
-**优点：** 即使项目变动也稳定  
-**缺点：** 需要有序的ID
+**优点：** 即使条目变化也稳定
+**缺点：** 需要有序的 ID
 
 ### 策略 3：编码状态（复杂）
 
@@ -360,7 +361,7 @@ cursor = encode_cursor({
 })
 ```
 
-**优点：** 可以编码复杂状态  
+**优点：** 能编码复杂的状态
 **缺点：** 更复杂，游标字符串较大
 
 ---
@@ -371,7 +372,7 @@ cursor = encode_cursor({
 
 ```python
 # 考虑数据大小
-PAGE_SIZE_SMALL_ITEMS = 100   # 简单的元数据
+PAGE_SIZE_SMALL_ITEMS = 100   # 简单元数据
 PAGE_SIZE_MEDIUM_ITEMS = 20   # 更丰富的对象
 PAGE_SIZE_LARGE_ITEMS = 5     # 复杂内容
 ```
@@ -386,7 +387,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # 重置到开始
     except (ValueError, TypeError):
-        start_index = 0  # 光标无效，重新开始
+        start_index = 0  # 无效的游标，重新开始
     # ...
 ```
 
@@ -396,7 +397,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # 一些实现包括用于UI进度的总数
+    # 一些实现包括用于界面进度的总数
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
@@ -405,7 +406,7 @@ return ListToolsResult(
 
 ```python
 async def test_pagination():
-    # 结果集为空
+    # 空结果集
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -423,20 +424,20 @@ async def test_pagination():
 
 ## 常见陷阱
 
-### ❌ 返回所有结果后客户端分页
+### ❌ 返回所有结果后再客户端分页
 
 ```python
-# 坏：将所有内容加载到内存中
+# 不好：将所有内容加载到内存中
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 一百万个工具！
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ 在数据源处进行分页
+### ✅ 在数据源处分页
 
 ```python
-# 好的：只加载需要的内容
+# 好的：只加载所需的内容
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## 接下来是什么
+## 下一步
 
 - [模块 5.14 - 上下文工程](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [模块 8 - 最佳实践](../../08-BestPractices/README.md)
-- [3.8 - 测试您的MCP服务器](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - 测试您的 MCP 服务器](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## 额外资源
 
-- [MCP规范 - 分页](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [基于游标的分页说明](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK分页测试](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP 规范 - 分页](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [基于游标的分页详解](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK 分页测试](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免责声明**：  
-本文件使用 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。虽然我们尽力确保准确性，但请注意自动翻译可能包含错误或不准确之处。应以文件的原始语言版本作为权威来源。对于重要信息，建议使用专业人工翻译。因使用本翻译内容而产生的任何误解或曲解，我们概不负责。
+**免责声明**：
+本文件由 AI 翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻译完成。尽管我们力求准确，但请注意，自动翻译可能包含错误或不准确之处。原始语言版文件应视为权威来源。对于重要信息，建议使用专业人工翻译。我们对因使用本翻译而产生的任何误解或误释不承担责任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,6 +1,11 @@
 # Pokreni primjer
 
-## Kreiraj virtualno okruženje
+> [!WARNING]
+> Ovaj primjer koristi zastarjeli Sampling i naslijeđeni HTTP+SSE endpoint. Zadržan je
+> radi kompatibilnosti s MCP `2025-11-25`. Nove implementacije trebaju pozivati
+> LLM pružatelja izravno i koristiti Streamable HTTP za udaljeni MCP promet.
+
+## Stvori virtualno okruženje
 
 ```sh
 python -m venv venv
@@ -13,13 +18,13 @@ source ./venv/bin/activate
 pip install "mcp[cli]"
 ```
 
-## Pokreni poslužitelj
+## Pokreni server
 
 ```sh
 uvicorn server:app --port 8000
 ```
 
-## Testiraj poslužitelj s GitHub Copilot i VS Code
+## Testiraj server s GitHub Copilot i VS Code
 
 Dodaj unos u mcp.json ovako:
 
@@ -32,15 +37,15 @@ Dodaj unos u mcp.json ovako:
 }
 ```
 
-Pobrinite se da kliknete "start" na poslužitelju.
+Provjeri da si kliknuo "start" na serveru.
 
-U GitHub Copilot zalijepite sljedeći upit:
+U GitHub Copilot zalijepi sljedeći upit:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Prvi put će vam biti postavljeno pitanje želite li prihvatiti akciju uzorkovanja, zatim ćete biti upitani da prihvatite alat za pokretanje "create_blog". Trebali biste vidjeti odgovor sličan ovom:
+Prvi put ćeš biti upitan hoćeš li prihvatiti Sampling akciju, zatim ćeš biti upitan da prihvatiš alat za pokretanje "create_blog". Trebao bi vidjeti odgovor sličan:
 
 ```json
 {
@@ -51,6 +56,6 @@ Prvi put će vam biti postavljeno pitanje želite li prihvatiti akciju uzorkovan
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje od odgovornosti**:  
-Ovaj dokument preveden je pomoću AI usluge prevođenja [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na njegovom izvornom jeziku treba se smatrati službenim i autoritativnim izvorom. Za važne informacije preporučuje se profesionalni prijevod od strane čovjeka. Nismo odgovorni za bilo kakva nesporazuma ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

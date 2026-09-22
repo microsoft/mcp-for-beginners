@@ -1,4 +1,4 @@
-# MCP Calculator Server (Python)
+# MCP計算機サーバー (Python)
 
 
 

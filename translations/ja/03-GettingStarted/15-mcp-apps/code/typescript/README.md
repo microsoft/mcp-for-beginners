@@ -1,6 +1,6 @@
-Here's a sample demonstrating MCP App
+MCP Appのサンプルです。
 
-## Install 
+## インストール
 
 1. *mcp-app* フォルダに移動します
 1. `npm install` を実行します。これによりフロントエンドとバックエンドの依存関係がインストールされます
@@ -13,13 +13,13 @@ npx tsc --noEmit
 
 問題がなければ出力はありません。
 
-## Run backend
+## バックエンドの実行
 
 > MCP Apps ソリューションが `concurrently` ライブラリを使用しているため、Windows マシンでは少し追加作業が必要です。置き換えを見つける必要があります。MCP App の *package.json* の問題のある行は以下の通りです：
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
 このアプリはバックエンドパートとホストパートの2つに分かれています。
 
@@ -33,7 +33,7 @@ npm start
 
 > Codespace を使用している場合は、ポートの公開範囲をパブリックに設定する必要があります。ブラウザから https://<Codespaceの名前>.app.github.dev/mcp でエンドポイントにアクセスできるか確認してください
 
-## Choice -1 Visual Studio Code でアプリをテストする
+## 選択肢1 - Visual Studio Code でアプリをテストする
 
 Visual Studio Code でソリューションをテストするには、以下を行います：
 
@@ -56,7 +56,7 @@ Visual Studio Code でソリューションをテストするには、以下を�
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/ja/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Choice -2- ホストでアプリをテストする
+## 選択肢2 - ホストを使用してアプリをテストする
 
 リポジトリ <https://github.com/modelcontextprotocol/ext-apps> には、MVP Apps をテストするために使用できる複数のホストがあります。
 
@@ -94,7 +94,7 @@ Codespace 環境でホストを使用するには少し追加作業が必要で�
 - `npm install` で依存関係をインストールします
 - `npm start` でホストを起動します。
 
-## Test out the app
+## アプリを試す
 
 アプリの動作を以下のように試してみてください：
 

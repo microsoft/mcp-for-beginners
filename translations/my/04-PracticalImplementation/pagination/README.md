@@ -1,54 +1,55 @@
-# MCP တွင် စာမျက်နှာခွဲခြင်းနှင့် ကြီးမားသော ရလဒ် အစုများ
+# MCP တွင် စာမျက်နှာခွဲခြင်းနှင့် ကြီးမားသောရလဒ်အစုလိုက်
 
-သင့် MCP ဆာဗာသည် ဒေတာစုကြီးများကို ကိုင်တွယ်ရာတွင် - ဖိုင် သန်းများ, ဒေတာသိုလှောင်မှတ်တမ်းများ သို့မဟုတ် ရှာဖွေမှု ရလဒ်များကို စာရင်းပြုစုခြင်းဖြစ်စေ - သင်သည် မှတ်ဉာဏ်ကို ထိရောက်စွာ စီမံရန် နှင့် အသုံးပြုသူ အတွေ့အကြုံများကို ဖြေရှင်းနိုင်ရန် စာမျက်နှာခွဲခြင်း လိုအပ်ပါသည်။ ဤလမ်းညွှန်စာမျက်နှာသည် MCP တွင် စာမျက်နှာခွဲခြင်းကို မည်သို့ အကောင်အထည်ဖော်ရမည်နှင့် အသုံးပြုနိုင်မည်ကို ဖော်ပြပါသည်။
+သင်၏ MCP ဆာဗာသည် ဖိုင်များ ရှိရာ သန်းပေါင်းများစွာ၊ ဒေတာဘေ့စ်မှတ်တမ်းများ သို့မဟုတ် ရှာဖွေမှုရလဒ် များကို ကိုင်တွယ်သောအခါ၊ စွမ်းဆောင်ရည်ရှိစွာမှတ်ဉာဏ်ကို စီမံခန့်ခွဲရန်နှင့် အမြန်ဝန်ဆောင်မှုအသုံးပြုသူအတွေ့အကြုံရရှိစေရန် စာမျက်နှာခွဲခြင်း (pagination) လိုအပ်သည်။ ဤလမ်းညွှန်မှာ MCP တွင် pagination ကို မည်သို့ အကောင်အထည်ဖော်ပြီး အသုံးပြုရမည်ကို ဖော်ပြလိမ့်မည်။
 
-## စာမျက်နှာခွဲခြင်း၏ အရေးပါမှု
+## Pagination ချက်အရေးကြီးသောအကြောင်း
 
-စာမျက်နှာခွဲခြင်းမပါရှိလျှင် ကြီးမားသော တုံ့ပြန်ချက်များကြောင့်:
+Pagination မရှိပါက ကြီးမားသော ပြန်ကြားချက်များက ဖြစ်လာနိုင်သည်။
 
-- **မှတ်ဉာဏ် ထုတ်လွှတ်ခြင်း** - တပြိုင်နက်တည်း သန်းကျော်သောမှတ်တမ်းများအား လုပ်ဆောင်ခြင်း
-- **တုံ့ပြန်ချက် နှေးကွေးခြင်း** - အသုံးပြုသူများသည် အချက်အလက်အားလုံး စုစည်းမှုအတွက် စောင့်ဆိုင်းရခြင်း
-- **အချိန် ကုန်ဆုံးမှု အမှားများ** - တောင်းဆိုချက်များသည် အချိန် ကန့်သတ်ချက် ကျော်လွန်ခြင်း
-- **AI အရည်အသွေး နည်းပါးခြင်း** - LLM များသည် ကြီးမားသော အကြောင်းအရာများနှင့် အားနည်းခြင်း
+- **မှတ်ဉာဏ် ပြည့်ထောက်ခြင်း** - သန်းပေါင်းများသော မှတ်တမ်းများကို တပြိုင်နက်တည်း ဖတ်ယူခြင်း
+- **တုံ့ပြန်ချိန်ကြာခြင်း** - အသုံးပြုသူများသည် ဒေတာအားလုံး ဖတ်ယူပြီးမှ စောင့်ဆိုင်းရခြင်း
+- **အချိန်ကုန်လွန်မှားယွင်းခြင်း** - တောင်းဆိုမှုများသည် အချိန်နောက်ကျသည်
+- **ကြီးမားသောဆက်သွယ်မှုအကြောင်းအရာအားဖြင့် AI လုပ်ဆောင်မှု ယိုယွင်းခြင်း** - LLM များသည် ကြီးမားသော context တွင် အခက်အခဲရှိသည်
 
-MCP သည် ရလဒ်အစုများကို ယုံကြည်ရရှိစေပြီး တပြတ်တည်း ပြတ်သားစွာ စီမံနိုင်ရန် **cursor-based pagination** ကို အသုံးပြုသည်။
+MCP သည် ရလဒ်အစုလိုက်ကောင်းစွာ၊ တည်ငြိမ်စွာ စာမျက်နှာခွဲနိုင်ရန် **cursor-based pagination** ကို သုံးသည်။
 
 ---
 
-## MCP Pagination လုပ်ငန်းပုံစံ
+## MCP Pagination အလုပ်လုပ်ပုံ
 
-### Cursor အယူအဆ
+### Cursor အကြောင်းအရာ
 
-**cursor** သည် ရလဒ်အစုထဲတွင် သင့်နေရာကို သရုပ်ဖော်သော မမြင်သာသော စာကြောင်းတစ်ကြောင်းဖြစ်သည်။ များသော စာအုပ်ကြီးတစ်အုပ်တွင် bookmarks တစ်ခုလို ထင်နိုင်သည်။
+**cursor** ဆိုသည်မှာ သင့်ရလဒ်အစုတွင်းမှာ သင့်၏တည်နေရာကို မှတ်သားထားသော မမြင်ရသော စာသားတစ်ခုပါ။ စာအုပ်ရှည်လျားသည်မှာ bookmark တစ်ခုလို့ ထင်ပါ။
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (cursor မရှိ)
+    Client->>Server: tools/list (ကာဆာ မရှိ)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (cursor: "abc123")
+    Client->>Server: tools/list (ကာဆာ: "abc123")
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (cursor: "def456")
+    Client->>Server: tools/list (ကာဆာ: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (အဆုံး)
 ```
+
 ### MCP နည်းလမ်းများတွင် Pagination
 
-အောက်ပါ MCP နည်းလမ်းများသည် စာမျက်နှာခွဲခြင်းကို ထောက်ပံ့ပါသည် -
+MCP နည်းလမ်းများအနက် pagination ကို ထောက်ပံ့သောများမှာ -
 
-| နည်းလမ်း | ပြန်လည် ပေးပို့သည် | Cursor ထောက်ပံ့မှု |
+| နည်းလမ်း | ပြန်အပ်သည် | Cursor ထောက်ပံ့မှု |
 |--------|---------|----------------|
-| `tools/list` | ကိရိယာ သတ်မှတ်ချက်များ | ✅ |
-| `resources/list` | အရင်းအမြစ် သတ်မှတ်ချက်များ | ✅ |
-| `prompts/list` | ပြောဆိုချက် သတ်မှတ်ချက်များ | ✅ |
-| `resources/templates/list` | အရင်းအမြစ် စတင်မောင်းနှင်မှု | ✅ |
+| `tools/list` | ကိရိယာအညွှန်းစာ | ✅ |
+| `resources/list` | အရင်းအမြစ်အညွှန်းစာ | ✅ |
+| `prompts/list` | မူကြမ်းအညွှန်းစာ | ✅ |
+| `resources/templates/list` | အရင်းအမြစ်မှ စာရွက်များ | ✅ |
 
 ---
 
-## ဆာဗာ အကောင်အထည်ဖော်ခြင်း
+## ဆာဗာ တည်ဆောက်မှု
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# စမ်းသပ်ထားသော အကြမ်းဖွဲ့ဒေတာစု
+# ပြုစုထားသော ဒေတာအကြီးစား
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # စတင်ရာ အညွှန်းရရန် ကာရ်ဆာကို ပြန်လည်ဖေါ်ထုတ်သည်
+    # စတင်သော အညွှန်းသင်္ကေတရယူရန် cursor ကို decode ပြုလုပ်ပါ
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # ရလဒ်များ၏ စာမျက်နှာရယူသည်
+    # ရလဒ်စာမျက်နှာရယူပါ
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # နောက်ထပ် ကာရ်ဆာတွက်ချက်သည်
+    # နောက် cursor ကိုတွက်ချက်ပါ
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// ကြီးမားသော ဒေတာစုရပ်တူကူးစက်မှု
+// ကြီးမားသော ဒေတာစုစည်းမှုကို စမတ်ပြုလုပ်ထားခြင်း
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // ကူးစက်ပြေးလမ်းညွှန်ကို ဖြေဆိုပါ
+  // ကုရိုးဆာကို ဖြေရှင်းပါ
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // နောက်တစ်ခုကူးစက်ပြေးလမ်းညွှန်ကို တွက်ချက်ပါ
+  // နောက်တစ်ခုသော ကုရိုးဆာကို တွက်ချက်ပါ
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // အကြီးစားဒေတာစုစည်းမှုကို စတင်တည်ဆောက်ပါ
+        // ကြီးမားသော ဒေတာစုစည္းမှုကို စတင်ပုံသဏ္ဍာန်ဖော်ဆောင်ပါ
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // ကရိုက်ဆာကို ပြန်လည်ကုဒ်ဖြေပါ
+        // ကာရဆာကို ဖြေဆိုပါ
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -163,11 +164,11 @@ public class PaginatedToolService {
             }
         }
         
-        // ရလဒ်စာမျက်နှာတစ်ခုယူပါ
+        // ရလဒ်စာမျက်နှာကို ရယူပါ
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // နောက်ထပ်ကရိုက်ဆာကိုတွက်ချက်ပါ
+        // နောက်ထပ်ကာရဆာကိုတွက်ချက်ပါ
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## ကလိုင်း အကောင်အထည်ဖော်ခြင်း
+## client တည်ဆောက်မှု
 
 ### Python Client
 
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Lazy Loading စံနမူနာ
+### Lazy Loading ပုံစံ
 
-အလွန်ကြီးမားသော ဒေတာစုများအတွက် စာမျက်နှာများကို လိုအပ်သလို โหลดဆွဲပါ -
+ကြီးမားသောဒေတာအစုများအတွက် စာမျက်နှာများကို မလိုအပ်သလို ဖတ်ယူပါ။
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # ရရှိနိုင်လျှင် buffer မှ ပြန်ပေးပါ
+        # buffer တွင် ရှိပါက ပြန်လည်သွားပါ
         if self.buffer:
             return self.buffer.pop(0)
         
-        # စာမျက်နှာအားလုံးကို သုံးပြီးဖြစ်သည်ကို စစ်ဆေးပါ
+        # စာမျက်နှာများအားလုံး အဆုံးသတ်သလားစစ်ဆေးပါ
         if self.exhausted:
             raise StopAsyncIteration
         
-        # နောက်စာမျက်နှာကို ဦးတည်ဆွဲယူပါ
+        # နောက်ထပ်စာမျက်နှာယူပါ
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# အသုံးပြုမှု - ကြီးမားသော ဒေတာများအတွက် မွတ်တုတ်မှန်ကန်သော မှတ်ဉာဏ် အသုံးပြုမှု
+# အသုံးပြုမှု - အကြီးစားဒေတာအစုအဝေးများအတွက် မemory မြှုပ်နှံမှုအကောင်းဆုံး
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## အရင်းအမြစ်များအတွက် Pagination
 
-အရင်းအမြစ်များသည် ဖိုဒါများ သို့မဟုတ် ကြီးမားသော ဒေတာစုများအတွက် စာမျက်နှာခွဲခြင်း လိုအပ်သည် -
+အရင်းအမြစ်များတွင် သာမန်အားဖြင့် ဖိုင်ညွှန်ကြားမှုများ သို့မဟုတ် ကြီးမားသော ဒေတာအစုများအတွက် pagination လိုအပ်ပါသည်။
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # ဒက္ကုတ်ကာဆာ (ဖိုင်အညွှန်း)
+    # ကုဒ်ဖြေချက် ကူးဆာ (ဖိုင် အညွှန်း)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # ဒီစာမျက်နှာအတွက် အရင်းအမြစ်စာရင်း ဖန်တီးပါ
+    # ဒီစာမျက်နှာအတွက် အရင်းအမြစ် စာရင်း ဖန်တီးပါ
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # နောက်ထပ်ကာဆာ ခန့်မှန်းချက်လုပ်ပါ
+    # နောက်ထပ် ကူးဆာ ကိုတွက်ချက်ပါ
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Cursor ဒီဇိုင်း မျိုးစုံ
+## Cursor ဒီဇိုင်း များနှင့် မဟာဗျူဟာများ
 
-### မျိုးစုံ ၁: အညွှန်းအခြေခံ (ရိုးရှင်း)
-
-```python
-# Cursor သည် အညွှန်းအမှတ်သာ ဖြစ်သည်
-cursor = "50"  # ပစ္စည်း ၅၀ မှစတင်ပါ
-```
-
-**အားသာချက်များ** - ရိုးရှင်းပြီး အစီအစဉ်မရှိ
-**အားနည်းချက်များ** - အချက်အလက် ထည့်/ဖယ်ရှားမူများဖြင့် ရလဒ်လှုပ်ရှားနိုင်သည်
-
-### မျိုးစုံ ၂: ID အခြေခံ (တည်ငြိမ်)
+### မဟာဗျူဟာ ၁: အညွှန်းအခြေပြု (ရိုးရှင်း)
 
 ```python
-# Cursor သည် နောက်ဆုံးမြင်ခဲ့သော ID ဖြစ်သည်
-cursor = "item_abc123"  # ဤအရာ၏နောက်မှ စတင်ပါ
+# Cursor သည္ ပင္မကိုယ္စားျပဳညႊန္ၾကားခ်က္သာျဖစ္သည္
+cursor = "50"  # ပစ္စည်း ၅၀ မွ စ၍ စတင္သည္
 ```
 
-**အားသာချက်များ** - အချက်အလက် ပြောင်းလဲသော်လည်း တည်ငြိမ်စေသည်
-**အားနည်းချက်များ** - အမှတ်စဉ်လိုအပ်သည်
+**အားသာချက်များ** - ရိုးရှင်းပြီး အခြေအနေမရှိ
+**အားနည်းချက်များ** - အချက်အလက်များ ထည့်/ဖြုတ်သွားလျှင် ရလဒ်များ သွားပြီးလာနိုင်သည်
 
-### မျိုးစုံ ၃: ကုဒ်ပြုထားသော အခြေအနေ (ရှုပ်ထွေး)
+### မဟာဗျူဟာ ၂: ID အခြေပြု (တည်ငြိမ်)
+
+```python
+# ကာဆာသည် နောက်ဆုံးကြည့်ပြီး ID ဖြစ်သည်
+cursor = "item_abc123"  # ဤအရာအပြီးတွင် စတင်ပါ
+```
+
+**အားသာချက်များ** - အချက်အလက်များ ပြောင်းလဲသော်လည်း တည်ငြိမ်သည်
+**အားနည်းချက်များ** - စဉ်ဆက်မပြတ် ID များ လိုအပ်သည်
+
+### မဟာဗျူဟာ ၃: အမှတ်အသားပြု အခြေအနေ Encoded (ရှုပ်ထွေး)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# ကာဆာတွင် အခြေအနေကွင်းများ ဘာသာရပ်များစွာ ပါဝင်သည်။
+# ကာဆာတွင် အခြေအနေများ များစွာ ပါ၀င်သည်
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**အားသာချက်များ** - ရှုပ်ထွေးသော အခြေအနေနှင့်ကိုက်ညီစေရန် ကုဒ်ပြုနိုင်သည်
-**အားနည်းချက်များ** - နည်းလမ်းရှုပ်ထွေး၍ cursor စာကြောင်းများ ကြီးမားသည်
+**အားသာချက်များ** - ရှုပ်ထွေးသောအခြေအနေများသိမ်းဆည်းနိုင်သည်
+**အားနည်းချက်များ** - ပို၍ရှုပ်ထွေးပြီး cursor စာသားများကြီးသည်
 
 ---
 
-## အသိပညာများ
+## အကောင်းဆုံး လက်တွေ့အသုံးပြုမှုများ
 
-### ၁။ မှတ်သားသင့်သော စာမျက်နှာ အရွယ်အစားများ ရွေးချယ်ပါ
+### ၁။ သင့်တော်သော စာမျက်နှာ အရွယ်အစား ရွေးချယ်ပါ
 
 ```python
 # ဒေတာအရွယ်အစားကိုစဉ်းစားပါ
-PAGE_SIZE_SMALL_ITEMS = 100   # ရိုးရှင်းသော မီတာဒေတာ
-PAGE_SIZE_MEDIUM_ITEMS = 20   # ပိုပြီး ကြွယ်ဝသော ပစ္စည်းများ
-PAGE_SIZE_LARGE_ITEMS = 5     # စ_complex_သော အကြောင်းအရာ
+PAGE_SIZE_SMALL_ITEMS = 100   # ရိုးရှင်းသော မက်တာဒေတာ
+PAGE_SIZE_MEDIUM_ITEMS = 20   # ပိုမိုပြည့်စုံသော အရာဝတ္တုများ
+PAGE_SIZE_LARGE_ITEMS = 5     # ဖက်ဆစ်ရှင်းသော အကြောင်းအရာ
 ```
 
-### ၂။ မမှန်ကန်သည့် Cursor များကို ဂရုတစိုက် ကိုင်တွယ်ပါ
+### ၂။ မမှန်ကန်သော Cursor များကို သင့်တော်စွာ ကိုင်တွယ်ပါ
 
 ```python
 @app.list_tools()
@@ -384,59 +385,59 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # မူလအခြေအနေသို့ ပြန်သတ်မှတ်ရန်
+            start_index = 0  # စတင်နေရာသို့ ပြန်လည်စတင်ပါ
     except (ValueError, TypeError):
-        start_index = 0  # မှားယွင်းသော ကာဆာ၊ အသစ်စတင်ပါ
+        start_index = 0  # မမှန်ကန်သော cursor, အသစ်စတင်ပါ
     # ...
 ```
 
-### ၃။ စုစုပေါင်း မှတ်ချက် ထည့်သွင်းခြင်း (ရွေးချယ်သည်)
+### ၃။ စုစုပေါင်း အရေအတွက် ထည့်သွင်းပါ (ရွေးချယ်စရာ)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # UI တိုးတက်မှုများအတွက် စုစုပေါင်းကိုတစ်ချို့ အကောင်အထည်ဖော်မှုများတွင် ထည့်သွင်းထားသည်။
+    # အချို့အကောင်အထည်ဖော်မှုများသည် UI တိုးတက်မှုအတွက် စုစုပေါင်းကို ပါဝင်သည်။
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### ၄။ အချက်အလက် အကန့်အသတ်များ စမ်းသပ်ပါ
+### ၄။ နယ္နိမိတ္ခန္႔သတ္မွတ္မွုမ်ားကို စမ်းသပ်ပါ
 
 ```python
 async def test_pagination():
-    # ရလဒ်အလွတ်
+    # ရလဒ်အမှတ်အသား မရှိပါ
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # တစ်မျက်နှာစာ
+    # တစ်ခုတည်းစာမျက်နှာ
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # မမှန်ကန်သော cursor
+    # မှားယွင်းသော cursor
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # ပထမမျက်နှာစာကို ပြန်ပေးသင့်သည်
+    assert result.tools  # ပထမစာမျက်နှာ ပြန်လည်ပေးသင့်သည်
 ```
 
 ---
 
-## ခဏတာ အမှားများ
+## အချို့သောမှားယွင်းမှုများ
 
-### ❌ အားလုံးသော ရလဒ်များကို ပြန်ပေးပြီးနောက် Client ဖြင့် စာမျက်နှာခွဲခြင်း
+### ❌ ရလဒ်အားလုံးကို ပြန်လည်ပေးပြန်ပြီး client မှာ pagination လုပ်ခြင်း
 
 ```python
-# မကောင်းပါ: အရာအားလုံးကို မျောမှိုင်းထဲသို့ load လုပ်သည်
+# ဆိုးတယ်: အားလုံးကိုမှတ်ဉာဏ်အတွင်းသို့โหลดနေသည်
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # ၁ သန်းကိရိယာများ!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ ဒေတာ အရင်းအမြစ်တွင် စာမျက်နှာခွဲခြင်း
+### ✅ ဒေတာအစုံရှိရာမှ pagination လုပ်ခြင်း
 
 ```python
-# ကောင်းရုံပဲ လိုအပ်တာကိုသာ ခဲ႔ယူတယ်
+# ကောင်းတယ်: လိုအပ်တာတွေ သာတင်ပေးတယ်
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,7 +447,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## နောက်တကြိမ် မည်သည်ကို
+## နောက်တစ်ဆင့်
 
 - [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## အပိုဆောင်း အရင်းအမြစ်များ
 
-- [MCP Specification - Pagination](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ဖြည်းဖြည်းအကြောင်းကြားချက်**  
-ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးပမ်းပေမယ့်၊ အလိုအလျောက်ဘာသာပြန်ချက်များတွင် အမှားများ သို့မဟုတ် မှားယွင်းမှုများ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် တိုက်တွန်းအပ်ပါသည်။ မူလစာတမ်းသည် မူရင်းဘာသာစကားဖြင့် ရေးသားထားသော လက်မှတ်ပြု စာရွက်စာတမ်းအဖြစ် သတ်မှတ်ဆက်ဆံသင့်ပါသည်။ အရေးကြီးသည့် အချက်အလက်များအတွက် ပညာရှင် လူသား ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက် အသုံးပြုမှုကြောင့် ဖြစ်ပေါ်လာနိုင်သည့် မေးခွန်းများ သို့မဟုတ် မမှန်ကန်မှုများအတွက် ကျွန်ုပ်တို့ တာဝန်မယူပါ။
+**ပြောကြားချက်**
+ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးပမ်းနေသော်လည်း၊ စက်ကိရိယာဘာသာပြန်ခြင်းများတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် လိုအပ်ပါသည်။ မူလစာတမ်းကို မူရင်းဘာသာဖြင့်သာ ယုံကြည်စိတ်ချရသော အချက်အလက်အဖြစ် သတ်မှတ်သင့်သည်။ အရေးကြီးသည့် သတင်းအချက်အလက်များအတွက် ပရော်ဖက်ရှင်နယ် လူသားဘာသာပြန်သူဝန်ဆောင်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော နားလည်မှုကွာခြားမှုများ သို့မဟုတ် မမှန်ကန်သော အသုံးပြုမှုများအတွက် ကျွန်ုပ်တို့ တာဝန်မခံပါ။
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

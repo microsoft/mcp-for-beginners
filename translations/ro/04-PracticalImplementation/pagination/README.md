@@ -1,25 +1,25 @@
-# Paginarea și seturile mari de rezultate în MCP
+# Paginarea și Seturile Mari de Rezultate în MCP
 
-Atunci când serverul tău MCP gestionează seturi mari de date - fie listând mii de fișiere, înregistrări din baze de date sau rezultate de căutare - ai nevoie de paginare pentru a administra memoria eficient și pentru a oferi experiențe responsive utilizatorilor. Acest ghid acoperă cum să implementezi și să folosești paginarea în MCP.
+Când serverul tău MCP gestionează seturi mari de date - fie listând mii de fișiere, înregistrări din bazele de date sau rezultate ale căutărilor - ai nevoie de paginare pentru a gestiona memoria eficient și a oferi experiențe de utilizator rapide. Acest ghid explică cum să implementezi și să folosești paginarea în MCP.
 
-## De ce este importantă paginarea
+## De ce este importantă Paginarea
 
 Fără paginare, răspunsurile mari pot cauza:
 
 - **Epuizarea memoriei** - Încărcarea a milioane de înregistrări simultan
-- **Timp de răspuns lent** - Utilizatorii așteaptă până se încarcă toate datele
+- **Timpuri lente de răspuns** - Utilizatorii așteaptă până când toate datele se încarcă
 - **Erori de timeout** - Cererile depășesc limitele de timp
-- **Performanță slabă a AI** - LLM-urile au dificultăți cu contexte masive
+- **Performanță slabă AI** - LLM-urile au dificultăți cu un context masiv
 
-MCP folosește **paginare bazată pe cursor** pentru o navigare fiabilă și consistentă prin seturile de rezultate.
+MCP folosește **paginare bazată pe cursor** pentru o paginare fiabilă și constantă prin seturile de rezultate.
 
 ---
 
-## Cum funcționează paginarea în MCP
+## Cum Funcționează Paginarea în MCP
 
-### Conceptul de cursor
+### Conceptul de Cursor
 
-Un **cursor** este un șir opac care marchează poziția ta într-un set de rezultate. Gândește-l ca pe un semn de carte într-o carte lungă.
+Un **cursor** este un șir opac care marchează poziția ta într-un set de rezultate. Gândește-te la el ca la un semn de carte într-o carte lungă.
 
 ```mermaid
 sequenceDiagram
@@ -35,20 +35,21 @@ sequenceDiagram
     Client->>Server: tools/list (cursor: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (sfârșit)
 ```
-### Paginarea în metodele MCP
 
-Aceste metode MCP suportă paginarea:
+### Paginarea în Metodele MCP
 
-| Metodă | Returnează | Suport cursor |
-|--------|------------|---------------|
-| `tools/list` | Definiții de unelte | ✅ |
-| `resources/list` | Definiții de resurse | ✅ |
-| `prompts/list` | Definiții de prompturi | ✅ |
-| `resources/templates/list` | Șabloane de resurse | ✅ |
+Aceste metode MCP suportă paginare:
+
+| Metodă | Returnează | Suport Cursor |
+|--------|---------|----------------|
+| `tools/list` | Definiții unelte | ✅ |
+| `resources/list` | Definiții resurse | ✅ |
+| `prompts/list` | Definiții prompturi | ✅ |
+| `resources/templates/list` | Șabloane resurse | ✅ |
 
 ---
 
-## Implementarea pe server
+## Implementare Server
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Set de date mare simulat
+# Set de date simulat mare
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Decodează cursorul pentru a obține indicele de start
+    # Decodează cursorul pentru a obține indexul de pornire
     start_index = 0
     if cursor:
         try:
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Calculează cursorul următor
+    # Calculează următorul cursor
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Decodifică cursorul
+  // Decodează cursorul
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // Calculează următorul cursor
+  // Calculează cursorul următor
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Inițializează setul de date mare
+        // Inițializează setul mare de date
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // Calculează cursorul următor
+        // Calculează următorul cursor
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementarea pe client
+## Implementare Client
 
 ### Client Python
 
@@ -228,7 +229,7 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Model Lazy Loading
+### Pattern de Încărcare Lazy
 
 Pentru seturi foarte mari de date, încarcă paginile la cerere:
 
@@ -274,7 +275,7 @@ async for tool in PaginatedToolIterator(session):
 
 ---
 
-## Paginarea pentru resurse
+## Paginarea pentru Resurse
 
 Resursele au adesea nevoie de paginare pentru directoare sau seturi mari de date:
 
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Decodifică cursorul (indexul fișierului)
+    # Decodează cursorul (indexul fișierului)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Calculează cursorul următor
+    # Calculează următorul cursor
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Strategii de proiectare a cursorului
+## Strategii de Design pentru Cursor
 
-### Strategia 1: Bazată pe index (Simplă)
+### Strategia 1: Bazată pe Index (Simplă)
 
 ```python
-# Cursorul este doar indicele
-cursor = "50"  # Porniți de la elementul 50
+# Cursorul este doar indexul
+cursor = "50"  # Începe la elementul 50
 ```
 
-**Pro:** Simplu, fără stare  
-**Contra:** Rezultatele se pot schimba dacă se adaugă/șterg elemente
+**Pro:** Simplu, fără stare
+**Contra:** Rezultatele pot fi modificate dacă se adaugă/scoate elemente
 
 ### Strategia 2: Bazată pe ID (Stabilă)
 
 ```python
-# Cursor este ultimul ID văzut
+# Cursorul este ultimul ID văzut
 cursor = "item_abc123"  # Începe după acest element
 ```
 
-**Pro:** Stabilă chiar dacă elementele se schimbă  
+**Pro:** Stabil chiar dacă elementele se schimbă
 **Contra:** Necesită ID-uri ordonate
 
-### Strategia 3: Stare codificată (Complexă)
+### Strategia 3: Stare Codificată (Complexă)
 
 ```python
 import base64
@@ -360,14 +361,14 @@ cursor = encode_cursor({
 })
 ```
 
-**Pro:** Poate codifica o stare complexă  
+**Pro:** Poate codifica stări complexe
 **Contra:** Mai complexă, șiruri de cursor mai mari
 
 ---
 
-## Bune practici
+## Cele Mai Bune Practici
 
-### 1. Alege dimensiuni de pagină potrivite
+### 1. Alege Dimensiuni Potrivite pentru Pagină
 
 ```python
 # Ia în considerare dimensiunea datelor
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Obiecte mai bogate
 PAGE_SIZE_LARGE_ITEMS = 5     # Conținut complex
 ```
 
-### 2. Gestionează cursorii invalizi cu grijă
+### 2. Gestionează Cursorii Invălizi cu Grație
 
 ```python
 @app.list_tools()
@@ -386,11 +387,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # Resetează la început
     except (ValueError, TypeError):
-        start_index = 0  # Cursor nevalid, începe de la început
+        start_index = 0  # Cursor nevalid, începe de la capăt
     # ...
 ```
 
-### 3. Include numărul total (opțional)
+### 3. Include Numărul Total (Opțional)
 
 ```python
 return ListToolsResult(
@@ -401,7 +402,7 @@ return ListToolsResult(
 )
 ```
 
-### 4. Testează cazuri limită
+### 4. Testează Cazurile Limită
 
 ```python
 async def test_pagination():
@@ -421,9 +422,9 @@ async def test_pagination():
 
 ---
 
-## Probleme comune
+## Capcane Comune
 
-### ❌ Returnarea tuturor rezultatelor și apoi paginarea pe client
+### ❌ Returnarea tuturor rezultatelor apoi paginarea pe client
 
 ```python
 # RĂU: Încarcă totul în memorie
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Paginarea la sursa de date
+### ✅ Paginați la Sursa de Date
 
 ```python
 # BUN: Încarcă doar ce este necesar
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Ce urmează
+## Ce Urmează
 
 - [Modul 5.14 - Ingineria Contextului](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Modul 8 - Bune practici](../../08-BestPractices/README.md)
-- [3.8 - Testarea serverului MCP](../../03-GettingStarted/08-testing/README.md)
+- [Modul 8 - Cele Mai Bune Practici](../../08-BestPractices/README.md)
+- [3.8 - Testarea Serverului MCP](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
-## Resurse suplimentare
+## Resurse Suplimentare
 
-- [Specificația MCP - Paginarea](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Explicație paginare bazată pe cursor](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Teste de paginare în Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Specificația MCP - Paginare](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Paginarea bazată pe cursor explicată](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Teste paginare SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Declinare de responsabilitate**:
-Acest document a fost tradus utilizând serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). Deși ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa oficială. Pentru informații critice, se recomandă traducerea profesională realizată de un specialist uman. Nu ne asumăm nicio răspundere pentru eventualele neînțelegeri sau interpretări greșite rezultate din utilizarea acestei traduceri.
+**Declinare a responsabilității**:
+Acest document a fost tradus folosind serviciul de traducere AI [Co-op Translator](https://github.com/Azure/co-op-translator). În timp ce ne străduim pentru acuratețe, vă rugăm să rețineți că traducerile automate pot conține erori sau inexactități. Documentul original în limba sa nativă trebuie considerat sursa autorizată. Pentru informații critice, se recomandă traducerea profesională realizată de un om. Nu ne asumăm responsabilitatea pentru eventualele neînțelegeri sau interpretări greșite care decurg din utilizarea acestei traduceri.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

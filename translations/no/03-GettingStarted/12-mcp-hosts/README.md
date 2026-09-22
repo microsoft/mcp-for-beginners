@@ -1,10 +1,15 @@
-# Konfigurere Populære MCP Host-klienter
+# Sette opp populære MCP-hostklienter
 
-Denne guiden dekker hvordan du konfigurerer og bruker MCP-servere med populære AI-host-applikasjoner. Hver host har sin egen konfigurasjonsmetode, men når de først er satt opp, kommuniserer de alle med MCP-servere ved hjelp av standardisert protokoll.
+> [!NOTE]
+> Host-konfigurasjoner som peker til `/sse` er eldre HTTP+SSE-eksempler for
+> MCP `2025-11-25`. For MCP `2026-07-28`, velg Streamable HTTP i verter som
+> støtter det og bruk endepunktet konfigurert av serveren.
 
-## Hva er en MCP Host?
+Denne guiden dekker hvordan du konfigurerer og bruker MCP-servere med populære AI-hostapplikasjoner. Hver host har sin egen konfigurasjonsmåte, men når de er satt opp, kommuniserer de alle med MCP-servere ved hjelp av standardisert protokoll.
 
-En **MCP Host** er en AI-applikasjon som kan koble til MCP-servere for å utvide sine evner. Tenk på det som "frontend" som brukere interagerer med, mens MCP-servere leverer "backend"-verktøy og data.
+## Hva er en MCP-host?
+
+En **MCP-host** er en AI-applikasjon som kan koble til MCP-servere for å utvide sine funksjoner. Tenk på det som "frontend" som brukerne interagerer med, mens MCP-servere tilbyr "backend" verktøy og data.
 
 ```mermaid
 flowchart LR
@@ -13,17 +18,18 @@ flowchart LR
     Host --> S2[MCP Server B]
     Host --> S3[MCP Server C]
     
-    subgraph "Populære Verter"
-        H1[Claude Desktop]
+    subgraph "Populære verter"
+        H1[Claude Skrivebord]
         H2[VS Code]
         H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
+
 ## Forutsetninger
 
-- En MCP-server å koble til (se [Module 3.1 - First Server](../01-first-server/README.md))
+- En MCP-server å koble til (se [Modul 3.1 - Første server](../01-first-server/README.md))
 - Host-applikasjonen installert på systemet ditt
 - Grunnleggende kjennskap til JSON-konfigurasjonsfiler
 
@@ -31,7 +37,7 @@ flowchart LR
 
 ## 1. Claude Desktop
 
-**Claude Desktop** er Anthropics offisielle skrivebordsapplikasjon som nativt støtter MCP.
+**Claude Desktop** er Anthropics offisielle skrivebordsapplikasjon som støtter MCP nativt.
 
 ### Installasjon
 
@@ -42,7 +48,7 @@ flowchart LR
 
 Claude Desktop bruker en JSON-konfigurasjonsfil for å definere MCP-servere.
 
-**Plassering av konfigurasjonsfil:**
+**Konfigurasjonsfilplassering:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 - **Linux**: `~/.config/Claude/claude_desktop_config.json`
@@ -74,33 +80,33 @@ Claude Desktop bruker en JSON-konfigurasjonsfil for å definere MCP-servere.
 }
 ```
 
-### Konfigurasjonsalternativer
+### Konfigurasjonsvalg
 
 | Felt | Beskrivelse | Eksempel |
 |-------|-------------|---------|
-| `command` | Kjørbar fil som skal kjøres | `"python"`, `"node"`, `"npx"` |
+| `command` | Kjørbar fil | `"python"`, `"node"`, `"npx"` |
 | `args` | Kommandolinjeargumenter | `["-m", "my_server"]` |
 | `env` | Miljøvariabler | `{"API_KEY": "xxx"}` |
-| `cwd` | Arbeidsmappe | `"/path/to/server"` |
+| `cwd` | Arbeidskatalog | `"/path/to/server"` |
 
-### Teste Oppsettet Ditt
+### Teste oppsettet ditt
 
 1. Lagre konfigurasjonsfilen
-2. Start Claude Desktop helt på nytt (avslutt og åpne på nytt)
+2. Start Claude Desktop helt på nytt (avslutt og åpne igjen)
 3. Åpne en ny samtale
 4. Se etter 🔌-ikonet som indikerer tilkoblede servere
-5. Prøv å be Claude bruke ett av verktøyene dine
+5. Prøv å spørre Claude om å bruke ett av verktøyene dine
 
-### Feilsøking Claude Desktop
+### Feilsøking av Claude Desktop
 
 **Server vises ikke:**
 - Sjekk syntaks i konfigurasjonsfilen med en JSON-validator
-- Sørg for at kommando-vei er korrekt
-- Sjekk Claude Desktop-logger: Hjelp → Vis logger
+- Sørg for at kommando-banen er korrekt
+- Sjekk Claude Desktop logger: Hjelp → Vis logger
 
 **Server krasjer ved oppstart:**
 - Test serveren manuelt i terminal først
-- Sjekk at miljøvariabler er riktig satt
+- Sjekk at miljøvariabler er riktige
 - Sørg for at alle avhengigheter er installert
 
 ---
@@ -112,12 +118,12 @@ VS Code støtter MCP gjennom GitHub Copilot Chat-utvidelser.
 ### Forutsetninger
 
 1. VS Code 1.99+ installert
-2. GitHub Copilot-utvidelsen installert
-3. GitHub Copilot Chat-utvidelsen installert
+2. GitHub Copilot-utvidelse installert
+3. GitHub Copilot Chat-utvidelse installert
 
 ### Konfigurasjon
 
-VS Code bruker `.vscode/mcp.json` i ditt arbeidsområde eller brukerinnstillinger.
+VS Code bruker `.vscode/mcp.json` i arbeidsområdet eller brukerinnstillinger.
 
 **Arbeidsområdekonfigurasjon** (`.vscode/mcp.json`):
 
@@ -156,20 +162,20 @@ VS Code bruker `.vscode/mcp.json` i ditt arbeidsområde eller brukerinnstillinge
 
 1. Åpne Copilot Chat-panelet (Ctrl+Shift+I / Cmd+Shift+I)
 2. Skriv `@` for å se tilgjengelige MCP-verktøy
-3. Bruk naturlig språk for å påkalle verktøy: "Calculate 25 * 48 using the calculator"
+3. Bruk naturlig språk for å bruke verktøy: "Calculate 25 * 48 using the calculator"
 
-### Feilsøking VS Code
+### Feilsøking av VS Code
 
 **MCP-servere lastes ikke:**
-- Sjekk Output-panelet → "MCP" for feillogger
+- Sjekk Utdata-panelet → "MCP" for feil logger
 - Last vinduet på nytt: Ctrl+Shift+P → "Developer: Reload Window"
-- Verifiser at serveren kjører stabilt først
+- Verifiser at serveren kjører selvstendig først
 
 ---
 
 ## 3. Cursor
 
-**Cursor** er en AI-først kodeeditor med innebygd MCP-støtte.
+**Cursor** er en AI-fokusert kodeeditor med innebygd MCP-støtte.
 
 ### Installasjon
 
@@ -178,9 +184,9 @@ VS Code bruker `.vscode/mcp.json` i ditt arbeidsområde eller brukerinnstillinge
 
 ### Konfigurasjon
 
-Cursor bruker tilsvarende konfigurasjonsformat som Claude Desktop.
+Cursor bruker et lignende konfigurasjonsformat som Claude Desktop.
 
-**Plassering av konfigurasjonsfil:**
+**Konfigurasjonsfilplassering:**
 - **macOS**: `~/.cursor/mcp.json`
 - **Windows**: `%USERPROFILE%\.cursor\mcp.json`
 - **Linux**: `~/.cursor/mcp.json`
@@ -207,15 +213,15 @@ Cursor bruker tilsvarende konfigurasjonsformat som Claude Desktop.
 
 ### Bruke MCP i Cursor
 
-1. Åpne Cursor sin AI-chat (Ctrl+L / Cmd+L)
+1. Åpne Cursors AI-chat (Ctrl+L / Cmd+L)
 2. MCP-verktøy vises automatisk i forslagene
-3. Be AI utføre oppgaver med de tilkoblede serverne
+3. Be AI-en utføre oppgaver ved hjelp av tilkoblede servere
 
 ---
 
-## 4. Cline (Terminal-basert)
+## 4. Cline (terminalbasert)
 
-**Cline** er en terminal-basert MCP-klient, ideell for kommandolinjearbeid.
+**Cline** er en terminalbasert MCP-klient, ideell for arbeidsflyt i kommandolinjen.
 
 ### Installasjon
 
@@ -261,7 +267,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 # Start en interaktiv økt
 cline
 
-# Enkeltspørring med MCP
+# Enkeltforespørsel med MCP
 cline "Calculate the square root of 144 using the calculator"
 
 # List tilgjengelige verktøy
@@ -281,7 +287,7 @@ cline --list-tools
 
 ### Konfigurasjon
 
-Windsurf-konfigurasjon håndteres via innstillingsgrensesnittet:
+Windsurf-konfigurasjon håndteres gjennom innstillingsgrensesnittet:
 
 1. Åpne Innstillinger (Ctrl+, / Cmd+,)
 2. Søk etter "MCP"
@@ -304,9 +310,9 @@ Windsurf-konfigurasjon håndteres via innstillingsgrensesnittet:
 
 ---
 
-## Transporttyper Sammenligning
+## Sammenligning av transporttyper
 
-Ulike hosts støtter forskjellige transportmekanismer:
+Ulike verter støtter forskjellige transportmekanismer:
 
 | Host | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
@@ -316,14 +322,14 @@ Ulike hosts støtter forskjellige transportmekanismer:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standard input/output): Best for lokale servere startet av hosten  
+**stdio** (standard input/output): Best for lokale servere startet av hosten
 **SSE/HTTP**: Best for eksterne servere eller servere delt mellom flere klienter
 
 ---
 
-## Vanlig Feilsøking
+## Vanlige feilsøkingsproblemer
 
-### Server starter ikke
+### Serveren starter ikke
 
 1. **Test serveren manuelt først:**
    ```bash
@@ -334,7 +340,7 @@ Ulike hosts støtter forskjellige transportmekanismer:
    node /path/to/server/index.js
    ```
 
-2. **Sjekk kommando-vei:**
+2. **Sjekk kommando-banen:**
    - Bruk absolutte baner når mulig
    - Sørg for at kjørbar fil er i PATH
 
@@ -347,48 +353,48 @@ Ulike hosts støtter forskjellige transportmekanismer:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Server kobler til, men verktøy fungerer ikke
+### Server kobler til men verktøy fungerer ikke
 
-1. **Sjekk serverlogger** - De fleste hosts har logger
+1. **Sjekk serverlogger** - De fleste verter har loggalternativer
 2. **Verifiser verktøyregistrering** - Bruk MCP Inspector for testing
-3. **Sjekk tillatelser** - Noen verktøy trenger fil- eller nettverkstilgang
+3. **Sjekk tillatelser** - Noen verktøy trenger fil-/nettverkstilgang
 
-### Miljøvariabler videreføres ikke
+### Miljøvariabler blir ikke videreført
 
-- Noen hosts renser miljøvariabler
-- Bruk `env` i konfigurasjonen eksplisitt
-- Unngå sensitiv data i konfigurasjonsfiler (bruk hemmelighåndtering)
+- Noen verter rensker miljøvariabler
+- Bruk `env`-konfigurasjonsfeltet eksplisitt
+- Unngå sensitiv data i konfigurasjonsfiler (bruk hemmelighetshåndtering)
 
 ---
 
-## Sikkerhets Beste Praksis
+## Sikkerhetsanbefalinger
 
-1. **Aldri legg inn API-nøkler** i konfigurasjonsfiler
+1. **Ikke legg API-nøkler i konfigurasjonsfiler**
 2. **Bruk miljøvariabler** for sensitiv data
-3. **Begrens servertillatelser** til kun det som trengs
-4. **Gå gjennom serverkode** før du gir systemtilgang
-5. **Bruk tillitslister** for filsystem- og nettverkstilgang
+3. **Begrens servertillatelser** til bare det som trengs
+4. **Gå gjennom serverkoden** før du gir tilgang til systemet ditt
+5. **Bruk tillatlister** for filsystem- og nettverkstilgang
 
 ---
 
-## Hva Nå
+## Hva nå
 
 - [3.13 - Feilsøking med MCP Inspector](../13-mcp-inspector/README.md)
 - [3.1 - Lag din første MCP-server](../01-first-server/README.md)
-- [Modul 5 - Avanserte Emner](../../05-AdvancedTopics/README.md)
+- [Modul 5 - Avanserte emner](../../05-AdvancedTopics/README.md)
 
 ---
 
-## Ekstra Ressurser
+## Ytterligere ressurser
 
-- [Claude Desktop MCP Dokumentasjon](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [Claude Desktop MCP-dokumentasjon](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP-utvidelse](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP Spesifikasjon - Transporter](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Offisiell MCP Server-registrering](https://github.com/modelcontextprotocol/servers)
+- [MCP Spesifikasjon - Transporter](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Offisiell MCP-serverregister](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på dets morsmål skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,29 +1,35 @@
-# VS Code इंटीग्रेशन
+# VS कोड एकीकरण
 
-## 🎯 यह लैब क्या कवर करता है
+> [!NOTE]
+> इस लैब में `initializationOptions` सेटिंग्स नमूने के MCP
+> `2025-11-25` हैंडशेक को लक्षित करती हैं। MCP `2026-07-28` प्रारंभिक हैंडशेक को हटाता है;
+> इस नमूने को स्थानांतरित करते समय प्रति-रिक्वेस्ट मेटाडेटा और `server/discover` का समर्थन करने वाले होस्ट और SDK का उपयोग करें।
 
-यह लैब आपके MCP सर्वर को VS Code के साथ इंटीग्रेट करने के लिए विस्तृत मार्गदर्शन प्रदान करता है ताकि AI चैट के माध्यम से प्राकृतिक भाषा क्वेरीज़ सक्षम की जा सकें। आप सीखेंगे कि VS Code को MCP के लिए कैसे कॉन्फ़िगर करें, सर्वर कनेक्शन को डिबग करें, और AI-सहायता प्राप्त डेटाबेस इंटरैक्शन की पूरी क्षमता का उपयोग करें।
+
+## 🎯 इस लैब में क्या कवर किया गया है
+
+यह लैब आपके MCP सर्वर को VS कोड के साथ एकीकृत करने के लिए व्यापक मार्गदर्शन प्रदान करती है ताकि AI Chat के माध्यम से प्राकृतिक भाषा क्वेरी सक्षम हो सके। आप MCP के इष्टतम उपयोग के लिए VS कोड को कॉन्फ़िगर करना, सर्वर कनेक्शन को डिबग करना, और AI-सहायता प्राप्त डेटाबेस इंटरैक्शन्स की पूरी शक्ति का उपयोग करना सीखेंगे।
 
 ## अवलोकन
 
-VS Code का MCP इंटीग्रेशन डेवलपर्स के लिए डेटाबेस और API के साथ बातचीत करने के तरीके को प्राकृतिक भाषा के माध्यम से बदल देता है। जब आप अपने रिटेल MCP सर्वर को VS Code चैट से कनेक्ट करते हैं, तो आप बिक्री डेटा, उत्पाद कैटलॉग, और बिजनेस एनालिटिक्स को बुद्धिमान तरीके से क्वेरी करने में सक्षम होते हैं।
+VS कोड का MCP एकीकरण डेवलपर्स के डेटाबेस और APIs के साथ बातचीत करने के तरीके को प्राकृतिक भाषा के माध्यम से बदल देता है। अपने रिटेल MCP सर्वर को VS कोड चैट से जोड़कर, आप बिक्री डेटा, उत्पाद कैटलॉग, और व्यवसाय विश्लेषण को सहज AI की मदद से बुद्धिमानी से क्वेरी कर सकते हैं।
 
-यह इंटीग्रेशन डेवलपर्स को ऐसे सवाल पूछने की अनुमति देता है जैसे "इस महीने के टॉप सेलिंग प्रोडक्ट्स दिखाएं" या "ऐसे ग्राहक खोजें जिन्होंने 90 दिनों में खरीदारी नहीं की है" और बिना SQL क्वेरी लिखे संरचित डेटा प्रतिक्रियाएं प्राप्त करें।
+यह एकीकरण डेवलपर्स को "इस महीने के शीर्ष विक्रय उत्पाद दिखाएं" या "90 दिनों में जिन ग्राहकों ने खरीदारी नहीं की, उन्हें खोजें" जैसे प्रश्न पूछने और बिना SQL क्वेरी लिखे संरचित डेटा प्रतिक्रियाएं प्राप्त करने की अनुमति देता है।
 
 ## सीखने के उद्देश्य
 
 इस लैब के अंत तक, आप सक्षम होंगे:
 
-- **कॉन्फ़िगर करें** VS Code MCP सेटिंग्स अपने रिटेल सर्वर के लिए  
-- **इंटीग्रेट करें** MCP सर्वर को VS Code AI चैट फंक्शनलिटी के साथ  
-- **डिबग करें** MCP सर्वर कनेक्शन और समस्याओं का समाधान करें  
-- **प्राकृतिक भाषा क्वेरी पैटर्न** को बेहतर परिणामों के लिए ऑप्टिमाइज़ करें  
-- **कस्टमाइज़ करें** VS Code वर्कस्पेस MCP डेवलपमेंट के लिए  
-- **डिप्लॉय करें** मल्टी-सर्वर कॉन्फ़िगरेशन जटिल परिदृश्यों के लिए  
+- अपने रिटेल सर्वर के लिए VS कोड MCP सेटिंग्स **कॉन्फ़िगर** करना
+- MCP सर्वरों को VS कोड AI चैट कार्यक्षमता के साथ **एकीकृत** करना
+- MCP सर्वर कनेक्शनों को **डिबग** करना और समस्याओं का समाधान करना
+- बेहतर परिणामों के लिए प्राकृतिक भाषा क्वेरी पैटर्न्स **सुधारना**
+- MCP विकास के लिए VS कोड वर्कस्पेस को **अनुकूलित** करना
+- जटिल परिदृश्यों के लिए मल्टी-सर्वर कॉन्फ़िगरेशन **परिनियोजित** करना
 
-## 🔧 VS Code MCP कॉन्फ़िगरेशन
+## 🔧 VS कोड MCP कॉन्फ़िगरेशन
 
-### प्रारंभिक सेटअप और इंस्टॉलेशन
+### प्रारंभिक सेटअप और स्थापना
 
 ```json
 // .vscode/settings.json
@@ -62,26 +68,26 @@ VS Code का MCP इंटीग्रेशन डेवलपर्स क�
 }
 ```
 
-### एनवायरनमेंट कॉन्फ़िगरेशन
+### परिवेश कॉन्फ़िगरेशन
 
 ```bash
-# .env file for development
+# विकास के लिए .env फ़ाइल
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure विन्यास
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# वैकल्पिक: Azure की वॉल्ट
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# सर्वर विन्यास
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI चैट इंटीग्रेशन
+## 💬 AI चैट एकीकरण
 
-### प्राकृतिक भाषा क्वेरी पैटर्न
+### प्राकृतिक भाषा क्वेरी पैटर्न्स
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS कोड चैट के लिए उदाहरण क्वेरी पैटर्न
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### चैट इंटीग्रेशन उदाहरण
+### चैट एकीकरण उदाहरण
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### चैट प्रतिक्रिया स्वरूपण
+### चैट प्रतिक्रिया प्रारूपण
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # प्रमुख मीट्रिक
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # प्रदर्शन संकेतक
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # शीर्ष श्रेणी
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 डिबगिंग और समस्या समाधान
+## 🔍 डिबगिंग और समस्या निवारण
 
-### VS Code डिबग कॉन्फ़िगरेशन
+### VS कोड डिबग कॉन्फ़िगरेशन
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS कोड विशेष फॉर्मेटर बनाएं
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # VS कोड टर्मिनल के लिए कंसोल हैंडलर
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# ग्लोबल डीबग लॉगर
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### कनेक्शन समस्या समाधान
+### कनेक्शन समस्या निवारण
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # पर्यावरण से कनेक्शन पैरामीटर प्राप्त करें
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # कनेक्शन का परीक्षण करें
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # मूल क्वेरी का परीक्षण करें
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # स्कीमा एक्सेस का परीक्षण करें
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # एम्बेडिंग जनरेशन का परीक्षण करें
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCP सर्वर घटकों को आयात करें
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # परीक्षण कॉन्फ़िगरेशन बनाएँ
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # सर्वर आरंभ करें
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # उपलब्ध उपकरण प्राप्त करें
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # एक सरल उपकरण का परीक्षण करें
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # डेटाबेस कनेक्शन का परीक्षण करें
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI कनेक्शन का परीक्षण करें
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCP उपकरणों का परीक्षण करें
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # समग्र स्थिति
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### कस्टम VS Code एक्सटेंशन
+### कस्टम VS कोड एक्सटेंशन
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - कस्टम MCP रिटेल एक्सटेंशन
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP रिटेल कमांड्स पंजीकृत करें
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // स्टोर स्विचर पंजीकृत करें
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // कॉन्फ़िगरेशन अपडेट करें
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // VS कोड चैट में पूर्वनिर्धारित क्वेरीज निष्पादित करें
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 मुख्य बातें
+## 🎯 मुख्य निष्कर्ष
 
-इस लैब को पूरा करने के बाद, आपके पास होगा:
+इस लैब को पूरा करने के बाद, आपके पास होना चाहिए:
 
-✅ **VS Code MCP कॉन्फ़िगरेशन**: MCP इंटीग्रेशन के लिए पूरी सेटअप  
-✅ **AI चैट इंटीग्रेशन**: VS Code में प्राकृतिक भाषा क्वेरी की क्षमता  
-✅ **डिबगिंग टूल्स**: समस्या समाधान और कनेक्शन डायग्नोस्टिक्स  
+✅ **VS कोड MCP कॉन्फ़िगरेशन**: इष्टतम MCP एकीकरण के लिए पूर्ण सेटअप  
+✅ **AI चैट एकीकरण**: VS कोड में प्राकृतिक भाषा क्वेरी संभावनाएं  
+✅ **डिबगिंग उपकरण**: व्यापक समस्या निवारण और कनेक्शन डायग्नोस्टिक्स  
 ✅ **मल्टी-सर्वर सेटअप**: कई MCP सर्वर इंस्टेंस के लिए कॉन्फ़िगरेशन  
-✅ **कस्टम एक्सटेंशन**: रिटेल-विशिष्ट फीचर्स के साथ VS Code अनुभव को बढ़ाएं  
-✅ **प्रोडक्शन रेडीनेस**: एंटरप्राइज़-रेडी VS Code डेवलपमेंट एनवायरनमेंट  
+✅ **कस्टम एक्सटेंशन**: रिटेल-विशिष्ट फीचर्स के साथ बेहतर VS कोड अनुभव  
+✅ **प्रोडक्शन तत्परता**: एंटरप्राइज-तैयार VS कोड विकास वातावरण  
 
-## 🚀 आगे क्या करें
+## 🚀 आगे क्या है
 
-**[लैब 10: डिप्लॉयमेंट स्ट्रेटेजीज़](../10-Deployment/README.md)** के साथ जारी रखें:
+के साथ जारी रखें **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** ताकि आप:
 
-- MCP सर्वर को प्रोडक्शन एनवायरनमेंट में डिप्लॉय करें  
-- क्लाउड इंफ्रास्ट्रक्चर को स्केलेबिलिटी के लिए कॉन्फ़िगर करें  
-- CI/CD पाइपलाइंस को ऑटोमेटेड डिप्लॉयमेंट के लिए लागू करें  
-- प्रोडक्शन MCP सर्वर प्रदर्शन की निगरानी करें  
+- MCP सर्वरों को प्रोडक्शन वातावरण में परिनियोजित कर सकें
+- स्केलेबिलिटी के लिए क्लाउड इन्फ्रास्ट्रक्चर कॉन्फ़िगर कर सकें
+- स्वचालित परिनियोजन के लिए CI/CD पाइपलाइनों को लागू कर सकें
+- प्रोडक्शन MCP सर्वर प्रदर्शन की निगरानी कर सकें
 
 ## 📚 अतिरिक्त संसाधन
 
-### VS Code डेवलपमेंट
-- [VS Code Extension API](https://code.visualstudio.com/api) - आधिकारिक एक्सटेंशन डेवलपमेंट गाइड  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP इंटीग्रेशन डाक्यूमेंटेशन  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code में TypeScript डेवलपमेंट  
+### VS कोड विकास
+- [VS Code Extension API](https://code.visualstudio.com/api) - आधिकारिक एक्सटेंशन विकास मार्गदर्शिका
+- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP एकीकरण दस्तावेज़ीकरण
+- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS कोड में TypeScript विकास
 
 ### MCP प्रोटोकॉल
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - आधिकारिक MCP स्पेसिफिकेशन  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - इंप्लीमेंटेशन के लिए सर्वोत्तम प्रथाएं  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP इंप्लीमेंटेशन  
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - आधिकारिक MCP विनिर्देश
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - कार्यान्वयन सर्वोत्तम प्रथाएं
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP कार्यान्वयन
 
-### डेवलपमेंट टूल्स
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python डेवलपमेंट सेटअप  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - उन्नत डिबगिंग तकनीकें  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - टास्क ऑटोमेशन और कॉन्फ़िगरेशन  
-
----
-
-**पिछला**: [लैब 08: टेस्टिंग और डिबगिंग](../08-Testing/README.md)  
-**अगला**: [लैब 10: डिप्लॉयमेंट स्ट्रेटेजीज़](../10-Deployment/README.md)  
+### विकास उपकरण
+- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python विकास सेटअप
+- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - उन्नत डिबगिंग तकनीकें
+- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - टास्क स्वचालन और कॉन्फ़िगरेशन
 
 ---
 
-**अस्वीकरण**:  
-यह दस्तावेज़ AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके अनुवादित किया गया है। जबकि हम सटीकता सुनिश्चित करने का प्रयास करते हैं, कृपया ध्यान दें कि स्वचालित अनुवाद में त्रुटियां या अशुद्धियां हो सकती हैं। मूल भाषा में उपलब्ध मूल दस्तावेज़ को प्रामाणिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सिफारिश की जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम उत्तरदायी नहीं हैं।
+**पिछला**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+**अगला**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**अस्वीकरण**:
+इस दस्तावेज़ का अनुवाद AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) का उपयोग करके किया गया है। जबकि हम सटीकता के लिए प्रयास करते हैं, कृपया ध्यान दें कि स्वचालित अनुवादों में त्रुटियाँ या अशुद्धियाँ हो सकती हैं। मूल दस्तावेज़ अपनी मूल भाषा में ही प्रामाणिक स्रोत माना जाना चाहिए। महत्वपूर्ण जानकारी के लिए, पेशेवर मानव अनुवाद की सिफारिश की जाती है। इस अनुवाद के उपयोग से उत्पन्न किसी भी गलतफहमी या गलत व्याख्या के लिए हम उत्तरदायी नहीं हैं।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

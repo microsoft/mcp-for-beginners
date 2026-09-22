@@ -1,48 +1,48 @@
 # Model Context Protocol (MCP) Integration wit Microsoft Foundry
 
-Dis guide go show how you fit join Model Context Protocol (MCP) servers wit Microsoft Foundry agents, wey go enable powerful tool waka-togeda and enterprise AI fiture.
+Dis guide go show how you fit join Model Context Protocol (MCP) servers wit Microsoft Foundry agents, wey go gree powerful tool waka-together and enterprise AI tin dem.
 
 ## Introduction
 
-Model Context Protocol (MCP) na open standard wey make AI apps fit connect wella wit outside data sources and tools. Wen you join am wit Microsoft Foundry, MCP go allow agents to sabi reach and use different outside services, APIs, and data sources for one standard way.
+Model Context Protocol (MCP) na open standard wey dey allow AI applications connect safe to outside data sources and tools. When you join am wit Microsoft Foundry, MCP go make agents fit reach and interact wit different outside services, APIs, and data sources one way wey everybody understand.
 
-Dis integration mix the flexibility of MCP tool system wit the strong agent structure of Microsoft Foundry, wey fit give big-big enterprise AI solution with plenty customization power.
+Dis connection join MCP tool system beta fine fine wit Microsoft Foundry strong agent system, wey dey give enterprise-level AI solutions wey you fit customize well well.
 
-**Note:** If you want use MCP for Microsoft Foundry Agent Service, as e be now na only dis regions dem di support: westus, westus2, uaenorth, southindia and switzerlandnorth
+**Note:** If you wan use MCP for Microsoft Foundry Agent Service, as e be now, only these regions dey support: westus, westus2, uaenorth, southindia and switzerlandnorth
 
 ## Learning Objectives
 
-By di time you finish dis guide, you go fit:
+By the time you finish dis guide, you go fit:
 
-- Understand Model Context Protocol and wetin e make sense
-- Set up MCP servers to work wit Microsoft Foundry agents
+- Understand Model Context Protocol and di benefits
+- Set up MCP servers for Microsoft Foundry agents use
 - Create and arrange agents wit MCP tool join
-- Use real MCP servers make example
-- Manage tool answers and citations for agent talks
+- Do practical examples wit real MCP servers
+- Handle tool answers and citations for agent talks
 
 ## Prerequisites
 
 Before you start, make sure say you get:
 
-- Azure subscription wey get access for Microsoft Foundry
+- Azure subscription wey get Microsoft Foundry access
 - Python 3.10+ or .NET 8.0+
-- Azure CLI wey you don install and set
-- Correct permission to create AI stuff
+- Azure CLI wey you don install and arrange well
+- Correct permissions to create AI resources
 
 ## Wetin be Model Context Protocol (MCP)?
 
-Model Context Protocol na one standard way wey AI apps take connect outside data sources and tools. Wetin e good for na:
+Model Context Protocol na standard way for AI apps to connect to outside data sources and tools. Di kain benefits be:
 
-- **Standardized Integration**: One type kind interface for different tools and services
-- **Security**: Strong authentication and authorization
-- **Flexibility**: Fit handle many different data sources, APIs, and special tools
-- **Extensibility**: Easy to add new power or join new things
+- **Standardized Integration**: Same interface for different tools and services
+- **Security**: Safe authentication and authorization methods
+- **Flexibility**: Fit support many kinds data sources, APIs, and custom tools
+- **Extensibility**: E easy to add new features and joins
 
 ## How to Set Up MCP wit Microsoft Foundry
 
 ### Environment Configuration
 
-Choose your development environment wey you like:
+Choose di development environment wey you want:
 
 - [Python Implementation](#python-implementation)
 - [.NET Implementation](#codeblock5)
@@ -93,7 +93,7 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Optional: tok am which tools you fit use
+    allowed_tools=[],  # Optional: tok say which tool dem fit use
 )
 ```
 
@@ -103,7 +103,7 @@ mcp_tool = McpTool(
 with project_client:
     agents_client = project_client.agents
 
-    # Make new agent with MCP tools
+    # Make new agent wit MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,7 +113,7 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Make thread for talk
+    # Make thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Manage tool permission dem and run agent
+    # Manage tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -299,7 +299,7 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## MCP Tool Configuration Options
 
-When you dey arrange MCP tools for your agent, you fit put some important settings:
+When you dey set MCP tools for your agent, you fit put some important parameters:
 
 ### Python Configuration
 
@@ -322,7 +322,7 @@ MCPToolDefinition mcpTool = new(
 
 ## Authentication and Headers
 
-Both ways support custom headers for authentication:
+Both di implementations dey support custom headers for authentication:
 
 ### Python
 ```python
@@ -338,43 +338,43 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## Troubleshooting Common Issues
 
 ### 1. Connection Issues
-- Make sure MCP server URL dey work
-- Check authentication credentials well
-- Make sure network no get wahala
+- Check say MCP server URL dey reachable
+- Confirm authentication credentials
+- Make sure network dey okay
 
 ### 2. Tool Call Failures
-- Check tool argument dem and how you format am
-- Make sure you follow server own rules
-- Use correct way to handle errors
+- Check tool arguments and how you format dem
+- Confirm server-specific things wey dey required
+- Make correct error handling
 
 ### 3. Performance Issues
-- Make tool call no too frequent
-- Use caching if e fit help
-- Check how fast server dey respond
+- Improve tool call frequency
+- Use caching where e make sense
+- Dey monitor server response times
 
 ## Next Steps
 
-To make your MCP integration beta:
+To make your MCP join better:
 
-1. **Explore Custom MCP Servers**: Build your own MCP servers for your own data
-2. **Implement Advanced Security**: Add OAuth2 or your own authentication style
-3. **Monitor and Analytics**: Setup logging and monitoring for tool use
-4. **Scale Your Solution**: Think about load balancing and spread MCP server architectures
+1. **Explore Custom MCP Servers**: Build your own MCP servers for private data sources
+2. **Implement Advanced Security**: Add OAuth2 or custom authentication ways
+3. **Monitor and Analytics**: Add logging and monitoring for tool use
+4. **Scale Your Solution**: Think about load balancing and spread out MCP server setups
 
 ## Additional Resources
 
 - [Microsoft Foundry Documentation](https://learn.microsoft.com/azure/ai-foundry/)
 - [Model Context Protocol Samples](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Microsoft Foundry Agents Overview](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP Specification](https://spec.modelcontextprotocol.io/)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Support
 
-If you want more support and get questions:
+For more support and questions:
 - Check di [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
 - Look di [MCP community resources](https://modelcontextprotocol.io/)
 
-## Wetin dey next 
+## Wetin next 
 
 - [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
 

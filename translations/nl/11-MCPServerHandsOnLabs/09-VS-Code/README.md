@@ -1,29 +1,35 @@
 # VS Code-integratie
 
-## 🎯 Wat deze lab behandelt
+> [!NOTE]
+> De `initializationOptions`-instellingen in dit lab richten zich op de MCP
+> `2025-11-25` handshake van het voorbeeld. MCP `2026-07-28` verwijdert de initialisatie-handshake;
+> gebruik een host en SDK die metadata per aanvraag en `server/discover` ondersteunen
+> bij het migreren van dit voorbeeld.
 
-Deze lab biedt uitgebreide begeleiding bij het integreren van je MCP-server met VS Code om natuurlijke taalvragen via AI Chat mogelijk te maken. Je leert hoe je VS Code configureert voor optimaal gebruik van MCP, serververbindingen debugt en de volledige kracht van AI-ondersteunde database-interacties benut.
+## 🎯 Wat Dit Lab Behandelt
+
+Dit lab biedt uitgebreide richtlijnen voor het integreren van uw MCP-server met VS Code om natuurlijke taalquery's via AI Chat mogelijk te maken. U leert VS Code te configureren voor optimaal MCP-gebruik, serververbindingen te debuggen en de volledige kracht van AI-ondersteunde database-interacties te benutten.
 
 ## Overzicht
 
-De MCP-integratie van VS Code transformeert hoe ontwikkelaars omgaan met databases en API's via natuurlijke taal. Door je retail MCP-server te verbinden met VS Code Chat, kun je intelligente vragen stellen over verkoopdata, productcatalogi en bedrijfsanalyses met behulp van conversatie-AI.
+De MCP-integratie van VS Code verandert hoe ontwikkelaars omgaan met databases en API's via natuurlijke taal. Door uw retail MCP-server aan VS Code Chat te koppelen, stelt u intelligente query's van verkoopgegevens, productcatalogi en bedrijfsanalyses via conversatie-AI in staat.
 
-Deze integratie stelt ontwikkelaars in staat om vragen te stellen zoals "Laat me de best verkochte producten van deze maand zien" of "Vind klanten die in 90 dagen niets hebben gekocht" en gestructureerde data-antwoorden te krijgen zonder SQL-query's te schrijven.
+Deze integratie stelt ontwikkelaars in staat vragen te stellen zoals "Toon me de best verkochte producten deze maand" of "Vind klanten die in 90 dagen niets gekocht hebben" en gestructureerde data-antwoorden te krijgen zonder SQL-queries te schrijven.
 
 ## Leerdoelen
 
-Aan het einde van deze lab kun je:
+Aan het einde van dit lab bent u in staat om:
 
-- **Configureren** van VS Code MCP-instellingen voor je retailserver
-- **Integreren** van MCP-servers met de AI Chat-functionaliteit van VS Code
-- **Debuggen** van MCP-serververbindingen en problemen oplossen
-- **Optimaliseren** van natuurlijke taalvraagpatronen voor betere resultaten
-- **Aanpassen** van de VS Code-werkruimte voor MCP-ontwikkeling
-- **Implementeren** van multi-serverconfiguraties voor complexe scenario's
+- **VS Code MCP-instellingen te configureren** voor uw retailserver
+- **MCP-servers te integreren** met de AI Chat-functionaliteit van VS Code
+- **MCP-serververbindingen te debuggen** en problemen op te lossen
+- **Natuurlijke taalquery-patronen te optimaliseren** voor betere resultaten
+- **VS Code-werkruimte aan te passen** voor MCP-ontwikkeling
+- **Multi-server configuraties te implementeren** voor complexe scenario's
 
 ## 🔧 VS Code MCP-configuratie
 
-### Initiële installatie en setup
+### Eerste installatie en setup
 
 ```json
 // .vscode/settings.json
@@ -65,23 +71,23 @@ Aan het einde van deze lab kun je:
 ### Omgevingsconfiguratie
 
 ```bash
-# .env file for development
+# .env-bestand voor ontwikkeling
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure Configuratie
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Optioneel: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Serverconfiguratie
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -220,10 +226,10 @@ LOG_LEVEL=INFO
 
 ## 💬 AI Chat-integratie
 
-### Patronen voor natuurlijke taalvragen
+### Patronen voor natuurlijke taalquery's
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Voorbeeld zoekopdrachten voor VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Belangrijke statistieken
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Prestatie-indicatoren
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Top categorie
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Debuggen en probleemoplossing
+## 🔍 Debuggen en problemen oplossen
 
-### Debugconfiguratie in VS Code
+### VS Code-debugconfiguratie
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Maak een formatter specifiek voor VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Consolehandler voor VS Code terminal
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Globale debuglogger
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Probleemoplossing bij verbindingen
+### Problemen met verbinding oplossen
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Verkrijg verbindingsparameters uit de omgeving
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Test verbinding
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Test basisquery
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Test toegang tot schema
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Test embeddinggeneratie
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Importeer MCP servercomponenten
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Maak testconfiguratie aan
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Initialiseer server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Verkrijg beschikbare tools
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Test een eenvoudige tool
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Test databaseverbinding
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Test Azure OpenAI-verbinding
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Test MCP-tools
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Algemene status
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### Aangepaste VS Code-extensie
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Aangepaste MCP retail extensie
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Registreer MCP retail commando's
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Registreer winkelwisselaar
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Bijwerk configuratie
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Voer vooraf gedefinieerde queries uit in VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Configuratie van extensiepakketten
+### Extensie pakketconfiguratie
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Belangrijke inzichten
+## 🎯 Belangrijkste leerpunten
 
-Na het voltooien van deze lab heb je:
+Na het voltooien van dit lab hebt u:
 
 ✅ **VS Code MCP-configuratie**: Volledige setup voor optimale MCP-integratie  
-✅ **AI Chat-integratie**: Mogelijkheden voor natuurlijke taalvragen in VS Code  
-✅ **Debugtools**: Uitgebreide probleemoplossing en verbindingsdiagnostiek  
+✅ **AI Chat-integratie**: Mogelijkheden voor natuurlijke taalquery's in VS Code  
+✅ **Debuggingtools**: Uitgebreide probleemoplossing en verbindingsdiagnose  
 ✅ **Multi-server setup**: Configuratie voor meerdere MCP-serverinstanties  
 ✅ **Aangepaste extensies**: Verbeterde VS Code-ervaring met retail-specifieke functies  
-✅ **Productieklaar**: Enterprise-ready ontwikkelomgeving in VS Code  
+✅ **Productieklaar**: Enterprise-ready VS Code-ontwikkelomgeving  
 
-## 🚀 Wat nu?
+## 🚀 Wat Nu
 
-Ga verder met **[Lab 10: Implementatiestrategieën](../10-Deployment/README.md)** om:
+Ga verder met **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** om:
 
-- MCP-servers in productieomgevingen te implementeren
+- MCP-servers naar productieomgevingen te implementeren
 - Cloudinfrastructuur te configureren voor schaalbaarheid
-- CI/CD-pijplijnen te implementeren voor geautomatiseerde implementatie
-- De prestaties van productie-MCP-servers te monitoren
+- CI/CD-pijplijnen op te zetten voor geautomatiseerde implementatie
+- Prestaties van productie MCP-servers te monitoren
 
 ## 📚 Aanvullende bronnen
 
 ### VS Code-ontwikkeling
-- [VS Code Extension API](https://code.visualstudio.com/api) - Officiële gids voor extensieontwikkeling
-- [VS Code MCP-documentatie](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Documentatie over MCP-integratie
+- [VS Code Extension API](https://code.visualstudio.com/api) - Officiële handleiding voor extensieontwikkeling
+- [VS Code MCP-documentatie](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP-integratiedocumentatie
 - [TypeScript voor VS Code](https://code.visualstudio.com/docs/languages/typescript) - TypeScript-ontwikkeling in VS Code
 
-### MCP-protocol
+### MCP Protocol
 - [Model Context Protocol Specificatie](https://modelcontextprotocol.io/specification) - Officiële MCP-specificatie
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Beste implementatiepraktijken
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Implementatie best practices
 - [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP-implementatie
 
 ### Ontwikkeltools
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python-ontwikkelsetup
+- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python-ontwikkelomgeving
 - [Debuggen in VS Code](https://code.visualstudio.com/docs/editor/debugging) - Geavanceerde debugtechnieken
 - [VS Code-taken](https://code.visualstudio.com/docs/editor/tasks) - Taakautomatisering en configuratie
 
 ---
 
-**Vorige**: [Lab 08: Testen en debuggen](../08-Testing/README.md)  
-**Volgende**: [Lab 10: Implementatiestrategieën](../10-Deployment/README.md)
+**Vorige**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+**Volgende**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
 
 ---
 
-**Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsservice [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u zich ervan bewust te zijn dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor cruciale informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Disclaimer**:
+Dit document is vertaald met behulp van de AI vertaaldienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

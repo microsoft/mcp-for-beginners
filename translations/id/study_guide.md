@@ -1,10 +1,10 @@
 # Model Context Protocol (MCP) untuk Pemula - Panduan Studi
 
-Panduan studi ini memberikan gambaran tentang struktur dan konten repositori untuk kurikulum "Model Context Protocol (MCP) untuk Pemula". Gunakan panduan ini untuk menavigasi repositori dengan efisien dan memanfaatkan sumber daya yang tersedia secara optimal.
+Panduan studi ini memberikan gambaran tentang struktur dan konten repositori untuk kurikulum "Model Context Protocol (MCP) untuk Pemula". Gunakan panduan ini untuk menavigasi repositori secara efisien dan memanfaatkan sumber daya yang tersedia secara maksimal.
 
-## Gambaran Repositori
+## Gambaran Umum Repositori
 
-Model Context Protocol (MCP) adalah kerangka kerja standar untuk interaksi antara model AI dan aplikasi klien. Awalnya dibuat oleh Anthropic, MCP sekarang dikelola oleh komunitas MCP yang lebih luas melalui organisasi GitHub resmi. Repositori ini menyediakan kurikulum yang komprehensif dengan contoh kode langsung dalam C#, Java, JavaScript, Python, dan TypeScript, yang dirancang untuk pengembang AI, arsitek sistem, dan insinyur perangkat lunak.
+Model Context Protocol (MCP) adalah kerangka kerja standar untuk interaksi antara model AI dan aplikasi klien. Awalnya dibuat oleh Anthropic, MCP kini dipelihara oleh komunitas MCP yang lebih luas melalui organisasi GitHub resmi. Repositori ini menyediakan kurikulum komprehensif dengan contoh kode langsung dalam C#, Java, JavaScript, Python, dan TypeScript, dirancang untuk pengembang AI, arsitek sistem, dan insinyur perangkat lunak.
 
 ## Peta Kurikulum Visual
 
@@ -128,51 +128,52 @@ mindmap
 
 ## Struktur Repositori
 
-Repositori ini diorganisir menjadi dua belas bagian utama, masing-masing berfokus pada aspek berbeda dari MCP:
+Repositori ini diorganisasikan menjadi dua belas bagian utama, masing-masing berfokus pada aspek berbeda dari MCP:
 
 1. **Pendahuluan (00-Introduction/)**
-   - Gambaran umum Model Context Protocol
+   - Gambaran Model Context Protocol
    - Mengapa standardisasi penting dalam pipeline AI
    - Kasus penggunaan praktis dan manfaatnya
 
-2. **Konsep Inti (01-CoreConcepts/)**
+2. **Konsep Dasar (01-CoreConcepts/)**
    - Arsitektur klien-server
    - Komponen utama protokol
    - Pola pesan dalam MCP
-   - Melihat ke depan: [Apa yang Berubah di MCP: Kandidat Rilis 2026-07-28](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — inti protokol tanpa status, kerangka kerja Ekstensi, serta penghapusan Roots/Sampling/Logging yang diharapkan pada versi spesifikasi berikutnya
+   - Spesifikasi terbaru: [Apa yang Berubah di MCP: Spesifikasi 2026-07-28](./01-CoreConcepts/mcp-2026-07-28.md) — inti protokol tanpa status, kerangka ekstensi, dan penghapusan Roots/Sampling/Logging
 
 3. **Keamanan (02-Security/)**
    - Ancaman keamanan dalam sistem berbasis MCP
    - Praktik terbaik untuk mengamankan implementasi
-   - Strategi otentikasi dan otorisasi
-   - **Dokumentasi Keamanan Komprehensif**:
-     - Praktik Terbaik Keamanan MCP 2025
+   - Strategi autentikasi dan otorisasi
+   - Contoh langsung [otorisasi CIMD dan DCR](./02-Security/samples/cimd-dcr-auth/README.md)
+   - **Dokumentasi Keamanan Lengkap**:
+     - Praktik Terbaik Keamanan MCP
      - Panduan Implementasi Azure Content Safety
      - Kontrol dan Teknik Keamanan MCP
      - Referensi Cepat Praktik Terbaik MCP
    - **Topik Keamanan Utama**:
-     - Serangan penyuntikan prompt dan keracunan alat
-     - Pembajakan sesi dan masalah confused deputy
+     - Serangan injeksi prompt dan racun alat
+     - Peretasan sesi dan masalah deputy bingung
      - Kerentanan token passthrough
      - Izin berlebihan dan kontrol akses
-     - Keamanan rantai pasok untuk komponen AI
+     - Keamanan rantai pasokan untuk komponen AI
      - Integrasi Microsoft Prompt Shields
 
 4. **Memulai (03-GettingStarted/)**
-   - Persiapan lingkungan dan konfigurasi
+   - Pengaturan dan konfigurasi lingkungan
    - Membuat server dan klien MCP dasar
-   - Integrasi dengan aplikasi yang sudah ada
-   - Termasuk bagian untuk:
+   - Integrasi dengan aplikasi yang ada
+   - Mencakup bagian untuk:
      - Implementasi server pertama
      - Pengembangan klien
      - Integrasi klien LLM
      - Integrasi VS Code
-     - Server-Sent Events (SSE) server
+     - Server Server-Sent Events (SSE)
      - Penggunaan server lanjutan
      - Streaming HTTP
      - Integrasi AI Toolkit
      - Strategi pengujian
-     - Panduan penyebaran
+     - Panduan penempatan
 
 5. **Implementasi Praktis (04-PracticalImplementation/)**
    - Menggunakan SDK di berbagai bahasa pemrograman
@@ -184,30 +185,30 @@ Repositori ini diorganisir menjadi dua belas bagian utama, masing-masing berfoku
    - Teknik rekayasa konteks
    - Integrasi agen Foundry
    - Alur kerja AI multi-modal 
-   - Demo otentikasi OAuth2
-   - Kemampuan pencarian waktu nyata
-   - Streaming waktu nyata
+   - Demo autentikasi OAuth2
+   - Kemampuan pencarian real-time
+   - Streaming real-time
    - Implementasi konteks root
    - Strategi routing
    - Teknik sampling
-   - Pendekatan skalabilitas
+   - Pendekatan penskalaan
    - Pertimbangan keamanan
    - Integrasi keamanan Entra ID
    - Integrasi pencarian web
-   - Penalaran multi-agen yang adversarial (pola debat)
+   - Penalaran multi-agen adversarial (pola debat)
 
 7. **Kontribusi Komunitas (06-CommunityContributions/)**
    - Cara berkontribusi kode dan dokumentasi
    - Kolaborasi melalui GitHub
    - Penyempurnaan dan umpan balik yang digerakkan komunitas
    - Menggunakan berbagai klien MCP (Claude Desktop, Cline, VSCode)
-   - Bekerja dengan berbagai server MCP populer termasuk generasi gambar
+   - Bekerja dengan server MCP populer termasuk generasi gambar
 
-8. **Pelajaran dari Adopsi Awal (07-LessonsfromEarlyAdoption/)**
+8. **Pelajaran dari Adopsi Dini (07-LessonsfromEarlyAdoption/)**
    - Implementasi dunia nyata dan kisah sukses
-   - Membangun dan menyebarkan solusi berbasis MCP
-   - Tren dan roadmap masa depan
-   - **Panduan Server Microsoft MCP**: Panduan komprehensif untuk 10 server Microsoft MCP siap produksi termasuk:
+   - Membangun dan menempatkan solusi berbasis MCP
+   - Tren dan peta jalan masa depan
+   - **Panduan Server MCP Microsoft**: Panduan komprehensif untuk 10 server MCP Microsoft siap produksi termasuk:
      - Microsoft Learn Docs MCP Server
      - Azure MCP Server (15+ konektor khusus)
      - GitHub MCP Server
@@ -220,64 +221,64 @@ Repositori ini diorganisir menjadi dua belas bagian utama, masing-masing berfoku
      - Microsoft 365 Agents Toolkit MCP Server
 
 9. **Praktik Terbaik (08-BestPractices/)**
-   - Penyetelan kinerja dan optimasi
-   - Merancang sistem MCP yang toleran kesalahan
+   - Pengaturan dan optimasi performa
+   - Merancang sistem MCP tahan kesalahan
    - Strategi pengujian dan ketahanan
 
 10. **Studi Kasus (09-CaseStudy/)**
     - **Tujuh studi kasus komprehensif** yang menunjukkan fleksibilitas MCP di berbagai skenario:
-    - **Agen Perjalanan Azure AI**: Orkestrasi multi-agen dengan Azure OpenAI dan AI Search
+    - **Azure AI Travel Agents**: Orkestrasi multi-agen dengan Azure OpenAI dan AI Search
     - **Integrasi Azure DevOps**: Mengotomatisasi proses alur kerja dengan pembaruan data YouTube
-    - **Pengambilan Dokumentasi Waktu Nyata**: Klien konsol Python dengan streaming HTTP
+    - **Pengambilan Dokumentasi Real-Time**: Klien konsol Python dengan HTTP streaming
     - **Generator Rencana Studi Interaktif**: Aplikasi web Chainlit dengan AI percakapan
     - **Dokumentasi Dalam Editor**: Integrasi VS Code dengan alur kerja GitHub Copilot
-    - **Manajemen API Azure**: Integrasi API perusahaan dengan pembuatan server MCP
-    - **Registri MCP GitHub**: Pengembangan ekosistem dan platform integrasi agenik
+    - **Azure API Management**: Integrasi API perusahaan dengan pembuatan server MCP
+    - **Registri MCP GitHub**: Pengembangan ekosistem dan platform integrasi agen
     - Contoh implementasi mencakup integrasi perusahaan, produktivitas pengembang, dan pengembangan ekosistem
 
 11. **Workshop Praktis (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
     - Workshop praktis komprehensif menggabungkan MCP dengan AI Toolkit
-    - Membangun aplikasi cerdas yang menghubungkan model AI dengan alat dunia nyata
-    - Modul praktis meliputi dasar-dasar, pengembangan server kustom, dan strategi penyebaran produksi
+    - Membangun aplikasi cerdas menghubungkan model AI dengan alat dunia nyata
+    - Modul praktis mencakup dasar-dasar, pengembangan server kustom, dan strategi penempatan produksi
     - **Struktur Lab**:
       - Lab 1: Dasar-dasar Server MCP
       - Lab 2: Pengembangan Server MCP Lanjutan
       - Lab 3: Integrasi AI Toolkit
-      - Lab 4: Penyebaran Produksi dan Skalabilitas
+      - Lab 4: Penempatan dan Penskalaan Produksi
     - Pendekatan pembelajaran berbasis lab dengan instruksi langkah demi langkah
 
 12. **Lab Integrasi Database Server MCP (11-MCPServerHandsOnLabs/)**
     - **Jalur pembelajaran 13-lab komprehensif** untuk membangun server MCP siap produksi dengan integrasi PostgreSQL
     - **Implementasi analitik ritel dunia nyata** menggunakan kasus penggunaan Zava Retail
-    - **Pola kelas perusahaan** termasuk Row Level Security (RLS), pencarian semantik, dan akses data multi-penyewa
+    - **Pola tingkat perusahaan** termasuk Row Level Security (RLS), pencarian semantik, dan akses data multi-penyewa
     - **Struktur Lab Lengkap**:
-      - **Lab 00-03: Dasar-dasar** - Pendahuluan, Arsitektur, Keamanan, Persiapan Lingkungan
+      - **Lab 00-03: Dasar** - Pendahuluan, Arsitektur, Keamanan, Pengaturan Lingkungan
       - **Lab 04-06: Membangun Server MCP** - Desain Database, Implementasi Server MCP, Pengembangan Alat
       - **Lab 07-09: Fitur Lanjutan** - Pencarian Semantik, Pengujian & Debugging, Integrasi VS Code
-      - **Lab 10-12: Produksi & Praktik Terbaik** - Penyebaran, Pemantauan, Optimasi
-    - **Teknologi yang Dicakup**: Kerangka FastMCP, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Hasil Pembelajaran**: Server MCP siap produksi, pola integrasi database, analitik bertenaga AI, keamanan perusahaan
+      - **Lab 10-12: Produksi & Praktik Terbaik** - Penempatan, Pemantauan, Optimasi
+    - **Teknologi yang Dicakup**: Kerangka kerja FastMCP, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Hasil Pembelajaran**: Server MCP siap produksi, pola integrasi database, analitik bertenaga AI, keamanan tingkat perusahaan
 
 13. **Peralatan (12-tooling/)**
     - Pelajari cara menggunakan MCP dalam aplikasi Copilot dan alat lainnya
 
 ## Sumber Daya Tambahan
 
-Repositori ini mencakup sumber daya pendukung:
+Repositori mencakup sumber daya pendukung:
 
 - **Folder Gambar**: Berisi diagram dan ilustrasi yang digunakan di seluruh kurikulum
 - **Terjemahan**: Dukungan multi-bahasa dengan terjemahan otomatis dokumentasi
-- **Sumber Daya Resmi MCP**:
+- **Sumber Resmi MCP**:
   - [Dokumentasi MCP](https://modelcontextprotocol.io/)
-  - [Spesifikasi MCP](https://spec.modelcontextprotocol.io/)
+  - [Spesifikasi MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
   - [Repositori GitHub MCP](https://github.com/modelcontextprotocol)
 
 ## Cara Menggunakan Repositori Ini
 
-1. **Pembelajaran Berurutan**: Ikuti bab secara berurutan (00 hingga 11) untuk pengalaman belajar yang terstruktur.
-2. **Fokus Khusus Bahasa**: Jika Anda tertarik pada bahasa pemrograman tertentu, jelajahi direktori contoh untuk implementasi dalam bahasa pilihan Anda.
-3. **Implementasi Praktis**: Mulailah dengan bagian "Memulai" untuk menyiapkan lingkungan dan membuat server serta klien MCP pertama Anda.
-4. **Eksplorasi Lanjutan**: Setelah nyaman dengan dasar-dasarnya, selami topik lanjutan untuk memperluas pengetahuan Anda.
+1. **Pembelajaran Berurutan**: Ikuti bab secara berurutan (00 sampai 11) untuk pengalaman belajar yang terstruktur.
+2. **Fokus Bahasa Khusus**: Jika Anda tertarik pada bahasa pemrograman tertentu, jelajahi direktori contoh untuk implementasi dalam bahasa pilihan Anda.
+3. **Implementasi Praktis**: Mulailah dengan bagian "Memulai" untuk mengatur lingkungan Anda dan membuat server serta klien MCP pertama Anda.
+4. **Eksplorasi Lanjutan**: Setelah nyaman dengan dasar, selami topik lanjutan untuk memperluas pengetahuan Anda.
 5. **Keterlibatan Komunitas**: Bergabunglah dengan komunitas MCP melalui diskusi GitHub dan saluran Discord untuk terhubung dengan para ahli dan sesama pengembang.
 
 ## Klien dan Alat MCP
@@ -307,7 +308,7 @@ Kurikulum mencakup berbagai klien dan alat MCP:
 
 Repositori memperkenalkan berbagai server MCP, termasuk:
 
-1. **Server Microsoft MCP Resmi**:
+1. **Server MCP Resmi Microsoft**:
    - Microsoft Learn Docs MCP Server
    - Azure MCP Server (15+ konektor khusus)
    - GitHub MCP Server
@@ -332,23 +333,24 @@ Repositori memperkenalkan berbagai server MCP, termasuk:
 
 4. **Alat Pengembangan**:
    - Git MCP
-   - Terminal Control
-   - Code Assistant
+   - Kontrol Terminal
+   - Asisten Kode
 
-5. **Server Spesialisasi**:
+5. **Server Khusus**:
    - Salesforce
    - Microsoft Teams
    - Jira & Confluence
 
-## Kontribusi
+## Berkontribusi
 
-Repositori ini membuka kontribusi dari komunitas. Lihat bagian Kontribusi Komunitas untuk panduan tentang cara berkontribusi secara efektif ke ekosistem MCP.
+Repositori ini menyambut kontribusi dari komunitas. Lihat bagian Kontribusi Komunitas untuk panduan tentang cara berkontribusi secara efektif ke ekosistem MCP.
 
 ----
 
-*Panduan studi ini terakhir diperbarui pada 5 Februari 2026, mencerminkan Spesifikasi MCP terbaru 2025-11-25 dan memberikan gambaran repositori per tanggal tersebut. Konten repositori mungkin diperbarui setelah tanggal ini.*
-
-*Tambahan (2 Juli 2026): sebuah pelajaran tentang Kandidat Rilis Spesifikasi MCP `2026-07-28` ditambahkan di bawah [01-CoreConcepts](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md); garis dasar kurikulum tetap 2025-11-25 sampai spesifikasi baru dirilis.*
+*Panduan studi ini terakhir diperbarui pada 9 September 2026. Ini mencerminkan Spesifikasi MCP
+`2026-07-28`, revisi protokol terkini. Beberapa contoh langsung
+tetap secara eksplisit versi `2025-11-25` sementara SDK dan alat mereka
+mengadopsi API protokol tanpa status.*
 
 ---
 

@@ -1,4 +1,9 @@
-# Suorita esimerkki
+# Aja esimerkki
+
+> [!WARNING]
+> Tämä esimerkki käyttää vanhentunutta Sampling-menetelmää ja perintö HTTP+SSE -päätepistettä. Se on
+> säilytetty MCP `2025-11-25` -yhteensopivuuden vuoksi. Uusien toteutusten tulisi kutsua
+> LLM-palveluntarjoajaa suoraan ja käyttää Streamable HTTP:tä etä-MCP-liikenteeseen.
 
 ## Luo virtuaaliympäristö
 
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Testaa palvelinta GitHub Copilotilla ja VS Codella
 
-Lisää merkintä tiedostoon mcp.json seuraavasti:
+Lisää merkintä mcp.json-tiedostoon seuraavasti:
 
 ```json
 "servers": {
@@ -32,15 +37,15 @@ Lisää merkintä tiedostoon mcp.json seuraavasti:
 }
 ```
 
-Varmista, että napsautat palvelimella "start".
+Varmista, että napsautat "start" palvelimella.
 
-Liitä GitHub Copilotissa seuraava kehotus:
+Liitä GitHub Copilotiin seuraava kehotus:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Ensimmäisellä kerralla sinulta kysytään, haluatko hyväksyä otantatoiminnon, sitten sinua pyydetään hyväksymään työkalun suoritus "create_blog". Näet vastauksen, joka on samanlainen kuin:
+Ensimmäisellä kerralla sinulta kysytään, haluatko hyväksyä Sampling-toiminnon, sitten sinua pyydetään hyväksymään työkalu "create_blog" suoritettavaksi. Sinun tulisi nähdä vastaus, joka on samanlainen kuin:
 
 ```json
 {
@@ -52,5 +57,5 @@ Ensimmäisellä kerralla sinulta kysytään, haluatko hyväksyä otantatoiminnon
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty tekoälykäännöspalvelulla [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, on hyvä olla tietoinen siitä, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää auktoriteettisena lähteenä. Tärkeiden tietojen osalta suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinymmärryksistä tai tulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,54 +1,55 @@
-# การแบ่งหน้าผลลัพธ์และชุดผลลัพธ์ขนาดใหญ่ใน MCP
+# การแบ่งหน้าและชุดผลลัพธ์ขนาดใหญ่ใน MCP
 
-เมื่อเซิร์ฟเวอร์ MCP ของคุณจัดการกับชุดข้อมูลขนาดใหญ่—ไม่ว่าจะเป็นการแสดงรายการไฟล์นับพัน รายการฐานข้อมูล หรือผลลัพธ์การค้นหา—คุณจำเป็นต้องใช้การแบ่งหน้าเพื่อจัดการหน่วยความจำอย่างมีประสิทธิภาพและมอบประสบการณ์ผู้ใช้ที่ตอบสนองได้รวดเร็ว ไกด์นี้อธิบายวิธีการใช้งานและการนำการแบ่งหน้าไปใช้ใน MCP
+เมื่อเซิร์ฟเวอร์ MCP ของคุณจัดการชุดข้อมูลขนาดใหญ่ — ไม่ว่าจะเป็นการแสดงรายการไฟล์จำนวนหลายพันรายการ บันทึกฐานข้อมูล หรือผลลัพธ์การค้นหา — คุณจำเป็นต้องมีการแบ่งหน้าเพื่อจัดการหน่วยความจำอย่างมีประสิทธิภาพและมอบประสบการณ์ผู้ใช้ที่ตอบสนองได้ดี คู่มือนี้ครอบคลุมวิธีการใช้งานและการนำการแบ่งหน้ามาใช้ใน MCP
 
-## ทำไมการแบ่งหน้าถึงสำคัญ
+## ทำไมการแบ่งหน้าจึงสำคัญ
 
-หากไม่ใช้การแบ่งหน้า การตอบสนองขนาดใหญ่สามารถทำให้เกิด:
+หากไม่มีการแบ่งหน้า การตอบสนองที่มีขนาดใหญ่อาจทำให้เกิด:
 
-- **หน่วยความจำหมด** — โหลดเรคคอร์ดนับล้านพร้อมกัน
-- **เวลาตอบสนองช้า** — ผู้ใช้ต้องรอขณะที่ข้อมูลทั้งหมดกำลังโหลด
-- **ข้อผิดพลาดหมดเวลารอ** — คำขอเกินขีดจำกัดเวลารอ
-- **ประสิทธิภาพ AI แย่ลง** — LLMs มีปัญหาเมื่อต้องรับมือกับบริบทขนาดใหญ่
+- **หน่วยความจำหมด** — การโหลดบันทึกจำนวนหลายล้านรายการในครั้งเดียว
+- **เวลาตอบสนองช้า** — ผู้ใช้ต้องรอขณะโหลดข้อมูลทั้งหมด
+- **ข้อผิดพลาดหมดเวลา** — คำขอเกินขีดจำกัดเวลาที่กำหนด
+- **ประสิทธิภาพ AI แย่ลง** — LLMs ประสบปัญหากับบริบทที่มีขนาดมหาศาล
 
-MCP ใช้ **การแบ่งหน้าด้วยเคอร์เซอร์** สำหรับการเลื่อนดูชุดผลลัพธ์ที่เชื่อถือได้และสม่ำเสมอ
+MCP ใช้ **การแบ่งหน้าด้วยเคอร์เซอร์** เพื่อให้การแบ่งหน้ามีความน่าเชื่อถือและสม่ำเสมอในการเลื่อนดูชุดผลลัพธ์
 
 ---
 
-## การแบ่งหน้าของ MCP ทำงานอย่างไร
+## การทำงานของการแบ่งหน้าใน MCP
 
-### แนวคิดเคอร์เซอร์
+### แนวคิดของเคอร์เซอร์
 
-**เคอร์เซอร์** คือสตริงที่ไม่สามารถมองเห็นรายละเอียดภายใน ที่ระบุตำแหน่งของคุณในชุดผลลัพธ์ คิดเหมือนบุ๊กมาร์กในหนังสือเล่มยาว
+**เคอร์เซอร์** คือสตริงที่ไม่โปร่งใสซึ่งแสดงตำแหน่งของคุณในชุดผลลัพธ์ คิดว่ามันเหมือนกับการทำบุ๊คมาร์กในหนังสือเล่มยาว
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (ไม่มีเคอร์เซอร์)
-    Server-->>Client: tools [1-10], ตัวชี้เคอร์เซอร์ถัดไป: "abc123"
+    Client->>Server: เครื่องมือ/รายการ (ไม่มีเคอร์เซอร์)
+    Server-->>Client: เครื่องมือ [1-10], เคอร์เซอร์ถัดไป: "abc123"
     
-    Client->>Server: tools/list (เคอร์เซอร์: "abc123")
-    Server-->>Client: tools [11-20], ตัวชี้เคอร์เซอร์ถัดไป: "def456"
+    Client->>Server: เครื่องมือ/รายการ (เคอร์เซอร์: "abc123")
+    Server-->>Client: เครื่องมือ [11-20], เคอร์เซอร์ถัดไป: "def456"
     
-    Client->>Server: tools/list (เคอร์เซอร์: "def456")
-    Server-->>Client: tools [21-25], ตัวชี้เคอร์เซอร์ถัดไป: null (สิ้นสุด)
+    Client->>Server: เครื่องมือ/รายการ (เคอร์เซอร์: "def456")
+    Server-->>Client: เครื่องมือ [21-25], เคอร์เซอร์ถัดไป: null (สิ้นสุด)
 ```
-### การแบ่งหน้าในเมธอด MCP
 
-เมธอด MCP เหล่านี้สนับสนุนการแบ่งหน้า:
+### การแบ่งหน้าในเมธอดของ MCP
 
-| เมธอด | ผลลัพธ์ | รองรับเคอร์เซอร์ |
+เมธอด MCP เหล่านี้รองรับการแบ่งหน้า:
+
+| เมธอด | คืนค่า | รองรับเคอร์เซอร์ |
 |--------|---------|----------------|
-| `tools/list` | คำนิยามเครื่องมือ | ✅ |
-| `resources/list` | คำนิยามทรัพยากร | ✅ |
-| `prompts/list` | คำนิยามพรอมต์ | ✅ |
+| `tools/list` | นิยามเครื่องมือ | ✅ |
+| `resources/list` | นิยามทรัพยากร | ✅ |
+| `prompts/list` | นิยามพรอมต์ | ✅ |
 | `resources/templates/list` | เทมเพลตทรัพยากร | ✅ |
 
 ---
 
-## การนำไปใช้บนเซิร์ฟเวอร์
+## การใช้งานฝั่งเซิร์ฟเวอร์
 
 ### Python (FastMCP)
 
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// ชุดข้อมูลขนาดใหญ่ที่จำลองขึ้น
+// ชุดข้อมูลขนาดใหญ่จำลอง
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -121,7 +122,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
     startIndex = parseInt(request.params.cursor, 10) || 0;
   }
   
-  // รับหน้าผลลัพธ์
+  // ดึงหน้าผลลัพธ์
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
@@ -163,7 +164,7 @@ public class PaginatedToolService {
             }
         }
         
-        // รับหน้าของผลลัพธ์
+        // ดึงหน้าผลลัพธ์
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## การนำไปใช้บนไคลเอนต์
+## การใช้งานฝั่งไคลเอนต์
 
-### ไคลเอนต์ Python
+### Python Client
 
 ```python
 from mcp import ClientSession
@@ -199,13 +200,13 @@ async def get_all_tools(session: ClientSession) -> list:
     
     return all_tools
 
-# วิธีใช้
+# การใช้งาน
 async with client_session as session:
     tools = await get_all_tools(session)
     print(f"Found {len(tools)} tools")
 ```
 
-### ไคลเอนต์ TypeScript
+### TypeScript Client
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### รูปแบบการโหลดแบบ Lazy
+### รูปแบบการโหลดแบบ Lazy Loading
 
-สำหรับชุดข้อมูลขนาดใหญ่มาก ให้โหลดหน้าเมื่อจำเป็น:
+สำหรับชุดข้อมูลขนาดใหญ่มาก ให้โหลดหน้าเมื่อมีความต้องการ:
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # คืนค่าจากบัฟเฟอร์ถ้ามี
+        # คืนค่าจากบัฟเฟอร์หากมี
         if self.buffer:
             return self.buffer.pop(0)
         
-        # ตรวจสอบว่าเราได้ใช้หน้าทั้งหมดหมดแล้วหรือยัง
+        # ตรวจสอบว่าเราได้ใช้หน้าทั้งหมดหมดแล้วหรือไม่
         if self.exhausted:
             raise StopAsyncIteration
         
-        # ดึงหน้าถัดไป
+        # ดึงหน้าต่อไป
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# การใช้งาน - ประหยัดหน่วยความจำสำหรับชุดข้อมูลขนาดใหญ่
+# การใช้งาน - มีประสิทธิภาพด้านหน่วยความจำสำหรับชุดข้อมูลขนาดใหญ่
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## การแบ่งหน้าสำหรับทรัพยากร
 
-ทรัพยากรมักจะต้องแบ่งหน้าสำหรับไดเรกทอรีหรือชุดข้อมูลขนาดใหญ่:
+ทรัพยากรมักจะต้องการการแบ่งหน้าสำหรับไดเรกทอรีหรือชุดข้อมูลขนาดใหญ่:
 
 ```python
 from mcp.server import Server
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## กลยุทธ์การออกแบบเคอร์เซอร์
 
-### กลยุทธ์ที่ 1: แบบอิงดัชนี (ง่าย)
+### กลยุทธ์ที่ 1: อิงดัชนี (ง่าย)
 
 ```python
-# ตัวชี้เป็นเพียงดัชนี
+# ตัวชี้ตำแหน่งเป็นแค่ดัชนี
 cursor = "50"  # เริ่มที่รายการที่ 50
 ```
 
-**ข้อดี:** ง่าย ไม่ต้องเก็บสถานะ  
-**ข้อเสีย:** ผลลัพธ์อาจเปลี่ยนแปลงได้ถ้ามีการเพิ่ม/ลบรายการ  
+**ข้อดี:** ง่าย ไม่มีสถานะ
+**ข้อเสีย:** ผลลัพธ์อาจเปลี่ยนตำแหน่งหากมีการเพิ่ม/ลบรายการ
 
-### กลยุทธ์ที่ 2: แบบอิง ID (เสถียร)
+### กลยุทธ์ที่ 2: อิง ID (เสถียร)
 
 ```python
-# เคอร์เซอร์คือ ID ล่าสุดที่เห็น
+# Cursor คือ ID ล่าสุดที่เห็น
 cursor = "item_abc123"  # เริ่มหลังจากรายการนี้
 ```
 
-**ข้อดี:** เสถียรแม้ข้อมูลจะเปลี่ยนแปลง  
-**ข้อเสีย:** ต้องมี ID ที่เรียงลำดับ  
+**ข้อดี:** เสถียรแม้ว่ารายการจะเปลี่ยนแปลง
+**ข้อเสีย:** ต้องการ ID ที่เรียงลำดับ
 
-### กลยุทธ์ที่ 3: เข้ารหัสสถานะ (ซับซ้อน)
+### กลยุทธ์ที่ 3: สถานะเข้ารหัส (ซับซ้อน)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# เคอร์เซอร์มีหลายฟิลด์สถานะ
+# ตัวชี้ตำแหน่งมีหลายฟิลด์สถานะ
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,8 +361,8 @@ cursor = encode_cursor({
 })
 ```
 
-**ข้อดี:** สามารถเข้ารหัสสถานะซับซ้อนได้  
-**ข้อเสีย:** ซับซ้อนกว่า สตริงเคอร์เซอร์มีขนาดใหญ่ขึ้น  
+**ข้อดี:** สามารถเข้ารหัสสถานะที่ซับซ้อนได้
+**ข้อเสีย:** ซับซ้อนกว่า สตริงเคอร์เซอร์มีขนาดใหญ่ขึ้น
 
 ---
 
@@ -371,12 +372,12 @@ cursor = encode_cursor({
 
 ```python
 # พิจารณาขนาดข้อมูล
-PAGE_SIZE_SMALL_ITEMS = 100   # เมตาดาต้าง่ายๆ
-PAGE_SIZE_MEDIUM_ITEMS = 20   # วัตถุที่ซับซ้อนมากขึ้น
+PAGE_SIZE_SMALL_ITEMS = 100   # เมตาดาตาง่ายๆ
+PAGE_SIZE_MEDIUM_ITEMS = 20   # วัตถุที่มีรายละเอียดมากขึ้น
 PAGE_SIZE_LARGE_ITEMS = 5     # เนื้อหาที่ซับซ้อน
 ```
 
-### 2. จัดการเคอร์เซอร์ที่ไม่ถูกต้องอย่างราบรื่น
+### 2. จัดการเคอร์เซอร์ที่ไม่ถูกต้องอย่างเหมาะสม
 
 ```python
 @app.list_tools()
@@ -384,13 +385,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # รีเซ็ตไปยังจุดเริ่มต้น
+            start_index = 0  # รีเซ็ตไปที่จุดเริ่มต้น
     except (ValueError, TypeError):
-        start_index = 0  # ตัวชี้ตำแหน่งไม่ถูกต้อง, เริ่มใหม่
+        start_index = 0  # ตำแหน่งเคอร์เซอร์ไม่ถูกต้อง เริ่มต้นใหม่
     # ...
 ```
 
-### 3. รวมจำนวนทั้งหมด (ไม่บังคับ)
+### 3. รวมจำนวนทั้งหมด (ถ้ามี)
 
 ```python
 return ListToolsResult(
@@ -421,19 +422,19 @@ async def test_pagination():
 
 ---
 
-## จุดที่มักทำผิด
+## กับดักทั่วไป
 
-### ❌ ส่งคืนผลลัพธ์ทั้งหมดแล้วแบ่งหน้าฝั่งไคลเอนต์
+### ❌ การคืนค่าผลลัพธ์ทั้งหมดแล้วแบ่งหน้าที่ฝั่งไคลเอนต์
 
 ```python
-# แย่: โหลดทุกอย่างเข้าไปในหน่วยความจำ
+# แย่: โหลดทุกอย่างเข้าสู่หน่วยความจำ
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 1 ล้านเครื่องมือ!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ แบ่งหน้าที่แหล่งข้อมูล
+### ✅ การแบ่งหน้าที่แหล่งข้อมูล
 
 ```python
 # ดี: โหลดเฉพาะสิ่งที่จำเป็นเท่านั้น
@@ -446,7 +447,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## สิ่งถัดไป
+## ต่อไปคืออะไร
 
 - [โมดูล 5.14 - วิศวกรรมบริบท](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [โมดูล 8 - แนวทางปฏิบัติที่ดีที่สุด](../../08-BestPractices/README.md)
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## แหล่งข้อมูลเพิ่มเติม
 
-- [ข้อกำหนด MCP - การแบ่งหน้า](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [ข้อกำหนด MCP - การแบ่งหน้า](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [อธิบายการแบ่งหน้าด้วยเคอร์เซอร์](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [การทดสอบการแบ่งหน้าของ Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [การทดสอบการแบ่งหน้า SDK ของ Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) แม้ว่าเราจะพยายามให้มีความถูกต้องสูงสุด โปรดทราบว่าการแปลโดยอัตโนมัติอาจมีข้อผิดพลาดหรือความคลาดเคลื่อนได้ เอกสารต้นฉบับในภาษาต้นทางควรถูกพิจารณาเป็นแหล่งข้อมูลที่ถูกต้อง สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลโดยมนุษย์ผู้เชี่ยวชาญ เราจะไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดที่เกิดขึ้นจากการใช้การแปลนี้
+**ปฏิเสธความรับผิดชอบ**:
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) ขณะที่เราพยายามให้ความถูกต้อง โปรดทราบว่าการแปลโดยอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางควรถูกพิจารณาเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ แนะนำให้ใช้การแปลโดยมนุษย์มืออาชีพ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดที่เกิดขึ้นจากการใช้การแปลนี้
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

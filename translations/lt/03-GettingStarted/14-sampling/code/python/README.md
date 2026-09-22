@@ -1,5 +1,10 @@
 # Paleiskite pavyzdį
 
+> [!WARNING]
+> Šis pavyzdys naudoja pasenusią „Sampling“ funkciją ir seną HTTP+SSE galinį tašką. Jis
+> išlaikytas MCP `2025-11-25` suderinamumui. Nauji įgyvendinimai turėtų tiesiogiai kviesti
+> LLM tiekėją ir naudoti Streamable HTTP nuotoliniam MCP srautui.
+
 ## Sukurkite virtualią aplinką
 
 ```sh
@@ -34,13 +39,13 @@ Pridėkite įrašą į mcp.json taip:
 
 Įsitikinkite, kad paspaudėte „start“ serveryje.
 
-GitHub Copilot įklijuokite šią užklausą:
+GitHub Copilot įklijuokite šią komandą:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Pirmą kartą būsite paklausti, ar priimate Sampling veiksmą, tada būsite paprašyti leisti įrankiui paleisti „create_blog“. Turėtumėte matyti panašų atsakymą:
+Pirmą kartą būsite paprašyti patvirtinti Sampling veiksmą, tada turėsite sutikti, kad įrankis vykdytų „create_blog“. Turėtumėte pamatyti panašią atsakymą:
 
 ```json
 {
@@ -51,6 +56,6 @@ Pirmą kartą būsite paklausti, ar priimate Sampling veiksmą, tada būsite pap
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, atkreipkite dėmesį, kad automatiniai vertimai gali turėti klaidų arba netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas teisės aktų šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus atliktas vertimas. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kylančius dėl naudojimo šio vertimo.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

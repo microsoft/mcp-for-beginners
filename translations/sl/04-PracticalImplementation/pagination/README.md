@@ -1,46 +1,47 @@
-# Straničenje in velike zbirke rezultatov v MCP
+# Straničenje in velike množice rezultatov v MCP
 
-Ko vaš MCP strežnik obdeluje velike podatkovne zbirke - naj gre za seznam tisočih datotek, zapisov v podatkovni bazi ali rezultatov iskanja - potrebujete straničenje za učinkovito upravljanje pomnilnika in zagotavljanje odzivnih uporabniških izkušenj. Ta vodič zajema, kako implementirati in uporabljati straničenje v MCP.
+Ko vaš MCP strežnik obdeluje velike podatkovne množice - naj gre za izpis tisočih datotek, zapisov v podatkovni zbirki ali rezultatov iskanja - potrebujete straničenje za učinkovito upravljanje pomnilnika in zagotavljanje odzivnih uporabniških izkušenj. Ta vodič obravnava, kako implementirati in uporabljati straničenje v MCP.
 
 ## Zakaj je straničenje pomembno
 
-Brez straničenja lahko veliki odgovori povzročijo:
+Brez straničenja lahko velike odzive povzročijo:
 
 - **Izčrpanje pomnilnika** - Nalaganje milijonov zapisov naenkrat
-- **Počasen odzivni čas** - Uporabniki čakajo, medtem ko se vsi podatki naložijo
-- **Napake zaradi poteka časa** - Zahteve presežejo omejitve časa
-- **Slabo delovanje AI** - LLM-ji imajo težave z ogromnim kontekstom
+- **Počasne odzivne čase** - Uporabniki čakajo, da se vsi podatki naložijo
+- **Napake zaradi prekoračitve časa** - Zahtevki presegajo časovne omejitve
+- **Slabo delovanje umetne inteligence** - LLM-ji imajo težave z ogromnim kontekstom
 
-MCP uporablja **straničenje na osnovi kazalca** za zanesljivo in dosledno stranjevanje skozi rezultate.
+MCP uporablja **paginacijo na osnovi kazalca (cursorja)** za zanesljivo in dosledno prehajanje skozi množico rezultatov.
 
 ---
 
 ## Kako deluje straničenje v MCP
 
-### Koncept kazalca
+### Koncept kazalca (cursorja)
 
-**Kazalec** je neprozoren niz, ki označuje vaš položaj v naboru rezultatov. Predstavljajte si ga kot zaznamek v dolgi knjigi.
+**Kazalec** je neprozoren niz, ki označuje vaše mesto v množici rezultatov. Predstavljajte si ga kot zaznamek v dolgi knjigi.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (brez kazalca)
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Client->>Server: orodja/ seznam (brez kazalca)
+    Server-->>Client: orodja [1-10], naslednjiKazalec: "abc123"
     
-    Client->>Server: tools/list (kazalec: "abc123")
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Client->>Server: orodja/ seznam (kazalec: "abc123")
+    Server-->>Client: orodja [11-20], naslednjiKazalec: "def456"
     
-    Client->>Server: tools/list (kazalec: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (konec)
+    Client->>Server: orodja/ seznam (kazalec: "def456")
+    Server-->>Client: orodja [21-25], naslednjiKazalec: null (konec)
 ```
+
 ### Straničenje v MCP metodah
 
 Te MCP metode podpirajo straničenje:
 
 | Metoda | Vrača | Podpora za kazalec |
-|--------|-------|--------------------|
+|--------|---------|----------------|
 | `tools/list` | Definicije orodij | ✅ |
 | `resources/list` | Definicije virov | ✅ |
 | `prompts/list` | Definicije pozivov | ✅ |
@@ -48,7 +49,7 @@ Te MCP metode podpirajo straničenje:
 
 ---
 
-## Implementacija na strežniku
+## Izvedba na strežniku
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Simulirani velik nabor podatkov
+# Simuliran velik niz podatkov
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Simulirani velik podatkovni niz
+// Simuliran velik nabor podatkov
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Inicializiraj velik niz podatkov
+        // Inicializiraj velik nabor podatkov
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementacija na odjemalcu
+## Izvedba na odjemalcu
 
 ### Python odjemalec
 
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### Vzorec lenobnega nalaganja
 
-Za zelo velike podatkovne zbirke naložite strani po potrebi:
+Za zelo velike množice nalagajte strani na zahtevo:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Vrni iz predpomnilnika, če je na voljo
+        # Vrni iz medpomnilnika, če je na voljo
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Preveri, ali smo izčrpali vse strani
+        # Preveri, ali smo porabili vse strani
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Uporaba - pomnilniku prijazno za velike podatkovne nabore
+# Uporaba - učinkovito z vidika pomnilnika za velike podatkovne nabore
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## Straničenje za vire
 
-Viri pogosto potrebujejo straničenje za imenike ali velike podatkovne zbirke:
+Viri pogosto potrebujejo straničenje za imenike ali velike množice podatkov:
 
 ```python
 from mcp.server import Server
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Strategije oblikovanja kazalca
+## Strategije oblikovanja kazalcev
 
-### Strategija 1: Na osnovi indeksa (preprosto)
+### Strategija 1: Na osnovi indeksa (preprosta)
 
 ```python
 # Kazalec je samo indeks
-cursor = "50"  # Začni pri elementu 50
+cursor = "50"  # Začetek pri elementu 50
 ```
 
-**Prednosti:** Preprosto, brez stanja  
-**Slabosti:** Rezultati se lahko premaknejo, če se elementi dodajo/odstranijo
+**Prednosti:** Preprosto, brez stanja
+**Slabosti:** Rezultati se lahko spremenijo, če se predmeti dodajajo/odstranjujejo
 
-### Strategija 2: Na osnovi ID-ja (stabilno)
+### Strategija 2: Na osnovi ID-jev (stabilna)
 
 ```python
-# Kazalec je zadnji viden ID
+# Kazalnik je zadnji viden ID
 cursor = "item_abc123"  # Začni po tem elementu
 ```
 
-**Prednosti:** Stabilno tudi, če se elementi spremenijo  
+**Prednosti:** Stabilna, tudi če se predmeti spremenijo
 **Slabosti:** Zahteva urejene ID-je
 
-### Strategija 3: Kodirano stanje (zahtevno)
+### Strategija 3: Kodirano stanje (zahtevna)
 
 ```python
 import base64
@@ -360,8 +361,8 @@ cursor = encode_cursor({
 })
 ```
 
-**Prednosti:** Omogoča kodiranje kompleksnega stanja  
-**Slabosti:** Bolj zapleteno, daljši nizi kazalcev
+**Prednosti:** Lahko kodira kompleksno stanje
+**Slabosti:** Bolj zahtevna, večji nizi kazalcev
 
 ---
 
@@ -371,12 +372,12 @@ cursor = encode_cursor({
 
 ```python
 # Upoštevajte velikost podatkov
-PAGE_SIZE_SMALL_ITEMS = 100   # Preprosti metapodatki
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Bogatejši objekti
+PAGE_SIZE_SMALL_ITEMS = 100   # Enostavni metapodatki
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Bolj bogati objekti
 PAGE_SIZE_LARGE_ITEMS = 5     # Kompleksna vsebina
 ```
 
-### 2. Ravnajte z neveljavnimi kazalci spoštljivo
+### 2. Obvladujte neveljavne kazalce nežno
 
 ```python
 @app.list_tools()
@@ -396,16 +397,16 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Nekatere implementacije vključujejo skupno za napredek uporabniškega vmesnika
+    # Nekate implementacije vključujejo skupno za napredek uporabniškega vmesnika
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Testirajte mejne primere
+### 4. Preizkusite robne primere
 
 ```python
 async def test_pagination():
-    # Prazen niz rezultatov
+    # Prazen nabor rezultatov
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -414,16 +415,16 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Neveljaven kazalec
+    # Neveljaven kurzor
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # Mora vrniti prvo stran
 ```
 
 ---
 
-## Pogoste past
+## Pogoste napake
 
-### ❌ Vrnitev vseh rezultatov in nato straničenje na odjemalcu
+### ❌ Vrnjene vse rezultate in potem straničenje na odjemalcu
 
 ```python
 # SLABO: Naloži vse v pomnilnik
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Straničenje na viru podatkov
+### ✅ Straničenje že pri viru podatkov
 
 ```python
-# DOBRO: Nalaga samo tisto, kar je potrebno
+# DOBRO: Naloži samo tisto, kar je potrebno
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Dodatni viri
 
-- [Specifikacija MCP - Straničenje](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP specifikacija - Straničenje](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Pojasnilo straničenja na osnovi kazalca](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Testi straničenja v Python SDK](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Opozorilo**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, upoštevajte, da lahko avtomatizirani prevodi vsebujejo napake ali netočnosti. Izvirni dokument v izvorni jezik se šteje za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Nismo odgovorni za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

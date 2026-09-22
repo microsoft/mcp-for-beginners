@@ -1,29 +1,35 @@
-# VS Code Integráció
+# VS Code integráció
 
-## 🎯 Mit Tartalmaz Ez a Gyakorlat?
+> [!NOTE]
+> A `initializationOptions` beállítások ebben a laborban a minta MCP
+> `2025-11-25` kézfogását célozzák meg. A MCP `2026-07-28` eltávolítja az inicializációs kézfogást;
+> használjon olyan hostot és SDK-t, amely támogatja a lekérésenkénti metaadatokat és a `server/discover`-t,
+> amikor ezt a mintát migrálja.
 
-Ez a gyakorlat átfogó útmutatást nyújt az MCP szerver VS Code-ba történő integrálásához, hogy lehetővé tegye a természetes nyelvi lekérdezéseket AI Chat segítségével. Megtanulod, hogyan konfiguráld a VS Code-ot az MCP optimális használatához, hibakeresd a szerverkapcsolatokat, és kihasználd az AI által támogatott adatbázis-interakciók teljes erejét.
+## 🎯 Mit fed le ez a labor
+
+Ez a labor átfogó útmutatást nyújt az MCP szerver és a VS Code integrációjához, hogy lehetővé tegye a természetes nyelvű lekérdezéseket az AI Chat-en keresztül. Megtanulja konfigurálni a VS Code-ot az optimális MCP használathoz, hibakeresni a szerverkapcsolatokat, és kihasználni az AI által támogatott adatbázis-kezelő interakciók teljes erejét.
 
 ## Áttekintés
 
-A VS Code MCP integrációja átalakítja, ahogyan a fejlesztők adatbázisokkal és API-kkal dolgoznak természetes nyelven keresztül. Ha összekapcsolod a kiskereskedelmi MCP szerveredet a VS Code Chat funkcióval, intelligens lekérdezéseket végezhetsz értékesítési adatok, termékkatalógusok és üzleti elemzések kapcsán, beszélgetés-alapú AI segítségével.
+A VS Code MCP integrációja átalakítja azt, ahogyan a fejlesztők adatbázisokkal és API-kkal dolgoznak természetes nyelven. Csatlakoztatva a kiskereskedelmi MCP szerverét a VS Code Chat-hez, lehetővé teszi az értékesítési adatok, termékkatalógusok és üzleti elemzések intelligens lekérdezését beszélgető AI segítségével.
 
-Ez az integráció lehetővé teszi, hogy a fejlesztők olyan kérdéseket tegyenek fel, mint például: „Mutasd meg a legjobban fogyó termékeket ebben a hónapban” vagy „Keress olyan vásárlókat, akik 90 napja nem vásároltak”, és strukturált adatválaszokat kapjanak anélkül, hogy SQL lekérdezéseket kellene írniuk.
+Ez az integráció lehetővé teszi a fejlesztők számára, hogy olyan kérdéseket tegyenek fel, mint „Mutasd meg a legjobban fogyó termékeket ebben a hónapban” vagy „Keresse meg azokat a vásárlókat, akik az elmúlt 90 napban nem vásároltak”, és strukturált adatválaszokat kapjanak SQL lekérdezés írása nélkül.
 
-## Tanulási Célok
+## Tanulási célok
 
-A gyakorlat végére képes leszel:
+A labor végére képes lesz:
 
-- **Konfigurálni** a VS Code MCP beállításait a kiskereskedelmi szerveredhez
-- **Integrálni** MCP szervereket a VS Code AI Chat funkcióval
+- **Konfigurálni** a VS Code MCP beállításait a kiskereskedelmi szerveréhez
+- **Integrálni** az MCP szervereket a VS Code AI Chat funkcióval
 - **Hibakeresni** MCP szerverkapcsolatokat és megoldani problémákat
-- **Optimalizálni** természetes nyelvi lekérdezési mintákat a jobb eredmények érdekében
-- **Testreszabni** a VS Code munkaterületet MCP fejlesztéshez
-- **Telepíteni** több szerver konfigurációt összetett forgatókönyvekhez
+- **Optimalizálni** a természetes nyelvű lekérdezési mintákat jobb eredmények érdekében
+- **Testreszabni** a VS Code munkaterületét MCP fejlesztéshez
+- **Telepíteni** többszerveres konfigurációkat összetett forgatókönyvekhez
 
-## 🔧 VS Code MCP Konfiguráció
+## 🔧 VS Code MCP konfiguráció
 
-### Kezdeti Beállítás és Telepítés
+### Kezdeti beállítás és telepítés
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@ A gyakorlat végére képes leszel:
 }
 ```
 
-### Környezet Konfiguráció
+### Környezeti konfiguráció
 
 ```bash
-# .env file for development
+# .env fájl fejlesztéshez
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure konfiguráció
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Opcionális: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Szerver konfiguráció
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Munkaterület Konfiguráció
+### Munkaterület konfiguráció
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Feladat Konfiguráció
+### Feladat konfiguráció
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI Chat Integráció
+## 💬 AI Chat integráció
 
-### Természetes Nyelvi Lekérdezési Minták
+### Természetes nyelvű lekérdezési minták
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Példa lekérdezési minták a VS Code Chathez
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Chat Integrációs Példák
+### Chat integrációs példák
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Chat Válasz Formázása
+### Chat válasz formázás
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Kulcsfontosságú mutatók
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Teljesítménymutatók
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Legjobb kategória
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Hibakeresés és Problémamegoldás
+## 🔍 Hibakeresés és problémaelhárítás
 
-### VS Code Hibakeresési Konfiguráció
+### VS Code hibakeresési konfiguráció
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS Code-specifikus formázó létrehozása
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konzolkezelő a VS Code terminálhoz
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Globális hibakeresési naplózó
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Kapcsolati Hibák Megoldása
+### Kapcsolódási problémák elhárítása
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Kapcsolati paraméterek lekérése a környezetből
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Kapcsolat tesztelése
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Alap lekérdezés tesztelése
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Sémához való hozzáférés tesztelése
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Beágyazás generálás tesztelése
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCP szerver komponensek importálása
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Teszt konfiguráció létrehozása
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Szerver inicializálása
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Elérhető eszközök lekérése
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Egyszerű eszköz tesztelése
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Adatbázis kapcsolat tesztelése
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI kapcsolat tesztelése
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCP eszközök tesztelése
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Általános állapot
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Haladó Konfiguráció
+## 🚀 Haladó konfiguráció
 
-### Több Szerver Beállítása
+### Többszerveres beállítás
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Egyedi VS Code Bővítmény
+### Egyedi VS Code bővítmény
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Egyedi MCP kiskereskedelmi bővítmény
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP kiskereskedelmi parancsok regisztrálása
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Áruházváltó regisztrálása
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Konfiguráció frissítése
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Előre definiált lekérdezések végrehajtása a VS Code Chatben
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Bővítmény Csomag Konfiguráció
+### Bővítménycsomag konfiguráció
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Főbb Tanulságok
+## 🎯 Fő tanulságok
 
-A gyakorlat elvégzése után képes leszel:
+A labor befejezése után rendelkeznie kell:
 
-✅ **VS Code MCP Konfiguráció**: Teljes beállítás az MCP optimális integrációjához  
-✅ **AI Chat Integráció**: Természetes nyelvi lekérdezési képességek a VS Code-ban  
-✅ **Hibakeresési Eszközök**: Átfogó problémamegoldás és kapcsolatdiagnosztika  
-✅ **Több Szerver Beállítása**: Konfiguráció több MCP szerver példányhoz  
-✅ **Egyedi Bővítmények**: Kiskereskedelmi-specifikus funkciókkal bővített VS Code élmény  
-✅ **Termelési Készenlét**: Vállalati szintű VS Code fejlesztési környezet  
+✅ **VS Code MCP konfiguráció**: Teljes beállítás az optimális MCP integrációhoz  
+✅ **AI Chat integráció**: Természetes nyelvű lekérdezési képességek a VS Code-ban  
+✅ **Hibakeresési eszközök**: Átfogó hibaelhárítás és kapcsolati diagnosztika  
+✅ **Többszerveres beállítás**: Konfiguráció több MCP szerver példányhoz  
+✅ **Egyedi bővítmények**: Fokozott VS Code élmény kiskereskedelmi specifikus funkciókkal  
+✅ **Éles környezetre kész**: Vállalati szintű VS Code fejlesztői környezet  
 
-## 🚀 Mi Következik?
+## 🚀 Mi következik
 
-Folytasd a **[10. Gyakorlat: Telepítési Stratégiák](../10-Deployment/README.md)** című résszel, hogy:
+Folytassa a **[10. labor: Telepítési stratégiák](../10-Deployment/README.md)**-vel, hogy:
 
-- MCP szervereket telepíts termelési környezetbe
-- Felhő infrastruktúrát konfigurálj a skálázhatóság érdekében
-- CI/CD folyamatokat valósíts meg az automatizált telepítéshez
-- Figyeld a termelési MCP szerver teljesítményét
+- MCP szerverek éles környezetbe telepítése
+- Felhőinfrastruktúra konfigurálása a skálázhatóság érdekében
+- CI/CD pipeline-ok megvalósítása az automatizált telepítéshez
+- Az MCP szerver teljesítményének monitorozása éles környezetben
 
-## 📚 További Források
+## 📚 További források
 
-### VS Code Fejlesztés
-- [VS Code Extension API](https://code.visualstudio.com/api) - Hivatalos bővítményfejlesztési útmutató
-- [VS Code MCP Dokumentáció](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integráció dokumentációja
-- [TypeScript a VS Code-ban](https://code.visualstudio.com/docs/languages/typescript) - TypeScript fejlesztés a VS Code-ban
+### VS Code fejlesztés
+- [VS Code bővítmény API](https://code.visualstudio.com/api) - Hivatalos bővítmény fejlesztési útmutató
+- [VS Code MCP dokumentáció](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integrációs dokumentáció
+- [TypeScript a VS Code-ban](https://code.visualstudio.com/docs/languages/typescript) - TypeScript fejlesztés VS Code-ban
 
-### MCP Protokoll
-- [Model Context Protocol Specifikáció](https://modelcontextprotocol.io/specification) - Hivatalos MCP specifikáció
-- [MCP Legjobb Gyakorlatok](https://modelcontextprotocol.io/docs/best-practices) - Megvalósítási legjobb gyakorlatok
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP megvalósítás
+### MCP protokoll
+- [Model Context Protocol specifikáció](https://modelcontextprotocol.io/specification) - Hivatalos MCP specifikáció
+- [MCP legjobb gyakorlatok](https://modelcontextprotocol.io/docs/best-practices) - Megvalósítási legjobb gyakorlatok
+- [FastMCP keretrendszer](https://github.com/jlowin/fastmcp) - Python MCP megvalósítás
 
-### Fejlesztési Eszközök
+### Fejlesztői eszközök
 - [Python a VS Code-ban](https://code.visualstudio.com/docs/python/python-tutorial) - Python fejlesztési beállítás
 - [Hibakeresés a VS Code-ban](https://code.visualstudio.com/docs/editor/debugging) - Haladó hibakeresési technikák
-- [VS Code Feladatok](https://code.visualstudio.com/docs/editor/tasks) - Feladat automatizálás és konfiguráció
+- [VS Code feladatok](https://code.visualstudio.com/docs/editor/tasks) - Feladat automatizálás és konfiguráció
 
 ---
 
-**Előző**: [08. Gyakorlat: Tesztelés és Hibakeresés](../08-Testing/README.md)  
-**Következő**: [10. Gyakorlat: Telepítési Stratégiák](../10-Deployment/README.md)
+**Előző**: [08. labor: Tesztelés és hibakeresés](../08-Testing/README.md)  
+**Következő**: [10. labor: Telepítési stratégiák](../10-Deployment/README.md)
 
 ---
 
-**Felelősség kizárása**:  
-Ez a dokumentum az [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével került lefordításra. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az eredeti nyelvén tekintendő hiteles forrásnak. Kritikus információk esetén javasolt professzionális emberi fordítást igénybe venni. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely a fordítás használatából eredhet.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

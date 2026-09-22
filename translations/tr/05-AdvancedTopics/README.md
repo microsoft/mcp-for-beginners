@@ -1,77 +1,86 @@
 # MCP'de İleri Konular
 
-[![Gelişmiş MCP: Güvenli, Ölçeklenebilir ve Çok Modlu AI Ajanları](../../../translated_images/tr/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
+[![İleri MCP: Güvenli, Ölçeklenebilir ve Çok Modlu Yapay Zeka Ajanları](../../../translated_images/tr/06.42259eaf91fccfc6.webp)](https://youtu.be/4yjmGvJzYdY)
 
-_(Bu dersin videosunu izlemek için yukarıdaki resme tıklayın)_
+_(Bu dersin videosunu görüntülemek için yukarıdaki resme tıklayın)_
 
-Bu bölümde Model Context Protocol (MCP) uygulamasında çok modlu entegrasyon, ölçeklenebilirlik, güvenlik en iyi uygulamaları ve kurumsal entegrasyon dahil olmak üzere bir dizi ileri konu ele alınmaktadır. Bu konular, modern AI sistemlerinin gereksinimlerini karşılayabilecek sağlam ve üretim hazır MCP uygulamaları oluşturmak için kritik öneme sahiptir.
+Bu bölüm, Model Context Protocol (MCP) uygulamasında çok modlu entegrasyon, ölçeklenebilirlik, güvenlik en iyi uygulamaları ve kurumsal entegrasyon gibi ileri konuları kapsar. Bu konular, modern yapay zeka sistemlerinin taleplerini karşılayabilen sağlam ve üretim hazır MCP uygulamaları oluşturmak için kritik öneme sahiptir.
 
 ## Genel Bakış
 
-Bu ders, Model Context Protocol uygulamasında çok modlu entegrasyon, ölçeklenebilirlik, güvenlik en iyi uygulamaları ve kurumsal entegrasyona odaklanarak ileri kavramları keşfeder. Bu konular, kurumsal ortamların karmaşık gereksinimlerini karşılayabilen üretim düzeyinde MCP uygulamaları oluşturmak için temel önemdedir.
+Bu ders, Model Context Protocol uygulamasında çok modlu entegrasyon, ölçeklenebilirlik, güvenlik en iyi uygulamaları ve kurumsal entegrasyon konularına odaklanarak ileri kavramları keşfeder. Bu konular, kurumsal ortamlarda karmaşık gereksinimleri karşılayabilen üretim düzeyinde MCP uygulamaları oluşturmak için gereklidir.
 
-> **İleriye bakış:** aşağıdaki birkaç konu, `2026-07-28` MCP spesifikasyon sürüm adayından etkilenmektedir — Kök Bağlamlar (5.4) ve Örnekleme (5.6), sürüm adayının kullanımdan kaldırdığını belirttiği primitiflere dayanır ve Protokol Özelliklerinde (5.16) belirtilen deneysel Görevler özelliği, özel bir Görevler uzantısına taşınmaktadır. Detaylar için [MCP'de Neler Değişiyor: 2026-07-28 Sürüm Adayı](../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) bölümüne bakınız.
+> **Mevcut spesifikasyon notu:** MCP `2026-07-28` sürümü, Ders 5.4 ve 5.6'da ele alınan Roots ve
+> Sampling ilkel işlemlerini kullanımdan kaldırmaktadır. Ayrıca
+> Protokol Özellikleri (5.16) bölümünde belirtilen deneysel Görevler özelliğini
+> özel bir Görevler uzantısına taşımaktadır. Bu dersler, miras kalan
+> `2025-11-25` sürümleri için saklanmıştır ve geçiş rehberliği içerir. Detaylar için
+> [MCP’de Neler Değişti: 2026-07-28 Spesifikasyonu](../01-CoreConcepts/mcp-2026-07-28.md) sayfasına bakınız.
 
-## Öğrenme Hedefleri
+## Öğrenim Hedefleri
 
-Bu dersi tamamladıktan sonra şunları yapabileceksiniz:
+Bu dersi tamamladıktan sonra:
 
-- MCP çerçeveleri içinde çok modlu yetenekleri uygulamak
-- Yüksek talep senaryoları için ölçeklenebilir MCP mimarileri tasarlamak
-- MCP'nin güvenlik ilkeleriyle uyumlu en iyi güvenlik uygulamalarını uygulamak
-- MCP'yi kurumsal AI sistemleri ve çerçeveleri ile entegre etmek
-- Üretim ortamlarında performans ve güvenilirliği optimize etmek
+- MCP çerçevelerinde çok modlu yetenekler uygulayabileceksiniz
+- Yüksek talep senaryoları için ölçeklenebilir MCP mimarileri tasarlayabileceksiniz
+- MCP’nin güvenlik ilkeleriyle uyumlu güvenlik en iyi uygulamalarını uygulayabileceksiniz
+- MCP'yi kurumsal yapay zeka sistemleri ve çerçeveleri ile entegre edebileceksiniz
+- Üretim ortamlarında performans ve güvenilirlik optimizasyonu yapabileceksiniz
 
 ## Dersler ve Örnek Projeler
 
 | Bağlantı | Başlık | Açıklama |
 |------|-------|-------------|
-| [5.1 Azure ile Entegrasyon](./mcp-integration/README.md) | Azure ile Entegre Ol | MCP Sunucunuzu Azure'da nasıl entegre edeceğinizi öğrenin |
-| [5.2 Çok modlu örnek](./mcp-multi-modality/README.md) | MCP Çok modlu örnekler | Ses, resim ve çok modlu yanıt örnekleri |
-| [5.3 MCP OAuth2 örneği](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | MCP ile OAuth2'yi hem Yetkilendirme hem de Kaynak Sunucusu olarak gösteren minimal Spring Boot uygulaması. Güvenli token verme, korumalı uç noktalar, Azure Container Apps dağıtımı ve API Yönetimi entegrasyonunu gösterir. |
-| [5.4 Kök Bağlamlar](./mcp-root-contexts/README.md) | Kök bağlamlar | Kök bağlam hakkında daha fazla bilgi edinin ve nasıl uygulanacağını öğrenin (`2026-07-28` sürüm adayında kullanımdan kaldırıldı; ancak `2025-11-25` için geçerlidir) |
+| [5.1 Azure ile Entegrasyon](./mcp-integration/README.md) | Azure ile Entegrasyon | MCP Sunucunuzu Azure üzerinde nasıl entegre edeceğinizi öğrenin |
+| [5.2 Çok modlu örnek](./mcp-multi-modality/README.md) | MCP Çok modlu örnekler | Ses, görüntü ve çok modlu yanıtlar için örnekler |
+| [5.3 MCP OAuth2 örneği](../../../05-AdvancedTopics/mcp-oauth2-demo) | MCP OAuth2 Demo | MCP ile hem Yetkilendirme hem de Kaynak Sunucu olarak OAuth2 gösteren minimal Spring Boot uygulaması. Güvenli token verilmesi, korumalı uç noktalar, Azure Container Apps dağıtımı ve API Yönetimi entegrasyonunu gösterir. |
+| [5.4 Kök Bağlamları](./mcp-root-contexts/README.md) | Kök bağlamlar | Miras kalan `2025-11-25` Roots ilkelini ve güncel geçiş seçeneklerini öğrenin (`2026-07-28` sürümünde kullanımdan kaldırılmıştır) |
 | [5.5 Yönlendirme](./mcp-routing/README.md) | Yönlendirme | Farklı yönlendirme türlerini öğrenin |
-| [5.6 Örnekleme](./mcp-sampling/README.md) | Örnekleme | Örneklemeyle nasıl çalışılacağını öğrenin (`2026-07-28` sürüm adayında kullanımdan kaldırıldı; yine de `2025-11-25` için geçerlidir) |
+| [5.6 Örnekleme](./mcp-sampling/README.md) | Örnekleme | Miras kalan `2025-11-25` Sampling ilkelini ve geçerli geçiş seçeneklerini öğrenin (`2026-07-28` sürümünde kullanımdan kaldırılmıştır) |
 | [5.7 Ölçeklendirme](./mcp-scaling/README.md) | Ölçeklendirme | Ölçeklendirme hakkında bilgi edinin |
-| [5.8 Güvenlik](./mcp-security/README.md) | Güvenlik | MCP Sunucunuzu güvence altına alın |
-| [5.9 Web Arama örneği](./web-search-mcp/README.md) | Web Arama MCP | SerpAPI ile gerçek zamanlı web, haber, ürün araması ve Soru&Cevap için Python MCP sunucu ve istemci. Çoklu araç düzenlemesini, harici API entegrasyonunu ve sağlam hata yönetimini gösterir. |
-| [5.10 Gerçek Zamanlı Yayın](./mcp-realtimestreaming/README.md) | Yayın | Veriye dayalı günümüz dünyasında, işletmeler ve uygulamalar zamanında kararlar almak için anında bilgi erişimi gerektirdiğinden, gerçek zamanlı veri yayınlama vazgeçilmez hale gelmiştir.|
-| [5.11 Gerçek Zamanlı Web Arama](./mcp-realtimesearch/README.md) | Web Arama | MCP'nin AI modelleri, arama motorları ve uygulamalar arasında bağlam yönetimi için standart bir yaklaşım sunarak gerçek zamanlı web aramasını nasıl dönüştürdüğünü öğrenin.|
-| [5.12 Model Context Protocol Sunucuları için Entra ID Kimlik Doğrulama](./mcp-security-entra/README.md) | Entra ID Kimlik Doğrulama | Microsoft Entra ID, yalnızca yetkili kullanıcılar ve uygulamaların MCP sunucunuzla etkileşimde bulunmasını sağlamak için sağlam bulut tabanlı kimlik ve erişim yönetimi çözümü sunar.|
-| [5.13 Microsoft Foundry Ajan Entegrasyonu](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry Entegrasyonu | Model Context Protocol sunucularını Microsoft Foundry ajanları ile nasıl entegre edeceğinizi öğrenin; bu, standartlaştırılmış harici veri kaynağı bağlantıları ile güçlü araç düzenleme ve kurumsal AI yetenekleri sağlar.|
-| [5.14 Bağlam Mühendisliği](./mcp-contextengineering/README.md) | Bağlam Mühendisliği | MCP sunucuları için bağlam optimizasyonu, dinamik bağlam yönetimi ve MCP çerçevelerinde etkili prompt mühendisliği stratejilerini içeren bağlam mühendisliği tekniklerinin gelecekteki fırsatları.|
-| [5.15 MCP Özel Taşıma](./mcp-transport/README.md) | Özel Taşıma | Özelleşmiş MCP iletişim senaryoları için özel taşıma mekanizmalarının nasıl uygulanacağını öğrenin.|
-| [5.16 Protokol Özellikleri Derinlemesine](./mcp-protocol-features/README.md) | Protokol Özellikleri | İlerleme bildirimleri, istek iptali, kaynak şablonları ve hata işleme kalıpları gibi gelişmiş protokol özelliklerinde ustalaşın.|
-| [5.17 Düşmanca Çoklu Ajan Akıl Yürütme](./mcp-adversarial-agents/README.md) | Düşmanca Ajanlar | Tek bir MCP araç setini paylaşan karşıt pozisyonlardaki iki ajan kullanarak halüsinasyonları yakalayın, uç durumları ortaya çıkarın ve yapılandırılmış tartışma yoluyla daha iyi kalibre edilmiş çıktılar üretin.|
+| [5.8 Güvenlik](./mcp-security/README.md) | Güvenlik | MCP Sunucunuzu güvenli hale getirin |
+| [5.9 Web Arama örneği](./web-search-mcp/README.md) | Web Arama MCP | Python MCP sunucusu ve istemcisi, gerçek zamanlı web, haber, ürün arama ve Soru-Cevap için SerpAPI ile entegrasyon sağlar. Çoklu araç orkestrası, dış API entegrasyonu ve sağlam hata yönetimini gösterir. |
+| [5.10 Gerçek Zamanlı Yayın](./mcp-realtimestreaming/README.md) | Yayın | Gerçek zamanlı veri akışı, işlerin ve uygulamaların anlık bilgiye erişmesi gereken günümüz veri odaklı dünyasında çok önemli hale gelmiştir.|
+| [5.11 Gerçek Zamanlı Web Arama](./mcp-realtimesearch/README.md) | Web Arama | MCP’nin, yapay zeka modelleri, arama motorları ve uygulamalar arasında bağlam yönetimini standartlaştırarak gerçek zamanlı web aramasını nasıl dönüştürdüğünü öğrenin.|
+| [5.12 Model Context Protocol Sunucuları için Entra ID Kimlik Doğrulama](./mcp-security-entra/README.md) | Entra ID Kimlik Doğrulama | Microsoft Entra ID, sadece yetkili kullanıcılar ve uygulamaların MCP sunucunuzla etkileşim kurmasını sağlayan güçlü bir bulut tabanlı kimlik ve erişim yönetimi çözümü sunar.|
+| [5.13 Microsoft Foundry Ajan Entegrasyonu](./mcp-foundry-agent-integration/README.md) | Microsoft Foundry Entegrasyonu | Model Context Protocol sunucularını Microsoft Foundry ajanları ile nasıl entegre edeceğinizi öğrenin; bu, standartlaştırılmış dış veri kaynağı bağlantılarıyla güçlü araç orkestrasyonu ve kurumsal yapay zeka yetenekleri sağlar.|
+| [5.14 Bağlam Mühendisliği](./mcp-contextengineering/README.md) | Bağlam Mühendisliği | MCP sunucuları için bağlam mühendisliği tekniklerinin gelecekteki fırsatları; bağlam optimizasyonu, dinamik bağlam yönetimi ve MCP çerçevelerinde etkili prompt mühendisliği stratejileri dahil.|
+| [5.15 MCP Özel Taşıma](./mcp-transport/README.md) | Özel Taşıma | Özel MCP iletişim senaryoları için özel taşıma mekanizmalarının nasıl uygulanacağını öğrenin.|
+| [5.16 Protokol Özelliklerine Derin Dalış](./mcp-protocol-features/README.md) | Protokol Özellikleri | İlerleme bildirimleri, istek iptali, kaynak şablonları ve hata yönetimi kalıpları dahil gelişmiş protokol özelliklerinde uzmanlaşın.|
+| [5.17 Rekabetçi Çoklu Ajan Muhakemesi](./mcp-adversarial-agents/README.md) | Rekabetçi Ajanlar | Karşıt pozisyonları olan iki ajan kullanarak, tek bir MCP araç setini paylaşarak halüsinasyonları yakalayın, uç durumları görünür kılın ve yapılandırılmış tartışma yoluyla daha iyi kalibre edilmiş çıktılar üretin.|
 
-> **MCP Spesifikasyonu 2025-11-25'te Yeni:** Spesifikasyon artık **Görevler** (ilerleme takibi ile uzun süreli işlemler), **Araç Açıklamaları** (güvenlik için araç davranışı hakkında meta veriler), **URL Modu Elde Etme** (istemcilerden belirli URL içeriği istenmesi) ve geliştirilmiş **Kökler** (çalışma alanı bağlamı yönetimi için) için deneysel destek içermektedir. Tam detaylar için [MCP Spesifikasyon değişiklik günlüğüne](https://spec.modelcontextprotocol.io/) bakınız.
+> **Tarihi `2025-11-25` notu:** Bu revizyon deneysel
+> Görevler özelliğini eklemiş ve birkaç protokol özelliğini genişletmiştir. `2026-07-28` sürümünde, Görevler
+> resmi bir uzantıya taşınmış ve Roots kullanımdan kaldırılmıştır. Lütfen
+> güncel rehberlik için `2025-11-25` özellik durumunu kullanmayın; detaylar için
+> [2026-07-28 değişiklik günlüğüne](https://modelcontextprotocol.io/specification/2026-07-28/changelog) bakınız.
 
-## Ek Kaynaklar
+## Ek Referanslar
 
-İleri MCP konuları hakkında en güncel bilgi için:
+İleri MCP konuları hakkındaki en güncel bilgiler için aşağıdaki kaynaklara başvurun:
 - [MCP Dokümantasyonu](https://modelcontextprotocol.io/)
-- [MCP Spesifikasyonu (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Spesifikasyonu (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [GitHub Deposu](https://github.com/modelcontextprotocol)
-- [OWASP MCP İlk 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Güvenlik riskleri ve önlemleri
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Güvenlik riskleri ve önlemler
 - [MCP Güvenlik Zirvesi Atölyesi (Sherpa)](https://azure-samples.github.io/sherpa/) - Uygulamalı güvenlik eğitimi
 
-## Önemli Noktalar
+## Temel Çıkarımlar
 
-- Çok modlu MCP uygulamaları, AI yeteneklerini metin işlemeyi aşarak genişletir
-- Ölçeklenebilirlik, kurumsal dağıtımlar için esastır ve yatay ve dikey ölçeklendirme yoluyla ele alınabilir
-- Kapsamlı güvenlik önlemleri verileri korur ve doğru erişim kontrolünü sağlar
-- Azure OpenAI ve Microsoft AI Foundry gibi platformlarla kurumsal entegrasyon MCP yeteneklerini artırır
-- İleri MCP uygulamaları optimize edilmiş mimariler ve dikkatli kaynak yönetiminden faydalanır
+- Çok modlu MCP uygulamaları, yapay zekanın yeteneklerini metin işlemeyi aşacak şekilde genişletir
+- Ölçeklenebilirlik, kurumsal dağıtımlar için esastır ve yatay ve dikey ölçeklendirme ile ele alınabilir
+- Kapsamlı güvenlik önlemleri verileri korur ve uygun erişim kontrolünü sağlar
+- Azure OpenAI ve Microsoft AI Foundry gibi platformlarla kurumsal entegrasyon, MCP yeteneklerini artırır
+- İleri MCP uygulamaları, optimize edilmiş mimariler ve dikkatli kaynak yönetiminden faydalanır
 
 ## Alıştırma
 
 Belirli bir kullanım durumu için kurumsal düzeyde bir MCP uygulaması tasarlayın:
 
 1. Kullanım durumunuz için çok modlu gereksinimleri belirleyin
-2. Hassas verileri korumak için gereken güvenlik kontrollerini belirleyin
+2. Hassas verileri korumak için gerekli güvenlik kontrollerini tasarlayın
 3. Değişken yükleri karşılayabilecek ölçeklenebilir bir mimari tasarlayın
-4. Kurumsal AI sistemleri ile entegrasyon noktalarını planlayın
-5. Olası performans darboğazlarını ve azaltma stratejilerini belgeleyin
+4. Kurumsal yapay zeka sistemleri ile entegrasyon noktalarını planlayın
+5. Potansiyel performans darboğazlarını ve azaltma stratejilerini belgeleyin
 
 ## Ek Kaynaklar
 
@@ -80,9 +89,9 @@ Belirli bir kullanım durumu için kurumsal düzeyde bir MCP uygulaması tasarla
 
 ---
 
-## Sonraki Adım
+## Sonraki Adımlar
 
-Bu modüldeki derslere şuradan başlayın: [5.1 MCP Entegrasyonu](./mcp-integration/README.md)
+Bu modüldeki derslere şu bağlantıdan başlayın: [5.1 MCP Entegrasyonu](./mcp-integration/README.md)
 
 Bu modülü tamamladıktan sonra devam edin: [Modül 6: Topluluk Katkıları](../06-CommunityContributions/README.md)
 

@@ -8,7 +8,7 @@ Model Context Protocol (MCP) は、AI アプリケーションが外部データ
 
 この統合により、MCP のツールエコシステムの柔軟性と Microsoft Foundry の堅牢なエージェントフレームワークが結合され、幅広いカスタマイズ機能を持つエンタープライズグレードの AI ソリューションが提供されます。
 
-**Note:** Microsoft Foundry Agent Service で MCP を使用したい場合、現在サポートされているリージョンは westus、westus2、uaenorth、southindia、および switzerlandnorth のみです。
+> **注意:** Microsoft Foundry Agent Service で MCP を使用したい場合、現在サポートされているリージョンは westus、westus2、uaenorth、southindia、および switzerlandnorth のみです。
 
 ## 学習目標
 

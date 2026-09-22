@@ -1,10 +1,15 @@
 # Suosittujen MCP-isäntäasiakkaiden asetukset
 
-Tämä opas käsittelee, miten konfiguroidaan ja käytetään MCP-palvelimia suosituissa tekoälyisäntäohjelmissa. Jokaisella isännällä on oma konfigurointitapansa, mutta asennuksen jälkeen ne kaikki kommunikoivat MCP-palvelimien kanssa standardoidun protokollan avulla.
+> [!NOTE]
+> Isäntäkonfiguraatiot, jotka osoittavat `/sse`-polulle, ovat vanhentuneita HTTP+SSE-esimerkkejä
+> MCP `2025-11-25` -versiolle. MCP `2026-07-28` -versiossa valitse Streamable HTTP isännissä, jotka
+> tukevat sitä, ja käytä palvelimen määrittämää päätepistettä.
+
+Tämä opas kattaa, kuinka konfiguroida ja käyttää MCP-palvelimia suosittujen tekoälyisäntäohjelmien kanssa. Jokaisella isännällä on oma konfiguraatiotapansa, mutta kun ne on asennettu, ne kaikki kommunikoivat MCP-palvelimien kanssa standardisoidun protokollan avulla.
 
 ## Mikä on MCP-isäntä?
 
-**MCP-isäntä** on tekoälysovellus, joka voi yhdistää MCP-palvelimiin laajentaakseen toimintojaan. Se toimii "käyttöliittymänä", jonka kanssa käyttäjät ovat vuorovaikutuksessa, kun taas MCP-palvelimet tarjoavat "taustajärjestelmän" työkaluille ja datalle.
+**MCP-isäntä** on tekoälysovellus, joka voi muodostaa yhteyden MCP-palvelimiin laajentaakseen toiminnallisuuttaan. Ajattele sitä "käyttöliittymänä", jonka kanssa käyttäjät ovat tekemisissä, kun taas MCP-palvelimet tarjoavat "taustan" työkalut ja datan.
 
 ```mermaid
 flowchart LR
@@ -15,17 +20,18 @@ flowchart LR
     
     subgraph "Suositut Isännät"
         H1[Claude Pöytäkone]
-        H2[VS Koodi]
+        H2[VS Code]
         H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
-## Esivaatimukset
 
-- MCP-palvelin, johon yhdistää (katso [Module 3.1 - First Server](../01-first-server/README.md))
+## Vaatimukset
+
+- MCP-palvelin, johon muodostetaan yhteys (katso [Moduuli 3.1 - Ensimmäinen palvelin](../01-first-server/README.md))
 - Isäntäohjelma asennettuna järjestelmääsi
-- Perustuntemus JSON-konfiguraatiotiedostoista
+- Perustason tuttuus JSON-konfiguraatiotiedostojen kanssa
 
 ---
 
@@ -40,7 +46,7 @@ flowchart LR
 
 ### Konfigurointi
 
-Claude Desktop käyttää MCP-palvelimien määrittelyyn JSON-konfiguraatiotiedostoa.
+Claude Desktop käyttää JSON-konfiguraatiotiedostoa MCP-palvelimien määrittämiseen.
 
 **Konfiguraatiotiedoston sijainti:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -77,49 +83,49 @@ Claude Desktop käyttää MCP-palvelimien määrittelyyn JSON-konfiguraatiotiedo
 ### Konfiguraatioasetukset
 
 | Kenttä | Kuvaus | Esimerkki |
-|-------|-------------|---------|
-| `command` | Suoritettava komento | `"python"`, `"node"`, `"npx"` |
+|-------|---------|----------|
+| `command` | Suoritettava ohjelma | `"python"`, `"node"`, `"npx"` |
 | `args` | Komentoriviparametrit | `["-m", "my_server"]` |
 | `env` | Ympäristömuuttujat | `{"API_KEY": "xxx"}` |
 | `cwd` | Työhakemisto | `"/path/to/server"` |
 
-### Asennuksesi testaus
+### Asetusten testaus
 
 1. Tallenna konfiguraatiotiedosto
-2. Käynnistä Claude Desktop kokonaan uudelleen (sulje ja avaa uudelleen)
+2. Käynnistä Claude Desktop täysin uudelleen (lopeta ja käynnistä uudelleen)
 3. Avaa uusi keskustelu
-4. Etsi 🔌-kuvake, joka ilmaisee yhdistetyt palvelimet
-5. Kokeile pyytää Claudea käyttämään jotakin työkalua
+4. Etsi 🔌-kuvake, joka näyttää yhdistetyt palvelimet
+5. Kokeile pyytää Claudea käyttämään jotain työkalujasi
 
-### Claude Desktopin vianetsintä
+### Vianmääritys Claude Desktopissa
 
 **Palvelin ei näy:**
-- Tarkista konfiguraatiotiedoston syntaksi JSON-validaattorilla
-- Varmista, että komentopolku on oikein
+- Tarkista konfiguraatiotiedoston syntaksi JSON-validointityökalulla
+- Varmista, että komenton polku on oikea
 - Tarkista Claude Desktopin lokit: Ohje → Näytä lokit
 
 **Palvelin kaatuu käynnistyksessä:**
 - Testaa palvelinta ensin manuaalisesti terminaalissa
-- Varmista, että ympäristömuuttujat on asetettu oikein
+- Tarkista, että ympäristömuuttujat on asetettu oikein
 - Varmista, että kaikki riippuvuudet on asennettu
 
 ---
 
 ## 2. VS Code GitHub Copilotin kanssa
 
-VS Code tukee MCP:tä GitHub Copilot Chat -laajennusten kautta.
+VS Code tukee MCP:tä GitHub Copilot Chat -laajennusten avulla.
 
-### Esivaatimukset
+### Vaatimukset
 
-1. VS Code 1.99+ asennettuna
+1. VS Code versio 1.99 tai uudempi asennettuna
 2. GitHub Copilot -laajennus asennettuna
 3. GitHub Copilot Chat -laajennus asennettuna
 
 ### Konfigurointi
 
-VS Code käyttää `.vscode/mcp.json` -tiedostoa työtilassa tai käyttäjäasetuksissa.
+VS Code käyttää `.vscode/mcp.json` -tiedostoa työtila- tai käyttäjäasetuksissa.
 
-**Työtilakonfiguraatio** (`.vscode/mcp.json`):
+**Työtilan konfiguraatio** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -152,16 +158,16 @@ VS Code käyttää `.vscode/mcp.json` -tiedostoa työtilassa tai käyttäjäaset
 }
 ```
 
-### MCP:n käyttäminen VS Codessa
+### MCP:n käyttö VS Codessa
 
 1. Avaa Copilot Chat -paneeli (Ctrl+Shift+I / Cmd+Shift+I)
-2. Kirjoita `@`, niin näet käytettävissä olevat MCP-työkalut
-3. Käytä luonnollista kieltä työkalujen kutsumiseen: "Laske 25 * 48 laskimella"
+2. Kirjoita `@` nähdäksesi käytettävissä olevat MCP-työkalut
+3. Käytä luonnollista kieltä kutsuaksesi työkaluja: "Laske 25 * 48 laskimella"
 
-### VS Coden vianetsintä
+### VS Coden vianmääritys
 
 **MCP-palvelimet eivät lataudu:**
-- Tarkista Tuloste-paneeli → "MCP" virhelokit
+- Tarkista Tulostuspaneeli → "MCP" virhelokeista
 - Lataa ikkuna uudelleen: Ctrl+Shift+P → "Developer: Reload Window"
 - Varmista, että palvelin toimii itsenäisesti ensin
 
@@ -169,7 +175,7 @@ VS Code käyttää `.vscode/mcp.json` -tiedostoa työtilassa tai käyttäjäaset
 
 ## 3. Cursor
 
-**Cursor** on tekoälykeskeinen koodieditori, jossa on sisäänrakennettu MCP-tuki.
+**Cursor** on tekoälyyn perustuva koodieditori, jossa on sisäänrakennettu MCP-tuki.
 
 ### Asennus
 
@@ -178,7 +184,7 @@ VS Code käyttää `.vscode/mcp.json` -tiedostoa työtilassa tai käyttäjäaset
 
 ### Konfigurointi
 
-Cursor käyttää vastaavaa konfiguraatiomuotoa kuin Claude Desktop.
+Cursor käyttää samankaltaista konfiguraatiomuotoa kuin Claude Desktop.
 
 **Konfiguraatiotiedoston sijainti:**
 - **macOS**: `~/.cursor/mcp.json`
@@ -205,17 +211,17 @@ Cursor käyttää vastaavaa konfiguraatiomuotoa kuin Claude Desktop.
 }
 ```
 
-### MCP:n käyttäminen Cursorissa
+### MCP:n käyttö Cursorissa
 
-1. Avaa Cursorin AI-chat (Ctrl+L / Cmd+L)
-2. MCP-työkalut tulevat automaattisesti ehdotuksissa esiin
-3. Pyydä tekoälyä suorittamaan tehtäviä yhdistettyjen palvelinten avulla
+1. Avaa Cursorin tekoälykeskustelu (Ctrl+L / Cmd+L)
+2. MCP-työkalut näkyvät automaattisesti ehdotuksissa
+3. Pyydä tekoälyä suorittamaan tehtäviä yhdistettyjen palvelimien avulla
 
 ---
 
-## 4. Cline (päätekäyttöliittymä)
+## 4. Cline (Pääteperustainen)
 
-**Cline** on päätekäyttöön suunniteltu MCP-asiakas, ihanteellinen komentorivityönkuluille.
+**Cline** on pääteperustainen MCP-asiakas, ihanteellinen komentorivityönkulkuun.
 
 ### Asennus
 
@@ -225,16 +231,16 @@ npm install -g @anthropic/cline
 
 ### Konfigurointi
 
-Cline käyttää ympäristömuuttujia ja komentorivikomentoja.
+Cline käyttää ympäristömuuttujia ja komentoriviparametreja.
 
-**Ympäristömuuttujien käyttäminen:**
+**Ympäristömuuttujien käyttö:**
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**Komentoriviparametrien käyttäminen:**
+**Komentoriviparametrien käyttö:**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
@@ -255,7 +261,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Clinen käyttäminen
+### Clinén käyttö
 
 ```bash
 # Aloita interaktiivinen istunto
@@ -264,7 +270,7 @@ cline
 # Yksittäinen kysely MCP:llä
 cline "Calculate the square root of 144 using the calculator"
 
-# Listaa käytettävissä olevat työkalut
+# Lista käytettävissä olevista työkaluista
 cline --list-tools
 ```
 
@@ -272,7 +278,7 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** on toinen tekoälypohjainen koodieditori, jossa on MCP-tuki.
+**Windsurf** on toinen MCP:tä tukeva tekoälyllä varustettu koodieditori.
 
 ### Asennus
 
@@ -281,10 +287,10 @@ cline --list-tools
 
 ### Konfigurointi
 
-Windsurfin konfigurointi hoidetaan asetusten käyttöliittymän kautta:
+Windsurfin konfigurointi tapahtuu asetusten käyttöliittymän kautta:
 
 1. Avaa asetukset (Ctrl+, / Cmd+,)
-2. Hae "MCP"
+2. Etsi "MCP"
 3. Klikkaa "Muokkaa tiedostossa settings.json"
 
 **Esimerkkikonfiguraatio:**
@@ -306,22 +312,22 @@ Windsurfin konfigurointi hoidetaan asetusten käyttöliittymän kautta:
 
 ## Kuljetustyyppien vertailu
 
-Eri isännät tukevat erilaisia kuljetusmenetelmiä:
+Eri isännät tukevat eri kuljetusmekanismeja:
 
 | Isäntä | stdio | SSE/HTTP | WebSocket |
-|------|-------|----------|-----------|
+|--------|-------|----------|-----------|
 | Claude Desktop | ✅ | ❌ | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
 | Cursor | ✅ | ✅ | ❌ |
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standard input/output): Paras paikallisille palvelimille, jotka isäntä käynnistää  
-**SSE/HTTP**: Paras etäpalvelimille tai monen asiakkaan yhteiskäytössä
+**stdio** (standard input/output): Paras tapa paikallisille palvelimille, jotka isäntä käynnistää
+**SSE/HTTP**: Paras tapa etäpalvelimille tai palvelimille, joita jaetaan useiden asiakkaiden kesken
 
 ---
 
-## Yleinen vianetsintä
+## Yleiset vianmääritykset
 
 ### Palvelin ei käynnisty
 
@@ -334,11 +340,11 @@ Eri isännät tukevat erilaisia kuljetusmenetelmiä:
    node /path/to/server/index.js
    ```
 
-2. **Tarkista komentopolku:**
-   - Käytä aina mahdollisuuksien mukaan absoluuttisia polkuja
-   - Varmista, että suoritettava tiedosto löytyy PATHista
+2. **Tarkista komennon polku:**
+   - Käytä absoluuttisia polkuja mahdollisuuksien mukaan
+   - Varmista, että suoritettava ohjelma on PATH:ssa
 
-3. **Tarkista riippuvuudet:**
+3. **Vahvista riippuvuudet:**
    ```bash
    # Python
    pip list | grep mcp
@@ -347,17 +353,17 @@ Eri isännät tukevat erilaisia kuljetusmenetelmiä:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Palvelin yhdistyy mutta työkalut eivät toimi
+### Palvelin yhdistyy, mutta työkalut eivät toimi
 
-1. **Tarkista palvelimen lokit** - useimmissa isännissä on lokitusvaihtoehdot
-2. **Varmista työkalujen rekisteröinti** - käytä MCP Inspector -työkalua testaamiseen
-3. **Tarkista käyttöoikeudet** - jotkut työkalut vaativat tiedosto- tai verkko-oikeuksia
+1. **Tarkista palvelimen lokit** - Useimmissa isännissä on lokitusvaihtoehdot
+2. **Vahvista työkalujen rekisteröinti** - Käytä MCP Inspector -työkalua testaukseen
+3. **Tarkista käyttöoikeudet** - Joillakin työkaluilla on tiedosto- tai verkkoyhteyden vaatimukset
 
-### Ympäristömuuttujat eivät siirry
+### Ympäristömuuttujia ei välitetä
 
-- Jotkin isännät puhdistavat ympäristömuuttujat
-- Käytä `env`-konfiguraatiokohtaa eksplisiittisesti
-- Vältä arkaluontoisten tietojen tallentamista konfiguraatioihin (käytä salaisuudenhallintaa)
+- Joissain isännissä ympäristömuuttujat puhdistetaan
+- Käytä `env` konfiguraatiokenttää eksplisiittisesti
+- Vältä arkaluonteisen tiedon säilyttämistä konfiguraatiotiedostoissa (käytä salaisuuksien hallintaa)
 
 ---
 
@@ -365,30 +371,30 @@ Eri isännät tukevat erilaisia kuljetusmenetelmiä:
 
 1. **Älä koskaan tallenna API-avaimia konfiguraatiotiedostoihin**
 2. **Käytä ympäristömuuttujia arkaluontoisille tiedoille**
-3. **Rajoita palvelimen oikeudet vain tarvittavaan**
-4. **Tarkista palvelimen koodi ennen pääsyn myöntämistä järjestelmääsi**
-5. **Käytä sallintalistoja tiedostojärjestelmän ja verkon käyttöön**
+3. **Rajoita palvelimen oikeudet vain tarpeelliseen**
+4. **Tarkista palvelinratkaisut ennen pääsyn myöntämistä järjestelmääsi**
+5. **Käytä hyväksymislistoja tiedosto- ja verkkoyhteyksien käyttöön**
 
 ---
 
 ## Mitä seuraavaksi
 
-- [3.13 - Debugging with MCP Inspector](../13-mcp-inspector/README.md)
-- [3.1 - Create your first MCP server](../01-first-server/README.md)
-- [Module 5 - Advanced Topics](../../05-AdvancedTopics/README.md)
+- [3.13 - Vianmääritys MCP Inspectorilla](../13-mcp-inspector/README.md)
+- [3.1 - Luo ensimmäinen MCP-palvelimesi](../01-first-server/README.md)
+- [Moduuli 5 - Edistyneet aiheet](../../05-AdvancedTopics/README.md)
 
 ---
 
 ## Lisäresurssit
 
-- [Claude Desktop MCP Documentation](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
-- [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP Specification - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
+- [Claude Desktop MCP -dokumentaatio](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [VS Code MCP -laajennus](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [MCP-spesifikaatio - Kuljetustavat](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Virallinen MCP-palvelinrekisteri](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty tekoälypohjaisella käännöspalvelulla [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, automaattisissa käännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaisen ihmiskääntäjän käyttöä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinymmärryksistä tai tulkintavirheistä.
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

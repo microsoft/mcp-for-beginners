@@ -1,38 +1,43 @@
-# Põhiline Kalkulaatori MCP Teenus
+# Põhiline kalkulaatori MCP teenus
 
-See teenus pakub põhilisi kalkulaatori operatsioone Model Context Protocoli (MCP) kaudu, kasutades Spring Booti koos WebFlux transpordiga. Teenus on loodud lihtsa näitena algajatele, kes õpivad MCP rakendusi.
+> [!NOTE]
+> See näidis kasutab pärandatud HTTP+SSE transporti ja on suunatud SDK-le, mis on ühilduv
+> MCP `2025-11-25` versiooniga. Uued kaugserverid peaksid kasutama `2026-07-28` Streamable
+> HTTP tugi.
 
-Lisateabe saamiseks vaadake [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) viitedokumentatsiooni.
+See teenus pakub põhilisi kalkulaatori operatsioone Model Context Protocoli (MCP) kaudu, kasutades Spring Boot'i koos WebFlux transpordiga. See on loodud lihtsaks näiteks MCP rakendustega alustavatele kasutajatele.
+
+Lisainfo saamiseks vt [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) viitedokumentatsiooni.
 
 ## Ülevaade
 
-Teenus demonstreerib:
-- SSE (Server-Sent Events) tuge
+Teenus tutvustab:
+- Toetust SSE-le (Server-Sent Events)
 - Automaatset tööriistade registreerimist Spring AI `@Tool` annotatsiooni abil
 - Põhilisi kalkulaatori funktsioone:
   - Liitmine, lahutamine, korrutamine, jagamine
   - Astendamine ja ruutjuur
   - Modulus (jääk) ja absoluutväärtus
-  - Abi funktsioon operatsioonide kirjelduste jaoks
+  - Abifunktsioon operatsioonide kirjeldamiseks
 
 ## Funktsioonid
 
 See kalkulaatori teenus pakub järgmisi võimalusi:
 
-1. **Põhilised aritmeetilised operatsioonid**:
+1. **Põhilised arvutustegevused**:
    - Kahe arvu liitmine
    - Ühe arvu lahutamine teisest
    - Kahe arvu korrutamine
    - Ühe arvu jagamine teisega (nulliga jagamise kontrolliga)
 
 2. **Täiustatud operatsioonid**:
-   - Astendamine (baasi tõstmine eksponendini)
+   - Astendamine (põhja tõstmine astendajale)
    - Ruutjuure arvutamine (negatiivse arvu kontrolliga)
    - Modulus (jäägi) arvutamine
    - Absoluutväärtuse arvutamine
 
-3. **Abi süsteem**:
-   - Sisseehitatud abi funktsioon, mis selgitab kõiki saadaolevaid operatsioone
+3. **Abisüsteem**:
+   - Sisseehitatud abifunktsioon, mis selgitab kõiki saadaolevaid operatsioone
 
 ## Teenuse kasutamine
 
@@ -41,42 +46,43 @@ Teenus pakub järgmisi API lõpp-punkte MCP protokolli kaudu:
 - `add(a, b)`: Kahe arvu liitmine
 - `subtract(a, b)`: Teise arvu lahutamine esimesest
 - `multiply(a, b)`: Kahe arvu korrutamine
-- `divide(a, b)`: Esimese arvu jagamine teisega (nulliga jagamise kontrolliga)
+- `divide(a, b)`: Esimese arvu jagamine teisega (nulli kontrolliga)
 - `power(base, exponent)`: Arvu astendamine
 - `squareRoot(number)`: Ruutjuure arvutamine (negatiivse arvu kontrolliga)
 - `modulus(a, b)`: Jäägi arvutamine jagamisel
 - `absolute(number)`: Absoluutväärtuse arvutamine
 - `help()`: Teave saadaolevate operatsioonide kohta
 
-## Testklient
+## Testkliendi kasutamine
 
-Lihtne testklient on kaasatud `com.microsoft.mcp.sample.client` paketti. `SampleCalculatorClient` klass demonstreerib kalkulaatori teenuse saadaolevaid operatsioone.
+Lihtne testklient on kaasas pakendis `com.microsoft.mcp.sample.client`. Klass `SampleCalculatorClient` demonstreerib kalkulaatori teenuse olemasolevaid operatsioone.
 
 ## LangChain4j kliendi kasutamine
 
-Projekt sisaldab LangChain4j näiteklienti `com.microsoft.mcp.sample.client.LangChain4jClient` paketis, mis näitab, kuidas integreerida kalkulaatori teenust LangChain4j ja GitHubi mudelitega:
+Projektis on näidiseks LangChain4j klient `com.microsoft.mcp.sample.client.LangChain4jClient`, mis näitab, kuidas integreerida kalkulaatori teenust LangChain4j ja GitHubi mudelitega:
 
 ### Eeltingimused
 
 1. **GitHubi tokeni seadistamine**:
    
-   GitHubi AI mudelite (näiteks phi-4) kasutamiseks vajate GitHubi isiklikku juurdepääsutokenit:
+   GitHubi AI mudelite (näiteks phi-4) kasutamiseks on vaja GitHubi isikliku ligipääsu tokenit:
 
-   a. Minge oma GitHubi konto seadistustesse: https://github.com/settings/tokens
+   a. Mine GitHubi konto seadistustesse: https://github.com/settings/tokens
    
-   b. Klõpsake "Generate new token" → "Generate new token (classic)"
+   b. Klikka "Generate new token" → "Generate new token (classic)"
    
-   c. Andke oma tokenile kirjeldav nimi
+   c. Anna tokenile kirjeldav nimi
    
-   d. Valige järgmised ulatused:
-      - `repo` (Täielik kontroll privaatsete repositooriumide üle)
-      - `read:org` (Organisatsiooni ja meeskonna liikmelisuse lugemine, organisatsiooni projektide lugemine)
-      - `gist` (Gistide loomine)
-      - `user:email` (Kasutaja e-posti aadresside lugemine (ainult lugemisõigus))
+   d. Vali järgmised õigused:
+      - `repo` (täielik juurdepääs privaatsetele hoidlatele)
+      - `read:org` (era- ja meeskonnaliikmete ning organisatsiooni projektide lugemine)
+      - `gist` (gistide loomine)
+
+      - `user:email` (Kasutaja e-posti aadresside lugemise juurdepääs (ainult lugemisõigus))
    
    e. Klõpsake "Generate token" ja kopeerige oma uus token
    
-   f. Seadistage see keskkonnamuutujana:
+   f. Määrake see keskkonnamuutujana:
       
       Windowsis:
       ```
@@ -88,9 +94,9 @@ Projekt sisaldab LangChain4j näiteklienti `com.microsoft.mcp.sample.client.Lang
       export GITHUB_TOKEN=your-github-token
       ```
 
-   g. Püsiva seadistuse jaoks lisage see oma keskkonnamuutujatesse süsteemi seadistuste kaudu
+   g. Püsiva seadistuse jaoks lisage see süsteemi seadete kaudu oma keskkonnamuutujatesse
 
-2. Lisage LangChain4j GitHubi sõltuvus oma projekti (juba kaasatud pom.xml-sse):
+2. Lisage LangChain4j GitHubi sõltuvus oma projekti (juba kaasatud pom.xml-i):
    ```xml
    <dependency>
        <groupId>dev.langchain4j</groupId>
@@ -104,20 +110,20 @@ Projekt sisaldab LangChain4j näiteklienti `com.microsoft.mcp.sample.client.Lang
 ### LangChain4j kliendi käivitamine
 
 See näide demonstreerib:
-- Ühenduse loomist kalkulaatori MCP serveriga SSE transpordi kaudu
-- LangChain4j kasutamist vestlusroboti loomiseks, mis kasutab kalkulaatori operatsioone
-- Integreerimist GitHubi AI mudelitega (kasutades nüüd phi-4 mudelit)
+- Ühendumist kalkulaatori MCP serveriga SSE transpordi kaudu
+- LangChain4j kasutamist vestlusboti loomiseks, mis kasutab kalkulaatori toiminguid
+- Integreerimist GitHubi AI mudelitega (praegu kasutatakse phi-4 mudelit)
 
-Klient saadab järgmised näidispäringud, et demonstreerida funktsionaalsust:
-1. Kahe arvu summa arvutamine
+Klient saadab järgmised näidispäringud funktsionaalsuse demonstreerimiseks:
+1. Kahe arvutamise summa leidmine
 2. Arvu ruutjuure leidmine
-3. Abi teabe saamine kalkulaatori operatsioonide kohta
+3. Abiinfo saamine saadaolevate kalkulaatori toimingute kohta
 
-Käivitage näide ja kontrollige konsooli väljundit, et näha, kuidas AI mudel kasutab kalkulaatori tööriistu päringutele vastamiseks.
+Käivitage näide ja vaadake konsooli väljundit, et näha, kuidas AI mudel kasutab kalkulaatori tööriistu päringutele vastamiseks.
 
-### GitHubi mudeli konfiguratsioon
+### GitHubi mudeli seadistus
 
-LangChain4j klient on konfigureeritud kasutama GitHubi phi-4 mudelit järgmiste seadistustega:
+LangChain4j klient on seadistatud kasutama GitHubi phi-4 mudelit järgmiste sätetega:
 
 ```java
 ChatLanguageModel model = GitHubChatModel.builder()
@@ -129,7 +135,7 @@ ChatLanguageModel model = GitHubChatModel.builder()
     .build();
 ```
 
-Teiste GitHubi mudelite kasutamiseks muutke lihtsalt `modelName` parameetrit mõnele teisele toetatud mudelile (nt "claude-3-haiku-20240307", "llama-3-70b-8192" jne).
+Erinevate GitHubi mudelite kasutamiseks muutke lihtsalt `modelName` parameeter mõneks teiseks toetatud mudeliks (nt "claude-3-haiku-20240307", "llama-3-70b-8192" jne).
 
 ## Sõltuvused
 
@@ -172,33 +178,33 @@ Ehitage projekt Maveniga:
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### MCP Inspectori kasutamine
+### MCP Inspektori kasutamine
 
-MCP Inspector on kasulik tööriist MCP teenustega suhtlemiseks. Selle kalkulaatori teenuse kasutamiseks:
+MCP Inspektor on kasulik tööriist MCP teenustega suhtlemiseks. Kalkulaatori teenusega kasutamiseks:
 
-1. **Installige ja käivitage MCP Inspector** uues terminaliaknas:
+1. **Installige ja käivitage MCP Inspektor** uues terminali aknas:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Avage veebiliides** klõpsates rakenduse kuvatud URL-i (tavaliselt http://localhost:6274)
+2. **Juurdepääs veebiliidesesse** klõpsates rakenduse kuvamiseks nähtaval URL-il (tavaliselt http://localhost:6274)
 
-3. **Konfigureerige ühendus**:
+3. **Ühenduse seadistamine**:
    - Määrake transporditüübiks "SSE"
-   - Määrake URL oma töötava serveri SSE lõpp-punktile: `http://localhost:8080/sse`
+   - Määrake URL oma käivitunud serveri SSE lõpp-punktile: `http://localhost:8080/sse`
    - Klõpsake "Connect"
 
-4. **Kasutage tööriistu**:
-   - Klõpsake "List Tools", et näha saadaolevaid kalkulaatori operatsioone
-   - Valige tööriist ja klõpsake "Run Tool", et operatsiooni käivitada
+4. **Tööriistade kasutamine**:
+   - Klõpsake "List Tools", et näha saadaolevaid kalkulaatori toiminguid
+   - Valige tööriist ja klõpsake "Run Tool", et käivitada toiming
 
-![MCP Inspectori ekraanipilt](../../../../../../translated_images/et/tool.c75a0b2380efcf1a.webp)
+![MCP Inspector Screenshot](../../../../../../translated_images/et/tool.c75a0b2380efcf1a.webp)
 
 ### Dockeri kasutamine
 
-Projekt sisaldab Dockerfile'i konteineripõhiseks juurutamiseks:
+Projekt sisaldab konteineri juurutamiseks Dockerfile'i:
 
-1. **Looge Dockeri pilt**:
+1. **Ehitage Dockeri image**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
@@ -208,29 +214,32 @@ Projekt sisaldab Dockerfile'i konteineripõhiseks juurutamiseks:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-See:
-- Loob mitmeastmelise Dockeri pildi Maven 3.9.9 ja Eclipse Temurin 24 JDK-ga
-- Loob optimeeritud konteineripildi
-- Avab teenuse pordi 8080 kaudu
-- Käivitab MCP kalkulaatori teenuse konteineri sees
+See teeb järgmist:
+- Ehita mitmeastmeline Dockeri image Maven 3.9.9 ja Eclipse Temurin 24 JDK-ga
+- Loo optimeeritud konteineripilt
+- Ava teenus pordil 8080
+- Käivita MCP kalkulaatori teenus konteineri sees
 
-Teenusele pääseb aadressil `http://localhost:8080`, kui konteiner töötab.
+Teenusele pääseb konteineri tööle hakkamisel ligi aadressil `http://localhost:8080`.
 
-## Tõrkeotsing
+## Veaotsing
 
-### Tavalised probleemid GitHubi tokeniga
+### Üldised probleemid GitHubi tokeniga
 
-1. **Tokeni õiguste probleemid**: Kui saate 403 Forbidden vea, kontrollige, et teie tokenil oleks õiged õigused, nagu eeltingimustes kirjeldatud.
 
-2. **Tokeni puudumine**: Kui saate "No API key found" vea, veenduge, et GITHUB_TOKEN keskkonnamuutuja oleks õigesti seadistatud.
+1. **Tokeni õiguste probleemid**: Kui saate 403 Keelatud vea, kontrollige, kas teie tokenil on õiged õigused vastavalt eeltingimustele.
 
-3. **Kvoodipiirangud**: GitHubi API-l on kvoodipiirangud. Kui kohtate kvoodipiirangu viga (olekukood 429), oodake paar minutit enne uuesti proovimist.
+2. **Tokenit ei leitud**: Kui saate vea "API võtit ei leitud", veenduge, et GITHUB_TOKEN keskkonnamuutuja oleks õigesti määratud.
 
-4. **Tokeni aegumine**: GitHubi tokenid võivad aeguda. Kui saate autentimisvead mõne aja pärast, looge uus token ja värskendage oma keskkonnamuutujat.
+3. **Kiirusepiirang**: GitHub API-l on kiirusepiirangud. Kui saate kiirusepiirangu vea (staatuskood 429), oodake paar minutit ja proovige uuesti.
 
-Kui vajate täiendavat abi, vaadake [LangChain4j dokumentatsiooni](https://github.com/langchain4j/langchain4j) või [GitHubi API dokumentatsiooni](https://docs.github.com/en/rest).
+4. **Tokeni aegumine**: GitHubi tokenid võivad aeguda. Kui mõne aja pärast saate autentimisvead, genereerige uus token ja uuendage oma keskkonnamuutuja.
+
+Kui teil on vaja täiendavat abi, vaadake [LangChain4j dokumentatsiooni](https://github.com/langchain4j/langchain4j) või [GitHub API dokumentatsiooni](https://docs.github.com/en/rest).
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

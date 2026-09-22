@@ -1,54 +1,55 @@
-# MCP 的分頁與大型結果集
+# MCP 中的分頁與大型結果集
 
-當您的 MCP 伺服器處理大量資料集時——無論是列出數千個檔案、資料庫記錄，還是搜尋結果——您都需要分頁來有效管理記憶體並提供反應迅速的使用者體驗。本指南涵蓋如何在 MCP 中實作與使用分頁。
+當您的 MCP 伺服器處理大量資料集時 - 無論是列出成千上萬個檔案、資料庫紀錄或搜尋結果 - 都需要分頁來有效管理記憶體並提供快速回應的使用者體驗。本指南涵蓋如何在 MCP 中實作與使用分頁功能。
 
-## 分頁的重要性
+## 為什麼分頁很重要
 
-如果沒有分頁，大量回應可能會導致：
+若沒有分頁，大量回應可能導致：
 
-- **記憶體耗盡** — 一次載入數百萬筆記錄
-- **回應時間緩慢** — 使用者須等候所有資料載入完成
-- **逾時錯誤** — 請求超過逾時限制
-- **AI 表現不佳** — 大型語言模型難以處理巨量上下文
+- <strong>記憶體耗盡</strong> - 一次載入數百萬筆紀錄
+- <strong>回應時間遲緩</strong> - 使用者需等待所有資料載入完成
+- <strong>逾時錯誤</strong> - 請求超過逾時限制
+- **AI 性能不佳** - 大型語言模型難以處理龐大上下文
 
-MCP 使用 **游標分頁** 來可靠且一致地導覽結果集。
+MCP 採用 <strong>基於游標的分頁</strong> 以可靠且一致地瀏覽結果集。
 
 ---
 
-## MCP 分頁運作原理
+## MCP 分頁的運作方式
 
 ### 游標概念
 
-**游標** 是一個不透明的字串，標記您在結果集中的位置。可以把它想像成一本長書中的書籤。
+<strong>游標</strong> 是一個不透明的字串，用來標記您在結果集中的位置。就像長篇書籍裡的書籤。
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list （無游標）
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Client->>Server: 工具/列表（無游標）
+    Server-->>Client: 工具 [1-10]，下一個游標："abc123"
     
-    Client->>Server: tools/list （游標: "abc123"）
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Client->>Server: 工具/列表（游標："abc123"）
+    Server-->>Client: 工具 [11-20]，下一個游標："def456"
     
-    Client->>Server: tools/list （游標: "def456"）
-    Server-->>Client: tools [21-25], nextCursor: null （結束）
+    Client->>Server: 工具/列表（游標："def456"）
+    Server-->>Client: 工具 [21-25]，下一個游標：null（結束）
 ```
+
 ### MCP 方法中的分頁
 
-以下 MCP 方法支援分頁：
+以下這些 MCP 方法支援分頁：
 
-| 方法 | 回傳內容 | 支援游標 |
+| 方法 | 回傳 | 支援游標 |
 |--------|---------|----------------|
 | `tools/list` | 工具定義 | ✅ |
 | `resources/list` | 資源定義 | ✅ |
 | `prompts/list` | 提示定義 | ✅ |
-| `resources/templates/list` | 資源模板 | ✅ |
+| `resources/templates/list` | 資源範本 | ✅ |
 
 ---
 
-## 伺服器端實作
+## 伺服器實作
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# 模擬大型資料集
+# 模擬大型數據集
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # 解碼指標以取得起始索引
+    # 解碼游標以獲取起始索引
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # 取得結果頁面
+    # 獲取結果頁面
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # 計算下一個指標
+    # 計算下一個游標
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // 解碼指標
+        // 解碼游標
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // 計算下一個指標
+        // 計算下一個游標
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -199,7 +200,7 @@ async def get_all_tools(session: ClientSession) -> list:
     
     return all_tools
 
-# 用法
+# 使用方法
 async with client_session as session:
     tools = await get_all_tools(session)
     print(f"Found {len(tools)} tools")
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### 延遲加載模式
+### 延遲載入模式
 
-對於非常大的資料集，按需載入分頁：
+對於非常大型的資料集，按需載入頁面：
 
 ```python
 class PaginatedToolIterator:
@@ -243,15 +244,15 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # 如果有，從緩衝區返回
+        # 如果可用，從緩衝區返回
         if self.buffer:
             return self.buffer.pop(0)
         
-        # 檢查是否已經用盡所有頁面
+        # 檢查是否已經讀取所有頁面
         if self.exhausted:
             raise StopAsyncIteration
         
-        # 獲取下一頁
+        # 取得下一頁
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# 用法 - 對大型資料集記憶體高效
+# 用法 - 對大型數據集的記憶體效率高
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## 資源的分頁
+## 資源分頁
 
-資源常常需要分頁來呈現目錄或大型資料集：
+資源通常需要為目錄或大型資料集實作分頁：
 
 ```python
 from mcp.server import Server
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## 游標設計策略
 
-### 策略 1：基於索引（簡單）
+### 策略 1：基於索引 (簡單)
 
 ```python
 # 游標只是索引
-cursor = "50"  # 從第50項開始
+cursor = "50"  # 從第 50 個項目開始
 ```
 
-**優點：** 簡單，無狀態  
-**缺點：** 若有項目被新增或刪除，結果可能會偏移
+**優點：** 簡單、無狀態
+**缺點：** 如果新增或刪除項目，結果可能會變動
 
-### 策略 2：基於 ID（穩定）
+### 策略 2：基於 ID (穩定)
 
 ```python
-# 游標是最後看到的 ID
-cursor = "item_abc123"  # 從此項目之後開始
+# Cursor 是最後看到的 ID
+cursor = "item_abc123"  # 從這個項目之後開始
 ```
 
-**優點：** 即使項目發生變動也穩定  
-**缺點：** 需要有排序過的 ID
+**優點：** 即使項目變動也穩定
+**缺點：** 需要有序的 ID
 
-### 策略 3：編碼狀態（複雜）
+### 策略 3：編碼狀態 (複雜)
 
 ```python
 import base64
@@ -360,7 +361,7 @@ cursor = encode_cursor({
 })
 ```
 
-**優點：** 可以編碼複雜狀態  
+**優點：** 可編碼複雜狀態
 **缺點：** 較複雜，游標字串較大
 
 ---
@@ -370,13 +371,13 @@ cursor = encode_cursor({
 ### 1. 選擇適當的頁面大小
 
 ```python
-# 考慮數據大小
+# 考慮資料大小
 PAGE_SIZE_SMALL_ITEMS = 100   # 簡單的元資料
 PAGE_SIZE_MEDIUM_ITEMS = 20   # 更豐富的物件
 PAGE_SIZE_LARGE_ITEMS = 5     # 複雜的內容
 ```
 
-### 2. 優雅地處理無效游標
+### 2. 優雅處理無效游標
 
 ```python
 @app.list_tools()
@@ -390,18 +391,18 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. 包含總數（選用）
+### 3. 包含總數量（可選）
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # 一些實作包括用於 UI 進度的總數
+    # 某些實作包含用於使用者介面進度的總數
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. 測試邊界案例
+### 4. 測試邊界情況
 
 ```python
 async def test_pagination():
@@ -416,27 +417,27 @@ async def test_pagination():
     
     # 無效的游標
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # 應該回傳第一頁
+    assert result.tools  # 應該返回第一頁
 ```
 
 ---
 
 ## 常見陷阱
 
-### ❌ 回傳所有結果後，在用戶端分頁
+### ❌ 回傳所有結果後再於客戶端分頁
 
 ```python
-# 不良：將所有東西載入記憶體中
+# 不好：將所有東西載入記憶體中
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
     all_tools = load_all_tools()  # 100萬個工具！
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ 於資料來源端分頁
+### ✅ 於資料源端分頁
 
 ```python
-# 好的：只載入所需的部分
+# 良好：只載入需要的部分
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,7 +447,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## 接下來的內容
+## 下一步
 
 - [模組 5.14 - 上下文工程](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [模組 8 - 最佳實踐](../../08-BestPractices/README.md)
@@ -454,15 +455,15 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## 其他資源
+## 額外資源
 
-- [MCP 規範 - 分頁](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [游標分頁說明](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [MCP 規範 - 分頁](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [基於游標的分頁詳解](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK 分頁測試](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責聲明**：
-本文件係使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 所翻譯。雖然我們力求準確，但請注意自動翻譯可能包含錯誤或不準確之處。原文檔的母語版本應被視為權威來源。對於重要資訊，建議採用專業人工翻譯。我們對因使用本翻譯而產生的任何誤解或誤譯不負任何責任。
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們努力追求準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應視為權威來源。對於關鍵資訊，建議採用專業人工翻譯。我們不對因使用此翻譯所產生的任何誤解或誤譯承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
