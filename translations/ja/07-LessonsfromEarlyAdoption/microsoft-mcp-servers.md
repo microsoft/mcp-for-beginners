@@ -428,7 +428,7 @@ MCP エコシステムが進化し続ける中で、コミュニティとの関�
 5. <strong>セキュリティ評価</strong>: 開発環境で MCP サーバーを使用する際のセキュリティ面の影響を評価し、ベストプラクティスを提案してください。
 
 
-次へ: [Best Practices](../08-BestPractices/README.md)
+次へ: [ベストプラクティス](../08-BestPractices/README.md)
 
 ---
 
