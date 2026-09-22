@@ -569,7 +569,7 @@ The key takeaways from this chapter are the following:
 ## Samples 
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../samples/csharp/)
+- [.NET Calculator](../samples/csharp/)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../samples/python/) 
