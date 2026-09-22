@@ -71,16 +71,26 @@ sequenceDiagram
     participant Entra as 🔐 Microsoft Entra ID
     participant Server as 🔧 MCP Server
 
-    Client->>+User: Please sign in to continue.
-    User->>+Entra: Enters credentials (username/password).
-    Entra-->>Client: Here is your access token.
-    User-->>-Client: (Returns to the application)
+  Server->>Entra: Fetch OpenID metadata and public signing keys
+  Entra-->>Server: Return metadata and JSON Web Key Set (cached by server)
 
-    Client->>+Server: I need to use a tool. Here is my access token.
-    Server->>+Entra: Is this access token valid?
-    Entra-->>-Server: Yes, it is.
-    Server-->>-Client: Token is valid. Here is the result of the tool.
+  Client->>User: Please sign in to continue.
+  User->>Entra: Enters credentials (username/password).
+    Entra-->>Client: Here is your access token.
+  User-->>Client: (Returns to the application)
+
+  Client->>Server: I need to use a tool. Here is my access token.
+  Server->>Server: Verify signature and validate issuer, audience, and lifetime
+  Server-->>Client: Token is valid. Here is the result of the tool.
 ```
+
+The MCP server does not call Entra ID to validate each access token. It
+cryptographically verifies the JWT signature with Entra ID's cached public key
+and validates the token's claims, including its issuer, audience, and lifetime.
+The server obtains the keys from the OpenID Connect metadata endpoint and
+refreshes them periodically to handle key rotation. Use a supported token
+validation library rather than implementing this logic yourself. For details,
+see [Validate tokens in the Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/access-tokens#validate-tokens).
 
 ### Introducing the Microsoft Authentication Library (MSAL)
 

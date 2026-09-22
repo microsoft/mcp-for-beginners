@@ -19,7 +19,7 @@ def call_llm(prompt, functions):
     token = os.environ["GITHUB_TOKEN"]
     endpoint = "https://models.inference.ai.azure.com"
 
-    model_name = "gpt-4o"
+    model_name = "gpt-5.1"
 
     client = ChatCompletionsClient(
         endpoint=endpoint,

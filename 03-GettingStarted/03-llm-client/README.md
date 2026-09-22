@@ -963,7 +963,10 @@ client.connectToServer(transport);
     import json
     ```
 
-2. Next, let's add the function that will call the LLM:
+2. Next, let's add the function that will call the LLM. This example uses
+    `gpt-5.1`, the recommended replacement for `gpt-4o`. Check the
+    [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+    when selecting a model for your application.
 
     ```python
     # llm
@@ -972,7 +975,7 @@ client.connectToServer(transport);
         token = os.environ["GITHUB_TOKEN"]
         endpoint = "https://models.inference.ai.azure.com"
 
-        model_name = "gpt-4o"
+        model_name = "gpt-5.1"
 
         client = ChatCompletionsClient(
             endpoint=endpoint,

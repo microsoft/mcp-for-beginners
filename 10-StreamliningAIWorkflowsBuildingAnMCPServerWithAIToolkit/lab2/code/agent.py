@@ -121,7 +121,7 @@ class MCPClient:
             # Call model
             response = self.azureai.complete(
                 messages = messages,
-                model = "gpt-4o",
+                model = "gpt-5.1",
                 tools=available_tools,
                 response_format = "text",
                 temperature = 1,
