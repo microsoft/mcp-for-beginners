@@ -1,29 +1,35 @@
-# Configuração dos Clientes MCP Host Populares
+# Configuração dos Clientes MCP Populares
 
-Este guia explica como configurar e utilizar servidores MCP com aplicações host de IA populares. Cada host tem a sua própria abordagem de configuração, mas uma vez configurados, todos comunicam com servidores MCP usando o protocolo padronizado.
+> [!NOTE]
+> Configurações de hosts que apontam para `/sse` são exemplos legados de HTTP+SSE para
+> MCP `2025-11-25`. Para MCP `2026-07-28`, selecione Streamable HTTP em hosts que
+> o suportam e use o endpoint configurado pelo servidor.
 
-## O que é um MCP Host?
+Este guia cobre como configurar e usar servidores MCP com aplicações host de IA populares. Cada host tem a sua própria abordagem de configuração, mas uma vez configurados, comunicam todos com servidores MCP usando o protocolo padronizado.
 
-Um **MCP Host** é uma aplicação de IA que pode conectar-se a servidores MCP para expandir as suas capacidades. Pense nele como a "interface" com que os utilizadores interagem, enquanto os servidores MCP fornecem as ferramentas e dados do "back end".
+## O que é um Host MCP?
+
+Um **Host MCP** é uma aplicação de IA que pode conectar-se a servidores MCP para expandir as suas capacidades. Pense nele como a "interface" com que os utilizadores interagem, enquanto os servidores MCP fornecem as ferramentas e os dados do "back end".
 
 ```mermaid
 flowchart LR
-    User[👤 Utilizador] --> Host[🖥️ Host MCP]
+    User[👤 Utilizador] --> Host[🖥️ Anfitrião MCP]
     Host --> S1[Servidor MCP A]
     Host --> S2[Servidor MCP B]
     Host --> S3[Servidor MCP C]
     
-    subgraph "Hosts Populares"
-        H1[Claude Ambiente de Trabalho]
+    subgraph "Anfitriões Populares"
+        H1[Claude Desktop]
         H2[VS Code]
         H3[Cursor]
         H4[Cline]
         H5[Windsurf]
     end
 ```
+
 ## Pré-requisitos
 
-- Um servidor MCP para ligar (ver [Módulo 3.1 - Primeiro Servidor](../01-first-server/README.md))
+- Um servidor MCP para conectar (ver [Módulo 3.1 - Primeiro Servidor](../01-first-server/README.md))
 - A aplicação host instalada no seu sistema
 - Familiaridade básica com ficheiros de configuração JSON
 
@@ -31,16 +37,16 @@ flowchart LR
 
 ## 1. Claude Desktop
 
-**Claude Desktop** é a aplicação oficial de ambiente de trabalho da Anthropic que suporta nativamente MCP.
+**Claude Desktop** é a aplicação de desktop oficial da Anthropic que suporta MCP nativamente.
 
 ### Instalação
 
 1. Descarregue o Claude Desktop em [claude.ai/download](https://claude.ai/download)
-2. Instale e inicie sessão com a sua conta Anthropic
+2. Instale e faça login com a sua conta Anthropic
 
 ### Configuração
 
-O Claude Desktop utiliza um ficheiro de configuração JSON para definir os servidores MCP.
+O Claude Desktop usa um ficheiro de configuração JSON para definir servidores MCP.
 
 **Localização do ficheiro de configuração:**
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -77,25 +83,25 @@ O Claude Desktop utiliza um ficheiro de configuração JSON para definir os serv
 ### Opções de Configuração
 
 | Campo | Descrição | Exemplo |
-|-------|-----------|---------|
-| `command` | O executável a executar | `"python"`, `"node"`, `"npx"` |
-| `args` | Argumentos da linha de comandos | `["-m", "my_server"]` |
+|-------|-------------|---------|
+| `command` | Executável a executar | `"python"`, `"node"`, `"npx"` |
+| `args` | Argumentos de linha de comando | `["-m", "my_server"]` |
 | `env` | Variáveis de ambiente | `{"API_KEY": "xxx"}` |
 | `cwd` | Diretório de trabalho | `"/path/to/server"` |
 
-### Testar a sua configuração
+### Testar a Sua Configuração
 
 1. Guarde o ficheiro de configuração
-2. Reinicie completamente o Claude Desktop (feche e abra novamente)
+2. Reinicie completamente o Claude Desktop (feche e volte a abrir)
 3. Abra uma nova conversa
-4. Verifique o ícone 🔌 indicando servidores conectados
+4. Procure o ícone 🔌 indicando servidores conectados
 5. Tente pedir ao Claude para usar uma das suas ferramentas
 
-### Resolução de problemas no Claude Desktop
+### Resolução de Problemas no Claude Desktop
 
 **Servidor não aparece:**
 - Verifique a sintaxe do ficheiro de configuração com um validador JSON
-- Assegure que o caminho do comando está correto
+- Certifique-se que o caminho do comando está correto
 - Verifique os logs do Claude Desktop: Ajuda → Mostrar Logs
 
 **Servidor falha ao iniciar:**
@@ -117,9 +123,9 @@ O VS Code suporta MCP através das extensões GitHub Copilot Chat.
 
 ### Configuração
 
-O VS Code usa `.vscode/mcp.json` no seu espaço de trabalho ou configurações de utilizador.
+O VS Code usa `.vscode/mcp.json` nas suas definições do espaço de trabalho ou do utilizador.
 
-**Configuração de espaço de trabalho** (`.vscode/mcp.json`):
+**Configuração do espaço de trabalho** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -137,7 +143,7 @@ O VS Code usa `.vscode/mcp.json` no seu espaço de trabalho ou configurações d
 }
 ```
 
-**Configuração do utilizador** (`settings.json`):
+**Definições do utilizador** (`settings.json`):
 
 ```json
 {
@@ -152,33 +158,33 @@ O VS Code usa `.vscode/mcp.json` no seu espaço de trabalho ou configurações d
 }
 ```
 
-### Utilizar MCP no VS Code
+### Usar MCP no VS Code
 
 1. Abra o painel Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
-2. Digite `@` para ver as ferramentas MCP disponíveis
-3. Utilize linguagem natural para invocar ferramentas: "Calcular 25 * 48 usando a calculadora"
+2. Escreva `@` para ver as ferramentas MCP disponíveis
+3. Use linguagem natural para invocar ferramentas: "Calculate 25 * 48 using the calculator"
 
-### Resolução de problemas no VS Code
+### Resolução de Problemas no VS Code
 
 **Servidores MCP não carregam:**
-- Verifique o painel de Output → "MCP" para logs de erro
+- Verifique o painel Output → "MCP" para logs de erro
 - Recarregue a janela: Ctrl+Shift+P → "Developer: Reload Window"
-- Verifique se o servidor funciona normalmente standalone primeiro
+- Verifique se o servidor corre sozinho primeiro
 
 ---
 
 ## 3. Cursor
 
-**Cursor** é um editor de código com IA com suporte integrado para MCP.
+**Cursor** é um editor de código focado em IA com suporte incorporado MCP.
 
 ### Instalação
 
 1. Descarregue o Cursor em [cursor.sh](https://cursor.sh)
-2. Instale e inicie sessão
+2. Instale e faça login
 
 ### Configuração
 
-O Cursor utiliza um formato de configuração semelhante ao Claude Desktop.
+O Cursor usa um formato de configuração semelhante ao Claude Desktop.
 
 **Localização do ficheiro de configuração:**
 - **macOS**: `~/.cursor/mcp.json`
@@ -205,17 +211,17 @@ O Cursor utiliza um formato de configuração semelhante ao Claude Desktop.
 }
 ```
 
-### Utilizar MCP no Cursor
+### Usar MCP no Cursor
 
-1. Abra o chat IA do Cursor (Ctrl+L / Cmd+L)
+1. Abra o chat de IA do Cursor (Ctrl+L / Cmd+L)
 2. As ferramentas MCP aparecem automaticamente nas sugestões
-3. Peça à IA para executar tarefas usando os servidores conectados
+3. Peça à IA para realizar tarefas usando os servidores conectados
 
 ---
 
 ## 4. Cline (Baseado em Terminal)
 
-**Cline** é um cliente MCP baseado em terminal, ideal para fluxos de trabalho em linha de comandos.
+**Cline** é um cliente MCP baseado em terminal, ideal para fluxos de trabalho em linha de comando.
 
 ### Instalação
 
@@ -225,7 +231,7 @@ npm install -g @anthropic/cline
 
 ### Configuração
 
-O Cline usa variáveis de ambiente e argumentos de linha de comandos.
+O Cline usa variáveis de ambiente e argumentos de linha de comando.
 
 **Usando variáveis de ambiente:**
 
@@ -234,7 +240,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**Usando argumentos de linha de comandos:**
+**Usando argumentos de linha de comando:**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
@@ -255,7 +261,7 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Utilizar o Cline
+### Usar Cline
 
 ```bash
 # Iniciar uma sessão interativa
@@ -283,8 +289,8 @@ cline --list-tools
 
 A configuração do Windsurf é gerida através da interface de definições:
 
-1. Abra as Definições (Ctrl+, / Cmd+,)
-2. Pesquise por "MCP"
+1. Abra Definições (Ctrl+, / Cmd+,)
+2. Procure "MCP"
 3. Clique em "Editar em settings.json"
 
 **Exemplo de configuração:**
@@ -316,16 +322,16 @@ Diferentes hosts suportam diferentes mecanismos de transporte:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (entrada/saída standard): Melhor para servidores locais iniciados pelo host  
+**stdio** (entrada/saída padrão): Melhor para servidores locais iniciados pelo host
 **SSE/HTTP**: Melhor para servidores remotos ou servidores partilhados entre vários clientes
 
 ---
 
-## Resolução de Problemas Comuns
+## Problemas Comuns
 
 ### O servidor não inicia
 
-1. **Teste o servidor manualmente primeiro:**  
+1. **Teste o servidor manualmente primeiro:**
    ```bash
    # Para Python
    python -m your_server_module
@@ -334,11 +340,11 @@ Diferentes hosts suportam diferentes mecanismos de transporte:
    node /path/to/server/index.js
    ```
 
-2. **Verifique o caminho do comando:**  
-   - Use caminhos absolutos sempre que possível  
-   - Assegure que o executável está no seu PATH
+2. **Verifique o caminho do comando:**
+   - Use caminhos absolutos sempre que possível
+   - Certifique-se de que o executável está no seu PATH
 
-3. **Verifique as dependências:**  
+3. **Verifique as dependências:**
    ```bash
    # Python
    pip list | grep mcp
@@ -347,48 +353,48 @@ Diferentes hosts suportam diferentes mecanismos de transporte:
    npm list @modelcontextprotocol/sdk
    ```
 
-### O servidor conecta mas as ferramentas não funcionam
+### O servidor conecta, mas as ferramentas não funcionam
 
-1. **Verificar logs do servidor** - A maioria dos hosts tem opções de logging  
-2. **Verificar o registo das ferramentas** - Use o MCP Inspector para testar  
-3. **Verificar permissões** - Algumas ferramentas precisam de acesso a ficheiros/rede
+1. **Verifique os logs do servidor** - A maioria dos hosts tem opções de registo
+2. **Verifique o registo das ferramentas** - Use MCP Inspector para testar
+3. **Verifique as permissões** - Algumas ferramentas necessitam de acesso a ficheiros/rede
 
 ### Variáveis de ambiente não são passadas
 
-- Alguns hosts sanitizam as variáveis de ambiente  
-- Use explicitamente o campo `env` na configuração  
-- Evite colocar dados sensíveis nos ficheiros de configuração (use gestão de segredos)
+- Alguns hosts limpam as variáveis de ambiente
+- Use explicitamente o campo `env` na configuração
+- Evite dados sensíveis nos ficheiros de configuração (use gestão de segredos)
 
 ---
 
 ## Boas Práticas de Segurança
 
-1. **Nunca faça commit de chaves API** nos ficheiros de configuração  
-2. **Use variáveis de ambiente** para dados sensíveis  
-3. **Limite as permissões do servidor** ao mínimo necessário  
-4. **Revise o código do servidor** antes de conceder acesso ao seu sistema  
-5. **Use listas permissivas** para acesso a ficheiros e rede
+1. **Nunca comprometa chaves API** em ficheiros de configuração
+2. **Use variáveis de ambiente** para dados sensíveis
+3. **Limite as permissões do servidor** ao mínimo necessário
+4. **Revise o código do servidor** antes de conceder acesso ao seu sistema
+5. **Use listas de permissão** para acesso a sistemas de ficheiros e rede
 
 ---
 
 ## O que vem a seguir
 
-- [3.13 - Depuração com MCP Inspector](../13-mcp-inspector/README.md)  
-- [3.1 - Crie o seu primeiro servidor MCP](../01-first-server/README.md)  
+- [3.13 - Depuração com MCP Inspector](../13-mcp-inspector/README.md)
+- [3.1 - Crie o seu primeiro servidor MCP](../01-first-server/README.md)
 - [Módulo 5 - Tópicos Avançados](../../05-AdvancedTopics/README.md)
 
 ---
 
 ## Recursos Adicionais
 
-- [Documentação MCP do Claude Desktop](https://docs.anthropic.com/en/docs/claude-desktop/mcp)  
-- [Extensão MCP para VS Code](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)  
-- [Especificação MCP - Transportes](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)  
+- [Documentação MCP Claude Desktop](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
+- [Extensão MCP para VS Code](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [Especificação MCP - Transportes](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Registo Oficial de Servidores MCP](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso legal**:
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos por garantir a precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se a tradução profissional feita por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações erradas resultantes da utilização desta tradução.
+**Aviso Legal**:
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes da utilização desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

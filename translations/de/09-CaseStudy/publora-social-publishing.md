@@ -1,39 +1,39 @@
-# Fallstudie: Veröffentlichung in sozialen Netzwerken aus einem Agenten mit einem Remote-MCP-Server
+# Fallstudie: Veröffentlichen in sozialen Netzwerken von einem Agenten mit einem entfernten MCP-Server
 
-> **Haftungsausschluss:** Mehrere Dienste und Open-Source-Projekte können auf soziale Netzwerke veröffentlichen, und ein Team könnte auch die API jedes Netzwerks direkt integrieren. Das untenstehende Szenario wird als ein bearbeitetes Beispiel bereitgestellt, wie ein **schreibfähiger Remote-MCP-Server** gestaltet und genutzt werden kann. Publora ist ein kommerzieller Dienst mit einem kostenlosen Tarif; die hier beschriebenen Muster gelten für jeden MCP-Server, der irreversible Aktionen im Namen eines Nutzers ausführt.
+> **Haftungsausschluss:** Mehrere Dienste und Open-Source-Projekte können in soziale Netzwerke veröffentlichen, und ein Team könnte auch die API jedes Netzwerks direkt integrieren. Das untenstehende Szenario wird als ein ausgearbeitetes Beispiel dafür bereitgestellt, wie ein **schreibfähiger entfernter MCP-Server** entworfen und genutzt werden kann. Publora ist ein kommerzieller Dienst mit einem kostenlosen Tarif; die hier beschriebenen Muster gelten für jeden MCP-Server, der irreversible Aktionen im Auftrag eines Benutzers durchführt.
 
-## Überblick
+## Übersicht
 
-Agenten sind gut im Entwerfen von Inhalten, aber schlecht darin, diese zu liefern. Ein Modell kann eine Release-Ankündigung in Sekunden schreiben, und dann endet die Arbeit: Veröffentlichen bedeutet eine API pro Netzwerk, eine OAuth-App pro Netzwerk und eine andere Menge an Medienregeln für jedes einzelne. Die meisten Teams lösen das, indem sie den Text per Hand in einen Browser kopieren.
+Agenten sind gut im Entwerfen von Inhalten und schlecht in der Übermittlung. Ein Modell kann in Sekundenschnelle eine Release-Ankündigung schreiben, und dann hört die Arbeit auf: das Veröffentlichen bedeutet eine API pro Netzwerk, eine OAuth-App pro Netzwerk und eine andere Reihe von Medienregeln für jedes. Die meisten Teams lösen dies, indem sie den Text per Hand in einen Browser kopieren.
 
-Diese Fallstudie betrachtet, wie dieser letzte Schritt mit einem einzigen Remote-MCP-Server abgeschlossen wird und — nützlicher für alle, die einen bauen — welche Designentscheidungen ein **schreibfähiger** Server richtig treffen muss. Daten lesen ist verzeihlich. Veröffentlichen nicht: Ein falscher Werkzeugaufruf ist für ein Publikum sichtbar und kann nicht rückgängig gemacht werden.
+Diese Fallstudie untersucht, wie dieser letzte Schritt mit einem einzigen entfernten MCP-Server abgeschlossen wird, und — hilfreicher für alle, die einen entwickeln — welche Designentscheidungen ein **schreibfähiger** Server richtig treffen muss. Das Lesen von Daten ist verzeihend. Das Veröffentlichen nicht: ein falscher Werkzeugaufruf ist vor einem Publikum sichtbar und kann nicht rückgängig gemacht werden.
 
 ## Szenario
 
-Ein kleines Developer-Relations-Team entwirft Beiträge innerhalb eines Agenten (Claude, VS Code, Cursor — der Client ist egal). Sie wollen, dass der Agent:
+Ein kleines Developer-Relations-Team entwirft Beiträge in einem Agenten (Claude, VS Code, Cursor — der Client ist egal). Sie wollen, dass der Agent:
 
-- sieht, welche sozialen Konten das Team verbunden hat,
-- einen Beitrag entwirft und als Entwurf speichert, um ihn von einem Menschen genehmigen zu lassen,
+- sieht, welche Social-Media-Konten das Team verbunden hat,
+- einen Beitrag entwirft und als Entwurf für eine menschliche Freigabe speichert,
 - ein Bild anhängt,
-- ihn zu ausgewählten Netzwerken zu einem gewählten Zeitpunkt plant,
+- ihn für mehrere Netzwerke zu einem gewählten Zeitpunkt plant,
 - und später berichtet, wie er sich entwickelt hat.
 
-Wichtig ist, dass der Agent *nicht* versehentlich veröffentlichen kann, während sie noch experimentieren.
+Wichtig ist, dass der Agent *nicht* versehentlich veröffentlichen darf, während noch experimentiert wird.
 
 ## Eingesetzte Werkzeuge
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — ein Remote-MCP-Server (`streamable-http`), der Veröffentlichung, Planung, Medien- und LinkedIn-Analysewerkzeuge bereitstellt. Registriert im offiziellen MCP-Register als `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — ein entfernter MCP-Server (`streamable-http`), der Veröffentlichungs-, Planungs-, Medien- und LinkedIn-Analysewerkzeuge bereitstellt. Registriert im offiziellen MCP-Register als `com.publora/mcp-server`.
 
 ## Schritt-für-Schritt-Arbeitsablauf
 
-1. **Verbinde den Server.** Clients, die OAuth sprechen, vollziehen den Autorisierungs-Code-Flow mit PKCE gegen den eigenen Zustimmungsbildschirm des Servers; Clients, die das nicht tun, z. B. headless CLIs, verwenden einen Publora-API-Schlüssel im Header. Beide Wege werden unterstützt, welcher genutzt wird, hängt vom Client ab, nicht vom Server.
+1. **Server verbinden.** Clients, die OAuth unterstützen, durchlaufen den Autorisierungscode-Austausch mit PKCE über den eigenen Zustimmungsbildschirm des Servers; Clients, die das nicht tun, wie etwa Headless-CLIs, verwenden einen Publora-API-Schlüssel im Header. Beide Wege werden unterstützt, welcher genutzt wird, hängt vom Client ab, nicht vom Server.
 2. **Verbindungen auflisten.** Der Agent ruft `list_connections` auf und erhält die verbundenen Konten mit deren Identifikatoren.
-3. **Entwurf.** Der Agent ruft `create_post` *ohne* geplante Zeit auf. Der Beitrag wird als Entwurf gespeichert — nichts wird veröffentlicht.
-4. **Medien anhängen.** Öffentliche Bild-URLs werden im gleichen Aufruf übergeben; der Server lädt sie herunter und überprüft sie.
-5. **Planen.** Nach menschlicher Genehmigung setzt `update_post` den Status auf geplant mit einer ISO-8601-Zeit.
-6. **Messen.** Für LinkedIn gibt `linkedin_post_stats` das Engagement zurück, sobald der Beitrag live ist.
+3. **Entwerfen.** Der Agent ruft `create_post` *ohne* eine geplante Zeit auf. Der Beitrag wird als Entwurf gespeichert — nichts wird veröffentlicht.
+4. **Medien anhängen.** Öffentliche Bild-URLs werden im selben Aufruf mitgegeben; der Server lädt sie herunter und validiert sie.
+5. **Planen.** Nach Freigabe durch einen Menschen setzt `update_post` den Status auf geplant mit einer ISO 8601-Zeit.
+6. **Messen.** Für LinkedIn gibt `linkedin_post_stats` Engagement-Daten zurück, sobald der Beitrag live ist.
 
-## Beispielprompt
+## Beispiel-Aufforderung
 
 ```text
 Which social accounts do I have connected?
@@ -46,7 +46,7 @@ Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 
 ```mermaid
 flowchart TD
-    A[Benutzereingabe in einem MCP-Client] --> B[Client führt OAuth mit dem Server durch]
+    A[Benutzeraufforderung in einem MCP-Client] --> B[Client führt OAuth mit dem Server durch]
     B --> C[list_connections]
     C --> D{Zielnetzwerke verbunden?}
     D -- No --> E[Agent meldet, welche fehlen]
@@ -58,72 +58,82 @@ flowchart TD
     J --> K[linkedin_post_stats für Engagement]
 ```
 
-## Technische Implementierung
+## Technische Umsetzung
 
 Die folgenden Erkenntnisse sind der übertragbare Teil dieser Fallstudie.
 
 ### Offene Entdeckung, authentifizierte Ausführung
 
-`tools/list` wird ohne Anmeldeinformationen bereitgestellt; jeder `tools/call` benötigt ein Token und gibt sonst `401` mit einem `WWW-Authenticate`-Header zurück, der auf die Metadaten der geschützten Ressource verweist. (Der Server beantwortet auch ein nicht authentifiziertes `initialize`, das nur für Clients vor der Protokollversion `2026-07-28` relevant ist; diese Überarbeitung hat das Handshake vollständig entfernt.)
+`tools/list` wird ohne Anmeldeinformationen bereitgestellt; jeder `tools/call` benötigt einen Token
+und gibt sonst `401` mit einem `WWW-Authenticate`-Header zurück, der auf die Metadaten
+der geschützten Ressource verweist. Der legacy Endpunkt des Servers antwortet auch auf eine
+nicht authentifizierte `initialize`-Anfrage für Clients vor Protokollversion
+`2026-07-28`; aktuelle Clients nutzen diesen Handshake nicht.
 
-Diese Aufteilung ist in der Praxis wichtig. Register, Kataloge und Clients können die Werkzeugoberfläche — Namen, Schemata, Anmerkungen — introspektieren, ohne ein Geheimnis zu besitzen, während nichts anonym *ausgeführt* werden kann. Ein Server, der für `initialize` ein Token verlangt, ist für Werkzeuge effektiv unsichtbar; ein Server, der anonyme `tools/call` zulässt, ist eine Gefahr.
+Diese Serverspezifische Aufteilung erlaubt es Registern, Katalogen und Clients, Werkzeug-
+namen, Schemata und Anmerkungen ohne Geheimnisse einzusehen, verhindert jedoch anonyme
+Ausführung. Offene Entdeckung ist eine Deployment-Entscheidung, keine MCP-Anforderung; ein
+geschütztes Deployment kann auch eine Autorisierung für `tools/list` verlangen.
 
 ### Registrierung: dynamische Client-Registrierung und was sie ersetzt
 
-Der Server gibt `/.well-known/oauth-protected-resource` und `/.well-known/oauth-authorization-server` bekannt und unterstützt den Autorisierungs-Code-Flow mit PKCE (`S256`), Refresh Tokens und **dynamische Client-Registrierung**.
+Der Server bietet `/.well-known/oauth-protected-resource` und `/.well-known/oauth-authorization-server` an und unterstützt den Autorisierungscode-Flow mit PKCE (`S256`), Refresh Tokens und **dynamische Client-Registrierung**.
 
-Die dynamische Registrierung beseitigt den manuellen Schritt: Ohne sie braucht jeder Client eine vorab ausgestellte `client_id`, was für jeden neuen Client eine außervertragliche Anfrage an den Anbieter bedeutet.
+Die dynamische Registrierung hat den manuellen Schritt für ältere Clients entfernt: ohne sie
+benötigte jeder Client eine vorab ausgegebene `client_id` vom Anbieter.
 
-Betrachte dies als Kompatibilitätsverhalten, nicht als Designvorlage. Die Überarbeitung vom `2026-07-28` der Spezifikation setzt die dynamische Client-Registrierung zugunsten von Client ID Metadata Documents außer Kraft, bei denen der Client ein Metadokument unter einer stabilen HTTPS-URL hostet und diese URL der `client_id` *ist*. DCR funktioniert vorerst weiterhin, aber ein heute gebauter Server sollte CIMD planen und DCR nur für ältere Clients behalten.
+Betrachte dies als Kompatibilitätsverhalten, nicht als Design, das man kopieren sollte. Die Revision der Spezifikation vom `2026-07-28` deprekiert die dynamische Client-Registrierung zugunsten von Client ID Metadata Documents, bei denen der Client ein Metadaten-Dokument unter einer stabilen HTTPS-URL hostet, und diese URL *ist* die `client_id`. DCR funktioniert vorerst weiter, aber ein heute gebauter Server sollte CIMD planen und DCR nur für ältere Clients behalten.
 
 ### Werkzeug-Anmerkungen sind keine Dekoration
 
-Jedes Werkzeug trägt einen `title` und die anwendbaren Hinweise: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Jedes Werkzeug trägt einen `title` und zutreffende Hinweise: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Zwei Gründe, in sie zu investieren. Erstens verwenden Clients die Hinweise, um zu entscheiden, was sie mit dem Nutzer bestätigen — ein Client kann eine schreibgeschützte Abfrage automatisch ausführen und vor einer Löschung um Zustimmung bitten. Die Spezifikation macht ausdrücklich klar, dass Anmerkungen unzuverlässige Hinweise sind, keine Autorisierungsmechanismen: Sie bestimmen, was ein Client anzubieten versucht, stoppen aber nichts auf dem Server, der Server muss weiterhin seine eigenen Regeln durchsetzen. Zweitens verlangen die wichtigsten Connector-Verzeichnisse sie jetzt *für eine Überprüfung*; ein Server, dessen Werkzeuge keine Titel und Hinweise haben, wird zurückgewiesen, egal wie gut er funktioniert.
+Zwei Gründe, in sie zu investieren. Erstens nutzen Clients die Hinweise, um zu entscheiden, was sie mit dem Benutzer bestätigen — ein Client kann eine schreibgeschützte Abfrage automatisch ausführen und vor einem Löschen um Erlaubnis bitten. Die Spezifikation macht klar, dass Anmerkungen unzuverlässige Hinweise sind, keine Autorisierung: Sie gestalten, was ein Client anzubieten versucht, sie stoppen aber nichts auf dem Server, der Server muss seine eigenen Regeln durchsetzen. Zweitens verlangen die wichtigsten Connector-Verzeichnisse mittlerweile *verbindlich* Anmerkungen für eine Überprüfung; ein Server, dessen Werkzeuge keine Titel und Hinweise haben, wird zurückgewiesen, egal wie gut er funktioniert.
 
-### Mache Kennungen nicht erratbar
+### Identifikatoren nicht erfindbar machen
 
-Plattformkennungen sind undurchsichtige Strings, die von `list_connections` zurückgegeben werden, und die Schema-Beschreibung sagt explizit, dass sie wortwörtlich kopiert und nie erraten werden dürfen. Der Server lehnt alles andere ab.
+Plattform-Identifikatoren sind undurchsichtige Strings, die von `list_connections` zurückgegeben werden, und die Schemabeschreibung sagt explizit, dass sie wortwörtlich kopiert und nie erraten werden dürfen. Der Server lehnt alles andere ab.
 
-Modelle sind fließende Rater. Jeder schreibfähige Server sollte annehmen, dass irgendwann eine Kennung halluziniert wird, und diesen Pfad früh und laut scheitern lassen, anstatt auf einen plausibel aussehenden Wert zu reagieren.
+Modelle sind gewandte Rater. Jeder schreibfähige Server sollte annehmen, dass ein Identifikator irgendwann halluziniert wird und diesen Pfad laut und früh fehlschlagen lassen, statt auf einen plausibel aussehenden Wert zu reagieren.
 
-### Fehler vor dem Veröffentlichen mit einer umsetzbaren Meldung
+### Vor Veröffentlichen scheitern, mit einer umsetzbaren Meldung
 
-Einige Netzwerke verweigern textbasierte Beiträge und verlangen ein Bild oder Video. Das wird überprüft, wenn der Beitrag geplant wird, und der Fehler nennt die Plattform und die fehlende Anforderung.
+Einige Netzwerke lehnen rein Text-Beiträge ab und verlangen ein Bild oder Video. Das wird validiert, wenn der Beitrag geplant wird, und der Fehler nennt die Plattform und die fehlende Voraussetzung.
 
-Ein Agent kann von „Instagram verlangt Medien – füge ein Bild oder Video an“ ohne eine weitere Rückfrage wieder herstellen. Von einem generischen `400` kann er das nicht.
+Ein Agent kann von "Instagram verlangt Medien — hänge ein Bild oder Video an" ohne eine weitere Anfrage genesen. Von einem generischen `400` kann er nicht genesen.
 
-### Mache Wiederholungsversuche sicher
+### Wiederholungen sicher machen
 
-Die beiden Werkzeuge, die Inhalte erzeugen, `create_post` und `update_post`, akzeptieren einen Idempotenzschlüssel: Wird dieser mit einer identischen Anfrage wiederverwendet, wird die ursprüngliche Antwort wiedergegeben, anstatt einen zweiten Beitrag zu erzeugen. Agenten-Laufzeiten versuchen es nach Zeitüberschreitungen erneut; ohne Idempotenz wird eine langsame Antwort zur doppelten Veröffentlichung. Die anderen Schreibwerkzeuge — Löschungen, Medien-Schritte, LinkedIn-Reaktionen und Kommentare — akzeptieren keinen solchen Schlüssel, daher sind Wiederholungen dort nicht automatisch sicher. Es ist nützlich zu wissen, welche der eigenen Mutation geschützt sind und welche nicht.
+Die zwei Werkzeuge, die Inhalt erzeugen, `create_post` und `update_post`, akzeptieren einen Idempotenz-Schlüssel: Wird er bei einer identischen Anfrage wiederverwendet, wiederholt sich die ursprüngliche Antwort, anstatt einen zweiten Beitrag zu erstellen. Agent-Laufzeiten wiederholen bei Timeouts; ohne Idempotenz wird eine langsame Antwort zur doppelten Veröffentlichung. Die anderen Schreibwerkzeuge — Löschungen, Medien-Schritte, LinkedIn-Reaktionen und Kommentare — nehmen keinen an, daher ist eine Wiederholung dort nicht automatisch sicher. Es ist gut zu wissen, welche eigenen Mutationen geschützt sind und welche nicht.
 
-### Biete eine Möglichkeit, zu testen, die nichts veröffentlicht
+### Einen Weg bieten, der nichts veröffentlicht
 
-Der Server akzeptiert ein reserviertes Ziel, `publora-playground`, das validiert und bestätigt wird wie ein echtes Ziel und dann verworfen wird — nichts erreicht ein Live-Konto. Es wird im Werkzeugschema selbst beschrieben, das jeder Client ohne Anmeldeinformationen lesen kann: Das Feld `platforms` von `create_post` dokumentiert es als „ein Verbindungstest-Ziel, das keine echte Verbindung benötigt — der Beitrag wird bestätigt und verworfen, nichts wird veröffentlicht“. Man ruft es auf, indem man es als einzigen Eintrag übergibt: `platforms: ["publora-playground"]`.
+Der Server akzeptiert ein reserviertes Ziel, `publora-playground`, das validiert und wie ein echtes Ziel bestätigt wird und dann verworfen wird — nichts erreicht ein Live-Konto. Es ist im Werkzeug-Schema selbst beschrieben, das jeder Client ohne Anmeldeinformationen lesen kann: das `platforms`-Feld von `create_post` dokumentiert es als "ein Verbindungstest-Ziel, das keine echte Verbindung erfordert — der Beitrag wird bestätigt und verworfen, nichts wird veröffentlicht". Man ruft es auf, indem man es als einzigen Eintrag angibt: `platforms: ["publora-playground"]`.
 
-Dies stellte sich als eines der nützlichsten Details der gesamten Oberfläche heraus. Prüfer von Connector-Verzeichnissen, Mitwirkende und CI können den gesamten Schreibpfad Ende-zu-Ende ohne Risiko für ein echtes Publikum ausführen. Jeder MCP-Server mit irreversiblen Aktionen profitiert von einem dokumentierten No-Op-Ziel.
+Das hat sich als eines der nützlichsten Details der ganzen Oberfläche erwiesen. Prüfer von Connector-Verzeichnissen, Mitwirkende und CI können den gesamten Schreibpfad Ende-zu-Ende ohne Risiko für ein echtes Publikum testen. Jeder MCP-Server mit irreversiblen Aktionen profitiert von einem dokumentierten No-Op-Ziel.
 
 ## Ergebnisse und Auswirkungen
 
-- Der Veröffentlichungsschritt verlagerte sich vom Browser in dieselbe Konversation, in der der Inhalt geschrieben wird, und eine „Erst-Entwurf“-Gewohnheit hält einen Menschen in der Schleife. Sei präzise, was das bedeutet: Ein Entwurf ist eine Konvention, keine Grenze. Dasselbe Anmeldecredential kann planen oder veröffentlichen, sodass jeder, der ein echtes Genehmigungstor benötigt, dieses außerhalb der Werkzeugoberfläche einführen muss — separate Anmeldeinformationen oder eine Richtlinienebene vor dem Server.
-- Netzwerkspezifische Unterschiede — Medienanforderungen, Threading, Antwortsteuerung — werden einmal im Server behandelt, anstatt in jedem Agenten, der mit ihm spricht.
-- Derselbe Server unterstützt mehrere MCP-Clients ohne Arbeit pro Client, weil die Entdeckung offen und die Registrierung dynamisch ist.
-- Die oben genannten Designbeschränkungen wurden ebenso sehr durch Connector-Verzeichnisprüfungen wie durch Nutzer geprägt: Anmerkungen, OAuth und ein sicheres Testziel wurden jeweils von mindestens einem davon gefordert.
+- Der Veröffentlichungs-Schritt wanderte vom Browser in dasselbe Gespräch, in dem der Inhalt geschrieben wird, und die Entwurf-zuerst-Gewohnheit hält einen Menschen im Prozess. Sei genau darüber, was das heißt: ein Entwurf ist eine Vereinbarung, keine Grenze. Dieselbe Berechtigung kann planen oder veröffentlichen, daher muss jeder, der ein echtes Freigabetor braucht, das außerhalb der Werkzeugoberfläche durchsetzen — separate Berechtigungen oder eine Policy-Schicht vor dem Server.
+- Netzwerk-spezifische Unterschiede — Medienanforderungen, Threading, Antwortkontrollen — werden einmalig im Server gehandhabt statt in jedem Agenten, der mit ihm spricht.
+- Derselbe Server unterstützt mehrere MCP-Clients ohne vorab ausgegebene Berechtigungsdaten.
+    Aktuelle Clients können Client ID Metadata Documents nutzen; DCR bleibt eine Rückfallebene
+    für ältere Clients.
+- Die oben genannten Design-Einschränkungen wurden von Connector-Verzeichnis-Reviews ebenso geprägt wie von Benutzern: Anmerkungen, OAuth und ein sicherer Testziel waren jeweils von mindestens einer gefordert.
 
-## Referenzen
+## Verweise
 
-- [Publora MCP Server (Quelle)](https://github.com/publora/mcp-server)
-- [Publora API und MCP-Dokumentation](https://docs.publora.com)
-- [MCP Registry Eintrag: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP Spezifikation — Autorisierung](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [MCP Spezifikation — Werkzeuganmerkungen](https://modelcontextprotocol.io/docs/concepts/tools)
+- [Publora MCP Server (Quellcode)](https://github.com/publora/mcp-server)
+- [Publora API- und MCP-Dokumentation](https://docs.publora.com)
+- [MCP-Registereintrag: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP-Spezifikation — Autorisierung](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [MCP-Spezifikation — Werkzeug-Anmerkungen](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## Was kommt als Nächstes
 
-- Nimm einen MCP-Server, den du baust, und prüfe die drei günstigsten Verbesserungen hier: Anmerkungen bei jedem Werkzeug, einen Idempotenzschlüssel bei jedem Schreibvorgang und ein dokumentiertes No-Op-Ziel.
-- Probiere die Aufteilung von offener Entdeckung: Rufe `tools/list` gegen einen öffentlichen Remote-Server ohne Anmeldeinformationen auf, dann rufe ein Werkzeug auf und inspiziere die `401`-Challenge.
-- Überlege, was „Rückgängig machen“ für deine Domäne bedeutet. Veröffentlichung kennt Entwürfe und Löschung; wenn deine Aktionen kein Äquivalent haben, gehört die Bestätigung ins Werkzeugdesign, nicht in den Prompt.
+- Nimm einen MCP-Server, den du baust, und überprüfe die drei einfachsten Verbesserungen hier: Anmerkungen auf jedem Werkzeug, ein Idempotenz-Schlüssel bei jedem Schreibvorgang und ein dokumentiertes No-Op-Ziel.
+- Versuche die offene Entdeckung: rufe `tools/list` an einem öffentlichen entfernten Server ohne Anmeldeinformationen auf, dann ein Werkzeug und untersuche die `401`-Herausforderung.
+- Überlege, was „Rückgängig“ für deine Domäne bedeutet. Veröffentlichen hat Entwürfe und Löschungen; wenn deine Aktionen kein Äquivalent haben, gehört die Bestätigung in das Werkzeugdesign, nicht in die Eingabeaufforderung.
 
 ---
 

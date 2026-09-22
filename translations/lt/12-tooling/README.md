@@ -1,31 +1,33 @@
 # 🚀 MCP Įrankiai
 
-## 🧠 MCP Duomenų Bazės Integracijos Mokymosi Kelias
+## 🧠 MCP Duomenų Bazės Integracijos Mokymosi Kelio Apžvalga
 
-Čia sužinosite, kaip naudoti įrankius, kurie naudoja MCP. Jūsų patirtis naudojant šiuos įrankius gerės, kai prijungsite prie jų MCP serverius.
+Čia išmoksite naudoti įrankius, kurie naudoja MCP. Jūsų patirtis naudojant šiuos įrankius gerės, kai prijungsite MCP serverius prie jų.
 
-## 🔗 Oficialūs MCP Ištekliai
+## 🔗 Oficialūs MCP Šaltiniai
 
-- 📘 [MCP Dokumentacija](https://modelcontextprotocol.io/) – Detalios pamokos ir naudotojų vadovai
-- 📜 [MCP Specifikacija (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protokolo architektūra ir techniniai šaltiniai
+- 📘 [MCP Dokumentacija](https://modelcontextprotocol.io/) – Išsamūs vadovai ir naudotojo instrukcijos
+- 📜 [MCP Specifikacija (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protokolo architektūra ir techninės nuorodos
 - 🧑‍💻 [MCP GitHub Saugykla](https://github.com/modelcontextprotocol) – Atviro kodo SDK, įrankiai ir kodo pavyzdžiai
-- 🌐 [MCP Bendruomenė](https://github.com/orgs/modelcontextprotocol/discussions) – Dalyvaukite diskusijose ir prisidėkite prie bendruomenės
-- 🔒 [OWASP MCP Viršūnė 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Saugumo gerosios praktikos ir rizikos mažinimo priemonės
+- 🌐 [MCP Bendruomenė](https://github.com/orgs/modelcontextprotocol/discussions) – Prisijunkite prie diskusijų ir prisidėkite prie bendruomenės
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Saugumo geriausios praktikos ir rizikos mažinimo būdai
 
-## 🌟 Bendruomenė ir Pagalba
+
+
+## 🌟 Bendruomenė ir Palaikymas
 
 ### Gaukite Pagalbą
 
-- **Azure AI Discord**: [Prisijunkite dėl ekspertų pagalbos](https://discord.com/invite/ByRwuEEgH4)
-- **MCP Bendruomenė**: [Prisijunkite prie platų MCP diskusijų](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [Prisijunkite ekspertų palaikymui](https://discord.com/invite/ByRwuEEgH4)
+- **MCP Bendruomenė**: [Prisijunkite prie platesnių MCP diskusijų](https://github.com/orgs/modelcontextprotocol/discussions)
 
-## 🚀 Pasirengę Pradėti?
+## 🚀 Pasiruošę pradėti?
 
 Pradėkite savo kelionę su **[GitHub Copilot programa](./01-copilot-app/README.md)**
 
 ---
 
-*Mokykitės naudotis MCP su šiais įrankiais, kad padidintumėte našumą ir užtikrintumėte sklandžią integraciją.*
+*Išmokite naudoti MCP kartu su šiais įrankiais, kad padidintumėte efektyvumą ir užtikrintumėte sklandžią integraciją.*
 
 ---
 

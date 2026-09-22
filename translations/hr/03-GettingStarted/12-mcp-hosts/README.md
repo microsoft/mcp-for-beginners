@@ -1,19 +1,24 @@
 # Postavljanje popularnih MCP klijentskih aplikacija
 
-Ovaj vodič pokriva kako konfigurirati i koristiti MCP servere s popularnim AI host aplikacijama. Svaki host ima svoj pristup konfiguraciji, no jednom postavljeni, svi komuniciraju s MCP serverima koristeći standardizirani protokol.
+> [!NOTE]
+> Konfiguracije hosta koje upućuju na `/sse` su naslijeđeni primjeri HTTP+SSE za
+> MCP `2025-11-25`. Za MCP `2026-07-28`, odaberite Streamable HTTP kod hostova koji
+> to podržavaju i koristite krajnu točku konfiguriranu od strane servera.
+
+Ovaj vodič pokriva kako konfigurirati i koristiti MCP servere s popularnim AI host aplikacijama. Svaki host ima svoj način konfiguracije, ali jednom podeseni, svi komuniciraju s MCP serverima koristeći standardizirani protokol.
 
 ## Što je MCP Host?
 
-**MCP Host** je AI aplikacija koja se može povezati na MCP servere kako bi proširila svoje mogućnosti. Zamislite ga kao "prednji kraj" s kojim korisnici komuniciraju, dok MCP serveri pružaju "stražnji kraj" alate i podatke.
+**MCP Host** je AI aplikacija koja se može spojiti na MCP servere kako bi proširila svoje mogućnosti. Zamislite ga kao "prednji kraj" s kojim korisnici komuniciraju, dok MCP serveri pružaju "stražnji kraj" alate i podatke.
 
 ```mermaid
 flowchart LR
-    User[👤 Korisnik] --> Host[🖥️ MCP Domaćin]
-    Host --> S1[MCP Poslužitelj A]
-    Host --> S2[MCP Poslužitelj B]
-    Host --> S3[MCP Poslužitelj C]
+    User[👤 Korisnik] --> Host[🖥️ MCP Poslužitelj]
+    Host --> S1[MCP Server A]
+    Host --> S2[MCP Server B]
+    Host --> S3[MCP Server C]
     
-    subgraph "Popularni domaćini"
+    subgraph "Popularni Poslužitelji"
         H1[Claude Desktop]
         H2[VS Code]
         H3[Cursor]
@@ -21,9 +26,10 @@ flowchart LR
         H5[Windsurf]
     end
 ```
+
 ## Preduvjeti
 
-- MCP server na koji se možete povezati (pogledajte [Modul 3.1 - Prvi server](../01-first-server/README.md))
+- MCP server na koji se treba spojiti (pogledajte [Modul 3.1 - Prvi server](../01-first-server/README.md))
 - Host aplikacija instalirana na vašem sustavu
 - Osnovno poznavanje JSON konfiguracijskih datoteka
 
@@ -31,7 +37,7 @@ flowchart LR
 
 ## 1. Claude Desktop
 
-**Claude Desktop** je službena desktop aplikacija tvrtke Anthropic koja nativno podržava MCP.
+**Claude Desktop** je službena desktop aplikacija Anthropic-a koja nativno podržava MCP.
 
 ### Instalacija
 
@@ -78,42 +84,42 @@ Claude Desktop koristi JSON konfiguracijsku datoteku za definiranje MCP servera.
 
 | Polje | Opis | Primjer |
 |-------|-------------|---------|
-| `command` | Izvršna datoteka za pokretanje | `"python"`, `"node"`, `"npx"` |
+| `command` | Izvršna datoteka koja se pokreće | `"python"`, `"node"`, `"npx"` |
 | `args` | Argumenti naredbenog retka | `["-m", "my_server"]` |
 | `env` | Varijable okoline | `{"API_KEY": "xxx"}` |
 | `cwd` | Radni direktorij | `"/path/to/server"` |
 
-### Testiranje postavki
+### Testiranje vaše postavke
 
 1. Spremite konfiguracijsku datoteku
-2. Potpuno ponovno pokrenite Claude Desktop (zatvorite i ponovno otvorite)
+2. Potpuno ponovno pokrenite Claude Desktop (ugasi i ponovno otvori)
 3. Otvorite novi razgovor
 4. Potražite ikonu 🔌 koja označava povezane servere
-5. Pokušajte zamoliti Claudea da koristi jedan od vaših alata
+5. Pokušajte pitati Claudea da koristi jedan od vaših alata
 
-### Rješavanje problema s Claude Desktop
+### Rješavanje problema s Claude Desktopom
 
 **Server se ne pojavljuje:**
 - Provjerite sintaksu konfiguracijske datoteke s JSON validatorom
-- Provjerite je li putanja naredbe točna
-- Provjerite zapise Claude Desktopa: Pomoć → Prikaži zapise
+- Provjerite je li putanja naredbe ispravna
+- Provjerite logove Claude Desktop-a: Help → Show Logs
 
-**Server se ruši pri pokretanju:**
-- Prvo ručno testirajte server u terminalu
+**Server se ruši prilikom pokretanja:**
+- Prvo ručno testirajte svoj server u terminalu
 - Provjerite jesu li varijable okoline ispravno postavljene
 - Osigurajte da su sve ovisnosti instalirane
 
 ---
 
-## 2. VS Code s GitHub Copilot
+## 2. VS Code s GitHub Copilotom
 
-VS Code podržava MCP putem ekstenzija GitHub Copilot Chat.
+VS Code podržava MCP putem proširenja GitHub Copilot Chat.
 
 ### Preduvjeti
 
-1. Instaliran VS Code verzije 1.99 ili više
-2. Instalirana GitHub Copilot ekstenzija
-3. Instalirana GitHub Copilot Chat ekstenzija
+1. Instaliran VS Code 1.99+
+2. Instalirano GitHub Copilot proširenje
+3. Instalirano GitHub Copilot Chat proširenje
 
 ### Konfiguracija
 
@@ -152,18 +158,18 @@ VS Code koristi `.vscode/mcp.json` u vašem radnom prostoru ili korisničkim pos
 }
 ```
 
-### Korištenje MCP u VS Code
+### Korištenje MCP-a u VS Code-u
 
-1. Otvorite panel Copilot Chat (Ctrl+Shift+I / Cmd+Shift+I)
-2. Upisujete `@` za prikaz dostupnih MCP alata
+1. Otvorite Copilot Chat panel (Ctrl+Shift+I / Cmd+Shift+I)
+2. Upisujte `@` da vidite dostupne MCP alate
 3. Koristite prirodni jezik za pozivanje alata: "Izračunaj 25 * 48 koristeći kalkulator"
 
-### Rješavanje problema u VS Code
+### Rješavanje problema s VS Code-om
 
 **MCP serveri se ne učitavaju:**
 - Provjerite Output panel → "MCP" za zapis pogrešaka
 - Ponovno učitajte prozor: Ctrl+Shift+P → "Developer: Reload Window"
-- Provjerite da se server samostalno pokreće
+- Provjerite prvo da se server može pokrenuti samostalno
 
 ---
 
@@ -205,17 +211,17 @@ Cursor koristi sličan format konfiguracije kao Claude Desktop.
 }
 ```
 
-### Korištenje MCP u Cursoru
+### Korištenje MCP-a u Cursoru
 
 1. Otvorite AI chat u Cursoru (Ctrl+L / Cmd+L)
-2. MCP alati se automatski pojavljuju u prijedlozima
-3. Zamolite AI da izvrši zadatke koristeći povezane servere
+2. MCP alati se automatski pojavljuju u sugestijama
+3. Pitajte AI da izvrši zadatke koristeći spojene servere
 
 ---
 
-## 4. Cline (baziran na terminalu)
+## 4. Cline (Terminal-Based)
 
-**Cline** je MCP klijent baziran na terminalu, idealan za radne tokove iz komandne linije.
+**Cline** je MCP klijent baziran na terminalu, idealan za rad u komandnoj liniji.
 
 ### Instalacija
 
@@ -225,7 +231,7 @@ npm install -g @anthropic/cline
 
 ### Konfiguracija
 
-Cline koristi varijable okoline i argumente naredbenog retka.
+Cline koristi varijable okoline i argumente komandne linije.
 
 **Korištenje varijabli okoline:**
 
@@ -234,7 +240,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**Korištenje argumenata naredbenog retka:**
+**Korištenje argumenata komandne linije:**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
@@ -255,16 +261,16 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 }
 ```
 
-### Korištenje Cline
+### Korištenje Cline-a
 
 ```bash
 # Pokreni interaktivnu sesiju
 cline
 
-# Pojedinačni upit s MCP-om
+# Jednostavni upit s MCP-om
 cline "Calculate the square root of 144 using the calculator"
 
-# Prikaži dostupne alate
+# Nabroj dostupne alate
 cline --list-tools
 ```
 
@@ -272,7 +278,7 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** je još jedan uređivač koda s AI podrškom za MCP.
+**Windsurf** je još jedan uređivač koda s podrškom za MCP pokretan AI-jem.
 
 ### Instalacija
 
@@ -281,7 +287,7 @@ cline --list-tools
 
 ### Konfiguracija
 
-Konfiguracija Windsurfa upravlja se kroz korisničko sučelje postavki:
+Windsurf konfiguracija se upravlja kroz UI postavki:
 
 1. Otvorite Postavke (Ctrl+, / Cmd+,)
 2. Potražite "MCP"
@@ -304,9 +310,9 @@ Konfiguracija Windsurfa upravlja se kroz korisničko sučelje postavki:
 
 ---
 
-## Usporedba tipova prijenosa
+## Usporedba tipova transporta
 
-Različiti hostovi podržavaju različite mehanizme prijenosa:
+Različiti hostovi podržavaju različite mehanizme transporta:
 
 | Host | stdio | SSE/HTTP | WebSocket |
 |------|-------|----------|-----------|
@@ -316,16 +322,16 @@ Različiti hostovi podržavaju različite mehanizme prijenosa:
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standardni ulaz/izlaz): Najbolje za lokalne servere pokrenute od strane hosta  
-**SSE/HTTP**: Najbolje za udaljene servere ili servere zajedničke za više klijenata
+**stdio** (standardni ulaz/izlaz): Najbolje za lokalne servere koje host pokreće
+**SSE/HTTP**: Najbolje za udaljene servere ili servere zajednički korištene među više klijenata
 
 ---
 
-## Često riješavanje problema
+## Uobičajeno rješavanje problema
 
-### Server se ne pokreće
+### Server se neće pokrenuti
 
-1. **Prvo testirajte server ručno:**
+1. **Prvo ručno testirajte server:**
    ```bash
    # Za Python
    python -m your_server_module
@@ -335,8 +341,8 @@ Različiti hostovi podržavaju različite mehanizme prijenosa:
    ```
 
 2. **Provjerite putanju naredbe:**
-   - Koristite apsolutne putove gdje je moguće
-   - Provjerite je li izvršna datoteka u PATH-u
+   - Koristite apsolutne putanje kad je moguće
+   - Provjerite je li izvršna datoteka u vašem PATH-u
 
 3. **Provjerite ovisnosti:**
    ```bash
@@ -347,48 +353,48 @@ Različiti hostovi podržavaju različite mehanizme prijenosa:
    npm list @modelcontextprotocol/sdk
    ```
 
-### Server se poveže, ali alati ne rade
+### Server se spoji, ali alati ne rade
 
-1. **Provjerite zapise servera** - Većina hostova ima opcije za zapisivanje
+1. **Provjerite logove servera** - Većina hostova ima opcije bilježenja
 2. **Provjerite registraciju alata** - Koristite MCP Inspector za testiranje
 3. **Provjerite dozvole** - Neki alati zahtijevaju pristup datotekama/mreži
 
-### Varijable okoline nisu proslijeđene
+### Varijable okoline se ne prenose
 
-- Neki hostovi sanitiziraju varijable okoline
+- Neki hostovi pročišćavaju varijable okoline
 - Izričito koristite `env` polje u konfiguraciji
 - Izbjegavajte osjetljive podatke u konfiguracijskim datotekama (koristite upravljanje tajnama)
 
 ---
 
-## Sigurnosne najbolje prakse
+## Najbolje sigurnosne prakse
 
-1. **Nikada ne spremate API ključeve** u konfiguracijske datoteke
+1. **Nikada ne pohranjujte API ključeve** u konfiguracijske datoteke
 2. **Koristite varijable okoline** za osjetljive podatke
 3. **Ograničite dozvole servera** samo na potrebne
-4. **Pregledajte kod servera** prije nego što dozvolite pristup vašem sustavu
-5. **Koristite popise dopuštenih pristupa** za datotečni sustav i mrežu
+4. **Pregledajte kod servera** prije nego što mu dopustite pristup vašem sustavu
+5. **Koristite liste dopuštenih** za pristup datotečnom sustavu i mreži
 
 ---
 
 ## Što slijedi
 
-- [3.13 - Debugging uz MCP Inspector](../13-mcp-inspector/README.md)
+- [3.13 - Debugging with MCP Inspector](../13-mcp-inspector/README.md)
 - [3.1 - Kreirajte svoj prvi MCP server](../01-first-server/README.md)
 - [Modul 5 - Napredne teme](../../05-AdvancedTopics/README.md)
 
 ---
 
-## Dodatni izvori
+## Dodatni resursi
 
 - [Claude Desktop MCP dokumentacija](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
-- [VS Code MCP ekstenzija](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP specifikacija - prijenosi](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
-- [Službeni MCP registar servera](https://github.com/modelcontextprotocol/servers)
+- [VS Code MCP proširenje](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [MCP specifikacija - Transporti](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Službeni registar MCP servera](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Izjava o ograničenju odgovornosti**:
-Ovaj dokument je preveden pomoću AI usluge za prijevod [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo postići točnost, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporučuje se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakve nesporazume ili kriva tumačenja koja proizlaze iz korištenja ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

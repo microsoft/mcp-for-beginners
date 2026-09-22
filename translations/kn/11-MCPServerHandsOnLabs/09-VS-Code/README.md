@@ -1,29 +1,35 @@
-# VS Code ಏಕೀಕರಣ
+# VS ಕೋಡ್ ಒಗ್ಗೂಡಿಕೆ
 
-## 🎯 ಈ ಪ್ರಯೋಗಶಾಲೆ ಏನು ಒಳಗೊಂಡಿದೆ
+> [!NOTE]
+> ಈ ಪ್ರಯೋಗಾಲಯದಲ್ಲಿ `initializationOptions` ಸೆಟ್ಟಿಂಗ್ಗಳು ಮಾದರಿಯ MCP
+> `2025-11-25` ಹ್ಯಾಂಡ್‌ಶೇಕ್ ಅನ್ನು ಗುರಿಯಾಗಿಸಿರುವುದು. MCP `2026-07-28` ಹ್ಯಾಂಡ್‌ಶೇಕ್ ಅಳಿಸಲಾಯಿತು;
+> ಈ ಮಾದರಿಯನ್ನು ಜಾರಿಗೆ ತರ ಮಾಡುವಾಗ ಪ್ರತಿ ವಿನಂತಿಗೆ ಮেটಾಡೇಟಾ ಮತ್ತು `server/discover`
+> ಅನ್ನು ಬೆಂಬಲಿಸುವ ಹೋಸ್ಟ್ ಮತ್ತು SDK ಅನ್ನು ಬಳಸಿ.
 
-ಈ ಪ್ರಯೋಗಶಾಲೆ ನಿಮ್ಮ MCP ಸರ್ವರ್ ಅನ್ನು VS Code ಜೊತೆಗೆ ಏಕೀಕರಿಸುವ ಬಗ್ಗೆ ಸಮಗ್ರ ಮಾರ್ಗದರ್ಶನವನ್ನು ಒದಗಿಸುತ್ತದೆ, ಇದರಿಂದ AI ಚಾಟ್ ಮೂಲಕ ನೈಸರ್ಗಿಕ ಭಾಷಾ ಪ್ರಶ್ನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು. ನೀವು MCP ಬಳಕೆಗೆ ಸೂಕ್ತವಾಗಿ VS Code ಅನ್ನು ಸಂರಚಿಸುವುದು, ಸರ್ವರ್ ಸಂಪರ್ಕಗಳನ್ನು ಡಿಬಗ್ ಮಾಡುವುದು ಮತ್ತು AI ಸಹಾಯಿತ ಡೇಟಾಬೇಸ್ ಸಂವಹನಗಳ ಸಂಪೂರ್ಣ ಶಕ್ತಿಯನ್ನು ಬಳಸಿಕೊಳ್ಳುವುದು ಕಲಿಯುತ್ತೀರಿ.
+## 🎯 ಈ ಪ್ರಯೋಗಾಲಯವು ಏನು ಆವರಿಸುತ್ತದೆ
+
+ಈ ಪ್ರಯೋಗಾಲಯವು ನಿಮ್ಮ MCP ಸರ್ವರ್ ಅನ್ನು VS ಕೋಡ್ ಜೊತೆಗೆ ಒಗ್ಗೂಡಿಸಲು ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶನವನ್ನು ನೀಡುತ್ತದೆ, ಇದರಿಂದ ಸಹಜ ಭಾಷೆಯ ಪ್ರಶ್ನೆಗಳನ್ನು AI ಚಾಟ್ ಮೂಲಕ ಸಾಧ್ಯವಾಗುತ್ತದೆ. ನೀವು MCP ಬಳಕೆಗೆ ಉತ್ತಮವಾಗಿ VS ಕೋಡ್ ಅನ್ನು ಸಂರಚಿಸುವುದು, ಸರ್ವರ್ ಸಂಪರ್ಕಗಳನ್ನು ಡೀಬಗ್ ಮಾಡುವುದು ಮತ್ತು AI ನೆರವಿನೊಂದಿಗೆ ಡೇಟಾಬೇಸ್ ಸಂವಹನವನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಉಪಯೋಗಿಸುವುದನ್ನು ಕಲಿತೀರಿ.
 
 ## ಅವಲೋಕನ
 
-VS Code ನ MCP ಏಕೀಕರಣವು ಡೆವಲಪರ್‌ಗಳು ನೈಸರ್ಗಿಕ ಭಾಷೆಯ ಮೂಲಕ ಡೇಟಾಬೇಸ್‌ಗಳು ಮತ್ತು API ಗಳೊಂದಿಗೆ ಸಂವಹನ ಮಾಡುವ ರೀತಿಯನ್ನು ಪರಿವರ್ತಿಸುತ್ತದೆ. ನಿಮ್ಮ ರಿಟೇಲ್ MCP ಸರ್ವರ್ ಅನ್ನು VS Code ಚಾಟ್‌ಗೆ ಸಂಪರ್ಕಿಸುವ ಮೂಲಕ, ನೀವು ಸಂವಾದಾತ್ಮಕ AI ಬಳಸಿ ಮಾರಾಟದ ಡೇಟಾ, ಉತ್ಪನ್ನ ಕ್ಯಾಟಲಾಗ್‌ಗಳು ಮತ್ತು ವ್ಯವಹಾರ ವಿಶ್ಲೇಷಣೆಗಳ ಬುದ್ಧಿವಂತ ಪ್ರಶ್ನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತೀರಿ.
+VS ಕೋಡ್‌ನ MCP ಒಗ್ಗೂಡಿಕೆ ಅಭಿವೃದ್ಧಿಪಡಿತರನ್ನೂ ಸಹಜ ಭಾಷೆಯ ಮೂಲಕ ಡೇಟಾಬೇಸ್‌ಗಳು ಮತ್ತು API ಗಳೊಂದಿಗೆ ಸಂವಹನ ಮಾಡಲು ಪರಿವರ್ತಿಸುತ್ತದೆ. ನಿಮ್ಮ ರಿಟೇಲ್ MCP ಸರ್ವರ್ ಅನ್ನು VS ಕೋಡ್ ಚಾಟ್‌ಗೆ ಸಂಪರ್ಕಿಸುವ ಮೂಲಕ, ನೀವು ಮಾರಾಟದ տվյալಗಳು, ಉತ್ಪನ್ನ ಕ್ಯಾಟಲೋಗ್‌ಗಳು ಮತ್ತು ವ್ಯವಹಾರ ವಿಶ್ಲೇಷಣೆಗಳನ್ನು ಸಂಭಾಷಣಾತ್ಮಕ AI ಬಳಸಿ ಬೌದ್ಧಿಕವಾಗಿ ಕೇಳಿಸಬಹುದು.
 
-ಈ ಏಕೀಕರಣವು ಡೆವಲಪರ್‌ಗಳಿಗೆ "ಈ ತಿಂಗಳು ಅತ್ಯಧಿಕ ಮಾರಾಟವಾದ ಉತ್ಪನ್ನಗಳನ್ನು ತೋರಿಸಿ" ಅಥವಾ "90 ದಿನಗಳಲ್ಲಿ ಖರೀದಿ ಮಾಡದ ಗ್ರಾಹಕರನ್ನು ಹುಡುಕಿ" ಎಂಬಂತಹ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಲು ಮತ್ತು SQL ಪ್ರಶ್ನೆಗಳನ್ನು ಬರೆಯದೆ ರಚನಾತ್ಮಕ ಡೇಟಾ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪಡೆಯಲು ಅನುಮತಿಸುತ್ತದೆ.
+ಈ ಒಗ್ಗೂಡಿಕೆ ಮೂಲಕ, ಅಭಿವೃದ್ಧಿಪಡಿತಾರರು "ಈ ತಿಂಗಳಲ್ಲಿ ಶ್ರೇಷ್ಟ ಮಾರಾಟವಾದ ಉತ್ಪನ್ನಗಳನ್ನು ತೋರಿಸಿ" ಅಥವಾ "90 ದಿನಗಳಲ್ಲಿ ಖರೀದಿಸದ ಗ್ರಾಹಕರನ್ನು ಹುಡುಕಿ" ಎಂಬಂತಹ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಬಹುದು ಮತ್ತು SQL ಪ್ರಶ್ನೆಗಳನ್ನು ಬರೆದೆನೆ ಇಲ್ಲದೆ ಸಂರಚಿತ ಡೇಟಾ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪಡೆಯಬಹುದು.
 
-## ಕಲಿಕೆಯ ಉದ್ದೇಶಗಳು
+## ಕಲಿಕೆಯ ಗುರಿಗಳು
 
-ಈ ಪ್ರಯೋಗಶಾಲೆಯ ಅಂತ್ಯಕ್ಕೆ, ನೀವು ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ:
+ಈ ಪ್ರಯೋಗಾಲಯದ ಅಂತ್ಯಕ್ಕೆ ನೀವು ಇದರಲ್ಲಿಗೆ ಸಾದ್ದರಾಗುತ್ತೀರಿ:
 
-- **ಸಂರಚಿಸುವುದು** ನಿಮ್ಮ ರಿಟೇಲ್ ಸರ್ವರ್‌ಗಾಗಿ VS Code MCP ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು  
-- **ಏಕೀಕರಿಸುವುದು** MCP ಸರ್ವರ್‌ಗಳನ್ನು VS Code AI ಚಾಟ್ ಕಾರ್ಯಕ್ಷಮತೆಯೊಂದಿಗೆ  
-- **ಡಿಬಗ್ ಮಾಡುವುದು** MCP ಸರ್ವರ್ ಸಂಪರ್ಕಗಳನ್ನು ಮತ್ತು ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಹರಿಸುವುದು  
-- **ಆಪ್ಟಿಮೈಸ್ ಮಾಡುವುದು** ಉತ್ತಮ ಫಲಿತಾಂಶಗಳಿಗಾಗಿ ನೈಸರ್ಗಿಕ ಭಾಷಾ ಪ್ರಶ್ನೆ ಮಾದರಿಗಳನ್ನು  
-- **ಕಸ್ಟಮೈಸ್ ಮಾಡುವುದು** MCP ಅಭಿವೃದ್ಧಿಗಾಗಿ VS Code ವರ್ಕ್‌ಸ್ಪೇಸ್ ಅನ್ನು  
-- **ಡಿಪ್ಲಾಯ್ ಮಾಡುವುದು** ಸಂಕೀರ್ಣ ಸಂದರ್ಭಗಳಿಗೆ ಬಹು-ಸರ್ವರ್ ಸಂರಚನೆಗಳನ್ನು  
+- **ಸಂರಚನೆ** VS ಕೋಡ್ MCP ಸೆಟ್ಟಿಂಗ್ಗಳು ನಿಮ್ಮ ರಿಟೇಲ್ ಸರ್ವरसಕ್ಕೆ
+- **ಒಗ್ಗೂಡಿಕೆ** MCP ಸರ್ವರ್‌ಗಳನ್ನು VS ಕೋಡ್ AI ಚಾಟ್ ಕಾರ್ಯಕ್ಷಮತೆಯೊಂದಿಗೆ
+- **ಡೀಬಗ್** MCP ಸರ್ವರ್ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಸಮಸ್ಯೆ ಪರಿಹಾರ
+- **ಆಪ್ಟಿಮೈಸ್** ಸಹಜ ಭಾಷೆಯ ಪ್ರಶ್ನೆ ಮಾದರಿಗಳು ಉತ್ತಮ ಫಲಿತಾಂಶಗಳಿಗೆ
+- **ಕಸ್ಟಮೈಸ್** VS ಕೋಡ್ ವರ್ಕ್‌ಸ್ಪೇಸ್ MCP ಅಭಿವೃದ್ಧಿಗಾಗಿಯ
+- **ಮೂಕುಜಿಸು** ಬಹು-ಸರ್ವರ್ ಸಂರचनಗಳು ಸಂಕೀರ್ಣ ಸಂದರ್ಭಗಳಿಗೆ
 
-## 🔧 VS Code MCP ಸಂರಚನೆ
+## 🔧 VS ಕೋಡ್ MCP ಸಂರಚನೆ
 
-### ಪ್ರಾಥಮಿಕ ಸೆಟ್‌ಅಪ್ ಮತ್ತು ಸ್ಥಾಪನೆ
+### ಪ್ರಾಥಮಿಕ ಸೆಟ್ಅಪ್ ಮತ್ತು ಸ್ಥಾಪನೆ
 
 ```json
 // .vscode/settings.json
@@ -65,20 +71,20 @@ VS Code ನ MCP ಏಕೀಕರಣವು ಡೆವಲಪರ್‌ಗಳು ನ�
 ### ಪರಿಸರ ಸಂರಚನೆ
 
 ```bash
-# ಅಭಿವೃದ್ಧಿಗಾಗಿ .env ಫೈಲ್
+# ಅಭಿವೃದ್ಧಿಗೆ .env ಫೈಲ್
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# ಅಜೂರ್ ಸಂರಚನೆ
+# ಅಝ್ಯೂರ್ ಸಂರಚನೆ
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# ಐಚ್ಛಿಕ: ಅಜೂರ್ ಕೀ ವಾಲ್ಟ್
+# ಐಚ್ಛಿಕ: ಅಝ್ಯೂರ್ ಕೀ ವಾಲ್ಟ್
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
 # ಸರ್ವರ್ ಸಂರಚನೆ
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### ಟಾಸ್ಕ್ ಸಂರಚನೆ
+### ಕಾರ್ಯ ಸಂರಚನೆ
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI ಚಾಟ್ ಏಕೀಕರಣ
+## 💬 AI ಚಾಟ್ ಒಗ್ಗೂಡಿಕೆ
 
-### ನೈಸರ್ಗಿಕ ಭಾಷಾ ಪ್ರಶ್ನೆ ಮಾದರಿಗಳು
+### ಸಹಜ ಭಾಷೆಯ ಪ್ರಶ್ನೆ ಮಾದರಿಗಳು
 
 ```typescript
-// VS ಕೋಡ್ ಚಾಟ್‌ಗಾಗಿ ಉದಾಹರಣಾ ಪ್ರಶ್ನೆ ಮಾದರಿಗಳು
+// VS ಕೋಡ್ ಚಾಟ್‌ಗೆ ಉದಾಹರಣೆಯ ವಿಚಾರಣಾ ಮಾದರಿಗಳು
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### ಚಾಟ್ ಏಕೀಕರಣ ಉದಾಹರಣೆಗಳು
+### ಚಾಟ್ ಒಗ್ಗೂಡಿಕೆ ಉದಾಹರಣೆಗಳು
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### ಚಾಟ್ ಪ್ರತಿಕ್ರಿಯೆ ಸ್ವರೂಪೀಕರಣ
+### ಚಾಟ್ ಪ್ರತಿಕ್ರಿಯೆಯ ಫಾರ್ಮ್ಯಾಟಿಂಗ್
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # ಪ್ರಮುಖ ಅಂಶಗಳು
+        # ಪ್ರಮುಖ ಮಾಪಕಗಳು
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # ಕಾರ್ಯಕ್ಷಮತೆ ಸೂಚಕಗಳು
+        # ಕಾರ್ಯಾಚರಣಾ ಸೂಚಕಗಳು
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # ಶ್ರೇಷ್ಟ ವರ್ಗ
+        # ಶ್ರೇಷ್ಠ ವರ್ಗ
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 ಡಿಬಗ್ ಮತ್ತು ಸಮಸ್ಯೆ ಪರಿಹಾರ
+## 🔍 ಡೀಬಗಿಂಗ್ ಮತ್ತು ಸಮಸ್ಯೆ ಪರಿಹಾರ
 
-### VS Code ಡಿಬಗ್ ಸಂರಚನೆ
+### VS ಕೋಡ್ ಡೀಬಗ್ ಸಂರಚನೆ
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # VS ಕೋಡ್ ನಿರ್ದಿಷ್ಟ ಫಾರ್ಮ್ಯಾಟರ್ ರಚಿಸಿ
+        # VS ಕೋಡ್ ನಿರ್ದಿಷ್ಟ ಸ್ವರೂಪಕವನ್ನು ಸೃಷ್ಟಿಸಿ
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # VS ಕೋಡ್ ಟರ್ಮಿನಲ್‌ಗಾಗಿ ಕಾನ್ಸೋಲ್ ಹ್ಯಾಂಡ್ಲರ್
+        # VS ಕೋಡ್ ಟರ್ಮಿನಲ್ ಗಾಗಿ ಕಾನ್ಸೋಲ್ ಹ್ಯಾಂಡ್ಲರ್
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# ಜಾಗತಿಕ ಡಿಬಗ್ ಲಾಗರ್
+# ಗ್ಲೋಬಲ್ ಡಿಬಗ್ ಲಾಗರ್
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # ಪರಿಸರದಿಂದ ಸಂಪರ್ಕ ಪರಿಮಾಣಗಳನ್ನು ಪಡೆಯಿರಿ
+        # ಪಾರಿಸರದಿಂದ ಸಂಪರ್ಕ ಪಾರಾಮೀಟರ್‌ಗಳನ್ನು ಪಡೆಯಿರಿ
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -604,7 +610,7 @@ async def test_database_connection() -> Dict[str, Any]:
         # ಮೂಲ ಪ್ರಶ್ನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
         result = await conn.fetchval("SELECT version()")
         
-        # ಸ್ಕೀಮಾ ಪ್ರವೇಶವನ್ನು ಪರೀಕ್ಷಿಸಿ
+        # ಸ್ಕೆಮಾ ಪ್ರವೇಶವನ್ನು ಪರೀಕ್ಷಿಸಿ
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # ಎम्बೆಡ್ಡಿಂಗ್ ಉತ್ಪಾದನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ
+        # ಎಮ್ಬೆಡ್ಡಿಂಗ್ ജനറೇಷನ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # ಅಜೂರ್ ಓಪನ್‌ಎಐ ಸಂಪರ್ಕವನ್ನು ಪರೀಕ್ಷಿಸಿ
+    # ಅಝೂರ್ ಓಪನ್‌ಎಐ ಸಂಪರ್ಕವನ್ನು ಪರೀಕ್ಷಿಸಿ
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 ಉನ್ನತ ಸಂರಚನೆ
 
-### ಬಹು-ಸರ್ವರ್ ಸೆಟ್‌ಅಪ್
+### ಬಹು-ಸರ್ವರ್ ಸೆಟ್ಅಪ್
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### ಕಸ್ಟಮ್ VS Code ವಿಸ್ತರಣೆ
+### ಕಸ್ಟಮ್ VS ಕೋಡ್ ವಿಸ್ತರಣೆ
 
 ```typescript
-// src/extension.ts - ಕಸ್ಟಮ್ MCP ರೀಟೇಲ್ ವಿಸ್ತರಣೆ
+// src/extension.ts - ಕಸ್ಟಮ್ MCP ರಿಟೇಲ್ ವಿಸ್ತರಣೆ
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // MCP ರೀಟೇಲ್ ಆಜ್ಞೆಗಳನ್ನು ನೋಂದಣಿ ಮಾಡು
+    // MCP ರಿಟೇಲ್ ಆಜ್ಞೆಗಳನ್ನು ನೋಂದಣಿ ಮಾಡು
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // ಸಂರಚನೆಯನ್ನು ನವೀಕರಿಸು
+                // ಸಂರಚನೆಯನ್ನು నవೀಕರಿಸು
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // VS ಕೋಡ್ ಚಾಟ್‌ನಲ್ಲಿ ಪೂರ್ವನಿರ್ಧರಿತ ಪ್ರಶ್ನೆಗಳನ್ನು ನಿರ್ವಹಿಸು
+    // VS ಕೋಡ್ ಚ್ಯಾಟ್‌ನಲ್ಲಿ ಪೂರ್ವನಿಶ್ಚಿತವಾದ ಪ್ರಶ್ನೆಗಳನ್ನು ನಿರ್ವಹಿಸು
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,49 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 ಪ್ರಮುಖ ಪಾಠಗಳು
 
-ಈ ಪ್ರಯೋಗಶಾಲೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ ನಂತರ, ನೀವು ಹೊಂದಿರಬೇಕು:
+ಈ ಪ್ರಯೋಗಾಲಯವನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ ನಂತರ, ನಿಮಗೆ:
 
-✅ **VS Code MCP ಸಂರಚನೆ**: MCP ಏಕೀಕರಣಕ್ಕಾಗಿ ಸಂಪೂರ್ಣ ಸೆಟ್‌ಅಪ್  
-✅ **AI ಚಾಟ್ ಏಕೀಕರಣ**: VS Code ನಲ್ಲಿ ನೈಸರ್ಗಿಕ ಭಾಷಾ ಪ್ರಶ್ನೆ ಸಾಮರ್ಥ್ಯಗಳು  
-✅ **ಡಿಬಗ್ ಸಾಧನಗಳು**: ಸಮಗ್ರ ಸಮಸ್ಯೆ ಪರಿಹಾರ ಮತ್ತು ಸಂಪರ್ಕ ವಿಶ್ಲೇಷಣೆ  
-✅ **ಬಹು-ಸರ್ವರ್ ಸೆಟ್‌ಅಪ್**: ಬಹು MCP ಸರ್ವರ್ ಉದಾಹರಣೆಗಳ ಸಂರಚನೆ  
-✅ **ಕಸ್ಟಮ್ ವಿಸ್ತರಣೆಗಳು**: ರಿಟೇಲ್-ನಿರ್ದಿಷ್ಟ ವೈಶಿಷ್ಟ್ಯಗಳೊಂದಿಗೆ ಸುಧಾರಿತ VS Code ಅನುಭವ  
-✅ **ಉತ್ಪಾದನಾ ಸಿದ್ಧತೆ**: ಎಂಟರ್‌ಪ್ರೈಸ್-ಸಿದ್ಧ VS Code ಅಭಿವೃದ್ಧಿ ಪರಿಸರ  
+✅ **VS ಕೋಡ್ MCP ಸಂರಚನೆ**: ಉತ್ತಮ MCP ಒಗ್ಗೂಡಿಕೆಗೆ ಸಂಪೂರ್ಣ ಸೆಟ್ಅಪ್  
+✅ **AI ಚಾಟ್ ಒಗ್ಗೂಡಿಕೆ**: VS ಕೋಡ್ ನಲ್ಲಿ ಸಹಜ ಭಾಷೆಯ ಪ್ರಶ್ನೆಗಳು  
+✅ **ಡೀಬಗಿಂಗ್ ಸಾಧನಗಳು**: ಸಂಪೂರ್ಣ ಸಮಸ್ಯೆ ಪರಿಹಾರ ಮತ್ತು ಸಂಪರ್ಕ ಡಯಾಗ್ನೋಸ್ಟಿಕ್ಸ್  
+✅ **ಬಹು-ಸರ್ವರ್ ಸೆಟ್ಅಪ್**: ಹಲವಾರು MCP ಸರ್ವರ್ ಉದಾಹರಣೆಗಳಿಗಾಗಿ ಸಂರಚನೆ  
+✅ **ಕಸ್ಟಮ್ ವಿಸ್ತರಣೆಗಳು**: ರಿಟೇಲ್-ನಿರ್ದಿಷ್ಟ ವೈಶಿಷ್ಟ್ಯಗಳೊಂದಿಗೆ ಸುಧಾರಿತ VS ಕೋಡ್ ಅನುಭವ  
+✅ **ಉತ್ಪಾದನಾ ಸಿದ್ಧತೆ**: ಎಂಟರ್‌ಪ್ರೈಸ್-ಸಿದ್ಧ VS ಕೋಡ್ ಅಭಿವೃದ್ಧಿ ವಲಯ  
 
-## 🚀 ಮುಂದಿನದು ಏನು
+## 🚀 ಮುಂದುವರಿಯುವದು ಏನು
 
-**[ಪ್ರಯೋಗಶಾಲೆ 10: ನಿಯೋಜನೆ ತಂತ್ರಗಳು](../10-Deployment/README.md)** ಜೊತೆಗೆ ಮುಂದುವರಿಯಿರಿ:
+**[ಪ್ರಯೋಗ 10: ನಿಯೋಜನೆ ತಂತ್ರಗಳು](../10-Deployment/README.md)** ಅನ್ನು ಮುಂದುವರಿಸಿ:
 
-- MCP ಸರ್ವರ್‌ಗಳನ್ನು ಉತ್ಪಾದನಾ ಪರಿಸರಗಳಿಗೆ ನಿಯೋಜಿಸುವುದು  
-- ವಿಸ್ತರಣೆಗೆ ಕ್ಲೌಡ್ ಮೂಲಸೌಕರ್ಯವನ್ನು ಸಂರಚಿಸುವುದು  
-- ಸ್ವಯಂಚಾಲಿತ ನಿಯೋಜನೆಗಾಗಿ CI/CD ಪೈಪ್ಲೈನ್ಗಳನ್ನು ಜಾರಿಗೆ ತರುವುದು  
-- ಉತ್ಪಾದನಾ MCP ಸರ್ವರ್ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡುವುದು  
+- MCP ಸರ್ವರ್‌ಗಳನ್ನು ಉತ್ಪಾದನಾ ವಾತಾವರಣಗಳಿಗೆ ನಿಯೋಜಿಸಿ
+- ಉತ್ಪಾದಕತೆಗಾಗಿ ಮೆಘಾವ್ಯವಸ್ಥೆಯನ್ನು ಸಂರಚಿಸಿ
+- ಸ್ವಯಂಚಾಲಿತ ನಿಯೋಜನೆಗೆ CI/CD ಪೈಪ್ಲೈನ್‌ಗಳನ್ನು ಜಾರಿಗೆ ತರುವುದು
+- ಉತ್ಪಾದನಾ MCP ಸರ್ವರ್ ಪ್ರದರ್ಶನವನ್ನು ಮೇಲ್ವಿಚಾರಿಸಿ
 
 ## 📚 ಹೆಚ್ಚುವರಿ ಸಂಪನ್ಮೂಲಗಳು
 
-### VS Code ಅಭಿವೃದ್ಧಿ  
-- [VS Code ವಿಸ್ತರಣೆ API](https://code.visualstudio.com/api) - ಅಧಿಕೃತ ವಿಸ್ತರಣೆ ಅಭಿವೃದ್ಧಿ ಮಾರ್ಗದರ್ಶಿ  
-- [VS Code MCP ಡಾಕ್ಯುಮೆಂಟೇಶನ್](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ಏಕೀಕರಣ ಡಾಕ್ಯುಮೆಂಟೇಶನ್  
-- [VS Code ಗೆ ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್](https://code.visualstudio.com/docs/languages/typescript) - VS Code ನಲ್ಲಿ ಟೈಪ್‌ಸ್ಕ್ರಿಪ್ಟ್ ಅಭಿವೃದ್ಧಿ  
+### VS ಕೋಡ್ ಅಭಿವೃದ್ಧಿ
+- [VS ಕೋಡ್ ವಿಸ್ತರಣೆ API](https://code.visualstudio.com/api) - ಅಧಿಕೃತ ವಿಸ್ತರಣೆ ಅಭಿವೃದ್ಧಿ ಮಾರ್ಗದರ್ಶಿ
+- [VS ಕೋಡ್ MCP ಡಾಕ್ಯುಮೆಂಟೇಶನ್](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ಒಗ್ಗೂಡಿಕೆ ಡಾಕ್ಯುಮೆಂಟೇಶನ್
+- [VS ಕೋಡ್ ಗಾಗಿ TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS ಕೋಡ್‌ನಲ್ಲಿ TypeScript ಅಭಿವೃದ್ಧಿ
 
-### MCP ಪ್ರೋಟೋಕಾಲ್  
-- [ಮಾದರಿ ಸಂಧರ್ಭ ಪ್ರೋಟೋಕಾಲ್ ಸ್ಪೆಸಿಫಿಕೇಶನ್](https://modelcontextprotocol.io/specification) - ಅಧಿಕೃತ MCP ಸ್ಪೆಸಿಫಿಕೇಶನ್  
-- [MCP ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು](https://modelcontextprotocol.io/docs/best-practices) - ಜಾರಿಗೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು  
-- [ಫಾಸ್ಟ್MCP ಫ್ರೇಮ್ವರ್ಕ್](https://github.com/jlowin/fastmcp) - ಪೈಥಾನ್ MCP ಜಾರಿಗೆ  
+### MCP ಪ್ರೋಟೋಕಾಲ್
+- [ಮಾದರಿ ಸನ್ನಿವೇಶ ಪ್ರೋಟೋಕಾಲ್ ವಿವರಣೆ](https://modelcontextprotocol.io/specification) - ಅಧಿಕೃತ MCP ವಿವರಣೆ
+- [MCP ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು](https://modelcontextprotocol.io/docs/best-practices) - ಜಾರಿಗೆ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು
+- [ಫಾಸ್ಟ್ MCP ಫ್ರೇಮ್‌ವิร์ಕ್](https://github.com/jlowin/fastmcp) - ಪೈಥಾನ್ MCP ಜಾರಿಗೆ
 
-### ಅಭಿವೃದ್ಧಿ ಸಾಧನಗಳು  
-- [VS Code ನಲ್ಲಿ ಪೈಥಾನ್](https://code.visualstudio.com/docs/python/python-tutorial) - ಪೈಥಾನ್ ಅಭಿವೃದ್ಧಿ ಸೆಟ್‌ಅಪ್  
-- [VS Code ನಲ್ಲಿ ಡಿಬಗ್](https://code.visualstudio.com/docs/editor/debugging) - ಉನ್ನತ ಮಟ್ಟದ ಡಿಬಗ್ ತಂತ್ರಗಳು  
-- [VS Code ಟಾಸ್ಕ್‌ಗಳು](https://code.visualstudio.com/docs/editor/tasks) - ಟಾಸ್ಕ್ ಸ್ವಯಂಚಾಲನೆ ಮತ್ತು ಸಂರಚನೆ  
+### ಅಭಿವೃದ್ಧಿ ಸಾಧನಗಳು
+- [Python in VS ಕೋಡ್](https://code.visualstudio.com/docs/python/python-tutorial) - ಪೈಥಾನ್ ಅಭಿವೃದ್ಧಿ ಸೆಟ್ಅಪ್
+- [VS ಕೋಡ್‌ನಲ್ಲಿ ಡೀಬಗಿಂಗ್](https://code.visualstudio.com/docs/editor/debugging) - ಉನ್ನತ ಡೀಬಗಿಂಗ್ ತಂತ್ರಗಳು
+- [VS ಕೋಡ್ ಕಾರ್ಯಗಳು](https://code.visualstudio.com/docs/editor/tasks) - ಕಾರ್ಯ ಸ್ವಯಂಕ್ರಿಯೆ ಮತ್ತು ಸಂರಚನೆ
 
 ---
 
-**ಹಿಂದಿನದು**: [ಪ್ರಯೋಗಶಾಲೆ 08: ಪರೀಕ್ಷೆ ಮತ್ತು ಡಿಬಗ್](../08-Testing/README.md)  
-**ಮುಂದಿನದು**: [ಪ್ರಯೋಗಶಾಲೆ 10: ನಿಯೋಜನೆ ತಂತ್ರಗಳು](../10-Deployment/README.md)
+**ಹಿಂದೆ**: [ಪ್ರಯೋಗ 08: ಪರೀಕ್ಷೆ ಮತ್ತು ಡೀಬಗಿಂಗ್](../08-Testing/README.md)  
+**ಮುಂದೆ**: [ಪ್ರಯೋಗ 10: ನಿಯೋಜನೆ ತಂತ್ರಗಳು](../10-Deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ಅಸ್ವೀಕರಣ**:  
-ಈ ದಸ್ತಾವೇಜು [Co-op Translator](https://github.com/Azure/co-op-translator) ಎಂಬ AI ಅನುವಾದ ಸೇವೆಯನ್ನು ಬಳಸಿ ಅನುವಾದಿಸಲಾಗಿದೆ. ನಾವು ಶುದ್ಧತೆಯತ್ತ ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದರೂ, ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದಗಳಲ್ಲಿ ತಪ್ಪುಗಳು ಅಥವಾ ಅಸತ್ಯತೆಗಳು ಇರಬಹುದು ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಗಮನಿಸಿ. ಮೂಲ ಭಾಷೆಯಲ್ಲಿರುವ ಮೂಲ ದಸ್ತಾವೇಜನ್ನು ಅಧಿಕೃತ ಮೂಲವೆಂದು ಪರಿಗಣಿಸಬೇಕು. ಮಹತ್ವದ ಮಾಹಿತಿಗಾಗಿ, ವೃತ್ತಿಪರ ಮಾನವ ಅನುವಾದವನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ. ಈ ಅನುವಾದ ಬಳಕೆಯಿಂದ ಉಂಟಾಗುವ ಯಾವುದೇ ತಪ್ಪು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವಿಕೆ ಅಥವಾ ತಪ್ಪು ವಿವರಣೆಗಳಿಗೆ ನಾವು ಹೊಣೆಗಾರರಾಗುವುದಿಲ್ಲ.
+**ಅಸ್ವೀಕಾರ**:
+ಈ ದಸ್ತಾವೇಜು AI ಅನುವಾದ ಸೇವೆ [Co-op Translator](https://github.com/Azure/co-op-translator) ಬಳಸಿ ಅನುವಾದಿಸಲಾಗಿದೆ. ನಾವು ನಿಖರತೆಯನ್ನು ಸಾಧಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದರೂ, ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದಗಳಲ್ಲಿ ದೋಷಗಳು ಅಥವಾ ಅಸಡ್ಡೆಗಳು ಇರಬಹುದು. ಮೂಲ ಭಾಷೆಯಲ್ಲಿರುವ ಮೂಲ ದಸ್ತಾವೇಜು ಪ್ರಾಮಾಣಿಕ ಮೂಲವೆಂದು ಪರಿಗಣಿಸಬೇಕು. ಪ್ರಮುಖ ಮಾಹಿತಿಗಾಗಿ, ವೃತ್ತಿಪರ ಮಾನವ ಅನುವಾದವನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ. ಈ ಅನುವಾದವನ್ನು ಬಳಸುವ ಮೂಲಕ ಉಂಟಾಗುವ ಯಾವುದೇ ತಪ್ಪು ಅರ್ಥಗಳ ಅಥವಾ ತಪ್ಪು ವ್ಯಾಖ್ಯಾನಗಳ ಬಗ್ಗೆ ನಾವು ಹೊಣೆಗಾರರಲ್ಲ.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,8 +1,8 @@
-# Mallikontekstiprotokolla reaaliaikaiseen verkkohakuun
+# Mallin kontekstiprotokolla reaaliaikaiseen verkkohakuun
 
 ## Yleiskatsaus
 
-Reaaliaikainen verkkohaku on nykyisessä tietojen hallintaan perustuvassa ympäristössä välttämätöntä, jossa sovellusten on saatava välitöntä pääsyä ajantasaiseen tietoon internetissä tarjotakseen olennaisia ja ajankohtaisia vastauksia. Mallikontekstiprotokolla (MCP) edustaa merkittävää edistystä näiden reaaliaikaisten hakuprosessien optimoinnissa, parantaen haun tehokkuutta, säilyttäen kontekstuaalisen eheyttä ja kehittäen järjestelmän kokonaissuorituskykyä.
+Reaaliaikainen verkkohaku on nykyisessä informaatioon perustuvassa ympäristössä välttämätöntä, kun sovellusten täytyy saada välitöntä pääsyä ajantasaiseen tietoon internetissä tarjotakseen relevantteja ja oikea-aikaisia vastauksia. Mallin kontekstiprotokolla (MCP) edustaa merkittävää edistystä näiden reaaliaikaisten hakuprosessien optimoinnissa, parantaen haun tehokkuutta, säilyttäen kontekstuaalisen eheytensä ja parantaen järjestelmän kokonaisvaltaista suorituskykyä.
 
 Tämä moduuli tutkii, miten MCP muuttaa reaaliaikaista verkkohakua tarjoamalla standardoidun lähestymistavan kontekstinhallintaan tekoälymallien, hakukoneiden ja sovellusten välillä.
 
@@ -10,121 +10,121 @@ Tämä moduuli tutkii, miten MCP muuttaa reaaliaikaista verkkohakua tarjoamalla 
 
 Tässä kattavassa oppaassa opit:
 
-- Kuinka MCP luo saumattoman sillan tekoälymallien ja reaaliaikaisten verkkohakumahdollisuuksien välille
-- Arkkitehtonisia malleja tehokkaiden ja skaalautuvien hakuratkaisujen toteuttamiseen MCP:n avulla
-- Tekniikoita hakukontekstin säilyttämiseen useiden kyselyiden ja vuorovaikutusten ajan
-- Käytännön koodiesimerkkejä Pythonilla ja JavaScriptillä erilaisiin hakutilanteisiin
-- Menetelmiä tasapainottaa merkityksellisyyttä, ajantasaisuutta ja suorituskykyä MCP-pohjaisissa hakujärjestelmissä
+- Miten MCP luo saumattoman sillan tekoälymallien ja reaaliaikaisen verkkohakukyvyn välille
+- Arkkitehtoniset mallit tehokkaiden ja skaalautuvien hakuratkaisujen toteuttamiseen MCP:n avulla
+- Tekniikat hakukontekstin säilyttämiseksi monien kyselyjen ja vuorovaikutusten ajan
+- Käytännön koodiesimerkit Pythonilla ja JavaScriptillä eri hakutilanteisiin
+- Menetelmät tasapainottaa relevanssia, ajankohtaisuutta ja suorituskykyä MCP-pohjaisissa hakujärjestelmissä
 
 ## Johdanto reaaliaikaiseen verkkohakuun
 
-Reaaliaikainen verkkohaku on teknologinen lähestymistapa, joka mahdollistaa jatkuvan kyselyn, käsittelyn ja analysoinnin verkossa julkaistavasta tai päivitettävästä tiedosta, antaen järjestelmille mahdollisuuden tarjota tuoretta ja relevanttia tietoa minimiviiveellä. Toisin kuin perinteiset hakujärjestelmät, jotka toimivat indeksoidulla tiedolla, joka saattaa olla tunteja tai päiviä vanhaa, reaaliaikaiset haut käsittelevät verkkotietoa elävältä, tarjoten tietoa ja näkymiä, jotka heijastavat online-sisällön nykytilaa.
+Reaaliaikainen verkkohaku on teknologinen lähestymistapa, joka mahdollistaa jatkuvan web-pohjaisen tiedon kyselyn, käsittelyn ja analysoinnin sitä mukaa kun tieto julkaistaan tai päivitetään, mahdollistaen järjestelmille tuottaa tuoretta ja relevanttia tietoa mahdollisimman vähäisellä viiveellä. Toisin kuin perinteiset hakujärjestelmät, jotka toimivat indeksöidyn, useamman tunnin tai päivän vanhan datan pohjalta, reaaliaikainen haku käsittelee webin elävää dataa tarjoten näkemyksiä ja tietoa, joka heijastaa verkkosisällön nykytilaa.
 
-### Reaaliaikaisen verkkohakujen keskeiset käsitteet:
+### Reaaliaikaisen verkkohakukon keskeiset käsitteet:
 
-- **Jatkuva kyselyiden käsittely**: Hakukyselyitä käsitellään jatkuvasti päivittyviä tietolähteitä vastaan
-- **Ajantasaisuuden priorisointi**: Järjestelmät on suunniteltu korostamaan tuoretta tietoa
-- **Merkityksellisyyden ja ajantasaisuuden tasapaino**: Tasapainon ylläpitäminen merkityksen ja ajantasaisuuden välillä
-- **Skaalautuva arkkitehtuuri**: Järjestelmien on pystyttävä käsittelemään vaihtelevia kyselykuormia ja tietomääriä
-- **Kontekstuaalinen ymmärrys**: Käyttäjän kontekstin säilyttäminen hakukierrosten aikana on ratkaisevaa merkityksellisten tulosten saamiseksi
-- **Dynaaminen kyselyiden uudelleenmuotoilu**: Kyselyjen mukautuva muuttaminen kontekstin ja aiempien tulosten perusteella
-- **Monilähteinen integraatio**: Tulosten yhdistäminen useista hakupalveluista ja verkkolähteistä
-- **Semanttinen ymmärrys**: Kyselyjen ja sisällön käsittely merkityksen perusteella eikä pelkästään avainsanojen
-- **Reaaliaikainen sijoittelu**: Tulosten sijoittelun jatkuva säätö uusien tietojen ilmaantuessa
+- **Jatkuva kyselyjen käsittely**: Hakukyselyt käsitellään jatkuvasti päivittyviä tietolähteitä vastaan
+- **Ajankohtaisuuden priorisointi**: Järjestelmät on suunniteltu priorisoimaan tuore tieto
+- **Relevanssin tasapaino**: Säilytetään tasapaino relevanssin ja ajankohtaisuuden välillä
+- **Skaalautuva arkkitehtuuri**: Järjestelmien on kyettävä käsittelemään vaihtelevia kyselykuormia ja datamääriä
+- **Kontekstuaalinen ymmärrys**: Käyttäjän kontekstin säilyttäminen hakusessioiden välillä on olennaista merkityksellisten tulosten tuottamiseksi
+- **Dynaaminen kyselyjen uudelleenmuodostus**: Kyselyjen mukauttaminen kontekstin ja aiempien tulosten perusteella
+- **Monilähteinen integraatio**: Tulosten yhdistäminen useilta hakupalveluntarjoajilta ja verkkolähteistä
+- **Semanttinen ymmärrys**: Kyselyjen ja sisällön käsittely merkityksen eikä pelkkien avainsanojen pohjalta
+- **Reaaliaikainen järjestäminen**: Tulosten järjestyksen jatkuva säätö, kun uutta tietoa tulee saataville
 
-### Mallikontekstiprotokolla ja reaaliaikainen verkkohaku
+### Mallin kontekstiprotokolla ja reaaliaikainen verkkohaku
 
-Mallikontekstiprotokolla (MCP) ratkaisee useita keskeisiä haasteita reaaliaikaisen verkkohakujen ympäristöissä:
+Mallin kontekstiprotokolla (MCP) ratkaisee useita kriittisiä haasteita reaaliaikaisen verkkohakukon ympäristöissä:
 
-1. **Hakukontekstin säilyttäminen**: MCP standardoi miten konteksti ylläpidetään hajautetuissa hakukomponenteissa, varmistaen, että tekoälymallit ja prosessointisolmut saavat käyttöönsä olennaisen kyselyhistorian ja käyttäjäasetukset.
+1. **Hakukontekstin säilyttäminen**: MCP standardisoi tavan, jolla konteksti ylläpidetään hajautetuissa hakukomponenteissa varmistaen, että tekoälymallit ja käsittelysolmut pääsevät käsiksi relevanttiin kyselyhistoriaan ja käyttäjäasetuksiin.
 
-2. **Tehokas kyselyiden hallinta**: Tarjoamalla rakenteellisia mekanismeja kontekstin siirtoon MCP vähentää ylimääräistä kuormitusta, joka syntyy kontekstin jatkuvasta toistamisesta kussakin hakukierrossa.
+2. **Tehokas kyselyjen hallinta**: Tarjoamalla jäsenneltyjä mekanismeja kontekstin siirtoon MCP vähentää kontekstin toistamiseen liittyvää kuormitusta jokaisessa hakukierroksessa.
 
-3. **Yhteensopivuus**: MCP luo yhteisen kielen kontekstin jakamiseen erilaisten hakuteknologioiden ja tekoälymallien välillä, mahdollistaen joustavammat ja laajennettavammat arkkitehtuurit.
+3. **Yhteensopivuus**: MCP luo yhteisen kielen kontekstin jakamiseen erilaisten hakuteknologioiden ja tekoälymallien välillä mahdollistaen joustavampia ja laajennettavampia arkkitehtuureja.
 
-4. **Hakuun optimoitu konteksti**: MCP:n toteutukset voivat priorisoida, mitkä konteksti-elementit ovat kaikkein olennaisimpia tehokkaan haun kannalta, optimoiden sekä suorituskykyä että tarkkuutta.
+4. **Hakua optimoitu konteksti**: MCP:n toteutukset voivat priorisoida, mitkä kontekstielementit ovat tärkeimpiä tehokkaaseen hakuun, optimoiden sekä suorituskykyä että tarkkuutta.
 
-5. **Mukautuva hakuprosessointi**: Oikeanlaisen kontekstinhallinnan avulla MCP:n kautta hakujärjestelmät voivat dynaamisesti säätää prosessointia käyttäjän tarpeiden ja tietoympäristön muuttuessa.
+5. **Sopeutuva hakukäsittely**: Oikeanlainen kontekstinhallinta MCP:n kautta mahdollistaa hakujärjestelmien dynaamisen mukauttamisen kehittyvien käyttäjätarpeiden ja tiedonmaisemien mukaan.
 
-Nykyaikaisissa sovelluksissa uutisten kokoamisesta tutkimusavustajiin MCP:n integrointi verkkohakuteknologioihin mahdollistaa älykkäämpiä, kontekstitietoisia hakuja, jotka tarjoavat yhä merkityksellisempiä tuloksia käyttäjän vuorovaikutusten jatkuessa.
+Nykyisissä sovelluksissa uutisten aggregoinnista tutkimusavustajiin MCP:n integrointi verkkohakuteknologioihin mahdollistaa älykkäämmän, kontekstiajassa hakevan haun, joka voi tarjota yhä relevantimpia tuloksia käyttäjän vuorovaikutusten jatkuessa.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopuksi osaat:
+Tämän oppitunnin jälkeen osaat:
 
-- Ymmärtää reaaliaikaisen verkkohakujen perusteet ja niiden haasteet nykyaikaisissa sovelluksissa
-- Selittää, miten Mallikontekstiprotokolla (MCP) parantaa reaaliaikaisen verkkohakujen kyvykkyyksiä
-- Toteuttaa MCP-pohjaisia hakuratkaisuja käyttäen suosittuja kehityskehyksiä ja API-rajapintoja
-- Suunnitella ja ottaa käyttöön skaalautuvia, korkean suorituskyvyn hakuar-kkitehtuureja MCP:n avulla
-- Soveltaa MCP-käsitteitä erilaisissa käyttötapauksissa, kuten semanttinen haku, tutkimusapu ja tekoälyn rikastama selaaminen
-- Arvioida MCP-pohjaisen hakuteknologian kehittyviä suuntauksia ja tulevia innovaatioita
-- Kehittää kontekstia ymmärtäviä hakujärjestelmiä, jotka oppivat käyttäjän vuorovaikutuksista
-- Integroida verkkohakumahdollisuudet tekoälyavustajiin käyttäen standardoituja MCP-protokollia
-- Luoda monivaiheisia hakuprosesseja, jotka asteittain tarkentavat tuloksia kontekstin perusteella
-- Optimoida hakusuorituskykyä säilyttäen laaja kontekstitietoisuus
+- Ymmärtää reaaliaikaisen verkkohakukon perusteet ja siihen liittyvät haasteet nykysovelluksissa
+- Selittää, miten Mallin kontekstiprotokolla (MCP) parantaa reaaliaikaista verkkohakua
+- Toteuttaa MCP-pohjaisia hakuratkaisuja suosittujen kehysten ja rajapintojen avulla
+- Suunnitella ja ottaa käyttöön skaalautuvia, korkean suorituskyvyn hakurakenteita MCP:n avulla
+- Soveltaa MCP-konsepteja erilaisiin käyttötapauksiin, kuten semanttiseen hakuun, tutkimusavustamiseen ja tekoälyllä tehostettuun selaamiseen
+- Arvioida MCP-pohjaisten hakuteknologioiden nousevia trendejä ja tulevia innovaatioita
+- Kehittää kontekstia ymmärtäviä hakujärjestelmiä, jotka oppivat käyttäjien vuorovaikutuksista
+- Integroi verkkohakutoiminnot tekoälyavustajiin käyttämällä standardoituja MCP-protokollia
+- Luoda monivaiheisia hakuprosesseja, jotka parantavat tuloksia kontekstin perusteella
+- Optimoida haun suorituskyky ylläpitäen samalla kattavaa kontekstin ymmärrystä
 
 ### Määritelmä ja merkitys
 
-Reaaliaikainen verkkohaku käsittää verkkopohjaisen tiedon jatkuvan kyselyn, haun ja toimituksen minimiviiveellä. Toisin kuin perinteiset hakukoneet, jotka indeksoivat ja selaavat verkkoa ajoittain, reaaliaikainen haku pyrkii paljastamaan tietoa heti saataville tullessaan, mahdollistaen välittömän pääsyn ajan tasalla olevaan sisältöön.
+Reaaliaikainen verkkohaku tarkoittaa jatkuvaa web-pohjaisen tiedon kyselyä, hakua ja toimitusta minimaalisen viiveen kera. Toisin kuin perinteiset hakukoneet, jotka indeksoivat webin säännöllisesti, reaaliaikainen haku pyrkii tuomaan tiedon esiin heti kun se on saatavilla mahdollistaen välittömän pääsyn kaikkein ajantasaisimpaan sisältöön.
 
-Reaaliaikaisen verkkohakujen keskeisiä ominaisuuksia ovat:
+Reaaliaikaisen verkkohakukon keskeisiä ominaisuuksia ovat:
 
-- **Tuoreus**: Ajankohtaisten sisältöjen ja päivitysten priorisointi
-- **Jatkuva prosessointi**: Uuden tiedon jatkuva seuranta
-- **Kyselyjen mukautuminen**: Hakukyselyjen hienosäätö kontekstin ja palautteen perusteella
+- **Tuoreus**: Äskettäin julkaistun sisällön ja päivitysten priorisointi
+- **Jatkuva käsittely**: Uuden tiedon jatkuva valvonta
+- **Kyselyjen mukauttaminen**: Hakukyselyjen täsmentäminen kontekstin ja palautteen perusteella
 - **Välitön toimitus**: Hakutulosten tarjoaminen mahdollisimman nopeasti
-- **Kontekstin säilyttäminen**: Aiempien kyselyiden hyödyntäminen merkityksellisyyden parantamiseksi
+- **Kontekstin säilyttäminen**: Parantuneen relevanssin varmistaminen aiempien kyselyiden hyödyntämisen avulla
 
 ### Haasteet perinteisessä verkkohakussa
 
-Perinteisillä verkkohakumenetelmillä on useita rajoituksia, kun niitä sovelletaan reaaliaikaisiin tilanteisiin:
+Perinteiset verkkohakulähestymistavat kohtaavat monia rajoituksia, kun niitä sovelletaan reaaliaikaisiin käyttötapauksiin:
 
-1. **Kontekstin pirstoutuminen**: Vaikeus säilyttää hakukonteksti useiden kyselyjen välillä
-2. **Tiedon tuoreuden haasteet**: Vanhimman tiedon saatavuuden ja priorisoinnin ongelmat
+1. **Kontekstin sirpaloituminen**: Vaikeus ylläpitää hakukontekstia useiden kyselyiden ajan
+2. **Tiedon ajankohtaisuus**: Haasteita pääsyssä ja priorisoinnissa kaikkein uusimpaan tietoon
 3. **Integraation monimutkaisuus**: Yhteensopivuusongelmat hakujärjestelmien ja sovellusten välillä
-4. **Viiveongelmat**: Tasapaino kattavan haun ja vastausajan vaatimusten välillä
-5. **Merkityksen säätö**: Tarkkuuden ja merkityksellisyyden varmistaminen samalla kun korostetaan ajantasaisuutta
+4. **Viiveongelmat**: Haun kattavuuden ja vasteaikavaatimusten tasapainottaminen
+5. **Relevanssin hienosäätö**: Tarkkuuden ja relevanssin varmistaminen ajankohtaisuuden priorisoinnista huolimatta
 
-## Mallikontekstiprotokollan (MCP) ymmärtäminen haussa
+## Mallin kontekstiprotokollan (MCP) ymmärtäminen hakukonteksteissa
 
 ### Mikä on MCP hakukonteksteissa?
 
-Mallikontekstiprotokolla (MCP) on standardoitu viestintäprotokolla, joka on suunniteltu helpottamaan tehokasta vuorovaikutusta tekoälymallien ja sovellusten välillä. Reaaliaikaisen verkkohakujen kontekstissa MCP tarjoaa kehyksen:
+Mallin kontekstiprotokolla (MCP) on standardoitu viestintäprotokolla, joka suunniteltiin helpottamaan tehokasta vuorovaikutusta tekoälymallien ja sovellusten välillä. Reaaliaikaisen verkkohakukon yhteydessä MCP tarjoaa kehyksen:
 
 - Hakukontekstin säilyttämiseen koko kyselyketjun ajan
 - Hakukyselyjen ja tulosten formaattien standardisointiin
-- Hakuehtojen ja tulosten siirron optimointiin
+- Hakuparametrien ja tulosten siirron optimointiin
 - Mallin ja hakukoneen välisen viestinnän parantamiseen
 
 ### Keskeiset komponentit ja arkkitehtuuri
 
 MCP-arkkitehtuuri reaaliaikaisessa verkkohakussa koostuu useista keskeisistä osista:
 
-1. **Kyselykontekstin käsittelijät**: Hallitsevat ja ylläpitävät hakukontekstia useiden kyselyiden aikana
-2. **Hakuprosessorit**: Käsittelevät saapuvia hakupyyntöjä kontekstitietoisilla tekniikoilla
-3. **Protokollaadapterit**: Muuntavat eri hakujen API-rajapinnat konteksti säilyttäen
-4. **Kontekstivarasto**: Tallentaa ja hakee tehokkaasti hakuhistorian ja asetukset
-5. **Hakuliittimet**: Yhdistävät erilaisiin hakukoneisiin ja verkkorajapintoihin
+1. **Kyselykontekstin käsittelijät**: Hallinnoivat ja ylläpitävät hakukontekstia useiden kyselyiden ajan
+2. **Hakuprosessorit**: Käsittelevät saapuvat hakupyynnöt kontekstia hyödyntäen
+3. **Protokollasovittimet**: Muuntavat eri hakujen rajapintojen välillä säilyttäen kontekstin
+4. **Kontekstivarasto**: Tallentaa ja hakee tehokkaasti hakuhistorian ja käyttäjäasetukset
+5. **Hakuyhdistimet**: Yhdistävät erilaisiin hakukoneisiin ja web-API:hin
 
 ```mermaid
 graph TD
     subgraph "Tietolähteet"
         Web[Verkkosisältö]
-        APIs[Ulkopuoliset API:t]
-        DB[Tietokannat]
+        APIs[Ulkoiset API:t]
+        DB[Tietopankit]
         News[Uutissyötteet]
     end
 
-    subgraph "MCP-hakukerros"
-        SC[Hakuliittimet]
-        PA[Protokollaadapterit]
-        CH[Kontekstinkäsittelijät]
+    subgraph "MCP Hakukerros"
+        SC[Hakuliitännät]
+        PA[Protokolla-adapterit]
+        CH[Kontextinkäsittelijät]
         SP[Hakuprosessorit]
-        CS[Kontekstin tallennus]
+        CS[Kontextivarasto]
     end
 
     subgraph "Käsittely & Analyysi"
-        RE[Relevanssimoottori]
+        RE[Merkityskone]
         ML[ML-mallit]
         NLP[NLP-käsittely]
         Rank[Ranking-järjestelmä]
@@ -133,7 +133,7 @@ graph TD
     subgraph "Sovellukset & Palvelut"
         RA[Tutkimusavustaja]
         Alerts[Hälytysjärjestelmät]
-        KB[Tietokanta]
+        KB[Tietopankki]
         API[API-palvelut]
     end
 
@@ -144,23 +144,23 @@ graph TD
     
     SC -->|Raakatulokset| PA
     PA -->|Normalisoidut tulokset| CH
-    CH <-->|Kontekstitoiminnot| CS
-    CH -->|Kontekstilla rikastetut tulokset| SP
+    CH <-->|Kontextitoiminnot| CS
+    CH -->|Kontextilla rikastetut tulokset| SP
     SP -->|Käsitellyt tulokset| RE
     SP -->|Ominaisuudet| ML
     SP -->|Teksti| NLP
     
     RE -->|Järjestetyt tulokset| Rank
     ML -->|Ennusteet| Rank
-    NLP -->|Entiteetit & Suhteet| Rank
+    NLP -->|Entiteetit & Relaatiot| Rank
     
     Rank -->|Lopulliset tulokset| RA
-    ML -->|Näkemykset| Alerts
-    NLP -->|Rakenteinen data| KB
+    ML -->|Oivallukset| Alerts
+    NLP -->|Rakenne-data| KB
     
     RA -->|Tutkimus| Users((Users))
     Alerts -->|Ilmoitukset| Users
-    KB <-->|Tiedon käyttöoikeus| API
+    KB <-->|Tiedon saatavuus| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -175,41 +175,41 @@ graph TD
 
 ### Miten MCP parantaa reaaliaikaista verkkohakua
 
-MCP ratkaisee perinteisen verkkohakujen haasteita seuraavasti:
+MCP ratkaisee perinteisen verkkohakukon haasteet seuraavasti:
 
-- **Kontekstuaalinen jatkuvuus**: Säilyttää yhteydet kyselyiden välillä koko hakusession ajan
-- **Optimoitu siirto**: Vähentää turhaa päällekkäisyyttä hakuehdoissa älykkään kontekstinhallinnan avulla
-- **Standardoidut rajapinnat**: Tarjoaa yhtenäiset API-rajapinnat hakukomponenteille
-- **Vähentynyt viive**: Minimoi prosessointikuormituksen tehokkaan kontekstinkäsittelyn avulla
-- **Parannettu merkityksellisyys**: Parantaa hakutulosten osuvuutta säilyttämällä käyttäjän aikomuksen monen kyselyn yli
+- **Kontekstuaalinen jatkuvuus**: Ylläpitää suhteita kyselyjen välillä koko hakusession ajan
+- **Optimoitu tiedonsiirto**: Vähentää hakuparametrien päällekkäisyyttä älykkään kontekstinhallinnan avulla
+- **Standardoidut rajapinnat**: Tarjoaa yhtenäiset API:t hakukomponenteille
+- **Vähentynyt viive**: Minimoi käsittelykuormaa tehokkaalla kontekstinhallinnalla
+- **Parannettu relevanssi**: Parantaa hakutulosten relevanssia säilyttämällä käyttäjän aikomuksen usean kyselyn läpi
 
 ## Integraatio ja toteutus
 
-Reaaliaikaiset verkkohakujärjestelmät vaativat huolellista arkkitehtuurisuunnittelua ja toteutusta suorituskyvyn ja kontekstuaalisen eheyden ylläpitämiseksi. Mallikontekstiprotokolla tarjoaa standardoidun lähestymistavan tekoälymallien ja hakuteknologioiden yhdistämiseen, mahdollistaen kehittyneemmät ja kontekstitietoiset hakuputket.
+Reaaliaikaisten verkkohakujärjestelmien suunnittelu ja toteutus vaatii huolellista arkkitehtuuria, joka ylläpitää sekä suorituskykyä että kontekstuaalista eheyttä. Mallin kontekstiprotokolla tarjoaa standardoidun lähestymistavan tekoälymallien ja hakuteknologioiden integrointiin, mahdollistaen kehittyneemmät ja kontekstia hyödyntävät hakuputket.
 
-### MCP:n integroinnin yleiskatsaus hakuar-kkitehtuureissa
+### Yleiskatsaus MCP:n integrointiin hakurakenteissa
 
-MCP:n toteuttamisessa reaaliaikaisissa verkkohakuympäristöissä on otettava huomioon useita keskeisiä seikkoja:
+MCP:n toteuttaminen reaaliaikaisessa verkkohakukassa sisältää useita tärkeitä näkökohtia:
 
-1. **Hakukontekstin serialisointi**: MCP tarjoaa tehokkaita mekanismeja kontekstuaalisen tiedon koodaukseen hakupyyntöihin, varmistaen että olennainen konteksti seuraa kyselyä koko prosessointiputken läpi. Tämä sisältää standardoidut serialisointiformaatit, jotka on optimoitu hakuihin liittyvälle metatiedolle.
+1. **Hakukontekstin sarjallistaminen**: MCP tarjoaa tehokkaita mekanismeja kontekstuaalisen tiedon koodaamiseen hakupyynnöissä varmistaen, että olennainen konteksti seuraa kyselyä koko käsittelyputken ajan. Tämä sisältää standardoidut, hakua varten optimoidut sarjallistamisformaatit.
 
-2. **Tilallisen hakuprosessoinnin mahdollistaminen**: MCP mahdollistaa älykkäämmän tilallisen prosessoinnin ylläpitämällä johdonmukaista kontekstin esitystä hakukierrosten aikana. Tämä on erityisen arvokasta monivaiheisissa hakuputkissa, joissa kontekstin tarkentaminen parantaa tuloksia.
+2. **Tilan säilyttävä hakukäsittely**: MCP mahdollistaa älykkäämmän, tilaa säilyttävän käsittelyn ylläpitämällä yhdenmukaista kontekstiesitystä hakukierrosten välillä. Erityisen arvokas monivaiheisissa hakuputkissa, joissa kontekstin täsmennys parantaa tuloksia.
 
-3. **Kyselyiden laajentaminen ja tarkentaminen**: MCP:n toteutukset hakujärjestelmissä mahdollistavat edistyksellisen kyselyiden laajentamisen ja hienosäädön kertyneen kontekstin perusteella, antaen yhä merkityksellisempiä tuloksia hakusession edetessä.
+3. **Kyselyjen laajentaminen ja täsmentäminen**: MCP:n toteutukset hakujärjestelmissä voivat helpottaa kehittynyttä kyselyjen laajentamista ja täsmentämistä kertyneen kontekstin pohjalta, mahdollistaen yhä relevantimpia tuloksia hakusession edetessä.
 
-4. **Tulosten välimuisti ja priorisointi**: Standardoimalla kontekstin käsittelyä MCP auttaa hallitsemaan tulosten välimuistia ja priorisointia, jolloin komponentit voivat mukautua kehittyvän hakukontekstin mukaan.
+4. **Tulosten välimuisti ja priorisointi**: Standardoimalla kontekstinkäsittely MCP auttaa hallitsemaan tulosvälimuistia ja priorisointia antaen komponenteille mahdollisuuden sopeutua kehittyvän hakukontekstin mukaan.
 
-5. **Haun federaatio ja yhdistäminen**: MCP edistää kehittyneempää haun federointia useiden backendien välillä tarjoamalla rakenteellisia esityksiä hakukontekstista, mahdollistaen merkityksellisemmän tulosten yhdistämisen eri lähteistä.
+5. **Haun federaatio ja aggregaatio**: MCP mahdollistaa kehittyneempää hakujärjestelmien federaatiota useiden taustajärjestelmien välillä tarjoamalla jäsenneltyjä hakukontekstin esityksiä, jotka tukevat merkityksellisempää tulosten yhdistämistä eri lähteistä.
 
-MCP:n toteutus erilaisissa hakuteknologioissa luo yhtenäisen lähestymistavan kontekstinhallintaan, vähentäen räätälöidyn integraatiokoodin tarvetta samalla kun parantaa järjestelmän kykyä säilyttää merkityksellinen konteksti hakukyselyiden kehittyessä.
+MCP:n käyttöönotto eri hakuteknologioissa muodostaa yhtenäisen lähestymistavan kontekstinhallintaan, vähentäen tarvetta räätälöidylle integraatiokoodille samalla kun parantaa järjestelmän kykyä ylläpitää merkityksellistä kontekstia kyselyjen muuttuessa.
 
 ### MCP eri verkkohakutoteutuksissa
 
-Nämä esimerkit noudattavat nykyistä MCP-määritystä, joka keskittyy JSON-RPC-pohjaiseen protokollaan eri siirtomekanismeilla. Koodi osoittaa, miten voit toteuttaa mukautettuja hakusin­tegraatioita säilyttäen täyden yhteensopivuuden MCP-protokollan kanssa.
+Nämä esimerkit perustuvat nykyiseen MCP-spesifikaatioon, joka keskittyy JSON-RPC -pohjaiseen protokollaan, jossa on erilaiset siirtomekanismit. Koodi osoittaa, miten voit toteuttaa räätälöidyn haun integroiden samalla täydellisesti MCP-protokollaan.
 
 
 <details>
-<summary>Python-toteutus yleisellä hakuliittymällä</summary>
+<summary>Python-toteutus yleisellä hakurajapinnalla</summary>
 
 ```python
 import asyncio
@@ -219,16 +219,16 @@ from typing import Dict, Any, Optional, List
 from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 
-# Tuo standardit MCP-kirjastot
+# Tuodaan vakio MCP-kirjastot
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# Luo FastMCP-palvelin verkkohakua varten
+# Luodaan FastMCP-palvelin verkkohakua varten
 search_server = FastMCP("WebSearch")
 
-# Luokka hallinnoi verkkohakuoperaatioita
+# Luokka verkkohakutoimintojen käsittelyyn
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -251,7 +251,7 @@ class WebSearchHandler:
                            exclude_domains: List[str] = None,
                            time_period: str = "any") -> Dict[str, Any]:
         """Perform web search using the search API"""
-        # Rakenna hakuparametrit
+        # Rakennetaan hakuparametrit
         search_params = {
             "q": query,
             "limit": max_results,
@@ -264,7 +264,7 @@ class WebSearchHandler:
         if exclude_domains:
             search_params["exclude_site"] = ",".join(exclude_domains)
         
-        # Suorita hakupyyntö
+        # Suoritetaan hakupyyntö
         try:
             async with self.session.get(
                 self.api_endpoint,
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Muunna API-kohtainen vastaus standardimuotoon
+                # Muunnetaan API-kohtainen vastaus yleiseen muotoon
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Alusta hakukäsittelijä
+# Alustetaan hakukäsittelijä
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Määritä elinkaari hallinnoimaan hakukäsittelijää
+# Määritetään elinkaari hakukäsittelijän hallitsemiseksi
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,10 +312,10 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Aseta elinkaari palvelimelle
+# Asetetaan palvelimen elinkaari
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Rekisteröi verkkohakutyökalu
+# Rekisteröidään verkkohakutyökalu
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -347,15 +347,15 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Esimerkki asiakaskäytöstä
+# Esimerkki asiakkaan käytöstä
 async def client_example():
-    # Yhdistä hakupalvelimeen käyttäen Streamable HTTP -välitystä
+    # Yhdistetään hakupalvelimeen Streamable HTTP -kuljetuksella
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Alusta yhteys
+            # Alustetaan yhteys
             await session.initialize()
             
-            # Kutsu web_search-työkalua
+            # Kutsutaan web_search-työkalua
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -368,15 +368,15 @@ async def client_example():
             
             print(f"Search results: {search_results}")
 
-# Palvelimen suoritus-esimerkki
+# Palvelimen suoritusesimerkki
 if __name__ == "__main__":
-    # Aja palvelin Streamable HTTP -välityksellä
+    # Ajetaan palvelin Streamable HTTP -kuljetuksella
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>JavaScript-toteutus selaimessa tapahtuvaan hakuun</summary>
+<summary>JavaScript-toteutus selainpohjaisella haulla</summary>
 
 
 ```javascript
@@ -391,7 +391,7 @@ const searchServer = new McpServer({
     description: "A server that provides web search capabilities"
 });
 
-// Hakupalveluluokka
+// Hakupalvelun luokka
 class SearchService {
     constructor(searchApiUrl, apiKey) {
         this.searchApiUrl = searchApiUrl;
@@ -407,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Rakenna hakujen URL parametreilla
+        // Rakenna hakusivun URL parametreineen
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Muunna API-kohtainen vastaus standardimuotoon
+            // Muunna API-spesifinen vastaus standardimuotoon
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -464,7 +464,7 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// Aseta kontekstin tarjoaja palvelimelle
+// Määritä kontekstin tarjoaja palvelimelle
 searchServer.setContextProvider(() => {
     return {
         searchService
@@ -512,7 +512,7 @@ searchServer.tool({
     }
 });
 
-// Esimerkkiasiakaskoodi yhteyden muodostamiseen hakupalvelimeen
+// Esimerkkiasiakaskoodi hakupalvelimeen yhdistämiseen
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
@@ -561,102 +561,104 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 ## Koodiesimerkkien vastuuvapauslauseke
 
-> **Tärkeä huomautus**: Alla olevat koodiesimerkit demonstroivat Mallikontekstiprotokollan (MCP) integrointia verkkohakutoiminnallisuuteen. Vaikka ne noudattavat virallisten MCP SDK:iden malleja ja rakenteita, ne on yksinkertaistettu opetustarkoituksiin.
+> **Tärkeä huomautus**: Alla olevat koodiesimerkit demonstroivat Mallin kontekstiprotokollan (MCP) integrointia verkkohakutoiminnallisuuteen. Vaikka ne noudattavat virallisten MCP SDK:iden malleja ja rakenteita, niitä on yksinkertaistettu opetustarkoituksiin.
 > 
-> Nämä esimerkit havainnollistavat:
+> Näissä esimerkeissä esitellään:
 > 
-> 1. **Python-toteutus**: FastMCP-palvelin, joka tarjoaa verkkohakutyökalun ja yhdistää ulkoiseen hakupalvelun APIin. Tämä esimerkki näyttää asianmukaisen elinkaaren hallinnan, kontekstin käsittelyn ja työkalun toteutuksen noudattaen [virallisen MCP Python SDK:n](https://github.com/modelcontextprotocol/python-sdk) malleja. Palvelin käyttää suositeltua Streamable HTTP -siirtoa, joka on korvannut vanhemman SSE-siirron tuotantokäytössä.
+> 1. **Python-toteutus**: FastMCP-palvelin, joka tarjoaa verkkohakutyökalun ja yhdistyy ulkopuoliseen hakupalvelun API:in. Tämä esimerkki osoittaa asianmukaisen elinkaaren hallinnan, kontekstinkäsittelyn ja työkalun toteutuksen noudattaen [virallisen MCP Python SDK:n](https://github.com/modelcontextprotocol/python-sdk) malleja. Palvelin hyödyntää suositeltua Streamable HTTP -siirtotekniikkaa, joka on syrjäyttänyt vanhemman SSE-siirron tuotantokäytössä.
 > 
-> 2. **JavaScript-toteutus**: TypeScript/JavaScript-toteutus FastMCP-mallilla [virallisen MCP TypeScript SDK:n](https://github.com/modelcontextprotocol/typescript-sdk) pohjalta hakupalvelinratkaisun luomiseksi asianmukaisilla työkalumääritelmillä ja asiakasyhteyksillä. Se seuraa uusimpia suositeltuja malleja istunnon hallinnan ja kontekstin säilyttämisen osalta.
+> 2. **JavaScript-toteutus**: TypeScript/JavaScript-toteutus FastMCP-kuviolla [virallisen MCP TypeScript SDK:n](https://github.com/modelcontextprotocol/typescript-sdk) pohjalta luodakseen hakupalvelimen, jossa on asianmukaiset työkalumääritelmät ja asiakasyhteydet. Se noudattaa viimeisimpiä suosituksia istunnon hallinnassa ja kontekstin säilyttämisessä.
 > 
-> Näissä esimerkeissä tarvitaan tuotantokäytössä lisävirheiden käsittelyä, autentikointia ja erityisiä API-integraatiokoodeja. Näytetyt hakupalvelun API-päätepisteet (`https://api.search-service.example/search`) ovat paikkamerkkejä ja ne on korvattava todellisilla hakupalvelupisteillä.
+> Nämä esimerkit vaatisivat tuotantokäyttöön lisäkäsittelyä virhetilanteisiin, autentikointia sekä erillistä API-integraatiokoodia. Näytetyt hakupalvelujen rajapinnat (`https://api.search-service.example/search`) ovat paikkamerkkejä ja ne tulisi korvata todellisilla hakupalvelun osoitteilla.
 > 
-> Täyden toteutustiedon ja ajankohtaisten menetelmien osalta katso [virallinen MCP-määritys](https://spec.modelcontextprotocol.io/) ja SDK-dokumentaatio.
+> Täydellisten toteutustietojen ja ajantasaisimpien lähestymistapojen osalta,
+> tutustu [viralliseen MCP-määritykseen](https://modelcontextprotocol.io/specification/2026-07-28/)
+> ja SDK-dokumentaatioon.
 
 ## Keskeiset käsitteet
 
-### Mallikontekstiprotokolla (MCP) kehys
+### Mallin kontekstiprotokolla (MCP) -kehys
 
-Mallikontekstiprotokolla tarjoaa perustana standardoidun tavan tekoälymallien, sovellusten ja palveluiden väliselle kontekstin vaihdolle. Reaaliaikaisessa verkkohakussa tämä kehys on olennainen johdonmukaisten, monikierroksisten haku­kokemusten luomiseksi. Keskeiset komponentit ovat:
+Pohjimmiltaan Mallin kontekstiprotokolla tarjoaa standardoidun tavan tekoälymallien, sovellusten ja palveluiden kontekstin vaihtoon. Reaaliaikaisessa verkkohakussa tämä kehys on välttämätön yhtenäisten, monikierrosaikaisten hakukokemusten luomiseksi. Keskeisiä osia ovat:
 
-1. **Asiakas-palvelin arkkitehtuuri**: MCP erottaa selkeästi hakuklientit (pyyntöjen tekijät) ja hakupalvelimet (tarjoajat) mahdollistaen joustavat käyttöönotto­mallit.
+1. **Asiakas-palvelin-arkkitehtuuri**: MCP määrittää selkeän eron hakuklienttien (pyytäjien) ja hakupalvelinten (tarjoajien) välillä mahdollistaen joustavat käyttöönotot.
 
-2. **JSON-RPC viestintä**: Protokolla käyttää JSON-RPC:ta viestien vaihtoon, tehden siitä yhteensopivan web-teknologioiden kanssa ja helposti toteutettavan eri alustoilla.
+2. **JSON-RPC-viestintä**: Protokolla käyttää JSON-RPC:tä viestien vaihdossa, tehden siitä yhteensopivan web-teknologioiden kanssa ja helpon toteuttaa eri alustoilla.
 
-3. **Kontekstinhallinta**: MCP määrittelee rakenteelliset menetelmät hakukontekstin ylläpitämiseksi, päivittämiseksi ja hyödyntämiseksi useiden vuorovaikutusten aikana.
+3. **Kontekstinhallinta**: MCP määrittelee jäsennellyt menetelmät hakukontekstin ylläpitoon, päivitykseen ja hyödyntämiseen useiden vuorovaikutusten aikana.
 
-4. **Työkalumääritelmät**: Hakumahdollisuudet esitellään standardoituina työkaluina, joissa on selkeästi määritellyt parametrit ja paluuarvot.
+4. **Työkalumääritelmät**: Hakuominaisuudet avataan standardoituina työkaluina, joilla on selkeästi määritellyt parametrit ja paluuarvot.
 
-5. **Suoratoistotuki**: Protokolla tukee tulosten suoratoistoa, mikä on keskeistä reaaliaikaisessa haussa, joissa tulokset saapuvat porrastetusti.
+5. **Suoratoistotuki**: Protokolla tukee tulosten suoratoistoa, mikä on välttämätöntä reaaliaikaisessa haussa, jossa tulokset voivat saapua asteittain.
 
 ### Verkkohakujen integraatiomallit
 
-MCP:tä integroidessa verkkohakuun nousee esiin useita malleja:
+MCP:tä integroidessa verkkohakuun esiintyy useita kuvioita:
 
-#### 1. Suora hakupalveluntarjoajan integraatio
+#### 1. Suora hakupalveluntarjoajien integraatio
 
 ```mermaid
 graph LR
-    Client[MCP-asiakas] --> |MCP-pyyntö| Server[MCP-palvelin]
-    Server --> |API-kutsu| SearchAPI[Hakukysely-API]
+    Client[MCP Asiakas] --> |MCP Pyyntö| Server[MCP Palvelin]
+    Server --> |API Kutsu| SearchAPI[Hakukone-API]
     SearchAPI --> |Tulokset| Server
-    Server --> |MCP-vastaus| Client
+    Server --> |MCP Vastaus| Client
 ```
 
-Tässä mallissa MCP-palvelin kommunikoi suoraan yhden tai useamman hakupalvelun APIen kanssa, kääntäen MCP-pyynnöt API-spesifisiksi kutsuiksi ja formaten tulokset MCP-vastauksiksi.
+Tässä mallissa MCP-palvelin kommunikoi suoraan yhden tai useamman hakupalvelun rajapinnan kanssa, muuntaen MCP-kutsut API-kohtaisiksi pyynnöiksi ja muotoillen vastaukset MCP-vastauksiksi.
 
-#### 2. Federatiivinen haku kontekstin säilyttämisellä
+#### 2. Federatiivinen haku kontekstin säilytyksellä
 
 ```mermaid
 graph LR
-    Client[MCP Asiakas] --> |MCP Pyyntö| Federation[MCP Federaatiokerros]
-    Federation --> |MCP Pyyntö 1| Search1[Hakupalvelu 1]
-    Federation --> |MCP Pyyntö 2| Search2[Hakupalvelu 2]
-    Federation --> |MCP Pyyntö 3| Search3[Hakupalvelu 3]
-    Search1 --> |MCP Vastaus 1| Federation
-    Search2 --> |MCP Vastaus 2| Federation
-    Search3 --> |MCP Vastaus 3| Federation
-    Federation --> |Yhdistetty MCP Vastaus| Client
+    Client[MCP-asiakas] --> |MCP-pyyntö| Federation[MCP-liittokerros]
+    Federation --> |MCP-pyyntö 1| Search1[Hakupalvelu 1]
+    Federation --> |MCP-pyyntö 2| Search2[Hakupalvelu 2]
+    Federation --> |MCP-pyyntö 3| Search3[Hakupalvelu 3]
+    Search1 --> |MCP-vastaus 1| Federation
+    Search2 --> |MCP-vastaus 2| Federation
+    Search3 --> |MCP-vastaus 3| Federation
+    Federation --> |Koottu MCP-vastaus| Client
 ```
 
-Tämä malli jakaa hakukyselyt useiden MCP-yhteensopivien hakupalveluntarjoajien kesken, joista kukin saattaa erikoistua eri sisällön tyyppeihin tai hakumahdollisuuksiin, säilyttäen samalla yhtenäisen kontekstin.
+Tämä malli jakaa hakukyselyt useille MCP-yhteensopiville hakupalveluntarjoajille, jotka saattavat erikoistua eri sisältötyyppeihin tai hakutoimintoihin säilyttäen yhtenäisen kontekstin.
 
-#### 3. Kontekstilla rikastettu hakuketju
+#### 3. Kontekstia hyödyntävä hakuketju
 
 ```mermaid
 graph LR
     Client[MCP-asiakas] --> |Kysely + Konteksti| Server[MCP-palvelin]
     Server --> |1. Kyselyn analyysi| NLP[NLP-palvelu]
-    NLP --> |Parannettu kysely| Server
+    NLP --> |Tehostettu kysely| Server
     Server --> |2. Haun suoritus| Search[Hakukone]
-    Search --> |Raakalöydökset| Server
-    Server --> |3. Tulosten käsittely| Enhancement[Tulosten parannus]
-    Enhancement --> |Parannetut tulokset| Server
-    Server --> |Lopulliset tulokset + päivitetty konteksti| Client
+    Search --> |Raaka tulokset| Server
+    Server --> |3. Tulosten käsittely| Enhancement[Tulosten tehostaminen]
+    Enhancement --> |Tehostetut tulokset| Server
+    Server --> |Lopulliset tulokset + Päivitetty konteksti| Client
 ```
 
-Tässä mallissa hakuprosessi jaetaan useisiin vaiheisiin, joissa kontekstia rikastetaan jokaisessa vaiheessa, tuottaen asteittain merkityksellisempiä tuloksia.
+Tässä mallissa hakuprosessi jaetaan useaan vaiheeseen, ja kontekstia rikastetaan jokaisessa vaiheessa tulosten asteittaisen parantamisen mahdollistamiseksi.
 
 ### Hakukontekstin komponentit
 
 MCP-pohjaisessa verkkohakussa konteksti sisältää tyypillisesti:
 
-- **Kyselyhistoria**: Aiemmat hakukyselyt sessiossa
+- **Kyselyhistoria**: Aiemmat kyselyt sessiossa
 - **Käyttäjäasetukset**: Kieli, alue, turvallisen haun asetukset
-- **Vuorovaikutushistoria**: Mitä tuloksia klikattiin, aika käytettynä tuloksiin
-- **Hakuehdot**: Suodattimet, lajittelujärjestykset ja muut muokkaajat
-- **Aihepiirin tuntemus**: Hakuun liittyvä aihealuekohtainen konteksti
-- **Ajallinen konteksti**: Aikaperusteiset relevanssitekijät
-- **Lähdeasetukset**: Luotetut tai suosikit tiedonlähteet
+- **Vuorovaikutushistoria**: Mitkä tulokset klikattiin, aika jonka käytettiin tuloksiin
+- **Hakuparametrit**: Suodattimet, lajittelujärjestykset ja muut hakumuokkaajat
+- **Alaosaaminen**: Hakualaan liittyvä konteksti
+- **Aikakonteksti**: Aikaperusteiset relevanssitekijät
+- **Lähteiden mieltymykset**: Luotetut tai suosittu tiedonlähteet
 
 ## Käyttötapaukset ja sovellukset
 
-### Tutkimus ja tiedonhaku
+### Tutkimus ja tiedonkeruu
 
-MCP parantaa tutkimustyönkulkuja:
+MCP parantaa tutkimusprosessia:
 
-- Säilyttämällä tutkimuskontekstin hakusessioiden yli
-- Mahdollistamalla kehittyneemmät ja kontekstiin sopivat kyselyt
+- Säilyttämällä tutkimuksen kontekstin hakusessioiden välillä
+- Mahdollistamalla kehittyneemmät ja kontekstuaalisesti relevantit kyselyt
 - Tukemalla monilähteistä hakufederaatiota
 - Helpottamalla tiedon poimintaa hakutuloksista
 
@@ -664,107 +666,108 @@ MCP parantaa tutkimustyönkulkuja:
 
 MCP-pohjainen haku tarjoaa etuja uutisseurannassa:
 
-- Läheltä reaaliaikaista uusien uutisten löytymistä
-- Olemassaolevan tiedon kontekstuaalinen suodatus
-- Aiheiden ja entiteettien seuranta useista lähteistä
-- Personoidut uutisilmoitukset käyttäjän kontekstin perusteella
+- Lähes reaaliaikainen nousevien uutisaiheiden löytäminen
+- Relevantin tiedon kontekstuaalinen suodatus
+- Aiheiden ja yksilöiden seuranta useista lähteistä
+- Personoidut uutisilmoitukset käyttäjän kontekstin pohjalta
 
-### Tekoälyavusteinen selaaminen ja tutkimus
+### Tekoälyllä tehostettu selaus ja tutkimus
 
-MCP luo uusia mahdollisuuksia tekoälyavusteiselle selaamiselle:
+MCP avaa uusia mahdollisuuksia tekoälyllä tehostettuun selaamiseen:
 
-- Kontekstuaaliset hakuehdotukset nykyisen selaamisen perusteella
-- Verkkohakujen saumaton integrointi LLM-avustajiin
-- Monikierroksinen hakutarkennus säilyttämällä konteksti
-- Parannettu faktantarkistus ja tiedon varmennus
+- Kontekstuaaliset hakuehdotukset nykyisen selaustoiminnan perusteella
+- Verkkohakujen saumatonta integraatiota LLM-pohjaisiin avustajiin
+- Monikierroksinen hakutulosten täsmentäminen säilyttäen kontekstin
+- Parannetut faktantarkastus- ja tiedon varmistusmahdollisuudet
 
-## Tulevat trendit ja innovaatiot
+## Tulevaisuuden trendit ja innovaatiot
 
-### MCP:n kehitys verkkohauissa
+### MCP:n kehitys verkkohakussa
 
-Tulevaisuutta ajatellen odotamme MCP:n kehittyvän vastaamaan seuraavia:
+Tulevaisuuteen katsoen odotamme MCP:n kehittyvän seuraavien haasteiden ja tarpeiden ratkaisemiseksi:
 
 
-- **Monimodaalinen haku**: Teksti-, kuva-, ääni- ja videohakujen yhdistäminen säilyttäen konteksti
-- **Hajautettu haku**: Jakautuneiden ja liittoutuneiden hakuekosysteemien tukeminen
+- **Monimodaalinen haku**: Teksti-, kuva-, ääni- ja videotietohaku yhdistettynä säilytettyyn kontekstiin
+- **Hajautettu haku**: Hajautettujen ja federoitujen hakuekosysteemien tuki
 - **Haun yksityisyys**: Kontekstitietoiset yksityisyyttä suojaavat hakumenetelmät
-- **Kyselyiden ymmärtäminen**: Luonnollisen kielen hakukyselyiden syvä semanttinen jäsentäminen
+- **Hakukyselyjen ymmärtäminen**: Syvä semanttinen luonnollisen kielen hakukyselyjen jäsentäminen
 
-### Teknologian mahdolliset kehityssuunnat
+### Mahdolliset teknologian edistysaskeleet
 
-Nousevat teknologiat, jotka muokkaavat MCP-haun tulevaisuutta:
+Nousevat teknologiat, jotka muovaavat MCP-haun tulevaisuutta:
 
-1. **Neuraaliset hakurakenteet**: Upotukseen perustuvat haun järjestelmät optimoituna MCP:lle
-2. **Personoitu hakukonteksti**: Yksilöllisten käyttäjähakutapojen oppiminen ajan myötä
-3. **Tietografiikan integrointi**: Kontekstuaalinen haku, jota parannetaan toimialakohtaisilla tietografeilla
-4. **Ristimodaalinen konteksti**: Kontekstin ylläpitäminen eri hakumodaalien välillä
+1. **Neuraaliset hakukomponentit**: Upotuksiin perustuvat MCP-hausta optimoidut järjestelmät
+2. **Personoitu hakukonteksti**: Yksilöllisten käyttäjähaumallien oppiminen ajan mittaan
+3. **Tietografien integrointi**: Kontekstuaalista hakua tehostavat toimialakohtaiset tietografit
+4. **Ristimodaalinen konteksti**: Kontekstin ylläpito eri hakumodaalit ylittävän
 
-## Käytännön harjoitukset
+## Käytännön harjoituksia
 
-### Harjoitus 1: Perus MCP-hakuputken perustaminen
+### Harjoitus 1: Perus MCP-hakuputken pystyttäminen
 
 Tässä harjoituksessa opit:
-- Määrittämään perus MCP-hakuympäristön
-- Toteuttamaan kontekstinkäsittelijöitä web-haulle
+- Määrittämään perustason MCP-hakuympäristön
+- Toteuttamaan kontekstinkäsittelijät verkkohakua varten
 - Testaamaan ja validoimaan kontekstin säilymistä hakukierrosten välillä
 
-### Harjoitus 2: Tutkiapuohjelman rakentaminen MCP-hakulla
+### Harjoitus 2: Tutkimusavustajan rakentaminen MCP-haulla
 
-Luo täydellinen sovellus, joka:
+Luo kokonaisvaltainen sovellus, joka:
 - Käsittelee luonnollisen kielen tutkimuskysymyksiä
-- Suorittaa kontekstia hyödyntäviä web-hakuja
+- Suorittaa kontekstuaalisia verkkohakuja
 - Yhdistää tietoa useista lähteistä
 - Esittää järjestetyt tutkimustulokset
 
-### Harjoitus 3: Monilähdehaun liittoutumisen toteuttaminen MCP:llä
+### Harjoitus 3: Monilähteisen hakufederoinnin toteuttaminen MCP:llä
 
-Edistynyt harjoitus, joka kattaa:
-- Kontekstitietoisen kyselyjen ohjauksen useille hakukoneille
-- Tulosten lajittelun ja yhdistämisen
-- Hakutulosten kontekstuaalisen duplikaattien poiston
-- Lähdekohtaisen metadatan käsittelyn
+Edistynyt harjoitus kattaa:
+- Kontekstin mukaisen kyselyn jakelun useille hakukoneille
+- Tulosten järjestyksen ja yhdistämisen
+- Kontekstuaalisen hakutulosten päällekkäisyyksien poiston
+- Lähdekohtaisen metadataan käsittelyn
 
 ## Lisäresurssit
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Virallinen MCP-määrittely ja yksityiskohtainen protokolladokumentaatio
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Yksityiskohtaiset opasteet ja toteutusohjeet
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP-protokollan virallinen Python-toteutus
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP-protokollan virallinen TypeScript-toteutus
-- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP-palvelinten viitetoteutukset
-- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoftin web-haku API
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Virallinen MCP-määrittely ja yksityiskohtainen protokolladokumentaatio
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Yksityiskohtaiset esittelyt ja toteutusoppaat
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Virallinen MCP-protokollan Python-toteutus
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Virallinen MCP-protokollan TypeScript-toteutus
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP-palvelinten referenssitoteutukset
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - Microsoftin verkkohaku API
 - [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Googlen ohjelmoitava hakukone
-- [SerpAPI Documentation](https://serpapi.com/search-api) - Hakukonesivujen API
+- [SerpAPI Documentation](https://serpapi.com/search-api) - Hakukoneen tulossivun API
 - [Meilisearch Documentation](https://www.meilisearch.com/docs) - Avoimen lähdekoodin hakukone
 - [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Hajautettu haku- ja analytiikkamoottori
-- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Sovellusten rakentaminen LLM:illä
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Sovellusten rakentaminen LLM:ien avulla
 
 ## Oppimistulokset
 
-Tämän moduulin suorittamisen jälkeen osaat:
+Tämän moduulin suorittamalla osaat:
 
-- Ymmärtää reaaliaikaisen web-haun perusteet ja haasteet
-- Selittää, miten Model Context Protocol (MCP) parantaa reaaliaikaisen web-haun mahdollisuuksia
-- Toteuttaa MCP-pohjaisia hakuratkaisuja suosittuja kehyksiä ja APIja käyttäen
-- Suunnitella ja ottaa käyttöön skaalautuvia, korkean suorituskyvyn hakurakenteita MCP:llä
-- Soveltaa MCP-konsepteja erilaisissa käyttötapauksissa, mukaan lukien semanttinen haku, tutkimusapu ja tekoälyn tukema selaaminen
-- Arvioida nousevia trendejä ja tulevia innovaatioita MCP-pohjaisissa hakuteknologioissa
+- Ymmärtää reaaliaikaisen verkkohakujen perusteet ja haasteet
+- Selittää, kuinka Model Context Protocol (MCP) parantaa reaaliaikaisten verkkohakujen ominaisuuksia
+- Toteuttaa MCP-pohjaisia hakuratkaisuja suosituilla kehyksillä ja API:illa
+- Suunnitella ja ottaa käyttöön skaalautuvia, korkeasuorituskykyisiä hakujärjestelmiä MCP:llä
+- Soveltaa MCP-konsepteja monenlaisiin käyttötapauksiin, kuten semanttiseen hakuun, tutkimusavustukseen ja tekoälyn tukemaan selaamiseen
+- Arvioida MCP-pohjaisen haun nousevia trendejä ja tulevaisuuden innovaatioita
 
 
-### Luottamus- ja turvallisuusnäkökohdat
+### Luotettavuus ja turvallisuus
 
-Kun toteutat MCP-pohjaisia web-hakuratoja, muista nämä tärkeät MCP-määrittelyn periaatteet:
+MCP-pohjaisia verkkohakuratkaisuja toteuttaessa muista nämä tärkeät MCP-määrittelyn periaatteet:
 
-1. **Käyttäjän suostumus ja hallinta**: Käyttäjien on selvästi annettava suostumus ja ymmärrettävä kaikki tietojen käyttö ja toiminnot. Tämä on erityisen tärkeää web-hakujen yhteydessä, jotka saattavat käyttää ulkoisia tietolähteitä.
+1. **Käyttäjän suostumus ja kontrolli**: Käyttäjien on annettava nimenomainen suostumus ja ymmärrettävä kaikki tiedon käyttö ja toimet. Tämä on erityisen tärkeää verkkohakutoteutuksissa, jotka voivat käyttää ulkoisia tietolähteitä.
 
-2. **Tietosuoja**: Varmista hakukyselyjen ja tulosten asianmukainen käsittely, erityisesti kun ne voivat sisältää arkaluontoista tietoa. Toteuta asianmukaiset pääsynvalvontamekanismit käyttäjätietojen suojaamiseksi.
+2. **Tietosuoja**: Huolehdi hakukyselyjen ja tulosten asianmukaisesta käsittelystä, erityisesti jos ne voivat sisältää arkaluonteisia tietoja. Toteuta sopivat pääsynhallintatoimet suojellaksesi käyttäjätietoja.
 
-3. **Työkalujen turvallisuus**: Toteuta kunnollinen valtuutus ja validointi hakutyökaluissa, sillä ne voivat edustaa turvallisuusriskiä mielivaltaisen koodin suorituksella. Työkalun kuvausta tulisi pitää epäluotettavana, ellei se ole peräisin luotettavalta palvelimelta.
+3. **Työkalujen turvallisuus**: Toteuta asianmukainen valtuutus ja validointi hakutyökaluille, sillä ne voivat edustaa turvallisuusriskiä suorittamalla mielivaltaista koodia. Työkalun käyttäytymisen kuvaukset tulee pitää epäluotettavina, elleivät ne tule luotettavalta palvelimelta.
 
-4. **Selkeä dokumentaatio**: Tarjoa selkeä dokumentaatio MCP-pohjaisen haun ominaisuuksista, rajoituksista ja turvallisuusnäkökohdista, MCP-määrittelyn toteutusohjeita noudattaen.
+4. **Selkeä dokumentointi**: Tarjoa selkeää dokumentaatiota MCP-pohjaisen hakutoteutuksen kyvykkyyksistä, rajoituksista ja turvallisuusnäkökohtista, noudattaen MCP-määrittelyn toteutusohjeita.
 
-5. **Vahvat suostumusprosessit**: Rakenna vankat suostumus- ja valtuutusprosessit, jotka selkeästi selittävät mitä kukin työkalu tekee ennen sen käytön hyväksymistä, erityisesti työkaluissa, jotka ovat vuorovaikutuksessa ulkoisten web-resurssien kanssa.
+5. **Vahvat suostumusprosessit**: Rakenna vahvat suostumus- ja valtuutusprosessit, jotka selkeästi kuvaavat, mitä kukin työkalu tekee ennen sen käyttöönottoa, erityisesti työkaluissa, jotka käsittelevät ulkoisia verkkoresursseja.
 
-MCP:n turvallisuus- ja luottamusnäkökohdista saat täydelliset tiedot [virallisesta dokumentaatiosta](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+MCP:n turvallisuus- ja luottamusnäkökohtien täydelliset tiedot löytyvät
+[virallisesta dokumentaatiosta](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
 ## Mitä seuraavaksi
 

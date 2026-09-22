@@ -1,33 +1,33 @@
 # Kliento kūrimas
 
-Klientai yra individualios programos ar skriptai, kurie tiesiogiai bendrauja su MCP serveriu, užklausdami išteklių, įrankių ir užuominų. Skirtingai nei naudojantis inspektoriaus įrankiu, kuris suteikia grafinę sąsają serverio sąveikai, savarankiškas kliento rašymas leidžia programiškai ir automatizuotai bendrauti. Tai leidžia kūrėjams integruoti MCP galimybes į savo darbo eigas, automatizuoti užduotis ir kurti pritaikytus sprendimus pagal konkrečius poreikius.
+Klientai yra pasirinktinės programos arba scenarijai, kurie tiesiogiai bendrauja su MCP serveriu, prašydami išteklių, įrankių ir užklausų. Skirtingai nei naudojant inspector įrankį, kuris suteikia grafinę sąsają serveriui valdyti, savo kliento rašymas leidžia programiškai ir automatizuotai bendrauti. Tai leidžia kūrėjams integruoti MCP galimybes į savo darbo eigas, automatizuoti užduotis ir kurti specifiniams poreikiams pritaikytus sprendimus.
 
 ## Apžvalga
 
-Ši pamoka pristato klientų sąvoką Modelio konteksto protokolo (MCP) ekosistemoje. Sužinosite, kaip parašyti savo klientą ir prisijungti prie MCP serverio.
+Ši pamoka pristato klientų sąvoką Model Context Protocol (MCP) ekosistemoje. Išmoksite rašyti savo klientą ir prijungti jį prie MCP serverio.
 
 ## Mokymosi tikslai
 
-Pamokos pabaigoje galėsite:
+Pabaigus pamoką, sugebėsite:
 
-- Suprasti, ką gali atlikti klientas.
+- Suprasti, ką gali daryti klientas.
 - Parašyti savo klientą.
-- Prisijungti ir išbandyti klientą su MCP serveriu, kad įsitikintumėte, jog serveris veikia pagal numatymus.
+- Prisijungti ir išbandyti klientą su MCP serveriu, kad įsitikintumėte, jog jis veikia kaip tikėtasi.
 
 ## Kas įeina į kliento rašymą?
 
-Norėdami sukurti klientą, turėsite atlikti šiuos veiksmus:
+Norėdami rašyti klientą, turėsite atlikti šiuos veiksmus:
 
-- **Importuoti reikiamas bibliotekas**. Naudosite tą pačią biblioteką, kaip ir anksčiau, tik kitos konstrukcijos.
-- **Inicijuoti klientą**. Tai apims kliento instancijos sukūrimą ir prisijungimą prie pasirinkto transporto metodo.
-- **Nuspręsti, kuriuos išteklius listinti**. Jūsų MCP serveris turi išteklius, įrankius ir užuominas, jūs turite nuspręsti, kuriuos rodyti.
-- **Integruoti klientą į pagrindinę programą**. Kai žinosite serverio galimybes, turėsite integruoti tai į savo pagrindinę programą, kad vartotojas įvedęs užuominą ar kitą komandą būtų iškviečiama atitinkama serverio funkcija.
+- **Importuoti tinkamas bibliotekas**. Naudosite tą pačią biblioteką kaip ir anksčiau, tik skirtingus konstruktus.
+- **Sukurkite kliento egzempliorių**. Tai reikš sukurti kliento instance ir prisijungti prie pasirinktos transportavimo metodikos.
+- **Nuspręsti, kokius išteklius išvardinti**. Jūsų MCP serveris turi išteklius, įrankius ir užklausas, reikia nuspręsti, ką iš jų išvardinti.
+- **Integruoti klientą į pagrindinę programą**. Kai žinosite serverio galimybes, turite integruoti tai į savo pagrindinę programą, kad jei vartotojas įveda užklausą ar kitą komandą, būtų iškviečiama atitinkama serverio funkcija.
 
-Dabar, kai supratome aukšto lygio veiksmus, pažvelkime į pavyzdį.
+Dabar, kai suprantame aukšto lygio, ką turime daryti, pažvelkime į pavyzdį.
 
-### Kliento pavyzdys
+### Pavyzdinis klientas
 
-Pažiūrėkime į šį kliento pavyzdį:
+Pažiūrėkime į šį pavyzdinį klientą:
 
 ### TypeScript
 
@@ -49,7 +49,7 @@ const client = new Client(
 
 await client.connect(transport);
 
-// Išvardinti užklausas
+// Sąrašo užklausos
 const prompts = await client.listPrompts();
 
 // Gauti užklausą
@@ -60,15 +60,15 @@ const prompt = await client.getPrompt({
   }
 });
 
-// Išvardinti išteklius
+// Sąrašas išteklių
 const resources = await client.listResources();
 
-// Perskaityti išteklių
+// Skaityti išteklius
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Iškvieti įrankį
+// Iškvietimo įrankis
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Aukščiau pateiktame kode mes:
+Ankstesniame kode mes:
 
 - Importuojame bibliotekas
-- Sukuriame kliento instanciją ir prisijungiame naudodami stdio transportą.
-- Listiname užuominas, išteklius ir įrankius bei iškviečiame visus.
+- Sukuriame kliento egzempliorių ir prijungiame jį naudodami stdio transportą.
+- Išvardiname užklausas, išteklius ir įrankius bei iškviečiame visus juos.
 
 Štai jums klientas, kuris gali bendrauti su MCP serveriu.
 
-Kitame pratimo skyriuje skirsime laiko detaliai išnagrinėti kiekvieną kodo fragmentą ir paaiškinti, kas vyksta.
+Skirkime laiko kitame pratimo skyriuje išanalizuoti kiekvieną kodo fragmentą ir paaiškinti, kas vyksta.
 
 ## Pratimas: Kliento rašymas
 
-Kaip minėta aukščiau, paaiškinsime kodą ramiai ir, jei norėsite, galite kartu rašyti kodą.
+Kaip minėta anksčiau, skirkime laiko paaiškinti kodą, o jei norite, koduokite kartu.
 
 ### -1- Bibliotekų importavimas
 
-Importuokime reikiamas bibliotekas, reikės nuorodų į klientą ir pasirinkto transporto protokolą, stdio. stdio – tai protokolas skirtas programoms, kurias paleidžiate vietinėje mašinoje. SSE yra kitas transporto protokolas, kurį pamatysime vėlesniuose skyriuose, bet dabar tęsiame su stdio.
+Importuokime reikiamas bibliotekas, reikės nuorodų į klientą ir mūsų pasirinktą transporto protokolą stdio. stdio yra protokolas, skirtas vietinėms programoms. SSE yra kitas transporto protokolas, kurį pamatysite vėlesniuose skyriuose, bet dabar tęsiame su stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Java atveju sukursite klientą, kuris prisijungia prie ankstesnio pratimo MCP serverio. Naudojant tą patį Java Spring Boot projekto struktūrą iš [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), sukurkite naują Java klasę pavadinimu `SDKClient` kataloge `src/main/java/com/microsoft/mcp/sample/client/` ir pridėkite šiuos importus:
+Java atveju sukursite klientą, kuris prisijungia prie MCP serverio iš ankstesnio pratimo. Naudodami tą patį Java Spring Boot projekto struktūrą iš [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), sukurkite naują Java klasę pavadinimu `SDKClient` kataloge `src/main/java/com/microsoft/mcp/sample/client/` ir pridėkite šiuos importus:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Turėsite pridėti šiuos priklausomumus į savo `Cargo.toml` failą.
+Reikės pridėti šias priklausomybes į savo `Cargo.toml` failą.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Tada galite importuoti reikiamas bibliotekas savo kliento kode.
+Tada galėsite importuoti reikalingas bibliotekas savo kliento kode.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Eikime prie inicializacijos.
+Eime prie egzemplioriaus kūrimo.
 
-### -2- Kliento ir transporto inicializavimas
+### -2- Kliento ir transporto instancijos kūrimas
 
-Turėsime sukurti transporto ir kliento instancijas:
+Reikės sukurti transporto ir mūsų kliento egzempliorius:
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-Aukščiau pateiktame kode mes:
+Ankstesniame kode mes:
 
-- Sukūrėme stdio transporto instanciją. Atkreipkite dėmesį, kaip nurodomas komandos ir argumentų sąrašas serverio paleidimui – tai reikės kuriant klientą.
+- Sukūrėme stdio transporto egzempliorių. Pastebėkite, kaip nurodomas komandos ir argumentų sąrašas, naudojamas serveriui paleisti, nes tai reikės daryti kuriant klientą.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ Aukščiau pateiktame kode mes:
     });
     ```
 
-- Inicijavome klientą suteikdami jam pavadinimą ir versiją.
+- Inicializavome klientą, priskirdami jam vardą ir versiją.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ Aukščiau pateiktame kode mes:
     });
     ```
 
-- Prisijungėme klientą prie pasirinkto transporto.
+- Prijungėme klientą prie pasirinkto transporto.
 
     ```typescript
     await client.connect(transport);
@@ -218,7 +218,7 @@ Aukščiau pateiktame kode mes:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Sukurkite serverio parametrus stdio ryšiui
+# Sukurti serverio parametrus stdio ryšiui
 server_params = StdioServerParameters(
     command="mcp",  # Vykdomasis failas
     args=["run", "server.py"],  # Pasirinktiniai komandų eilutės argumentai
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-Aukščiau mes:
+Ankstesniame kode mes:
 
-- Importavome reikalingas bibliotekas
-- Inicijavome serverio parametrų objektą, kad galėtume paleisti serverį ir jungtis prie jo su klientu.
-- Apibrėžėme metodą `run`, kuris savo ruožtu iškviečia `stdio_client`, pradedant klientų sesiją.
-- Sukūrėme įėjimo tašką, kuriame perduodame `run` metodą `asyncio.run`.
+- Importavome reikiamas bibliotekas
+- Inicializavome serverio parametrų objektą, kurį naudosime serverio paleidimui, kad galėtume prie jo jungtis su klientu.
+- Apibrėžėme `run` metodą, kuris iškviečia `stdio_client` – tai paleidžia klientų sesiją.
+- Sukūrėme įėjimo tašką, kuriame pateikiame `run` metodą `asyncio.run`.
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-Aukščiau mes:
+Ankstesniame kode mes:
 
-- Importavome reikalingas bibliotekas.
-- Sukūrėme stdio transportą ir klientą `mcpClient`. Pastarasis bus naudojamas įrankiams listinti ir iškvietimui MCP serveryje.
+- Importavome reikiamas bibliotekas.
+- Sukūrėme stdio transportą ir inicializavome klientą `mcpClient`. Jį naudosime įrankių išserveriui iškvietimui.
 
-Pastaba, "Arguments" galite nurodyti arba *.csproj* failą, arba vykdomąjį failą.
+Atkreipkite dėmesį, kad „Arguments“ galite nurodyti arba *.csproj* failą, arba vykdomąjį failą.
 
 #### Java
 
@@ -306,20 +306,20 @@ public class SDKClient {
 }
 ```
 
-Šiame kode mes:
+Ankstesniame kode mes:
 
-- Sukūrėme pagrindinį metodą, kuris nustato SSE transportą, nukreiptą į `http://localhost:8080`, kur veiks MCP serveris.
-- Sukūrėme klientų klasę, kuri gauna transportą konstruktoriaus parametru.
-- Metode `run` sukuriame sinchroninį MCP klientą naudodami transportą ir inicializuojame ryšį.
-- Naudojame SSE (Server-Sent Events) transporto protokolą, tinkantį HTTP pagrindu veikiančių Java Spring Boot MCP serverių komunikacijai.
+- Sukūrėme pagrindinį metodą, kuris nustato SSE transportą į `http://localhost:8080`, kuriame veiks mūsų MCP serveris.
+- Sukūrėme klientų klasę, kuri paima transportą kaip konstruktoriaus parametrą.
+- `run` metode sukūrėme sinchroninį MCP klientą naudodami transportą ir inicializavome ryšį.
+- Naudojome SSE (Server-Sent Events) transportą, tinkamą HTTP pagrindu veikiančiai komunikacijai su Java Spring Boot MCP serveriais.
 
 #### Rust
 
-Atkreipkite dėmesį, kad šis Rust klientas daro prielaidą, jog serveris yra broliškas projektas pavadinimu "calculator-server" tame pačiame kataloge. Šis kodas paleis serverį ir prisijungs prie jo.
+Atkreipkite dėmesį, kad šis Rust klientas daro prielaidą, jog serveris yra kaimyninis projektas pavadinimu „calculator-server“ tame pačiame kataloge. Žemiau pateiktas kodas paleis serverį ir prisijungs prie jo.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Laikykime, kad serveris yra brolis projektas pavadinimu "calculator-server" toje pačioje direktorijoje
+    // Tarkime, kad serveris yra brolis projektas pavadinimu "calculator-server" tame pačiame kataloge
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -338,47 +338,47 @@ async fn main() -> Result<(), RmcpError> {
 
     // TODO: Išvardinti įrankius
 
-    // TODO: Iškvieskite add įrankį su argumentais = {"a": 3, "b": 2}
+    // TODO: Iškvieti add įrankį su argumentais = {"a": 3, "b": 2}
 
     client.cancel().await?;
     Ok(())
 }
 ```
 
-### -3- Serverio funkcijų listinimas
+### -3- Serverio funkcijų išvardinimas
 
-Dabar turime klientą, kuris gali prisijungti, jei paleista programa. Tačiau jis neišrašo jokių funkcijų, tad padarykime tai:
+Dabar turime klientą, galintį prisijungti, kai programa bus paleista. Tačiau jis neparodo savo funkcijų, tad darykime tai dabar:
 
 #### TypeScript
 
 ```typescript
-// Sąrašas užklausų
+// Parodyti užklausas
 const prompts = await client.listPrompts();
 
-// Sąrašas išteklių
+// Parodyti išteklius
 const resources = await client.listResources();
 
-// sąrašas įrankių
+// parodyti įrankius
 const tools = await client.listTools();
 ```
 
 #### Python
 
 ```python
-# Išvardinti turimus išteklius
+# Išvardinti galimus išteklius
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Išvardinti turimus įrankius
+# Išvardinti galimus įrankius
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Čia mes listiname turimus išteklius `list_resources()` ir įrankius `list_tools` ir išvedame juos.
+Čia išvardijame galimus išteklius, `list_resources()` ir įrankius, `list_tools`, ir atspausdiname juos.
 
 #### .NET
 
@@ -389,30 +389,30 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Čia pavyzdys, kaip galime listinti serverio įrankius. Kiekvienam įrankiui atspausdiname jo pavadinimą.
+Aukščiau pateiktas pavyzdys, kaip išvardyti įrankius serveryje. Kiekvienam įrankiui atspausdiname jo pavadinimą.
 
 #### Java
 
 ```java
-// Išvardykite ir parodykite įrankius
+// Išvardinti ir parodyti įrankius
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// Taip pat galite naudoti ping komandą serveriui patikrinti ryšį
+// Taip pat galite siųsti ping serveriui, kad patikrintumėte ryšį
 client.ping();
 ```
 
-Aukščiau mes:
+Ankstesniame kode mes:
 
 - Iškvietėme `listTools()`, kad gautume visus MCP serverio įrankius.
 - Naudojome `ping()`, kad patikrintume ryšį su serveriu.
-- `ListToolsResult` pateikia informaciją apie visus įrankius, įskaitant jų pavadinimus, aprašymus ir įvesties schemas.
+- `ListToolsResult` objektas – tai informacija apie visus įrankius, įskaitant jų pavadinimus, aprašymus ir įvedimo schemas.
 
-Puiku, dabar turime visas funkcijas. O kada jas naudoti? Šis klientas gana paprastas, reiškia, funkcijos turi būti kviečiamos tiesiogiai, kai jų reikia. Kitame skyriuje kursime pažangesnį klientą, turintį savo didelį kalbos modelį (LLM). O dabar pažiūrėkime, kaip iškviesti serverio funkcijas:
+Puiku, dabar surinkome visas funkcijas. Klausimas, kada jas naudoti? Šis klientas gana paprastas ir reikalauja aiškiai kviesti funkcijas, kai reikia. Kitame skyriuje kursime pažangesnį klientą, kuris turės prieigą prie savo didelio kalbos modelio (LLM). O dabar pamatykime, kaip galime iškviesti serverio funkcijas:
 
 #### Rust
 
-Pagrindinėje funkcijoje, po kliento inicializavimo, galime inicializuoti serverį ir listinti kelias jo funkcijas.
+Pagrindinėje funkcijoje, po kliento inicializacijos, galime inicializuoti serverį ir išvardinti kai kurias jo funkcijas.
 
 ```rust
 // Inicializuoti
@@ -426,18 +426,18 @@ println!("Available tools: {:?}", tools);
 
 ### -4- Funkcijų iškvietimas
 
-Norėdami iškviesti funkcijas, turime nurodyti teisingus argumentus ir kai kuriais atvejais funkcijos pavadinimą.
+Kad iškviestume funkcijas, turime nurodyti teisingus argumentus, o kai kada ir funkcijos pavadinimą.
 
 #### TypeScript
 
 ```typescript
 
-// Skaityti išteklių
+// Perskaitykite išteklių
 const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Kvieskite įrankį
+// Iškvieskite įrankį
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// kvietimo užklausa
+// iškvieskite užklausą
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -454,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-Šiame kode mes:
+Ankstesniame kode mes:
 
-- Skaitome išteklių, kviesdami `readResource()` su `uri`. Štai kaip tai greičiausiai atrodo serverio pusėje:
+- Perskaityti išteklių, kviečiame išteklių per `readResource()`, nurodydami `uri`. Serverio pusėje tai atrodytų maždaug taip:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    Mūsų `uri` reikšmė `file://example.txt` atitinka serverio `file://{name}`. `example.txt` bus priskirtas `name`.
+    Mūsų `uri` reikšmė `file://example.txt` atitinka `file://{name}` serveryje. `example.txt` bus priskirta `name`.
 
-- Kviesdami įrankį nurodome jo `name` ir `arguments`:
+- Kviesti įrankį, kviesdami jį nurodant jo `name` ir `arguments` taip:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ const promptResult = await client.getPrompt({
     });
     ```
 
-- Norint gauti užuominą, kviečiame `getPrompt()` su `name` ir `arguments`. Serverio kodas atrodo taip:
+- Gauti užklausą, `getPrompt()` kviečiame su `name` ir `arguments`. Serverio kodas atrodo taip:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ const promptResult = await client.getPrompt({
     );
     ```
 
-    todėl jūsų kliento kodas atrodys taip, kad atitiktų serverio deklaracijas:
+    Tad jūsų kliento kodo fragmentas atrodys taip, kad atitiktų serverio deklaracijas:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -516,7 +516,7 @@ const promptResult = await client.getPrompt({
 #### Python
 
 ```python
-# Skaityti išteklių
+# Perskaityti išteklių
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
@@ -526,14 +526,14 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Šiame kode mes:
+Ankstesniame kode mes:
 
-- Kvietėme išteklių `greeting` naudodami `read_resource`.
-- Iškvietėme įrankį `add` naudodami `call_tool`.
+- Iškvietėme išteklių, vadinamą `greeting`, naudodami `read_resource`.
+- Iškvietėme įrankį, vadinamą `add`, naudodami `call_tool`.
 
 #### .NET
 
-1. Pridėkime kodą įrankio iškvietimui:
+1. Pridėkime šiek tiek kodo įrankio kvietimui:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ print(result.content)
       cancellationToken:CancellationToken.None);
   ```
 
-1. Štai kaip atspausdinti rezultatus:
+1. Kad atspausdintume rezultatą, štai kodo fragmentas, kuris tai aptarnauja:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -552,7 +552,7 @@ print(result.content)
 #### Java
 
 ```java
-// Iškvieskite įvairius skaičiuotuvo įrankius
+// Skambinkite įvairiems skaičiuotuvo įrankiams
 CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
 System.out.println("Add Result = " + resultAdd);
 
@@ -569,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Aukščiau mes:
+Ankstesniame kode mes:
 
-- Iškvietėme kelis skaičiuotuvo įrankius naudodami `callTool()` su `CallToolRequest` objektais.
-- Kiekvienas įrankio kvietimas nurodo įrankio pavadinimą ir `Map`, kur sudėti reikalingi argumentai.
-- Serverio įrankiai tikisi specifinių parametrų pavadinimų (pvz., „a“, „b“ matematinėms operacijoms).
-- Rezultatai grąžinami kaip `CallToolResult` objektai su serverio atsakymu.
+- Kviečiame kelis skaičiuotuvo įrankius naudodami `callTool()` metodą su `CallToolRequest` objektais.
+- Kiekviename įrankių kvietime nurodomas įrankio pavadinimas ir argumentų `Map`.
+- Serverio įrankiai tikisi specifinių parametrų pavadinimų (pvz., "a", "b" matematiniams veiksmams).
+- Rezultatai pateikiami kaip `CallToolResult` objektai, turintys serverio atsakymą.
 
 #### Rust
 
 ```rust
-// Iškvieskite pridėjimo įrankį su argumentais = {"a": 3, "b": 2}
+// Iškvieskite add įrankį su argumentais = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Kliento paleidimas
 
-Norėdami paleisti klientą, terminale įveskite šią komandą:
+Klientą paleiskite įvesdami šią komandą terminale:
 
 #### TypeScript
 
-Pridėkite šį įrašą į "scripts" sekciją faile *package.json*:
+Įtraukite šį įrašą į savo "scripts" skyrių *package.json* faile:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-Klientą paleiskite šia komanda:
+Paleiskite klientą naudodami šią komandą:
 
 ```sh
 python client.py
@@ -633,7 +633,7 @@ Pirmiausia įsitikinkite, kad MCP serveris veikia adresu `http://localhost:8080`
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Arba galite paleisti visą klientų projektą, pateiktą sprendimo aplanke `03-GettingStarted\02-client\solution\java`:
+Arba galite paleisti visą klientų projektą, pateiktą sprendimo kataloge `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Eikite į sprendinio katalogą
@@ -653,9 +653,9 @@ cargo run
 
 ## Užduotis
 
-Šioje užduotyje panaudosite įgytas žinias kurdami savo klientą.
+Šioje užduotyje panaudosite ką išmokote kurdami klientą, bet sukursite savo klientą.
 
-Štai serveris, kurį galėsite naudoti, jį skambinkite per savo kliento kodą, pabandykite pridėti daugiau funkcijų, kad serveris taptų įdomesnis.
+Štai serveris, kurį galite naudoti ir kuriuo turite kreiptis per savo kliento kodą. Pažiūrėkite, ar galite pridėti daugiau funkcijų serveriui, kad jis būtų įdomesnis.
 
 ### TypeScript
 
@@ -670,7 +670,7 @@ const server = new McpServer({
   version: "1.0.0"
 });
 
-// Pridėkite papildomą įrankį
+// Pridėti papildomą įrankį
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Pridėkite dinaminį pasveikinimo išteklių
+// Pridėti dinamišką pasveikinimo išteklių
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -690,7 +690,7 @@ server.resource(
   })
 );
 
-// Pradėkite gauti žinutes iš stdin ir siųsti žinutes į stdout
+// Pradėkite priimti žinutes iš stdin ir siųsti žinutes per stdout
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -714,14 +714,14 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
-# Pridėkite sudėties įrankį
+# Pridėti sudėties įrankį
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Pridėkite dinamišką pasveikinimo išteklių
+# Pridėti dinaminę pasveikinimo priemonę
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Peržiūrėkite šį projektą, kad sužinotumėte, kaip [pridėti užuominas ir išteklius](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Peržiūrėkite šį projektą, kad pamatytumėte, kaip galite [pridėti užklausų ir išteklių](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Taip pat patikrinkite šią nuorodą, kaip iškviesti [užuominas ir išteklius](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Taip pat pasižiūrėkite šią nuorodą apie tai, kaip iškviesti [užklausas ir išteklius](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Ankstesniame skyriuje [previous section](../../../../03-GettingStarted/01-first-server) sužinojote, kaip sukurti paprastą MCP serverį su Rust. Galite tęsti jį plėsdami arba patikrinti šią nuorodą su kitais Rust pagrindu MCP serverių pavyzdžiais: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Ankstesniame skyriuje [../01-first-server] išmokote sukurti paprastą MCP serverį naudojant Rust. Galite tęsti puoselėti tą serverį arba pažiūrėti šią nuorodą su daugiau Rust pagrindu sukurtų MCP serverių pavyzdžių: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Sprendimas
 
-**Sprendimo aplanke** rasite pilnai veikiančius klientų implementacijos pavyzdžius, demonstruojančius visus šiame vadove aptartus konceptus. Kiekviename sprendime yra tiek kliento, tiek serverio kodas, organizuotas atskiruose savarankiškuose projektuose.
+**Sprendimo kataloge** yra pilni, paruošti paleisti klientų įgyvendinimai, demonstruojantys visas šio vadovo idėjas. Kiekviename sprendime yra sovariantis kliento ir serverio kodas, organizuotas kaip atskiri, savarankiški projektai.
 
 ### 📁 Sprendimo struktūra
 
-Sprendimo katalogas suskirstytas pagal programavimo kalbas:
+Sprendimo katalogas yra organizuotas pagal programavimo kalbas:
 
 ```text
 solution/
@@ -803,19 +803,19 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 Ką apima kiekvienas sprendimas
+### 🚀 Ką kiekvienas sprendimas apima
 
-Kiekvienas kalbai skirtas sprendimas suteikia:
+Kiekvienas kalbai skirtas sprendimas:
 
-- **Pilną kliento implementaciją** su visomis pamokoje aptartomis funkcijomis
+- **Pilną kliento įgyvendinimą**, su visomis pamokoje aprašytomis funkcijomis
 - **Veikiančią projekto struktūrą** su tinkamomis priklausomybėmis ir konfigūracija
-- **Statybos ir paleidimo scenarijus** paprastam nustatymui ir vykdymui
-- **Išsamų README** su kalbai specifiniais nurodymais
-- **Klaidų tvarkymo ir rezultatų apdorojimo pavyzdžius**
+- **Komandų skriptus** lengvam kūrimui ir paleidimui
+- **Išsamų README** su kalbai specifinėmis instrukcijomis
+- **Klaidų tvarkymo** ir rezultatų apdorojimo pavyzdžius
 
-### 📖 Kaip naudoti sprendimus
+### 📖 Sprendimų naudojimas
 
-1. **Eikite į jums patinkančios kalbos aplanką**:
+1. **Eikite į pageidaujamos kalbos katalogą**:
 
    ```bash
    cd solution/typescript/    # Skirta TypeScript
@@ -824,12 +824,12 @@ Kiekvienas kalbai skirtas sprendimas suteikia:
    cd solution/dotnet/        # Skirta .NET
    ```
 
-2. **Vadovaukitės README nurodymais kiekviename aplanke dėl**:
-   - Priklausomybių diegimo
-   - Projekto statymo
-   - Kliento paleidimo
+2. **Sekite README nurodymus kiekviename kataloge, kad:**
+   - Įdiegtumėte priklausomybes
+   - Sukurtumėte projektą
+   - Paleistumėte klientą
 
-3. **Turėtumėte matyti tokį rezultatą**:
+3. **Pavyzdinis išvestis, kurią turėtumėte pamatyti:**
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,78 +837,80 @@ Kiekvienas kalbai skirtas sprendimas suteikia:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Norėdami gauti visą dokumentaciją ir žingsnis po žingsnio instrukcijas, žiūrėkite: **[📖 Sprendimo dokumentacija](./solution/README.md)**
+Pilną dokumentaciją ir žingsnis po žingsnio instrukcijas rasite: **[📖 Sprendimo dokumentacija](./solution/README.md)**
 
 ## 🎯 Pilni pavyzdžiai
 
-Mes pateikiame pilnai veikiančius klientų pavyzdžius visose šio vadovo aptartose programavimo kalbose. Šie pavyzdžiai demonstruoja visas aukščiau aprašytas funkcijas ir gali būti naudojami kaip atspirties taškai jūsų projektams ar referencijomis.
+Pateikėme pilnus, veikiančius klientų įgyvendinimus visomis šio vadovo programavimo kalbomis. Šie pavyzdžiai demonstruoja visas aukščiau aprašytas funkcijas ir gali būti naudojami kaip atspirties taškai arba pavyzdinės įgyvendinimo versijos.
 
 ### Galimi pilni pavyzdžiai
 
 | Kalba | Failas | Aprašymas |
-|-------|---------|-----------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Pilnas Java klientas su SSE transportu ir išsamia klaidų tvarkymo logika |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Pilnas C# klientas su stdio transportu ir automatinio serverio paleidimo palaikymu |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Pilnas TypeScript klientas su visa MCP protokolo palaikymu |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Pilnas Python klientas su async/await modeliu |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Pilnas Rust klientas su Tokio asinchroninių operacijų palaikymu |
+|----------|------|-------------|
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Pilnas Java klientas naudojantis SSE transportą su išsamia klaidų tvarka |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Pilnas C# klientas su stdio transportu ir automatiniu serverio paleidimu |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Pilnas TypeScript klientas pilnai palaikantis MCP protokolą |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Pilnas Python klientas naudojantis async/await paradigmas |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Pilnas Rust klientas naudojantis Tokio asinchroniniams veiksmams |
 
 Kiekvienas pilnas pavyzdys apima:
-- ✅ **Ryšio užmezgimas** ir klaidų valdymas
-- ✅ **Serverio aptikimas** (įrankiai, ištekliai, raginimai, kur taikoma)
-- ✅ **Skaičiuoklės operacijos** (sudėti, atimti, dauginti, dalyti, pagalba)
-- ✅ **Rezultatų apdorojimas** ir suformatuotas išvedimas
-- ✅ **Išsamus klaidų valdymas**
+
+- ✅ **Ryšio užmezgimą** ir klaidų tvarkymą
+- ✅ **Serverio identifikavimą** (įrankius, išteklius, užklausas, jei taikoma)
+- ✅ **Skaičiuotuvo operacijas** (sudėti, atimti, dauginti, dalyti, pagalba)
+- ✅ **Rezultatų apdorojimą** ir formatavimą
+- ✅ **Išsamų klaidų tvarkymą**
+
 - ✅ **Švarus, dokumentuotas kodas** su žingsnis po žingsnio komentarais
 
 ### Pradžia su pilnais pavyzdžiais
 
-1. **Pasirinkite pageidaujamą kalbą** lentelėje viršuje
-2. **Peržiūrėkite pilną pavyzdinį failą**, kad suprastumėte visą įgyvendinimą
-3. **Paleiskite pavyzdį** sekdami instrukcijas faile [`complete_examples.md`](./complete_examples.md)
-4. **Modifikuokite ir išplėskite** pavyzdį pagal savo konkrečius poreikius
+1. **Pasirinkite pageidaujamą kalbą** iš aukščiau pateiktos lentelės
+2. **Peržiūrėkite pilną pavyzdžių failą** norėdami suprasti visą įgyvendinimą
+3. **Paleiskite pavyzdį** vadovaudamiesi instrukcijomis [`complete_examples.md`](./complete_examples.md)
+4. **Modifikuokite ir išplėskite** pavyzdį pagal savo konkretų naudojimą
 
-Daugiau detalių apie šių pavyzdžių paleidimą ir pritaikymą rasite: **[📖 Pilnų pavyzdžių dokumentacija](./complete_examples.md)**
+Dėl išsamios dokumentacijos apie šių pavyzdžių paleidimą ir pritaikymą žr.: **[📖 Pilnų pavyzdžių dokumentacija](./complete_examples.md)**
 
-### 💡 Sprendimas prieš Pilnus Pavyzdžius
+### 💡 Sprendimas vs. pilni pavyzdžiai
 
-| **Sprendimo aplankas** | **Pilni pavyzdžiai**            |
-|------------------------|--------------------------------|
-| Pilna projekto struktūra su statybos failais | Vieno failo įgyvendinimai          |
-| Paruošta paleidimui su priklausomybėmis     | Koncentruoti kodo pavyzdžiai     |
-| Produkcijai artima aplinka                    | Edukacinė referencija             |
-| Kalbai specifiniai įrankiai                   | Tarpkalbinis palyginimas          |
+| **Sprendimo aplankas** | **Pilni pavyzdžiai** |
+|----------------------|-----------------------|
+| Visas projekto struktūra su build failais | Vieno failo įgyvendinimai |
+| Paruošta paleidimui su priklausomybėmis | Koncentruoti kodo pavyzdžiai |
+| Produkcijai artima aplinka | Mokomoji medžiaga |
+| Kalbai specifiniai įrankiai | Kalbų tarpusavio palyginimas |
 
-Abu požiūriai yra vertingi – naudokite **sprendimo aplanką** pilniems projektams ir **pilnus pavyzdžius** mokymuisi bei nuorodoms.
+Abi prieigos yra vertingos - naudokite **sprendimo aplanką** pilniems projektams ir **pilnus pavyzdžius** mokymuisi bei kaip atskaitos tašką.
 
-## Svarbiausios Išvados
+## Pagrindinės išvados
 
-Pagrindinės šio skyriaus išvados apie klientus:
+Pagrindinės šio skyriaus išvados apie klientus yra šios:
 
-- Gali būti naudojami tiek funkcijoms serveryje atrasti, tiek iškviesti.
-- Gali paleisti serverį tuo pačiu metu, kai pats paleidžiamas (kaip šiame skyriuje), bet klientai taip pat gali jungtis prie veikiančių serverių.
-- Tai puikus būdas išbandyti serverio galimybes šalia alternatyvų, tokių kaip Inspector, kaip buvo aprašyta ankstesniame skyriuje.
+- Gali būti naudojami tiek funkcijoms serveryje atrasti, tiek jas iškviesti.
+- Gali paleisti serverį kol pats paleidžiasi (kaip šiame skyriuje), bet klientai taip pat gali prisijungti prie jau veikiančių serverių.
+- Yra puikus būdas išbandyti serverio galimybes, greta alternatyvų, kaip Inspector, kaip aprašyta ankstesniame skyriuje.
 
-## Papildomi Ištekliai
+## Papildomi ištekliai
 
 - [Klientų kūrimas MCP](https://modelcontextprotocol.io/quickstart/client)
 
 ## Pavyzdžiai
 
-- [Java Skaičiuoklė](../samples/java/calculator/README.md)
-- [.Net Skaičiuoklė](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Skaičiuoklė](../samples/javascript/README.md)
-- [TypeScript Skaičiuoklė](../samples/typescript/README.md)
-- [Python Skaičiuoklė](../../../../03-GettingStarted/samples/python)
-- [Rust Skaičiuoklė](../../../../03-GettingStarted/samples/rust)
+- [Java skaičiuoklė](../samples/java/calculator/README.md)
+- [.NET skaičiuoklė](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript skaičiuoklė](../samples/javascript/README.md)
+- [TypeScript skaičiuoklė](../samples/typescript/README.md)
+- [Python skaičiuoklė](../../../../03-GettingStarted/samples/python)
+- [Rust skaičiuoklė](../../../../03-GettingStarted/samples/rust)
 
-## Kas Toliau
+## Kas toliau
 
 - Toliau: [Kliento kūrimas su LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas natūralia kalba turėtų būti laikomas pagrindiniu šaltiniu. Svarbiai informacijai rekomenduojama pasinaudoti profesionalaus žmogaus vertimu. Mes neneame atsakingi už bet kokius nesusipratimus ar neteisingus interpretavimus, kylančius naudojant šį vertimą.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

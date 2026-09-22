@@ -1,33 +1,33 @@
 # Bir istemci oluşturma
 
-İstemciler, doğrudan bir MCP Sunucusuyla iletişim kurarak kaynaklar, araçlar ve istemler talep eden özel uygulamalar veya betiklerdir. Sunucuyla etkileşim için grafiksel bir arayüz sağlayan denetçi aracını kullanmanın aksine, kendi istemcinizi yazmak programatik ve otomatik etkileşimlere olanak tanır. Bu, geliştiricilerin MCP yeteneklerini kendi iş akışlarına entegre etmelerini, görevleri otomatikleştirmelerini ve belirli ihtiyaçlara uygun özel çözümler geliştirmelerini sağlar.
+İstemciler, kaynaklar, araçlar ve istemler talep etmek için doğrudan bir MCP Sunucusuyla iletişim kuran özel uygulamalar veya betiklerdir. Sunucu ile etkileşim için grafiksel arayüz sağlayan denetleyici aracını kullanmaktan farklı olarak, kendi istemcinizi yazmak programlı ve otomatik etkileşimlere olanak tanır. Bu, geliştiricilerin MCP yeteneklerini kendi iş akışlarına entegre etmelerine, görevleri otomatikleştirmelerine ve belirli ihtiyaçlara yönelik özel çözümler inşa etmelerine olanak sağlar.
 
 ## Genel Bakış
 
-Bu ders, Model Bağlam Protokolü (MCP) ekosistemindeki istemci kavramını tanıtır. Kendi istemcinizi nasıl yazacağınızı ve onu bir MCP Sunucusuna nasıl bağlayacağınızı öğreneceksiniz.
+Bu ders, Model Context Protocol (MCP) ekosisteminde istemciler kavramını tanıtır. Kendi istemcinizi nasıl yazacağınızı ve bunu bir MCP Sunucusuna nasıl bağlayacağınızı öğreneceksiniz.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda şu becerilere sahip olacaksınız:
+Bu dersin sonunda şunları yapabileceksiniz:
 
 - Bir istemcinin neler yapabileceğini anlamak.
 - Kendi istemcinizi yazmak.
-- İstemciyi MCP sunucusuna bağlayıp test ederek sunucunun beklendiği gibi çalıştığını doğrulamak.
+- İstemciyi bir MCP sunucusuna bağlayıp test etmek, böylece sunucunun beklendiği gibi çalıştığını doğrulamak.
 
-## Bir istemci yazarken nelere dikkat edilmeli?
+## Bir istemci yazarken neler yapılır?
 
-Bir istemci yazmak için şunları yapmanız gerekir:
+Bir istemci yazabilmek için aşağıdakileri yapmanız gerekir:
 
 - **Doğru kütüphaneleri içe aktarın**. Öncekiyle aynı kütüphaneyi kullanacaksınız, sadece farklı yapılar olacak.
-- **Bir istemci örneği oluşturun**. Bu, bir istemci örneği oluşturmayı ve seçilen taşıma yöntemine bağlamayı içerecek.
-- **Hangi kaynakları listeleyeceğinize karar verin**. MCP sunucunuz kaynaklar, araçlar ve istemlerle birlikte gelir; hangilerini listeleyeceğinize karar vermelisiniz.
-- **İstemciyi bir ana uygulamaya entegre edin**. Sunucunun yeteneklerini öğrendikten sonra, kullanıcı bir istem veya başka bir komut yazdığında ilgili sunucu özelliğinin çağrılmasını sağlamak için bunu ana uygulamanıza entegre etmeniz gerekir.
+- **Bir istemci örneği oluşturun**. Bu, bir istemci örneği yaratmayı ve seçilen taşıma yöntemi ile bağlanmayı içerecek.
+- **Hangi kaynakların listeleneceğine karar verin**. MCP sunucunuz kaynaklar, araçlar ve istemler içerir, hangilerini listeleyeceğinize karar vermelisiniz.
+- **İstemciyi bir ana uygulamaya entegre edin**. Sunucunun yeteneklerini öğrendikten sonra, eğer bir kullanıcı istem veya başka bir komut yazarsa karşılık gelen sunucu özelliğinin çağrılması için bunu ana uygulamanıza entegre etmelisiniz.
 
-Artık yüksek seviyede ne yapacağımızı anladığımıza göre, bir sonraki bölüme geçip bir örneğe bakalım.
+Şimdi genel olarak ne yapacağımızı anladığımıza göre, hemen ardından bir örneğe bakalım.
 
 ### Bir örnek istemci
 
-Bu örnek istemciye göz atalım:
+Bu örnek istemciye bir göz atalım:
 
 ### TypeScript
 
@@ -52,7 +52,7 @@ await client.connect(transport);
 // İstekleri listele
 const prompts = await client.listPrompts();
 
-// Bir istek al
+// Bir isteği al
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -79,21 +79,21 @@ const result = await client.callTool({
 
 Yukarıdaki kodda:
 
-- Kütüphaneler içe aktarılıyor.
-- Bir istemci örneği oluşturuluyor ve stdio taşıması ile bağlanıyor.
-- İstemler, kaynaklar ve araçlar listeleniyor ve hepsi çağrılıyor.
+- Kütüphaneler içe aktarıldı
+- Bir istemci örneği oluşturuldu ve stdio ile taşıma için bağlandı.
+- İstemler, kaynaklar ve araçlar listelendi ve hepsi çağrıldı.
 
-İşte karşınızda, bir MCP Sunucusuyla konuşabilen bir istemci.
+İşte karşınızda MCP Sunucusu ile konuşabilen bir istemci.
 
-Bir sonraki alıştırma bölümünde her kod parçasını ayrıntılı inceleyip ne olduğunu açıklayalım.
+Bir sonraki alıştırma bölümünde her kod parçasını ayrıntılarıyla inceleyip neyin ne olduğunu açıklayalım.
 
-## Alıştırma: Bir istemci yazmak
+## Alıştırma: Bir istemci yazma
 
-Yukarıda belirtildiği gibi, kodu açıklamaya zaman ayıralım ve isterseniz kodu birlikte yazalım.
+Yukarıda da belirtildiği gibi, kodu açıklarken zaman ayıralım ve isterseniz birlikte kod da yazabilirsiniz.
 
 ### -1- Kütüphaneleri içe aktarma
 
-Gerekli kütüphaneleri içe aktaralım, hem istemci hem de seçilen taşıma protokolü stdio için referanslara ihtiyacımız olacak. Stdio, yerel makinenizde çalışması amaçlanan şeyler için bir protokoldür. SSE, gelecekteki bölümlerde göstereceğimiz başka bir taşıma protokolüdür ama şimdilik stdio ile devam edelim.
+Gereken kütüphaneleri içe aktaralım, bir istemciye ve seçtiğimiz taşıma protokolü olan stdio’ya referans ihtiyacımız olacak. Stdio, yerel makinenizde çalıştırılmak üzere tasarlanmış bir protokoldür. Gelecek bölümlerde göstereceğimiz SSE ise başka bir taşıma protokolüdür, ancak şimdilik stdio ile devam edelim.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Java için, önceki alıştırmadan MCP sunucusuna bağlanan bir istemci oluşturacaksınız. [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) bölümünde kullanılan aynı Java Spring Boot proje yapısını kullanarak `src/main/java/com/microsoft/mcp/sample/client/` klasöründe `SDKClient` adında yeni bir Java sınıfı oluşturun ve aşağıdaki içe aktarımları ekleyin:
+Java için, önceki alıştırmadaki MCP sunucusuna bağlanan bir istemci oluşturacaksınız. [Getting Started with MCP Server](../../../../03-GettingStarted/01-first-server/solution/java) içindeki aynı Java Spring Boot proje yapısını kullanarak, `src/main/java/com/microsoft/mcp/sample/client/` klasöründe `SDKClient` adında yeni bir Java sınıfı oluşturup aşağıdaki importları ekleyin:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-`Cargo.toml` dosyanıza aşağıdaki bağımlılıkları eklemeniz gerekir.
+`Cargo.toml` dosyanıza aşağıdaki bağımlılıkları eklemeniz gerekecek.
 
 ```toml
 [package]
@@ -163,9 +163,9 @@ use tokio::process::Command;
 
 Şimdi örneklemeye geçelim.
 
-### -2- İstemci ve taşımanın örneklenmesi
+### -2- İstemci ve taşıma örneklemek
 
-Taşıma ve istemci için bir örnek oluşturmamız gerekecek:
+Taşımanın ve istemcimizin birer örneğini oluşturmamız gerekir:
 
 #### TypeScript
 
@@ -187,7 +187,7 @@ await client.connect(transport);
 
 Yukarıdaki kodda:
 
-- Bir stdio taşıma örneği oluşturduk. Komut ve argümanlarla sunucunun nasıl bulunup başlatılacağını belirtmek gerekiyor, çünkü istemci oluştururken bunu yapmamız gerekecek.
+- Stdio taşıma örneği oluşturuldu. Komut ve argümanlarıyla sunucunun nasıl bulunup başlatılacağını belirtiyor; çünkü istemciyi oluştururken bunu yapmamız gerekiyor.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -196,7 +196,7 @@ Yukarıdaki kodda:
     });
     ```
 
-- Bir istemci yaratıp ona isim ve sürüm verdik.
+- Bir isim ve sürüm vererek istemci örnekledi.
 
     ```typescript
     const client = new Client(
@@ -206,7 +206,7 @@ Yukarıdaki kodda:
     });
     ```
 
-- İstemciyi seçilen taşıma yöntemine bağladık.
+- İstemci seçilen taşıma ile bağlandı.
 
     ```typescript
     await client.connect(transport);
@@ -218,7 +218,7 @@ Yukarıdaki kodda:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# stdio bağlantısı için sunucu parametreleri oluştur
+# Stdio bağlantısı için sunucu parametreleri oluştur
 server_params = StdioServerParameters(
     command="mcp",  # Çalıştırılabilir dosya
     args=["run", "server.py"],  # İsteğe bağlı komut satırı argümanları
@@ -243,10 +243,10 @@ if __name__ == "__main__":
 
 Yukarıdaki kodda:
 
-- Gerekli kütüphaneler içe aktarıldı.
-- Bağlantı için kullanılacak olan sunucu parametreleri nesnesi oluşturuldu.
-- `stdio_client` çağıran `run` adlı bir metot tanımlandı, bu da istemci oturumunu başlatır.
-- `asyncio.run` içine `run` metodu giriş noktası olarak verildi.
+- Gerekli kütüphaneler içe aktarıldı
+- Sunucuyu çalıştırmak için kullanılacak parametreler nesnesi oluşturuldu, böylece istemcimizle bağlanabiliriz.
+- `stdio_client` çağıran ve istemci oturumu başlatan bir `run` metodu tanımlandı.
+- `asyncio.run`'a `run` metodu sağlayan giriş noktası oluşturuldu.
 
 #### .NET
 
@@ -277,9 +277,9 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 Yukarıdaki kodda:
 
 - Gerekli kütüphaneler içe aktarıldı.
-- Bir stdio taşıma oluşturuldu ve `mcpClient` adlı bir istemci yaratıldı. Bunu MCP Sunucudaki özellikleri listelemek ve çağırmak için kullanacağız.
+- Bir stdio taşıma ve `mcpClient` isminde bir istemci oluşturuldu. Bu, MCP Sunucusu üzerindeki özellikleri listelemek ve çağırmak için kullanılacak.
 
-Not: "Arguments" bölümünde *.csproj* dosyasına veya çalıştırılabilir dosyaya işaret edebilirsiniz.
+Dikkat edin, "Arguments" kısmında ya *.csproj* dosyasını ya da yürütülebilir dosyayı gösterebilirsiniz.
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Müşteri mantığınız buraya gelir
+        // İstemci mantığınız buraya gider
     }
 }
 ```
 
 Yukarıdaki kodda:
 
-- MCP sunucumuzu çalıştıracak olan `http://localhost:8080` adresine işaret eden bir SSE taşıma oluşturuldu.
-- Taşıma parametresi alan bir istemci sınıfı yaratıldı.
-- `run` metodunda taşıma kullanılarak senkron bir MCP istemcisi oluşturulup bağlantı başlatıldı.
-- Java Spring Boot MCP sunucularıyla HTTP tabanlı iletişim için uygun olan SSE (Sunucu Gönderimli Olaylar) taşıması kullanıldı.
+- MCP sunucumuzun çalışacağı `http://localhost:8080` adresine işaret eden SSE taşıma kuran ana metodu oluşturdu.
+- Taşıma nesnesini parametre alan bir istemci sınıfı kurdu.
+- `run` metodunda taşıma ile senkron MCP istemcisi oluşturup bağlantıyı başlattı.
+- Java Spring Boot MCP sunucuları ile HTTP tabanlı iletişim için uygun SSE (Sunucu Gönderimli Olaylar) taşıma kullanıldı.
 
 #### Rust
 
-Bu Rust istemcisi, sunucunun aynı dizinde "calculator-server" adlı kardeş bir proje olduğunu varsayıyor. Aşağıdaki kod sunucuyu başlatacak ve ona bağlanacaktır.
+Bu Rust istemcisi, sunucunun aynı dizindeki "calculator-server" adlı kardeş proje olduğunu varsayar. Aşağıdaki kod sunucuyu başlatıp ona bağlanacaktır.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Sunucunun aynı dizinde "calculator-server" adında kardeş bir proje olduğunu varsayın
+    // Sunucunun aynı dizinde "calculator-server" adında bir kardeş proje olduğunu varsay
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -338,7 +338,7 @@ async fn main() -> Result<(), RmcpError> {
 
     // TODO: Araçları listele
 
-    // TODO: add aracını argümanlarla çağır = {"a": 3, "b": 2}
+    // TODO: {"a": 3, "b": 2} argümanları ile add aracını çağır
 
     client.cancel().await?;
     Ok(())
@@ -347,12 +347,12 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- Sunucu özelliklerini listeleme
 
-Şimdi program çalıştırıldığında bağlanacak bir istemcimiz var. Ancak özelliklerini listelemiyor, bunu şimdi yapalım:
+Artık program çalıştırıldığında bağlanabilecek bir istemcimiz var. Ancak, özelliklerini listelemiyor; şimdi bunu yapalım:
 
 #### TypeScript
 
 ```typescript
-// İstekleri listele
+// Promtları listele
 const prompts = await client.listPrompts();
 
 // Kaynakları listele
@@ -378,7 +378,7 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Burada mevcut kaynakları (`list_resources()`) ve araçları (`list_tools`) listeliyoruz ve yazdırıyoruz.
+Burada mevcut kaynaklar `list_resources()` ve araçlar `list_tools` listelenir ve ekrana yazdırılır.
 
 #### .NET
 
@@ -389,7 +389,7 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Yukarıda, sunucudaki araçları nasıl listeleyebileceğimize dair bir örnek var. Her araç için adı yazdırıyoruz.
+Yukarıda, sunucudaki araçların nasıl listeleneceğine dair bir örnek var. Her araç için adını yazdırıyoruz.
 
 #### Java
 
@@ -404,15 +404,15 @@ client.ping();
 
 Yukarıdaki kodda:
 
-- MCP sunucudan tüm mevcut araçları almak için `listTools()` çağrıldı.
+- MCP sunucusundan tüm mevcut araçları almak için `listTools()` çağrıldı.
 - Bağlantının çalıştığını doğrulamak için `ping()` kullanıldı.
-- `ListToolsResult` içinde araçların adlarını, açıklamalarını ve giriş şemalarını içeren bilgiler bulunur.
+- `ListToolsResult`, araçların adları, açıklamaları ve giriş şemaları dahil tüm bilgileri içerir.
 
-Harika, şimdi tüm özellikleri yakaladık. Şimdi soralım ne zaman kullanacağız? Bu istemci oldukça basit; özellikleri kullanmak istediğimizde açıkça çağırmamız gerekiyor. Sonraki bölümde kendi büyük dil modeli (LLM)'ne erişimi olan daha gelişmiş bir istemci oluşturacağız. Şimdilik, sunucudaki özelliklerin nasıl çağrılabileceğine bakalım:
+Harika, şimdi tüm özellikleri aldık. Peki, bunları ne zaman kullanacağız? Bu istemci oldukça basit, yani özellikleri kullanmak istediğimizde açıkça çağırmamız gerekiyor. Sonraki bölümde kendi büyük dil modeline (LLM) erişimi olan daha gelişmiş bir istemci oluşturacağız. Şimdilik, sunucudaki özelliklerin nasıl çağrılacağını görelim:
 
 #### Rust
 
-Ana fonksiyonda, istemciyi başlattıktan sonra sunucuyu başlatabilir ve bazı özelliklerini listeleyebiliriz.
+Main fonksiyonunda, istemciyi başlattıktan sonra sunucuyu başlatabilir ve bazı özelliklerini listeleyebilirsiniz.
 
 ```rust
 // Başlat
@@ -426,7 +426,7 @@ println!("Available tools: {:?}", tools);
 
 ### -4- Özellikleri çağırma
 
-Özellikleri çağırmak için doğru argümanları ve bazı durumlarda çağırdığımız şeyin adını belirtmemiz gerekir.
+Özellikleri çağırmak için doğru argümanları ve bazen çağırmak istediğimiz şeyin adını belirtmemiz gerekir.
 
 #### TypeScript
 
@@ -437,7 +437,7 @@ const resource = await client.readResource({
   uri: "file:///example.txt"
 });
 
-// Bir aracı çağır
+// Bir arac çağır
 const result = await client.callTool({
   name: "example-tool",
   arguments: {
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// isteği çağır
+// istemi çağır
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -456,7 +456,7 @@ const promptResult = await client.getPrompt({
 
 Yukarıdaki kodda:
 
-- Bir kaynağı okuduk, `uri` belirterek `readResource()` çağrıldı. Sunucu tarafında muhtemel görünümü şudur:
+- Bir kaynağı okuduk; `readResource()`'ı `uri`yi belirterek çağırdık. Sunucu tarafında muhtemelen şöyle görünür:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ Yukarıdaki kodda:
     );
     ```
 
-    `uri` değerimiz `file://example.txt` sunucudaki `file://{name}` ile eşleşir. `example.txt`, `name` olarak eşlenir.
+    `uri` değerimiz `file://example.txt`, sunucuda `file://{name}` ile eşleşir. `example.txt`, `name` olarak eşlenir.
 
-- Bir aracı çağırmak için adını (`name`) ve argümanlarını (`arguments`) belirtiyoruz:
+- Bir aracı çağırdık, ismini ve argümanlarını şu şekilde belirterek:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ Yukarıdaki kodda:
     });
     ```
 
-- Bir istem almak için, ismi ve argümanları ile `getPrompt()` çağrılır. Sunucu kodu şöyledir:
+- Bir istem almak için, `getPrompt()`'u `name` ve `arguments` ile çağırdık. Sunucu kodu şöyle görünüyor:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ Yukarıdaki kodda:
     );
     ```
 
-   Böylece istemci tarafı da sunucu tarafına uyacak şekilde aşağıdaki gibidir:
+    Böylece istemci kodunuz sunucuda tanımlanana uygun olur:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -520,7 +520,7 @@ Yukarıdaki kodda:
 print("READING RESOURCE")
 content, mime_type = await session.read_resource("greeting://hello")
 
-# Bir aracı çağır
+# Bir araç çağır
 print("CALL TOOL")
 result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
@@ -528,12 +528,12 @@ print(result.content)
 
 Yukarıdaki kodda:
 
-- `greeting` adlı kaynağı `read_resource` ile çağırdık.
-- `add` adlı aracı `call_tool` ile çalıştırdık.
+- `greeting` adındaki kaynağı `read_resource` ile çağırdık.
+- `add` adındaki aracı `call_tool` ile çağırdık.
 
 #### .NET
 
-1. Bir aracı çağırmak için kod ekleyelim:
+1. Bir aracı çağırmak için biraz kod ekleyelim:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ Yukarıdaki kodda:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Sonucu yazdırmak için ise şu kodu ekleyelim:
+1. Sonucu yazdırmak için işte biraz kod:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -571,10 +571,10 @@ System.out.println("Help = " + resultHelp);
 
 Yukarıdaki kodda:
 
-- `CallToolRequest` nesneleri ile `callTool()` metodunu kullanarak hesap makinesi araçlarından birden fazlasını çağırdık.
-- Her araç çağrısı, araç adını ve o aracın ihtiyaç duyduğu argümanlar (`Map`) ile birlikte yapılır.
-- Sunucu araçları matematiksel işlemler için belirli parametre adları (örn. "a", "b") bekler.
-- Sonuçlar, sunucudan gelen yanıtları içeren `CallToolResult` nesneleri olarak döner.
+- `callTool()` metodunu kullanarak `CallToolRequest` nesneleriyle birçok hesap makinesi aracını çağırdı.
+- Her çağrıda aracın adı ve o araç için gereken argümanların bir `Map`i verildi.
+- Sunucu araçları, matematiksel işlemler için "a", "b" gibi belirli parametre isimleri bekler.
+- Sonuçlar, sunucudan gelen yanıtı içeren `CallToolResult` nesneleri olarak döner.
 
 #### Rust
 
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- İstemciyi çalıştırma
 
-İstemciyi çalıştırmak için terminalde aşağıdaki komutu girin:
+İstemciyi çalıştırmak için terminalde aşağıdaki komutu yazın:
 
 #### TypeScript
 
-*package.json* dosyanızın "scripts" bölümüne aşağıdaki girdiyi ekleyin:
+*package.json* dosyanızdaki "scripts" bölümüne aşağıdaki girdiyi ekleyin:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -633,7 +633,7 @@ dotnet run
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Alternatif olarak, çözüm klasöründe bulunan `03-GettingStarted\02-client\solution\java` tam istemci projesini çalıştırabilirsiniz:
+Alternatif olarak, çözüm klasöründeki `03-GettingStarted\02-client\solution\java` içindeki tamamlanmış istemci projesini çalıştırabilirsiniz:
 
 ```bash
 # Çözüm dizinine gidin
@@ -655,7 +655,7 @@ cargo run
 
 Bu ödevde, öğrendiklerinizi kullanarak kendi istemcinizi oluşturacaksınız.
 
-Aşağıda, istemci kodunuzdan çağırmanız gereken bir sunucu var; sunucuyu daha ilginç hale getirmek için ona daha fazla özellik ekleyip ekleyemeyeceğinizi görün.
+Kullanmanız gereken bir sunucu var; istemci kodunuzla bu sunucuyu çağırmanız gerekiyor. Sunucuyu daha ilginç hale getirmek için ona daha fazla özellik ekleyip ekleyemeyeceğinize bakın.
 
 ### TypeScript
 
@@ -664,13 +664,13 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-// Bir MCP sunucusu oluşturun
+// Bir MCP sunucusu oluştur
 const server = new McpServer({
   name: "Demo",
   version: "1.0.0"
 });
 
-// Bir toplama aracı ekleyin
+// Bir ek araç ekle
 server.tool("add",
   { a: z.number(), b: z.number() },
   async ({ a, b }) => ({
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Dinamik bir karşılama kaynağı ekleyin
+// Dinamik bir karşılama kaynağı ekle
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -690,7 +690,7 @@ server.resource(
   })
 );
 
-// stdin üzerinde mesaj almayı ve stdout üzerinde mesaj göndermeyi başlatın
+// stdin üzerinde mesaj almayı ve stdout üzerinde mesaj göndermeyi başlat
 
 async function main() {
   const transport = new StdioServerTransport();
@@ -710,18 +710,18 @@ main().catch((error) => {
 # server.py
 from mcp.server.fastmcp import FastMCP
 
-# Bir MCP sunucusu oluşturun
+# Bir MCP sunucusu oluştur
 mcp = FastMCP("Demo")
 
 
-# Bir toplama aracı ekleyin
+# Bir toplama aracı ekle
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Dinamik bir karşılama kaynağı ekleyin
+# Dinamik bir karşılama kaynağı ekle
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Bu projeye bakarak [istemleri ve kaynakları nasıl ekleyebileceğinizi](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs) görebilirsiniz.
+Bu projeye bakarak [istemler ve kaynaklar nasıl eklenir](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs) öğrenebilirsiniz.
 
-Ayrıca, şu bağlantıda [istemleri ve kaynakları nasıl çağıracağınız](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/) açıklanmıştır.
+Ayrıca, bu bağlantı üzerinden [istemler ve kaynaklar nasıl çağrılır](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/) bakabilirsiniz.
 
 ### Rust
 
-[Önceki bölümde](../../../../03-GettingStarted/01-first-server) Rust ile basit bir MCP sunucu oluşturmayı öğrendiniz. Üzerine eklemeye devam edebilir veya şu bağlantıdan daha fazla Rust tabanlı MCP sunucu örneklerine bakabilirsiniz: [MCP Sunucu Örnekleri](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+[Önceki bölümde](../../../../03-GettingStarted/01-first-server), Rust ile basit bir MCP sunucusunun nasıl oluşturulacağını öğrendiniz. Devam edebilir veya daha fazla Rust temelli MCP sunucusu örnekleri için şu bağlantıya bakabilirsiniz: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Çözüm
 
-**Çözüm klasörü**, bu öğretide ele alınan tüm kavramları gösteren tam ve çalıştırmaya hazır istemci uygulamalarını içerir. Her çözüm, istemci ve sunucu kodunu ayrı ve kendi içinde bağımsız projelerde organize eder.
+**Çözüm klasörü** bu eğitimde ele alınan tüm kavramları gösteren tam, çalışmaya hazır istemci uygulamalarını içerir. Her çözüm, istemci ve sunucu kodunu ayrı, bağımsız projelerde düzenler.
 
 ### 📁 Çözüm Yapısı
 
-Çözüm dizini programlama diline göre organize edilmiştir:
+Çözüm dizini programlama dillerine göre organize edilmiştir:
 
 ```text
 solution/
@@ -803,15 +803,15 @@ solution/
     └── server.csproj    # Server project file
 ```
 
-### 🚀 Her Çözüm Neleri İçerir
+### 🚀 Her Çözüm Neler İçerir
 
-Her dil için çözüm,
+Her dil özel çözümünde:
 
-- Öğretideki tüm özelliklerle **tam istemci uygulaması**
-- Doğru bağımlılıkları ve yapılandırmayı içeren **çalışan proje yapısı**
-- Kurulum ve çalıştırma için **yapı ve çalıştırma betikleri**
-- Dil özelinde talimatlar içeren **detaylı README**
-- Hata yönetimi ve sonuç işleme örnekleri
+- **Eğitimdeki tüm özellikleri içeren tam istemci uygulaması**
+- **Doğru bağımlılıklar ve yapılandırmalarla çalışan proje yapısı**
+- **Kolay kurulum ve çalıştırma için build ve çalıştırma scriptleri**
+- **Dil özel yönergelerle ayrıntılı README dosyası**
+- **Hata yönetimi ve sonuç işleme örnekleri**
 
 ### 📖 Çözümleri Kullanma
 
@@ -825,7 +825,7 @@ Her dil için çözüm,
    ```
 
 2. **Her klasördeki README talimatlarını izleyin**:
-   - Bağımlılıkların kurulması
+   - Bağımlılıkların kurulumu
    - Projenin derlenmesi
    - İstemcinin çalıştırılması
 
@@ -837,78 +837,80 @@ Her dil için çözüm,
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Tam dokümantasyon ve adım adım talimatlar için bkz.: **[📖 Çözüm Dokümantasyonu](./solution/README.md)**
+Tam belgeler ve adım adım talimatlar için bkz: **[📖 Çözüm Belgelendirmesi](./solution/README.md)**
 
 ## 🎯 Tam Örnekler
 
-Bu öğretide yer alan tüm programlama dilleri için tam ve çalışan istemci uygulamaları sağladık. Bu örnekler yukarıda açıklanan tüm işlevselliği gösterir ve kendi projeleriniz için referans veya başlangıç noktası olarak kullanılabilir.
+Bu eğitimde ele alınan tüm programlama dilleri için tam, çalışan istemci uygulamaları sağladık. Bu örnekler yukarıda açıklanan tüm işlevselliği gösterir ve referans uygulamalar veya kendi projeleriniz için başlangıç noktası olarak kullanılabilir.
 
 ### Mevcut Tam Örnekler
 
 | Dil | Dosya | Açıklama |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kapsamlı hata yönetimi ile SSE taşımasını kullanan tam Java istemcisi |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Otomatik sunucu başlatma özellikli stdio taşıması kullanan tam C# istemcisi |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Tam MCP protokol desteği içeren TypeScript istemcisi |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Async/await desenlerini kullanan tam Python istemcisi |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Async işlemler için Tokio kullanan tam Rust istemcisi |
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Kapsamlı hata yönetimiyle SSE taşıma kullanan tam Java istemcisi |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Otomatik sunucu başlatma ile stdio taşıma kullanan tam C# istemcisi |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Tüm MCP protokolü desteğine sahip tam TypeScript istemcisi |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Async/await desenleri kullanan tam Python istemcisi |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Tokio ile asenkron işlemleri yürüten tam Rust istemcisi |
 
-Her tam örnek, şunları içerir:
-- ✅ **Bağlantı kurulumu** ve hata yönetimi
-- ✅ **Sunucu keşfi** (uygulandığı yerlerde araçlar, kaynaklar, istemler)
+Her tam örnek şunları içerir:
+
+- ✅ **Bağlantı kurulumu ve hata yönetimi**
+- ✅ **Sunucu keşfi** (araçlar, kaynaklar, istemler uygulanabiliyorsa)
 - ✅ **Hesap makinesi işlemleri** (toplama, çıkarma, çarpma, bölme, yardım)
-- ✅ **Sonuç işleme** ve biçimlendirilmiş çıktı
+- ✅ **Sonuç işlemler ve biçimlendirilmiş çıktı**
 - ✅ **Kapsamlı hata yönetimi**
-- ✅ **Temiz, belgelenmiş kod** adım adım açıklamalarla
 
-### Tam Örneklerle Başlangıç
+- ✅ **Adım adım yorumlarla temiz, belgelenmiş kod**
 
-1. **Tercih ettiğiniz dili seçin** yukarıdaki tablodan
-2. **Tam örnek dosyasını inceleyin** tam uygulamayı anlamak için
-3. **Örneği çalıştırın** [`complete_examples.md`](./complete_examples.md) içindeki talimatları takip ederek
-4. **Örneği değiştirin ve genişletin** kendi kullanım durumunuz için
+### Tam Örneklerle Başlarken
+
+1. Yukarıdaki tablodan **tercih ettiğiniz dili seçin**
+2. Tam uygulamayı anlamak için **tam örnek dosyasını inceleyin**
+3. [`complete_examples.md`](./complete_examples.md) içindeki talimatlara göre **örneği çalıştırın**
+4. Özel kullanım durumunuz için örneği **değiştirin ve genişletin**
 
 Bu örneklerin çalıştırılması ve özelleştirilmesi hakkında ayrıntılı dokümantasyon için bkz: **[📖 Tam Örnekler Dokümantasyonu](./complete_examples.md)**
 
-### 💡 Çözüm Klasörü vs. Tam Örnekler
+### 💡 Çözüm vs. Tam Örnekler
 
 | **Çözüm Klasörü** | **Tam Örnekler** |
 |--------------------|--------------------- |
-| Derleme dosyaları ile tam proje yapısı | Tek dosyalık uygulamalar |
-| Bağımlılıklarla çalışmaya hazır | Odaklanmış kod örnekleri |
-| Üretim benzeri kurulum | Eğitici referans |
+| Derleme dosyaları ile tam proje yapısı | Tek dosya uygulamaları |
+| Bağımlılıklarıyla çalıştırmaya hazır | Odaklanmış kod örnekleri |
+| Prodüksiyona benzer kurulum | Öğretici referans |
 | Dil spesifik araçlar | Diller arası karşılaştırma |
 
-Her iki yaklaşım değerlidir - tam projeler için **çözüm klasörünü** ve öğrenme ve referans için **tam örnekleri** kullanın.
+Her iki yaklaşım da değerlidir - **çözüm klasörünü** tam projeler için, **tam örnekleri** ise öğrenme ve referans için kullanın.
 
-## Ana Noktalar
+## Ana Hatlar
 
-Bu bölümün ana noktaları müşteriler hakkında şunlardır:
+Bu bölüm için müşterilerle ilgili ana çıkarımlar şunlardır:
 
-- Hem sunucu özelliklerini keşfetmek hem de çağırmak için kullanılabilirler.
-- Kendi başına başlarken bir sunucuyu başlatabilirler (bu bölümde olduğu gibi) ancak müşteriler aynı zamanda çalışan sunuculara da bağlanabilir.
-- Önceki bölümde açıklandığı gibi, Inspector gibi alternatiflerin yanında sunucu yeteneklerini test etmek için harika bir yöntemdir.
+- Hem sunucudaki özellikleri keşfetmek hem de çağırmak için kullanılabilir.
+- Kendi kendini başlatırken bir sunucu çalıştırabilir (bu bölümde olduğu gibi), ama müşteriler zaten çalışan sunuculara da bağlanabilir.
+- Önceki bölümde açıklandığı gibi Inspector gibi alternatiflerin yanında sunucu yeteneklerini test etmek için harika bir yöntemdir.
 
 ## Ek Kaynaklar
 
-- [MCP'de istemci oluşturma](https://modelcontextprotocol.io/quickstart/client)
+- [MCP'de müşteriler oluşturma](https://modelcontextprotocol.io/quickstart/client)
 
 ## Örnekler
 
 - [Java Hesap Makinesi](../samples/java/calculator/README.md)
-- [.Net Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)
+- [.NET Hesap Makinesi](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Hesap Makinesi](../samples/javascript/README.md)
 - [TypeScript Hesap Makinesi](../samples/typescript/README.md)
 - [Python Hesap Makinesi](../../../../03-GettingStarted/samples/python)
 - [Rust Hesap Makinesi](../../../../03-GettingStarted/samples/rust)
 
-## Sonraki
+## Sırada Ne Var
 
-- Sonraki: [LLM ile istemci oluşturma](../03-llm-client/README.md)
+- Sonraki: [LLM ile bir müşteri oluşturmak](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilmektedir. Bu çevirinin kullanımı sonucunda oluşabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

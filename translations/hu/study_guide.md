@@ -1,12 +1,12 @@
 # Model Context Protocol (MCP) kezdőknek – Tanulmányi útmutató
 
-Ez a tanulmányi útmutató áttekintést nyújt a "Model Context Protocol (MCP) kezdőknek" tananyag tárolószerkezetéről és tartalmáról. Használja ezt az útmutatót a tárhely hatékony navigálásához és a rendelkezésre álló erőforrások maximális kihasználásához.
+Ez a tanulmányi útmutató áttekintést nyújt a „Model Context Protocol (MCP) kezdőknek” tananyag tárról és tartalmáról. Használd ezt az útmutatót, hogy hatékonyan navigálj a táron, és a legtöbbet hozd ki a rendelkezésre álló forrásokból.
 
-## Tároló áttekintése
+## A tár bemutatása
 
-A Model Context Protocol (MCP) egy szabványosított keretrendszer az MI modellek és kliensalkalmazások közötti interakciókhoz. Eredetileg az Anthropic hozta létre, az MCP közösség most a hivatalos GitHub szervezet révén tartja karban. Ez a tárhely átfogó tananyagot kínál kézzelfogható kódpéldákkal C#, Java, JavaScript, Python és TypeScript nyelveken, amelyeket MI fejlesztőknek, rendszertervezőknek és szoftvermérnököknek szántak.
+A Model Context Protocol (MCP) egy szabványosított keretrendszer az AI-modellek és a kliensalkalmazások közötti interakciókhoz. Eredetileg az Anthropic hozta létre, az MCP-t jelenleg a tágabb MCP közösség tartja karban az hivatalos GitHub szervezet révén. Ez a tár egy átfogó tananyaggal szolgál gyakorlati kódpéldákkal C#, Java, JavaScript, Python és TypeScript nyelveken, AI fejlesztők, rendszertervezők és szoftvermérnökök számára.
 
-## Vizualizált tanterv térkép
+## Vizualizált tananyag térkép
 
 ```mermaid
 mindmap
@@ -126,49 +126,50 @@ mindmap
       (MCP in Copilot app)
 ```
 
-## Tároló szerkezet
+## A tár szerkezete
 
-A tároló tizenkét fő részre van bontva, amelyek mindegyike az MCP különböző aspektusaira összpontosít:
+A tároló tizenkét fő részre tagolódik, mindegyik az MCP különféle aspektusaira fókuszál:
 
 1. **Bevezetés (00-Introduction/)**
    - A Model Context Protocol áttekintése
-   - Miért fontos a szabványosítás az MI-pipeline-okban
-   - Gyakorlati alkalmazási esetek és előnyök
+   - Miért fontos a szabványosítás az AI folyamatokban
+   - Gyakorlati felhasználási esetek és előnyök
 
 2. **Alapfogalmak (01-CoreConcepts/)**
-   - Kliens-szerver architektúra
-   - Kulcsfontosságú protokoll komponensek
+   - Ügyfél-szerver architektúra
+   - A protokoll kulcsfontosságú elemei
    - Üzenetküldési minták az MCP-ben
-   - Előretekintés: [Mi változik az MCP-ben: a 2026-07-28-as kiadás jelölt](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) — az állapotmentes protokollmag, kiterjesztések keretrendszere, valamint a Roots/Sampling/Logging elavulttá válása a következő specifikációs verzióban várható
+   - Aktuális specifikáció: [Mi változott az MCP-ben: a 2026-07-28-as specifikáció](./01-CoreConcepts/mcp-2026-07-28.md) – az állapotmentes protokollmag, a kiterjesztések keretrendszere, valamint a gyökér/sampling/naplózás elavulások
 
 3. **Biztonság (02-Security/)**
    - Biztonsági fenyegetések MCP-alapú rendszerekben
-   - Legjobb gyakorlatok a megvalósítások biztonságossá tételéhez
+   - A megvalósítások védelmének legjobb gyakorlatai
    - Hitelesítési és jogosultságkezelési stratégiák
+   - Gyakorlati [CIMD és DCR jogosultságminta](./02-Security/samples/cimd-dcr-auth/README.md)
    - **Átfogó biztonsági dokumentáció**:
-     - MCP Biztonsági Legjobb Gyakorlatok 2025
-     - Azure Tartalombiztonsági Megvalósítási Útmutató
-     - MCP Biztonsági Szabályozások és Technikák
-     - MCP Legjobb Gyakorlatok Gyorsreferencia
+     - MCP biztonsági legjobb gyakorlatok
+     - Azure tartalombiztonsági megvalósítási útmutató
+     - MCP biztonsági vezérlők és technikák
+     - MCP legjobb gyakorlatok gyorsreferencia
    - **Kulcsfontosságú biztonsági témák**:
-     - Prompt injekció és eszközmérgezéses támadások
-     - Munkamenet eltérítés és összezavart helyettes problémák
-     - Token átengedési sérülékenységek
-     - Túlzott jogosultságok és hozzáférés-ellenőrzés
-     - AI komponensek beszállítói lánc biztonsága
+     - Prompt injekció és eszközmérgezési támadások
+     - Munkamenet eltérítés és „confused deputy” problémák
+     - Token átengedési sebezhetőségek
+     - Túlzott engedélyek és hozzáférésvezérlés
+     - Ellátási lánc biztonsága AI komponensek esetén
      - Microsoft Prompt Shields integráció
 
-4. **Kezdőknek (03-GettingStarted/)**
+4. **Első lépések (03-GettingStarted/)**
    - Környezet beállítása és konfigurálása
-   - Alap MCP szerverek és kliensek létrehozása
+   - Alap MCP szerverek és kliens létrehozása
    - Integráció meglévő alkalmazásokkal
-   - Tartalmazza a részeket:
-     - Első szerver implementáció
+   - Beleértve:
+     - Az első szerver megvalósítása
      - Kliens fejlesztés
      - LLM kliens integráció
      - VS Code integráció
      - Server-Sent Events (SSE) szerver
-     - Fejlett szerver használat
+     - Haladó szerverhasználat
      - HTTP streaming
      - AI Toolkit integráció
      - Tesztelési stratégiák
@@ -176,40 +177,40 @@ A tároló tizenkét fő részre van bontva, amelyek mindegyike az MCP különb�
 
 5. **Gyakorlati megvalósítás (04-PracticalImplementation/)**
    - SDK-k használata különböző programozási nyelveken
-   - Hibakeresési, tesztelési és ellenőrzési technikák
-   - Újrafelhasználható prompt sablonok és munkafolyamatok kidolgozása
-   - Minta projektek megvalósítási példákkal
+   - Hibakeresési, tesztelési és validációs technikák
+   - Újrahasznosítható prompt sablonok és munkafolyamatok kialakítása
+   - Mintaprojektek megvalósítási példákkal
 
 6. **Haladó témák (05-AdvancedTopics/)**
-   - Kontextus mérnökségi technikák
+   - Kontextus mérnöki technikák
    - Foundry ügynök integráció
-   - Többmodalitású MI munkafolyamatok
-   - OAuth2 hitelesítési demók
+   - Többmodalitású AI munkafolyamatok
+   - OAuth2 hitelesítési bemutatók
    - Valós idejű keresési képességek
    - Valós idejű streaming
-   - Root kontextusok megvalósítása
+   - Gyökér kontextusok megvalósítása
    - Útválasztási stratégiák
-   - Mintavételi technikák
+   - Mintavételezési technikák
    - Skálázási megközelítések
    - Biztonsági megfontolások
    - Entra ID biztonsági integráció
-   - Web keresési integráció
+   - Webes keresés integráció
    - Ellenséges többügynökös érvelés (vita minták)
 
 7. **Közösségi hozzájárulások (06-CommunityContributions/)**
-   - Hogyan járulhat hozzá kódokkal és dokumentációval
-   - Együttműködés GitHub-on keresztül
-   - Közösségi alapú fejlesztések és visszajelzések
+   - Hogyan járulj hozzá kódhoz és dokumentációhoz
+   - Együttműködés GitHubon keresztül
+   - Közösség által hajtott bővítések és visszajelzések
    - Különféle MCP kliensek használata (Claude Desktop, Cline, VSCode)
-   - Népszerű MCP szerverekkel való munka, beleértve a kép generálást is
+   - Népszerű MCP szerverekkel való munka, beleértve a képgenerálást is
 
-8. **Korai alkalmazási tapasztalatok (07-LessonsfromEarlyAdoption/)**
-   - Valós megvalósítások és sikertörténetek
-   - MCP-alapú megoldások építése és telepítése
-   - Trendek és jövőbeli ütemterv
-   - **Microsoft MCP szerverek útmutatója**: Átfogó útmutató 10 gyártásra kész Microsoft MCP szerverhez, többek között:
+8. **Tanulságok a korai alkalmazásból (07-LessonsfromEarlyAdoption/)**
+   - Való életbéli megvalósítások és sikertörténetek
+   - MCP alapú megoldások építése és telepítése
+   - Trendek és jövőbeli útiterv
+   - **Microsoft MCP szerver útmutató**: Átfogó útmutató 10 termékérett Microsoft MCP szerverhez, többek között:
      - Microsoft Learn Docs MCP szerver
-     - Azure MCP szerver (15+ specializált csatlakozó)
+     - Azure MCP szerver (15+ speciális csatlakozó)
      - GitHub MCP szerver
      - Azure DevOps MCP szerver
      - MarkItDown MCP szerver
@@ -220,75 +221,75 @@ A tároló tizenkét fő részre van bontva, amelyek mindegyike az MCP különb�
      - Microsoft 365 Agents Toolkit MCP szerver
 
 9. **Legjobb gyakorlatok (08-BestPractices/)**
-   - Teljesítményhangolás és optimalizáció
-   - Hibabiztos MCP rendszerek tervezése
-   - Tesztelési és ellenállóképességi stratégiák
+   - Teljesítmény finomhangolás és optimalizálás
+   - Hibamentes MCP rendszerek tervezése
+   - Tesztelés és ellenállósági stratégiák
 
 10. **Esettanulmányok (09-CaseStudy/)**
     - **Hét átfogó esettanulmány** az MCP sokoldalúságának bemutatására különböző helyzetekben:
-    - **Azure AI Utazási Ügynökök**: Többügynökös összehangolás Azure OpenAI és AI Kereséssel
-    - **Azure DevOps integráció**: Munkafolyamat automatizálás YouTube adatfrissítésekkel
+    - **Azure AI utazási ügynökök**: Többügynökös összehangolás Azure OpenAI és AI kereséssel
+    - **Azure DevOps integráció**: Munkafolyamat automatizálása YouTube adatfrissítésekkel
     - **Valós idejű dokumentáció lekérés**: Python konzol kliens HTTP streaminggel
-    - **Interaktív tanulmányi terv generátor**: Chainlit webalkalmazás beszélgető MI-vel
-    - **Szerkesztői dokumentáció**: VS Code integráció GitHub Copilot munkafolyamatokkal
+    - **Interaktív tanulmányi terv generátor**: Chainlit webalkalmazás beszélgető AI-val
+    - **Szerkesztőbeli dokumentáció**: VS Code integráció GitHub Copilot munkafolyamatokkal
     - **Azure API menedzsment**: Vállalati API integráció MCP szerver létrehozással
-    - **GitHub MCP Registry**: Ökoszisztéma fejlesztés és agentikus integrációs platform
-    - Megvalósítási példák kiterjedtek vállalati integrációra, fejlesztői produktivitásra és ökoszisztéma fejlesztésre
+    - **GitHub MCP Regiszter**: Ökoszisztéma fejlesztés és ügynök integrációs platform
+    - Megvalósítási példák vállalati integrációra, fejlesztői termelékenységre és ökoszisztéma fejlesztésre
 
-11. **Gyakorlati műhely (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Átfogó gyakorlati műhely MCP és AI Toolkit kombinációjával
-    - Intelligens alkalmazások építése az MI modellek és valós eszközök között
-    - Gyakorlati modulok a alapoktól az egyedi szerverfejlesztésig és gyártásbeli telepítési stratégiákig
-    - **Labor struktúra**:
+11. **Gyakorlati műhelymunka (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
+    - Átfogó gyakorlati műhelymunka MCP és AI Toolkit egyesítésére
+    - Intelligens alkalmazások készítése AI modellek és valós eszközök összekapcsolásával
+    - Gyakorlati modulok az alapoktól, egyedi szerverfejlesztésen át a termelésbe vitelekig
+    - **Labor felépítése**:
       - Labor 1: MCP szerver alapjai
       - Labor 2: Haladó MCP szerver fejlesztés
       - Labor 3: AI Toolkit integráció
-      - Labor 4: Gyártásbeli telepítés és skálázás
-    - Labor alapú tanulási megközelítés lépésről lépésre
+      - Labor 4: Termelési telepítés és skálázás
+    - Labor-alapú tanulás lépésről lépésre
 
-12. **MCP szerver adatbázis integrációs laborok (11-MCPServerHandsOnLabs/)**
-    - **Átfogó 13-laboros tanulási út** gyártásra kész MCP szerverek építésére PostgreSQL integrációval
-    - **Valós kiskereskedelmi elemzési megvalósítás** a Zava Retail használati esettel
-    - **Vállalati szintű minták** köztük Row Level Security (RLS), szemantikus keresés és többbérlős adat-hozzáférés
+12. **MCP szerver adatbázis integráció laborok (11-MCPServerHandsOnLabs/)**
+    - **Átfogó 13 laborból álló tanulási útvonal** termékérett MCP szerverek építésére PostgreSQL integrációval
+    - **Valódi kereskedelmi elemző megvalósítás** a Zava Retail felhasználási esettel
+    - **Vállalati szintű minták**, beleértve Row Level Security (RLS), szemantikus keresést és multi-tenant adat-hozzáférést
     - **Teljes labor struktúra**:
-      - **Laborok 00-03: Alapok** - Bevezetés, Architektúra, Biztonság, Környezet beállítása
-      - **Laborok 04-06: MCP szerver építése** - Adatbázis tervezés, MCP szerver implementáció, Eszköz fejlesztés
-      - **Laborok 07-09: Haladó funkciók** - Szemantikus keresés, Tesztelés és hibakeresés, VS Code integráció
-      - **Laborok 10-12: Gyártás és legjobb gyakorlatok** - Telepítés, Monitoring, Optimalizáció
-    - **Foglalt technológiák**: FastMCP keretrendszer, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
-    - **Tanulási eredmények**: Gyártásra kész MCP szerverek, adatbázis integrációs minták, MI-alapú elemzés, vállalati biztonság
+      - **Laborok 00-03: Alapok** – Bevezetés, architektúra, biztonság, környezet beállítás
+      - **Laborok 04-06: MCP szerver építése** – Adatbázis tervezés, MCP szerver megvalósítás, eszközfejlesztés
+      - **Laborok 07-09: Haladó funkciók** – Szemantikus keresés, tesztelés és hibakeresés, VS Code integráció
+      - **Laborok 10-12: Termelés és legjobb gyakorlatok** – Telepítés, monitorozás, optimalizálás
+    - **Technológiák**: FastMCP keretrendszer, PostgreSQL, Azure OpenAI, Azure Container Apps, Application Insights
+    - **Tanulási eredmények**: Termékérett MCP szerverek, adatbázis integrációs minták, AI-vezérelt elemzés, vállalati biztonság
 
 13. **Eszközök (12-tooling/)**
-    - Ismerje meg az MCP használatát a Copilot alkalmazásban és egyéb eszközökben
+    - MCP használata a Copilot alkalmazásban és más eszközökben
 
-## További erőforrások
+## További források
 
-A tároló támogatói erőforrásokat tartalmaz:
+A tár tartalmaz további támogató forrásokat:
 
-- **Képek mappa**: Tartalmazza a tananyag egészében használt diagramokat és illusztrációkat
-- **Fordítások**: Többnyelvű támogatás automatikus dokumentáció fordításokkal
-- **Hivatalos MCP erőforrások**:
-  - [MCP Dokumentáció](https://modelcontextprotocol.io/)
-  - [MCP Specifikáció](https://spec.modelcontextprotocol.io/)
-  - [MCP GitHub tárhely](https://github.com/modelcontextprotocol)
+- **Képek mappa**: Tartalmaz diagramokat és illusztrációkat, melyek a tananyag folyamán használatosak
+- **Fordítások**: Többnyelvű támogatás, automatikus dokumentáció fordításokkal
+- **Hivatalos MCP források**:
+  - [MCP dokumentáció](https://modelcontextprotocol.io/)
+  - [MCP specifikáció](https://modelcontextprotocol.io/specification/2026-07-28/)
+  - [MCP GitHub tár](https://github.com/modelcontextprotocol)
 
-## Hogyan használja ezt a tárolót
+## Hogyan használd ezt a tárat
 
-1. **Sorrendben tanulás**: Kövesse a fejezeteket sorban (00-tól 11-ig), hogy strukturált tanulási élményben legyen része.
-2. **Nyelvspecifikus fókusz**: Ha egy adott programozási nyelv érdekli, böngéssze a mintakönyvtárakat a preferált nyelven készült megvalósításokért.
-3. **Gyakorlati megvalósítás**: Kezdje a „Kezdőknek” résszel a környezet beállításához és első MCP szerver és kliens létrehozásához.
-4. **Haladó feltárás**: Amint megismerkedett az alapokkal, merüljön el a haladó témákban tudása bővítése érdekében.
-5. **Közösségi részvétel**: Csatlakozzon az MCP közösséghez GitHub beszélgetések és Discord csatornák révén, hogy szakértőkkel és fejlesztőtársakkal léphessen kapcsolatba.
+1. **Sorrend szerinti tanulás**: Kövesd a fejezeteket sorrendben (00-tól 11-ig) egy strukturált tanulási élményhez.
+2. **Nyelvspecifikus fókusz**: Ha egy konkrét programozási nyelv érdekel, nézd át a mintakönyvtárakat a preferált nyelven készült megvalósításokért.
+3. **Gyakorlati megvalósítás**: Kezdd az „Első lépések” résszel, hogy beállítsd a környezeted, és létrehozd első MCP szervered és kliensed.
+4. **Haladó felfedezés**: Ha már kényelmes vagy az alapokkal, merülj el a haladó témákban tudásod bővítésére.
+5. **Közösségi részvétel**: Csatlakozz az MCP közösséghez GitHub beszélgetéseken és Discord csatornákon, hogy kapcsolatba kerülj szakértőkkel és fejlesztőtársaiddal.
 
 ## MCP kliensek és eszközök
 
-A tananyag különféle MCP klienseket és eszközöket fed le:
+A tananyag különféle MCP klienseket és eszközöket tárgyal:
 
 1. **Hivatalos kliensek**:
    - Visual Studio Code
-   - MCP a Visual Studio Code-ban
+   - MCP Visual Studio Code-ban
    - Claude Desktop
-   - Claude a VSCode-ban
+   - Claude VSCode-ban
    - Claude API
 
 2. **Közösségi kliensek**:
@@ -305,11 +306,11 @@ A tananyag különféle MCP klienseket és eszközöket fed le:
 
 ## Népszerű MCP szerverek
 
-A tárhely többféle MCP szervert mutat be, többek között:
+A tár különféle MCP szervereket mutat be, többek között:
 
 1. **Hivatalos Microsoft MCP szerverek**:
    - Microsoft Learn Docs MCP szerver
-   - Azure MCP szerver (15+ specializált csatlakozó)
+   - Azure MCP szerver (15+ speciális csatlakozóval)
    - GitHub MCP szerver
    - Azure DevOps MCP szerver
    - MarkItDown MCP szerver
@@ -319,13 +320,13 @@ A tárhely többféle MCP szervert mutat be, többek között:
    - Microsoft Foundry MCP szerver
    - Microsoft 365 Agents Toolkit MCP szerver
 
-2. **Hivatalos referenciaszerverek**:
-   - Fájlrendszer
+2. **Hivatalos referencia szerverek**:
+   - Filesystem
    - Fetch
-   - Memória
-   - Szekvenciális gondolkodás
+   - Memory
+   - Sequential Thinking
 
-3. **Kép generálás**:
+3. **Képgenerálás**:
    - Azure OpenAI DALL-E 3
    - Stable Diffusion WebUI
    - Replicate
@@ -335,20 +336,21 @@ A tárhely többféle MCP szervert mutat be, többek között:
    - Terminál vezérlés
    - Kódtámogató
 
-5. **Specializált szerverek**:
+5. **Speciális szerverek**:
    - Salesforce
    - Microsoft Teams
-   - Jira és Confluence
+   - Jira & Confluence
 
 ## Hozzájárulás
 
-Ez a tárhely üdvözli a közösség hozzájárulásait. Lásd a Közösségi hozzájárulások részt, hogy útmutatást kapjon az MCP ökoszisztéma hatékony támogatásához.
+Ez a tár örömmel fogadja a közösség hozzájárulásait. A Közösségi hozzájárulások rész tartalmaz útmutatást, hogyan járulhatsz hozzá hatékonyan az MCP ökoszisztémához.
 
 ----
 
-*Ez a tanulmányi útmutató utoljára 2026. február 5-én frissült, tükrözve a legfrissebb MCP Specifikációt 2025-11-25, és az adott dátum szerinti tároló áttekintést nyújt. A tárhely tartalma a továbbiakban frissülhet.*
-
-*Kiegészítés (2026. július 2.): Egy lecke a `2026-07-28`-i MCP Specifikáció kiadás jelöltről hozzáadásra került a [01-CoreConcepts](./01-CoreConcepts/mcp-2026-07-28-release-candidate.md) alá; a tananyag bázisvonal marad 2025-11-25 amíg az új specifikáció meg nem jelenik.*
+*Ezt a tanulmányi útmutatót utoljára 2026. szeptember 9-én frissítették. Tükrözi az MCP
+Specifikációt `2026-07-28`, a jelenlegi protokoll felülvizsgálatot. Néhány gyakorlati
+példa kifejezetten a `2025-11-25` verzióhoz van kötve, miközben SDK-k és eszközök
+az állapotmentes protokoll API-kat használják.*
 
 ---
 

@@ -1,6 +1,11 @@
 # Endesha sampuli
 
-## Unda mazingira ya kweli
+> [!WARNING]
+> Sampuli hii inatumia Sampling iliyotumika zamani na sehemu ya zamani ya HTTP+SSE. Imehifadhiwa kwa ajili ya ulinganifu wa MCP `2025-11-25`. Utekelezaji mpya unapaswa kupiga simu kwa mtoa LLM moja kwa moja na kutumia Streamable HTTP kwa trafiki ya MCP ya mbali.
+> retained for MCP `2025-11-25` compatibility. New implementations should call
+> an LLM provider directly and use Streamable HTTP for remote MCP traffic.
+
+## Unda mazingira ya virtual
 
 ```sh
 python -m venv venv
@@ -19,9 +24,9 @@ pip install "mcp[cli]"
 uvicorn server:app --port 8000
 ```
 
-## Jaribu seva kwa kutumia GitHub Copilot na VS Code
+## Jaribu seva na GitHub Copilot na VS Code
 
-Ongeza kiingilio kwenye mcp.json kama ifuatavyo:
+Ongeza ingizo kwenye mcp.json kama ifuatavyo:
 
 ```json
 "servers": {
@@ -32,15 +37,15 @@ Ongeza kiingilio kwenye mcp.json kama ifuatavyo:
 }
 ```
 
-Hakikisha unabonyeza "anza" kwenye seva.
+Hakikisha umebonyeza "anza" kwenye seva.
 
-Katika GitHub Copilot bandika amri ifuatayo:
+Katika GitHub Copilot weka wito lifuatalo:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Mara ya kwanza utaulizwa kama unakubali kitendo cha Kuchakata Sampuli, kisha utaulizwa kukubali zana kuendesha "create_blog". Unapaswa kuona majibu yanayofanana na:
+Mara ya kwanza utaulizwa kama unakubali kitendo cha Sampling, kisha utaulizwa ukubali chombo kizifanye "create_blog". Unapaswa kuona majibu kama yafuatayo:
 
 ```json
 {
@@ -51,6 +56,6 @@ Mara ya kwanza utaulizwa kama unakubali kitendo cha Kuchakata Sampuli, kisha uta
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kiarifu cha Kukataa**:
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa za muhimu, tafsiri ya mtaalamu wa lugha ni inayopendekezwa. Hatutumiki kuwajibika kwa kutoelewana au tafsiri isiyo sahihi inayotokana na matumizi ya tafsiri hii.
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

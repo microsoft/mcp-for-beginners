@@ -1,48 +1,48 @@
 # Integracija Model Context Protocol (MCP) s Microsoft Foundry
 
-Ovaj vodič pokazuje kako integrirati Model Context Protocol (MCP) servere s Microsoft Foundry agentima, omogućujući snažnu orkestraciju alata i mogućnosti enterprise AI.
+Ovaj vodič prikazuje kako integrirati servere Model Context Protocol (MCP) s Microsoft Foundry agentima, omogućujući moćnu orkestraciju alata i AI mogućnosti za poduzeća.
 
 ## Uvod
 
-Model Context Protocol (MCP) je otvoreni standard koji omogućuje AI aplikacijama sigurno povezivanje s vanjskim izvorima podataka i alatima. Kada se integrira s Microsoft Foundry, MCP omogućuje agentima pristup i interakciju s različitim vanjskim servisima, API-jima i izvorima podataka na standardizirani način.
+Model Context Protocol (MCP) je otvoreni standard koji omogućuje AI aplikacijama sigurnu povezanost s vanjskim izvorima podataka i alatima. Kada se integrira s Microsoft Foundry, MCP omogućuje agentima pristup i interakciju s različitim vanjskim servisima, API-jima i izvorima podataka na standardiziran način.
 
-Ova integracija kombinira fleksibilnost MCP ekosustava alata s robusnim agent frameworkom Microsoft Foundry, pružajući enterprise AI rješenja s opsežnim mogućnostima prilagodbe.
+Ova integracija kombinira fleksibilnost MCP-ovog ekosustava alata s robusnim okvirom Microsoft Foundry agenata, pružajući AI rješenja razine poduzeća s opsežnim mogućnostima prilagodbe.
 
-**Napomena:** Ako želite koristiti MCP u Microsoft Foundry Agent Service, trenutno su podržane samo sljedeće regije: westus, westus2, uaenorth, southindia i switzerlandnorth
+**Napomena:** Ako želite koristiti MCP u Microsoft Foundry Agent Serviceu, trenutno su podržane samo sljedeće regije: westus, westus2, uaenorth, southindia i switzerlandnorth
 
 ## Ciljevi učenja
 
-Do kraja ovog vodiča moći ćete:
+Na kraju ovog vodiča moći ćete:
 
 - Razumjeti Model Context Protocol i njegove prednosti
 - Postaviti MCP servere za korištenje s Microsoft Foundry agentima
 - Kreirati i konfigurirati agente s integracijom MCP alata
 - Implementirati praktične primjere koristeći stvarne MCP servere
-- Rukovati odgovorima alata i citatima u razgovorima agenata
+- Obraditi odgovore alata i citate u razgovorima agenata
 
 ## Preduvjeti
 
-Prije početka, osigurajte da imate:
+Prije nego što počnete, osigurajte da imate:
 
-- Azure pretplatu s pristupom Microsoft Foundry
+- Pretplatu na Azure s pristupom Microsoft Foundry
 - Python 3.10+ ili .NET 8.0+
 - Instaliran i konfiguriran Azure CLI
 - Odgovarajuće dozvole za kreiranje AI resursa
 
 ## Što je Model Context Protocol (MCP)?
 
-Model Context Protocol je standardizirani način da se AI aplikacije povežu s vanjskim izvorima podataka i alatima. Glavne prednosti uključuju:
+Model Context Protocol je standardizirani način za AI aplikacije da se povežu s vanjskim izvorima podataka i alatima. Ključne prednosti uključuju:
 
 - **Standardizirana integracija**: Dosljedno sučelje preko različitih alata i servisa
-- **Sigurnost**: Sigurni mehanizmi autentifikacije i autorizacije
-- **Fleksibilnost**: Podrška za razne izvore podataka, API-je i prilagođene alate
-- **Proširivost**: Jednostavno dodavanje novih mogućnosti i integracija
+- **Sigurnost**: Sigurni mehanizmi autentikacije i autorizacije
+- **Fleksibilnost**: Podrška za različite izvore podataka, API-je i prilagođene alate
+- **Proširivost**: Jednostavno dodavanje novih funkcionalnosti i integracija
 
-## Postavljanje MCP s Microsoft Foundry
+## Postavljanje MCP-a s Microsoft Foundry
 
-### Konfiguracija okoline
+### Konfiguracija okruženja
 
-Odaberite svoju preferiranu razvojnu okolinu:
+Odaberite željeno razvojno okruženje:
 
 - [Python implementacija](#python-implementacija)
 - [.NET implementacija](#codeblock5)
@@ -78,7 +78,7 @@ mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/a
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. Inicijalizirajte klijent projekta
+### 4. Inicijalizirajte Project Client
 
 ```python
 project_client = AIProjectClient(
@@ -93,17 +93,17 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Opcionalno: navedite dopuštene alate
+    allowed_tools=[],  # Opcionalno: odredite dozvoljene alate
 )
 ```
 
-### 6. Kompletan Python primjer
+### 6. Potpuni Python primjer
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # Kreiraj novog agenta s MCP alatima
+    # Kreirajte novog agenta s MCP alatima
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Kreiraj dretvu za komunikaciju
+    # Kreirajte nit za komunikaciju
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Kreiraj poruku za dretvu
+    # Kreirajte poruku za nit
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Obradi odobrenja alata i pokreni agenta
+    # Obradite odobrenja za alate i pokrenite agenta
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Prikaži razgovor
+    # Prikažite razgovor
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. Kompletan .NET primjer
+### 6. Potpuni .NET primjer
 
 ```csharp
 // Create thread and message
@@ -299,7 +299,7 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## Opcije konfiguracije MCP alata
 
-Pri konfiguriranju MCP alata za svog agenta, možete navesti nekoliko važnih parametara:
+Prilikom konfiguriranja MCP alata za vašeg agenta, možete navesti nekoliko važnih parametara:
 
 ### Python konfiguracija
 
@@ -307,7 +307,7 @@ Pri konfiguriranju MCP alata za svog agenta, možete navesti nekoliko važnih pa
 mcp_tool = McpTool(
     server_label="unique_server_name",      # Identifikator za MCP poslužitelj
     server_url="https://api.example.com/mcp", # Krajnja točka MCP poslužitelja
-    allowed_tools=[],                       # Opcionalno: navedite dozvoljene alate
+    allowed_tools=[],                       # Opcionalno: navedite dopuštene alate
 )
 ```
 
@@ -338,41 +338,41 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## Rješavanje uobičajenih problema
 
 ### 1. Problemi s povezivanjem
-- Provjerite je li URL MCP servera dostupan
-- Provjerite vjerodajnice za autentikaciju
-- Osigurajte mrežnu povezanost
+- Provjerite je li MCP URL server dostupan
+- Provjerite autentikacijske vjerodajnice
+- Osigurajte mrežnu konekciju
 
 ### 2. Neuspjesi poziva alata
 - Pregledajte argumente i formatiranje alata
 - Provjerite zahtjeve specifične za server
-- Implementirajte ispravno rukovanje greškama
+- Implementirajte pravilno rukovanje greškama
 
 ### 3. Problemi s performansama
-- Optimizirajte učestalost poziva alatu
-- Implementirajte predmemoriju gdje je prikladno
+- Optimizirajte učestalost poziva alata
+- Implementirajte cache gdje je prikladno
 - Pratite vrijeme odgovora servera
 
-## Sljedeći koraci
+## Daljnji koraci
 
-Za daljnje unaprjeđenje MCP integracije:
+Za dodatno poboljšanje vaše MCP integracije:
 
 1. **Istražite prilagođene MCP servere**: Izgradite vlastite MCP servere za vlasničke izvore podataka
 2. **Implementirajte naprednu sigurnost**: Dodajte OAuth2 ili prilagođene mehanizme autentikacije
-3. **Praćenje i analitika**: Implementirajte bilježenje i nadzor korištenja alata
-4. **Skalirajte svoje rješenje**: Razmotrite balansiranje opterećenja i distribuirane MCP server arhitekture
+3. **Nadzor i analitika**: Implementirajte zapisivanje i praćenje korištenja alata
+4. **Škala rješenja**: Razmotrite balansiranje opterećenja i distribuirane MCP server arhitekture
 
 ## Dodatni resursi
 
 - [Microsoft Foundry dokumentacija](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol Primjeri](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Model Context Protocol primjeri](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Pregled Microsoft Foundry agenata](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP specifikacija](https://spec.modelcontextprotocol.io/)
+- [MCP specifikacija](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Podrška
 
 Za dodatnu podršku i pitanja:
 - Pregledajte [Microsoft Foundry dokumentaciju](https://learn.microsoft.com/azure/ai-foundry/)
-- Provjerite [MCP community resurse](https://modelcontextprotocol.io/)
+- Provjerite [MCP zajedničke resurse](https://modelcontextprotocol.io/)
 
 ## Što slijedi
 

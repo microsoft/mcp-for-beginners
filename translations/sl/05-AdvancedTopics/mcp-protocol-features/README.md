@@ -1,23 +1,28 @@
-# Podroben pregled funkcij MCP protokola
+# Globoko razumevanje funkcij protokola MCP
 
-Ta vodič raziskuje napredne funkcije MCP protokola, ki presegajo osnovno upravljanje orodij in virov. Razumevanje teh funkcij vam pomaga zgraditi bolj robustne, uporabniku prijazne in proizvodno pripravljene MCP strežnike.
+Ta vodič raziskuje napredne funkcije protokola MCP, ki presegajo osnovno upravljanje orodij in virov. Razumevanje teh funkcij vam pomaga zgraditi bolj robustne, uporabniku prijazne in produkcijsko pripravne MCP strežnike.
 
-> **Pogled v prihodnost:** izid kandidata za izdajo `2026-07-28` opušča primitivno beleženje (prizadevajoč se za `stderr` za stdio in OpenTelemetry za strukturirano opazovanje), odstrani model `initialize`/seje, omenjen spodaj v Dogodkih življenjskega cikla strežnika, in premakne eksperimentalno funkcijo Naloge v namenski dodatek Naloge z novim življenjskim ciklom `tasks/get`/`tasks/update`/`tasks/cancel`. Glejte [Kaj se spreminja v MCP: kandidat za izdajo 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Območje MCP `2026-07-28`:** zagon in zaustavitev strežniškega procesa ostajata
+> skrb aplikacije, vendar sta rokovanje z rokovanjem `initialize` in seje na ravni protokola MCP odstranjeni.
+> Spodnji odsek Beleženja (Logging) je ohranjen zaradi tradicionalnih implementacij;
+> novi strežniki naj uporabljajo `stderr` ali OpenTelemetry. Naloge so zdaj posebej verzionirana razširitev.
+> Oglejte si [Kaj se je spremenilo v MCP: specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Pokrite funkcije
 
-1. **Obveščanje o napredku** - poročanje o napredku dolgih operacij
-2. **Preklic zahtev** - dovoljuje strankam preklic zahtev v izvajanju
+## Pregled funkcij
+
+1. **Obvestila o napredku** - poročanje o napredku za daljše operacije
+2. **Preklic zahtevka** - omogočanje preklica zahtevkov v teku
 3. **Predloge virov** - dinamični URI-ji virov s parametri
-4. **Dogodki življenjskega cikla strežnika** - pravilna inicializacija in zaustavitev
-5. **Nadzor beleženja** - konfiguracija beleženja na strežniški strani
-6. **Vzorec obravnave napak** - dosledni odzivi na napake
+4. **Življenjski cikel aplikacije** - zagon in zaustavitev strežniškega procesa
+5. **Nadzor beleženja (legacy)** - zastarela konfiguracija beleženja MCP
+6. **Vzorce obravnave napak** - konsistentni odgovori ob napakah
 
 ---
 
-## 1. Obveščanje o napredku
+## 1. Obvestila o napredku
 
-Za operacije, ki zahtevajo čas (obdelava podatkov, prenos datotek, klici API), obveščanje o napredku uporabnike obvešča o dogajanju.
+Za operacije, ki trajajo dlje (obdelava podatkov, prenos datotek, API klici), obvestila o napredku uporabnike obveščajo o stanju.
 
 ### Kako deluje
 
@@ -30,7 +35,7 @@ sequenceDiagram
     Server-->>Client: obvestilo: napredek 10%
     Server-->>Client: obvestilo: napredek 50%
     Server-->>Client: obvestilo: napredek 90%
-    Server->>Client: rezultat (zaključeno)
+    Server->>Client: rezultat (končano)
 ```
 
 ### Implementacija v Pythonu
@@ -52,7 +57,7 @@ async def process_large_file(file_path: str, ctx) -> str:
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Obdelaj del
+            # Obdelaj kos
             await process_chunk(chunk)
             processed += len(chunk)
             
@@ -126,7 +131,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Ravnanje na strani naročnika (Python)
+### Upravljanje na strani odjemalca (Python)
 
 ```python
 async def handle_progress(notification):
@@ -134,18 +139,18 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Registriraj upravljalnik
+# Registriraj upravljavca
 session.on_notification("notifications/progress", handle_progress)
 
-# Pokliči orodje (posodobitve napredka bodo prispele prek upravljalnika)
+# Pokliči orodje (posodobitve napredka bodo prispele prek upravljavca)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
 ---
 
-## 2. Preklic zahtev
+## 2. Preklic zahtevka
 
-Dovolite strankam, da prekličejo zahteve, ko niso več potrebne ali trajajo predolgo.
+Omogočite odjemalcem preklic zahtevkov, ki niso več potrebni ali trajajo predolgo.
 
 ### Implementacija v Pythonu
 
@@ -163,16 +168,16 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Iskanje po mnogih straneh
-            # Preveri, ali je bilo preklic zahtevan
+        for page in range(100):  # Iskanje skozi veliko strani
+            # Preveri, ali je bilo zahtevano preklic
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simuliraj iskanje po strani
+            # Simulacija iskanja po strani
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Majhna zamuda omogoča preverjanje preklica
+            # Majhna zakasnitev omogoča preverjanje preklicev
             await asyncio.sleep(0.1)
             
     except CancelledError:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Običajna časovna omejitev, nadaljuj
+            pass  # Navaden časovni potek, nadaljuj
 ```
 
-### Preklic na strani naročnika
+### Preklic na strani odjemalca
 
 ```python
 import asyncio
@@ -265,9 +270,9 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Predloge virov
 
-Predloge virov omogočajo dinamično konstrukcijo URI-jev z parametri, kar je uporabno za API-je in podatkovne baze.
+Predloge virov omogočajo dinamično sestavljanje URI-jev z parametri, uporabno za API-je in baze podatkov.
 
-### Določanje predlog
+### Definiranje predlog
 
 ```python
 from mcp.server import Server
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Razčlenite URI za pridobitev parametrov
+    # Analiziraj URI, da izvlečeš parametre
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Analiziraj URI GitHub zadeve
+  // Analiziraj URI težave na GitHubu
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Dogodki življenjskega cikla strežnika
+## 4. Življenjski cikel aplikacije
 
-Pravilno upravljanje inicializacije in zaustavitve zagotavlja čisto upravljanje virov.
+Ta razdelek obravnava zagon in zaustavitev procesa aplikacije, ne pa odstranjeno
+rokovanje MCP `initialize`. Pravilno upravljanje življenjskega cikla zagotavlja čisto upravljanje virov.
+
 
 ### Upravljanje življenjskega cikla v Pythonu
 
@@ -433,12 +440,12 @@ class ManagedServer {
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Zaženi strežnik
+    // Začni strežnik
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Počisti vire
+    // Očisti vire
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,7 +456,7 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Varno uporabi this.dbConnection
+      // Uporabi this.dbConnection varno
       // ...
     });
   }
@@ -468,9 +475,15 @@ await server.start();
 
 ---
 
-## 5. Nadzor beleženja
+## 5. Nadzor beleženja (legacy)
 
-MCP podpira stopnje beleženja na strežniški strani, ki jih lahko nadzorujejo stranke.
+> [!WARNING]
+> Beleženje MCP je v verziji `2026-07-28` zastarelo in je upravičeno do odstranitve v
+> prvi revidirani specifikaciji, izdani na ali po 28. juliju 2027. Spodnji primeri so
+> za združljivost s starejšimi implementacijami. Uporabite `stderr` s stdio in
+> OpenTelemetry za strukturirano opazovanje v novih strežnikih.
+
+Tradicionalne različice MCP podpirajo ravni beleženja na strani strežnika, ki jih lahko odjemalci nadzorujejo.
 
 ### Implementacija stopenj beleženja
 
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Preslikaj ravni MCP na ravni dnevnika v Pythonu
+# Preslikaj raven MCP na raven beleženja v Pythonu
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -512,7 +525,7 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Pošiljanje dnevniških sporočil stranki
+### Pošiljanje zapisov odjemalcu
 
 ```python
 @app.tool()
@@ -525,7 +538,7 @@ async def complex_operation(input: str, ctx) -> str:
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Naredi delo...
+    # Opravite delo...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -538,9 +551,9 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Vzorec obravnave napak
+## 6. Vzorce obravnave napak
 
-Dosledna obravnava napak izboljša odkrivanje in uporabniško izkušnjo.
+Konsistentna obravnava napak izboljšuje odpravljanje napak in uporabniško izkušnjo.
 
 ### Kode napak MCP
 
@@ -572,14 +585,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Strukturirani odzivi na napake
+### Strukturirani odzivi ob napakah
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Preveri vnos
+    # Preveri vhodne podatke
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -636,7 +649,7 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Že napaka MCP
+      throw error;  // Že MCP napaka
     }
     
     // Pretvori druge napake
@@ -656,68 +669,38 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Eksperimentalne funkcije (MCP 2025-11-25)
+## Funkcije, občutljive na verzijo
 
-Te funkcije so v specifikaciji označene kot eksperimentalne:
+### Razširitev Naloge
 
-### Naloge (dolgotrajne operacije)
+Naloge so uradna, posebej verzionirana razširitev v MCP `2026-07-28`. Strežnik lahko vrne ročaj naloge iz klica orodja, odjemalec pa upravlja nalogo z `tasks/get`, `tasks/update` in `tasks/cancel`. Eksperimentalni
+API nalog `2025-11-25` ni združljiv nazaj, in `tasks/list` ne obstaja več.
 
-```python
-# Naloge omogočajo sledenje dolgoročnim operacijam z državo
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Poročilo o začetku naloge
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Zankni cikel učenja
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
 
-### Oznake orodij
 
-```python
-# Oznake zagotavljajo metapodatke o vedenju orodja
-@app.tool(
-    annotations={
-        "destructive": False,      # Ne spreminja podatkov
-        "idempotent": True,        # Varen za ponovni poskus
-        "timeout_seconds": 30,     # Pričakovana največja trajanje
-        "requires_approval": False # Uporabniško odobritev ni potrebna
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+
+### Oznake orodja
+
+Oznake orodij opisujejo vedenje, kot je samo za branje, uničujoče, idempotentno ali odprto delovanje sveta.
+So namigi in jih ni mogoče obravnavati kot zaupanja vredna pooblastila ali varnostne garancije, razen če prihajajo iz zaupanja vrednega strežnika.
+
 
 ---
 
 ## Kaj sledi
 
-- [Modul 8 - najboljše prakse](../../08-BestPractices/README.md)
+- [Modul 8 - Najboljše prakse](../../08-BestPractices/README.md)
 - [5.14 - Inženiring konteksta](../mcp-contextengineering/README.md)
-- [Dnevnik sprememb specifikacije MCP](https://spec.modelcontextprotocol.io/)
+- [Dnevnik sprememb v specifikaciji MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Dodatni viri
 
-- [Specifikacija MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Specifikacija MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Kode napak JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
-- [Primeri v Python SDK](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
-- [Primeri v TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [Primeri Python SDK](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
+- [Primeri TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 

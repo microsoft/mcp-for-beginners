@@ -1,27 +1,33 @@
-# VS Code ఇంటిగ్రేషన్
+# VS కోడ్ ఇంటిగ్రేషన్
 
-## 🎯 ఈ ల్యాబ్ కవర్ చేసే అంశాలు
+> [!NOTE]
+> ఈ ప్రయోగశాలలోని `initializationOptions` సెట్టింగులు నమూనా MCP
+> `2025-11-25` హ్యాండ్‌షేక్‌ను లక్ష్యంగా చేసుకుంటున్నాయి. MCP `2026-07-28` హ్యాండ్‌షేక్ తొలగిస్తుంది;
+> ఈ నమూనాను మైగ్రేట్ చేయగా, ప్రతి-అభ్యర్థన మెటాడేటా మరియు `server/discover` మద్దతు ఇచ్చే హోస్ట్ మరియు SDK ఉపయోగించండి.
 
-ఈ ల్యాబ్ మీ MCP సర్వర్‌ను VS Code తో ఇంటిగ్రేట్ చేయడం గురించి సమగ్ర మార్గదర్శకాన్ని అందిస్తుంది, తద్వారా AI చాట్ ద్వారా సహజ భాషా ప్రశ్నలను సులభంగా అడగవచ్చు. మీరు MCP ఉపయోగానికి అనుకూలంగా VS Code ను కాన్ఫిగర్ చేయడం, సర్వర్ కనెక్షన్లను డీబగ్ చేయడం, మరియు AI సహాయంతో డేటాబేస్ ఇంటరాక్షన్ల పూర్తి శక్తిని వినియోగించడం నేర్చుకుంటారు.
+
+## 🎯 ఈ ప్రయోగశాలలో ఏమి ఉంటుంది
+
+ఈ ప్రయోగశాల మీ MCP సర్వర్‌ను VS కోడ్‌తో సమగ్రంగ కనిపించేలా మారుస్తుంది, AI చాట్ ద్వారా సహజ భాషా ప్రశ్నలు చేయడానికి సులభత చేస్తుంది. VS కోడ్‌ను సరైన MCP వినియోగానికి ఎలా సెట్టప్ చేయాలో, సర్వర్ కనెక్షన్లను డీబగ్గింగ్ చేయడం మరియు AI సహాయంతో డేటాబేస్ సంభాషణలను పూర్తి శక్తితో ఎలా ఉపయోగించాలో మీరు నేర్చుకుంటారు.
 
 ## అవలోకనం
 
-VS Code యొక్క MCP ఇంటిగ్రేషన్ డెవలపర్లకు సహజ భాష ద్వారా డేటాబేస్‌లు మరియు APIలతో ఎలా ఇంటరాక్ట్ చేయాలో మార్చేస్తుంది. మీ రిటైల్ MCP సర్వర్‌ను VS Code చాట్‌కు కనెక్ట్ చేయడం ద్వారా, మీరు సేల్స్ డేటా, ఉత్పత్తి క్యాటలాగ్లు, మరియు వ్యాపార విశ్లేషణలను సంభాషణాత్మక AI ఉపయోగించి తెలివిగా ప్రశ్నించవచ్చు.
+VS కోడ్ MCP ఇంటిగ్రేషన్ ద్వారా డెవలపర్లు సహజ భాషలో డేటాబేసులు మరియు APIsతో ఏవిధంగా సమ్వదిస్తారో మార్పు వస్తుంది. మీ రిటైల్ MCP సర్వర్‌ను VS కోడ్ చాట్‌తో కనెక్ట్ చేస్తే, conversational AI ఉపయోగించి అమ్మకాలు, ఉత్పత్తి కేటలాగ్లు, వ్యాపార విశ్లేషణలను తెలివిగా ప్రశ్నించవచ్చు.
 
-ఈ ఇంటిగ్రేషన్ డెవలపర్లకు "ఈ నెలలో టాప్ సేలింగ్ ఉత్పత్తులు చూపించు" లేదా "90 రోజులుగా కొనుగోలు చేయని కస్టమర్లను కనుగొను" వంటి ప్రశ్నలు అడగడానికి మరియు SQL ప్రశ్నలు రాయకుండా నిర్మిత డేటా ప్రతిస్పందనలు పొందడానికి అనుమతిస్తుంది.
+ఈ ఇంటిగ్రేషన్ వలన డెవలపర్లు "ఈ నెల టాప్ సేలింగ్ ఉత్పత్తులు చూపించండి" లేదా "90 రోజులకు కొనుగోలు చేయనివారు ఎవర్వో చెప్పండి" వంటి ప్రశ్నలు అడిగి, SQL లేవనైనా స్ట్రక్చర్డ్ డేటా ప్రతిస్పందనలు పొందగలుగుతారు.
 
-## నేర్చుకునే లక్ష్యాలు
+## అభ్యాస లక్ష్యాలు
 
-ఈ ల్యాబ్ ముగిసిన తర్వాత, మీరు చేయగలుగుతారు:
+ఈ ప్రయోగశాల ముగిసిన తర్వాత మీరు చేయగలిగేది:
 
-- **కాన్ఫిగర్ చేయడం** మీ రిటైల్ సర్వర్ కోసం VS Code MCP సెట్టింగ్స్  
-- **ఇంటిగ్రేట్ చేయడం** MCP సర్వర్లను VS Code AI చాట్ ఫంక్షనాలిటీతో  
-- **డీబగ్ చేయడం** MCP సర్వర్ కనెక్షన్లను మరియు సమస్యలను పరిష్కరించడం  
-- **ఆప్టిమైజ్ చేయడం** సహజ భాషా ప్రశ్న నమూనాలను మెరుగైన ఫలితాల కోసం  
-- **కస్టమైజ్ చేయడం** MCP డెవలప్‌మెంట్ కోసం VS Code వర్క్‌స్పేస్  
-- **డిప్లాయ్ చేయడం** సంక్లిష్ట పరిస్థితుల కోసం బహుళ సర్వర్ కాన్ఫిగరేషన్లు  
+- మీ రిటైల్ సర్వర్ కొరకు VS కోడ్ MCP సెట్టింగులను **కాన్ఫిగర్** చేయడం
+- MCP సర్వర్లను VS కోడ్ AI చాట్ ఫంక్షనాలిటీతో **ఇంటిగ్రేట్** చేయడం
+- MCP సర్వర్ కనెక్షన్లను **డీబగ్** చేసి సమస్యలను పరిష్కరించడం
+- మెరుగైన ఫలితాల కోసం సహజ భాషా ప్రశ్న నమూనాలను **ఆప్టిమైజ్** చేయడం
+- MCP అభివృద్ధి కోసం VS కోడ్ వర్క్‌స్పేస్‌ను **కస్టమైజ్** చేయడం
+- కాంప్లెక్స్ సందర్భాల కోసం బహుళ-సర్వర్ కాంఫిగరేషన్లను **డిప్లాయ్** చేయడం
 
-## 🔧 VS Code MCP కాన్ఫిగరేషన్
+## 🔧 VS కోడ్ MCP కాన్ఫిగరేషన్
 
 ### ప్రారంభ సెటప్ మరియు ఇన్‌స్టాలేషన్
 
@@ -62,10 +68,10 @@ VS Code యొక్క MCP ఇంటిగ్రేషన్ డెవలపర
 }
 ```
 
-### పరిసరాల కాన్ఫిగరేషన్
+### వాతావరణ సెట్టింగులు
 
 ```bash
-# అభివృద్ధి కోసం .env ఫైల్
+# అభివృద్ధికి .env ఫైల్
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
@@ -220,7 +226,7 @@ LOG_LEVEL=INFO
 
 ## 💬 AI చాట్ ఇంటిగ్రేషన్
 
-### సహజ భాషా ప్రశ్న నమూనాలు
+### సహజ భాష ప్రశ్న నమూనాలు
 
 ```typescript
 // VS కోడ్ చాట్ కోసం ఉదాహరణ ప్రశ్న నమూనాలు
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### చాట్ ప్రతిస్పందన ఫార్మాటింగ్
+### చాట్ జవాబు ఫార్మాటింగ్
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # ముఖ్యమైన ప్రమాణాలు
+        # ప్రధాన సూచీలు
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # టాప్ వర్గం
+        # అగ్రశ్రేణి విభాగం
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 డీబగింగ్ మరియు సమస్య పరిష్కారం
+## 🔍 డీబగ్గింగ్ మరియు సమస్యలు పరిష్కారము
 
-### VS Code డీబగ్ కాన్ఫిగరేషన్
+### VS కోడ్ డీబగ్ కాన్ఫిగరేషన్
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,7 +528,7 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # VS కోడ్ ప్రత్యేక ఫార్మాటర్ సృష్టించండి
+        # VS కోడ్ కు ప్రత్యేక ఫార్మాటర్ సృష్టించండి
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# గ్లోబల్ డీబగ్ లాగర్
+# గ్లోబల్ డీబัก్ లాగర్
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # పరిసరాల నుండి కనెక్షన్ పరామితులను పొందండి
+        # పరిసరాల నుండి కనెక్షన్ పారామితులను పొందండి
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # కనెక్షన్‌ను పరీక్షించండి
+        # కనెక్షన్ పరీక్షించండి
         conn = await asyncpg.connect(**connection_params)
         
-        # ప్రాథమిక క్వెరీని పరీక్షించండి
+        # మౌలిక ప్రశ్నను పరీక్షించండి
         result = await conn.fetchval("SELECT version()")
         
-        # స్కీమా యాక్సెస్‌ను పరీక్షించండి
+        # స్కీమా యాక్సెస్ ను పరీక్షించండి
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # ఎంబెడ్డింగ్ ఉత్పత్తిని పరీక్షించండి
+        # ఎంబెడ్డింగ్ తయారీకరణను పరీక్షించండి
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -681,18 +687,18 @@ async def test_mcp_tools() -> Dict[str, Any]:
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # పరీక్షా కాన్ఫిగరేషన్ సృష్టించండి
+        # పరీక్ష కన్ఫిగరేషన్ ను సృష్టించండి
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # సర్వర్‌ను ప్రారంభించండి
+        # సర్వర్ ను ప్రారంభించండి
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # అందుబాటులో ఉన్న టూల్స్‌ను పొందండి
+        # లభ్యమయ్యే సాధనాలను పొందండి
         tools = server.get_available_tools()
         
-        # ఒక సాదా టూల్‌ను పరీక్షించండి
+        # సాదారణ సాధనాన్ని పరీక్షించండి
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # డేటాబేస్ కనెక్షన్‌ను పరీక్షించండి
+    # డేటాబేస్ కనెక్షన్ ని పరీక్షించండి
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Azure OpenAI కనెక్షన్‌ను పరీక్షించండి
+    # Azure OpenAI కనెక్షన్ ని పరీక్షించండి
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # MCP టూల్స్‌ను పరీక్షించండి
+    # MCP సాధనాలను పరీక్షించండి
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # మొత్తం స్థితి
+    # సమగ్ర స్థితి
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 అధునాతన కాన్ఫిగరేషన్
+## 🚀 అభివృద్ధి కాన్ఫిగరేషన్
 
-### బహుళ సర్వర్ సెటప్
+### బహుళ-సర్వర్ సెటప్
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### కస్టమ్ VS Code ఎక్స్‌టెన్షన్
+### కస్టమ్ VS కోడ్ ఎక్స్‌టెన్షన్
 
 ```typescript
-// src/extension.ts - కస్టమ్ MCP రిటైల్ ఎక్స్‌టెన్షన్
+// src/extension.ts - కస్టమ్ MCP రిటైల్ ఎక్స్టెన్షన్
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // MCP రిటైల్ కమాండ్లను నమోదు చేయండి
+    // MCP రిటైల్ ఆదేశాలు నమోదు చేయండి
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // కాన్ఫిగరేషన్‌ను నవీకరించండి
+                // కాంఫిగరేషన్‌ను నవీకరించండి
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // VS కోడ్ చాట్‌లో ముందుగా నిర్వచించిన ప్రశ్నలను అమలు చేయండి
+    // VS కోడ్ చాట్‌లో ముందుగా నిర్వచించిన విచారణలను అమలు చేయండి
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### ఎక్స్‌టెన్షన్ ప్యాకేజ్ కాన్ఫిగరేషన్
+### ఎక్స్‌టెన్షన్ ప్యాకేజీ కాన్ఫిగరేషన్
 
 ```json
 // package.json for VS Code extension
@@ -1005,51 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 ముఖ్యమైన పాఠాలు
+## 🎯 ప్రధాన సూక్తులు
 
-ఈ ల్యాబ్ పూర్తి చేసిన తర్వాత, మీ వద్ద ఉండాలి:
+ఈ ప్రయోగశాలను పూర్తి చేసిన తర్వాత, మీరు సాధించగలరు:
 
-✅ **VS Code MCP కాన్ఫిగరేషన్**: MCP ఇంటిగ్రేషన్ కోసం పూర్తి సెటప్  
-✅ **AI చాట్ ఇంటిగ్రేషన్**: VS Code లో సహజ భాషా ప్రశ్నల సామర్థ్యాలు  
-✅ **డీబగింగ్ టూల్స్**: సమగ్ర సమస్య పరిష్కారం మరియు కనెక్షన్ డయాగ్నోస్టిక్స్  
-✅ **బహుళ సర్వర్ సెటప్**: బహుళ MCP సర్వర్ ఇన్స్టాన్సుల కోసం కాన్ఫిగరేషన్  
-✅ **కస్టమ్ ఎక్స్‌టెన్షన్లు**: రిటైల్-స్పెసిఫిక్ ఫీచర్లతో మెరుగైన VS Code అనుభవం  
-✅ **ప్రొడక్షన్ రెడినెస్**: ఎంటర్ప్రైజ్-సిద్ధ VS Code డెవలప్‌మెంట్ వాతావరణం  
+✅ **VS కోడ్ MCP కాన్ఫిగరేషన్**: ఉత్తమ MCP ఇంటిగ్రేషన్ కోసం పూర్తి సెటప్  
+✅ **AI చాట్ ఇంటిగ్రేషన్**: VS కోడ్‌లో సహజ భాషా ప్రశ్న హాయిగా  
+✅ **డీబగ్గింగ్ టూల్స్**: పూర్తైన సమస్య పరిష్కారం మరియు కనెక్షన్ డయాగ్నోస్టిక్స్  
+✅ **బహుళ-సర్వర్ సెటప్**: అనేక MCP సర్వర్ ఇన్స్టాన్సులకు కాన్ఫిగరేషన్  
+✅ **కస్టమ్ ఎక్స్‌టెన్షన్స్**: రిటైల్ ప్రత్యేక ఫీచర్లతో మెరుగైన VS కోడ్ అనుభవం  
+✅ **ప్రొడక్షన్ రెడినెస్**: ఎంటర్ప్రైజ్-సిద్ధ VS కోడ్ అభివృద్ధి వాతావరణం  
 
-## 🚀 తదుపరి ఏమిటి
+## 🚀 తర్వాత ఏమి చేయాలి
 
-**[ల్యాబ్ 10: డిప్లాయ్‌మెంట్ వ్యూహాలు](../10-Deployment/README.md)** తో కొనసాగండి:
+**[ప్రయోగం 10: డిప్లాయ్‌మెంట్ వ్యూహాలు](../10-Deployment/README.md)** కొనసాగించండి:
 
-- MCP సర్వర్లను ప్రొడక్షన్ వాతావరణాలకు డిప్లాయ్ చేయడం  
-- స్కేలబిలిటీ కోసం క్లౌడ్ ఇన్‌ఫ్రాస్ట్రక్చర్ కాన్ఫిగర్ చేయడం  
-- ఆటోమేటెడ్ డిప్లాయ్‌మెంట్ కోసం CI/CD పైప్లైన్లను అమలు చేయడం  
-- ప్రొడక్షన్ MCP సర్వర్ పనితీరును మానిటర్ చేయడం  
+- MCP సర్వర్లను ప్రొడక్షన్ వాతావరణాలలో డిప్లాయ్ చేయడం
+- స్కేలబిలిటీకి క్లౌడ్ ఇన్‌ఫ్రాస్ట్రక్చర్ సెట్టింగు
+- ఆటోమేటెడ్ డిప్లాయ్‌మెంట్ కోసం CI/CD పైప్లైన్లు అమలు
+- ప్రొడక్షన్ MCP సర్వర్ పనితీరు పర్యవేక్షణ
 
 ## 📚 అదనపు వనరులు
 
-### VS Code డెవలప్‌మెంట్  
-- [VS Code ఎక్స్‌టెన్షన్ API](https://code.visualstudio.com/api) - అధికారిక ఎక్స్‌టెన్షన్ డెవలప్‌మెంట్ గైడ్  
-- [VS Code MCP డాక్యుమెంటేషన్](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ఇంటిగ్రేషన్ డాక్యుమెంటేషన్  
-- [VS Code కోసం TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS Code లో TypeScript డెవలప్‌మెంట్  
+### VS కోడ్ అభివృద్ధి
+- [VS కోడ్ ఎక్స్‌టెన్షన్ API](https://code.visualstudio.com/api) - అధికారిక ఎక్స్‌టెన్షన్ అభివృద్ధి గైడ్
+- [VS కోడ్ MCP డాక్యుమెంటేషన్](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ఇంటిగ్రేషన్ డాక్యుమెంటేషన్
+- [VS కోడ్ కోసం టైప్‌స్క్రిప్ట్](https://code.visualstudio.com/docs/languages/typescript) - టైప్‌స్క్రిప్ట్ అభివృద్ధి
 
-### MCP ప్రోటోకాల్  
-- [మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ స్పెసిఫికేషన్](https://modelcontextprotocol.io/specification) - అధికారిక MCP స్పెసిఫికేషన్  
-- [MCP ఉత్తమ పద్ధతులు](https://modelcontextprotocol.io/docs/best-practices) - అమలు ఉత్తమ పద్ధతులు  
-- [FastMCP ఫ్రేమ్‌వర్క్](https://github.com/jlowin/fastmcp) - Python MCP అమలు  
+### MCP ప్రోటోకాల్
+- [మోడల్ కాంటెక్స్ట్ ప్రోటోకాల్ స్పెసిఫికేషన్](https://modelcontextprotocol.io/specification) - అధికారిక MCP స్పెసిఫికేషన్
+- [MCP బెస్ట్ ప్రాక్టీసెస్](https://modelcontextprotocol.io/docs/best-practices) - అమలు ఉత్తమ పద్ధతులు
+- [ఫాస్ట్MCP ఫ్రేమ్‌వర్క్](https://github.com/jlowin/fastmcp) - పైథాన్ MCP అమలు
 
-### డెవలప్‌మెంట్ టూల్స్  
-- [VS Code లో Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python డెవలప్‌మెంట్ సెటప్  
-- [VS Code లో డీబగింగ్](https://code.visualstudio.com/docs/editor/debugging) - అధునాతన డీబగింగ్ సాంకేతికతలు  
-- [VS Code టాస్క్స్](https://code.visualstudio.com/docs/editor/tasks) - టాస్క్ ఆటోమేషన్ మరియు కాన్ఫిగరేషన్  
+### అభివృద్ధి టూల్స్
+- [VS కోడ్‌లో పైథాన్](https://code.visualstudio.com/docs/python/python-tutorial) - పైథాన్ అభివృద్ధి సెటప్
+- [VS కోడ్ డీబగ్గింగ్](https://code.visualstudio.com/docs/editor/debugging) - అధునాతన డీబగ్గింగ్ సాంకేతికాలు
+- [VS కోడ్ టాస్క్స్](https://code.visualstudio.com/docs/editor/tasks) - టాస్క్ ఆటోమెషన్ మరియు సెటప్
 
 ---
 
-**మునుపటి**: [ల్యాబ్ 08: టెస్టింగ్ మరియు డీబగింగ్](../08-Testing/README.md)  
-**తదుపరి**: [ల్యాబ్ 10: డిప్లాయ్‌మెంట్ వ్యూహాలు](../10-Deployment/README.md)
+**గతం**: [ప్రయోగం 08: పరీక్ష మరియు డీబగ్గింగ్](../08-Testing/README.md)  
+**తరువాత**: [ప్రయోగం 10: డిప్లాయ్‌మెంట్ వ్యూహాలు](../10-Deployment/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**అస్పష్టత**:  
-ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకంలో ఏర్పడిన ఏవైనా అపార్థాలు లేదా తప్పుదారితీసే అర్థాలు కోసం మేము బాధ్యత వహించము.
+**అస్వీకరణ**:
+ఈ పత్రం AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నిస్తున్నప్పటికీ, ఆటోమేటెడ్ అనువాదాలు తప్పులు లేదా అసమగ్రతలను కలిగి ఉండవచ్చు. దాని స్వదేశ భాషలో ఉన్న అసలు పత్రాన్ని అధికారం కలిగిన మూలంగా పరిగణించాలి. కీలకమైన సమాచారం కోసం, ప్రొఫెషనల్ మానవ అనువాదాన్ని సిఫారసు చేస్తాము. ఈ అనువాదం ఉపయోగం వల్ల కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారులు కోసం మేము బాధ్యత వహించము.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

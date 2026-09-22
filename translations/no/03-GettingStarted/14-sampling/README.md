@@ -1,23 +1,31 @@
-> [UTFASSET: 2026-07-28 RELEASE CANDIDATE](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Sampling er avviklet i MCP `2026-07-28`. Denne leksjonen beholdes for
+> eldre implementasjoner. Nye servere bør integrere direkte med en LLM
+> leverandør-API.
 
-# Sampling - delegere funksjoner til klienten
+# Sampling - delegere funksjoner til Client
 
-> **Avviklingsvarsel:** MCP-spesifikasjonsutgivelseskandidaten `2026-07-28` markerer Sampling som avviklet til fordel for direkte integrasjon med API-er fra LLM-leverandører. Sampling fungerer fortsatt i `2025-11-25` og i minst ett år etter en formell avvikling, så alt i denne leksjonen er gyldig — men nye serverdesign bør vurdere erstatningsmønsteret. Se [Hva endres i MCP: Utgivelseskandidaten 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Sampling forblir i `2026-07-28` spesifikasjonen for kompatibilitet og er
+> kvalifisert for fjerning i den første revisjonen som slippes på eller etter 28. juli,
+> 2027. Eksempler i denne leksjonen kan bruke SDK-APIer som implementerer `2025-11-25`.
+> Se [Hva som er endret i MCP: Spesifikasjonen 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Noen ganger trenger du at MCP-klienten og MCP-serveren samarbeider for å oppnå et felles mål. Du kan ha en situasjon der serveren trenger hjelp fra en LLM som kjører på klienten. For dette tilfelle er sampling det du bør bruke.
+I eldre implementasjoner lar Sampling en MCP-server be om hjelp fra en LLM
+som styres av klienten. For nye implementasjoner, kall den valgte LLM-leverandøren
+direkte i stedet.
 
-La oss utforske noen brukstilfeller og hvordan bygge en løsning som involverer sampling.
+La oss utforske noen brukstilfeller og hvordan du bygger en løsning som involverer sampling.
 
 ## Oversikt
 
-I denne leksjonen fokuserer vi på å forklare når og hvor Sampling skal brukes, og hvordan konfigurere det.
+I denne leksjonen fokuserer vi på å forklare når og hvor man bruker Sampling og hvordan konfigurere det.
 
 ## Læringsmål
 
 I dette kapitlet skal vi:
 
-- Forklare hva Sampling er og når du skal bruke det.
-- Vise hvordan du konfigurerer Sampling i MCP.
+- Forklare hva Sampling er og når man bruker det.
+- Vise hvordan man konfigurerer Sampling i MCP.
 - Gi eksempler på Sampling i praksis.
 
 ## Hva er Sampling og hvorfor bruke det?
@@ -32,18 +40,18 @@ sequenceDiagram
     participant MCP Server
 
     User->>MCP Client: Forfatter blogginnlegg
-    MCP Client->>MCP Server: Verktøysoppkall (utkast til blogginnlegg)
-    MCP Server->>MCP Client: Prøvetakingsforespørsel (lag sammendrag)
-    MCP Client->>LLM: Generer blogginnlegg sammendrag
+    MCP Client->>MCP Server: Verktøysanrop (utkast til blogginnlegg)
+    MCP Server->>MCP Client: Samplingforespørsel (lag sammendrag)
+    MCP Client->>LLM: Generer sammendrag av blogginnlegg
     LLM->>MCP Client: Sammendragsresultat
-    MCP Client->>MCP Server: Prøvetakingsrespons (sammendrag)
+    MCP Client->>MCP Server: Samplingrespons (sammendrag)
     MCP Server->>MCP Client: Fullført blogginnlegg (utkast + sammendrag)
     MCP Client->>User: Blogginnlegg klart
 ```
 
 ### Sampling-forespørsel
 
-Ok, nå har vi et overblikk over en troverdig situasjon, la oss snakke om sampling-forespørselen som serveren sender tilbake til klienten. Slik kan en slik forespørsel se ut i JSON-RPC-format:
+Ok, nå som vi har et overordnet bilde av et troverdig scenario, la oss snakke om sampling-forespørselen som serveren sender tilbake til klienten. Slik kan en slik forespørsel se ut i JSON-RPC-format:
 
 ```json
 {
@@ -75,17 +83,17 @@ Ok, nå har vi et overblikk over en troverdig situasjon, la oss snakke om sampli
 }
 ```
 
-Det er noen ting her verdt å merke seg:
+Det er noen ting her verdt å nevne:
 
-- Prompt, under content -> text, er vår prompt som er en instruksjon til LLM-en om å oppsummere innholdet i et blogginnlegg.
+- Prompt, under content -> text, er vår prompt som er en instruksjon til LLM om å oppsummere innholdet i et blogginnlegg.
 
-- **modelPreferences**. Dette avsnittet er akkurat som det høres ut, en preferanse, en anbefaling om hvilken konfigurasjon som skal brukes med LLM-en. Brukeren kan velge å følge disse anbefalingene eller endre dem. I dette tilfellet er det anbefalinger om modell å bruke, hastighet og prioritet for intelligens.
-- **systemPrompt**, dette er din normale system-prompt som gir LLM-en en personlighet og inneholder veiledende instruksjoner.
-- **maxTokens**, dette er en annen egenskap som angir hvor mange tokens som anbefales brukt for denne oppgaven.
+- **modelPreferences**. Denne seksjonen er nettopp det, et ønske, en anbefaling om hvilken konfigurasjon som bør brukes med LLM. Brukeren kan velge å følge disse anbefalingene eller endre dem. I dette tilfellet er det anbefalinger om modell å bruke samt hastighet og prioritet på intelligens.
+- **systemPrompt**, dette er din vanlige systemprompt som gir LLM-en din en personlighet og inneholder veiledningsinstruksjoner.
+- **maxTokens**, dette er en annen egenskap som angir hvor mange tokens som anbefales å brukes for denne oppgaven.
 
-### Sampling-svar
+### Sampling-respons
 
-Dette svaret er det MCP-klienten ender opp med å sende tilbake til MCP-serveren, og er resultatet av at klienten kaller LLM-en, venter på svaret og deretter bygger denne meldingen. Slik kan det se ut i JSON-RPC:
+Denne responsen er det MCP-klienten ender opp med å sende tilbake til MCP-serveren og er resultatet av at klienten kaller LLM, venter på det svaret og deretter konstruerer denne meldingen. Slik kan den se ut i JSON-RPC:
 
 ```json
 {
@@ -103,13 +111,13 @@ Dette svaret er det MCP-klienten ender opp med å sende tilbake til MCP-serveren
 }
 ```
 
-Legg merke til hvordan svaret er et sammendrag av blogginnlegget akkurat som vi ba om. Legg også merke til hvordan den brukte `model` ikke er den vi ba om, men "gpt-5" foran "claude-3-sonnet". Dette illustrerer at brukeren kan ombestemme seg om hvilken modell som skal brukes, og at sampling-forespørselen din kun er en anbefaling.
+Merk hvordan responsen er et sammendrag av blogginnlegget akkurat som vi ba om. Legg også merke til hvordan den brukte `model` ikke er den vi ba om, men "gpt-5" over "claude-3-sonnet". Dette illustrerer at brukeren kan ombestemme seg på hva som skal brukes, og at din sampling-forespørsel er en anbefaling.
 
-Ok, nå som vi forstår hovedflyten, og nyttige oppgaver å bruke det til "blogginnlegg-opprettelse + sammendrag", la oss se hva vi må gjøre for å få det til å fungere.
+Ok, nå som vi forstår hovedflyten, og nyttig oppgave å bruke det til "blogginnlegg + sammendrag", la oss se hva vi må gjøre for å få det til å fungere.
 
 ### Meldings-typer
 
-Sampling-meldinger er ikke begrenset til bare tekst, men du kan også sende bilder og lyd. Slik ser JSON-RPC ut forskjellig:
+Sampling-meldinger er ikke begrenset til bare tekst, men du kan også sende bilder og lyd. Slik ser JSON-RPC forskjellig ut:
 
 **Tekst**
 
@@ -140,9 +148,10 @@ Sampling-meldinger er ikke begrenset til bare tekst, men du kan også sende bild
 }
 ```
 
-> MERK: for mer detaljert info om Sampling, sjekk ut [offisiell dokumentasjon](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> NOTE: For nåværende status og migreringsveiledning, se den
+> [avviklede Sampling-dokumentasjonen](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Hvordan konfigurere Sampling i klienten
+## Hvordan konfigurere Sampling i Client
 
 > Merk: hvis du bare bygger en server, trenger du ikke gjøre mye her.
 
@@ -156,20 +165,20 @@ I en klient må du spesifisere følgende funksjon slik:
 }
 ```
 
-Dette vil da bli plukket opp når den valgte klienten initialiseres med serveren.
+Dette vil deretter bli plukket opp når din valgte klient initialiseres med serveren.
 
-## Eksempel på Sampling i praksis - Opprett et blogginnlegg
+## Eksempel på Sampling i praksis - Lag et Blogginnlegg
 
 La oss kode en sampling-server sammen, vi må gjøre følgende:
 
-1. Opprett et verktøy på serveren.
+1. Lag et verktøy på Serveren.
 1. Dette verktøyet skal lage en sampling-forespørsel.
-1. Verktøyet skal vente på at klientens sampling-forespørsel besvares.
-1. Deretter skal verktøy-resultatet produseres.
+1. Verktøyet skal vente på at klientens sampling-forespørsel blir besvart.
+1. Så skal verktøyets resultat produseres.
 
 La oss se på koden steg for steg:
 
-### -1- Opprett verktøyet
+### -1- Lag verktøyet
 
 **python**
 
@@ -180,7 +189,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Opprett en sampling-forespørsel
+### -2- Lag en sampling-forespørsel
 
 Utvid verktøyet ditt med følgende kode:
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Vent på svaret og returner svaret
+### -3- Vent på svar og returner respons
 
 **python**
 
@@ -294,18 +303,18 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 if __name__ == "__main__":
     print("Starting server...")
-    # mcp.kjør()
+    # mcp.run()
     mcp.run(transport="streamable-http")
 
-# kjør app med: python server.py
+# kjør appen med: python server.py
 ```
 
 ### -5- Teste det i Visual Studio Code
 
-For å teste dette i Visual Studio Code, gjør følgende:
+For å teste dette ut i Visual Studio Code, gjør følgende:
 
 1. Start server i terminal
-1. Legg det til *mcp.json* (og sørg for at det er startet) f.eks noe sånt som:
+1. Legg det til i *mcp.json* (og sørg for at det er startet) eksempelvis slik:
 
    ```json
    "servers": {
@@ -316,39 +325,39 @@ For å teste dette i Visual Studio Code, gjør følgende:
    }
    ```
 
-1. Skriv inn et prompt:
+1. Skriv inn en prompt:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. La sampling skje. Første gangen du tester dette vil du få opp en ekstra dialog du må godta, deretter vil du se normal dialog som spør deg om å kjøre et verktøy
+1. Tillat sampling å skje. Første gang du tester dette vil du bli presentert for en ekstra dialog som du må godta, deretter får du den vanlige dialogen for å spørre deg om å kjøre et verktøy
 
-1. Inspiser resultatene. Du vil se resultatene fint gjengitt i GitHub Copilot Chat, men du kan også inspisere det rå JSON-svaret.
+1. Inspiser resultatene. Du vil se resultatene pent gjengitt i GitHub Copilot Chat men du kan også inspisere rå JSON-respons.
 
-**Bonus**. Visual Studio Code-verktøyet har flott støtte for sampling. Du kan konfigurere Sampling-tilgang på den installerte serveren din ved å navigere slik:
+**Bonus**. Visual Studio Code verktøyene har god støtte for sampling. Du kan konfigurere Sampling-tilgangen på din installerte server ved å navigere slik:
 
-1. Naviger til utvidelsesseksjonen.
-1. Velg tannhjulikonet for din installerte server i "MCP SERVERS - INSTALLED"-seksjonen.
-1 Velg "Configure Model Access", her kan du velge hvilke modeller GitHub Copilot får lov til å bruke når sampling utføres. Du kan også se alle sampling-forespørsler som har skjedd nylig ved å velge "Show Sampling requests".
+1. Naviger til utvidelsesdelen.
+1. Velg tannhjul-ikonet for din installerte server i "MCP SERVERS - INSTALLED"-seksjonen.
+1 Velg "Configure Model Access", her kan du velge hvilke modeller GitHub Copilot får bruke når sampling utføres. Du kan også se alle sampling-forespørsler som har skjedd nylig ved å velge "Show Sampling requests".
 
 ## Oppgave
 
-I denne oppgaven skal du bygge en litt annerledes Sampling, nemlig en sampling-integrasjon som støtter generering av produktbeskrivelser. Her er ditt scenario:
+I denne oppgaven skal du bygge en litt annerledes Sampling, nemlig en sampling-integrasjon som støtter generering av produktbeskrivelse. Her er ditt scenario:
 
-**Scenario**: En backoffice-ansatt i en e-handel trenger hjelp, det tar altfor mye tid å generere produktbeskrivelser. Derfor skal du bygge en løsning der du kan kalle et verktøy "create_product" med "title" og "keywords" som argumenter, og det skal produsere et komplett produkt inkludert et "description"-felt som skal fylles ut av en klient-LLM.
+**Scenario**: Back office-ansatt i en e-handelsbedrift trenger hjelp, det tar altfor lang tid å generere produktbeskrivelser. Derfor skal du bygge en løsning hvor du kan kalle et verktøy "create_product" med "title" og "keywords" som argumenter, og det skal produsere et komplett produkt inkludert et "description"-felt som skal fylles ut av klientens LLM.
 
-TIP: bruk det du lærte tidligere for å bygge denne serveren og verktøyet ved bruk av en sampling-forespørsel.
+TIP: bruk det du lærte tidligere til å konstruere denne serveren og dens verktøy ved hjelp av en sampling-forespørsel.
 
 ## Løsning
 
 [Løsning](./solution/README.md)
 
-## Viktige poeng
+## Viktige punkter
 
-Sampling er en kraftfull funksjon som lar serveren delegere oppgaver til klienten når den trenger hjelp av en LLM.
+Sampling er en kraftfull funksjon som lar serveren delegere oppgaver til klienten når den trenger hjelp fra en LLM.
 
-## Hva kommer nå
+## Hva er neste steg
 
 - [Kapittel 4 - Praktisk implementering](../../04-PracticalImplementation/README.md)
 

@@ -1,28 +1,36 @@
-> [VANANENUD: 2026-07-28 RELEASE CANDIDATE](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)
+> [!WARNING]
+> Valimi võtmine on MCP-s `2026-07-28` aegunud. See õppetund on säilitatud
+> varasemate rakenduste jaoks. Uued serverid peaksid integreerima otse LLM-i
+> pakkuja API-ga.
 
-# Proovivõtt - omaduste delegeerimine kliendile
+# Valimi võtmine – funktsioonide delegeerimine kliendile
 
-> **Märkus vananemise kohta:** `2026-07-28` MCP spetsifikatsiooni release candidate märkis Proovivõtu vananenuks, eelistades otsest integreerimist LLM pakkujate API-dega. Proovivõtt töötab jätkuvalt `2025-11-25` ja vähemalt aasta pärast ametlikku vananemist, seega on selle õppetüki sisu endiselt kehtiv — kuid uued serveridisainid peaksid hindama asendusmustri kasutamist. Vaata [Mida muutub MCP-s: 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Valimi võtmine on säilinud `2026-07-28` spetsifikatsioonis ühilduvuse tõttu ning see on
+> eemaldamiseks esimese ülevaatuse ajal, mis avaldatakse 28. juulil 2027 või hiljem.
+> Selle õppetunni näited võivad kasutada SDK API-sid, mis rakendavad `2025-11-25`.
+> Vaata [Mis on MCP-s muutunud: 2026-07-28 spetsifikatsioon](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Mõnikord on vaja, et MCP klient ja MCP server teeksid koostööd ühise eesmärgi saavutamiseks. Võib olla olukord, kus server vajab abi kliendis asuvast LLM-ist. Sellisel juhul tuleks kasutada proovivõttu.
+Varasemates rakendustes võimaldab valimi võtmine MCP serveril paluda abi kliendi hallatavalt LLM-ilt.
+Uute rakenduste puhul kutsu valitud LLM-i pakkujat otse.
 
-Vaatame mõningaid kasutusjuhte ja kuidas proovivõtu lahendust ehitada.
+
+
 
 ## Ülevaade
 
-Selles õppetükis keskendume proovivõtu kasutamise aegadele ja kohtadele ning selle seadistamisele.
+Selles õppetükis keskendume seletamisele, millal ja kus valimi võtmist kasutada ning kuidas seda seadistada.
 
 ## Õpieesmärgid
 
 Selles peatükis:
 
-- Selgitame, mis on proovivõtt ja millal seda kasutada.
-- Näitame, kuidas MCP-s proovivõttu seadistada.
-- Anname näiteid proovivõtu kasutamisest.
+- Selgitame, mis on valimi võtmine ja millal seda kasutada.
+- Näitame, kuidas MCP-s valimi võtmist seadistada.
+- Anname näiteid valimi võtmisest tegevuses.
 
-## Mis on proovivõtt ja miks seda kasutada?
+## Mis on valimi võtmine ja miks seda kasutada?
 
-Proovivõtt on arenenud funktsioon, mis töötab järgmiselt:
+Valimi võtmine on täiustatud funktsioon, mis töötab järgmiselt:
 
 ```mermaid
 sequenceDiagram
@@ -33,17 +41,17 @@ sequenceDiagram
 
     User->>MCP Client: Autori blogipostitus
     MCP Client->>MCP Server: Tööriista kõne (blogipostituse mustand)
-    MCP Server->>MCP Client: Valimi päring (kokkuvõtte loomine)
-    MCP Client->>LLM: Blogipostituse kokkuvõtte genereerimine
+    MCP Server->>MCP Client: Valimikupäring (loo kokkuvõte)
+    MCP Client->>LLM: Genereeri blogipostituse kokkuvõte
     LLM->>MCP Client: Kokkuvõtte tulemus
-    MCP Client->>MCP Server: Valimi vastus (kokkuvõte)
+    MCP Client->>MCP Server: Valimivastus (kokkuvõte)
     MCP Server->>MCP Client: Täielik blogipostitus (mustand + kokkuvõte)
     MCP Client->>User: Blogipostitus valmis
 ```
 
-### Proovivõtu päring
+### Valimi taotlus
 
-Nüüd, kui meil on üldine ülevaade usutavast stsenaariumist, räägime serveri kliendile tagastatavast proovivõtu päringust. Selline päring võib JSON-RPC formaadis välja näha järgmine:
+Okei, nüüd on meil üldine ülevaade usutavast stsenaariumist, räägime serveri kliendile tagastatavast valimi taotlusest. Siin on, kuidas selline taotlus võib JSON-RPC vormingus välja näha:
 
 ```json
 {
@@ -75,17 +83,17 @@ Nüüd, kui meil on üldine ülevaade usutavast stsenaariumist, räägime server
 }
 ```
 
-Siin on paar märkimisväärset asja:
+Siin on mõned tähelepanuväärsed punktid:
 
-- Prompt, sisu -> tekst, on meie juhis, mille abil palutakse LLM-il blogipostituse sisu kokku võtta.
+- Taust, sisu -> tekst, on meie juhis, mis annab LLM-ile ülesande kokku võtta blogipostituse sisu.
 
-- **modelPreferences**. See osa on soovitus, millist konfiguratsiooni LLM-iga kasutada. Kasutaja võib otsustada järgida seda soovitust või muuta seda. Antud juhul on soovitused mudeli, kiiruse ja intelligentsuse prioriteedi kohta.
-- **systemPrompt**, see on sinu tavaline süsteemiprompt, mis annab su LLM-ile iseloomu ja juhised.
-- **maxTokens**, see on veel üks omadus, mis näitab, mitu tokenit selle ülesande jaoks soovitatakse kasutada.
+- **mudeliEelistused**. See osa on eelistus, soovitus, millist seadistust LLM-iga kasutada. Kasutaja saab valida, kas järgida neid soovitusi või neid muuta. Selles näites on soovitused mudeli, kiiruse ja intelligentsuse prioriteedi kohta.
+- **süsteemiJuhis**, see on tavapärane süsteemi juhis, mis annab Sinu LLM-ile isikupära ja sisaldab juhiseid.
+- **maxTokenid**, see on veel üks omadus, mis ütleb, mitu tokenit on selle ülesande jaoks soovitatav kasutada.
 
-### Proovivõtu vastus
+### Valimi vastus
 
-See vastus on see, mida MCP klient saadab tagasi MCP serverile ning on kliendi poolt LLM-i kutsumise, vastuse ootamise ja sõnumi koostamise tulemus. Selline välja näeb JSON-RPC formaadis:
+See vastus on see, mida MCP klient lõpuks MCP serverile tagastab ning on tulemus kliendi LLM-i kutsumisest, selle vastuse ootamisest ja sõnumi koostamisest. Siin on, kuidas see JSON-RPC-s välja näeb:
 
 ```json
 {
@@ -103,13 +111,13 @@ See vastus on see, mida MCP klient saadab tagasi MCP serverile ning on kliendi p
 }
 ```
 
-Pane tähele, et vastus on blogipostituse kokkuvõte, nagu palusime. Samuti pane tähele, et kasutatud `model` pole see, mida me küsisime, vaid "gpt-5" "claude-3-sonnet" asemel. See illustreerib, et kasutaja võib oma meelt muuta ja sinu proovivõtu päring on soovituslik.
+Pane tähele, et vastus on blogipostituse kokkuvõte, nagu me palusime. Samuti pane tähele, et kasutatud mudel pole see, mida me palusime, vaid "gpt-5" "claude-3-sonnet" asemel. See illustreerib, et kasutaja võib oma meelt muuta ja valimi taotlus on soovitus.
 
-Nüüd, kui mõistame peamist voogu ja kasulikku ülesannet "blogipostituse loomine + kokkuvõte", vaatame, mida selle toimimiseks vaja on teha.
+Okei, nüüd kui mõistame põhilist protsessi ja kasulikku ülesannet "blogipostituse loomine + kokkuvõte", vaatame, mida peame tegema, et see töötaks.
 
-### Sõnumitüübid
+### Sõnumi tüübid
 
-Proovivõtu sõnumid ei ole piiratud ainult tekstiga, vaid võid saata ka pilte ja heli. Nii näeb JSON-RPC erisusi välja:
+Valimi sõnumid ei piirdu ainult tekstiga, vaid saadetakse ka pilte ja heli. Siin on, kuidas JSON-RPC erineb:
 
 **Tekst**
 
@@ -120,7 +128,7 @@ Proovivõtu sõnumid ei ole piiratud ainult tekstiga, vaid võid saata ka pilte 
 }
 ```
 
-**Pildi sisu**
+**Pildisisu**
 
 ```json
 {
@@ -130,7 +138,7 @@ Proovivõtu sõnumid ei ole piiratud ainult tekstiga, vaid võid saata ka pilte 
 }
 ```
 
-**Heli sisu**
+**Helisisu**
 
 ```json
 {
@@ -140,13 +148,14 @@ Proovivõtu sõnumid ei ole piiratud ainult tekstiga, vaid võid saata ka pilte 
 }
 ```
 
-> MÄRGE: proovivõtu üksikasjalikuma info kohta vaata [ametlikku dokumentatsiooni](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)
+> MÄRKUS: Praeguse staatuse ja migratsioonijuhiste jaoks vaata
+> [aegunud valimi võtmise dokumentatsiooni](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Kuidas proovivõttu kliendis seadistada
+## Kuidas seadistada valimi võtmist kliendis
 
-> Märkus: kui ehitad ainult serverit, pole siin palju vaja teha.
+> Märkus: kui Sa ehitad ainult serverit, pole siin palju vaja teha.
 
-Kliendis tuleb määrata järgmine omadus selliselt:
+Kliendis pead määrama järgmise funktsiooni järgmiselt:
 
 ```json
 {
@@ -156,15 +165,15 @@ Kliendis tuleb määrata järgmine omadus selliselt:
 }
 ```
 
-See valitakse üles, kui sinu valitud klient serveriga ühendust loob.
+See võetakse seejärel arvesse, kui valitud klient serveriga algatatakse.
 
-## Näide proovivõtu kasutamisest - blogipostituse loomine
+## Näide valimi võtmisest tegevuses – loo blogipostitus
 
-Kodeerime koos proovivõtuserveri, järgmist on vaja teha:
+Koodime koos valimi serveri, teeme järgmised sammud:
 
-1. Loo serveris tööriist.
-1. See tööriist peaks looma proovivõtu päringu.
-1. Tööriist peaks ootama kliendi proovivõtu vastust.
+1. Loo tööriist serveris.
+1. See tööriist peaks looma valimi taotluse.
+1. Tööriist peaks ootama kliendi valimi taotluse vastust.
 1. Seejärel peaks tööriista tulemus valmima.
 
 Vaatame koodi samm-sammult:
@@ -180,9 +189,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Loo proovivõtu päring
+### -2- Loo valimi taotlus
 
-Lisa oma tööriista järgmine kood:
+Lisa tööriistale järgmine kood:
 
 **python**
 
@@ -208,7 +217,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Oota vastust ja tagasta vastus
+### -3- Oota vastust ja tagasta see
 
 **python**
 
@@ -217,7 +226,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# tagastage täielik toode
+# tagasta täielik toode
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -286,7 +295,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # tagastab kogu blogipostituse
+    # tagasta täielik blogipostitus
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -304,8 +313,8 @@ if __name__ == "__main__":
 
 Selle testimiseks Visual Studio Code'is tee järgmist:
 
-1. Käivita server terminalis
-1. Lisa see *mcp.json*-i (ja veendu, et see on tööle pandud), näiteks nii:
+1. Käivita server terminalis.
+1. Lisa see *mcp.json*-i (ja veendu, et see oleks käivitatud), näiteks nii:
 
    ```json
    "servers": {
@@ -316,41 +325,41 @@ Selle testimiseks Visual Studio Code'is tee järgmist:
    }
    ```
 
-1. Tippige prompt:
+1. Sisesta päring:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Luba proovivõtt toimuda. Esimest korda testides ilmub lisadialoog, mille tuleb kinnitada, seejärel näed tavapärast dialoogi, mis palub tööriista käivitada
+1. Luba valimi võtmise toimimine. Esmakordsel testimisel esitatakse Sulle täiendav dialoog, mille pead aktsepteerima, seejärel näed tavalist dialoogi tööriista käivitamiseks.
 
-1. Uuri tulemusi. Näed tulemusi nii ilusti renderdatud kujul GitHub Copilot Chatis kui ka võid vaadata toore JSON vastust.
+1. Kontrolli tulemusi. Näed tulemusi nii GitHub Copilot Chat'is ilusti kujundatult kui ka saad uurida toore JSON vastust.
 
-**Boonus**. Visual Studio Code tööriistad toetavad proovivõttu suurepäraselt. Sa võid proovivõtu ligipääsu konfigureerida oma paigaldatud serverilt, navigeerides sinna nii:
+**Boonus**. Visual Studio Code tööriistad toetavad valimi võtmist suurepäraselt. Sa saad seadistada valimi võtmise ligipääsu oma paigaldatud serveris, navigeerides nii:
 
-1. Ava laienduste sektsioon.
-1. Vali hammasratta ikoon oma paigaldatud serveri juures "MCP SERVERS - INSTALLED" sektsioonis.
-1. Vali "Configure Model Access", siin saad valida, milliseid mudeleid GitHub Copilot võib proovivõtu tegemisel kasutada. Näed ka kõiki hiljutisi proovivõtu päringuid, valides "Show Sampling requests".
+1. Mine laienduste sektsiooni.
+1. Vali hammasratta ikoon oma paigaldatud serveri juures jaotises "MCP SERVERID – PAIGALDATUD".
+1. Vali "Konfigureeri mudeli ligipääsu", siin saad valida, milliseid mudeleid GitHub Copilot tohib valimi võtmisel kasutada. Saad ka vaadata kõiki hiljutisi valimi taotlusi, valides "Näita valimi taotlusi".
 
-## Kodune ülesanne
+## Ülesanne
 
-Selles ülesandes ehitad veidi erineva proovivõtu, nimelt proovivõtu integratsiooni, mis toetab tootekirjelduse genereerimist. Siin on sinu stsenaarium:
+Selles ülesandes ehitad veidi erineva valimi võtmise integratsiooni, mis toetab toote kirjelduse genereerimist. Siin on Sinu stsenaarium:
 
-**Stsenaarium**: e-kaubanduse back office töötaja vajab abi, sest tootekirjelduste loomine võtab liiga kaua aega. Seega ehitad lahenduse, kus kutsud tööriista "create_product" koos argumentidega "title" ja "keywords", mille tulemusena luuakse täielik toode, sealhulgas "description" väli, mida täidab kliendi LLM.
+**Stsenaarium**: E-kaubanduse back office töötaja vajab abi, toodete kirjelduste genereerimine võtab liiga kaua aega. Seetõttu pead looma lahenduse, kus saad tööriista "create_product" kutsuda parameetritega "title" ja "keywords" ja see peaks tootma täieliku toote, sealhulgas välja "description", mille täidab kliendi LLM.
 
-VINK: kasuta varasemalt õpitud teadmisi serveri ja tööriista ülesehitamiseks proovivõtu päringu abil.
+NÕUANNE: kasuta varasematest õppetundidest õpitud teadmisi, et konstrueerida see server ja tööriist valimi taotlust kasutades.
 
 ## Lahendus
 
 [Lahendus](./solution/README.md)
 
-## Peamised mõtted
+## Peamised järeldused
 
-Proovivõtt on võimas omadus, mis võimaldab serveril delegeerida ülesandeid kliendile, kui vajab abi LLM-ilt.
+Valimi võtmine on võimas funktsioon, mis võimaldab serveril delegeerida ülesandeid kliendile, kui on vaja LLM-i abi.
 
-## Mis edasi
+## Mis järgmiseks
 
-- [Peatükk 4 - Praktiline rakendamine](../../04-PracticalImplementation/README.md)
+- [Peatükk 4 – Praktiline rakendus](../../04-PracticalImplementation/README.md)
 
 ---
 

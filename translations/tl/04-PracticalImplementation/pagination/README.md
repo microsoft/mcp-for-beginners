@@ -1,17 +1,17 @@
-# Pagination at Malalaking Resulta sa MCP
+# Pagination at Malalaking Resulta ng Set sa MCP
 
-Kapag ang iyong MCP server ay humahandle ng malalaking datasets - maging ito man ay paglista ng libu-libong mga file, tala sa database, o mga resulta ng paghahanap - kailangan mo ng pagination para pamahalaan nang maayos ang memorya at magbigay ng mabilis na karanasan sa mga user. Tinatalakay ng gabay na ito kung paano mag-implement at gumamit ng pagination sa MCP.
+Kapag ang iyong MCP server ay humahawak ng malalaking dataset - maging ito man ay paglista ng libu-libong file, tala ng database, o resulta ng paghahanap - kailangan mo ng pagination upang mahusay na pamahalaan ang memorya at magbigay ng mabilis na karanasan sa gumagamit. Saklaw ng gabay na ito kung paano ipatupad at gamitin ang pagination sa MCP.
 
 ## Bakit Mahalaga ang Pagination
 
-Kung walang pagination, ang malalaking tugon ay maaaring magdulot ng:
+Kung walang pagination, ang malalaking sagot ay maaaring magdulot ng:
 
-- **Pagkapagod ng memorya** - Paglo-load ng milyong tala nang sabay-sabay
-- **Mabagal na oras ng tugon** - Naghihintay ang mga user habang niloload ang lahat ng data
-- **Mga error sa timeout** - Lumalampas sa limitasyon ng oras ng request
-- **Mahinang pagganap ng AI** - Nahihirapan ang LLMs sa napakalaking konteksto
+- **Pagkaubos ng memorya** - Pag-load ng milyong tala nang sabay-sabay
+- **Bagal ng tugon** - Naghihintay ang mga gumagamit habang niloload lahat ng data
+- **Mga timeout error** - Lumalampas ang mga kahilingan sa mga limitasyon ng timeout
+- **Mahinang performance ng AI** - Nahihirapan ang LLM sa napakalaking konteksto
 
-Ginagamit ng MCP ang **cursor-based pagination** para sa maaasahan at pantay-pantay na paging sa mga resulta.
+Gumagamit ang MCP ng **cursor-based pagination** para sa maaasahan at pare-parehong pag-paging sa mga set ng resulta.
 
 ---
 
@@ -19,7 +19,7 @@ Ginagamit ng MCP ang **cursor-based pagination** para sa maaasahan at pantay-pan
 
 ### Ang Konsepto ng Cursor
 
-Ang **cursor** ay isang opaque na string na nagmamarka ng iyong posisyon sa isang resulta. Isipin ito bilang bookmark sa isang mahabang libro.
+Ang **cursor** ay isang hindi malinaw na string na nagmamarka ng iyong posisyon sa isang set ng resulta. Isipin ito bilang bookmark sa isang mahaba na aklat.
 
 ```mermaid
 sequenceDiagram
@@ -33,14 +33,15 @@ sequenceDiagram
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
     Client->>Server: tools/list (cursor: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (wakas)
+    Server-->>Client: tools [21-25], nextCursor: null (katapusan)
 ```
+
 ### Pagination sa Mga Paraan ng MCP
 
-Ang mga paraang MCP na ito ay sumusuporta sa pagination:
+Sinusuportahan ng mga paraang MCP na ito ang pagination:
 
 | Paraan | Ibinabalik | Suporta sa Cursor |
-|--------|------------|-------------------|
+|--------|---------|----------------|
 | `tools/list` | Mga depinisyon ng tool | ✅ |
 | `resources/list` | Mga depinisyon ng resource | ✅ |
 | `prompts/list` | Mga depinisyon ng prompt | ✅ |
@@ -48,7 +49,7 @@ Ang mga paraang MCP na ito ay sumusuporta sa pagination:
 
 ---
 
-## Implementasyon sa Server
+## Implementasyon ng Server
 
 ### Python (FastMCP)
 
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Ginaya na malaking dataset
+# Pinakakalakal na malaking dataset
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -79,7 +80,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Kunin ang pahina ng mga resulta
+    # Kumuha ng pahina ng mga resulta
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Sinimulang malaking dataset
+// Ginawang halimbawa ng malaking dataset
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -163,7 +164,7 @@ public class PaginatedToolService {
             }
         }
         
-        // Kunin ang pahina ng mga resulta
+        // Kumuha ng pahina ng mga resulta
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementasyon sa Client
+## Implementasyon ng Kliyente
 
 ### Python Client
 
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Pattern ng Lazy Loading
+### Lazy Loading Pattern
 
-Para sa sobrang malalaking datasets, mag-load ng mga pahina kapag hiniling:
+Para sa napakalalaking dataset, i-load ang mga pahina ayon sa pangangailangan:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Ibalik mula sa buffer kung available
+        # Bumalik mula sa buffer kung available
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Suriin kung naubos na ba ang lahat ng pahina
+        # Suriin kung naubos na ang lahat ng pahina
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -274,9 +275,9 @@ async for tool in PaginatedToolIterator(session):
 
 ---
 
-## Pagination para sa mga Resource
+## Pagination para sa Mga Resource
 
-Kadalasang kailangan ng pagination ang mga resource para sa mga direktoryo o malalaking dataset:
+Madalas na kailangan ng pagination ang mga resource para sa mga direktoryo o malalaking dataset:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # I-decode ang cursor (index ng file)
+    # I-decode ang cursor (indeks ng file)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Gumawa ng listahan ng mga resource para sa pahinang ito
+    # Gumawa ng listahan ng mga mapagkukunan para sa pahinang ito
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -318,9 +319,9 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Mga Disenyo ng Cursor na Estratehiya
+## Mga Diskarte sa Disenyo ng Cursor
 
-### Estratehiya 1: Index-Based (Simple)
+### Diskarte 1: Batay sa Index (Simple)
 
 ```python
 # Ang cursor ay ang index lamang
@@ -328,19 +329,19 @@ cursor = "50"  # Magsimula sa item 50
 ```
 
 **Mga Bentahe:** Simple, walang estado
-**Mga Kahinaan:** Maaaring magiba ang resulta kung may idagdag/bawasan
+**Mga Kakulangan:** Ang mga resulta ay maaaring magbago kung may idinadagdag o inaalis na mga item
 
-### Estratehiya 2: ID-Based (Stable)
+### Diskarte 2: Batay sa ID (Matatag)
 
 ```python
 # Ang cursor ay ang huling nakitang ID
 cursor = "item_abc123"  # Magsimula pagkatapos ng item na ito
 ```
 
-**Mga Bentahe:** Matatag kahit magbago ang mga item
-**Mga Kahinaan:** Nangangailangan ng nakaayos na mga ID
+**Mga Bentahe:** Matatag kahit na may pagbabago sa mga item
+**Mga Kakulangan:** Nangangailangan ng nakaayos na mga ID
 
-### Estratehiya 3: Encoded State (Complex)
+### Diskarte 3: Encode na Estado (Komplikado)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Naglalaman ang cursor ng maraming mga patlang ng estado
+# Ang cursor ay naglalaman ng maraming mga patlang ng estado
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -361,13 +362,13 @@ cursor = encode_cursor({
 ```
 
 **Mga Bentahe:** Kayang i-encode ang komplikadong estado
-**Mga Kahinaan:** Mas kumplikado, mas mahahabang cursor string
+**Mga Kakulangan:** Mas komplikado, mas malalaking string ng cursor
 
 ---
 
-## Pinakamahuhusay na Kasanayan
+## Mga Pinakamahusay na Gawi
 
-### 1. Pumili ng Angkop na Sukat ng Pahina
+### 1. Piliin ang Angkop na Laki ng Pahina
 
 ```python
 # Isaalang-alang ang laki ng datos
@@ -376,7 +377,7 @@ PAGE_SIZE_MEDIUM_ITEMS = 20   # Mas mayamang mga bagay
 PAGE_SIZE_LARGE_ITEMS = 5     # Masalimuot na nilalaman
 ```
 
-### 2. Maingat na Pamahalaan ang Invalid na Cursor
+### 2. Maingat na Harapin ang Hindi Wastong Mga Cursor
 
 ```python
 @app.list_tools()
@@ -396,12 +397,12 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Ang ilang mga pagpapatupad ay nagsasama ng kabuuan para sa UI progreso
+    # Ang ilang mga pagpapatupad ay naglalaman ng kabuuan para sa progreso ng UI
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Subukin ang mga Edge Case
+### 4. Subukan ang Mga Edge Case
 
 ```python
 async def test_pagination():
@@ -416,27 +417,27 @@ async def test_pagination():
     
     # Hindi wastong cursor
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Dapat ibalik ang unang pahina
+    assert result.tools  # Dapat magbalik ng unang pahina
 ```
 
 ---
 
-## Karaniwang Mga Banta
+## Karaniwang Pagkaabala
 
-### ❌ Ibinabalik Lahat ng Resulta Tapos Ginagawa ang Pagination sa Client-Side
+### ❌ Pagbabalik ng Lahat ng Resulta Pagkatapos mag-Paginate sa Client Side
 
 ```python
-# MASAMA: Iloload lahat sa memorya
+# MASAMA: Ikinakarga ang lahat sa memorya
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # 1 milyong mga kasangkapan!
+    all_tools = load_all_tools()  # 1 milyong kasangkapan!
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Gumawa ng Pagination sa Pinagmulan ng Data
+### ✅ Mag-Paginate sa Pinagmulan ng Data
 
 ```python
-# MABUTI: Naglo-load lamang ng kung ano ang kailangan
+# MABUTI: Nilo-load lang ang kinakailangan
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -454,15 +455,15 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Karagdagang Mga Sanggunian
+## Karagdagang Mga Mapagkukunan
 
-- [MCP Specification - Pagination](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Patalastas**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagaman sinisikap naming maging tumpak, pakatandaan na maaaring may mga pagkakamali o pagka-mali sa awtomatikong salin. Ang orihinal na dokumento sa kanyang sariling wika ang dapat ituring na pangunahin at opisyal na sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng isang tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na nagmumula sa paggamit ng salin na ito.
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

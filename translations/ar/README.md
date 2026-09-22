@@ -225,7 +225,6 @@ MCP هو بروتوكول - مجموعة من القواعد المتفق علي
 
 | اللغة | الوصف | الرابط |
 |----------|-------------|------|
-
 | C# | مثال لخادم MCP | [عرض الكود](./03-GettingStarted/samples/csharp/README.md) |
 | Java | آلة حاسبة MCP | [عرض الكود](./03-GettingStarted/samples/java/calculator/README.md) |
 | JavaScript | عرض MCP | [عرض الكود](./03-GettingStarted/samples/javascript/README.md) |

@@ -1,29 +1,34 @@
-# Klient Kalkulačky LLM
+# Klient Calculator LLM
 
-Java aplikace, která demonstruje, jak použít LangChain4j pro připojení k MCP (Model Context Protocol) kalkulační službě prostřednictvím OpenAI-kompatibilní API MiniMax.
+> [!NOTE]
+> Toto řešení se připojuje ke starší kalkulační službě HTTP+SSE kurzu a
+> cíluje na MCP `2025-11-25` SDK API. Není to příklad `2026-07-28` Streamable HTTP.
+
+
+
 
 ## Požadavky
 
 - Java 21 nebo novější
-- Maven 3.6+ (nebo použijte přiložený Maven wrapper)
-- Klíč API MiniMax
-- MCP kalkulační služba běžící na `http://localhost:8080`
+- Maven 3.6+ (nebo použijte zahrnutý Maven wrapper)
+- Klíč MiniMax API
+- Kalkulační služba MCP běžící na `http://localhost:8080`
 
-## Získání klíče API
+## Získání API klíče
 
-Tato aplikace používá OpenAI-kompatibilní API MiniMax. Postupujte podle těchto kroků pro získání klíče a endpointu:
+Tato aplikace používá MiniMax API kompatibilní s OpenAI. Postupujte podle těchto kroků pro získání klíče a koncového bodu:
 
-### 1. Vyberte endpoint
-1. Použijte `https://api.minimax.io/v1` pro globální endpoint
-2. Použijte `https://api.minimaxi.com/v1` pro čínský endpoint
+### 1. Vyberte koncový bod
+1. Použijte `https://api.minimax.io/v1` pro globální koncový bod
+2. Použijte `https://api.minimaxi.com/v1` pro čínský koncový bod
 
-### 2. Vytvořte klíč API
-1. Vytvořte klíč MiniMax API ze svého účtu MiniMax
+### 2. Vytvoření API klíče
+1. Vytvořte klíč MiniMax API ze svého MiniMax účtu
 2. Uchovejte klíč na bezpečném místě
 
-### 3. Nastavte proměnné prostředí
+### 3. Nastavení proměnných prostředí
 
-#### Ve Windows (příkazový řádek):
+#### Ve Windows (Příkazový řádek):
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
@@ -46,7 +51,7 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## Nastavení a instalace
 
-1. **Klonujte nebo přejděte do adresáře projektu**
+1. **Naklonujte nebo přejděte do adresáře projektu**
 
 2. **Nainstalujte závislosti**:
    ```cmd
@@ -57,10 +62,10 @@ export MINIMAX_MODEL_ID=MiniMax-M3
    mvn clean install
    ```
 
-3. **Nastavte proměnné prostředí** (viz sekce "Získání klíče API" výše)
+3. **Nastavte proměnné prostředí** (viz sekce "Získání API klíče" výše)
 
-4. **Spusťte MCP kalkulační službu**:
-   Ujistěte se, že máte spuštěnou MCP kalkulační službu z kapitoly 1 na `http://localhost:8080/sse`. Ta musí běžet před spuštěním klienta.
+4. **Spusťte MCP Kalkulační službu**:
+   Ujistěte se, že máte spuštěnou MCP kalkulační službu z kapitoly 1 na `http://localhost:8080/sse`. Tato služba by měla být spuštěná před startem klienta.
 
 ## Spuštění aplikace
 
@@ -73,13 +78,13 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 Aplikace demonstruje tři hlavní interakce s kalkulační službou:
 
-1. **Sčítání**: Vypočítá součet 24,5 a 17,3
-2. **Druhý odmocnina**: Vypočítá druhou odmocninu z 144
+1. **Sčítání**: Vypočítá součet 24.5 a 17.3
+2. **Druhá odmocnina**: Vypočítá druhou odmocninu z 144
 3. **Nápověda**: Zobrazí dostupné kalkulační funkce
 
 ## Očekávaný výstup
 
-Po úspěšném spuštění byste měli vidět výstup podobný:
+Při úspěšném spuštění byste měli vidět podobný výstup:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -91,48 +96,48 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ### Běžné problémy
 
-1. **"Proměnná prostředí OPENAI_API_KEY není nastavena"**
-   - Ujistěte se, že jste nastavili proměnnou prostředí `OPENAI_API_KEY`
+1. **"PROMĚNNÁ PROSTŘEDÍ OPENAI_API_KEY není nastavena"**
+   - Ujistěte se, že máte nastavenou proměnnou prostředí `OPENAI_API_KEY`
    - Po nastavení proměnné restartujte terminál/příkazový řádek
 
-2. **"Připojení odmítnuto na localhost:8080"**
-   - Zkontrolujte, že MCP kalkulační služba běží na portu 8080
-   - Ujistěte se, že žádná jiná služba nepoužívá port 8080
+2. **"Připojení odmítnuto k localhost:8080"**
+   - Zkontrolujte, zda MCP kalkulační služba běží na portu 8080
+   - Zkontrolujte, zda jiná služba nepoužívá port 8080
 
-3. **"Autentizace selhala"**
-   - Ověřte platnost svého klíče API
-   - Zkontrolujte, že `OPENAI_BASE_URL` odpovídá zamýšlenému endpointu
+3. **"Ověření selhalo"**
+   - Ověřte platnost vašeho API klíče
+   - Zkontrolujte, zda `OPENAI_BASE_URL` odpovídá vámi zamýšlenému koncovému bodu
 
-4. **Chyby při sestavení Maven**
-   - Ujistěte se, že používáte Java 21 nebo vyšší: `java -version`
+4. **Chybové hlášky při sestavení v Maven**
+   - Zkontrolujte, že používáte Java 21 nebo novější: `java -version`
    - Zkuste vyčistit sestavení: `mvnw clean`
 
 ### Ladění
 
-Pro povolení ladicího logování přidejte při spuštění tento argument JVM:
+Pro povolení ladícího protokolování přidejte při spuštění následující JVM argument:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## Konfigurace
 
-Aplikace je nastavena takto:
-- Výchozí model MiniMax-M3; nastavte `MINIMAX_MODEL_ID` pro výběr mezi `MiniMax-M3` nebo `MiniMax-M2.7`
-- Připojí se na `OPENAI_BASE_URL`, pokud je nastavena; jinak použije `https://api.minimaxi.com/v1` při `MINIMAX_REGION=cn_zh`, nebo výchozí `https://api.minimax.io/v1`
-- Připojí se k MCP službě na `http://localhost:8080/sse`
-- Použije timeout 60 sekund pro požadavky
+Aplikace je nakonfigurována takto:
+- Ve výchozím stavu používá MiniMax-M3; nastavte `MINIMAX_MODEL_ID` pro výběr mezi `MiniMax-M3` nebo `MiniMax-M2.7`
+- Připojuje se na `OPENAI_BASE_URL`, pokud je nastavena; jinak používá `https://api.minimaxi.com/v1`, když je `MINIMAX_REGION=cn_zh`, nebo výchozí `https://api.minimax.io/v1`
+- Připojuje se ke službě MCP na `http://localhost:8080/sse`
+- Pro požadavky používá timeout 60 sekund
 
 ## Závislosti
 
-Klíčové závislosti použité v tomto projektu:
-- **LangChain4j**: Pro integraci AI a správu nástrojů
-- **LangChain4j MCP**: Pro podporu Model Context Protocol
-- **LangChain4j OpenAI official**: Pro integraci OpenAI-kompatibilního API MiniMax
-- **Spring Boot**: Pro aplikační framework a dependency injection
+Hlavní závislosti použité v tomto projektu:
+- **LangChain4j**: Pro AI integraci a správu nástrojů
+- **LangChain4j MCP**: Pro podporu Model Context Protocolu
+- **LangChain4j OpenAI official**: Pro integraci MiniMax API kompatibilního s OpenAI
+- **Spring Boot**: Pro aplikační framework a závislostní injekci
 
 ## Licence
 
-Tento projekt je licencován pod licencí Apache 2.0 - podrobnosti viz soubor [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
+Tento projekt je licencován pod Apache licencí 2.0 - podrobnosti najdete v souboru [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE).
 
 ---
 

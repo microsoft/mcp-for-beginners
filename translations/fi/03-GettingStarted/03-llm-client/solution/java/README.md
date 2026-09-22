@@ -1,25 +1,30 @@
 # Laskin LLM -asiakas
 
-Java-sovellus, joka näyttää, kuinka LangChain4j:ää käytetään yhdistämään MCP (Mallikontekstiprotokolla) -laskinpalveluun MiniMax OpenAI-yhteensopivan API:n kautta.
+> [!NOTE]
+> Tämä ratkaisu yhdistää kurssin perinteiseen HTTP+SSE-laskinpalveluun ja
+> käyttää MCP:n `2025-11-25` SDK-rajapintoja. Se ei ole `2026-07-28` Streamable HTTP
+> -esimerkki.
 
-## Edellytykset
+Java-sovellus, joka näyttää kuinka käyttää LangChain4j:ää yhdistämiseen MCP (Model Context Protocol) -laskinpalveluun MiniMax OpenAI-yhteensopivan API:n kautta.
+
+## Esivaatimukset
 
 - Java 21 tai uudempi
-- Maven 3.6+ (tai käytä mukana olevaa Maven-wrapperia)
+- Maven 3.6+ (tai käytä mukana tulevaa Maven-wrapperia)
 - MiniMax API-avain
 - MCP-laskinpalvelu käynnissä osoitteessa `http://localhost:8080`
 
-## API-avaimen hankinta
+## API-avaimen hankkiminen
 
 Tämä sovellus käyttää MiniMax OpenAI-yhteensopivaa API:a. Noudata näitä ohjeita saadaksesi avaimen ja päätepisteen:
 
 ### 1. Valitse päätepiste
-1. Käytä `https://api.minimax.io/v1` globaalille päätepisteelle
-2. Käytä `https://api.minimaxi.com/v1` Kiinan päätepisteelle
+1. Käytä `https://api.minimax.io/v1` globaaliin päätepisteeseen
+2. Käytä `https://api.minimaxi.com/v1` Kiinan päätepisteeseen
 
 ### 2. Luo API-avain
 1. Luo MiniMax API-avain MiniMax-tililtäsi
-2. Säilytä avain turvallisesti
+2. Säilytä avain turvallisessa paikassa
 
 ### 3. Aseta ympäristömuuttujat
 
@@ -46,7 +51,7 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## Asennus ja käyttöönotto
 
-1. **Kloonaa tai siirry projektin hakemistoon**
+1. **Kloonaa tai siirry projektihakemistoon**
 
 2. **Asenna riippuvuudet**:
    ```cmd
@@ -57,12 +62,12 @@ export MINIMAX_MODEL_ID=MiniMax-M3
    mvn clean install
    ```
 
-3. **Aseta ympäristömuuttujat** (katso "API-avaimen hankinta" yllä)
+3. **Aseta ympäristömuuttujat** (katso "API-avaimen hankkiminen" yllä)
 
 4. **Käynnistä MCP-laskinpalvelu**:
-   Varmista, että luvun 1 MCP-laskinpalvelu on käynnissä osoitteessa `http://localhost:8080/sse`. Sen tulee olla käynnissä ennen asiakasohjelman käynnistystä.
+   Varmista, että luvun 1 MCP-laskinpalvelu on käynnissä osoitteessa `http://localhost:8080/sse`. Sen tulee olla käynnissä ennen asiakkaan käynnistämistä.
 
-## Sovelluksen käynnistäminen
+## Sovelluksen ajaminen
 
 ```cmd
 mvnw clean package
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Mitä sovellus tekee
 
-Sovellus näyttää kolme pääasiallista vuorovaikutusta laskinpalvelun kanssa:
+Sovellus demonstroi kolmea päätoimintoa laskinpalvelun kanssa:
 
-1. **Yhteenlasku**: Laskee luvut 24.5 ja 17.3 yhteen
+1. **Yhteenlasku**: Laskee luvun 24.5 ja 17.3 summan
 2. **Neliöjuuri**: Laskee luvun 144 neliöjuuren
-3. **Ohje**: Näyttää saatavilla olevat laskintoiminnot
+3. **Ohje**: Näyttää käytettävissä olevat laskinfunktion toiminnot
 
 ## Odotettu tulos
 
-Kun suoritat onnistuneesti, näet tuloksen, joka on samankaltainen kuin:
+Kun suoritat onnistuneesti, sinun pitäisi nähdä tuloste, joka on samanlainen kuin:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -92,47 +97,47 @@ The calculator service provides the following functions: add, subtract, multiply
 ### Yleisiä ongelmia
 
 1. **"OPENAI_API_KEY -ympäristömuuttujaa ei ole asetettu"**
-   - Varmista, että olet asettanut `OPENAI_API_KEY` -ympäristömuuttujan
-   - Käynnistä komentotulkki/terminaali uudelleen muuttujan asettamisen jälkeen
+   - Varmista, että olet asettanut `OPENAI_API_KEY`-ympäristömuuttujan
+   - Käynnistä komentorivi tai terminaali uudelleen muuttujan asettamisen jälkeen
 
-2. **"Yhteys kielletty localhost:8080"**
-   - Varmista että MCP-laskinpalvelu on käynnissä portissa 8080
+2. **"Yhteys localhost:8080 estetty"**
+   - Varmista, että MCP-laskinpalvelu on käynnissä portissa 8080
    - Tarkista, ettei toinen palvelu käytä porttia 8080
 
-3. **"Todentaminen epäonnistui"**
-   - Tarkista API-avaimesi kelvollisuus
-   - Varmista, että `OPENAI_BASE_URL` vastaa käyttämääsi päätepistettä
+3. **"Autentikointi epäonnistui"**
+   - Varmista, että API-avaimesi on kelvollinen
+   - Tarkista, että `OPENAI_BASE_URL` vastaa käyttämääsi päätepistettä
 
-4. **Maven-käännösvirheet**
-   - Varmista, että käytät Java 21:tä tai uudempaa: `java -version`
-   - Kokeile puhdistaa käännös: `mvnw clean`
+4. **Maven-rakennusvirheet**
+   - Varmista, että käytät Java 21 tai uudempaa: `java -version`
+   - Yritä puhdistaa rakennus: `mvnw clean`
 
-### Virheenetsintä
+### Virheenkorjaus
 
-Debug-lokin käyttöönotto onnistuu lisäämällä seuraava JVM-argumentti käynnistyksen yhteydessä:
+Debug-lokin aktivoimiseksi lisää seuraava JVM-parametri ajon yhteydessä:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
-## Konfiguraatio
+## Konfigurointi
 
 Sovellus on konfiguroitu seuraavasti:
-- Oletuksena käytetään MiniMax-M3:a; aseta `MINIMAX_MODEL_ID` valitaksesi joko `MiniMax-M3` tai `MiniMax-M2.7`
-- Yhdistetään `OPENAI_BASE_URL` osoitteeseen, jos se on asetettu; muuten käytetään `https://api.minimaxi.com/v1` osoitetta, kun `MINIMAX_REGION=cn_zh`, tai oletuksena `https://api.minimax.io/v1`
-- Yhdistetään MCP-palveluun osoitteessa `http://localhost:8080/sse`
-- Käytetään 60 sekunnin aikakatkaisua pyynnöille
+- Käyttämään oletuksena MiniMax-M3:ta; aseta `MINIMAX_MODEL_ID` valitaksesi joko `MiniMax-M3` tai `MiniMax-M2.7`
+- Yhdistämään `OPENAI_BASE_URL`:iin, jos se on asetettu; muuten käyttää `https://api.minimaxi.com/v1` kun `MINIMAX_REGION=cn_zh`, tai oletuksena `https://api.minimax.io/v1`
+- Yhdistämään MCP-palveluun osoitteessa `http://localhost:8080/sse`
+- Käyttämään 60 sekunnin aikakatkaisua pyynnöille
 
 ## Riippuvuudet
 
-Tämän projektin keskeiset riippuvuudet:
-- **LangChain4j**: AI-integraatioon ja työkalujen hallintaan
-- **LangChain4j MCP**: Mallikontekstiprotokollan tukeen
-- **LangChain4j OpenAI official**: MiniMax OpenAI-yhteensopivan API-integraation toteuttamiseen
-- **Spring Boot**: Sovelluskehykseen ja riippuvuushallintaan
+Keskeiset tämän projektin riippuvuudet:
+- **LangChain4j**: tekoälyintegraatioon ja työkaluhallintaan
+- **LangChain4j MCP**: Model Context Protocol -tuella
+- **LangChain4j OpenAI official**: MiniMax OpenAI-yhteensopivan API:n integrointiin
+- **Spring Boot**: sovelluskehykseen ja riippuvuussuhteiden injektointiin
 
 ## Lisenssi
 
-Tämä projekti on lisensoitu Apache-lisenssillä 2.0 - katso [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) tiedostosta lisätiedot.
+Tämä projekti on lisensoitu Apache License 2.0 -lisenssillä - lisätietoja löydät [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE)-tiedostosta.
 
 ---
 

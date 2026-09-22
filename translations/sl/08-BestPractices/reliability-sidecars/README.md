@@ -236,7 +236,6 @@ Napovejte rezultat pred zagonom testov:
 | Pot | Rezultat po ponovnem poskusu | Število vstopnic |
 | --- | --- | --- |
 | Slepi ponovni poskus | Ustvari `T-0002` po izgubi odgovora za `T-0001` | 2 |
-
 | Varovano ponovno poskušanje | Najde in vrne `T-0001` | 1 |
 
 Zaženi:

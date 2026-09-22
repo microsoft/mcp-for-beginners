@@ -1,29 +1,35 @@
-# VS Code Integration
+# VS Code ပေါင်းစည်းမှု
 
-## 🎯 ဒီလက်တွေ့လုပ်ငန်းမှာ ဘာတွေ ပါဝင်သလဲ
+> [!NOTE]
+> ဒီလက်တွေ့လေ့လာမှုမှာ `initializationOptions` သတ်မှတ်ချက်တွေက နမူနာ MCP
+> `2025-11-25` ဆက်သွယ်မှုကို ဦးတည်ထားတယ်။ MCP `2026-07-28` မှာ initialization ဆက်သွယ်မှုကို ဖယ်ရှား
+> ထားတဲ့အတွက် ဒီနမူနာကိုပြောင်းရွှေ့တဲ့အခါ per-request metadata နဲ့ `server/discover`
+> ကိုပံ့ပိုးတဲ့ host နဲ့ SDK ကို အသုံးပြုပါ။
 
-ဒီလက်တွေ့လုပ်ငန်းမှာ MCP server ကို VS Code နဲ့ ပေါင်းစည်းပြီး AI Chat မှတစ်ဆင့် သဘာဝဘာသာစကားမေးမြန်းမှုများကို အကောင်းဆုံးလုပ်ဆောင်နိုင်ရန် လမ်းညွှန်ချက်များကို ပေးထားပါတယ်။ VS Code ကို MCP အသုံးပြုမှုအတွက် အကောင်းဆုံးအနေအထားဖြင့် ပြင်ဆင်ခြင်း၊ server ချိတ်ဆက်မှုများကို debug လုပ်ခြင်း၊ AI-assisted database အပြန်အလှန်များကို အပြည့်အဝ အသုံးချခြင်းတို့ကို သင်ယူနိုင်ပါမည်။
+## 🎯 ဒီလက်တွေ့လေ့လာမှုကဘာတွေ ပါဝင်သလဲ
+
+ဒီလက်တွေ့လေ့လာမှုက MCP ဆာဗာနဲ့ VS Code ကိုပေါင်းစည်းခြင်းအခြေခံနဲ့ ကျယ်ပြန့်စွာ လမ်းညွှန်ချက်တွေနဲ့ သင်ယူပေးပါမယ်။ VS Code ကို MCP အတွက် အကောင်းဆုံး သုံးနိုင်ရန် ပြင်ဆင်ခြင်း၊ ဆာဗာ ဆက်သွယ်မှုများကို ဖြေရှင်းခြင်းနှင့် AI အကူအညီဖြင့် ဒေတာဘေ့စ်ဆိုင်ရာ ဆက်သွယ်မှုများကို ပြုလုပ်နည်းတွေကို သင်ယူနိုင်မှာ ဖြစ်ပါတယ်။
 
 ## အကျဉ်းချုပ်
 
-VS Code ရဲ့ MCP ပေါင်းစည်းမှုက developer တွေ database နဲ့ API တွေကို သဘာဝဘာသာစကားနဲ့ အပြန်အလှန်လုပ်ဆောင်ပုံကို ပြောင်းလဲပေးပါတယ်။ သင့် retail MCP server ကို VS Code Chat နဲ့ ချိတ်ဆက်ခြင်းအားဖြင့် conversational AI ကို အသုံးပြုပြီး ရောင်းအားဒေတာ၊ ပစ္စည်းစာရင်း၊ စီးပွားရေးအချက်အလက်များကို စွမ်းဆောင်နိုင်စေပါတယ်။
+VS Code ရဲ့ MCP ပေါင်းစည်းမှုက developer တွေအတွက် database နဲ့ API တွေကို သဘာဝဘာသာစကားဖြင့် လွယ်ကူစွာ ဆက်သွယ်ခွင့် ပေးပါတယ်။ သင့် retail MCP ဆာဗာကို VS Code Chat နဲ့ချိတ်ဆက်ခြင်းဖြင့် အရောင်းဒေတာ၊ ကုန်ပစ္စည်းစာရင်း၊ စီးပွားရေးဗွီဇနယ်များကို AI စကားပြောမှတဆင့် ရှာဖွေမေးမြန်းနိုင်ပါတယ်။
 
-ဒီပေါင်းစည်းမှုက developer တွေကို "ဒီလမှာ အရောင်းရဆုံးပစ္စည်းတွေကို ပြပါ" ဒါမှမဟုတ် "၉၀ ရက်အတွင်း မဝယ်ယူခဲ့တဲ့ customer တွေကို ရှာပါ" စတဲ့ မေးခွန်းတွေကို SQL query မရေးဘဲ structured data အဖြေများရရှိစေပါတယ်။
+ဒီပေါင်းစည်းမှုက developer တွေကို "ဒီလအတွင်း ထိပ်တန်းရောင်းအားများပြပါ" သို့မဟုတ် "90 ရက်အတွင်း အဝယ်မလုပ်သော ဖောက်သည်များကို ရှာပါ" လို့မေးနိုင်ပြီး SQL စာသား မရေးပါဘဲ တိကျသော ဒေတာများကို ရရှိစေပါတယ်။
 
-## သင်ယူရမည့် ရည်မှန်းချက်များ
+## သင်ယူရမည့် အချက်များ
 
-ဒီလက်တွေ့လုပ်ငန်းအပြီးမှာ သင်တတ်မြောက်မည့်အရာများမှာ -
+ဒီလက်တွေ့လေ့လာမှုပြီးဆုံးချိန်မှာ သင်တက်ရောက်နိုင်မှာများကတော့ -
 
-- **Configure** VS Code MCP settings ကို သင့် retail server အတွက် ပြင်ဆင်ခြင်း  
-- **Integrate** MCP server တွေကို VS Code AI Chat functionality နဲ့ ပေါင်းစည်းခြင်း  
-- **Debug** MCP server ချိတ်ဆက်မှုများကို ပြုပြင်ခြင်း  
-- **Optimize** သဘာဝဘာသာစကားမေးမြန်းမှု pattern များကို အကောင်းဆုံးအဖြေများရရှိရန် ပြင်ဆင်ခြင်း  
-- **Customize** VS Code workspace ကို MCP development အတွက် ပြင်ဆင်ခြင်း  
-- **Deploy** multi-server configuration များကို ရှုပ်ထွေးသောအခြေအနေများအတွက် အသုံးပြုခြင်း  
+- သင့် retail ဆာဗာအတွက် VS Code MCP သတ်မှတ်ချက်များ **ပြင်ဆင်**နိုင်ခြင်း
+- MCP ဆာဗာများကို VS Code AI Chat လုပ်ဆောင်ချက်များနှင့် **ပေါင်းစည်း**နိုင်ခြင်း
+- MCP ဆာဗာ ဆက်သွယ်မှုများကို **ဖြေရှင်း**၍ ပြဿနာများကို စူးစမ်းရှာဖွေနိုင်ခြင်း
+- သဘာဝဘာသာစကား မေးခွန်းမပုံများကို **အကောင်းဆုံးဖြစ်အောင် မြှင့်တင်**ခြင်း
+- MCP ဖွံ့ဖြိုးရေးအတွက် VS Code workspace ကို **စိတ်ကြိုက်ပြင်ဆင်**နိုင်ခြင်း
+- ရှုပ်ထွေးသောအခြေအနေများအတွက် multi-server ကွန်ဖစ်ဂျူရေးရှင်းများကို **တပ်ဆင်**နိုင်ခြင်း
 
-## 🔧 VS Code MCP Configuration
+## 🔧 VS Code MCP ပြင်ဆင်ခြင်း
 
-### စတင်ပြင်ဆင်ခြင်းနှင့် Installation
+### ပထမဆုံး ပြင်ဆင်မှုနှင့် ထည့်သွင်းခြင်း
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@ VS Code ရဲ့ MCP ပေါင်းစည်းမှုက developer တ�
 }
 ```
 
-### Environment Configuration
+### ပတ်ဝန်းကျင် ပြင်ဆင်ခြင်း
 
 ```bash
-# .env file for development
+# ဖွံ့ဖြိုးတိုးတက်မှုအတွက် .env ဖိုင်
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure ဆက်တင်များ
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# ရွေးချယ်စရာ: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# ဆာဗာ ဆက်တင်များ
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Workspace Configuration
+### အလုပ်နေရာ ပြင်ဆင်ခြင်း
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Task Configuration
+### တာဝန် ပြင်ဆင်ခြင်း
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI Chat Integration
+## 💬 AI စကားပြော ပေါင်းစည်းမှု
 
-### သဘာဝဘာသာစကားမေးမြန်းမှု Pattern များ
+### သဘာဝဘာသာစကား မေးခွန်းပုံစံများ
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS Code Chat အတွက် နမူနာ မေးခွန်းပုံစံများ
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Chat Integration ဥပမာများ
+### စကားပြောပေါင်းစည်းမှု ဥပမာများ
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Chat Response Formatting
+### စကားပြန် ပြန်လည်ဖော်ပြမှု အစီအစဉ်
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # အဓိကတိုင်းတာခန့်မှန်းချက်များ
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # ဖျော်ဖြေတာ ဆုံးဖြတ်ချက်များ
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # ထိပ်တန်းအမျိုးအစား
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Debugging နှင့် Troubleshooting
+## 🔍 ပြဿနာရှာဖွေအကူအညီနှင့် ဖြေရှင်းမှု
 
-### VS Code Debug Configuration
+### VS Code ဖြေရှင်းမှု ပြင်ဆင်ခြင်း
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS Code အတွက် အထူးဖော်မြူလာ တစ်ခု ဖန်တီးပါ
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # VS Code terminal အတွက် Console handler
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# ကမ္ဘာလုံးဆိုင်ရာ debug logger
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Connection Troubleshooting
+### ဆက်သွယ်မှု ပြဿနာရှာဖွေရေး
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # ပတ်ဝန်းကျင်မှ ချိတ်ဆက်ချက် ပါရာမီတာများ ရယူသည်
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # ချိတ်ဆက်မှု စမ်းသပ်သည်
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # အခြေခံ စုံစမ်းမေးမြန်းမှု စမ်းသပ်သည်
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # ပုံစံအသုံးပြုခွင့် စမ်းသပ်သည်
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # အင်ဘက်ဒ်ထောက် ထုတ်လုပ်မှု စမ်းသပ်သည်
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCP ဆာဗာ အစိတ်အပိုင်းများ ထည့်သွင်းသည်
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # စမ်းသပ်ရန် ပုံစံဖွဲ့စည်းမှု ပြုလုပ်သည်
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # ဆာဗာ သတ်မှတ်ပေးသည်
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # အသုံးပြုနိုင်သော တူလ်များ ရယူသည်
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # ရိုးရှင်းသော တူလ်တစ်ခု စမ်းသပ်သည်
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # ဒေတာဘေ့စ် ချိတ်ဆက်မှု စမ်းသပ်သည်
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI ချိတ်ဆက်မှု စမ်းသပ်သည်
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCP တူလ်များ စမ်းသပ်သည်
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # စုစုပေါင်း အခြေအနေ
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 အဆင့်မြင့် Configuration
+## 🚀 အဆင့်မြင့် ပြင်ဆင်မှု
 
-### Multi-Server Setup
+### Multi-Server တပ်ဆင်ခြင်း
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Custom VS Code Extension
+### စိတ်ကြိုက် VS Code တိုးချဲ့မှု
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - စိတ်ကြိုက် MCP လက်လီချဲ့ထွင်မှု
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP လက်လီအမိန့်များမှတ်ပုံတင်ပါ
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // ဆိုင်ပြောင်းလဲမှု အစက်များမှတ်ပုံတင်ပါ
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // ဖော်ပြချက်အား အပ်ဒိတ်လုပ်ပါ
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // VS Code Chat တွင် ကြိုတင်သတ်မှတ်ထားသော စုံစမ်းမေးမြန်းမှုများ ကို အကောင်အထည်ဖော်ပါ
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Extension Package Configuration
+### တိုးချဲ့မှု ပက်ကေ့ဂျ် ပြင်ဆင်မှု
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 အဓိက အကျဉ်းချုပ်
+## 🎯 အဓိက သိရှိသင့်သောအချက်များ
 
-ဒီလက်တွေ့လုပ်ငန်းပြီးဆုံးပြီးနောက်မှာ သင့်မှာ -
+ဒီလေ့လာမှုပြီးဆုံးလျှင် သင်မှာရှိနေမယ့်အရာတွေကတော့ -
 
-✅ **VS Code MCP Configuration**: MCP integration အတွက် အပြည့်အစုံပြင်ဆင်မှု  
-✅ **AI Chat Integration**: VS Code မှာ သဘာဝဘာသာစကားမေးမြန်းမှုစွမ်းရည်  
-✅ **Debugging Tools**: Troubleshooting နှင့် connection diagnostic tools  
-✅ **Multi-Server Setup**: MCP server instance များအတွက် configuration  
-✅ **Custom Extensions**: retail-specific features တွေပါဝင်တဲ့ VS Code experience  
-✅ **Production Readiness**: Enterprise-ready VS Code development environment  
+✅ **VS Code MCP ပြင်ဆင်မှု**: MCP ပေါင်းစည်းမှုအတွက် ပြည့်စုံစွာ ပြင်ဆင်ထားခြင်း  
+✅ **AI စကားပြော ပေါင်းစည်းမှု**: VS Code မှ သဘာဝဘာသာစကားဖြင့် မေးခွန်းမပုံစံအသုံးပြုနိုင်ခြင်း  
+✅ **ပြဿနာရှာဖွေရေး စနစ်များ**: ပြဿနာများ ဖြေရှင်းခြင်းနှင့် ဆက်သွယ်မှု စစ်ဆေးခြင်း  
+✅ **Multi-Server တပ်ဆင်မှု**: MCP ဆာဗာ များစွာအတွက် ကွန်ဖစ်ဂျူရေးရှင်းများ  
+✅ **စိတ်ကြိုက် တိုးချဲ့မှုများ**: retail အထူး လုပ်ဆောင်ချက်များနဲ့ VS Code အတွေ့အကြုံ တိုးတက်ခြင်း  
+✅ **ထုတ်လုပ်မှု အသင့်အဆင့်**: စီးပွားရေးအဆင့် VS Code ဖွံ့ဖြိုးရေး ပတ်ဝန်းကျင်  
 
-## 🚀 နောက်တစ်ဆင့်
+## 🚀 နောက်တစ်ဆင့် ဘာတွေရှိလဲ
 
-**[Lab 10: Deployment Strategies](../10-Deployment/README.md)** ကို ဆက်လက်လုပ်ဆောင်ပါ -
+**[Lab 10: Deployment Strategies](../10-Deployment/README.md)** ကို ဆက်လက် လေ့လာပြီး -
 
-- MCP server တွေကို production environment တွေမှာ deploy လုပ်ခြင်း  
-- cloud infrastructure ကို scalability အတွက် configure လုပ်ခြင်း  
-- CI/CD pipeline များကို automated deployment အတွက် အသုံးပြုခြင်း  
-- production MCP server performance ကို စောင့်ကြည့်ခြင်း  
+- MCP ဆာဗာများကို ထုတ်လုပ်မှု ပတ်ဝန်းကျင်သို့ တပ်ဆင်ခြင်း
+- တိုးချဲ့နိုင်စေရန် မိုဃ်းကွယ် အခြေခံအဆောက်အအုံ ပြင်ဆင်ခြင်း
+- CI/CD လုပ်ထုံးလုပ်နည်းများ လက်တွေ့ အသုံးပြုခြင်း
+- ထုတ်လုပ်မှု MCP ဆာဗာ လုပ်ဆောင်ချက်များကို စောင့်ကြပ်ခြင်း
 
 ## 📚 အပိုဆောင်း အရင်းအမြစ်များ
 
-### VS Code Development
-- [VS Code Extension API](https://code.visualstudio.com/api) - extension development guide  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integration documentation  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code မှာ TypeScript development  
+### VS Code ဖွံ့ဖြိုးရေး
+- [VS Code Extension API](https://code.visualstudio.com/api) - တရားဝင် တိုးချဲ့မှု ဖွံ့ဖြိုးရေး လမ်းညွှန်
+- [VS Code MCP ပြကြားချက်](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP ပေါင်းစည်းမှု စာတမ်း
+- [VS Code အတွက် TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS Code တွင် TypeScript ဖွံ့ဖြိုးရေး
 
-### MCP Protocol
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - MCP specification  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - implementation best practices  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP implementation  
+### MCP နည်းပညာအဆောက်အအုံ
+- [Model Context Protocol ဖော်ပြချက်](https://modelcontextprotocol.io/specification) - တရားဝင် MCP ဖော်ပြချက်
+- [MCP အကောင်းဆုံး အတွေ့အကြုံများ](https://modelcontextprotocol.io/docs/best-practices) - လုပ်ငန်းစဉ် အကောင်းမြန်
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP အကောင်အထည်ဖော်မှု
 
-### Development Tools
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python development setup  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - advanced debugging techniques  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - task automation နှင့် configuration  
-
----
-
-**Previous**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
-**Next**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)  
+### ဖွံ့ဖြိုးရေး ကိရိယာများ
+- [Python နှင့် VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python ဖွံ့ဖြိုးရေး ပြင်ဆင်မှု
+- [VS Code တွင် ဖြေရှင်းခြင်း](https://code.visualstudio.com/docs/editor/debugging) - အဆင့်မြင့် ဖြေရှင်းနည်းများ
+- [VS Code တာဝန်များ](https://code.visualstudio.com/docs/editor/tasks) - တာဝန် အလိုအလျောက်ပြုလုပ်မှုနှင့် ပြင်ဆင်မှု
 
 ---
 
-**အကြောင်းကြားချက်**:  
-ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေသော်လည်း အလိုအလျောက် ဘာသာပြန်ခြင်းတွင် အမှားများ သို့မဟုတ် မမှန်ကန်မှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းဘာသာစကားဖြင့် ရေးသားထားသော စာရွက်စာတမ်းကို အာဏာပိုင်အရင်းအမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူက ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော အလွဲအမှားများ သို့မဟုတ် အနားယူမှုများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+**ယခင်**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+**နောက်တစ်ခု**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ပြောကြားချက်**
+ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးပမ်းနေသော်လည်း၊ စက်ကိရိယာဘာသာပြန်ခြင်းများတွင် အမှားများ သို့မဟုတ် မှားယွင်းချက်များ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် လိုအပ်ပါသည်။ မူလစာတမ်းကို မူရင်းဘာသာဖြင့်သာ ယုံကြည်စိတ်ချရသော အချက်အလက်အဖြစ် သတ်မှတ်သင့်သည်။ အရေးကြီးသည့် သတင်းအချက်အလက်များအတွက် ပရော်ဖက်ရှင်နယ် လူသားဘာသာပြန်သူဝန်ဆောင်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်ချက်ကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသော နားလည်မှုကွာခြားမှုများ သို့မဟုတ် မမှန်ကန်သော အသုံးပြုမှုများအတွက် ကျွန်ုပ်တို့ တာဝန်မခံပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

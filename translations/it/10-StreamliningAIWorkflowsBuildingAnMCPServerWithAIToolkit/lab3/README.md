@@ -1,5 +1,10 @@
 # 🔧 Modulo 3: Sviluppo Avanzato MCP con Microsoft Foundry Toolkit
 
+> [!NOTE]
+> Gli URL dell'Inspector in questo laboratorio utilizzano il legacy endpoint `/sse` e puntano alle
+> dipendenze MCP SDK `1.9.3` e Inspector `0.14.0` fissate. Non corrispondono agli
+> esempi Streamable HTTP `2026-07-28` aggiornati.
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
@@ -10,56 +15,56 @@
 
 Al termine di questo laboratorio, sarai in grado di:
 
-- ✅ Creare server MCP personalizzati utilizzando Microsoft Foundry Toolkit
+- ✅ Creare server MCP personalizzati usando Microsoft Foundry Toolkit
 - ✅ Configurare e utilizzare l’ultima MCP Python SDK (v1.9.3)
-- ✅ Configurare e utilizzare MCP Inspector per il debugging
-- ✅ Eseguire il debug dei server MCP sia in Agent Builder che in Inspector
-- ✅ Comprendere workflow avanzati per lo sviluppo di server MCP
+- ✅ Configurare e usare MCP Inspector per il debugging
+- ✅ Debuggare server MCP sia in Agent Builder sia nell’ambiente Inspector
+- ✅ Comprendere flussi di lavoro avanzati di sviluppo server MCP
 
 ## 📋 Prerequisiti
 
-- Completamento del Lab 2 (Fondamenti di MCP)
+- Completamento del Laboratorio 2 (Fondamenti MCP)
 - VS Code con estensione Microsoft Foundry Toolkit installata
 - Ambiente Python 3.10+
-- Node.js e npm per la configurazione di Inspector
+- Node.js e npm per configurazione Inspector
 
 ## 🏗️ Cosa Costruirai
 
-In questo laboratorio, creerai un **Weather MCP Server** che dimostra:
+In questo laboratorio, creerai un **Server MCP Meteo** che dimostra:
 - Implementazione personalizzata di server MCP
 - Integrazione con Microsoft Foundry Toolkit Agent Builder
-- Workflow professionali di debugging
-- Uso moderno delle modalità MCP SDK
+- Flussi di lavoro professionali di debugging
+- Modelli d’uso moderni del MCP SDK
 
 ---
 
-## 🔧 Panoramica dei Componenti Principali
+## 🔧 Panoramica Componenti Principali
 
 ### 🐍 MCP Python SDK
-La SDK Python per Model Context Protocol fornisce le basi per costruire server MCP personalizzati. Userai la versione 1.9.3 con capacità di debug migliorate.
+Il Model Context Protocol Python SDK fornisce la base per costruire server MCP personalizzati. Userai la versione 1.9.3 con capacità di debugging migliorate.
 
 ### 🔍 MCP Inspector
-Uno strumento di debug potente che offre:
-- Monitoraggio in tempo reale del server
-- Visualizzazione dell’esecuzione degli strumenti
-- Ispezione delle richieste/risposte di rete
+Uno strumento di debugging potente che offre:
+- Monitoraggio server in tempo reale
+- Visualizzazione esecuzione strumenti
+- Ispezione richieste/risposte di rete
 - Ambiente di test interattivo
 
 ---
 
-## 📖 Implementazione Passo-Passo
+## 📖 Implementazione Passo per Passo
 
 ### Passo 1: Crea un WeatherAgent in Agent Builder
 
 1. **Avvia Agent Builder** in VS Code tramite l’estensione Microsoft Foundry Toolkit
-2. **Crea un nuovo agente** con la configurazione seguente:
-   - Nome Agente: `WeatherAgent`
+2. **Crea un nuovo agente** con la seguente configurazione:
+   - Nome agente: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/it/Agent.c9c33f6a412b4cde.webp)
 
-### Passo 2: Inizializza il Progetto MCP Server
+### Passo 2: Inizializza il progetto MCP Server
 
-1. **Vai su Tools** → **Add Tool** in Agent Builder
+1. **Vai in Tools** → **Add Tool** in Agent Builder
 2. **Seleziona "MCP Server"** tra le opzioni disponibili
 3. **Scegli "Create A new MCP Server"**
 4. **Seleziona il template `python-weather`**
@@ -67,7 +72,7 @@ Uno strumento di debug potente che offre:
 
 ![Python Template Selection](../../../../translated_images/it/Pythontemplate.9d0a2913c6491500.webp)
 
-### Passo 3: Apri ed Esamina il Progetto
+### Passo 3: Apri ed Esamina il progetto
 
 1. **Apri il progetto generato** in VS Code
 2. **Esamina la struttura del progetto:**
@@ -86,9 +91,9 @@ Uno strumento di debug potente che offre:
    └── README.md
    ```
 
-### Passo 4: Aggiorna all'Ultima MCP SDK
+### Passo 4: Aggiorna all’ultima MCP SDK
 
-> **🔍 Perché Aggiornare?** Vogliamo usare l’ultima MCP SDK (v1.9.3) e il servizio Inspector (0.14.0) per funzionalità avanzate e migliori capacità di debugging.
+> **🔍 Perché Aggiornare?** Vogliamo usare l’ultima MCP SDK (v1.9.3) e il servizio Inspector (0.14.0) per funzionalità migliorate e migliori capacità di debugging.
 
 #### 4a. Aggiorna le Dipendenze Python
 
@@ -103,16 +108,16 @@ Uno strumento di debug potente che offre:
 
 **Modifica `inspector/package-lock.json`:** aggiorna [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Nota:** Questo file contiene ampie definizioni di dipendenze. Qui sotto la struttura essenziale - il contenuto completo assicura la risoluzione corretta delle dipendenze.
+> **📝 Nota:** Questo file contiene definizioni estese delle dipendenze. Qui sotto è la struttura essenziale - il contenuto completo assicura una corretta risoluzione delle dipendenze.
 
 
-> **⚡ Package Lock Completo:** Il package-lock.json completo contiene ~3000 righe di definizioni di dipendenze. Quanto sopra mostra la struttura chiave - usa il file fornito per la risoluzione completa delle dipendenze.
+> **⚡ Package Lock Completo:** Il file package-lock.json completo contiene ~3000 righe di definizioni di dipendenze. La struttura sopra mostra le parti chiave - usa il file fornito per la risoluzione completa.
 
 ### Passo 5: Configura il Debug in VS Code
 
-*Nota: Per favore copia il file nel percorso specificato per sostituire il file locale corrispondente*
+*Nota: Si prega di copiare il file nel percorso specificato per sostituire il file locale corrispondente*
 
-#### 5a. Aggiorna la Configurazione di Lancio
+#### 5a. Aggiorna la Configurazione di Avvio
 
 **Modifica `.vscode/launch.json`:**
 
@@ -298,16 +303,16 @@ Uno strumento di debug potente che offre:
 
 ## 🚀 Esecuzione e Test del tuo MCP Server
 
-### Passo 6: Installa le Dipendenze
+### Passo 6: Installa le dipendenze
 
-Dopo aver effettuato le modifiche alla configurazione, esegui i seguenti comandi:
+Dopo aver apportato le modifiche di configurazione, esegui i seguenti comandi:
 
-**Installa dipendenze Python:**
+**Installa le dipendenze Python:**
 ```bash
 uv sync
 ```
 
-**Installa dipendenze Inspector:**
+**Installa le dipendenze dell’Inspector:**
 ```bash
 cd inspector
 npm install
@@ -315,12 +320,12 @@ npm install
 
 ### Passo 7: Debug con Agent Builder
 
-1. **Premi F5** oppure usa la configurazione **"Debug in Agent Builder"**
-2. **Seleziona la configurazione compound** dal pannello di debug
+1. **Premi F5** o usa la configurazione **"Debug in Agent Builder"**
+2. **Seleziona la configurazione composta** dal pannello di debug
 3. **Attendi l’avvio del server** e l’apertura di Agent Builder
-4. **Testa il tuo weather MCP server** con query in linguaggio naturale
+4. **Testa il tuo server MCP meteo** con query in linguaggio naturale
 
-Inserisci prompt come questo
+Inserisci un prompt come questo
 
 SYSTEM_PROMPT
 
@@ -339,8 +344,8 @@ How's the weather like in Seattle
 ### Passo 8: Debug con MCP Inspector
 
 1. **Usa la configurazione "Debug in Inspector"** (Edge o Chrome)
-2. **Apri l’interfaccia Inspector** su `http://localhost:6274`
-3. **Esplora l’ambiente di test interattivo:**
+2. **Apri l’interfaccia Inspector** a `http://localhost:6274`
+3. **Esplora l’ambiente interattivo di test:**
    - Visualizza gli strumenti disponibili
    - Testa l’esecuzione degli strumenti
    - Monitora le richieste di rete
@@ -350,44 +355,44 @@ How's the weather like in Seattle
 
 ---
 
-## 🎯 Principali Risultati di Apprendimento
+## 🎯 Risultati Chiave di Apprendimento
 
 Completando questo laboratorio, hai:
 
 - [x] **Creato un server MCP personalizzato** usando i template Microsoft Foundry Toolkit
 - [x] **Aggiornato all’ultima MCP SDK** (v1.9.3) per funzionalità migliorate
-- [x] **Configurato workflow professionali di debugging** sia per Agent Builder che per Inspector
-- [x] **Impostato MCP Inspector** per test interattivi del server
-- [x] **Padroneggiato le configurazioni di debug VS Code** per lo sviluppo MCP
+- [x] **Configurato flussi di lavoro professionali di debugging** per Agent Builder e Inspector
+- [x] **Configurato MCP Inspector** per test interattivi del server
+- [x] **Padroneggiato la configurazione di debugging in VS Code** per sviluppo MCP
 
 ## 🔧 Funzionalità Avanzate Esplorate
 
 | Funzionalità | Descrizione | Caso d’Uso |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Ultima implementazione del protocollo | Sviluppo server moderno |
-| **MCP Inspector 0.14.0** | Strumento di debug interattivo | Test server in tempo reale |
-| **Debugging VS Code** | Ambiente di sviluppo integrato | Workflow professionale di debug |
-| **Integrazione Agent Builder** | Connessione diretta a Microsoft Foundry Toolkit | Test completo dell’agente |
+| **MCP Python SDK v1.9.3** | Implementazione protocollo più recente | Sviluppo server moderno |
+| **MCP Inspector 0.14.0** | Strumento di debugging interattivo | Test server in tempo reale |
+| **Debugging VS Code** | Ambiente di sviluppo integrato | Flusso di lavoro professionale di debugging |
+| **Integrazione Agent Builder** | Connessione diretta Microsoft Foundry Toolkit | Test end-to-end degli agenti |
 
 ## 📚 Risorse Aggiuntive
 
 - [Documentazione MCP Python SDK](https://modelcontextprotocol.io/docs/sdk/python)
-- [Guida all’estensione Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [Guida Estensione Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
 - [Documentazione Debugging VS Code](https://code.visualstudio.com/docs/editor/debugging)
 - [Specifiche Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Congratulazioni!** Hai completato con successo il Lab 3 e ora puoi creare, debug e distribuire server MCP personalizzati usando workflow professionali di sviluppo.
+**🎉 Congratulazioni!** Hai completato con successo il Laboratorio 3 e ora puoi creare, debuggar e distribuire server MCP personalizzati usando flussi di lavoro professionali di sviluppo.
 
 ### 🔜 Continua al Modulo Successivo
 
-Pronto ad applicare le tue competenze MCP a un workflow di sviluppo reale? Continua a **[Modulo 4: Sviluppo MCP Pratico - Server Clone GitHub Personalizzato](../lab4/README.md)** dove potrai:
-- Costruire un server MCP pronto per la produzione che automatizza operazioni sui repository GitHub
-- Implementare funzionalità di clonazione repository GitHub tramite MCP
-- Integrare server MCP personalizzati con VS Code e GitHub Copilot Agent Mode
-- Testare e distribuire server MCP personalizzati in ambienti di produzione
-- Apprendere workflow pratici di automazione per sviluppatori
+Sei pronto a mettere in pratica le tue competenze MCP in un flusso di lavoro di sviluppo reale? Continua a **[Modulo 4: Sviluppo Pratico MCP - Server Clone GitHub Personalizzato](../lab4/README.md)** dove:
+- Costruirai un server MCP pronto per la produzione che automatizza le operazioni su repository GitHub
+- Implementerai la funzionalità di clonazione repository GitHub tramite MCP
+- Integrerai server MCP personalizzati con VS Code e GitHub Copilot Agent Mode
+- Testerai e distribuirai server MCP personalizzati in ambienti di produzione
+- Imparerai automazioni pratiche di workflow per sviluppatori
 
 ---
 

@@ -35,6 +35,7 @@ sequenceDiagram
     Client->>Server: tools/list (cursor: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (end)
 ```
+
 ### Pagination in MCP Methods
 
 These MCP methods support pagination:
@@ -247,7 +248,7 @@ class PaginatedToolIterator:
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Check if we've exhausted all pages
+        # Check if we have exhausted all pages
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# The cursor contains multiple state fields
+# Cursor contains multiple state fields
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -456,7 +457,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Additional Resources
 
-- [MCP Specification - Pagination](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification - Pagination](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Cursor-Based Pagination Explained](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Python SDK pagination tests](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
@@ -464,5 +465,5 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

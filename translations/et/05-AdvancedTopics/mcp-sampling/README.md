@@ -1,62 +1,70 @@
-> [VANANENUD: 2026-07-28 VÄLJAANDEKANDIDAAT](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Mäluvõtmine on MCP `2026-07-28` versioonis aegunud. Seda õppust säilitatakse
+> pärandrakenduste jaoks. Uued serverid peaksid integreerima otse LLM
+> pakkuja API-ga.
 
-# Proovid Model Context Protocolis
+# Mäluvõtmine Mudeli Konteksti Protokollis
 
-> **Vananemise teade:** MCP spetsifikatsiooni `2026-07-28` väljaandekandidaat märgib proovid vananemisena, eelistades otsest integreerimist LLM pakkujate API-dega. Proovid töötavad jätkuvalt versioonis `2025-11-25` ja vähemalt aasta pärast ametlikku vananemist, seega on selle õppetunni sisu endiselt kehtiv - kuid uued serveri disainid peaksid hindama asendusmustrid. Vaata [Mis muutub MCP-s: 2026-07-28 väljaandekandidaat](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Mäluvõtmine jääb alles `2026-07-28` spetsifikatsiooni ühilduvuse tagamiseks ning võib
+> esmase ülevaatuse käigus, mis toimub 28. juulil 2027 või pärast seda, eemaldada.
+> Selle õppetunni näited võivad kasutada SDK API-sid, mis rakendavad `2025-11-25`.
+> Vaata [Mis on MCP-s muutunud: 2026-07-28 spetsifikatsioon](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Proovid on MCP võimas funktsioon, mis võimaldab serveritel taotleda LLM lõpetusi kliendi kaudu, võimaldades keerukaid agentlikke käitumisi, säilitades samal ajal turvalisuse ja privaatsuse. Õige proovide seadistamine võib oluliselt parandada vastuse kvaliteeti ja jõudlust. MCP pakub standardiseeritud viisi kontrollida, kuidas mudelid genereerivad teksti spetsiifiliste parameetritega, mis mõjutavad juhuslikkust, loovust ja sidusust.
+Pärand MCP rakendustes võimaldab Mäluvõtmine serveritel päringuid teha LLM
+täitmiseks kliendi kaudu. See õppetund selgitab aegunud protokolli
+voogu ühilduvuse ja migratsioonitöö jaoks.
 
 ## Sissejuhatus
 
-Selles õppetükis uurime, kuidas seadistada proovimisparameetreid MCP taotlustes ning mõista proovimise protokolli toimemehhanisme.
+Selles õppetükis uurime, kuidas konfigureerida mäluvõtu parameetreid MCP päringutes ning mõista mäluvõtu protokolli põhimõtteid.
 
 ## Õpieesmärgid
 
-Selle õppetüki lõpuks suudad:
+Selle õppetunni lõpuks saad:
 
-- Mõista MCP-s saadaval olevaid peamisi proovimisparameetreid.
-- Seadistada proovimisparameetreid erinevate kasutusjuhtude jaoks.
-- Rakendada deterministlikku proovimist korduvate tulemuste saavutamiseks.
-- Dünaamiliselt kohandada proovimisparameetreid vastavalt kontekstile ja kasutajateelistustele.
-- Rakendada proovimisstrateegiaid mudeli jõudluse parandamiseks erinevates stsenaariumites.
-- Mõista, kuidas proovimine toimib MCP kliendi-serveri töövoos.
+- Mõista MCP-s saadaolevaid peamisi mäluvõtu parameetreid.
+- Konfigureerida mäluvõtu parameetreid erinevate kasutusjuhtude jaoks.
+- Rakendada deterministlikku mäluvõttu korduvate tulemuste saavutamiseks.
+- Dünaamiliselt reguleerida mäluvõtu parameetreid vastavalt kontekstile ja kasutaja eelistustele.
+- Rakendada mäluvõtu strateegiaid mudeli jõudluse parandamiseks eri olukordades.
+- Mõista, kuidas mäluvõtt toimib MCP kliendi-serveri voos.
 
-## Kuidas proovimine MCP-s toimib
+## Kuidas Mäluvõtt MCP-s Töötab
 
-Proovimise protsess MCP-s järgib järgmisi samme:
+Mäluvõtu voog MCP-s järgib neid samme:
 
-1. Server saadab kliendile `sampling/createMessage` taotluse
-2. Klient vaatab taotluse üle ja võib seda muuta
-3. Klient võtab proovimisi LLM-ist
-4. Klient vaatab täienduse läbi
-5. Klient edastab tulemuse serverile
+1. Server saadab kliendile `sampling/createMessage` päringu
+2. Klient vaatab päringu üle ja võib seda muuta
+3. Klient võtab valimi LLM-ist
+4. Klient vaatab täitmise üle
+5. Klient tagastab tulemuse serverile
 
-See inimaju kaasav disain tagab, et kasutajad säilitavad kontrolli selle üle, mida LLM näeb ja genereerib.
+See inimsekkumisega disain tagab, et kasutajad säilitavad kontrolli selle üle, mida LLM näeb ja genereerib.
 
-## Proovimisparameetrite ülevaade
+## Mäluvõtu Parameetrite Ülevaade
 
-MCP määratleb järgmised proovimisparameetrid, mida saab seadistada klienditaotlustes:
+MCP määratleb järgmised mäluvõtu parameetrid, mida saab kliendi päringutes konfigureerida:
 
-| Parameeter | Kirjeldus | Tüüpiline vahemik |
+| Parameeter | Kirjeldus | Tavapärane Vahemik |
 |-----------|-------------|---------------|
-| `temperature` | Juhuslikkuse kontroll tokeni valikul | 0.0 - 1.0 |
+| `temperature` | Kontrollib juhuslikkust tokeni valikus | 0.0 - 1.0 |
 | `maxTokens` | Maksimaalne genereeritavate tokenite arv | Täisarvuline väärtus |
-| `stopSequences` | Kohandatud jadasid, mis peatavad genereerimise kui neid kohtatakse | Stringide massiiv |
-| `metadata` | Täiendavad pakkuja-spetsiifilised parameetrid | JSON-objekt |
+| `stopSequences` | Kohandatud jadad, mis peatavad genereerimise kokkupuutel | Märgistringide massiiv |
+| `metadata` | Täiendavad pakkujapõhised parameetrid | JSON objekt |
 
-Paljud LLM pakkujad toetavad täiendavaid parameetreid `metadata` välja kaudu, mis võivad sisaldada:
+Paljud LLM pakkujad toetavad täiendavaid parameetreid `metadata` väljale, mis võivad sisaldada:
 
-| Levinud laiendusparameeter | Kirjeldus | Tüüpiline vahemik |
+| Levinud Laienduse Parameeter | Kirjeldus | Tavapärane Vahemik |
 |-----------|-------------|---------------|
-| `top_p` | Nucleus-proovimine - piirab tokeneid tipp-kumulatiivse tõenäosusega | 0.0 - 1.0 |
-| `top_k` | Piirab tokenite valiku K tipptõenäolise hulka | 1 - 100 |
-| `presence_penalty` | Karistab tokeneid nende senise teksti esinemise põhjal | -2.0 - 2.0 |
-| `frequency_penalty` | Karistab tokeneid nende esinemissageduse põhjal senises tekstis | -2.0 - 2.0 |
-| `seed` | Spetsiifiline juhuslik seeme korduvate tulemuste jaoks | Täisarvuline väärtus |
+| `top_p` | Tuumavõtt - piirab tokenite valikut tipptõenäosusega | 0.0 - 1.0 |
+| `top_k` | Piirab tokenite valiku kõrgeimate K valikuteni | 1 - 100 |
+| `presence_penalty` | Karistab tokeneid nende esinemise põhjal tekstis seni | -2.0 - 2.0 |
+| `frequency_penalty` | Karistab tokeneid nende sageduse põhjal tekstis seni | -2.0 - 2.0 |
+| `seed` | Kindel juhuslik seeme korduvate tulemuste jaoks | Täisarvuline väärtus |
 
-## Näidistaotluse vorming
+## Näidis Päringu Vorming
 
-Näide proovimisest kliendist MCP-s:
+Siin on näide, kuidas teha MCP-s kliendi kaudu mäluvõtu päring:
 
 ```json
 {
@@ -79,9 +87,9 @@ Näide proovimisest kliendist MCP-s:
 }
 ```
 
-## Vastuse vorming
+## Vastuse Vorming
 
-Klient tagastab täiendustulemuse:
+Klient tagastab täitmise tulemuse:
 
 ```json
 {
@@ -95,42 +103,42 @@ Klient tagastab täiendustulemuse:
 }
 ```
 
-## Inimese kaasamise kontrollid
+## Inimene Sees tsüklis Kontrollid
 
-MCP proovimine on loodud inimjärelevalvet silmas pidades:
+MCP mäluvõtt on disainitud inimliku järelevalvega:
 
-- **Käskude puhul**:
-  - Kliendid peaksid kasutajatele näitama pakutud käsku
-  - Kasutajatel peaks olema võimalik käskusid muuta või tagasi lükata
-  - Süsteemis käsku saab filtreerida või muuta
-  - Konteksti kaasamine on kliendi kontrolli all
+- **Sõnumite puhul**:
+  - Kliendid peaksid kasutajatele näitama ettepanekut
+  - Kasutajad peaksid saama sõnumit muuta või tagasi lükata
+  - Süsteemisõnumeid võib filtreerida või muuta
+  - Konteksti lisamine on kliendi kontrolli all
 
-- **Täienduste puhul**:
-  - Kliendid peaksid kasutajatele näitama täiendust
-  - Kasutajatel peaks olema võimalik täiendusi muuta või tagasi lükata
-  - Kliendid võivad täiendusi filtreerida või muuta
+- **Täitmiste puhul**:
+  - Kliendid peaksid kasutajatele näitama täitmist
+  - Kasutajad peaksid saama täitmisi muuta või tagasi lükata
+  - Kliendid võivad täitmisi filtreerida või muuta
   - Kasutajad kontrollivad, millist mudelit kasutatakse
 
-Nende põhimõtete valguses vaatame, kuidas proovimist rakendada erinevates programmeerimiskeeltes, keskendudes parameetritele, mida toetavad mitmed LLM pakkujad.
+Neid põhimõtteid silmas pidades vaatame, kuidas rakendada mäluvõttu erinevates programmeerimiskeeltes, keskendudes parameetritele, mida sageli toetavad kõigi LLM pakkujad.
 
-## Turvalisuse kaalutlused
+## Turvaküsimused
 
-Proovimist rakendades MCP-s, kaalu järgmisi turvalisuse parimaid tavasid:
+MCP-s mäluvõtu rakendamisel kaalu selliseid turvalisuse parimaid tavasid:
 
-- **Kontrolli kogu sõnumisisu** enne selle kliendile saatmist
-- **Puhasta tundlik info** käsudest ja täiendustest
-- **Rakenda kiirusepiiranguid** kuritarvituste vältimiseks
-- **Jälgi proovimiste kasutust** ebatavaliste mustrite osas
-- **Krüpteeri andmed edastamisel** turvaliste protokollide abil
+- **Kinnita kogu sõnumi sisu** enne saatmist kliendile
+- **Puhasta tundlik info** sõnumitest ja täitmistest
+- **Rakenda piirmäärasid** kuritarvituste vältimiseks
+- **Jälgi mäluvõtu kasutust** ebaharilike mustrite tuvastamiseks
+- **Krüpteeri andmed edastamisel** turvaliste protokollidega
 - **Käsitle kasutajaandmete privaatsust** vastavalt kehtivatele regulatsioonidele
-- **Audit'i proovimistaotlusi** vastavuse ja turvalisuse tagamiseks
-- **Kontrolli kulutusi** asjakohaste piirangute abil
-- **Rakenda läbipaistvusaegu** proovimistaotluste jaoks
-- **Käsitle mudelivigu graatsiliselt** sobivate varukohtadega
+- **Auditõpi mäluvõtu päringuid** vastavuse ja turvalisuse tagamiseks
+- **Kontrolli kulutuste ulatust** asjakohaste piirangutega
+- **Rakenda taimerid** mäluvõtu päringutele
+- **Käsitle mudeli vigu elegantseks** asjakohaste varuplaanidega
 
-Proovimisparameetrid võimaldavad keelemudelite käitumist peenhäälestada, saavutades soovitud tasakaalu deterministlike ja loominguliste väljundite vahel.
+Mäluvõtu parameetrid võimaldavad täpselt seadistada keelemudelite käitumist, et saavutada soovitud tasakaal deterministlike ja loominguliste väljundite vahel.
 
-Vaatame, kuidas neid parameetreid seadistada erinevates programmeerimiskeeltes.
+Vaatame, kuidas neid parameetreid seadistada eri programmeerimiskeeltes.
 
 # [.NET](#tab-dotnet)
 
@@ -168,23 +176,23 @@ public class SamplingExample
 }
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Loonud MCP kliendi kindla serveri URL-iga.
-- Seadistanud proovimisparameetrid nagu `temperature`, `top_p` ja `top_k`.
-- Saadanud taotluse ja väljastanud genereeritud teksti.
+- Loonud MCP kliendi konkreetse serveri URL-iga.
+- Konfigureerinud päringu mäluvõtu parameetritega nagu `temperature`, `top_p` ja `top_k`.
+- Saatnud päringu ja väljastanud genereeritud teksti.
 - Kasutanud:
-    - `allowedTools` määramaks, milliseid tööriistu mudel võib genereerimise ajal kasutada. Selles näites lubasime `ideaGenerator` ja `marketAnalyzer` tööriistu loovate rakendusideede genereerimiseks.
-    - `frequencyPenalty` ja `presencePenalty` korduste ja mitmekesisuse kontrolliks väljundis.
-    - `temperature` juhuslikkuse kontrolliks, kus kõrgemad väärtused toovad esile loomingulisemaid vastuseid.
-    - `top_p` piiramiseks, valides ainult need tokenid, mis annavad kõige kõrgema kumulatiivse tõenäosuse, parandades teksti kvaliteeti.
-    - `top_k` mudeli piiramiseks vaid kõige tõenäolisemate K tokeniga, aidates genereerida sidusamaid vastuseid.
-    - `frequencyPenalty` ja `presencePenalty` korduste vähendamiseks ja mitmekesisuse julgustamiseks tekstis.
+    - `allowedTools` määrab, milliseid tööriistu mudel saab genereerimise ajal kasutada. Selles näites lubasime `ideaGenerator` ja `marketAnalyzer` tööriistad aidata loominguliste rakendusideede loomisel.
+    - `frequencyPenalty` ja `presencePenalty` korduste ja mitmekesisuse kontrollimiseks väljundis.
+    - `temperature` juhuslikkuse kontrollimiseks, kus kõrgemad väärtused toovad kaasa loomingulisemad vastused.
+    - `top_p` piirab tokenite valikut nendele, mis annavad kumulatiivse tõenäosuse tipu, parandades genereeritud teksti kvaliteeti.
+    - `top_k` piirab mudeli valikut kõrgeimate tõenäosustega tokenitele, aidates toota koherentsemaid vastuseid.
+    - `frequencyPenalty` ja `presencePenalty` korduste vähendamiseks ja mitmekesisuse soodustamiseks genereeritud tekstis.
 
-# [JavaScript](#tab/javascript)
+# [JavaScript](#tab-javascript)
 
 ```javascript
-// JavaScript näide: temperatuuri ja Top-P valimi seadistus
+// JavaScript Näide: Temperatuuri ja Top-P valimi konfiguratsioon
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
@@ -194,23 +202,23 @@ async function demonstrateSampling() {
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Konfigureerige päring erinevate valimi parameetritega
+  // Konfigureerige päring erinevate valimiparameetritega
   const creativeSampling = {
     temperature: 0.9,    // Kõrgem temperatuur = rohkem juhuslikkust/loovust
-    topP: 0.92,          // Võtke arvesse top 92% tõenäosusmassiga tokeneid
-    frequencyPenalty: 0.6, // Vähendage tokenite järjestuste kordamist
-    presencePenalty: 0.4   // Karistage tokeneid, mis on seni tekstis esinenud
+    topP: 0.92,          // Võtke arvesse tipp-92% tõenäosusmassiga tokeneid
+    frequencyPenalty: 0.6, // Vähendage tokenijadade kordusi
+    presencePenalty: 0.4   // Karistage tokeneid, mis on tekstis seni ilmunud
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Madalam temperatuur = deterministlikum/faktipõhisem
-    topP: 0.85,          // Veidi keskendunum tokenite valik
-    frequencyPenalty: 0.2, // Minimaalne korduskaristus
-    presencePenalty: 0.1   // Minimaalne esinemiskaristus
+    temperature: 0.2,    // Madalam temperatuur = täpsem/tegelikum
+    topP: 0.85,          // Veidi rohkem keskendunud tokeni valik
+    frequencyPenalty: 0.2, // Minimaalne korduste karistus
+    presencePenalty: 0.1   // Minimaalne esinemise karistus
   };
   
   try {
-    // Saada kaks päringut erinevate valimi seadistustega
+    // Saatke kaks päringut erinevate valimikonfiguratsioonidega
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -241,27 +249,27 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Algatanud MCP kliendi serveri URL-i ja API võtmega.
-- Seadistanud kaks proovimisparameetrite komplekti: ühe loovate ülesannete jaoks ja teise faktipõhiste ülesannete jaoks.
-- Saadanud nende konfiguratsioonidega taotlused, võimaldades mudelil kasutada konkreetseid tööriistu iga ülesande tähtsuseks.
-- Väljaprinditud genereeritud vastused, et demonstreerida erinevate proovimisparameetrite mõju.
-- Kasutanud `allowedTools` määramaks, milliseid tööriistu mudel võib kasutamisel kasutada. Selles näites lubasime `ideaGenerator` ja `environmentalImpactTool` loovate ülesannete jaoks ning `factChecker` ja `dataAnalysisTool` faktipõhiste jaoks.
-- Kasutanud `temperature` juhuslikkuse kontrolliks, kus kõrgemad väärtused toovad esile loomingulisemaid vastuseid.
-- Kasutanud `top_p` piiramiseks, valides ainult need tokenid, mis annavad kõige kõrgema kumulatiivse tõenäosuse, parandades teksti kvaliteeti.
-- Kasutanud `frequencyPenalty` ja `presencePenalty` korduste vähendamiseks ja mitmekesisuse julgustamiseks väljundis.
-- Kasutanud `top_k` mudeli piiramiseks vaid kõige tõenäolisemate K tokeniga, aidates genereerida sidusamaid vastuseid.
+- Initsialiseerinud MCP kliendi serveri URL-i ja API võtmega.
+- Konfigureerinud kaks mäluvõtu parameetrite komplekti: ühe loominguliste ülesannete ja teise faktipõhiste ülesannete jaoks.
+- Saatnud päringuid nende konfiguratsioonidega, võimaldades mudelil kasutada konkreetseid tööriistu iga ülesande jaoks.
+- Väljastasime genereeritud vastused, et demonstreerida erinevate mäluvõtu parameetrite mõju.
+- Kasutasime `allowedTools` määramaks, milliseid tööriistu mudel võib genereerimise ajal kasutada. Selles kontekstis lubati loominguliste ülesannete jaoks `ideaGenerator` ja `environmentalImpactTool`, faktipõhiste ülesannete jaoks `factChecker` ja `dataAnalysisTool`.
+- Kasutasime `temperature` väljundi juhuslikkuse kontrollimiseks, kus kõrgemad väärtused toovad kaasa loomingulisemad vastused.
+- Kasutasime `top_p` piiramaks tokenite valikut nendele, mis moodustavad kõrgeima kumulatiivse tõenäosuse massi, parandades genereeritud teksti kvaliteeti.
+- Kasutasime `frequencyPenalty` ja `presencePenalty` korduste vähendamiseks ja mitmekesisuse julgustamiseks väljundis.
+- Kasutasime `top_k` mudeli piiramiseks tõenäolisemate K tokenite hulka, aidates parandada vastuste koherentsust.
 
 ---
 
-## Deterministlik proovimine
+## Deterministlik Mäluvõtt
 
-Rakendustele, mis vajavad ühtlaseid väljundeid, tagab deterministlik proovimine korduvad tulemused. Seda tehakse, kasutades fikseeritud juhuslikku seemet ja seades temperatuuri nulli.
+Rakenduste jaoks, mis vajavad järjepidevaid väljundeid, tagab deterministlik mäluvõtt korduvate tulemuste saavutamise. Seda tehakse, kasutades fikseeritud juhuslikku seemet ja temperatuuri väärtust null.
 
-Vaatame alljärgnevat näidisrakendust deterministliku proovimise demonstreerimiseks erinevates programmeerimiskeeltes.
+Vaatame allpool näidisrakendust, mis demonstreerib deterministlikku mäluvõttu erinevates programmeerimiskeeltes.
 
-# [Java](#tab/java)
+# [Java](#tab-java)
 
 ```java
 // Java näide: Deterministlikud vastused fikseeritud seemnega
@@ -271,13 +279,13 @@ public class DeterministicSamplingExample {
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Deterministlike tulemuste jaoks fikseeritud seemne kasutamine
+        long fixedSeed = 12345; // Deterministlike tulemite saavutamiseks fikseeritud seemne kasutamine
         
         // Esimene päring fikseeritud seemnega
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Maksimaalse determinismi saavutamiseks temperatuur null
+            .setTemperature(0.0) // Maksimaalse determinismi jaoks null temperatuur
             .build();
             
         // Teine päring sama seemnega
@@ -291,7 +299,7 @@ public class DeterministicSamplingExample {
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Vastused peaksid olema identsed sama seemne ja temperatuuri=0 tõttu
+        // Vastused peaksid olema identsed sama seemne ja temperatuuriga 0 tõttu
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -300,19 +308,19 @@ public class DeterministicSamplingExample {
 }
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Loonud MCP kliendi kindla serveri URL-iga.
-- Seadistanud kaks taotlust sama käsu, fikseeritud seemne ja null temperatuuri väärtusega.
-- Saadanud mõlemad taotlused ja väljastanud genereeritud teksti.
-- Demonstreerinud, et vastused on identsed tänu proovimisparameetrite deterministlikule loomusele (sama seeme ja temperatuur).
-- Kasutanud `setSeed`, et määrata fikseeritud juhuslik seeme, tagades, et mudel genereerib iga kord sama väljundi sama sisendi jaoks.
-- Seadistanud `temperature` väärtuseks nulli maksimaalse determinismi tagamiseks, mis tähendab, et mudel valib alati kõige tõenäolisema järgmise tokeni ilma juhuslikkuseta.
+- Loonud MCP kliendi määratud serveri URL-iga.
+- Konfigureerinud kaks päringut sama sõnumiga, fikseeritud seemne ja null temperatuuri väärtusega.
+- Saatnud mõlemad päringud ja väljastanud genereeritud teksti.
+- Demonstreerinud, et vastused on identsed tänu deterministlikule mäluvõtu konfiguratsioonile (sama seeme ja temperatuur).
+- Kasutanud `setSeed` kindla juhusliku seemne määramiseks, tagades mudeli sama väljundi iga kord sama sisendi korral.
+- Seatud `temperature` nulli, et tagada maksimaalne determinism, mis tähendab, et mudel valib alati kõige tõenäolisema järgmise tokeni ilma juhuslikkuseta.
 
-# [JavaScript](#tab/javascript-deterministic)
+# [JavaScript](#tab-javascript-deterministic)
 
 ```javascript
-// JavaScript näide: Deterministlikud vastused seemne kontrolliga
+// JavaScript näide: deterministlikud vastused seemnekontrolliga
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -327,7 +335,7 @@ async function deterministicSampling() {
     // Esimene päring fikseeritud seemnega
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Null temperatuur maksimaalse determinismi jaoks
+      temperature: 0.0  // Null temperatuuri maksimaalseks determinismiks
     });
     
     // Teine päring sama seemne ja temperatuuriga
@@ -356,28 +364,28 @@ async function deterministicSampling() {
 deterministicSampling();
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Algatanud MCP kliendi serveri URL-iga.
-- Seadistanud kaks taotlust sama käsu, fikseeritud seemne ja null temperatuuri väärtusega.
-- Saadanud mõlemad taotlused ja väljastanud genereeritud teksti.
-- Demonstreerinud, et vastused on identsed tänu proovimisparameetrite deterministlikule loomusele (sama seeme ja temperatuur).
-- Kasutanud `seed`, et määrata fikseeritud juhuslik seeme, tagades, et mudel genereerib iga kord sama väljundi sama sisendi jaoks.
-- Seadistanud `temperature` väärtuseks nulli maksimaalse determinismi tagamiseks, mis tähendab, et mudel valib alati kõige tõenäolisema järgmise tokeni ilma juhuslikkuseta.
-- Kasutanud teist seemet kolmandas taotluses näitamaks, et seemne muutmine annab erinevaid väljundeid, isegi kui käsk ja temperatuur on samad.
+- Initsialiseerinud MCP kliendi serveri URL-iga.
+- Konfigureerinud kaks päringut sama sõnumi, fikseeritud seemne ja null temperatuuri väärtusega.
+- Saatnud mõlemad päringud ja väljastanud genereeritud teksti.
+- Demonstreerinud, et vastused on identsed tänu deterministlikule mäluvõtu konfiguratsioonile (sama seeme ja temperatuur).
+- Kasutanud `seed` kindla juhusliku seemne määramiseks, tagades mudelile sama väljundi iga identse sisendi korral.
+- Seatud `temperature` nulli maksimaalse determinismi tagamiseks, nii et mudel valib alati kõige tõenäolisema järgmise tokeni.
+- Kasutanud erinevat seemet kolmandal päringul, et näidata, et seemne muutmine annab eri väljundid, isegi kui sõnum ja temperatuur on samad.
 
 ---
 
-## Dünaamiline proovimise seadistamine
+## Dünaamiline Mäluvõtu Konfiguratsioon
 
-Intelligentsed proovimised kohandavad parameetreid vastavalt iga taotluse kontekstile ja tingimustele. See tähendab selliste parameetrite nagu temperatuur, top_p ja karistused dünaamilist reguleerimist ülesandetüübist, kasutaja eelistustest või ajaloolisest jõudlusest lähtuvalt.
+Intelligentsed mäluvõtu parameetrid kohanduvad dünaamiliselt iga päringu konteksti ja nõudmiste põhjal. See tähendab mäluvõtu parameetrite nagu temperature, top_p ja karistuste kohandamist vastavalt ülesande tüübile, kasutaja eelistustele või ajaloolisele jõudlusele.
 
-Vaatame, kuidas rakendada dünaamilist proovimist erinevates programmeerimiskeeltes.
+Vaatame, kuidas rakendada dünaamilist mäluvõttu eri programmeerimiskeeltes.
 
-# [Python](#tab/python)
+# [Python](#tab-python)
 
 ```python
-# Python näide: dünaamiline proovivõtt põhineb päringu kontekstis
+# Python näide: dünaamiline proovivõtt päringu konteksti põhjal
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Määra proovivõtu eelseaded erinevate ülesandetüüpide jaoks
+        # Määra proovivõtu eelseaded erinevate tööülesannete tüüpidele
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -396,7 +404,7 @@ class DynamicSamplingService:
         # Vali baas-eelseade
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Kohanda kasutaja eelistuste alusel, kui need on antud
+        # Kohanda kasutaja eelistuste põhjal, kui need on esitatud
         if user_preferences:
             if "creativity_level" in user_preferences:
                 # Skaaleeri temperatuur loomingulisuse eelistuse põhjal (1-10)
@@ -408,7 +416,7 @@ class DynamicSamplingService:
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Loo ja saada päring kohandatud proovivõtu parameetritega
+        # Loo ja saada päring kohandatud proovivõtuga parameetritega
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -424,32 +432,32 @@ class DynamicSamplingService:
         }
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Loonud `DynamicSamplingService` klassi, mis haldab adaptiivset proovimist.
-- Määratlenud proovimise eelseaded erinevatele ülesandetüüpidele (loov, faktipõhine, kood, analüütiline).
-- Valinud põhilise proovimise eelseadistuse ülesandetüübi põhjal.
-- Kohandanud proovimisparameetreid kasutaja eelistuste alusel, näiteks loovus ja mitmekesisus.
-- Saadanud taotluse dünaamiliselt seadistatud proovimisparameetritega.
-- Tagastanud genereeritud teksti koos rakendatud proovimisparameetrite ja ülesandetüübiga läbipaistvuse tagamiseks.
-- Kasutanud `temperature`, et juhtida väljundi juhuslikkust, kus kõrgemad väärtused tagavad loomingulisemad vastused.
-- Kasutanud `top_p`, et piirata tokenite valikut neile, mis annavad kõige kõrgema kumulatiivse tõenäosuse massi, parandades teksti kvaliteeti.
-- Kasutanud `frequency_penalty` korduste vähendamiseks ja mitmekesisuse julgustamiseks väljundis.
-- Kasutanud `user_preferences`, et võimaldada proovimisparameetrite kohandamist kasutaja määratud loovus- ja mitmekesisustasemete põhjal.
-- Kasutanud `task_type`, et määrata sobiv proovimisstrateegia taotluse põhjal, võimaldades paremini kohandatud vastuseid ülesande olemuse järgi.
-- Kasutanud `send_request` meetodit, et saata käsk seadistatud proovimisparameetritega, tagades, et mudel genereerib teksti vastavalt määratletud nõuetele.
-- Kasutanud `generated_text` mudelivastuse saamiseks, mis tagastatakse koos proovimisparameetrite ja ülesandetüübiga edasiseks analüüsiks või kuvamiseks.
-- Kasutanud `min` ja `max` funktsioone, et tagada kasutaja eelistuste piiramist kehtivatesse vahemikesse, vältides kehtetut proovimise konfiguratsiooni.
+- Loonud `DynamicSamplingService` klassi, mis haldab adaptiivset mäluvõttu.
+- Määratlenud mäluvõtu eelseaded erinevatele ülesandeliikidele (loominguline, faktipõhine, kood, analüütiline).
+- Valinud põhijoone mäluvõtu vastavalt ülesande tüübile.
+- Kohandanud mäluvõtu parameetreid kasutaja eelistuste põhjal, nagu loovuse ja mitmekesisuse tasemed.
+- Saatnud päringu dünaamiliselt konfigureeritud mäluvõtu parameetritega.
+- Tagastanud genereeritud teksti koos rakendatud mäluvõtu parameetrite ja ülesande tüübiga läbipaistvuse huvides.
+- Kasutanud `temperature` väljundi juhuslikkuse juhtimiseks, kus kõrgemad väärtused annavad loomingulisemad vastused.
+- Kasutanud `top_p` piirama tokenite valikut nendele, mis moodustavad tipptõenäosuse massi, parandades genereeritud teksti kvaliteeti.
+- Kasutanud `frequency_penalty` korduste vähendamiseks ja mitmekesisuse soodustamiseks kasutuses.
+- Kasutanud `user_preferences` võimaldamaks mäluvõtu parameetrite kohandamist kasutaja määratud loovuse ja mitmekesisuse tasemete alusel.
+- Kasutanud `task_type` sobiva mäluvõtu strateegia määramiseks päringu jaoks, võimaldades rohkem kohandatud vastuseid vastavalt ülesande olemusele.
+- Kasutanud `send_request` meetodit märguande saatmiseks koos konfigureeritud mäluvõtu parameetritega, tagades mudelile soovitud nõuete kohase teksti genereerimise.
+- Kasutanud `generated_text` mudeli vastuse kohta, mis tagastatakse koos mäluvõtu parameetrite ja ülesande kategooriaga täiendavaks analüüsiks või kuvamiseks.
+- Kasutanud `min` ja `max` funktsioone, et hoida kasutaja eelistused kehtlikes piirides, vältides kehtetuid mäluvõtu seadistusi.
 
-# [JavaScript Dynamic](#tab/javascript-dynamic)
+# [JavaScript Dünaamiline](#tab-javascript-dynamic)
 
 ```javascript
-// JavaScript näide: dünaamiline proovivõtu konfiguratsioon kasutaja konteksti põhjal
+// JavaScripti näide: dünaamiline valimi konfiguratsioon kasutajakonteksti põhjal
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Määra põhiproovide profiilid
+    // Määra baasvaliku profiilid
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,15 +465,15 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Jälgi ajaloolist sooritust
+    // Jälgi ajaloolist jõudlust
     this.performanceHistory = [];
   }
   
-  // Tuvasta ülesande tüüp prompti põhjal
+  // Tuleta ülesande tüüp vihje põhjal
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // Lihtne heuristiline tuvastus - võiks täiendada masinõppe klassifikatsiooniga
+    // Lihtne heuristiline tuvastus - võiks täiendada ML klassifikatsiooniga
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,16 +494,16 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Vaikimisi vestluslik, kui selget tüüpi ei tuvastata
+    // Vaikimisi vestluseks, kui selget tüüpi ei tuvastata
     return 'conversational';
   }
   
-  // Arvuta proovivõtu parameetrid konteksti ja kasutaja eelistuste põhjal
+  // Arvuta valikuparameetrid konteksti ja kasutaja eelistuste põhjal
   getSamplingParameters(prompt, context = {}) {
     // Tuvasta ülesande tüüp
     const taskType = this.detectTaskType(prompt, context);
     
-    // Hangi põhiprofiil
+    // Hangi baasprofiil
     let params = {...this.samplingProfiles[taskType]};
     
     // Kohanda kasutaja eelistuste põhjal
@@ -503,22 +511,22 @@ class AdaptiveSamplingManager {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Skaala 1-10 sobivale temperatuuri vahemikule
+        // Skaala 1-10 sobivaks temperatuuri vahemikuks
         params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
       if (precision !== undefined) {
-        // Kõrgem täpsus tähendab madalamat topP-d (täpsem valik)
+        // Kõrgem täpsus tähendab madalamat topP (fookustatud valik)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
       if (consistency !== undefined) {
-        // Kõrgem järjepidevus tähendab madalamaid trahve
+        // Kõrgem järjepidevus tähendab madalamaid karistusi
         params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0.1-0.9
       }
     }
     
-    // Rakenda soorituse ajaloo põhjal õpitud kohandusi
+    // Rakenda jõudlusajaloo põhjal õpitud kohandused
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
@@ -528,15 +536,15 @@ class AdaptiveSamplingManager {
     // Lihtne adaptiivne loogika - võiks täiendada keerukamate algoritmidega
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Võta arvesse ainult viimast ajalugu
+      .slice(-5); // Arvesta ainult hiljutist ajalugu
     
     if (relevantHistory.length > 0) {
-      // Arvuta keskmised soorituspunktid
+      // Arvuta keskmised jõudluse hinded
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Kui sooritus on künnisest madalam, kohanda parameetreid
+      // Kui jõudlus on künnisest madalam, kohanda parameetreid
       if (avgScore < 0.7) {
-        // Väike kohandus turvalisemate väärtuste suunas
+        // Veidi kohanda turvalisemate väärtuste suunas
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,13 +552,13 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Salvesta sooritus tulevaste kohanduste jaoks
+    // Salvesta jõudlus tulevasteks kohandusteks
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // 0-1 hinnang vastuse kvaliteedile
+      score // 0-1 vastuse kvaliteedi hinnang
     });
     
     // Piira ajaloo suurust
@@ -560,7 +568,7 @@ class AdaptiveSamplingManager {
   }
   
   async generateResponse(prompt, context = {}) {
-    // Hangi optimeeritud proovivõtu parameetrid
+    // Hangi optimeeritud valikuparameetrid
     const samplingParams = this.getSamplingParameters(prompt, context);
     
     // Saada päring optimeeritud parameetritega
@@ -596,7 +604,7 @@ async function demonstrateAdaptiveSampling() {
       "Write a short poem about artificial intelligence",
       {
         userPreferences: {
-          creativity: 9,  // Kõrge loomingulisus (1-10)
+          creativity: 9,  // Kõrge loovus (1-10)
           consistency: 3  // Madal järjepidevus (1-10)
         }
       }
@@ -612,7 +620,7 @@ async function demonstrateAdaptiveSampling() {
       "Write a JavaScript function to calculate the Fibonacci sequence",
       {
         userPreferences: {
-          creativity: 2,  // Madal loomingulisus
+          creativity: 2,  // Madal loovus
           precision: 8,   // Kõrge täpsus
           consistency: 9  // Kõrge järjepidevus
         }
@@ -632,33 +640,33 @@ async function demonstrateAdaptiveSampling() {
 demonstrateAdaptiveSampling();
 ```
 
-Eelnevas koodis oleme:
+Eelnevas koodis me oleme:
 
-- Loonud `AdaptiveSamplingManager` klassi, mis juhib dünaamilist proovimist ülesandetüübi ja kasutaja eelistuste põhjal.
-- Määratlenud proovimisprofiilid erinevate ülesandetüüpide jaoks (loov, faktipõhine, kood, vestlus).
-- Rakendanud meetodi ülesande tüübi tuvastamiseks käsust lihtsate heuristikute abil.
-- Arvutanud proovimisparameetrid tuvastatud ülesandetüübi ja kasutaja eelistuste põhjal.
-- Rakendanud ajaloolisel jõudlusel põhinevaid õpitud kohandusi proovimisparameetrite optimeerimiseks.
-- Salvestanud tulemuslikkuse tulevaste kohanduste jaoks, võimaldades süsteemil õppida varasematest interaktsioonidest.
-- Saatnud taotlused dünaamiliselt seadistatud proovimisparameetritega ning tagastanud genereeritud teksti koos rakendatud parameetrite ja tuvastatud ülesandetüübiga.
-- Kasutanud:
-    - `userPreferences` võimaldamaks proovimisparameetrite kohandamist kasutaja määratud loovuse, täpsuse ja järjepidevuse tasemete alusel.
-    - `detectTaskType` ülesande olemuse määramiseks käsu põhjal, võimaldades paremini kohandatud vastuseid.
-    - `recordPerformance` genereeritud vastuste tulemuse logimiseks, pakkudes süsteemile kohanemisvõimet ja parendamist aja jooksul.
-    - `applyLearnedAdjustments` proovimisparameetrite muutmiseks ajaloolise jõudluse põhjal, parandades mudeli võimet genereerida kvaliteetseid vastuseid.
-    - `generateResponse` kogu protsessi kapseldamiseks, võimaldades hõlpsat käivitamist erinevate käskude ja kontekstidega.
-    - `allowedTools` määramaks, milliseid tööriistu mudel genereerimise ajal kasutada tohib, võimaldades kontekstitundlikumaid vastuseid.
-    - `feedbackScore` kasutajate tagasiside võimaldamiseks genereeritud vastuse kvaliteedile, mida saab kasutada mudeli jõudluse täiendavaks parendamiseks ajas.
-    - `performanceHistory` varasemate interaktsioonide kogumi hoidmiseks, võimaldades süsteemil õppida varasematest õnnestumistest ja ebaõnnestumistest.
-    - `getSamplingParameters` proovimisparameetrite dünaamiliseks kohandamiseks taotluse konteksti alusel, võimaldades mudelil käituda paindlikumalt ja reageerivamalt.
-    - `detectTaskType` ülesande klassifitseerimiseks käsu põhjal, võimaldades süsteemil rakendada sobivaid proovimisstrateegiaid erinevat tüüpi taotluste jaoks.
-    - `samplingProfiles` baasproovimise konfiguratsioonide määratlemiseks erinevate ülesandetüüpide jaoks, võimaldades kiireid kohandusi taotluse olemuse põhjal.
+- Loonud `AdaptiveSamplingManager` klassi, mis haldab dünaamilist mäluvõttu vastavalt ülesande tüübile ja kasutaja eelistustele.
+- Määratlenud profiilid erinevateks ülesandetüüpideks (loominguline, faktipõhine, kood, vestlus).
+- Rakendanud meetodi ülesandetüübi tuvastamiseks sõnumist lihtsate heuristikate abil.
+- Arvutanud mäluvõtu parameetrid tuvastatud ülesandetüübi ja kasutaja eelistuste põhjal.
+- Rakendanud ajalooliste tulemuste põhjal õpitud kohandusi, et optimeerida mäluvõtu parameetreid.
+- Salvestanud tulemusi tulevaste kohanduste jaoks, võimaldades süsteemil õppida varasematest interaktsioonidest.
+- Saatnud päringud dünaamiliselt konfigureeritud mäluvõtu parameetritega ja tagastanud genereeritud teksti koos rakendatud parameetrite ja ülesannetüübiga.
+- Kasutatud:
+    - `userPreferences` võimaldamaks mäluvõtu parameetrite kohandamist kasutaja määratud loovuse, täpsuse ja järjepidevuse tasemete alusel.
+    - `detectTaskType` ülesande olemuse kindlakstegemiseks sõnumi põhjal, võimaldades kohandatumaid vastuseid.
+    - `recordPerformance` genereeritud vastuste tulemuste logimiseks, võimaldades süsteemil kohanduda ja areneda aja jooksul.
+    - `applyLearnedAdjustments` mäluvõtu parameetrite muutmiseks ajalooliste tulemuste põhjal, parandades mudeli suutlikkust toota kvaliteetseid vastuseid.
+    - `generateResponse` kogu protsessi kapseldamiseks, võimaldades lihtsalt kutsuda vastust dünaamilise mäluvõtuga erinevate sõnumite ja kontekstide puhul.
+    - `allowedTools` määramaks, milliseid tööriistu mudel genereerimisel kasutada saab, võimaldades kontekstitundlikumaid vastuseid.
+    - `feedbackScore` kasutajate tagasiside võimaldamiseks genereeritud vastuse kvaliteedi kohta, mida saab kasutada mudeli jõudluse täiendavaks parandamiseks.
+    - `performanceHistory` varasemate interaktsioonide andmete hoidmiseks, võimaldades süsteemil õppida varasematest õnnestumistest ja ebaõnnestumistest.
+    - `getSamplingParameters` mäluvõtu parameetrite dünaamiliseks kohandamiseks päringu kontekstist lähtuvalt, võimaldades paindlikumat ja reageerivamat mudelikäitumist.
+    - `detectTaskType` ülesande klassifitseerimiseks sõnumi põhjal, võimaldades süsteemil rakendada sobivaid mäluvõtu strateegiaid erinevatele päringu tüüpidele.
+    - `samplingProfiles` põhiliste mäluvõtu seadistuste määratlemiseks eri ülesannetüüpidele, võimaldades kiireid kohandusi päringu olemusest lähtuvalt.
 
 ---
 
-## Mis järgmiseks
+## Järgmised sammud
 
-- [5.7 Skaalumine](../mcp-scaling/README.md)
+- [5.7 Skaalamine](../mcp-scaling/README.md)
 
 ---
 

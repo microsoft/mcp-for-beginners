@@ -1,67 +1,68 @@
-# 案例研究：在 API 管理中以 MCP 伺服器形式公開 REST API
+# 案例研究：在 API 管理中以 MCP 伺服器形式暴露 REST API
 
-Azure API Management 是一項在您的 API 端點之上提供閘道的服務。它的運作方式是，Azure API Management 充當您 API 前端的代理，並可決定如何處理進來的請求。
+Azure API 管理是一項服務，提供在您的 API 端點之上的閘道。其運作方式是 Azure API 管理像是您的 API 之前的一個代理，並且可以決定如何處理傳入的請求。
 
-使用此服務，您可新增一系列功能，例如：
+使用它，您可以加入一整套功能，例如：
 
-- **安全性**，您可以使用從 API 金鑰、JWT 到受管身分識別等所有方式。
-- **流量限制**，一個很棒的功能是能決定每個特定時間單位允許的呼叫數量。這有助確保所有使用者都享有良好體驗，也能避免您的服務被請求淹沒。
-- **擴展與負載平衡**。您可以設定多個端點來分散負載，並且也能決定如何「負載平衡」。
-- **AI 功能，如語義快取**、代幣限制及代幣監控等。這些都是能提升響應能力並幫助管理代幣消耗的優秀功能。[按此了解更多](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)。
+- <strong>安全性</strong>，您可以使用從 API 金鑰、JWT 到託管身分識別的所有方法。
+- <strong>速率限制</strong>，一個很棒的功能是能夠決定每一特定時間單位內允許多少呼叫通過。這有助於確保所有用戶都有良好的使用體驗，且您的服務不會被請求淹沒。
+- <strong>擴充與負載平衡</strong>。您可以設置多個端點以分擔負載，並且還可以決定如何「負載平衡」。
+- **AI 功能如語意快取**、代幣限制與代幣監控等。這些是提升反應速度並幫助您掌握代幣使用狀況的絕佳功能。[在這裡閱讀更多](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)。
 
-## 為什麼選擇 MCP + Azure API Management？
+## 為什麼選擇 MCP + Azure API 管理？
 
-Model Context Protocol 正快速成為 agentic AI 應用及如何一致地公開工具和資料的標準。在您需要「管理」API 時，Azure API Management 是自然的選擇。MCP 伺服器通常會整合其他 API 以解決工具請求。因此將 Azure API Management 與 MCP 結合非常合理。
+Model Context Protocol 正迅速成為代理式 AI 應用及如何以一致方式暴露工具和資料的標準。當您需要「管理」API 時，Azure API 管理是自然而然的選擇。MCP 伺服器通常會整合其他 API 以解決對工具的請求。因此，結合 Azure API 管理與 MCP 是非常合理的。
 
-## 概覽
+## 概述
 
-在此特定使用案例中，我們將學習如何將 API 端點公開為 MCP 伺服器。透過此方法，我們可以輕鬆將這些端點納入 agentic 應用，同時也能利用 Azure API Management 的功能。
+在這個特定的使用案例中，我們將學習如何將 API 端點暴露為 MCP 伺服器。透過此方法，我們能輕鬆將這些端點成為代理式應用的一部分，同時利用 Azure API 管理的功能。
 
-## 主要特點
+## 主要功能
 
-- 您可選擇想公開為工具的端點方法。
-- 額外功能取決於您在 API 政策區段所設定的內容，但這裡將示範如何新增流量限制。
+- 您選擇要暴露為工具的端點方法。
+- 您獲得的附加功能取決於您在 API 的政策部分所設定的內容。但在此我們將展示如何加入速率限制。
 
 ## 預備步驟：匯入 API
 
-如果您在 Azure API Management 已有 API，則可跳過此步驟。否則，請參考此連結：[將 API 匯入 Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api)。
+如果您已在 Azure API 管理中有 API，那很好，您可以跳過此步驟。若沒有，請參考此連結，[匯入 API 至 Azure API 管理](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api)。
 
-## 將 API 以 MCP 伺服器方式公開
+## 將 API 暴露為 MCP 伺服器
 
-將 API 端點公開，請依照以下步驟：
+要暴露 API 端點，請依照以下步驟：
 
-1. 前往 Azure 入口網站 <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>  
-   進入您的 API 管理實例。
+1. 前往 Azure 入口網站，並進入以下網址 <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
+前往您的 API 管理實例。
 
-1. 在左側選單，選擇 APIs > MCP Servers > + Create new MCP Server。
+1. 在左側選單中，選取 APIs > MCP Servers > + 建立新的 MCP 伺服器。
 
-1. 在 API 中，選擇一個 REST API 以公開為 MCP 伺服器。
+1. 在 API 中，選擇要暴露為 MCP 伺服器的 REST API。
 
-1. 選擇一個或多個 API 操作以公開為工具。您可以選擇全部操作或只選特定操作。
+1. 選擇一個或多個 API 操作暴露為工具。您可以選擇所有操作，或僅特定操作。
 
-    ![Select methods to expose](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![選擇要暴露的方法](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
-1. 選擇 **Create**。
 
-1. 導航至功能表選項 **APIs** 和 **MCP Servers**，您將看到如下畫面：
+1. 選擇 <strong>建立</strong>。
 
-    ![See the MCP Server in the main pane](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+1. 前往選單選項 **APIs** 及 **MCP Servers**，您應該會看到以下畫面：
 
-    MCP 伺服器已建立，API 操作已公開為工具。MCP 伺服器會列在 MCP Servers 面板中。URL 欄位顯示 MCP 伺服器的端點，您可以用於測試或客戶端應用程式中呼叫。
+    ![主畫面中的 MCP 伺服器列表](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-## 選擇性：配置政策
+    MCP 伺服器已建立且 API 操作已暴露為工具。MCP 伺服器顯示於 MCP Servers 窗格中。URL 欄位顯示 MCP 伺服器的端點，您可以用於測試或客戶端應用程式中呼叫。
 
-Azure API Management 具有核心的政策概念，您可以為端點設定不同規則，如流量限制或語義快取。這些政策以 XML 格式撰寫。
+## 選擇性步驟：設定政策
 
-以下示範如何設定政策，為 MCP 伺服器新增流量限制：
+Azure API 管理的核心概念為政策，您可為端點設定不同規則，例如速率限制或語意快取。這些政策是以 XML 撰寫。
+
+以下為如何設定 MCP 伺服器速率限制政策：
 
 1. 在入口網站中，於 APIs 下選擇 **MCP Servers**。
 
-1. 選擇您建立的 MCP 伺服器。
+1. 選取您已建立的 MCP 伺服器。
 
-1. 在左側選單的 MCP 下，選擇 **Policies**。
+1. 在左側選單中，於 MCP 下選擇 **Policies**。
 
-1. 在政策編輯器中，新增或編輯您想套用於 MCP 伺服器工具的政策。政策以 XML 格式定義。例如，您可新增政策，限制 MCP 伺服器工具呼叫次數（此例為每個用戶端 IP 位址每 30 秒最多 5 次呼叫）。以下為會造成流量限制的 XML：
+1. 在政策編輯器中，新增或編輯想套用到 MCP 伺服器工具的政策。這些政策採 XML 格式定義。例如，您可以新增限制呼叫 MCP 伺服器工具的政策（此例為每 30 秒每客戶端 IP 限制 5 次呼叫）。以下 XML 將造成速率限制：
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -71,44 +72,38 @@ Azure API Management 具有核心的政策概念，您可以為端點設定不�
     />
     ```
 
-    以下為政策編輯器畫面：
+    以下是政策編輯器的圖片：
 
-    ![Policy editor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
-
+    ![政策編輯器](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+ 
 ## 試用
 
-確保 MCP 伺服器正常運作。
+讓我們確認 MCP 伺服器是否如預期運作。
 
-這裡將使用 Visual Studio Code 及 GitHub Copilot 的 Agent 模式。我們將 MCP 伺服器新增到 *mcp.json*，如此一來，Visual Studio Code 將作為具 agent 功能的客戶端，最終使用者便可輸入提示語與該伺服器互動。
+> [!NOTE]
+> Azure API 管理目前透過可串流的
+> HTTP `/mcp` 端點來暴露該伺服器。舊版 HTTP+SSE `/sse` 傳輸方式已被淘汰，
+> 僅應用於舊式客戶端。
 
-以下示範如何於 Visual Studio Code 新增 MCP 伺服器：
+為此，我們將使用 Visual Studio Code 與 GitHub Copilot 及其代理模式。我們將 MCP 伺服器加入至 *mcp.json*。如此一來，Visual Studio Code 將充當具有代理能力的客戶端，最終用戶即可輸入提示並與該伺服器互動。
 
-1. 使用指令面板的 MCP: **Add Server** 命令。
+現在來看看如何在 Visual Studio Code 中加入 MCP 伺服器：
+
+1. 從命令面板使用 MCP: <strong>新增伺服器指令</strong>。
 
 1. 出現提示時，選擇伺服器類型：**HTTP (HTTP 或 Server Sent Events)**。
 
-1. 輸入 API 管理中的 MCP 伺服器 URL。範例：  
-   **https://<apim-service-name>.azure-api.net/<api-name>-mcp/sse**（SSE 端點）或  
-   **https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp**（MCP 端點），請注意傳輸型態的差別是以 `/sse` 或 `/mcp` 後綴區分。
+1. 輸入 API 管理中顯示的 MCP 伺服器可串流 HTTP URL。
+    例如：
+    `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`。
 
-1. 輸入您選擇的伺服器 ID。此數值非必要，但可幫助您記憶該伺服器實例。
+1. 輸入您選擇的伺服器 ID。這不是重要值，但會幫助您記住此伺服器實例。
 
-1. 選擇是將設定儲存至工作區設定或使用者設定。
+1. 選擇是將設定儲存於工作區設定或使用者設定。
 
-  - **工作區設定** - 伺服器設定會儲存在工作區內的 .vscode/mcp.json 檔案中。
+  - <strong>工作區設定</strong> - 伺服器設定將儲存於僅限當前工作區的 .vscode/mcp.json 檔案中。
 
     *mcp.json*
-
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "sse",
-            "url": "url-to-mcp-server/sse"
-        }
-    }
-    ```
-
-    若您選擇串流 HTTP 方式，內容會略有不同：
 
     ```json
     "servers": {
@@ -119,17 +114,17 @@ Azure API Management 具有核心的政策概念，您可以為端點設定不�
     }
     ```
 
-  - **使用者設定** - 伺服器設定會新增至您的全域 *settings.json*，並於所有工作區有效。設定內容類似如下：
+  - <strong>使用者設定</strong> - 伺服器設定會加入您的全域 *settings.json* 檔案中，可在所有工作區使用。設定內容類似如下：
 
-    ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+    ![使用者設定](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. 您還需新增設定，增加標頭以確保向 Azure API Management 進行正確驗證。此標頭名稱為 **Ocp-Apim-Subscription-Key**。
+1. 您還需要新增設定，即一個標頭以確保它能正確對 Azure API 管理進行身份驗證。它使用名為 **Ocp-Apim-Subscription-Key** 的標頭。
 
-    - 您可以如下方式將其新增至設定：
+    - 以下示範如何新增至設定：
 
-    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png)，系統會提示您輸入 API 金鑰值，可於 Azure 入口網站的 Azure API Management 實例中找到。
+    ![新增認證標頭](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png)，這會導致彈出提示要求您輸入 API 金鑰值，該值可在 Azure 入口網站對您的 Azure API 管理實例找到。
 
-   - 若想新增至 *mcp.json*，可透過如下方式：
+   - 若要改為新增到 *mcp.json*，您可以如此新增：
 
     ```json
     "inputs": [
@@ -151,53 +146,54 @@ Azure API Management 具有核心的政策概念，您可以為端點設定不�
     }
     ```
 
-### 使用 Agent 模式
+### 使用代理模式
 
-設定完成後，無論是在設定檔或 *.vscode/mcp.json*，我們來試用看看。
+現在無論是設定檔案還是 *.vscode/mcp.json* 都已配置完成。讓我們試試看。
 
-應該會有一個類似下圖的工具圖示，呈列您從伺服器公開的工具：
+應該會有一個工具圖示，列出您伺服器暴露的工具：
 
-![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
+![伺服器工具](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. 點擊工具圖示，將看到工具清單如下：
+1. 點擊工具圖示，您應該會看到如下的工具列表：
 
-    ![Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
+    ![工具清單](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. 在聊天框輸入提示語以調用工具。例如，若您選擇了查詢訂單資訊的工具，您可以向代理詢問訂單。以下為示範提示：
+1. 在聊天中輸入提示以呼叫工具。例如，若您選擇的工具是查詢訂單資訊，您可以向代理詢問訂單。以下為範例提示：
 
     ```text
     get information from order 2
     ```
 
-    接著您會看到工具圖示，並提示是否繼續呼叫工具。選擇繼續執行工具，您應該會看到類似以下的輸出結果：
+    您將看到一個工具圖示提示您是否繼續呼叫該工具。選擇繼續執行，您應該會看到類似以下的輸出：
 
-    ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![提示輸出結果](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **上述畫面將取決於您所設定的工具，不過概念是會取得如上所示的文字回應**
+    **您在上方看到的內容依您設置的工具而異，但概念是您會獲得如上所示的文字回應**
+
 
 ## 參考資料
 
-以下為您深入了解的資源：
+您可以透過以下方式了解更多：
 
-- [Azure API Management 與 MCP 教學](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Python 範例：使用 Azure API Management 安全遠端 MCP 伺服器 (實驗性)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Azure API 管理與 MCP 教學](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
+- [Python 範例：使用 Azure API 管理安全遠端 MCP 伺服器（實驗性）](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
-- [MCP 用戶端授權實驗室](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
+- [MCP 客戶端授權實驗室](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [使用 Azure API Management 擴充功能於 VS Code 匯入及管理 API](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [使用 Azure API Management 擴充套件於 VS Code 匯入及管理 API](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [在 Azure API Center 註冊並發現遠端 MCP 伺服器](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) 一個極佳的 Repo，展示許多 Azure API Management 的 AI 能力
-- [AI Gateway 工作坊](https://azure-samples.github.io/AI-Gateway/) 包含使用 Azure 入口網站的工作坊，是開始評估 AI 能力的絕佳管道。
+- [在 Azure API Center 註冊與搜尋遠端 MCP 伺服器](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) 這是個很棒的資源庫，展示許多使用 Azure API 管理的 AI 能力
+- [AI Gateway 工作坊](https://azure-samples.github.io/AI-Gateway/) 包含使用 Azure 入口網站的工作坊，是開始評估 AI 能力的極好方式。
 
-## 後續步驟
+## 接下來的步驟
 
-- 回到：[案例研究總覽](./README.md)
-- 下一章：[Azure AI 旅遊代理](./travelagentsample.md)
+- 回到: [案例研究總覽](./README.md)
+- 下一篇: [Azure AI 旅遊代理人](./travelagentsample.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**免責聲明**：  
-本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。雖然我們致力於確保翻譯的準確性，但請注意自動翻譯可能包含錯誤或不準確之處。原始文件以其母語版本為權威來源。對於重要資訊，建議採用專業人工翻譯。本公司不對因使用此翻譯而引致的任何誤解或誤讀承擔責任。
+**免責聲明**：
+本文件由 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯而成。雖然我們致力於確保準確性，但請注意，機器自動翻譯可能包含錯誤或不準確之處。原始文件的母語版本應被視為權威來源。對於重要資訊，建議進行專業人工翻譯。我們不對因使用本翻譯而產生的任何誤解或誤釋承擔責任。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

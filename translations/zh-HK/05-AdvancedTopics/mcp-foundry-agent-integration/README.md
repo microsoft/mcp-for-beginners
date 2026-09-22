@@ -1,44 +1,44 @@
 # Model Context Protocol (MCP) 與 Microsoft Foundry 的整合
 
-本指南示範如何將 Model Context Protocol (MCP) 伺服器與 Microsoft Foundry 代理整合，實現強大的工具編排與企業 AI 功能。
+本指南展示如何將 Model Context Protocol (MCP) 伺服器與 Microsoft Foundry 代理整合，實現強大的工具協同和企業 AI 能力。
 
 ## 介紹
 
-Model Context Protocol (MCP) 是一個開放標準，使 AI 應用能安全連接至外部資料來源及工具。與 Microsoft Foundry 整合時，MCP 可讓代理以標準化方式存取和互動多種外部服務、API 及資料來源。
+Model Context Protocol (MCP) 是一個開放標準，使 AI 應用能安全地連接至外部數據來源及工具。與 Microsoft Foundry 整合後，MCP 允許代理以標準化方式存取並與各種外部服務、API 和數據來源互動。
 
-此整合結合 MCP 工具生態系的彈性以及 Microsoft Foundry 強大的代理架構，提供具企業級規模且高度自訂化的 AI 解決方案。
+此整合結合了 MCP 工具生態系的靈活性與 Microsoft Foundry 強大的代理框架，提供具豐富自訂功能的企業級 AI 解決方案。
 
-**注意：** 若您想在 Microsoft Foundry Agent Service 使用 MCP，目前僅支援以下區域：westus、westus2、uaenorth、southindia 及 switzerlandnorth。
+**注意：** 若欲在 Microsoft Foundry 代理服務中使用 MCP，目前僅支援以下區域：westus、westus2、uaenorth、southindia 及 switzerlandnorth
 
 ## 學習目標
 
-完成本指南後，您將能：
+完成本指南後，您將能夠：
 
 - 了解 Model Context Protocol 及其優勢
-- 設置 MCP 伺服器供 Microsoft Foundry 代理使用
-- 建立及設定具 MCP 工具整合的代理
-- 使用真實 MCP 伺服器實作實務範例
-- 在代理對話中處理工具回應及引用
+- 為 Microsoft Foundry 代理設定 MCP 伺服器
+- 創建並配置具有 MCP 工具整合的代理
+- 實作使用實際 MCP 伺服器的實務範例
+- 處理代理對話中的工具回應和引用
 
-## 前置條件
+## 先決條件
 
-開始前請確認您具備：
+開始前，請確保您擁有：
 
-- 可存取 Microsoft Foundry 的 Azure 訂閱
+- 具 Microsoft Foundry 存取權的 Azure 訂閱
 - Python 3.10+ 或 .NET 8.0+
-- 已安裝並配置 Azure CLI
+- 已安裝並設定的 Azure CLI
 - 創建 AI 資源的適當權限
 
 ## 什麼是 Model Context Protocol (MCP)？
 
-Model Context Protocol 是 AI 應用連結外部資料來源及工具的標準化方式。主要優勢包括：
+Model Context Protocol 是一種標準化方式，使 AI 應用能連接到外部數據來源和工具。主要優勢包括：
 
-- <strong>標準化整合</strong>：跨不同工具與服務的一致介面
-- <strong>安全性</strong>：安全的認證與授權機制
-- <strong>彈性</strong>：支援多樣化資料來源、API 及自訂工具
-- <strong>可擴充性</strong>：輕鬆新增功能與整合
+- <strong>標準化整合</strong>：跨不同工具和服務提供一致介面
+- <strong>安全性</strong>：安全的身份驗證和授權機制
+- <strong>彈性</strong>：支援多種數據來源、API 和自訂工具
+- <strong>可擴展性</strong>：易於新增功能與整合
 
-## 設置 Microsoft Foundry 的 MCP
+## 使用 Microsoft Foundry 設定 MCP
 
 ### 環境配置
 
@@ -51,7 +51,7 @@ Model Context Protocol 是 AI 應用連結外部資料來源及工具的標準�
 
 ## Python 實作
 
-<strong><em>注意</em></strong> 您可執行此 [notebook](./mcp_support_python.ipynb)
+<strong><em>注意</em></strong> 您可以執行此 [notebook](./mcp_support_python.ipynb)
 
 ### 1. 安裝所需套件
 
@@ -71,14 +71,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. 配置 MCP 設定
+### 3. 設定 MCP 參數
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. 初始化專案用戶端
+### 4. 初始化專案客戶端
 
 ```python
 project_client = AIProjectClient(
@@ -87,7 +87,7 @@ project_client = AIProjectClient(
 )
 ```
 
-### 5. 建立 MCP 工具
+### 5. 創建 MCP 工具
 
 ```python
 mcp_tool = McpTool(
@@ -103,7 +103,7 @@ mcp_tool = McpTool(
 with project_client:
     agents_client = project_client.agents
 
-    # 使用 MCP 工具建立新代理
+    # 使用 MCP 工具創建新代理
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # 建立用於通訊的執行緒
+    # 為通訊創建執行緒
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # 為執行緒建立訊息
+    # 向執行緒創建訊息
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -180,7 +180,7 @@ with project_client:
 
 ## .NET 實作
 
-<strong><em>注意</em></strong> 您可執行此 [notebook](./mcp_support_dotnet.ipynb)
+<strong><em>注意</em></strong> 您可以執行此 [notebook](./mcp_support_dotnet.ipynb)
 
 ### 1. 安裝所需套件
 
@@ -196,7 +196,7 @@ using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. 配置設定
+### 3. 設定參數
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -206,13 +206,13 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. 建立 MCP 工具定義
+### 4. 創建 MCP 工具定義
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. 使用 MCP 工具建立代理
+### 5. 使用 MCP 工具創建代理
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -299,7 +299,7 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## MCP 工具配置選項
 
-建立代理的 MCP 工具時，您可指定多個重要參數：
+配置用於代理的 MCP 工具時，您可以指定多個重要參數：
 
 ### Python 配置
 
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## 認證與標頭設定
+## 認證與標頭
 
-兩種實作皆支援自訂認證標頭：
+兩種實作均支援用於認證的自訂標頭：
 
 ### Python
 ```python
@@ -338,45 +338,45 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## 常見問題排解
 
 ### 1. 連線問題
-- 確認 MCP 伺服器 URL 可正常存取
-- 檢查認證憑證是否正確
-- 確保網路連線正常
+- 確認 MCP 伺服器 URL 可存取
+- 檢查認證憑證
+- 確保網路連通性
 
 ### 2. 工具呼叫失敗
-- 檢視工具參數與格式
-- 確認符合伺服器特定需求
-- 實作適當錯誤處理
+- 檢查工具引數和格式
+- 檢查伺服器特定需求
+- 實作適當的錯誤處理
 
 ### 3. 效能問題
 - 優化工具呼叫頻率
-- 適當實作快取機制
+- 適當實作快取
 - 監控伺服器回應時間
 
 ## 下一步
 
-進一步強化您的 MCP 整合：
+想進一步強化您的 MCP 整合：
 
-1. **探索自訂 MCP 伺服器**：建立專屬資料來源的 MCP 伺服器
-2. <strong>實作進階安全性</strong>：加入 OAuth2 或自訂驗證機制
-3. <strong>監控與分析</strong>：落實工具使用的紀錄與監控
-4. <strong>擴展解決方案</strong>：考慮負載平衡與分布式 MCP 伺服器架構
+1. **探索自訂 MCP 伺服器**：為專有數據來源建立自有 MCP 伺服器
+2. <strong>實作進階安全性</strong>：新增 OAuth2 或自訂認證機制
+3. <strong>監控與分析</strong>：實作工具使用的日誌記錄與監控
+4. <strong>擴展您的解決方案</strong>：考慮負載平衡和分散式 MCP 伺服器架構
 
-## 其他資源
+## 附加資源
 
 - [Microsoft Foundry 文件](https://learn.microsoft.com/azure/ai-foundry/)
 - [Model Context Protocol 範例](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Microsoft Foundry 代理概覽](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP 規範](https://spec.modelcontextprotocol.io/)
+- [MCP 規範](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## 支援
 
-如需更多支援與問題解答：
+如需額外支援與問題：
 - 查看 [Microsoft Foundry 文件](https://learn.microsoft.com/azure/ai-foundry/)
 - 查閱 [MCP 社群資源](https://modelcontextprotocol.io/)
 
-## 接下來
+## 往後步驟
 
-- [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
+- [5.14 MCP Context 工程](../mcp-contextengineering/README.md)
 
 ---
 

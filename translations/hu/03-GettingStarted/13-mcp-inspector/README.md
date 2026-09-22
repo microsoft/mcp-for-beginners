@@ -1,38 +1,43 @@
 # Hibakeresés MCP Inspektorral
 
-Az **MCP Inspektor** egy alapvető hibakereső eszköz, amely lehetővé teszi, hogy interaktívan teszteld és hibajavítsd MCP szervereidet anélkül, hogy egy teljes AI host alkalmazásra lenne szükség. Gondolj rá úgy, mint az „MCP Postmanje” – vizuális felületet biztosít kérésküldéshez, válaszok megtekintéséhez, és megértéséhez, hogyan viselkedik a szervered.
+> [!NOTE]
+> A `--sse` használatával és `/sse` végződésű URL-ekkel végzett parancsok a régi HTTP+SSE
+> átvitelt tesztelik. Új, `2026-07-28` MCP szerverhez olyan Inspektor verziót használj,
+> amely támogatja a Streamable HTTP-t, és válaszd azt az átvitelt.
 
-## Miért Használjuk az MCP Inspektort?
+A **MCP Inspektor** egy alapvető hibakereső eszköz, amely lehetővé teszi, hogy interaktívan teszteld és hibakeresd az MCP szervereidet teljes AI host alkalmazás nélkül. Gondolj rá úgy, mint egy „Postman az MCP-hez” - vizuális felületet ad, amellyel kéréseket küldhetsz, válaszokat nézhetsz meg, és megértheted, hogyan viselkedik a szervered.
 
-MCP szerverek építése közben gyakran szembesülhetsz az alábbi kihívásokkal:
+## Miért használd az MCP Inspektort?
 
-- **„Fut-e egyáltalán a szerverem?”** – Az Inspektor mutatja a kapcsolat állapotát
-- **„Megfelelően regisztráltam az eszközeimet?”** – Az Inspektor megjeleníti az összes elérhető eszközt
-- **„Mi a válasz formátuma?”** – Az Inspektor megjeleníti a teljes JSON válaszokat
-- **„Miért nem működik ez az eszköz?”** – Az Inspektor részletes hibajelentéseket mutat
+MCP szerverek építése közben gyakran találkozol ezekkel a kihívásokkal:
+
+- **„Egyáltalán fut a szerverem?”** - Az Inspektor mutatja a kapcsolat állapotát
+- **„Helyesen vannak regisztrálva az eszközeim?”** - Az Inspektor listázza az összes elérhető eszközt
+- **„Milyen a válasz formátuma?”** - Az Inspektor megjeleníti a teljes JSON válaszokat
+- **„Miért nem működik ez az eszköz?”** - Az Inspektor részletes hibaüzeneteket mutat
 
 ## Előfeltételek
 
-- Node.js 18+ telepítve
-- npm (a Node.js része)
-- Egy tesztelendő MCP szerver (lásd [Module 3.1 - First Server](../01-first-server/README.md))
+- Telepített Node.js 18+ verzió
+- npm (a Node.js-sel együtt érkezik)
+- Tesztelendő MCP szerver (lásd [3.1. Modul - Első szerver](../01-first-server/README.md))
 
 ## Telepítés
 
-### 1. Opció: npx használata (Gyors teszteléshez ajánlott)
+### 1. lehetőség: futtatás npx-szel (Gyors teszteléshez ajánlott)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### 2. Opció: Globális telepítés
+### 2. lehetőség: Globális telepítés
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### 3. Opció: Hozzáadás a projektedhez
+### 3. lehetőség: Projektbe való beillesztés
 
 ```bash
 cd your-mcp-server-project
@@ -50,11 +55,11 @@ Add hozzá a `package.json`-hoz:
 
 ---
 
-## Kapcsolódás a Szerveredhez
+## Kapcsolódás a szerveredhez
 
-### stdio Szerverek (Helyi folyamat)
+### stdio szerverek (helyi folyamat)
 
-Azokhoz a szerverekhez, amelyek a szabványos bemeneten/kimeneten keresztül kommunikálnak:
+Azoknál a szervereknél, amelyek szabványos bemeneten/kimeneten kommunikálnak:
 
 ```bash
 # Python szerver
@@ -67,11 +72,11 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP Szerverek (Hálózati)
+### SSE/HTTP szerverek (hálózati)
 
-Azokhoz a szerverekhez, amelyek HTTP szolgáltatásként futnak:
+Azoknál a szervereknél, amelyek HTTP szolgáltatásként futnak:
 
-1. Indítsd el először a szerveredet:
+1. Először indítsd el a szervered:
    ```bash
    python server.py  # Szerver fut a http://localhost:8080 címen
    ```
@@ -83,9 +88,9 @@ Azokhoz a szerverekhez, amelyek HTTP szolgáltatásként futnak:
 
 ---
 
-## Az Inspektor Felület Áttekintése
+## Inspektor felület áttekintése
 
-Amikor elindul az Inspektor, egy webes felületet látsz (általában a `http://localhost:5173` címen):
+Amikor az Inspektor elindul, egy webes felületet fogsz látni (általában a `http://localhost:5173` címen):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Amikor elindul az Inspektor, egy webes felületet látsz (általában a `http://
 
 ---
 
-## Eszközök Tesztelése
+## Eszközök tesztelése
 
-### Elérhető Eszközök Listázása
+### Elérhető eszközök listázása
 
 1. Kattints a **Tools** fülre
-2. Az Inspektor automatikusan meghívja a `tools/list`-et
-3. Megjelennek az összes regisztrált eszköz:
+2. Az Inspektor automatikusan meghívja a `tools/list` parancsot
+3. Megjelenik az összes regisztrált eszköz:
    - Eszköz neve
-   - Leírása
+   - Leírás
    - Bemeneti séma (paraméterek)
 
-### Eszköz Meghívása
+### Egy eszköz meghívása
 
 1. Válassz ki egy eszközt a listából
-2. Töltsd ki a szükséges paramétereket a űrlapon
+2. Töltsd ki a szükséges paramétereket az űrlapon
 3. Kattints a **Run Tool** gombra
 4. Nézd meg a választ az eredmény panelen
 
-**Példa: Kalkulátor eszköz tesztelése**
+**Példa: Számológép eszköz tesztelése**
 
 ```
 Tool: add
@@ -148,7 +153,7 @@ Response:
 }
 ```
 
-### Hibák Hibakeresése Eszközökben
+### Hibák hibakeresése eszközöknél
 
 Ha egy eszköz hibát jelez, az Inspektor megmutatja:
 
@@ -163,34 +168,34 @@ Error Response:
 ```
 
 Gyakori hibakódok:
-| Kód | Jelentés |
+| Kód | Jelentése |
 |------|---------|
 | -32700 | Elemzési hiba (érvénytelen JSON) |
 | -32600 | Érvénytelen kérés |
-| -32601 | Nincs ilyen metódus |
+| -32601 | Metódus nem található |
 | -32602 | Érvénytelen paraméterek |
 | -32603 | Belső hiba |
 
 ---
 
-## Erőforrások Tesztelése
+## Erőforrások tesztelése
 
-### Erőforrások Listázása
+### Erőforrások listázása
 
 1. Kattints a **Resources** fülre
-2. Az Inspektor meghívja a `resources/list`-et
+2. Az Inspektor meghívja a `resources/list` parancsot
 3. Megjelenik:
    - Erőforrás URI-k
    - Nevek és leírások
    - MIME típusok
 
-### Erőforrás Olvasása
+### Erőforrás olvasása
 
 1. Válassz ki egy erőforrást
 2. Kattints a **Read Resource** gombra
 3. Nézd meg a visszakapott tartalmat
 
-**Példa kimenet:**
+**Kimenet példa:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Parancsok Tesztelése
+## Promptok tesztelése
 
-### Parancsok Listázása
+### Promptok listázása
 
 1. Kattints a **Prompts** fülre
-2. Az Inspektor meghívja a `prompts/list`-et
-3. Nézd meg az elérhető parancs-sablonokat
+2. Az Inspektor meghívja a `prompts/list` parancsot
+3. Nézd meg a rendelkezésre álló prompt sablonokat
 
-### Parancs Lekérése
+### Prompt lekérése
 
-1. Válassz ki egy parancsot
+1. Válassz ki egy promptot
 2. Töltsd ki a szükséges argumentumokat
 3. Kattints a **Get Prompt** gombra
-4. Nézd meg a renderelt parancs üzeneteket
+4. Nézd meg a megjelenített prompt üzeneteket
 
 ---
 
-## Üzenetnapló Elemzése
+## Üzenetnapló elemzés
 
-Az üzenetnapló megjeleníti az összes MCP protokoll üzenetet:
+Az üzenetnapló az összes MCP protokoll üzenetet mutatja. Az alábbi átírás egy
+régi, `2025-11-25` szervertől származik és tartalmazza az eltávolított `initialize` kézfogást. Egy
+`2026-07-28` szerver önálló kérés metaadatokat és a `server/discover`
+metódust használ helyette.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,22 +244,22 @@ Az üzenetnapló megjeleníti az összes MCP protokoll üzenetet:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Mire Figyelj
+### Mire figyelj
 
-- **Kérés/válasz párok**: Minden `→`-hoz tartozik kapcs `←`
-- **Hibajelzések**: Keress `"error"` mezőket a válaszokban
-- **Időzítés**: Nagy szünetek teljesítmény problémára utalhatnak
-- **Protokoll verzió**: Győződj meg róla, hogy a szerver és kliens egyezik verzióban
+- **Kérés/válasz párok**: Minden `→` után kell lennie egy `←`-nek
+- **Hibaüzenetek**: Figyeld a válaszokban a `"error"` üzeneteket
+- **Időzítés**: Nagy időközök teljesítményproblémákra utalhatnak
+- **Protokoll verzió**: Győződj meg róla, hogy a szerver és kliens ugyanazt a verziót használja
 
 ---
 
-## VS Code Integráció
+## VS Code integráció
 
-Az Inspektort közvetlenül a VS Code-ból is futtathatod:
+Az Inspektort közvetlenül VS Code-ból is futtathatod:
 
 ### launch.json használata
 
-Add hozzá a `.vscode/launch.json`-hoz:
+Add hozzá a `.vscode/launch.json` fájlhoz:
 
 ```json
 {
@@ -280,9 +288,9 @@ Add hozzá a `.vscode/launch.json`-hoz:
 }
 ```
 
-### Feladatok használata
+### Taskok használata
 
-Add hozzá a `.vscode/tasks.json`-hoz:
+Add hozzá a `.vscode/tasks.json` fájlhoz:
 
 ```json
 {
@@ -310,53 +318,53 @@ Add hozzá a `.vscode/tasks.json`-hoz:
 
 ---
 
-## Gyakori Hibakeresési Forgatókönyvek
+## Gyakori hibakeresési helyzetek
 
-### Forgatókönyv 1: Nem kapcsolódik a szerver
+### Helyzet 1: Nem csatlakozik a szerver
 
-**Jelenségek:** Az Inspektor „Disconnected” státuszt mutat vagy „Connecting...” állapotban marad
+**Tünetek:** Az Inspektor „Disconnected” üzenetet mutat vagy „Connecting...” állapotban ragad
 
 **Ellenőrző lista:**
-1. ✅ Helyes a szerver parancs?
+1. ✅ A szerver parancs helyes?
 2. ✅ Minden függőség telepítve van?
-3. ✅ A szerver elérési útja abszolút vagy a jelenlegi könyvtárhoz relatív-e?
-4. ✅ Minden szükséges környezeti változó be van állítva?
+3. ✅ A szerver útvonala abszolút vagy az aktuális könyvtárhoz viszonyított?
+4. ✅ A szükséges környezeti változók be vannak állítva?
 
 **Hibakeresési lépések:**
 ```bash
-# Először manuálisan teszteld a szervert
+# Először kézzel teszteld a szervert
 python -c "import your_server_module; print('OK')"
 
-# Ellenőrizd az import hibákat
+# Ellenőrizd az importálási hibákat
 python -m your_server_module 2>&1 | head -20
 
 # Győződj meg róla, hogy az MCP SDK telepítve van
 pip show mcp
 ```
 
-### Forgatókönyv 2: Az eszközök nem jelennek meg
+### Helyzet 2: Eszközök nem jelennek meg
 
-**Jelenségek:** Az eszközök fül üres listát mutat
+**Tünetek:** Az Eszközök fül üres listát mutat
 
 **Lehetséges okok:**
-1. Az eszközök nincsenek regisztrálva a szerver indításakor
-2. A szerver összeomlott indítás után
+1. Az eszközök nincsenek regisztrálva a szerver inicializálásakor
+2. A szerver összeomlott az indítás után
 3. A `tools/list` kezelő üres tömböt ad vissza
 
 **Hibakeresési lépések:**
 1. Ellenőrizd az üzenetnaplót a `tools/list` válaszért
-2. Adj naplózást az eszköz regisztrációs kódodhoz
-3. Ellenőrizd, hogy jelen vannak-e a `@mcp.tool()` dekorátorok (Python esetén)
+2. Adj hozzá naplózást az eszközregisztrációs kódodhoz
+3. Ellenőrizd, hogy a `@mcp.tool()` dekorátorok jelen vannak-e (Python esetén)
 
-### Forgatókönyv 3: Eszköz hibát ad vissza
+### Helyzet 3: Eszköz hibát ad vissza
 
-**Jelenségek:** Az eszköz hívása hibás választ ad
+**Tünetek:** Az eszköz hívása hibás választ ad vissza
 
 **Hibakeresési megközelítés:**
-1. Olvasd el alaposan a hibaüzenetet
-2. Ellenőrizd, hogy a paraméter típusai megfelelnek a sémának
-3. Adj try/catch blokkot részletes hibaüzenetekkel
-4. Nézd meg a szerver naplókat a stack trace-hez
+1. Olvasd el figyelmesen a hibaüzenetet
+2. Ellenőrizd, hogy a paraméter típusok megfelelnek-e a sémának
+3. Adj hozzá try/catch blokkot részletes hibaüzenetekkel
+4. Nézd át a szerver naplókat stack trace-ek után kutatva
 
 **Példa javított hibakezelésre:**
 
@@ -364,7 +372,7 @@ pip show mcp
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Itt van az eszköz logikája
+        # Az eszköz logikája itt
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -373,20 +381,20 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Forgatókönyv 4: Erőforrás tartalma üres
+### Helyzet 4: Az erőforrás tartalma üres
 
-**Jelenségek:** Az erőforrás visszatér, de a tartalom üres vagy null
+**Tünetek:** Az erőforrás válaszol, de a tartalom üres vagy null
 
 **Ellenőrző lista:**
-1. ✅ A fájl elérési útja vagy URI helyes
-2. ✅ A szervernek engedélye van az erőforrás olvasására
-3. ✅ Az erőforrás tartalma helyesen vissza van adva
+1. ✅ A fájl útvonala vagy URI helyes
+2. ✅ A szervernek van jogosultsága az erőforrás olvasásához
+3. ✅ Az erőforrás tartalma helyesen kerül visszaadásra
 
 ---
 
-## Fejlett Inspektor Funkciók
+## Fejlett Inspektor funkciók
 
-### Egyedi Fejlécek (SSE)
+### Egyéni fejléc (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -394,48 +402,48 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Részletes Naplózás
+### Részletes naplózás
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Munkamenetek Rögzítése
+### Munkamenetek rögzítése
 
-Az Inspektor exportálhatja az üzenetnaplókat későbbi elemzéshez:
-1. Kattints az **Export Log** gombra az üzenet panelen
+Az Inspektor képes üzenetnaplókat exportálni későbbi elemzésre:
+1. Kattints a **Export Log** gombra az üzenet panelen
 2. Mentsd el a JSON fájlt
-3. Oszd meg a csapattal a hibakereséshez
+3. Oszd meg a csapattagokkal a hibakereséshez
 
 ---
 
-## Legjobb Gyakorlatok
+## Legjobb gyakorlatok
 
-1. **Tesztelj korán és gyakran** – Használd az Inspektort fejlesztés közben, ne csak hibák esetén
-2. **Kezdd egyszerűen** – Először teszteld az alap hálózati kapcsolatot, aztán az összetett eszköz hívásokat
-3. **Ellenőrizd a sémát** – Sok hiba paramétertípus hibákból ered
-4. **Olvasd el a hibaüzeneteket** – Az MCP hibák általában leíró jellegűek
-5. **Tartsd nyitva az Inspektort** – Segít azonnal észrevenni a fejlesztés közbeni problémákat
-
----
-
-## Mi következik?
-
-Befejezted a 3. modult: Kezdetek! Folytasd a tanulást:
-
-- [Module 4: Practical Implementation](../../04-PracticalImplementation/README.md)
+1. **Tesztelj korán és gyakran** - Használd az Inspektort a fejlesztés során, ne csak hibák esetén
+2. **Kezdd egyszerűen** - Először az alapvető kapcsolatot teszteld, mielőtt bonyolult eszközhívásokat végzel
+3. **Ellenőrizd a sémát** - Sok hiba a paramétertípusok eltéréséből ered
+4. **Olvasd el a hibaüzeneteket** - Az MCP hibái általában leíróak
+5. **Tartsd nyitva az Inspektort** - Segít észrevenni a problémákat fejlesztés közben
 
 ---
 
-## További Források
+## Mi a következő lépés?
 
-- [MCP Inspector GitHub tárhely](https://github.com/modelcontextprotocol/inspector)
-- [MCP Specifikáció - Protokoll üzenetek](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [JSON-RPC 2.0 Specifikáció](https://www.jsonrpc.org/specification)
+Befejezted a 3. modult: Bevezetés! Folytasd a tanulást:
+
+- [4. Modul: Gyakorlati megvalósítás](../../04-PracticalImplementation/README.md)
+
+---
+
+## További források
+
+- [MCP Inspektor GitHub tárhely](https://github.com/modelcontextprotocol/inspector)
+- [MCP Specifikáció - Protokoll üzenetek](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 specifikáció](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Jogi nyilatkozat**:
-Ezt a dokumentumot az AI fordító szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével fordítottuk. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum anyanyelvén tekintendő hiteles forrásnak. Kritikus információk esetén professzionális, emberi fordítást ajánlunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy téves értelmezésekért.
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

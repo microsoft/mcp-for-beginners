@@ -2,15 +2,20 @@
 
 This guide explores advanced MCP protocol features that go beyond basic tool and resource handling. Understanding these features helps you build more robust, user-friendly, and production-ready MCP servers.
 
-> **Looking ahead:** the `2026-07-28` release candidate deprecates the Logging primitive (favoring `stderr` for stdio and OpenTelemetry for structured observability), removes the `initialize`/session model referenced in Server Lifecycle Events below, and moves the experimental Tasks feature into a dedicated Tasks extension with a new `tasks/get`/`tasks/update`/`tasks/cancel` lifecycle. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` scope:** server process startup and shutdown remain
+> application concerns, but the MCP `initialize` handshake and protocol-level
+> sessions are removed. The Logging section below is retained for legacy
+> implementations; new servers should use `stderr` or OpenTelemetry. Tasks is
+> now a separately versioned extension. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Features Covered
 
 1. **Progress Notifications** - Report progress for long-running operations
 2. **Request Cancellation** - Allow clients to cancel in-flight requests
 3. **Resource Templates** - Dynamic resource URIs with parameters
-4. **Server Lifecycle Events** - Proper initialization and shutdown
-5. **Logging Control** - Server-side logging configuration
+4. **Application Lifecycle** - Server process startup and shutdown
+5. **Logging Control (Legacy)** - Deprecated MCP logging configuration
 6. **Error Handling Patterns** - Consistent error responses
 
 ---
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Поиск по множеству страниц
-            # Проверить, была ли запрошена отмена
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Смоделировать поиск по странице
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Небольшая задержка позволяет проверять отмену
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Вернуть частичные результаты
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Server Lifecycle Events
+## 4. Application Lifecycle
 
-Proper initialization and shutdown handling ensures clean resource management.
+This section covers application process startup and shutdown, not the removed
+MCP `initialize` handshake. Proper lifecycle handling ensures clean resource
+management.
 
 ### Python Lifecycle Management
 
@@ -468,9 +475,15 @@ await server.start();
 
 ---
 
-## 5. Logging Control
+## 5. Logging Control (Legacy)
 
-MCP supports server-side logging levels that clients can control.
+> [!WARNING]
+> MCP Logging is deprecated in `2026-07-28` and is eligible for removal in the
+> first specification revision released on or after July 28, 2027. The examples
+> below are for compatibility with older implementations. Use `stderr` with
+> stdio and OpenTelemetry for structured observability in new servers.
+
+Legacy MCP versions support server-side logging levels that clients can control.
 
 ### Implementing Logging Levels
 
@@ -656,51 +669,21 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Experimental Features (MCP 2025-11-25)
+## Version-Sensitive Features
 
-These features are marked as experimental in the specification:
+### Tasks Extension
 
-### Tasks (Long-Running Operations)
-
-```python
-# Tasks allow tracking long-running operations with state
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Report task started
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Training loop
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+Tasks is an official, separately versioned extension in MCP `2026-07-28`. A
+server may return a task handle from a tool call, and the client drives the task
+with `tasks/get`, `tasks/update`, and `tasks/cancel`. The experimental
+`2025-11-25` Tasks API is not backward compatible, and `tasks/list` no longer
+exists.
 
 ### Tool Annotations
 
-```python
-# Annotations provide metadata about tool behavior
-@app.tool(
-    annotations={
-        "destructive": False,      # Does not modify data
-        "idempotent": True,        # Safe to retry
-        "timeout_seconds": 30,     # Expected max duration
-        "requires_approval": False # No user approval needed
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Tool annotations describe behavior such as read-only, destructive, idempotent,
+or open-world operation. They are hints and must not be treated as trusted
+authorization or safety guarantees unless they come from a trusted server.
 
 ---
 
@@ -708,13 +691,13 @@ async def safe_query(query: str) -> str:
 
 - [Module 8 - Best Practices](../../08-BestPractices/README.md)
 - [5.14 - Context Engineering](../mcp-contextengineering/README.md)
-- [MCP Specification Changelog](https://spec.modelcontextprotocol.io/)
+- [MCP Specification Changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Additional Resources
 
-- [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Error Codes](https://www.jsonrpc.org/specification#error_object)
 - [Python SDK Examples](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK Examples](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

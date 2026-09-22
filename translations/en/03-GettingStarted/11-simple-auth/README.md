@@ -142,7 +142,12 @@ Client
 
 ### -1- Create a web server and MCP instance
 
-> **Looking ahead:** the TypeScript example below tracks HTTP transports in a `transports` map keyed by `mcp-session-id`, per **MCP Specification 2025-11-25**. The `2026-07-28` release candidate removes the `initialize` handshake and session ID entirely, so this per-session transport map goes away in favor of stateless, self-contained requests. See [What's Changing in MCP: The 2026-07-28 Release Candidate](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> [!WARNING]
+> The TypeScript example below targets MCP `2025-11-25`. It tracks transports
+> by `mcp-session-id` and is not a current `2026-07-28` transport example. MCP
+> `2026-07-28` removes the `initialize` handshake and protocol session ID; new
+> implementations use self-contained requests. See
+> [What's Changed in MCP: The 2026-07-28 Specification](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 In our first step, we need to create the web server instance and the MCP Server.
 
@@ -183,7 +188,7 @@ In this code we:
 
 - Create the MCP Server.
 - Construct the the starlette web app from the MCP Server, `app.streamable_http_app()`.
-- Host and serve the web app using uvicorn `server.serve()`.
+- Host and server the web app using uvicorn `server.serve()`.
 
 **TypeScript**
 
@@ -700,17 +705,17 @@ There a few different ways to add the middleware like below:
 
 ```python
 
-# Option 1: add middleware while constructing starlette app
+# Alt 1: add middleware while constructing starlette app
 middleware = [
     Middleware(JWTPermissionMiddleware)
 ]
 
 app = Starlette(routes=routes, middleware=middleware)
 
-# Option 2: add middleware after starlette app is already constructed
+# Alt 2: add middleware after starlette app is already constructed
 starlette_app.add_middleware(JWTPermissionMiddleware)
 
-# Option 3: add middleware per route
+# Alt 3: add middleware per route
 routes = [
     Route(
         "/mcp",

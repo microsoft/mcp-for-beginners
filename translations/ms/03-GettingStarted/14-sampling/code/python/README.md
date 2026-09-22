@@ -1,4 +1,9 @@
-# Jalankan sampel
+# Jalankan contoh
+
+> [!WARNING]
+> Contoh ini menggunakan Sampling yang sudah lapuk dan titik akhir HTTP+SSE lama. Ia
+> dikekalkan untuk keserasian MCP `2025-11-25`. Pelaksanaan baru harus memanggil
+> pembekal LLM secara langsung dan menggunakan Streamable HTTP untuk trafik MCP jauh.
 
 ## Buat persekitaran maya
 
@@ -19,9 +24,9 @@ pip install "mcp[cli]"
 uvicorn server:app --port 8000
 ```
 
-## Uji pelayan dengan GitHub Copilot dan VS Code
+## Uji pelayan menggunakan GitHub Copilot dan VS Code
 
-Tambah entri ke mcp.json seperti berikut:
+Tambahkan entri ke dalam mcp.json seperti berikut:
 
 ```json
 "servers": {
@@ -40,7 +45,7 @@ Dalam GitHub Copilot tampal arahan berikut:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Kali pertama anda akan ditanya sama ada untuk menerima tindakan Sampling, kemudian anda akan diminta untuk menerima alat menjalankan "create_blog". Anda sepatutnya melihat respons yang serupa dengan:
+Kali pertama anda akan ditanya sama ada untuk menerima tindakan Sampling, kemudian anda akan diminta menerima alat untuk menjalankan "create_blog". Anda harus melihat respons yang serupa dengan:
 
 ```json
 {
@@ -51,6 +56,6 @@ Kali pertama anda akan ditanya sama ada untuk menerima tindakan Sampling, kemudi
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya hendaklah dianggap sebagai sumber yang sahih. Untuk maklumat kritikal, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

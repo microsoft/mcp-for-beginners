@@ -1,43 +1,48 @@
-# Implementacija MCP servera
+# Postavljanje MCP poslužitelja
 
-Implementacija vašeg MCP servera omogućuje drugima pristup njegovim alatima i resursima izvan vašeg lokalnog okruženja. Postoji nekoliko strategija implementacije koje treba razmotriti, ovisno o vašim zahtjevima za skalabilnost, pouzdanost i jednostavnost upravljanja. Ispod ćete pronaći upute za implementaciju MCP servera lokalno, u kontejnerima i u oblaku.
+> [!NOTE]
+> Primjeri konfiguracija koji koriste `/sse` krajnu točku ciljaju na naslijeđeni HTTP+SSE
+> transport. MCP `2026-07-28` udaljeni poslužitelji koriste Streamable HTTP, obično na
+> poslužitelju definiranoj krajnjoj točki poput `/mcp`.
+
+Postavljanje vašeg MCP poslužitelja omogućuje drugima pristup njegovim alatima i resursima izvan vaše lokalne okoline. Postoji nekoliko strategija postavljanja koje treba razmotriti, ovisno o vašim zahtjevima za skalabilnost, pouzdanost i jednostavnost upravljanja. U nastavku ćete pronaći smjernice za postavljanje MCP poslužitelja lokalno, u kontejnerima i u oblaku.
 
 ## Pregled
 
-Ova lekcija pokriva kako implementirati vašu MCP Server aplikaciju.
+Ova lekcija obuhvaća kako postaviti vašu MCP Server aplikaciju.
 
 ## Ciljevi učenja
 
 Na kraju ove lekcije moći ćete:
 
-- Procijeniti različite pristupe implementaciji.
-- Implementirati svoju aplikaciju.
+- Procijeniti različite pristupe postavljanju.
+- Postaviti vašu aplikaciju.
 
-## Lokalni razvoj i implementacija
+## Lokalni razvoj i postavljanje
 
-Ako je vaš server namijenjen za korištenje na korisničkom računalu, možete slijediti sljedeće korake:
+Ako je vaš poslužitelj namijenjen za korištenje na korisničkom računalu, možete slijediti sljedeće korake:
 
-1. **Preuzmite server**. Ako niste napisali server, prvo ga preuzmite na svoje računalo. 
-1. **Pokrenite proces servera**: Pokrenite svoju MCP server aplikaciju 
+1. **Preuzmite poslužitelj**. Ako niste vi napisali poslužitelj, prvo ga preuzmite na svoje računalo.
+1. **Pokrenite poslužiteljski proces**: Pokrenite vašu MCP server aplikaciju
 
-Za SSE (nije potrebno za stdio tip servera)
+Za SSE (nije potrebno za stdio tip poslužitelja)
 
-1. **Konfigurirajte mrežu**: Osigurajte da je server dostupan na očekivanom portu 
-1. **Povežite klijente**: Koristite lokalne URL-ove za povezivanje poput `http://localhost:3000`
+1. **Konfigurirajte mrežu**: Osigurajte da je poslužitelj dostupan na očekivanom portu
+1. **Povežite klijente**: Koristite lokalne veze poput `http://localhost:3000`
 
-## Implementacija u oblaku
+## Postavljanje u oblaku
 
-MCP serveri mogu se implementirati na razne cloud platforme:
+MCP poslužitelji mogu se postaviti na raznim platformama u oblaku:
 
-- **Serverless funkcije**: Implementirajte lagane MCP servere kao serverless funkcije
+- **Bez poslužitelja (Serverless) funkcije**: Postavite lagane MCP poslužitelje kao bezposlužiteljske funkcije
 - **Usluge kontejnera**: Koristite usluge poput Azure Container Apps, AWS ECS ili Google Cloud Run
-- **Kubernetes**: Implementirajte i upravljajte MCP serverima u Kubernetes klasterima za visoku dostupnost
+- **Kubernetes**: Postavite i upravljajte MCP poslužiteljima u Kubernetes klasterima za visoku dostupnost
 
 ### Primjer: Azure Container Apps
 
-Azure Container Apps podržava implementaciju MCP servera. Još je u tijeku razvoj i trenutno podržava SSE servere.
+Azure Container Apps podržava postavljanje MCP poslužitelja. Još je u razvoju i trenutno podržava SSE poslužitelje.
 
-Evo kako to možete napraviti:
+Evo kako to možete učiniti:
 
 1. Klonirajte repozitorij:
 
@@ -45,7 +50,7 @@ Evo kako to možete napraviti:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Pokrenite lokalno za testiranje:
+1. Pokrenite ga lokalno za testiranje:
 
   ```sh
   uv venv
@@ -59,7 +64,7 @@ Evo kako to možete napraviti:
   uv run fastapi dev main.py
   ```
 
-1. Za lokalno isprobavanje, kreirajte *mcp.json* datoteku u direktoriju *.vscode* i dodajte sljedeći sadržaj:
+1. Za lokalno testiranje, stvorite datoteku *mcp.json* u direktoriju *.vscode* i dodajte sljedeći sadržaj:
 
   ```json
   {
@@ -83,15 +88,15 @@ Evo kako to možete napraviti:
   }
   ```
 
-  Kada se SSE server pokrene, možete kliknuti na ikonu za reprodukciju u JSON datoteci, sada biste trebali vidjeti da GitHub Copilot prepoznaje alate na serveru, vidite ikonu alata.
+  Nakon što se SSE poslužitelj pokrene, možete kliknuti ikonu za pokretanje u JSON datoteci, sada biste trebali vidjeti alate na poslužitelju koje prepoznaje GitHub Copilot, pogledajte ikonu alata.
 
-1. Za implementaciju, pokrenite sljedeću naredbu:
+1. Za postavljanje, pokrenite sljedeću naredbu:
 
   ```sh
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Eto, implementirajte lokalno, implementirajte u Azure slijedeći ove korake.
+Eto, postavite ga lokalno, postavite ga u Azure slijedeći ove korake.
 
 ## Dodatni resursi
 
@@ -102,11 +107,11 @@ Eto, implementirajte lokalno, implementirajte u Azure slijedeći ove korake.
 
 ## Što slijedi
 
-- Sljedeće: [Napredne teme servera](../10-advanced/README.md)
+- Sljedeće: [Napredne teme o poslužiteljima](../10-advanced/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden koristeći AI uslugu prevođenja [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba se smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nerazumijevanja ili pogrešne interpretacije proizašle iz korištenja ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -4,11 +4,11 @@
 
 Aquí aprenderás a usar herramientas que utilizan MCP. Tu experiencia usando estas herramientas mejorará a medida que conectes servidores MCP a ellas.
 
-## 🔗 Recursos Oficiales MCP
+## 🔗 Recursos Oficiales de MCP
 
 - 📘 [Documentación MCP](https://modelcontextprotocol.io/) – Tutoriales detallados y guías de usuario
-- 📜 [Especificación MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Arquitectura del protocolo y referencias técnicas
-- 🧑‍💻 [Repositorio GitHub MCP](https://github.com/modelcontextprotocol) – SDKs de código abierto, herramientas y ejemplos de código
+- 📜 [Especificación MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Arquitectura del protocolo y referencias técnicas
+- 🧑‍💻 [Repositorio MCP en GitHub](https://github.com/modelcontextprotocol) – SDKs de código abierto, herramientas y ejemplos de código
 - 🌐 [Comunidad MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Únete a las discusiones y contribuye a la comunidad
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Mejores prácticas de seguridad y mitigación de riesgos
 
@@ -16,18 +16,18 @@ Aquí aprenderás a usar herramientas que utilizan MCP. Tu experiencia usando es
 
 ## 🌟 Comunidad y Soporte
 
-### Obtén Ayuda
+### Obtener Ayuda
 
-- **Discord Azure AI**: [Únete para soporte experto](https://discord.com/invite/ByRwuEEgH4)
+- **Azure AI Discord**: [Únete para soporte experto](https://discord.com/invite/ByRwuEEgH4)
 - **Comunidad MCP**: [Únete a discusiones más amplias de MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 ¿Listo para Empezar?
 
-Comienza tu viaje con **[aplicación GitHub Copilot](./01-copilot-app/README.md)**
+Comienza tu viaje con la **[aplicación GitHub Copilot](./01-copilot-app/README.md)**
 
 ---
 
-*Domina estas herramientas usando MCP para una productividad mejorada e integración sin interrupciones.*
+*Domina estos usando MCP con estas herramientas para mayor productividad e integración sin fisuras.*
 
 ---
 

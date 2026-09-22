@@ -1,26 +1,26 @@
-# Tích hợp Model Context Protocol (MCP) với Microsoft Foundry
+# Tích hợp Giao thức Ngữ cảnh Mô hình (MCP) với Microsoft Foundry
 
-Hướng dẫn này trình bày cách tích hợp các máy chủ Model Context Protocol (MCP) với các đại lý Microsoft Foundry, cho phép điều phối công cụ mạnh mẽ và khả năng AI doanh nghiệp.
+Hướng dẫn này trình bày cách tích hợp các máy chủ Giao thức Ngữ cảnh Mô hình (MCP) với các tác nhân Microsoft Foundry, cho phép điều phối công cụ mạnh mẽ và khả năng AI doanh nghiệp.
 
 ## Giới thiệu
 
-Model Context Protocol (MCP) là một tiêu chuẩn mở giúp các ứng dụng AI kết nối an toàn với các nguồn dữ liệu và công cụ bên ngoài. Khi tích hợp với Microsoft Foundry, MCP cho phép các đại lý truy cập và tương tác với nhiều dịch vụ bên ngoài, API và nguồn dữ liệu theo cách chuẩn hóa.
+Giao thức Ngữ cảnh Mô hình (MCP) là một chuẩn mở cho phép các ứng dụng AI kết nối an toàn với các nguồn dữ liệu và công cụ bên ngoài. Khi tích hợp với Microsoft Foundry, MCP cho phép các tác nhân truy cập và tương tác với nhiều dịch vụ, API và nguồn dữ liệu bên ngoài theo cách tiêu chuẩn hóa.
 
-Sự tích hợp này kết hợp tính linh hoạt của hệ sinh thái công cụ MCP với khung đại lý mạnh mẽ của Microsoft Foundry, cung cấp các giải pháp AI cấp doanh nghiệp với khả năng tùy chỉnh rộng rãi.
+Sự tích hợp này kết hợp sự linh hoạt của hệ sinh thái công cụ MCP với khung tác nhân mạnh mẽ của Microsoft Foundry, cung cấp các giải pháp AI cấp doanh nghiệp với khả năng tùy chỉnh rộng rãi.
 
-**Lưu ý:** Nếu bạn muốn sử dụng MCP trong Dịch vụ Đại lý Microsoft Foundry, hiện tại chỉ hỗ trợ các khu vực sau: westus, westus2, uaenorth, southindia và switzerlandnorth
+**Lưu ý:** Nếu bạn muốn sử dụng MCP trong Dịch vụ Tác nhân Microsoft Foundry, hiện tại chỉ hỗ trợ các vùng sau: westus, westus2, uaenorth, southindia và switzerlandnorth
 
 ## Mục tiêu học tập
 
-Sau khi hoàn thành hướng dẫn này, bạn sẽ có thể:
+Khi hoàn thành hướng dẫn này, bạn sẽ có thể:
 
-- Hiểu về Model Context Protocol và những lợi ích của nó
-- Thiết lập các máy chủ MCP để sử dụng với đại lý Microsoft Foundry
-- Tạo và cấu hình đại lý với tích hợp công cụ MCP
-- Thực hiện các ví dụ thực tiễn sử dụng máy chủ MCP thật
-- Xử lý phản hồi và trích dẫn công cụ trong hội thoại đại lý
+- Hiểu Giao thức Ngữ cảnh Mô hình và lợi ích của nó
+- Thiết lập các máy chủ MCP để sử dụng với các tác nhân Microsoft Foundry
+- Tạo và cấu hình các tác nhân với tích hợp công cụ MCP
+- Triển khai các ví dụ thực tiễn sử dụng các máy chủ MCP thực tế
+- Xử lý phản hồi công cụ và trích dẫn trong hội thoại tác nhân
 
-## Yêu cầu trước
+## Các yêu cầu trước
 
 Trước khi bắt đầu, hãy đảm bảo bạn có:
 
@@ -29,20 +29,20 @@ Trước khi bắt đầu, hãy đảm bảo bạn có:
 - Azure CLI được cài đặt và cấu hình
 - Quyền thích hợp để tạo tài nguyên AI
 
-## Model Context Protocol (MCP) là gì?
+## Giao thức Ngữ cảnh Mô hình (MCP) là gì?
 
-Model Context Protocol là cách chuẩn hóa để các ứng dụng AI kết nối với các nguồn dữ liệu và công cụ bên ngoài. Các lợi ích chính bao gồm:
+Giao thức Ngữ cảnh Mô hình là một phương thức tiêu chuẩn hóa để các ứng dụng AI kết nối với các nguồn dữ liệu và công cụ bên ngoài. Những lợi ích chính bao gồm:
 
-- **Tích hợp chuẩn hóa**: Giao diện nhất quán trên các công cụ và dịch vụ khác nhau
+- **Tích hợp Tiêu chuẩn**: Giao diện nhất quán trên nhiều công cụ và dịch vụ khác nhau
 - **Bảo mật**: Cơ chế xác thực và ủy quyền an toàn
 - **Linh hoạt**: Hỗ trợ nhiều nguồn dữ liệu, API và công cụ tùy chỉnh
-- **Mở rộng**: Dễ dàng thêm các khả năng và tích hợp mới
+- **Mở rộng**: Dễ dàng thêm các tính năng và tích hợp mới
 
 ## Thiết lập MCP với Microsoft Foundry
 
-### Cấu hình môi trường
+### Cấu hình Môi trường
 
-Chọn môi trường phát triển mà bạn ưu tiên:
+Chọn môi trường phát triển bạn ưa thích:
 
 - [Triển khai Python](#triển-khai-python)
 - [Triển khai .NET](#codeblock5)
@@ -53,7 +53,7 @@ Chọn môi trường phát triển mà bạn ưu tiên:
 
 ***Lưu ý*** Bạn có thể chạy [notebook](./mcp_support_python.ipynb) này
 
-### 1. Cài đặt các gói cần thiết
+### 1. Cài đặt Gói Cần Thiết
 
 ```bash
 pip install azure-ai-projects -U
@@ -62,7 +62,7 @@ pip install azure-identity -U
 pip install mcp==1.11.0 -U
 ```
 
-### 2. Nhập các phụ thuộc
+### 2. Nhập Thư viện Phụ Thuộc
 
 ```python
 import os, time
@@ -71,7 +71,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. Cấu hình MCP
+### 3. Cấu hình Thiết lập MCP
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
@@ -93,11 +93,11 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Tùy chọn: chỉ định các công cụ được phép sử dụng
+    allowed_tools=[],  # Tùy chọn: chỉ định công cụ được phép sử dụng
 )
 ```
 
-### 6. Ví dụ Python hoàn chỉnh
+### 6. Ví dụ Python Hoàn chỉnh
 
 ```python
 with project_client:
@@ -113,7 +113,7 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Tạo luồng để giao tiếp
+    # Tạo luồng cho giao tiếp
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
@@ -182,21 +182,21 @@ with project_client:
 
 ***Lưu ý*** Bạn có thể chạy [notebook](./mcp_support_dotnet.ipynb) này
 
-### 1. Cài đặt các gói cần thiết
+### 1. Cài đặt Gói Cần Thiết
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
 #r "nuget: Azure.Identity, 1.14.2"
 ```
 
-### 2. Nhập các phụ thuộc
+### 2. Nhập Thư viện Phụ Thuộc
 
 ```csharp
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. Cấu hình
+### 3. Cấu hình Thiết lập
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -212,7 +212,7 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. Tạo Đại lý với Công cụ MCP
+### 5. Tạo Tác nhân với Công cụ MCP
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. Ví dụ .NET hoàn chỉnh
+### 6. Ví dụ .NET Hoàn chỉnh
 
 ```csharp
 // Create thread and message
@@ -297,15 +297,15 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## Tùy chọn cấu hình Công cụ MCP
+## Tùy chọn Cấu hình Công cụ MCP
 
-Khi cấu hình công cụ MCP cho đại lý, bạn có thể chỉ định một số tham số quan trọng:
+Khi cấu hình công cụ MCP cho tác nhân, bạn có thể chỉ định một số tham số quan trọng:
 
 ### Cấu hình Python
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Định danh cho máy chủ MCP
+    server_label="unique_server_name",      # Nhận dạng cho máy chủ MCP
     server_url="https://api.example.com/mcp", # Điểm cuối máy chủ MCP
     allowed_tools=[],                       # Tùy chọn: chỉ định các công cụ được phép
 )
@@ -322,7 +322,7 @@ MCPToolDefinition mcpTool = new(
 
 ## Xác thực và Headers
 
-Cả hai triển khai đều hỗ trợ headers tùy chỉnh cho việc xác thực:
+Cả hai triển khai đều hỗ trợ headers tùy chỉnh cho xác thực:
 
 ### Python
 ```python
@@ -335,38 +335,38 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Khắc phục sự cố phổ biến
+## Khắc phục Sự cố Thông thường
 
-### 1. Sự cố kết nối
-- Kiểm tra URL máy chủ MCP có thể truy cập được không
+### 1. Vấn đề Kết nối
+- Xác minh URL máy chủ MCP có thể truy cập
 - Kiểm tra thông tin xác thực
-- Đảm bảo kết nối mạng ổn định
+- Đảm bảo kết nối mạng
 
-### 2. Lỗi gọi công cụ
-- Kiểm tra các tham số và định dạng của công cụ
-- Kiểm tra yêu cầu riêng của máy chủ
-- Thực hiện xử lý lỗi thích hợp
+### 2. Lỗi Gọi Công cụ
+- Xem lại tham số và định dạng công cụ
+- Kiểm tra các yêu cầu riêng của máy chủ
+- Triển khai xử lý lỗi thích hợp
 
-### 3. Vấn đề hiệu năng
+### 3. Vấn đề Hiệu năng
 - Tối ưu hóa tần suất gọi công cụ
-- Sử dụng bộ nhớ đệm nếu phù hợp
-- Theo dõi thời gian phản hồi của máy chủ
+- Áp dụng bộ nhớ đệm khi thích hợp
+- Giám sát thời gian phản hồi máy chủ
 
-## Các bước tiếp theo
+## Bước Tiếp theo
 
-Để nâng cao hơn việc tích hợp MCP:
+Để nâng cao tích hợp MCP của bạn:
 
-1. **Khám phá Máy chủ MCP tùy chỉnh**: Xây dựng máy chủ MCP cho các nguồn dữ liệu độc quyền của bạn
-2. **Thực hiện bảo mật nâng cao**: Thêm OAuth2 hoặc cơ chế xác thực tùy chỉnh
-3. **Theo dõi và phân tích**: Triển khai ghi nhật ký và giám sát việc sử dụng công cụ
-4. **Mở rộng giải pháp**: Xem xét cân bằng tải và kiến trúc máy chủ MCP phân tán
+1. **Khám phá Máy chủ MCP Tùy chỉnh**: Xây dựng máy chủ MCP cho các nguồn dữ liệu độc quyền của bạn
+2. **Triển khai Bảo mật Nâng cao**: Thêm OAuth2 hoặc cơ chế xác thực tùy chỉnh
+3. **Giám sát và Phân tích**: Triển khai ghi log và giám sát việc sử dụng công cụ
+4. **Mở rộng Giải pháp**: Xem xét cân bằng tải và kiến trúc máy chủ MCP phân tán
 
-## Tài nguyên bổ sung
+## Tài nguyên Bổ sung
 
 - [Tài liệu Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
-- [Mẫu Model Context Protocol](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
-- [Tổng quan Đại lý Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [Thông số MCP](https://spec.modelcontextprotocol.io/)
+- [Ví dụ về Giao thức Ngữ cảnh Mô hình](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Tổng quan về Tác nhân Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
+- [Đặc tả MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Hỗ trợ
 
@@ -374,9 +374,9 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 - Xem lại [tài liệu Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
 - Kiểm tra [tài nguyên cộng đồng MCP](https://modelcontextprotocol.io/)
 
-## Tiếp theo
+## Tiếp theo là gì
 
-- [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
+- [5.14 Kỹ thuật Ngữ cảnh MCP](../mcp-contextengineering/README.md)
 
 ---
 

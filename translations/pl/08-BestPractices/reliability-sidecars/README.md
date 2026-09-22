@@ -236,7 +236,6 @@ Przewidź wynik przed uruchomieniem testów:
 | Path | Result after retry | Ticket count |
 | --- | --- | --- |
 | Blind retry | Tworzy `T-0002` po utracie odpowiedzi dla `T-0001` | 2 |
-
 | Chroniona próba ponowienia | Znajduje i zwraca `T-0001` | 1 |
 
 Uruchom:

@@ -1,193 +1,214 @@
-# MCP Saugumo Geriausios Praktikos 2025
+# MCP saugumo gerosios praktikos – 2026 m. rugsėjo atnaujinimas
 
-Ši išsami instrukcija aprašo pagrindines saugumo geriausias praktikas, skirtas Modelio Konteksto Protokolo (MCP) sistemų įgyvendinimui, remiantis naujausia **MCP Specifikacija 2025-11-25** ir dabartiniais pramonės standartais. Šios praktikos apima tiek tradicines saugumo problemas, tiek su dirbtiniu intelektu susijusias grėsmes, būdingas MCP diegimams.
+Ši išsami gidas aprašo svarbiausias saugumo gerąsias praktikas, skirtas
+diegiant Model Context Protocol (MCP) sistemas, remiantis
+**MCP specifikacija 2026-07-28** ir dabartinėmis pramonės standartais. Šios
+praktikos sprendžia tiek tradicines saugumo problemas, tiek AI specifinius grėsmes,
+būdingas MCP diegimams.
 
-## Kritiniai Saugumo Reikalavimai
+## Kritiniai saugumo reikalavimai
 
-### Privalomi Saugumo Kontrolės Elementai (PRIVALOMA)
+### Privalomi saugumo kontrolės (PRIVALOMA reikalavimai)
 
-1. **Žetonų Patvirtinimas**: MCP serveriai **NETURI** priimti jokių žetonų, kurie nebuvo aiškiai išduoti būtent pačiam MCP serveriui  
-2. **Autorizacijos Patikra**: MCP serveriai, įgyvendinantys autorizaciją, **PRIVALO** tikrinti VISUS gaunamus užklausimus ir **NETURI** naudoti sesijų autentifikacijai  
-3. **Vartotojo Sutikimas**: MCP proxy serveriai, naudojantys statinius klientų ID, **PRIVALO** gauti aiškų vartotojo sutikimą kiekvienam dinamiškai registruotam klientui  
-4. **Saugūs Sesijos ID**: MCP serveriai **PRIVALO** naudoti kriptografiškai saugius, nedeterministinius sesijos ID, sugeneruotus su saugiais atsitiktinių skaičių generatoriais  
+1. **Žetonų patikra**: MCP serveriai **NETURI** priimti jokių žetonų, kurie nebuvo aiškiai išduoti MCP serveriui pačiam
+2. **Autorizacijos patikra**: MCP serveriai, įgyvendinantys autorizaciją, **PRIVALO** patikrinti VISUS gaunamus užklausimus ir **NETURI** naudoti sesijų autentifikacijai  
+3. **Vartotojo sutikimas**: MCP tarpiniai serveriai, naudojantys statinius tretiesiems šalims priklausančius klientų ID, **PRIVALO** gauti aiškų sutikimą kiekvienam MCP klientui prieš perduodant autorizacijos srautą
+4. **Valstybės valdiklio saugumas**: MCP serveriai **NETURI** traktuoti turėjimo aplikacijos valstybės valdiklio kaip autentifikacijos ir **PRIVALO** autorizuoti kiekvieną užklausimą, kuris jį naudoja
 
-## Pagrindinės Saugumo Praktikos
 
-### 1. Įvesties Patikra ir Sanitarizavimas
-- **Išsami Įvesties Patikra**: Patikrinti ir sanitarizuoti visą įvestį, kad būtų išvengta injekcijos atakų, „confused deputy“ problemų ir įvedimo per klaidą (prompt injection) pažeidžiamumų  
-- **Parametrų Schemos Taikymas**: Diegti griežtą JSON schemos validavimą visiems įrankių parametrams ir API įvestims  
-- **Turinio Filtravimas**: Naudoti Microsoft Prompt Shields ir Azure Content Safety, kad filtruotumėte kenksmingą turinį klausdami ir atsakymuose  
-- **Išvesties Sanitarizavimas**: Tikrinti ir sanitarizuoti visas modelio išvestis prieš jas pateikiant vartotojams ar tolimesnėms sistemoms  
 
-### 2. Autentifikacijos ir Autorizacijos Tobulumas  
-- **Išoriniai Tapatybės Teikėjai**: Atiduoti autentifikaciją patikrintiems tapatybės teikėjams (Microsoft Entra ID, OAuth 2.1 teikėjams), o ne kurti kitokią autentifikaciją  
-- **Detalios Leidimų Valdymas**: Naudoti smulkų, įrankiui specifinį leidimų valdymą pagal mažiausios privilegijos principą  
-- **Žetonų Gyvavimo Valdymas**: Naudoti trumpalaikius prieigos žetonus su saugiu atnaujinimu ir tinkamu auditorijos tikrinimu  
-- **Daugelio Veiksnių Autentifikacija**: Reikalauti MFA visam administraciniam patekimui ir jautrioms operacijoms  
+## Pagrindinės saugumo praktikos
 
-### 3. Saugūs Ryšio Protokolai
-- **Transporto Sluoksnio Saugumas**: Naudoti HTTPS/TLS 1.3 visiems MCP ryšiams su tinkamu sertifikatų tikrinimu  
-- **Galo iki Galo Šifravimas**: Įgyvendinti papildomus šifravimo sluoksnius itin jautriems duomenims perduodant ir saugant  
-- **Sertifikatų Valdymas**: Užtikrinti sertifikatų gyvavimo ciklo valdymą su automatiniu atnaujinimu  
-- **Protokolo Versijos Laikymasis**: Naudoti dabartinę MCP protokolo versiją (2025-11-25) su tinkamu versijos derinimu  
+### 1. Įvesties patikra ir valymas
+- **Išsami įvesties patikra**: Tikrinkite ir išvalykite visas įvestis, kad išvengtumėte įpurškimo atakų, painiavos atstovo problemų ir užklausų įpurškimo pažeidžiamumų
+- **Parametrų schemos laikymasis**: Įgyvendinkite griežtą JSON schemos patikrinimą visiems įrankių parametrams ir API įvestims
+- **Turinio filtravimas**: Naudokite Microsoft Prompt Shields ir Azure Content Safety, kad filtruotumėte kenksmingą turinį užklausose ir atsakymuose
+- **Išvesties valymas**: Patikrinkite ir išvalykite visus modelio išvestis prieš pateikdami vartotojams arba žemiau esantiems sistemoms
 
-### 4. Išplėstinė Dažnio Apribojimas ir Išteklių Apsauga
-- **Daugiapakopis Dažnio Apribojimas**: Įgyvendinti apribojimus vartotojo, sesijos, įrankio ir išteklių lygiuose, kad išvengti piktnaudžiavimo  
-- **Adaptuojamas Dažnio Apribojimas**: Naudoti mašininio mokymosi metodu pagrįstą dažnio apribojimą, kuris prisitaiko prie naudojimo modelių ir grėsmių požymių  
-- **Išteklių Kvotų Valdymas**: Nustatyti tinkamus apribojimus skaičiavimo ištekliams, atminčiai ir vykdymo laikui  
-- **DDoS Apsauga**: Diegti išsamią DDoS apsaugą ir srauto analizės sistemas  
+### 2. Autentifikacijos ir autorizacijos tobulinimas  
+- **Išoriniai tapatybės tiekėjai**: Atiduokite autentifikaciją užtikrintiems tapatybės tiekėjams (Microsoft Entra ID, OAuth 2.1 tiekėjai), o ne įgyvendinkite pasirinktines autentifikacijas
+- **Klientų registracija**: Pirmenybę teikite Kliento ID metaduomenų dokumentams arba išankstinei registracijai; naudokite pasenusią Dinaminę kliento registraciją tik suderinamumo tikslais
+- **Smulkios granularumo teisės**: Įgyvendinkite griežtas, įrankiui specifines teises, vadovaudamiesi mažiausios privilegijos principu
+- **Žetonų gyvavimo ciklo valdymas**: Naudokite trumpalaikius prieigos žetonus su saugiu sukimų ir tinkamu auditorijos patikrinimu
+- **Daugiaveiksmė autentifikacija**: Reikalaukite MFA visam administraciniam prieigai ir jautrioms operacijoms
 
-### 5. Išsamus Audito Registravimas ir Stebėsena
-- **Struktūruotas Audito Registravimas**: Įgyvendinti detalizuotas, paieškai tinkamas žurnalų sistemas visoms MCP operacijoms, įrankių vykdymui ir saugumo įvykiams  
-- **Realiojo Laiko Saugumo Stebėsena**: Diegti SIEM sistemas su DI pagrįsta anomalijų aptikimu MCP darbo krūviams  
-- **Privatumą Gerbiantis Registravimas**: Registruoti saugumo įvykius gerbiant duomenų privatumo reikalavimus ir reglamentus  
-- **Incidentų Valdymo Integracija**: Susieti žurnalų sistemas su automatizuotomis įvykių reagavimo darbo eigomis  
+### 3. Saugūs komunikacijos protokolai
+- **Perdavimo sluoksnio saugumas (TLS)**: Naudokite HTTPS su tinkama sertifikatų patikra nuotolinėms HTTP MCP komunikacijoms; naudokite proceso izoliaciją ir aplinkos kredencialus vietiniams stdio serveriams
+ 
+ 
+- **Galinis šifravimas**: Įgyvendinkite papildomas šifravimo sluoksnius itin jautriems duomenims tranzite ir ramybės būsenoje
+- **Sertifikatų valdymas**: Užtikrinkite tinkamą sertifikatų gyvavimo ciklo valdymą su automatizuotais atnaujinimo procesais
+- **Protokolo versijos laikymasis**: Naudokite MCP `2026-07-28`, įtraukite privalomą versijos metaduomenį kiekviename užklausoje ir atminkite nepalaikomas versijas
 
-### 6. Patobulintos Saugios Saugojimo Praktikos
-- **Aparatinės Saugumo Moduliai**: Naudoti HSM pagrįstą raktų saugyklą (Azure Key Vault, AWS CloudHSM) kritinėms kriptografijos operacijoms  
-- **Šifravimo Raktų Valdymas**: Įgyvendinti tinkamą raktų sukimą, atskyrimą ir prieigos kontrolę šifravimo raktams  
-- **Slapčių Valdymas**: Laikyti visus API raktus, žetonus ir kredencialus specializuotose slapčių valdymo sistemose  
-- **Duomenų Klasifikavimas**: Klasifikuoti duomenis pagal jautrumo lygį ir taikyti tinkamas apsaugos priemones  
 
-### 7. Išplėstinė Žetonų Valdymas
-- **Žetonų Persiuntimo Užkardymas**: Aiškiai uždrausti modelius, kuriuose žetonai apeina saugumo kontrolę  
-- **Auditorijos Validacija**: Visada tikrinti, ar žetono auditorijos teiginiai atitinka ketinamo MCP serverio tapatybę  
-- **Teiginių Pagrindu Autorizacija**: Įgyvendinti smulkią autorizaciją pagal žetono teiginius ir vartotojo atributus  
-- **Žetonų Susiejimas**: Pririšti žetonus prie konkrečių sesijų, vartotojų ar įrenginių, kai tai tinka  
+### 4. Išplėstinis ribojimas pagal dažnį ir išteklių apsauga
+- **Daugiasluoksnis dažnio ribojimas**: Įgyvendinkite dažnio ribojimą pagal vartotoją, kredencialą, operaciją, įrankį ir išteklius, kad būtų užkirstas kelias piktnaudžiavimui
+  
+- **Adaptacinis dažnio ribojimas**: Naudokite mašininio mokymosi pagrįstą dažnio ribojimą, kuris prisitaiko prie naudojimo modelių ir grėsmių indikatorių
+- **Išteklių kvotų valdymas**: Nustatykite tinkamus apribojimus skaičiavimo ištekliams, atminčiai ir vykdymo laikui
+- **DDoS apsauga**: Diegkite išsamią DDoS apsaugą ir srauto analizės sistemas
 
-### 8. Saugus Sesijos Valdymas
-- **Kriptografiniai Sesijos ID**: Generuoti sesijos ID naudojant kriptografiškai saugius atsitiktinių skaičių generatorius (neprognozuojamus sekas)  
-- **Vartotojo Specifinis Susiejimas**: Susieti sesijos ID su vartotojo informacija naudojant saugius formatus, pvz., `<user_id>:<session_id>`  
-- **Sesijos Gyvavimo Valdymas**: Įgyvendinti tinkamą sesijos galiojimo pabaigos, sukimo ir nebegaliojimo mechanizmus  
-- **Sesijos Saugumo Antraštės**: Naudoti tinkamas HTTP saugumo antraštes sesijos apsaugai  
+### 5. Išsamus žurnalavimas ir stebėsena
+- **Struktūruotas audito žurnalavimas**: Įgyvendinkite detalius, paieškai pritaikytus žurnalus visoms MCP operacijoms, įrankių vykdymams ir saugumo įvykiams
+- **Realiojo laiko saugumo stebėsena**: Diegkite SIEM sistemas su AI pagrįsta anomalijų aptikimu MCP darbo krūviams
+- **Privatumo atitinkamas žurnalavimas**: Žurnaluokite saugumo įvykius, laikydamiesi duomenų privatumo reikalavimų ir reglamentų
+- **Incidentų reagavimo integracija**: Sujunkite žurnalų sistemas su automatizuotais incidentų reagavimo srautais
 
-### 9. AI-Specifinės Saugumo Kontrolės
-- **Injekcijos Įvedimų Gynyba**: Diegti Microsoft Prompt Shields su spotlightinimu, atskyrimo ženklais ir duomenų žymėjimo metodais  
-- **Įrankių Užnuodijimo Prevencija**: Tikrinti įrankių metaduomenis, stebėti dinamiškus pakeitimus ir tikrinti įrankių vientisumą  
-- **Modelio Išvesties Patikra**: Skenuoti modelio išvestis dėl galimų duomenų nutekėjimo, žalingo turinio ar saugumo politikos pažeidimų  
-- **Konteksto Langų Apsauga**: Įgyvendinti kontrolę, kad nebūtų užnuodytas ar manipuliuotas konteksto langas  
+### 6. Patobulintos saugios saugojimo praktikos
+- **Aparatiniai saugumo moduliai**: Naudokite HSM pagrįstą raktų saugojimą (Azure Key Vault, AWS CloudHSM) kritinėms kriptografinėms operacijoms
+- **Šifravimo raktų valdymas**: Įgyvendinkite tinkamą raktų sukimą, atskyrimą ir prieigos valdymą šifravimo raktams
+- **Slapčių valdymas**: Saugojite visus API raktus, žetonus ir kredencialus skirtingose slapčių valdymo sistemose
+- **Duomenų klasifikavimas**: Klasifikuokite duomenis pagal jautrumo lygius ir taikykite tinkamas apsaugos priemones
 
-### 10. Įrankių Vykdymo Saugumas
-- **Vykdymo Aplinka**: Vykdyti įrankius izoliuotose konteinerizuotose aplinkose su išteklių apribojimais  
-- **Privilegijų Atgarsis**: Vykdyti įrankius su minimaliomis reikalingomis privilegijomis ir atskirais servisų paskyromis  
-- **Tinklo Izoliacija**: Diegti tinklo segmentaciją įrankių vykdymo aplinkoms  
-- **Vykdymo Stebėsena**: Stebėti įrankių vykdymą dėl anomalijų, išteklių naudojimo ir saugumo pažeidimų  
+### 7. Išplėstinis žetonų valdymas
+- **Žetonų perleidimo prevencija**: Aiškiai uždrauskite žetonų perleidimo schemas, kurios prasilenkia su saugumo kontrolėmis
+- **Auditorijos tikrinimas**: Visada tikrinkite, kad žetonų auditorijos teiginiai atitiktų numatytą MCP serverio tapatybę
+- **Autorizacija pagal teiginius**: Įgyvendinkite smulkią autorizaciją remiantis žetonų teiginiais ir vartotojų atributais
+- **Žetonų siejimas**: Patikrinkite, kad žetonai yra skirti numatytiems MCP ištekliams ir
+	pasirinkite aplikacijos valstybės valdiklius serverio pusėje prie autentifikuoto subjekto
 
-### 11. Nuolatinė Saugumo Patikra
-- **Automatizuotas Saugumo Testavimas**: Integruoti saugumo testavimą į CI/CD procesus su tokiais įrankiais kaip GitHub Advanced Security  
-- **Pažeidžiamumų Valdymas**: Reguliariai tikrinti visas priklausomybes, įskaitant DI modelius ir išorines paslaugas  
-- **Įsiskverbimo Testavimas**: Reguliariai vykdyti saugumo įvertinimus, ypač MCP diegimams  
-- **Saugumo Kodo Apžvalgos**: Įgyvendinti privalomas saugumo apžvalgas visiems MCP susijusiems kodo pakeitimams  
+### 8. Saugūs aplikacijos valstybės valdikliai
 
-### 12. Tiekimo Grandinės Saugumas AI
-- **Komponentų Patvirtinimas**: Tikrinti visų DI komponentų (modelių, įterpimų, API) kilmę, vientisumą ir saugumą  
-- **Priklausomybių Valdymas**: Palaikyti atnaujintas visų programinės įrangos ir DI priklausomybių inventorizacijas su pažeidžiamumo sekimu  
-- **Patikimi Saugyklos Šaltiniai**: Naudoti patikrintus, patikimus šaltinius visiems DI modeliams, bibliotekoms ir įrankiams  
-- **Tiekimo Grandinės Stebėsena**: Nuolat stebėti DI paslaugų teikėjų ir modelių saugyklų kompromisus  
+- **Kriptografiniai valstybės valdikliai**: Generuokite nepermatomus, nedeterministinius valdiklius
+	valstybei, apimančiai užklausas
+- **Vartotojui priskyrimas**: Priskirkite kiekvieną valdiklį serverio pusėje autentifikuotam
+	subjektui; nepasitikėkite vartotojo ID, pateiktu klientui
+- **Gyvavimo ciklo valdymas**: Pasibaigus ir atšaukus valdiklius, apibrėžkite, kaip kvietėjai
+	atgauna pasenusią valstybę
+- **Autorizacijos kiekvienam užklausimui**: Patikrinkite autorizaciją kiekvieną kartą, kai pateikiamas valdiklis; valdiklis yra vardas, ne kredencialas
 
-## Pažangios Saugumo Architektūros Modeliai
 
-### Nulinės Pasitikėjimo Architektūra MCP
-- **Niekada nepasitikėti, visada tikrinti**: Diegti nuolatinį patikrinimą visiems MCP dalyviams  
-- **Mikrosegmentacija**: Izoliuoti MCP komponentus su smulkiais tinklo ir tapatybės valdikliais  
-- **Sąlyginė Prieiga**: Diegti rizika pagrįstą prieigos valdymą, kuris prisitaiko prie konteksto ir elgsenos  
-- **Nuolatinė Rizikos Įvertinimas**: Dinamiškai vertinti saugumo būklę pagal dabartinius grėsmių požymius  
+### 9. AI specifinės saugumo kontrolės
+- **Užklausų įpurškimo gynyba**: Diegkite Microsoft Prompt Shields su apšvietimu, ribotuvais ir duomenų žymėjimo technikomis
+- **Įrankių užnuodijimo prevencija**: Tikrinkite įrankių metaduomenis, stebėkite dinamiškus pokyčius ir patikrinkite įrankių vientisumą
+- **Modelio išvesties patikra**: Nuskaitykite modelio išvestis dėl galimo duomenų nutekėjimo, žalingo turinio arba saugumo politikos pažeidimų
+- **Konteksto lango apsauga**: Įgyvendinkite kontrolės priemones, kad išvengtumėte konteksto lango užnuodijimo ir manipuliacijų atakų
 
-### Privatumo Apsaugotas DI Įgyvendinimas
-- **Duomenų Minimalizavimas**: Atverti tik būtiniausius duomenis kiekvienai MCP operacijai  
-- **Diferencinė Privatumas**: Naudoti privatumą saugančias technikas jautrių duomenų apdorojimui  
-- **Homomorfinis Šifravimas**: Taikyti pažangias šifravimo metodikas saugiam skaičiavimui šifruotuose duomenyse  
-- **Federuotas Mokymasis**: Įgyvendinti paskirstyto mokymosi metodus, saugančius duomenų lokalumą ir privatumą  
+### 10. Įrankių vykdymo saugumas
+- **Vykdymo smėlio dėžės**: Vykdykite įrankių operacijas konteinerizuotose, izoliuotose aplinkose su išteklių ribojimu
+- **Privilegijų atskyrimas**: Vykdykite įrankius su minimaliomis reikiamomis privilegijomis ir atskirais paslaugų paskyromis
+- **Tinklo izoliacija**: Įgyvendinkite tinklo segmentavimą įrankių vykdymo aplinkoms
+- **Vykdymo stebėsena**: Stebėkite įrankių vykdymą dėl anomalios elgsenos, resursų naudojimo ir saugumo pažeidimų
 
-### AI Sistemų Incidentų Valdymas
-- **DI-specifinės Incidentų Procedūros**: Parengti incidentų valdymo procedūras pritaikytas DI ir MCP grėsmėms  
-- **Automatizuotas reagavimas**: Įgyvendinti automatizuotus sulaikymo ir šalinimo veiksmus dažniausiems DI saugumo incidentams  
-- **Teisėsaugos Galimybės**: Palaikyti pasiruošimą teismo ekspertizėms DI sistemų pažeidimo ir duomenų nutekėjimo atvejais  
-- **Atsistatymo Procedūros**: Nustatyti procedūras DI modelių užnuodijimo, įvedimo injekcijos atakų ir paslaugų pažeidimų atkūrimui  
+### 11. Nuolatinė saugumo patikra
+- **Automatizuotas saugumo testavimas**: Integruokite saugumo testavimą į CI/CD procesus su tokiais įrankiais kaip GitHub Advanced Security
+- **Pažeidžiamumo valdymas**: Reguliariai tikrinkite visas priklausomybes, įskaitant AI modelius ir išorines paslaugas
+- **Proveržimo testavimas**: Reguliariai vykdykite saugumo vertinimus, skirtus MCP įgyvendinimams
+- **Saugumo kodo peržiūros**: Įgyvendinkite privalomas saugumo peržiūras visiems MCP susijusiems kodo pakeitimams
 
-## Įgyvendinimo Ištekliai ir Standartai
+### 12. Tiekimo grandinės saugumas AI
+- **Komponentų patikra**: Patikrinkite visų AI komponentų (modelių, įterpimų, API) kilmę, vientisumą ir saugumą
+- **Priklausomybių valdymas**: Laikykite atnaujintas visų programinės įrangos ir AI priklausomybių apskaitas su pažeidžiamumo stebėsena
+- **Patikimos saugyklos**: Naudokite patikrintus, patikimus šaltinius visiems AI modeliams, bibliotekoms ir įrankiams
+- **Tiekimo grandinės stebėsena**: Nuolat stebėkite AI paslaugų tiekėjų ir modelių saugyklų kompromitavimus
 
-### 🏔️ Praktiniai Saugumo Mokymai
-- **[MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)** - Išsamus praktinis seminaras apie MCP serverių apsaugą Azure aplinkoje  
-- **[OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)** - Referencinė architektūra ir OWASP MCP Top 10 įgyvendinimo gairės  
 
-### Oficiali MCP Dokumentacija
-- [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) - Dabartinės MCP protokolo specifikacijos  
-- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices) - Oficiali saugumo gairė  
-- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) - Autentifikacijos ir autorizacijos modeliai  
-- [MCP Transport Security](https://modelcontextprotocol.io/specification/2025-11-25/transports/) - Transporto sluoksnio saugumo reikalavimai  
+## Pažangūs saugumo modeliai
 
-### Microsoft Saugumo Sprendimai
-- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Pažangi apsauga nuo įvedimo injekcijų   
-- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Išsamus DI turinio filtravimas  
-- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Įmonių tapatybės ir prieigos valdymas  
-- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Saugus slapčių ir kredencialų valdymas  
-- [GitHub Advanced Security](https://github.com/security/advanced-security) - Tiekimo grandinės ir kodo saugumo skanavimas  
+### Nulinės pasitikėjimo architektūra MCP
+- **Niekada nepasitikėti, visada tikrinti**: Įgyvendinkite nuolatinį patvirtinimą visiems MCP dalyviams
+- **Mikrosektuotė**: Izoliuokite MCP komponentus naudodami smulkias tinklo ir tapatybės kontrolės priemones
+- **Sąlyginis prieigos valdymas**: Įgyvendinkite rizika pagrįstas prieigos kontrolės priemones, kurios prisitaiko prie konteksto ir elgesio
+- **Nuolatinė rizikos vertinimas**: Dinamiškai vertinkite saugumo būklę remdamiesi esamais grėsmių rodikliais
 
-### Saugumo Standartai ir Sistemos
-- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Dabartinės OAuth saugumo gairės  
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Interneto programų saugumo rizikos  
-- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - DI specifinės saugumo rizikos  
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Išsamus DI rizikos valdymas  
-- [ISO 27001:2022](https://www.iso.org/standard/27001) - Informacijos saugumo valdymo sistemos  
+### Privatumą saugančios dirbtinio intelekto įgyvendinimas
+- **Duomenų minimalizavimas**: Atverkite tik minimumą reikalingų duomenų kiekvienam MCP veiksmui
+- **Diferencinė privatumas**: Įgyvendinkite privatumą saugančias metodikas jautriems duomenų apdorojimams
+- **Homomorfinis šifravimas**: Naudokite pažangias šifravimo technikas saugiam skaičiavimui užšifruotuose duomenyse
+- **Federuotas mokymasis**: Įgyvendinkite paskirstyto mokymosi metodus, kurie saugo duomenų vietiškumą ir privatumą
 
-### Įgyvendinimo Vadovai ir Pamokos
-- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Įmonių autentifikacijos modeliai  
-- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Tapatybės teikėjo integracija  
-- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Žetonų valdymo geriausios praktikos  
-- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Pažangūs šifravimo modeliai  
+### Incidentų reagavimas dirbtinio intelekto sistemoms
+- **Dirbtinio intelekto specialios incidentų procedūros**: Sukurkite incidentų reagavimo procedūras, pritaikytas dirbtinio intelekto ir MCP grėsmėms
+- **Automatinis reagavimas**: Įgyvendinkite automatizuotą užkardymą ir pašalinimą dažnoms dirbtinio intelekto saugumo incidentų situacijoms  
+- **Teisėsaugos galimybės**: Palaikykite teisėsaugos pasirengimą dirbtinio intelekto sistemų pažeidimams ir duomenų nutekėjimams
+- **Atstatymo procedūros**: Nustatykite procedūras atstatymui po dirbtinio intelekto modelių užnuodijimo, užklausų injekcijų atakų ir paslaugų pažeidimų
 
-### Pažangūs Saugumo Ištekliai
-- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Saugios kūrimo praktikos  
-- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - DI specifiško saugumo testavimas  
-- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - DI grėsmių modeliavimo metodika  
-- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Privatumo saugančios DI technologijos  
+## Įgyvendinimo ištekliai ir standartai
 
-### Atitiktis ir Valdymas
-- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Privatumo atitiktis DI sistemose  
-- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Atsakingas DI įgyvendinimas  
-- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Saugumo kontrolės DI paslaugų teikėjams  
-- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Sveikatos priežiūros DI atitikties reikalavimai  
+### 🏔️ Praktiniai saugumo mokymai
+- **[MCP Security Summit Workshop (Sherpa)](https://azure-samples.github.io/sherpa/)** - Išsamus praktinis dirbtuvės MCP serverių apsaugai Azure
+- **[OWASP MCP Azure Security Guide](https://microsoft.github.io/mcp-azure-security-guide/)** - Referencinė architektūra ir OWASP MCP Top 10 įgyvendinimo gairės
 
-### DevSecOps ir Automatizavimas
-- [DevSecOps Pipeline for AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Saugūs DI kūrimo procesai  
-- [Automated Security Testing](https://learn.microsoft.com/security/engineering/devsecops) - Nuolatinė saugumo patikra  
-- [Infrastructure as Code Security](https://learn.microsoft.com/security/engineering/infrastructure-security) - Saugus infrastruktūros diegimas  
-- [Container Security for AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - DI užduočių konteinerizacijos saugumas  
+### Oficialūs MCP dokumentai
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Dabartinė MCP protokolo specifikacija
+- [MCP Security Best Practices](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices) - Oficialios saugumo gairės
+- [MCP Authorization Specification](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization) - HTTP autorizacijos modeliai
+- [MCP Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/) - Transporto reikalavimai
 
-### Stebėsena ir Incidentų Valdymas  
-- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview) - Išsamūs stebėjimo sprendimai  
-- [AI Security Incident Response](https://learn.microsoft.com/security/compass/incident-response-playbooks) - DI specifiškos incidentų procedūros  
-- [SIEM for AI Systems](https://learn.microsoft.com/azure/sentinel/overview) - Saugumo informacijos ir įvykių valdymas  
-- [Threat Intelligence for AI](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - DI grėsmės žvalgybos šaltiniai  
+### Microsoft saugumo sprendimai
+- [Microsoft Prompt Shields](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection) - Pažangus užklausų injekcijų apsaugos sprendimas
+- [Azure Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) - Išsamus dirbtinio intelekto turinio filtravimas
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow) - Įmonių tapatybės ir prieigos valdymas
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts) - Saugus slaptažodžių ir kredencialų valdymas
+- [GitHub Advanced Security](https://github.com/security/advanced-security) - Tiekimo grandinės ir kodo saugumo nuskaitymas
 
-## 🔄 Nuolatinis Tobulėjimas
+### Saugumo standartai ir sistemos
+- [OAuth 2.1 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics) - Dabartinės OAuth saugumo gairės
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Interneto programų saugumo rizikos
+- [OWASP Top 10 for LLMs](https://genai.owasp.org/download/43299/?tmstv=1731900559) - Dirbtiniam intelektui specifinės saugumo rizikos
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - Išsamus dirbtinio intelekto rizikos valdymas
+- [ISO 27001:2022](https://www.iso.org/standard/27001) - Informacijos saugumo valdymo sistemos
 
-### Laikyti atnaujinimus su besikeičiančiais standartais
-- **MCP Specifikacijos Atnaujinimai**: Stebėti oficialius MCP specifikacijos pakeitimus ir saugumo įspėjimus  
-- **Grėsmių Žvalgyba**: Užsiprenumeruoti DI saugumo grėsmių informacijos srautus ir pažeidžiamumų duomenų bazes  
-- **Bendruomenės įsitraukimas**: Dalyvauti MCP saugumo bendruomenės diskusijose ir darbo grupėse
-- **Reguliarus vertinimas**: Kas ketvirtį atlikti saugumo būklės vertinimus ir atnaujinti praktiką pagal tai
+### Įgyvendinimo vadovai ir pamokos
+- [Azure API Management as MCP Auth Gateway](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690) - Įmonių autentifikacijos modeliai
+- [Microsoft Entra ID with MCP Servers](https://den.dev/blog/mcp-server-auth-entra-id-session/) - Tapatybės tiekėjo integracija
+- [Secure Token Storage Implementation](https://youtu.be/uRdX37EcCwg?si=6fSChs1G4glwXRy2) - Geriausios žetonų valdymo praktikos
+- [End-to-End Encryption for AI](https://learn.microsoft.com/azure/architecture/example-scenario/confidential/end-to-end-encryption) - Pažangūs šifravimo modeliai
+
+### Pažangūs saugumo ištekliai
+- [Microsoft Security Development Lifecycle](https://www.microsoft.com/sdl) - Saugios programinės įrangos kūrimo praktikos
+- [AI Red Team Guidance](https://learn.microsoft.com/security/ai-red-team/) - Dirbtinio intelekto specifinis saugumo testavimas
+- [Threat Modeling for AI Systems](https://learn.microsoft.com/security/adoption/approach/threats-ai) - Dirbtinio intelekto grėsmių modeliavimo metodika
+- [Privacy Engineering for AI](https://www.microsoft.com/security/blog/2021/07/13/microsofts-pet-project-privacy-enhancing-technologies-in-action/) - Privatumą saugančios dirbtinio intelekto technikos
+
+### Atitiktis ir valdymas
+- [GDPR Compliance for AI](https://learn.microsoft.com/compliance/regulatory/gdpr-data-protection-impact-assessments) - Privatumo atitiktis dirbtinio intelekto sistemose
+- [AI Governance Framework](https://learn.microsoft.com/azure/architecture/guide/responsible-ai/responsible-ai-overview) - Atsakingo dirbtinio intelekto įgyvendinimas
+- [SOC 2 for AI Services](https://learn.microsoft.com/compliance/regulatory/offering-soc) - Saugumo kontrolės dirbtinio intelekto paslaugų tiekėjams
+- [HIPAA Compliance for AI](https://learn.microsoft.com/compliance/regulatory/offering-hipaa-hitech) - Sveikatos priežiūros dirbtinio intelekto atitikties reikalavimai
+
+### DevSecOps ir automatizavimas
+- [DevSecOps Pipeline for AI](https://learn.microsoft.com/azure/devops/migrate/security-validation-cicd-pipeline) - Saugūs dirbtinio intelekto vystymo vamzdynai
+- [Automated Security Testing](https://learn.microsoft.com/security/engineering/devsecops) - Nuolatinė saugumo patikra
+- [Infrastructure as Code Security](https://learn.microsoft.com/security/engineering/infrastructure-security) - Saugus infrastruktūros diegimas
+- [Container Security for AI](https://learn.microsoft.com/azure/container-instances/container-instances-image-security) - Dirbtinio intelekto darbo konteinerių saugumas
+
+### Stebėjimas ir incidentų valdymas  
+- [Azure Monitor for AI Workloads](https://learn.microsoft.com/azure/azure-monitor/overview) - Išsamūs stebėjimo sprendimai
+- [AI Security Incident Response](https://learn.microsoft.com/security/compass/incident-response-playbooks) - Dirbtiniam intelektui skirtos incidentų procedūros
+- [SIEM for AI Systems](https://learn.microsoft.com/azure/sentinel/overview) - Saugumo informacijos ir įvykių valdymas
+
+- [Grėsmės žvalgyba dirbtiniam intelektui](https://learn.microsoft.com/security/compass/security-operations-videos-and-decks#threat-intelligence) - DI grėsmių žvalgybos ištekliai
+
+## 🔄 Nuolatinis tobulinimas
+
+### Sekite besikeičiančius standartus
+- **MCP specifikacijos atnaujinimai**: stebėkite oficialius MCP specifikacijos pakeitimus ir saugumo rekomendacijas
+- **Grėsmės žvalgyba**: prenumeruokite DI saugumo grėsmių srautus ir pažeidžiamumų duomenų bazes  
+- **Bendruomenės įsitraukimas**: dalyvaukite MCP saugumo bendruomenės diskusijose ir darbo grupėse
+- **Reguliarus įvertinimas**: vykdykite ketvirtinius saugumo būklės įvertinimus ir atitinkamai atnaujinkite praktiką
 
 ### Indėlis į MCP saugumą
-- **Saugumo tyrimai**: Prisidėti prie MCP saugumo tyrimų ir pažeidžiamumų atskleidimo programų
-- **Geriausios praktikos dalijimasis**: Bendruomenėje dalytis saugumo įgyvendinimais ir įgytomis pamokomis
-- **Standartų kūrimas**: Dalyvauti MCP specifikacijų kūrime ir saugumo standartų rengime
-- **Įrankių kūrimas**: Kurti ir dalytis saugumo įrankiais bei bibliotekomis MCP ekosistemai
+- **Saugumo tyrimai**: prisidėkite prie MCP saugumo tyrimų ir pažeidžiamumų atskleidimo programų
+- **Gerosios praktikos dalijimasis**: dalinkitės saugumo įgyvendinimais ir įgytomis pamokomis su bendruomene
+- **Standartų kūrimas**: dalyvaukite MCP specifikacijos kūrime ir saugumo standartų rengime
+- **Įrankių kūrimas**: kurkite ir dalinkitės saugumo įrankiais bei bibliotekomis MCP ekosistemai
 
 ---
 
-*Šis dokumentas atspindi MCP saugumo gerąsias praktikas nuo 2025 m. gruodžio 18 d., remiantis MCP specifikacija 2025-11-25. Saugumo praktikas reikėtų reguliariai peržiūrėti ir atnaujinti, kai vystosi protokolas ir grėsmių aplinka.*
+*Šis dokumentas atspindi MCP saugumo gerąją praktiką nuo 2026 m. rugsėjo 9 d.,
+remiantis MCP specifikacija `2026-07-28`. Saugumo praktikas reikėtų reguliariai
+peržiūrėti pagal protokolo ir grėsmių kraštovaizdžio pokyčius.*
 
 ## Kas toliau
 
-- Skaityti: [MCP Security Best Practices 2025](./mcp-security-best-practices-2025.md)
-- Grįžti į: [Security Module Overview](./README.md)
-- Tęsti: [Module 3: Getting Started](../03-GettingStarted/README.md)
+- Skaitykite: [MCP saugumo gerosios praktikos](./mcp-security-best-practices.md)
+- Grįžkite į: [Saugumo modulio apžvalga](./README.md)
+- Toliau: [3 modulis: Pradžia](../03-GettingStarted/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Atsakomybės atsisakymas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas gimtąja kalba turi būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už jokius nesusipratimus ar neteisingus aiškinimus, kylantčius dėl šio vertimo naudojimo.
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

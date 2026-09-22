@@ -1,4 +1,9 @@
-# Futtassa a mintát
+# Futtassa a példát
+
+> [!WARNING]
+> Ez a példa egy elavult Samplinget és egy régi HTTP+SSE végpontot használ. Ez
+> az MCP `2025-11-25` kompatibilitás miatt maradt meg. Az új megvalósításoknak közvetlenül
+> egy LLM szolgáltatóhoz kell fordulniuk, és Streamable HTTP-t kell használniuk a távoli MCP forgalomhoz.
 
 ## Virtuális környezet létrehozása
 
@@ -19,9 +24,9 @@ pip install "mcp[cli]"
 uvicorn server:app --port 8000
 ```
 
-## Tesztelje a szervert GitHub Copilot-tal és VS Code-dal
+## Tesztelje a szervert a GitHub Copilottal és a VS Code-dal
 
-Adja hozzá a bejegyzést az mcp.json fájlhoz így:
+Adja hozzá a bejegyzést a mcp.json-hez így:
 
 ```json
 "servers": {
@@ -32,15 +37,15 @@ Adja hozzá a bejegyzést az mcp.json fájlhoz így:
 }
 ```
 
-Győződjön meg róla, hogy a szerveren a "start" gombra kattint.
+Győződjön meg róla, hogy a szerveren a "start" gombra kattintott.
 
-A GitHub Copilot-ba másolja be a következő promptot:
+A GitHub Copilotban illessze be a következő promptot:
 
 ```text
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Először megkérdezi, hogy elfogadja-e a Sampling műveletet, majd megkérdezi, hogy elfogadja-e, hogy a "create_blog" eszköz fusson. Hasonló választ kell látnia, mint:
+Először megkérdezi, hogy elfogadja-e a Sampling műveletet, majd azt, hogy elfogadja-e a "create_blog" eszköz futtatását. Olyan választ kell látnia, mint például:
 
 ```json
 {
@@ -51,6 +56,6 @@ Először megkérdezi, hogy elfogadja-e a Sampling műveletet, majd megkérdezi,
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Felelősségkizárás**:
-Ezt a dokumentumot a [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítószolgáltatásával fordítottuk le. Bár igyekszünk pontosak lenni, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum anyanyelvű változata tekintendő hiteles forrásnak. Kritikus információk esetén profi emberi fordítást javaslunk. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy félreértelmezésekért.
+**Jogi nyilatkozat**:
+Ez a dokumentum az AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár az pontosságra törekszünk, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum az anyanyelvén tekintendő hiteles forrásnak. Fontos információk esetén professzionális emberi fordítást javasolunk. Nem vállalunk felelősséget semmilyen félreértésért vagy téves értelmezésért, amely ebből a fordításból ered.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

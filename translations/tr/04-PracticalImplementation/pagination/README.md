@@ -1,46 +1,47 @@
-# MCP'de Sayfalandırma ve Büyük Sonuç Kümeleri
+# MCP'de Sayfalama ve Büyük Sonuç Setleri
 
-MCP sunucunuz büyük veri setlerini işlediğinde - binlerce dosya, veritabanı kaydı veya arama sonucu listelemek olsun - belleği verimli yönetmek ve duyarlı kullanıcı deneyimleri sağlamak için sayfalandırmaya ihtiyacınız vardır. Bu rehber, MCP'de sayfalandırmanın nasıl uygulanacağını ve kullanılacağını anlatır.
+MCP sunucunuz binlerce dosya, veri tabanı kaydı veya arama sonucu listelemek gibi büyük veri setlerini işlediğinde, belleği verimli yönetmek ve duyarlı kullanıcı deneyimi sağlamak için sayfalama gerekir. Bu kılavuz, MCP'de sayfalamanın nasıl uygulanacağını ve kullanılacağını ele almaktadır.
 
-## Neden Sayfalandırma Önemlidir
+## Sayfalama Neden Önemlidir
 
-Sayfalandırma olmazsa, büyük yanıtlar şunlara yol açabilir:
+Sayfalama olmadan, büyük yanıtlar şunlara neden olabilir:
 
-- **Bellek tükenmesi** - Aynı anda milyonlarca kaydın yüklenmesi
-- **Yavaş yanıt süreleri** - Tüm veriler yüklenirken kullanıcıların beklemesi
-- **Zaman aşımı hataları** - İsteklerin zaman aşımı sınırını aşması
-- **Zayıf AI performansı** - Büyük bağlam ile LLM'lerin zorlanması
+- **Bellek tükenmesi** - Milyonlarca kaydı bir kerede yüklemek
+- **Yavaş yanıt süreleri** - Tüm veri yüklenene kadar kullanıcılar bekler
+- **Zaman aşımı hataları** - Talepler zaman aşımı sınırlarını aşar
+- **Zayıf yapay zeka performansı** - LLM'ler devasa bağlamda zorlanır
 
-MCP, sonuç kümelerini güvenilir ve tutarlı şekilde sayfalamak için **imleç tabanlı (cursor-based) sayfalandırma** kullanır.
+MCP, sonuç setleri arasında güvenilir ve tutarlı sayfalama için **imleç tabanlı sayfalama** kullanır.
 
 ---
 
-## MCP Sayfalandırması Nasıl Çalışır
+## MCP Sayfalaması Nasıl Çalışır
 
-### İmleç (Cursor) Kavramı
+### İmleç Kavramı
 
-Bir **imleç**, sonuç kümenizdeki konumunuzu işaret eden opak bir dizgedir. Uzun bir kitaptaki ayraç gibi düşünün.
+**İmleç**, sonuç setindeki konumunuzu işaret eden opak bir dizgedir. Uzun bir kitaptaki yer imi gibi düşünebilirsiniz.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (imleç yok)
-    Server-->>Client: araçlar [1-10], nextCursor: "abc123"
+    Client->>Server: araçlar/liste (imleç yok)
+    Server-->>Client: araçlar [1-10], sonrakiİmleç: "abc123"
     
-    Client->>Server: tools/list (imleç: "abc123")
-    Server-->>Client: araçlar [11-20], nextCursor: "def456"
+    Client->>Server: araçlar/liste (imleç: "abc123")
+    Server-->>Client: araçlar [11-20], sonrakiİmleç: "def456"
     
-    Client->>Server: tools/list (imleç: "def456")
-    Server-->>Client: araçlar [21-25], nextCursor: null (son)
+    Client->>Server: araçlar/liste (imleç: "def456")
+    Server-->>Client: araçlar [21-25], sonrakiİmleç: null (bitiş)
 ```
-### MCP Yöntemlerinde Sayfalandırma
 
-Aşağıdaki MCP yöntemleri sayfalandırmayı destekler:
+### MCP Metotlarında Sayfalama
 
-| Yöntem | Döndürür | İmleç Desteği |
-|--------|----------|---------------|
+Bu MCP metotları sayfalama desteği sunar:
+
+| Metot | Döner | İmleç Desteği |
+|--------|---------|----------------|
 | `tools/list` | Araç tanımları | ✅ |
 | `resources/list` | Kaynak tanımları | ✅ |
 | `prompts/list` | İstek tanımları | ✅ |
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Simüle edilmiş büyük veri kümesi
+# Simüle edilmiş büyük veri seti
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Bir sonraki imleci hesapla
+    # Sonraki imleci hesapla
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Büyük veri kümesini başlat
+        // Büyük veri setini başlat
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -179,7 +180,7 @@ public class PaginatedToolService {
 
 ## İstemci Uygulaması
 
-### Python İstemcisi
+### Python İstemci
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### TypeScript İstemcisi
+### TypeScript İstemci
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -243,7 +244,7 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Kullanılabilir ise buffer'dan dön
+        # Mevcutsa tampon içinden dön
         if self.buffer:
             return self.buffer.pop(0)
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Kullanım - büyük veri setleri için bellek açısından verimli
+# Kullanım - büyük veri setleri için bellek tasarruflu
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Kaynaklar için Sayfalandırma
+## Kaynaklar İçin Sayfalama
 
-Kaynaklar genellikle dizinler veya büyük veri setleri için sayfalandırma gerektirir:
+Kaynaklar genellikle dizinler veya büyük veri setleri için sayfalama gerektirir:
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # İmleci çöz (dosya dizini)
+    # İmleci çöz (dosya indeksi)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -320,25 +321,25 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## İmleç Tasarım Stratejileri
 
-### Strateji 1: İndex Tabanlı (Basit)
+### Strateji 1: İndeks Tabanlı (Basit)
 
 ```python
 # İmleç sadece indekstir
 cursor = "50"  # 50. öğeden başla
 ```
 
-**Artıları:** Basit, durumsuz  
+**Artıları:** Basit, durum bilgisi yok
 **Eksileri:** Eleman eklenip çıkarılırsa sonuçlar kayabilir
 
 ### Strateji 2: ID Tabanlı (Kararlı)
 
 ```python
-# İmleç son görülen ID'dir
+# İmleç, en son görülen kimliktir
 cursor = "item_abc123"  # Bu öğeden sonra başla
 ```
 
-**Artıları:** Elemanlar değişse bile kararlı  
-**Eksileri:** Sıralı ID'ler gerektirir
+**Artıları:** Elemanlar değişse bile kararlı
+**Eksileri:** Sıralı ID gerektirir
 
 ### Strateji 3: Kodlanmış Durum (Karmaşık)
 
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Artıları:** Karmaşık durumu kodlayabilir  
-**Eksileri:** Daha karmaşık, daha uzun imleç dizgeleri
+**Artıları:** Karmaşık durumu kodlayabilir
+**Eksileri:** Daha karmaşık, daha büyük imleç dizeleri
 
 ---
 
 ## En İyi Uygulamalar
 
-### 1. Uygun Sayfa Boyutları Seçin
+### 1. Uygun Sayfa Boyutlarını Seçin
 
 ```python
-# Veri boyutunu göz önünde bulundurun
-PAGE_SIZE_SMALL_ITEMS = 100   # Basit meta veriler
+# Veri boyutunu dikkate alın
+PAGE_SIZE_SMALL_ITEMS = 100   # Basit metadata
 PAGE_SIZE_MEDIUM_ITEMS = 20   # Daha zengin nesneler
 PAGE_SIZE_LARGE_ITEMS = 5     # Karmaşık içerik
 ```
 
-### 2. Geçersiz İmleçleri Zarifçe Yönetin
+### 2. Geçersiz İmleçleri Zarifçe Ele Alın
 
 ```python
 @app.list_tools()
@@ -384,7 +385,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # Baştan sıfırlama
+            start_index = 0  # Başlangıca sıfırla
     except (ValueError, TypeError):
         start_index = 0  # Geçersiz imleç, yeniden başla
     # ...
@@ -396,12 +397,12 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Bazı uygulamalarda kullanıcı arayüzü ilerlemesi için toplam dahil edilir
+    # Bazı uygulamalar kullanıcı arayüzü ilerlemesi için toplamı içerir
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### 4. Kenar Durumları Test Edin
+### 4. Kenar Durumlarını Test Edin
 
 ```python
 async def test_pagination():
@@ -414,7 +415,7 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Geçersiz imleç
+    # Geçersiz gösterge
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # İlk sayfayı döndürmeli
 ```
@@ -423,7 +424,7 @@ async def test_pagination():
 
 ## Yaygın Tuzaklar
 
-### ❌ Tüm Sonuçları Döndürüp Sonra İstemci Tarafından Sayfalandırma
+### ❌ Tüm Sonuçları Döndürüp Sonra İstemci Tarafında Sayfalama Yapmak
 
 ```python
 # KÖTÜ: Her şeyi belleğe yüklüyor
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Veri Kaynağında Sayfalandırma
+### ✅ Veri Kaynağında Sayfalama Yapmak
 
 ```python
-# İYİ: Sadece gerekenleri yükler
+# İYİ: Yalnızca gerekenleri yükler
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Sırada Ne Var
+## Sonraki Adımlar
 
 - [Modül 5.14 - Bağlam Mühendisliği](../../05-AdvancedTopics/mcp-contextengineering/README.md)
 - [Modül 8 - En İyi Uygulamalar](../../08-BestPractices/README.md)
-- [3.8 - MCP Sunucunuzu Test Etme](../../03-GettingStarted/08-testing/README.md)
+- [3.8 - MCP Sunucunuzu Test Etmek](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Ek Kaynaklar
 
-- [MCP Spesifikasyonu - Sayfalandırma](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [İmleç Tabanlı Sayfalandırma Açıklaması](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Python SDK sayfalandırma testleri](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP Spesifikasyonu - Sayfalama](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [İmleç Tabanlı Sayfalama Açıklaması](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK sayfalama testleri](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilmekle birlikte, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi ana dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda oluşabilecek herhangi bir yanlış anlama veya yanlış yorumlama nedeniyle sorumluluk kabul edilmez.
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

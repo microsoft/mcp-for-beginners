@@ -1,25 +1,31 @@
 # VS Code Entegrasyonu
 
-## 🎯 Bu Laboratuvar Neleri Kapsıyor?
+> [!NOTE]
+> Bu laboratuvarda `initializationOptions` ayarları, örneğin MCP
+> `2025-11-25` el sıkışmasını hedefler. MCP `2026-07-28` el sıkışma başlatmayı kaldırır;
+> bu örneği taşırken, istek başına metadata ve `server/discover` destekleyen bir ana bilgisayar ve SDK kullanın.
 
-Bu laboratuvar, MCP sunucunuzu VS Code ile entegre ederek AI Chat üzerinden doğal dil sorguları yapmanızı sağlayacak kapsamlı bir rehber sunar. VS Code'u MCP kullanımı için nasıl yapılandıracağınızı, sunucu bağlantılarını nasıl debug edeceğinizi ve AI destekli veritabanı etkileşimlerinin tam gücünden nasıl yararlanacağınızı öğreneceksiniz.
+
+## 🎯 Bu Laboratuvarın Kapsamı
+
+Bu laboratuvar, MCP sunucunuzu VS Code ile entegre ederek AI Chat üzerinden doğal dil sorgulamalarını etkinleştirmeniz için kapsamlı rehberlik sunar. VS Code'u MCP kullanımına göre nasıl yapılandıracağınızı, sunucu bağlantılarını nasıl hata ayıklayacağınızı ve AI destekli veritabanı etkileşimlerinin tüm gücünden nasıl faydalanacağınızı öğreneceksiniz.
 
 ## Genel Bakış
 
-VS Code'un MCP entegrasyonu, geliştiricilerin veritabanları ve API'lerle doğal dil üzerinden etkileşim kurma şeklini dönüştürür. Perakende MCP sunucunuzu VS Code Chat'e bağlayarak, satış verileri, ürün katalogları ve iş analitiği gibi konularda akıllı sorgulamalar yapabilirsiniz.
+VS Code'un MCP entegrasyonu, geliştiricilerin doğal dil yoluyla veritabanları ve API'lerle etkileşim biçimini dönüştürür. Perakende MCP sunucunuzu VS Code Chat'e bağlayarak, satış verileri, ürün katalogları ve iş analizlerini konuşma tabanlı yapay zeka kullanarak akıllıca sorgulayabilmenizi sağlar.
 
-Bu entegrasyon sayesinde geliştiriciler, "Bu ay en çok satan ürünleri göster" veya "90 gündür satın alma yapmayan müşterileri bul" gibi sorular sorabilir ve SQL sorguları yazmadan yapılandırılmış veri yanıtları alabilir.
+Bu entegrasyon, geliştiricilerin "Bu ay en çok satan ürünleri göster" veya "Son 90 gün içinde satın alma yapmamış müşterileri bul" gibi soruları SQL sorguları yazmadan yapılandırılmış veri yanıtları olarak almalarını sağlar.
 
 ## Öğrenme Hedefleri
 
 Bu laboratuvarın sonunda şunları yapabileceksiniz:
 
-- **Yapılandırma**: Perakende sunucunuz için VS Code MCP ayarlarını yapılandırma  
-- **Entegrasyon**: MCP sunucularını VS Code AI Chat işlevselliği ile entegre etme  
-- **Hata Ayıklama**: MCP sunucu bağlantılarını debug etme ve sorunları çözme  
-- **Optimizasyon**: Daha iyi sonuçlar için doğal dil sorgu kalıplarını optimize etme  
-- **Özelleştirme**: MCP geliştirme için VS Code çalışma alanını özelleştirme  
-- **Dağıtım**: Karmaşık senaryolar için çoklu sunucu yapılandırmaları oluşturma  
+- Perakende sunucunuz için VS Code MCP ayarlarını **yapılandırmak**
+- MCP sunucularını VS Code AI Chat işlevselliği ile **entegre etmek**
+- MCP sunucu bağlantılarını **hata ayıklamak** ve sorun gidermek
+- Daha iyi sonuçlar için doğal dil sorgu kalıplarını **optimize etmek**
+- MCP geliştirme için VS Code çalışma alanını **özelleştirmek**
+- Karmaşık senaryolar için çoklu sunucu yapılandırmalarını **kurmak**
 
 ## 🔧 VS Code MCP Yapılandırması
 
@@ -65,23 +71,23 @@ Bu laboratuvarın sonunda şunları yapabileceksiniz:
 ### Ortam Yapılandırması
 
 ```bash
-# .env file for development
+# Geliştirme için .env dosyası
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure Yapılandırması
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# İsteğe bağlı: Azure Anahtar Kasası
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Sunucu Yapılandırması
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -223,7 +229,7 @@ LOG_LEVEL=INFO
 ### Doğal Dil Sorgu Kalıpları
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS Code Sohbet için örnek sorgu kalıpları
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Temel metrikler
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Performans göstergeleri
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # En iyi kategori
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -500,7 +506,7 @@ class ChatResponseFormatter:
 
 ## 🔍 Hata Ayıklama ve Sorun Giderme
 
-### VS Code Debug Yapılandırması
+### VS Code Hata Ayıklama Yapılandırması
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS Code'a özgü biçimlendirici oluştur
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # VS Code terminali için konsol işleyici
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Genel hata ayıklama kayıtçısı
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Bağlantı Sorunlarını Giderme
+### Bağlantı Sorun Giderme
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Bağlantı parametrelerini ortamdan al
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Bağlantıyı test et
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Temel sorguyu test et
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Şema erişimini test et
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Gömülü oluşturmayı test et
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCP sunucu bileşenlerini içe aktar
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Test yapılandırması oluştur
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Sunucuyu başlat
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Mevcut araçları al
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Basit bir aracı test et
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Veritabanı bağlantısını test et
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI bağlantısını test et
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCP araçlarını test et
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Genel durum
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### Özel VS Code Uzantısı
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Özel MCP perakende uzantısı
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP perakende komutlarını kaydet
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Mağaza değiştiriciyi kaydet
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Yapılandırmayı güncelle
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // VS Code Chat'te önceden tanımlı sorguları çalıştır
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Önemli Çıkarımlar
+## 🎯 Ana Çıkarımlar
 
-Bu laboratuvarı tamamladıktan sonra şunlara sahip olmalısınız:
+Bu laboratuvarı tamamladıktan sonra şunlara sahip olacaksınız:
 
-✅ **VS Code MCP Yapılandırması**: MCP entegrasyonu için tam kurulum  
+✅ **VS Code MCP Yapılandırması**: Optimal MCP entegrasyonu için tam kurulum  
 ✅ **AI Chat Entegrasyonu**: VS Code'da doğal dil sorgulama yetenekleri  
-✅ **Hata Ayıklama Araçları**: Kapsamlı sorun giderme ve bağlantı teşhisleri  
+✅ **Hata Ayıklama Araçları**: Kapsamlı sorun giderme ve bağlantı tanılama  
 ✅ **Çoklu Sunucu Kurulumu**: Birden fazla MCP sunucu örneği için yapılandırma  
-✅ **Özel Uzantılar**: Perakende odaklı özelliklerle geliştirilmiş VS Code deneyimi  
-✅ **Üretim Hazırlığı**: Kurumsal düzeyde VS Code geliştirme ortamı  
+✅ **Özel Uzantılar**: Perakendeye özel özelliklerle geliştirilmiş VS Code deneyimi  
+✅ **Prodüksiyon Hazırlığı**: Kurumsal hazır VS Code geliştirme ortamı  
 
-## 🚀 Sırada Ne Var?
+## 🚀 Sonraki Adımlar
 
 **[Laboratuvar 10: Dağıtım Stratejileri](../10-Deployment/README.md)** ile devam edin:
 
-- MCP sunucularını üretim ortamlarına dağıtma  
-- Ölçeklenebilirlik için bulut altyapısını yapılandırma  
-- Otomatik dağıtım için CI/CD süreçlerini uygulama  
-- Üretim MCP sunucu performansını izleme  
+- MCP sunucularını prodüksiyon ortamlarına dağıtmak
+- Ölçeklenebilirlik için bulut altyapısını yapılandırmak
+- Otomatik dağıtım için CI/CD hatları uygulamak
+- Prodüksiyon MCP sunucu performansını izlemek
 
 ## 📚 Ek Kaynaklar
 
 ### VS Code Geliştirme
-- [VS Code Extension API](https://code.visualstudio.com/api) - Resmi uzantı geliştirme rehberi  
-- [VS Code MCP Belgeleri](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP entegrasyon belgeleri  
-- [VS Code için TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS Code'da TypeScript geliştirme  
+- [VS Code Uzantı API](https://code.visualstudio.com/api) - Resmi uzantı geliştirme rehberi
+- [VS Code MCP Dokümantasyonu](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP entegrasyon dokümantasyonu
+- [VS Code için TypeScript](https://code.visualstudio.com/docs/languages/typescript) - VS Code'da TypeScript geliştirme
 
 ### MCP Protokolü
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Resmi MCP spesifikasyonu  
-- [MCP En İyi Uygulamalar](https://modelcontextprotocol.io/docs/best-practices) - Uygulama en iyi yöntemleri  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP uygulaması  
+- [Model Context Protokolü Spesifikasyonu](https://modelcontextprotocol.io/specification) - Resmi MCP spesifikasyonu
+- [MCP En İyi Uygulamaları](https://modelcontextprotocol.io/docs/best-practices) - Uygulama en iyi uygulamaları
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP uygulaması
 
 ### Geliştirme Araçları
-- [VS Code'da Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python geliştirme kurulumu  
-- [VS Code'da Hata Ayıklama](https://code.visualstudio.com/docs/editor/debugging) - Gelişmiş hata ayıklama teknikleri  
-- [VS Code Görevleri](https://code.visualstudio.com/docs/editor/tasks) - Görev otomasyonu ve yapılandırması  
+- [VS Code'da Python](https://code.visualstudio.com/docs/python/python-tutorial) - Python geliştirme kurulumu
+- [VS Code'da Hata Ayıklama](https://code.visualstudio.com/docs/editor/debugging) - Gelişmiş hata ayıklama teknikleri
+- [VS Code Görevleri](https://code.visualstudio.com/docs/editor/tasks) - Görev otomasyonu ve yapılandırması
 
 ---
 
 **Önceki**: [Laboratuvar 08: Test ve Hata Ayıklama](../08-Testing/README.md)  
-**Sonraki**: [Laboratuvar 10: Dağıtım Stratejileri](../10-Deployment/README.md)  
+**Sonraki**: [Laboratuvar 10: Dağıtım Stratejileri](../10-Deployment/README.md)
 
 ---
 
-**Feragatname**:  
-Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayın. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından kaynaklanan yanlış anlamalar veya yanlış yorumlamalar için sorumluluk kabul edilmez.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Feragatname**:
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba sarf etsek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalardan veya yanlış yorumlamalardan sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
