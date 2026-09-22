@@ -771,7 +771,7 @@ MCPのセキュリティと信頼性に関する詳細は、
 
 ## 次にやること
 
-- [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
+- [5.12 モデルコンテキストプロトコルサーバー向けEntra ID認証](../mcp-security-entra/README.md)
 
 ---
 
