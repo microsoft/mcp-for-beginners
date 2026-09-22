@@ -1,46 +1,46 @@
-# Protocolul Contextului Modelului (MCP) Integrat cu Microsoft Foundry
+# Integrarea Model Context Protocol (MCP) cu Microsoft Foundry
 
-Acest ghid demonstrează cum să integrați serverele Model Context Protocol (MCP) cu agenții Microsoft Foundry, permițând orchestrarea puternică a instrumentelor și capabilități enterprise AI.
+Acest ghid demonstrează cum să integrați serverele Model Context Protocol (MCP) cu agenții Microsoft Foundry, permițând orchestrarea puternică a instrumentelor și capabilități AI de nivel enterprise.
 
 ## Introducere
 
-Model Context Protocol (MCP) este un standard deschis care permite aplicațiilor AI să se conecteze în siguranță la surse de date și instrumente externe. Când este integrat cu Microsoft Foundry, MCP permite agenților să acceseze și să interacționeze cu diverse servicii externe, API-uri și surse de date într-un mod standardizat.
+Model Context Protocol (MCP) este un standard deschis care permite aplicațiilor AI să se conecteze în mod securizat la surse de date și instrumente externe. Integrat cu Microsoft Foundry, MCP oferă agenților acces și interacțiune cu diverse servicii externe, API-uri și surse de date într-un mod standardizat.
 
-Această integrare combină flexibilitatea ecosistemului de instrumente MCP cu cadrul robust al agenților Microsoft Foundry, oferind soluții AI de nivel enterprise cu capabilități extinse de personalizare.
+Această integrare combină flexibilitatea ecosistemului de instrumente MCP cu cadrul robust pentru agenți Microsoft Foundry, furnizând soluții AI de nivel enterprise cu capacități extinse de personalizare.
 
-**Notă:** Dacă doriți să utilizați MCP în Microsoft Foundry Agent Service, în prezent doar următoarele regiuni sunt suportate: westus, westus2, uaenorth, southindia și switzerlandnorth
+**Notă:** Dacă doriți să utilizați MCP în Microsoft Foundry Agent Service, momentan sunt acceptate doar următoarele regiuni: westus, westus2, uaenorth, southindia și switzerlandnorth
 
 ## Obiective de învățare
 
-La sfârșitul acestui ghid, veți putea:
+La finalul acestui ghid veți putea:
 
-- Să înțelegeți Protocolul Contextului Modelului și beneficiile sale
-- Să configurați serverele MCP pentru utilizare cu agenții Microsoft Foundry
-- Să creați și să configurați agenți cu integrare de instrumente MCP
-- Să implementați exemple practice folosind servere reale MCP
-- Să gestionați răspunsurile instrumentelor și citările în conversațiile agenților
+- Înțelege Model Context Protocol și avantajele sale
+- Configura servere MCP pentru utilizare cu agenții Microsoft Foundry
+- Crea și configura agenți cu integrare a instrumentelor MCP
+- Implementa exemple practice folosind servere reale MCP
+- Gestiona răspunsurile instrumentelor și citările în conversațiile agenților
 
-## Cerințe prealabile
+## Cerințe preliminare
 
 Înainte de a începe, asigurați-vă că aveți:
 
 - Un abonament Azure cu acces la Microsoft Foundry
 - Python 3.10+ sau .NET 8.0+
 - Azure CLI instalat și configurat
-- Permisiuni corespunzătoare pentru a crea resurse AI
+- Permisiunile necesare pentru a crea resurse AI
 
-## Ce este Protocolul Contextului Modelului (MCP)?
+## Ce este Model Context Protocol (MCP)?
 
-Protocolul Contextului Modelului este o modalitate standardizată prin care aplicațiile AI se conectează la surse de date și instrumente externe. Beneficiile principale includ:
+Model Context Protocol este o metodă standardizată ca aplicațiile AI să se conecteze la surse externe de date și instrumente. Beneficiile principale includ:
 
-- **Integrare standardizată**: Interfață consecventă între diferite instrumente și servicii
+- **Integrare Standardizată**: Interfață coerentă pentru diferite instrumente și servicii
 - **Securitate**: Mecanisme sigure de autentificare și autorizare
-- **Flexibilitate**: Suport pentru diverse surse de date, API-uri și instrumente personalizate
-- **Extensibilitate**: Ușor de adăugat noi capabilități și integrări
+- **Flexibilitate**: Suport pentru surse diverse de date, API-uri și instrumente personalizate
+- **Extensibilitate**: Ușor de adăugat funcționalități și integrări noi
 
 ## Configurarea MCP cu Microsoft Foundry
 
-### Configurarea Mediului
+### Configurarea mediului
 
 Alegeți mediul de dezvoltare preferat:
 
@@ -53,7 +53,7 @@ Alegeți mediul de dezvoltare preferat:
 
 ***Notă*** Puteți rula acest [notebook](./mcp_support_python.ipynb)
 
-### 1. Instalați Pachetele Necesare
+### 1. Instalarea pachetelor necesare
 
 ```bash
 pip install azure-ai-projects -U
@@ -62,7 +62,7 @@ pip install azure-identity -U
 pip install mcp==1.11.0 -U
 ```
 
-### 2. Importați Dependențele
+### 2. Importarea dependențelor
 
 ```python
 import os, time
@@ -71,14 +71,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. Configurați Setările MCP
+### 3. Configurarea setărilor MCP
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. Inițializați Clientul Proiectului
+### 4. Inițializarea clientului proiectului
 
 ```python
 project_client = AIProjectClient(
@@ -87,17 +87,17 @@ project_client = AIProjectClient(
 )
 ```
 
-### 5. Creați Instrumentul MCP
+### 5. Crearea instrumentului MCP
 
 ```python
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Opțional: specificați uneltele permise
+    allowed_tools=[],  # Opțional: specificați instrumentele permise
 )
 ```
 
-### 6. Exemplu Complet Python
+### 6. Exemplu complet Python
 
 ```python
 with project_client:
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Gestionează aprobările instrumentelor și rulează agentul
+    # Gestionează aprobările pentru instrumente și rulează agentul
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -182,21 +182,21 @@ with project_client:
 
 ***Notă*** Puteți rula acest [notebook](./mcp_support_dotnet.ipynb)
 
-### 1. Instalați Pachetele Necesare
+### 1. Instalarea pachetelor necesare
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
 #r "nuget: Azure.Identity, 1.14.2"
 ```
 
-### 2. Importați Dependențele
+### 2. Importarea dependențelor
 
 ```csharp
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. Configurați Setările
+### 3. Configurarea setărilor
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -206,13 +206,13 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. Creați Definiția Instrumentului MCP
+### 4. Crearea definiției instrumentului MCP
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. Creați Agentul cu Instrumente MCP
+### 5. Crearea agentului cu instrumentele MCP
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. Exemplu Complet .NET
+### 6. Exemplu complet .NET
 
 ```csharp
 // Create thread and message
@@ -297,9 +297,9 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## Opțiuni de Configurare a Instrumentului MCP
+## Opțiuni de configurare a instrumentului MCP
 
-Când configurați instrumentele MCP pentru agentul dumneavoastră, puteți specifica mai mulți parametri importanți:
+Când configurați instrumentele MCP pentru agentul vostru, puteți specifica mai mulți parametri importanți:
 
 ### Configurare Python
 
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Autentificare și Headere
+## Autentificare și antete
 
-Ambele implementări suportă headere personalizate pentru autentificare:
+Ambele implementări suportă antete personalizate pentru autentificare:
 
 ### Python
 ```python
@@ -335,44 +335,44 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Rezolvarea Problemelor Comune
+## Soluționarea problemelor comune
 
-### 1. Probleme de Conexiune
+### 1. Probleme de conectare
 - Verificați dacă URL-ul serverului MCP este accesibil
-- Verificați credențialele de autentificare
-- Asigurați conectivitatea rețelei
+- Verificați acreditările de autentificare
+- Asigurați conectivitatea de rețea
 
-### 2. Eșecuri la Apelul Instrumentului
-- Revizuiți argumentele și formatarea apelului instrumentului
+### 2. Eșecuri la apelurile instrumentelor
+- Revizuiți argumentele instrumentelor și formatarea
 - Verificați cerințele specifice serverului
-- Implementați gestionarea corectă a erorilor
+- Implementați o tratare adecvată a erorilor
 
-### 3. Probleme de Performanță
-- Optimizați frecvența apelurilor către instrumente
-- Implementați caching acolo unde este cazul
+### 3. Probleme de performanță
+- Optimizați frecvența apelurilor instrumentelor
+- Implementați caching acolo unde este potrivit
 - Monitorizați timpii de răspuns ai serverului
 
-## Pașii Următori
+## Pași următori
 
 Pentru a vă îmbunătăți integrarea MCP:
 
-1. **Explorați Servere MCP Personalizate**: Construiți propriile servere MCP pentru surse proprii de date
-2. **Implementați Securitate Avansată**: Adăugați OAuth2 sau mecanisme personalizate de autentificare
-3. **Monitorizare și Analitice**: Implementați logare și monitorizare pentru utilizarea instrumentelor
-4. **Scalați Soluția**: Luați în considerare echilibrarea încărcării și arhitecturi distribuite de server MCP
+1. **Explorați servere MCP personalizate**: Construiți propriile servere MCP pentru surse de date proprietare
+2. **Implementați securitate avansată**: Adăugați OAuth2 sau mecanisme personalizate de autentificare
+3. **Monitorizare și analiză**: Implementați logare și monitorizare pentru utilizarea instrumentelor
+4. **Scalați soluția**: Luați în considerare balansarea încărcării și arhitecturile distribuite ale serverului MCP
 
-## Resurse Suplimentare
+## Resurse suplimentare
 
 - [Documentația Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
-- [Exemple Protocol Context Model](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
-- [Prezentarea Agenților Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [Specificația MCP](https://spec.modelcontextprotocol.io/)
+- [Exemple Model Context Protocol](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Prezentare generală Microsoft Foundry Agents](https://learn.microsoft.com/azure/ai-foundry/agents/)
+- [Specificația MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Suport
 
 Pentru suport suplimentar și întrebări:
 - Consultați [documentația Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
-- Accesați [resursele comunității MCP](https://modelcontextprotocol.io/)
+- Verificați [resursele comunității MCP](https://modelcontextprotocol.io/)
 
 ## Ce urmează
 

@@ -1,75 +1,80 @@
-# 🔧 ម៉ូឌុល 3៖ ការអភិវឌ្ឍ MCP ជំហានខ្ពស់ជាមួយ Microsoft Foundry Toolkit
+# 🔧 ម៉ូឌុល 3៖ ការអភិវឌ្ឍ MCP កម្រិតខ្ពស់ ជាមួយ Microsoft Foundry Toolkit
 
-![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
+> [!NOTE]
+> URLs របស់ Inspector ក្នុងមLaboratoryនេះប្រើ​ចុងបំផុត `/sse` ដែលមានមូលដ្ឋានយកលើ
+> MCP SDK ជា​ទំនើប `1.9.3` និង Inspector `0.14.0` ដែលបានតំឡើង។ ពួកវាមិនមែនជា
+> ឧទាហរណ៍ Streamable HTTP នៃកាលបរិច្ឆេទ `2026-07-28` ទេ។
+
+![រយៈពេល](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
-## 🎯 គោលបំណងរៀន
+## 🎯 គោលបំណងការសិក្សា
 
-នៅចុងបញ្ចប់នៃមន្ទីរ this lab, អ្នកនឹងអាច:
+ចុងបញ្ចប់មLaboratoryនេះ អ្នកនឹងអាចធ្វើបាន៖
 
-- ✅ បង្កើតម៉ាស៊ីនបម្រើ MCP លក្ខណៈផ្ទាល់ខ្លួនដោយប្រើ Microsoft Foundry Toolkit
-- ✅ កំណត់រចនាសម្ព័ន្ធ និងប្រើ MCP Python SDK ជំនាន់ចុងក្រោយ (v1.9.3)
-- ✅ កំណត់ និងប្រើ MCP Inspector សម្រាប់កំហុសត្រួតពិនិត្យ
-- ✅ បញ្ច្រាស់កំហុសម៉ាស៊ីនបម្រើ MCP ក្នុងបរិយាកាស Agent Builder និង Inspector
-- ✅ យល់ដឹងពីលំដាប់ការអភិវឌ្ឍម៉ាស៊ីនបម្រើ MCP ជំហានខ្ពស់
+- ✅ បង្កើតម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួន ដោយប្រើ Microsoft Foundry Toolkit
+- ✅ កំណត់ការកំណត់និងប្រើ MCP Python SDK ថ្មីបំផុត (v1.9.3)
+- ✅ ដំឡើង និងប្រើ MCP Inspector សម្រាប់ការត្រួតពិនិត្យកំហុស
+- ✅ ពិនិត្យកំហុសម៉ាស៊ីនមេ MCP ក្នុងបរិយាកាស Agent Builder និង Inspector
+- ✅ យល់ដឹងអំពីដំណើរការអភិវឌ្ឍម៉ាស៊ីនមេ MCP កម្រិតខ្ពស់
 
-## 📋 លក្ខខ័ណ្ឌមុនដំណើរការ
+## 📋 តម្រូវការលក្ខណះជាមុន
 
-- បញ្ចប់ Lab 2 (គ្រឹះមូល MCP)
-- VS Code ជាមួយការបន្ថែម Microsoft Foundry Toolkit ត្រូវបានដំឡើង
-- បរិយាកាស Python 3.10+
-- Node.js និង npm សម្រាប់ការកំណត់ Inspector
+- បានបញ្ចប់មLaboratory 2 (មូលដ្ឋាន MCP)
+- VS Code មានកម្មវិធីបន្ថែម Microsoft Foundry Toolkit
+- បរិយាកាស Python 3.10 ឬខ្ពស់ជាងនេះ
+- Node.js និង npm សម្រាប់ការដំឡើង Inspector
 
 ## 🏗️ អ្វីដែលអ្នកនឹងបង្កើត
 
-ក្នុងមន្ទីរនេះ អ្នកនឹងបង្កើត **ម៉ាស៊ីនបម្រើ Weather MCP** ដែលបង្ហាញពី៖
-- ការអនុវត្តម៉ាស៊ីនបម្រើ MCP លក្ខណៈផ្ទាល់ខ្លួន
-- ការតភ្ជាប់ជាមួយ Microsoft Foundry Toolkit Agent Builder
-- លំដាប់ការកំហុសត្រួតពិនិត្យមានជំរុញវិជ្ជាជីវៈ
-- លំនាំប្រើ MCP SDK សម័យថ្មី
+ក្នុងមLaboratoryនេះ អ្នកនឹងបង្កើត **ម៉ាស៊ីនមេ Weather MCP** ដែលបង្ហាញពី៖
+- ការអនុវត្តម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួន
+- ការរួមបញ្ចូលជាមួយ Microsoft Foundry Toolkit Agent Builder
+- ដំណើរការត្រួតពិនិត្យកំហុសប្រកបដោយវិជ្ជាជីវៈ
+- គំរូការប្រើ MCP SDK មេដឹកនាំទំនើប
 
 ---
 
-## 🔧 ទិដ្ឋភាពទូទៅសមាសភាគស្នូល
+## 🔧 សមាសធាតុស្នូលរួម
 
 ### 🐍 MCP Python SDK
-Model Context Protocol Python SDK ផ្តល់មូលដ្ឋានសម្រាប់បង្កើតម៉ាស៊ីនបម្រើ MCP ផ្ទាល់ខ្លួន។ អ្នកនឹងប្រើជំនាន់ 1.9.3 ជាមួយសមត្ថភាពកំហុសត្រួតពិនិត្យកាន់តែច្បាស់លាស់។
+MCP Python SDK ជាបេដ្ឋការ​សម្រាប់សាងសង់ម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួន។ អ្នកនឹងប្រើព版本 1.9.3 ដែលមានសមត្ថភាពត្រួតពិនិត្យកំហុសកាន់តែខ្លាំង។
 
 ### 🔍 MCP Inspector
-ឧបករណ៍កំហុសត្រួតពិនិត្យមានថាមពល ដែលផ្តល់៖
-- ការត្រួតពិនិត្យម៉ាស៊ីនបម្រើពេលវេលាពិត
-- ការមើលឃើញការប្រតិបត្តិឧបករណ៍
-- ការត្រួតពិនិត្យការស្នើសុំនិងចម្លើយបណ្ដាញ
+គ្រឿងมហិមាសម្រាប់ត្រួតពិនិត្យកំហុស ដែលផ្ដល់ជូន៖
+- ការត្រួតពិនិត្យម៉ាស៊ីនមេនៅពេលពិត
+- វីឌីអូបង្ហាញដំណើរការឧបករណ៍
+- ការត្រួតពិនិត្យសំណើ/ចម្លើយបណ្តាញ
 - បរិយាកាសសាកល្បងអន្តរកម្ម
 
 ---
 
-## 📖 អនុវត្តជំហាន-ប្រចាំជំហាន
+## 📖 ដំណាក់កាលអនុវត្តន៍ជារៀងរាល់ជំហាន
 
 ### ជំហាន 1៖ បង្កើត WeatherAgent ក្នុង Agent Builder
 
-1. **បើក Agent Builder** 在 VS Code តាមរយៈការបន្ថែម Microsoft Foundry Toolkit
-2. **បង្កើត agent ថ្មី** ជាមួយរចនាសម្ព័ន្ធដូចខាងក្រោម៖
-   - ឈ្មោះ Agent: `WeatherAgent`
+1. **ចាប់ផ្ដើម Agent Builder** ក្នុង VS Code តាមរយៈកម្មវិធីបន្ថែម Microsoft Foundry Toolkit
+2. **បង្កើតភ្នាក់ងារ​ថ្មី** ដែលមានការកំណត់ដូចខាងក្រោម៖
+   - អ្នកភ្នាក់ងារ៖ `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/km/Agent.c9c33f6a412b4cde.webp)
+![ការបង្កើតភ្នាក់ងារ](../../../../translated_images/km/Agent.c9c33f6a412b4cde.webp)
 
-### ជំហាន 2៖ ចាប់ផ្តើមគម្រោងម៉ាស៊ីនបម្រើ MCP
+### ជំហាន 2៖ ចាប់ផ្ដើមគម្រោងម៉ាស៊ីនមេ MCP
 
 1. **ទៅកាន់ Tools** → **Add Tool** ក្នុង Agent Builder
-2. **ជ្រើស "MCP Server"** ពីជម្រើសមានស្រាប់
+2. **ជ្រើស "MCP Server"** ពីជម្រើសដែលមាន
 3. **ជ្រើស "Create A new MCP Server"**
-4. **ជ្រើសនិមិត្តសញ្ញា `python-weather`**
-5. **ដាក់ឈ្មោះម៉ាស៊ីនបម្រើរបស់អ្នក:** `weather_mcp`
+4. **ជ្រើសប្លង់ `python-weather`**
+5. **ឲ្យឈ្មោះម៉ាស៊ីនមេរបស់អ្នក៖** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/km/Pythontemplate.9d0a2913c6491500.webp)
+![ជ្រើសរើសប្លង់ Python](../../../../translated_images/km/Pythontemplate.9d0a2913c6491500.webp)
 
-### ជំហាន 3៖ បើក និងពិនិត្យគម្រោង
+### ជំហាន 3៖ បើក និង ពិនិត្យគម្រោង
 
-1. **បើកគម្រោងបានបង្កើត** នៅក្នុង VS Code
+1. **បើកគម្រោងដែលបានបង្កើត** នៅ VS Code
 2. **ពិនិត្យរចនាសម្ព័ន្ធគម្រោង៖**
    ```
    weather_mcp/
@@ -86,34 +91,35 @@ Model Context Protocol Python SDK ផ្តល់មូលដ្ឋានសម�
    └── README.md
    ```
 
-### ជំហាន 4៖ បង្គណ៍ទៅ MCP SDK ជំនាន់ចុងក្រោយ
+### ជំហាន 4៖ វានៅ MCP SDK ថ្មីបំផុត
 
-> **🔍 មាថាលើកមកថ្មី?** ពួកយើងចង់ប្រើ MCP SDK ជំនាន់ចុងក្រោយ (v1.9.3) និងសេវាកម្ម Inspector (0.14.0) សម្រាប់មុខងារដែលមានការកែលម្អ និងជំនួយកំហុសឆ្ពោះមុខ។
+> **🔍 ហេតុអ្វីការវានៅ?** យើងចង់ប្រើ MCP SDK ថ្មីបំផុត (v1.9.3) និងសេវាកម្ម Inspector (0.14.0) សម្រាប់មុខងារការពារល្អនិងសមត្ថភាពត្រួតពិនិត្យកំហុសកាន់តែខ្លាំង។
 
-#### 4a. បន្ទាន់សម័យផ្នែក Python Dependencies
+#### 4a. កែប្រែការគាំទ្រពី Python
 
-**កែសម្រួល `pyproject.toml`:** បន្ទាន់សម័យ [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**កែប្រែ `pyproject.toml`:** កែប្រែ [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. បន្ទាន់សម័យរចនាសម្ព័ន្ធ Inspector
+#### 4b. កែប្រែការកំណត់ Inspector
 
-**កែសម្រួល `inspector/package.json`:** បន្ទាន់សម័យ [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**កែប្រែ `inspector/package.json`:** កែប្រែ [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. បន្ទាន់សម័យ Dependencies Inspector
+#### 4c. កែប្រែការគាំទ្ររបស់ Inspector
 
-**កែសម្រួល `inspector/package-lock.json`:** បន្ទាន់សម័យ [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**កែប្រែ `inspector/package-lock.json`:** កែប្រែ [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 សម្គាល់៖** ឯកសារនេះមានការកំណត់លក្ខខណ្ឌ dependency ធំទូលាយ។ ខាងក្រោមជារចនាសម្ព័ន្ធសំខាន់ - មាតិកាពេញលេញធានាការដោះស្រាយ dependency ត្រឹមត្រូវ។
+> **📝 សម្គាល់:** ឯកសារនេះមានការបញ្ជាក់លម្អិតអំពីការគាំទ្រជាច្រើន។ ខាងក្រោមជារចនាសម្ព័ន្ធសំខាន់ - អត្ថបទពេញលេញធានាការដោះស្រាយការគាំទ្រយ៉ាងត្រឹមត្រូវ។
 
-> **⚡ ការកំណត់ពេញលេញ Package Lock:** package-lock.json ពេញលេញមានជាយូរលានៅ ~3000 បន្ទាត់នៃការកំណត់ dependency។ ខាងលើបង្ហាញរចនាសម្ព័ន្ធសំខាន់ -  ប្រើឯកសារបំបែកនេះសម្រាប់ការដោះស្រាយ dependency ទាំងមូល។
 
-### ជំហាន 5៖ កំណត់រចនាសម្ព័ន្ធ VS Code របស់ការកំហុសត្រួតពិនិត្យ
+> **⚡ ប្រូសេកល្បាប់ពេញលេញ៖** ផ្តល់ឯកសារ package-lock.json ពេញលេញ មានជួរដេកប្រហែល 3000 សម្រាប់ការគាំទ្រជាប្រភេទ។ ខាងលើបង្ហាញរចនាសម្ព័ន្ធសំខាន់ - សូមប្រើឯកសារដែលផ្តល់សម្រាប់ការដោះស្រាយការគាំទ្រពេញលេញ។
 
-*សម្គាល់៖ សូមចម្លងឯកសារនៅទីតាំងកំណត់ទៅលើឯកសារក្នុងម្ដងក្នុងម៉ាស៊ីនរបស់អ្នក*
+### ជំហាន 5៖ កំណត់ការត្រួតពិនិត្យកំហុស VS Code
 
-#### 5a. បន្ទាន់សម័យរចនាសម្ព័ន្ធចាប់ផ្តើម
+*សំគាល់៖ សូមចម្លងឯកសារនៅផ្លូវដែលបញ្ជាក់ទៅជំនួសឯកសារកណ្ដាលក្នុងស្រុក*
 
-**កែសម្រួល `.vscode/launch.json`:**
+#### 5a. កែប្រែការកំណត់ចាប់ផ្ដើម
+
+**កែប្រែ `.vscode/launch.json`:**
 
 ```json
 {
@@ -190,7 +196,7 @@ Model Context Protocol Python SDK ផ្តល់មូលដ្ឋានសម�
 }
 ```
 
-**កែសម្រួល `.vscode/tasks.json`:**
+**កែប្រែ `.vscode/tasks.json`:**
 
 ```
 {
@@ -295,31 +301,31 @@ Model Context Protocol Python SDK ផ្តល់មូលដ្ឋានសម�
 
 ---
 
-## 🚀 រត់ និង សាកល្បងម៉ាស៊ីនបម្រើ MCP របស់អ្នក
+## 🚀 រត់ និង សាកល្បងម៉ាស៊ីនមេ MCP របស់អ្នក
 
-### ជំហាន 6៖ ដំឡើង Dependencies
+### ជំហាន 6៖ ដំឡើងការគាំទ្រ
 
-បន្ទាប់ពីធ្វើបម្រែបម្រួលរចនាសម្ព័ន្ធ ចាប់ផ្តើមបញ្ជាលេខខាងក្រោម៖
+បន្ទាប់ពីធ្វើការកែប្រែការកំណត់ អ្នកអាចដំណើរការ​ពាក្យបញ្ជាដូចតទៅ៖
 
-**ដំឡើង Python dependencies:**
+**ដំឡើងការគាំទ្រ Python:**
 ```bash
 uv sync
 ```
 
-**ដំឡើង Inspector dependencies:**
+**ដំឡើងការគាំទ្រ Inspector:**
 ```bash
 cd inspector
 npm install
 ```
 
-### ជំហាន 7៖ កំហុសត្រួតពិនិត្យជាមួយ Agent Builder
+### ជំហាន 7៖ ត្រួតពិនិត្យកំហុសជាមួយ Agent Builder
 
-1. **ចុច F5** ឬប្រើរចនាសម្ព័ន្ធ **"Debug in Agent Builder"**
-2. **ជ្រើសរចនាសម្ព័ន្ធ compound** ពីផ្ទាំង debug
-3. **រង់ចាំម៉ាស៊ីនបម្រើចាប់ផ្តើម** និង Agent Builder បើកឡើង
-4. **សាកល្បងម៉ាស៊ីនបម្រើ weather MCP របស់អ្នក** ជាមួយសំណួរភាសាធម្មតា
+1. **ចុច F5** ឬប្រើ ការកំណត់ **"Debug in Agent Builder"**
+2. **ជ្រើសការកំណត់ផ្សំ** ពីផ្ទាំងត្រួតពិនិត្យកំហុស
+3. **រង់ចាំម៉ាស៊ីនមេចាប់ផ្តើម** ហើយបើក Agent Builder
+4. **សាកល្បងម៉ាស៊ីនមេ weather MCP របស់អ្នក** ជាមួយការសួរជាគ្រាន់តែភាសาธรรมชาติ
 
-បញ្ចូល prompt ដូចខាងក្រោម
+បញ្ចូលពាក្យស្នើសុំដូចនេះ
 
 SYSTEM_PROMPT
 
@@ -335,58 +341,58 @@ How's the weather like in Seattle
 
 ![Agent Builder Debug Result](../../../../translated_images/km/Result.6ac570f7d2b1d538.webp)
 
-### ជំហាន 8៖ កំហុសត្រួតពិនិត្យជាមួយ MCP Inspector
+### ជំហាន 8៖ ត្រួតពិនិត្យកំហុសជាមួយ MCP Inspector
 
-1. **ប្រើរចនាសម្ព័ន្ធ "Debug in Inspector"** (Edge ឬ Chrome)
+1. **ប្រើការកំណត់ "Debug in Inspector"** (Edge ឬ Chrome)
 2. **បើកផ្ទាំង Inspector** នៅ `http://localhost:6274`
-3. **ស្វែងយល់បរិយាកាសសាកល្បងអន្តរកម្ម៖**
-   - មើលឧបករណ៍ដែលមានស្រាប់
-   - សាកល្បងការប្រតិបត្តិឧបករណ៍
-   - ត្រួតពិនិត្យសំណើបណ្ដាញ
-   - កំហុសត្រួតពិនិត្យចម្លើយម៉ាស៊ីនបម្រើ
+3. **សืบស្រាវជ្រាវបរិយាកាសសាកល្បងអន្តរកម្ម៖**
+   - មើលឧបករណ៍ដែលមាន
+   - សាកល្បងការប្រតិបត្ដិការឧបករណ៍
+   - ត្រួតពិនិត្យសំណើបណ្តាញ
+   - ត្រួតពិនិត្យចម្លើយម៉ាស៊ីនមេ
 
-![MCP Inspector Interface](../../../../translated_images/km/Inspector.5672415cd02fe873.webp)
+![ផ្ទាំង MCP Inspector](../../../../translated_images/km/Inspector.5672415cd02fe873.webp)
 
 ---
 
-## 🎯 លទ្ធផលការរៀនសំខាន់ៗ
+## 🎯 លទ្ធផលសិក្សាដ៏សំខាន់
 
-ដោយបញ្ចប់មន្ទីរនេះ អ្នកបាន:
+ដោយបានបញ្ចប់មLaboratoryនេះ អ្នកបាន៖
 
-- [x] **បង្កើតម៉ាស៊ីនបម្រើ MCP ផ្ទាល់ខ្លួន** ដោយប្រើគំរូ Microsoft Foundry Toolkit
-- [x] **បន្ទាន់សម័យទៅ MCP SDK ជំនាន់ចុងក្រោយ** (v1.9.3) សម្រាប់មុខងារកែលម្អ
-- [x] **កំណត់លំដាប់កំហុសត្រួតពិនិត្យជាងវិជ្ជាជីវៈ** សម្រាប់ Agent Builder និង Inspector
-- [x] **ដំឡើង MCP Inspector** សម្រាប់សាកល្បងម៉ាស៊ីនបម្រើអន្តរកម្ម
-- [x] **មានជំនាញក្នុងការកំណត់ VS Code សម្រាប់កំហុសត្រួតពិនិត្យ MCP**
+- [x] **បានបង្កើតម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួន** ដោយប្រើប្លង់ Microsoft Foundry Toolkit
+- [x] **បានវានៅ MCP SDK ថ្មីបំផុត** (v1.9.3) សម្រាប់មុខងារកាន់តែល្អ
+- [x] **បានកំណត់ដំណើរការត្រួតពិនិត្យកំហុសវិជ្ជាជីវៈ** ទាំង Agent Builder និង Inspector
+- [x] **បានដំឡើង MCP Inspector** សម្រាប់សាកល្បងម៉ាស៊ីនមេអន្តរកម្ម
+- [x] **បានចេះការកំណត់ត្រួតពិនិត្យកំហុស VS Code** សម្រាប់ការអភិវឌ្ឍ MCP
 
-## 🔧 មុខងារលម្អិតដែលបានស្វែងយល់
+## 🔧 មុខងារកម្រិតខ្ពស់ដែលបានស្ទុះស្ទាវ
 
-| មុខងារ | ការពិពណ៌នា | ករណីប្រើប្រាស់ |
+| មុខងារ | សេចក្ដីពិពណ៌នា | ករណីប្រើប្រាស់ |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | ការអនុវត្តពិធីការថ្មី | ការអភិវឌ្ឍម៉ាស៊ីនបម្រើសម័យថ្មី |
-| **MCP Inspector 0.14.0** | ឧបករណ៍កំហុសត្រួតពិនិត្យអន្តរកម្ម | សាកល្បងម៉ាស៊ីនបម្រើពេលវេលាពិត |
-| **ការកំហុសត្រួតពិនិត្យ VS Code** | វិស្វកម្មអភិវឌ្ឍបិទជុំ | លំនាំកំហុសត្រួតពិនិត្យជាងវិជ្ជាជីវៈ |
-| **ការចងក្រង Agent Builder** | ការតភ្ជាប់ផ្ទាល់ Microsoft Foundry Toolkit | សាកល្បង agent ពេញលេញ |
+| **MCP Python SDK v1.9.3** | ការអនុវត្តពិធីការថ្មីបំផុត | ការអភិវឌ្ឍម៉ាស៊ីនមេទំនើប |
+| **MCP Inspector 0.14.0** | ឧបករណ៍ត្រួតពិនិត្យកំហុសអន្តរាគមន៍ | សាកល្បងម៉ាស៊ីនមេពេលពិត |
+| **VS Code Debugging** | បរិយាកាសការអភិវឌ្ឍបញ្ចូល | ដំណើរការត្រួតពិនិត្យកំហុសវិជ្ជាជីវៈ |
+| **Agent Builder Integration** | ការតភ្ជាប់ផ្ទាល់ Microsoft Foundry Toolkit | សាកល្បងភ្នាក់ងារចុងក្រោយ |
 
-## 📚 ឯកសារបន្ថែម
+## 📚 ជំនួយផ្នែកបន្ថែម
 
 - [ឯកសារ MCP Python SDK](https://modelcontextprotocol.io/docs/sdk/python)
 - [មគ្គុទេសក៍ Microsoft Foundry Toolkit Extension](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [ឯកសារកំហុសត្រួតពិនិត្យ VS Code](https://code.visualstudio.com/docs/editor/debugging)
-- [បញ្ជាក់ Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
+- [ឯកសារត្រួតពិនិត្យកំហុស VS Code](https://code.visualstudio.com/docs/editor/debugging)
+- [លក្ខណៈបំណុល Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 សូមអបអរសាទរ!** អ្នកបានបញ្ចប់ Lab 3 ជោគជ័យ ហើយឥឡូវនេះអាចបង្កើត កំហុសត្រួតពិនិត្យ និងប្រើប្រាស់ម៉ាស៊ីនបម្រើ MCP ផ្ទាល់ខ្លួនដោយលំនាំអភិវឌ្ឍវិជ្ជាជីវៈ។
+**🎉 សូមអបអរសាទរ!** អ្នកបានបញ្ចប់មLaboratory 3 សម្រេចបានជោគជ័យ ហើយឥឡូវនេះអាចបង្កើត, ត្រួតពិនិត្យកំហុស, និងចែកចាយម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួនដោយប្រើដំណើរការអភិវឌ្ឍវិជ្ជាជីវៈ។
 
 ### 🔜 បន្តទៅម៉ូឌុលបន្ទាប់
 
-រួចរាល់ដើម្បីដាក់បញ្ចូលជំនាញ MCP របស់អ្នកទៅលំនាំអភិវឌ្ឍជាក់ស្តែង? បន្តទៅ **[Module 4: Practical MCP Development - Custom GitHub Clone Server](../lab4/README.md)** ដែលអ្នកនឹង៖
-- បង្កើតម៉ាស៊ីនបម្រើ MCP ទីបំផុតដែលស្វ័យប្រវត្តិកម្មប្រតិបត្តិការក្នុង GitHub repository
-- អនុវត្តមុខងារចម្លង GitHub repository តាម MCP
-- បញ្ចូលម៉ាស៊ីនបម្រើ MCP ផ្ទាល់ខ្លួនជាមួយ VS Code និង GitHub Copilot Agent Mode
-- សាកល្បង និងដាក់ម៉ាស៊ីនបម្រើ MCP ផ្ទាល់ខ្លួនក្នុងបរិយាកាសផលិតកម្ម
-- រៀនលំនាំស្វ័យប្រវត្តិការអភិវឌ្ឍខាងជាក់ស្តែងសម្រាប់អ្នកអភិវឌ្ឍការ
+តើអ្នកបានរួចពីការប្រើជំនាញ MCP របស់អ្នកក្នុងដំណើរការអភិវឌ្ឍពិតប្រាកដហើយទេ? បន្តទៅ **[ម៉ូឌុល 4៖ ការអភិវឌ្ឍ MCP ជាក់ស្តែង - ម៉ាស៊ីនមេ GitHub Clone ផ្ទាល់ខ្លួន](../lab4/README.md)** ដែលនៅទីនោះអ្នកនឹងបាន៖
+- បង្កើតម៉ាស៊ីនមេ MCP សម្រាប់ផលិតកម្ម ដែលធ្វើស្វ័យប្រវត្តិប្រតិបត្តិការជាមួយ GitHub repository
+- អនុវត្តមុខងារចម្លង GitHub repository តាមរយៈ MCP
+- បញ្ចូលម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួនជាមួយ VS Code និង GitHub Copilot Agent Mode
+- សាកល្បង និងចែកចាយម៉ាស៊ីនមេ MCP ផ្ទាល់ខ្លួនក្នុងបរិយាកាសផលិតកម្ម
+- រៀនដំណើរការស្វ័យប្រវត្តិក្នុងការអភិវឌ្ឍន៍
 
 ---
 

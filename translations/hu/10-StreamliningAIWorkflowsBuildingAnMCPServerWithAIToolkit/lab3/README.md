@@ -1,4 +1,9 @@
-# 🔧 3. modul: Fejlett MCP fejlesztés a Microsoft Foundry Toolkit segítségével
+# 🔧 3. modul: Fejlett MCP fejlesztés Microsoft Foundry Toolkit-tel
+
+> [!NOTE]
+> Ebben a laborban az Inspector URL-ek a régi `/sse` végpontot használják, és a
+> rögzített MCP SDK `1.9.3` és Inspector `0.14.0` függőségeket célozzák meg. Ezek nem
+> a jelenlegi, `2026-07-28` dátumú Streamable HTTP példák.
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
@@ -10,67 +15,67 @@
 
 A labor végére képes leszel:
 
-- ✅ Egyéni MCP szervereket létrehozni a Microsoft Foundry Toolkit segítségével
-- ✅ Konfigurálni és használni a legújabb MCP Python SDK-t (v1.9.3)
-- ✅ Beállítani és használni az MCP Inspectort hibakereséshez
-- ✅ Hibakeresni MCP szervereket az Agent Builder és az Inspector környezetekben
-- ✅ Megérteni a fejlett MCP szerverfejlesztési munkafolyamatokat
+- ✅ Egyéni MCP szerverek létrehozása a Microsoft Foundry Toolkit használatával
+- ✅ A legfrissebb MCP Python SDK (v1.9.3) konfigurálása és használata
+- ✅ Az MCP Inspector beállítása és használata hibakereséshez
+- ✅ MCP szerverek hibakeresése Agent Builder és Inspector környezetben
+- ✅ Haladó MCP szerver fejlesztési munkafolyamatok megértése
 
 ## 📋 Előfeltételek
 
-- A 2. labor (MCP Alapok) elvégzése
-- VS Code a Microsoft Foundry Toolkit bővítményével telepítve
+- A 2. labor (MCP alapok) elvégzése
+- VS Code Microsoft Foundry Toolkit bővítménnyel telepítve
 - Python 3.10+ környezet
-- Node.js és npm az Inspector telepítéséhez
+- Node.js és npm az Inspector beállításához
 
 ## 🏗️ Amit építeni fogsz
 
-Ebben a laborban egy **Weather MCP szervert** hozol létre, amely bemutatja:
-- Egyéni MCP szerver megvalósítását
-- Integrációt a Microsoft Foundry Toolkit Agent Builderrel
-- Professzionális hibakeresési munkafolyamatokat
-- Modern MCP SDK használati mintákat
+Ebben a laborban egy **Weather MCP szervert** készítesz, amely bemutatja:
+- Egyedi MCP szerver implementáció
+- Integráció a Microsoft Foundry Toolkit Agent Builder-rel
+- Professzionális hibakeresési munkafolyamatok
+- Modern MCP SDK használati minták
 
 ---
 
-## 🔧 Alapvető komponensek áttekintése
+## 🔧 Alap komponensek áttekintése
 
 ### 🐍 MCP Python SDK
-A Model Context Protocol Python SDK biztosítja a alapot egyéni MCP szerverek építéséhez. A 1.9.3-as verziót használjuk kibővített hibakeresési képességekkel.
+A Model Context Protocol Python SDK adja az alapot az egyedi MCP szerverek építéséhez. A 1.9.3 verziót fogod használni kibővített hibakeresési lehetőségekkel.
 
 ### 🔍 MCP Inspector
-Egy erőteljes hibakereső eszköz, amely:
-- Valós idejű szerver monitoringot kínál
-- Eszközök futtatásának vizualizációját biztosítja
-- Hálózati kérés/válasz vizsgálatot tesz lehetővé
-- Interaktív tesztelési környezetet nyújt
+Egy erős hibakereső eszköz, amely biztosítja:
+- Valós idejű szerverfigyelést
+- Eszköz végrehajtásának vizualizálását
+- Hálózati kérés/válasz vizsgálatát
+- Interaktív tesztelési környezetet
 
 ---
 
 ## 📖 Lépésről lépésre megvalósítás
 
-### 1. lépés: WeatherAgent létrehozása az Agent Builderben
+### 1. lépés: WeatherAgent létrehozása az Agent Builder-ben
 
-1. **Indítsd el az Agent Buildert** VS Code-ban a Microsoft Foundry Toolkit kiegészítőn keresztül
-2. **Hozz létre egy új agent-et** a következő beállítással:
+1. **Indítsd el az Agent Builder-t** VS Code-ban a Microsoft Foundry Toolkit bővítményen keresztül
+2. **Hozz létre egy új agent-et** a következő konfigurációval:
    - Agent név: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/hu/Agent.c9c33f6a412b4cde.webp)
 
 ### 2. lépés: MCP szerver projekt inicializálása
 
-1. **Navigálj a Tools → Add Tool menüponthoz** az Agent Builderben
-2. **Válaszd az "MCP Server" lehetőséget**
-3. **Válaszd a "Create A new MCP Server" opciót**
+1. **Navigálj a Tools → Add Tool menüpontra** az Agent Builder-ben
+2. **Válaszd az "MCP Server" opciót**
+3. **Válaszd a "Create A new MCP Server" lehetőséget**
 4. **Válaszd ki a `python-weather` sablont**
-5. **Nevezd el a szervered:** `weather_mcp`
+5. **Nevezd el a szerveredet:** `weather_mcp`
 
 ![Python Template Selection](../../../../translated_images/hu/Pythontemplate.9d0a2913c6491500.webp)
 
-### 3. lépés: Nyisd meg és vizsgáld meg a projektet
+### 3. lépés: Projekt megnyitása és áttekintése
 
 1. **Nyisd meg a generált projektet** VS Code-ban
-2. **Nézd át a projektszerkezetet:**
+2. **Tekintsd át a projekt szerkezetét:**
    ```
    weather_mcp/
    ├── src/
@@ -88,11 +93,12 @@ Egy erőteljes hibakereső eszköz, amely:
 
 ### 4. lépés: Frissítés a legújabb MCP SDK-ra
 
-> **🔍 Miért frissítsünk?** Használni szeretnénk a legújabb MCP SDK-t (v1.9.3) és az Inspector szolgáltatást (0.14.0), hogy jobb funkciókat és hatékonyabb hibakeresést biztosítsunk.
+> **🔍 Miért frissítsünk?** A legfrissebb MCP SDK-t (v1.9.3) és Inspector szolgáltatást (0.14.0) szeretnénk használni kibővített funkciók és jobb hibakeresés érdekében.
 
 #### 4a. Python függőségek frissítése
 
 **Szerkeszd a `pyproject.toml` fájlt:** frissítsd a [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml) fájlt
+
 
 #### 4b. Inspector konfiguráció frissítése
 
@@ -102,13 +108,14 @@ Egy erőteljes hibakereső eszköz, amely:
 
 **Szerkeszd az `inspector/package-lock.json` fájlt:** frissítsd a [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json) fájlt
 
-> **📝 Megjegyzés:** Ez a fájl részletes függőségi meghatározásokat tartalmaz. Lentebb az alapvető szerkezet látható - a teljes tartalom biztosítja a megfelelő függőségfeloldást.
+> **📝 Megjegyzés:** Ez a fájl részletes függőségdefiníciókat tartalmaz. Lentebb a lényegi szerkezet látható - a teljes tartalom biztosítja a helyes függőségfeloldást.
 
-> **⚡ Teljes package-lock:** A teljes package-lock.json kb. 3000 sort tartalmaz a függőségek definícióiból. A fentiek a kulcsszerkezetet mutatják - a teljes feloldáshoz használd a mellékelt fájlt.
 
-### 5. lépés: VS Code hibakeresési konfiguráció beállítása
+> **⚡ Teljes Package Lock:** A teljes package-lock.json fájl kb. 3000 sor függőségdefiníciót tartalmaz. A fentiek a kulcsfontosságú struktúrát mutatják - a teljes függőségfeloldáshoz használd a mellékelt fájlt.
 
-*Megjegyzés: Kérjük, a megadott helyen található fájlt másold át a helyi megfelelőjére*
+### 5. lépés: VS Code hibakeresés konfigurálása
+
+*Megjegyzés: Kérjük, másold a megadott helyen lévő fájlt, hogy lecseréld a helyi megfelelőjét*
 
 #### 5a. Indítási konfiguráció frissítése
 
@@ -298,7 +305,7 @@ Egy erőteljes hibakereső eszköz, amely:
 
 ### 6. lépés: Függőségek telepítése
 
-A konfigurációs módosítások elvégzése után futtasd az alábbi parancsokat:
+A konfigurációs változtatások után futtasd a következő parancsokat:
 
 **Python függőségek telepítése:**
 ```bash
@@ -311,14 +318,14 @@ cd inspector
 npm install
 ```
 
-### 7. lépés: Hibakeresés az Agent Builderben
+### 7. lépés: Hibakeresés az Agent Builder-rel
 
-1. **Nyomd meg az F5-öt** vagy használd a **"Debug in Agent Builder"** konfigurációt
-2. **Válaszd ki a compound konfigurációt** a hibakereső panelen
-3. **Várj, amíg elindul a szerver és megnyílik az Agent Builder**
-4. **Teszteld az időjárás MCP szerveredet természetes nyelvű lekérdezésekkel**
+1. **Nyomd meg az F5-öt** vagy válaszd a **"Debug in Agent Builder"** konfigurációt
+2. **Válaszd ki az összetett konfigurációt** a hibakereső panelen
+3. **Várd meg, hogy elinduljon a szerver** és megnyíljon az Agent Builder
+4. **Teszteld az időjárás MCP szerveredet** természetes nyelvű kérdésekkel
 
-Írj be például ilyet
+Írj be ilyen promptot
 
 SYSTEM_PROMPT
 
@@ -336,36 +343,36 @@ How's the weather like in Seattle
 
 ### 8. lépés: Hibakeresés az MCP Inspectorral
 
-1. **Használd a "Debug in Inspector" konfigurációt** (Edge vagy Chrome böngészővel)
+1. **Használd a "Debug in Inspector"** konfigurációt (Edge vagy Chrome böngészőben)
 2. **Nyisd meg az Inspector felületét** a `http://localhost:6274` címen
 3. **Fedezd fel az interaktív tesztelési környezetet:**
-   - Nézd meg az elérhető eszközöket
-   - Teszteld az eszközök futtatását
-   - Kövesd figyelemmel a hálózati kéréseket
-   - Hibakeresd a szerver válaszait
+   - Tekintsd meg az elérhető eszközöket
+   - Teszteld az eszközök végrehajtását
+   - Figyeld a hálózati kéréseket
+   - Hibakeresd a szerver válaszokat
 
 ![MCP Inspector Interface](../../../../translated_images/hu/Inspector.5672415cd02fe873.webp)
 
 ---
 
-## 🎯 Főbb tanult eredmények
+## 🎯 Fő tanulási eredmények
 
 A labor elvégzésével:
 
-- [x] **Egyéni MCP szervert hoztál létre** a Microsoft Foundry Toolkit sablonjaival
-- [x] **Frissítettél a legújabb MCP SDK verzióra** (v1.9.3) a jobb működés érdekében
-- [x] **Beállítottál professzionális hibakeresési munkafolyamatokat** az Agent Builder és az Inspector esetében egyaránt
-- [x] **Telepítetted és konfiguráltad az MCP Inspectort** az interaktív szerverteszteléshez
-- [x] **Elsajátítottad a VS Code hibakeresési konfigurációinak kezelését** az MCP fejlesztéshez
+- [x] **Egy egyedi MCP szervert hoztál létre** a Microsoft Foundry Toolkit sablonjai segítségével
+- [x] **Frissítettél a legújabb MCP SDK verzióra** (v1.9.3) a kibővített funkciókért
+- [x] **Konfiguráltál professzionális hibakeresési munkafolyamatokat** Agent Builder és Inspector környezetekhez
+- [x] **Beállítottad az MCP Inspectort** az interaktív szerverteszteléshez
+- [x] **Elsajátítottad a VS Code hibakeresési konfigurációit** MCP fejlesztéshez
 
-## 🔧 Feltárt fejlett funkciók
+## 🔧 Felfedezett fejlett funkciók
 
 | Funkció | Leírás | Használati eset |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Legújabb protokoll implementáció | Modern szerverfejlesztés |
+| **MCP Python SDK v1.9.3** | Legfrissebb protokoll implementáció | Modern szerver fejlesztés |
 | **MCP Inspector 0.14.0** | Interaktív hibakereső eszköz | Valós idejű szervertesztelés |
 | **VS Code hibakeresés** | Integrált fejlesztői környezet | Professzionális hibakeresési munkafolyamat |
-| **Agent Builder integráció** | Közvetlen Microsoft Foundry Toolkit kapcsolat | Végeredmény-ig terjedő agent tesztelés |
+| **Agent Builder integráció** | Közvetlen Microsoft Foundry Toolkit kapcsolat | Teljeskörű agent tesztelés |
 
 ## 📚 További források
 
@@ -376,16 +383,16 @@ A labor elvégzésével:
 
 ---
 
-**🎉 Gratulálunk!** Sikeresen befejezted a 3. laboratóriumot, mostantól képes vagy egyéni MCP szervereket létrehozni, hibakeresni és telepíteni professzionális fejlesztési munkafolyamatokkal.
+**🎉 Gratulálunk!** Sikeresen teljesítetted a 3. labort, és most már képes vagy egyedi MCP szervereket létrehozni, hibakeresni és telepíteni professzionális fejlesztési munkafolyamatokkal.
 
-### 🔜 Haladj a következő modulra
+### 🔜 Folytatás a következő modulra
 
-Készen állsz, hogy az MCP képességeidet valós fejlesztési munkafolyamatban is alkalmazd? Folytasd a **[4. modul: Gyakorlati MCP fejlesztés – Egyéni GitHub Clone szerver](../lab4/README.md)** modullal, ahol:
+Készen állsz, hogy alkalmazd MCP készségeidet egy valós fejlesztési munkafolyamatban? Folytasd a **[4. modul: Gyakorlati MCP fejlesztés - Egyedi GitHub klón szerver](../lab4/README.md)** modullal, ahol:
 - Egy gyártásra kész MCP szervert építesz, amely automatizálja a GitHub tárhely műveleteit
-- Megvalósítod a GitHub tárhely klónozását MCP-n keresztül
-- Integrálod az egyéni MCP szervereket VS Code és GitHub Copilot Agent Mode használatával
-- Teszteled és élesben telepíted az egyéni MCP szervereket
-- Gyakorlati munkafolyamat-automatizálást tanulsz fejlesztők számára
+- Implementálod a GitHub tárhely-klónozási funkciót MCP-n keresztül
+- Egyedi MCP szervereket integrálsz VS Code-dal és GitHub Copilot Agent Mode-dal
+- Teszteled és telepíted az egyedi MCP szervereket produkciós környezetben
+- Gyakorlati munkafolyamat automatizálást tanulsz fejlesztők számára
 
 ---
 

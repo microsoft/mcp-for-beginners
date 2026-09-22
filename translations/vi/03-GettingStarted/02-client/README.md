@@ -1,33 +1,33 @@
 # Tạo một client
 
-Client là các ứng dụng hoặc script tùy chỉnh giao tiếp trực tiếp với MCP Server để yêu cầu tài nguyên, công cụ và prompt. Khác với việc sử dụng công cụ inspector, vốn cung cấp giao diện đồ họa để tương tác với server, việc viết client riêng cho phép tương tác theo chương trình và tự động hóa. Điều này giúp các nhà phát triển tích hợp các khả năng của MCP vào quy trình làm việc của riêng họ, tự động hóa các nhiệm vụ và xây dựng giải pháp tùy chỉnh phù hợp với nhu cầu cụ thể.
+Client là các ứng dụng tùy chỉnh hoặc script giao tiếp trực tiếp với một MCP Server để yêu cầu tài nguyên, công cụ và các prompt. Khác với việc sử dụng công cụ inspector, vốn cung cấp giao diện đồ họa để tương tác với server, việc tự viết client cho phép tương tác chương trình hóa và tự động hóa. Điều này giúp các nhà phát triển tích hợp các khả năng của MCP vào quy trình làm việc riêng, tự động hóa công việc và xây dựng các giải pháp tùy chỉnh phù hợp với nhu cầu cụ thể.
 
 ## Tổng quan
 
-Bài học này giới thiệu khái niệm về client trong hệ sinh thái Model Context Protocol (MCP). Bạn sẽ học cách viết client riêng của mình và kết nối nó với MCP Server.
+Bài học này giới thiệu khái niệm các client trong hệ sinh thái Model Context Protocol (MCP). Bạn sẽ học cách viết client của riêng mình và kết nối nó với MCP Server.
 
 ## Mục tiêu học tập
 
 Sau bài học này, bạn sẽ có thể:
 
 - Hiểu client có thể làm gì.
-- Viết client riêng.
-- Kết nối và thử nghiệm client với MCP server để đảm bảo server hoạt động như mong đợi.
+- Viết client của riêng bạn.
+- Kết nối và kiểm tra client với MCP server để đảm bảo server hoạt động như mong đợi.
 
-## Viết client bao gồm những gì?
+## Việc cần làm để viết một client là gì?
 
-Để viết client, bạn cần thực hiện các bước sau:
+Để viết một client, bạn cần làm những bước sau:
 
-- **Nhập các thư viện đúng**. Bạn sẽ sử dụng cùng thư viện như trước, chỉ khác cấu trúc.
-- **Tạo một instance client**. Điều này bao gồm tạo một instance client và kết nối nó với phương thức truyền tải đã chọn.
-- **Quyết định tài nguyên cần liệt kê**. MCP server có tài nguyên, công cụ và prompt, bạn cần chọn những cái nào sẽ liệt kê.
-- **Tích hợp client vào ứng dụng chủ**. Khi bạn đã biết các năng lực của server, bạn cần tích hợp chức năng này vào ứng dụng chủ sao cho nếu người dùng nhập prompt hay lệnh nào đó, tính năng tương ứng của server sẽ được gọi.
+- **Nhập khẩu các thư viện phù hợp**. Bạn sẽ dùng cùng một thư viện như trước, chỉ khác về cấu trúc sử dụng.
+- **Khởi tạo một client**. Điều này bao gồm tạo một thể hiện client và kết nối nó với phương thức truyền tải được chọn.
+- **Quyết định những tài nguyên nào sẽ được liệt kê**. MCP server của bạn có tài nguyên, công cụ và prompt, bạn cần quyết định những gì sẽ liệt kê.
+- **Tích hợp client vào ứng dụng chủ**. Khi đã biết khả năng của server, bạn cần tích hợp nó vào ứng dụng chủ sao cho khi người dùng nhập prompt hoặc lệnh khác, tính năng tương ứng trên server được gọi.
 
-Giờ chúng ta đã hiểu ở cấp độ tổng quát việc mình sắp làm, hãy xem một ví dụ bên dưới.
+Bây giờ chúng ta đã hiểu ở cấp độ tổng quát, hãy xem ví dụ tiếp theo.
 
-### Ví dụ về một client
+### Ví dụ về client
 
-Hãy xem ví dụ client này:
+Hãy xem ví dụ client dưới đây:
 
 ### TypeScript
 
@@ -49,10 +49,10 @@ const client = new Client(
 
 await client.connect(transport);
 
-// Liệt kê các lời nhắc
+// Liệt kê các câu nhắc
 const prompts = await client.listPrompts();
 
-// Lấy một lời nhắc
+// Lấy một câu nhắc
 const prompt = await client.getPrompt({
   name: "example-prompt",
   arguments: {
@@ -77,23 +77,23 @@ const result = await client.callTool({
 });
 ```
 
-Trong đoạn mã trên, chúng ta:
+Trong đoạn mã trên chúng ta đã:
 
 - Nhập các thư viện
-- Tạo instance client và kết nối với phương thức truyền tải stdio.
-- Liệt kê prompt, tài nguyên và công cụ rồi gọi tất cả.
+- Tạo một thể hiện client và kết nối nó sử dụng stdio làm phương thức truyền tải.
+- Liệt kê prompts, tài nguyên và công cụ rồi gọi tất cả chúng.
 
-Bạn đã có một client có thể giao tiếp với MCP Server.
+Thế là bạn có một client có thể giao tiếp với MCP Server.
 
-Hãy dành thời gian ở phần bài tập kế tiếp để phân tích từng đoạn code và giải thích chi tiết.
+Hãy dành thời gian ở phần bài tập tiếp theo để phân tích từng đoạn mã và giải thích hoạt động.
 
-## Bài tập: Viết client
+## Bài tập: Viết một client
 
-Như đã nói ở trên, hãy dành thời gian chú giải mã nguồn, và bạn có thể code theo nếu muốn.
+Như đã nói ở trên, hãy dành thời gian giải thích mã và nếu muốn bạn có thể code cùng.
 
-### -1- Nhập thư viện
+### -1- Nhập khẩu các thư viện
 
-Hãy nhập các thư viện cần thiết, bạn cần tham chiếu client và giao thức truyền tải stdio. stdio là giao thức cho các ứng dụng chạy trên máy cục bộ. SSE là một giao thức truyền tải khác mà chúng tôi sẽ trình bày trong các chương sau, nhưng giờ bạn hãy tiếp tục với stdio.
+Hãy nhập khẩu các thư viện cần thiết, chúng ta cần tham chiếu đến client và giao thức truyền tải đã chọn, stdio. stdio là giao thức dành cho các thứ chạy trên máy cục bộ của bạn. SSE là một giao thức truyền tải khác mà chúng ta sẽ trình bày ở các chương sau, đó là lựa chọn khác của bạn. Hiện tại, hãy tiếp tục với stdio.
 
 #### TypeScript
 
@@ -120,7 +120,7 @@ using ModelContextProtocol.Client;
 
 #### Java
 
-Đối với Java, bạn tạo client kết nối tới MCP server ở bài tập trước. Sử dụng cùng cấu trúc dự án Java Spring Boot từ [Bắt đầu với MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), tạo một lớp Java mới tên `SDKClient` trong thư mục `src/main/java/com/microsoft/mcp/sample/client/` và thêm các import sau:
+Với Java, bạn sẽ tạo client kết nối đến MCP server trong bài tập trước đó. Sử dụng cấu trúc dự án Java Spring Boot đã dùng trong [Bắt đầu với MCP Server](../../../../03-GettingStarted/01-first-server/solution/java), tạo một lớp Java mới tên `SDKClient` trong thư mục `src/main/java/com/microsoft/mcp/sample/client/` và thêm các import sau:
 
 ```java
 import java.util.Map;
@@ -135,7 +135,7 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 
 #### Rust
 
-Bạn sẽ cần thêm các dependencies sau vào file `Cargo.toml`.
+Bạn cần thêm các dependencies dưới đây vào file `Cargo.toml`.
 
 ```toml
 [package]
@@ -149,7 +149,7 @@ serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
-Sau đó, bạn có thể import các thư viện cần thiết vào mã client.
+Từ đó, bạn có thể nhập các thư viện cần thiết trong mã client.
 
 ```rust
 use rmcp::{
@@ -161,11 +161,11 @@ use rmcp::{
 use tokio::process::Command;
 ```
 
-Chúng ta chuyển sang phần khởi tạo.
+Bây giờ tiến tới phần khởi tạo.
 
-### -2- Khởi tạo client và transport
+### -2- Khởi tạo client và giao thức truyền tải
 
-Chúng ta sẽ tạo một instance transport và một instance client:
+Chúng ta sẽ tạo một thể hiện của giao thức truyền tải và một thể hiện client:
 
 #### TypeScript
 
@@ -185,9 +185,9 @@ const client = new Client(
 await client.connect(transport);
 ```
 
-Trong đoạn code trên, chúng ta đã:
+Trong đoạn code trên chúng ta đã:
 
-- Tạo một instance transport stdio. Chú ý nó chỉ định `command` và `args` để tìm và khởi động server, việc này cần thiết khi tạo client.
+- Tạo một thể hiện giao thức stdio. Lưu ý cách nó xác định lệnh và tham số để tìm và khởi động server vì đó là việc cần làm khi tạo client.
 
     ```typescript
     const transport = new StdioClientTransport({
@@ -206,7 +206,7 @@ Trong đoạn code trên, chúng ta đã:
     });
     ```
 
-- Kết nối client với transport đã chọn.
+- Kết nối client với giao thức truyền tải đã chọn.
 
     ```typescript
     await client.connect(transport);
@@ -218,11 +218,11 @@ Trong đoạn code trên, chúng ta đã:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Tạo các tham số máy chủ cho kết nối stdio
+# Tạo tham số máy chủ cho kết nối stdio
 server_params = StdioServerParameters(
-    command="mcp",  # Tệp thực thi
-    args=["run", "server.py"],  # Các đối số dòng lệnh tùy chọn
-    env=None,  # Các biến môi trường tùy chọn
+    command="mcp",  # Tập tin thực thi
+    args=["run", "server.py"],  # Tham số dòng lệnh tùy chọn
+    env=None,  # Biến môi trường tùy chọn
 )
 
 async def run():
@@ -241,12 +241,12 @@ if __name__ == "__main__":
     asyncio.run(run())
 ```
 
-Trong đoạn code trên, chúng ta:
+Trong đoạn mã trên chúng ta đã:
 
-- Nhập các thư viện cần thiết.
-- Khởi tạo đối tượng tham số server để chạy server, giúp client kết nối.
+- Nhập khẩu các thư viện cần thiết
+- Khởi tạo một đối tượng tham số server dùng để chạy server sao cho client có thể kết nối.
 - Định nghĩa phương thức `run` gọi `stdio_client` để bắt đầu phiên client.
-- Tạo điểm vào, dùng `asyncio.run` chạy `run`.
+- Tạo một điểm vào nơi cung cấp phương thức `run` cho `asyncio.run`.
 
 #### .NET
 
@@ -274,12 +274,12 @@ var clientTransport = new StdioClientTransport(new()
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 ```
 
-Trong đoạn code trên:
+Trong đoạn mã trên chúng ta đã:
 
 - Nhập các thư viện cần thiết.
-- Tạo transport stdio và tạo client `mcpClient`. Đây là đối tượng dùng để liệt kê và gọi các tính năng trên MCP Server.
+- Tạo giao thức stdio và client `mcpClient`. Client này dùng để liệt kê và gọi các tính năng trên MCP Server.
 
-Lưu ý, trong "Arguments", bạn có thể trỏ tới file *.csproj* hoặc file thực thi.
+Lưu ý, trong "Arguments", bạn có thể trỏ đến *.csproj* hoặc file thực thi.
 
 #### Java
 
@@ -301,25 +301,25 @@ public class SDKClient {
         var client = McpClient.sync(this.transport).build();
         client.initialize();
         
-        // Logic khách hàng của bạn được đặt ở đây
+        // Logic khách hàng của bạn đi đây
     }
 }
 ```
 
-Trong đoạn code trên:
+Trong đoạn mã trên chúng ta đã:
 
-- Tạo phương thức main thiết lập transport SSE trỏ tới `http://localhost:8080` – địa chỉ MCP server chạy.
-- Tạo lớp client nhận transport qua constructor.
-- Trong phương thức `run`, tạo một MCP client đồng bộ dùng transport và khởi tạo kết nối.
-- Sử dụng SSE (Server-Sent Events) phù hợp giao tiếp HTTP với MCP server Java Spring Boot.
+- Tạo phương thức main thiết lập giao thức SSE trỏ đến `http://localhost:8080` nơi MCP server chạy.
+- Tạo lớp client nhận giao thức truyền tải trong constructor.
+- Trong phương thức `run`, tạo một client MCP đồng bộ dùng giao thức và khởi tạo kết nối.
+- Dùng giao thức SSE (Server-Sent Events) thích hợp cho giao tiếp HTTP với MCP server Java Spring Boot.
 
 #### Rust
 
-Lưu ý client Rust này giả định server là một dự án anh em có tên "calculator-server" trong cùng thư mục. Code dưới đây sẽ khởi động server và kết nối tới nó.
+Client Rust này giả định server là dự án anh em tên "calculator-server" trong cùng thư mục. Đoạn mã dưới đây sẽ khởi động server và kết nối tới nó.
 
 ```rust
 async fn main() -> Result<(), RmcpError> {
-    // Giả sử server là một dự án anh em tên là "calculator-server" trong cùng thư mục
+    // Giả sử máy chủ là một dự án anh chị em có tên "calculator-server" trong cùng thư mục
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .expect("failed to locate workspace root")
@@ -336,7 +336,7 @@ async fn main() -> Result<(), RmcpError> {
 
     // TODO: Khởi tạo
 
-    // TODO: Liệt kê các công cụ
+    // TODO: Liệt kê công cụ
 
     // TODO: Gọi công cụ add với các đối số = {"a": 3, "b": 2}
 
@@ -347,18 +347,18 @@ async fn main() -> Result<(), RmcpError> {
 
 ### -3- Liệt kê các tính năng của server
 
-Bây giờ, chúng ta có client có thể kết nối nếu chạy chương trình. Tuy nhiên, nó chưa liệt kê các tính năng, hãy thực hiện bước này:
+Bây giờ chúng ta có client có thể kết nối nếu chạy chương trình. Tuy nhiên nó chưa liệt kê các tính năng nên hãy làm điều đó tiếp theo:
 
 #### TypeScript
 
 ```typescript
-// Liệt kê các lời nhắc
+// Liệt kê lời nhắc
 const prompts = await client.listPrompts();
 
-// Liệt kê các tài nguyên
+// Liệt kê tài nguyên
 const resources = await client.listResources();
 
-// liệt kê các công cụ
+// liệt kê công cụ
 const tools = await client.listTools();
 ```
 
@@ -378,7 +378,7 @@ for tool in tools.tools:
     print("Tool: ", tool.name)
 ```
 
-Tại đây, chúng ta liệt kê tài nguyên bằng `list_resources()` và công cụ bằng `list_tools()` rồi in ra.
+Ở đây chúng ta liệt kê tài nguyên hiện có bằng `list_resources()` và công cụ bằng `list_tools` rồi in ra.
 
 #### .NET
 
@@ -389,7 +389,7 @@ foreach (var tool in await client.ListToolsAsync())
 }
 ```
 
-Đây là ví dụ về cách liệt kê các công cụ trên server. Với mỗi công cụ, chúng ta in ra tên.
+Ví dụ trên cho thấy việc liệt kê các công cụ trên server. Với mỗi công cụ ta in ra tên nó.
 
 #### Java
 
@@ -398,21 +398,21 @@ foreach (var tool in await client.ListToolsAsync())
 ListToolsResult toolsList = client.listTools();
 System.out.println("Available Tools = " + toolsList);
 
-// Bạn cũng có thể ping máy chủ để xác minh kết nối
+// Bạn cũng có thể ping máy chủ để kiểm tra kết nối
 client.ping();
 ```
 
-Trong đoạn code trên:
+Trong đoạn mã trên chúng ta đã:
 
-- Gọi `listTools()` để lấy tất cả công cụ có trên MCP server.
-- Dùng `ping()` để xác thực kết nối tới server.
-- `ListToolsResult` chứa thông tin về công cụ, bao gồm tên, mô tả, và cấu trúc đầu vào.
+- Gọi `listTools()` để lấy danh sách tất cả công cụ sẵn có từ MCP server.
+- Dùng `ping()` để kiểm tra kết nối server có hoạt động.
+- `ListToolsResult` chứa thông tin về công cụ bao gồm tên, mô tả và định dạng đầu vào.
 
-Tuyệt vời, bây giờ chúng ta đã lấy danh sách tính năng. Vậy khi nào sử dụng chúng? Client này khá đơn giản, tức chúng ta cần gọi thủ công khi muốn dùng. Trong chương tiếp theo, chúng ta sẽ tạo client nâng cao có tích hợp mô hình ngôn ngữ lớn (LLM). Còn giờ, xem cách gọi tính năng trên server:
+Tốt, giờ chúng ta đã lấy được tất cả tính năng. Nhưng câu hỏi là khi nào dùng? Client này khá đơn giản, cần gọi rõ ràng các tính năng khi muốn dùng. Ở chương tiếp theo, ta sẽ tạo client nâng cao có truy cập LLM riêng của nó. Hiện giờ, hãy xem cách gọi các tính năng trên server:
 
 #### Rust
 
-Trong hàm main, sau khi khởi tạo client, ta có thể khởi động server và liệt kê một số tính năng của nó.
+Trong hàm main, sau khi khởi tạo client, ta khởi tạo server và liệt kê vài tính năng.
 
 ```rust
 // Khởi tạo
@@ -424,9 +424,9 @@ let tools = client.list_tools(Default::default()).await?;
 println!("Available tools: {:?}", tools);
 ```
 
-### -4- Gọi tính năng
+### -4- Gọi các tính năng
 
-Để gọi tính năng, cần chỉ rõ đối số phù hợp và trong một số trường hợp là tên của tính năng muốn gọi.
+Để gọi tính năng ta cần đảm bảo truyền đúng đối số và trong một số trường hợp tên tính năng cần gọi.
 
 #### TypeScript
 
@@ -445,7 +445,7 @@ const result = await client.callTool({
   }
 });
 
-// gọi lời nhắc
+// gọi lệnh nhắc
 const promptResult = await client.getPrompt({
     name: "review-code",
     arguments: {
@@ -454,9 +454,9 @@ const promptResult = await client.getPrompt({
 })
 ```
 
-Trong đoạn code trên, chúng ta:
+Trong đoạn mã trên ta đã:
 
-- Đọc một tài nguyên, gọi bằng `readResource()` với `uri`. Đây là cấu trúc trên server:
+- Đọc một tài nguyên, gọi `readResource()` với `uri`. Đây là cách nó có thể hiển thị trên server:
 
     ```typescript
     server.resource(
@@ -471,9 +471,9 @@ Trong đoạn code trên, chúng ta:
     );
     ```
 
-    Giá trị `uri` là `file://example.txt` tương ứng `file://{name}` trên server. `example.txt` sẽ được gán cho `name`.
+    Giá trị `uri` là `file://example.txt` khớp với `file://{name}` trên server. `example.txt` sẽ được gán cho `name`.
 
-- Gọi một công cụ, chỉ định `name` và `arguments` như sau:
+- Gọi công cụ, ta gọi bằng cách chỉ định `name` và `arguments` như sau:
 
     ```typescript
     const result = await client.callTool({
@@ -484,7 +484,7 @@ Trong đoạn code trên, chúng ta:
     });
     ```
 
-- Lấy prompt, gọi `getPrompt()` với `name` và `arguments`. Mã server trông như sau:
+- Lấy prompt, gọi `getPrompt()` với `name` và `arguments`. Mã server như sau:
 
     ```typescript
     server.prompt(
@@ -502,7 +502,7 @@ Trong đoạn code trên, chúng ta:
     );
     ```
 
-    Do đó mã client tương ứng sẽ như sau:
+    Mã client kết quả sẽ trông như thế này để phù hợp server:
 
     ```typescript
     const promptResult = await client.getPrompt({
@@ -526,14 +526,14 @@ result = await session.call_tool("add", arguments={"a": 1, "b": 7})
 print(result.content)
 ```
 
-Trong đoạn code trên:
+Trong đoạn code trên chúng ta đã:
 
-- Gọi tài nguyên tên `greeting` qua `read_resource`.
-- Gọi công cụ tên `add` qua `call_tool`.
+- Gọi tài nguyên có tên `greeting` qua `read_resource`.
+- Gọi công cụ `add` qua `call_tool`.
 
 #### .NET
 
-1. Thêm mã gọi một công cụ:
+1. Thêm mã gọi công cụ:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
@@ -542,7 +542,7 @@ Trong đoạn code trên:
       cancellationToken:CancellationToken.None);
   ```
 
-1. Để in kết quả, đây là đoạn xử lý:
+1. Để in kết quả, đoạn mã xử lý như sau:
 
   ```csharp
   Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
@@ -569,17 +569,17 @@ CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()
 System.out.println("Help = " + resultHelp);
 ```
 
-Trong đoạn code trên:
+Trong đoạn mã trên chúng ta đã:
 
-- Gọi nhiều công cụ toán học bằng `callTool()` với các đối tượng `CallToolRequest`.
-- Mỗi cuộc gọi chỉ định tên công cụ và `Map` các tham số cần thiết.
-- Công cụ server kỳ vọng tham số hợp lệ (ví dụ "a", "b").
-- Kết quả trả về là các đối tượng `CallToolResult` chứa phản hồi từ server.
+- Gọi nhiều công cụ máy tính bằng phương thức `callTool()` với các đối tượng `CallToolRequest`.
+- Mỗi lần gọi xác định tên công cụ và `Map` các đối số cần thiết.
+- Công cụ máy chủ cần tên tham số cụ thể (như "a", "b" cho phép toán).
+- Kết quả trả về dưới dạng `CallToolResult` chứa phản hồi từ server.
 
 #### Rust
 
 ```rust
-// Gọi công cụ add với các đối số = {"a": 3, "b": 2}
+// Gọi công cụ thêm với các đối số = {"a": 3, "b": 2}
 let a = 3;
 let b = 2;
 let tool_result = client
@@ -593,11 +593,11 @@ println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
 ### -5- Chạy client
 
-Để chạy client, gõ lệnh sau trong terminal:
+Để chạy client, nhập lệnh sau trong terminal:
 
 #### TypeScript
 
-Thêm đoạn cấu hình sau vào phần "scripts" trong *package.json*:
+Thêm mục sau vào phần "scripts" trong *package.json*:
 
 ```json
 "client": "tsc && node build/client.js"
@@ -609,7 +609,7 @@ npm run client
 
 #### Python
 
-Gọi client với lệnh:
+Gọi client với lệnh sau:
 
 ```sh
 python client.py
@@ -623,7 +623,7 @@ dotnet run
 
 #### Java
 
-Đảm bảo MCP server chạy tại `http://localhost:8080`, sau đó chạy client:
+Đầu tiên, đảm bảo MCP server đang chạy trên `http://localhost:8080`. Sau đó chạy client:
 
 ```bash
 # Xây dựng dự án của bạn
@@ -633,13 +633,13 @@ dotnet run
 ./mvnw exec:java -Dexec.mainClass="com.microsoft.mcp.sample.client.SDKClient"
 ```
 
-Bạn cũng có thể chạy dự án client hoàn chỉnh trong thư mục giải pháp `03-GettingStarted\02-client\solution\java`:
+Ngoài ra, bạn có thể chạy dự án client hoàn chỉnh trong thư mục `03-GettingStarted\02-client\solution\java`:
 
 ```bash
 # Điều hướng đến thư mục giải pháp
 cd 03-GettingStarted/02-client/solution/java
 
-# Xây dựng và chạy JAR
+# Xây dựng và chạy tệp JAR
 ./mvnw clean package
 java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
@@ -653,9 +653,9 @@ cargo run
 
 ## Bài tập
 
-Trong bài tập này, bạn sẽ sử dụng những gì đã học để tạo client của riêng bạn.
+Trong bài tập này, bạn sẽ dùng những gì đã học để tạo client của riêng bạn.
 
-Dưới đây là server bạn có thể dùng và cần gọi qua mã client của bạn, xem bạn có thể thêm tính năng mới cho server để làm nó thú vị hơn.
+Đây là một server bạn có thể dùng gọi qua mã client, thử xem bạn có thể thêm tính năng cho server để nó thú vị hơn không.
 
 ### TypeScript
 
@@ -678,7 +678,7 @@ server.tool("add",
   })
 );
 
-// Thêm một tài nguyên chào hỏi động
+// Thêm một tài nguyên lời chào động
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
@@ -721,7 +721,7 @@ def add(a: int, b: int) -> int:
     return a + b
 
 
-# Thêm một tài nguyên lời chào động
+# Thêm một tài nguyên chào hỏi động
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
@@ -759,21 +759,21 @@ public static class CalculatorTool
 }
 ```
 
-Xem dự án này để biết cách [thêm prompt và tài nguyên](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
+Xem dự án này để biết cách [thêm prompts và tài nguyên](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/samples/EverythingServer/Program.cs).
 
-Ngoài ra, check link này để biết cách gọi [prompt và tài nguyên](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
+Cũng hãy xem liên kết này để biết cách gọi [prompts và tài nguyên](https://github.com/modelcontextprotocol/csharp-sdk/blob/main/src/ModelContextProtocol/Client/).
 
 ### Rust
 
-Trong [phần trước](../../../../03-GettingStarted/01-first-server), bạn đã học cách tạo MCP server đơn giản bằng Rust. Bạn có thể tiếp tục phát triển hoặc tham khảo thêm các ví dụ MCP server Rust tại đây: [MCP Server Examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
+Trong [phần trước](../../../../03-GettingStarted/01-first-server), bạn đã học cách tạo một MCP server đơn giản bằng Rust. Bạn có thể tiếp tục phát triển dựa trên đó hoặc xem liên kết này để có thêm ví dụ MCP server bằng Rust: [Ví dụ MCP Server](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples/servers)
 
 ## Giải pháp
 
-**Thư mục giải pháp** chứa các triển khai client hoàn chỉnh, sẵn sàng chạy, minh họa tất cả các khái niệm trong tutorial. Mỗi giải pháp gồm có cả client và server, tổ chức thành dự án riêng biệt, độc lập.
+Thư mục **solution** chứa các triển khai client hoàn chỉnh, sẵn sàng chạy minh họa tất cả các khái niệm trong hướng dẫn này. Mỗi giải pháp bao gồm cả mã client và server được tổ chức trong các dự án riêng biệt, tự chứa.
 
-### 📁 Cấu trúc thư mục giải pháp
+### 📁 Cấu trúc Solution
 
-Thư mục giải pháp được tổ chức theo ngôn ngữ lập trình:
+Thư mục solution được tổ chức theo ngôn ngữ lập trình:
 
 ```text
 solution/
@@ -805,17 +805,17 @@ solution/
 
 ### 🚀 Mỗi giải pháp bao gồm
 
-Mỗi giải pháp ngôn ngữ cung cấp:
+Mỗi giải pháp theo ngôn ngữ cung cấp:
 
-- **Triển khai client hoàn chỉnh** với tất cả tính năng trong tutorial
-- **Cấu trúc dự án hoạt động** với phụ thuộc và cấu hình đầy đủ
-- **Script build và chạy** để dễ dàng thiết lập và chạy thử
-- **README chi tiết** hướng dẫn theo ngôn ngữ
-- **Xử lý lỗi** và ví dụ xử lý kết quả
+- **Triển khai client hoàn chỉnh** với đầy đủ tính năng từ hướng dẫn
+- **Cấu trúc dự án hoạt động** với các phụ thuộc và cấu hình đúng
+- **Script build và chạy** để dễ thiết lập và thực thi
+- **README chi tiết** với hướng dẫn riêng theo ngôn ngữ
+- **Ví dụ xử lý lỗi** và xử lý kết quả
 
-### 📖 Sử dụng giải pháp
+### 📖 Sử dụng các giải pháp
 
-1. **Đi đến thư mục ngôn ngữ bạn chọn**:
+1. **Đi tới thư mục ngôn ngữ mà bạn thích**:
 
    ```bash
    cd solution/typescript/    # Dành cho TypeScript
@@ -824,12 +824,12 @@ Mỗi giải pháp ngôn ngữ cung cấp:
    cd solution/dotnet/        # Dành cho .NET
    ```
 
-2. **Theo hướng dẫn trong README từng thư mục để:**
-   - Cài đặt phụ thuộc
-   - Build dự án
+2. **Làm theo hướng dẫn README** trong mỗi thư mục để:
+   - Cài đặt các phụ thuộc
+   - Xây dựng dự án
    - Chạy client
 
-3. **Ví dụ đầu ra bạn nên thấy:**
+3. **Kết quả mẫu** bạn sẽ thấy:
 
    ```text
    Prompt: Please review this code: console.log("hello");
@@ -837,36 +837,38 @@ Mỗi giải pháp ngôn ngữ cung cấp:
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
-Tài liệu đầy đủ, hướng dẫn từng bước xem tại: **[📖 Tài liệu giải pháp](./solution/README.md)**
+Để xem tài liệu đầy đủ và hướng dẫn chi tiết theo từng bước, xem: **[📖 Tài liệu Solution](./solution/README.md)**
 
 ## 🎯 Ví dụ hoàn chỉnh
 
-Chúng tôi cung cấp các ví dụ client hoàn chỉnh hoạt động cho tất cả ngôn ngữ lập trình đã trình bày. Ví dụ minh họa đầy đủ chức năng đã nói trên, giúp bạn tham khảo hoặc dùng làm cơ sở cho dự án riêng.
+Chúng tôi đã cung cấp các triển khai client hoàn chỉnh và hoạt động cho tất cả ngôn ngữ lập trình trong hướng dẫn này. Những ví dụ này minh họa đầy đủ chức năng như mô tả và có thể dùng làm tham chiếu hoặc điểm bắt đầu cho dự án của bạn.
 
-### Ví dụ hoàn chỉnh có sẵn
+### Các ví dụ hoàn chỉnh có sẵn
 
-| Ngôn ngữ | File | Mô tả |
+| Ngôn ngữ | Tệp | Mô tả |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Client Java hoàn chỉnh dùng transport SSE với xử lý lỗi toàn diện |
-| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Client C# hoàn chỉnh dùng transport stdio với tự động khởi động server |
-| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Client TypeScript hoàn chỉnh hỗ trợ đầy đủ giao thức MCP |
-| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Client Python hoàn chỉnh dùng async/await |
-| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Client Rust hoàn chỉnh dùng Tokio cho xử lý bất đồng bộ |
+| **Java** | [`client_example_java.java`](../../../../03-GettingStarted/02-client/client_example_java.java) | Client Java hoàn chỉnh dùng giao thức SSE với xử lý lỗi toàn diện |
+| **C#** | [`client_example_csharp.cs`](../../../../03-GettingStarted/02-client/client_example_csharp.cs) | Client C# hoàn chỉnh dùng giao thức stdio với khởi động server tự động |
+| **TypeScript** | [`client_example_typescript.ts`](../../../../03-GettingStarted/02-client/client_example_typescript.ts) | Client TypeScript hoàn chỉnh với hỗ trợ đầy đủ giao thức MCP |
+| **Python** | [`client_example_python.py`](../../../../03-GettingStarted/02-client/client_example_python.py) | Client Python hoàn chỉnh sử dụng mô hình async/await |
+| **Rust** | [`client_example_rust.rs`](../../../../03-GettingStarted/02-client/client_example_rust.rs) | Client Rust hoàn chỉnh dùng Tokio cho các hoạt động không đồng bộ |
 
 Mỗi ví dụ hoàn chỉnh bao gồm:
-- ✅ **Thiết lập kết nối** và xử lý lỗi
-- ✅ **Khám phá máy chủ** (công cụ, tài nguyên, lời nhắc khi có thể)
+
+- ✅ **Kết nối và xử lý lỗi**
+- ✅ **Khám phá server** (công cụ, tài nguyên, prompt nếu có)
 - ✅ **Các phép toán máy tính** (cộng, trừ, nhân, chia, trợ giúp)
-- ✅ **Xử lý kết quả** và định dạng đầu ra
+- ✅ **Xử lý kết quả** và xuất định dạng
 - ✅ **Xử lý lỗi toàn diện**
-- ✅ **Mã sạch, có chú thích** với các bước giải thích chi tiết
+
+- ✅ **Mã nguồn sạch, có chú thích** với bình luận từng bước
 
 ### Bắt đầu với các Ví dụ Hoàn chỉnh
 
 1. **Chọn ngôn ngữ ưa thích của bạn** từ bảng trên
 2. **Xem lại tệp ví dụ hoàn chỉnh** để hiểu toàn bộ cách triển khai
 3. **Chạy ví dụ** theo hướng dẫn trong [`complete_examples.md`](./complete_examples.md)
-4. **Sửa đổi và mở rộng** ví dụ cho trường hợp sử dụng cụ thể của bạn
+4. **Chỉnh sửa và mở rộng** ví dụ cho trường hợp sử dụng cụ thể của bạn
 
 Để có tài liệu chi tiết về cách chạy và tùy chỉnh các ví dụ này, xem: **[📖 Tài liệu Ví dụ Hoàn chỉnh](./complete_examples.md)**
 
@@ -874,41 +876,41 @@ Mỗi ví dụ hoàn chỉnh bao gồm:
 
 | **Thư mục Giải pháp** | **Ví dụ Hoàn chỉnh** |
 |--------------------|--------------------- |
-| Cấu trúc dự án đầy đủ với các tệp xây dựng | Triển khai một tệp đơn |
-| Sẵn sàng chạy với các phụ thuộc | Ví dụ mã tập trung |
-| Thiết lập gần giống môi trường sản xuất | Tham khảo học tập |
-| Công cụ đặc thù ngôn ngữ | So sánh đa ngôn ngữ |
+| Cấu trúc dự án đầy đủ với các tệp xây dựng | Các triển khai trong một tệp đơn |
+| Sẵn sàng chạy với các phụ thuộc | Các ví dụ mã tập trung |
+| Cài đặt giống môi trường sản xuất | Tham khảo mang tính giáo dục |
+| Công cụ riêng cho từng ngôn ngữ | So sánh đa ngôn ngữ |
 
-Cả hai cách đều có giá trị - sử dụng **thư mục giải pháp** cho dự án hoàn chỉnh và **ví dụ hoàn chỉnh** để học và tham khảo.
+Cả hai cách tiếp cận đều có giá trị - sử dụng **thư mục giải pháp** cho các dự án đầy đủ và **ví dụ hoàn chỉnh** cho học tập và tham khảo.
 
 ## Những điểm chính cần nhớ
 
-Những điểm chính cho chương này về client như sau:
+Các điểm chính của chương này về các client như sau:
 
-- Có thể được dùng để khám phá và gọi các tính năng trên máy chủ.
-- Có thể khởi động một máy chủ khi client tự khởi động (như trong chương này) nhưng client cũng có thể kết nối tới các máy chủ đang chạy.
-- Là cách tuyệt vời để thử khả năng máy chủ bên cạnh các lựa chọn khác như Inspector như đã mô tả trong chương trước.
+- Có thể được dùng để khám phá và gọi các chức năng trên server.
+- Có thể khởi động một server trong khi server tự khởi động (như trong chương này) nhưng client cũng có thể kết nối với các server đang chạy.
+- Là cách tuyệt vời để kiểm thử khả năng của server bên cạnh các lựa chọn thay thế như Inspector như đã mô tả trong chương trước.
 
 ## Tài nguyên bổ sung
 
 - [Xây dựng client trong MCP](https://modelcontextprotocol.io/quickstart/client)
 
-## Mẫu
+## Mẫu ví dụ
 
 - [Máy tính Java](../samples/java/calculator/README.md)
-- [Máy tính .Net](../../../../03-GettingStarted/samples/csharp)
+- [Máy tính .NET](../../../../03-GettingStarted/samples/csharp)
 - [Máy tính JavaScript](../samples/javascript/README.md)
 - [Máy tính TypeScript](../samples/typescript/README.md)
 - [Máy tính Python](../../../../03-GettingStarted/samples/python)
 - [Máy tính Rust](../../../../03-GettingStarted/samples/rust)
 
-## Tiếp theo
+## Tiếp theo là gì
 
 - Tiếp theo: [Tạo client với LLM](../03-llm-client/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố từ chối trách nhiệm**:
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi nỗ lực đảm bảo tính chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc thiếu sót. Tài liệu gốc bằng ngôn ngữ bản địa nên được coi là nguồn chính xác và đáng tin cậy. Đối với những thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm cho bất kỳ hiểu lầm hay cách diễn giải sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

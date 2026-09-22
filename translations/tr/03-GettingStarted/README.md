@@ -1,109 +1,119 @@
 ## Başlarken  
 
-[![İlk MCP Sunucunuzu Oluşturun](../../../translated_images/tr/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
+[![İlk MCP Sunucunuzu Kurun](../../../translated_images/tr/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
-_(Bu dersin videosunu görmek için yukarıdaki görsele tıklayın)_
+_(Bu dersin videosunu izlemek için yukarıdaki resme tıklayın)_
 
 Bu bölüm birkaç dersten oluşmaktadır:
 
-- **1 İlk sunucunuz**, bu ilk derste ilk sunucunuzu nasıl oluşturacağınızı ve sunucunuzu test edip hata ayıklamak için değerli bir yöntem olan denetleyici aracıyla nasıl inceleyeceğinizi öğreneceksiniz, [derse git](01-first-server/README.md)
+- **1 İlk sunucunuz**, bu ilk derste, ilk sunucunuzu nasıl oluşturacağınızı ve sunucunuzu test etmek ve hata ayıklamak için değerli bir yol olan denetleyici aracıyla nasıl inceleyeceğinizi öğreneceksiniz, [derse git](01-first-server/README.md)
 
-- **2 İstemci**, bu derste sunucunuza bağlanabilen bir istemci yazmayı öğreneceksiniz, [derse git](02-client/README.md)
+- **2 İstemci**, bu derste, sunucunuza bağlanabilen bir istemci nasıl yazılır öğreneceksiniz, [derse git](02-client/README.md)
 
-- **3 LLM ile İstemci**, daha da iyi bir istemci yazma yöntemi, sunucunuzla ne yapılacağı konusunda "müzakere edebilecek" bir LLM eklemektir, [derse git](03-llm-client/README.md)
+- **3 LLM ile İstemci**, bir istemci yazmanın çok daha iyi bir yolu, sunucunuza ne yapılacağı konusunda "müzakere" edebilmesi için ona bir LLM eklemektir, [derse git](03-llm-client/README.md)
 
-- **4 Visual Studio Code'da bir sunucu GitHub Copilot Ajan modunu kullanmak**. Burada, MCP Sunucumuzu Visual Studio Code içinden çalıştırmayı inceliyoruz, [derse git](04-vscode/README.md)
+- **4 Visual Studio Code'da bir sunucu GitHub Copilot Agent modunun kullanımı**. Burada, MCP Sunucumuzu Visual Studio Code içinden çalıştırmaya bakıyoruz, [derse git](04-vscode/README.md)
 
-- **5 stdio Transport Sunucusu** stdio aktarımı, yerel MCP sunucu-istemci iletişimi için önerilen standarttır ve yerleşik süreç izolasyonu ile güvenli alt süreç tabanlı iletişim sağlar [derse git](05-stdio-server/README.md)
+- **5 stdio Taşıma Sunucusu** stdio taşıma, yerel MCP sunucu-istemci iletişimi için önerilen standarttır, yerleşik işlem izolasyonu ile güvenli alt süreç tabanlı iletişim sağlar [derse git](05-stdio-server/README.md)
 
-- **6 MCP ile HTTP Akışı (Akışlı HTTP)**. Modern HTTP akış aktarımları hakkında bilgi sahibi olun (uzaktan MCP sunucuları için önerilen yaklaşım [MCP Spesifikasyonu 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/#streamable-http) uyarınca), ilerleme bildirimleri ve Akışlı HTTP kullanarak ölçeklenebilir, gerçek zamanlı MCP sunucuları ve istemcileri nasıl uygulayacağınızı öğrenin. [derse git](06-http-streaming/README.md)
+- **6 MCP ile HTTP Akışı (Akış Destekli HTTP)**. Standart hakkında bilgi edinin
+	uzaktan taşıma ile [MCP Spesifikasyonu 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	ve ders içinde tutulan eski oturum tabanlı uygulama.
+	[derse git](06-http-streaming/README.md)
 
-- **7 MCP İstemci ve Sunucularınızı tüketmek ve test etmek için VSCode için AI Araç Setini kullanmak** [derse git](07-aitk/README.md)
+- **7 VSCode için AI Araç Setinin Kullanımı** MCP İstemcilerinizi ve Sunucularınızı kullanmak ve test etmek için [derse git](07-aitk/README.md)
 
-- **8 Test Etme**. Burada özellikle sunucu ve istemcimizi farklı şekillerde nasıl test edebileceğimizi ele alacağız, [derse git](08-testing/README.md)
+- **8 Test Etme**. Burada özellikle sunucumuzu ve istemcimizi farklı yollarla nasıl test edebileceğimize odaklanacağız, [derse git](08-testing/README.md)
 
-- **9 Dağıtım**. Bu bölüm MCP çözümlerinizi dağıtmanın farklı yollarına bakacaktır, [derse git](09-deployment/README.md)
+- **9 Dağıtım**. Bu bölüm MCP çözümlerinizi dağıtmanın çeşitli yollarını ele alacaktır, [derse git](09-deployment/README.md)
 
-- **10 Gelişmiş sunucu kullanımı**. Bu bölüm gelişmiş sunucu kullanımlarını kapsar, [derse git](./10-advanced/README.md)
+- **10 Gelişmiş sunucu kullanımı**. Bu bölüm gelişmiş sunucu kullanımını kapsar, [derse git](./10-advanced/README.md)
 
-- **11 Kimlik Doğrulama**. Bu bölüm Basit Kimlik Doğrulamayı ele alır, Temel Kimlik Doğrulamadan JWT ve RBAC kullanımına kadar. Burada başlamanız ve ardından Bölüm 5'teki Gelişmiş Konulara bakmanız ve Bölüm 2'de önerilen ek güvenlik sertleştirmelerini yapmanız tavsiye edilir, [derse git](./11-simple-auth/README.md)
+- **11 Kimlik Doğrulama**. Bu bölüm Basit Kimlik Doğrulama’dan JWT ve RBAC kullanmaya kadar nasıl kimlik doğrulama ekleyeceğinizi kapsar. Buradan başlamanız ve ardından Bölüm 5’teki Gelişmiş Konulara bakmanız ve Bölüm 2'deki önerilerle ek güvenlik sertleştirmeleri yapmanız önerilir, [derse git](./11-simple-auth/README.md)
 
-- **12 MCP Hostları**. Claude Desktop, Cursor, Cline ve Windsurf gibi popüler MCP host istemcilerini yapılandırın ve kullanın. Aktarım türlerini ve hata giderme yöntemlerini öğrenin, [derse git](./12-mcp-hosts/README.md)
+- **12 MCP Sunucuları**. Claude Desktop, Cursor, Cline ve Windsurf dahil popüler MCP sunucu istemcilerini yapılandırın ve kullanın. Taşıma türlerini ve sorun giderme bilgilerini öğrenin, [derse git](./12-mcp-hosts/README.md)
 
-- **13 MCP Denetleyici**. MCP Denetleyici aracı ile MCP sunucularınızı etkileşimli olarak hata ayıklayın ve test edin. Araçları, kaynakları ve protokol mesajlarını nasıl çözümleyeceğinizi öğrenin, [derse git](./13-mcp-inspector/README.md)
+- **13 MCP Denetleyicisi**. MCP Denetleyici aracı ile MCP sunucularınızı etkileşimli olarak hata ayıklayın ve test edin. Araçları, kaynakları ve protokol mesajlarını nasıl sorun gidereceğinizi öğrenin, [derse git](./13-mcp-inspector/README.md)
 
-- **14 Örnekleme**. MCP İstemcileri ile LLM ilgili görevlerde işbirliği yapan MCP Sunucuları oluşturun (2026-07-28 sürüm adayında kullanım dışı kaldı; 2025-11-25 için halen geçerli). [derse git](./14-sampling/README.md)
+- **14 Örnekleme**. `2025-11-25` için eski Örnekleme ilkelini öğrenin ve
+	yeni tasarımları doğrudan LLM sağlayıcı entegrasyonuna nasıl taşıyacağınızı öğrenin. Örnekleme
+	MCP `2026-07-28` sürümünde kullanımdan kalkmıştır. [derse git](./14-sampling/README.md)
 
-- **15 MCP Uygulamaları**. Ayrıca UI yönergeleriyle yanıt veren MCP Sunucuları oluşturun, [derse git](./15-mcp-apps/README.md)
+- **15 MCP Uygulamaları**. UI talimatları ile yanıt veren MCP Sunucuları oluşturun, [derse git](./15-mcp-apps/README.md)
 
-Model Context Protocol (MCP), uygulamaların LLM'lere bağlam sağlamasını standartlaştıran açık bir protokoldür. MCP'yi yapay zeka uygulamaları için bir USB-C portu gibi düşünün – AI modellerini farklı veri kaynaklarına ve araçlara bağlamanın standart bir yolunu sunar.
+Model Context Protocol (MCP), uygulamaların LLM'lere bağlam sağlamasını standartlaştıran açık bir protokoldür. MCP'yi AI uygulamaları için bir USB-C portu gibi düşünebilirsiniz - farklı veri kaynaklarına ve araçlara standart bir şekilde AI modellerini bağlamanın yolunu sağlar.
 
 ## Öğrenme Hedefleri
 
-Bu dersin sonunda şunları yapabileceksiniz:
+Bu dersin sonunda yapabilecekleriniz:
 
-- C#, Java, Python, TypeScript ve JavaScript için MCP geliştirme ortamlarını kurmak
-- Özel özelliklerle (kaynaklar, istemler ve araçlar) temel MCP sunucuları oluşturmak ve dağıtmak
-- MCP sunucularına bağlanan host uygulamalar oluşturmak
+- C#, Java, Python, TypeScript ve JavaScript dillerinde MCP geliştirme ortamlarını kurmak
+- Özel özelliklerle (kaynaklar, uyarılar ve araçlar) temel MCP sunucuları oluşturup dağıtmak
+- MCP sunucularına bağlanan ev sahibi uygulamalar oluşturmak
 - MCP uygulamalarını test etmek ve hata ayıklamak
-- Yaygın kurulum sorunlarını ve çözümlerini anlamak
+- Yaygın kurulum zorluklarını ve çözümlerini anlamak
 - MCP uygulamalarınızı popüler LLM servislerine bağlamak
 
 ## MCP Ortamınızı Kurma
 
-MCP ile çalışmaya başlamadan önce, geliştirme ortamınızı hazırlamak ve temel iş akışını anlamak önemlidir. Bu bölüm, MCP'ye sorunsuz bir başlangıç yapmanızı sağlamak için ilk kurulum adımlarında rehberlik edecektir.
+MCP ile çalışmaya başlamadan önce, geliştirme ortamınızı hazırlamanız ve temel iş akışını anlamanız önemlidir. Bu bölüm, MCP ile sorunsuz bir başlangıç için ilk kurulum adımlarında size rehberlik edecektir.
 
 ### Ön Koşullar
 
-MCP geliştirmeye başlamadan önce aşağıdakilere sahip olduğunuzdan emin olun:
+MCP geliştirmeye başlamadan önce, aşağıdaki koşullara sahip olun:
 
 - **Geliştirme Ortamı**: Seçtiğiniz dil için (C#, Java, Python, TypeScript veya JavaScript)
-- **IDE/Düzenleyici**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm veya herhangi modern bir kod editörü
+- **IDE/Düzenleyici**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm veya herhangi modern bir kod düzenleyicisi
 - **Paket Yöneticileri**: NuGet, Maven/Gradle, pip veya npm/yarn
-- **API Anahtarları**: Host uygulamalarınızda kullanmayı planladığınız herhangi bir AI servisi için
+- **API Anahtarları**: Ev sahibi uygulamalarınızda kullanmayı planladığınız herhangi bir AI servisi için
 
 
-### Resmi SDK'lar
+### Resmi SDK’lar
 
-Önümüzdeki bölümlerde Python, TypeScript, Java ve .NET kullanılarak yapılmış çözümleri göreceksiniz. İşte resmi olarak desteklenen tüm SDK'lar.
+Önümüzdeki bölümlerde Python, TypeScript,
+Java ve .NET kullanılarak oluşturulan çözümler göreceksiniz. İşte resmi SDK’lar.
 
-MCP, birden fazla dil için resmi SDK'lar sağlar ([MCP Spesifikasyonu 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/) ile uyumlu):
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoft ile işbirliği içinde sürdürülür
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AI ile işbirliği içinde sürdürülür
+MCP `2026-07-28` için SDK desteği dil bazında bağımsız olarak yayınlanmaktadır.
+Bir örneği çalıştırmadan önce, paket sürümünü ve SDK'nın desteklenen protokol revizyonları için sürüm notlarını kontrol edin.
+Bakınız
+[resmi SDK listesi](https://modelcontextprotocol.io/docs/sdk):
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Microsoft ile işbirliği içinde bakımı yapılmaktadır
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Spring AI ile işbirliği içinde bakımı yapılmaktadır
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Resmi TypeScript uygulaması
 - [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Resmi Python uygulaması (FastMCP)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Resmi Kotlin uygulaması
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AI ile işbirliği içinde sürdürülür
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Loopwork AI ile işbirliği içinde bakımı yapılmaktadır
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Resmi Rust uygulaması
 - [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - Resmi Go uygulaması
 
-## Önemli Noktalar
+## Temel Çıkarımlar
 
-- MCP geliştirme ortamı, dil spesifik SDK'larla kurulumu kolaydır
-- MCP sunucuları net şemalara sahip araçlar oluşturup kaydetmeyi içerir
-- MCP istemcileri, genişletilmiş yeteneklerden faydalanmak için sunuculara ve modellere bağlanır
-- Test etmek ve hata ayıklamak güvenilir MCP uygulamaları için esastır
-- Dağıtım seçenekleri yerelden bulut tabanlı çözümlere kadar çeşitlidir
+- MCP geliştirme ortamı, dil bazlı SDK'lar ile kurulum açısından basittir
+- MCP sunucuları, net şemalar ile araçların oluşturulması ve kaydedilmesini içerir
+- MCP istemcileri, genişletilmiş yeteneklerden yararlanmak için sunuculara ve modellere bağlanır
+- Test etmek ve hata ayıklamak, güvenilir MCP uygulamaları için esastır
+- Dağıtım seçenekleri yerel geliştirmeden bulut tabanlı çözümlere kadar çeşitlidir
 
-## Uygulama Yapma
+## Uygulama
 
-Bu bölümdeki tüm bölümlerde göreceğiniz alıştırmaları tamamlayıcı örneklerimiz var. Ayrıca her bölümün kendi alıştırmaları ve görevleri vardır.
+
+Bu bölümdeki tüm bölümlerde göreceğiniz egzersizleri tamamlayan bir örnek setimiz var. Ek olarak her bölümün kendi egzersizleri ve görevleri de vardır.
 
 - [Java Hesap Makinesi](./samples/java/calculator/README.md)
-- [.Net Hesap Makinesi](../../../03-GettingStarted/samples/csharp)
+- [.NET Hesap Makinesi](../../../03-GettingStarted/samples/csharp)
 - [JavaScript Hesap Makinesi](./samples/javascript/README.md)
 - [TypeScript Hesap Makinesi](./samples/typescript/README.md)
 - [Python Hesap Makinesi](../../../03-GettingStarted/samples/python)
 
 ## Ek Kaynaklar
 
-- [Model Context Protocol kullanarak Azure'da Ajanlar Oluşturma](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Azure üzerinde Model Context Protocol kullanarak Ajanlar Oluşturma](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Azure Container Apps ile Uzaktan MCP (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Ajanı](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Sonrası
+## Sonraki Adımlar
 
-İlk derse başlayın: [İlk MCP Sunucunuzu Oluşturmak](01-first-server/README.md)
+İlk ders ile başlayın: [İlk MCP Sunucunuzu Oluşturma](01-first-server/README.md)
 
 Bu modülü tamamladıktan sonra devam edin: [Modül 4: Pratik Uygulama](../04-PracticalImplementation/README.md)
 

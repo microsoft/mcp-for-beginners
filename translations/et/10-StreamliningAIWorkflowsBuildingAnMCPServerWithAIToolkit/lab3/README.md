@@ -1,76 +1,81 @@
-# 🔧 Moodul 3: Täiustatud MCP arendus Microsoft Foundry Toolkitiga
+# 🔧 Moodul 3: Täiustatud MCP arendus Microsoft Foundry Tööriistakomplektiga
 
-![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
-![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
+> [!NOTE]
+> Selle labori Inspector URL-id kasutavad pärandunud `/sse` lõpp-punkti ja sihivad
+> fikseeritud MCP SDK `1.9.3` ja Inspector `0.14.0` sõltuvusi. Need ei ole
+> praegused `2026-07-28` Streamable HTTP näited.
+
+![Kestus](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
+![Microsoft Foundry Tööriistakomplekt](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
 ![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
 ## 🎯 Õpieesmärgid
 
-Selle labori lõpuks oskad:
+Selle töötoa lõpuks suudate:
 
-- ✅ Luua kohandatud MCP servereid Microsoft Foundry Toolkitiga
-- ✅ Konfigureerida ja kasutada uusimat MCP Python SDK-d (v1.9.3)
+- ✅ Luua kohandatud MCP servereid Microsoft Foundry Tööriistakomplekti abil
+- ✅ Konfigureerida ja kasutada uusimat MCP Python SDK-t (v1.9.3)
 - ✅ Seadistada ja kasutada MCP Inspectorit silumiseks
-- ✅ Siluda MCP servereid nii Agent Builderi kui ka Inspector keskkondades
-- ✅ Mõista täiustatud MCP serveri arendusvooge
+- ✅ Siluda MCP servereid nii Agent Builderis kui Inspectoris
+- ✅ Mõista täiustatud MCP serveri arenduse töövooge
 
-## 📋 Eeltingimused
+## 📋 Eelteadmised
 
-- Labori 2 (MCP põhitõed) lõpetamine
-- VS Code koos Microsoft Foundry Toolkit laiendusega
+- 2. labori (MCP alused) lõpetamine
+- VS Code koos Microsoft Foundry Tööriistakomplekti laiendusega
 - Python 3.10+ keskkond
-- Node.js ja npm Inspector seadistamiseks
+- Node.js ja npm Inspectori paigaldamiseks
 
-## 🏗️ Mida sa ehitad
+## 🏗️ Mida ehitate
 
-Selles laboris lood **Ilma MCP serveri**, mis demonstreerib:
+Selles töös loote **Ilma MCP serveri**, mis demonstreerib:
 - Kohandatud MCP serveri rakendust
-- Integratsiooni Microsoft Foundry Toolkit Agent Builderiga
-- Professionaalseid silumisvooge
+- Integratsiooni Microsoft Foundry Tööriistakomplekti Agent Builderiga
+- Professionaalseid silumisprotsesse
 - Moodsaid MCP SDK kasutusmustreid
 
 ---
 
-## 🔧 Põhikomponentide ülevaade
+## 🔧 Põhikompontentide ülevaade
 
 ### 🐍 MCP Python SDK
-Model Context Protocol Python SDK pakub vundamenti kohandatud MCP serverite ehitamiseks. Kasutad versiooni 1.9.3 koos täiustatud silumisvõimalustega.
+Model Context Protocol Python SDK annab aluse kohandatud MCP serverite ehitamiseks. Kasutate versiooni 1.9.3 koos täiustatud silumisvõimalustega.
 
 ### 🔍 MCP Inspector
 Võimas silumistööriist, mis pakub:
 - Reaalajas serveri jälgimist
-- Tööriistade täitmise visualiseerimist
+- Tööriistade käivitamise visualiseerimist
 - Võrgu päringute/vastuste kontrolli
-- Interaktiivne testimise keskkond
+- Interaktiivset testikeskkonda
 
 ---
 
-## 📖 Samm-sammult rakendamine
+## 📖 Samm-sammuline juhend
 
 ### Samm 1: Loo WeatherAgent Agent Builderis
 
-1. **Lauka Agent Builder** VS Code’is Microsoft Foundry Toolkit laienduse kaudu
-2. **Loo uus agent** järgmiste seadistustega:
-   - Agent Nimi: `WeatherAgent`
+1. **Käivita Agent Builder** VS Codes Microsoft Foundry Tööriistakomplekti laienduse kaudu
+2. **Loo uus agent** järgmise konfiguratsiooniga:
+   - Agendi nimi: `WeatherAgent`
 
-![Agent Creation](../../../../translated_images/et/Agent.c9c33f6a412b4cde.webp)
+![Agendi loomine](../../../../translated_images/et/Agent.c9c33f6a412b4cde.webp)
 
-### Samm 2: Algata MCP Serveri Projekt
+### Samm 2: Initsialiseeri MCP serveri projekt
 
-1. **Mine menüüsse Tools** → **Add Tool** Agent Builderis
-2. **Vali "MCP Server"** saadaval olevate valikute seast
+1. **Mine Tools** → **Add Tool** Agent Builderis
+2. **Vali "MCP Server"** saadaolevate valikute seast
 3. **Vali "Create A new MCP Server"**
-4. **Vali `python-weather` mall**
+4. **Vali mall `python-weather`**
 5. **Nimeta oma server:** `weather_mcp`
 
-![Python Template Selection](../../../../translated_images/et/Pythontemplate.9d0a2913c6491500.webp)
+![Python malli valik](../../../../translated_images/et/Pythontemplate.9d0a2913c6491500.webp)
 
-### Samm 3: Ava ja vaata projekti
+### Samm 3: Ava ja administreeri projekti
 
-1. **Ava loodud projekt** VS Code’is
-2. **Kontrolli projekti struktuuri:**
+1. **Ava genereeritud projekt** VS Codes
+2. **Vaata üle projekti struktuur:**
    ```
    weather_mcp/
    ├── src/
@@ -88,31 +93,31 @@ Võimas silumistööriist, mis pakub:
 
 ### Samm 4: Uuenda uusimale MCP SDK-le
 
-> **🔍 Miks uuendada?** Soovime kasutada uusimat MCP SDK-d (v1.9.3) ja Inspectori teenust (0.14.0), et saada täiendatud funktsioone ja paremat silumist.
+> **🔍 Miks uuendada?** Tahame kasutada uusimat MCP SDK-d (v1.9.3) ja Inspector teenust (0.14.0), mis pakuvad rohkem funktsioone ja paremat silumist.
 
-#### 4a. Uuenda Python sõltuvusi
+#### 4a. Uuenda Python sõltuvused
 
 **Muuda `pyproject.toml`:** uuenda [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
-#### 4b. Uuenda Inspectori konfiguratsiooni
+#### 4b. Uuenda Inspector konfiguratsiooni
 
 **Muuda `inspector/package.json`:** uuenda [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
-#### 4c. Uuenda Inspectori sõltuvusi
+#### 4c. Uuenda Inspector sõltuvused
 
 **Muuda `inspector/package-lock.json`:** uuenda [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Märkus:** See fail sisaldab ulatuslikke sõltuvuste definitsioone. Allpool on põhistruktuur – täielik sisu tagab õige sõltuvuste lahenduse.
+> **📝 Märkus:** See fail sisaldab laialdasi sõltuvuste määratlusi. Allpool on põhistruktuur - täielik sisu tagab nõuetekohase sõltuvuste lahendamise.
 
 
-> **⚡ Täielik Package Lock:** Täielik package-lock.json sisaldab umbes 3000 rida sõltuvuste definitsioone. Ülal on näidatud peamine struktuur – kasuta lisatud faili täielikuks sõltuvuste lahendamiseks.
+> **⚡ Täielik Package Lock:** Täielik package-lock.json sisaldab umbes 3000 rida sõltuvuste määratlusi. Ülal näidatud põhistruktuur - kasuta antud faili täielikuks sõltuvuste lahendamiseks.
 
 ### Samm 5: Konfigureeri VS Code silumine
 
-*Märkus: Palun kopeeri fail määratud asukohta, et asendada olemasolev kohalik fail*
+*Märkus: Palun kopeeri fail määratud teele, et asendada vastav kohalik fail*
 
-#### 5a. Uuenda käivituskonfiguratsiooni
+#### 5a. Uuenda Launch konfiguratsiooni
 
 **Muuda `.vscode/launch.json`:**
 
@@ -296,31 +301,31 @@ Võimas silumistööriist, mis pakub:
 
 ---
 
-## 🚀 Käivita ja testi oma MCP serverit
+## 🚀 MCP serveri käivitamine ja testimine
 
-### Samm 6: Paigalda sõltuvused
+### Samm 6: Sõltuvuste paigaldamine
 
-Pärast konfiguratsiooni muudatusi käivita järgnevad käsud:
+Pärast konfiguratsiooni muudatusi käivitage järgmised käsud:
 
 **Paigalda Python sõltuvused:**
 ```bash
 uv sync
 ```
 
-**Paigalda Inspectori sõltuvused:**
+**Paigalda Inspector sõltuvused:**
 ```bash
 cd inspector
 npm install
 ```
 
-### Samm 7: Silu Agent Builderiga
+### Samm 7: Silumine Agent Builderis
 
 1. **Vajuta F5** või kasuta **"Debug in Agent Builder"** konfiguratsiooni
-2. **Vali kogumkonfiguratsioon** silumispaneelist
-3. **Oota, kuni server käivitub** ja Agent Builder avaneb
-4. **Testi oma ilma MCP serverit** loomulike keelepäringutega
+2. **Vali debug-paneelist koosnev konfiguratsioon**
+3. **Oota serveri käivitumist** ja Agent Builderi avanemist
+4. **Testi oma ilma MCP serverit** loomuliku keele päringutega
 
-Sisendi prompt näeb välja selline
+Sisendi prompt nagu allpool
 
 SYSTEM_PROMPT
 
@@ -334,60 +339,60 @@ USER_PROMPT
 How's the weather like in Seattle
 ```
 
-![Agent Builder Debug Result](../../../../translated_images/et/Result.6ac570f7d2b1d538.webp)
+![Agent Builder silumise tulemus](../../../../translated_images/et/Result.6ac570f7d2b1d538.webp)
 
-### Samm 8: Silu MCP Inspectoriga
+### Samm 8: Silumine MCP Inspectoris
 
 1. **Kasuta "Debug in Inspector"** konfiguratsiooni (Edge või Chrome)
-2. **Ava Inspectori liides aadressil** `http://localhost:6274`
-3. **Uuri interaktiivset testimise keskkonda:**
-   - Vaata saadaval olevaid tööriistu
-   - Testi tööriistade täitmist
+2. **Ava Inspector liides** aadressil `http://localhost:6274`
+3. **Uuri interaktiivset testikeskkonda:**
+   - Vaata saadaolevaid tööriistu
+   - Testi tööriistade käivitamist
    - Jälgi võrgupäringuid
    - Silu serveri vastuseid
 
-![MCP Inspector Interface](../../../../translated_images/et/Inspector.5672415cd02fe873.webp)
+![MCP Inspector liides](../../../../translated_images/et/Inspector.5672415cd02fe873.webp)
 
 ---
 
 ## 🎯 Peamised õpitulemused
 
-Selle labori lõpetamisega oled:
+Selle töötoa lõpetamisega oled:
 
-- [x] **Loonud kohandatud MCP serveri** Microsoft Foundry Toolkit mallide abil
+- [x] **Kohanud kohandatud MCP serveri** Microsoft Foundry Tööriistakomplekti mallide abil
 - [x] **Uuendanud uusimale MCP SDK-le** (v1.9.3) paremate funktsioonide jaoks
-- [x] **Konfigureerinud professionaalsed silumisvood** nii Agent Builderis kui Inspectoris
+- [x] **Konfigureerinud professionaalsed silumisprotsessid** nii Agent Builderis kui Inspectoris
 - [x] **Seadistanud MCP Inspectori** interaktiivseks serveri testimiseks
-- [x] **Valdanud VS Code silumisconfiguratsioone** MCP arenduse jaoks
+- [x] **Õppinud masterdama VS Code silumiskonfiguratsioone** MCP arenduseks
 
-## 🔧 Läbitud täiustatud funktsioonid
+## 🔧 Täiustatud omadused, mida uuriti
 
-| Funktsioon | Kirjeldus | Kasutusjuhtum |
+| Omadus | Kirjeldus | Kasutusjuhtum |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Viimane protokollirakendus | Moodne serveriarendus |
+| **MCP Python SDK v1.9.3** | Viimase protokolli rakendus | Moodne serveriarendus |
 | **MCP Inspector 0.14.0** | Interaktiivne silumistööriist | Reaalajas serveri testimine |
-| **VS Code Debugging** | Integreeritud arenduskeskkond | Professionaalne silumisvoog |
-| **Agent Builderi integratsioon** | Otsene Microsoft Foundry Toolkit ühendus | Lõppkasutaja agendi testimine |
+| **VS Code silumine** | Integreeritud arenduskeskkond | Professionaalne silumisvoog |
+| **Agent Builderi integratsioon** | Otsene Microsoft Foundry Tööriistakomplekti ühendus | Täislahenduse agendi testimine |
 
 ## 📚 Täiendavad ressursid
 
 - [MCP Python SDK dokumentatsioon](https://modelcontextprotocol.io/docs/sdk/python)
-- [Microsoft Foundry Toolkit laienduse juhend](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [VS Code silumisjuhend](https://code.visualstudio.com/docs/editor/debugging)
+- [Microsoft Foundry Tööriistakomplekti juhend](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [VS Code silumise dokumentatsioon](https://code.visualstudio.com/docs/editor/debugging)
 - [Model Context Protocol spetsifikatsioon](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 Palju õnne!** Sa lõpetasid edukalt Labor 3 ja oskad nüüd luua, siluda ning juurutada kohandatud MCP servereid professionaalsete arendusvoogude abil.
+**🎉 Palju õnne!** Oled edukalt lõpetanud 3. labori ja saad nüüd luua, siluda ja juurutada kohandatud MCP servereid professionaalsete arendustöövoogude abil.
 
-### 🔜 Jätka järgmise mooduliga
+### 🔜 Jätka järgmisse moodulisse
 
-Kas oled valmis rakendama oma MCP oskusi pärismaailma arendusvoos? Jätka **[Moodul 4: Praktiline MCP arendus - Kohandatud GitHub klooniserv](../lab4/README.md)**, kus:
-- Ehitate tootmisvalmis MCP serveri, mis automatiseerib GitHub repositooriumi toiminguid
-- Rakendad GitHub repositooriumite kloonimise funktsionaalsust MCP kaudu
-- Integreerid kohandatud MCP serverid VS Code’i ja GitHub Copilot Agent Mode’iga
+Kas oled valmis rakendama oma MCP oskusi pärismaailma arendustöövoos? Jätka **[Moodul 4: Praktiline MCP arendus - Kohandatud GitHubi klooni server](../lab4/README.md)**, kus sa:
+- Ehitate tootmisvalmis MCP serveri, mis automatiseerib GitHubi reposi haldamise ülesandeid
+- Rakendad GitHubi reposi kloonimise funktsionaalsust MCP kaudu
+- Integreerid kohandatud MCP serverid VS Code ja GitHub Copilot Agent režiimiga
 - Testid ja juurutad kohandatud MCP servereid tootmiskeskkondades
-- Õpid praktilisi arendusprotsesside automatiseerimise töövooge arendajatele
+- Õpid praktilisi töövoo automatiseerimise meetodeid arendajatele
 
 ---
 

@@ -1,164 +1,164 @@
-# 🚀 Serwer MCP z PostgreSQL - Kompletny Przewodnik Nauki
+# 🚀 Serwer MCP z PostgreSQL - Kompletny przewodnik po nauce
 
-## 🧠 Przegląd Ścieżki Nauki Integracji Bazy Danych MCP
+## 🧠 Przegląd ścieżki nauki integracji bazy danych MCP
 
-Ten kompleksowy przewodnik uczy, jak zbudować produkcyjnie gotowe **serwery Model Context Protocol (MCP)** integrujące się z bazami danych poprzez praktyczną realizację analizy detalicznej. Poznasz wzorce klasy korporacyjnej, w tym **Row Level Security (RLS)**, **wyszukiwanie semantyczne**, **integrację z Azure AI** oraz **dostęp wielonarodowy do danych**.
+Ten kompleksowy przewodnik po nauce nauczy Cię, jak zbudować produkcyjnie gotowe **serwery Model Context Protocol (MCP)** integrujące się z bazami danych poprzez praktyczną implementację analityki detalicznej. Poznasz wzorce na poziomie przedsiębiorstwa, w tym **Row Level Security (RLS)**, **semantyczne wyszukiwanie**, **integrację Azure AI** oraz **wielowarstwowy dostęp do danych**.
 
-Niezależnie od tego, czy jesteś programistą backendu, inżynierem AI, czy architektem danych, przewodnik oferuje uporządkowaną naukę z przykładami z życia wziętymi i ćwiczeniami praktycznymi, prowadząc Cię przez serwer MCP https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
+Niezależnie od tego, czy jesteś programistą backendu, inżynierem AI czy architektem danych, ten przewodnik zapewnia uporządkowaną naukę z przykładami z życia i praktycznymi ćwiczeniami, które przeprowadzą Cię przez następujący serwer MCP https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail.
 
-## 🔗 Oficjalne Zasoby MCP
+## 🔗 Oficjalne zasoby MCP
 
 - 📘 [Dokumentacja MCP](https://modelcontextprotocol.io/) – Szczegółowe samouczki i przewodniki użytkownika
-- 📜 [Specyfikacja MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Architektura protokołu i odniesienia techniczne
-- 🧑‍💻 [Repozytorium MCP na GitHub](https://github.com/modelcontextprotocol) – SDK open-source, narzędzia i przykłady kodu
-- 🌐 [Społeczność MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Dołącz do dyskusji i wspieraj społeczność
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Najlepsze praktyki bezpieczeństwa i ograniczanie ryzyka
+- 📜 [Specyfikacja MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Architektura protokołu i odniesienia techniczne
+- 🧑‍💻 [Repozytorium MCP na GitHub](https://github.com/modelcontextprotocol) – Open-source SDK, narzędzia i przykłady kodu
+- 🌐 [Społeczność MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Dołącz do dyskusji i dołóż się do społeczności
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Najlepsze praktyki bezpieczeństwa i minimalizacja ryzyka
 
 
-## 🧭 Ścieżka Nauki Integracji Bazy Danych MCP
+## 🧭 Ścieżka nauki integracji bazy danych MCP
 
-### 📚 Kompletny Plan Nauki dla https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
+### 📚 Pełna struktura nauki dla https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail
 
-| Laboratorium | Temat | Opis | Link |
+| Lab | Temat | Opis | Link |
 |--------|-------|-------------|------|
 | **Lab 1-3: Podstawy** | | | |
-| 00 | [Wprowadzenie do Integracji Bazy Danych MCP](./00-Introduction/README.md) | Przegląd MCP z integracją bazy danych i przypadkiem użycia analizy detalicznej | [Zacznij Tutaj](./00-Introduction/README.md) |
-| 01 | [Podstawowe Koncepcje Architektury](./01-Architecture/README.md) | Zrozumienie architektury serwera MCP, warstw baz danych i wzorców bezpieczeństwa | [Ucz się](./01-Architecture/README.md) |
-| 02 | [Bezpieczeństwo i Wielonarodowość](./02-Security/README.md) | Row Level Security, uwierzytelnianie i wielonarodowy dostęp do danych | [Ucz się](./02-Security/README.md) |
-| 03 | [Konfiguracja Środowiska](./03-Setup/README.md) | Ustawienie środowiska rozwojowego, Docker, zasoby Azure | [Konfiguruj](./03-Setup/README.md) |
-| **Lab 4-6: Budowa Serwera MCP** | | | |
-| 04 | [Projektowanie Bazy Danych i Schemat](./04-Database/README.md) | Konfiguracja PostgreSQL, projekt schematu detalicznego i przykładowe dane | [Buduj](./04-Database/README.md) |
-| 05 | [Implementacja Serwera MCP](./05-MCP-Server/README.md) | Budowa serwera FastMCP z integracją bazy danych | [Buduj](./05-MCP-Server/README.md) |
-| 06 | [Rozwój Narzędzi](./06-Tools/README.md) | Tworzenie narzędzi zapytań do bazy i introspekcji schematu | [Buduj](./06-Tools/README.md) |
-| **Lab 7-9: Zaawansowane Funkcje** | | | |
-| 07 | [Integracja Wyszukiwania Semantycznego](./07-Semantic-Search/README.md) | Implementacja osadzeń wektorowych z Azure OpenAI i pgvector | [Zaawansowane](./07-Semantic-Search/README.md) |
-| 08 | [Testowanie i Debugowanie](./08-Testing/README.md) | Strategie testowania, narzędzia do debugowania i metody walidacji | [Testuj](./08-Testing/README.md) |
-| 09 | [Integracja z VS Code](./09-VS-Code/README.md) | Konfiguracja integracji MCP w VS Code i użycie czatu AI | [Integruj](./09-VS-Code/README.md) |
-| **Lab 10-12: Produkcja i Najlepsze Praktyki** | | | |
-| 10 | [Strategie Wdrożenia](./10-Deployment/README.md) | Wdrożenie Docker, Azure Container Apps oraz rozważania skalowania | [Wdrożenie](./10-Deployment/README.md) |
-| 11 | [Monitorowanie i Obserwowalność](./11-Monitoring/README.md) | Application Insights, logowanie, monitorowanie wydajności | [Monitoruj](./11-Monitoring/README.md) |
-| 12 | [Najlepsze Praktyki i Optymalizacja](./12-Best-Practices/README.md) | Optymalizacja wydajności, wzmacnianie bezpieczeństwa i wskazówki produkcyjne | [Optymalizuj](./12-Best-Practices/README.md) |
+| 00 | [Wprowadzenie do integracji bazy danych MCP](./00-Introduction/README.md) | Przegląd MCP z integracją baz danych i zastosowaniem analityki detalicznej | [Rozpocznij tutaj](./00-Introduction/README.md) |
+| 01 | [Podstawowe koncepcje architektury](./01-Architecture/README.md) | Zrozumienie architektury serwera MCP, warstw bazy danych i wzorców bezpieczeństwa | [Ucz się](./01-Architecture/README.md) |
+| 02 | [Bezpieczeństwo i wielowarstwowość](./02-Security/README.md) | Row Level Security, uwierzytelnianie i dostęp do danych wielowarstwowych | [Ucz się](./02-Security/README.md) |
+| 03 | [Konfiguracja środowiska](./03-Setup/README.md) | Konfiguracja środowiska deweloperskiego, Docker, zasoby Azure | [Konfiguruj](./03-Setup/README.md) |
+| **Lab 4-6: Budowanie serwera MCP** | | | |
+| 04 | [Projekt i schemat bazy danych](./04-Database/README.md) | Konfiguracja PostgreSQL, projekt schematu detalicznego i przykładowe dane | [Buduj](./04-Database/README.md) |
+| 05 | [Implementacja serwera MCP](./05-MCP-Server/README.md) | Tworzenie serwera FastMCP z integracją bazy danych | [Buduj](./05-MCP-Server/README.md) |
+| 06 | [Tworzenie narzędzi](./06-Tools/README.md) | Tworzenie narzędzi do zapytań i introspekcji schematu bazy danych | [Buduj](./06-Tools/README.md) |
+| **Lab 7-9: Zaawansowane funkcje** | | | |
+| 07 | [Integracja wyszukiwania semantycznego](./07-Semantic-Search/README.md) | Implementacja wektorowych osadzeń z Azure OpenAI i pgvector | [Zaawansowane](./07-Semantic-Search/README.md) |
+| 08 | [Testowanie i debugowanie](./08-Testing/README.md) | Strategie testowania, narzędzia debugowania i podejścia do walidacji | [Testuj](./08-Testing/README.md) |
+| 09 | [Integracja VS Code](./09-VS-Code/README.md) | Konfiguracja integracji MCP w VS Code i używanie czatu AI | [Integruj](./09-VS-Code/README.md) |
+| **Lab 10-12: Produkcja i najlepsze praktyki** | | | |
+| 10 | [Strategie wdrażania](./10-Deployment/README.md) | Wdrażanie z Dockerem, Azure Container Apps i skalowanie | [Wdrażaj](./10-Deployment/README.md) |
+| 11 | [Monitorowanie i obserwowalność](./11-Monitoring/README.md) | Application Insights, logowanie, monitorowanie wydajności | [Monitoruj](./11-Monitoring/README.md) |
+| 12 | [Najlepsze praktyki i optymalizacja](./12-Best-Practices/README.md) | Optymalizacja wydajności, wzmacnianie bezpieczeństwa i wskazówki produkcyjne | [Optymalizuj](./12-Best-Practices/README.md) |
 
-### 💻 Co Zbudujesz
+### 💻 Co zbudujesz
 
-Na koniec ścieżki nauki zbudujesz kompletny **Serwer MCP Zava Retail Analytics** z funkcjami:
+Pod koniec tej ścieżki nauki zbudujesz kompletny **Zava Retail Analytics MCP Server** z następującymi funkcjami:
 
-- **Wielotabelowa baza danych detalicznej** z zamówieniami klientów, produktami i inwentarzem
+- **Wielotabelowa baza detaliczna** z zamówieniami klientów, produktami i zapasami
 - **Row Level Security** dla izolacji danych na poziomie sklepu
-- **Semantyczne wyszukiwanie produktów** z użyciem osadzeń Azure OpenAI
-- **Integracja czatu AI w VS Code** do zapytań w języku naturalnym
-- **Gotowe do produkcji wdrożenie** z Docker i Azure
-- **Kompleksowe monitorowanie** z Application Insights
+- **Semantyczne wyszukiwanie produktów** wykorzystujące osadzenia Azure OpenAI
+- **Integracja czatu AI w VS Code** dla zapytań w języku naturalnym
+- **Gotowe do produkcji wdrożenie** z Dockerem i Azure
+- **Kompleksowe monitorowanie** za pomocą Application Insights
 
-## 🎯 Wymagania Wstępne do Nauki
+## 🎯 Wymagania wstępne do nauki
 
-Aby maksymalnie wykorzystać tę ścieżkę nauki, powinieneś posiadać:
+Aby maksymalnie wykorzystać tę ścieżkę nauki, powinieneś mieć:
 
 - **Doświadczenie programistyczne**: Znajomość Pythona (preferowana) lub podobnych języków
-- **Wiedza o bazach danych**: Podstawy SQL i baz relacyjnych
-- **Koncepcje API**: Zrozumienie REST API i HTTP
-- **Narzędzia deweloperskie**: Doświadczenie z terminalem, Gitem i edytorami kodu
-- **Podstawy chmury**: (Opcjonalne) Podstawowa znajomość Azure lub podobnych platform chmurowych
-- **Znajomość Dockera**: (Opcjonalne) Zrozumienie pojęć konteneryzacji
+- **Znajomość baz danych**: Podstawową wiedzę o SQL i bazach relacyjnych
+- **Koncepcje API**: Zrozumienie REST API i protokołów HTTP
+- **Narzędzia developerskie**: Doświadczenie z linią poleceń, Gitem i edytorami kodu
+- **Podstawy chmury**: (opcjonalnie) Podstawowa wiedza o Azure lub podobnych platformach chmurowych
+- **Znajomość Dockera**: (opcjonalnie) Zrozumienie koncepcji konteneryzacji
 
-### Wymagane Narzędzia
+### Wymagane narzędzia
 
-- **Docker Desktop** - Do uruchamiania PostgreSQL i serwera MCP
+- **Docker Desktop** - Do uruchomienia PostgreSQL i serwera MCP
 - **Azure CLI** - Do wdrażania zasobów w chmurze
 - **VS Code** - Do rozwoju i integracji MCP
 - **Git** - Do kontroli wersji
-- **Python 3.8+** - Do rozwoju serwera MCP
+- **Python 3.8+** - Do tworzenia serwera MCP
 
-## 📚 Przewodnik i Materiały do Nauki
+## 📚 Przewodnik i zasoby do nauki
 
-Ta ścieżka nauki zawiera obszerne zasoby, które pomogą Ci efektywnie się poruszać:
+Ta ścieżka nauki zawiera kompleksowe zasoby, które pomogą Ci efektywnie się uczyć:
 
-### Przewodnik Nauki
+### Przewodnik nauki
 
 Każde laboratorium zawiera:
 - **Jasne cele nauki** - Co osiągniesz
 - **Instrukcje krok po kroku** - Szczegółowe przewodniki implementacji
-- **Przykłady kodu** - Działające próbki z wyjaśnieniami
+- **Przykłady kodu** - Działające przykłady z wyjaśnieniami
 - **Ćwiczenia** - Możliwości praktycznego zastosowania
 - **Poradniki rozwiązywania problemów** - Typowe problemy i rozwiązania
-- **Dodatkowe zasoby** - Materiały do dalszej nauki i eksploracji
+- **Dodatkowe zasoby** - Dalsza lektura i eksploracja
 
-### Sprawdzenie Wymagań Wstępnych
+### Sprawdzenie wymagań wstępnych
 
 Przed rozpoczęciem każdego laboratorium znajdziesz:
 - **Wymaganą wiedzę** - Co powinieneś znać wcześniej
-- **Walidację konfiguracji** - Jak sprawdzić środowisko
-- **Szacowany czas** - Przewidywany czas ukończenia
-- **Efekty nauki** - Co będziesz potrafił po zakończeniu
+- **Weryfikację konfiguracji** - Jak sprawdzić środowisko
+- **Szacowany czas** - Oczekiwany czas ukończenia
+- **Efekty nauki** - Czego się nauczysz po ukończeniu
 
-### Rekomendowane Ścieżki Nauki
+### Zalecane ścieżki nauki
 
-Wybierz ścieżkę w zależności od poziomu doświadczenia:
+Wybierz ścieżkę w zależności od swojego poziomu doświadczenia:
 
-#### 🟢 **Ścieżka dla Początkujących** (Nowi w MCP)
-1. Upewnij się, że ukończyłeś 0-10 z [MCP dla Początkujących](https://aka.ms/mcp-for-beginners)
-2. Wykonaj laboratoria 00-03, aby utrwalić podstawy
-3. Postępuj z laboratoriami 04-06, by praktycznie budować
-4. Wypróbuj laboratoria 07-09, by używać praktycznie
+#### 🟢 **Ścieżka początkującego** (Nowy w MCP)
+1. Upewnij się, że ukończyłeś 0-10 [MCP dla początkujących](https://aka.ms/mcp-for-beginners)
+2. Przerób laboratoria 00-03, aby utrwalić podstawy
+3. Postępuj z laboratoriami 04-06 dla praktycznego budowania
+4. Wypróbuj laboratoria 07-09 dla praktycznego zastosowania
 
-#### 🟡 **Ścieżka Średniozaawansowana** (Częściowe Doświadczenie w MCP)
-1. Przejrzyj laboratoria 00-01, aby poznać koncepcje bazodanowe
-2. Skup się na laboratoriach 02-06, aby wdrożyć
+#### 🟡 **Ścieżka średniozaawansowana** (Z pewnym doświadczeniem MCP)
+1. Przejrzyj laboratoria 00-01 pod kątem koncepcji bazodanowych
+2. Skoncentruj się na laboratoriach 02-06 dla implementacji
 3. Zagłęb się w laboratoria 07-12 dla zaawansowanych funkcji
 
-#### 🔴 **Ścieżka Zaawansowana** (Doświadczeni w MCP)
-1. Przejrzyj laboratoria 00-03, by poznać kontekst
-2. Skup się na laboratoriach 04-09 dla integracji z bazą danych
-3. Skoncentruj się na laboratoriach 10-12 dla wdrożeń produkcyjnych
+#### 🔴 **Ścieżka zaawansowana** (Doświadczony w MCP)
+1. Przejrzyj laboratoria 00-03 dla kontekstu
+2. Skup się na laboratoriach 04-09 dla integracji bazy danych
+3. Skoncentruj się na laboratoriach 10-12 dla produkcyjnego wdrożenia
 
-## 🛠️ Jak Efektywnie Korzystać z Tej Ścieżki Nauczania
+## 🛠️ Jak efektywnie korzystać z tej ścieżki nauki
 
-### Nauka Sekwencyjna (zalecane)
+### Nauka sekwencyjna (zalecane)
 
-Pracuj nad laboratoriami w kolejności, by uzyskać pełne zrozumienie:
+Pracuj przez laboratoria w kolejności, aby uzyskać kompleksowe zrozumienie:
 
 1. **Przeczytaj przegląd** - Zrozum, czego się nauczysz
 2. **Sprawdź wymagania wstępne** - Upewnij się, że masz wymaganą wiedzę
-3. **Postępuj za przewodnikiem krok po kroku** - Implementuj w trakcie nauki
-4. **Wykonaj ćwiczenia** - Utrwal wiedzę
-5. **Przejrzyj kluczowe wnioski** - Utrwal efekty nauki
+3. **Kroki implementacji** - Wdrażaj zgodnie z przewodnikami
+4. **Wykonaj ćwiczenia** - Utrwal swą wiedzę
+5. **Przejrzyj kluczowe wnioski** - Utrwal wyniki nauki
 
-### Nauka Skierowana
+### Nauka ukierunkowana
 
 Jeśli potrzebujesz konkretnych umiejętności:
 
-- **Integracja z Bazą Danych**: Skup się na laboratoriach 04-06
-- **Wdrażanie Bezpieczeństwa**: Skoncentruj się na 02, 08, 12
-- **AI / Wyszukiwanie Semantyczne**: Zgłęb laboratorium 07
-- **Wdrożenie Produkcyjne**: Studiuj laboratoria 10-12
+- **Integracja bazy danych**: Skup się na laboratoriach 04-06
+- **Implementacja bezpieczeństwa**: Skoncentruj się na laboratoriach 02, 08, 12
+- **AI/Semantyczne wyszukiwanie**: Zagłęb się w laboratorium 07
+- **Wdrożenie produkcyjne**: Studiuj laboratoria 10-12
 
-### Praktyka
+### Praktyka „hands-on”
 
 Każde laboratorium zawiera:
-- **Działający kod** - Kopiuj, modyfikuj i eksperymentuj
-- **Scenariusze z życia** - Praktyczne przypadki analizy detalicznej
-- **Stopniowa złożoność** - Buduj od prostego do zaawansowanego
-- **Kroki walidacyjne** - Sprawdź, czy implementacja działa
+- **Działające przykłady kodu** - Kopiuj, modyfikuj i eksperymentuj
+- **Scenariusze rzeczywiste** - Praktyczne zastosowania analityki detalicznej
+- **Stopniowa złożoność** - Budowanie od prostych do zaawansowanych
+- **Kroki walidacji** - Sprawdź, czy implementacja działa
 
-## 🌟 Społeczność i Wsparcie
+## 🌟 Społeczność i wsparcie
 
-### Uzyskaj Pomoc
+### Uzyskaj pomoc
 
-- **Azure AI Discord**: [Dołącz, by uzyskać wsparcie ekspertów](https://discord.com/invite/ByRwuEEgH4)
-- **Repozytorium GitHub i Przykład Implementacji**: [Przykład wdrożenia i zasoby](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
+- **Discord Azure AI**: [Dołącz, by uzyskać eksperckie wsparcie](https://discord.com/invite/ByRwuEEgH4)
+- **Repozytorium GitHub i przykładowa implementacja**: [Przykład wdrożenia i zasoby](https://github.com/microsoft/MCP-Server-and-PostgreSQL-Sample-Retail/)
 - **Społeczność MCP**: [Dołącz do szerszych dyskusji MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Gotowy, by zacząć?
 
-Rozpocznij swoją podróż z **[Laboratorium 00: Wprowadzenie do Integracji Bazy Danych MCP](./00-Introduction/README.md)**
+Rozpocznij swoją podróż od **[Lab 00: Wprowadzenie do integracji bazy danych MCP](./00-Introduction/README.md)**
 
 ---
 
-*Opanuj budowanie produkcyjnie gotowych serwerów MCP z integracją bazy danych dzięki temu wszechstronnemu, praktycznemu doświadczeniu edukacyjnemu.*
+*Opanuj tworzenie produkcyjnie gotowych serwerów MCP z integracją baz danych dzięki temu kompleksowemu, praktycznemu doświadczeniu edukacyjnemu.*
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczeń AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dokładamy starań, aby tłumaczenie było jak najbardziej precyzyjne, należy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w języku źródłowym powinien być uznawany za dokument wiarygodny. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+**Zastrzeżenie**:
+Niniejszy dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Choć dążymy do dokładności, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub niedokładności. Oryginalny dokument w jego języku źródłowym należy uznawać za autorytatywne źródło. W przypadku informacji krytycznych zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

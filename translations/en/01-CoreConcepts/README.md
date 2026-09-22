@@ -7,13 +7,21 @@ _(Click the image above to view video of this lesson)_
 The [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) is a powerful, standardized framework that optimizes communication between Large Language Models (LLMs) and external tools, applications, and data sources. 
 This guide will walk you through the core concepts of MCP. You will learn about its client-server architecture, essential components, communication mechanics, and implementation best practices.
 
-- **Explicit User Consent**: All data access and operations require explicit user approval before execution. Users must clearly understand what data will be accessed and what actions will be performed, with granular control over permissions and authorizations.
+- **User Control and Consent**: Hosts should clearly show what data and tools a
+  server exposes, let users deny operations, and obtain explicit confirmation
+  for sensitive or consequential actions. MCP does not require a confirmation
+  dialog before every tool call.
 
 - **Data Privacy Protection**: User data is only exposed with explicit consent and must be protected by robust access controls throughout the entire interaction lifecycle. Implementations must prevent unauthorized data transmission and maintain strict privacy boundaries.
 
-- **Tool Execution Safety**: Every tool invocation requires explicit user consent with clear understanding of the tool's functionality, parameters, and potential impact. Robust security boundaries must prevent unintended, unsafe, or malicious tool execution.
+- **Tool Execution Safety**: Hosts should make tool invocations visible and keep
+  a human able to deny them. Sensitive operations should show the tool inputs
+  and impact before execution, with security boundaries that prevent unintended
+  or malicious actions.
 
-- **Transport Layer Security**: All communication channels should use appropriate encryption and authentication mechanisms. Remote connections should implement secure transport protocols and proper credential management.
+- **Transport Security**: Remote connections should use HTTPS and the MCP
+  authorization model. Local stdio servers rely on process isolation, trusted
+  configuration, and secure handling of inherited credentials.
 
 #### Implementation Guidelines:
 
@@ -61,14 +69,24 @@ flowchart LR
 ```
 
 - **MCP Hosts**: Programs like VSCode, Claude Desktop, IDEs, or AI tools that want to access data through MCP
-- **MCP Clients**: Protocol clients that maintain 1:1 connections with servers
+- **MCP Clients**: Protocol components that maintain one logical relationship
+  with a server; MCP `2026-07-28` requests do not depend on one persistent
+  connection or session
 - **MCP Servers**: Lightweight programs that each expose specific capabilities through the standardized Model Context Protocol
 - **Local Data Sources**: Your computer's files, databases, and services that MCP servers can securely access
 - **Remote Services**: External systems available over the internet that MCP servers can connect to through APIs.
 
-The MCP Protocol is an evolving standard using date-based versioning (YYYY-MM-DD format). The current protocol version is **2025-11-25**. You can see the latest updates to the [protocol specification](https://modelcontextprotocol.io/specification/2025-11-25/)
+The MCP Protocol is an evolving standard using date-based versioning
+(YYYY-MM-DD format). The current protocol version is **2026-07-28**. See the
+[2026-07-28 protocol specification](https://modelcontextprotocol.io/specification/2026-07-28/).
 
-> **Looking ahead:** a release candidate for the next specification version, **2026-07-28**, was announced in May 2026 and is scheduled to ship July 28, 2026. It makes the protocol stateless at the transport layer (removing the `initialize` handshake and session IDs), formalizes an Extensions framework, and deprecates Roots, Sampling, and Logging in favor of newer patterns. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md) for a full breakdown.
+> **Current release:** MCP `2026-07-28` makes the protocol stateless at the
+> transport layer by removing the `initialize` handshake and protocol-level
+> session IDs. It also formalizes an Extensions framework and deprecates
+> Roots, Sampling, and Logging in favor of newer patterns. See
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md)
+> for a full breakdown and migration guidance. Examples that explicitly target
+> `2025-11-25` are retained as legacy compatibility lessons.
 
 ### 1. Hosts
 
@@ -81,7 +99,8 @@ In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as
 **Hosts** are applications that coordinate AI model interactions. They:
 
 - **Orchestrate AI Models**: Execute or interact with LLMs to generate responses and coordinate AI workflows
-- **Manage Client Connections**: Create and maintain one MCP client per MCP server connection
+- **Manage Client Relationships**: Create and manage one MCP client for each MCP
+  server the host uses
 - **Control User Interface**: Handle conversation flow, user interactions, and response presentation  
 - **Enforce Security**: Control permissions, security constraints, and authentication
 - **Handle User Consent**: Manage user approval for data sharing and tool execution
@@ -89,12 +108,16 @@ In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as
 
 ### 2. Clients
 
-**Clients** are essential components that maintain dedicated one-to-one connections between Hosts and MCP servers. Each MCP client is instantiated by the Host to connect to a specific MCP server, ensuring organized and secure communication channels. Multiple clients enable Hosts to connect to multiple servers simultaneously.
+**Clients** are protocol components created by a host for particular MCP
+servers. This is a logical one-to-one relationship, not a requirement for a
+persistent network connection. In MCP `2026-07-28`, each request is
+self-contained and may be handled by any server instance.
 
 **Clients** are connector components within the host application. They:
 
 - **Protocol Communication**: Send JSON-RPC 2.0 requests to servers with prompts and instructions
-- **Capability Negotiation**: Negotiate supported features and protocol versions with servers during initialization
+- **Capability Discovery**: Use `server/discover` to learn a server's supported
+  protocol versions, capabilities, and extensions
 - **Tool Execution**: Manage tool execution requests from models and process responses
 - **Real-time Updates**: Handle notifications and real-time updates from servers
 - **Response Processing**: Process and format server responses for display to users
@@ -108,7 +131,8 @@ In the Model Context Protocol (MCP), **Hosts** are AI applications that serve as
 - **Feature Registration**: Register and expose available primitives (resources, prompts, tools) to clients
 - **Request Processing**: Receive and execute tool calls, resource requests, and prompt requests from clients
 - **Context Provision**: Provide contextual information and data to enhance model responses
-- **State Management**: Maintain session state and handle stateful interactions when needed
+- **State Management**: Maintain application state with explicit handles passed
+  in requests when needed; MCP `2026-07-28` has no protocol-level sessions
 - **Real-time Notifications**: Send notifications about capability changes and updates to connected clients
 
 Servers can be developed by anyone to extend model capabilities with specialized functionality, and they support both local and remote deployment scenarios.
@@ -190,7 +214,11 @@ In the Model Context Protocol (MCP), **clients** can expose primitives that enab
 
 ### Sampling
 
-> **Deprecation notice:** the `2026-07-28` release candidate marks Sampling as deprecated in favor of direct integration with LLM provider APIs. It continues to work in `2025-11-25` and for at least a year after any deprecation, but new designs should prefer the replacement pattern. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+> **Deprecated in MCP `2026-07-28`:** Sampling remains available for
+> compatibility, but new implementations should integrate directly with an LLM
+> provider API. It is eligible for removal in the first specification revision
+> released on or after July 28, 2027. See
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Sampling** allows servers to request language model completions from the client's AI application. This primitive enables servers to access LLM capabilities without embedding their own model dependencies:
 
@@ -200,20 +228,29 @@ In the Model Context Protocol (MCP), **clients** can expose primitives that enab
 - **Dynamic Content Generation**: Allows servers to create contextual responses using the host's model
 - **Tool Calling Support**: Servers can include `tools` and `toolChoice` parameters to enable the client's model to invoke tools during sampling
 
-Sampling is initiated through the `sampling/complete` method, where servers send completion requests to clients.
+Sampling uses the `sampling/createMessage` method, where servers request a
+completion from clients.
 
 ### Roots
 
-> **Deprecation notice:** the `2026-07-28` release candidate marks Roots as deprecated in favor of tool parameters, resource URIs, or server configuration. It continues to work in `2025-11-25` and for at least a year after any deprecation. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+> **Deprecated in MCP `2026-07-28`:** Roots remain available for
+> compatibility, but new implementations should pass directories or files via
+> tool parameters, resource URIs, or server configuration. Roots are eligible
+> for removal in the first specification revision released on or after July
+> 28, 2027. See
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
-**Roots** provide a standardized way for clients to expose filesystem boundaries to servers, helping servers understand which directories and files they have access to:
+**Roots** provide a standardized way for clients to identify filesystem
+locations that are relevant to servers:
 
-- **Filesystem Boundaries**: Define the boundaries of where servers can operate within the filesystem
-- **Access Control**: Help servers understand which directories and files they have permission to access
-- **Dynamic Updates**: Clients can notify servers when the list of roots changes
+- **Filesystem Hints**: Identify directories and files relevant to the request
+- **Separate Authorization**: Do not grant access or enforce a security boundary
+- **Per-request Capability**: Clients advertise Roots support in request metadata
 - **URI-Based Identification**: Roots use `file://` URIs to identify accessible directories and files
 
-Roots are discovered through the `roots/list` method, with clients sending `notifications/roots/list_changed` when roots change.
+In MCP `2026-07-28`, a server requests `roots/list` through an
+`InputRequiredResult` while processing a supported client request. The client
+returns the roots when it retries that original request.
 
 ### Elicitation  
 
@@ -224,14 +261,19 @@ Roots are discovered through the `roots/list` method, with clients sending `noti
 - **Interactive Workflows**: Enable servers to create step-by-step user interactions
 - **Dynamic Parameter Collection**: Gather missing or optional parameters during tool execution
 
-Elicitation requests are made using the `elicitation/request` method to collect user input through the client's interface.
+Elicitation uses the `elicitation/create` method inside an
+`InputRequiredResult` to collect user input through the client's interface.
+
 
 **URL Mode Elicitation**: Servers can also request URL-based user interactions, allowing servers to direct users to external web pages for authentication, confirmation, or data entry.
 
 ### Logging
 
-
-> **Deprecation notice:** the `2026-07-28` release candidate marks Logging as deprecated in favor of `stderr` for stdio transports and OpenTelemetry for structured observability. It continues to work in `2025-11-25` and for at least a year after any deprecation. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+> **Deprecated in MCP `2026-07-28`:** Logging remains available for
+> compatibility, but new implementations should use `stderr` with stdio and
+> OpenTelemetry for structured observability. Logging is eligible for removal
+> in the first specification revision released on or after July 28, 2027. See
+> [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
 **Logging** allows servers to send structured log messages to clients for debugging, monitoring, and operational visibility:
 
@@ -616,7 +658,9 @@ This JavaScript example demonstrates how to create an MCP server using the Model
 MCP includes several built-in concepts and mechanisms for managing security and authorization throughout the protocol:
 
 1. **Tool Permission Control**:  
-  Clients can specify which tools a model is allowed to use during a session. This ensures that only explicitly authorized tools are accessible, reducing the risk of unintended or unsafe operations. Permissions can be configured dynamically based on user preferences, organizational policies, or the context of the interaction.
+  Clients can specify which tools a model may use for each request or workflow.
+  This ensures that only explicitly authorized tools are accessible, reducing
+  the risk of unintended or unsafe operations.
 
 2. **Authentication**:  
   Servers can require authentication before granting access to tools, resources, or sensitive operations. This may involve API keys, OAuth tokens, or other authentication schemes. Proper authentication ensures that only trusted clients and users can invoke server-side capabilities.
@@ -625,7 +669,9 @@ MCP includes several built-in concepts and mechanisms for managing security and 
   Parameter validation is enforced for all tool invocations. Each tool defines the expected types, formats, and constraints for its parameters, and the server validates incoming requests accordingly. This prevents malformed or malicious input from reaching tool implementations and helps maintain the integrity of operations.
 
 4. **Rate Limiting**:  
-  To prevent abuse and ensure fair usage of server resources, MCP servers can implement rate limiting for tool calls and resource access. Rate limits can be applied per user, per session, or globally, and help protect against denial-of-service attacks or excessive resource consumption.
+  To prevent abuse and ensure fair usage of server resources, MCP servers can
+  implement rate limiting for tool calls and resource access. Rate limits can
+  be applied per user, credential, operation, or globally.
 
 By combining these mechanisms, MCP provides a secure foundation for integrating language models with external tools and data sources, while giving users and developers fine-grained control over access and usage.
 
@@ -633,12 +679,20 @@ By combining these mechanisms, MCP provides a secure foundation for integrating 
 
 MCP communication uses structured **JSON-RPC 2.0** messages to facilitate clear and reliable interactions between hosts, clients, and servers. The protocol defines specific message patterns for different types of operations:
 
-### Core Message Types:
+### Core Message Types
 
-#### **Initialization Messages**
-- **`initialize` Request**: Establishes connection and negotiates protocol version and capabilities
-- **`initialize` Response**: Confirms supported features and server information  
-- **`notifications/initialized`**: Signals that initialization is complete and the session is ready
+#### **Request Metadata and Discovery**
+
+- **Per-request metadata**: Every `2026-07-28` request is self-contained and
+  carries protocol version, client identity, and client capabilities in `_meta`.
+- **`server/discover` Request**: Retrieves supported protocol versions, server
+  identity, capabilities, and extensions when the client needs them.
+- **Streamable HTTP headers**: HTTP requests include `MCP-Protocol-Version` and
+  `Mcp-Method`; methods that address a named tool or resource also include
+  `Mcp-Name`.
+
+The `initialize`/`initialized` handshake and protocol-level session IDs belong
+to earlier protocol revisions and are not part of MCP `2026-07-28`.
 
 #### **Discovery Messages**
 - **`tools/list` Request**: Discovers available tools from the server
@@ -650,10 +704,15 @@ MCP communication uses structured **JSON-RPC 2.0** messages to facilitate clear 
 - **`resources/read` Request**: Retrieves content from a specific resource
 - **`prompts/get` Request**: Fetches a prompt template with optional parameters
 
-#### **Client-side Messages**
-- **`sampling/complete` Request**: Server requests LLM completion from the client
-- **`elicitation/request`**: Server requests user input through the client interface
-- **Logging Messages**: Server sends structured log messages to the client
+#### **Client-side Input Requests**
+
+- **`elicitation/create`**: Server requests user input through the client
+  interface while processing a client request.
+- **`sampling/createMessage`**: Deprecated server request for an LLM completion.
+- **`roots/list`**: Deprecated server request for client filesystem roots.
+
+Under `2026-07-28`, server-to-client input requests use the multi-round-trip
+`InputRequiredResult` pattern rather than relying on a persistent session.
 
 #### **Notification Messages**
 - **`notifications/tools/list_changed`**: Server notifies client of tool changes
@@ -669,11 +728,16 @@ All MCP messages follow JSON-RPC 2.0 format with:
 
 This structured communication ensures reliable, traceable, and extensible interactions supporting advanced scenarios like real-time updates, tool chaining, and robust error handling.
 
-### Tasks (Experimental)
+### Tasks Extension
 
-> **Looking ahead:** the `2026-07-28` release candidate graduates Tasks out of the experimental core specification into a dedicated Tasks extension with a redesigned lifecycle (`tasks/get`, `tasks/update`, `tasks/cancel`; `tasks/list` is removed). If you build against the experimental API described below, plan to migrate. See [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+In MCP `2026-07-28`, Tasks is an official extension rather than an experimental
+core feature. It uses a redesigned `tasks/get`, `tasks/update`, and
+`tasks/cancel` lifecycle; `tasks/list` was removed. The experimental
+`2025-11-25` Tasks API is not backward compatible with this extension. See
+[What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md).
 
-**Tasks** are an experimental feature that provides durable execution wrappers enabling deferred result retrieval and status tracking for MCP requests:
+**Tasks** provide durable execution wrappers for deferred result retrieval and
+status tracking:
 
 - **Long-Running Operations**: Track expensive computations, workflow automation, and batch processing
 - **Deferred Results**: Poll for task status and retrieve results when operations complete
@@ -686,11 +750,16 @@ Tasks wrap standard MCP requests to enable asynchronous execution patterns for o
 
 - **Architecture**: MCP uses a client-server architecture where hosts manage multiple client connections to servers
 - **Participants**: The ecosystem includes hosts (AI applications), clients (protocol connectors), and servers (capability providers)
-- **Transport Mechanisms**: Communication supports STDIO (local) and Streamable HTTP with optional SSE (remote)
+- **Transport Mechanisms**: Communication supports stdio (local) and Streamable
+  HTTP (remote); `2026-07-28` removes the standalone GET event stream
 - **Core Primitives**: Servers expose tools (executable functions), resources (data sources), and prompts (templates)
-- **Client Primitives**: Servers can request sampling (LLM completions with tool calling support), elicitation (user input including URL mode), roots (filesystem boundaries), and logging from clients
-- **Experimental Features**: Tasks provide durable execution wrappers for long-running operations
-- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning (current: 2025-11-25)
+- **Client Primitives**: Elicitation supports user input, while Sampling and
+  Roots are retained only as deprecated compatibility features
+- **Extensions**: The official Tasks extension provides durable execution
+  wrappers for long-running operations
+- **Protocol Foundation**: Built on JSON-RPC 2.0 with date-based versioning
+  (current: `2026-07-28`)
+
 - **Real-time Capabilities**: Supports notifications for dynamic updates and real-time synchronization
 - **Security First**: Explicit user consent, data privacy protection, and secure transport are core requirements
 
@@ -709,8 +778,8 @@ Design a simple MCP tool that would be useful in your domain. Define:
 
 Next: [Chapter 2: Security](../02-Security/README.md)
 
-
-Curious what's coming after `2025-11-25`? Read [What's Changing in MCP: The 2026-07-28 Release Candidate](./mcp-2026-07-28-release-candidate.md).
+Read [What's Changed in MCP: The 2026-07-28 Specification](./mcp-2026-07-28.md)
+for migration guidance from `2025-11-25`.
 
 ---
 

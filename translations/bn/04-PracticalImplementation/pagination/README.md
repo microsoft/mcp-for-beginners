@@ -1,54 +1,55 @@
-# MCP তে পেজিনেশন এবং বড় রেজাল্ট সেটসমূহ
+# MCP-তে পেজিনেশন এবং বড় ফলাফল সেট
 
-যখন আপনার MCP সার্ভার বড় ডেটাসেট হ্যান্ডেল করে - হাজার হাজার ফাইল, ডাটাবেস রেকর্ড, বা সার্চ রেজাল্ট তালিকা করা হোক - তখন মেমোরি দক্ষতার সঙ্গে পরিচালনা এবং প্রতিক্রিয়াশীল ব্যবহারকারীর অভিজ্ঞতা প্রদানের জন্য পেজিনেশন প্রয়োজন হয়। এই গাইডটি MCP তে পেজিনেশন কীভাবে ইমপ্লিমেন্ট এবং ব্যবহার করবেন তা কভার করে।
+যখন আপনার MCP সার্ভার বড় ডেটাসেট পরিচালনা করে - হাজার হাজার ফাইল, ডেটাবেস রেকর্ড বা সার্চ ফলাফল তালিকা করতে - তখন আপনাকে মেমরি স 효율ে ব্যবস্থাপনার জন্য এবং দ্রুত প্রতিক্রিয়াশীল ব্যবহারকারীর অভিজ্ঞতা প্রদানের জন্য পেজিনেশন দরকার। এই গাইডটি MCP-তে কীভাবে পেজিনেশন বাস্তবায়ন এবং ব্যবহার করবেন তা ব্যাখ্যা করে।
 
 ## কেন পেজিনেশন গুরুত্বপূর্ণ
 
-পেজিনেশন ছাড়া বড় রেসপন্সগুলি হতে পারে:
+পেজিনেশন ছাড়া, বড় উত্তরগুলো কারণ হতে পারে:
 
-- **মেমোরি শেষ হয়ে যাওয়া** - একবারে কোটি কোটি রেকর্ড লোড করা
-- **আলসা রেসপন্স টাইম** - ব্যবহারকারীরা সব ডেটা লোড হওয়া পর্যন্ত অপেক্ষা করে
-- **টাইমআউট এরর** - রিকোয়েস্ট টাইমআউট সীমা ছাড়িয়ে যায়
-- **খারাপ AI পারফরম্যান্স** - LLMs বিশাল প্রসঙ্গের সঙ্গে সংগ্রাম করে
+- **মেমরি শেষ হয়ে যাওয়া** - একবারে কোটি কোটি রেকর্ড লোড করা
+- **ধীর প্রতিক্রিয়া সময়** - ব্যবহারকারীরা সমস্ত ডেটা লোড হওয়া পর্যন্ত অপেক্ষা করে
+- **টাইমআউট এরর** - অনুরোধ সময়সীমা ছাড়িয়ে যায়
+- **খারাপ AI পারফরম্যান্স** - LLMগুলো বৃহৎ প্রসঙ্গের সাথে সংগ্রাম করে
 
-MCP ব্যবহার করে **কর্সর-ভিত্তিক পেজিনেশন** রেজাল্ট সেট পেজ করার জন্য নির্ভরযোগ্য ও প্রচলিত পদ্ধতি হিসেবে।
+MCP নির্ভরযোগ্য, ধারাবাহিক ফলাফল সেট পেজিংয়ের জন্য **কার্সার-ভিত্তিক পেজিনেশন** ব্যবহার করে।
 
 ---
 
 ## MCP পেজিনেশন কীভাবে কাজ করে
 
-### কর্সর ধারণা
+### কার্সার ধারণা
 
-**কর্সর** হল একটি অপরিষ্কার স্ট্রিং যা রেজাল্ট সেটের আপনার অবস্থান চিহ্নিত করে। এটিকে দীর্ঘ বইয়ে একটি বুকমার্কের মতো ভাবুন।
+একটি **কার্সার** হল একটি অপ্যাক্ট স্ট্রিং যা আপনার অবস্থানকে একটি ফলাফল সেটে চিহ্নিত করে। এটিকে একটি দীর্ঘ বইয়ে বুকমার্কের মতো ভাবুন।
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (কোন কার্সর নেই)
+    Client->>Server: tools/list (কোন কার্সার নেই)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (কার্সর: "abc123")
+    Client->>Server: tools/list (কার্সার: "abc123")
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (কার্সর: "def456")
+    Client->>Server: tools/list (কার্সার: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (শেষ)
 ```
-### MCP মেথডগুলিতে পেজিনেশন
 
-এই MCP মেথডগুলো পেজিনেশন সাপোর্ট করে:
+### MCP পদ্ধতিতে পেজিনেশন
 
-| মেথড | রিটার্ন করে | কর্সর সাপোর্ট |
+এই MCP পদ্ধতিগুলো পেজিনেশন সাপোর্ট করে:
+
+| পদ্ধতি | ফেরত দেয় | কার্সার সাপোর্ট |
 |--------|---------|----------------|
-| `tools/list` | টুল ডেফিনিশনস | ✅ |
-| `resources/list` | রিসোর্স ডেফিনিশনস | ✅ |
-| `prompts/list` | প্রম্পট ডেফিনিশনস | ✅ |
-| `resources/templates/list` | রিসোর্স টেমপ্লেটস | ✅ |
+| `tools/list` | টুল সংজ্ঞা | ✅ |
+| `resources/list` | রিসোর্স সংজ্ঞা | ✅ |
+| `prompts/list` | প্রম্পট সংজ্ঞা | ✅ |
+| `resources/templates/list` | রিসোর্স টেমপ্লেট | ✅ |
 
 ---
 
-## সার্ভার ইমপ্লিমেন্টেশন
+## সার্ভার বাস্তবায়ন
 
 ### পাইথন (FastMCP)
 
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # শুরু সূচক পেতে কার্সর ডিকোড করুন
+    # শুরু সূচি পেতে কার্সর ডিকোড করুন
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # ফলাফল পৃষ্ঠা পান
+    # ফলাফলের পৃষ্ঠা পান
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # পরবর্তী কার্সর গণনা করুন
+    # পরবর্তী কার্সর হিসাব করুন
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // বড় ডেটাসেট শুরু করা
+        // বড় ডেটাসেট শুরু করুন
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## ক্লায়েন্ট ইমপ্লিমেন্টেশন
+## ক্লায়েন্ট বাস্তবায়ন
 
 ### পাইথন ক্লায়েন্ট
 
@@ -199,7 +200,7 @@ async def get_all_tools(session: ClientSession) -> list:
     
     return all_tools
 
-# ব্যবহারের নির্দেশিকা
+# ব্যবহার
 async with client_session as session:
     tools = await get_all_tools(session)
     print(f"Found {len(tools)} tools")
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### লেজি লোডিং প্যাটার্ন
+### অলস লোডিং প্যাটার্ন
 
-অত্যন্ত বড় ডেটাসেটের জন্য, চাহিদা অনুযায়ী পেজগুলো লোড করুন:
+খুব বড় ডেটাসেটের জন্য, অন-ডিমান্ডে পেজ লোড করুন:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # যদি পাওয়া যায় তাহলে বাফার থেকে ফেরত দিন
+        # বাফার থেকে প্রাপ্তি থাকলে ফেরত দিন
         if self.buffer:
             return self.buffer.pop(0)
         
-        # পরীক্ষা করুন যে আমরা সমস্ত পৃষ্ঠা শেষ করেছি কিনা
+        # পরীক্ষা করুন আমরা সব পৃষ্ঠা শেষ করেছি কি না
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# ব্যবহার - বড় ডেটাসেটের জন্য স্মৃতি সাশ্রয়ী
+# ব্যবহার - বড় ডেটাসেটের জন্য মেমরি দক্ষ
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## রিসোর্সের জন্য পেজিনেশন
 
-রিসোর্সগুলো প্রায়শই ডিরেক্টরি বা বড় ডেটাসেটের জন্য পেজিনেশন দরকার হয়:
+ডিরেক্টরি বা বড় ডেটাসেটের জন্য প্রায়ই রিসোর্সগুলোর পেজিনেশন প্রয়োজন:
 
 ```python
 from mcp.server import Server
@@ -292,7 +293,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # কনডোডার কার্সার (ফাইল সূচক)
+    # কার্সর ডিকোড করুন (ফাইল সূচক)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # পরবর্তী কার্সার গণনা করুন
+    # পরবর্তী কার্সর হিসাব করুন
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## কর্সর ডিজাইন স্ট্র্যাটেজি
+## কার্সার ডিজাইন কৌশল
 
-### স্ট্র্যাটেজি ১: ইনডেক্স-ভিত্তিক (সহজ)
+### কৌশল ১: ইনডেক্স-ভিত্তিক (সরল)
 
 ```python
-# কার্সর শুধু সূচক
+# কর্সর কেবল সূচক
 cursor = "50"  # আইটেম ৫০ থেকে শুরু করুন
 ```
 
 **সুবিধা:** সহজ, স্টেটলেস
-**অসুবিধা:** আইটেম যোগ/মুছে ফেললে ফলাফল স্থানান্তরিত হতে পারে
+**অসুবিধা:** আইটেম যোগ বা বাদ দিলে ফলাফল স্থানান্তরিত হতে পারে
 
-### স্ট্র্যাটেজি ২: আইডি-ভিত্তিক (স্থিতিশীল)
+### কৌশল ২: আইডি-ভিত্তিক (স্থিতিশীল)
 
 ```python
-# কার্সর হল শেষ দেখা আইডি
+# কার্সর হল সর্বশেষ দেখা আইডি
 cursor = "item_abc123"  # এই আইটেমের পরে শুরু করুন
 ```
 
 **সুবিধা:** আইটেম পরিবর্তন হলেও স্থিতিশীল থাকে
-**অসুবিধা:** অর্ডারকৃত আইডি প্রয়োজন
+**অসুবিধা:** ক্রমানুসার আইডি প্রয়োজন
 
-### স্ট্র্যাটেজি ৩: এনকোডেড স্টেট (জটিল)
+### কৌশল ৩: এনকোড করা অবস্থা (জটিল)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# কার্সরে একাধিক অবস্থা ক্ষেত্র রয়েছে
+# কার্সরে একাধিক স্টেট ফিল্ড রয়েছে
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**সুবিধা:** জটিল স্টেট এনকোড করতে পারে
-**অসুবিধা:** আরও জটিল, বড় কর্সর স্ট্রিং
+**সুবিধা:** জটিল অবস্থা এনকোড করা যায়
+**অসুবিধা:** আরো জটিল, বড় কার্সার স্ট্রিং
 
 ---
 
-## সেরা অনুশীলন
+## সেরা অভ্যাস
 
 ### ১. উপযুক্ত পেজ সাইজ নির্বাচন করুন
 
 ```python
 # ডেটা আকার বিবেচনা করুন
-PAGE_SIZE_SMALL_ITEMS = 100   # সরল মেটাডেটা
+PAGE_SIZE_SMALL_ITEMS = 100   # সাধারণ মেটাডেটা
 PAGE_SIZE_MEDIUM_ITEMS = 20   # সমৃদ্ধ অবজেক্ট
 PAGE_SIZE_LARGE_ITEMS = 5     # জটিল বিষয়বস্তু
 ```
 
-### ২. অবৈধ কর্সর সুন্দরভাবে হ্যান্ডেল করুন
+### ২. অবৈধ কার্সার সুষ্ঠুভাবে পরিচালনা করুন
 
 ```python
 @app.list_tools()
@@ -386,22 +387,22 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # শুরুতে রিসেট করুন
     except (ValueError, TypeError):
-        start_index = 0  # অবৈধ কার্সার, নতুন করে শুরু করুন
+        start_index = 0  # অবৈধ কার্সর, নতুন করে শুরু করুন
     # ...
 ```
 
-### ৩. মোট গণনা অন্তর্ভুক্ত করুন (ঐচ্ছিক)
+### ৩. মোট গননা অন্তর্ভুক্ত করুন (ঐচ্ছিক)
 
 ```python
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # কিছু বাস্তবায়ন UI অগ্রগতির জন্য মোট অন্তর্ভুক্ত করে
+    # কিছু বাস্তবায়নে UI অগ্রগতির জন্য মোট অন্তর্ভুক্ত থাকে
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
 
-### ৪. এজ কেইস পরীক্ষা করুন
+### ৪. এড্জ কেস পরীক্ষা করুন
 
 ```python
 async def test_pagination():
@@ -423,20 +424,20 @@ async def test_pagination():
 
 ## সাধারণ ভুল
 
-### ❌ সব ফলাফল রিটার্ন করে তারপর ক্লায়েন্ট সাইডে পেজিনেশন
+### ❌ সব ফলাফল ফেরত দিয়ে তারপর ক্লায়েন্ট-পারে পেজিনেশন করা
 
 ```python
 # খারাপ: সবকিছু মেমরিতে লোড করে
 @app.list_tools()
 async def list_tools() -> ListToolsResult:
-    all_tools = load_all_tools()  # ১ মিলিয়ন টুলস!
+    all_tools = load_all_tools()  # ১ মিলিয়ন সরঞ্জাম!
     return ListToolsResult(tools=all_tools)
 ```
 
 ### ✅ ডেটা সোর্সেই পেজিনেশন করুন
 
 ```python
-# ভাল: শুধুমাত্র প্রয়োজনীয় যেটা দরকার তা লোড করে
+# ভাল: শুধুমাত্র যা প্রয়োজন তা লোড করে
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## পরবর্তী কি
+## পরবর্তী কী
 
-- [Module 5.14 - Context Engineering](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Module 8 - Best Practices](../../08-BestPractices/README.md)
-- [3.8 - আপনার MCP সার্ভার পরীক্ষা](../../03-GettingStarted/08-testing/README.md)
+- [মডিউল 5.14 - কনটেক্সট ইঞ্জিনিয়ারিং](../../05-AdvancedTopics/mcp-contextengineering/README.md)
+- [মডিউল 8 - সেরা অভ্যাস](../../08-BestPractices/README.md)
+- [3.8 - আপনার MCP সার্ভার পরীক্ষা করা](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## অতিরিক্ত রিসোর্স
 
-- [MCP স্পেসিফিকেশন - পেজিনেশন](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [কর্সর-ভিত্তিক পেজিনেশন ব্যাখ্যা](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [পাইথন SDK পেজিনেশন টেস্ট](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [MCP স্পেসিফিকেশন - পেজিনেশন](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [কার্সার-ভিত্তিক পেজিনেশন ব্যাখ্যা](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Python SDK পেজিনেশন পরীক্ষা](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**ডিসক্লেইমার**:
-এই নথিটি AI অনুবাদ সেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। আমরা যথাসাধ্য সঠিকতার জন্য চেষ্টা করি, তবে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা ভুল থাকতে পারে। মূল ভাষায় থাকা নথিটিই সরকারের নির্ভরযোগ্য উৎস হিসেবে বিবেচনা করা উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানুষ দ্বারা অনুবাদ করানো সমর্থনযোগ্য। এই অনুবাদের ব্যবহারে যে কোনো ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়বদ্ধ নই।
+**অস্বীকৃতি**:
+এই নথিটি AI অনুবাদ পরিষেবা [Co-op Translator](https://github.com/Azure/co-op-translator) ব্যবহার করে অনূদিত হয়েছে। যদিও আমরা শুদ্ধতার জন্য চেষ্টা করি, অনুগ্রহ করে মনে রাখবেন যে স্বয়ংক্রিয় অনুবাদে ত্রুটি বা অসঙ্গতি থাকতে পারে। মূল নথিটি তার স্বভাষায় কর্তৃত্বপূর্ণ উৎস হিসেবে বিবেচিত হওয়া উচিত। গুরুত্বপূর্ণ তথ্যের জন্য পেশাদার মানব অনুবাদ সুপারিশ করা হয়। এই অনুবাদের ব্যবহারে প্রয়োজনীয় ভুল বোঝাবুঝি বা ভুল ব্যাখ্যার জন্য আমরা দায়বদ্ধ নই।
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

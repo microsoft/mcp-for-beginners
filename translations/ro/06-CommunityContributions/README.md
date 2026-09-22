@@ -1,68 +1,68 @@
 # Comunitate și Contribuții
 
-[![Cum să contribui la MCP: unelte, documentație, cod și altele](../../../translated_images/ro/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
+[![Cum să contribui la MCP: Unelte, Documentație, Cod și altele](../../../translated_images/ro/07.1179f6de46ff196e.webp)](https://youtu.be/v1pvCYAWpRE)
 
-_(Faceți clic pe imaginea de mai sus pentru a vedea videoclipul acestei lecții)_
+_(Faceți clic pe imaginea de mai sus pentru a viziona videoclipul acestei lecții)_
 
 ## Prezentare generală
 
-Această lecție se concentrează pe modul de implicare în comunitatea MCP, contribuția la ecosistemul MCP și urmarea celor mai bune practici pentru dezvoltarea colaborativă. Înțelegerea modului de participare în proiectele open-source MCP este esențială pentru cei care doresc să modeleze viitorul acestei tehnologii.
+Această lecție se concentrează pe modul de implicare în comunitatea MCP, contribuirea la ecosistemul MCP și respectarea celor mai bune practici pentru dezvoltarea colaborativă. Înțelegerea modului de a participa la proiectele open-source MCP este esențială pentru cei care doresc să modeleze viitorul acestei tehnologii.
 
-## Obiectivele de învățare
+## Obiective de învățare
 
-La finalul acestei lecții, veți putea:
+Până la sfârșitul acestei lecții, vei putea să:
 
-- Înțelege structura comunității și ecosistemului MCP
-- Participa eficient în forumurile și discuțiile comunității MCP
+- Înțelegi structura comunității și ecosistemului MCP
+- Participi eficient în forumurile și discuțiile comunității MCP
 - Contribui la depozitele open-source MCP
-- Crea și partaja unelte și servere MCP personalizate
-- Urma cele mai bune practici pentru dezvoltarea și colaborarea MCP
+- Creezi și partajezi unelte și servere MCP personalizate
+- Urmezi cele mai bune practici pentru dezvoltarea și colaborarea MCP
 - Descoperi resurse și cadre comunitare pentru dezvoltarea MCP
 
 ## Ecosistemul Comunității MCP
 
-Ecosistemul MCP constă în diverse componente și participanți care lucrează împreună pentru a avansa protocolul.
+Ecosistemul MCP constă în diferite componente și participanți care lucrează împreună pentru a avansa protocolul.
 
-### Componente cheie ale comunității
+### Componente Cheie ale Comunității
 
-1. **Menținătorii protocolului de bază**: [Organizația oficială Model Context Protocol pe GitHub](https://github.com/modelcontextprotocol) menține specificațiile de bază MCP și implementările de referință
-2. **Dezvoltatori de unelte**: Persoane și echipe care creează unelte și servere MCP
-3. **Furnizori de integrare**: Companii care integrează MCP în produsele și serviciile lor
-4. **Utilizatori finali**: Dezvoltatori și organizații care folosesc MCP în aplicațiile lor
+1. **Administratorii Protocolului de Bază**: Organizația oficială [Model Context Protocol GitHub](https://github.com/modelcontextprotocol) menține specificațiile de bază MCP și implementările de referință
+2. **Dezvoltatori de Unelte**: Persoane și echipe care creează unelte și servere MCP
+3. **Furnizori de Integrare**: Companii care integrează MCP în produsele și serviciile lor
+4. **Utilizatori Finali**: Dezvoltatori și organizații care folosesc MCP în aplicațiile lor
 5. **Contribuitori**: Membri ai comunității care contribuie cu cod, documentație sau alte resurse
 
-### Resurse comunitare
+### Resurse Comunitare
 
-#### Canale oficiale
+#### Canale Oficiale
 
 - [Organizația MCP pe GitHub](https://github.com/modelcontextprotocol)
 - [Documentația MCP](https://modelcontextprotocol.io/)
-- [Specificația MCP](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Specificația MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Discuții pe GitHub](https://github.com/orgs/modelcontextprotocol/discussions)
-- [Depozitul de exemple și servere MCP](https://github.com/modelcontextprotocol/servers)
+- [Depozitul cu Exemple & Servere MCP](https://github.com/modelcontextprotocol/servers)
 
-#### Resurse create de comunitate
+#### Resurse Comunitare Dezvoltate
 
-- [Clienți MCP](https://modelcontextprotocol.io/clients) - Listă de clienți care suportă integrări MCP
-- [Servere MCP ale comunității](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Listă în creștere de servere MCP dezvoltate de comunitate
+- [Clienți MCP](https://modelcontextprotocol.io/clients) - Listă de clienți care susțin integrări MCP
+- [Servere MCP Comunitare](https://github.com/modelcontextprotocol/servers?tab=readme-ov-file#-community-servers) - Listă în creștere de servere MCP dezvoltate de comunitate
 - [Awesome MCP Servers](https://github.com/wong2/awesome-mcp-servers) - Listă curată de servere MCP
 - [PulseMCP](https://www.pulsemcp.com/) - Hub comunitar & newsletter pentru descoperirea resurselor MCP
-- [Remote OpenClaw](https://www.remoteopenclaw.com/) - Director gratuit și căutabil de servere MCP, abilități pentru agenți și pluginuri
+- [Remote OpenClaw](https://www.remoteopenclaw.com/) - Director gratuit căutabil de servere MCP, abilități ale agenților și plugin-uri
 - [Server Discord](https://discord.gg/jHEGxQu2a5) - Conectează-te cu dezvoltatorii MCP
 - Implementări SDK specifice limbajelor
 - Articole de blog și tutoriale
 
 ## Contribuind la MCP
 
-### Tipuri de contribuții
+### Tipuri de Contribuții
 
-Ecosistemul MCP primește cu deschidere diverse tipuri de contribuții:
+Ecosistemul MCP primește cu brațele deschise diverse tipuri de contribuții:
 
-1. **Contribuții de cod**:
+1. **Contribuții de Cod**:
    - Îmbunătățiri ale protocolului de bază
-   - Remedieri de erori
+   - Repararea erorilor
    - Implementări de unelte și servere
-   - Biblioteci client/server în diverse limbaje
+   - Biblioteci client/server în diferite limbaje
 
 2. **Documentație**:
    - Îmbunătățirea documentației existente
@@ -70,36 +70,36 @@ Ecosistemul MCP primește cu deschidere diverse tipuri de contribuții:
    - Traducerea documentației
    - Crearea de exemple și aplicații demonstrative
 
-3. **Sprijin comunitar**:
-   - Răspunsuri la întrebări pe forumuri și în discuții
+3. **Sprijin Comunitar**:
+   - Răspunsuri la întrebări pe forumuri și discuții
    - Testarea și raportarea problemelor
    - Organizarea de evenimente comunitare
-   - Mentorat pentru contribuitorii noi
+   - Mentorarea noilor contribuitori
 
-### Procesul de contribuție: Protocolul de bază
+### Procesul de Contribuție: Protocolul de Bază
 
-Pentru a contribui la protocolul de bază MCP sau la implementările oficiale, urmați aceste principii din [ghidul oficial de contribuție](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
+Pentru a contribui la protocolul MCP de bază sau la implementările oficiale, urmează aceste principii din [ghidul oficial de contribuție](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/CONTRIBUTING.md):
 
-1. **Simplitate și minimalism**: Specificația MCP menține un standard ridicat pentru adăugarea de noi concepte. Este mai ușor să adaugi lucruri decât să le elimini.
+1. **Simplitate și Minimalism**: Specificația MCP menține un standard ridicat pentru adăugarea de concepte noi. Este mai ușor să adaugi lucruri într-o specificație decât să le elimini.
 
-2. **Abordare concretă**: Modificările specificațiilor trebuie bazate pe provocări de implementare specifice, nu pe idei speculative.
+2. **Abordare Concretă**: Modificările specificației trebuie să se bazeze pe provocări reale de implementare, nu pe idei speculative.
 
-3. **Etapele unei propuneri**:
-   - Definire: Explorarea problemei, validarea că alți utilizatori MCP întâmpină aceeași problemă
-   - Prototip: Construirea unei soluții exemplu și demonstrarea aplicării sale practice
-   - Scriere: Pe baza prototipului, redactați o propunere de specificație
+3. **Etapele unei Propuneri**:
+   - Definirea: Explorează problema, validează dacă alți utilizatori MCP întâmpină o problemă similară
+   - Prototipare: Construiește o soluție exemplu și demonstrează aplicabilitatea practică
+   - Scriere: Pe baza prototipului, scrie o propunere de specificație
 
-### Configurarea mediului de dezvoltare
+### Configurarea Mediului de Dezvoltare
 
 ```bash
-# Ramificați depozitul
+# Bifurcați depozitul
 git clone https://github.com/YOUR-USERNAME/modelcontextprotocol.git
 cd modelcontextprotocol
 
 # Instalați dependențele
 npm install
 
-# Pentru modificări la schemă, validați și generați schema.json:
+# Pentru modificări ale schemei, validați și generați schema.json:
 npm run check:schema:ts
 npm run generate:schema
 
@@ -111,16 +111,16 @@ npm run format
 npm run serve:docs
 ```
 
-### Exemplu: Contribuind cu o remediere de eroare
+### Exemplu: Contribuind cu o Corecție de Bug
 
 ```javascript
-// Cod original cu eroare în typescript-sdk
+// Cod original cu bug în typescript-sdk
 export function validateResource(resource: unknown): resource is MCPResource {
   if (!resource || typeof resource !== 'object') {
     return false;
   }
   
-  // Eroare: Lipsă validare a proprietății
+  // Bug: Lipsă validare proprietate
   // Implementare curentă:
   const hasName = 'name' in resource;
   const hasSchema = 'schema' in resource;
@@ -143,7 +143,7 @@ export function validateResource(resource: unknown): resource is MCPResource {
 }
 ```
 
-### Exemplu: Contribuind cu unelte noi în biblioteca standard
+### Exemplu: Adăugarea unei Unelte Noi în Biblioteca Standard
 
 ```python
 # Exemplu de contribuție: Un instrument de procesare a datelor CSV pentru biblioteca standard MCP
@@ -215,7 +215,7 @@ class CsvProcessingTool(Tool):
             # Obține date CSV fie din date directe, fie din URL
             df = await self._get_dataframe(request)
             
-            # Procesează pe baza operației solicitate
+            # Procesează în funcție de operația solicitată
             result = {}
             
             if operation == "summary":
@@ -276,7 +276,7 @@ class CsvProcessingTool(Tool):
     
     def _transform_data(self, df: pd.DataFrame, params: Dict[str, Any]) -> Dict[str, Any]:
         """Transforms the data based on parameters"""
-        # Implementarea va include diverse transformări
+        # Implementarea ar include diverse transformări
         return {
             "status": "success",
             "message": "Transformation applied"
@@ -303,52 +303,54 @@ class CsvProcessingTool(Tool):
             raise ToolExecutionException(f"Unsupported output format: {format}")
 ```
 
-### Ghiduri pentru contribuție
+### Ghiduri pentru Contribuție
 
-Pentru a face o contribuție reușită la proiectele MCP:
+Pentru a realiza o contribuție de succes la proiectele MCP:
 
-1. **Începeți cu pași mici**: Începeți cu documentație, remedieri de erori sau mici îmbunătățiri
-2. **Urmați ghidul de stil**: Respectați stilul de codare și convențiile proiectului
-3. **Scrieți teste**: Includeți teste unitare pentru contribuțiile de cod
-4. **Documentați munca**: Adăugați documentație clară pentru funcționalități noi sau modificări
-5. **Depuneți PR-uri focalizate**: Mențineți cererile de pull concentrate pe o singură problemă sau caracteristică
-6. **Colaborați cu feedback-ul**: Fiți receptivi la feedback-ul primit asupra contribuțiilor
+1. **Începe Mic**: Începe cu documentație, corecții de buguri sau îmbunătățiri mici
+2. **Urmează Ghidul de Stil**: Respectă stilul și convențiile de codare ale proiectului
+3. **Scrie Teste**: Include teste unitare pentru contribuțiile tale
+4. **Documentează-ți Munca**: Adaugă documentație clară pentru funcționalitățile sau modificările noi
+5. **Trimite PR-uri Țintite**: Păstrează pull request-urile concentrate pe o singură problemă sau caracteristică
+6. **Interacționează cu Feedback-ul**: Fii receptiv la feedback-ul legat de contribuțiile tale
 
-### Exemplu de flux de lucru pentru contribuție
+### Exemplu de Flux de Lucru pentru Contribuție
 
 ```bash
 # Clonează depozitul
 git clone https://github.com/modelcontextprotocol/typescript-sdk.git
 cd typescript-sdk
 
-# Creează o ramură nouă pentru contribuția ta
+# Creează un nou branch pentru contribuția ta
 git checkout -b feature/my-contribution
 
 # Fă modificările tale
 # ...
 
-# Rulează testele pentru a te asigura că modificările nu stricază funcționalitatea existentă
+# Rulează testele pentru a te asigura că modificările tale nu strică funcționalitățile existente
 npm test
 
-# Commită modificările cu un mesaj descriptiv
+# Confirmă modificările cu un mesaj descriptiv
 git commit -am "Fix validation in resource handler"
 
-# Împinge ramura ta la fork-ul tău
+# Împinge branch-ul tău către fork-ul tău
 git push origin feature/my-contribution
 
-# Creează un pull request de pe ramura ta către depozitul principal
-# Apoi implică-te în feedback și iterază pe PR-ul tău după cum este necesar
+# Creează o cerere de pull din branch-ul tău către depozitul principal
+# Apoi implică-te în feedback și iterează asupra PR-ului tău după necesitate
 ```
 
-## Crearea și partajarea serverelor MCP
+## Crearea și Partajarea Serverelor MCP
 
-Una dintre cele mai valoroase modalități de a contribui la ecosistemul MCP este prin crearea și distribuirea serverelor MCP personalizate. Comunitatea a dezvoltat deja sute de servere pentru diverse servicii și cazuri de utilizare.
+Unul dintre cele mai valoroase moduri de a contribui la ecosistemul MCP este prin crearea și partajarea serverelor MCP personalizate. Comunitatea a dezvoltat deja sute de servere pentru diverse servicii și cazuri de utilizare.
 
-### Cadre pentru dezvoltarea serverelor MCP
+### Cadre de Dezvoltare pentru Servere MCP
 
-Sunt disponibile mai multe cadre care simplifică dezvoltarea serverelor MCP:
+Sunt disponibile mai multe cadre pentru a simplifica dezvoltarea serverelor MCP:
 
-1. **SDK-uri oficiale** (aliniate cu [Specificația MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+1. **SDK-uri Oficiale** (consultă
+    [documentația SDK](https://modelcontextprotocol.io/docs/sdk) pentru fiecare
+    revizie de protocol susținută de SDK):
    - [SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk)
    - [SDK Python](https://github.com/modelcontextprotocol/python-sdk)
    - [SDK C#](https://github.com/modelcontextprotocol/csharp-sdk)
@@ -358,15 +360,15 @@ Sunt disponibile mai multe cadre care simplifică dezvoltarea serverelor MCP:
    - [SDK Swift](https://github.com/modelcontextprotocol/swift-sdk)
    - [SDK Rust](https://github.com/modelcontextprotocol/rust-sdk)
 
-2. **Cadre comunitare**:
-   - [MCP-Framework](https://mcp-framework.com/) - Construiește servere MCP cu eleganță și rapiditate în TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Servere MCP bazate pe adnotări în Java
+2. **Cadre Comunitare**:
+   - [MCP-Framework](https://mcp-framework.com/) - Construiește servere MCP cu eleganță și viteză în TypeScript
+   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Servere MCP bazate pe anotații cu Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Cadru Java pentru servere MCP
-   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Proiect inițial Next.js pentru servere MCP
+   - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Proiect starter Next.js pentru servere MCP
 
-### Dezvoltarea uneltelor partajabile
+### Dezvoltarea Uneltelor de Partajat
 
-#### Exemplu .NET: Crearea unui pachet de unelte partajabile
+#### Exemplu .NET: Crearea unui Pachet de Unelte de Partajat
 
 ```csharp
 // Create a new .NET library project
@@ -472,10 +474,10 @@ namespace McpFinanceTools
 // dotnet nuget push bin/Release/McpFinanceTools.1.0.0.nupkg -s https://api.nuget.org/v3/index.json -k YOUR_API_KEY
 ```
 
-#### Exemplu Java: Crearea unui pachet Maven pentru unelte
+#### Exemplu Java: Crearea unui Pachet Maven pentru Unelte
 
 ```java
-// configurare pom.xml pentru un pachet MCP de unelte partajabil
+// configurație pom.xml pentru un pachet MCP unelte partajabil
 <!-- 
 <project>
     <groupId>com.example</groupId>
@@ -550,7 +552,7 @@ public class WeatherForecastTool implements Tool {
             // Apelare API meteo
             Map<String, Object> forecast = getForecast(location, days);
             
-            // Construire răspuns
+            // Construiește răspunsul
             return new ToolResponse.Builder()
                 .setResult(forecast)
                 .build();
@@ -573,7 +575,7 @@ public class WeatherForecastTool implements Tool {
 // mvn deploy
 ```
 
-#### Exemplu Python: Publicarea unui pachet PyPI
+#### Exemplu Python: Publicarea unui Pachet PyPI
 
 ```python
 # Structura directorului pentru un pachet PyPI:
@@ -623,7 +625,7 @@ class SentimentAnalysisTool(Tool):
     """MCP tool for sentiment analysis of text"""
     
     def __init__(self, model_name="distilbert-base-uncased-finetuned-sst-2-english"):
-        # Încarcă modelul de analiză a sentimentului
+        # Încarcă modelul de analiză a sentimentelor
         self.sentiment_analyzer = pipeline("sentiment-analysis", model=model_name)
     
     def get_name(self):
@@ -673,76 +675,76 @@ class SentimentAnalysisTool(Tool):
         except Exception as e:
             raise ToolExecutionException(f"Sentiment analysis failed: {str(e)}")
 
-# Pentru publicare:
+# Pentru a publica:
 # python setup.py sdist bdist_wheel
 # python -m twine upload dist/*
 ```
 
 ### Partajarea celor mai bune practici
 
-Când partajați unelte MCP cu comunitatea:
+Când partajezi unelte MCP cu comunitatea:
 
-1. **Documentație completă**:
-   - Documentați scopul, utilizarea și exemplele
-   - Explicați parametrii și valorile returnate
-   - Documentați orice dependențe externe
+1. **Documentație Completă**:
+   - Documentează scopul, utilizarea și exemplele
+   - Explică parametrii și valorile de returnare
+   - Documentează eventualele dependențe externe
 
-2. **Manipularea erorilor**:
-   - Implementați o gestionare robustă a erorilor
-   - Oferiți mesaje de eroare utile
-   - Gestionați frumos cazurile limită
+2. **Gestionarea Erorilor**:
+   - Implementează o gestionare robustă a erorilor
+   - Oferă mesaje de eroare utile
+   - Gestionează cazurile limită cu grație
 
-3. **Considerații de performanță**:
-   - Optimizarea vitezei și a consumului de resurse
-   - Implementați caching când este cazul
-   - Luați în considerare scalabilitatea
+3. **Considerații privind Performanța**:
+   - Optimizează atât pentru viteză, cât și pentru consumul de resurse
+   - Implementează caching-ul când este cazul
+   - Ia în considerare scalabilitatea
 
 4. **Securitate**:
-   - Folosiți chei API și autentificare securizate
-   - Validați și curățați intrările
-   - Implementați limitarea ratei pentru apelurile API externe
+   - Folosește chei API și autentificare securizate
+   - Validează și igienizează input-urile
+   - Implementează limitarea ratei pentru apelurile API externe
 
 5. **Testare**:
-   - Includeți acoperire cu teste cuprinzătoare
-   - Testați cu diferite tipuri de intrări și cazuri limită
-   - Documentați procedurile de testare
+   - Include o acoperire completă a testelor
+   - Testează cu diferite tipuri de input și cazuri-limită
+   - Documentează procedurile de testare
 
-## Colaborarea comunitară și cele mai bune practici
+## Colaborare în Comunitate și Cele Mai Bune Practici
 
 Colaborarea eficientă este cheia unui ecosistem MCP prosper.
 
-### Canale de comunicare
+### Canale de Comunicare
 
 - Probleme și discuții pe GitHub
 - Microsoft Tech Community
 - Canale Discord și Slack
 - Stack Overflow (tag: `model-context-protocol` sau `mcp`)
 
-### Revizuirea codului
+### Revizuiri de Cod
 
-Când revizuiți contribuții MCP:
+La revizuirea contribuțiilor MCP:
 
-1. **Claritate**: Este codul clar și bine documentat?
+1. **Claritate**: Codul este clar și bine documentat?
 2. **Corectitudine**: Funcționează conform așteptărilor?
-3. **Consistență**: Urmează convențiile proiectului?
-4. **Completitudine**: Sunt incluse teste și documentație?
-5. **Securitate**: Există probleme de securitate?
+3. **Consistență**: Respectă convențiile proiectului?
+4. **Completitudine**: Sunt incluse testele și documentația?
+5. **Securitate**: Există preocupări legate de securitate?
 
-### Compatibilitatea versiunilor
+### Compatibilitate Versiuni
 
-Când dezvolți pentru MCP:
+La dezvoltarea pentru MCP:
 
-1. **Versionarea protocolului**: Respectați versiunea protocolului MCP pe care unealta dvs. o suportă
-2. **Compatibilitatea clientului**: Luați în considerare compatibilitatea înapoi
-3. **Compatibilitatea serverului**: Urmați ghidurile de implementare a serverului
-4. **Modificări majore**: Documentați clar orice modificări care rup compatibilitatea
+1. **Gestionarea Versiunii Protocolului**: Respectă versiunea protocolului MCP pe care uneltele tale o susțin
+2. **Compatibilitate Client**: Ia în considerare compatibilitatea inversă
+3. **Compatibilitate Server**: Urmează ghidurile pentru implementarea serverului
+4. **Modificări Breaking**: Documentează clar orice modificări incompatibile
 
-## Exemplu de proiect comunitar: Registrul uneltelor MCP
+## Exemplu de Proiect Comunitar: Registrul Unelelor MCP
 
-O contribuție importantă a comunității ar putea fi dezvoltarea unui registru public pentru uneltele MCP.
+O contribuție importantă în comunitate ar putea fi dezvoltarea unui registru public pentru uneltele MCP.
 
 ```python
-# Exemplu de schemă pentru o API de registru de unelte comunitar
+# Exemplu de schemă pentru un API de registru al uneltelor comunitare
 
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field, HttpUrl
@@ -750,7 +752,7 @@ from typing import List, Optional
 import datetime
 import uuid
 
-# Modele pentru registrul de unelte
+# Modele pentru registrul uneltelor
 class ToolSchema(BaseModel):
     """JSON Schema for a tool"""
     type: str
@@ -818,31 +820,31 @@ async def delete_tool(tool_name: str):
     return {"message": f"Tool '{tool_name}' deleted"}
 ```
 
-## Concluzii cheie
+## Concluzii Cheie
 
-- Comunitatea MCP este diversă și primește cu deschidere diverse tipuri de contribuții
-- Contribuțiile MCP pot varia de la îmbunătățiri ale protocolului de bază la unelte personalizate
-- Urmarea ghidurilor de contribuție crește șansele de acceptare a PR-ului dvs.
+- Comunitatea MCP este diversă și primește cu brațele deschise diferite tipuri de contribuții
+- Contribuția la MCP poate varia de la îmbunătățiri ale protocolului de bază până la unelte personalizate
+- Urmarea ghidurilor de contribuție crește șansele ca PR-ul tău să fie acceptat
 - Crearea și partajarea uneltelor MCP este o modalitate valoroasă de a îmbunătăți ecosistemul
-- Colaborarea comunitară este esențială pentru creșterea și îmbunătățirea MCP
+- Colaborarea în comunitate este esențială pentru creșterea și perfecționarea MCP
 
 ## Exercițiu
 
-1. Identificați o zonă în ecosistemul MCP unde ați putea contribui bazându-vă pe abilitățile și interesele dvs.
-2. Faceți fork la depozitul MCP și configurați un mediu local de dezvoltare
-3. Creați o mică îmbunătățire, o remediere de eroare sau o unealtă care să aducă beneficii comunității
-4. Documentați contribuția dvs. cu teste și documentație corespunzătoare
-5. Trimiteți o cerere de pull către depozitul corespunzător
+1. Identifică o zonă în ecosistemul MCP unde poți aduce o contribuție bazată pe abilitățile și interesele tale
+2. Fă un fork al depozitului MCP și configurează un mediu local de dezvoltare
+3. Creează o îmbunătățire mică, o corecție de bug sau o unealtă care ar fi benefică comunității
+4. Documentează contribuția ta cu teste și documentație adecvate
+5. Trimite un pull request către depozitul corespunzător
 
-## Resurse suplimentare
+## Resurse Suplimentare
 
-- [Proiectele comunității MCP](https://github.com/topics/model-context-protocol)
+- [Proiecte Comunitare MCP](https://github.com/topics/model-context-protocol)
 
 ---
 
-## Ce urmează
+## Ce Urmează
 
-Următorul: [Lecții din adopția timpurie](../07-LessonsfromEarlyAdoption/README.md)
+Următorul: [Lecții din Prima Pionierat](../07-LessonsfromEarlyAdoption/README.md)
 
 ---
 

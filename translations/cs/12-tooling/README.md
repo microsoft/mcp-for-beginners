@@ -1,31 +1,33 @@
-# 🚀 Nástroje MCP
+# 🚀 MCP Nástroje
 
 ## 🧠 Přehled učební cesty integrace databáze MCP
 
-Zde se naučíte, jak používat nástroje, které využívají MCP. Vaše zkušenosti s používáním těchto nástrojů se zlepší, jakmile k nim připojíte MCP servery.
+Zde se naučíte používat nástroje využívající MCP. Vaše zkušenosti s těmito nástroji se zlepší, jakmile je připojíte k serverům MCP.
 
 ## 🔗 Oficiální zdroje MCP
 
-- 📘 [Dokumentace MCP](https://modelcontextprotocol.io/) – Podrobné návody a příručky pro uživatele
-- 📜 [Specifikace MCP (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Architektura protokolu a technické reference
-- 🧑‍💻 [Republikace MCP na GitHubu](https://github.com/modelcontextprotocol) – Open-source SDK, nástroje a ukázky kódu
-- 🌐 [Komunita MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Připojte se k diskuzím a přispějte do komunity
-- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Nejlepší bezpečnostní praktiky a zmírnění rizik
+- 📘 [Dokumentace MCP](https://modelcontextprotocol.io/) – Podrobné návody a uživatelské příručky
+- 📜 [Specifikace MCP (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Architektura protokolu a technické odkazy
+- 🧑‍💻 [GitHub úložiště MCP](https://github.com/modelcontextprotocol) – Open-source SDK, nástroje a ukázkové kódy
+- 🌐 [Komunita MCP](https://github.com/orgs/modelcontextprotocol/discussions) – Připojte se k diskuzím a přispívejte do komunity
+- 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Bezpečnostní osvědčené postupy a zmírňování rizik
+
+
 
 ## 🌟 Komunita a podpora
 
 ### Získejte pomoc
 
-- **Azure AI Discord**: [Připojte se pro odbornou podporu](https://discord.com/invite/ByRwuEEgH4)
-- **Komunita MCP**: [Připojte se k širším diskuzím o MCP](https://github.com/orgs/modelcontextprotocol/discussions)
+- **Azure AI Discord**: [Přidejte se pro odbornou podporu](https://discord.com/invite/ByRwuEEgH4)
+- **Komunita MCP**: [Připojte se k širším diskuzím MCP](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 Připraven začít?
 
-Začněte svou cestu s **[aplikací GitHub Copilot](./01-copilot-app/README.md)**
+Začněte svou cestu s **[GitHub Copilot app](./01-copilot-app/README.md)**
 
 ---
 
-*Ovládněte tyto nástroje s pomocí MCP pro zvýšenou produktivitu a bezproblémovou integraci.*
+*Osvojte si práci s MCP pomocí těchto nástrojů pro zvýšenou produktivitu a bezproblémovou integraci.*
 
 ---
 

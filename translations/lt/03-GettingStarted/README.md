@@ -1,111 +1,120 @@
 ## Pradžia  
 
-[![Sukurkite savo pirmą MCP serverį](../../../translated_images/lt/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
+[![Sukurkite savo pirmąjį MCP serverį](../../../translated_images/lt/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
-_(Spustelėkite aukščiau esantį vaizdą, kad peržiūrėtumėte šio pamokos vaizdo įrašą)_
+_(Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte šios pamokos vaizdo įrašą)_
 
-Šiame skyriuje yra keletas pamokų:
+Šiame skyriuje yra kelios pamokos:
 
-- **1 Jūsų pirmasis serveris**, šioje pirmoje pamokoje jūs sužinosite, kaip sukurti savo pirmąjį serverį ir jį apžiūrėti naudojant inspektroriaus įrankį, vertingą būdą testuoti ir derinti savo serverį, [į pamoką](01-first-server/README.md)
+- **1 Jūsų pirmasis serveris**, šioje pirmojoje pamokoje sužinosite, kaip sukurti savo pirmąjį serverį ir apžvelgti jį su inspektoriumi, vertingu įrankiu serverio testavimui ir derinimui, [į pamoką](01-first-server/README.md)
 
-- **2 Klientas**, šioje pamokoje sužinosite, kaip parašyti klientą, kuris gali prisijungti prie jūsų serverio, [į pamoką](02-client/README.md)
+- **2 Klientas**, šioje pamokoje išmoksite sukurti klientą, kuris gali prisijungti prie jūsų serverio, [į pamoką](02-client/README.md)
 
-- **3 Klientas su LLM**, dar geresnis būdas rašyti klientą yra pridėti LLM, kad jis galėtų „derėtis“ su jūsų serveriu, ką daryti, [į pamoką](03-llm-client/README.md)
+- **3 Klientas su LLM**, dar geresnis klientų rašymo būdas yra pridėti LLM, kad jis galėtų "derėtis" su serveriu dėl veiksmų, [į pamoką](03-llm-client/README.md)
 
-- **4 Naudojant serverio režimą kartu su GitHub Copilot Visual Studio Code**. Čia nagrinėjame, kaip paleisti mūsų MCP serverį iš Visual Studio Code aplinkos, [į pamoką](04-vscode/README.md)
+- **4 Serverio GitHub Copilot Agent režimo naudojimas Visual Studio Code**. Čia apžvelgsime, kaip vykdyti MCP serverį tiesiai iš Visual Studio Code, [į pamoką](04-vscode/README.md)
 
-- **5 stdio Transporto serveris** stdio transportas yra rekomenduojama standartinė vietinei MCP serverio ir kliento komunikacijai, teikianti saugų pokomandinių procesų pagrindu veikiantį komunikavimą su įmontuota procesų izoliacija [į pamoką](05-stdio-server/README.md)
+- **5 stdio Transport Server** stdio transportas yra rekomenduojama standartinė vietinė MCP serverio-kliento komunikacija, užtikrinanti saugų pagalbinių procesų pagrindu veikiančią komunikaciją su integruota procesų izoliacija [į pamoką](05-stdio-server/README.md)
 
-- **6 HTTP transliacija su MCP (Streamable HTTP)**. Sužinokite apie modernų HTTP srautinį perdavimą (rekomenduojamą nuotoliniams MCP serveriams pagal [MCP specifikaciją 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/#streamable-http)), pažangos pranešimus ir kaip įgyvendinti mastelio keičiamus realaus laiko MCP serverius ir klientus naudojant Streamable HTTP. [į pamoką](06-http-streaming/README.md)
+- **6 MCP HTTP srautinė perdavimo funkcija (Streamable HTTP)**. Sužinokite apie standartinį
+	nuotolinį transportą pagal [MCP specifikaciją 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	taip pat apie senesnį sesijomis pagrįstą įgyvendinimą, išlaikytą pamokoje.
+	[į pamoką](06-http-streaming/README.md)
 
-- **7 Naudojant AI įrankių rinkinių sutarties VSCode** MCP klientams ir serveriams testuoti bei naudoti [į pamoką](07-aitk/README.md)
+- **7 AI įrankių rinkinio naudojimas VSCode** MCP klientų ir serverių vartojimui ir testavimui [į pamoką](07-aitk/README.md)
 
-- **8 Testavimas**. Čia ypač sutelksime dėmesį, kaip galime įvairiais būdais išbandyti savo serverį ir klientą, [į pamoką](08-testing/README.md)
+- **8 Testavimas**. Čia ypatingai sutelksime dėmesį, kaip įvairiais būdais galima testuoti serverį ir klientą, [į pamoką](08-testing/README.md)
 
-- **9 Diegimas**. Šiame skyriuje apžvelgsime skirtingus būdus, kaip diegti savo MCP sprendimus, [į pamoką](09-deployment/README.md)
+- **9 Diegimas**. Šiame skyriuje apžvelgsime skirtingus jūsų MCP sprendimų diegimo būdus, [į pamoką](09-deployment/README.md)
 
-- **10 Pažangus serverio naudojimas**. Šiame skyriuje aptariamas pažangus serverio naudojimas, [į pamoką](./10-advanced/README.md)
+- **10 Pažangus serverio naudojimas**. Šis skyrius aprėpia pažangų serverio naudojimą, [į pamoką](./10-advanced/README.md)
 
-- **11 Autentifikavimas**. Šiame skyriuje aptariama, kaip pridėti paprastą autentifikavimą nuo Basic Auth iki JWT ir RBAC naudojimo. Skatiname pradėti čia ir tada peržiūrėti Pažangias temas 5 skyriuje bei atlikti papildomą saugumo stiprinimą pagal rekomendacijas 2 skyriuje, [į pamoką](./11-simple-auth/README.md)
+- **11 Autentifikacija**. Šiame skyriuje apžvelgsime, kaip pridėti paprastą autentifikaciją, nuo paprastos Basic Auth iki JWT ir RBAC. Rekomenduojama pradėti čia, o vėliau pažvelgti į pažangias temas 5 skyriuje ir papildomai stiprinti saugumą, vadovaujantis rekomendacijomis 2 skyriuje, [į pamoką](./11-simple-auth/README.md)
 
-- **12 MCP prieglobos**. Sužinokite, kaip konfigūruoti ir naudoti populiarius MCP prieglobos klientus, įskaitant Claude Desktop, Cursor, Cline ir Windsurf. Sužinokite apie transporto tipus ir trikčių šalinimą, [į pamoką](./12-mcp-hosts/README.md)
+- **12 MCP šeimininkai**. Konfigūruokite ir naudokite populiarius MCP šeimininko klientus, įskaitant Claude Desktop, Cursor, Cline ir Windsurf. Sužinokite apie transporto tipus ir trikčių šalinimą, [į pamoką](./12-mcp-hosts/README.md)
 
-- **13 MCP inspektrorius**. Interaktyviai derinkite ir testuokite savo MCP serverius naudodami MCP inspektroriaus įrankį. Sužinokite, kaip taisyti įrankius, resursus ir protokolo pranešimus, [į pamoką](./13-mcp-inspector/README.md)
+- **13 MCP inspektorius**. Interaktyviai derinkite ir testuokite MCP serverius naudodami MCP inspektoriaus įrankį. Sužinokite, kaip spręsti problemas, naudoti įrankius, resursus ir protokolo žinutes, [į pamoką](./13-mcp-inspector/README.md)
 
-- **14 Išmatuota apimtis**. Kurkite MCP serverius, kurie bendradarbiauja su MCP klientais LLM susijusiose užduotyse (nebeaktualu `2026-07-28` leidinio kandidatu; vis dar galioja `2025-11-25`) [į pamoką](./14-sampling/README.md)
+- **14 Pavyzdžio ėmimas (Sampling)**. Sužinokite senąjį Sampling primityvą `2025-11-25` ir
+	kaip pereiti prie naujų dizainų su tiesiogine LLM paslaugų teikėjo integracija. Sampling yra
+	nenaudojamas MCP `2026-07-28`. [į pamoką](./14-sampling/README.md)
 
 - **15 MCP programėlės**. Kurkite MCP serverius, kurie taip pat atsako su vartotojo sąsajos instrukcijomis, [į pamoką](./15-mcp-apps/README.md)
 
-Model Context Protocol (MCP) yra atvira protokolo specifikacija, standartizuojanti, kaip programos suteikia kontekstą LLM. Galvokite apie MCP kaip USB-C prievadą AI programoms – jis suteikia standartizuotą būdą prijungti AI modelius prie skirtingų duomenų šaltinių ir įrankių.
+Model Context Protocol (MCP) yra atviras protokolas, standartizuojantis, kaip programos teikia kontekstą LLM. Galvokite apie MCP kaip apie USB-C prievadą AI programėlėms – tai standartizuotas būdas prijungti AI modelius prie skirtingų duomenų šaltinių ir įrankių.
 
 ## Mokymosi tikslai
 
-Pabaigę šią pamoką, sugebėsite:
+Baigę šią pamoką, mokėsite:
 
 - Paruošti MCP kūrimo aplinkas C#, Java, Python, TypeScript ir JavaScript kalboms
-- Kurti ir diegti pagrindinius MCP serverius su pasirinktinių funkcijų (išteklių, raginimų ir įrankių) palaikymu
-- Kurti prieglobos programas, jungiančias MCP serverius
-- Testuoti ir derinti MCP realizacijas
-- Suprasti bendras konfigūracijos problemas ir jų sprendimus
-- Prisijungti prie populiarių LLM paslaugų naudojant MCP realizacijas
+- Kurti ir diegti bazinius MCP serverius su pasirinktinais bruožais (ištekliais, užklausomis ir įrankiais)
+- Kurti šeimininko programėles, kurios jungiasi prie MCP serverių
+- Testuoti ir derinti MCP įgyvendinimus
+- Suprasti dažnas diegimo problemas ir jų sprendimus
+- Jungti savo MCP įgyvendinimus prie populiarių LLM paslaugų
 
-## MCP aplinkos parengimas
+## MCP aplinkos paruošimas
 
-Prieš pradėdami darbą su MCP svarbu paruošti kūrimo aplinką ir suprasti pagrindinį darbo procesą. Šis skyrius padės jums atlikti pradinius nustatymus ir užtikrinti sklandų MCP naudojimą.
+Prieš pradėdami dirbti su MCP, svarbu paruošti kūrimo aplinką ir suprasti pagrindinį darbo eigą. Šiame skyriuje jus supažindinsime su pradiniais nustatymo žingsniais, kad MCP pradžia būtų sklandi.
 
-### Išankstinės sąlygos
+### Reikalavimai
 
 Prieš pradedant MCP kūrimą, įsitikinkite, kad turite:
 
-- **Kūrimo aplinka**: Jūsų pasirinktai kalbai (C#, Java, Python, TypeScript arba JavaScript)
-- **IDE/Redaktorius**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm ar bet kurį modernų kodo redaktorių
-- **Paketo valdymo priemonės**: NuGet, Maven/Gradle, pip arba npm/yarn
-- **API raktai**: bet kuriai AI paslaugų, kurias planuojate naudoti prieglobos programose
+- **Kūrimo aplinka**: Jūsų pasirinktoje kalboje (C#, Java, Python, TypeScript arba JavaScript)
+- **IDE/Redaktorius**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm arba bet kuris šiuolaikinis kodo redaktorius
+- **Paketo tvarkyklės**: NuGet, Maven/Gradle, pip arba npm/yarn
+- **API raktai**: Bet kurioms AI paslaugoms, kurias planuojate naudoti savo šeimininko programėlėse
 
 
-### Oficialūs SDK
+### Oficiali SDK
 
-Kituose skyriuose pamatysite sprendimus, sukurtus naudojant Python, TypeScript, Java ir .NET. Čia pateikiami visi oficialiai palaikomi SDK.
+Ateinančiuose skyriuose matysite sprendimus, sukurti naudojant Python, TypeScript,
+Java ir .NET. Čia yra oficialios SDK.
 
-MCP teikia oficialius SDK kelioms kalboms (atitinka [MCP specifikaciją 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Palaikomas bendradarbiaujant su Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Palaikomas bendradarbiaujant su Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Oficiali TypeScript įgyvendinimo versija
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Oficiali Python įgyvendinimo versija (FastMCP)
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Oficiali Kotlin įgyvendinimo versija
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Palaikomas bendradarbiaujant su Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Oficiali Rust įgyvendinimo versija
-- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - Oficiali Go įgyvendinimo versija
+SDK palaikymas MCP `2026-07-28` versijai diegiamas nepriklausomai pagal kalbas.
+Prieš paleisdami pavyzdį, patikrinkite jo paketo versiją ir SDK išleidimo pastabas
+dėl palaikomų protokolo versijų. Žr.
+[oficialių SDK sąrašą](https://modelcontextprotocol.io/docs/sdk):
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Palaikoma bendradarbiaujant su Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Palaikoma bendradarbiaujant su Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Oficiali TypeScript įgyvendinimas
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Oficiali Python įgyvendinimas (FastMCP)
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - Oficiali Kotlin įgyvendinimas
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Palaikoma bendradarbiaujant su Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Oficiali Rust įgyvendinimas
+- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - Oficiali Go įgyvendinimas
 
 ## Svarbiausios išvados
 
-- MCP kūrimo aplinkos parengimas yra paprastas naudojant kalbai skirtus SDK
-- MCP serverių kūrimas apima įrankių su aiškia schema kūrimą ir registravimą
-- MCP klientai jungiasi prie serverių ir modelių, siekdami išplėstinių galimybių
-- Testavimas ir derinimas yra būtini patikimoms MCP realizacijoms
-- Diegimo galimybės svyruoja nuo vietinio kūrimo iki debesies sprendimų
+- MCP kūrimo aplinkos paruošimas yra paprastas naudojant kalbai skirtas SDK
+- MCP serverių kūrimas apima įrankių kūrimą ir registravimą su aiškiomis schemomis
+- MCP klientai jungiasi prie serverių ir modelių, kad panaudotų išplėstą funkcionalumą
+- Testavimas ir derinimas yra būtini patikimiems MCP įgyvendinimams
+- Diegimo galimybės svyruoja nuo vietinio kūrimo iki debesų sprendimų
 
 ## Praktika
 
-Turime pavyzdžių rinkinį, kuris papildo pratimus visuose šio skyriaus skyriuose. Be to, kiekvienas skyrius turi savo pratimus ir užduotis.
+Turime rinkinį pavyzdžių, kurie papildo pratimus, kuriuos rasite visuose šio skyriaus skyriuose. Be to, kiekvienas skyrius turi savo pratimus ir užduotis.
 
 - [Java skaičiuoklė](./samples/java/calculator/README.md)
-- [.Net skaičiuoklė](../../../03-GettingStarted/samples/csharp)
+- [.NET skaičiuoklė](../../../03-GettingStarted/samples/csharp)
 - [JavaScript skaičiuoklė](./samples/javascript/README.md)
 - [TypeScript skaičiuoklė](./samples/typescript/README.md)
 - [Python skaičiuoklė](../../../03-GettingStarted/samples/python)
 
 ## Papildomi ištekliai
 
-- [Kurti agentus naudojant Model Context Protocol Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
-- [Nuotolinis MCP su Azure konteinerių programomis (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
+- [Agentų kūrimas naudojant Model Context Protocol Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Nuotolinis MCP su Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP agentas](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Kas toliau
 
 Pradėkite nuo pirmos pamokos: [Sukurti savo pirmą MCP serverį](01-first-server/README.md)
 
-Baigę šią modulį, tęskite: [4 modulis: praktinė įgyvendinimas](../04-PracticalImplementation/README.md)
+Užbaigus šį modulį, tęskite: [4 modulis: Praktinė įgyvendinimo dalis](../04-PracticalImplementation/README.md)
 
 ---
 

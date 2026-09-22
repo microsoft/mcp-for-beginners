@@ -1,213 +1,219 @@
-# Optimierung von KI-Workflows: Aufbau eines MCP-Servers mit Microsoft Foundry Toolkit
+# Straffung von KI-Workflows: Aufbau eines MCP-Servers mit Microsoft Foundry Toolkit
 
-[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+[![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 [![VS Code](https://img.shields.io/badge/VS%20Code-Latest-orange.svg)](https://code.visualstudio.com/)
 
 ![logo](../../../translated_images/de/logo.ec93918ec338dadd.webp)
 
-## 🎯  Übersicht
+## 🎯 Überblick
 
 [![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/de/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Klicken Sie auf das Bild oben, um das Video dieser Lektion anzusehen)_
+_(Klicken Sie auf das obige Bild, um das Video zu dieser Lektion anzusehen)_
 
-Willkommen zum **Model Context Protocol (MCP) Workshop**! Dieser umfassende Hands-on-Workshop kombiniert zwei Spitzen-Technologien, um die Entwicklung von KI-Anwendungen zu revolutionieren:
+Willkommen zum **Model Context Protocol (MCP) Workshop**! Dieser umfassende praktische Workshop kombiniert zwei bahnbrechende Technologien, um die KI-Anwendungsentwicklung zu revolutionieren:
+
+> **Kompatibilitätshinweis:** Der Code des Workshops wurde mit MCP
+> `2025-11-25` erstellt und getestet, wie durch das obige Abzeichen gezeigt. Verwenden Sie die
+> [aktuelle `2026-07-28` Spezifikation](https://modelcontextprotocol.io/specification/2026-07-28/)
+> für neue Protokollimplementierungen und überprüfen Sie die SDK-Versionhinweise vor der
+> Migration der Labs.
 
 - **🔗 Model Context Protocol (MCP)**: Ein offener Standard für nahtlose KI-Tool-Integration
-- **🛠️ Microsoft Foundry Toolkit Extension für VS Code**: Microsofts leistungsstarke Erweiterung für KI-Entwicklung
+- **🛠️ Microsoft Foundry Toolkit-Erweiterung für VS Code**: Microsofts leistungsstarke KI-Entwicklungserweiterung
 
 ### 🎓 Was Sie lernen werden
 
-Am Ende dieses Workshops beherrschen Sie die Kunst, intelligente Anwendungen zu bauen, die KI-Modelle mit realen Werkzeugen und Diensten verknüpfen. Von automatisierten Tests bis hin zu benutzerdefinierten API-Integrationen erhalten Sie praktische Fähigkeiten zur Lösung komplexer Geschäftsanforderungen.
+Am Ende dieses Workshops beherrschen Sie die Kunst, intelligente Anwendungen zu erstellen, die KI-Modelle mit realen Tools und Diensten verbinden. Von automatisierten Tests bis hin zu benutzerdefinierten API-Integrationen erhalten Sie praktische Fähigkeiten zur Lösung komplexer geschäftlicher Herausforderungen.
 
 ## 🏗️ Technologiestack
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP ist der **„USB-C für KI“** – ein universeller Standard, der KI-Modelle mit externen Werkzeugen und Datenquellen verbindet.
+MCP ist das **„USB-C für KI“** – ein universeller Standard, der KI-Modelle mit externen Tools und Datenquellen verbindet.
 
 **✨ Hauptmerkmale:**
 
 - 🔄 **Standardisierte Integration**: Universelle Schnittstelle für KI-Tool-Verbindungen
 - 🏛️ **Flexible Architektur**: Lokale & entfernte Server über stdio/SSE-Transport
-- 🧰 **Reiches Ökosystem**: Werkzeuge, Prompts und Ressourcen in einem Protokoll
-- 🔒 **Enterprise-Ready**: Eingebaute Sicherheit und Zuverlässigkeit
+- 🧰 **Reiches Ökosystem**: Tools, Prompts und Ressourcen in einem Protokoll
+- 🔒 **Unternehmensbereit**: Eingebaute Sicherheit und Zuverlässigkeit
 
 **🎯 Warum MCP wichtig ist:**
-Wie USB-C das Kabelchaos beseitigt hat, beseitigt MCP die Komplexität von KI-Integrationen. Ein Protokoll, unendliche Möglichkeiten.
+So wie USB-C das Kabelchaos beseitigt hat, beseitigt MCP die Komplexität von KI-Integrationen. Ein Protokoll, unendliche Möglichkeiten.
 
-### 🤖 Microsoft Foundry Toolkit Extension für VS Code
+### 🤖 Microsoft Foundry Toolkit-Erweiterung für VS Code
 
-Microsofts führende KI-Entwicklungserweiterung, die VS Code in eine KI-Powerhouse verwandelt.
+Microsofts Flaggschiff-KI-Entwicklungserweiterung, die VS Code in eine KI-Powerhouse verwandelt.
 
-**🚀 Kernfähigkeiten:**
+**🚀 Kernfunktionen:**
 
 - 📦 **Modellkatalog**: Zugriff auf Modelle von Azure AI, GitHub, Hugging Face, Ollama
 - ⚡ **Lokale Inferenz**: ONNX-optimierte CPU/GPU/NPU-Ausführung
-- 🏗️ **Agent Builder**: Visuelle KI-Agenten-Entwicklung mit MCP-Integration
-- 🎭 **Multimodal**: Unterstützung für Text, Vision und strukturierte Ausgabe
+- 🏗️ **Agent Builder**: Visuelle KI-Agent-Entwicklung mit MCP-Integration
+- 🎭 **Multimodal**: Unterstützung für Text, Vision und strukturierte Ausgaben
 
-**💡 Entwicklungs-Vorteile:**
+**💡 Entwicklungs-vorteile:**
 
-- Modellbereitstellung ohne Konfiguration
+- Zero-Config-Modellbereitstellung
 - Visuelle Prompt-Entwicklung
 - Echtzeit-Testspielplatz
 - Nahtlose MCP-Server-Integration
 
 ## 📚 Lernreise
 
-### [🚀 Modul 1: Microsoft Foundry Toolkit Grundlagen](./lab1/README.md)
+### [🚀 Modul 1: Grundlagen des Microsoft Foundry Toolkit](./lab1/README.md)
 
 **Dauer**: 15 Minuten
 
 - 🛠️ Installation und Konfiguration des Microsoft Foundry Toolkit für VS Code
 - 🗂️ Erkundung des Modellkatalogs (100+ Modelle von GitHub, ONNX, OpenAI, Anthropic, Google)
 - 🎮 Beherrschung des interaktiven Spielplatzes für Echtzeit-Modelltests
-- 🤖 Bau Ihres ersten KI-Agenten mit Agent Builder
+- 🤖 Erstellen Ihres ersten KI-Agenten mit Agent Builder
 - 📊 Bewertung der Modellleistung mit eingebauten Metriken (F1, Relevanz, Ähnlichkeit, Kohärenz)
-- ⚡ Erlernen von Batch-Verarbeitung und Multimodalität
+- ⚡ Lernen von Batch-Verarbeitung und multimodaler Unterstützung
 
-**🎯 Lernergebnis**: Erstellung eines funktionalen KI-Agenten mit umfassendem Verständnis der Microsoft Foundry Toolkit Fähigkeiten
+**🎯 Lernergebnis**: Erstellen eines funktionalen KI-Agenten mit umfassendem Verständnis der Microsoft Foundry Toolkit-Fähigkeiten
 
-### [🌐 Modul 2: MCP mit Microsoft Foundry Toolkit Grundlagen](./lab2/README.md)
+### [🌐 Modul 2: MCP mit den Grundlagen des Microsoft Foundry Toolkit](./lab2/README.md)
 
 **Dauer**: 20 Minuten
 
 - 🧠 Beherrschung der Architektur und Konzepte des Model Context Protocol (MCP)
 - 🌐 Erkundung des Microsoft MCP-Server-Ökosystems
-- 🤖 Bau eines Browser-Automatisierungsagenten mit Playwright MCP Server
-- 🔧 Integration von MCP-Servern in Microsoft Foundry Toolkit Agent Builder
+- 🤖 Aufbau eines Browser-Automatisierungsagenten mit Playwright MCP-Server
+- 🔧 Integration von MCP-Servern mit Microsoft Foundry Toolkit Agent Builder
 - 📊 Konfiguration und Test von MCP-Tools innerhalb Ihrer Agenten
-- 🚀 Export und Deployment MCP-gestützter Agenten für den Produktiveinsatz
+- 🚀 Export und Bereitstellung von MCP-gestützten Agenten für den Produktionseinsatz
 
-**🎯 Lernergebnis**: Bereitstellung eines KI-Agenten, der durch externe Tools via MCP erweitert ist
+**🎯 Lernergebnis**: Einsatz eines KI-Agenten, der mit externen Tools über MCP beschleunigt wird
 
-### [🔧 Modul 3: Erweiterte MCP-Entwicklung mit Microsoft Foundry Toolkit](./lab3/README.md)
+### [🔧 Modul 3: Fortgeschrittene MCP-Entwicklung mit Microsoft Foundry Toolkit](./lab3/README.md)
 
 **Dauer**: 20 Minuten
 
-- 💻 Erstellung benutzerdefinierter MCP-Server mit Microsoft Foundry Toolkit
-- 🐍 Nutzung und Konfiguration des aktuellen MCP Python SDK (v1.9.3)
-- 🔍 Einrichtung und Nutzung von MCP Inspector zum Debugging
-- 🛠️ Aufbau eines Weather MCP Servers mit professionellen Debugging-Workflows
-- 🧪 Debugging von MCP-Servern sowohl im Agent Builder als auch im Inspector
+- 💻 Erstellen Sie benutzerdefinierte MCP-Server mit Microsoft Foundry Toolkit
+- 🐍 Konfigurieren und Verwenden des neuesten MCP Python SDK (v1.9.3)
+- 🔍 Einrichtung und Nutzung von MCP Inspector zum Debuggen
+- 🛠️ Aufbau eines Wetter-MCP-Servers mit professionellem Debugging-Workflow
+- 🧪 Debuggen von MCP-Servern sowohl in Agent Builder- als auch Inspector-Umgebungen
 
-**🎯 Lernergebnis**: Entwicklung und Debugging benutzerdefinierter MCP-Server mit modernen Werkzeugen
+**🎯 Lernergebnis**: Entwicklung und Debugging von benutzerdefinierten MCP-Servern mit modernen Tools
 
-### [🐙 Modul 4: Praktische MCP-Entwicklung – Custom GitHub Clone Server](./lab4/README.md)
+### [🐙 Modul 4: Praktische MCP-Entwicklung – Benutzerdefinierter GitHub-Clone-Server](./lab4/README.md)
 
 **Dauer**: 30 Minuten
 
-- 🏗️ Aufbau eines realen GitHub Clone MCP Servers für Entwicklungs-Workflows
-- 🔄 Implementierung intelligenter Repository-Klone inklusive Validierung und Fehlerbehandlung
-- 📁 Erschaffung intelligenter Verzeichnisverwaltung und VS Code-Integration
-- 🤖 Verwendung des GitHub Copilot Agentenmodus mit benutzerdefinierten MCP-Tools
-- 🛡️ Anwendung von produktionsreifer Zuverlässigkeit und plattformübergreifender Kompatibilität
+- 🏗️ Aufbau eines realen GitHub Clone MCP-Servers für Entwicklungs-Workflows
+- 🔄 Implementierung intelligenter Repository-Klonung mit Validierung und Fehlerbehandlung
+- 📁 Erstellung intelligenter Verzeichnisverwaltung und VS Code-Integration
+- 🤖 Nutzung des GitHub Copilot Agent-Modus mit benutzerdefinierten MCP-Tools
+- 🛡️ Anwendung von produktionsbereiter Zuverlässigkeit und plattformübergreifender Kompatibilität
 
-**🎯 Lernergebnis**: Bereitstellung eines produktionsreifen MCP-Servers, der reale Entwicklungs-Workflows optimiert
+**🎯 Lernergebnis**: Bereitstellung eines produktionsbereiten MCP-Servers, der reale Entwicklungs-Workflows optimiert
 
-## 💡 Anwendungsbeispiele & Auswirkungen aus der Praxis
+## 💡 Anwendungen in der Praxis & Auswirkungen
 
-### 🏢 Unternehmensanwendungen
+### 🏢 Einsatzfälle in Unternehmen
 
 #### 🔄 DevOps-Automatisierung
 
-Transformieren Sie Ihren Entwicklungsworkflow mit intelligenter Automatisierung:
+Transformieren Sie Ihren Entwicklungs-Workflow mit intelligenter Automatisierung:
 
-- **Intelligentes Repository-Management**: KI-gesteuerte Code-Reviews und Merge-Entscheidungen
-- **Intelligente CI/CD**: Automatisierte Pipeline-Optimierung basierend auf Code-Änderungen
-- **Issue-Triage**: Automatische Fehlerklassifizierung und Zuweisung
+- **Intelligente Repository-Verwaltung**: KI-gesteuerte Codeüberprüfung und Merge-Entscheidungen
+- **Intelligente CI/CD**: Automatisierte Pipeline-Optimierung basierend auf Codeänderungen
+- **Issue-Triage**: Automatische Fehlerklassifikation und -zuweisung
 
 #### 🧪 Revolution in der Qualitätssicherung
 
-Verbessern Sie Tests mit KI-gestützter Automatisierung:
+Verfeinern Sie das Testen mit KI-gestützter Automatisierung:
 
-- **Intelligente Testgenerierung**: Automatisches Erstellen umfassender Test-Suiten
-- **Visuelle Regressionstests**: KI-basierte Erkennung von UI-Änderungen
-- **Performance-Monitoring**: Proaktive Fehlererkennung und -behebung
+- **Intelligente Testgenerierung**: Automatische Erstellung umfassender Testsuiten
+- **Visuelles Regressionstesten**: KI-gestützte Erkennung von UI-Änderungen
+- **Leistungsüberwachung**: Proaktive Fehlererkennung und -behebung
 
-#### 📊 Intelligenz für Datenpipelines
+#### 📊 Intelligenz von Datenpipelines
 
-Bauen Sie intelligentere Datenverarbeitungs-Workflows:
+Bauen Sie intelligentere Datenverarbeitungs-Workflows auf:
 
 - **Adaptive ETL-Prozesse**: Selbstoptimierende Datenumwandlungen
-- **Anomalieerkennung**: Echtzeit-Überwachung der Datenqualität
-- **Intelligentes Routing**: Schlaues Datenflussmanagement
+- **Anomalieerkennung**: Echtzeitüberwachung der Datenqualität
+- **Intelligentes Routing**: Smarte Steuerung des Datenflusses
 
 #### 🎧 Verbesserung der Kundenerfahrung
 
 Schaffen Sie außergewöhnliche Kundeninteraktionen:
 
-- **Kontextbewusste Unterstützung**: KI-Agenten mit Zugriff auf Kundenhistorie
+- **Kontextbewusste Unterstützung**: KI-Agenten mit Zugriff auf Kundendaten
 - **Proaktive Problemlösung**: Vorausschauender Kundenservice
-- **Multikanal-Integration**: Einheitliches KI-Erlebnis über Plattformen hinweg
+- **Multi-Channel-Integration**: Einheitliches KI-Erlebnis über verschiedene Plattformen
 
 ## 🛠️ Voraussetzungen & Einrichtung
 
 ### 💻 Systemanforderungen
 
-| Komponente            | Anforderung            | Hinweise                      |
-|----------------------|------------------------|-----------------------------|
-| **Betriebssystem**   | Windows 10+, macOS 10.15+, Linux | Beliebiges modernes Betriebssystem |
-| **Visual Studio Code** | Neuste stabile Version | Erforderlich für Microsoft Foundry Toolkit |
-| **Node.js**           | v18.0+ und npm         | Für MCP-Server-Entwicklung   |
-| **Python**            | 3.10+                  | Optional für Python MCP-Server |
-| **Speicher**          | Mindestens 8GB RAM     | 16GB empfohlen für lokale Modelle |
+| Komponente | Anforderung | Hinweise |
+|-----------|-------------|----------|
+| **Betriebssystem** | Windows 10+, macOS 10.15+, Linux | Beliebiges modernes OS |
+| **Visual Studio Code** | Neueste stabile Version | Erforderlich für Microsoft Foundry Toolkit |
+| **Node.js** | v18.0+ und npm | Für die MCP-Server-Entwicklung |
+| **Python** | 3.10+ | Optional für Python MCP-Server |
+| **Arbeitsspeicher** | Mindestens 8 GB RAM | 16 GB empfohlen für lokale Modelle |
 
 ### 🔧 Entwicklungsumgebung
 
-#### Empfohlene VS Code Erweiterungen
+#### Empfohlene VS Code-Erweiterungen
 
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
 - **GitHub Copilot** (GitHub.copilot) – Optional, aber hilfreich
 
-#### Optionale Werkzeuge
+#### Optionale Tools
 
 - **uv**: Moderner Python-Paketmanager
-- **MCP Inspector**: Visuales Debugging-Tool für MCP-Server
+- **MCP Inspector**: Visuelles Debugging-Tool für MCP-Server
 - **Playwright**: Für Web-Automatisierungsbeispiele
 
-## 🎖️ Lernergebnisse & Zertifizierungsweg
+## 🎖️ Lernergebnisse & Zertifizierungspfad
 
-### 🏆 Checkliste der Kompetenzen
+### 🏆 Checkliste für Kompetenzbeherrschung
 
-Mit Abschluss dieses Workshops erreichen Sie Expertise in:
+Durch den Abschluss dieses Workshops erreichen Sie Expertise in:
 
 #### 🎯 Kernkompetenzen
 
-- [ ] **MCP Protokoll-Beherrschung**: Tiefes Verständnis von Architektur und Implementierungsmustern
-- [ ] **Microsoft Foundry Toolkit Kenntnisse**: Expertenlevel in der Nutzung des Toolkits für schnelle Entwicklung
-- [ ] **Entwicklung benutzerdefinierter Server**: Aufbau, Deployment und Wartung von produktionsreifen MCP-Servern
-- [ ] **Exzellente Tool-Integration**: Nahtlose Anbindung von KI an bestehende Entwicklungsworkflows
-- [ ] **Anwendung von Problemlösungen**: Umsetzung erlernter Fähigkeiten bei echten Geschäftsproblemen
+- [ ] **MCP-Protokoll-Beherrschung**: Tiefes Verständnis der Architektur und Implementierungsmuster
+- [ ] **Microsoft Foundry Toolkit-Kompetenz**: Expertenniveau in der Verwendung des Microsoft Foundry Toolkit für schnelle Entwicklung
+- [ ] **Benutzerdefinierte Serverentwicklung**: Erstellen, Bereitstellen und Warten von produktionsreifen MCP-Servern
+- [ ] **Exzellente Tool-Integration**: Nahtlose Verbindung von KI mit bestehenden Entwicklungsworkflows
+- [ ] **Anwendung von Problemlösungen**: Anwendung der erlernten Fähigkeiten auf reale geschäftliche Herausforderungen
 
 #### 🔧 Technische Fähigkeiten
 
-- [ ] Einrichtung und Konfiguration des Microsoft Foundry Toolkit in VS Code
-- [ ] Entwurf und Implementierung benutzerdefinierter MCP-Server
+- [ ] Einrichtung und Konfiguration von Microsoft Foundry Toolkit in VS Code
+- [ ] Entwurf und Umsetzung benutzerdefinierter MCP-Server
 - [ ] Integration von GitHub-Modellen in die MCP-Architektur
-- [ ] Aufbau automatisierter Test-Workflows mit Playwright
-- [ ] Deployment von KI-Agenten für den Produktiveinsatz
-- [ ] Debugging und Optimierung der MCP-Server-Performance
+- [ ] Aufbau automatisierter Testworkflows mit Playwright
+- [ ] Bereitstellung von KI-Agenten für den Produktionseinsatz
+- [ ] Debugging und Optimierung der MCP-Server-Leistung
 
 #### 🚀 Erweiterte Fähigkeiten
 
-- [ ] Architektur von KI-Integrationen im Unternehmensmaßstab
-- [ ] Umsetzung von Sicherheitsbest-Practices für KI-Anwendungen
-- [ ] Design skalierbarer MCP-Server-Architekturen
-- [ ] Erstellung maßgeschneiderter Toolchains für spezielle Domains
-- [ ] Mentoring in KI-nativer Entwicklung
+- [ ] Architektur von unternehmensweiten KI-Integrationen
+- [ ] Implementierung von Sicherheitsbest Practices für KI-Anwendungen
+- [ ] Entwurf skalierbarer MCP-Server-Architekturen
+- [ ] Erstellung benutzerdefinierter Werkzeugketten für spezifische Bereiche
+- [ ] Mentoring anderer in KI-nativer Entwicklung
 
-## 📖 Weitere Ressourcen
+## 📖 Zusätzliche Ressourcen
 
-- [MCP Spezifikation (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP-Spezifikation (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
-- [Sammlung von Beispiel-MCP-Servern](https://github.com/modelcontextprotocol/servers)
-- [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Sicherheits-Best Practices
+- [MCP Servers Sammlung](https://github.com/modelcontextprotocol/servers)
+- [Best Practices Leitfaden](https://modelcontextprotocol.io/docs/best-practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Sicherheitsempfehlungen
 
 ---
 
@@ -217,7 +223,7 @@ Lassen Sie uns gemeinsam die Zukunft intelligenter Anwendungen mit MCP und Micro
 
 ## Was kommt als Nächstes
 
-Fortfahren zu: [Modul 11: MCP Server Hands-On Labs](../11-MCPServerHandsOnLabs/README.md)
+Weiter zu: [Modul 11: MCP Server Hands-On Labs](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

@@ -1,66 +1,82 @@
-# MCP Custom Transports - Guida Avanzata all'Implementazione
+# MCP Custom Transports - Guida avanzata all'implementazione
 
-Il Model Context Protocol (MCP) offre flessibilità nei meccanismi di trasporto, consentendo implementazioni personalizzate per ambienti aziendali specializzati. Questa guida avanzata esplora implementazioni di trasporti personalizzati utilizzando Azure Event Grid e Azure Event Hubs come esempi pratici per costruire soluzioni MCP scalabili e native per il cloud.
+Il Model Context Protocol (MCP) consente implementazioni di trasporto personalizzate per
+ambienti specializzati. Questa guida avanzata esplora Azure Event Grid e
+Azure Event Hubs come modelli architetturali. Non sono trasporti MCP standard
+e richiedono che entrambe le estremità concordino sulla mappatura personalizzata.
 
-> **Guardando avanti:** questa guida è scritta in base alla **Specificazione MCP 2025-11-25**, dove l’ordine delle sessioni deve essere preservato per sessione (vedi Messaggio Protocollo sotto). La release candidate `2026-07-28` rimuove completamente la sessione a livello di protocollo e richiede gli header `Mcp-Method`/`Mcp-Name` affinché gateway e trasporti personalizzati possano instradare per richiesta invece che per sessione. Vedi [Cosa Cambia in MCP: La release candidate 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Ambito MCP `2026-07-28`:** il protocollo attuale non prevede sessioni a livello di protocollo,
+> quindi i trasporti personalizzati non devono dipendere dall'affinità della sessione o
+> dall'ordinamento per sessione. Le intestazioni `Mcp-Method` e condizionale `Mcp-Name` sono
+> requisiti del trasporto HTTP Streamable standard; un trasporto non HTTP
+> necessita di una mappatura equivalente, esplicitamente concordata se i mediatori devono instradare
+> senza decodificare il corpo JSON-RPC. Vedere
+> [Cosa è cambiato in MCP: La specifica 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Introduzione
 
-Mentre i trasporti standard MCP (stdio e HTTP streaming) coprono la maggior parte dei casi d’uso, gli ambienti aziendali spesso richiedono meccanismi di trasporto specializzati per migliorare scalabilità, affidabilità e integrazione con l’infrastruttura cloud esistente. I trasporti personalizzati permettono a MCP di sfruttare servizi di messaggistica cloud-native per comunicazioni asincrone, architetture event-driven e elaborazioni distribuite.
+I trasporti standard di MCP sono stdio e HTTP Streamable. Alcuni ambienti aziendali
+utilizzano una mappatura personalizzata per integrarsi con infrastrutture di messaggistica
+esistenti, ma ciò può ridurre l'interoperabilità con host MCP e
+SDK che implementano solo i trasporti standard.
 
-Questa lezione esplora implementazioni avanzate di trasporti basate sull’ultima specifica MCP (2025-11-25), servizi di messaggistica Azure e modelli di integrazione aziendale consolidati.
+Questa lezione applica i requisiti senza stato della Specifica MCP
+`2026-07-28` ai servizi di messaggistica Azure e ai modelli consolidati di integrazione
+aziendale.
 
-### **Architettura del Trasporto MCP**
+### **Architettura del trasporto MCP**
 
-**Dalla Specifica MCP (2025-11-25):**
+**Dalla specifica MCP `2026-07-28`:**
 
-- **Trasporti Standard**: stdio (consigliato), HTTP streaming (per scenari remoti)
-- **Trasporti Personalizzati**: Qualsiasi trasporto che implementi il protocollo di scambio messaggi MCP
-- **Formato Messaggi**: JSON-RPC 2.0 con estensioni specifiche MCP
-- **Comunicazione Bidirezionale**: Comunicazione full duplex richiesta per notifiche e risposte
+- **Trasporti standard**: stdio e HTTP Streamable
+- **Trasporti personalizzati**: mappature opzionali, specifiche dell'implementazione, concordate da
+    entrambe le estremità
+- **Formato messaggio**: JSON-RPC 2.0 con estensioni specifiche MCP
+- **Richieste autonomamente contenute**: Nessuna sessione o handshake di protocollo disponibile
+    per mantenere stato tra richieste
 
-## Obiettivi di Apprendimento
+## Obiettivi di apprendimento
 
-Al termine di questa lezione avanzata potrai:
+Al termine di questa lezione avanzata, sarai in grado di:
 
-- **Comprendere i Requisiti per Trasporti Personalizzati**: Implementare il protocollo MCP su qualsiasi livello di trasporto mantenendo la conformità
-- **Costruire un Trasporto Azure Event Grid**: Creare server MCP event-driven usando Azure Event Grid per scalabilità serverless
-- **Implementare un Trasporto Azure Event Hubs**: Progettare soluzioni MCP ad alta capacità usando Azure Event Hubs per streaming in tempo reale
-- **Applicare Pattern Aziendali**: Integrare trasporti personalizzati con infrastruttura e modelli di sicurezza Azure esistenti
-- **Gestire l’Affidabilità del Trasporto**: Implementare durabilità, ordinamento messaggi e gestione degli errori per scenari aziendali
-- **Ottimizzare le Prestazioni**: Progettare soluzioni di trasporto per requisiti di scala, latenza e throughput
+- **Comprendere i requisiti del trasporto personalizzato**: Implementare il protocollo MCP su qualsiasi livello di trasporto mantenendo la conformità
+- **Costruire il trasporto Azure Event Grid**: Creare server MCP event-driven utilizzando Azure Event Grid per scalabilità serverless
+- **Implementare il trasporto Azure Event Hubs**: Progettare soluzioni MCP ad alto throughput usando Azure Event Hubs per streaming in tempo reale
+- **Applicare i modelli aziendali**: Integrare trasporti personalizzati con infrastruttura e modelli di sicurezza Azure esistenti
+- **Gestire l'affidabilità del trasporto**: Implementare durabilità, ordinamento e gestione degli errori per scenari aziendali
+- **Ottimizzare le prestazioni**: Progettare soluzioni di trasporto per scala, latenza e requisiti di throughput
 
-## **Requisiti di Trasporto**
+## **Requisiti di trasporto**
 
-### **Requisiti Core dalla Specifica MCP (2025-11-25):**
+### **Requisiti fondamentali per MCP `2026-07-28`**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
-## **Implementazione Trasporto Azure Event Grid**
+## **Implementazione del trasporto Azure Event Grid**
 
-Azure Event Grid offre un servizio di instradamento eventi serverless ideale per architetture MCP event-driven. Questa implementazione dimostra come costruire sistemi MCP scalabili e debolmente accoppiati.
+Azure Event Grid fornisce un servizio di routing eventi serverless ideale per architetture MCP event-driven. Questa implementazione dimostra come costruire sistemi MCP scalabili e disaccoppiati.
 
-### **Panoramica Architetturale**
+### **Panoramica dell'architettura**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EG[Azure Event Grid]
-    EG --> Server[MCP Server Function]
+    Client[Client MCP] --> EG[Azure Event Grid]
+    EG --> Server[Funzione Server MCP]
     Server --> EG
     EG --> Client
     
@@ -180,7 +196,7 @@ export class EventGridMcpTransport implements McpTransport {
     
     // Ricezione basata su eventi tramite Azure Functions
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // L'implementazione utilizzerebbe il trigger Event Grid di Azure Functions
+        // L'implementazione utilizzerà il trigger Event Grid di Azure Functions
         // Questa è un'interfaccia concettuale per il ricevitore webhook
     }
 }
@@ -263,16 +279,16 @@ def main(event: func.EventGridEvent) -> None:
         raise
 ```
 
-## **Implementazione Trasporto Azure Event Hubs**
+## **Implementazione del trasporto Azure Event Hubs**
 
-Azure Event Hubs fornisce capacità di streaming in tempo reale ad alto throughput per scenari MCP che richiedono bassa latenza e alto volume di messaggi.
+Azure Event Hubs offre capacità di streaming in tempo reale ad alto throughput per scenari MCP che richiedono bassa latenza e elevato volume di messaggi.
 
-### **Panoramica Architetturale**
+### **Panoramica dell'architettura**
 
 ```mermaid
 graph TB
-    Client[MCP Client] --> EH[Azure Event Hubs]
-    EH --> Server[MCP Server]
+    Client[Client MCP] --> EH[Azure Event Hubs]
+    EH --> Server[Server MCP]
     Server --> EH
     EH --> Client
     
@@ -477,7 +493,7 @@ class EventHubsMcpTransport:
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Usa il timestamp reale
+            "timestamp": "2025-01-14T10:30:00Z"  # Usa timestamp reale
         }
         
         async with self.producer:
@@ -527,9 +543,9 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **Pattern Avanzati di Trasporto**
+## **Modelli avanzati di trasporto**
 
-### **Durabilità e Affidabilità dei Messaggi**
+### **Durabilità e affidabilità del messaggio**
 
 ```csharp
 // Implementing message durability with retry logic
@@ -556,7 +572,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Integrazione della Sicurezza del Trasporto**
+### **Integrazione della sicurezza del trasporto**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -578,7 +594,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Monitoraggio e Osservabilità del Trasporto**
+### **Monitoraggio e osservabilità del trasporto**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -617,11 +633,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **Scenari di Integrazione Aziendale**
+## **Scenari di integrazione aziendale**
 
-### **Scenario 1: Elaborazione Distribuita MCP**
+### **Scenario 1: Elaborazione MCP distribuita**
 
-Usare Azure Event Grid per distribuire richieste MCP su più nodi di elaborazione:
+Utilizzo di Azure Event Grid per distribuire richieste MCP su più nodi di elaborazione:
 
 ```yaml
 Architecture:
@@ -637,7 +653,7 @@ Benefits:
 
 ### **Scenario 2: Streaming MCP in tempo reale**
 
-Usare Azure Event Hubs per interazioni MCP ad alta frequenza:
+Utilizzo di Azure Event Hubs per interazioni MCP ad alta frequenza:
 
 ```yaml
 Architecture:
@@ -651,9 +667,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Scenario 3: Architettura di Trasporto Ibrida**
+### **Scenario 3: Architettura di trasporto ibrida**
 
-Combinare più trasporti per diversi casi d’uso:
+Combinazione di più trasporti per diversi casi d'uso:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -677,9 +693,9 @@ public class HybridMcpTransport : IMcpTransport
 }
 ```
 
-## **Ottimizzazione delle Prestazioni**
+## **Ottimizzazione delle prestazioni**
 
-### **Batching dei Messaggi per Event Grid**
+### **Batching dei messaggi per Event Grid**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -719,7 +735,7 @@ public class BatchingEventGridTransport : IMcpTransport
 }
 ```
 
-### **Strategia di Partizionamento per Event Hubs**
+### **Strategia di partizionamento per Event Hubs**
 
 ```csharp
 public class PartitionedEventHubsTransport : IMcpTransport
@@ -739,9 +755,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Test dei Trasporti Personalizzati**
+## **Test dei trasporti personalizzati**
 
-### **Unit Testing con Test Doubles**
+### **Test unitari con test double**
 
 ```csharp
 [Test]
@@ -768,7 +784,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Integration Testing con Azure Test Containers**
+### **Test di integrazione con Azure Test Containers**
 
 ```csharp
 [Test]
@@ -801,33 +817,33 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **Best Practice e Linee Guida**
+## **Best practice e linee guida**
 
-### **Principi di Progettazione del Trasporto**
+### **Principi di progettazione del trasporto**
 
-1. **Idempotenza**: Garantire che l’elaborazione dei messaggi sia idempotente per gestire duplicati
-2. **Gestione Errori**: Implementare gestione errori completa e code di messaggi non recapitati
-3. **Monitoraggio**: Aggiungere telemetria dettagliata e controlli di salute
-4. **Sicurezza**: Usare managed identity e accesso a privilegi minimi
-5. **Prestazioni**: Progettare per specifici requisiti di latenza e throughput
+1. **Idempotenza**: Assicurare che l'elaborazione dei messaggi sia idempotente per gestire duplicati
+2. **Gestione errori**: Implementare gestione completa degli errori e code dead letter
+3. **Monitoraggio**: Aggiungere telemetria dettagliata e controlli di integrità
+4. **Sicurezza**: Utilizzare identità gestite e accesso con privilegi minimi
+5. **Prestazioni**: Progettare in base ai requisiti specifici di latenza e throughput
 
-### **Raccomandazioni Specifiche per Azure**
+### **Raccomandazioni specifiche per Azure**
 
-1. **Usare Managed Identity**: Evitare stringhe di connessione in produzione
-2. **Implementare Circuit Breaker**: Proteggere da interruzioni dei servizi Azure
-3. **Monitorare i Costi**: Tenere traccia di volume messaggi e costi elaborazione
-4. **Pianificare la Scalabilità**: Progettare strategie di partizionamento e scaling in anticipo
-5. **Testare a Fondo**: Usare Azure DevTest Labs per test completi
+1. **Usare identità gestite**: Evitare stringhe di connessione in produzione
+2. **Implementare circuit breaker**: Proteggersi da interruzioni dei servizi Azure
+3. **Monitorare i costi**: Tenere traccia di volume messaggi e costi di elaborazione
+4. **Pianificare la scalabilità**: Progettare strategie di partizionamento e scaling sin dall'inizio
+5. **Testare a fondo**: Usare Azure DevTest Labs per test completi
 
 ## **Conclusione**
 
-I trasporti MCP personalizzati consentono potenti scenari aziendali utilizzando i servizi di messaggistica Azure. Implementando i trasporti Event Grid o Event Hubs, è possibile costruire soluzioni MCP scalabili, affidabili e integrate perfettamente con l’infrastruttura Azure esistente.
+I trasporti MCP personalizzati consentono potenti scenari aziendali utilizzando i servizi di messaggistica di Azure. Implementando i trasporti Event Grid o Event Hubs, puoi costruire soluzioni MCP scalabili e affidabili che si integrano perfettamente con l'infrastruttura Azure esistente.
 
-Gli esempi forniti mostrano pattern pronti per la produzione per implementare trasporti personalizzati mantenendo la conformità al protocollo MCP e le best practice Azure.
+Gli esempi forniti mostrano modelli pronti per la produzione per implementare trasporti personalizzati mantenendo la conformità al protocollo MCP e le migliori pratiche Azure.
 
-## **Risorse Addizionali**
+## **Risorse aggiuntive**
 
-- [Specificazione MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [Specifiche MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Documentazione Azure Event Grid](https://docs.microsoft.com/azure/event-grid/)
 - [Documentazione Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -837,12 +853,14 @@ Gli esempi forniti mostrano pattern pronti per la produzione per implementare tr
 
 ---
 
-> *Questa guida si concentra su pattern di implementazione pratici per sistemi MCP di produzione. Validare sempre le implementazioni di trasporto rispetto ai requisiti specifici e ai limiti dei servizi Azure.*
-> **Standard Attuale**: Questa guida riflette i requisiti di trasporto [Specificazione MCP 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) e pattern avanzati di trasporto per ambienti aziendali.
+> *Questa guida si concentra sui modelli architetturali personalizzati. Validare il protocollo
+
+> comportamento conforme a [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/),
+> e convalida l'uso di Azure rispetto ai tuoi requisiti e limiti di servizio.*
 
 
-## Prossimi Passi
-- [6. Contributi dalla Comunità](../../06-CommunityContributions/README.md)
+## Cosa Succede Dopo
+- [6. Contributi della Community](../../06-CommunityContributions/README.md)
 
 ---
 

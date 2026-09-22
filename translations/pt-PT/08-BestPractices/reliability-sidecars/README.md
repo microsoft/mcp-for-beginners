@@ -236,7 +236,6 @@ Preveja o resultado antes de executar os testes:
 | Caminho | Resultado após repetição | Contagem de bilhetes |
 | --- | --- | --- |
 | Repetição cega | Cria `T-0002` depois de perder a resposta para `T-0001` | 2 |
-
 | Retentativa protegida | Encontra e retorna `T-0001` | 1 |
 
 Execute:

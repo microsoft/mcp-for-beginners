@@ -1,25 +1,30 @@
-# Analyse Approfondie des Fonctionnalités du Protocole MCP
+# Exploration Approfondie des Fonctionnalités du Protocole MCP
 
-Ce guide explore les fonctionnalités avancées du protocole MCP qui vont au-delà de la gestion de base des outils et des ressources. Comprendre ces fonctionnalités vous aide à construire des serveurs MCP plus robustes, conviviaux et prêts pour la production.
+Ce guide explore les fonctionnalités avancées du protocole MCP qui vont au-delà de la gestion basique des outils et des ressources. Comprendre ces fonctionnalités vous aide à construire des serveurs MCP plus robustes, conviviaux et prêts pour la production.
 
-> **À venir :** le candidat à la version `2026-07-28` déprécie la primitive de journalisation (privilégiant `stderr` pour stdio et OpenTelemetry pour une observabilité structurée), supprime le modèle `initialize`/session référencé dans les Événements du Cycle de Vie du Serveur ci-dessous, et déplace la fonctionnalité expérimentale Tâches dans une extension dédiée avec un nouveau cycle de vie `tasks/get`/`tasks/update`/`tasks/cancel`. Voir [Ce qui change dans MCP : le candidat à la version 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Portée de MCP `2026-07-28` :** le démarrage et l'arrêt du processus serveur restent
+> des préoccupations applicatives, mais la poignée de main `initialize` MCP et les sessions au niveau du protocole
+> sont supprimées. La section Journalisation ci-dessous est conservée pour les implémentations héritées ;
+> les nouveaux serveurs doivent utiliser `stderr` ou OpenTelemetry. Tasks est
+> désormais une extension versionnée séparément. Voir
+> [Quoi de Neuf dans MCP : La Spécification 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Fonctionnalités Couvertes
 
 1. **Notifications de Progression** - Rapporter la progression des opérations longues
-2. **Annulation de Requête** - Permettre aux clients d’annuler les requêtes en cours
-3. **Modèles de Ressources** - URI de ressources dynamiques avec paramètres
-4. **Événements du Cycle de Vie du Serveur** - Initialisation et arrêt appropriés
-5. **Contrôle de la Journalisation** - Configuration de la journalisation côté serveur
-6. **Schémas de Gestion des Erreurs** - Réponses d’erreur cohérentes
+2. **Annulation de Requête** - Permettre aux clients d'annuler des requêtes en cours
+3. **Templates de Ressources** - URI de ressources dynamiques avec paramètres
+4. **Cycle de Vie de l'Application** - Démarrage et arrêt du processus serveur
+5. **Contrôle de la Journalisation (Hérité)** - Configuration de journalisation MCP dépréciée
+6. **Modèles de Gestion des Erreurs** - Réponses d'erreur cohérentes
 
 ---
 
 ## 1. Notifications de Progression
 
-Pour les opérations qui prennent du temps (traitement de données, téléchargements de fichiers, appels API), les notifications de progression tiennent les utilisateurs informés.
+Pour les opérations qui prennent du temps (traitement de données, téléchargements de fichiers, appels API), les notifications de progression maintiennent les utilisateurs informés.
 
-### Comment ça Fonctionne
+### Comment ça Marche
 
 ```mermaid
 sequenceDiagram
@@ -52,7 +57,7 @@ async def process_large_file(file_path: str, ctx) -> str:
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Traiter le morceau
+            # Traiter le segment
             await process_chunk(chunk)
             processed += len(chunk)
             
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Signaler la progression après chaque élément
+        # Rapporter la progression après chaque élément
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -145,7 +150,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Annulation de Requête
 
-Permettre aux clients d’annuler les requêtes qui ne sont plus nécessaires ou qui prennent trop de temps.
+Permettre aux clients d'annuler des requêtes qui ne sont plus nécessaires ou qui prennent trop de temps.
 
 ### Implémentation Python
 
@@ -172,7 +177,7 @@ async def long_running_search(query: str, ctx) -> str:
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Un petit délai permet les vérifications d'annulation
+            # Un court délai permet les vérifications d'annulation
             await asyncio.sleep(0.1)
             
     except CancelledError:
@@ -201,7 +206,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### Implémentation du Contexte d’Annulation
+### Mise en œuvre du Contexte d'Annulation
 
 ```python
 class CancellableContext:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Délai normal dépassé, continuer
+            pass  # Délai d'attente normal, continuer
 ```
 
-### Annulation Côté Client
+### Annulation côté Client
 
 ```python
 import asyncio
@@ -263,11 +268,11 @@ async def search_with_timeout(session, query, timeout=30):
 
 ---
 
-## 3. Modèles de Ressources
+## 3. Templates de Ressources
 
-Les modèles de ressources permettent la construction dynamique d’URI avec des paramètres, utile pour les APIs et les bases de données.
+Les templates de ressources permettent la construction dynamique d'URI avec paramètres, utile pour les APIs et bases de données.
 
-### Définition des Modèles
+### Définition des Templates
 
 ```python
 from mcp.server import Server
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Événements du Cycle de Vie du Serveur
+## 4. Cycle de Vie de l'Application
 
-Une gestion appropriée de l’initialisation et de l’arrêt assure une administration propre des ressources.
+Cette section couvre le démarrage et l'arrêt du processus applicatif, pas la poignée de main `initialize`
+MCP supprimée. Une gestion appropriée du cycle de vie garantit une gestion propre des ressources.
+
 
 ### Gestion du Cycle de Vie en Python
 
@@ -392,7 +399,7 @@ async def lifespan(server: Server):
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Le serveur fonctionne ici
+    yield  # Le serveur s'exécute ici
     
     # Arrêt
     print("🛑 Server shutting down...")
@@ -409,7 +416,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### Cycle de Vie en TypeScript
+### Cycle de Vie TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Contrôle de la Journalisation
+## 5. Contrôle de la Journalisation (Hérité)
 
-MCP supporte des niveaux de journalisation côté serveur que les clients peuvent contrôler.
+> [!WARNING]
+> La journalisation MCP est dépréciée dans `2026-07-28` et est susceptible d'être supprimée dans
+> la première révision de la spécification publiée à partir du 28 juillet 2027. Les exemples
+> ci-dessous sont pour compatibilité avec les anciennes implémentations. Utilisez `stderr` avec
+> stdio et OpenTelemetry pour une observabilité structurée dans les nouveaux serveurs.
 
-### Implémentation des Niveaux de Journalisation
+Les versions héritées de MCP prennent en charge des niveaux de journalisation côté serveur que les clients peuvent contrôler.
+
+### Mise en œuvre des Niveaux de Journalisation
 
 ```python
 from mcp.server import Server
@@ -538,11 +551,11 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Schémas de Gestion des Erreurs
+## 6. Modèles de Gestion des Erreurs
 
-Une gestion cohérente des erreurs améliore le débogage et l’expérience utilisateur.
+Une gestion cohérente des erreurs améliore le débogage et l'expérience utilisateur.
 
-### Codes d’Erreur MCP
+### Codes d'Erreur MCP
 
 ```python
 from mcp.types import McpError, ErrorCode
@@ -572,7 +585,7 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Réponses d’Erreur Structurées
+### Réponses d'Erreur Structurées
 
 ```python
 @app.tool()
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Consigner les erreurs inattendues
+        # Enregistrer les erreurs inattendues
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -656,66 +669,36 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Fonctionnalités Expérimentales (MCP 2025-11-25)
+## Fonctionnalités Sensibles à la Version
 
-Ces fonctionnalités sont marquées comme expérimentales dans la spécification :
+### Extension Tasks
 
-### Tâches (Opérations Longues)
+Tasks est une extension officielle, versionnée séparément dans MCP `2026-07-28`. Un
+serveur peut retourner une poignée de tâche à partir d'un appel d'outil, et le client pilote la tâche
+avec `tasks/get`, `tasks/update` et `tasks/cancel`. L'API expérimentale
+`2025-11-25` Tasks n'est pas rétrocompatible, et `tasks/list` n'existe
+plus.
 
-```python
-# Les tâches permettent de suivre les opérations de longue durée avec état
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Signaler le démarrage de la tâche
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Boucle d'entraînement
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+### Annotations d'Outil
 
-### Annotations des Outils
-
-```python
-# Les annotations fournissent des métadonnées sur le comportement de l'outil
-@app.tool(
-    annotations={
-        "destructive": False,      # Ne modifie pas les données
-        "idempotent": True,        # Peut être réessayé sans risque
-        "timeout_seconds": 30,     # Durée maximale prévue
-        "requires_approval": False # Aucune approbation utilisateur nécessaire
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Les annotations d'outil décrivent des comportements tels que lecture seule, destructif, idempotent,
+ou opération en monde ouvert. Ce sont des indices et ne doivent pas être considérés comme des garanties
+d'autorisation ou de sécurité de confiance à moins qu'ils ne proviennent d'un serveur de confiance.
 
 ---
 
-## Et Après ?
+## Prochaines Étapes
 
 - [Module 8 - Bonnes Pratiques](../../08-BestPractices/README.md)
 - [5.14 - Ingénierie du Contexte](../mcp-contextengineering/README.md)
-- [Journal des Modifications de la Spécification MCP](https://spec.modelcontextprotocol.io/)
+- [Journal des Changements de la Spécification MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Ressources Supplémentaires
 
-- [Spécification MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Codes d’Erreur JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
+- [Spécification MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Codes d'Erreur JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
 - [Exemples SDK Python](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [Exemples SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 

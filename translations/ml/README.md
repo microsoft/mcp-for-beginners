@@ -225,7 +225,6 @@ MCP പഠനത്തിലെ ഏറ്റവും രസകരമായ ഭ�
 
 | ഭാഷ | വിവരണം | ലിങ്ക് |
 |----------|-------------|------|
-
 | C# | MCP സെർവർ ഉദാഹരണം | [View Code](./03-GettingStarted/samples/csharp/README.md) |
 | ജാവ | MCP കാൽക്കുലേറ്റർ | [View Code](./03-GettingStarted/samples/java/calculator/README.md) |
 | ജാവാസ്ക്രിപ്റ്റ് | MCP ഡെമോ | [View Code](./03-GettingStarted/samples/javascript/README.md) |

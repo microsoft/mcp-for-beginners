@@ -1,31 +1,37 @@
-# Populiariausių MCP prieglobos klientų sąranka
+# Populiariausių MCP serverio klientų nustatymas
 
-Šiame vadove aprašoma, kaip konfigūruoti ir naudoti MCP serverius su populiariomis AI prieglobos programomis. Kiekvienas priegloba turi savo konfigūracijos metodą, tačiau nustatyti visi jie bendrauja su MCP serveriais naudodami standartizuotą protokolą.
+> [!NOTE]
+> Serverio konfigūracijos, nurodančios į `/sse`, yra senstelėję HTTP+SSE pavyzdžiai MCP `2025-11-25` versijai. MCP `2026-07-28` naudokite Streamable HTTP tais serveriuose, kurie tai palaiko, ir naudokite serverio nustatytą galinį tašką.
+> 
+> 
 
-## Kas yra MCP priegloba?
+Šiame vadove aprašoma, kaip konfigūruoti ir naudoti MCP serverius su populiariomis AI serverio programomis. Kiekvienas serveris turi savitą konfigūracijos metodą, tačiau po nustatymo visi jie bendrauja su MCP serveriais naudodami standartizuotą protokolą.
 
-**MCP priegloba** yra AI programa, galinti prisijungti prie MCP serverių, kad išplėstų savo galimybes. Galvokite apie ją kaip apie „priekinę sąsają“, su kuria vartotojai sąveikauja, o MCP serveriai suteikia „užpakalinius“ įrankius ir duomenis.
+## Kas yra MCP serveris?
+
+**MCP serveris** yra AI programėlė, galinti prisijungti prie MCP serverių ir išplėsti savo funkcionalumą. Galvokite apie jį kaip apie „priekinę dalį“, su kuria sąveikauja vartotojai, o MCP serveriai teikia „galinę dalį“ - įrankius ir duomenis.
 
 ```mermaid
 flowchart LR
-    User[👤 Vartotojas] --> Host[🖥️ MCP Serveris]
-    Host --> S1[MCP Serveris A]
-    Host --> S2[MCP Serveris B]
-    Host --> S3[MCP Serveris C]
+    User[👤 Vartotojas] --> Host[🖥️ MCP serverio šeimininkas]
+    Host --> S1[MCP serveris A]
+    Host --> S2[MCP serveris B]
+    Host --> S3[MCP serveris C]
     
     subgraph "Populiarūs serveriai"
-        H1[Claude Darbalaukis]
-        H2[VS Kodas]
-        H3[Žymeklis]
+        H1[Claude darbalaukis]
+        H2[VS Code]
+        H3[Cursor]
         H4[Cline]
-        H5[Vėjlenčių sportas]
+        H5[Windsurf]
     end
 ```
-## Išankstiniai reikalavimai
 
-- Prisijungimui prie MCP serverio (žr. [3 modulis.1 – Pirmasis serveris](../01-first-server/README.md))
-- Prieglobos programa, įdiegta jūsų sistemoje
-- Pagrindinės JSON konfigūracijos failų pažinimo žinios
+## Reikalavimai
+
+- MCP serveris, prie kurio bus jungiamasi (žiūrėti [3.1 modulis - Pirmasis serveris](../01-first-server/README.md))
+- Serverio programa įdiegta jūsų sistemoje
+- Pagrindinės JSON konfigūracijos failų žinios
 
 ---
 
@@ -33,7 +39,7 @@ flowchart LR
 
 **Claude Desktop** yra oficiali Anthropic darbalaukio programa, kuri natūraliai palaiko MCP.
 
-### Diegimas
+### Įdiegimas
 
 1. Atsisiųskite Claude Desktop iš [claude.ai/download](https://claude.ai/download)
 2. Įdiekite ir prisijunkite naudodami savo Anthropic paskyrą
@@ -77,31 +83,31 @@ Claude Desktop naudoja JSON konfigūracijos failą MCP serveriams apibrėžti.
 ### Konfigūracijos parinktys
 
 | Laukas | Aprašymas | Pavyzdys |
-|--------|-----------|----------|
-| `command` | Vykdomasis failas | `"python"`, `"node"`, `"npx"` |
+|-------|------------|----------|
+| `command` | Vykdomoji programa | `"python"`, `"node"`, `"npx"` |
 | `args` | Komandinės eilutės argumentai | `["-m", "my_server"]` |
 | `env` | Aplinkos kintamieji | `{"API_KEY": "xxx"}` |
-| `cwd` | Darbinė direktorija | `"/path/to/server"` |
+| `cwd` | Darbo katalogas | `"/path/to/server"` |
 
-### Jūsų sąrankos testavimas
+### Nustatymo testavimas
 
 1. Išsaugokite konfigūracijos failą
-2. Pilnai perkraukite Claude Desktop (uždarykite ir atidarykite iš naujo)
+2. Pilnai perkraukite Claude Desktop (uždarykite ir vėl atidarykite)
 3. Atidarykite naują pokalbį
-4. Ieškokite 🔌 piktogramos, rodančios prisijungusius serverius
-5. Pabandykite paprašyti Claude naudoti vieną savo įrankių
+4. Ieškokite 🔌 ikonos, rodančios prisijungusius serverius
+5. Išbandykite paprašyti Claude naudoti vieną iš jūsų įrankių
 
-### Claude Desktop problemų sprendimas
+### Claude Desktop trikčių šalinimas
 
-**Serveris neatsiranda:**
-- Patikrinkite konfigūracijos failo sintaksę naudodami JSON validatorių
-- Įsitikinkite, kad komandos kelias teisingas
+**Serveris nerodomas:**
+- Patikrinkite konfigūracijos failo sintaksę su JSON tikrintuvu
+- Įsitikinkite, kad kelias iki komandos yra teisingas
 - Peržiūrėkite Claude Desktop žurnalus: Pagalba → Rodyti žurnalus
 
 **Serveris užstringa paleidžiant:**
-- Pirmiausia išbandykite savo serverį rankiniu būdu terminale
+- Iš pradžių rankiniu būdu išbandykite serverį terminale
 - Patikrinkite, ar aplinkos kintamieji nustatyti teisingai
-- Įsitikinkite, kad visos priklausomybės įdiegtos
+- Įsitikinkite, kad įdiegti visi reikalingi priklausiniai
 
 ---
 
@@ -109,17 +115,17 @@ Claude Desktop naudoja JSON konfigūracijos failą MCP serveriams apibrėžti.
 
 VS Code palaiko MCP per GitHub Copilot Chat plėtinius.
 
-### Išankstiniai reikalavimai
+### Reikalavimai
 
-1. Įdiegta VS Code versija 1.99 ar naujesnė
+1. Įdiegta VS Code 1.99 ar naujesnė versija
 2. Įdiegtas GitHub Copilot plėtinys
 3. Įdiegtas GitHub Copilot Chat plėtinys
 
 ### Konfigūracija
 
-VS Code naudoja `.vscode/mcp.json` jūsų darbo zonoje arba vartotojo nustatymuose.
+VS Code naudoja `.vscode/mcp.json` jūsų darbo aplanke arba naudotojo nustatymuose.
 
-**Darbo zonos konfigūracija** (`.vscode/mcp.json`):
+**Darbo aplanko konfigūracija** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -137,7 +143,7 @@ VS Code naudoja `.vscode/mcp.json` jūsų darbo zonoje arba vartotojo nustatymuo
 }
 ```
 
-**Vartotojo nustatymai** (`settings.json`):
+**Naudotojo nustatymai** (`settings.json`):
 
 ```json
 {
@@ -154,24 +160,24 @@ VS Code naudoja `.vscode/mcp.json` jūsų darbo zonoje arba vartotojo nustatymuo
 
 ### MCP naudojimas VS Code
 
-1. Atidarykite Copilot Chat skydelį (Ctrl+Shift+I / Cmd+Shift+I)
-2. Įveskite `@` norėdami matyti galimus MCP įrankius
-3. Naudokite natūralią kalbą įrankiams iškviesti: „Apskaičiuokite 25 * 48 naudodami skaičiuotuvą“
+1. Atidarykite Copilot Chat panelę (Ctrl+Shift+I / Cmd+Shift+I)
+2. Įveskite `@`, kad pamatytumėte galimus MCP įrankius
+3. Naudokite natūralią kalbą įrankiams iškviesti: „Calculate 25 * 48 using the calculator“
 
-### VS Code problemų sprendimas
+### VS Code trikčių šalinimas
 
-**MCP serveriai neįsikrauna:**
-- Patikrinkite Išvesties skydelį → „MCP“ klaidų žurnalams
+**MCP serveriai nesikrauna:**
+- Patikrinkite Išvesties panelę → „MCP“ dėl klaidų žurnalų
 - Perkraukite langą: Ctrl+Shift+P → „Developer: Reload Window“
-- Įsitikinkite, kad serveris veikia savarankiškai
+- Patikrinkite, ar serveris pirmiausia veikia savarankiškai
 
 ---
 
 ## 3. Cursor
 
-**Cursor** yra AI pirmas kodo redaktorius su integruota MCP palaikymu.
+**Cursor** yra AI pirmiausia orientuotas kodo redaktorius su įmontuota MCP palaikymu.
 
-### Diegimas
+### Įdiegimas
 
 1. Atsisiųskite Cursor iš [cursor.sh](https://cursor.sh)
 2. Įdiekite ir prisijunkite
@@ -208,16 +214,16 @@ Cursor naudoja panašų konfigūracijos formatą kaip Claude Desktop.
 ### MCP naudojimas Cursor
 
 1. Atidarykite Cursor AI pokalbį (Ctrl+L / Cmd+L)
-2. MCP įrankiai automatiškai pasirodo pasiūlymuose
-3. Paprašykite AI atlikti užduotis per prijungtus serverius
+2. MCP įrankiai automatiškai rodomi pasiūlymuose
+3. Paprašykite AI atlikti užduotis naudodami prijungtus serverius
 
 ---
 
-## 4. Cline (terminalinė)
+## 4. Cline (Terminalinis klientas)
 
-**Cline** yra terminalinė MCP kliento programa, puikiai tinkanti komandų eilutės darbams.
+**Cline** yra terminalinis MCP klientas, tinkamas komandų eilutės darbams.
 
-### Diegimas
+### Įdiegimas
 
 ```bash
 npm install -g @anthropic/cline
@@ -225,7 +231,7 @@ npm install -g @anthropic/cline
 
 ### Konfigūracija
 
-Cline naudoja aplinkos kintamuosius ir komandinės eilutės argumentus.
+Cline naudoja aplinkos kintamuosius ir komandų eilutės argumentus.
 
 **Naudojant aplinkos kintamuosius:**
 
@@ -234,7 +240,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
 ```
 
-**Naudojant komandinės eilutės argumentus:**
+**Naudojant komandų eilutės argumentus:**
 
 ```bash
 cline --mcp-server "calculator:python -m mcp_calculator_server" \
@@ -258,13 +264,13 @@ cline --mcp-server "calculator:python -m mcp_calculator_server" \
 ### Cline naudojimas
 
 ```bash
-# Pradėti interaktyvią sesiją
+# Paleiskite interaktyvią sesiją
 cline
 
 # Vienas užklausimas su MCP
 cline "Calculate the square root of 144 using the calculator"
 
-# Išvardinti prieinamus įrankius
+# Išvardinkite turimus įrankius
 cline --list-tools
 ```
 
@@ -272,20 +278,20 @@ cline --list-tools
 
 ## 5. Windsurf
 
-**Windsurf** yra dar vienas AI paremtas kodo redaktorius su MCP palaikymu.
+**Windsurf** yra dar vienas AI pagrindu veikiantis kodo redaktorius su MCP palaikymu.
 
-### Diegimas
+### Įdiegimas
 
 1. Atsisiųskite Windsurf iš [codeium.com/windsurf](https://codeium.com/windsurf)
 2. Įdiekite ir susikurkite paskyrą
 
 ### Konfigūracija
 
-Windsurf konfigūracijos valdymas vykdomas per nustatymų sąsają:
+Windsurf konfigūracijos valdomos per nustatymų naudotojo sąsają:
 
 1. Atidarykite Nustatymus (Ctrl+, / Cmd+,)
 2. Ieškokite „MCP“
-3. Spustelėkite „Redaguoti settings.json“
+3. Spauskite „Redaguoti settings.json faile“
 
 **Konfigūracijos pavyzdys:**
 
@@ -306,26 +312,26 @@ Windsurf konfigūracijos valdymas vykdomas per nustatymų sąsają:
 
 ## Transporto tipų palyginimas
 
-Skirtingos prieglobos palaiko skirtingus komunikacijos mechanizmus:
+Skirtingi serveriai palaiko skirtingus perdavimo mechanizmus:
 
-| Priegloba       | stdio | SSE/HTTP | WebSocket |
-|-----------------|-------|----------|-----------|
-| Claude Desktop  | ✅    | ❌       | ❌        |
-| VS Code        | ✅    | ✅       | ❌        |
-| Cursor         | ✅    | ✅       | ❌        |
-| Cline          | ✅    | ✅       | ❌        |
-| Windsurf       | ✅    | ✅       | ❌        |
+| Serveris | stdio | SSE/HTTP | WebSocket |
+|---------|--------|----------|-----------|
+| Claude Desktop | ✅ | ❌ | ❌ |
+| VS Code | ✅ | ✅ | ❌ |
+| Cursor | ✅ | ✅ | ❌ |
+| Cline | ✅ | ✅ | ❌ |
+| Windsurf | ✅ | ✅ | ❌ |
 
-**stdio** (standartinė įvestis/išvestis): Geriausia vietiniams serveriams, kuriuos paleidžia priegloba  
-**SSE/HTTP**: Geriausia nuotoliniams serveriams arba serveriams, bendrinamiems keliose klientų programose
+**stdio** (standartinis įvesties/išvesties srautas): Geriausias vietiniams serveriams, paleistiems prijungto serverio programos.
+**SSE/HTTP**: Geriausias nuotoliniams serveriams arba serveriams, dalijamiems tarp kelių klientų.
 
 ---
 
-## Dažniausios problemos ir jų sprendimas
+## Dažnos problemos ir jų sprendimai
 
-### Serveris neužsikrauna
+### Serveris nepaleidžiamas
 
-1. **Pirmiausia testuokite serverį rankiniu būdu:**
+1. **Pirmiausia rankiniu būdu išbandykite serverį:**
    ```bash
    # Skirta Python
    python -m your_server_module
@@ -335,8 +341,9 @@ Skirtingos prieglobos palaiko skirtingus komunikacijos mechanizmus:
    ```
 
 2. **Patikrinkite komandos kelią:**
-   - Jei galima, naudokite absoliučius kelius
-   - Įsitikinkite, kad vykdomasis failas yra jūsų PATH kelyje
+
+   - Naudokite absoliučius kelius, kai įmanoma
+   - Užtikrinkite, kad vykdomasis failas būtų jūsų PATH
 
 3. **Patikrinkite priklausomybes:**
    ```bash
@@ -349,33 +356,33 @@ Skirtingos prieglobos palaiko skirtingus komunikacijos mechanizmus:
 
 ### Serveris prisijungia, bet įrankiai neveikia
 
-1. **Peržiūrėkite serverio žurnalus** – daugelis prieglobų palaiko žurnalo išrašą  
-2. **Patikrinkite įrankių registraciją** – naudokite MCP Inspector testavimui  
-3. **Patikrinkite leidimus** – kai kuriems įrankiams reikalinga prieiga prie failų ar tinklo
+1. **Patikrinkite serverio žurnalus** – dauguma prieglobų turi žurnalų parinktis
+2. **Patikrinkite įrankių registraciją** – naudokite MCP Inspector testavimui
+3. **Patikrinkite leidimus** – kai kuriems įrankiams reikalingas prieigos prie failų/tinklo leidimas
 
-### Aplinkos kintamieji neprasiskverbia
+### Aplinka kintamieji neperduodami
 
-- Kai kurios prieglobos valdo aplinkos kintamuosius  
-- Naudokite `env` konfigūracijos lauką aiškiai  
-- Venkite jautrios informacijos saugojimo konfigūracijos failuose (naudokite slapčiųjų valdymą)
+- Kai kurie prieglobos išvalo aplinkos kintamuosius
+- Naudokite `env` konfigūracijos lauką aiškiai
+- Venkite jautrių duomenų konfigūracijos failuose (naudokite slaptų duomenų valdymą)
 
 ---
 
-## Saugumo gerosios praktikos
+## Saugumo geros praktikos
 
-1. **Niekada nerodykite API raktų** konfigūracijos failuose  
-2. **Naudokite aplinkos kintamuosius** jautriai informacijai  
-3. **Ribokite serverio leidimus** tik iki būtino minimumo  
-4. **Peržiūrėkite serverio kodą** prieš suteikdami prieigą prie savo sistemos  
-5. **Naudokite leidžiamųjų sąrašus** failų sistemai ir tinklo prieigai
+1. **Niekada nekelkite API raktų** į konfigūracijos failus
+2. **Naudokite aplinkos kintamuosius** jautriems duomenims
+3. **Apribokite serverio leidimus** tik tai, kas būtina
+4. **Peržiūrėkite serverio kodą** prieš suteikdami prieigą prie savo sistemos
+5. **Naudokite leidimų sąrašus** prieigai prie failų sistemos ir tinklo
 
 ---
 
 ## Kas toliau
 
-- [3.13 – Derinimas su MCP Inspector](../13-mcp-inspector/README.md)
-- [3.1 – Sukurkite pirmą MCP serverį](../01-first-server/README.md)
-- [Modulis 5 – Pažangios temos](../../05-AdvancedTopics/README.md)
+- [3.13 - Trikčių šalinimas naudojant MCP Inspector](../13-mcp-inspector/README.md)
+- [3.1 - Sukurkite savo pirmąjį MCP serverį](../01-first-server/README.md)
+- [5 modulis - Pažangios temos](../../05-AdvancedTopics/README.md)
 
 ---
 
@@ -383,12 +390,12 @@ Skirtingos prieglobos palaiko skirtingus komunikacijos mechanizmus:
 
 - [Claude Desktop MCP dokumentacija](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
 - [VS Code MCP plėtinys](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
-- [MCP specifikacija – transportai](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
+- [MCP specifikacija - Transportai](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Oficialus MCP serverių registras](https://github.com/modelcontextprotocol/servers)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Atsakomybės apribojimas**:
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų arba netikslumų. Pirminis dokumentas gimtąja kalba laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojame naudotis profesionaliu žmonių vertimu. Mes neatsakome už bet kokius nesusipratimus ar neteisingus aiškinimus, kilusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojama naudoti profesionalų žmogiškąjį vertimą. Mes neatsakome už jokius nesusipratimus ar neteisingą interpretaciją, kilusią naudojantis šiuo vertimu.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

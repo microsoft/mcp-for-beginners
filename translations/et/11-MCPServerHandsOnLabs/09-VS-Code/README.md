@@ -1,29 +1,35 @@
-# VS Code Integratsioon
+# VS Code integratsioon
 
-## 🎯 Mida see labor hõlmab
+> [!NOTE]
+> `initializationOptions` seaded selles laboris sihivad proovi MCP
+> `2025-11-25` kättesaamise protsessi. MCP `2026-07-28` eemaldab initsialiseerimise käepigistuse;
+> kui migreerite seda proovi, kasutage hosti ja SDK-t, mis toetavad päringu-põhist metaandmete ja `server/discover` kasutamist.
 
-See labor pakub põhjalikku juhendit MCP serveri integreerimiseks VS Code'iga, et võimaldada loomuliku keele päringuid AI Chat'i kaudu. Õpid, kuidas konfigureerida VS Code'i MCP kasutamiseks, siluda serveriühendusi ja kasutada AI-põhiseid andmebaasi interaktsioone maksimaalselt.
+
+## 🎯 Mida see labor katab
+
+See labor annab põhjalikku juhendit, kuidas integreerida oma MCP server VS Code'iga, võimaldades loomuliku keele päringuid AI Chati kaudu. Õpid seadistama VS Code'i optimaalseks MCP kasutamiseks, siluma serveriühendusi ja kasutama täisvõimsusel AI abiga andmebaasiga suhtlemist.
 
 ## Ülevaade
 
-VS Code'i MCP integratsioon muudab arendajate suhtlemist andmebaaside ja API-dega loomuliku keele kaudu. Ühendades oma jaemüügi MCP serveri VS Code Chat'iga, saad kasutada vestluslikku AI-d, et teha intelligentsed päringud müügiandmete, tootekataloogide ja ärianalüütika kohta.
+VS Code MCP integratsioon muudab arendajate suhtlemist andmebaaside ja API-dega loomuliku keele kaudu. Ühendades oma jaemüügi MCP server VS Code Chatiga, võimaldad nutikaid päringuid müügiandmetele, tooteloenditele ja ärilistele analüütikatele, kasutades vestluspõhist tehisintellekti.
 
-See integratsioon võimaldab arendajatel esitada küsimusi nagu "Näita mulle selle kuu enimmüüdud tooteid" või "Leia kliendid, kes pole 90 päeva jooksul ostnud" ja saada struktureeritud andmeid ilma SQL-päringuid kirjutamata.
+See integratsioon lubab arendajatel esitada küsimusi nagu "Näita selle kuu kõige paremini müüdavaid tooteid" või "Leia kliendid, kes pole viimase 90 päeva jooksul ostnud" ja saada struktureeritud andmeresponsse ilma SQL päringut kirjutamata.
 
 ## Õpieesmärgid
 
-Labori lõpuks oskad:
+Selle labori lõpuks oskad:
 
-- **Konfigureerida** VS Code'i MCP seadeid oma jaemüügi serveri jaoks
-- **Integreerida** MCP servereid VS Code AI Chat funktsionaalsusega
-- **Siluda** MCP serveriühendusi ja lahendada probleeme
+- **Seadistada** VS Code MCP seaded oma jaemüügi serveri jaoks
+- **Integreerida** MCP serverid VS Code AI Chati funktsioonidega
+- **Siluda** MCP serveriühendused ja lahendada probleeme
 - **Optimeerida** loomuliku keele päringumustreid paremate tulemuste saavutamiseks
-- **Kohandada** VS Code'i tööruumi MCP arenduseks
-- **Rakendada** mitme serveri konfiguratsioone keerukate stsenaariumide jaoks
+- **Kohandada** VS Code tööruumi MCP arenduseks
+- **Hajutada** mitme serveri konfiguratsioone keerukate stsenaariumide jaoks
 
-## 🔧 VS Code MCP konfiguratsioon
+## 🔧 VS Code MCP seadistamine
 
-### Esmane seadistamine ja paigaldamine
+### Esmane seadistus ja installatsioon
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@ Labori lõpuks oskad:
 }
 ```
 
-### Keskkonna konfiguratsioon
+### Keskkonna seadistamine
 
 ```bash
-# .env file for development
+# Arendusfail .env jaoks
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azure konfiguratsioon
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Valikuline: Azure'i võtmehoidla
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Serveri konfiguratsioon
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Tööruumi konfiguratsioon
+### Tööruumi seadistamine
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### Ülesannete konfiguratsioon
+### Ülesande seadistus
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AI Chat integratsioon
+## 💬 AI Chati integratsioon
 
-### Loomuliku keele päringumustrid
+### Loomuliku keele päringu mustrid
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Näidispäringu mustrid VS Code Chati jaoks
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Vestluse integratsiooni näited
+### Chati integratsiooni näited
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Vestluse vastuste vormindamine
+### Chati vastuse vormindamine
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Peamised mõõdikud
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Tulemuse näitajad
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Tippkategooria
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Silumine ja probleemide lahendamine
+## 🔍 Silumine ja tõrkeotsing
 
-### VS Code'i silumise konfiguratsioon
+### VS Code silumise seadistus
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Loo VS Code spetsiifiline vormindaja
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Konsooli käitleja VS Code terminali jaoks
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Globaalne silumislogija
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Ühenduse probleemide lahendamine
+### Ühenduse tõrkeotsing
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Hangi ühenduse parameetrid keskkonnast
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Testi ühendust
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Testi põhipäringut
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Testi skeemi juurdepääsu
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Testi manuse genereerimist
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Impordi MCP serveri komponendid
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Loo testkonfiguratsioon
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Algata server
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Hangi saadaolevad tööriistad
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Testi lihtsat tööriista
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Testi andmebaasi ühendust
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Testi Azure OpenAI ühendust
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Testi MCP tööriistu
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Üldine olek
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,7 +787,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Täiustatud konfiguratsioon
+## 🚀 Täiustatud seadistamine
 
 ### Mitme serveri seadistamine
 
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Kohandatud VS Code'i laiendus
+### Kohandatud VS Code laiendus
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Kohandatud MCP jaemüügipikendus
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Registreeri MCP jaemüügi käsud
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Registreeri poe vahetaja
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Uuenda konfiguratsiooni
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Täida VS Code'i vestluses etteantud päringud
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Laienduse paketi konfiguratsioon
+### Laienduse paketi seadistamine
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Olulised järeldused
+## 🎯 Peamised tähelepanekud
 
-Pärast labori lõpetamist peaksid olema saavutanud:
+Pärast selle labori lõpetamist peaks sul olema:
 
-✅ **VS Code MCP konfiguratsioon**: Täielik seadistus MCP integreerimiseks  
-✅ **AI Chat integratsioon**: Loomuliku keele päringuvõimalused VS Code'is  
-✅ **Silumisvahendid**: Põhjalik probleemide lahendamine ja ühenduse diagnostika  
-✅ **Mitme serveri seadistus**: Konfiguratsioon mitme MCP serveri jaoks  
-✅ **Kohandatud laiendused**: Täiustatud VS Code'i kogemus jaemüügi-spetsiifiliste funktsioonidega  
-✅ **Tootmisvalmidus**: Ettevõtte tasemel VS Code'i arenduskeskkond  
+✅ **VS Code MCP seadistamine**: Täielik seadistus optimaalseks MCP integratsiooniks  
+✅ **AI Chati integratsioon**: Loomuliku keele pärimise võimekus VS Code'is  
+✅ **Silumisetööriistad**: Põhjalik tõrkeotsing ja ühenduse diagnostika  
+✅ **Mitme serveri seadistamine**: Konfiguratsioon mitme MCP serveri instantsi jaoks  
+✅ **Kohandatud laiendused**: Täiustatud VS Code kogemus jaemüügipõhiste funktsioonidega  
+✅ **Tootmiskõlblikkus**: Ettevõtte valmis VS Code arenduskeskkond  
 
-## 🚀 Mis edasi?
+## 🚀 Mis järgmiseks
 
-Jätka **[Labor 10: Rakendamise strateegiad](../10-Deployment/README.md)**, et:
+Jätka **[Labor 10: Juurutamisstrateegiad](../10-Deployment/README.md)**, et:
 
-- Rakendada MCP servereid tootmiskeskkondadesse
-- Konfigureerida pilve infrastruktuuri skaleeritavuse jaoks
-- Rakendada CI/CD torujuhtmeid automaatseks juurutamiseks
-- Jälgida tootmise MCP serveri jõudlust
+- Juurutada MCP serverid tootmiskeskkondadesse
+- Seadistada pilveinfrastruktuur skaleeritavuseks
+- Rakendada CI/CD torujuhtmed automaatseks juurutamiseks
+- Jälgida MCP serveri jõudlust tootmises
 
 ## 📚 Täiendavad ressursid
 
 ### VS Code arendus
-- [VS Code Extension API](https://code.visualstudio.com/api) - Ametlik laienduste arendamise juhend
+- [VS Code laienduse API](https://code.visualstudio.com/api) - Ametlik laienduse arendusjuhend
 - [VS Code MCP dokumentatsioon](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP integratsiooni dokumentatsioon
 - [TypeScript VS Code'is](https://code.visualstudio.com/docs/languages/typescript) - TypeScript arendus VS Code'is
 
 ### MCP protokoll
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Ametlik MCP spetsifikatsioon
+- [Model Context Protocol spetsifikatsioon](https://modelcontextprotocol.io/specification) - Ametlik MCP spetsifikatsioon
 - [MCP parimad praktikad](https://modelcontextprotocol.io/docs/best-practices) - Rakendamise parimad praktikad
-- [FastMCP raamistik](https://github.com/jlowin/fastmcp) - Python MCP rakendus
+- [FastMCP raamistiku](https://github.com/jlowin/fastmcp) - Python MCP teostus
 
 ### Arendustööriistad
-- [Python VS Code'is](https://code.visualstudio.com/docs/python/python-tutorial) - Python arenduse seadistamine
+- [Python VS Code'is](https://code.visualstudio.com/docs/python/python-tutorial) - Python arendusseadistus
 - [Silumine VS Code'is](https://code.visualstudio.com/docs/editor/debugging) - Täiustatud silumistehnikad
-- [VS Code'i ülesanded](https://code.visualstudio.com/docs/editor/tasks) - Ülesannete automatiseerimine ja konfiguratsioon
+- [VS Code ülesanded](https://code.visualstudio.com/docs/editor/tasks) - Ülesannete automatiseerimine ja seadistamine
 
 ---
 
 **Eelmine**: [Labor 08: Testimine ja silumine](../08-Testing/README.md)  
-**Järgmine**: [Labor 10: Rakendamise strateegiad](../10-Deployment/README.md)
+**Järgmine**: [Labor 10: Juurutamisstrateegiad](../10-Deployment/README.md)
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

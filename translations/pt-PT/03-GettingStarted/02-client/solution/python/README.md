@@ -1,6 +1,6 @@
 # Executar este exemplo
 
-Recomenda-se instalar `uv`, mas não é obrigatório, veja as [instruções](https://docs.astral.sh/uv/#highlights)
+É recomendado que instale o `uv`, mas não é obrigatório, veja as [instruções](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Criar um ambiente virtual
 
@@ -11,7 +11,7 @@ python -m venv venv
 ## -1- Ativar o ambiente virtual
 
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
 ```
 
 ## -2- Instalar as dependências
@@ -26,22 +26,26 @@ pip install "mcp[cli]"
 python client.py
 ```
 
-Deverá ver uma saída semelhante a:
+Deve ver uma saída semelhante a:
 
 ```text
 LISTING RESOURCES
 Resource:  ('meta', None)
 Resource:  ('nextCursor', None)
 Resource:  ('resources', [])
-                    INFO     Processing request of type ListToolsRequest                                                                               server.py:534
+INFO Processing request of type ListToolsRequest server.py:534
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-                    INFO     Processing request of type ReadResourceRequest                                                                            server.py:534
+INFO Processing request of type ReadResourceRequest server.py:534
 CALL TOOL
-                    INFO     Processing request of type CallToolRequest                                                                                server.py:534
+INFO Processing request of type CallToolRequest server.py:534
 [TextContent(type='text', text='8', annotations=None)]
 ```
 
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Aviso Legal**:
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes da utilização desta tradução.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

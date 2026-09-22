@@ -236,7 +236,6 @@ Prognostizieren Sie das Ergebnis, bevor Sie die Tests ausführen:
 | Pfad | Ergebnis nach erneutem Versuch | Anzahl der Tickets |
 | --- | --- | --- |
 | Blinder erneuter Versuch | Erstellt `T-0002` nach Verlust der Antwort für `T-0001` | 2 |
-
 | Geschützter Retry | Findet und liefert `T-0001` | 1 |
 
 Ausführen:

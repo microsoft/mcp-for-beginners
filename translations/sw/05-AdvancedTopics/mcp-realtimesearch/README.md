@@ -1,138 +1,138 @@
-# Itifaki ya Muktadha wa Mfano kwa Utafutaji Mtandaoni kwa Wakati Halisi
+# Itifaki ya Muktadha wa Mfano kwa Utafutaji Mtandaoni Kwa Wakati Halisi
 
 ## Muhtasari
 
-Utafutaji mtandaoni kwa wakati halisi umekuwa muhimu katika mazingira ya leo yanayoendeshwa na taarifa, ambapo programu zinahitaji ufikiaji wa papo hapo kwa taarifa za kisasa mtandaoni ili kutoa majibu yanayofaa na kwa wakati unaofaa. Itifaki ya Muktadha wa Mfano (MCP) inaonyesha maendeleo makubwa katika kuboresha michakato hii ya utafutaji wa wakati halisi, kuboresha ufanisi wa utafutaji, kudumisha uadilifu wa muktadha, na kuboresha utendaji wa jumla wa mfumo.
+Utafutaji mtandaoni kwa wakati halisi umekuwa muhimu katika mazingira ya leo yanayoendeshwa na habari, ambapo programu zinahitaji upatikanaji wa papo hapo wa habari za hivi punde duniani kote kutoa majibu yanayofaa na ya wakati. Itifaki ya Muktadha wa Mfano (MCP) inawakilisha maendeleo makubwa katika kuboresha mchakato huu wa utafutaji kwa wakati halisi, ikiboresha ufanisi wa utafutaji, kudumisha muafaka wa muktadha, na kuboresha jumla ya utendaji wa mfumo.
 
-Moduli hii inachunguza jinsi MCP inavyobadilisha utafutaji mtandaoni wa wakati halisi kwa kutoa mbinu iliyosanifiwa ya usimamizi wa muktadha kwenye mifano ya AI, mashine za utafutaji, na programu.
+Moduli hii inachunguza jinsi MCP inavyobadilisha utafutaji mtandaoni kwa wakati halisi kwa kutoa mbinu iliyopangwa ya usimamizi wa muktadha kati ya mifano ya AI, injini za utafutaji, na programu.
 
-### Vitu Utakavyojifunza
+### Kile Utakachojifunza
 
 Katika mwongozo huu wa kina, utagundua:
 
-- Jinsi MCP inavyounda daraja lisilovunjika kati ya mifano ya AI na uwezo wa utafutaji mtandaoni wa wakati halisi
-- Mifumo ya usanifu kwa kutekeleza suluhisho za utafutaji zenye ufanisi na zinazoweza kupanuka kwa MCP
-- Mbinu za kuhifadhi muktadha wa utafutaji kwa maswali na maingiliano mengi
-- Kutekeleza vitendo vya msimbo kwa Python na JavaScript kwa hali mbalimbali za utafutaji
-- Njia za kusawazisha umuhimu, uhalali wa muda, na utendaji katika mifumo ya utafutaji inayoendeshwa na MCP
+- Jinsi MCP inavyoanzisha daraja lisilo na mshono kati ya mifano ya AI na uwezo wa utafutaji mtandaoni kwa wakati halisi
+- Mifumo ya usanifu kwa ajili ya kutekeleza suluhisho za utafutaji zenye ufanisi na zinazoweza kupanuliwa kwa MCP
+- Mbinu za kuhifadhi muktadha wa utafutaji kwa maswali na mwingiliano mingi
+- Matumizi ya vitendo ya msimbo kwa Python na JavaScript kwa matukio mbalimbali ya utafutaji
+- Njia za kusawazisha uhusiano, uhalisi wa taarifa za hivi punde, na utendaji katika mifumo ya utafutaji inayotumia MCP
 
-## Utangulizi kwa Utafutaji Mtandaoni wa Wakati Halisi
+## Utangulizi kwa Utafutaji Mtandaoni kwa Wakati Halisi
 
-Utafutaji mtandaoni wa wakati halisi ni mbinu ya kiteknolojia inayowezesha uchunguzi, usindikaji, na uchambuzi wa taarifa za mtandao huku zikichapishwa au kusasishwa, kuwezesha mifumo kutoa taarifa mpya na zinazofaa kwa ucheleweshaji mdogo kabisa. Tofauti na mifumo ya utafutaji wa jadi inayofanya kazi kwa data zilizo kwenye orodha ambazo zinaweza kuwa za masaa au siku zilizopita, utafutaji wa wakati halisi huchakata data za moja kwa moja kutoka mtandao, hutoa maarifa na taarifa zinazowakilisha hali ya sasa ya maudhui ya mtandao.
+Utafutaji mtandaoni kwa wakati halisi ni mbinu ya kiteknolojia inayowawezesha kuuliza maswali, kuchakata, na kuchambua habari zinazotolewa mtandaoni wakati zinapotangazwa au kusasishwa, ikiruhusu mifumo kutoa habari safi na zenye uhusiano kwa ucheleweshaji mdogo. Tofauti na mifumo ya kawaida ya utafutaji inayofanya kazi kwa data zilizoorodheshwa ambazo zinaweza kuwa za masaa au siku kadhaa, utafutaji wa wakati halisi unachakata data za moja kwa moja kutoka mtandao, ukitoa ufahamu na habari zinazoakisi hali ya sasa ya yaliyomo mtandaoni.
 
-### Dhahania Muhimu za Utafutaji Mtandaoni wa Wakati Halisi:
+### Dhahania Muhimu za Utafutaji Mtandaoni kwa Wakati Halisi:
 
-- **Usindikaji wa Maswali Mfululizo**: Maswali ya utafutaji yasindikwa dhidi ya vyanzo vya data vinavyosasishwa kila wakati
-- **Kupewa Kipaumbele Taarifa za Hivi Karibuni**: Mifumo imeundwa kupewa kipaumbele taarifa zilizopo hivi karibuni
-- **Kusawazisha Umuhimu**: Kudumisha uwiano kati ya umuhimu na uhalali wa muda wa taarifa
-- **Usanifu unaoweza Kupanuka**: Mifumo lazima ishughulikie mzigo tofauti wa maswali na kiasi cha data
-- **Ufahamu wa Muktadha**: Kudumisha muktadha wa mtumiaji katika mizunguko ya utafutaji ni muhimu kwa matokeo yenye maana
-- **Urekebishaji wa Maswali kwa Muktadha**: Kubadilisha maswali kwa ufanisi kulingana na muktadha na matokeo yaliyopita
-- **Muungano wa Vyanzo Vingi**: Kuchanganya matokeo kutoka kwa watoa huduma wa utafutaji na vyanzo mbalimbali vya mtandao
-- **Ufahamu wa Semantiki**: Kusindika maswali na maudhui kwa msingi wa maana badala ya maneno tu
-- **Kuweka Nafasi za Matokeo kwa Wakati Halisi**: Kudumisha mabadiliko ya nafasi za matokeo huku taarifa mpya zinapopatikana
+- **Uchakataji wa Maswali Mfululizo**: Maswali ya utafutaji huchakatwa dhidi ya vyanzo vya data vinavyobadilika kila wakati
+- **Kipaumbele cha Taarifa za Hivi Punde**: Mifumo imebuniwa kipaumbele kwa habari za hivi punde
+- **Kusawazisha Uhusiano**: Kudumisha usawa kati ya uhusiano na uhalisi wa taarifa za hivi punde
+- **Usanifu Unaoweza Kupanuliwa**: Mifumo lazima idhibiti mzigo wa maswali tofauti na kiasi cha data
+- **Uelewa wa Muktadha**: Kudumisha muktadha wa mtumiaji katika mizunguko ya utafutaji ni muhimu kwa matokeo yenye maana
+- **Marekebisho ya Maswali Yanayobadilika**: Kubadilisha maswali kulingana na muktadha na matokeo ya awali
+- **Ushirikiano wa Vyanzo Mbalimbali**: Kuchanganya matokeo kutoka kwa watoa huduma za utafutaji wengi na vyanzo vya wavuti
+- **Uelewa wa Semantiki**: Kuchakata maswali na maudhui kulingana na maana badala ya maneno tu
+- **Uainishaji kwa Wakati Halisi**: Kurekebisha viwango vya matokeo kila wakati taarifa mpya inapopatikana
 
-### Itifaki ya Muktadha wa Mfano na Utafutaji Mtandaoni wa Wakati Halisi
+### Itifaki ya Muktadha wa Mfano na Utafutaji Mtandaoni kwa Wakati Halisi
 
-Itifaki ya Muktadha wa Mfano (MCP) inashughulikia changamoto kadhaa muhimu katika mazingira ya utafutaji mtandaoni wa wakati halisi:
+Itifaki ya Muktadha wa Mfano (MCP) inashughulikia changamoto kadhaa muhimu katika mazingira ya utafutaji mtandaoni kwa wakati halisi:
 
-1. **Uhifadhi wa Muktadha wa Utafutaji**: MCP huwekeza viwango jinsi muktadha unavyodumishwa kati ya vipengele vya utafutaji vilivyoenea, kuhakikisha mifano ya AI na vituo vya usindikaji vina ufikiaji wa historia sahihi ya maswali na mapendeleo ya mtumiaji.
+1. **Uhifadhi wa Muktadha wa Utafutaji**: MCP hurekebisha jinsi muktadha unavyodumishwa kati ya vipengele vya utafutaji vilivyoenea, kuhakikisha kuwa mifano ya AI na nodi za usindikaji zinafikia historia ya maswali muhimu na mapendezo ya mtumiaji.
 
-2. **Usimamizi Wa Maswali Mwenye Ufanisi**: Kwa kutoa mbinu za muundo wa uhamishaji muktadha, MCP hupunguza mzigo wa kurudia muktadha katika kila mzunguko wa utafutaji.
+2. **Usimamizi Bora wa Maswali**: Kwa kutoa mifumo iliyopangwa ya usafirishaji wa muktadha, MCP hupunguza mzigo wa kurudia muktadha kila mzunguko wa utafutaji.
 
-3. **Uendeshaji Pamoja**: MCP huunda lugha ya pamoja ya kushirikiana muktadha kati ya teknolojia tofauti za utafutaji na mifano ya AI, kuwezesha usanifu unaobadilika na unaoweza kuongezwa vipengele.
+3. **Uendeshaji wa Pamoja**: MCP huunda lugha ya pamoja ya kushirikiana muktadha kati ya teknolojia tofauti za utafutaji na mifano ya AI, kuwezesha usanifu rahisi na unaopanuka.
 
-4. **Muktadha ulioboreshwa kwa Utafutaji**: Maendeleo ya MCP yanaweza kutilia mkazo vipengele vya muktadha vinavyohusiana zaidi kwa utafutaji wenye ufanisi, kuboresha utendaji na usahihi.
+4. **Muktadha Ulioboreshwa kwa Utafutaji**: Matumizi ya MCP yanaweza kipaumbele vipengele vya muktadha vinavyohusiana zaidi kwa utafutaji bora, huku ikiboresha utendaji na usahihi.
 
-5. **Usindikaji wa Utafutaji unaojibadilisha**: Kwa usimamizi mzuri wa muktadha kupitia MCP, mifumo ya utafutaji inaweza kubadilisha usindikaji kulingana na mahitaji yanayobadilika ya mtumiaji na mazingira ya taarifa.
+5. **Usindikaji wa Utafutaji Unaobadilika**: Kwa usimamizi sahihi wa muktadha kupitia MCP, mifumo ya utafutaji inaweza kurekebisha usindikaji kulingana na mahitaji yanayobadilika ya mtumiaji na mazingira ya habari.
 
-Katika programu za kisasa kuanzia ukusanyaji habari za habari hadi wasaidizi wa utafiti, muunganiko wa MCP na teknolojia za utafutaji mtandaoni huwezesha utafutaji wenye akili zaidi, unaojua muktadha, ambao unaweza kutoa matokeo yanayozidi kuwa muhimu kadri maingiliano ya mtumiaji yanavyoendelea.
+Katika programu za kisasa kuanzia mkusanyiko wa habari za habari hadi wasaidizi wa utafiti, ujumuishaji wa MCP na teknolojia za utafutaji mtandaoni unawezesha utafutaji unaojifunza muktadha na wenye busara zaidi unaoweza kutoa matokeo yanayohusiana zaidi kadri mwingiliano wa mtumiaji unavyoendelea.
 
 ## Malengo ya Kujifunza
 
-Mwisho wa somo hili, utaweza:
+Mwishoni mwa somo hili, utaweza:
 
 - Kuelewa misingi ya utafutaji mtandaoni kwa wakati halisi na changamoto zake katika programu za kisasa
-- Kueleza jinsi Itifaki ya Muktadha wa Mfano (MCP) inavyoboreshwa uwezo wa utafutaji mtandaoni wa wakati halisi
-- Kutekeleza suluhisho za utafutaji zenye msingi wa MCP kwa kutumia mifumo maarufu na API
-- Kubuni na kupeleka usanifu wa utafutaji unaoweza kupanuka na utendaji wa juu kwa MCP
-- Kutumia dhahania za MCP katika matumizi mbalimbali ikiwa ni pamoja na utafutaji wa semantiki, msaada wa utafiti, na kuvinjari kwa msaada wa AI
-- Kutathmini mwelekeo unaojitokeza na uvumbuzi wa baadaye katika teknolojia za utafutaji zenye msingi wa MCP
-- Kuendeleza mifumo ya utafutaji inayojua muktadha inayojifunza kutoka kwa maingiliano ya watumiaji
-- Kuunganisha uwezo wa utafutaji mtandaoni katika wasaidizi wa AI kwa kutumia itifaki sanifu za MCP
-- Kuunda mistari ya utafutaji yenye hatua nyingi inayoboresha matokeo kidogo kidogo kulingana na muktadha
-- Kuboresha utendaji wa utafutaji huku ukidumisha ufahamu wa kina wa muktadha
+- Eleza jinsi Itifaki ya Muktadha wa Mfano (MCP) inavyoboreshaji uwezo wa utafutaji mtandaoni kwa wakati halisi
+- Tekeleza suluhisho za utafutaji zinazotumia MCP kwa kutumia mifumo maarufu na API
+- Tengeneza na anza usanifu wa utafutaji wenye ufanisi mkubwa na wa kiwango kikubwa kwa MCP
+- Tumia dhana za MCP kwa matukio mbalimbali ikiwa ni pamoja na utafutaji wa semantiki, kusaidia utafiti, na urambazaji unaosaidiwa na AI
+- Tathmini mwenendo unaojitokeza na uvumbuzi wa baadaye katika teknolojia za utafutaji zinazotumia MCP
+- Tengeneza mifumo ya utafutaji inayojifunza kutoka kwa mwingiliano wa watumiaji na inayojua muktadha
+- Sambaza uwezo wa utafutaji wa mtandaoni kwa wasaidizi wa AI kwa kutumia itifaki za MCP zilizojaa viwango
+- Tengeneza njia za utafutaji za hatua nyingi zinazorekebisha matokeo kwa mujibu wa muktadha
+- Boreshaji utendaji wa utafutaji huku ukidumisha ufahamu kamili wa muktadha
 
-### Ufafanuzi na Umuhimu
+### Maana na Umuhimu
 
-Utafutaji mtandaoni wa wakati halisi unahusisha uchunguzi endelevu, uvutaji, na utoaji wa taarifa za mtandaoni kwa ucheleweshaji mdogo kabisa. Tofauti na mashine za utafutaji wa jadi ambazo hupitia na kuweka orodha mtandao mara kwa mara, utafutaji wa wakati halisi unalenga kutoa taarifa punde inapotokea, kuwezesha ufikiaji wa papo hapo wa maudhui ya hivi sasa zaidi.
+Utafutaji mtandaoni kwa wakati halisi unahusisha kuuliza maswali, kupata, na kutoa habari mtandaoni kwa ucheleweshaji mdogo. Tofauti na injini za utafutaji za jadi zinazokagua na kuorodhesha wavuti mara kwa mara, utafutaji wa wakati halisi unalenga kuonyesha habari inapoibuka, kuwezesha upatikanaji wa papo hapo wa maudhui ya sasa zaidi.
 
-Sifa kuu za utafutaji mtandaoni wa wakati halisi ni pamoja na:
+Sifa kuu za utafutaji mtandaoni kwa wakati halisi ni pamoja na:
 
-- **Upya**: Kutoa kipaumbele maudhui na masasisho ya hivi karibuni
-- **Usindikaji Endelevu**: Kuangalia mara kwa mara kwa taarifa mpya
-- **Urekebishaji wa Maswali**: Kuboresha maswali ya utafutaji kwa msingi wa muktadha na maoni
-- **Utoaji wa Papo Hapo**: Kutoa matokeo ya utafutaji kwa ucheleweshaji mdogo
-- **Uhifadhi wa Muktadha**: Kujenga juu ya maswali yaliyopita ili kuboresha umuhimu
+- **Ukipya**: Kipaumbele kipya kwa maudhui na masasisho ya hivi punde
+- **Uchakataji Endelevu**: Kuangalia habari mpya kila wakati
+- **Urekebishaji wa Maswali**: Kuboresha maswali ya utafutaji kulingana na muktadha na maoni
+- **Uwasilishaji wa Haraka**: Kutoa matokeo ya utafutaji kwa ucheleweshaji mdogo
+- **Uhifadhi wa Muktadha**: Kujenga juu ya maswali yaliyopita kwa uhusiano bora
 
-### Changamoto katika Utafutaji Mtandaoni wa Kawaida
+### Changamoto katika Utafutaji wa Wavuti wa Kiasili
 
-Mbinu za utafutaji mtandaoni za jadi hukumbana na vikwazo vingi wanapotekelezwa katika hali za wakati halisi:
+Njia za kawaida za utafutaji mtandaoni hukumbana na vikwazo kadhaa zinapotumika kwa matukio ya wakati halisi:
 
-1. **Mgawanyiko wa Muktadha**: Ugumu katika kudumisha muktadha wa utafutaji kati ya maswali mengi
-2. **Upya wa Taarifa**: Changamoto katika kupata na kuweka kipaumbele taarifa za hivi karibuni zaidi
-3. **Ugumu wa Muunganiko**: Matatizo ya uendeshaji pamoja kati ya mifumo ya utafutaji na programu
-4. **Matatizo ya Ucheleweshaji**: Kusawazisha utafutaji wa kina na mahitaji ya muda wa majibu
-5. **Kurekebisha Umuhimu**: Kuhakikisha usahihi na umuhimu wakati wa kuzingatia upya
+1. **Uvunjaji wa Muktadha**: Ugumu wa kudumisha muktadha wa utafutaji kwa maswali mengi
+2. **Ufreshi wa Habari**: Changamoto za kufikia na kuipa mbele taarifa za hivi punde zaidi
+3. **Ugumu wa Ushirikiano**: Matatizo ya uendeshaji pamoja kati ya mifumo ya utafutaji na programu
+4. **Muda wa Kuteleza**: Kusawazisha utafutaji kamili na mahitaji ya wakati wa jibu
+5. **Urekebishaji wa Uhusiano**: Kuhakikisha usahihi na uhusiano huku ukipendelea uhalisi wa taarifa za hivi punde
 
 ## Kuelewa Itifaki ya Muktadha wa Mfano (MCP) kwa Utafutaji
 
 ### MCP ni Nini katika Muktadha wa Utafutaji?
 
-Itifaki ya Muktadha wa Mfano (MCP) ni itifaki ya mawasiliano iliyo sanifu kusukuma mwingiliano wenye ufanisi kati ya mifano ya AI na programu. Katika muktadha wa utafutaji mtandaoni wa wakati halisi, MCP hutoa mfumo wa:
+Itifaki ya Muktadha wa Mfano (MCP) ni itifaki ya mawasiliano iliyopangwa kwa ajili ya kuwezesha mwingiliano mzuri kati ya mifano ya AI na programu. Katika muktadha wa utafutaji mtandaoni kwa wakati halisi, MCP hutoa mfumo wa:
 
 - Kuhifadhi muktadha wa utafutaji katika mfululizo wa maswali
-- Kusanifisha muundo wa maswali na matokeo ya utafutaji
-- Kuboresha uhamishaji wa vigezo na matokeo ya utafutaji
+- Kuweka viwango vya maswali ya utafutaji na muundo wa matokeo
+- Kuboresha usafirishaji wa vigezo na matokeo ya utafutaji
 - Kuimarisha mawasiliano kati ya mfano na injini ya utafutaji
 
 ### Vipengele Muhimu na Usanifu
 
-Usanifu wa MCP kwa utafutaji mtandaoni wa wakati halisi unajumuisha vipengele muhimu kadhaa:
+Usanifu wa MCP kwa utafutaji mtandaoni kwa wakati halisi una vipengele kadhaa muhimu:
 
-1. **Wahudumu wa Muktadha wa Maswali**: Kusimamia na kudumisha muktadha wa utafutaji kati ya maswali mengi
-2. **Wasindikaji wa Utafutaji**: Kusindika maombi ya utafutaji yanayokuja kwa kutumia mbinu zenye ufahamu wa muktadha
-3. **Mbadalishaji wa Itifaki**: Kubadilisha kati ya API tofauti za utafutaji huku ukihifadhi muktadha
+1. **Wahudumu wa Muktadha wa Maswali**: Kusimamia na kudumisha muktadha wa utafutaji kwa maswali mengi
+2. **Wasindikaji wa Utafutaji**: Kusindika maombi ya utafutaji kwa kutumia mbinu zinazojua muktadha
+3. **Adaptors za Itifaki**: Kubadilisha kati ya API mbalimbali za utafutaji huku ukidumisha muktadha
 4. **Hifadhi ya Muktadha**: Kuhifadhi kwa ufanisi na kupata historia ya utafutaji na mapendeleo
-5. **Viunganishaji vya Utafutaji**: Kuungana na injini mbalimbali za utafutaji na API za mtandao
+5. **Viunganishi vya Utafutaji**: Kuunganishwa na injini mbalimbali za utafutaji na API za wavuti
 
 ```mermaid
 graph TD
     subgraph "Vyanzo vya Data"
-        Web[Yaliyomo ya Mtandao]
+        Web[Yaliyomo Mtandaoni]
         APIs[API za Nje]
-        DB[Msingi wa Maarifa]
+        DB[Mifumo ya Maarifa]
         News[Vyanzo vya Habari]
     end
 
-    subgraph "Tabaka la Utafutaji la MCP"
-        SC[Viunganishi vya Utafutaji]
-        PA[Viongezaji vya Itifaki]
-        CH[Washughulikiaji wa Muktadha]
-        SP[Wasindikaji wa Utafutaji]
+    subgraph "Tabaka la Utafutaji MCP"
+        SC[Vinu vya Utafutaji]
+        PA[Vibadilishaji vya Itifaki]
+        CH[Wasimamizi wa Muktadha]
+        SP[Wachakataji wa Utafutaji]
         CS[Hifadhi ya Muktadha]
     end
 
-    subgraph "Usindikaji & Uchambuzi"
+    subgraph "Uchakataji na Uchambuzi"
         RE[Injini ya Uhusiano]
         ML[Mifano ya ML]
-        NLP[Usindikaji wa NLP]
-        Rank[Mfumo wa Kuweka Nafasi]
+        NLP[Uchakataji wa NLP]
+        Rank[Mfumo wa Kuweka Viwango]
     end
 
-    subgraph "Mifumo & Huduma"
+    subgraph "Programu na Huduma"
         RA[Msaidizi wa Utafiti]
-        Alerts[Mifumo ya Onyo]
+        Alerts[Mifumo ya Arifa]
         KB[Msingi wa Maarifa]
         API[Huduma za API]
     end
@@ -142,25 +142,25 @@ graph TD
     DB -->|Maarifa| SC
     News -->|Sasisho| SC
     
-    SC -->|Matokeo ya Mbichi| PA
-    PA -->|Matokeo Yaliyosanifishwa| CH
+    SC -->|Matokeo Mbichi| PA
+    PA -->|Matokeo yaliyosanifishwa| CH
     CH <-->|Operesheni za Muktadha| CS
-    CH -->|Matokeo Yenye Muktadha Uliyoongezwa| SP
-    SP -->|Matokeo Yamesindikwa| RE
+    CH -->|Matokeo Yaliyoimarishwa na Muktadha| SP
+    SP -->|Matokeo yaliyotibika| RE
     SP -->|Sifa| ML
     SP -->|Maandishi| NLP
     
-    RE -->|Matokeo Yameorodheshwa| Rank
+    RE -->|Matokeo yaliyopewa nafasi| Rank
     ML -->|Matabiri| Rank
-    NLP -->|Vitu & Misingi ya Uhusiano| Rank
+    NLP -->|Vitu na Uhusiano| Rank
     
     Rank -->|Matokeo ya Mwisho| RA
     ML -->|Maarifa| Alerts
-    NLP -->|Data Iliyo Pangiliwa| KB
+    NLP -->|Data Iliyopangwa| KB
     
     RA -->|Utafiti| Users((Users))
-    Alerts -->|Matangazo| Users
-    KB <-->|Upatikanaji wa Maarifa| API
+    Alerts -->|Arifa| Users
+    KB <-->|Ufikiaji wa Maarifa| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -173,43 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Jinsi MCP Inavyoboresha Utafutaji Mtandaoni wa Wakati Halisi
+### Jinsi MCP Inavyoboresha Utafutaji Mtandaoni kwa Wakati Halisi
 
-MCP inashughulikia changamoto za utafutaji mtandaoni za jadi kupitia:
+MCP inashughulikia changamoto za utafutaji wa wavuti wa jadi kupitia:
 
-- **Mfululizo wa Muktadha**: Kudumisha uhusiano kati ya maswali katika kikao chote cha utafutaji
-- **Uhamishaji Ulioboreshwa**: Kupunguza kurudia vigezo katika utafutaji kupitia usimamizi wa muktadha wenye akili
-- **Vituo Vilivyo Sanifishwa**: Kutoa API zinazoendana kwa vipengele vya utafutaji
-- **Kupunguza Ucheleweshaji**: Kupunguza mzigo wa usindikaji kupitia usimamizi wa muktadha wenye ufanisi
-- **Kuimarisha Umuhimu**: Kuboresha umuhimu wa utafutaji kwa kuhifadhi nia ya mtumiaji kati ya maswali mengi
+- **Muendelezo wa Muktadha**: Kudumisha uhusiano kati ya maswali katika kipindi cha utafutaji mzima
+- **Usafirishaji ulioboreshwa**: Kupunguza urudiwa wa vigezo vya utafutaji kupitia usimamizi wa muktadha wenye akili
+- **Miface Yenye Viwango Vishawishi**: Kutoa API zinazolingana kwa vipengele vya utafutaji
+- **Kupungua kwa Ucheleweshaji**: Kupunguza mzigo wa usindikaji kupitia ushughulikiaji mzuri wa muktadha
+- **Uboreshaji wa Uhusiano**: Kuboresha uhusiano wa utafutaji kwa kuhifadhi nia ya mtumiaji kati ya maswali mengi
 
-## Muunganiko na Utekelezaji
+## Ujumuishaji na Utekelezaji
 
-Mifumo ya utafutaji mtandaoni ya wakati halisi inahitaji usanifu makini na utekelezaji kudumisha utendaji na uadilifu wa muktadha. Itifaki ya Muktadha wa Mfano hutoa mbinu sanifu za kuunganisha mifano ya AI na teknolojia za utafutaji, kuwezesha mistari ya utafutaji yenye akili zaidi, inayojua muktadha.
+Mifumo ya utafutaji mtandaoni kwa wakati halisi yanahitaji usanifu wa makini na utekelezaji kudumisha utendaji na muafaka wa muktadha. Itifaki ya Muktadha wa Mfano inatoa mbinu uliopangwa za kuunganisha mifano ya AI na teknolojia za utafutaji kuwezesha njia za utafutaji zenye akili na zinazojua muktadha.
 
-### Muhtasari wa Muunganiko wa MCP Katika Usanifu wa Utafutaji
+### Muhtasari wa Ujumuishaji wa MCP katika Usanifu wa Utafutaji
 
-Kutekeleza MCP katika mazingira ya utafutaji mtandaoni wa wakati halisi kunajumuisha mambo muhimu yafuatayo:
+Kutekeleza MCP katika mazingira ya utafutaji mtandaoni kwa wakati halisi kunahusisha mambo muhimu kadhaa:
 
-1. **Kuandikisha Muktadha wa Utafutaji**: MCP hutoa mbinu za ufanisi za kufichua taarifa za muktadha ndani ya maombi ya utafutaji, kuhakikisha kuwa muktadha muhimu unafuata swali katika mchakato mzima wa usindikaji. Hii ni pamoja na muundo sanifu wa serialization ulioboreshwa kwa metadata inayohusiana na utafutaji.
+1. **Usimbaji Muktadha wa Utafutaji**: MCP hutoa mbinu zenye ufanisi za kusimbua taarifa za muktadha ndani ya maombi ya utafutaji, kuhakikisha muktadha muhimu unaambatana na swali katika mzunguko mzima wa usindikaji. Hii ni pamoja na miundo ya usimbaji uliosawazishwa, iliyoborezwa kwa metadata inayohusiana na utafutaji.
 
-2. **Usindikaji wa Utafutaji wenye Hali**: MCP inaruhusu usindikaji wa hali unaojulikana zaidi kwa kudumisha uwakilishi thabiti wa muktadha katika mizunguko ya utafutaji. Hii ni muhimu sana katika mistari ya utafutaji yenye hatua nyingi ambapo kuboresha muktadha huleta matokeo bora.
+2. **Usindikaji wa Utafutaji Ulio na Hali**: MCP inaruhusu usindikaji wenye akili ulio na hali kwa kudumisha uwakilishi wa muktadha unaolingana kati ya mizunguko ya utafutaji. Hii ni ya maana hasa katika njia za utafutaji wa hatua nyingi ambapo ufafanuzi wa muktadha huboresha matokeo.
 
-3. **Kuongeza na Kuboresha Maswali**: Matumizi ya MCP katika mifumo ya utafutaji yanaweza kuwezesha ongezeko na maboresho ya maswali kwa ustadi kulingana na muktadha uliokusanywa, kuruhusu matokeo yanayoongezeka kuwa na umuhimu kadri kikao cha utafutaji kinavyosonga mbele.
+3. **Upanuzi na Uboreshaji wa Maswali**: Matumizi ya MCP katika mifumo ya utafutaji yanaweza kuwezesha upanuzi wa maswali na uboreshaji wa hali ya juu kulingana na muktadha uliokusanywa, kuruhusu matokeo yanayohusiana zaidi kadri kipindi cha utafutaji kinavyosogea mbele.
 
-4. **Kuweka Matokeo Kwenye Akiba na Kuweka Kipaumbele**: Kwa kusanifu usimamizi wa muktadha, MCP husaidia kusimamia kuweka matokeo kwenye akiba na kuweka kipaumbele, kuruhusu vipengele kubadilika kulingana na muktadha unaobadilika wa utafutaji.
+4. **Uhifadhi wa Matokeo na Kipaumbele**: Kwa kuweka viwango katika ushughulikiaji wa muktadha, MCP husaidia kusimamia uhifadhi wa matokeo na kipaumbele, ikiruhusu vipengele kubadilika kulingana na muktadha unaobadilika wa utafutaji.
 
-5. **Muungano na Mkusanyiko wa Utafutaji**: MCP huwezesha muungano wa hali ya juu wa utafutaji kwenye nyuma nyingi kwa kutoa uwakilishi wa muundo wa muktadha wa utafutaji, kuruhusu mkusanyiko mzuri zaidi wa matokeo kutoka vyanzo mbalimbali.
+5. **Usaidizi wa Utafutaji Ulioanzishwa na Ushirikiano**: MCP hutoa suluhisho la kina zaidi la ushauri wa utafutaji kwenye mifumo mingi kwa kutoa uwakilishi uliopangwa wa muktadha wa utafutaji, kuwezesha mkusanyiko wenye maana wa matokeo kutoka vyanzo mbalimbali.
 
-Utekelezaji wa MCP katika teknolojia mbalimbali za utafutaji huunda njia moja ya usimamizi wa muktadha, kupunguza haja ya msimbo maalum wa kuingiza na kuimarisha uwezo wa mfumo kudumisha muktadha wenye maana kadri maswali ya utafutaji yanavyobadilika.
+Utekelezaji wa MCP katika teknolojia mbalimbali za utafutaji huunda njia moja ya usimamizi wa muktadha, kupunguza hitaji la msimbo wa ujumuishaji maalum huku ikiboresha uwezo wa mfumo kudumisha muktadha wenye maana wakati maswali ya utafutaji yanavyobadilika.
 
-### MCP Katika Matumizi Mbalimbali ya Utafutaji Mtandaoni
+### MCP katika Matumizi Mbalimbali ya Utafutaji Mtandaoni
 
-Mifano hii inafuata maelezo ya sasa ya MCP ambayo yanazingatia itifaki inayotumia JSON-RPC na mbinu tofauti za usafirishaji. Msimbo huu unaonyesha jinsi unavyoweza kutekeleza muunganiko wa utafutaji maalum huku ukidumisha uthabiti kamili wa itifaki ya MCP.
+Mifano hii inafuata vipengele vya sasa vya MCP vinavyoelekeza kwa itifaki ya JSON-RPC yenye njia tofauti za usafirishaji. Msimbo unaonyesha jinsi unavyoweza kutekeleza ujumuishaji wa utafutaji wa kawaida huku ukidumisha ulinganifu kamili na itifaki ya MCP.
 
 
 <details>
-<summary>Utekelezaji wa Python na API ya Utafutaji ya Jumla</summary>
+<summary>Utekelezaji wa Python na API ya Utafutaji ya Kawaida</summary>
 
 ```python
 import asyncio
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # Badilisha majibu maalum ya API kuwa muundo wa kawaida
+                # Badilisha jibu maalum la API kwa muundo wa kawaida
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -302,7 +302,7 @@ search_handler = WebSearchHandler(
     api_key="your-api-key-here"
 )
 
-# Weka muda wa maisha kudhibiti mshughulikiaji wa utafutaji
+# Seti muda wa maisha kudhibiti mshughulikiaji wa utafutaji
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -315,7 +315,7 @@ async def app_lifespan(server: FastMCP):
 # Weka muda wa maisha kwa seva
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
-# Sajili zana ya utafutaji wa wavuti
+# Sajili chombo cha utafutaji wa wavuti
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
@@ -349,13 +349,13 @@ async def web_search(query: str, max_results: int = 5,
 
 # Mfano wa matumizi ya mteja
 async def client_example():
-    # Unganisha na seva ya utafutaji kwa kutumia usafirishaji wa HTTP unaoweza kutiririka
+    # Unganisha kwenye seva ya utafutaji kwa kutumia usafirishaji wa HTTP unaoweza kuhamishwa
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
             # Anzisha muunganisho
             await session.initialize()
             
-            # Piga simu kwa zana ya utafutaji wa wavuti
+            # Piga simu ya chombo cha utafutaji wa wavuti
             search_results = await session.call_tool(
                 "web_search", 
                 {
@@ -370,22 +370,22 @@ async def client_example():
 
 # Mfano wa utekelezaji wa seva
 if __name__ == "__main__":
-    # Endesha seva kwa usafirishaji wa HTTP unaoweza kutiririka
+    # Endesha seva kwa usafirishaji wa HTTP unaoweza kuhamishwa
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>Utekelezaji wa JavaScript na Utafutaji Unaotumia Kivinjari</summary>
+<summary>Utekelezaji wa JavaScript na Utafutaji wa Kivinjari</summary>
 
 
 ```javascript
-// Utekelezaji wa seva ya MCP kwa utafutaji wa wavuti
+// Utekelezaji wa seva ya MCP kwa ajili ya utafutaji wa wavuti
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-// Tengeneza seva ya MCP kwa utafutaji wa wavuti
+// Tengeneza seva ya MCP kwa ajili ya utafutaji wa wavuti
 const searchServer = new McpServer({
     name: "BrowserSearch",
     description: "A server that provides web search capabilities"
@@ -407,7 +407,7 @@ class SearchService {
             timePeriod = 'any'
         } = parameters;
         
-        // Tengeneza URL ya utafutaji na vigezo
+        // Tengeneza URL ya utafutaji kwa kutumia vigezo
         const url = new URL(this.searchApiUrl);
         url.searchParams.append('q', query);
         url.searchParams.append('limit', maxResults);
@@ -437,7 +437,7 @@ class SearchService {
             
             const searchData = await response.json();
             
-            // Badilisha majibu maalum ya API kuwa katika muundo wa kawaida
+            // Badilisha majibu maalum ya API kuwa muundo wa kawaida
             const results = searchData.results?.map(item => ({
                 title: item.title || '',
                 url: item.url || '',
@@ -464,7 +464,7 @@ const searchService = new SearchService(
     'your-api-key-here'
 );
 
-// Weka mtoaji wa muktadha kwa seva
+// Andaa mtoaji wa muktadha kwa seva
 searchServer.setContextProvider(() => {
     return {
         searchService
@@ -529,7 +529,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Tekeleza chombo cha utafutaji
+    // Endesha chombo cha utafutaji
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -559,183 +559,185 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Onyo Kuhusu Mifano ya Msimbo
+## Maelezo ya Mifano ya Msimbo
 
-> **Kumbuka Muhimu**: Mifano ya msimbo hapa chini inaonyesha muunganiko wa Itifaki ya Muktadha wa Mfano (MCP) na utendaji wa utafutaji mtandaoni. Ingawa inafuata mifumo na miundo ya SDK rasmi za MCP, imefanywa iwe rahisi kwa madhumuni ya kielimu.
+> **Kumbuka Muhimu**: Mifano ya msimbo hapa chini inaonyesha ujumuishaji wa Itifaki ya Muktadha wa Mfano (MCP) na uwezo wa utafutaji mtandaoni. Ingawa inafuata mifumo na miundo ya MCP SDK rasmi, imepangwa kwa ajili ya elimu.
 > 
 > Mifano hii inaonyesha:
 > 
-> 1. **Utekelezaji wa Python**: Utekelezaji wa seva ya FastMCP inayotoa chombo cha utafutaji mtandaoni na kuungana na API ya utafutaji ya nje. Mfano huu unaonyesha usimamizi sahihi wa muda wa maisha, usimamizi wa muktadha, na utekelezaji wa zana ukifuata mifumo ya rasmi ya [SDK za Python za MCP](https://github.com/modelcontextprotocol/python-sdk). Seva hutumia usafirishaji wa HTTP wa aina ya Streamable uliopendekezwa ambao umebadilisha usafirishaji wa SSE wa zamani kwa utekelezaji wa bidhaa.
+> 1. **Utekelezaji wa Python**: Utekelezaji wa seva ya FastMCP inayotoa chombo cha utafutaji mtandaoni na kuungana na API ya utafutaji ya nje. Mfano huu unaonyesha usimamizi sahihi wa maisha ya mchakato, usimamizi wa muktadha, na utekelezaji wa chombo kwa kufuata mifumo ya [MCP SDK ya Python rasmi](https://github.com/modelcontextprotocol/python-sdk). Seva hutumia usafirishaji wa HTTP unaoweza kusambazwa uliopendekezwa ambao umechukua nafasi ya usafirishaji wa SSE wa zamani kwa ajili ya uzalishaji.
 > 
-> 2. **Utekelezaji wa JavaScript**: Utekelezaji wa TypeScript/JavaScript ukitumia mfumo wa FastMCP kutoka [SDK za MCP za TypeScript](https://github.com/modelcontextprotocol/typescript-sdk) ili kuunda seva ya utafutaji na ufafanuzi sahihi wa zana na uhusiano wa wateja. Inafuata mifumo ya hivi karibuni inayopendekezwa kwa usimamizi wa kikao na uhifadhi wa muktadha.
+> 2. **Utekelezaji wa JavaScript**: Utekelezaji wa TypeScript/JavaScript ukitumia mfano wa FastMCP kutoka kwa [MCP SDK ya TypeScript rasmi](https://github.com/modelcontextprotocol/typescript-sdk) kuunda seva ya utafutaji na ufafanuzi sahihi wa zana na muunganisho wa mteja. Inafuata mifumo ya hivi punde kwa usimamizi wa kikao na uhifadhi wa muktadha.
 > 
-> Mifano hii itahitaji usimamizi wa makosa ya ziada, uthibitishaji, na msimbo maalum wa muunganiko wa API kwa ajili ya matumizi ya uzalishaji. Mikoa ya API ya utafutaji iliyopatikana (`https://api.search-service.example/search`) ni vichwa tu na itabidi zibadilishwe na anwani halisi za huduma za utafutaji.
+> Mifano hii itahitaji usindikaji wa makosa ya ziada, uthibitisho, na msimbo maalum wa ujumuishaji wa API kwa matumizi ya uzalishaji. Anuani za API ya utafutaji zilizoonyeshwa (`https://api.search-service.example/search`) ni mahali pa kuweka na zitahitaji kubadilishwa na anuani halisi za huduma ya utafutaji.
 > 
-> Kwa maelezo kamili ya utekelezaji na mbinu mpya za hivi karibuni, tafadhali rejelea [maelezo rasmi ya MCP](https://spec.modelcontextprotocol.io/) na nyaraka za SDK.
+> Kwa maelezo kamili ya utekelezaji na mbinu za kisasa zaidi,
+> rejea [maelezo rasmi ya MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
+> na nyaraka za SDK.
 
 ## Dhahania Muhimu
 
 ### Mfumo wa Itifaki ya Muktadha wa Mfano (MCP)
 
-Kwa msingi wake, Itifaki ya Muktadha wa Mfano hutoa njia sanifu kwa mifano ya AI, programu, na huduma kubadilishana muktadha. Katika utafutaji mtandaoni wa wakati halisi, mfumo huu ni muhimu kwa kuunda uzoefu wa utafutaji wa mizunguko mingi yenye mnyororo. Vipengele muhimu ni pamoja na:
+Kwa msingi wake, Itifaki ya Muktadha wa Mfano hutoa njia iliyopangwa kwa mifano ya AI, programu, na huduma kubadilishana muktadha. Katika utafutaji mtandaoni kwa wakati halisi, mfumo huu ni muhimu kwa kuunda uzoefu wa utafutaji wa mizunguko mingi yenye maana. Vipengele vikuu ni pamoja na:
 
-1. **Usanifu wa Mteja-Seva**: MCP huanzisha mgawanyo wazi kati ya wateja wa utafutaji (waombaji) na seva za utafutaji (watoaji), kuruhusu mifano inayobadilika ya uwasilishaji.
+1. **Usanifu wa Mteja-Seva**: MCP huanzisha mgawanyiko wazi kati ya wateja wa utafutaji (waiombaji) na seva za utafutaji (watoa huduma), kuruhusu mifano ya usambazaji inayobadilika.
 
-2. **Mawasiliano ya JSON-RPC**: Itifaki hutumia JSON-RPC kwa kubadilishana ujumbe, na kufanya iwe sambamba na teknolojia za mtandao rahisi kutekelezwa katika majukwaa tofauti.
+2. **Mawasiliano ya JSON-RPC**: Itifaki hutumia JSON-RPC kwa ubadilishanaji wa ujumbe, ikifanya iwe sambamba na teknolojia za wavuti na rahisi kutekeleza kwenye majukwaa tofauti.
 
-3. **Usimamizi wa Muktadha**: MCP hufafanua mbinu za muundo wa kudumisha, kusasisha, na kutumia muktadha wa utafutaji katika maingiliano mengi.
+3. **Usimamizi wa Muktadha**: MCP hufafanua mbinu za kimuundo za kudumisha, kusasisha, na kutumia muktadha wa utafutaji katika mwingiliano mingi.
 
-4. **Ufafanuzi wa Zana**: Uwezo wa utafutaji huonyeshwa kama zana zilizosanifiwa vyema zilizo na vigezo na thamani zinazorejeshwa.
+4. **Ufafanuzi wa Zana**: Uwezo wa utafutaji unaonyeshwa kama zana zilizo na viambatanisho wazi vya vigezo na thamani za kurudi.
 
-5. **Msaada wa Utiririshaji**: Itifaki inaunga mkono matokeo ya mtiririko, muhimu kwa utafutaji wa wakati halisi ambapo matokeo yanaweza kuwasilishwa kwa hatua.
+5. **Msaada wa Utoaji Mfululizo**: Itifaki inaunga mkono utoaji wa matokeo kwa mfululizo, muhimu kwa utafutaji wa wakati halisi ambapo matokeo yanaweza kuwasili kwa hatua.
 
-### Mifumo ya Muunganiko wa Utafutaji Mtandaoni
+### Mifumo ya Ujumuishaji wa Utafutaji Mtandaoni
 
-Unapounganisha MCP na utafutaji mtandaoni, mifumo kadhaa hujitokeza:
+Wakati wa kuunganisha MCP na utafutaji mtandaoni, mifumo kadhaa hujitokeza:
 
-#### 1. Muunganiko wa Mtoa Huduma wa Utafutaji Kwa Moja kwa Moja
+#### 1. Ujumuishaji wa Moja kwa Moja na Mtoa Huduma wa Utafutaji
 
 ```mermaid
 graph LR
     Client[Mteja wa MCP] --> |Ombi la MCP| Server[Seva ya MCP]
-    Server --> |Mwito wa API| SearchAPI[API ya Utafutaji]
+    Server --> |Maji API| SearchAPI[API ya Utafutaji]
     SearchAPI --> |Matokeo| Server
     Server --> |Jibu la MCP| Client
 ```
 
-Katika mfumo huu, seva ya MCP huwasiliana moja kwa moja na API moja au zaidi za utafutaji, kutafsiri maombi ya MCP kuwa simu za API maalum na kuunda matokeo kama majibu ya MCP.
+Katika mfumo huu, seva ya MCP inaunganishwa moja kwa moja na API moja au zaidi za utafutaji, ikitafsiri maombi ya MCP kuwa wito maalum wa API na kupanga matokeo kama majibu ya MCP.
 
-#### 2. Utafutaji wa Muungano na Uhifadhi wa Muktadha
+#### 2. Utafutaji wa Umoja na Uhifadhi wa Muktadha
 
 ```mermaid
 graph LR
-    Client[Mteja wa MCP] --> |Ombi la MCP| Federation[Safu ya Ushirikiano wa MCP]
-    Federation --> |Ombi la MCP 1| Search1[Mtoa Huduma wa Utafutaji 1]
-    Federation --> |Ombi la MCP 2| Search2[Mtoa Huduma wa Utafutaji 2]
-    Federation --> |Ombi la MCP 3| Search3[Mtoa Huduma wa Utafutaji 3]
-    Search1 --> |Majibu ya MCP 1| Federation
-    Search2 --> |Majibu ya MCP 2| Federation
-    Search3 --> |Majibu ya MCP 3| Federation
-    Federation --> |Majibu ya MCP yaliyokusanywa| Client
+    Client[Mteja wa MCP] --> |Ombi la MCP| Federation[Tabaka la Umoja wa MCP]
+    Federation --> |Ombi la MCP 1| Search1[Mtoaji wa Utafutaji 1]
+    Federation --> |Ombi la MCP 2| Search2[Mtoaji wa Utafutaji 2]
+    Federation --> |Ombi la MCP 3| Search3[Mtoaji wa Utafutaji 3]
+    Search1 --> |Jibu la MCP 1| Federation
+    Search2 --> |Jibu la MCP 2| Federation
+    Search3 --> |Jibu la MCP 3| Federation
+    Federation --> |Jibu la MCP lililokusanywa| Client
 ```
 
-Mfumo huu hueneza maswali ya utafutaji kwa watoa huduma wa utafutaji wengi wanaoambatana na MCP, kila mmoja anaweza kuhitimu katika aina tofauti za maudhui au uwezo wa utafutaji, huku ukidumisha muktadha mmoja wa umoja.
+Mfumo huu unagawa maswali ya utafutaji kwa watoa huduma wengi wa utafutaji wanaolingana na MCP, kila mmoja akiweza kuhusika katika aina tofauti za maudhui au uwezo wa utafutaji, huku ukidumisha muktadha mmoja.
 
-#### 3. Mnyororo wa Utafutaji ulioimarishwa na Muktadha
+#### 3. Mnyororo wa Utafutaji Ulioboreshwa na Muktadha
 
 ```mermaid
 graph LR
     Client[Mteja wa MCP] --> |Swali + Muktadha| Server[Seva ya MCP]
     Server --> |1. Uchambuzi wa Swali| NLP[Huduma ya NLP]
-    NLP --> |Swali Lililoboreshwa| Server
+    NLP --> |Swali lililoboreshwa| Server
     Server --> |2. Utekelezaji wa Utafutaji| Search[Injini ya Utafutaji]
-    Search --> |Matokeo Mbichi| Server
+    Search --> |Matokeo ya Ghafi| Server
     Server --> |3. Usindikaji wa Matokeo| Enhancement[Uboreshaji wa Matokeo]
-    Enhancement --> |Matokeo Yaliyo Boreshwa| Server
-    Server --> |Matokeo ya Mwisho + Muktadha Ulio Rejelewa| Client
+    Enhancement --> |Matokeo yaliyoboreshwa| Server
+    Server --> |Matokeo ya Mwisho + Muktadha ulio sasishwa| Client
 ```
 
-Katika mfumo huu, mchakato wa utafutaji unagawanywa katika hatua mbalimbali, ambapo muktadha unaboreshwa kila hatua, na kusababisha matokeo yenye umuhimu unaoongezeka.
+Katika mfumo huu, mchakato wa utafutaji hugawanywa katika hatua nyingi, huku muktadha ukiboreshwa kila hatua, ukizalisha matokeo yanayohusiana zaidi hatua kwa hatua.
 
 ### Vipengele vya Muktadha wa Utafutaji
 
 Katika utafutaji mtandaoni unaotumia MCP, muktadha kawaida unajumuisha:
 
-- **Historia ya Maswali**: Maswali ya awali ya utafutaji katika kikao
-- **Mapendeleo ya Mtumiaji**: Lugha, kanda, mipangilio ya utafutaji salama
-- **Historia ya Maingiliano**: Ni matokeo gani yaliyo bonyezwa, muda uliotumika kwenye matokeo
-- **Vigezo vya Utafutaji**: Vichujio, kupanga, na viingiliano vingine vya utafutaji
-- **Maarifa ya Kanda**: Muktadha maalum wa somo unaohusiana na utafutaji
-- **Muktadha wa Muda**: Vigezo vya umuhimu vinavyoelekea na wakati
-- **Mapendeleo ya Chanzo**: Vyanzo vya taarifa vinavyoaminika au vilivyopendekezwa
+- **Historia ya Maswali**: Maswali ya utafutaji yaliyopita katika kikao
+- **Mapendeleo ya Mtumiaji**: Lugha, eneo, mipangilio ya utafutaji salama
+- **Historia ya Mwingiliano**: Matokeo gani yaliibonwa, muda uliotumika kwenye matokeo
+- **Vigezo vya Utafutaji**: Filteri, mpangilio wa sarafu, na vipeperushi vingine vya utafutaji
+- **Maarifa ya Uwanja**: Muktadha maalum wa somo unaohusiana na utafutaji
+- **Muktadha wa Wakati**: Vigezo vya umuhimu vinavyojumuisha wakati
+- **Mapendeleo ya Chanzo**: Vyanzo vya habari vinavyoaminika au vinavyopendwa
 
-## Matumizi na Maombi
+## Matumizi na Programu
 
-### Utafiti na Ukusanyaji wa Taarifa
+### Utafiti na Ukusanyaji wa Habari
 
-MCP huimarisha michakato ya utafiti kwa:
+MCP huboresha michakato ya utafiti kwa:
 
-- Kuhifadhi muktadha wa utafiti katika vikao vya utafutaji
-- Kuwezesha maswali magumu na yanayohusiana kwa muktadha
-- Kusaidia muungano wa utafutaji kutoka vyanzo vingi
+- Kuhifadhi muktadha wa utafiti kati ya vikao vya utafutaji
+- Kuwezesha maswali mazuri na yenye muktadha unaohusiana
+- Kusaidia usaidizi wa utafutaji kutoka vyanzo mbalimbali
 - Kuwezesha uchimbaji wa maarifa kutoka kwa matokeo ya utafutaji
 
-### Ufuatiliaji wa Habari na Mwelekeo kwa Wakati Halisi
+### Ufuatiliaji wa Habari za Wakati Halisi na Mwelekeo
 
 Utafutaji unaotumia MCP hutoa faida kwa ufuatiliaji wa habari:
 
-- Ugunduzi wa karibu wa papo hapo wa hadithi mpya za habari
-- Kuchuja taarifa zinazohusiana kwa muktadha
-- Kufuatilia mada na vitu katika vyanzo vingi
-- Tahadhari za habari binafsi kulingana na muktadha wa mtumiaji
+- Ugunduzi wa takriban papo hapo wa habari mpya zinazojitokeza
+- Ufuatiliaji wa muktadha wa taarifa muhimu
+- Ufuatiliaji wa mada na vyombo katika vyanzo vingi
+- Tahadhari za habari zilizobinafsishwa kulingana na muktadha wa mtumiaji
 
-### Kivinjari na Utafiti ulioongezewa na AI
+### Urambazaji na Utafiti Unaosaidiwa na AI
 
-MCP huunda fursa mpya kwa kivinjari kilicho na msaada wa AI:
+MCP huleta fursa mpya kwa urambazaji unaosaidiwa na AI:
 
-- Mapendekezo ya utafutaji yanayotegemea muktadha wa shughuli za kivinjari sasa
-- Muungano usio na mshono wa utafutaji mtandaoni na wasaidizi wanaotumia LLM
-- Maboresho ya utafutaji wa mizunguko mingi huku muktadha ukidumishwa
-- Ukaguzi wa ukweli uboreshwaji na uhakiki wa taarifa
+- Mapendekezo ya utafutaji yanayotegemea muktadha wa shughuli ya kivinjari
+- Ujumuishaji wa utafutaji wa wavuti na wasaidizi wa LLM uliokamilika
+- Uboreshaji wa mizunguko mingi ya utafutaji huku muktadha ukiendeshwa
+- Kuthibitisha na uhakikisho wa habari kwa ufanisi zaidi
 
 ## Mwelekeo na Ubunifu wa Baadaye
 
-### Mabadiliko ya MCP katika Utafutaji Mtandaoni
+### Maendeleo ya MCP katika Utafutaji Mtandaoni
 
-Tukitazama mbele, tunatarajia MCP itabadilika kushughulikia:
+Tukitazama mbele, tunatarajia MCP itaendelea kukua ili kushughulikia:
 
 
-- **Utafutaji wa Modal nyingi**: Kuunganisha utafutaji wa maandishi, picha, sauti, na video kwa muktadha uliohifadhiwa
-- **Utafutaji Usiyozingatia Kituo**: Kusaidia mifumo ya utafutaji iliyosambazwa na ya ushirika
-- **Usiri wa Utafutaji**: Mbinu za utafutaji zinazohifadhi usiri kwa kuzingatia muktadha
-- **Uelewa wa Maswali**: Kuchambua kina semantiki ya maswali ya utafutaji katika lugha asilia
+- **Utafutaji wa Multimodal**: Kuunganisha maandishi, picha, sauti, na utafutaji wa video huku muktadha ukihifadhiwa
+- **Utafutaji Usio wa Kituo Kimoja**: Kusaidia mifumo ya utafutaji iliyogatuliwa na ya muungano
+- **Usiri wa Utafutaji**: Mbinu za utafutaji zinazohifadhi usiri zenye ufahamu wa muktadha
+- **Uelewa wa Maswali ya Utafutaji**: Kuchambua kina maana ya maswali ya utafutaji wa lugha ya asili
 
-### Maendeleo Yanayowezekana katika Teknolojia
+### Maendeleo Yanayoweza Kutokea Katika Teknolojia
 
-Teknolojia zinazojitokeza zitakazounda mustakabali wa utafutaji wa MCP:
+Teknolojia zinazojitokeza zitakazoumba mustakabali wa utafutaji wa MCP:
 
-1. **Miambo ya Utafutaji ya Neva**: Mifumo ya utafutaji inayotumia ufungaji iliyo boreshwa kwa MCP
-2. **Muktadha wa Utafutaji wa Kipekee**: Kujifunza mifumo ya utafutaji ya mtumiaji mmoja kwa muda
-3. **Uingiliano wa Grafu za Maarifa**: Utafutaji unaoboreshwa kwa muktadha kwa kutumia grafu za maarifa maalum za fani
-4. **Muktadha wa Msalaba-Modali**: Kuhifadhi muktadha kati ya modaliti tofauti za utafutaji
+1. **Mimara ya Utafutaji wa Neva**: Mfumo wa utafutaji unaotumia uingizaji wa data kwa MCP
+2. **Muktadha Binafsi wa Utafutaji**: Kujifunza mifumo ya utafutaji wa mtumiaji binafsi kwa muda
+3. **Uingiliano wa Grafu za Maarifa**: Utafutaji wenye muktadha ulioboreshwa kwa grafu za maarifa maalum ya fani
+4. **Muktadha wa Mbinu Mbalimbali**: Kuhifadhi muktadha kwenye aina tofauti za utafutaji
 
-## Mazoezi ya Kivitendo
+## Mazoezi ya Vitendo
 
-### Zoeezi 1: Kuandaa Mlolongo wa Utafutaji wa MCP wa Msingi
+### Zoeezi 1: Kuanza Mchakato wa Msingi wa Utafutaji wa MCP
 
-Katika zoezi hili, utajifunza jinsi ya:
-- Kusanidi mazingira ya utafutaji wa MCP wa msingi
-- Kutekeleza wasimamizi wa muktadha kwa utafutaji wa wavuti
-- Kupima na kuthibitisha uhifadhi wa muktadha kati ya mizunguko ya utafutaji
+Katika zoeezi hili, utajifunza jinsi ya:
+- Kuanzisha mazingira ya msingi ya utafutaji wa MCP
+- Kutekeleza waendeshaji wa muktadha kwa utafutaji wa wavuti
+- Kupima na kuthibitisha uhifadhi wa muktadha katika marejeleo ya utafutaji
 
-### Zoeezi 2: Kujenga Msaidizi wa Utafiti kwa kutumia Utafutaji wa MCP
+### Zoeezi 2: Kujenga Msaidizi wa Utafiti kwa MCP
 
-Tengeneza programu kamili inayofanya:
-- Kusindika maswali ya utafiti katika lugha asilia
-- Kufanya utafutaji wa wavuti unaozingatia muktadha
-- Kuunganisha taarifa kutoka vyanzo vingi
+Tengeneza programu kamili inayoweza:
+- Kusindika maswali ya utafiti kwa lugha ya asili
+- Kufanya utafutaji wa wavuti wenye ufahamu wa muktadha
+- Kuchanganya taarifa kutoka vyanzo vingi
 - Kuonyesha matokeo ya utafiti yaliyopangwa
 
-### Zoeezi 3: Kutekeleza Ushirika wa Chanzo Nyingi wa Utafutaji kwa MCP
+### Zoeezi 3: Kutekeleza Muungano wa Utafutaji wa Vyanzo Mbalimbali kwa MCP
 
-Zoezi la juu linalojumuisha:
-- Kusambaza maswali kwa injini nyingi za utafutaji kwa kuzingatia muktadha
-- Kupanga na kuunganisha matokeo
-- Kuondoa marudio ya matokeo ya utafutaji kulingana na muktadha
-- Kushughulikia metadata maalum ya chanzo
+Zoeezi la juu linajumuisha:
+- Ugawaji wa maswali wenye ufahamu wa muktadha kwa injini za utafutaji nyingi
+- Kuweka alama na kuchanganua matokeo
+- Kuondoa matokeo yaliyofanana kulingana na muktadha
+- Kusimamia metadata ya chanzo maalum
 
-## Rasilimali za Ziada
+## Rasilimali Zaidi
 
-- [Maelezo Kamili ya Protokali ya Muktadha wa Mtindo](https://spec.modelcontextprotocol.io/) - Maelezo rasmi na nyaraka za kina za protokali ya MCP
-- [Nyaraka za Protokali ya Muktadha wa Mtindo](https://modelcontextprotocol.io/) - Mafunzo ya kina na miongozo ya utekelezaji
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Utekelezaji rasmi wa MCP kwa Python
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Utekelezaji rasmi wa MCP kwa TypeScript
-- [Serveri za Marejeleo za MCP](https://github.com/modelcontextprotocol/servers) - Utekelezaji wa marejeleo wa serveri za MCP
+- [Maelezo ya Protokoli ya Muktadha wa Mfano](https://modelcontextprotocol.io/specification/2026-07-28/) - Maelezo rasmi ya MCP na nyaraka za kina za itifaki
+- [Nyaraka za Protokoli ya Muktadha wa Mfano](https://modelcontextprotocol.io/) - Mafunzo ya kina na mwongozo wa utekelezaji
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Utekelezaji rasmi wa Python wa itifaki ya MCP
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Utekelezaji rasmi wa TypeScript wa itifaki ya MCP
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - Utekelezaji wa marejeo wa seva za MCP
 - [Nyaraka za Bing Web Search API](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - API ya utafutaji wa wavuti ya Microsoft
 - [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - Injini ya utafutaji inayoweza kupangwa ya Google
 - [Nyaraka za SerpAPI](https://serpapi.com/search-api) - API ya ukurasa wa matokeo ya injini ya utafutaji
-- [Nyaraka za Meilisearch](https://www.meilisearch.com/docs) - Injini ya utafutaji ya chanzo huria
-- [Nyaraka za Elasticsearch](https://www.elastic.co/guide/index.html) - Injini ya utafutaji na uchambuzi iliyosambazwa
+- [Nyaraka za Meilisearch](https://www.meilisearch.com/docs) - Injini ya utafutaji ya chanzo huru
+- [Nyaraka za Elasticsearch](https://www.elastic.co/guide/index.html) - Injini ya utafutaji iliyogatuliwa na uchanganuzi
 - [Nyaraka za LangChain](https://python.langchain.com/docs/get_started/introduction) - Kujenga programu kwa kutumia LLMs
 
 ## Matokeo ya Kujifunza
@@ -743,32 +745,33 @@ Zoezi la juu linalojumuisha:
 Kwa kukamilisha moduli hii, utaweza:
 
 - Kuelewa misingi ya utafutaji wa wavuti wa wakati halisi na changamoto zake
-- Kuelezea jinsi Protokali ya Muktadha wa Mtindo (MCP) inavyoboreshwa uwezo wa utafutaji wa wavuti wa wakati halisi
-- Kutekeleza suluhisho za utafutaji zenye msingi wa MCP kwa kutumia mifumo maarufu na APIs
-- Kubuni na kuanzisha miambo ya utafutaji yenye utendaji wa juu na inayoweza kupanuka kwa MCP
-- Kutumia dhana za MCP katika matumizi mbalimbali ikiwa ni pamoja na utafutaji wa semantiki, msaada wa utafiti, na urambazaji unaoendeshwa na AI
-- Kutathmini mwenendo unaojitokeza na uvumbuzi wa baadaye katika teknolojia za utafutaji zenye msingi wa MCP
+- Kueleza jinsi Protokoli ya Muktadha wa Mfano (MCP) inavyoongeza uwezo wa utafutaji wa wavuti wa wakati halisi
+- Kutekeleza suluhisho za utafutaji zinazotumia MCP kwa kutumia mifumo maarufu na API
+- Kubuni na kuanzisha miundo ya utafutaji yenye uwezo mkubwa na ufanisi kwa MCP
+- Kutumia dhana za MCP katika utumiaji mbalimbali ikiwemo utafutaji wa maana, msaada wa utafiti, na kuvutulia kutumia AI
+- Kutathmini mwelekeo mipya na ubunifu wa baadaye katika teknolojia za utafutaji zenye msingi wa MCP
 
 
-### Maziwa na Usalama
+### Mambo ya Kutilia Moyo Kuhusu Uaminifu na Usalama
 
-Unapotekeleza suluhisho za utafutaji wa wavuti zenye msingi wa MCP, kumbuka kanuni hizi muhimu kutoka kwa maelezo ya MCP:
+Unapotekeleza suluhisho za utafutaji wa wavuti zenye msingi wa MCP, kumbuka kanuni muhimu hizi kutoka kwenye maelezo ya MCP:
 
-1. **Ruhusa na Udhibiti wa Mtumiaji**: Watumiaji lazima wape ruha wazi na kuelewa upatikanaji wote wa data na operesheni. Hii ni muhimu hasa kwa utekelezaji wa utafutaji wa wavuti unaoweza kufikia vyanzo vya data vya nje.
+1. **Idhini na Udhibiti wa Mtumiaji**: Watumiaji lazima wape idhini wazi na kuelewa upatikanaji wa data na operesheni zote. Hii ni muhimu hasa kwa utekelezaji wa utafutaji wa wavuti unaoweza kufikia vyanzo vya data vya nje.
 
-2. **Usiri wa Data**: Hakikisha usimamizi unaofaa wa maswali na matokeo ya utafutaji, hasa yanapokuwa na taarifa nyeti. Tekeleza udhibiti wa upatikanaji unaofaa kulinda data za watumiaji.
+2. **Usiri wa Data**: Hakikisha usimamizi sahihi wa maswali na matokeo ya utafutaji, hasa inapojumuisha taarifa nyeti. Tekeleza udhibiti unaofaa wa upatikanaji kulinda data za watumiaji.
 
-3. **Usalama wa Zana**: Tekeleza idhini sahihi na uthibitishaji kwa zana za utafutaji, kwa kuwa zinaweza kuwa na hatari za usalama kupitia utekelezaji wa msimbo wa hovyo. Maelezo ya tabia ya zana hayapaswi kuaminiwa isipokuwa yatoka kwa seva inayotegemewa.
+3. **Usalama wa Zana**: Tekeleza uthibitisho sahihi na ukaguzi kwa zana za utafutaji, kwani zinawakilisha hatari za usalama kupitia utekelezaji wa nambari ya vigezo. Maelezo ya tabia ya zana hayapaswi kuaminiwa isipokuwa yanapatikana kutoka seva ya kuaminika.
 
-4. **Nyaraka Wazi**: Toa nyaraka wazi kuhusu uwezo, vikwazo, na masuala ya usalama ya utekelezaji wako wa utafutaji wa MCP, ukifuata miongozo ya utekelezaji kutoka kwa maelezo ya MCP.
+4. **Nyaraka Zenye Uwazi**: Toa nyaraka wazi kuhusu uwezo, mipaka, na mambo ya usalama ya utekelezaji wako wa utafutaji unaotumia MCP, kufuata miongozo ya utekelezaji kutoka maelezo ya MCP.
 
-5. **Mifumo Imara ya Ruhusa**: Jenga mifumo imara ya ruhusa na idhini inayowaonyesha wazi kile kila chombo kinachofanya kabla ya kuruhusu matumizi yake, hasa kwa zana zinazoshirikiana na rasilimali za wavuti za nje.
+5. **Mtiririko Imara wa Idhini**: Jenga michakato imara ya idhini na uthibitishaji ambayo inaeleza wazi kinachofanywa na zana kabla ya kuidhinisha matumizi yake, hasa kwa zana zinazoshirikiana na rasilimali za wavuti za nje.
 
-Kwa maelezo kamili kuhusu usalama na maadili ya MCP, rejea nyaraka [rasmi](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Kwa maelezo kamili kuhusu usalama na mambo ya uaminifu ya MCP, rejea
+[nyaraka rasmi](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
-## Nini Kifuatazo
+## Nini Kifuatayo 
 
-- [5.12 Entra ID Authentication kwa Serveri za Protokali ya Muktadha wa Mtindo](../mcp-security-entra/README.md)
+- [5.12 Entra ID Authentication for Model Context Protocol Servers](../mcp-security-entra/README.md)
 
 ---
 

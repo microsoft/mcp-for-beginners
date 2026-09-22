@@ -1,15 +1,15 @@
 # Paginação e Conjuntos de Resultados Grandes no MCP
 
-Quando o seu servidor MCP lida com grandes conjuntos de dados - seja listando milhares de ficheiros, registos de bases de dados, ou resultados de pesquisa - necessita de paginação para gerir a memória eficientemente e fornecer experiências de utilizador responsivas. Este guia cobre como implementar e usar a paginação no MCP.
+Quando o seu servidor MCP lida com grandes conjuntos de dados - seja listando milhares de ficheiros, registos de base de dados, ou resultados de pesquisa - precisa de paginação para gerir a memória de forma eficiente e proporcionar experiências de utilizador rápidas. Este guia cobre como implementar e usar paginação no MCP.
 
-## Porquê a Paginação
+## Por Que a Paginação é Importante
 
-Sem paginação, respostas grandes podem causar:
+Sem paginação, grandes respostas podem causar:
 
-- **Exaustão de memória** - Carregamento de milhões de registos de uma só vez
-- **Tempos de resposta lentos** - Utilizadores esperam enquanto todos os dados carregam
-- **Erros de timeout** - Pedidos excedem os limites de tempo
-- **Desempenho pobre de IA** - LLMs têm dificuldades com contexto massivo
+- **Esgotamento de memória** - Carregamento de milhões de registos de uma só vez
+- **Tempos de resposta lentos** - Os utilizadores esperam enquanto todos os dados são carregados
+- **Erros de timeout** - Os pedidos ultrapassam os limites de tempo
+- **Desempenho fraco de IA** - LLMs têm dificuldade com contextos massivos
 
 O MCP utiliza **paginação baseada em cursor** para uma paginação fiável e consistente através dos conjuntos de resultados.
 
@@ -19,7 +19,7 @@ O MCP utiliza **paginação baseada em cursor** para uma paginação fiável e c
 
 ### O Conceito de Cursor
 
-Um **cursor** é uma cadeia opaca que marca a sua posição num conjunto de resultados. Pense nele como um marcador num livro longo.
+Um **cursor** é uma string opaca que marca a sua posição num conjunto de resultados. Pense nele como um marcador num livro longo.
 
 ```mermaid
 sequenceDiagram
@@ -35,7 +35,8 @@ sequenceDiagram
     Client->>Server: tools/list (cursor: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (fim)
 ```
-### Paginação nos Métodos MCP
+
+### Paginação em Métodos MCP
 
 Estes métodos MCP suportam paginação:
 
@@ -48,7 +49,7 @@ Estes métodos MCP suportam paginação:
 
 ---
 
-## Implementação no Servidor
+## Implementação do Servidor
 
 ### Python (FastMCP)
 
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Calcular próximo cursor
+    # Calcular cursor seguinte
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -145,7 +146,7 @@ public class PaginatedToolService {
     private final List<Tool> allTools;
     
     public PaginatedToolService() {
-        // Inicializar conjunto de dados grande
+        // Inicializar grande conjunto de dados
         this.allTools = IntStream.range(0, 100)
             .mapToObj(i -> new Tool("tool_" + i, "Tool number " + i, Map.of()))
             .collect(Collectors.toList());
@@ -177,7 +178,7 @@ public class PaginatedToolService {
 
 ---
 
-## Implementação no Cliente
+## Implementação do Cliente
 
 ### Cliente Python
 
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### Padrão de Carregamento Preguiçoso
 
-Para conjuntos de dados muito grandes, carregue páginas a pedido:
+Para conjuntos de dados muito grandes, carregue páginas sob demanda:
 
 ```python
 class PaginatedToolIterator:
@@ -251,7 +252,7 @@ class PaginatedToolIterator:
         if self.exhausted:
             raise StopAsyncIteration
         
-        # Buscar próxima página
+        # Buscar a página seguinte
         result = await self.session.list_tools(cursor=self.cursor)
         self.buffer = list(result.tools)
         self.cursor = result.nextCursor
@@ -267,7 +268,7 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Utilização - eficiente em memória para grandes conjuntos de dados
+# Uso - eficiente em memória para grandes conjuntos de dados
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
@@ -276,7 +277,7 @@ async for tool in PaginatedToolIterator(session):
 
 ## Paginação para Recursos
 
-Recursos frequentemente necessitam paginação para diretórios ou conjuntos grandes de dados:
+Muitas vezes, os recursos precisam de paginação para diretórios ou grandes conjuntos de dados:
 
 ```python
 from mcp.server import Server
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Calcular próximo cursor
+    # Calcular cursor seguinte
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,17 +319,17 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Estratégias de Design para Cursor
+## Estratégias de Design de Cursor
 
-### Estratégia 1: Baseada em Índice (Simples)
+### Estratégia 1: Baseada em Índices (Simples)
 
 ```python
 # O cursor é apenas o índice
 cursor = "50"  # Começar no item 50
 ```
 
-**Prós:** Simples, sem estado  
-**Contras:** Resultados podem mudar se items forem adicionados/removidos
+**Prós:** Simples, sem estado
+**Contras:** Resultados podem mudar se itens forem adicionados/removidos
 
 ### Estratégia 2: Baseada em ID (Estável)
 
@@ -337,7 +338,7 @@ cursor = "50"  # Começar no item 50
 cursor = "item_abc123"  # Começar após este item
 ```
 
-**Prós:** Estável mesmo se os items mudarem  
+**Prós:** Estável mesmo se os itens mudarem
 **Contras:** Requer IDs ordenados
 
 ### Estratégia 3: Estado Codificado (Complexo)
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# O cursor contém múltiplos campos de estado
+# O cursor contém vários campos de estado
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Prós:** Pode codificar estados complexos  
+**Prós:** Pode codificar estado complexo
 **Contras:** Mais complexo, strings de cursor maiores
 
 ---
 
-## Boas Práticas
+## Melhores Práticas
 
 ### 1. Escolha Tamanhos de Página Apropriados
 
 ```python
-# Considerar o tamanho dos dados
+# Considere o tamanho dos dados
 PAGE_SIZE_SMALL_ITEMS = 100   # Metadados simples
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Objetos mais complexos
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Objetos mais ricos
 PAGE_SIZE_LARGE_ITEMS = 5     # Conteúdo complexo
 ```
 
-### 2. Trate Cursors Inválidos de Forma Elegante
+### 2. Trate Cursors Inválidos com Elegância
 
 ```python
 @app.list_tools()
@@ -386,7 +387,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         if start_index < 0 or start_index >= len(ALL_TOOLS):
             start_index = 0  # Repor para o início
     except (ValueError, TypeError):
-        start_index = 0  # Cursor inválido, começar de novo
+        start_index = 0  # Cursor inválido, começar do zero
     # ...
 ```
 
@@ -396,7 +397,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 return ListToolsResult(
     tools=page_tools,
     nextCursor=next_cursor,
-    # Algumas implementações incluem total para progresso da UI
+    # Algumas implementações incluem total para progresso da interface de utilizador
     _meta={"total": len(ALL_TOOLS)}
 )
 ```
@@ -416,7 +417,7 @@ async def test_pagination():
     
     # Cursor inválido
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Deve devolver a primeira página
+    assert result.tools  # Deve retornar a primeira página
 ```
 
 ---
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Pagine na Fonte dos Dados
+### ✅ Paginar na Fonte de Dados
 
 ```python
 # BOM: Carrega apenas o que é necessário
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Próximos Passos
+## O Que Segue
 
 - [Módulo 5.14 - Engenharia de Contexto](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Módulo 8 - Boas Práticas](../../08-BestPractices/README.md)
+- [Módulo 8 - Melhores Práticas](../../08-BestPractices/README.md)
 - [3.8 - Testar o Seu Servidor MCP](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Recursos Adicionais
 
-- [Especificação MCP - Paginação](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Especificação MCP - Paginação](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Paginação Baseada em Cursor Explicada](https://slack.engineering/evolving-api-pagination-at-slack/)
 - [Testes de paginação do SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, por favor tenha em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte oficial. Para informação crítica, recomenda-se a tradução profissional por um humano. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+**Aviso Legal**:
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autorizada. Para informações críticas, recomenda-se tradução profissional humana. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes da utilização desta tradução.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

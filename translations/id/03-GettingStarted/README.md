@@ -1,111 +1,120 @@
 ## Memulai  
 
-[![Membangun Server MCP Pertamamu](../../../translated_images/id/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
+[![Bangun Server MCP Pertamamu](../../../translated_images/id/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
-_(Klik gambar di atas untuk melihat video pelajaran ini)_
+_(Klik gambar di atas untuk melihat video dari pelajaran ini)_
 
 Bagian ini terdiri dari beberapa pelajaran:
 
-- **1 Server pertamamu**, dalam pelajaran pertama ini, kamu akan belajar bagaimana membuat server pertamamu dan memeriksanya dengan alat inspeksi, sebuah cara berharga untuk menguji dan debug servermu, [ke pelajaran](01-first-server/README.md)
+- **1 Server pertama Anda**, dalam pelajaran pertama ini, Anda akan belajar cara membuat server pertama Anda dan memeriksanya dengan alat inspector, cara yang berharga untuk menguji dan debug server Anda, [ke pelajaran](01-first-server/README.md)
 
-- **2 Klien**, dalam pelajaran ini, kamu akan belajar cara menulis klien yang dapat terhubung ke servermu, [ke pelajaran](02-client/README.md)
+- **2 Klien**, dalam pelajaran ini, Anda akan belajar cara menulis klien yang dapat terhubung ke server Anda, [ke pelajaran](02-client/README.md)
 
-- **3 Klien dengan LLM**, cara menulis klien yang lebih baik adalah dengan menambahkan LLM agar dapat "bernegosiasi" dengan server tentang apa yang harus dilakukan, [ke pelajaran](03-llm-client/README.md)
+- **3 Klien dengan LLM**, cara yang lebih baik untuk menulis klien adalah dengan menambahkan LLM ke dalamnya sehingga dapat "bernegosiasi" dengan server Anda tentang apa yang harus dilakukan, [ke pelajaran](03-llm-client/README.md)
 
-- **4 Menggunakan mode Agen GitHub Copilot server dalam Visual Studio Code**. Di sini, kita melihat menjalankan Server MCP kami dari dalam Visual Studio Code, [ke pelajaran](04-vscode/README.md)
+- **4 Menggunakan mode GitHub Copilot Agent server dalam Visual Studio Code**. Di sini, kita melihat menjalankan Server MCP dari dalam Visual Studio Code, [ke pelajaran](04-vscode/README.md)
 
-- **5 Server Transport stdio** transport stdio adalah standar yang direkomendasikan untuk komunikasi MCP server-ke-klien lokal, menyediakan komunikasi subprocess yang aman dengan isolasi proses bawaan [ke pelajaran](05-stdio-server/README.md)
+- **5 Server Transport stdio** transport stdio adalah standar yang direkomendasikan untuk komunikasi lokal server-ke-klien MCP, menyediakan komunikasi subprocess yang aman dengan isolasi proses bawaan [ke pelajaran](05-stdio-server/README.md)
 
-- **6 Streaming HTTP dengan MCP (Streamable HTTP)**. Pelajari tentang transport streaming HTTP modern (pendekatan yang direkomendasikan untuk server MCP jarak jauh menurut [Spesifikasi MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/#streamable-http)), notifikasi progres, dan cara mengimplementasikan server dan klien MCP real-time yang skalabel menggunakan Streamable HTTP. [ke pelajaran](06-http-streaming/README.md)
+- **6 Streaming HTTP dengan MCP (Streamable HTTP)**. Pelajari tentang standar
+	remote transport dalam [Spesifikasi MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	plus implementasi legacy berbasis sesi yang dipertahankan dalam pelajaran.
+	[ke pelajaran](06-http-streaming/README.md)
 
-- **7 Memanfaatkan Toolkit AI untuk VSCode** untuk menggunakan dan menguji Klien dan Server MCP kamu [ke pelajaran](07-aitk/README.md)
+- **7 Memanfaatkan AI Toolkit untuk VSCode** untuk mengonsumsi dan menguji Klien dan Server MCP Anda [ke pelajaran](07-aitk/README.md)
 
-- **8 Pengujian**. Di sini kita akan fokus khususnya pada cara kita dapat menguji server dan klien kita dengan berbagai cara, [ke pelajaran](08-testing/README.md)
+- **8 Pengujian**. Di sini kita akan fokus terutama bagaimana kita dapat menguji server dan klien kita dengan berbagai cara, [ke pelajaran](08-testing/README.md)
 
-- **9 Penyebaran**. Bab ini akan melihat berbagai cara penyebaran solusi MCP kamu, [ke pelajaran](09-deployment/README.md)
+- **9 Penyebaran**. Bab ini akan melihat berbagai cara untuk menyebarkan solusi MCP Anda, [ke pelajaran](09-deployment/README.md)
 
 - **10 Penggunaan server lanjutan**. Bab ini membahas penggunaan server lanjutan, [ke pelajaran](./10-advanced/README.md)
 
-- **11 Autentikasi**. Bab ini membahas cara menambahkan autentikasi sederhana, dari Basic Auth hingga menggunakan JWT dan RBAC. Kamu dianjurkan memulai di sini lalu melihat topik lanjutan di Bab 5 dan melakukan pengamanan tambahan melalui rekomendasi di Bab 2, [ke pelajaran](./11-simple-auth/README.md)
+- **11 Auth**. Bab ini membahas cara menambahkan auth sederhana, dari Basic Auth hingga menggunakan JWT dan RBAC. Anda disarankan untuk memulai di sini lalu lihat Topik Lanjutan di Bab 5 dan melakukan penguatan keamanan tambahan melalui rekomendasi di Bab 2, [ke pelajaran](./11-simple-auth/README.md)
 
-- **12 Host MCP**. Konfigurasikan dan gunakan klien host MCP populer termasuk Claude Desktop, Cursor, Cline, dan Windsurf. Pelajari jenis transport dan pemecahan masalah, [ke pelajaran](./12-mcp-hosts/README.md)
+- **12 Host MCP**. Mengonfigurasi dan menggunakan klien host MCP populer termasuk Claude Desktop, Cursor, Cline, dan Windsurf. Pelajari jenis transport dan pemecahan masalah, [ke pelajaran](./12-mcp-hosts/README.md)
 
-- **13 Inspector MCP**. Debug dan uji server MCP kamu secara interaktif menggunakan alat Inspector MCP. Pelajari cara pemecahan masalah alat, sumber daya, dan pesan protokol, [ke pelajaran](./13-mcp-inspector/README.md)
+- **13 Inspector MCP**. Debug dan uji server MCP Anda secara interaktif menggunakan alat Inspector MCP. Pelajari alat pemecahan masalah, sumber daya, dan pesan protokol, [ke pelajaran](./13-mcp-inspector/README.md)
 
-- **14 Sampling**. Buat Server MCP yang berkolaborasi dengan klien MCP pada tugas terkait LLM (dihapus di rilis kandidat `2026-07-28`; masih berlaku untuk `2025-11-25`). [ke pelajaran](./14-sampling/README.md)
+- **14 Sampling**. Pelajari primitif Sampling legacy untuk `2025-11-25` dan
+	cara memigrasi desain baru ke integrasi penyedia LLM langsung. Sampling
+	dihapus di MCP `2026-07-28`. [ke pelajaran](./14-sampling/README.md)
 
 - **15 Aplikasi MCP**. Bangun Server MCP yang juga membalas dengan instruksi UI, [ke pelajaran](./15-mcp-apps/README.md)
 
-Model Context Protocol (MCP) adalah protokol terbuka yang menstandarisasi bagaimana aplikasi menyediakan konteks untuk LLM. Anggap MCP seperti port USB-C untuk aplikasi AI - menyediakan cara standar untuk menghubungkan model AI ke berbagai sumber data dan alat.
+Model Context Protocol (MCP) adalah protokol terbuka yang menstandarisasi bagaimana aplikasi menyediakan konteks ke LLM. Pikirkan MCP seperti port USB-C untuk aplikasi AI - ini menyediakan cara standar untuk menghubungkan model AI ke berbagai sumber data dan alat.
 
 ## Tujuan Pembelajaran
 
-Pada akhir pelajaran ini, kamu akan mampu:
+Pada akhir pelajaran ini, Anda akan dapat:
 
 - Menyiapkan lingkungan pengembangan untuk MCP dalam C#, Java, Python, TypeScript, dan JavaScript
 - Membangun dan menyebarkan server MCP dasar dengan fitur kustom (sumber daya, prompt, dan alat)
 - Membuat aplikasi host yang terhubung ke server MCP
 - Menguji dan debug implementasi MCP
-- Memahami tantangan pengaturan umum beserta solusinya
-- Menghubungkan implementasi MCP kamu ke layanan LLM populer
+- Memahami tantangan pengaturan umum dan solusinya
+- Menghubungkan implementasi MCP Anda ke layanan LLM populer
 
-## Menyiapkan Lingkungan MCP Kamu
+## Menyiapkan Lingkungan MCP Anda
 
-Sebelum mulai bekerja dengan MCP, penting untuk menyiapkan lingkungan pengembangan dan memahami alur kerja dasar. Bagian ini akan membimbing kamu melalui langkah-langkah awal setup agar kamu dapat memulai dengan MCP secara lancar.
+Sebelum Anda mulai bekerja dengan MCP, penting untuk menyiapkan lingkungan pengembangan Anda dan memahami alur kerja dasar. Bagian ini akan membimbing Anda melalui langkah-langkah pengaturan awal untuk memastikan awal yang lancar dengan MCP.
 
 ### Prasyarat
 
-Sebelum masuk ke pengembangan MCP, pastikan kamu memiliki:
+Sebelum memasuki pengembangan MCP, pastikan Anda memiliki:
 
-- **Lingkungan Pengembangan**: untuk bahasa yang kamu pilih (C#, Java, Python, TypeScript, atau JavaScript)
-- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, atau editor kode modern lain
-- **Pengelola Paket**: NuGet, Maven/Gradle, pip, atau npm/yarn
-- **Kunci API**: untuk layanan AI apa pun yang kamu rencanakan gunakan dalam aplikasi host kamu
+- **Lingkungan Pengembangan**: Untuk bahasa pilihan Anda (C#, Java, Python, TypeScript, atau JavaScript)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, atau editor kode modern lainnya
+- **Manajer Paket**: NuGet, Maven/Gradle, pip, atau npm/yarn
+- **Kunci API**: Untuk layanan AI apa pun yang Anda rencanakan gunakan di aplikasi host Anda
 
 
 ### SDK Resmi
 
-Di bab-bab berikutnya kamu akan melihat solusi yang dibangun menggunakan Python, TypeScript, Java, dan .NET. Berikut semua SDK yang secara resmi didukung.
+Dalam bab-bab berikut Anda akan melihat solusi yang dibangun menggunakan Python, TypeScript,
+Java dan .NET. Berikut adalah SDK resmi.
 
-MCP menyediakan SDK resmi untuk beberapa bahasa (sesuai dengan [Spesifikasi MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
-- [SDK C#](https://github.com/modelcontextprotocol/csharp-sdk) - Dipelihara bekerja sama dengan Microsoft
-- [SDK Java](https://github.com/modelcontextprotocol/java-sdk) - Dipelihara bekerja sama dengan Spring AI
+Dukungan SDK untuk MCP `2026-07-28` diluncurkan secara independen berdasarkan bahasa.
+Sebelum menjalankan contoh, periksa versi paketnya dan catatan rilis SDK
+untuk revisi protokol yang didukung. Lihat
+[daftar SDK resmi](https://modelcontextprotocol.io/docs/sdk):
+- [SDK C#](https://github.com/modelcontextprotocol/csharp-sdk) - Dikelola bekerja sama dengan Microsoft
+- [SDK Java](https://github.com/modelcontextprotocol/java-sdk) - Dikelola bekerja sama dengan Spring AI
 - [SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk) - Implementasi resmi TypeScript
 - [SDK Python](https://github.com/modelcontextprotocol/python-sdk) - Implementasi resmi Python (FastMCP)
 - [SDK Kotlin](https://github.com/modelcontextprotocol/kotlin-sdk) - Implementasi resmi Kotlin
-- [SDK Swift](https://github.com/modelcontextprotocol/swift-sdk) - Dipelihara bekerja sama dengan Loopwork AI
+- [SDK Swift](https://github.com/modelcontextprotocol/swift-sdk) - Dikelola bekerja sama dengan Loopwork AI
 - [SDK Rust](https://github.com/modelcontextprotocol/rust-sdk) - Implementasi resmi Rust
 - [SDK Go](https://github.com/modelcontextprotocol/go-sdk) - Implementasi resmi Go
 
-## Poin Penting
+## Poin-poin Penting
 
-- Menyiapkan lingkungan pengembangan MCP cukup mudah dengan SDK spesifik bahasa
-- Membangun server MCP melibatkan pembuatan dan pendaftaran alat dengan skema jelas
-- Klien MCP menghubungkan ke server dan model untuk memanfaatkan kemampuan tambahan
-- Pengujian dan debugging penting untuk implementasi MCP yang andal
-- Pilihan penyebaran bervariasi dari pengembangan lokal hingga solusi berbasis cloud
+- Menyiapkan lingkungan pengembangan MCP mudah dengan SDK khusus bahasa
+- Membangun server MCP melibatkan pembuatan dan pendaftaran alat dengan skema yang jelas
+- Klien MCP terhubung ke server dan model untuk memanfaatkan kemampuan yang diperluas
+- Pengujian dan debugging penting untuk implementasi MCP yang dapat diandalkan
+- Opsi penyebaran berkisar dari pengembangan lokal hingga solusi berbasis cloud
 
-## Praktik
+## Berlatih
 
-Kami memiliki serangkaian contoh yang melengkapi latihan yang akan kamu lihat di semua bab dalam bagian ini. Selain itu setiap bab juga memiliki latihan dan tugasnya sendiri
+Kami memiliki kumpulan contoh yang melengkapi latihan yang akan Anda lihat di semua bab dalam bagian ini. Selain itu setiap bab juga memiliki latihan dan tugas tersendiri
 
 - [Kalkulator Java](./samples/java/calculator/README.md)
-- [Kalkulator .Net](../../../03-GettingStarted/samples/csharp)
+- [Kalkulator .NET](../../../03-GettingStarted/samples/csharp)
 - [Kalkulator JavaScript](./samples/javascript/README.md)
 - [Kalkulator TypeScript](./samples/typescript/README.md)
 - [Kalkulator Python](../../../03-GettingStarted/samples/python)
 
 ## Sumber Daya Tambahan
 
-- [Membangun Agen menggunakan Model Context Protocol di Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Bangun Agen menggunakan Model Context Protocol di Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [MCP Jarak Jauh dengan Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [Agen MCP OpenAI .NET](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Selanjutnya
 
-Mulailah dengan pelajaran pertama: [Membuat Server MCP Pertamamu](01-first-server/README.md)
+Mulailah dengan pelajaran pertama: [Membuat Server MCP Pertama Anda](01-first-server/README.md)
 
-Setelah menyelesaikan modul ini, lanjutkan ke: [Modul 4: Implementasi Praktis](../04-PracticalImplementation/README.md)
+Setelah Anda menyelesaikan modul ini, lanjutkan ke: [Modul 4: Implementasi Praktis](../04-PracticalImplementation/README.md)
 
 ---
 

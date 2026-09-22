@@ -1,62 +1,70 @@
-> [USANG: 2026-07-28 CALON SIARAN](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Sampling tidak lagi digunakan dalam MCP `2026-07-28`. Pelajaran ini dikekalkan untuk
+> pelaksanaan warisan. Pelayan baru harus berintegrasi terus dengan API pembekal LLM.
 
-# Pengambilan Sampel dalam Protokol Konteks Model
 
-> **Pemberitahuan penggunaan usang:** calon siaran spesifikasi MCP `2026-07-28` menandakan Pengambilan Sampel sebagai usang bagi integrasi terus dengan API penyedia LLM. Pengambilan sampel masih berfungsi dalam `2025-11-25` dan sekurang-kurangnya selama setahun selepas mana-mana penggunaan usang rasmi, jadi segala yang terkandung dalam pelajaran ini kekal sah - tetapi reka bentuk pelayan baru harus menilai corak penggantian. Lihat [Apakah Perubahan dalam MCP: Calon Siaran 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+# Sampling dalam Protokol Konteks Model
 
-Pengambilan sampel adalah ciri MCP yang hebat yang membolehkan pelayan meminta penyempurnaan LLM melalui klien, membolehkan tingkah laku agen yang sofistikated sambil mengekalkan keselamatan dan privasi. Konfigurasi pengambilan sampel yang betul boleh meningkatkan kualiti dan prestasi tindak balas dengan ketara. MCP menyediakan cara piawai untuk mengawal bagaimana model menjana teks dengan parameter khusus yang mempengaruhi kebetulan, kreativiti, dan koheren.
+> Sampling kekal dalam spesifikasi `2026-07-28` untuk keserasian dan layak untuk
+> dikeluarkan dalam semakan pertama yang dikeluarkan pada atau selepas 28 Julai,
+> 2027. Contoh dalam pelajaran ini mungkin menggunakan API SDK yang melaksanakan `2025-11-25`.
+> Lihat [Apa yang Berubah dalam MCP: Spesifikasi 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
+
+Dalam pelaksanaan MCP warisan, Sampling membenarkan pelayan meminta penyelesaian LLM
+melalui klien. Pelajaran ini menerangkan aliran protokol yang usang
+untuk keserasian dan kerja migrasi.
 
 ## Pengenalan
 
-Dalam pelajaran ini, kita akan meneroka cara mengkonfigurasi parameter pengambilan sampel dalam permintaan MCP dan memahami mekanik protokol asas bagi pengambilan sampel.
+Dalam pelajaran ini, kita akan meneroka cara mengkonfigurasi parameter sampling dalam permintaan MCP dan memahami mekanik protokol asas sampling.
 
 ## Objektif Pembelajaran
 
 Menjelang akhir pelajaran ini, anda akan dapat:
 
-- Memahami parameter pengambilan sampel utama yang tersedia dalam MCP.
-- Mengkonfigurasi parameter pengambilan sampel untuk pelbagai kegunaan.
-- Melaksanakan pengambilan sampel deterministik untuk hasil yang boleh dihasilkan semula.
-- Melaraskan parameter pengambilan sampel secara dinamik berdasarkan konteks dan keutamaan pengguna.
-- Mengaplikasikan strategi pengambilan sampel untuk meningkatkan prestasi model dalam pelbagai senario.
-- Memahami bagaimana pengambilan sampel berfungsi dalam aliran klien-pelayan MCP.
+- Memahami parameter sampling utama yang tersedia dalam MCP.
+- Mengkonfigurasi parameter sampling untuk pelbagai kes penggunaan.
+- Melaksanakan sampling deterministik untuk hasil yang boleh dihasilkan semula.
+- Melaraskan parameter sampling secara dinamik berdasarkan konteks dan keutamaan pengguna.
+- Menerapkan strategi sampling untuk meningkatkan prestasi model dalam pelbagai senario.
+- Memahami bagaimana sampling berfungsi dalam aliran klien-pelayan MCP.
 
-## Cara Pengambilan Sampel Berfungsi dalam MCP
+## Cara Sampling Berfungsi dalam MCP
 
-Aliran pengambilan sampel dalam MCP mengikuti langkah-langkah ini:
+Aliran sampling dalam MCP mengikuti langkah-langkah berikut:
 
 1. Pelayan menghantar permintaan `sampling/createMessage` kepada klien
-2. Klien menyemak permintaan dan boleh mengubahnya
-3. Klien mengambil sampel dari LLM
-4. Klien menyemak penyempurnaan
-5. Klien memulangkan hasil kepada pelayan
+2. Klien menyemak permintaan tersebut dan boleh mengubahnya
+3. Klien membuat sampling dari LLM
+4. Klien menyemak hasil penyelesaian
+5. Klien mengembalikan hasil kepada pelayan
 
-Reka bentuk manusia dalam gelung ini memastikan pengguna mengekalkan kawalan ke atas apa yang LLM lihat dan hasilkan.
+Reka bentuk dengan manusia dalam gelung ini memastikan pengguna mengekalkan kawalan ke atas apa yang LLM lihat dan hasilkan.
 
-## Ringkasan Parameter Pengambilan Sampel
+## Gambaran Keseluruhan Parameter Sampling
 
-MCP mentakrifkan parameter pengambilan sampel berikut yang boleh dikonfigurasi dalam permintaan klien:
+MCP mentakrifkan parameter sampling berikut yang boleh dikonfigurasi dalam permintaan klien:
 
-| Parameter | Penerangan | Julat Lazim |
+| Parameter | Penerangan | Julat Tipikal |
 |-----------|-------------|---------------|
-| `temperature` | Mengawal kebetulan dalam pemilihan token | 0.0 - 1.0 |
+| `temperature` | Mengawal kebarangkalian dalam pemilihan token | 0.0 - 1.0 |
 | `maxTokens` | Bilangan maksimum token untuk dijana | Nilai integer |
-| `stopSequences` | Urutan khusus yang memberhentikan penjanaan apabila ditemui | Tatasusunan string |
-| `metadata` | Parameter tambahan khusus penyedia | Objek JSON |
+| `stopSequences` | Rangkaian tersuai yang menghentikan penjanaan apabila ditemui | Array string |
+| `metadata` | Parameter tambahan khusus pembekal | Objek JSON |
 
-Banyak penyedia LLM menyokong parameter tambahan melalui medan `metadata`, yang mungkin termasuk:
+Ramai pembekal LLM menyokong parameter tambahan melalui medan `metadata`, yang mungkin termasuk:
 
-| Parameter Sambungan Biasa | Penerangan | Julat Lazim |
+| Parameter Sambungan Umum | Penerangan | Julat Tipikal |
 |-----------|-------------|---------------|
-| `top_p` | Pengambilan nukleus - hadkan token kepada kebarangkalian kumulatif tertinggi | 0.0 - 1.0 |
-| `top_k` | Hadkan pemilihan token kepada pilihan K teratas | 1 - 100 |
-| `presence_penalty` | Menghukum token berdasarkan kehadiran mereka dalam teks setakat ini | -2.0 - 2.0 |
-| `frequency_penalty` | Menghukum token berdasarkan kekerapan mereka dalam teks setakat ini | -2.0 - 2.0 |
-| `seed` | Benih rawak khusus untuk hasil yang boleh dihasilkan semula | Nilai integer |
+| `top_p` | Sampling nucleus - mengehadkan token kepada kebarangkalian kumulatif teratas | 0.0 - 1.0 |
+| `top_k` | Mengehadkan pemilihan token kepada pilihan K teratas | 1 - 100 |
+| `presence_penalty` | Memberi penalti pada token berdasarkan kehadirannya dalam teks setakat ini | -2.0 - 2.0 |
+| `frequency_penalty` | Memberi penalti pada token berdasarkan kekerapan mereka dalam teks setakat ini | -2.0 - 2.0 |
+| `seed` | Benih rawak tertentu untuk hasil boleh dihasilkan semula | Nilai integer |
 
 ## Contoh Format Permintaan
 
-Berikut adalah contoh permintaan pengambilan sampel dari klien dalam MCP:
+Berikut adalah contoh permintaan sampling dari klien dalam MCP:
 
 ```json
 {
@@ -81,7 +89,7 @@ Berikut adalah contoh permintaan pengambilan sampel dari klien dalam MCP:
 
 ## Format Respons
 
-Klien memulangkan hasil penyempurnaan:
+Klien mengembalikan hasil penyelesaian:
 
 ```json
 {
@@ -97,38 +105,39 @@ Klien memulangkan hasil penyempurnaan:
 
 ## Kawalan Manusia dalam Gelung
 
-Pengambilan sampel MCP direka dengan pengawasan manusia:
+Sampling MCP direka dengan pengawasan manusia dalam fikiran:
 
-- **Untuk arahan**:
-  - Klien harus menunjukkan kepada pengguna arahan yang dicadangkan
-  - Pengguna harus dapat mengubah atau menolak arahan
-  - Arahan sistem boleh ditapis atau diubah
-  - Penyertaan konteks dikawal oleh klien
 
-- **Untuk penyempurnaan**:
-  - Klien harus menunjukkan kepada pengguna penyempurnaan yang dihasilkan
-  - Pengguna harus dapat mengubah atau menolak penyempurnaan
-  - Klien boleh menapis atau mengubah penyempurnaan
-  - Pengguna mengawal model mana yang digunakan
+- **Untuk prompt**:
+  - Pelanggan harus menunjukkan prompt yang dicadangkan kepada pengguna
+  - Pengguna harus dapat mengubah atau menolak prompt
+  - Prompt sistem boleh ditapis atau diubahsuai
+  - Penyertaan konteks dikawal oleh pelanggan
 
-Dengan prinsip ini, mari kita lihat bagaimana melaksanakan pengambilan sampel dalam pelbagai bahasa pengaturcaraan, menumpukan pada parameter yang biasa disokong di kalangan penyedia LLM.
+- **Untuk penyelesaian**:
+  - Pelanggan harus menunjukkan penyelesaian kepada pengguna
+  - Pengguna harus dapat mengubah atau menolak penyelesaian
+  - Pelanggan boleh menapis atau mengubah penyelesaian
+  - Pengguna mengawal model yang digunakan
+
+Dengan prinsip-prinsip ini dalam fikiran, mari kita lihat bagaimana untuk melaksanakan pensampelan dalam pelbagai bahasa pengaturcaraan, dengan fokus pada parameter yang biasanya disokong oleh pembekal LLM.
 
 ## Pertimbangan Keselamatan
 
-Apabila melaksanakan pengambilan sampel dalam MCP, pertimbangkan amalan terbaik keselamatan berikut:
+Apabila melaksanakan pensampelan dalam MCP, pertimbangkan amalan terbaik keselamatan ini:
 
-- **Sahkan semua kandungan mesej** sebelum menghantarnya kepada klien
-- **Bersihkan maklumat sensitif** daripada arahan dan penyempurnaan
+- **Sahkan semua kandungan mesej** sebelum menghantarnya ke pelanggan
+- **Bersihkan maklumat sensitif** dari prompt dan penyelesaian
 - **Laksanakan had kadar** untuk mengelakkan penyalahgunaan
-- **Pantau penggunaan pengambilan sampel** untuk pola luar biasa
-- **Sulitkan data dalam transit** menggunakan protokol selamat
-- **Urus privasi data pengguna** mengikut peraturan yang relevan
-- **Audit permintaan pengambilan sampel** untuk pematuhan dan keselamatan
+- **Pantau penggunaan pensampelan** untuk corak yang luar biasa
+- **Menyulitkan data semasa transit** menggunakan protokol selamat
+- **Urus privasi data pengguna** mengikut peraturan yang berkaitan
+- **Audit permintaan pensampelan** untuk kepatuhan dan keselamatan
 - **Kawal pendedahan kos** dengan had yang sesuai
-- **Laksanakan had masa** untuk permintaan pengambilan sampel
-- **Urus ralat model dengan baik** menggunakan pelindung yang sesuai
+- **Laksanakan waktu tamat** untuk permintaan pensampelan
+- **Urus kesilapan model dengan baik** menggunakan fallback yang sesuai
 
-Parameter pengambilan sampel membenarkan penyelarasan tingkah laku model bahasa untuk mencapai keseimbangan yang diingini antara output deterministik dan kreatif.
+Parameter pensampelan membolehkan penyesuaian tingkah laku model bahasa untuk mencapai keseimbangan yang diingini antara output yang deterministik dan kreatif.
 
 Mari kita lihat cara mengkonfigurasi parameter ini dalam pelbagai bahasa pengaturcaraan.
 
@@ -168,17 +177,17 @@ public class SamplingExample
 }
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mewujudkan klien MCP dengan URL pelayan tertentu.
-- Mengkonfigurasi permintaan dengan parameter pengambilan sampel seperti `temperature`, `top_p`, dan `top_k`.
+- Mencipta pelanggan MCP dengan URL server tertentu.
+- Mengkonfigurasi permintaan dengan parameter pensampelan seperti `temperature`, `top_p`, dan `top_k`.
 - Menghantar permintaan dan mencetak teks yang dijana.
 - Menggunakan:
-    - `allowedTools` untuk menentukan alat mana model boleh gunakan semasa penjanaan. Dalam kes ini, kami membenarkan alat `ideaGenerator` dan `marketAnalyzer` untuk membantu menjana idea aplikasi kreatif.
+    - `allowedTools` untuk menentukan alat mana yang boleh digunakan model semasa penjanaan. Dalam kes ini, kami membenarkan alat `ideaGenerator` dan `marketAnalyzer` untuk membantu menjana idea aplikasi kreatif.
     - `frequencyPenalty` dan `presencePenalty` untuk mengawal pengulangan dan kepelbagaian dalam output.
-    - `temperature` untuk mengawal kebetulan output, di mana nilai yang lebih tinggi menghasilkan tindak balas yang lebih kreatif.
-    - `top_p` untuk mengehadkan pemilihan token kepada mereka yang menyumbang kepada jisim kebarangkalian kumulatif tertinggi, meningkatkan kualiti teks yang dijana.
-    - `top_k` untuk menghadkan model kepada token paling berkemungkinan dalam K teratas, yang boleh membantu menjana tindak balas yang lebih koheren.
+    - `temperature` untuk mengawal keacakkan output, di mana nilai yang lebih tinggi menghasilkan respons yang lebih kreatif.
+    - `top_p` untuk mengehadkan pilihan token kepada yang menyumbang kepada jisim kebarangkalian kumulatif tertinggi, meningkatkan kualiti teks yang dijana.
+    - `top_k` untuk mengehadkan model kepada token paling probable teratas K, yang boleh membantu menjana respons yang lebih koheren.
     - `frequencyPenalty` dan `presencePenalty` untuk mengurangkan pengulangan dan menggalakkan kepelbagaian dalam teks yang dijana.
 
 # [JavaScript](#tab/javascript)
@@ -188,7 +197,7 @@ Dalam kod sebelum ini kita telah:
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
-  // Mulakan klien MCP
+  // Memulakan klien MCP
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com',
     apiKey: process.env.MCP_API_KEY
@@ -196,17 +205,17 @@ async function demonstrateSampling() {
   
   // Konfigurasikan permintaan dengan parameter pensampelan yang berbeza
   const creativeSampling = {
-    temperature: 0.9,    // Suhu yang lebih tinggi = lebih rawak/kreativiti
-    topP: 0.92,          // Pertimbangkan token dengan jisim kebarangkalian top 92%
-    frequencyPenalty: 0.6, // Kurangkan pengulangan siri token
-    presencePenalty: 0.4   // Penalti token yang telah muncul dalam teks setakat ini
+    temperature: 0.9,    // Suhu yang lebih tinggi = lebih rawak/berkreativiti
+    topP: 0.92,          // Pertimbangkan token dengan jisim kebarangkalian 92% teratas
+    frequencyPenalty: 0.6, // Kurangkan pengulangan susunan token
+    presencePenalty: 0.4   // Beri penalti kepada token yang telah muncul dalam teks setakat ini
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Suhu lebih rendah = lebih deterministik/faktual
+    temperature: 0.2,    // Suhu yang lebih rendah = lebih deterministik/berasas fakta
     topP: 0.85,          // Pemilihan token yang sedikit lebih fokus
-    frequencyPenalty: 0.2, // Penalti pengulangan minimum
-    presencePenalty: 0.1   // Penalti kehadiran minimum
+    frequencyPenalty: 0.2, // Penalti pengulangan yang minimum
+    presencePenalty: 0.1   // Penalti kehadiran yang minimum
   };
   
   try {
@@ -241,25 +250,26 @@ async function demonstrateSampling() {
 demonstrateSampling();
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Memulakan klien MCP dengan URL pelayan dan kunci API.
-- Mengkonfigurasi dua set parameter pengambilan sampel: satu untuk tugas kreatif dan satu lagi untuk tugas fakta.
-- Menghantar permintaan dengan konfigurasi ini, membenarkan model menggunakan alat tertentu untuk setiap tugas.
-- Mencetak tindak balas yang dijana untuk menunjukkan kesan parameter pengambilan sampel yang berbeza.
-- Menggunakan `allowedTools` untuk menentukan alat yang model boleh gunakan semasa penjanaan. Dalam kes ini, kami membenarkan `ideaGenerator` dan `environmentalImpactTool` untuk tugas kreatif, dan `factChecker` dan `dataAnalysisTool` untuk tugas fakta.
-- Menggunakan `temperature` untuk mengawal kebetulan output, di mana nilai yang lebih tinggi menghasilkan tindak balas yang lebih kreatif.
-- Menggunakan `top_p` untuk mengehadkan pemilihan token kepada mereka yang menyumbang kepada jisim kebarangkalian kumulatif tertinggi, meningkatkan kualiti teks yang dijana.
+- Memulakan pelanggan MCP dengan URL server dan kekunci API.
+- Mengkonfigurasi dua set parameter pensampelan: satu untuk tugasan kreatif dan satu lagi untuk tugasan faktual.
+- Menghantar permintaan dengan konfigurasi ini, membenarkan model menggunakan alat tertentu untuk setiap tugasan.
+- Mencetak respons yang dijana untuk menunjukkan kesan parameter pensampelan yang berbeza.
+- Menggunakan `allowedTools` untuk menentukan alat yang boleh digunakan model semasa penjanaan. Dalam kes ini, kami membenarkan `ideaGenerator` dan `environmentalImpactTool` untuk tugasan kreatif, serta `factChecker` dan `dataAnalysisTool` untuk tugasan faktual.
+- Menggunakan `temperature` untuk mengawal keacakkan output, di mana nilai yang lebih tinggi menghasilkan respons yang lebih kreatif.
+
+- Menggunakan `top_p` untuk mengehadkan pemilihan token kepada mereka yang menyumbang kepada jumlah kebarangkalian kumulatif teratas, meningkatkan kualiti teks yang dijana.
 - Menggunakan `frequencyPenalty` dan `presencePenalty` untuk mengurangkan pengulangan dan menggalakkan kepelbagaian dalam output.
-- Menggunakan `top_k` untuk menghadkan model kepada token paling berkemungkinan dalam K teratas, yang boleh membantu menjana tindak balas yang lebih koheren.
+- Menggunakan `top_k` untuk mengehadkan model kepada K token paling berkemungkinan, yang boleh membantu menghasilkan respons yang lebih koheren.
 
 ---
 
-## Pengambilan Sampel Deterministik
+## Pensampelan Deterministik
 
-Untuk aplikasi yang memerlukan output konsisten, pengambilan sampel deterministik memastikan hasil yang boleh dihasilkan semula. Caranya adalah dengan menggunakan benih rawak yang tetap dan menetapkan suhu kepada sifar.
+Untuk aplikasi yang memerlukan output yang konsisten, pensampelan deterministik memastikan keputusan yang boleh dihasilkan semula. Caranya adalah dengan menggunakan benih rawak tetap dan menetapkan suhu kepada sifar.
 
-Mari lihat contoh pelaksanaan di bawah untuk menunjukkan pengambilan sampel deterministik dalam pelbagai bahasa pengaturcaraan.
+Mari lihat contoh pelaksanaan di bawah untuk menunjukkan pensampelan deterministik dalam pelbagai bahasa pengaturcaraan.
 
 # [Java](#tab/java)
 
@@ -287,11 +297,11 @@ public class DeterministicSamplingExample {
             .setTemperature(0.0)
             .build();
         
-        // Laksanakan kedua-dua permintaan
+        // Jalankan kedua-dua permintaan
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Respons harus sama kerana benih dan suhu=0 yang sama
+        // Respons mesti sama kerana benih dan suhu=0 yang sama
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -300,14 +310,14 @@ public class DeterministicSamplingExample {
 }
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mewujudkan klien MCP dengan URL pelayan yang ditetapkan.
-- Mengkonfigurasi dua permintaan dengan arahan yang sama, benih tetap, dan suhu sifar.
-- Menghantar kedua-dua permintaan dan mencetak teks yang dijana.
-- Menunjukkan bahawa tindak balas adalah sama kerana sifat deterministik konfigurasi pengambilan sampel (benih dan suhu yang sama).
-- Menggunakan `setSeed` untuk menentukan benih rawak tetap, memastikan model menjana output yang sama untuk input yang sama setiap kali.
-- Menetapkan `temperature` kepada sifar untuk memastikan determinisme maksimum, bermakna model akan sentiasa memilih token seterusnya yang paling berkemungkinan tanpa kebetulan.
+- Membuat klien MCP dengan URL pelayan yang ditetapkan.
+- Mengkonfigurasi dua permintaan dengan isyarat yang sama, benih tetap, dan suhu sifar.
+- Menghantar kedua-dua permintaan dan mencetak teks yang dihasilkan.
+- Menunjukkan bahawa respons adalah sama kerana sifat deterministik konfigurasi pensampelan (benih dan suhu yang sama).
+- Menggunakan `setSeed` untuk menetapkan benih rawak tetap, memastikan model menghasilkan output yang sama untuk input yang sama setiap masa.
+- Menetapkan `temperature` kepada sifar untuk memastikan determinisme maksimum, bermakna model akan sentiasa memilih token seterusnya yang paling berkemungkinan tanpa kebarangkalian rawak.
 
 # [JavaScript](#tab/javascript-deterministic)
 
@@ -327,7 +337,7 @@ async function deterministicSampling() {
     // Permintaan pertama dengan benih tetap
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Suhu sifar untuk ketentuan maksimum
+      temperature: 0.0  // Suhu sifar untuk determinisme maksimum
     });
     
     // Permintaan kedua dengan benih dan suhu yang sama
@@ -356,23 +366,23 @@ async function deterministicSampling() {
 deterministicSampling();
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
 - Memulakan klien MCP dengan URL pelayan.
-- Mengkonfigurasi dua permintaan dengan arahan yang sama, benih tetap, dan suhu sifar.
-- Menghantar kedua-dua permintaan dan mencetak teks yang dijana.
-- Menunjukkan bahawa tindak balas adalah sama kerana sifat deterministik konfigurasi pengambilan sampel (benih dan suhu yang sama).
-- Menggunakan `seed` untuk menentukan benih rawak tetap, memastikan model menjana output yang sama untuk input yang sama setiap kali.
-- Menetapkan `temperature` kepada sifar untuk memastikan determinisme maksimum, bermakna model akan sentiasa memilih token seterusnya yang paling berkemungkinan tanpa kebetulan.
-- Menggunakan benih berbeza untuk permintaan ketiga untuk menunjukkan bahawa perubahan benih menghasilkan output berbeza, walaupun dengan arahan dan suhu yang sama.
+- Mengkonfigurasi dua permintaan dengan isyarat yang sama, benih tetap, dan suhu sifar.
+- Menghantar kedua-dua permintaan dan mencetak teks yang dihasilkan.
+- Menunjukkan bahawa respons adalah sama kerana sifat deterministik konfigurasi pensampelan (benih dan suhu yang sama).
+- Menggunakan `seed` untuk menetapkan benih rawak tetap, memastikan model menghasilkan output yang sama untuk input yang sama setiap masa.
+- Menetapkan `temperature` kepada sifar untuk memastikan determinisme maksimum, bermakna model akan sentiasa memilih token seterusnya yang paling berkemungkinan tanpa kebarangkalian rawak.
+- Menggunakan benih yang berbeza untuk permintaan ketiga untuk menunjukkan bahawa menukar benih menghasilkan output yang berbeza, walaupun dengan isyarat dan suhu yang sama.
 
 ---
 
-## Konfigurasi Pengambilan Sampel Dinamik
+## Konfigurasi Pensampelan Dinamik
 
-Pengambilan sampel pintar menyesuaikan parameter berdasarkan konteks dan keperluan setiap permintaan. Ini bermakna melaraskan secara dinamik parameter seperti suhu, top_p, dan penalti berdasarkan jenis tugas, keutamaan pengguna, atau prestasi sejarah.
+Pensampelan pintar menyesuaikan parameter berdasarkan konteks dan keperluan setiap permintaan. Ini bermakna menyesuaikan parameter secara dinamik seperti suhu, top_p, dan penalti berdasarkan jenis tugas, keutamaan pengguna, atau prestasi sejarah.
 
-Mari lihat bagaimana melaksanakan pengambilan sampel dinamik dalam pelbagai bahasa pengaturcaraan.
+Mari lihat bagaimana melaksanakan pensampelan dinamik dalam pelbagai bahasa pengaturcaraan.
 
 # [Python](#tab/python)
 
@@ -404,7 +414,7 @@ class DynamicSamplingService:
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Laraskan top_p berdasarkan variasi respons yang dikehendaki
+                # Laraskan top_p berdasarkan kepelbagaian respons yang dikehendaki
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
@@ -416,7 +426,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Pulangkan respons dengan metadata pensampelan untuk ketelusan
+        # Kembalikan respons dengan metadata pensampelan untuk ketelusan
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -424,24 +434,24 @@ class DynamicSamplingService:
         }
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mewujudkan kelas `DynamicSamplingService` yang mengurus pengambilan sampel adaptif.
-- Mendefinisikan pratetap pengambilan sampel untuk jenis tugas berbeza (kreatif, fakta, kod, analitik).
-- Memilih pratetap asas berdasarkan jenis tugas.
-- Melaraskan parameter pengambilan sampel berdasarkan keutamaan pengguna, seperti tahap kreativiti dan kepelbagaian.
-- Menghantar permintaan dengan parameter pengambilan sampel yang dikendalikan secara dinamik.
-- Memulangkan teks yang dijana bersama dengan parameter pengambilan sampel dan jenis tugas untuk ketelusan.
-- Menggunakan `temperature` untuk mengawal kebetulan output, di mana nilai yang lebih tinggi menghasilkan tindak balas yang lebih kreatif.
-- Menggunakan `top_p` untuk mengehadkan pemilihan token kepada mereka yang menyumbang kepada jisim kebarangkalian kumulatif tertinggi, meningkatkan kualiti teks yang dijana.
+- Membuat kelas `DynamicSamplingService` yang mengurus pensampelan adaptif.
+- Mendefinisikan pratetap pensampelan untuk jenis tugas yang berbeza (kreatif, faktual, kod, analitik).
+- Memilih pratetap pensampelan asas berdasarkan jenis tugas.
+- Melaraskan parameter pensampelan berdasarkan keutamaan pengguna, seperti tahap kreativiti dan kepelbagaian.
+- Menghantar permintaan dengan parameter pensampelan yang dikonfigurasikan secara dinamik.
+- Memulangkan teks yang dijana bersama dengan parameter pensampelan yang digunakan dan jenis tugas untuk ketelusan.
+- Menggunakan `temperature` untuk mengawal kebarangkalian rawak output, di mana nilai lebih tinggi membawa kepada respons yang lebih kreatif.
+- Menggunakan `top_p` untuk mengehadkan pemilihan token kepada mereka yang menyumbang kepada jumlah kebarangkalian kumulatif teratas, meningkatkan kualiti teks yang dijana.
 - Menggunakan `frequency_penalty` untuk mengurangkan pengulangan dan menggalakkan kepelbagaian dalam output.
-- Menggunakan `user_preferences` untuk membolehkan penyesuaian parameter pengambilan sampel berdasarkan tahap kreativiti dan kepelbagaian yang ditentukan pengguna.
-- Menggunakan `task_type` untuk menentukan strategi pengambilan sampel yang sesuai untuk permintaan, membolehkan tindak balas yang lebih disesuaikan berdasarkan sifat tugas.
-- Menggunakan kaedah `send_request` untuk menghantar arahan dengan parameter pengambilan sampel yang dikonfigurasi, memastikan model menjana teks mengikut keperluan yang ditetapkan.
-- Menggunakan `generated_text` untuk mendapatkan respons model, yang kemudian dipulangkan bersama parameter pengambilan sampel dan jenis tugas untuk analisis atau paparan lanjut.
-- Menggunakan fungsi `min` dan `max` untuk memastikan keutamaan pengguna dipasang dalam julat sah, mengelakkan konfigurasi pengambilan sampel yang tidak sah.
+- Menggunakan `user_preferences` untuk membenarkan penyesuaian parameter pensampelan berdasarkan tahap kreativiti dan kepelbagaian yang ditetapkan oleh pengguna.
+- Menggunakan `task_type` untuk menentukan strategi pensampelan yang sesuai untuk permintaan, membolehkan respons yang lebih disesuaikan berdasarkan sifat tugas.
+- Menggunakan kaedah `send_request` untuk menghantar isyarat dengan parameter pensampelan yang dikonfigurasikan, memastikan model menjana teks mengikut keperluan yang ditetapkan.
+- Menggunakan `generated_text` untuk mendapatkan respons model, yang kemudian dipulangkan bersama parameter pensampelan dan jenis tugas untuk analisis atau paparan selanjutnya.
+- Menggunakan fungsi `min` dan `max` untuk memastikan keutamaan pengguna dikekang dalam julat yang sah, menghalang konfigurasi pensampelan yang tidak sah.
 
-# [JavaScript Dinamik](#tab/javascript-dynamic)
+# [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
 // Contoh JavaScript: Konfigurasi pensampelan dinamik berdasarkan konteks pengguna
@@ -461,7 +471,7 @@ class AdaptiveSamplingManager {
     this.performanceHistory = [];
   }
   
-  // Mengesan jenis tugasan dari arahan
+  // Kenal pasti jenis tugasan dari arahan
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
@@ -492,7 +502,7 @@ class AdaptiveSamplingManager {
   
   // Kira parameter pensampelan berdasarkan konteks dan keutamaan pengguna
   getSamplingParameters(prompt, context = {}) {
-    // Mengesan jenis tugasan
+    // Kenal pasti jenis tugasan
     const taskType = this.detectTaskType(prompt, context);
     
     // Dapatkan profil asas
@@ -518,25 +528,25 @@ class AdaptiveSamplingManager {
       }
     }
     
-    // Terapkan pelarasan yang dipelajari dari sejarah prestasi
+    // Terapkan penyesuaian yang dipelajari dari sejarah prestasi
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // Logik adaptif mudah - boleh dipertingkatkan dengan algoritma yang lebih canggih
+    // Logik adaptif mudah - boleh dipertingkatkan dengan algoritma lebih sofistikated
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Hanya ambil kira sejarah terkini
+      .slice(-5); // Hanya pertimbangkan sejarah terkini
     
     if (relevantHistory.length > 0) {
       // Kira purata skor prestasi
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Jika prestasi di bawah ambang, laraskan parameter
+      // Jika prestasi di bawah had, laraskan parameter
       if (avgScore < 0.7) {
-        // Pelarasan sedikit ke arah nilai yang lebih selamat
+        // Penyesuaian sedikit ke arah nilai yang lebih selamat
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,13 +554,13 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Rekod prestasi untuk pelarasan masa depan
+    // Rekod prestasi untuk penyesuaian masa depan
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // Penarafan 0-1 bagi kualiti respons
+      score // Penarafan 0-1 bagi kualiti jawapan
     });
     
     // Hadkan saiz sejarah
@@ -569,7 +579,7 @@ class AdaptiveSamplingManager {
       allowedTools: context.allowedTools || []
     });
     
-    // Jika pengguna memberi maklum balas, rekod untuk pengoptimuman masa depan
+    // Jika pengguna memberikan maklum balas, rekod untuk pengoptimuman masa depan
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -632,27 +642,27 @@ async function demonstrateAdaptiveSampling() {
 demonstrateAdaptiveSampling();
 ```
 
-Dalam kod sebelum ini kita telah:
+Dalam kod sebelumnya kami telah:
 
-- Mewujudkan kelas `AdaptiveSamplingManager` yang mengurus pengambilan sampel dinamik berdasarkan jenis tugas dan keutamaan pengguna.
-- Mendefinisikan profil pengambilan sampel untuk jenis tugas berbeza (kreatif, fakta, kod, perbualan).
-- Melaksanakan kaedah untuk mengesan jenis tugas dari arahan menggunakan heuristik mudah.
-- Mengira parameter pengambilan sampel berdasarkan jenis tugas yang dikesan dan keutamaan pengguna.
-- Mengaplikasi penyesuaian berdasarkan prestasi sejarah untuk mengoptimumkan parameter pengambilan sampel.
-- Merekod prestasi untuk penyesuaian masa depan, membolehkan sistem belajar daripada interaksi lalu.
-- Menghantar permintaan dengan parameter pengambilan sampel yang dikonfigurasi secara dinamik dan memulangkan teks yang dijana bersama parameter yang dikenakan dan jenis tugas yang dikesan.
+- Membuat kelas `AdaptiveSamplingManager` yang mengurus pensampelan dinamik berdasarkan jenis tugas dan keutamaan pengguna.
+- Mendefinisikan profil pensampelan untuk jenis tugas yang berbeza (kreatif, faktual, kod, perbualan).
+- Melaksanakan kaedah untuk mengesan jenis tugas daripada isyarat menggunakan heuristik mudah.
+- Mengira parameter pensampelan berdasarkan jenis tugas yang dikesan dan keutamaan pengguna.
+- Menerapkan pelarasan yang dipelajari berdasarkan prestasi sejarah untuk mengoptimumkan parameter pensampelan.
+- Merekodkan prestasi untuk pelarasan masa depan, membolehkan sistem belajar daripada interaksi lepas.
+- Menghantar permintaan dengan parameter pensampelan yang dikonfigurasikan secara dinamik dan memulangkan teks yang dijana bersama parameter yang digunakan dan jenis tugas yang dikesan.
 - Menggunakan:
-    - `userPreferences` untuk membolehkan penyesuaian parameter pengambilan sampel berdasarkan tahap kreativiti, ketepatan, dan konsistensi yang ditetapkan pengguna.
-    - `detectTaskType` untuk menentukan sifat tugas berdasarkan arahan, membolehkan tindak balas yang lebih disesuaikan.
-    - `recordPerformance` untuk merekod prestasi respon yang dijana, membolehkan sistem menyesuaikan dan memperbaiki dari masa ke masa.
-    - `applyLearnedAdjustments` untuk mengubah parameter pengambilan sampel berdasarkan prestasi sejarah, meningkatkan keupayaan model untuk menghasilkan respon berkualiti tinggi.
-    - `generateResponse` untuk merangkumi keseluruhan proses menghasilkan respon dengan pengambilan sampel adaptif, memudahkan panggilan dengan arahan dan konteks berbeza.
-    - `allowedTools` untuk menentukan alat mana model boleh gunakan semasa penjanaan, membolehkan respon yang lebih peka konteks.
-    - `feedbackScore` untuk membolehkan pengguna memberi maklum balas tentang kualiti respon yang dijana, yang boleh digunakan untuk menambah baik prestasi model dari masa ke masa.
-    - `performanceHistory` untuk mengekalkan rekod interaksi lalu, membolehkan sistem belajar daripada kejayaan dan kegagalan sebelumnya.
-    - `getSamplingParameters` untuk melaraskan parameter pengambilan sampel secara dinamik berdasarkan konteks permintaan, membolehkan tingkah laku model yang lebih fleksibel dan responsif.
-    - `detectTaskType` untuk mengklasifikasikan tugas berdasarkan arahan, membolehkan sistem mengaplikasikan strategi pengambilan sampel yang sesuai untuk jenis permintaan berbeza.
-    - `samplingProfiles` untuk mentakrifkan konfigurasi pengambilan sampel asas untuk jenis tugas berbeza, membolehkan penyesuaian pantas berdasarkan sifat permintaan.
+    - `userPreferences` untuk membenarkan penyesuaian parameter pensampelan berdasarkan tahap kreativiti, ketepatan, dan konsistensi yang ditetapkan pengguna.
+    - `detectTaskType` untuk menentukan sifat tugas berdasarkan isyarat, membolehkan respons yang lebih disesuaikan.
+    - `recordPerformance` untuk merekod prestasi respons yang dijana, membolehkan sistem menyesuaikan dan memperbaiki dari masa ke masa.
+    - `applyLearnedAdjustments` untuk mengubah suai parameter pensampelan berdasarkan prestasi sejarah, meningkatkan keupayaan model untuk menghasilkan respons berkualiti tinggi.
+    - `generateResponse` untuk merangkum keseluruhan proses menjana respons dengan pensampelan adaptif, memudahkan panggilan dengan isyarat dan konteks yang berbeza.
+    - `allowedTools` untuk menentukan alat yang boleh digunakan model semasa penjanaan, membolehkan respons yang lebih berorientasikan konteks.
+    - `feedbackScore` untuk membenarkan pengguna memberi maklum balas mengenai kualiti respons yang dijana, yang boleh digunakan untuk menambah baik prestasi model dari masa ke masa.
+    - `performanceHistory` untuk menyimpan rekod interaksi lepas, membolehkan sistem belajar daripada kejayaan dan kegagalan terdahulu.
+    - `getSamplingParameters` untuk menyesuaikan parameter pensampelan secara dinamik berdasarkan konteks permintaan, membolehkan tingkah laku model yang lebih fleksibel dan responsif.
+    - `detectTaskType` untuk mengklasifikasikan tugas berdasarkan isyarat, membolehkan sistem menggunakan strategi pensampelan yang sesuai untuk pelbagai jenis permintaan.
+    - `samplingProfiles` untuk mendefinisikan konfigurasi pensampelan asas untuk jenis tugas yang berbeza, membolehkan pelarasan pantas berdasarkan sifat permintaan.
 
 ---
 

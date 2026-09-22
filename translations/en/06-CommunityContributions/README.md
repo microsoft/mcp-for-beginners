@@ -37,7 +37,7 @@ The MCP ecosystem consists of various components and participants that work toge
 
 - [MCP GitHub Organization](https://github.com/modelcontextprotocol)
 - [MCP Documentation](https://modelcontextprotocol.io/)
-- [MCP Specification](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [GitHub Discussions](https://github.com/orgs/modelcontextprotocol/discussions)
 - [MCP Examples & Servers Repository](https://github.com/modelcontextprotocol/servers)
 
@@ -348,7 +348,9 @@ One of the most valuable ways to contribute to the MCP ecosystem is by creating 
 
 Several frameworks are available to simplify MCP server development:
 
-1. **Official SDKs** (aligned with [MCP Specification 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)):
+1. **Official SDKs** (check the
+    [SDK documentation](https://modelcontextprotocol.io/docs/sdk) for each
+    SDK's supported protocol revisions):
    - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
    - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
    - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)

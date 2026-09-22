@@ -1,29 +1,35 @@
 # Ενσωμάτωση VS Code
 
-## 🎯 Τι Καλύπτει Αυτό το Εργαστήριο
+> [!NOTE]
+> Οι ρυθμίσεις `initializationOptions` σε αυτό το εργαστήριο απευθύνονται στη διαπραγμάτευση MCP
+> `2025-11-25` στο δείγμα. Η MCP `2026-07-28` καταργεί τη διαπραγμάτευση αρχικοποίησης·
+> χρησιμοποιήστε έναν host και SDK που υποστηρίζουν μεταδεδομένα ανά αίτημα και `server/discover`
+> κατά τη μετανάστευση αυτού του δείγματος.
 
-Αυτό το εργαστήριο παρέχει ολοκληρωμένη καθοδήγηση για την ενσωμάτωση του MCP server σας με το VS Code, ώστε να επιτρέψετε ερωτήματα φυσικής γλώσσας μέσω AI Chat. Θα μάθετε πώς να ρυθμίσετε το VS Code για βέλτιστη χρήση του MCP, να εντοπίσετε προβλήματα στις συνδέσεις του server και να αξιοποιήσετε πλήρως τη δύναμη των αλληλεπιδράσεων βάσης δεδομένων με τη βοήθεια AI.
+## 🎯 Τι καλύπτει αυτό το εργαστήριο
+
+Αυτό το εργαστήριο παρέχει ολοκληρωμένες οδηγίες για την ενσωμάτωση του MCP server σας με το VS Code ώστε να ενεργοποιηθεί η χρήση φυσικής γλώσσας μέσω AI Chat. Θα μάθετε να ρυθμίζετε το VS Code για βέλτιστη χρήση του MCP, να εντοπίζετε σφάλματα στις συνδέσεις server και να αξιοποιείτε πλήρως τη δύναμη των αλληλεπιδράσεων βάσεων δεδομένων με βοήθεια AI.
 
 ## Επισκόπηση
 
-Η ενσωμάτωση του MCP στο VS Code μεταμορφώνει τον τρόπο με τον οποίο οι προγραμματιστές αλληλεπιδρούν με βάσεις δεδομένων και APIs μέσω φυσικής γλώσσας. Συνδέοντας τον MCP server λιανικής σας με το VS Code Chat, μπορείτε να πραγματοποιείτε έξυπνα ερωτήματα για δεδομένα πωλήσεων, καταλόγους προϊόντων και επιχειρηματικές αναλύσεις χρησιμοποιώντας συνομιλητικό AI.
+Η ενσωμάτωση MCP του VS Code μεταμορφώνει τον τρόπο που οι προγραμματιστές αλληλεπιδρούν με βάσεις δεδομένων και APIs μέσω φυσικής γλώσσας. Συνδέοντας τον MCP server λιανικής σας με το VS Code Chat, ενεργοποιείτε έξυπνες αναζητήσεις σε δεδομένα πωλήσεων, καταλόγους προϊόντων και επιχειρηματικές αναλύσεις χρησιμοποιώντας συνομιλητική AI.
 
-Αυτή η ενσωμάτωση επιτρέπει στους προγραμματιστές να κάνουν ερωτήσεις όπως "Δείξε μου τα προϊόντα με τις περισσότερες πωλήσεις αυτόν τον μήνα" ή "Βρες πελάτες που δεν έχουν αγοράσει εδώ και 90 ημέρες" και να λαμβάνουν δομημένες απαντήσεις δεδομένων χωρίς να γράφουν SQL ερωτήματα.
+Αυτή η ενσωμάτωση επιτρέπει στους προγραμματιστές να θέτουν ερωτήσεις όπως "Δείξε μου τα κορυφαία προϊόντα σε πωλήσεις αυτόν τον μήνα" ή "Βρες πελάτες που δεν έχουν αγοράσει για 90 ημέρες" και να λαμβάνουν δομημένες απαντήσεις χωρίς να γράφουν ερωτήματα SQL.
 
-## Στόχοι Μάθησης
+## Μαθησιακοί Στόχοι
 
 Μέχρι το τέλος αυτού του εργαστηρίου, θα μπορείτε να:
 
-- **Ρυθμίσετε** τις παραμέτρους MCP στο VS Code για τον server λιανικής σας
+- **Ρυθμίσετε** τις ρυθμίσεις MCP του VS Code για τον server λιανικής σας
 - **Ενσωματώσετε** MCP servers με τη λειτουργία AI Chat του VS Code
-- **Εντοπίσετε προβλήματα** στις συνδέσεις MCP server και να αντιμετωπίσετε ζητήματα
-- **Βελτιστοποιήσετε** μοτίβα ερωτημάτων φυσικής γλώσσας για καλύτερα αποτελέσματα
-- **Προσαρμόσετε** το χώρο εργασίας του VS Code για ανάπτυξη MCP
+- **Εντοπίζετε σφάλματα** στις συνδέσεις MCP servers και να αντιμετωπίζετε προβλήματα
+- **Βελτιστοποιήσετε** τα μοτίβα ερωτημάτων φυσικής γλώσσας για καλύτερα αποτελέσματα
+- **Προσαρμόσετε** το περιβάλλον εργασίας του VS Code για ανάπτυξη MCP
 - **Αναπτύξετε** ρυθμίσεις πολλαπλών servers για σύνθετα σενάρια
 
 ## 🔧 Ρύθμιση MCP στο VS Code
 
-### Αρχική Ρύθμιση και Εγκατάσταση
+### Αρχική Εγκατάσταση
 
 ```json
 // .vscode/settings.json
@@ -65,29 +71,29 @@
 ### Ρύθμιση Περιβάλλοντος
 
 ```bash
-# .env file for development
+# Αρχείο .env για ανάπτυξη
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Ρυθμίσεις Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Προαιρετικό: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Ρυθμίσεις διακομιστή
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Ρύθμιση Χώρου Εργασίας
+### Ρύθμιση Περιβάλλοντος Εργασίας
 
 ```json
 // .vscode/launch.json
@@ -223,7 +229,7 @@ LOG_LEVEL=INFO
 ### Μοτίβα Ερωτημάτων Φυσικής Γλώσσας
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Παραδείγματα προτύπων ερωτημάτων για το VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Βασικοί δείκτες
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Δείκτες απόδοσης
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Κορυφαία κατηγορία
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,7 +504,7 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Εντοπισμός και Αντιμετώπιση Προβλημάτων
+## 🔍 Εντοπισμός Σφαλμάτων και Αντιμετώπιση Προβλημάτων
 
 ### Ρύθμιση Εντοπισμού Σφαλμάτων στο VS Code
 
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Δημιουργία μορφοποιητή ειδικού για το VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Διαχειριστής κονσόλας για το τερματικό του VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Παγκόσμιο καταγραφέα αποσφαλμάτωσης
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Αντιμετώπιση Προβλημάτων Σύνδεσης
+### Αντιμετώπιση Προβλημάτων Συνδεσιμότητας
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Λάβετε παραμέτρους σύνδεσης από το περιβάλλον
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Δοκιμή σύνδεσης
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Δοκιμή βασικού ερωτήματος
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Δοκιμή πρόσβασης στο σχήμα
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Δοκιμή δημιουργίας ενσωμάτωσης
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Εισαγωγή συστατικών διακομιστή MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Δημιουργία ρύθμισης δοκιμής
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Αρχικοποίηση διακομιστή
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Λήψη διαθέσιμων εργαλείων
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Δοκιμή απλού εργαλείου
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Δοκιμή σύνδεσης βάσης δεδομένων
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Δοκιμή σύνδεσης Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Δοκιμή εργαλείων MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Γενική κατάσταση
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -843,12 +849,12 @@ if __name__ == "__main__":
 ### Προσαρμοσμένη Επέκταση VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Προσαρμοσμένη επέκταση λιανικής MCP
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Εγγραφή εντολών λιανικής MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Εγγραφή επιλογέα καταστήματος
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Ενημέρωση ρύθμισης παραμέτρων
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Εκτέλεση προκαθορισμένων ερωτημάτων στο VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1005,42 +1011,42 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Βασικά Συμπεράσματα
+## 🎯 Κύρια Σημεία
 
 Μετά την ολοκλήρωση αυτού του εργαστηρίου, θα έχετε:
 
 ✅ **Ρύθμιση MCP στο VS Code**: Πλήρης εγκατάσταση για βέλτιστη ενσωμάτωση MCP  
-✅ **Ενσωμάτωση AI Chat**: Δυνατότητες ερωτημάτων φυσικής γλώσσας στο VS Code  
-✅ **Εργαλεία Εντοπισμού Σφαλμάτων**: Ολοκληρωμένη αντιμετώπιση προβλημάτων και διαγνωστικά συνδέσεων  
+✅ **Ενσωμάτωση AI Chat**: Δυνατότητες ερωτήσεων φυσικής γλώσσας στο VS Code  
+✅ **Εργαλεία Εντοπισμού Σφαλμάτων**: Ολοκληρωμένη διάγνωση και αντιμετώπιση προβλημάτων  
 ✅ **Ρύθμιση Πολλαπλών Servers**: Διαμόρφωση για πολλαπλές παρουσίες MCP server  
-✅ **Προσαρμοσμένες Επεκτάσεις**: Ενισχυμένη εμπειρία VS Code με χαρακτηριστικά λιανικής  
-✅ **Ετοιμότητα για Παραγωγή**: Περιβάλλον ανάπτυξης VS Code έτοιμο για επιχειρήσεις  
+✅ **Προσαρμοσμένες Επεκτάσεις**: Βελτιωμένη εμπειρία VS Code με λειτουργίες ειδικές για λιανική  
+✅ **Ετοιμότητα Παραγωγής**: Περιβάλλον ανάπτυξης VS Code κατάλληλο για επιχειρήσεις  
 
 ## 🚀 Τι Ακολουθεί
 
 Συνεχίστε με **[Εργαστήριο 10: Στρατηγικές Ανάπτυξης](../10-Deployment/README.md)** για να:
 
-- Αναπτύξετε MCP servers σε περιβάλλοντα παραγωγής
-- Ρυθμίσετε υποδομές cloud για κλιμάκωση
-- Εφαρμόσετε CI/CD pipelines για αυτοματοποιημένη ανάπτυξη
-- Παρακολουθήσετε την απόδοση MCP server σε παραγωγή
+- Αναπτύξετε MCP servers σε παραγωγικά περιβάλλοντα
+- Διαμορφώσετε υποδομές cloud για κλιμακωσιμότητα
+- Υλοποιήσετε pipelines CI/CD για αυτοματοποιημένη ανάπτυξη
+- Παρακολουθήσετε την απόδοση παραγωγικού MCP server
 
-## 📚 Πρόσθετοι Πόροι
+## 📚 Επιπλέον Πόροι
 
-### Ανάπτυξη στο VS Code
+### Ανάπτυξη VS Code
 - [VS Code Extension API](https://code.visualstudio.com/api) - Επίσημος οδηγός ανάπτυξης επεκτάσεων
-- [Τεκμηρίωση MCP στο VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Τεκμηρίωση ενσωμάτωσης MCP
+- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Τεκμηρίωση ενσωμάτωσης MCP
 - [TypeScript για VS Code](https://code.visualstudio.com/docs/languages/typescript) - Ανάπτυξη TypeScript στο VS Code
 
 ### Πρωτόκολλο MCP
-- [Προδιαγραφές Model Context Protocol](https://modelcontextprotocol.io/specification) - Επίσημες προδιαγραφές MCP
-- [Βέλτιστες Πρακτικές MCP](https://modelcontextprotocol.io/docs/best-practices) - Βέλτιστες πρακτικές υλοποίησης
+- [Προδιαγραφή Model Context Protocol](https://modelcontextprotocol.io/specification) - Επίσημη προδιαγραφή MCP
+- [Καλές Πρακτικές MCP](https://modelcontextprotocol.io/docs/best-practices) - Καλές πρακτικές υλοποίησης
 - [FastMCP Framework](https://github.com/jlowin/fastmcp) - Υλοποίηση MCP σε Python
 
 ### Εργαλεία Ανάπτυξης
 - [Python στο VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Ρύθμιση ανάπτυξης Python
-- [Εντοπισμός Σφαλμάτων στο VS Code](https://code.visualstudio.com/docs/editor/debugging) - Προχωρημένες τεχνικές εντοπισμού σφαλμάτων
-- [Εργασίες στο VS Code](https://code.visualstudio.com/docs/editor/tasks) - Αυτοματοποίηση και ρύθμιση εργασιών
+- [Εντοπισμός Σφαλμάτων στο VS Code](https://code.visualstudio.com/docs/editor/debugging) - Προηγμένες τεχνικές εντοπισμού σφαλμάτων
+- [Εργασίες VS Code](https://code.visualstudio.com/docs/editor/tasks) - Αυτοματοποίηση και ρύθμιση εργασιών
 
 ---
 
@@ -1049,5 +1055,7 @@ export function deactivate() {}
 
 ---
 
-**Αποποίηση ευθύνης**:  
-Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία μετάφρασης AI [Co-op Translator](https://github.com/Azure/co-op-translator). Παρόλο που καταβάλλουμε προσπάθειες για ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτοματοποιημένες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα θα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή εσφαλμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Αποποίηση ευθυνών**:
+Αυτό το έγγραφο έχει μεταφραστεί χρησιμοποιώντας την υπηρεσία μετάφρασης με τεχνητή νοημοσύνη [Co-op Translator](https://github.com/Azure/co-op-translator). Ενώ επιδιώκουμε την ακρίβεια, παρακαλούμε να έχετε υπόψη ότι οι αυτοματοποιημένες μεταφράσεις ενδέχεται να περιέχουν λάθη ή ανακρίβειες. Το πρωτότυπο έγγραφο στη μητρική του γλώσσα πρέπει να θεωρείται η αυθεντική πηγή. Για κρίσιμες πληροφορίες, συνιστάται επαγγελματική ανθρώπινη μετάφραση. Δεν φέρουμε ευθύνη για τυχόν παρεξηγήσεις ή λανθασμένες ερμηνείες που προκύπτουν από τη χρήση αυτής της μετάφρασης.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,37 +1,37 @@
 # Studi Kasus: Mempublikasikan ke Jejaring Sosial dari Agen dengan Server MCP Jarak Jauh
 
-> **Penafian:** Beberapa layanan dan proyek open-source dapat mempublikasikan ke jejaring sosial, dan sebuah tim juga dapat mengintegrasikan API setiap jejaring secara langsung. Skenario di bawah ini diberikan sebagai satu contoh kerja tentang bagaimana **server MCP jarak jauh yang mampu menulis** dapat dirancang dan digunakan. Publora adalah layanan komersial dengan tier gratis; pola yang dijelaskan di sini berlaku untuk server MCP mana pun yang melakukan tindakan tak terbalikkan atas nama pengguna.
+> **Penafian:** Beberapa layanan dan proyek open-source dapat mempublikasikan ke jejaring sosial, dan sebuah tim juga dapat mengintegrasikan API masing-masing jejaring secara langsung. Skenario di bawah ini disediakan sebagai satu contoh kerja bagaimana **server MCP jarak jauh yang memungkinkan penulisan** dapat dirancang dan digunakan. Publora adalah layanan komersial dengan tingkatan gratis; pola yang dijelaskan di sini berlaku untuk server MCP manapun yang melakukan tindakan tak bisa dibalikkan atas nama pengguna.
 
-## Gambaran Umum
+## Ikhtisar
 
-Agen baik dalam membuat draf konten dan kurang baik dalam mengantarkannya. Sebuah model dapat menulis pengumuman rilis dalam hitungan detik, dan kemudian pekerjaan berhenti: mempublikasikannya berarti API per jejaring, aplikasi OAuth per jejaring, dan seperangkat aturan media berbeda untuk masing-masing. Sebagian besar tim menyelesaikan ini dengan menyalin teks ke browser secara manual.
+Agen baik dalam membuat draf konten namun kurang mahir dalam mengirimkannya. Model dapat menulis pengumuman rilis dalam hitungan detik, dan kemudian pekerjaan berhenti: mempublikasikannya berarti sebuah API per jejaring, aplikasi OAuth per jejaring, dan aturan media yang berbeda-beda untuk masing-masing. Sebagian besar tim menyelesaikan ini dengan menyalin teks ke browser secara manual.
 
-Studi kasus ini melihat bagaimana langkah terakhir itu diselesaikan dengan satu server MCP jarak jauh, dan — yang lebih berguna bagi siapa saja yang membangunnya — keputusan desain yang harus benar dilakukan oleh server **yang mampu menulis**. Membaca data itu mudah. Memublikasikan tidak: panggilan alat yang salah terlihat oleh audiens dan tidak dapat dibatalkan.
+Studi kasus ini melihat bagaimana langkah terakhir ini ditutup dengan satu server MCP jarak jauh, dan — lebih berguna bagi siapa saja yang membangunnya — keputusan desain yang harus tepat dari server **yang bisa menulis**. Membaca data lebih memaafkan. Memublikasikan tidak: panggilan alat yang salah terlihat oleh audiens dan tidak dapat dibatalkan.
 
 ## Skenario
 
-Sebuah tim kecil hubungan pengembang membuat draf posting di dalam agen (Claude, VS Code, Cursor — klien tidak masalah). Mereka ingin agen dapat:
+Sebuah tim kecil pengembang-relasi menulis draf posting di dalam agen (Claude, VS Code, Cursor — klien tidak penting). Mereka ingin agen untuk:
 
-- melihat akun sosial mana yang terhubung dengan tim,
-- membuat draf postingan dan menyimpannya sebagai draf untuk persetujuan manusia,
+- melihat akun sosial mana yang sudah terhubung,
+- membuat draf posting dan menyimpannya sebagai draf untuk disetujui manusia,
 - melampirkan gambar,
 - menjadwalkannya ke beberapa jejaring pada waktu yang dipilih,
 - dan kemudian melaporkan performanya.
 
-Yang penting, mereka ingin agen *tidak dapat* mempublikasikan secara tidak sengaja saat mereka masih bereksperimen.
+Yang penting, mereka ingin agen *tidak bisa* mempublikasikan secara tidak sengaja sementara mereka masih bereksperimen.
 
 ## Alat yang Digunakan
 
-- [Server MCP Publora](https://github.com/publora/mcp-server) — server MCP jarak jauh (`streamable-http`) yang menyediakan alat penerbitan, penjadwalan, media, dan analitik LinkedIn. Terdaftar di registri MCP resmi sebagai `com.publora/mcp-server`.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — server MCP jarak jauh (`streamable-http`) yang mengekspos alat penerbitan, penjadwalan, media, dan analitik LinkedIn. Terdaftar di registri MCP resmi sebagai `com.publora/mcp-server`.
 
 ## Alur Kerja Langkah demi Langkah
 
-1. **Hubungkan server.** Klien yang memakai OAuth menyelesaikan alur authorization-code dengan PKCE melalui layar persetujuan server sendiri; klien yang tidak mendukung, seperti CLI tanpa kepala, menggunakan kunci API Publora di header. Kedua jalur didukung, dan jalur mana yang didapat tergantung pada klien, bukan server.
-2. **Daftar koneksi.** Agen memanggil `list_connections` dan menerima akun yang terhubung dengan pengidentifikasi mereka.
-3. **Buat draf.** Agen memanggil `create_post` *tanpa* waktu yang dijadwalkan. Postingan disimpan sebagai draf — tidak ada yang diterbitkan.
-4. **Lampirkan media.** URL gambar publik dilewatkan dalam panggilan yang sama; server mengunduh dan memvalidasinya.
-5. **Penjadwalan.** Setelah manusia menyetujui, `update_post` mengatur status menjadi dijadwalkan dengan waktu ISO 8601.
-6. **Ukur.** Untuk LinkedIn, `linkedin_post_stats` mengembalikan keterlibatan setelah postingan live.
+1. **Sambungkan server.** Klien yang mendukung OAuth menyelesaikan alur kode otorisasi dengan PKCE di layar persetujuan server; klien yang tidak, seperti CLI tanpa kepala, menggunakan kunci API Publora dalam header. Kedua jalur didukung, dan mana yang didapat tergantung pada klien, bukan pada server.
+2. **Daftar koneksi.** Agen memanggil `list_connections` dan menerima akun-akun yang terhubung beserta pengenal mereka.
+3. **Buat draf.** Agen memanggil `create_post` *tanpa* waktu penjadwalan. Posting disimpan sebagai draf — tidak ada yang dipublikasikan.
+4. **Lampirkan media.** URL gambar publik disertakan dalam panggilan yang sama; server mengunduh dan memvalidasi.
+5. **Jadwalkan.** Setelah disetujui manusia, `update_post` mengatur status menjadi dijadwalkan dengan waktu ISO 8601.
+6. **Ukur.** Untuk LinkedIn, `linkedin_post_stats` mengembalikan keterlibatan setelah posting dipublikasikan.
 
 ## Contoh Prompt
 
@@ -42,16 +42,16 @@ https://example.com/changelog.png, and keep it as a draft — do not publish it.
 Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```
 
-## Diagram Mermaid
+## Diagram Alur Mermaid
 
 ```mermaid
 flowchart TD
-    A[Prompt pengguna di klien MCP] --> B[Klien melakukan OAuth dengan server]
+    A[Prompt pengguna dalam klien MCP] --> B[Klien melakukan OAuth dengan server]
     B --> C[list_connections]
     C --> D{Jaringan target terhubung?}
-    D -- No --> E[Agen melaporkan yang hilang]
-    D -- Yes --> F[create_post tanpa scheduledTime -> draft]
-    F --> G[Manusia meninjau draft]
+    D -- No --> E[Agen melaporkan yang mana yang hilang]
+    D -- Yes --> F[create_post tanpa scheduledTime -> draf]
+    F --> G[Manusia meninjau draf]
     G -- Approved --> H[update_post: status=scheduled]
     G -- Rejected --> I[delete_post]
     H --> J[Server menerbitkan pada waktu yang dijadwalkan]
@@ -60,70 +60,81 @@ flowchart TD
 
 ## Implementasi Teknis
 
-Pelajaran di bawah ini adalah bagian yang dapat dipindahkan dari studi kasus ini.
+Pelajaran berikut adalah bagian yang dapat dialihkan dari studi kasus ini.
 
 ### Penemuan terbuka, eksekusi terautentikasi
 
-`tools/list` dilayani tanpa kredensial; setiap `tools/call` membutuhkan token dan jika tidak mengembalikan `401` dengan header `WWW-Authenticate` yang menunjuk ke metadata sumber daya terlindungi. (Server juga menjawab `initialize` tanpa autentikasi, yang hanya relevan untuk klien dengan versi protokol sebelum `2026-07-28`; revisi itu menghapus handshake sepenuhnya.)
+`tools/list` disajikan tanpa kredensial; setiap `tools/call` membutuhkan token
+dan sebaliknya mengembalikan `401` dengan header `WWW-Authenticate` yang menunjuk ke
+metadata sumber daya terlindungi. Endpoint legacy server juga menjawab
+`initialize` tanpa autentikasi untuk klien pada versi protokol sebelum
+`2026-07-28`; klien saat ini tidak menggunakan handshake itu.
 
-Pemisahan ini penting dalam praktik. Registri, katalog, dan klien dapat memeriksa permukaan alat — nama, skema, anotasi — tanpa memegang rahasia, sementara tidak ada yang dapat *dieksekusi* secara anonim. Server yang menuntut token untuk `initialize` praktis tidak terlihat oleh tooling; server yang mengizinkan `tools/call` anonim adalah risiko.
+Pemisahan khusus server ini memungkinkan registri, katalog, dan klien memeriksa
+nama alat, skema, dan anotasi tanpa rahasia sekaligus mencegah eksekusi anonim.
+Penemuan terbuka adalah pilihan penerapan, bukan persyaratan MCP; deploy terlindungi
+bisa juga memerlukan otorisasi untuk `tools/list`.
 
 ### Registrasi: registrasi klien dinamis, dan penggantinya
 
-Server mengiklankan `/.well-known/oauth-protected-resource` dan `/.well-known/oauth-authorization-server`, dan mendukung alur authorization-code dengan PKCE (`S256`), token refresh, dan **registrasi klien dinamis**.
+Server mengiklankan `/.well-known/oauth-protected-resource` dan `/.well-known/oauth-authorization-server`, dan mendukung alur kode otorisasi dengan PKCE (`S256`), token penyegar, dan **registrasi klien dinamis**.
 
-Registrasi dinamis menghilangkan langkah manual: tanpa itu setiap klien membutuhkan `client_id` yang diterbitkan sebelumnya, yang berarti permintaan terpisah ke vendor untuk setiap klien baru.
+Registrasi dinamis menghilangkan langkah manual untuk klien legacy: tanpa itu,
+setiap klien membutuhkan `client_id` yang sudah diterbitkan oleh vendor.
 
-Perlakukan ini sebagai perilaku kompatibilitas daripada desain untuk ditiru. Revisi spesifikasi `2026-07-28` mendepresiasi registrasi klien dinamis demi Dokumen Metadata ID Klien, di mana klien meng-host dokumen metadata di URL HTTPS yang stabil dan URL itu *adalah* `client_id`. DCR masih berfungsi untuk saat ini, tapi server yang dibangun hari ini sebaiknya merencanakan CIMD dan mempertahankan DCR hanya untuk klien lama.
+Perlakukan ini sebagai perilaku kompatibilitas, bukan desain untuk ditiru. Revisi spesifikasi `2026-07-28` mendepresiasi registrasi klien dinamis demi Dokumen Metadata ID Klien, di mana klien menyajikan dokumen metadata di URL HTTPS stabil dan URL itu *adalah* `client_id`. DCR masih bekerja saat ini, tapi server yang dibangun sekarang harus merencanakan CIMD dan hanya menggunakan DCR untuk klien lama.
 
-### Anotasi alat bukan sekedar hiasan
+### Anotasi alat bukan hiasan
 
 Setiap alat membawa `title` dan petunjuk yang berlaku: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Dua alasan untuk berinvestasi di sana. Pertama, klien menggunakan petunjuk tersebut untuk memutuskan apa yang perlu dikonfirmasi ke pengguna — klien dapat menjalankan pencarian baca-saja otomatis dan berhenti untuk persetujuan sebelum hapus. Spesifikasi tegas bahwa anotasi adalah petunjuk yang tidak dipercaya, bukan mekanisme otorisasi: mereka membentuk apa yang ditawarkan klien untuk dilakukan, mereka tidak menghentikan apa pun di server, dan server harus tetap menegakkan aturan sendiri. Kedua, direktori konektor utama sekarang *mewajibkan* mereka untuk review; server yang alatnya tidak punya judul dan petunjuk akan dikembalikan tidak peduli seberapa baik kerjanya.
+Dua alasan untuk menginvestasikan pada ini. Pertama, klien menggunakan petunjuk untuk memutuskan apa yang dikonfirmasi ke pengguna — klien dapat menjalankan lookup hanya baca otomatis dan berhenti untuk persetujuan sebelum penghapusan. Spesifikasi eksplisit bahwa anotasi adalah petunjuk tidak dipercaya, bukan mekanisme otorisasi: mereka membentuk apa yang ditawarkan klien untuk dilakukan, tidak menghentikan apapun di server, dan server tetap harus menegakkan aturan sendiri. Kedua, direktori konektor utama sekarang *memerlukan* mereka untuk review; server dengan alat tanpa judul dan petunjuk akan dikembalikan meski berfungsi baik.
 
-### Buat pengidentifikasi tidak bisa ditebak
+### Buat pengenal tidak dapat dibuat-buat
 
-Pengidentifikasi platform adalah string opak yang dikembalikan oleh `list_connections`, dan deskripsi skema mengatakan secara eksplisit bahwa mereka harus disalin apa adanya dan tidak boleh ditebak. Server menolak yang lain.
+Pengenal platform adalah string opak yang dikembalikan oleh `list_connections`, dan deskripsi skema menyatakan secara eksplisit bahwa harus disalin persis dan tidak boleh ditebak. Server menolak apapun selain itu.
 
-Model adalah penebak lancar. Setiap server yang bisa menulis harus mengasumsikan sebuah pengidentifikasi akhirnya akan dihalusinasi dan membuat jalur itu gagal keras dan awal, bukan bertindak pada nilai yang tampak masuk akal.
+Model adalah penebak fasih. Server yang dapat menulis harus menganggap pengenal akan akhirnya dihalusinasi dan membuat jalur itu gagal keras dan awal, bukan menggunakan nilai yang tampak masuk akal.
 
-### Gagal sebelum memublikasikan, dengan pesan yang bisa ditindaklanjuti
+### Gagal sebelum memublikasikan, dengan pesan dapat ditindaklanjuti
 
-Beberapa jejaring menolak postingan hanya teks dan memerlukan gambar atau video. Itu divalidasi saat postingan dijadwalkan, dan kesalahan menyebutkan platform dan persyaratan yang hilang.
+Beberapa jejaring menolak posting hanya-teks dan mengharuskan ada gambar atau video. Itu divalidasi saat posting dijadwalkan, dan kesalahan menyebutkan platform dan persyaratan yang hilang.
 
-Agen bisa pulih dari "Instagram memerlukan media — lampirkan gambar atau video" tanpa putaran perjalanan tambahan. Agen tidak bisa pulih dari `400` yang generik.
+Agen dapat pulih dari "Instagram membutuhkan media — lampirkan gambar atau video" tanpa putaran kembali. Tidak dapat pulih dari `400` umum.
 
 ### Buat pengulangan aman
 
-Dua alat yang membuat konten, `create_post` dan `update_post`, menerima kunci idempoten: menggunakan ulang dengan permintaan identik memutar ulang respons asli alih-alih membuat postingan kedua. Runtime agen mengulangi pada timeout; tanpa idempoten, respons lambat menjadi publikasi duplikat. Alat tulis lain — penghapusan, langkah media, reaksi dan komentar LinkedIn — tidak mengambil satu, jadi pengulangan tidak otomatis aman di sana. Penting tahu mutasi mana yang dilindungi dan mana yang tidak.
+Dua alat yang membuat konten, `create_post` dan `update_post`, menerima kunci idempoten: menggunakannya ulang dengan permintaan identik memutar balik respons asli daripada membuat posting kedua. Runtime agen mengulangi pada timeout; tanpa idempoten, respons lambat menjadi publikasi duplikat. Alat tulis lain — penghapusan, langkah media, reaksi dan komentar LinkedIn — tidak menerima, jadi pengulangan di sana tidak otomatis aman. Penting tahu mutasi kamu mana yang terlindungi dan mana yang tidak.
 
-### Sediakan cara untuk menguji tanpa memublikasikan apa pun
+### Sediakan cara untuk menguji tanpa memublikasikan apapun
 
-Server menerima target cadangan, `publora-playground`, yang divalidasi dan diakui seperti tujuan nyata lalu dibuang — tidak ada yang mencapai akun nyata. Itu dideskripsikan dalam skema alat sendiri, yang bisa dibaca klien tanpa kredensial: field `platforms` pada `create_post` mendokumentasikannya sebagai "target tes koneksi yang tidak memerlukan koneksi nyata — post diakui dan dibuang, tidak ada yang dipublikasikan". Panggil itu dengan melewatkannya sebagai satu-satunya entri: `platforms: ["publora-playground"]`.
 
-Ini ternyata menjadi salah satu detail paling berguna dari seluruh permukaan. Peninjau direktori konektor, kontributor, dan CI bisa menjalankan jalur tulis lengkap dari ujung ke ujung tanpa risiko ke audiens nyata. Setiap server MCP dengan tindakan tak terbalikkan mendapat manfaat dari target no-op yang terdokumentasi.
+Server menerima target yang dicadangkan, `publora-playground`, yang divalidasi dan diakui seperti tujuan nyata dan kemudian dibuang — tidak ada yang mencapai akun nyata. Ini dijelaskan dalam skema alat itu sendiri, yang dapat dibaca oleh klien mana pun tanpa kredensial: bidang `platforms` dari `create_post` mendokumentasikannya sebagai "target uji koneksi yang tidak memerlukan koneksi nyata — postingan diakui dan dibuang, tidak ada yang dipublikasikan". Panggil dengan melewatinya sebagai entri tunggal: `platforms: ["publora-playground"]`.
+
+Detail ini ternyata menjadi salah satu yang paling berguna dari seluruh permukaan. Peninjau direktori konektor, kontributor, dan CI dapat menjalankan jalur tulis penuh dari awal hingga akhir tanpa risiko bagi audiens nyata. Server MCP mana pun yang memiliki tindakan yang tidak dapat dibalik mendapatkan manfaat dari target no-op yang terdokumentasi.
 
 ## Hasil dan Dampak
 
-- Langkah penerbitan pindah dari browser ke percakapan yang sama tempat konten dibuat, dan kebiasaan draf terlebih dahulu menjaga manusia dalam proses. Jelaskan secara tepat apa itu: draf adalah konvensi, bukan batasan. Kredensial yang sama dapat menjadwalkan atau mempublikasikan, jadi siapa pun yang butuh gerbang persetujuan nyata harus menegakkannya di luar permukaan alat — kredensial terpisah, atau lapisan kebijakan di depan server.
-- Perbedaan per jejaring — persyaratan media, threading, kontrol balasan — ditangani sekali di server, bukan di setiap agen yang berbicara dengannya.
-- Server yang sama mendukung beberapa klien MCP tanpa kerja per klien, karena penemuan terbuka dan registrasi dinamis.
-- Kendala desain di atas dibentuk oleh ulasan direktori konektor sebanyak oleh pengguna: anotasi, OAuth dan target tes aman masing-masing diwajibkan oleh setidaknya satu dari mereka.
+- Langkah penerbitan berpindah dari browser ke percakapan yang sama di mana konten ditulis, dan kebiasaan draft-first menjaga manusia tetap terlibat. Jelaskan dengan tepat apa itu: draft adalah konvensi, bukan batasan. Kredensial yang sama dapat menjadwalkan atau menerbitkan, jadi siapa pun yang membutuhkan gerbang persetujuan nyata harus menegakkannya di luar permukaan alat — kredensial terpisah, atau lapisan kebijakan di depan server.
+- Perbedaan per-jaringan — persyaratan media, pengurutan, kontrol balasan — ditangani sekali di server daripada di setiap agen yang berbicara dengannya.
+- Server yang sama mendukung beberapa klien MCP tanpa kredensial yang telah diterbitkan sebelumnya.
+    Klien saat ini dapat menggunakan Dokumen Metadata Client ID; DCR tetap menjadi cadangan
+    untuk klien yang lebih lama.
+- Batasan desain di atas dibentuk oleh tinjauan direktori konektor sama seperti oleh pengguna: anotasi, OAuth, dan target uji yang aman masing-masing diwajibkan oleh setidaknya satu dari mereka.
 
 ## Referensi
 
 - [Server MCP Publora (sumber)](https://github.com/publora/mcp-server)
 - [Dokumentasi API dan MCP Publora](https://docs.publora.com)
-- [Entri Registri MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [Spesifikasi MCP — Otorisasi](https://modelcontextprotocol.io/specification/draft/basic/authorization)
-- [Spesifikasi MCP — Anotasi Alat](https://modelcontextprotocol.io/docs/concepts/tools)
+- [Entri Registry MCP: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [Spesifikasi MCP — Otorisasi](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [Spesifikasi MCP — Anotasi alat](https://modelcontextprotocol.io/docs/concepts/tools)
 
-## Apa Berikutnya
+## Selanjutnya
 
-- Ambil server MCP yang sedang Anda bangun dan periksa tiga kemenangan termurah di sini: anotasi pada setiap alat, kunci idempoten pada setiap tulis, dan target no-op yang terdokumentasi.
-- Coba pisah penemuan terbuka: panggil `tools/list` ke server jarak jauh publik tanpa kredensial, lalu panggil alat dan lihat tantangan `401`.
-- Pertimbangkan arti "undo" untuk domain Anda. Penerbitan punya draf dan penghapusan; jika tindakan Anda tidak ada padanannya, konfirmasi masuk dalam desain alat, bukan dalam prompt.
+- Ambil server MCP yang sedang Anda buat dan periksa tiga kemenangan termurah di sini: anotasi di setiap alat, kunci idempoten di setiap tulis, dan target no-op yang terdokumentasi.
+- Cobalah pemisahan penemuan-terbuka: panggil `tools/list` ke server jarak jauh publik tanpa kredensial, kemudian panggil alat dan periksa tantangan `401`.
+- Pertimbangkan apa arti "undo" untuk domain Anda. Penerbitan memiliki draft dan penghapusan; jika tindakan Anda tidak memiliki padanan, konfirmasi harus ada dalam desain alat, bukan dalam prompt.
 
 ---
 

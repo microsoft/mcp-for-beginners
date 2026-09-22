@@ -1,62 +1,70 @@
-> [PASENĘS: 2026-07-28 LEIDIMO KANDIDATAS](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Imties ėmimas MCP `2026-07-28` versijoje yra nebenaudojamas. Šis pamokos turinys išlaikytas skirtas
+> paveldėtosioms įgyvendinimo versijoms. Nauji serveriai turėtų tiesiogiai integruotis su LLM
+> tiekėjo API.
 
-# Atranka Model Context Protocol
+# Imties ėmimas Modelio Konteksto Protokole
 
-> **Perspėjimas dėl pasenimo:** `2026-07-28` MCP specifikacijos leidimo kandidatas žymi Atranką kaip pasenusią, vietoje jos skatinama tiesioginė integracija su LLM tiekėjų API. Atranka veikia `2025-11-25` versijoje ir bent metus po formalaus pasenimo, todėl visa šio pamokos medžiaga išlieka galiojanti – bet nauji serverių dizainai turėtų įvertinti pakaitinį modelį. Žr. [Kas keičiasi MCP: 2026-07-28 leidimo kandidatas](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Imties ėmimas išlieka `2026-07-28` specifikacijoje siekiant suderinamumo ir gali būti pašalintas pirmojoje peržiūroje,
+> išleistos ne anksčiau kaip 2027 m. liepos 28 d. Šios pamokos pavyzdžiai gali naudoti SDK API, įgyvendinančius `2025-11-25`.
+> Žr. [Kas pasikeitė MCP: 2026-07-28 specifikacija](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Atranka yra galinga MCP funkcija, leidžianti serveriams prašyti LLM užbaigimų per klientą, taip įgalinant sudėtingą agentinį elgesį ir tuo pačiu išlaikant saugumą bei privatumą. Tinkama atrankos konfigūracija gali ženkliai pagerinti atsakymų kokybę ir našumą. MCP suteikia standartizuotą būdą kontroliuoti, kaip modeliai generuoja tekstą naudojant konkrečius parametrus, kurie veikia atsitiktinumą, kūrybiškumą ir nuoseklumą.
 
-## Įvadas
+rezultatų per klientą. Ši pamoka paaiškina šį nebenaudojamą protokolo
+srautą suderinamumo ir migracijos darbams.
 
-Šioje pamokoje nagrinėsime, kaip konfigūruoti atrankos parametrus MCP užklausose ir suprasti pagrindinę atrankos protokolo mechaniką.
+
+
+
+protokolo mechanizmus.
 
 ## Mokymosi tikslai
 
-Pamokos pabaigoje gebėsite:
+Pasibaigus šiai pamokai, jūs galėsite:
 
-- Suprasti pagrindinius MCP prieinamus atrankos parametrus.
-- Konfigūruoti atrankos parametrus skirtingiems naudojimo atvejams.
-- Įgyvendinti determinuotą atranką norint gauti kartojamus rezultatus.
-- Dinamiškai pritaikyti atrankos parametrus pagal kontekstą ir vartotojo pageidavimus.
-- Taikyti atrankos strategijas, kad pagerintumėte modelio našumą įvairiose situacijose.
-- Suprasti, kaip veikia atranka kliento-serverio MCP sraute.
+- Suprasti pagrindinius MCP prieinamus imties ėmimo parametrus.
+- Konfigūruoti imties ėmimo parametrus skirtingiems naudojimo atvejams.
+- Įgyvendinti determinuotą imties ėmimą siekiant pakartotinumo.
+- Dinamiškai reguliuoti imties ėmimo parametrus pagal kontekstą ir vartotojo nuostatas.
+- Taikyti imties ėmimo strategijas modelio našumo gerinimui įvairiose scenarijose.
+- Suprasti, kaip imties ėmimas veikia kliento-serverio MCP sraute.
 
-## Kaip veikia atranka MCP
+## Kaip imties ėmimas veikia MCP
 
-Atrankos eiga MCP vyksta tokiomis stadijomis:
+Imties ėmimo srautas MCP vyksta taip:
 
 1. Serveris siunčia `sampling/createMessage` užklausą klientui
-2. Klientas peržiūri užklausą ir gali ją pakeisti
-3. Klientas atlieka atranką iš LLM
-4. Klientas peržiūri užbaigimą
-5. Klientas pateikia rezultatą serveriui
+2. Klientas peržiūri užklausą ir gali ją keisti
+3. Klientas imasi imties iš LLM
+4. Klientas peržiūri rezultatą
+5. Klientas grąžina rezultatą serveriui
 
-Šis žmogus-procede dizainas užtikrina, kad vartotojai išlaiko kontrolę, ką LLM mato ir generuoja.
+Šis žmogaus įtrauktas dizainas užtikrina, kad vartotojai išlaiko kontrolę, ką LLM mato ir generuoja.
 
-## Atrankos parametrų apžvalga
+## Imties ėmimo parametrų apžvalga
 
-MCP apibrėžia šiuos atrankos parametrus, kurie gali būti konfigūruojami kliento užklausose:
+MCP apibrėžia šiuos imties ėmimo parametrus, kuriuos galima konfigūruoti kliento užklausose:
 
-| Parametras | Aprašymas | Įprastas diapazonas |
-|-----------|-------------|---------------------|
-| `temperature` | Kontroliuoja atsitiktinumą pasirenkant žodžius | 0.0 - 1.0 |
-| `maxTokens` | Maksimalus sugeneruotų žodžių skaičius | Sveikasis skaičius |
-| `stopSequences` | Pasirinktinių sekų, stabdančių generavimą, rinkinys | Stringų masyvas |
-| `metadata` | Papildomi tiekėjui būdingi parametrai | JSON objektas |
+| Parametras | Aprašymas | Tipinis diapazonas |
+|-----------|-------------|---------------|
+| `temperature` | Valdo atsitiktinumą pasirenkant žodžius | 0.0 - 1.0 |
+| `maxTokens` | Maksimalus sugeneruotų žodžių kiekis | Sveikasis skaičius |
+| `stopSequences` | Pasirinktinių sekų, kurios stabdo generavimą, masyvas | Eilutės masyvas |
+| `metadata` | Papildomi parametrai, priklausantys tiekėjui | JSON objektas |
 
-Daugelis LLM tiekėjų palaiko papildomus parametrus per `metadata` lauką, kurie gali būti:
+Daugelis LLM tiekėjų palaiko papildomus parametrus per `metadata` lauką, kurie gali apimti:
 
-| Įprastas papildomas parametras | Aprašymas | Įprastas diapazonas |
-|-----------|-------------|---------------------|
-| `top_p` | Nucleus atranka – riboja žodžius pagal kumuliatyvią ties viršutine riba | 0.0 - 1.0 |
-| `top_k` | Ribojama žodžių pasirinkimui pagal viršutinius K variantus | 1 - 100 |
-| `presence_penalty` | Bauda žodžiams pagal jų pasirodymą tekstuose iki šiol | -2.0 - 2.0 |
-| `frequency_penalty` | Bauda žodžiams pagal jų dažnį tekstuose iki šiol | -2.0 - 2.0 |
-| `seed` | Konkretus atsitiktinis sėklos numeris kartojamiems rezultatams | Sveikasis skaičius |
+| Dažnas išplėtimo parametras | Aprašymas | Tipinis diapazonas |
+|-----------|-------------|---------------|
+| `top_p` | Nucleus imties ėmimas – riboja žodžius pagal viršutinę kumuliatyvią tikimybę | 0.0 - 1.0 |
+| `top_k` | Riboja žodžių pasirinkimą iki top K variantų | 1 - 100 |
+| `presence_penalty` | Skaudina žodžius pagal jų pasirodymą tekste | -2.0 - 2.0 |
+| `frequency_penalty` | Skaudina žodžius pagal jų dažnumą tekste | -2.0 - 2.0 |
+| `seed` | Konkretus atsitiktinis sėklos skaičius pakartojamiems rezultatams | Sveikasis skaičius |
 
-## Užklausos pavyzdys
+## Užklausos formatas pavyzdyje
 
-Štai pavyzdys, kaip paprašyti atrankos kliente MCP:
+Štai pavyzdys, kaip prašyti imties iš kliento MCP:
 
 ```json
 {
@@ -81,7 +89,7 @@ Daugelis LLM tiekėjų palaiko papildomus parametrus per `metadata` lauką, kuri
 
 ## Atsakymo formatas
 
-Klientas pateikia užbaigimo rezultatą:
+Klientas grąžina užbaigtą rezultatą:
 
 ```json
 {
@@ -95,42 +103,42 @@ Klientas pateikia užbaigimo rezultatą:
 }
 ```
 
-## Žmogus kontrolei cikle
+## Žmogaus įtraukimo valdymas
 
-MCP atranka sukurta remiantis žmogaus priežiūra:
+MCP imties ėmimas yra sukurtas su žmogiškuoju priežiūros požiūriu:
 
-- **Skatinimams (prompts)**:
-  - Klientai turėtų rodyti vartotojams siūlomą skatinimą
-  - Vartotojai turėtų galėti pakeisti arba atmesti skatinimus
-  - Sisteminiai skatinimai gali būti filtruojami arba keičiami
-  - Konteksto įtraukimą kontroliuoja klientas
+- **Dėl užklausų**:
+  - Klientai turėtų parodyti vartotojams siūlomą užklausą
+  - Vartotojai turėtų galėti keisti arba atmesti užklausas
+  - Sisteminės užklausos gali būti filtruojamos arba keičamos
+  - Konteksto įtraukimas valdomas kliento
 
-- **Užbaigimams (completions)**:
-  - Klientai turėtų rodyti vartotojams užbaigimą
-  - Vartotojai turėtų galėti pakeisti arba atmesti užbaigimus
-  - Klientai gali filtruoti arba keisti užbaigimus
-  - Vartotojai valdo, kuris modelis yra naudojamas
+- **Dėl rezultatų**:
+  - Klientai turėtų parodyti vartotojams gautą rezultatą
+  - Vartotojai turėtų galėti modifikuoti arba atmesti rezultatus
+  - Klientai gali filtruoti arba keisti rezultatus
+  - Vartotojai kontroliuoja, kuris modelis naudojamas
 
-Turėdami šias principus omenyje, pažvelkime, kaip įgyvendinti atranką skirtingomis programavimo kalbomis, daugiausiai dėmesio skiriant parametrams, kuriuos dažniausiai palaiko LLM tiekėjai.
+Laikydamiesi šių principų pažvelkime, kaip įgyvendinti imties ėmimą įvairiomis programavimo kalbomis, sutelkiant dėmesį į parametrus, kuriuos įprastai palaiko LLM tiekėjai.
 
-## Saugos svarstymai
+## Saugumo svarstymai
 
-Įgyvendinant atranką MCP, atkreipkite dėmesį į šias gerąsias saugumo praktikas:
+Įgyvendinant MCP imties ėmimą, apsvarstykite šias saugumo gerąsias praktikas:
 
-- **Patikrinkite visą žinutės turinį** prieš siųsdami jį klientui
-- **Išskalaukite jautrią informaciją** iš skatinimų ir užbaigimų
-- **Įgyvendinkite dažnio ribojimus,** kad išvengtumėte piktnaudžiavimo
-- **Stebėkite atrankos naudojimą** neįprastiems modeliams aptikti
-- **Užšifruokite perduodamus duomenis** naudodami saugius protokolus
-- **Rūpinkitės vartotojo duomenų privatumu** pagal atitinkamus reglamentus
-- **Audituokite atrankos užklausas** siekiant atitikimo ir saugumo
-- **Valdykite kaštų riziką** nustatydami tinkamas ribas
-- **Įgyvendinkite užklausų laiko apribojimus (timeouts)**
-- **Kreipkitės tinkamai į modelio klaidas** su atitinkamomis alternatyvomis
+- **Patikrinkite visą pranešimo turinį** prieš siųsdami jį klientui
+- **Saugokite jautrią informaciją** užklausose ir rezultatuose
+- **Įgyvendinkite užklausų dažnio ribas** siekiant išvengti piktnaudžiavimo
+- **Stebėkite imties panaudojimą** netipiniams atvejams identifikuoti
+- **Šifruokite duomenis perdavimo metu** naudodami saugius protokolus
+- **Rūpinkitės vartotojų duomenų privatumu** pagal aktualius reglamentus
+- **Atlikite imties užklausų auditą** siekiant užtikrinti atitiktį ir saugumą
+- **Valdykite kaštų riziką** nustatant tinkamas ribas
+- **Įgyvendinkite užklausų laikmačius** imčiai gauti
+- **Tvarkykite modelio klaidas** tinkamai suteikiant atsargines galimybes
 
-Atrankos parametrai leidžia tiksliai reguliuoti kalbos modelių elgesį siekiant norimo balanso tarp determinuotų bei kūrybiškų atsakymų.
+Imties ėmimo parametrai leidžia tiksliai reguliuoti kalbos modelių elgesį, siekiant norimo balanso tarp determinuoto ir kūrybiško rezultato.
 
-Pažvelkime, kaip konfigūruoti šiuos parametrus skirtingomis programavimo kalbomis.
+Pažiūrėkime, kaip konfigūruoti šiuos parametrus skirtingose programavimo kalbose.
 
 # [.NET](#tab-dotnet)
 
@@ -171,15 +179,15 @@ public class SamplingExample
 Ankstesniame kode mes:
 
 - Sukūrėme MCP klientą su konkrečiu serverio URL.
-- Konfigūravome užklausą su atrankos parametrais, tokiomis kaip `temperature`, `top_p` ir `top_k`.
+- Suplanavome užklausą su imties ėmimo parametrais, tokiais kaip `temperature`, `top_p` ir `top_k`.
 - Išsiuntėme užklausą ir atspausdinome sugeneruotą tekstą.
 - Naudojome:
-    - `allowedTools`, kad nurodytume, kokias priemones modelis gali naudoti generavimo metu. Šiuo atveju leidome `ideaGenerator` ir `marketAnalyzer` įrankius kūrybinių idėjų generavimui.
-    - `frequencyPenalty` ir `presencePenalty`, kad kontroliuotume teksto kartojimą ir įvairovę.
-    - `temperature`, kuris kontroliuoja atsitiktinumą generuojant, kur aukštesnės reikšmės sukuria kūrybiškesnius atsakymus.
-    - `top_p`, apribojant žodžių pasirinkimą iki tų, kurie sudaro geriausią kumuliatyvią tikimybę, gerinant sugeneruoto teksto kokybę.
-    - `top_k`, ribojant modelį prie labiausiai tikėtinų K žodžių, kas padeda generuoti labiau nuoseklius atsakymus.
-    - `frequencyPenalty` ir `presencePenalty`, kad sumažintume kartojimą ir skatintume tekstų įvairovę.
+    - `allowedTools` nurodyti, kokios priemonės modelis gali naudoti generavimui. Šiuo atveju leidome `ideaGenerator` ir `marketAnalyzer`, kad padėtų generuoti kūrybiškas aplikacijų idėjas.
+    - `frequencyPenalty` ir `presencePenalty` valdyti pasikartojimus ir įvairovę išvestyje.
+    - `temperature` kontroliuoti atsitiktinumą išvestyje, kai didesnės reikšmės lemia kūrybiškesnius atsakymus.
+    - `top_p` apriboti žodžių pasirinkimą tik tiems, kurie sudaro viršutinę kumuliatyvią tikimybę, gerinant sugeneruoto teksto kokybę.
+    - `top_k` apriboti modelį pasirinkti tik iš top K tikėtiniausių žodžių, kas padeda kurti nuoseklesnius atsakymus.
+    - `frequencyPenalty` ir `presencePenalty` sumažinti pasikartojimus ir skatinti įvairovę generuotame tekste.
 
 # [JavaScript](#tab/javascript)
 
@@ -188,29 +196,29 @@ Ankstesniame kode mes:
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
-  // Inicializuoti MCP klientą
+  // Inicializuokite MCP klientą
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com',
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Konfigūruoti užklausą su skirtingais mėginių ėmimo parametrais
+  // Konfigūruokite užklausą su skirtingais mėginių ėmimo parametrais
   const creativeSampling = {
     temperature: 0.9,    // Aukštesnė temperatūra = daugiau atsitiktinumo/kūrybiškumo
-    topP: 0.92,          // Žiūrėti į simbolius su 92 % viršutine tikimybių mase
-    frequencyPenalty: 0.6, // Sumažinti simbolių sekų pasikartojimą
-    presencePenalty: 0.4   // Bausti simbolius, kurie pasirodė tekste iki šiol
+    topP: 0.92,          // Apsvarstykite žodžius su viršutiniu 92% tikimybės masės
+    frequencyPenalty: 0.6, // Sumažinkite žodžių sekų pasikartojimą
+    presencePenalty: 0.4   // Bauduokite žodžius, kurie jau pasirodė tekste
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Žemesnė temperatūra = labiau deterministinė/faktinė
-    topP: 0.85,          // Šiek tiek labiau susikoncentravęs simbolių pasirinkimas
-    frequencyPenalty: 0.2, // Minimalus pasikartojimo bausmės taikymas
-    presencePenalty: 0.1   // Minimalus buvimo bausmės taikymas
+    temperature: 0.2,    // Žemesnė temperatūra = daugiau deterministinis/faktiškas
+    topP: 0.85,          // Šiek tiek labiau susikoncentravęs žodžių pasirinkimas
+    frequencyPenalty: 0.2, // Minimalus pasikartojimo baudos dydis
+    presencePenalty: 0.1   // Minimalus buvimo baudos dydis
   };
   
   try {
-    // Siųsti dvi užklausas su skirtinga mėginių ėmimo konfigūracija
+    // Pateikite dvi užklausas su skirtingomis mėginių ėmimo konfigūracijomis
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -243,44 +251,44 @@ demonstrateSampling();
 
 Ankstesniame kode mes:
 
-- Inicializavome MCP klientą su serverio URL ir API raktu.
-- Konfigūravome dvi atrankos parametrų rinkinius: vieną kūrybingiems užduotims, kitą – faktų tikrinimui.
-- Išsiuntėme užklausas su šiomis konfiguracijomis, leidžiant modeliui naudoti specifinius įrankius kiekvienai užduočiai.
-- Atspausdinome sugeneruotus atsakymus, kad pademonstruotume skirtingų atrankos parametrų poveikį.
-- Naudojome `allowedTools`, kad nurodytume, kokias priemones modelis gali naudoti generavimo metu. Šiuo atveju kūrybinėms užduotims leidome `ideaGenerator` ir `environmentalImpactTool`, o faktų tikrinimui – `factChecker` ir `dataAnalysisTool`.
-- Naudojome `temperature` kontroliuoti atsitiktinumą generuojant, kur aukštesnės reikšmės lemia kūrybiškesnius atsakymus.
-- Naudojome `top_p`, ribojant žodžių pasirinkimą iki tų, kurie sudaro geriausią kumuliatyvią tikimybę, gerinant sugeneruoto teksto kokybę.
-- Naudojome `frequencyPenalty` ir `presencePenalty` mažinti kartojimą ir skatinti įvairovę išėjime.
-- Naudojome `top_k` riboti modelį prie labiausiai tikėtinų K žodžių, kas padeda generuoti labiau nuoseklius atsakymus.
+- Inicijavome MCP klientą su serverio URL ir API raktu.
+- Suplanavome du imties ėmimo parametrų rinkinius: vieną kūrybiniams, kitą faktiniams darbams.
+- Išsiuntėme užklausas su šiomis konfigūracijomis, leidžiant modeliui naudoti specifines priemones kiekvienam užduoties tipui.
+- Atspausdinome sugeneruotus atsakymus, kad parodytume skirtingų imties ėmimo parametrų poveikį.
+- Naudojome `allowedTools`, kad nurodytume, kokios priemonės modelis gali naudoti generavimui. Šiuo atveju kūrybiniams darbams leidome `ideaGenerator` ir `environmentalImpactTool`, o faktiniams darbams – `factChecker` ir `dataAnalysisTool`.
+- Naudojome `temperature` kontroliuoti atsitiktinumą išvestyje, kai didesnės reikšmės lemia kūrybiškesnius atsakymus.
+- Naudojome `top_p` apriboti žodžių pasirinkimą tiems, kurie sudaro viršutinę kumuliatyvią tikimybę, gerinant teksto kokybę.
+- Naudojome `frequencyPenalty` ir `presencePenalty` sumažinti pasikartojimus ir skatinti įvairovę išvestyje.
+- Naudojome `top_k` apriboti modelį iki top K tikėtiniausių žodžių, kas padeda generuoti nuoseklesnius atsakymus.
 
 ---
 
-## Determinuota atranka
+## Determinuotas imties ėmimas
 
-Programėlėms, kurioms reikalingi nuoseklūs rezultatai, determinuota atranka užtikrina kartojamus atsakymus. Tai daroma naudojant fiksuotą atsitiktinį sėklos numerį ir temperatūros nustatymą į nulį.
+Programėlėms, kurioms reikia nuoseklių rezultatų, determinuotas imties ėmimas užtikrina pakartojamus rezultatus. Tai veikia naudojant fiksuotą atsitiktinę sėklą ir nustatant temperatūrą nuliui.
 
-Žemiau pateikiamas pavyzdinis įgyvendinimas, demonstruojantis determinuotą atranką skirtingomis programavimo kalbomis.
+Pažiūrėkime toliau pateiktą pavyzdinę realizaciją demonstravimui determinuotam imties ėmimui skirtingose programavimo kalbose.
 
 # [Java](#tab/java)
 
 ```java
-// Java pavyzdys: deterministiniai atsakymai su fiksuotu sėklos numeriu
+// Java pavyzdys: deterministiniai atsakymai su fiksuotu sėklu
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Naudojant fiksuotą sėklą deterministinėms rezultatams gauti
+        long fixedSeed = 12345; // Naudojant fiksuotą sėklą deterministinėms rezultatams
         
-        // Pirmasis užklausimas su fiksuotu sėklos numeriu
+        // Pirmas užklausimas su fiksuota sėkla
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Nulinė temperatūra maksimaliai deterministiškumui
+            .setTemperature(0.0) // Nulinė temperatūra maksimaliam deterministiškumui
             .build();
             
-        // Antrasis užklausimas su ta pačia sėkla
+        // Antras užklausimas su ta pačia sėkla
         McpRequest request2 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
@@ -303,16 +311,16 @@ public class DeterministicSamplingExample {
 Ankstesniame kode mes:
 
 - Sukūrėme MCP klientą su nurodytu serverio URL.
-- Konfigūravome dvi užklausas su tuo pačiu skatinimu, fiksuotu sėklos numeriu ir nulinės temperatūros reikšme.
+- Sukonfigūravome dvi užklausas su ta pačia užklausa, fiksuota sėkla ir nulinė temperatūra.
 - Išsiuntėme abi užklausas ir atspausdinome sugeneruotą tekstą.
-- Pademonstravome, kad atsakymai yra identiški dėl determinuotos atrankos konfigūracijos (tas pats sėklos numeris ir temperatūra).
-- Naudojome `setSeed`, kad nurodytume fiksuotą atsitiktinį sėklos numerį, užtikrinantį, kad modelis kiekvieną kartą sugeneruotų tą patį išėjimą tam pačiam įvesties duomenų rinkiniui.
-- Nustatėme `temperature` į nulį, kad būtų maksimalus determinizmas, t. y. modelis visuomet pasirinkins tikėtinesnį kitą žodį be atsitiktinių svyravimų.
+- Pademonstravome, kad atsakymai yra identiški dėl determinuoto imties ėmimo konfigūracijos (ta pati sėkla ir temperatūra).
+- Naudojome `setSeed` nurodyti fiksuotą atsitiktinę sėklą, užtikrinant, kad modelis kiekvieną kartą gaus tą patį rezultatą to paties įvesties atveju.
+- Nustatėme `temperature` į nulį, kad užtikrintume maksimalų determinizmą — modelis visada pasirinks tikimybę turintį artimiausią kitą žodį be atsitiktinumo.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// JavaScript pavyzdys: deterministiniai atsakymai su sėklos kontrole
+// JavaScript pavyzdys: deterministiniai atsakymai su sėklos valdymu
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -324,19 +332,19 @@ async function deterministicSampling() {
   const prompt = "Generate a random password with 8 characters";
   
   try {
-    // Pirmas užklausimas su fiksuota sėkla
+    // Pirmasis užklausimas su fiksuota sėkla
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Nulinė temperatūra maksimaliai determinizmui
+      temperature: 0.0  // Nulinė temperatūra maksimaliam determinizmui
     });
     
-    // Antras užklausimas su ta pačia sėkla ir temperatūra
+    // Antrasis užklausimas su ta pačia sėkla ir temperatūra
     const response2 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0
     });
     
-    // Trečias užklausimas su skirtinga sėkla, bet ta pačia temperatūra
+    // Trečiasis užklausimas su skirtinga sėkla, bet ta pačia temperatūra
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -358,26 +366,26 @@ deterministicSampling();
 
 Ankstesniame kode mes:
 
-- Inicializavome MCP klientą su serverio URL.
-- Konfigūravome dvi užklausas su tuo pačiu skatinimu, fiksuotu sėklos numeriu ir nulinės temperatūros reikšme.
+- Inicijavome MCP klientą su serverio URL.
+- Suplanavome dvi užklausas su ta pačia užklausa, fiksuota sėkla ir nulinė temperatūra.
 - Išsiuntėme abi užklausas ir atspausdinome sugeneruotą tekstą.
-- Pademonstravome, kad atsakymai yra identiški dėl determinuotos atrankos konfigūracijos (tas pats sėklos numeris ir temperatūra).
-- Naudojome `seed`, kad nurodytume fiksuotą atsitiktinį sėklos numerį, užtikrinantį, kad modelis kiekvieną kartą sugeneruotų tą patį išėjimą tam pačiam įvesties duomenų rinkiniui.
-- Nustatėme `temperature` į nulį, kad būtų maksimalus determinizmas, t. y. modelis visuomet pasirinkins tikėtinesnį kitą žodį be atsitiktinių svyravimų.
-- Trečiajai užklausai panaudojome kitą sėklos numerį, kad parodytume, jog jį pakeitus, net su tokiu pačiu skatinimu ir temperatūra, gaunami skirtingi rezultatai.
+- Pademonstravome, kad atsakymai yra identiški dėl determinuoto imties ėmimo konfigūracijos (ta pati sėkla ir temperatūra).
+- Naudojome `seed` nurodyti fiksuotą atsitiktinę sėklą, užtikrinant, kad modelis kiekvieną kartą sugeneruos tą patį rezultatą to paties įvesties atveju.
+- Nustatėme `temperature` į nulį, užtikrindami maksimalų determinizmą.
+- Trečiajai užklausai panaudojome kitokią sėklą, kad parodytume, jog sėklos keitimas lemia skirtingus rezultatus, nors užklausa ir temperatūra lieka tos pačios.
 
 ---
 
-## Dinaminė atrankos konfigūracija
+## Dinaminė imties ėmimo konfigūracija
 
-Išmanioji atranka pritaiko parametrus pagal užklausos kontekstą ir reikalavimus. Tai reiškia, kad dinamiškai koreguojami tokie parametrai kaip temperatūra, top_p ir baudos, priklausomai nuo užduoties tipo, vartotojo pageidavimų ar ankstesnio našumo.
+Išmani imtis prisitaiko prie konteksto ir užklausų reikalavimų, dinamiškai keisdama parametrus, tokius kaip temperatūra, top_p ir baudos, priklausomai nuo užduoties tipo, vartotojo nuostatų ar istorinės našumo analizės.
 
-Pažvelkime, kaip įgyvendinti dinaminę atranką skirtingomis programavimo kalbomis.
+Pažiūrėkime, kaip įgyvendinti dinaminę imtį skirtingomis programavimo kalbomis.
 
 # [Python](#tab/python)
 
 ```python
-# Python pavyzdys: dinaminis atranka pagal užklausos kontekstą
+# Python pavyzdys: dinaminių atrankų pagrindu remiantis užklausos kontekstu
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Apibrėžti atrankos iš anksto nustatytas reikšmes skirtingiems užduočių tipams
+        # Apibrėžkite atrankų iš anksto nustatytas reikšmes skirtingiems užduočių tipams
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -393,22 +401,22 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # Pasirinkti pagrindinę iš anksto nustatytą reikšmę
+        # Pasirinkite pagrindinę iš anksto nustatytą reikšmę
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Koreguoti pagal vartotojo pageidavimus, jei jie pateikti
+        # Pakoreguokite pagal vartotojo pageidavimus, jei jie pateikti
         if user_preferences:
             if "creativity_level" in user_preferences:
-                # Koreguoti temperatūrą pagal kūrybiškumo lygį (1-10)
+                # Koreguokite temperatūrą atsižvelgiant į kūrybiškumo pageidavimus (1-10)
                 creativity = min(max(user_preferences["creativity_level"], 1), 10) / 10
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Koreguoti top_p pagal norimą atsakymų įvairovę
+                # Pakoreguokite top_p pagal pageidaujamą atsakymų įvairovę
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Sukurti ir išsiųsti užklausą su pasirinktinais atrankos parametrais
+        # Sukurkite ir išsiųskite užklausą su pasirinktiniais atrankų parametrais
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -416,7 +424,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Grąžinti atsakymą su atrankos metaduomenimis skaidrumui užtikrinti
+        # Grąžinkite atsakymą su atrankų metaduomenimis skaidrumui užtikrinti
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -426,30 +434,30 @@ class DynamicSamplingService:
 
 Ankstesniame kode mes:
 
-- Sukūrėme `DynamicSamplingService` klasę, kuri valdo adaptuotą atranką.
-- Apibrėžėme atrankos nustatymus skirtingoms užduočių rūšims (kūrybinė, faktinė, kodas, analitinė).
-- Pasirinkome bazinius atrankos nustatymus pagal užduoties tipą.
-- Pritaikėme atrankos parametrus pagal vartotojo pageidavimus, tokius kaip kūrybiškumo lygis ir įvairovė.
-- Išsiuntėme užklausą su dinamiškai sukonfigūruotais atrankos parametrais.
-- Gavome sugeneruotą tekstą kartu su pritaikytais atrankos parametrais ir užduoties tipu skaidrumui.
-- Naudojome `temperature`, kad kontroliuotume generavimo atsitiktinumą, kuriame didesnės reikšmės reiškia kūrybiškesnius atsakymus.
-- Naudojome `top_p`, kad apribotume žodžių pasirinkimą iki tų, kurie sudaro aukščiausią kumuliatyvią tikimybę, gerindami teksto kokybę.
-- Naudojome `frequency_penalty`, kad sumažintume kartojimą ir skatintume įvairiapusiškumą išėjime.
-- Naudojome `user_preferences`, leidžiantį daryti personalizuotą atrankos parametrų konfigūraciją pagal vartotojo apibrėžtus kūrybiškumo ir įvairovės lygius.
-- Naudojome `task_type`, kad nustatytume tinkamą atrankos strategiją pagal užduoties pobūdį, leidžiant labiau pritaikytus atsakymus.
-- Naudojome `send_request` metodą siųsti skatinimą su konfigūruotais parametrais, užtikrindami, kad modelis generuos tekstą pagal reikalavimus.
-- Naudojome `generated_text`, kad gautume modelio atsakymą, kuris yra grąžinamas kartu su atrankos parametrais ir užduoties tipu tolimesnei analizei ar rodymui.
-- Naudojome `min` ir `max` funkcijas, kad vartotojo pageidavimai būtų ribojami leistinuose intervaluose, išvengiant klaidingų atrankos konfigūracijų.
+- Sukūrėme `DynamicSamplingService` klasę, kuri valdo adaptacinį imties ėmimą.
+- Apibrėžėme imties nustatymus skirtingiems užduočių tipams (kūrybinės, faktinės, kodo, analitinės).
+- Pasirinkome bazinį imties rinkinį pagal užduoties tipą.
+- Koregavome imties parametrus pagal vartotojo nuostatas, pavyzdžiui, kūrybiškumo ir įvairovės lygius.
+- Išsiuntėme užklausą su dinamiškai sukonfigūruotais imties parametrais.
+- Grąžinome sugeneruotą tekstą kartu su pritaikytais imties parametrais ir užduoties tipu skaidrumui užtikrinti.
+- Naudojome `temperature` kontroliuoti atsitiktinumą išvestyje, kai didesnės reikšmės lemia kūrybiškesnius atsakymus.
+- Naudojome `top_p` apriboti žodžių pasirinkimą tiems, kurie sudaro viršutinę kumuliatyvią tikimybę, gerinant teksto kokybę.
+- Naudojome `frequency_penalty` sumažinti pasikartojimus ir skatinti įvairovę išvestyje.
+- Naudojome `user_preferences`, kad leistume pritaikyti imties parametrus pagal vartotojo nurodytus kūrybiškumo ir įvairovės lygius.
+- Naudojome `task_type` nustatyti tinkamą imties strategiją užklausai, leidžiant labiau pritaikytus atsakymus pagal užduoties pobūdį.
+- Naudojome `send_request` metodą siųsti užklausą su sukonfigūruotais imties parametrais, garantuojant, kad modelis sugeneruotų tekstą pagal nurodytus reikalavimus.
+- Naudojome `generated_text` gauti modelio atsakymui, kuris vėliau grąžinamas kartu su imties parametrais ir užduoties tipu tolesnei analizei arba pristatymui.
+- Naudojome `min` ir `max` funkcijas, kad užtikrintume, jog vartotojo nuostatos būtų ribojamos galiojančiuose diapazonuose, neleidžiant neteisingoms imties konfigūracijoms.
 
 # [JavaScript Dynamic](#tab/javascript-dynamic)
 
 ```javascript
-// JavaScript Pavyzdys: Dinaminė mėginių ėmimo konfigūracija pagal vartotojo kontekstą
+// JavaScript pavyzdys: dinaminė atrankos konfigūracija pagal naudotojo kontekstą
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Apibrėžkite pagrindinius mėginių ėmimo profilius
+    // Apibrėžti pagrindinius atrankos profilius
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,15 +465,15 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Sekite istorinį našumą
+    // Stebėti istorinius rezultatus
     this.performanceHistory = [];
   }
   
-  // Nustatykite užduoties tipą pagal tekstą
+  // Aptikti užduoties tipą iš užklausos
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // Paprasta heuristinė detekcija – gali būti patobulinta naudojant ML klasifikaciją
+    // Paprasta heuristinė aptikimo sistema – gali būti patobulinta naudojant ML klasifikaciją
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,57 +494,57 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Jei tipas nėra aiškus, numatytas pokalbio režimas
+    // Pagal nutylėjimą laikyti pokalbiu, jei aiškus tipas neaptiktas
     return 'conversational';
   }
   
-  // Apskaičiuokite mėginių ėmimo parametrus pagal kontekstą ir vartotojo nuostatas
+  // Apskaičiuoti atrankos parametrus pagal kontekstą ir naudotojo pageidavimus
   getSamplingParameters(prompt, context = {}) {
-    // Nustatyti užduoties tipą
+    // Aptikti užduoties tipą
     const taskType = this.detectTaskType(prompt, context);
     
-    // Gautas pagrindinis profilis
+    // Gauti pagrindinį profilį
     let params = {...this.samplingProfiles[taskType]};
     
-    // Reguliuoti pagal vartotojo nuostatas
+    // Koreguoti pagal naudotojo pageidavimus
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Mastelį nuo 1 iki 10 į tinkamą temperatūros diapazoną
-        params.temperature = 0.1 + (creativity * 0.09); // 0,1-1,0
+        // Pakeisti skalę nuo 1 iki 10 į tinkamą temperatūros diapazoną
+        params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
       if (precision !== undefined) {
-        // Didesnis tikslumas reiškia mažesnį topP (didesnis fokusavimas)
-        params.topP = 1.0 - (precision * 0.05); // 0,5-1,0
+        // Didesnis tikslumas reiškia mažesnį topP (daugiau fokusuota atranka)
+        params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
       if (consistency !== undefined) {
-        // Didesnis nuoseklumas reiškia mažesnius bausmių lygius
-        params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0,1-0,9
+        // Didesnis nuoseklumas reiškia mažesnius baudimus
+        params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0.1-0.9
       }
     }
     
-    // Taikyti išmoktas korekcijas pagal našumo istoriją
+    // Taikyti išmoktas korekcijas iš našumo istorijos
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // Paprasta adaptacinė logika – gali būti patobulinta sudėtingesniais algoritmais
+    // Paprasta adaptacinė logika – gali būti patobulinta naudojant sudėtingesnius algoritmus
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Atkreipti dėmesį tik į neseną istoriją
+      .slice(-5); // Apsvarstyti tik neseną istoriją
     
     if (relevantHistory.length > 0) {
-      // Apskaičiuokite vidutinius našumo balus
+      // Apskaičiuoti vidutinius našumo balus
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Jei našumas žemesnis nei slenkstis, koreguokite parametrus
+      // Jei našumas žemesnis už ribą, koreguoti parametrus
       if (avgScore < 0.7) {
-        // Šiek tiek patikslinti link saugesnių reikšmių
+        // Švelni korekcija link saugesnių reikšmių
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,23 +552,23 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Įrašykite našumo duomenis būsimoms korekcijoms
+    // Fiksuoti našumą būsimoms korekcijoms
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // 0-1 įvertinimas atsakymo kokybei
+      score // 0-1 atsakymo kokybės įvertinimas
     });
     
-    // Riboti istorijos dydį
+    // Apriboti istorijos dydį
     if (this.performanceHistory.length > 100) {
       this.performanceHistory.shift();
     }
   }
   
   async generateResponse(prompt, context = {}) {
-    // Gauti optimizuotus mėginių ėmimo parametrus
+    // Gauti optimizuotus atrankos parametrus
     const samplingParams = this.getSamplingParameters(prompt, context);
     
     // Siųsti užklausą su optimizuotais parametrais
@@ -569,7 +577,7 @@ class AdaptiveSamplingManager {
       allowedTools: context.allowedTools || []
     });
     
-    // Jei vartotojas pateikia atsiliepimą, įrašykite jį būsimai optimizacijai
+    // Jei naudotojas pateikia atsiliepimą, įrašyti jį būsimai optimizacijai
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -582,7 +590,7 @@ class AdaptiveSamplingManager {
   }
 }
 
-// Naudojimo pavyzdys
+// Pavyzdinis naudojimas
 async function demonstrateAdaptiveSampling() {
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com'
@@ -591,12 +599,12 @@ async function demonstrateAdaptiveSampling() {
   const samplingManager = new AdaptiveSamplingManager(client);
   
   try {
-    // Kūrybinė užduotis su individualiomis vartotojo nuostatomis
+    // Kūrybinė užduotis su vartotojo pageidavimais
     const creativeResult = await samplingManager.generateResponse(
       "Write a short poem about artificial intelligence",
       {
         userPreferences: {
-          creativity: 9,  // Aukštas kūrybiškumas (1-10)
+          creativity: 9,  // Aukšta kūrybiškumas (1-10)
           consistency: 3  // Žemas nuoseklumas (1-10)
         }
       }
@@ -634,31 +642,31 @@ demonstrateAdaptiveSampling();
 
 Ankstesniame kode mes:
 
-- Sukūrėme `AdaptiveSamplingManager` klasę, kuri valdo dinaminę atranką pagal užduoties tipą ir vartotojo pageidavimus.
-- Apibrėžėme atrankos profilius skirtingoms užduočių rūšims (kūrybinė, faktinė, kodas, pokalbių).
-- Įgyvendinome metodą aptikti užduoties tipą iš skatinimo, naudojant paprastus heuristinius metodus.
-- Apskaičiavome atrankos parametrus pagal aptiktą užduoties tipą ir vartotojo pageidavimus.
-- Pritaikėme išmoktas korekcijas pagal ankstesnį našumą optimizuoti atrankos parametrus.
-- Įrašėme veiklos rezultatus ateities koregavimams, leidžiant sistemai mokytis iš ankstesnių sąveikų.
-- Išsiuntėme užklausas su dinamiškai sukonfigūruotais atrankos parametrais ir pateikėme sugeneruotą tekstą kartu su parametrais ir aptiktu užduoties tipu.
+- Sukūrėme `AdaptiveSamplingManager` klasę, kuri valdo dinaminį imties ėmimą pagal užduoties tipą ir vartotojo nuostatas.
+- Apibrėžėme imties profilius skirtingiems užduočių tipams (kūrybinės, faktinės, kodo, pokalbių).
+- Įgyvendinome metodą užduoties tipui nustatyti iš užklausos, naudojant paprastus heuristinius metodus.
+- Apskaičiavome imties parametrus pagal nustatytą užduoties tipą ir vartotojo nuostatas.
+- Pritaikėme istorinius nustatymus pagal istorinę kokybę, optimizuodami imties parametrus.
+- Užfiksavome našumą būsimoms korekcijoms, leidžiant sistemai mokytis iš praeities sąveikų.
+- Išsiuntėme užklausas su dinamiškai sukonfigūruotais imties parametrais ir grąžinome sugeneruotą tekstą kartu su pritaikytais parametrais ir nustatytu užduoties tipu.
 - Naudojome:
-    - `userPreferences`, leidžiantį suasmeninti atrankos parametrus pagal vartotojo apibrėžtus kūrybiškumo, tikslumo ir nuoseklumo lygius.
-    - `detectTaskType`, kad nustatytume užduoties pobūdį pagal skatinimą, leidžiant taikyti tinkamas atrankos strategijas skirtingiems užklausų tipams.
-    - `recordPerformance`, registruoti sugeneruotų atsakymų našumą, leidžiant sistemai prisitaikyti ir gerinti laikui bėgant.
-    - `applyLearnedAdjustments`, koreguoti atrankos parametrus remiantis ankstesniu našumu, pagerinant modelio gebėjimą generuoti kokybiškus atsakymus.
-    - `generateResponse`, apjungti visą procesą generuoti atsakymą su adaptyvia atranka, palengvinant kvietimą su skirtingais skatinimais ir kontekstais.
-    - `allowedTools`, nurodyti, kokias priemones modelis gali naudoti generavimo metu, leidžiant suteikti daugiau konteksto informacijos.
-    - `feedbackScore`, leisti vartotojams pateikti atsiliepimus apie sugeneruoto atsakymo kokybę, kuriuos galima naudoti modelio našumo tobulinimui.
-    - `performanceHistory`, saugoti ankstesnių sąveikų įrašus, leidžiant sistemai mokytis iš sėkmių ir nesėkmių.
-    - `getSamplingParameters`, dinamiškai keisti atrankos parametrus pagal užklausos kontekstą, suteikiant lankstesnį ir jautresnį modelio elgesį.
-    - `detectTaskType`, klasifikuoti užduotį pagal skatinimą, leidžiant sistemai taikyti tinkamas atrankos strategijas skirtingoms užklausų rūšims.
-    - `samplingProfiles`, apibrėžti bazines atrankos konfigūracijas skirtingoms užduočių rūšims, leidžiant greitai pritaikyti priklausomai nuo užduoties pobūdžio.
+    - `userPreferences` leisti pritaikyti imties parametrus pagal vartotojo nurodytus kūrybiškumo, tikslumo ir nuoseklumo lygius.
+    - `detectTaskType` nustatyti užduoties pobūdį pagal užklausą, leidžiant labiau suasmenintus atsakymus.
+    - `recordPerformance` registruoti generuotų atsakymų našumą, leidžiant sistemai prisitaikyti ir tobulėti.
+    - `applyLearnedAdjustments` modifikuoti imties parametrus pagal istorinį našumą, gerinant modelio gebėjimą generuoti aukštos kokybės atsakymus.
+    - `generateResponse` apibrėžti visą atsakymo generavimo procesą su adaptaciniu imties ėmimu, palengvinant iškvietimą su skirtingomis užklausomis ir kontekstais.
+    - `allowedTools` nurodyti, kokias priemones modelis gali naudoti generavimui, leidžiant labiau kontekstui pritaikytus atsakymus.
+    - `feedbackScore` leisti vartotojams pateikti atsiliepimus apie sugeneruoto atsakymo kokybę, kuris gali būti naudojamas modelio našumo tobulinimui.
+    - `performanceHistory` palaikyti ankstesnių sąveikų įrašą, leidžiant sistemai mokytis iš sėkmių ir nesėkmių.
+    - `getSamplingParameters` dinamiškai koreguoti imties parametrus pagal užklausos kontekstą, leidžiant lanksčiau ir nuosekliau valdyti modelio elgesį.
+    - `detectTaskType` klasifikuoti užduotį pagal užklausą, leidžiant sistemai taikyti tinkamas imties strategijas skirtingiems užklausų tipams.
+    - `samplingProfiles` apibrėžti bazines imties konfigūracijas skirtingiems užduočių tipams, leidžiant greitai koreguoti pagal užduoties pobūdį.
 
 ---
 
 ## Kas toliau
 
-- [5.7 Masto keitimas](../mcp-scaling/README.md)
+- [5.7 Mastelio keitimas](../mcp-scaling/README.md)
 
 ---
 

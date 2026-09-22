@@ -1,39 +1,39 @@
-# Esettanulmány: Közösségi hálózatokra történő közzététel egy ügynöktől távoli MCP szerverrel
+# Esettanulmány: Közösségi hálózatokra való közzététel egy ügynökből távoli MCP szerverrel
 
-> **Felelősségkizárás:** Számos szolgáltatás és nyílt forráskódú projekt tud közösségi hálózatokra publikálni, és egy csapat közvetlenül integrálhatja az egyes hálózatok API-ját is. Az alábbi helyzet egy példát nyújt arra, hogyan lehet megtervezni és használni egy **írásra képes távoli MCP szervert**. A Publora egy kereskedelmi szolgáltatás ingyenes réteggel; az itt leírt minták bármely, a felhasználó nevében visszafordíthatatlan műveleteket végző MCP szerverre érvényesek.
+> **Nyilatkozat:** Számos szolgáltatás és nyílt forráskódú projekt képes közösségi hálózatokra posztolni, és egy csapat közvetlenül is integrálhatja az egyes hálózatok API-ját. Az alábbi forgatókönyvet egyetlen működő példaként mutatjuk be arra, hogyan lehet megtervezni és használni egy **írásra képes távoli MCP szervert**. A Publora egy kereskedelmi szolgáltatás ingyenes szinttel; az itt leírt minták bármely olyan MCP szerverre érvényesek, amely visszavonhatatlan műveleteket hajt végre a felhasználó nevében.
 
 ## Áttekintés
 
-Az ügynökök jól tudnak tartalmat előkészíteni, de gyengék a továbbításban. Egy modell másodpercek alatt megírhat egy sajtóközleményt, majd a munka megáll: a közzétételhez hálózatonként egy API, OAuth alkalmazás és az egyes platformokra különböző média szabályok szükségesek. A legtöbb csapat kézzel másolja be a szöveget a böngészőbe.
+Az ügynökök jól értenek a tartalom tervezéséhez, de kevésbé az eljuttatásához. Egy modell másodpercek alatt megírhat egy kiadási közleményt, aztán megáll a munka: a közzététel minden hálózathoz külön API-t, minden hálózathoz külön OAuth alkalmazást és eltérő média szabályokat jelent. A legtöbb csapat ezt kézzel, a szöveg böngészőbe másolásával oldja meg.
 
-Ez az esettanulmány azt vizsgálja, hogyan lehet az utolsó lépést egy távoli MCP szerverrel megoldani, és — hasznosabban azoknak, akik ilyet építenek — mely tervezési döntéseket kell jól meghozni egy **írásra képes** szerver esetén. Az adatolvasás megengedő. A közzététel nem az: egy rossz eszközhívás a közönség előtt látható és nem vonható vissza.
+Ez az esettanulmány azt vizsgálja, hogyan oldható meg ez az utolsó lépés egyetlen távoli MCP szerverrel, és — ami hasznosabb bárki számára, aki ilyet épít — a **írásra képes** szervernek hozandó tervezési döntéseket. Az adatok olvasása elnéző; a közzététel nem az: egy rossz eszközhívás látható a közönség számára és nem vonható vissza.
 
 ## Forgatókönyv
 
-Egy kis developer-relations csapat ügynökben (Claude, VS Code, Cursor — a kliens nem számít) készíti az posztokat. Azt akarják, hogy az ügynök:
+Egy kis fejlesztői kapcsolattartó csapat posztokat tervez egy ügynökön belül (Claude, VS Code, Cursor — az ügyfél nem számít). Azt akarják, hogy az ügynök:
 
-- lássa, hogy mely közösségi fiókok vannak csatlakoztatva,
-- készítsen egy posztot, és tartsa azt piszkozatként emberi jóváhagyásra,
-- csatoljon egy képet,
-- ütemezze azt különböző hálózatokra választott időpontra,
-- és később jelezze az eredményeket.
+- lássa, mely közösségi fiókok vannak kapcsolva a csapathoz,
+- posztot tervezzen és azt tervezetként tárolja egy emberi jóváhagyásig,
+- képet csatoljon,
+- több hálózatra ütemezze egy kiválasztott időpontra,
+- és később jelentse az eredményeket.
 
-Különösen fontos, hogy az ügynök ne tudjon véletlenül publikálni, amíg még kísérleteznek.
+Kulcsfontosságú, hogy az ügynök *ne legyen képes* véletlen közzétételre, amíg még kísérleteznek.
 
 ## Használt eszközök
 
-- [Publora MCP Server](https://github.com/publora/mcp-server) — egy távoli MCP szerver (`streamable-http`), amely közzététel, ütemezés, média és LinkedIn elemző eszközöket kínál. Az MCP hivatalos regiszterében `com.publora/mcp-server` néven.
+- [Publora MCP Server](https://github.com/publora/mcp-server) — távoli MCP szerver (`streamable-http`), amely közzétételi, ütemezési, média- és LinkedIn elemző eszközöket kínál. Regisztrálva az MCP hivatalos regiszterében `com.publora/mcp-server` néven.
 
-## Lépésről lépésre workflow
+## Lépésről lépésre munkafolyamat
 
-1. **Kapcsolódjon a szerverhez.** Az OAuth-ot támogató kliensek a szerver saját engedélyezési képernyőjével végzik az authorization-code folyamatot PKCE-vel; a nem OAuth kliens, például headless CLI-k, fejléces Publora API kulcsot használnak. Mindkét út támogatott, és az attól függ, melyik klienshez tartozik, nem a szervertől.
-2. **Fiókok listázása.** Az ügynök meghívja a `list_connections`-t, és megkapja a csatlakoztatott fiókokat azonosítóikkal.
-3. **Piszkozat készítése.** Az ügynök meghívja a `create_post`-ot *ütemezés nélküli* idővel. A poszt piszkozatként tárolódik — semmi nem kerül közzétételre.
-4. **Média csatolása.** Nyilvános kép URL-eket ugyanabban a hívásban adnak át; a szerver letölti és ellenőrzi őket.
-5. **Ütemezés.** Emberi jóváhagyás után az `update_post` állapotot `scheduled`-re állít az ISO 8601 idővel.
-6. **Mérés.** LinkedIn esetén a `linkedin_post_stats` visszaadja az elköteleződést, ha aktív a poszt.
+1. **Csatlakozás a szerverhez.** Az OAuth-kompatibilis kliensek az engedélyezési-kód folyamatot PKCE-vel a szerver saját hozzájárulási képernyője ellen hajtják végre; nem-kompatibilis kliensek, például parancssoros, fej nélküli alkalmazások a Publora API kulcsot fejlécként használják. Mindkét út támogatott, és hogy melyiket kapja, a kliensen múlik, nem a szerveren.
+2. **Fiókok listázása.** Az ügynök meghívja a `list_connections`-t, és megkapja a csatlakoztatott fiókokat azok azonosítóival.
+3. **Tervezés.** Az ügynök a `create_post` hívja *ütemezett időpont nélkül*. A poszt tervezetként tárolódik — semmi sem kerül közzétételre.
+4. **Média csatolása.** Nyilvános kép URL-ek ugyanebben a hívásban átadódnak; a szerver letölti és érvényesíti azokat.
+5. **Ütemezés.** Emberi jóváhagyás után az `update_post` beállítja az állapotot ütemezettre ISO 8601 idővel.
+6. **Mérés.** LinkedIn esetén a `linkedin_post_stats` visszaadja a részvételi adatokat, miután a poszt élővé válik.
 
-## Példa prompt
+## Példa parancs
 
 ```text
 Which social accounts do I have connected?
@@ -46,84 +46,94 @@ Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 
 ```mermaid
 flowchart TD
-    A[Felhasználói kérés egy MCP kliensben] --> B[A kliens végrehajtja az OAuth-ot a szerverrel]
-    B --> C[list_connections]
+    A[Felhasználói parancs egy MCP kliensben] --> B[A kliens OAuth hitelesítést végez a szerverrel]
+    B --> C[lista_kapcsolatok]
     C --> D{Célhálózatok csatlakoztatva?}
     D -- No --> E[Az ügynök jelzi, melyek hiányoznak]
-    D -- Yes --> F[create_post időzített idő nélkül -> piszkozat]
+    D -- Yes --> F[create_post időzítés nélkül -> piszkozat]
     F --> G[Ember átnézi a piszkozatot]
-    G -- Approved --> H[update_post: status=scheduled]
-    G -- Rejected --> I[delete_post]
-    H --> J[A szerver az ütemezett időben publikál]
-    J --> K[linkedin_post_stats az elköteleződéshez]
+    G -- Approved --> H[update_post: állapot=ütemezve]
+    G -- Rejected --> I[törlés_post]
+    H --> J[A szerver a tervezett időpontban publikál]
+    J --> K[linkedin_post_statisztika az elköteleződéshez]
 ```
 
-## Műszaki megvalósítás
+## Technikai megvalósítás
 
-Az alábbi tanulságok az átruházható részei ennek az esettanulmánynak.
+Az alábbi tanulságok a case study átemelhető részei.
 
 ### Nyílt felfedezés, hitelesített végrehajtás
 
-A `tools/list` hitelesítés nélkül elérhető; minden `tools/call` token-t kér, különben `401`-et ad `WWW-Authenticate` fejléc kíséretében, amely a védett erőforrás metaadataira mutat. (A szerver nem hitelesített `initialize` hívásokra is válaszol, amely csak a 2026-07-28 előtti protokoll verziók esetén számít; az adott revízió eltörölte a handshake-et.)
+A `tools/list` hitelesítés nélkül szolgál ki; minden `tools/call` token-t kér,
+és ha nincs, akkor `401` választ ad `WWW-Authenticate` fejléc társaságában, amely a
+védett erőforrás metaadataira mutat. A szerver régi végpontja egy
+nem hitelesített `initialize` választ is ad azokra a kliensekre protokoll verziók előtt,
+amelyek `2026-07-28`; jelenlegi kliensek már nem használják ezt a kézfogást.
 
-Ez a szétválasztás fontos a gyakorlatban. Regiszterek, katalógusok és kliensek titok nélkül is megvizsgálhatják az eszközfelületet — neveket, sémákat, annotációkat — , míg semmi nem hajtható végre névtelenül. A szerver, amely token-t kér `initialize`-hoz, gyakorlatilag láthatatlan az eszközök számára; aki anonim `tools/call`-t engedélyez, az veszélyforrás.
+Ez a szerver-specifikus megosztás lehetővé teszi, hogy a regiszterek, katalógusok és kliensek titok nélkül megvizsgálják az eszközök
+neveit, séma leírásait és annotációit, miközben megakadályozza az anonim
+végrehajtást. A nyílt felfedezés telepítési döntés, nem MCP követelmény; egy
+védett telepítés hitelesítést is kérhet a `tools/list`-hez.
 
-### Regisztráció: dinamikus kliensregisztráció és annak pótlása
+### Regisztráció: dinamikus kliensregisztráció és helyettesítői
 
-A szerver reklámozza a `/.well-known/oauth-protected-resource` és `/.well-known/oauth-authorization-server` végpontokat, támogatja az authorization-code PKCE (`S256`) folyamot, frissítő tokeneket és a **dinamikus kliensregisztrációt**.
+A szerver hirdeti a `/.well-known/oauth-protected-resource` és `/.well-known/oauth-authorization-server` végpontokat, és támogatja az engedélyezési-kód folyamatot PKCE-vel (`S256`), frissítő tokeneket, valamint a **dinamikus kliensregisztrációt**.
 
-A dinamikus regisztráció megszünteti a manuális lépést: regisztráció nélkül minden kliensnek előre kiadott `client_id`-vel kell rendelkeznie, ami minden új klienshez külön kérés a szolgáltatóhoz.
+A dinamikus regisztráció eltörölte a manuális lépést a régi kliensek esetén: nélküle
+minden kliensnek előzetesen kiállított `client_id`-re volt szüksége a szolgáltatótól.
 
-Ezt kompatibilitási viselkedésnek kell tekinteni, nem másolandó tervnek. A `2026-07-28`-as specifikáció felülvizsgálata elavulttá teszi a dinamikus kliensregisztrációt a Client ID Metadata Documents javára, ahol a kliens egy stabil HTTPS URL-en tárolja a metaadat dokumentumot, és ez az URL *a* `client_id`. A DCR tovább működik, de egy mai szerver építésekor CIMD-re kell tervezni, és DCR-t csak régebbi kliensekhez tartani.
+Inkább kompatibilitási viselkedésként kezelje, nem pedig tervezési mintaként. A `2026-07-28` specifikáció módosítás leállítja a dinamikus kliensregisztrációt a Kliensazonosító Metaadat Dokumentumok javára, ahol a kliens egy stabil HTTPS URL alatt tárol egy metaadat dokumentumot és ez az URL *a* `client_id`. A DCR tovább működik jelenleg, de egy mai szerver tervezésénél célszerű a CIMD-re készülni, és a DCR-t csak régi kliensekhez tartani.
 
-### Az eszköz annotációk nem díszítés
+### Az eszköz annotációk nem csupán díszítés
 
-Minden eszköz tartalmaz `title`-t és alkalmazható tippeket: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+Minden eszköz tartalmaz egy `title`-t és az alkalmazható utalásokat: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Két okból érdemes ezekre figyelni. Egyrészt a kliensek a tippek alapján döntenek a felhasználói megerősítésről — egy kliens automatikusan lefuttathat egy csak olvasható lekérdezést, majd megállhat egy törlés előtti jóváhagyásért. A specifikáció egyértelmű: az annotációk nem megbízható megerősítések, nem engedélyezési mechanizmus, csupán alakítják, hogy mit ajánl fel a kliens, nem akadályoznak semmit a szerveren, a szervernek a saját szabályait akkor is alkalmaznia kell. Másrészt a főbb csatlakozó könyvtárak most *követelik* az annotációkat az átvizsgáláshoz; egy eszközök nélküli szervert visszaküldenek, bármilyen jól működik is.
+Két ok, amiért érdemes ebbe energiát fektetni. Először is a kliensek az utalásokat használják annak eldöntésére, mit kell a felhasználóval megerősíttetni — egy kliens automatikusan lefuttathat egy csak olvasható lekérdezést és csak azután kérhet jóváhagyást törlés előtt. A szabvány kifejezetten kimondja, hogy az annotációk megbízhatatlan utalások, nem engedélyezési mechanizmusok: arra szolgálnak, hogy formálják, mit ajánl a kliens végrehajtásra, magát a szervert nem akadályozzák semmiben, és a szervernek továbbra is saját szabályait kell érvényesítenie. Másodszor, a fő csatoló könyvtárak most *követelik* őket leellenőrzéshez; egy olyan szerver, amelynek eszközeinek nincs címük és utalásaik, visszaküldik, bármennyire is jól működik.
 
-### Tegye azonosítókat kitalálhatatlanná
+### Tegye azonosítókat kizárólag másolhatóvá, kifürkészhetetlenné
 
-A platformazonosítók átlátszatlan karakterláncok, amelyeket a `list_connections` ad vissza, és a séma kifejezetten kimondja, hogy azokat szó szerint kell másolni, soha nem szabad kitalálni. A szerver elutasít bármi egyebet.
+A platformazonosítók átlátszatlan karakterláncok, amelyeket a `list_connections` ad vissza, és a séma leírás explicite kimondja, hogy ezeket szó szerint kell másolni, semmiképpen sem kitalálni. A szerver elutasít minden mást.
 
-A modellek jártasak a találgatásban. Bármely írásra képes szervernek fel kell tételeznie, hogy egyszer majd egy azonosító tévesen lesz generálva, és ezt a hibát hangosan és korán kell jeleznie, ahelyett, hogy egy valószínű érték alapján járna el.
+A modellek jól találnak ki dolgokat. Minden írásra képes szervernek fel kell tételeznie, hogy egy azonosító végül kitalált lehet, és ezt az utat korán és zajosan hibára kell vinni, ahelyett, hogy egy életszerűnek tűnő érték alapján cselekedne.
 
-### Hibázzon publikálás előtt, egyértelmű hibaüzenettel
+### Hibaüzenet a közzététel előtt, amelyből lehet tanulni
 
-Egyes hálózatok nem fogadnak el csak szöveges posztot, kép vagy videó szükséges. Ez akkor ellenőrződik, amikor a posztot ütemezik, és a hiba megnevezi a platformot és a hiányzó feltételt.
+Egyes hálózatok nem fogadnak el csak szöveges posztot, és képet vagy videót követelnek. Ezt az ütemezéskor ellenőrzik, és a hiba az adott platformot és a hiányzó követelményt nevezi meg.
 
-Egy ügynök fel tud dolgozni egy "Az Instagram médiát kér – csatolj képet vagy videót" üzenetet további kör nélkül. Egy általános `400` azonban nem kezelhető így.
+Egy ügynök képes helyrehozni az „Instagram kép vagy videó csatolását követeli” hibát további oda-vissza kör nélkül. Egy általános `400`-ból nem.
 
-### Biztonságossá tegye az ismétléseket
+### Tegye a újrapróbálkozásokat biztonságossá
 
-A két tartalomkészítésre szolgáló eszköz, a `create_post` és `update_post` elfogad egy idempotencia kulcsot: annak ismételt használata azonos kérés mellett lejátsza az eredeti választ, nem készít egy második posztot. Az ügynökök futtatókörnyezetben időtúllépésnél újrapróbálkoznak; idempotencia nélkül a lassú válasz duplikált közzétételt eredményez. A többi író eszköz — törlések, média lépések, LinkedIn reakciók és hozzászólások — nem rendelkezik ilyennel, tehát ott egy ismétlés nem automatikusan biztonságos. Érdemes tudni, melyik saját módosításai védettek, és melyek nem.
+A két tartalomkészítő eszköz, a `create_post` és `update_post` fogad egy idempotencia kulcsot: ugyanazzal a kéréssel újrahasználva a korábbi választ adják vissza második poszt készítése helyett. Az ügynökök futtatókörnyezetében időtúllépéskor újrapróbálkoznak; idempotencia nélkül a lassú válasz duplikált közzétételhez vezet. A többi írási eszköz — törlés, média lépések, LinkedIn reakciók és hozzászólások — nem fogad idempotencia kulcsot, így ott egy újrapróbálkozás nem automatikusan biztonságos. Érdemes tudni, mely műveletek vannak védve és melyek nem.
 
-### Biztosítson módot, hogy ne publikáljon semmit teszteléskor
+### Biztosítson tesztelési módot, amely semmit sem tesz közzé
 
-A szerver elfogad egy fenntartott célt, a `publora-playground`-ot, amely ellenőrzött és elismert, mint egy valódi cél, majd eldobott — semmi nem jut élő fiókhoz. Ez szerepel magában az eszköz sémájában is, amelyet minden kliens olvashat hitelesítés nélkül: a `create_post` `platforms` mező dokumentálja mint "egy csatlakozási teszt cél, amihez nem kell valós kapcsolat — a poszt elismert és eldobott, semmi nem kerül kiadásra". Úgy hívható meg, hogy ezt adjuk meg egyetlen elemként: `platforms: ["publora-playground"]`.
+A szerver elfogad egy fenntartott célt, a `publora-playground`-ot, amelyet valós célként érvényesít és igazol, majd eldob — semmi sem jut el élő fiókhoz. Ez az eszköz sémában van leírva, amelyet bármely kliens hitelesítés nélkül elolvashat: a `create_post` `platforms` mezője így dokumentálja: „kapcsolat-teszt cél, amihez nincs szükség valós kapcsolatra — a poszt elfogadott és eldobott, semmi sem kerül közzétételre”. Ezt úgy hívd meg, hogy csak ezt adod át: `platforms: ["publora-playground"]`.
 
-Ez az egyik leghasznosabb részletnek bizonyult az egész felületen. A csatlakozó könyvtárak felülvizsgálói, közreműködők és CI tesztelhetik a teljes írási útvonalat végponttól végpontig anélkül, hogy valódi közönséget veszélyeztetnének. Bármely MCP szerver, amely visszafordíthatatlan műveleteket végez, profitál egy dokumentált, nem művelet végrehajtó célból.
+Ez a részlet az egész felület egyik leghasznosabb eleme lett. A csatoló könyvtárak felülvizsgálóinak, közreműködőinek és a folyamatos integrációs környezeteknek lehetővé teszi, hogy a teljes írási utat kockázat nélkül végigjárják egy valódi közönség érintése nélkül. Minden visszavonhatatlan műveletet végrehajtó MCP szerver profitál egy dokumentált no-op célból.
 
 ## Eredmények és hatás
 
-- A publikálási lépés áthelyeződött a böngészőből ugyanabba a beszélgetésbe, ahol a tartalom íródik, és egy piszkozat-először szokás emberi kontrollt tart fenn. Legyen pontos, hogy mi ez: a piszkozat egy egyezmény, nem határ. Ugyanaz a hitelesítő adatok tudnak ütemezni vagy publikálni, tehát aki valódi jóváhagyási kaput akar, azt a kezelőfelületen kívül kell megvalósítani — külön hitelesítők vagy szabályzati réteg a szerver előtt.
-- A hálózatonkénti eltérések — média követelmények, szálkezelés, válaszkorlátozások — egyszer a szerveren vannak kezelve ahelyett, hogy minden egyes ügynökben implementálnák.
-- Ugyanaz a szerver több MCP klienst szolgál ki kliensenkénti munkavégzés nélkül, mert a felfedezés nyílt és a regisztráció dinamikus.
-- A fentieket a csatlakozó könyvtári ellenőrzések is alakították annyira, mint a felhasználók: annotációk, OAuth és egy biztonságos teszt cél mindegyike legalább egy ellenőrzés követelménye volt.
+- A közzétételi lépés a böngészőből oda került vissza, ahol a tartalmat megírták, és a tervezet-először szokás emberi szereplőt tart a folyamatban. Pontosan fogalmazzunk: a tervezet egy konvenció, nem egy határ. Ugyanaz a hitelesítő adatok képesek ütemezni vagy közzétenni, így aki valódi jóváhagyást akar, azt a felület határain kívül kell érvényesíteni — külön hitelesítő adatokkal vagy szabályzati réteggel a szerver előtt.
+- Az egyes hálózatok különbségei — média követelmények, beszélgetések, válasz kezelések — egyszer kerülnek kezelve a szerveren, nem minden egyes ügynökben, ami beszél hozzá.
+- Ugyanaz a szerver szolgál ki több MCP klienst előzetesen kiállított hitelesítés nélkül.
+    A jelenlegi kliensek használhatják a Kliensazonosító Metaadat Dokumentumokat; a DCR továbbra is tartalék az
+    régebbi klienseknek.
+- A tervezési korlátokat legalább annyira befolyásolták a csatoló könyvtárak felülvizsgálatai, mint a felhasználók: az annotációk, az OAuth és a biztonságos tesztcél mind szükséges volt legalább egy felülvizsgálónál.
 
 ## Hivatkozások
 
 - [Publora MCP Server (forrás)](https://github.com/publora/mcp-server)
 - [Publora API és MCP dokumentáció](https://docs.publora.com)
-- [MCP regiszter bejegyzés: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP specifikáció — Engedélyezés](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [MCP Regiszter bejegyzés: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP specifikáció — Engedélyezés](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP specifikáció — Eszköz annotációk](https://modelcontextprotocol.io/docs/concepts/tools)
 
-## Mi jön ezután
+## Mi következik
 
-- Nézze meg az épülő MCP szerverét a három legköltséghatékonyabb fejlesztésért itt: annotációk minden eszközön, idempotencia kulcs minden írási híváshoz, és dokumentált nem végrehajtó cél.
-- Próbálja ki a nyílt felfedezés és hitelesítés szétválasztását: hívja a `tools/list`-et hitelesítés nélkül egy nyilvános távoli szerverre, majd hívjon meg egy eszközt, és nézze meg a `401` hibajelzést.
-- Gondolja át, mit jelent az "visszavonás" az Ön számára. A közzététel piszkozatokkal és törléssel jár; ha az Ön műveleteinek nincs megfelelője, a megerősítés az eszköztervezés ügye, nem a prompté.
+- Vegyen elő egy MCP szervert, amit épít, és ellenőrizze a három legolcsóbb nyereményt itt: annotációk minden eszközön, idempotencia kulcs minden íráshoz, és egy dokumentált no-op cél.
+- Próbálja ki a nyílt felfedezés megosztást: hívja a `tools/list`-et egy nyilvános távoli szerveren hitelesítés nélkül, majd hívjon egy eszközt, és vizsgálja meg a `401` kihívást.
+- Gondolkodjon el rajta, mit jelent az "undo" az Ön területén. A közzétételnek vannak tervezetei és törlése; ha az Ön műveleteinek nincs megfelelője, a megerősítés a tervezés részének kell lennie, nem a parancsnak.
 
 ---
 

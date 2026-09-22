@@ -1,6 +1,11 @@
-# Spring AI MCP యాప్‌ను Azure కంటైనర్ యాప్స్‌కు డిప్లాయ్ చేయడం
+# స్ప్రింగ్ AI MCP యాప్‌ను ఆజ్యూర్ కంటైనర్ యాప్స్‌కి డిప్లాయ్ చేయడం
 
- ([OAuth2తో Spring AI MCP సర్వర్‌లను సురక్షితం చేయడం](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *చిత్రం: Spring Authorization Serverతో సురక్షితం చేయబడిన Spring AI MCP సర్వర్. సర్వర్ క్లయింట్లకు యాక్సెస్ టోకెన్లను జారీ చేస్తుంది మరియు వాటిని వచ్చే అభ్యర్థనలపై ధృవీకరిస్తుంది (మూలం: Spring బ్లాగ్) ([OAuth2తో Spring AI MCP సర్వర్‌లను సురక్షితం చేయడం](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP సర్వర్‌ను డిప్లాయ్ చేయడానికి, దాన్ని కంటైనర్‌గా నిర్మించి Azure కంటైనర్ యాప్స్‌తో బాహ్య ఇంగ్రెస్ ఉపయోగించండి. ఉదాహరణకు, Azure CLI ఉపయోగించి మీరు ఈ క్రింది విధంగా నడపవచ్చు:
+> [!WARNING]
+> ఈ కలిపిన అథారైజేషన్/రిసోర్స్ సర్వర్ నేర్చుకోడానికి మరియు
+> డెవ్/టెస్ట్ వినియోగానికి ఉద్దేశించబడింది. ప్రొడక్షన్ సిస్టమ్స్ ప్రత్యేక గుర్తింపు అందించే ప్రొవైడర్,
+> నిలకడైన సైన్ చేయడం కీలు మరియు మేనేజ్డ్ సీక్రెట్ స్టోర్‌లో నిల్వ చేసిన ప్రమాణపత్రాలను ఉపయోగించాలి.
+
+ ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *ఫిగర్: స్ప్రింగ్ అథారైజేషన్ సర్వర్‌తో సురక్షితమైన స్ప్రింగ్ AI MCP సర్వర్. సర్వర్ క్లయింట్లకు యాక్సెస్ టోకెన్లను జరిపించి, రిక్వెస్ట్లలో వాటిని ధృవీకరిస్తుంది (మూలం: స్ప్రింగ్ బ్లాగ్) ([Securing Spring AI MCP servers with OAuth2](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* స్ప్రింగ్ MCP సర్వర్‌ను డిప్లాయ్ చేయాలంటే, దాన్ని కంటైనర్‌గా నిర్మించి, ఆజ్యూర్ కంటైనర్ యాప్స్‌ని బాహ్య ఇన్‌లాగా ఉపయోగించాలి. ఉదాహరణకు, ఆజ్యూర్ CLI ఉపయోగించి మీరు ఈ కింద ఇచ్చిన కమాండ్‌ను అమలు చేయవచ్చు:
 
 ```bash
 az containerapp up \
@@ -14,21 +19,19 @@ az containerapp up \
   --query properties.configuration.ingress.fqdn
 ```
 
-ఇది HTTPS ఎనేబుల్ చేసిన ప్రజలకు అందుబాటులో ఉన్న కంటైనర్ యాప్‌ను సృష్టిస్తుంది (Azure డిఫాల్ట్ `*.azurecontainerapps.io` డొమైన్ కోసం ఉచిత TLS సర్టిఫికేట్ జారీ చేస్తుంది ([Azure Container Appsలో కస్టమ్ డొమైన్ పేర్లు మరియు ఉచిత నిర్వహించబడిన సర్టిఫికేట్లు | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). ఆదేశం అవుట్‌పుట్‌లో యాప్ యొక్క FQDN (ఉదా: `my-mcp-app.eastus.azurecontainerapps.io`) ఉంటుంది, ఇది **issuer URL** బేస్ అవుతుంది. APIM యాప్‌ను చేరుకునేందుకు HTTP ఇంగ్రెస్ ఎనేబుల్ చేయబడిందని నిర్ధారించుకోండి (పైన ఉన్నట్లుగా). టెస్ట్/డెవ్ సెటప్‌లో, `--ingress external` ఆప్షన్ ఉపయోగించండి (లేదా [Microsoft డాక్స్](https://learn.microsoft.com/azure/container-apps/custom-domains-managed-certificates) ప్రకారం TLSతో కస్టమ్ డొమైన్ బైండ్ చేయండి ([Azure Container Appsలో కస్టమ్ డొమైన్ పేర్లు మరియు ఉచిత నిర్వహించబడిన సర్టిఫికేట్లు | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). ఏదైనా సున్నితమైన ప్రాపర్టీలను (OAuth క్లయింట్ సీక్రెట్స్ వంటి) కంటైనర్ యాప్స్ సీక్రెట్స్ లేదా Azure కీ వాల్ట్‌లో నిల్వ చేసి, వాటిని కంటైనర్‌లో ఎన్విరాన్‌మెంట్ వేరియబుల్స్‌గా మ్యాప్ చేయండి.
+ఇది HTTPS ఎనేబుల్‌తో పబ్లిక్‌గా యాక్సెస్ అయ్యే కంటైనర్ యాప్‌ను సృష్టిస్తుంది (ఆజ్యూర్ డిఫాల్ట్ `*.azurecontainerapps.io` డొమైన్‌కు ఉచిత TLS సర్టిఫికేట్‌ను ఇవ్వనుంది ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). ఆ పంథాలో ఆప్ యొక్క FQDN (ఉదా. `my-mcp-app.eastus.azurecontainerapps.io`) ఉంటుంది, ఇది **issuer URL** బేస్ అవుతుంది. APIM యాప్‌కి చేరుకోగలిగేలా HTTP ఇన్‌లాగ్ ఎనేబుల్ చేసినట్టు నిర్ధారించుకోండి (పైన చూపినట్లు). టెస్ట్/డెవ్ సెటప్‌లో, `--ingress external` ఆప్షన్ ఉపయోగించండి (లేదా కస్టమ్ డొమైన్‌తో TLS బైండ్ చేయండి [Microsoft docs](https://learn.microsoft.com/azure/container-apps/custom-domains-managed-certificates) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). ఏవైనా సున్నితమైన గుణాలు (OAuth క్లయింట్ సీక్రెట్లు వంటి) Container Apps సీక్రెట్స్ లేదా ఆజ్యూర్ కీ వాల్ట్‌లో నిల్వ చేసి, వాటిని ఎన్విరాన్మెంట్ వేరియబుల్స్‌గా కంటైనర్‌లో మ్యాప్ చేయండి. 
 
-## Spring Authorization Server కాన్ఫిగర్ చేయడం
+## స్ప్రింగ్ అథారైజేషన్ సర్వర్ కాంఫిగర్ చేయడం
 
-మీ Spring Boot యాప్ కోడ్‌లో, Spring Authorization Server మరియు Resource Server స్టార్టర్స్‌ను చేర్చండి. `RegisteredClient` (డెవ్/టెస్ట్‌లో `client_credentials` గ్రాంట్ కోసం) మరియు JWT కీ సోర్స్‌ను కాన్ఫిగర్ చేయండి. ఉదాహరణకు, `application.properties`లో మీరు ఇలా సెట్ చేయవచ్చు:
+మీ స్ప్రింగ్ బూట్ యాప్ కోడ్‌లో స్ప్రింగ్ అథారైజేషన్ సర్వర్ మరియు రిసోర్స్ సర్వర్ స్టార్టర్స్‌ను చేర్చండి. `client_credentials` గ్రాంట్ కోసం `RegisteredClient` మరియు JWT కీ సోర్స్‌ను కాంఫిగర్ చేయండి. ఉదాహరణకు, `application.properties`లో మీరు ఈ విధంగా సెట్ చేస్తారు:
 
 ```properties
 # OAuth2 client (for testing token issuance)
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-id=mcp-client
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-secret={noop}secret
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.authorization-grant-types=client_credentials
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-authentication-methods=client_secret_basic
+demo.oauth.client-id=${OAUTH_CLIENT_ID:mcp-client}
+demo.oauth.client-secret=${OAUTH_CLIENT_SECRET}
 ```
 
-Authorization Server మరియు Resource Serverని సెక్యూరిటీ ఫిల్టర్ చైన్ నిర్వచించడం ద్వారా ఎనేబుల్ చేయండి. ఉదాహరణకు:
+సెక్యూరిటీ ఫిల్టర్ చైన్ నిర్వచించి అథారైజేషన్ సర్వర్ మరియు రిసోర్స్ సర్వర్‌ను ఎనేబుల్ చేయండి. ఉదాహరణకు:
 
 ```java
 @Configuration
@@ -40,23 +43,26 @@ public class SecurityConfiguration {
         OAuth2AuthorizationServerConfigurer<HttpSecurity> authzServer = OAuth2AuthorizationServerConfigurer.authorizationServer();
         http
             .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-            // అథారైజేషన్ సర్వర్ ఎండ్‌పాయింట్లను ఎనేబుల్ చేయండి
+            // ఆథరైజేషన్ సర్వర్ ఎండ్‌పాయింట్లను అనుమతించండి
             .apply(authzServer.and())
-            // రిసోర్స్ సర్వర్‌ను ఎనేబుల్ చేయండి (వచ్చే అభ్యర్థనలపై JWTని ధృవీకరించండి)
+            // రిసోర్స్ సర్వర్‌ను అనుమతించండి (వచ్చే అభ్యర్థనలపై JWTని ధృవీకరించండి)
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
-            // CSRFని డిసేబుల్ చేయండి (MCP సర్వర్ బ్రౌజర్ ఆధారితం కాదు)
+            // CSRFని అచేతనం చేయండి (MCP సర్వర్ బ్రౌజర్-ఆధారితం కాదు)
             .csrf(csrf -> csrf.disable())
             // క్లయింట్ డెమో టూల్స్ కోసం CORS అనుమతించండి
             .cors(withDefaults());
         return http.build();
     }
 
-    // ఒక ఇన్-మెమరీ క్లయింట్ (RegisteredClient) మరియు JWK సోర్స్‌ను నిర్వచించండి:
+    // ఒక ఇన్-మెమరీ క్లయింట్ (RegisteredClient) మరియు JWK మూలాన్ని నిర్వర్తించండి:
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(
+        @Value("${demo.oauth.client-id}") String clientId,
+        @Value("${demo.oauth.client-secret}") String clientSecret) {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         RegisteredClient client = RegisteredClient.withId("1")
-            .clientId("mcp-client")
-            .clientSecret("{noop}secret")
+        .clientId(clientId)
+        .clientSecret(encoder.encode(clientSecret))
             .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
             .scope("mcp.read")
             .clientSettings(ClientSettings.builder().build())
@@ -67,7 +73,7 @@ public class SecurityConfiguration {
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
-        // RSA కీని జనరేట్ చేయండి (డెవ్/టెస్ట్ కోసం, స్టార్ట్‌అప్ వద్ద కొత్తదిగా జనరేట్ చేయండి)
+        // RSA కీని ఉత్పత్తి చేయండి (డెవ్/టెస్ట్ కోసం, ప్రారంభంలో కొత్తదిగా ఉత్పత్తి చేయండి)
         RSAKey rsaKey = new RSAKeyGenerator(2048).keyID("1").generate();
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (selector, context) -> selector.select(jwkSet);
@@ -75,9 +81,9 @@ public class SecurityConfiguration {
 }
 ```
 
-ఈ సెటప్ డిఫాల్ట్ OAuth2 ఎండ్‌పాయింట్లను ఎక్స్‌పోజ్ చేస్తుంది: టోకెన్ల కోసం `/oauth2/token` మరియు JSON వెబ్ కీ సెట్ కోసం `/oauth2/jwks`. (డిఫాల్ట్‌గా Spring యొక్క `AuthorizationServerSettings` `/oauth2/token` మరియు `/oauth2/jwks`కి మ్యాప్ చేస్తుంది ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).) సర్వర్ పై పేర్కొన్న RSA కీతో సంతకం చేసిన JWT యాక్సెస్ టోకెన్లను జారీ చేస్తుంది, మరియు దాని పబ్లిక్ కీని `https://<your-app>:/oauth2/jwks` వద్ద ప్రచురిస్తుంది.
+ఈ సెట్ అప్ డిఫాల్ట్ OAuth2 ఎండ్‌పాయింట్లను ( `/oauth2/token` టోకెన్ల కోసం మరియు `/oauth2/jwks` JSON వెబ్ కీ సెట్ కోసం) ప్రదర్శిస్తుంది. (డిఫాల్ట్‌గా స్ప్రింగ్ యొక్క `AuthorizationServerSettings` `/oauth2/token` మరియు `/oauth2/jwks` ను మ్యాప్ చేస్తుంది ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).) సర్వర్ RSA కీతో సంతకం చేసిన JWT యాక్సెస్ టోకెన్లను జారీ చేస్తుంది మరియు దాని పబ్లిక్ కీని `https://<your-app>:/oauth2/jwks` వద్ద ప్రచురిస్తుంది.
 
-**OpenID Connect డిస్కవరీని ఎనేబుల్ చేయండి:** APIM ఆటోమేటిక్‌గా issuer మరియు JWKS పొందేందుకు, మీ సెక్యూరిటీ కాన్ఫిగరేషన్‌లో `.oidc(Customizer.withDefaults())`ని చేర్చండి ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). ఉదాహరణకు:
+**OpenID Connect డిస్కవరీని ఎనేబుల్ చేయండి:** APIM ఆర్గనైజర్ మరియు JWKS పొందేందుకు స్వయంచాలకంగా OIDC ప్రొవైడర్ కాంఫిగరేషన్ ఎండ్‌పాయింట్‌ను `.oidc(Customizer.withDefaults())` చేర్చడం ద్వారా ఎనేబుల్ చేయండి ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). ఉదాహరణకు:
 
 ```java
 http
@@ -87,33 +93,33 @@ http
       .oidc(Customizer.withDefaults()));  // <– /.well-known/openid-configuration ను సక్రియం చేస్తుంది
 ```
 
-ఇది `/.well-known/openid-configuration`ని ఎక్స్‌పోజ్ చేస్తుంది, దీన్ని APIM మెటాడేటా కోసం ఉపయోగించవచ్చు. చివరగా, APIM యొక్క `<audiences>` చెక్ పాస్ అవ్వడానికి JWT **audience** క్లెయిమ్‌ను కస్టమైజ్ చేయవచ్చు. ఉదాహరణకు, టోకెన్ కస్టమైజర్‌ను చేర్చండి:
+ఇది `/.well-known/openid-configuration`ని ప్రదర్శిస్తుంది, దీన్ని APIM మేటాడేటా కోసం ఉపయోగించవచ్చు. చివరిగా, APIM యొక్క `<audiences>` చెక్ పాస్ కావడానికి JWT **audience** క్లైమ్ ను కస్టమైజ్ చేయాలనుకుంటే, టోకెన్ కస్టమైజర్‌ని జోడించండి:
 
 ```java
 @Bean
 public OAuth2TokenCustomizer<OAuth2TokenClaimsContext> tokenCustomizer() {
     return context -> {
-        // కస్టమ్ ఆడియెన్స్‌ను సెట్ చేయండి (ఉదా: క్లయింట్ ID లేదా API గుర్తింపు)
+        // అనుకూల ప్రేక్షకులను సెట్ చేయండి (ఉదా. క్లయింట్ ID లేదా API గుర్తింపు)
         context.getClaims().audience(Collections.singletonList("mcp-client"));
     };
 }
 ```
 
-ఇది టోకెన్లు `"aud": ["mcp-client"]` కలిగి ఉంటాయని నిర్ధారిస్తుంది, ఇది APIM ఆశించే క్లయింట్ ID లేదా స్కోప్‌కు సరిపోతుంది.
+ఇది టోకెన్లు `"aud": ["mcp-client"]` ను కలిగి ఉండేలా చూస్తుంది, ఇది APIM ఆశించే క్లయింట్ ID లేదా స్కోపు కి సరిపోతుంది.
 
 ## టోకెన్ మరియు JWKS ఎండ్‌పాయింట్లను ఎక్స్‌పోజ్ చేయడం
 
-డిప్లాయ్ చేసిన తర్వాత, మీ యాప్ యొక్క **issuer URL** `https://<app-fqdn>` అవుతుంది, ఉదా: `https://my-mcp-app.eastus.azurecontainerapps.io`. దాని OAuth2 ఎండ్‌పాయింట్లు:
+డిప్లాయ్ చేసిన తరువాత, మీ యాప్ యొక్క **issuer URL** ఉంటుందిః `https://<app-fqdn>` ఉదా: `https://my-mcp-app.eastus.azurecontainerapps.io`. దాని OAuth2 ఎండ్‌పాయింట్లు:
 
 - **టోకెన్ ఎండ్‌పాయింట్:** `https://<app-fqdn>/oauth2/token` – క్లయింట్లు ఇక్కడ టోకెన్లు పొందుతారు (client_credentials ఫ్లో).
-- **JWKS ఎండ్‌పాయింట్:** `https://<app-fqdn>/oauth2/jwks` – JWK సెట్‌ను తిరిగి ఇస్తుంది (APIM సంతకం కీలు పొందడానికి ఉపయోగిస్తుంది).
-- **OpenID కాన్ఫిగ్:** `https://<app-fqdn>/.well-known/openid-configuration` – OIDC డిస్కవరీ JSON (issuer, token_endpoint, jwks_uri మొదలైనవి ఉంటాయి).
+- **JWKS ఎండ్‌పాయింట్:** `https://<app-fqdn>/oauth2/jwks` – JWK సెట్‌ను తిరిగి ఇస్తుంది (APIM సంతకం కీలు పొందటానికి ఉపయోగిస్తుంది).
+- **OpenID కంఫిగ్:** `https://<app-fqdn>/.well-known/openid-configuration` – OIDC డిస్కవరీ JSON (ఉన్నవి `issuer`, `token_endpoint`, `jwks_uri` మరియు ఇతరాలు).
 
-APIM **OpenID కాన్ఫిగరేషన్ URL**ను పాయింట్ చేస్తుంది, అక్కడి నుండి `jwks_uri`ని కనుగొంటుంది. ఉదాహరణకు, మీ కంటైనర్ యాప్ FQDN `my-mcp-app.eastus.azurecontainerapps.io` అయితే, APIM యొక్క `<openid-config url="...">` `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` ఉపయోగించాలి. (డిఫాల్ట్‌గా Spring ఆ మెటాడేటాలో issuerని అదే బేస్ URLగా సెట్ చేస్తుంది ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).)
+APIM **OpenID కంఫిగరేషన్ URL** పాయింట్ చేస్తుంది, అక్కడి నుండి ఇది `jwks_uri` ని కనుగొంటుంది. ఉదా, మీ కంటైనర్ యాప్ FQDN `my-mcp-app.eastus.azurecontainerapps.io` అయితే, APIM యొక్క `<openid-config url="...">` ఈ URL ను ఉపయోగించాలి: `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration`. (డిఫాల్ట్‌గా స్ప్రింగ్ ఆ మెటాడేటాలో `issuer`ను అదే బేస్ URLతో సెట్ చేస్తుంది ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).)
 
-## Azure API Management (`validate-jwt`) కాన్ఫిగర్ చేయడం
+## ఆజ్యూర్ API మేనేజ్‌మెంట్‌ను కాన్ఫిగర్ చేయడం (`validate-jwt`)
 
-Azure APIMలో, `<validate-jwt>` పాలసీని ఉపయోగించి వచ్చే JWTలను మీ Spring Authorization Serverతో తనిఖీ చేసే ఇన్‌బౌండ్ పాలసీని జోడించండి. సింపుల్ సెటప్ కోసం, OpenID Connect మెటాడేటా URL ఉపయోగించవచ్చు. ఉదాహరణ పాలసీ స్నిపెట్:
+ఆజ్యూర్ APIM లో, ఇన్‌బౌండ్ పాలసీ చేర్చి ప్ర‌వేశించే JWTలను జ‌రిగే స్ప్రింగ్ అథారైజేషన్ సర్వర్‌తో `<validate-jwt>` పాలసీ ద్వారా చెక్ చేయండి. సరళమైన సెటప్‌కు OpenID Connect మేటాడేటా URL ఉపయోగించవచ్చు. ఉదాహరణ పాలసీ స్నిపెట్:
 
 ```xml
 <inbound>
@@ -130,41 +136,43 @@ Azure APIMలో, `<validate-jwt>` పాలసీని ఉపయోగిం�
 </inbound>
 ```
 
-ఈ పాలసీ APIMకి Spring Auth Server నుండి OpenID కాన్ఫిగరేషన్‌ను పొందమని, దాని JWKSను రీట్రీవ్ చేసి, ప్రతి టోకెన్ విశ్వసనీయ కీతో సంతకం చేయబడిందని మరియు సరైన audience కలిగి ఉందని ధృవీకరించమని చెబుతుంది. (`<issuers>`ని మిస్ చేస్తే, APIM మెటాడేటాలోని `issuer` క్లెయిమ్‌ను ఆటోమేటిక్‌గా ఉపయోగిస్తుంది.) `<audience>` టోకెన్‌లో మీ క్లయింట్ ID లేదా API రిసోర్స్ ఐడెంటిఫయర్‌కు సరిపోవాలి (పైన ఉదాహరణలో `"mcp-client"`గా సెట్ చేశాము). ఇది Microsoft డాక్యుమెంటేషన్‌లో `<openid-config>`తో `validate-jwt` ఉపయోగించే విధానానికి అనుగుణంగా ఉంటుంది ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)).
+ఈ పాలసీ APIM కు స్ప్రింగ్ అథ్ సర్వర్ నుండి OpenID కంఫిగరేషన్‌ను తెచ్చుకోవాలని, దాని JWKS పొందాలని, ప్రతి టోకెన్ సంతకం చేసిన కీతో సరిపోయేలా, సరైన ఆడియన్స్ ఉన్నదో లేదో ధృవీకరించమని చెబుతుంది. (`<issuers>`ని మాడు తీయకపోతే APIM ఆటోమాటిక్‌గా మెటాడేటాలోని `issuer` క్లైమ్ ఉపయోగిస్తుంది.) `<audience>` మానిపి టోకెన్లో ఉన్న క్లయింట్ ID లేదా API రిసోర్స్ IDకి సరిపోనిది (పైన ఉదాహరణలో `"mcp-client"`గా సెట్ చేసింది.) ఇది మైక్రోసాఫ్ట్ డాక్యుమెంటేషన్‌తో సరిపోయే విధంగా ఉంది ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)).
 
-ధృవీకరణ తర్వాత, APIM అభ్యర్థనను (మూల `Authorization` హెడ్డర్ సహా) బ్యాక్‌ఎండ్‌కు ఫార్వర్డ్ చేస్తుంది. Spring యాప్ కూడా రిసోర్స్ సర్వర్ కావడంతో టోకెన్‌ను మళ్లీ ధృవీకరిస్తుంది, కానీ APIM ఇప్పటికే దాని చెల్లుబాటు తత్వాన్ని నిర్ధారించింది. (డెవలప్‌మెంట్ కోసం, APIM తన తనిఖీపై ఆధారపడవచ్చు మరియు యాప్‌లో అదనపు తనిఖీలను డిసేబుల్ చేయవచ్చు, కానీ రెండింటినీ ఉంచడం సురక్షితం.)
+ధృవీకరణ తరువాత, APIM కోరికను బ్యాక్‌ఏండ్‌కు (అంతర్గత `Authorization` హెడ్డర్‌తో సహా) ఫార్వార్డ్ చేస్తుంది. స్ప్రింగ్ యాప్ కూడా రిసోర్స్ సర్వర్ గాబట్టి టోకెన్ తిరిగి ధృవీకరించగలదు, కానీ APIM ఇప్పటికే దాని చెలామణిని నిర్ధారించింది. (డెవలప్‌మెంట్ కోసం, APIM చెక్‌పై ఆధారపడటం సరిపోతుంది మరియు యాప్ లో అదనపు చెక్స్ తొలగించవచ్చు, కానీ రెండింటినీ ఉంచడం మరింత భద్ర.)
 
-## ఉదాహరణ సెట్టింగ్స్
+## ఉదాహరణ సెట్టింగులు
 
-| సెట్టింగ్            | ఉదాహరణ విలువ                                                        | గమనికలు                                      |
-|--------------------|----------------------------------------------------------------------|--------------------------------------------|
-| **Issuer**         | `https://my-mcp-app.eastus.azurecontainerapps.io`                    | మీ కంటైనర్ యాప్ URL (బేస్ URI)             |
-| **టోకెన్ ఎండ్‌పాయింట్** | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/token`       | డిఫాల్ట్ Spring టోకెన్ ఎండ్‌పాయింట్ ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))  |
-| **JWKS ఎండ్‌పాయింట్**  | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/jwks`        | డిఫాల్ట్ JWK సెట్ ఎండ్‌పాయింట్ ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))    |
-| **OpenID కాన్ఫిగ్**  | `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` | OIDC డిస్కవరీ డాక్యుమెంట్ (ఆటో-జనరేట్ చేయబడింది)    |
-| **APIM audience**  | `mcp-client`                                                         | OAuth క్లయింట్ ID లేదా API రిసోర్స్ పేరు       |
-| **APIM పాలసీ**    | `<openid-config url="https://.../.well-known/openid-configuration" />` | `<validate-jwt>` ఈ URL ఉపయోగిస్తుంది ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)) |
+| సెట్టింగ్            | ఉదాహరణ విలువ                                                    | గమనికలు                                      |
+|--------------------|------------------------------------------------------------------|-----------------------------------------------|
+| **Issuer**         | `https://my-mcp-app.eastus.azurecontainerapps.io`                | మీ కంటైనర్ యాప్ URL (బేస్ URI)               |
+| **Token endpoint** | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/token`   | డిఫాల్ట్ స్ప్రింగ్ టోకెన్ ఎండ్‌పాయింట్ ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))  |
+| **JWKS endpoint**  | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/jwks`    | డిఫాల్ట్ JWK సెట్ ఎండ్‌పాయింట్ ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))    |
+| **OpenID Config**  | `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` | OIDC డిస్కవరీ డాక్యుమెంట్ (ఆటో జెనరేటెడ్)    |
+| **APIM audience**  | `mcp-client`                                                     | OAuth క్లయింట్ ID లేదా API రిసోర్స్ పేరు      |
+| **APIM policy**    | `<openid-config url="https://.../.well-known/openid-configuration" />` | `<validate-jwt>` ఈ URL ను ఉపయోగిస్తుంది ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)) |
 
-## సాధారణ జాగ్రత్తలు
+## సాధారణ తప్పులు
 
-- **HTTPS/TLS:** APIM గేట్‌వే OpenID/JWKS ఎండ్‌పాయింట్ HTTPSతో సరైన సర్టిఫికేట్ కలిగి ఉండాలి. డిఫాల్ట్‌గా, Azure కంటైనర్ యాప్స్ Azure-నిర్వహించబడే డొమైన్ కోసం విశ్వసనీయ TLS సర్టిఫికేట్ అందిస్తుంది ([Azure Container Appsలో కస్టమ్ డొమైన్ పేర్లు మరియు ఉచిత నిర్వహించబడిన సర్టిఫికేట్లు | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). మీరు కస్టమ్ డొమైన్ ఉపయోగిస్తే, సర్టిఫికేట్ బైండ్ చేయడం నిర్ధారించుకోండి (Azure ఉచిత నిర్వహించబడిన సర్టిఫికేట్ ఫీచర్ ఉపయోగించవచ్చు) ([Azure Container Appsలో కస్టమ్ డొమైన్ పేర్లు మరియు ఉచిత నిర్వహించబడిన సర్టిఫికేట్లు | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). APIM ఎండ్‌పాయింట్ సర్టిఫికేట్‌పై నమ్మకం లేకపోతే, `<validate-jwt>` మెటాడేటాను పొందడంలో విఫలమవుతుంది.
+- **HTTPS/TLS:** APIM గేట్‌వే OpenID/JWKS ఎండ్‌పాయింట్ HTTPS మరియు చిహ్నితమైన సర్టిఫికేట్‌తో ఉండాలి. డిఫాల్ట్‌గా ఆజ్యూర్ కంటైనర్ యాప్స్ ఆజ్యూర్ నిర్వహించే డొమైన్‌కు విశ్వసనీయ TLS సర్టిఫికేట్‌ను ఇస్తుంది ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). కస్టమ్ డొమైన్ ఉపయోగిస్తే, సర్టిఫికేట్ బైండ్ చేయండి (ఆజ్యూర్ ఉచిత మేనేజ్డ్ సర్ట్ ఫీచర్ ఉపయోగించవచ్చు) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). APIM ఎండ్‌పాయింట్ సర్టిఫికేట్‌పై నమ్మకాన్ని లేకపోతే, `<validate-jwt>` మేటాడేటాను పొందడంలో విఫలమవుతుంది.  
 
-- **ఎండ్‌పాయింట్ యాక్సెసిబిలిటీ:** Spring యాప్ ఎండ్‌పాయింట్లు APIM నుండి చేరుకోగలిగేలా ఉండాలి. `--ingress external` (లేదా పోర్టల్‌లో ఇంగ్రెస్ ఎనేబుల్ చేయడం) సులభమైనది. మీరు ఇంటర్నల్ లేదా vNet-బౌండ్ ఎన్విరాన్‌మెంట్ ఎంచుకున్నట్లయితే, APIM (డిఫాల్ట్‌గా పబ్లిక్) దానిని చేరుకోకపోవచ్చు, unless అదే VNetలో ఉంచబడితే. టెస్ట్ సెటప్‌లో, APIM `.well-known` మరియు `/jwks` URLలను కాల్ చేయగలిగేలా పబ్లిక్ ఇంగ్రెస్ ప్రాధాన్యం ఇవ్వండి.
+- **ఎండ్‌పాయింట్ లభ్యత:** APIM నుంచి స్ప్రింగ్ యాప్ యొక్క ఎండ్‌పాయింట్లు చేరుకోవడాన్ని నిర్ధారించండి. సరళంగా `--ingress external` లేదా పోర్టల్ లో ఇన్‌లాగ్ ఎనేబుల్ చేయడం మేలైంది. మీరు ఇంటర్నల్ లేదా వి-నెట్ గూఢచర్యను ఎంచుకున్నట్లయితే, APIM (డిఫాల్ట్ పబ్లిక్) అదే వి-నెట్‌లో లేకపోతే అది చేరదు. టెస్ట్ సెటప్‌లో, APIM `.well-known` మరియు `/jwks` URLలను పిలవగలిగేలా పబ్లిక్ ఇన్‌లాగ్ ప్రాధాన్యత ఇవ్వండి. 
 
-- **OpenID డిస్కవరీ ఎనేబుల్ చేయడం:** డిఫాల్ట్‌గా, Spring Authorization Server `/.well-known/openid-configuration`ని OIDC ఎనేబుల్ చేయకపోతే ఎక్స్‌పోజ్ చేయదు. మీ సెక్యూరిటీ కాన్ఫిగరేషన్‌లో `.oidc(Customizer.withDefaults())` చేర్చడం నిర్ధారించుకోండి (పైన చూడండి) తద్వారా ప్రొవైడర్ కాన్ఫిగరేషన్ ఎండ్‌పాయింట్ యాక్టివ్ అవుతుంది ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). లేకపోతే APIM యొక్క `<openid-config>` కాల్ 404 వస్తుంది.
+- **OpenID డిస్కవరీ ఎనేబుల్ చేయడం:** డిఫాల్ట్‌గా స్ప్రింగ్ అథారైజేషన్ సర్వర్ `/.well-known/openid-configuration`ని ప్రదర్శించదు, OIDC ఎనేబుల్ చేసినప్పుడు మాత్రమే అవుతుంది. ప్రొవైడర్ కంఫిగరేషన్ ఎండ్‌పాయింట్ సక్రియం కావటానికి `.oidc(Customizer.withDefaults())` మీ సెక్యూరిటీ కాన్ఫిగ్‌లో చేర్చండి (పైన చూడండి) ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). లేకపోతే APIM `<openid-config>` కాల్ 404 ఇస్తుంది.
 
-- **Audience క్లెయిమ్:** Spring డిఫాల్ట్ ప్రవర్తన `aud` క్లెయిమ్‌ను క్లయింట్ IDగా సెట్ చేయడం. APIM యొక్క `<audience>` చెక్ ఫెయిల్ అయితే, టోకెన్‌ను కస్టమైజ్ చేయవలసి ఉంటుంది (పైన చూపినట్లుగా) లేదా APIM పాలసీని సర్దుబాటు చేయండి. JWTలో audience మీరు `<audience>`లో కాన్ఫిగర్ చేసినదానికి సరిపోవాలి.
+- **ఆడియన్స్ క్లైమ్:** స్ప్రింగ్ డిఫాల్ట్ ప్రవర్తన `aud` క్లైమ్‌ను క్లయింట్ IDగా సెట్ చేస్తుంది. APIM `<audience>` చెక్ ఫెయిలయితే, టోకెన్‌ను కస్టమైజ్ చేయాలసి ఉంటుంది (పైన చూపినట్టు) లేదా APIM పాలసీని సరిచూడండి. JWTలో ఉన్న ఆడియన్స్ `<audience>`లో ఉన్నదిగా ఉండాలి. 
 
-- **JSON మెటాడేటా పార్సింగ్:** OpenID కాన్ఫిగరేషన్ JSON సరైనది కావాలి. Spring డిఫాల్ట్ కాన్ఫిగరేషన్ ఒక స్టాండర్డ్ OIDC మెటాడేటా డాక్యుమెంట్‌ను ఉత్పత్తి చేస్తుంది. దానిలో సరైన `issuer` మరియు `jwks_uri` ఉన్నాయో నిర్ధారించుకోండి. మీరు Springని ప్రాక్సీ లేదా పాత్-ఆధారిత రూట్ వెనుక హోస్ట్ చేస్తే, ఈ మెటాడేటాలో URLలను డబుల్ చెక్ చేయండి. APIM ఈ విలువలను అలాగే ఉపయోగిస్తుంది.
+- **JSON మేటాడేటా పార్సింగ్:** OpenID కంఫిగరేషన్ JSON సరైనదిగా ఉండాలి. స్ప్రింగ్ డిఫాల్ట్ కాన్ఫిగ్ OIDC మేటాడేటా డాక్యుమెంట్‌ను విడుదల చేస్తుంది. దీని లో సరైన `issuer` మరియు `jwks_uri` ఉండగా అనుమతించండి. మీరు స్ప్రింగ్‌ను ప్రోక్సీ లేదా పాత్ ఆధారిత మార్గం వెనుక హోస్ట్ చేస్తే, ఈ మేటాడేటాలో URLలను పర్యవేక్షించండి. APIM వాటిని అదే విధంగా ఉపయోగిస్తుంది. 
 
-- **పాలసీ ఆర్డరింగ్:** APIM పాలసీలో, `<validate-jwt>`ని బ్యాక్‌ఎండ్‌కు రూటింగ్ చేసే ముందు ఉంచండి. లేకపోతే, కాల్స్ సరైన టోకెన్ లేకుండా యాప్‌కు చేరవచ్చు. అలాగే `<validate-jwt>` `<inbound>` కింద తక్షణమే ఉండాలి (ఇంకొక కండిషన్ లోపల కాకుండా) తద్వారా APIM దాన్ని వర్తింపజేస్తుంది.
+- **పాలసీ ఆర్డరింగ్:** APIM పాలసీలో, బ్యాక్‌ఎండ్‌కి రూటింగ్‌కి ముందు `<validate-jwt>`ని ఉంచండి. లేకపోతే, కాల్స్ మీ యాప్‌కు సరైన టోకెన్ లేకుండా చేరవచ్చు. అలాగే `<validate-jwt>` `<inbound>` కిందనే ఉండాలి (ఇంకో షరతు లోపల కాకుండా) APIM దీనిని వర్తింపజేస్తుంది.
 
-పై దశలను అనుసరించడం ద్వారా, మీరు Spring AI MCP సర్వర్‌ను Azure కంటైనర్ యాప్స్‌లో నడిపించి, Azure API Management ద్వారా వచ్చే OAuth2 JWTలను కనిష్ట పాలసీతో ధృవీకరించవచ్చు. ముఖ్యాంశాలు: Spring Auth ఎండ్‌పాయింట్లను TLSతో ప్రజలకు అందుబాటులో ఉంచడం, OIDC డిస్కవరీని ఎనేబుల్ చేయడం, APIM యొక్క `validate-jwt`ని OpenID కాన్ఫిగ్ URLకు పాయింట్ చేయడం (JWKS ఆటోమేటిక్‌గా పొందేందుకు). ఇది డెవ్/టెస్ట్ వాతావరణానికి అనుకూలం; ప్రొడక్షన్ కోసం సరైన సీక్రెట్ నిర్వహణ, టోకెన్ లైఫ్‌టైమ్స్, JWKSలో కీలు రొటేట్ చేయడం వంటి అంశాలను పరిగణించండి.
-**సూచనలు:** డిఫాల్ట్ ఎండ్పాయింట్ల కోసం Spring Authorization Server డాక్స్ చూడండి ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)) మరియు OIDC కాన్ఫిగరేషన్ కోసం ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)); `validate-jwt` ఉదాహరణల కోసం Microsoft APIM డాక్స్ చూడండి ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)); మరియు డిప్లాయ్‌మెంట్ మరియు సర్టిఫికెట్ల కోసం Azure Container Apps డాక్స్ చూడండి ([Deploy Java Spring Boot apps to Azure Container Apps - Java on Azure | Microsoft Learn](https://learn.microsoft.com/en-us/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps#:~:text=Now%20you%20can%20deploy%20your,CLI%20command)) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)).
+పై స్టెప్స్ పాటించడం ద్వారా మీరు మీ స్ప్రింగ్ AI MCP సర్వర్‌ను ఆజ్యూర్ కంటైనర్ యాప్స్‌లో నడిపించి, ఆజ్యూర్ API మేనేజ్‌మెంట్ ద్వారా సులభ పాలసీతో OAuth2 JWTలు ధృవీకరించవచ్చు. ముఖ్యాంశాలు: స్ప్రింగ్ అథ్ ఎండ్‌పాయింట్లను TLSతో ప్రజలకు అందుబాటులో ఉండేలా చేయండి, OIDC డిస్కవరీని ఎనేబుల్ చేయండి, మరియు APIM యొక్క `validate-jwt`ను OpenID కంఫిగ్ URL పాయింట్ చేయండి (JWKS ఆటోమాటిక్‌గా తెస్తుంది). ఇది డెవ్/టెస్ట్ పరిసరాలకు అనుకూలంగా ఉంటుంది; ప్రొడక్షన్‌కు సరైన సీక్రెట్ నిర్వహణ, టోకెన్ వ్యవధులు మరియు JWKSలో కీలు తిప్పుకోవడం వంటి అంశాలు పరిగణించండి. 
+
+
+**సూచనలు:** డిఫాల్ట్ ఎండ్‌పాయింట్ల కోసం Spring Authorization Server డాక్స్ చూడండి ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)) మరియు OIDC సెటప్ కోసం ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)); `validate-jwt` ఉదాహరణల కోసం Microsoft APIM డాక్స్ చూడండి ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)); మరియు డిప్లయ్‌మెంట్ మరియు సర్టిఫికెట్ల కోసం Azure Container Apps డాక్స్ చూడండి ([Deploy Java Spring Boot apps to Azure Container Apps - Java on Azure | Microsoft Learn](https://learn.microsoft.com/en-us/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps#:~:text=Now%20you%20can%20deploy%20your,CLI%20command)) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)).
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**అస్పష్టత**:  
-ఈ పత్రాన్ని AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నించినప్పటికీ, ఆటోమేటెడ్ అనువాదాల్లో పొరపాట్లు లేదా తప్పిదాలు ఉండవచ్చు. మూల పత్రం దాని స్వదేశీ భాషలో అధికారిక మూలంగా పరిగణించాలి. ముఖ్యమైన సమాచారానికి, ప్రొఫెషనల్ మానవ అనువాదం సిఫార్సు చేయబడుతుంది. ఈ అనువాదం వాడకం వల్ల కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారుల బాధ్యత మేము తీసుకోము.
+**అస్వీకరణ**:
+ఈ పత్రం AI అనువాద సేవ [Co-op Translator](https://github.com/Azure/co-op-translator) ఉపయోగించి అనువదించబడింది. మేము ఖచ్చితత్వానికి ప్రయత్నిస్తున్నప్పటికీ, ఆటోమేటెడ్ అనువాదాలు తప్పులు లేదా అసమగ్రతలను కలిగి ఉండవచ్చు. దాని స్వదేశ భాషలో ఉన్న అసలు పత్రాన్ని అధికారం కలిగిన మూలంగా పరిగణించాలి. కీలకమైన సమాచారం కోసం, ప్రొఫెషనల్ మానవ అనువాదాన్ని సిఫారసు చేస్తాము. ఈ అనువాదం ఉపయోగం వల్ల కలిగే ఏవైనా అపార్థాలు లేదా తప్పుదారులు కోసం మేము బాధ్యత వహించము.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

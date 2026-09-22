@@ -1,66 +1,82 @@
-# MCP Özel Taşıma Yöntemleri - İleri Düzey Uygulama Rehberi
+# MCP Özel Taşıyıcıları - İleri Düzey Uygulama Kılavuzu
 
-Model Context Protocol (MCP), özel işletme ortamları için özel uygulamalara olanak tanıyan esnek taşıma mekanizmaları sağlar. Bu ileri düzey rehber, ölçeklenebilir, bulut tabanlı MCP çözümleri oluşturmak için Azure Event Grid ve Azure Event Hubs kullanarak özel taşıma uygulamalarını pratik örneklerle inceler.
+Model Bağlam Protokolü (MCP), özel ortamlar için özel taşıyıcı uygulamalarına izin verir.
+Bu ileri düzey kılavuz, mimari desenler olarak Azure Event Grid ve
+Azure Event Hubs'ı inceler. Bunlar standart MCP taşıyıcıları değildir
+ve her iki uç noktanın özel eşleme üzerinde anlaşmasını gerektirir.
 
-> **İleriye Bakış:** bu rehber, oturum sırasının oturum başına korunması gerektiği **MCP Spesifikasyonu 2025-11-25**'e göre yazılmıştır (aşağıdaki Mesaj Protokolüne bakınız). `2026-07-28` sürüm adayı, protokol seviyesinde oturum yapısını tamamen kaldırmakta ve geçitlerin ve özel taşıma yöntemlerinin oturum yerine istek başına yönlendirme yapabilmesi için `Mcp-Method`/`Mcp-Name` başlıklarını gerektirmektedir. Ayrıntılar için [MCP'de Neler Değişiyor: 2026-07-28 Sürüm Adayı](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md) sayfasına bakınız.
+> **MCP `2026-07-28` kapsamı:** mevcut protokolün protokol seviyesi
+> oturumları yoktur, bu nedenle özel taşıyıcılar oturum bağımlılığına veya
+> oturum başına sıralanmaya dayanamaz. `Mcp-Method` ve koşullu `Mcp-Name` başlıkları
+> standart Streamable HTTP taşıyıcısının gereklilikleridir; HTTP olmayan bir taşıyıcı,
+> aracılar JSON-RPC gövdesini çözmeden yönlendirme yapacaksa eşdeğer, açıkça üzerinde
+> anlaşılan bir eşlemeye ihtiyaç duyar. Bkz.
+> [MCP'deki Değişiklikler: 2026-07-28 Spesifikasyonu](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Giriş
 
-MCP'nin standart taşıma yöntemleri (stdio ve HTTP akışı) çoğu kullanım durumunu karşılarken, işletme ortamları genellikle geliştirilmiş ölçeklenebilirlik, güvenilirlik ve mevcut bulut altyapısıyla entegrasyon için özel taşıma mekanizmalarına ihtiyaç duyar. Özel taşıma yöntemleri, MCP'nin eşzamansız iletişim, olay odaklı mimariler ve dağıtık işleme için bulut yerel mesajlaşma hizmetlerinden yararlanmasını sağlar.
+MCP'nin standart taşıyıcıları stdio ve Streamable HTTP'dir. Bazı kurumsal
+ortamlar, mevcut mesajlaşma altyapısıyla bütünleşmek için özel bir eşleme kullanır,
+ancak bu, yalnızca standart taşıyıcıları uygulayan MCP ana bilgisayarları ve
+SDK'lar ile birlikte çalışabilirliği azaltabilir.
 
-Bu ders, en son MCP spesifikasyonu (2025-11-25), Azure mesajlaşma hizmetleri ve yerleşik işletme entegrasyon kalıplarına dayalı ileri düzey taşıma uygulamalarını incelemektedir.
+Bu ders, MCP Spesifikasyonu `2026-07-28`'in durumsuz gereksinimlerini
+Azure mesajlaşma hizmetlerine ve yerleşik kurumsal entegrasyon
+desenlerine uygular.
 
-### **MCP Taşıma Mimarisi**
+### **MCP Taşıyıcı Mimarisi**
 
-**MCP Spesifikasyonu (2025-11-25) temelinde:**
+**MCP Spesifikasyonu `2026-07-28`'den:**
 
-- **Standart Taşıma Yöntemleri**: stdio (önerilen), HTTP akışı (uzak senaryolar için)
-- **Özel Taşıma Yöntemleri**: MCP mesaj alışveriş protokolünü uygulayan herhangi bir taşıma
-- **Mesaj Formatı**: MCP'ye özgü uzantılarla JSON-RPC 2.0
-- **İki Yönlü İletişim**: Bildirimler ve yanıtlar için tam çift yönlü iletişim gereklidir
+- **Standart Taşıyıcılar**: stdio ve Streamable HTTP
+- **Özel Taşıyıcılar**: İsteğe bağlı, iki uç noktanın üzerinde anlaştığı uygulamaya özgü eşlemeler
+
+- **Mesaj Formatı**: MCP'ye özgü uzantılar içeren JSON-RPC 2.0
+- **Kendi Kendine Yeterli İstekler**: İstekler arasında durumu taşımak için protokol oturumu veya el sıkışma yoktur
+
 
 ## Öğrenme Hedefleri
 
-Bu ileri düzey dersi tamamladıktan sonra şunları yapabileceksiniz:
+Bu ileri düzey dersin sonunda şunları yapabileceksiniz:
 
-- **Özel Taşıma Gereksinimlerini Anlamak**: MCP protokolünü herhangi bir taşıma katmanı üzerinde uygular ve uyumluluğu sağlar
-- **Azure Event Grid Taşıma Oluşturmak**: Sunucusuz ölçeklenebilirlik için Azure Event Grid ile olay odaklı MCP sunucuları oluşturmak
-- **Azure Event Hubs Taşıma Uygulamak**: Gerçek zamanlı akış için Azure Event Hubs kullanarak yüksek verimli MCP çözümleri tasarlamak
-- **İşletme Kalıplarını Uygulamak**: Özel taşıma yöntemlerini mevcut Azure altyapısı ve güvenlik modelleriyle entegre etmek
-- **Taşıma Güvenilirliğini Sağlamak**: İşletme senaryoları için mesaj dayanıklılığı, sıralama ve hata yönetimini uygulamak
-- **Performansı Optimize Etmek**: Ölçek, gecikme süresi ve throughput gereksinimleri için taşıma çözümleri tasarlamak
+- **Özel Taşıyıcı Gereksinimlerini Anlama**: MCP protokolunu her taşıma katmanı üzerinde uygular ve uyumluluğu sağlar
+- **Azure Event Grid Taşıyıcısı Oluşturma**: Azure Event Grid kullanarak olay tabanlı MCP sunucuları ile sunucusuz ölçeklenebilirlik sağlama
+- **Azure Event Hubs Taşıyıcısı Uygulama**: Gerçek zamanlı akış için Azure Event Hubs kullanarak yüksek verimli MCP çözümleri tasarlama
+- **Kurumsal Desenleri Uygulama**: Özel taşıyıcıları mevcut Azure altyapısı ve güvenlik modelleriyle bütünleştirme
+- **Taşıyıcı Güvenilirliğini Yönetme**: Kurumsal senaryolar için ileti dayanıklılığı, sıralama ve hata yönetimi uygulama
+- **Performansı Optimize Etme**: Ölçek, gecikme ve verimlilik gereksinimleri için taşıyıcı çözümleri tasarlama
 
-## **Taşıma Gereksinimleri**
+## **Taşıyıcı Gereksinimleri**
 
-### **MCP Spesifikasyonundan Temel Gereksinimler (2025-11-25):**
+### **MCP `2026-07-28` için Temel Gereksinimler**
 
 ```yaml
 Message Protocol:
   format: "JSON-RPC 2.0 with MCP extensions"
-  bidirectional: "Full duplex communication required"
-  ordering: "Message ordering must be preserved per session"
+    correlation: "Match responses to requests by JSON-RPC id"
+    state: "Each request must be self-contained"
   
 Transport Layer:
   reliability: "Transport MUST handle connection failures gracefully"
   security: "Transport MUST support secure communication"
-  identification: "Each session MUST have unique identifier"
+    identification: "Carry protocol version, capabilities, and identity per request"
   
 Custom Transport:
-  compliance: "MUST implement complete MCP message exchange"
+    compliance: "Map the selected MCP revision without adding session assumptions"
   extensibility: "MAY add transport-specific features"
-  interoperability: "MUST maintain protocol compatibility"
+    interoperability: "Both endpoints MUST agree on the custom mapping"
 ```
 
-## **Azure Event Grid Taşıma Uygulaması**
+## **Azure Event Grid Taşıyıcı Uygulaması**
 
-Azure Event Grid, olay odaklı MCP mimarileri için ideal olan sunucusuz olay yönlendirme hizmeti sunar. Bu uygulama, ölçeklenebilir, gevşek bağlı MCP sistemleri oluşturmayı göstermektedir.
+Azure Event Grid, olay tabanlı MCP mimarileri için idealdir ve sunucusuz olay yönlendirme servisi sunar. Bu uygulama, ölçeklenebilir, gevşek bağlı MCP sistemleri oluşturmayı gösterir.
 
 ### **Mimari Genel Bakış**
 
 ```mermaid
 graph TB
     Client[MCP İstemcisi] --> EG[Azure Olay Izgarası]
-    EG --> Server[MCP Sunucu İşlevi]
+    EG --> Server[MCP Sunucu Fonksiyonu]
     Server --> EG
     EG --> Client
     
@@ -72,7 +88,7 @@ graph TB
     end
 ```
 
-### **C# Uygulaması - Event Grid Taşıma**
+### **C# Uygulaması - Event Grid Taşıyıcı**
 
 ```csharp
 using Azure.Messaging.EventGrid;
@@ -144,7 +160,7 @@ public async Task<IActionResult> HandleEventGridMessage(
 }
 ```
 
-### **TypeScript Uygulaması - Event Grid Taşıma**
+### **TypeScript Uygulaması - Event Grid Taşıyıcı**
 
 ```typescript
 import { EventGridPublisherClient, AzureKeyCredential } from "@azure/eventgrid";
@@ -178,9 +194,9 @@ export class EventGridMcpTransport implements McpTransport {
         await this.publisher.sendEvents([event]);
     }
     
-    // Azure Functions ile olay odaklı alma
+    // Azure Functions aracılığıyla olay odaklı alma
     onMessage(handler: (message: McpMessage) => Promise<void>): void {
-        // Uygulama Azure Functions Event Grid tetikleyicisi kullanacak
+        // Uygulama Azure Functions Event Grid tetikleyicisi kullanacaktır
         // Bu, webhook alıcısı için kavramsal bir arayüzdür
     }
 }
@@ -207,7 +223,7 @@ app.eventGrid("mcpEventGridHandler", {
 });
 ```
 
-### **Python Uygulaması - Event Grid Taşıma**
+### **Python Uygulaması - Event Grid Taşıyıcı**
 
 ```python
 from azure.eventgrid import EventGridPublisherClient, EventGridEvent
@@ -256,14 +272,14 @@ def main(event: func.EventGridEvent) -> None:
         response = process_mcp_message(mcp_message)
         
         # Yanıtı Event Grid üzerinden geri gönder
-        # (Uygulama yeni bir Event Grid istemcisi oluşturur)
+        # (Uygulama yeni bir Event Grid istemcisi oluşturacaktır)
         
     except Exception as e:
         logging.error(f"Error processing MCP Event Grid message: {e}")
         raise
 ```
 
-## **Azure Event Hubs Taşıma Uygulaması**
+## **Azure Event Hubs Taşıyıcı Uygulaması**
 
 Azure Event Hubs, düşük gecikme ve yüksek mesaj hacmi gerektiren MCP senaryoları için yüksek verimli, gerçek zamanlı akış yetenekleri sunar.
 
@@ -287,7 +303,8 @@ graph TB
     EH --> Scaling
 ```
 
-### **C# Uygulaması - Event Hubs Taşıma**
+
+### **C# Uygulaması - Event Hubs Taşımacılığı**
 
 ```csharp
 using Azure.Messaging.EventHubs;
@@ -361,7 +378,7 @@ public class EventHubsMcpTransport : IMcpTransport, IDisposable
 }
 ```
 
-### **TypeScript Uygulaması - Event Hubs Taşıma**
+### **TypeScript Uygulaması - Event Hubs Taşımacılığı**
 
 ```typescript
 import { 
@@ -441,7 +458,7 @@ export class EventHubsMcpTransport implements McpTransport {
 }
 ```
 
-### **Python Uygulaması - Event Hubs Taşıma**
+### **Python Uygulaması - Event Hubs Taşımacılığı**
 
 ```python
 from azure.eventhub import EventHubProducerClient, EventHubConsumerClient
@@ -477,7 +494,7 @@ class EventHubsMcpTransport:
         event_data.properties = {
             "messageType": message.get("method", "response"),
             "messageId": message.get("id"),
-            "timestamp": "2025-01-14T10:30:00Z"  # Gerçek zaman damgasını kullan
+            "timestamp": "2025-01-14T10:30:00Z"  # Gerçek zaman damgası kullan
         }
         
         async with self.producer:
@@ -505,14 +522,14 @@ class EventHubsMcpTransport:
         """Internal event handler wrapper"""
         async def handle_event(partition_context, event):
             try:
-                # Event Hubs etkinliğinden MCP mesajını ayrıştır
+                # Event Hubs olayından MCP mesajını ayrıştır
                 message_body = event.body_as_str(encoding='UTF-8')
                 mcp_message = json.loads(message_body)
                 
                 # MCP mesajını işle
                 await handler(mcp_message)
                 
-                # En az bir kez teslimat için kontrol noktasını güncelle
+                # En az bir kez teslimat için checkpoint güncelle
                 await partition_context.update_checkpoint(event)
                 
             except Exception as e:
@@ -527,7 +544,7 @@ class EventHubsMcpTransport:
         await self.consumer.close()
 ```
 
-## **İleri Düzey Taşıma Kalıpları**
+## **Gelişmiş Taşımacılık Desenleri**
 
 ### **Mesaj Dayanıklılığı ve Güvenilirliği**
 
@@ -556,7 +573,7 @@ public class ReliableTransportWrapper : IMcpTransport
 }
 ```
 
-### **Taşıma Güvenliği Entegrasyonu**
+### **Taşımacılık Güvenliği Entegrasyonu**
 
 ```csharp
 // Integrating Azure Key Vault for transport security
@@ -578,7 +595,7 @@ public class SecureTransportFactory
 }
 ```
 
-### **Taşıma İzleme ve Gözlemlenebilirlik**
+### **Taşımacılık İzleme ve Görünürlüğü**
 
 ```csharp
 // Adding telemetry to custom transports
@@ -617,11 +634,11 @@ public class ObservableTransport : IMcpTransport
 }
 ```
 
-## **İşletme Entegrasyon Senaryoları**
+## **Kurumsal Entegrasyon Senaryoları**
 
 ### **Senaryo 1: Dağıtık MCP İşleme**
 
-Azure Event Grid kullanarak MCP isteklerini birden çok işleme düğümüne dağıtma:
+MCP isteklerinin birden çok işleme düğümü arasında dağıtımı için Azure Event Grid kullanımı:
 
 ```yaml
 Architecture:
@@ -637,7 +654,7 @@ Benefits:
 
 ### **Senaryo 2: Gerçek Zamanlı MCP Akışı**
 
-Azure Event Hubs kullanarak yüksek frekanslı MCP etkileşimleri:
+Yüksek frekanslı MCP etkileşimleri için Azure Event Hubs kullanımı:
 
 ```yaml
 Architecture:
@@ -651,9 +668,9 @@ Benefits:
   - Built-in partitioning for parallel processing
 ```
 
-### **Senaryo 3: Hibrit Taşıma Mimarisi**
+### **Senaryo 3: Hibrit Taşımacılık Mimarisi**
 
-Farklı kullanım durumları için birden çok taşıma yöntemini birleştirme:
+Farklı kullanım durumları için birden çok taşımacılığın birleştirilmesi:
 
 ```csharp
 public class HybridMcpTransport : IMcpTransport
@@ -679,7 +696,7 @@ public class HybridMcpTransport : IMcpTransport
 
 ## **Performans Optimizasyonu**
 
-### **Event Grid için Mesaj Toplama**
+### **Event Grid için Mesaj Gruplama**
 
 ```csharp
 public class BatchingEventGridTransport : IMcpTransport
@@ -739,9 +756,9 @@ public class PartitionedEventHubsTransport : IMcpTransport
 }
 ```
 
-## **Özel Taşıma Yöntemlerini Test Etme**
+## **Özel Taşımacılıkların Test Edilmesi**
 
-### **Test Doubles ile Birim Testleri**
+### **Test Çiftleri ile Birim Testi**
 
 ```csharp
 [Test]
@@ -768,7 +785,7 @@ public async Task EventGridTransport_SendMessage_PublishesCorrectEvent()
 }
 ```
 
-### **Azure Test Containers ile Entegrasyon Testleri**
+### **Azure Test Containers ile Entegrasyon Testi**
 
 ```csharp
 [Test]
@@ -801,33 +818,33 @@ public async Task EventHubsTransport_IntegrationTest()
 }
 ```
 
-## **En İyi Uygulamalar ve Rehberler**
+## **En İyi Uygulamalar ve Kılavuzlar**
 
-### **Taşıma Tasarım İlkeleri**
+### **Taşımacılık Tasarım İlkeleri**
 
-1. **İdempotans**: Çift mesajların işlenmesini kontrol etmek için mesaj işlemenin idempotent olmasını sağlamak
-2. **Hata Yönetimi**: Kapsamlı hata yönetimi ve dead letter kuyruğu uygulamak
-3. **İzleme**: Detaylı telemetri ve sağlık kontrolleri eklemek
-4. **Güvenlik**: Yönetilen kimlikler ve en az ayrıcalık erişimi kullanmak
-5. **Performans**: Spesifik gecikme ve throughput gereksinimlerine göre tasarım yapmak
+1. **İdempotentlik**: Mesaj işleme işlemlerinin çoğaltmaları yönetebilmesi için idempotent olmasını sağlama
+2. **Hata Yönetimi**: Kapsamlı hata yönetimi ve ölü mektup kuyruğu uygulama
+3. **İzleme**: Ayrıntılı telemetri ve sağlık kontrolleri ekleme
+4. **Güvenlik**: Yönetilen kimlikler ve en az ayrıcalıklı erişim kullanma
+5. **Performans**: Spesifik gecikme ve verimlilik gereksinimlerine göre tasarım yapma
 
-### **Azure'ye Özgü Öneriler**
+### **Azure-Spesifik Öneriler**
 
-1. **Yönetilen Kimlik Kullanımı**: Üretimde bağlantı dizelerini kullanmaktan kaçınmak
-2. **Devre Kesicileri Uygulamak**: Azure hizmet kesintilerine karşı koruma sağlamak
-3. **Maliyetleri İzlemek**: Mesaj hacmi ve işleme maliyetlerini takip etmek
-4. **Ölçek Planlaması**: Erken aşamada bölümlendirme ve ölçeklendirme stratejileri tasarlamak
-5. **Kapsamlı Testler Yapmak**: Geniş kapsamlı testler için Azure DevTest Labs kullanmak
+1. **Yönetilen Kimlik Kullanımı**: Üretimde bağlantı dizesi kullanmaktan kaçının
+2. **Devre Kesiciler Uygulama**: Azure servis kesintilerine karşı koruma sağlama
+3. **Maliyetleri İzleme**: Mesaj hacmi ve işleme maliyetlerini takip etme
+4. **Ölçekleme İçin Planlama**: Bölümlendirme ve ölçeklendirme stratejilerini erken planlama
+5. **Kapsamlı Test**: Kapsamlı test için Azure DevTest Labs kullanma
 
 ## **Sonuç**
 
-Özel MCP taşıma yöntemleri, Azure mesajlaşma hizmetlerini kullanarak güçlü işletme senaryolarını mümkün kılar. Event Grid veya Event Hubs taşıma yöntemlerini uygulayarak, mevcut Azure altyapısıyla sorunsuz entegrasyon sağlayan ölçeklenebilir ve güvenilir MCP çözümleri oluşturabilirsiniz.
+Özel MCP taşımacılıkları, Azure'un mesajlaşma servislerini kullanarak güçlü kurumsal senaryoları mümkün kılar. Event Grid veya Event Hubs taşımacılıklarını uygulayarak, mevcut Azure altyapısıyla sorunsuz entegre olan ölçeklenebilir, güvenilir MCP çözümleri oluşturabilirsiniz.
 
-Verilen örnekler, MCP protokol uyumluluğunu ve Azure en iyi uygulamalarını korurken özel taşıma yöntemleri uygulamak için üretime hazır kalıpları göstermektedir.
+Sağlanan örnekler, MCP protokolü uyumluluğunu ve Azure en iyi uygulamalarını korurken özel taşımacılıkları uygulamak için üretime hazır desenleri gösterir.
 
 ## **Ek Kaynaklar**
 
-- [MCP Spesifikasyonu 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Azure Event Grid Belgeleri](https://docs.microsoft.com/azure/event-grid/)
 - [Azure Event Hubs Belgeleri](https://docs.microsoft.com/azure/event-hubs/)
 - [Azure Functions Event Grid Tetikleyici](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid)
@@ -837,8 +854,10 @@ Verilen örnekler, MCP protokol uyumluluğunu ve Azure en iyi uygulamalarını k
 
 ---
 
-> *Bu rehber, üretim MCP sistemleri için pratik uygulama kalıplarına odaklanmaktadır. Taşıma uygulamalarını kendi özel gereksinimlerinize ve Azure servis limitlerine karşı doğrulamayı unutmayın.*
-> **Geçerli Standart**: Bu rehber, [MCP Spesifikasyonu 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/) taşıma gereksinimlerini ve işletme ortamları için ileri taşıma kalıplarını yansıtmaktadır.
+> *Bu rehber özel mimari desenlere odaklanır. Protokolü doğrulayın
+
+> [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) karşısında davranış,
+> ve Azure kullanımını gereksinimleriniz ve servis sınırlarınız doğrultusunda doğrulayın.*
 
 
 ## Sırada Ne Var

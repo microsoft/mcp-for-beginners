@@ -1,6 +1,11 @@
-# Spring AI MCP பயன்பாட்டை Azure Container Apps-க்கு வெளியிடுதல்
+# Spring AI MCP பயன்பாட்டை Azure Container Apps-க்கு செருகுதல்
 
-([Spring AI MCP சேவையகங்களை OAuth2 மூலம் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *படம்: Spring Authorization Server மூலம் பாதுகாக்கப்பட்ட Spring AI MCP சேவையகம். இந்த சேவையகம் கிளையண்ட்களுக்கு அணுகல் டோக்கன்களை வழங்குகிறது மற்றும் வரும் கோரிக்கைகளில் அவற்றை சரிபார்க்கிறது (மூலம்: Spring blog) ([Spring AI MCP சேவையகங்களை OAuth2 மூலம் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP சேவையகத்தை வெளியிட, அதை ஒரு கன்டெய்னராக உருவாக்கி, Azure Container Apps-இல் வெளிப்புற ingress-ஐ பயன்படுத்தவும். உதாரணமாக, Azure CLI-யை பயன்படுத்தி நீங்கள் இயக்கலாம்:
+> [!WARNING]
+> இந்த இணைந்த அங்கீகாரம்/வள சேவையகத்தை கற்பது மற்றும்
+> மேம்பாடு/தேர்வு பயன்பாட்டிற்காக எதிர்பார்க்கப்படுகிறது. உற்பத்தி அமைப்புகள் தனிப்பட்ட அடையாள வழங்குநர்,
+> நிலைத்த கையொப்ப விசைகள் மற்றும் நிர்வகிக்கப்பட்ட ரகசிய அங்காடியில் சேமிக்கப்பட்ட கடவுச்சொற்களைப் பயன்படுத்த வேண்டும்.
+
+ ([Spring AI MCP சேவையகங்களை OAuth2 உடன் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2)) *படம்: Spring AI MCP சேவையகம் Spring Authorization Server உதவியுடன் பாதுகாக்கப்பட்டது. இந்த சேவையகம் கடவுச்சீட்டுகளை கிளையன்ட்களுக்கு வழங்கி வரும் மற்றும் வரும் கோரிக்கைகளில் அவற்றை சரிபார்க்கிறது (மூலம்: Spring blog) ([Spring AI MCP சேவையகங்களை OAuth2 உடன் பாதுகாப்பது](https://spring.io/blog/2025/04/02/mcp-server-oauth2#:~:text=,server%20with%20the%20MCP%20inspector)).* Spring MCP சேவையகத்தை நிலையாக்க, அதை ஒரு கன்டெய்னராக கட்டி Azure Container Apps உடன் வெளிப்புற நுழைவுடன் பயன்படுத்தவும். உதாரணமாக, Azure CLI மூலம் கீழ்க்கண்ட கட்டளை இயக்கலாம்:
 
 ```bash
 az containerapp up \
@@ -14,21 +19,19 @@ az containerapp up \
   --query properties.configuration.ingress.fqdn
 ```
 
-இது HTTPS-ஐ இயக்கியுள்ள பொதுவாக அணுகக்கூடிய Container App-ஐ உருவாக்குகிறது (Azure `*.azurecontainerapps.io` இயல்புநிலை டொமைனுக்கு இலவச TLS சான்றிதழை வழங்குகிறது ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). கட்டளையின் வெளியீட்டில் பயன்பாட்டின் FQDN (எ.கா. `my-mcp-app.eastus.azurecontainerapps.io`) அடங்கும், இது **issuer URL** அடிப்படையாக மாறுகிறது. HTTP ingress இயக்கப்பட்டிருப்பதை உறுதிப்படுத்தவும் (மேலே உள்ளபடி) APIM பயன்பாட்டை அணுக முடியும். ஒரு சோதனை/மேம்பாட்டு அமைப்பில், `--ingress external` விருப்பத்தை பயன்படுத்தவும் (அல்லது [Microsoft docs](https://learn.microsoft.com/azure/container-apps/custom-domains-managed-certificates) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)) படி TLS உடன் தனிப்பயன் டொமைனை இணைக்கவும்). எந்தவொரு உணர்திறனான பண்புகளையும் (உதாரணமாக OAuth கிளையண்ட் ரகசியங்கள்) Container Apps ரகசியங்களில் அல்லது Azure Key Vault-இல் சேமிக்கவும், அவற்றை சூழல் மாறிகள் ஆக கன்டெய்னரில் வரைபடமாக்கவும்.
+இது HTTPS இயல்பூட்டப்பட்ட பொதுமுக கன்டெய்னர் பயன்பாட்டை உருவாக்கும் (Azure `*.azurecontainerapps.io` இயல்புநிலை டொமைனுக்கான இலவச TLS சான்றிதழை வழங்குகிறது ([Azure Container Apps இல் தனிப்பயன் டொமைன் பெயர்கள் மற்றும் இலவச நிர்வகிக்கப்பட்ட சான்றிதழ்கள் | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). கட்டளையின் வெளியீடு பயன்பாட்டின் FQDN-ஐ (உதா: `my-mcp-app.eastus.azurecontainerapps.io`) காட்டும், இது **issuer URL** அடிப்படையாக இருக்கும். HTTP நுழைவுத் திறவு இயல்பூட்டப்பட்டுள்ளதாக உறுதி செய்யவும் (மேலே போல) எனவே APIM பயன்பாட்டை அணுக முடியும். சோதனை/மேம்பாட்டு அமைப்பில் `--ingress external` விருப்பத்தை பயன்படுத்தவும் (அல்லது [Microsoft கோப்புக்கள்](https://learn.microsoft.com/azure/container-apps/custom-domains-managed-certificates) அடி TLS கொண்ட தனிப்பயன் டொமைனுடன் இணைக்கவும் ([Azure Container Apps இல் தனிப்பயன் டொமைன் பெயர்கள் மற்றும் இலவச நிர்வகிக்கப்பட்ட சான்றிதழ்கள் | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements))). எந்தவொரு உணர்ச்சிபூர்வமான பண்புகளை (உதா: OAuth கிளையன்ட் ரகசியங்கள்) Container Apps ரகசியங்களில் அல்லது Azure Key Vault-ல் சேமித்து அவற்றை கன்டெய்னரில் சுற்றுச்சூழல் மாறிலிகளாக அமைக்கவும்.
 
-## Spring Authorization Server-ஐ அமைத்தல்
+## Spring Authorization Server ஐ கட்டமைக்கும் முறை
 
-உங்கள் Spring Boot பயன்பாட்டின் குறியீட்டில், Spring Authorization Server மற்றும் Resource Server தொடக்கங்களை சேர்க்கவும். ஒரு `RegisteredClient` (dev/test-இல் `client_credentials` வழங்குவதற்காக) மற்றும் ஒரு JWT முக்கிய மூலத்தை அமைக்கவும். உதாரணமாக, `application.properties`-இல் நீங்கள் அமைக்கலாம்:
+உங்கள் Spring Boot பயன்பாட்டின் குறியீட்டில், Spring Authorization Server மற்றும் Resource Server ஸ்டார்டர்களை சேர்க்கவும். `RegisteredClient` (dev/test இல் `client_credentials` க்கான) மற்றும் JWT விசை ஊற்றினை அமைக்கவும். உதாரணமாக, `application.properties` இல் நீங்கள் இதைப் பொருந்தலாம்:
 
 ```properties
 # OAuth2 client (for testing token issuance)
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-id=mcp-client
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-secret={noop}secret
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.authorization-grant-types=client_credentials
-spring.security.oauth2.authorizationserver.client.oidc-client.registration.client-authentication-methods=client_secret_basic
+demo.oauth.client-id=${OAUTH_CLIENT_ID:mcp-client}
+demo.oauth.client-secret=${OAUTH_CLIENT_SECRET}
 ```
 
-Authorization Server மற்றும் Resource Server-ஐ ஒரு பாதுகாப்பு வடிகட்டி சங்கிலியை வரையறுத்து இயக்கவும். உதாரணமாக:
+Authorization Server மற்றும் Resource Server-ஐ பாதுகாப்புக் கடத்தலுக்கான சங்கிலியை வரையறுத்து இயக்கவும். உதாரணம்:
 
 ```java
 @Configuration
@@ -40,23 +43,26 @@ public class SecurityConfiguration {
         OAuth2AuthorizationServerConfigurer<HttpSecurity> authzServer = OAuth2AuthorizationServerConfigurer.authorizationServer();
         http
             .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-            // Enable the Authorization Server endpoints
+            // அங்கீகார சேவையகத்தின் முடிவுகளை செயல்படுத்தவும்
             .apply(authzServer.and())
-            // Enable the Resource Server (validate JWT on incoming requests)
+            // வளங்களை சேவையகத்தை செயல்படுத்தவும் (வருவாய் கோரிக்கைகளில் JWT ஐ உறுதிப்படுத்தவும்)
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
-            // Disable CSRF (MCP server is not browser-based)
+            // CSRF ஐ முடக்கு (MCP சேவையகம் உலாவி அடிப்படையிலல்ல)
             .csrf(csrf -> csrf.disable())
-            // Allow CORS for client demo tools
+            // கிளையெண்ட் டெமோ கருவிகளுக்கு CORS ஐ அனுமதிக்கவும்
             .cors(withDefaults());
         return http.build();
     }
 
-    // Define an in-memory client (RegisteredClient) and a JWK source:
+    // ஒரு நினைவகத்தில் உள்ள கிளையெண்டை (பதிவு செய்யப்பட்ட கிளையெண்ட்) மற்றும் ஒரு JWK மூலத்தை வரையறுக்கவும்:
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(
+        @Value("${demo.oauth.client-id}") String clientId,
+        @Value("${demo.oauth.client-secret}") String clientSecret) {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         RegisteredClient client = RegisteredClient.withId("1")
-            .clientId("mcp-client")
-            .clientSecret("{noop}secret")
+        .clientId(clientId)
+        .clientSecret(encoder.encode(clientSecret))
             .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
             .scope("mcp.read")
             .clientSettings(ClientSettings.builder().build())
@@ -67,7 +73,7 @@ public class SecurityConfiguration {
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
-        // Generate an RSA key (for dev/test, generate anew at startup)
+        // ஒரு RSA விசையை உருவாக்கவும் (வளர்ச்சி/சோதனைக்காக, துவக்கத்தில் புதியதாக உருவாக்கவும்)
         RSAKey rsaKey = new RSAKeyGenerator(2048).keyID("1").generate();
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (selector, context) -> selector.select(jwkSet);
@@ -75,45 +81,45 @@ public class SecurityConfiguration {
 }
 ```
 
-இந்த அமைப்பு இயல்புநிலை OAuth2 முடுக்கங்களை வெளிப்படுத்தும்: டோக்கன்களுக்கு `/oauth2/token` மற்றும் JSON Web Key Set-க்கு `/oauth2/jwks`. (Spring இன் `AuthorizationServerSettings` இயல்புநிலை `/oauth2/token` மற்றும் `/oauth2/jwks`-ஐ வரைபடமாக்குகிறது ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).) சேவையகம் மேலே RSA முக்கியத்தால் கையொப்பமிடப்பட்ட JWT அணுகல் டோக்கன்களை வழங்கும் மற்றும் அதன் பொது முக்கியத்தை `https://<your-app>:/oauth2/jwks`-இல் வெளியிடும்.
+இந்த அமைப்பு இயல்புநிலையில் OAuth2 முனையங்களை வெளிப்படுத்தும்: டோக்கன்களுக்கு `/oauth2/token` மற்றும் JSON இணைய அங்கங்கள் தொகுப்புக்கு `/oauth2/jwks`. (இயல்பாக Spring இன் `AuthorizationServerSettings` `/oauth2/token` மற்றும் `/oauth2/jwks` ஐ திகைச்சு அமர்த்துகிறது ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).) சேவையகம் மேலே காட்டிய RSA விசையால் கையொப்பமிடப்பட்ட JWT அணுகல் டோக்கன்களை வழங்கும் மற்றும் அதன் பொதுவான விசையை `https://<your-app>:/oauth2/jwks` இல் வெளியிடும்.
 
-**OpenID Connect கண்டுபிடிப்பை இயக்கவும்:** APIM issuer மற்றும் JWKS-ஐ தானாகவே பெற அனுமதிக்க, உங்கள் பாதுகாப்பு அமைப்பில் `.oidc(Customizer.withDefaults())` சேர்த்து OIDC வழங்குநர் கட்டமைப்பு முடுக்கத்தை இயக்கவும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). உதாரணமாக:
+**OpenID Connect கண்டுபிடிப்பை இயக்கவும்:** APIM தானாக issuer மற்றும் JWKS ஐ பெற OIDC வழங்குநர் கட்டமைப்பு முனையை `.oidc(Customizer.withDefaults())` சேர்த்து உங்கள் பாதுகாப்பு அமைப்பில் இயக்கவும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). உதாரணம்:
 
 ```java
 http
   .apply(authzServer.and())
   .securityMatcher(authzServer.getEndpointsMatcher())
   .with(authzServer, authz -> authz
-      .oidc(Customizer.withDefaults()));  // <– enables /.well-known/openid-configuration
+      .oidc(Customizer.withDefaults()));  // <– /.well-known/openid-configuration ஐ செயல்படுத்துகிறது
 ```
 
-இது `/.well-known/openid-configuration`-ஐ வெளிப்படுத்தும், இதை APIM metadata-க்கு பயன்படுத்தலாம். இறுதியாக, APIM இன் `<audiences>` சரிபார்ப்பு பாஸ் ஆகும் வகையில் JWT **audience** கோரிக்கையை தனிப்பயனாக்க விரும்பலாம். உதாரணமாக, ஒரு டோக்கன் customizer சேர்க்கவும்:
+இது `/.well-known/openid-configuration` ஐ வெளிப்படுத்தும், APIM இதைப் பயன்ப metadata க்கு பயன்படுத்தலாம். கடைசியாக, APIM இன் `<audiences>` சரிபார்ப்பை பூர்த்தி செய்ய JWT **audience** உரிமையை மாற்ற விரும்பலாம். உதாரணமாக, டோக்கன் தனிப்பயன் செயற்பாட்டை சேர்க்கவும்:
 
 ```java
 @Bean
 public OAuth2TokenCustomizer<OAuth2TokenClaimsContext> tokenCustomizer() {
     return context -> {
-        // Set a custom audience (e.g. the client ID or API identifier)
+        // தனிப்பட்ட பார்வையாளர் (எ.கா. கிளையंट் ஐடி அல்லது API அடையாளம்) அமைக்கவும்
         context.getClaims().audience(Collections.singletonList("mcp-client"));
     };
 }
 ```
 
-இது `"aud": ["mcp-client"]`-ஐ டோக்கன்களில் சேர்க்கும், இது APIM எதிர்பார்க்கும் கிளையண்ட் ஐடி அல்லது scope-ஐ பொருந்தும்.
+இது டோக்கன்களில் `"aud": ["mcp-client"]` இருக்கும் என்பதை உறுதி செய்யும், இது APIM எதிர்பார்க்கும் கிளையன்ட் ஐடி அல்லது களத்திற்கு பொருந்தும்.
 
-## டோக்கன் மற்றும் JWKS முடுக்கங்களை வெளிப்படுத்துதல்
+## Token மற்றும் JWKS முனையங்களை வெளிப்படுத்துதல்
 
-வெளியிடப்பட்ட பிறகு, உங்கள் பயன்பாட்டின் **issuer URL** `https://<app-fqdn>` ஆக இருக்கும், உதாரணமாக `https://my-mcp-app.eastus.azurecontainerapps.io`. அதன் OAuth2 முடுக்கங்கள்:
+வைப்புத்தேர்வுக்குப் பிறகு, உங்கள் பயன்பாட்டின் **issuer URL** `https://<app-fqdn>`, உதா: `https://my-mcp-app.eastus.azurecontainerapps.io` ஆகும். அதன் OAuth2 முனைகளாக:
 
-- **டோக்கன் முடுக்கம்:** `https://<app-fqdn>/oauth2/token` – கிளையண்ட்கள் இங்கு டோக்கன்களை பெறுகின்றன (client_credentials flow).
-- **JWKS முடுக்கம்:** `https://<app-fqdn>/oauth2/jwks` – JWK தொகுப்பை திருப்புகிறது (APIM கையொப்ப முக்கியங்களை பெற பயன்படுத்துகிறது).
-- **OpenID Config:** `https://<app-fqdn>/.well-known/openid-configuration` – OIDC கண்டுபிடிப்பு JSON (`issuer`, `token_endpoint`, `jwks_uri`, போன்றவை அடங்கும்).
+- **Token முனை:** `https://<app-fqdn>/oauth2/token` – இல் கிளையன்ட்கள் டோக்கன்களை பெறுவார்கள் (client_credentials ஓட்டம்).
+- **JWKS முனை:** `https://<app-fqdn>/oauth2/jwks` – JWK தொகுப்பை வழங்கும் (APIM கையொப்ப விசைகள் பெற பயன்படுத்தும்).
+- **OpenID கட்டமைப்பு:** `https://<app-fqdn>/.well-known/openid-configuration` – OIDC கண்டுபிடிப்பு JSON (உள்ளடக்கியது `issuer`, `token_endpoint`, `jwks_uri` மற்றும் பிற).
 
-APIM **OpenID configuration URL**-ஐ சுட்டிக்காட்டும், இதிலிருந்து `jwks_uri`-ஐ கண்டுபிடிக்கும். உதாரணமாக, உங்கள் Container App FQDN `my-mcp-app.eastus.azurecontainerapps.io` என்றால், APIM இன் `<openid-config url="...">` `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration`-ஐ பயன்படுத்த வேண்டும். (Spring இயல்பாக அந்த metadata-இல் `issuer`-ஐ அதே அடிப்படை URL-க்கு அமைக்கும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).)
+APIM **OpenID கட்டமைப்பு URL** நோக்கி, அதில் உள்ள `jwks_uri` ஐ கண்டுபிடிக்கும். உதா: உங்கள் Container App FQDN `my-mcp-app.eastus.azurecontainerapps.io` என்றால், APIM இன் `<openid-config url="...">` `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` ஐப் பயன்படுத்த வேண்டும். (இயல்பாக Spring அந்த metadata இல் `issuer` ஐ அதே அடிப்படை URL ஆக அமைக்கும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)).)
 
-## Azure API Management (`validate-jwt`) அமைத்தல்
+## Azure API Management ஐ கட்டமைத்தல் (`validate-jwt`)
 
-Azure APIM-இல், `<validate-jwt>` கொள்கையை பயன்படுத்தி Spring Authorization Server-இன் JWT-களை சரிபார்க்க ஒரு inbound கொள்கையை சேர்க்கவும். ஒரு எளிய அமைப்புக்கு, OpenID Connect metadata URL-ஐ பயன்படுத்தலாம். கொள்கை துணுக்கின் உதாரணம்:
+Azure APIM இல், வரும் JWT களை உங்கள் Spring Authorization Server அடிப்படையில் சரிபார்க்க `<validate-jwt>` நுழைவு கொள்கையை சேர்க்கவும். எளிய அமைப்பிற்கு OpenID Connect metadata URL பயன்படுத்தலாம். கொள்கை எடுத்துக்காட்டு:
 
 ```xml
 <inbound>
@@ -130,39 +136,43 @@ Azure APIM-இல், `<validate-jwt>` கொள்கையை பயன்ப�
 </inbound>
 ```
 
-இந்த கொள்கை APIM-க்கு Spring Auth Server-இன் OpenID configuration-ஐ பெற, அதன் JWKS-ஐ பெற மற்றும் ஒவ்வொரு டோக்கனும் நம்பகமான முக்கியத்தால் கையொப்பமிடப்பட்டதா மற்றும் சரியான audience-ஐ கொண்டதா என்பதை சரிபார்க்கச் சொல்கிறது. (`<issuers>`-ஐ தவிர்த்தால், APIM metadata-இல் உள்ள `issuer` கோரிக்கையை தானாகவே பயன்படுத்தும்.) `<audience>` உங்கள் டோக்கனில் உள்ள கிளையண்ட் ஐடி அல்லது API resource identifier-ஐ பொருந்த வேண்டும் (மேலே உள்ள உதாரணத்தில், அதை `"mcp-client"`-க்கு அமைத்தோம்). இது `<openid-config>` உடன் `validate-jwt` பயன்படுத்த Microsoft-இன் ஆவணங்களுடன் இணங்குகிறது ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)).
+இந்த கொள்கை APIM இற்கு Spring Auth Server இலிருந்து OpenID கட்டமைப்பைப் பெற, அதன் JWKS ஐ மீட்டு, ஒவ்வொரு டோக்கனும் நம்பகமான விசையால் கையொப்பமிடப்பட்டதா மற்றும் சரியான audience-வை கொண்டதா என பரிசோதிக்கச் சொல்கிறது. (`<issuers>` விட்டு வைக்கும் போது APIM தானாக metadata வழியாக `issuer` உரிமையைப் பயன்படுத்தும்.) `<audience>` உங்கள் கிளையன்ட் ஐடி அல்லது API வள அடையாளத்துடன் பொருந்த வேண்டும் (மேலே உதாரணத்தில் `"mcp-client"` ஆக அமைக்கப்பட்டது). இது Microsoft இன் `validate-jwt` மற்றும் `<openid-config>` பயன்படுத்துதலின் ஆவணங்களுக்கு உடன்படுகிறது ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)).
 
-சரிபார்ப்புக்குப் பிறகு, APIM கோரிக்கையை (மூல `Authorization` தலைப்பை உட்பட) backend-க்கு அனுப்பும். Spring பயன்பாட்டும் resource server ஆக இருப்பதால், அது டோக்கனை மீண்டும் சரிபார்க்கும், ஆனால் APIM ஏற்கனவே அதன் செல்லுபடியாக்தன்மையை உறுதிப்படுத்தியுள்ளது. (மேம்பாட்டுக்காக, நீங்கள் APIM இன் சரிபார்ப்பை நம்பி பயன்பாட்டில் கூடுதல் சரிபார்ப்புகளை முடக்கலாம், ஆனால் இரண்டையும் வைத்திருப்பது பாதுகாப்பானது.)
+சரிபார்ப்புக்குப் பிறகு, APIM கோரிக்கையை (அடங்கியது மூல `Authorization` தலைப்பும்) பின்னணி சேவையகத்திற்கு அனுப்பும். Spring பயன்பாடு ஒரு வள சேவையகமாக இருக்கையால், டோக்கனைக் மீண்டும் சரிபார்க்கும், ஆனால் APIM ஏற்கனவே அதன் செல்லுபடித்தன்மையை உறுதி செய்திருக்கும். (மேம்பாட்டிற்கு, நீங்கள் APIM சரிபார்ப்பை பொறுத்துக் கொண்டு பயன்பாட்டின் கூடுதல் சரிபார்ப்பை முடக்கலாம், ஆனால் இரண்டையும் வைத்திருப்பது பாதுகாப்பானது.)
 
-## அமைப்பின் உதாரணங்கள்
+## எடுத்துக்காட்டு அமைப்புகள்
 
-| அமைப்பு            | உதாரண மதிப்பு                                                        | குறிப்புகள்                                      |
-|--------------------|----------------------------------------------------------------------|--------------------------------------------|
-| **Issuer**         | `https://my-mcp-app.eastus.azurecontainerapps.io`                    | உங்கள் Container App-இன் URL (அடிப்படை URI)        |
-| **Token endpoint** | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/token`       | இயல்புநிலை Spring டோக்கன் முடுக்கம் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))  |
-| **JWKS endpoint**  | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/jwks`        | இயல்புநிலை JWK Set முடுக்கம் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))    |
-| **OpenID Config**  | `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` | OIDC கண்டுபிடிப்பு ஆவணம் (தானாக உருவாக்கப்பட்டது)    |
-| **APIM audience**  | `mcp-client`                                                         | OAuth கிளையண்ட் ஐடி அல்லது API resource பெயர்       |
-| **APIM policy**    | `<openid-config url="https://.../.well-known/openid-configuration" />` | `<validate-jwt>` இந்த URL-ஐ பயன்படுத்துகிறது ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)) |
+| அமைப்பு               | எடுத்துக்காட்டு மதிப்பு                                               | குறிப்பு                                  |
+|--------------------|------------------------------------------------------------------|------------------------------------------|
+| **Issuer**         | `https://my-mcp-app.eastus.azurecontainerapps.io`                   | உங்கள் Container App URL (அடிப்படை URI)  |
+| **Token endpoint** | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/token`      | இயல்புநிலை Spring டோக்கன் முனை ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))  |
+| **JWKS endpoint**  | `https://my-mcp-app.eastus.azurecontainerapps.io/oauth2/jwks`       | இயல்புநிலை JWK தொகுப்பு முனை ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize))    |
+| **OpenID Config**  | `https://my-mcp-app.eastus.azurecontainerapps.io/.well-known/openid-configuration` | OIDC கண்டுபிடிப்பு ஆவணம் (தானாக உருவாக்கப்பட்டது)   |
+| **APIM audience**  | `mcp-client`                                                        | OAuth கிளையன்ட் ஐடி அல்லது API வள பெயர்    |
+| **APIM policy**    | `<openid-config url="https://.../.well-known/openid-configuration" />` | `<validate-jwt>` இந்த URL ஐப் பயன்படுத்து ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)) |
 
-## பொதுவான சிக்கல்கள்
+## பொதுவான தவறுகள்
 
-- **HTTPS/TLS:** APIM கேட்வே OpenID/JWKS முடுக்கம் HTTPS மற்றும் செல்லுபடியாகும் சான்றிதழுடன் இருக்க வேண்டும். இயல்பாக, Azure Container Apps Azure-இல் நிர்வகிக்கப்படும் டொமைனுக்கு நம்பகமான TLS சான்றிதழை வழங்குகிறது ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). நீங்கள் தனிப்பயன் டொமைனை பயன்படுத்தினால், ஒரு சான்றிதழை இணைக்கவும் (Azure இன் இலவச நிர்வகிக்கப்பட்ட சான்றிதழ் அம்சத்தை பயன்படுத்தலாம்) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). APIM முடுக்கத்தின் சான்றிதழை நம்ப முடியாவிட்டால், `<validate-jwt>` metadata-ஐ பெற முடியாது.
+- **HTTPS/TLS:** APIM கதவு OpenID/JWKS முனை HTTPS மற்றும் செல்லுபடும் சான்றிதழுடன் இருக்க வேண்டும். இயல்பாக Azure Container Apps Azure நிர்வகிக்கும் டொமைனுக்கு நம்பகமான TLS சான்றிதழ் வழங்கும் ([Azure Container Apps இல் தனிப்பயன் டொமைன் பெயர்கள் மற்றும் இலவச நிர்வகிக்கப்பட்ட சான்றிதழ்கள் | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). நீங்கள் தனிப்பயன் டொமைனைக் கையாளின், சான்றிதழ் இணைக்க உறுதி செய்யவும் (Azure இலவச நிர்வகிக்கப்பட்ட சான்று வசதியைக் பயன்படுத்தலாம்) ([Azure Container Apps இல் தனிப்பயன் டொமைன் பெயர்கள் மற்றும் இலவச நிர்வகிக்கப்பட்ட சான்றிதழ்கள் | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)). APIM அந்த முனையின் சான்றிதழை நம்பவில்லை என்றால் `<validate-jwt>` metadata பெற்றதில் தோல்வி அடையும்.
 
-- **முடுக்கம் அணுகல்:** Spring பயன்பாட்டின் முடுக்கங்கள் APIM-இல் இருந்து அணுகக்கூடியதாக இருக்க வேண்டும். `--ingress external` (அல்லது போர்ட்டலில் ingress-ஐ இயக்குதல்) எளிமையானது. நீங்கள் ஒரு internal அல்லது vNet-bound சூழலை தேர்ந்தெடுத்தால், APIM (இயல்பாக public) அதை அணுக முடியாது, அது அதே VNet-இல் வைக்கப்படாவிட்டால். ஒரு சோதனை அமைப்பில், `.well-known` மற்றும் `/jwks` URL-களை APIM அழைக்க public ingress-ஐ விரும்பவும்.
+- **முனை அணுகல்:** Spring பயன்பாட்டின் முனைகள் APIM இலிருந்து அணுகக்கூடியதாக இருப்பதை உறுதி செய்யவும். `--ingress external` பயன்படுத்துவது (அல்லது உலாவி மூலமாக நுழைவைக் கோரிக்கைகர அழைப்பது) எளிமையானது. நீங்கள் உள்ளக அல்லது VNet-படிவமைப்பை தேர்ந்தெடுத்தால், APIM பொதுவாக இல்லாதபோது அதனை அணுக முடியாது. சோதனை சூழலில், பொதுமுக நுழைவு விரும்பப்படுகிறது, APIM `.well-known` மற்றும் `/jwks` URL-களை அழைக்க உதவும்.
 
-- **OpenID Discovery Enabled:** இயல்பாக, Spring Authorization Server `/.well-known/openid-configuration`-ஐ **வெளிப்படுத்தாது**, OIDC இயக்கப்படாவிட்டால். OIDC வழங்குநர் கட்டமைப்பு முடுக்கம் செயல்பட `.oidc(Customizer.withDefaults())` உங்கள் பாதுகாப்பு அமைப்பில் சேர்க்கவும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). இல்லையெனில் APIM இன் `<openid-config>` அழைப்பு 404 ஆகும்.
+- **OpenID கண்டுபிடிப்பு இயக்கப்பட்டது:** Spring Authorization Server இயல்பில் `/.well-known/openid-configuration` ஐ வெளியிடாது தவிர OIDC இயக்கப்பட்டால் மட்டுமே. மேற்கண்டபடி `.oidc(Customizer.withDefaults())` உங்கள் பாதுகாப்பு அமைப்பில் சேர்க்க வேண்டும் (மேலே பார்க்கவும்) அதனால் வழங்குநர் கட்டமைப்பு முனை செயல்படும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). இல்லையெனில் APIM இன் `<openid-config>` கோரிக்கை 404 க்கு உட்படும்.
 
-- **Audience Claim:** Spring இன் இயல்புநிலை நடத்தை `aud` கோரிக்கையை கிளையண்ட் ஐடிக்கு அமைக்கிறது. APIM இன் `<audience>` சரிபார்ப்பு தோல்வியடைந்தால், நீங்கள் டோக்கனை (மேலே காட்டியபடி) தனிப்பயனாக்க வேண்டும் அல்லது APIM கொள்கையை சரிசெய்ய வேண்டும். உங்கள் JWT-இல் உள்ள audience `<audience>`-இல் நீங்கள் அமைக்கிறதுடன் பொருந்த வேண்டும்.
+- **Audience உரிமை:** Spring இயல்பை `aud` உரிமையை கிளையன்ட் ஐடியாக அமைக்கும். APIM இன் `<audience>` சோதனை தோல்வியுற்றால், நீங்கள் டோக்கன் தனிப்பயனாக்கம் செய்ய வேண்டியிருப்பதோ அல்லது APIM கொள்கையை திருத்த வேண்டியிருப்பதோ இருக்கலாம். உங்கள் JWT இல் audience நீங்கள் `<audience>` இல் அமைத்ததைப் பொருந்த வேண்டும்.
 
-- **JSON Metadata Parsing:** OpenID configuration JSON செல்லுபடியாக இருக்க வேண்டும். Spring இன் இயல்புநிலை அமைப்பு ஒரு நிலையான OIDC metadata ஆவணத்தை வெளியிடும். இதில் சரியான `issuer` மற்றும் `jwks_uri` உள்ளதா என்பதை உறுதிப்படுத்தவும். நீங்கள் Spring-ஐ proxy அல்லது path-based வழியில் ஹோஸ்ட் செய்தால், இந்த metadata-இல் உள்ள URL-களை இருமுறை சரிபார்க்கவும். APIM இந்த மதிப்புகளை அப்படியே பயன்படுத்தும்.
+- **JSON Metadata பகுப்பு:** OpenID கட்டமைப்பு JSON செல்லுபடியானதாக இருக்க வேண்டும். Spring இயல்புநிலை OIDC metadata ஆவணத்தைக் வெளியிடும். சரியான `issuer` மற்றும் `jwks_uri` உள்ளதா என்று சரிபார்க்கவும். நீங்கள் Spring ஐ முகப்புருவான வழிமுறையுடன் அல்லது பாதை-அடிப்படையிலான வழியுடன் நடத்தியால், இந்த metadata இல் URLs சரிபார்க்கவும். APIM இவை அப்படியே பயன்படுத்தும்.
 
-- **Policy Ordering:** APIM கொள்கையில், `<validate-jwt>` **backend-க்கு எந்தவொரு வழிமாற்றத்திற்கும் முன்** வைக்கவும். இல்லையெனில், செல்லுபடியாகாத டோக்கனுடன் உங்கள் பயன்பாட்டை அழைப்புகள் அடையலாம். மேலும் `<validate-jwt>` `<inbound>`-இன் கீழே உடனடியாக தோன்றுவதை உறுதிப்படுத்தவும் (மற்றொரு நிலைமையின் உள்ளே இடம் பெறாமல்) APIM அதை பயன்படுத்தும்.
+- **கொள்கை வரிசை:** APIM கொள்கையில் `<validate-jwt>` பிறகு எந்தவொரு பின்னணி வழித்தடத்துக்குமே முன்பே வைக்கவும். இல்லையெனில், செல்லுபடியாகாத டோக்கன் உடன் கோரிக்கைகள் உங்கள் பயன்பாட்டை எட்டலாம். மேலும் `<validate-jwt>` உட்பட `<inbound>` உடனடியாக கீழ் இருக்க வேண்டும் (வேறு நிபந்தனையிற்குள் வைதல் தவிர) எனவே APIM அதை செயல்படுத்தும்.
 
-மேலே உள்ள படிகளைப் பின்பற்றுவதன் மூலம், நீங்கள் உங்கள் Spring AI MCP சேவையகத்தை Azure Container Apps-இல் இயக்கலாம் மற்றும் Azure API Management-ஐ குறைந்த கொள்கையுடன் வரும் OAuth2 JWT-களை சரிபார்க்கச் செய்யலாம். முக்கியமான புள்ளிகள்: Spring Auth முடுக்கங்களை TLS உடன் பொதுவாக வெளிப்படுத்தவும், OIDC கண்டுபிடிப்பை இயக்கவும், மற்றும் APIM இன் `validate-jwt`-ஐ OpenID config URL-க்கு சுட்டிக்காட்டவும் (JWKS-ஐ தானாகவே பெற APIM-க்கு அனுமதிக்க). இந்த அமைப்பு dev/test சூழலுக்கு ஏற்றது; உற்பத்திக்காக, சரியான ரகசிய மேலாண்மை, டோக்கன் காலங்கள் மற்றும் JWKS-இல் முக்கியங்களை சுழற்றுதல் போன்றவற்றை பரிசீலிக்கவும்.
-**குறிப்புகள்:** Spring Authorization Server-இன் இயல்புநிலை முடுக்கங்கள் பற்றிய ஆவணங்களைப் பார்க்கவும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)) மற்றும் OIDC அமைப்பைச் சுட்டிக்காட்டவும் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)); `validate-jwt` உதாரணங்களுக்கான Microsoft APIM ஆவணங்களைப் பார்க்கவும் ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)); மற்றும் Azure Container Apps ஆவணங்களைப் பார்க்கவும், இடமாற்றம் மற்றும் சான்றிதழ்கள் தொடர்பான தகவலுக்கு ([Deploy Java Spring Boot apps to Azure Container Apps - Java on Azure | Microsoft Learn](https://learn.microsoft.com/en-us/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps#:~:text=Now%20you%20can%20deploy%20your,CLI%20command)) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)).
+மேலேயுள்ள படிகளையெல்லாம் பின்பற்றுவதன் மூலம், நீங்கள் Spring AI MCP சேவையகத்தை Azure Container Apps இல் இயக்கி, Azure API Management வந்து வரும் OAuth2 JWT களை குறைந்தபட்ச கொள்கை கொண்டு சரிபார்க்க செய்யலாம். முக்கிய அம்சங்கள்: Spring Auth முனைகளை பொதுமுகமாக TLS உடன் வெளிப்படுத்தவும், OIDC கண்டுபிடிப்பை இயக்கு, APIM `validate-jwt` ஐ OpenID கட்டமைப்பு URL ஐ நோக்கி அமைக்க (இதனால் JWKS தானாக பெறப்படும்). இது மேம்பாடு/தேர்வு சூழலுக்கு பொருத்தமானது; உற்பத்திக்கான போது சரியான ரகசிய மேலாண்மை, டோக்கன் ஆயுள் மற்றும் JWKS விசைகள் பரிமாற்றத்தை கவனிக்க வேண்டும்.
+
+
+**அறிமுகங்கள்:** இயல்பூா்வ் முனைகளுக்கான Spring Authorization Server ஆவணங்களை பாருங்கள் ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=public%20static%20Builder%20builder%28%29%20,oauth2%2Fauthorize)) மற்றும் OIDC கட்டமைப்புக்கான ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)); Microsoft APIM ஆவணங்களில் `validate-jwt` உதாரணங்களை பாருங்கள் ([Azure API Management policy reference - validate-jwt | Microsoft Learn](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy#:~:text=Microsoft%20Entra%20ID%20single%20tenant,token%20validation)); மற்றும் Azure Container Apps ஆவணங்கள் டிப்ளாய்மென்ட் மற்றும் சான்றிதழ்களுக்கானவை ([Deploy Java Spring Boot apps to Azure Container Apps - Java on Azure | Microsoft Learn](https://learn.microsoft.com/en-us/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps#:~:text=Now%20you%20can%20deploy%20your,CLI%20command)) ([Custom domain names and free managed certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-managed-certificates#:~:text=Free%20certificate%20requirements)).
 
 ---
 
-**அறிவிப்பு**:  
-இந்த ஆவணம் [Co-op Translator](https://github.com/Azure/co-op-translator) என்ற AI மொழிபெயர்ப்பு சேவையை பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சிக்கிறோம், ஆனால் தானியங்கி மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கக்கூடும் என்பதை தயவுசெய்து கவனத்தில் கொள்ளவும். அதன் சொந்த மொழியில் உள்ள மூல ஆவணம் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்முறை மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்களுக்கும் அல்லது தவறான விளக்கங்களுக்கும் நாங்கள் பொறுப்பல்ல.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**மறுப்பு**:
+இந்த ஆவணம் AI மொழிபெயர்ப்பு சேவை [Co-op Translator](https://github.com/Azure/co-op-translator) பயன்படுத்தி மொழிபெயர்க்கப்பட்டுள்ளது. நாங்கள் துல்லியத்திற்காக முயற்சி செய்துள்ளோம், ஆனால் தானாக செய்யப்படும் மொழிபெயர்ப்புகளில் பிழைகள் அல்லது தவறுகள் இருக்கலாம் என்பதை கவனத்தில் கொள்ளவும். அசல் ஆவணம் அதன் தாய்மொழியில் அதிகாரப்பூர்வ ஆதாரமாக கருதப்பட வேண்டும். முக்கியமான தகவல்களுக்கு, தொழில்நுட்பமான மனித மொழிபெயர்ப்பு பரிந்துரைக்கப்படுகிறது. இந்த மொழிபெயர்ப்பைப் பயன்படுத்துவதால் ஏற்படும் எந்த தவறான புரிதல்கள் அல்லது தவறான விளக்கத்திற்கும் நாங்கள் பொறுப்பில்வில்லை.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

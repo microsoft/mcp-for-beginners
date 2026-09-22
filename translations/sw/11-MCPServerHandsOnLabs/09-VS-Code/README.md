@@ -1,27 +1,33 @@
-# Ushirikiano wa VS Code
+# Muunganiko wa VS Code
 
-## 🎯 Nini Maabara Hii Inashughulikia
+> [!NOTE]
+> Mipangilio ya `initializationOptions` katika maabara hii inalenga mikatano ya MCP ya sampuli
+> `2025-11-25`. MCP `2026-07-28` inaondoa mikatano ya kuanzisha;
+> tumia mwenyeji na SDK zinazounga mkono metadata kwa kila ombi na `server/discover`
+> wakati unahamia sampuli hii.
 
-Maabara hii inatoa mwongozo wa kina juu ya kuunganisha seva yako ya MCP na VS Code ili kuwezesha maswali ya lugha ya asili kupitia AI Chat. Utajifunza jinsi ya kusanidi VS Code kwa matumizi bora ya MCP, kutatua matatizo ya muunganisho wa seva, na kutumia nguvu kamili ya mwingiliano wa hifadhidata unaosaidiwa na AI.
+## 🎯 Hii Maabara Inahusu Nini
+
+Maabara hii inatoa mwongozo kamili wa kuunganisha seva yako ya MCP na VS Code ili kuwezesha maswali ya lugha ya asili kupitia AI Chat. Utajifunza jinsi ya kusanidi VS Code kwa matumizi bora ya MCP, kutatua matatizo ya muunganisho wa seva, na kutumia nguvu kamili ya mwingiliano wa database unaosaidiwa na AI.
 
 ## Muhtasari
 
-Ushirikiano wa MCP na VS Code hubadilisha jinsi watengenezaji wanavyoshirikiana na hifadhidata na API kupitia lugha ya asili. Kwa kuunganisha seva yako ya rejareja ya MCP na VS Code Chat, unaruhusu maswali ya akili ya data ya mauzo, katalogi za bidhaa, na uchambuzi wa biashara kwa kutumia AI ya mazungumzo.
+Muunganiko wa MCP wa VS Code hubadilisha jinsi wasanidi programu wanavyoshirikiana na database na APIs kupitia lugha ya asili. Kwa kuunganisha seva yako ya MCP ya rejareja na VS Code Chat, unawezesha utafutaji wa akili wa data za mauzo, perukizi za bidhaa, na uchambuzi wa biashara kwa kutumia AI ya mazungumzo.
 
-Ushirikiano huu unawawezesha watengenezaji kuuliza maswali kama "Nionyeshe bidhaa zinazouzwa zaidi mwezi huu" au "Tafuta wateja ambao hawajanunua kwa siku 90" na kupata majibu ya data yaliyopangwa bila kuandika maswali ya SQL.
+Muunganiko huu unawawezesha wasanidi programu kuuliza maswali kama "Nionyeshe bidhaa zinazoongoza kwa mauzo mwezi huu" au "Tafuta wateja ambao hawajanunua kwa siku 90" na kupata majibu ya data yaliyopangwa bila kuandika maswali ya SQL.
 
 ## Malengo ya Kujifunza
 
 Mwisho wa maabara hii, utaweza:
 
-- **Kusanidi** mipangilio ya MCP ya VS Code kwa seva yako ya rejareja  
-- **Kuunganisha** seva za MCP na utendaji wa AI Chat wa VS Code  
-- **Kutatua matatizo** ya muunganisho wa seva ya MCP na kushughulikia changamoto  
-- **Kuboresha** mifumo ya maswali ya lugha ya asili kwa matokeo bora  
-- **Kubinafsisha** mazingira ya kazi ya VS Code kwa maendeleo ya MCP  
-- **Kuzindua** usanidi wa seva nyingi kwa hali ngumu  
+- **Sanidi** mipangilio ya VS Code MCP kwa seva yako ya rejareja  
+- **Unganisha** seva za MCP na utendaji kazi wa VS Code AI Chat  
+- **Tatua** matatizo ya muunganisho wa seva za MCP  
+- **Boreshaji** mifumo ya maswali ya lugha ya asili kwa matokeo bora  
+- **Binafsisha** eneo la kazi la VS Code kwa maendeleo ya MCP  
+- **Tumia** usanidi wa seva nyingi kwa hali ngumu  
 
-## 🔧 Usanidi wa MCP wa VS Code
+## 🔧 Usanidi wa VS Code MCP
 
 ### Usanidi wa Awali na Ufungaji
 
@@ -65,29 +71,29 @@ Mwisho wa maabara hii, utaweza:
 ### Usanidi wa Mazingira
 
 ```bash
-# .env file for development
+# Faili la .env kwa maendeleo
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Mipangilio ya Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# Hiari: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# Mipangilio ya Server
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### Usanidi wa Mazingira ya Kazi
+### Usanidi wa Eneo la Kazi
 
 ```json
 // .vscode/launch.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 Ushirikiano wa AI Chat
+## 💬 Muunganiko wa AI Chat
 
-### Mifumo ya Maswali ya Lugha ya Asili
+### Mifumo ya Maswali ya Lugha Asilia
 
 ```typescript
-// Example query patterns for VS Code Chat
+// Mifano ya mifumo ya maswali kwa VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### Mifano ya Ushirikiano wa Chat
+### Mifano ya Muunganiko wa Mazungumzo
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### Uundaji wa Majibu ya Chat
+### Muundo wa Majibu ya Mazungumzo
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # Vipimo muhimu
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # Viashiria vya utendaji
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # Kundi kuu
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,9 +504,9 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 Kutatua Matatizo na Uchunguzi
+## 🔍 Utatuzi na Urekebishaji wa Makosa
 
-### Usanidi wa Uchunguzi wa VS Code
+### Usanidi wa Utatuzi wa VS Code
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # Unda mpangaji maalum wa VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # Mshughulikiaji wa consola kwa terminal ya VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,11 +572,11 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# Kanda msimbo wa kimataifa wa ufuatilizi wa makosa
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
-### Kutatua Matatizo ya Muunganisho
+### Utatuzi wa Matatizo ya Muunganisho
 
 ```python
 # scripts/debug_mcp_connection.py
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # Pata vigezo vya muunganisho kutoka mazingira
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # Jaribu muunganisho
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # Jaribu swali la msingi
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # Jaribu upatikanaji wa skima
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # Jaribu kizazi cha uingizaji
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # Ingiza vipengele vya seva ya MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # Unda usanidi wa majaribio
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # Anzisha seva
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # Pata zana zinazopatikana
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # Jaribu zana rahisi
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # Jaribu muunganisho wa hifadhidata
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Jaribu muunganisho wa Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # Jaribu zana za MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # Hali ya jumla
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,7 +787,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 Usanidi wa Juu
+## 🚀 Usanidi wa Juu Zaidi
 
 ### Usanidi wa Seva Nyingi
 
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### Kiendelezi Maalum cha VS Code
+### Kiongezi Maalum cha VS Code
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - Ugani wa rejareja wa MCP uliobinafsishwa
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // Jisajili amri za rejareja za MCP
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // Jisajili mabadiliko wa duka
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // Sasisha usanidi
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // Tekeleza maswali yaliyowekwa kabla katika VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### Usanidi wa Kifurushi cha Kiendelezi
+### Usanidi wa Kifurushi cha Kiongezi
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 Mambo Muhimu ya Kujifunza
+## 🎯 Muhimu wa Kujifunza
 
 Baada ya kukamilisha maabara hii, unapaswa kuwa na:
 
-✅ **Usanidi wa MCP wa VS Code**: Usanidi kamili kwa ushirikiano bora wa MCP  
-✅ **Ushirikiano wa AI Chat**: Uwezo wa kuuliza maswali ya lugha ya asili ndani ya VS Code  
-✅ **Zana za Kutatua Matatizo**: Uchunguzi wa kina na uchambuzi wa muunganisho  
-✅ **Usanidi wa Seva Nyingi**: Usanidi wa seva nyingi za MCP  
-✅ **Viendelezi Maalum**: Uzoefu ulioboreshwa wa VS Code na vipengele maalum vya rejareja  
-✅ **Uwezo wa Uzalishaji**: Mazingira ya maendeleo ya VS Code yaliyo tayari kwa biashara  
+✅ **Usanidi wa VS Code MCP**: Usanidi kamili wa kuunganisha MCP katika hali bora  
+✅ **Muunganiko wa AI Chat**: Uwezo wa kuuliza kwa lugha ya asili ndani ya VS Code  
+✅ **Vifaa vya Utatuzi**: Utatuzi kamili wa matatizo na uchunguzi wa muunganisho  
+✅ **Usanidi wa Seva Nyingi**: Usanidi kwa sampuli nyingi za seva za MCP  
+✅ **Viongezi Maalum**: Uzoefu ulioboreshwa wa VS Code kwa sifa maalum za rejareja  
+✅ **Uko Tayari kwa Uzalishaji**: Mazingira ya maendeleo ya VS Code yenye viwango vya biashara  
 
-## 🚀 Nini Cha Kufanya Baadaye
+## 🚀 Kinachofuata
 
-Endelea na **[Maabara ya 10: Mikakati ya Utekelezaji](../10-Deployment/README.md)** ili:
+Endelea na **[Maabara 10: Mikakati ya Uenezaji](../10-Deployment/README.md)** ili:
 
-- Kuzindua seva za MCP katika mazingira ya uzalishaji  
-- Kusimamia miundombinu ya wingu kwa upanuzi  
-- Kutekeleza mifumo ya CI/CD kwa uzinduzi wa kiotomatiki  
-- Kufuatilia utendaji wa seva za MCP za uzalishaji  
+- Kusambaza seva za MCP katika mazingira ya uzalishaji  
+- Kusanidi miundombinu ya wingu kwa ukuaji  
+- Kutekeleza mizunguko ya CI/CD kwa uenezaji wa moja kwa moja  
+- Kufuatilia utendaji wa seva za MCP zinazotumika uzalishaji  
 
-## 📚 Rasilimali za Ziada
+## 📚 Rasilimali Zaidi
 
 ### Maendeleo ya VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - Mwongozo rasmi wa maendeleo ya viendelezi  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Nyaraka za ushirikiano wa MCP  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - Maendeleo ya TypeScript ndani ya VS Code  
+- [API ya Kiongezi cha VS Code](https://code.visualstudio.com/api) - Mwongozo rasmi wa maendeleo ya kiongezi  
+- [Nyaraka za MCP za VS Code](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - Nyaraka za muunganiko wa MCP  
+- [TypeScript kwa VS Code](https://code.visualstudio.com/docs/languages/typescript) - Maendeleo ya TypeScript katika VS Code  
 
 ### Itifaki ya MCP
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Maelezo rasmi ya MCP  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Mbinu bora za utekelezaji  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Utekelezaji wa MCP kwa Python  
+- [Maelezo ya Itifaki ya Muktadha wa Mfano](https://modelcontextprotocol.io/specification) - Maelezo rasmi ya MCP  
+- [Mazoea Bora ya MCP](https://modelcontextprotocol.io/docs/best-practices) - Mazoea bora ya utekelezaji  
+- [Muktadha wa FastMCP](https://github.com/jlowin/fastmcp) - Utekelezaji wa MCP kwa Python  
 
-### Zana za Maendeleo
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Usanidi wa maendeleo ya Python  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - Mbinu za uchunguzi wa hali ya juu  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - Utekelezaji wa kazi na usanidi  
-
----
-
-**Iliyotangulia**: [Maabara ya 08: Upimaji na Uchunguzi](../08-Testing/README.md)  
-**Inayofuata**: [Maabara ya 10: Mikakati ya Utekelezaji](../10-Deployment/README.md)  
+### Vifaa vya Maendeleo
+- [Python katika VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Usanidi wa maendeleo ya Python  
+- [Utatuzi wa Makosa katika VS Code](https://code.visualstudio.com/docs/editor/debugging) - Mbinu za juu za utatuzi  
+- [Kazi za VS Code](https://code.visualstudio.com/docs/editor/tasks) - Uendeshaji na usanidi wa kazi  
 
 ---
 
-**Kanusho**:  
-Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuhakikisha usahihi, tafadhali fahamu kuwa tafsiri za kiotomatiki zinaweza kuwa na makosa au kutokuwa sahihi. Hati ya asili katika lugha yake ya awali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatutawajibika kwa kutoelewana au tafsiri zisizo sahihi zinazotokana na matumizi ya tafsiri hii.
+**Iliyotangulia**: [Maabara 08: Upimaji na Utatuzi](../08-Testing/README.md)  
+**Ifuatayo**: [Maabara 10: Mikakati ya Uenezaji](../10-Deployment/README.md)
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,29 +1,35 @@
-# การผสานรวม VS Code
+# การรวม VS Code
 
-## 🎯 สิ่งที่คุณจะได้เรียนรู้ในห้องปฏิบัติการนี้
+> [!NOTE]
+> การตั้งค่า `initializationOptions` ในแลปนี้มุ่งเป้าที่ MCP ตัวอย่าง
+> `2025-11-25` การจับมือ MCP `2026-07-28` ลบการจับมือการเริ่มต้น;
+> ใช้โฮสต์และ SDK ที่รองรับเมทาดาท้าต่อคำขอแต่ละรายการและ `server/discover`
+> เมื่อต้องย้ายตัวอย่างนี้
 
-ห้องปฏิบัติการนี้ให้คำแนะนำอย่างละเอียดเกี่ยวกับการผสานเซิร์ฟเวอร์ MCP ของคุณเข้ากับ VS Code เพื่อเปิดใช้งานการสอบถามด้วยภาษาธรรมชาติผ่าน AI Chat คุณจะได้เรียนรู้วิธีการตั้งค่า VS Code เพื่อการใช้งาน MCP ที่เหมาะสมที่สุด การแก้ไขปัญหาการเชื่อมต่อเซิร์ฟเวอร์ และการใช้ประโยชน์จากการโต้ตอบฐานข้อมูลที่ขับเคลื่อนด้วย AI อย่างเต็มที่
+## 🎯 สิ่งที่แลปนี้ครอบคลุม
+
+แลปนี้ให้คำแนะนำอย่างละเอียดเกี่ยวกับการรวมเซิร์ฟเวอร์ MCP ของคุณกับ VS Code เพื่อเปิดใช้งานคำถามภาษาธรรมชาติผ่าน AI Chat คุณจะได้เรียนรู้การกำหนดค่า VS Code เพื่อการใช้งาน MCP ที่เหมาะสม การดีบักการเชื่อมต่อเซิร์ฟเวอร์ และใช้ประโยชน์จากพลังเต็มรูปแบบของปฏิสัมพันธ์ฐานข้อมูลที่ได้รับการช่วยเหลือโดย AI
 
 ## ภาพรวม
 
-การผสาน MCP เข้ากับ VS Code เปลี่ยนวิธีที่นักพัฒนาสื่อสารกับฐานข้อมูลและ API ผ่านภาษาธรรมชาติ ด้วยการเชื่อมต่อเซิร์ฟเวอร์ MCP สำหรับการค้าปลีกของคุณเข้ากับ VS Code Chat คุณสามารถเปิดใช้งานการสอบถามข้อมูลการขาย แคตตาล็อกสินค้า และการวิเคราะห์ธุรกิจอย่างชาญฉลาดผ่าน AI เชิงสนทนา
+การรวม MCP ของ VS Code เปลี่ยนวิธีที่นักพัฒนาสื่อสารกับฐานข้อมูลและ API ผ่านภาษาธรรมชาติ โดยการเชื่อมต่อเซิร์ฟเวอร์ MCP ร้านค้าปลีกของคุณกับ VS Code Chat คุณจะเปิดใช้งานการสอบถามข้อมูลอย่างชาญฉลาดเกี่ยวกับข้อมูลการขาย, แค็ตตาล็อกสินค้า, และวิเคราะห์ธุรกิจโดยใช้ AI สำหรับสนทนา
 
-การผสานรวมนี้ช่วยให้นักพัฒนาสามารถถามคำถาม เช่น "แสดงสินค้าที่ขายดีที่สุดในเดือนนี้" หรือ "ค้นหาลูกค้าที่ไม่ได้ซื้อสินค้าใน 90 วัน" และได้รับคำตอบในรูปแบบข้อมูลที่มีโครงสร้างโดยไม่ต้องเขียนคำสั่ง SQL
+การรวมนี้อนุญาตให้นักพัฒนาถามคำถามเช่น "แสดงสินค้าขายดีสูงสุดในเดือนนี้" หรือ "หาลูกค้าที่ไม่ได้ซื้อใน 90 วัน" และรับข้อมูลที่จัดโครงสร้างโดยไม่ต้องเขียนคำสั่ง SQL
 
 ## วัตถุประสงค์การเรียนรู้
 
-เมื่อจบห้องปฏิบัติการนี้ คุณจะสามารถ:
+เมื่อสิ้นสุดแลปนี้ คุณจะสามารถ:
 
-- **ตั้งค่า** การตั้งค่า MCP ใน VS Code สำหรับเซิร์ฟเวอร์การค้าปลีกของคุณ  
-- **ผสานรวม** เซิร์ฟเวอร์ MCP กับฟังก์ชัน AI Chat ใน VS Code  
-- **แก้ไขปัญหา** การเชื่อมต่อเซิร์ฟเวอร์ MCP และแก้ไขข้อผิดพลาด  
-- **ปรับปรุง** รูปแบบการสอบถามด้วยภาษาธรรมชาติเพื่อผลลัพธ์ที่ดียิ่งขึ้น  
-- **ปรับแต่ง** พื้นที่ทำงานใน VS Code สำหรับการพัฒนา MCP  
-- **ปรับใช้** การตั้งค่าหลายเซิร์ฟเวอร์สำหรับสถานการณ์ที่ซับซ้อน  
+- **กำหนดค่า** การตั้งค่า VS Code MCP สำหรับเซิร์ฟเวอร์ร้านค้าปลีกของคุณ
+- **รวม** เซิร์ฟเวอร์ MCP กับฟังก์ชัน AI Chat ของ VS Code
+- **ดีบัก** การเชื่อมต่อเซิร์ฟเวอร์ MCP และแก้ไขปัญหา
+- **ปรับปรุง** รูปแบบคำถามภาษาธรรมชาติสำหรับผลลัพธ์ที่ดียิ่งขึ้น
+- **ปรับแต่ง** พื้นที่ทำงาน VS Code สำหรับการพัฒนา MCP
+- **ปรับใช้** การกำหนดค่าหลายเซิร์ฟเวอร์สำหรับสถานการณ์ที่ซับซ้อน
 
-## 🔧 การตั้งค่า MCP ใน VS Code
+## 🔧 การกำหนดค่า VS Code MCP
 
-### การตั้งค่าเริ่มต้นและการติดตั้ง
+### การตั้งค่าและติดตั้งเบื้องต้น
 
 ```json
 // .vscode/settings.json
@@ -62,32 +68,32 @@
 }
 ```
 
-### การตั้งค่าสภาพแวดล้อม
+### การกำหนดค่าสภาพแวดล้อม
 
 ```bash
-# .env file for development
+# ไฟล์ .env สำหรับการพัฒนา
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# การตั้งค่า Azure
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# ตัวเลือก: Azure Key Vault
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# การตั้งค่าเซิร์ฟเวอร์
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
 ```
 
-### การตั้งค่าพื้นที่ทำงาน
+### การกำหนดค่าพื้นที่ทำงาน
 
 ```json
 // .vscode/launch.json
@@ -126,7 +132,7 @@ LOG_LEVEL=INFO
 }
 ```
 
-### การตั้งค่าภารกิจ
+### การกำหนดงาน
 
 ```json
 // .vscode/tasks.json
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 การผสาน AI Chat
+## 💬 การรวม AI Chat
 
-### รูปแบบการสอบถามด้วยภาษาธรรมชาติ
+### รูปแบบคำถามภาษาธรรมชาติ
 
 ```typescript
-// Example query patterns for VS Code Chat
+// ตัวอย่างรูปแบบคำค้นสำหรับ VS Code Chat
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -294,7 +300,7 @@ const retailQueryPatterns: QueryPattern[] = [
 ];
 ```
 
-### ตัวอย่างการผสาน Chat
+### ตัวอย่างการรวมแชท
 
 ```markdown
 <!-- Examples of VS Code Chat interactions -->
@@ -341,7 +347,7 @@ const retailQueryPatterns: QueryPattern[] = [
 - Result: KPI dashboard with revenue, customer metrics, top categories, and growth trends
 ```
 
-### การจัดรูปแบบการตอบกลับใน Chat
+### การจัดรูปแบบคำตอบแชท
 
 ```python
 # mcp_server/chat/response_formatter.py
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # เมตริกหลัก
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # ตัวชี้วัดประสิทธิภาพ
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # หมวดหมู่อันดับต้น ๆ
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -498,7 +504,7 @@ class ChatResponseFormatter:
         return response
 ```
 
-## 🔍 การแก้ไขปัญหาและการตรวจสอบข้อผิดพลาด
+## 🔍 การดีบักและแก้ไขปัญหา
 
 ### การตั้งค่าการดีบักใน VS Code
 
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # สร้างตัวจัดรูปแบบเฉพาะสำหรับ VS Code
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # ตัวจัดการคอนโซลสำหรับเทอร์มินัล VS Code
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# ตัวบันทึกดีบักระดับโลก
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # รับพารามิเตอร์การเชื่อมต่อจากสภาพแวดล้อม
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # ทดสอบการเชื่อมต่อ
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # ทดสอบการสอบถามพื้นฐาน
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # ทดสอบการเข้าถึงสคีมา
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # ทดสอบการสร้างฝังข้อมูล
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # นำเข้าคอมโพเนนต์เซิร์ฟเวอร์ MCP
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # สร้างการกำหนดค่าทดสอบ
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # เริ่มต้นเซิร์ฟเวอร์
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # รับเครื่องมือที่มีอยู่
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # ทดสอบเครื่องมืออย่างง่าย
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # ทดสอบการเชื่อมต่อฐานข้อมูล
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # ทดสอบการเชื่อมต่อ Azure OpenAI
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # ทดสอบเครื่องมือ MCP
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # สถานะโดยรวม
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -781,9 +787,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## 🚀 การตั้งค่าขั้นสูง
+## 🚀 การกำหนดค่าขั้นสูง
 
-### การตั้งค่าหลายเซิร์ฟเวอร์
+### การตั้งค่าเซิร์ฟเวอร์หลายเครื่อง
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### ส่วนขยาย VS Code แบบกำหนดเอง
+### ส่วนขยาย VS Code ที่กำหนดเอง
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - ส่วนขยาย MCP retail ที่กำหนดเอง
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // ลงทะเบียนคำสั่ง MCP retail
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // ลงทะเบียนตัวสลับร้านค้า
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // อัปเดตการตั้งค่า
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // ดำเนินการสอบถามที่กำหนดไว้ล่วงหน้าใน VS Code Chat
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -933,7 +939,7 @@ async function executeQuickQuery(queryType: string) {
 export function deactivate() {}
 ```
 
-### การตั้งค่าชุดส่วนขยาย
+### การกำหนดค่าชุดส่วนขยาย
 
 ```json
 // package.json for VS Code extension
@@ -1005,49 +1011,51 @@ export function deactivate() {}
 }
 ```
 
-## 🎯 สิ่งสำคัญที่ควรทราบ
+## 🎯 ประเด็นสำคัญที่ควรจำ
 
-หลังจากจบห้องปฏิบัติการนี้ คุณควรมี:
+หลังจากทำแลปนี้เสร็จ คุณควรมี:
 
-✅ **การตั้งค่า MCP ใน VS Code**: การตั้งค่าที่สมบูรณ์สำหรับการผสาน MCP อย่างเหมาะสม  
-✅ **การผสาน AI Chat**: ความสามารถในการสอบถามด้วยภาษาธรรมชาติใน VS Code  
-✅ **เครื่องมือแก้ไขปัญหา**: การตรวจสอบข้อผิดพลาดและการวินิจฉัยการเชื่อมต่ออย่างครอบคลุม  
-✅ **การตั้งค่าหลายเซิร์ฟเวอร์**: การตั้งค่าสำหรับเซิร์ฟเวอร์ MCP หลายตัว  
-✅ **ส่วนขยายแบบกำหนดเอง**: ประสบการณ์ VS Code ที่ปรับปรุงด้วยฟีเจอร์เฉพาะสำหรับการค้าปลีก  
-✅ **ความพร้อมใช้งานในระดับองค์กร**: สภาพแวดล้อมการพัฒนา VS Code ที่พร้อมใช้งานในระดับองค์กร  
+✅ **การกำหนดค่า VS Code MCP**: การตั้งค่าครบถ้วนสำหรับการรวม MCP ที่เหมาะสม  
+✅ **การรวม AI Chat**: ความสามารถในการสอบถามภาษาธรรมชาติใน VS Code  
+✅ **เครื่องมือดีบัก**: การแก้ไขปัญหาและการวินิจฉัยการเชื่อมต่ออย่างละเอียด  
+✅ **การตั้งค่าเซิร์ฟเวอร์หลายเครื่อง**: การกำหนดค่าของหลายเซิร์ฟเวอร์ MCP  
+✅ **ส่วนขยายกำหนดเอง**: ประสบการณ์ VS Code ที่ปรับปรุงด้วยฟีเจอร์เฉพาะร้านค้าปลีก  
+✅ **ความพร้อมสำหรับการผลิต**: สภาพแวดล้อมการพัฒนาด้วย VS Code ที่พร้อมสำหรับองค์กร  
 
-## 🚀 สิ่งที่ต้องทำต่อไป
+## 🚀 สิ่งที่ต่อไป
 
-ดำเนินการต่อกับ **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** เพื่อ:
+ดำเนินการต่อกับ **[แลป 10: กลยุทธ์การปรับใช้](../10-Deployment/README.md)** เพื่อ:
 
-- ปรับใช้เซิร์ฟเวอร์ MCP ในสภาพแวดล้อมการผลิต  
-- ตั้งค่าโครงสร้างพื้นฐานบนคลาวด์เพื่อรองรับการขยายตัว  
-- ใช้ CI/CD pipeline สำหรับการปรับใช้อัตโนมัติ  
-- ตรวจสอบประสิทธิภาพของเซิร์ฟเวอร์ MCP ในการผลิต  
+- ปรับใช้เซิร์ฟเวอร์ MCP ในสภาพแวดล้อมการผลิต
+- กำหนดค่าโครงสร้างคลาวด์สำหรับการขยายตัว
+- ใช้ท่อ CI/CD สำหรับการปรับใช้อัตโนมัติ
+- ตรวจสอบประสิทธิภาพเซิร์ฟเวอร์ MCP ในการผลิต
 
 ## 📚 แหล่งข้อมูลเพิ่มเติม
 
-### การพัฒนาใน VS Code
-- [VS Code Extension API](https://code.visualstudio.com/api) - คู่มือการพัฒนาส่วนขยายอย่างเป็นทางการ  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - เอกสารการผสาน MCP  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - การพัฒนา TypeScript ใน VS Code  
+### การพัฒนา VS Code
+- [VS Code Extension API](https://code.visualstudio.com/api) - คู่มือการพัฒนาส่วนขยายอย่างเป็นทางการ
+- [เอกสาร VS Code MCP](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - เอกสารการรวม MCP
+- [TypeScript สำหรับ VS Code](https://code.visualstudio.com/docs/languages/typescript) - การพัฒนา TypeScript ใน VS Code
 
 ### โปรโตคอล MCP
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - สเปค MCP อย่างเป็นทางการ  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - แนวทางปฏิบัติที่ดีที่สุดในการใช้งาน  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - การใช้งาน MCP ด้วย Python  
+- [ข้อกำหนดโปรโตคอล Model Context](https://modelcontextprotocol.io/specification) - ข้อกำหนดอย่างเป็นทางการของ MCP
+- [แนวทางปฏิบัติที่ดีที่สุดสำหรับ MCP](https://modelcontextprotocol.io/docs/best-practices) - แนวทางปฏิบัติที่ดีที่สุดในการใช้งาน
+- [กรอบงาน FastMCP](https://github.com/jlowin/fastmcp) - การใช้งาน MCP ด้วย Python
 
 ### เครื่องมือพัฒนา
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - การตั้งค่าการพัฒนา Python  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - เทคนิคการดีบักขั้นสูง  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - การตั้งค่าและการทำงานอัตโนมัติ  
+- [Python ใน VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - การตั้งค่าสำหรับการพัฒนา Python
+- [การดีบักใน VS Code](https://code.visualstudio.com/docs/editor/debugging) - เทคนิคการดีบักขั้นสูง
+- [งานใน VS Code](https://code.visualstudio.com/docs/editor/tasks) - งานอัตโนมัติและการกำหนดค่า
 
 ---
 
-**ก่อนหน้า**: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
-**ถัดไป**: [Lab 10: Deployment Strategies](../10-Deployment/README.md)  
+**ก่อนหน้า**: [แลป 08: การทดสอบและการดีบัก](../08-Testing/README.md)  
+**ถัดไป**: [แลป 10: กลยุทธ์การปรับใช้](../10-Deployment/README.md)
 
 ---
 
-**ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) แม้ว่าเราจะพยายามให้การแปลมีความถูกต้อง แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาดั้งเดิมควรถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลภาษามนุษย์ที่เป็นมืออาชีพ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดที่เกิดจากการใช้การแปลนี้
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ปฏิเสธความรับผิดชอบ**:
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI [Co-op Translator](https://github.com/Azure/co-op-translator) ขณะที่เราพยายามให้ความถูกต้อง โปรดทราบว่าการแปลโดยอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางควรถูกพิจารณาเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ แนะนำให้ใช้การแปลโดยมนุษย์มืออาชีพ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดที่เกิดขึ้นจากการใช้การแปลนี้
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,5 +1,10 @@
 # 🔧 Módulo 3: Desarrollo Avanzado de MCP con Microsoft Foundry Toolkit
 
+> [!NOTE]
+> Las URLs del Inspector en este laboratorio usan el endpoint legado `/sse` y apuntan a las dependencias
+> fijadas MCP SDK `1.9.3` e Inspector `0.14.0`. No son
+> ejemplos actuales de Streamable HTTP `2026-07-28`.
+
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
@@ -11,10 +16,10 @@
 Al finalizar este laboratorio, podrás:
 
 - ✅ Crear servidores MCP personalizados usando Microsoft Foundry Toolkit
-- ✅ Configurar y usar el SDK Python más reciente de MCP (v1.9.3)
+- ✅ Configurar y usar el último MCP Python SDK (v1.9.3)
 - ✅ Configurar y utilizar el MCP Inspector para depuración
-- ✅ Depurar servidores MCP en los entornos de Agent Builder e Inspector
-- ✅ Comprender flujos de trabajo avanzados de desarrollo de servidores MCP
+- ✅ Depurar servidores MCP en entornos Agent Builder e Inspector
+- ✅ Entender flujos de trabajo avanzados de desarrollo de servidores MCP
 
 ## 📋 Prerrequisitos
 
@@ -23,27 +28,27 @@ Al finalizar este laboratorio, podrás:
 - Entorno Python 3.10+
 - Node.js y npm para la configuración de Inspector
 
-## 🏗️ Lo Que Construirás
+## 🏗️ Lo que Construirás
 
-En este laboratorio, crearás un **Servidor MCP de Clima** que demuestra:
+En este laboratorio, crearás un **Servidor MCP de Clima** que demostrará:
 - Implementación personalizada de servidor MCP
-- Integración con Agent Builder de Microsoft Foundry Toolkit
-- Flujos profesionales de depuración
-- Patrones modernos de uso del SDK MCP
+- Integración con Microsoft Foundry Toolkit Agent Builder
+- Flujos de trabajo profesionales de depuración
+- Patrones modernos de uso del MCP SDK
 
 ---
 
 ## 🔧 Resumen de Componentes Clave
 
-### 🐍 SDK Python MCP
-El SDK Python Model Context Protocol ofrece la base para construir servidores MCP personalizados. Usarás la versión 1.9.3 con capacidades de depuración mejoradas.
+### 🐍 MCP Python SDK
+El Model Context Protocol Python SDK proporciona la base para construir servidores MCP personalizados. Usarás la versión 1.9.3 con capacidades ampliadas de depuración.
 
 ### 🔍 MCP Inspector
-Una herramienta poderosa de depuración que proporciona:
-- Monitoreo en tiempo real del servidor
+Una poderosa herramienta de depuración que ofrece:
+- Monitoreo del servidor en tiempo real
 - Visualización de ejecución de herramientas
-- Inspección de solicitudes y respuestas de red
-- Entorno de pruebas interactivas
+- Inspección de peticiones y respuestas de red
+- Entorno interactivo de pruebas
 
 ---
 
@@ -51,17 +56,17 @@ Una herramienta poderosa de depuración que proporciona:
 
 ### Paso 1: Crear un WeatherAgent en Agent Builder
 
-1. **Inicia Agent Builder** en VS Code mediante la extensión Microsoft Foundry Toolkit
+1. **Lanza Agent Builder** en VS Code a través de la extensión Microsoft Foundry Toolkit
 2. **Crea un nuevo agente** con la siguiente configuración:
    - Nombre del agente: `WeatherAgent`
 
 ![Agent Creation](../../../../translated_images/es/Agent.c9c33f6a412b4cde.webp)
 
-### Paso 2: Inicializar Proyecto de Servidor MCP
+### Paso 2: Inicializar el Proyecto del Servidor MCP
 
 1. **Navega a Herramientas** → **Agregar Herramienta** en Agent Builder
-2. **Selecciona "Servidor MCP"** entre las opciones disponibles
-3. **Elige "Crear un nuevo servidor MCP"**
+2. **Selecciona "Servidor MCP"** de las opciones disponibles
+3. **Elige "Crear un nuevo Servidor MCP"**
 4. **Selecciona la plantilla `python-weather`**
 5. **Nombra tu servidor:** `weather_mcp`
 
@@ -86,26 +91,27 @@ Una herramienta poderosa de depuración que proporciona:
    └── README.md
    ```
 
-### Paso 4: Actualizar a la Última Versión del SDK MCP
+### Paso 4: Actualizar al Último MCP SDK
 
-> **🔍 ¿Por qué Actualizar?** Queremos usar la última SDK MCP (v1.9.3) y servicio Inspector (0.14.0) para contar con características mejoradas y mejores capacidades de depuración.
+> **🔍 ¿Por qué Actualizar?** Queremos usar la última versión del MCP SDK (v1.9.3) y el servicio Inspector (0.14.0) para características mejoradas y mejores capacidades de depuración.
 
-#### 4a. Actualizar Dependencias de Python
+#### 4a. Actualizar Dependencias Python
 
-**Edita `pyproject.toml`:** actualiza [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
+**Editar `pyproject.toml`:** actualizar [./code/weather_mcp/pyproject.toml](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/pyproject.toml)
 
 
 #### 4b. Actualizar Configuración de Inspector
 
-**Edita `inspector/package.json`:** actualiza [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
+**Editar `inspector/package.json`:** actualizar [./code/weather_mcp/inspector/package.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package.json)
 
 #### 4c. Actualizar Dependencias de Inspector
 
-**Edita `inspector/package-lock.json`:** actualiza [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
+**Editar `inspector/package-lock.json`:** actualizar [./code/weather_mcp/inspector/package-lock.json](../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/inspector/package-lock.json)
 
-> **📝 Nota:** Este archivo contiene definiciones extensas de dependencias. A continuación se muestra la estructura esencial; el contenido completo asegura la resolución correcta de dependencias.
+> **📝 Nota:** Este archivo contiene definiciones extensas de dependencias. A continuación se muestra la estructura esencial - el contenido completo asegura una resolución adecuada de dependencias.
 
-> **⚡ Paquete Completo:** El package-lock.json completo contiene ~3000 líneas de definiciones de dependencias. Lo anterior muestra la estructura clave: usa el archivo provisto para la resolución completa.
+
+> **⚡ Bloqueo Completo de Paquete:** El package-lock.json completo contiene ~3000 líneas de definiciones de dependencias. Lo anterior muestra la estructura clave - use el archivo proporcionado para la resolución completa de dependencias.
 
 ### Paso 5: Configurar la Depuración en VS Code
 
@@ -113,7 +119,7 @@ Una herramienta poderosa de depuración que proporciona:
 
 #### 5a. Actualizar Configuración de Lanzamiento
 
-**Edita `.vscode/launch.json`:**
+**Editar `.vscode/launch.json`:**
 
 ```json
 {
@@ -190,7 +196,7 @@ Una herramienta poderosa de depuración que proporciona:
 }
 ```
 
-**Edita `.vscode/tasks.json`:**
+**Editar `.vscode/tasks.json`:**
 
 ```
 {
@@ -295,32 +301,31 @@ Una herramienta poderosa de depuración que proporciona:
 
 ---
 
-## 🚀 Ejecutar y Probar Tu Servidor MCP
+## 🚀 Ejecutar y Probar tu Servidor MCP
 
 ### Paso 6: Instalar Dependencias
 
-Después de hacer los cambios de configuración, ejecuta los siguientes comandos:
+Después de realizar los cambios de configuración, ejecuta los siguientes comandos:
 
-**Instala las dependencias de Python:**
+**Instalar dependencias Python:**
 ```bash
 uv sync
 ```
 
-**Instala las dependencias de Inspector:**
+**Instalar dependencias de Inspector:**
 ```bash
 cd inspector
 npm install
 ```
 
-
 ### Paso 7: Depurar con Agent Builder
 
-1. **Presiona F5** o usa la configuración **"Debug in Agent Builder"**
+1. **Presiona F5** o usa la configuración **"Depurar en Agent Builder"**
 2. **Selecciona la configuración compuesta** desde el panel de depuración
-3. **Espera a que inicie el servidor** y se abra Agent Builder
+3. **Espera a que el servidor inicie** y Agent Builder se abra
 4. **Prueba tu servidor MCP de clima** con consultas en lenguaje natural
 
-Ingresa un prompt como este
+Ingresa un prompt así
 
 SYSTEM_PROMPT
 
@@ -338,13 +343,13 @@ How's the weather like in Seattle
 
 ### Paso 8: Depurar con MCP Inspector
 
-1. **Usa la configuración "Debug in Inspector"** (Edge o Chrome)
-2. **Abre la interfaz Inspector** en `http://localhost:6274`
-3. **Explora el entorno de pruebas interactivas:**
+1. **Usa la configuración "Depurar en Inspector"** (Edge o Chrome)
+2. **Abre la interfaz del Inspector** en `http://localhost:6274`
+3. **Explora el entorno interactivo de pruebas:**
    - Visualiza las herramientas disponibles
    - Prueba la ejecución de herramientas
    - Monitorea las solicitudes de red
-   - Depura respuestas del servidor
+   - Depura las respuestas del servidor
 
 ![MCP Inspector Interface](../../../../translated_images/es/Inspector.5672415cd02fe873.webp)
 
@@ -355,39 +360,39 @@ How's the weather like in Seattle
 Al completar este laboratorio, has:
 
 - [x] **Creado un servidor MCP personalizado** usando plantillas de Microsoft Foundry Toolkit
-- [x] **Actualizado al SDK MCP más reciente** (v1.9.3) para funcionalidad mejorada
-- [x] **Configurado flujos profesionales de depuración** para Agent Builder e Inspector
-- [x] **Configurado MCP Inspector** para pruebas interactivas de servidor
-- [x] **Dominado las configuraciones de depuración en VS Code** para desarrollo MCP
+- [x] **Actualizado al último MCP SDK** (v1.9.3) para funcionalidades mejoradas
+- [x] **Configurado flujos profesionales de depuración** tanto para Agent Builder como Inspector
+- [x] **Configurado el MCP Inspector** para pruebas interactivas del servidor
+- [x] **Dominado configuraciones de depuración en VS Code** para desarrollo MCP
 
-## 🔧 Características Avanzadas Exploradas
+## 🔧 Funcionalidades Avanzadas Exploradas
 
-| Característica | Descripción | Caso de Uso |
+| Funcionalidad | Descripción | Caso de Uso |
 |---------|-------------|----------|
-| **SDK Python MCP v1.9.3** | Última implementación del protocolo | Desarrollo moderno de servidores |
-| **MCP Inspector 0.14.0** | Herramienta de depuración interactiva | Pruebas en tiempo real de servidores |
-| **Depuración VS Code** | Entorno de desarrollo integrado | Flujo profesional de depuración |
-| **Integración Agent Builder** | Conexión directa con Microsoft Foundry Toolkit | Pruebas completas de agentes |
+| **MCP Python SDK v1.9.3** | Última implementación del protocolo | Desarrollo moderno de servidores |
+| **MCP Inspector 0.14.0** | Herramienta de depuración interactiva | Pruebas de servidor en tiempo real |
+| **Depuración en VS Code** | Entorno de desarrollo integrado | Flujo profesional de depuración |
+| **Integración con Agent Builder** | Conexión directa con Microsoft Foundry Toolkit | Pruebas de agente de principio a fin |
 
 ## 📚 Recursos Adicionales
 
-- [Documentación SDK Python MCP](https://modelcontextprotocol.io/docs/sdk/python)
-- [Guía de la extensión Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
-- [Documentación de depuración en VS Code](https://code.visualstudio.com/docs/editor/debugging)
+- [Documentación MCP Python SDK](https://modelcontextprotocol.io/docs/sdk/python)
+- [Guía de Extensión Microsoft Foundry Toolkit](https://code.visualstudio.com/docs/ai/ai-toolkit)
+- [Documentación de Depuración en VS Code](https://code.visualstudio.com/docs/editor/debugging)
 - [Especificación Model Context Protocol](https://modelcontextprotocol.io/docs/concepts/architecture)
 
 ---
 
-**🎉 ¡Felicidades!** Has completado con éxito el Laboratorio 3 y ahora puedes crear, depurar y desplegar servidores MCP personalizados usando flujos profesionales de desarrollo.
+**🎉 ¡Felicidades!** Has completado con éxito el Laboratorio 3 y ahora puedes crear, depurar y desplegar servidores MCP personalizados usando flujos de trabajo profesionales de desarrollo.
 
 ### 🔜 Continúa al Siguiente Módulo
 
-¿Listo para aplicar tus habilidades MCP a un flujo de desarrollo real? Continúa a **[Módulo 4: Desarrollo Práctico MCP - Servidor personalizado de clonación GitHub](../lab4/README.md)** donde podrás:
-- Construir un servidor MCP listo para producción que automatiza operaciones en repositorios GitHub
-- Implementar funcionalidad de clonación de repositorios GitHub mediante MCP
-- Integrar servidores MCP personalizados con VS Code y GitHub Copilot Agent Mode
-- Probar y desplegar servidores MCP personalizados en entornos productivos
-- Aprender automatización práctica de flujos de trabajo para desarrolladores
+¿Listo para aplicar tus habilidades MCP en un flujo de trabajo de desarrollo real? Continúa a **[Módulo 4: Desarrollo Práctico de MCP - Servidor Personalizado de Clonación en GitHub](../lab4/README.md)** donde:
+- Construirás un servidor MCP listo para producción que automatiza operaciones de repositorios GitHub
+- Implementarás funcionalidad de clonación de repositorios GitHub vía MCP
+- Integrarás servidores MCP personalizados con VS Code y GitHub Copilot Agent Mode
+- Probarás y desplegarás servidores MCP personalizados en ambientes de producción
+- Aprenderás automatización práctica de flujos para desarrolladores
 
 ---
 

@@ -1,6 +1,11 @@
-# Basic Calculator MCP Service
+# Grundläggande Kalkylator MCP-tjänst
 
-Denna tjänst erbjuder grundläggande kalkylatorfunktioner via Model Context Protocol (MCP) med Spring Boot och WebFlux-transport. Den är utformad som ett enkelt exempel för nybörjare som vill lära sig om MCP-implementationer.
+> [!NOTE]
+> Denna Java-lösning använder den äldre HTTP+SSE-transporten och riktar sig till en SDK
+> kompatibel med MCP `2025-11-25`. Den behålls för att matcha kurskod;
+> nya fjärrservrar bör använda `2026-07-28` Streamable HTTP-stöd.
+
+Denna tjänst tillhandahåller grundläggande kalkylatoroperationer via Model Context Protocol (MCP) med Spring Boot och WebFlux-transport. Den är utformad som ett enkelt exempel för nybörjare som lär sig om MCP-implementationer.
 
 För mer information, se referensdokumentationen för [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
@@ -9,14 +14,14 @@ För mer information, se referensdokumentationen för [MCP Server Boot Starter](
 
 Tjänsten exponerar följande API-endpoints via MCP-protokollet:
 
-- `add(a, b)`: Addera två tal
+- `add(a, b)`: Lägg ihop två tal
 - `subtract(a, b)`: Subtrahera det andra talet från det första
 - `multiply(a, b)`: Multiplicera två tal
 - `divide(a, b)`: Dividera det första talet med det andra (med kontroll för noll)
-- `power(base, exponent)`: Beräkna potens av ett tal
+- `power(base, exponent)`: Beräkna potensen av ett tal
 - `squareRoot(number)`: Beräkna kvadratroten (med kontroll för negativa tal)
 - `modulus(a, b)`: Beräkna resten vid division
-- `absolute(number)`: Beräkna absolutvärdet
+- `absolute(number)`: Beräkna absolutbeloppet
 
 ## Beroenden
 
@@ -46,14 +51,14 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Med MCP Inspector
 
-MCP Inspector är ett användbart verktyg för att interagera med MCP-tjänster. För att använda det med denna kalkylatortjänst:
+MCP Inspector är ett hjälpsamt verktyg för att interagera med MCP-tjänster. För att använda det med denna kalkylatortjänst:
 
-1. **Installera och starta MCP Inspector** i ett nytt terminalfönster:
+1. **Installera och kör MCP Inspector** i ett nytt terminalfönster:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Öppna web UI** genom att klicka på URL:en som visas av appen (vanligtvis http://localhost:6274)
+2. **Öppna webb-UI** genom att klicka på URL:en som appen visar (vanligtvis http://localhost:6274)
 
 3. **Konfigurera anslutningen**:
    - Ställ in transporttypen till "SSE"
@@ -66,5 +71,9 @@ MCP Inspector är ett användbart verktyg för att interagera med MCP-tjänster.
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/sv/tool.40e180a7b0d0fe20.webp)
 
-**Ansvarsfriskrivning**:  
-Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, vänligen observera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för eventuella missförstånd eller feltolkningar som uppstår vid användning av denna översättning.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Ansvarsfriskrivning**:
+Detta dokument har översatts med hjälp av AI-översättningstjänsten [Co-op Translator](https://github.com/Azure/co-op-translator). Även om vi strävar efter noggrannhet, var vänlig notera att automatiska översättningar kan innehålla fel eller brister. Det ursprungliga dokumentet på dess modersmål bör betraktas som den auktoritativa källan. För kritisk information rekommenderas professionell mänsklig översättning. Vi ansvarar inte för några missförstånd eller feltolkningar som uppstår till följd av användningen av denna översättning.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

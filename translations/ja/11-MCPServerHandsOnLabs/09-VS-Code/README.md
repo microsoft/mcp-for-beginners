@@ -1,29 +1,35 @@
 # VS Code 統合
 
-## 🎯 このラボで学べること
+> [!NOTE]
+> このラボの `initializationOptions` 設定はサンプルの MCP `2025-11-25` ハンドシェイクを対象としています。MCP `2026-07-28` では初期化ハンドシェイクが削除されているため、このサンプルを移行する際にはリクエストごとのメタデータと `server/discover` をサポートするホストおよび SDK を使用してください。
+> 
+> 
+> 
 
-このラボでは、MCPサーバーをVS Codeに統合し、AIチャットを通じて自然言語クエリを実現する方法を詳しく解説します。VS Codeを最適なMCP利用環境に設定し、サーバー接続のデバッグを行い、AI支援によるデータベース操作の可能性を最大限に活用する方法を学びます。
+## 🎯 このラボの内容
+
+このラボでは、MCP サーバーと VS Code を統合し、AI チャットによる自然言語クエリを可能にするための包括的なガイダンスを提供します。VS Code の最適な MCP 設定、サーバー接続のデバッグ、および AI 補助によるデータベース操作の活用方法を学びます。
 
 ## 概要
 
-VS CodeのMCP統合により、開発者がデータベースやAPIと自然言語でやり取りする方法が変わります。小売業向けMCPサーバーをVS Code Chatに接続することで、会話型AIを活用して売上データ、商品カタログ、ビジネス分析をインテリジェントにクエリできます。
+VS Code の MCP 統合により、開発者はデータベースやAPIと自然言語でやり取りできるようになります。小売業の MCP サーバーを VS Code チャットと接続することで、会話型AIを使った売上データ、商品カタログ、ビジネス分析のインテリジェントなクエリが可能になります。
 
-この統合により、開発者は「今月の売上トップの商品を表示して」や「90日間購入していない顧客を見つけて」といった質問を投げかけ、SQLクエリを書くことなく構造化されたデータを取得することが可能になります。
+この統合により、開発者は「今月のトップ販売商品を見せて」や「90日間購入のない顧客を探して」といった質問をして、SQL クエリを記述することなく構造化されたデータ応答を得られます。
 
 ## 学習目標
 
-このラボを終えると、以下ができるようになります：
+このラボ終了時には以下が可能になります:
 
-- **設定**: 小売業向けサーバーのVS Code MCP設定を構成する  
-- **統合**: MCPサーバーをVS Code AIチャット機能と統合する  
-- **デバッグ**: MCPサーバー接続をデバッグし、問題を解決する  
-- **最適化**: 自然言語クエリパターンを改善して結果を向上させる  
-- **カスタマイズ**: MCP開発向けにVS Codeワークスペースを調整する  
-- **展開**: 複雑なシナリオに対応するマルチサーバー構成を展開する  
+- 小売サーバー向けの VS Code MCP 設定の <strong>構成</strong>
+- VS Code AI チャット機能との MCP サーバー <strong>統合</strong>
+- MCP サーバー接続の <strong>デバッグ</strong> と問題解決
+- より良い結果のための自然言語クエリパターンの <strong>最適化</strong>
+- MCP 開発向け VS Code ワークスペースの <strong>カスタマイズ</strong>
+- 複雑なシナリオのためのマルチサーバー構成の <strong>展開</strong>
 
-## 🔧 VS Code MCP設定
+## 🔧 VS Code MCP 設定
 
-### 初期設定とインストール
+### 初期セットアップとインストール
 
 ```json
 // .vscode/settings.json
@@ -65,23 +71,23 @@ VS CodeのMCP統合により、開発者がデータベースやAPIと自然言�
 ### 環境設定
 
 ```bash
-# .env file for development
+# 開発用の.envファイル
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=retail_db
 POSTGRES_USER=mcp_user
 POSTGRES_PASSWORD=your_secure_password
 
-# Azure Configuration
+# Azureの構成
 PROJECT_ENDPOINT=https://your-project.openai.azure.com
 AZURE_CLIENT_ID=your-client-id
 AZURE_CLIENT_SECRET=your-client-secret
 AZURE_TENANT_ID=your-tenant-id
 
-# Optional: Azure Key Vault
+# 任意: Azureキーコンテナ
 AZURE_KEY_VAULT_URL=https://your-keyvault.vault.azure.net/
 
-# Server Configuration
+# サーバーの構成
 MCP_SERVER_PORT=8000
 MCP_SERVER_HOST=127.0.0.1
 LOG_LEVEL=INFO
@@ -218,12 +224,12 @@ LOG_LEVEL=INFO
 }
 ```
 
-## 💬 AIチャット統合
+## 💬 AI チャット統合
 
 ### 自然言語クエリパターン
 
 ```typescript
-// Example query patterns for VS Code Chat
+// VS Code Chatの例としてのクエリパターン
 interface QueryPattern {
     intent: string;
     examples: string[];
@@ -459,7 +465,7 @@ class ChatResponseFormatter:
         
         response = "## Business Intelligence Summary\n\n"
         
-        # Key metrics
+        # 主要な指標
         response += "### Key Performance Indicators\n\n"
         response += f"- **Total Revenue**: ${float(data.get('total_revenue', 0)):,.2f}\n"
         response += f"- **Total Transactions**: {int(data.get('total_transactions', 0)):,}\n"
@@ -467,7 +473,7 @@ class ChatResponseFormatter:
         response += f"- **Average Order Value**: ${float(data.get('avg_transaction_value', 0)):.2f}\n"
         response += f"- **Products Sold**: {int(data.get('products_sold', 0)):,} items\n\n"
         
-        # Performance indicators
+        # パフォーマンス指標
         if 'insights' in data and 'performance_indicators' in data['insights']:
             pi = data['insights']['performance_indicators']
             response += "### Performance Indicators\n\n"
@@ -475,7 +481,7 @@ class ChatResponseFormatter:
             response += f"- **Revenue per Customer**: ${float(pi.get('revenue_per_customer', 0)):,.2f}\n"
             response += f"- **Items per Transaction**: {float(pi.get('items_per_transaction', 0)):.1f}\n\n"
         
-        # Top category
+        # トップカテゴリー
         if data.get('top_category'):
             response += f"### Top Performing Category\n\n"
             response += f"**{data['top_category']}** - ${float(data.get('top_category_revenue', 0)):,.2f} revenue\n\n"
@@ -500,7 +506,7 @@ class ChatResponseFormatter:
 
 ## 🔍 デバッグとトラブルシューティング
 
-### VS Codeデバッグ設定
+### VS Code デバッグ設定
 
 ```python
 # mcp_server/debug/vscode_debug.py
@@ -522,12 +528,12 @@ class VSCodeDebugLogger:
     def setup_vscode_logging(self):
         """Configure logging for VS Code debugging."""
         
-        # Create VS Code specific formatter
+        # VS Code専用のフォーマッターを作成する
         formatter = logging.Formatter(
             '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s'
         )
         
-        # Console handler for VS Code terminal
+        # VS Codeターミナル用のコンソールハンドラー
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         console_handler.setLevel(logging.DEBUG)
@@ -566,7 +572,7 @@ class VSCodeDebugLogger:
         else:
             return f"Data type: {type(data).__name__}"
 
-# Global debug logger
+# グローバルデバッグロガー
 vscode_debug_logger = VSCodeDebugLogger()
 ```
 
@@ -587,7 +593,7 @@ async def test_database_connection() -> Dict[str, Any]:
     """Test database connectivity."""
     
     try:
-        # Get connection parameters from environment
+        # 環境から接続パラメータを取得
         connection_params = {
             'host': os.getenv('POSTGRES_HOST', 'localhost'),
             'port': int(os.getenv('POSTGRES_PORT', '5432')),
@@ -598,13 +604,13 @@ async def test_database_connection() -> Dict[str, Any]:
         
         print(f"Testing connection to {connection_params['host']}:{connection_params['port']}")
         
-        # Test connection
+        # 接続をテスト
         conn = await asyncpg.connect(**connection_params)
         
-        # Test basic query
+        # 基本クエリをテスト
         result = await conn.fetchval("SELECT version()")
         
-        # Test schema access
+        # スキーマアクセスをテスト
         tables = await conn.fetch("""
             SELECT table_name FROM information_schema.tables 
             WHERE table_schema = 'retail'
@@ -648,7 +654,7 @@ async def test_azure_openai_connection() -> Dict[str, Any]:
             credential=credential
         )
         
-        # Test embedding generation
+        # 埋め込み生成をテスト
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input="test connection"
@@ -674,25 +680,25 @@ async def test_mcp_tools() -> Dict[str, Any]:
     """Test MCP tool availability."""
     
     try:
-        # Import MCP server components
+        # MCPサーバーのコンポーネントをインポート
         sys.path.append(os.path.dirname(os.path.dirname(__file__)))
         
         from mcp_server.server import MCPServer
         from mcp_server.database import DatabaseProvider
         from mcp_server.config import Config
         
-        # Create test configuration
+        # テスト構成を作成
         config = Config()
         db_provider = DatabaseProvider(config.database.connection_string)
         
-        # Initialize server
+        # サーバーを初期化
         server = MCPServer(config, db_provider)
         await server.initialize()
         
-        # Get available tools
+        # 利用可能なツールを取得
         tools = server.get_available_tools()
         
-        # Test a simple tool
+        # 単純なツールをテスト
         test_result = await server.execute_tool(
             'get_current_utc_date',
             {'format': 'iso'}
@@ -719,7 +725,7 @@ async def main():
     print("🔍 MCP Server Connection Diagnostics")
     print("=" * 50)
     
-    # Test database connection
+    # データベース接続をテスト
     print("\n📊 Testing Database Connection...")
     db_result = await test_database_connection()
     
@@ -732,7 +738,7 @@ async def main():
         print("❌ Database connection failed")
         print(f"   Error: {db_result['error']}")
     
-    # Test Azure OpenAI connection
+    # Azure OpenAI接続をテスト
     print("\n🤖 Testing Azure OpenAI Connection...")
     azure_result = await test_azure_openai_connection()
     
@@ -744,7 +750,7 @@ async def main():
         print("❌ Azure OpenAI connection failed")
         print(f"   Error: {azure_result['error']}")
     
-    # Test MCP tools
+    # MCPツールをテスト
     print("\n🛠️  Testing MCP Tools...")
     tools_result = await test_mcp_tools()
     
@@ -757,7 +763,7 @@ async def main():
         print("❌ MCP tools loading failed")
         print(f"   Error: {tools_result['error']}")
     
-    # Overall status
+    # 全体の状態
     print("\n📋 Overall Status")
     print("=" * 50)
     
@@ -783,7 +789,7 @@ if __name__ == "__main__":
 
 ## 🚀 高度な設定
 
-### マルチサーバー構成
+### マルチサーバー設定
 
 ```json
 // .vscode/settings.json - Multiple MCP servers
@@ -840,15 +846,15 @@ if __name__ == "__main__":
 }
 ```
 
-### カスタムVS Code拡張機能
+### カスタム VS Code 拡張機能
 
 ```typescript
-// src/extension.ts - Custom MCP retail extension
+// src/extension.ts - カスタムMCP小売拡張機能
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
     
-    // Register MCP retail commands
+    // MCP小売コマンドを登録
     const disposable = vscode.commands.registerCommand(
         'mcp-retail.quickQuery', 
         async () => {
@@ -889,7 +895,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     context.subscriptions.push(disposable);
     
-    // Register store switcher
+    // ストア切替機能を登録
     const storeSwitcher = vscode.commands.registerCommand(
         'mcp-retail.switchStore',
         async () => {
@@ -899,7 +905,7 @@ export function activate(context: vscode.ExtensionContext) {
             });
             
             if (selected) {
-                // Update configuration
+                // 設定を更新
                 const config = vscode.workspace.getConfiguration('mcp');
                 await config.update('defaultStore', selected, true);
                 
@@ -914,7 +920,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function executeQuickQuery(queryType: string) {
-    // Execute predefined queries in VS Code Chat
+    // VS Code Chatで事前定義されたクエリを実行
     const chatCommands = {
         '📊 Daily Sales': '@retail Show me daily sales for the last 30 days',
         '🏆 Top Products': '@retail What are the top 10 selling products this month?',
@@ -1007,47 +1013,49 @@ export function deactivate() {}
 
 ## 🎯 重要なポイント
 
-このラボを完了すると、以下を習得できます：
+このラボを完了すると、以下のことが可能になります:
 
-✅ **VS Code MCP設定**: MCP統合のための完全なセットアップ  
-✅ **AIチャット統合**: VS Codeでの自然言語クエリ機能  
-✅ **デバッグツール**: 包括的なトラブルシューティングと接続診断  
-✅ **マルチサーバー構成**: 複数のMCPサーバーインスタンスの設定  
-✅ **カスタム拡張機能**: 小売業向け機能を備えたVS Codeの拡張  
-✅ **本番環境対応**: エンタープライズ対応のVS Code開発環境  
+✅ **VS Code MCP 設定**: 最適な MCP 統合のためのセットアップ完了  
+✅ **AI チャット統合**: VS Code での自然言語クエリ機能  
+✅ <strong>デバッグツール</strong>: 包括的なトラブルシューティングと接続診断  
+✅ <strong>マルチサーバー設定</strong>: 複数 MCP サーバーインスタンスの設定  
+✅ <strong>カスタム拡張</strong>: 小売特化機能による強化された VS Code 体験  
+✅ <strong>本番対応</strong>: 企業対応の VS Code 開発環境  
 
-## 🚀 次のステップ
+## 🚀 次に進むこと
 
-**[Lab 10: 展開戦略](../10-Deployment/README.md)** に進んで以下を学びましょう：
+**[Lab 10: Deployment Strategies](../10-Deployment/README.md)** を続けて実施して:
 
-- MCPサーバーを本番環境に展開する  
-- スケーラビリティのためのクラウドインフラを設定する  
-- CI/CDパイプラインを構築して自動展開を実現する  
-- 本番環境のMCPサーバーのパフォーマンスを監視する  
+- MCP サーバーの本番環境展開
+- スケーラビリティのためのクラウドインフラ設定
+- 自動展開のための CI/CD パイプラインの実装
+- 本番 MCP サーバーのパフォーマンス監視
 
 ## 📚 追加リソース
 
-### VS Code開発
-- [VS Code Extension API](https://code.visualstudio.com/api) - 公式拡張機能開発ガイド  
-- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP統合ドキュメント  
-- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS CodeでのTypeScript開発  
+### VS Code 開発
+- [VS Code Extension API](https://code.visualstudio.com/api) - 公式拡張機能開発ガイド
+- [VS Code MCP Documentation](https://code.visualstudio.com/docs/copilot/copilot-extensibility-overview) - MCP 統合ドキュメント
+- [TypeScript for VS Code](https://code.visualstudio.com/docs/languages/typescript) - VS Code における TypeScript 開発
 
-### MCPプロトコル
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - 公式MCP仕様書  
-- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - 実装のベストプラクティス  
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - PythonによるMCP実装  
+### MCP プロトコル
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - 公式 MCP 仕様
+- [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - 実装ベストプラクティス
+- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP 実装
 
 ### 開発ツール
-- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python開発セットアップ  
-- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - 高度なデバッグ技術  
-- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - タスクの自動化と設定  
+- [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python 開発セットアップ
+- [Debugging in VS Code](https://code.visualstudio.com/docs/editor/debugging) - 高度なデバッグ手法
+- [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) - タスク自動化と設定
 
 ---
 
-**前回**: [Lab 08: テストとデバッグ](../08-Testing/README.md)  
-**次回**: [Lab 10: 展開戦略](../10-Deployment/README.md)  
+<strong>前へ</strong>: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
+<strong>次へ</strong>: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
 
 ---
 
-**免責事項**:  
-この文書は、AI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知ください。元の言語で記載された文書が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当方は責任を負いません。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：
+本書類は AI 翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期していますが、自動翻訳には誤りや不正確な部分が含まれる可能性があることをご承知おきください。原文の原語版が正式な情報源とみなされるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や解釈違いについても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

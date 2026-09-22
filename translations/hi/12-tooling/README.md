@@ -1,31 +1,33 @@
 # 🚀 MCP टूलिंग
 
-## 🧠 MCP डेटाबेस इंटीग्रेशन लर्निंग पाथ का अवलोकन
+## 🧠 MCP डेटाबेस एकीकरण लर्निंग पाथ का अवलोकन
 
-यहाँ आप सीखेंगे कि MCP का उपयोग करने वाले टूल्स का उपयोग कैसे करें। MCP सर्वरों को उनके साथ जोड़ने पर आपका अनुभव बेहतर होगा।
+यहाँ आप सीखेंगे कि MCP का उपयोग करने वाले टूल्स का उपयोग कैसे करें। जैसे-जैसे आप MCP सर्वरों को इन टूल्स से जोड़ेंगे, आपका अनुभव बेहतर होगा।
 
 ## 🔗 आधिकारिक MCP संसाधन
 
-- 📘 [MCP डाक्यूमेंटेशन](https://modelcontextprotocol.io/) – विस्तृत ट्यूटोरियल और उपयोगकर्ता गाइड
-- 📜 [MCP विशिष्टता (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – प्रोटोकॉल आर्किटेक्चर और तकनीकी संदर्भ
-- 🧑‍💻 [MCP GitHub रिपोजिटरी](https://github.com/modelcontextprotocol) – ओपन-सोर्स SDKs, टूल्स, और कोड नमूने
-- 🌐 [MCP कम्युनिटी](https://github.com/orgs/modelcontextprotocol/discussions) – चर्चाओं में शामिल हों और समुदाय में योगदान दें
-- 🔒 [OWASP MCP टॉप 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – सुरक्षा सर्वोत्तम प्रथाएँ और जोखिम कम करना
+- 📘 [MCP डोक्यूमेंटेशन](https://modelcontextprotocol.io/) – विस्तृत ट्यूटोरियल और यूजर गाइड्स
+- 📜 [MCP विनिर्देश (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – प्रोटोकॉल आर्किटेक्चर और तकनीकी संदर्भ
+- 🧑‍💻 [MCP GitHub रिपॉजिटरी](https://github.com/modelcontextprotocol) – ओपन-सोर्स SDKs, टूल्स और कोड सैंपल्स
+- 🌐 [MCP समुदाय](https://github.com/orgs/modelcontextprotocol/discussions) – चर्चाओं में शामिल हों और समुदाय में योगदान दें
+- 🔒 [OWASP MCP टॉप 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – सुरक्षा सर्वोत्तम प्रथाएँ और जोखिम कम करने के उपाय
+
+
 
 ## 🌟 समुदाय और सहायता
 
-### मदद प्राप्त करें
+### सहायता प्राप्त करें
 
 - **Azure AI Discord**: [विशेषज्ञ सहायता के लिए शामिल हों](https://discord.com/invite/ByRwuEEgH4)
-- **MCP कम्युनिटी**: [व्यापक MCP चर्चाओं में शामिल हों](https://github.com/orgs/modelcontextprotocol/discussions)
+- **MCP समुदाय**: [व्यापक MCP चर्चाओं में शामिल हों](https://github.com/orgs/modelcontextprotocol/discussions)
 
 ## 🚀 शुरू करने के लिए तैयार?
 
-**[GitHub Copilot ऐप](./01-copilot-app/README.md)** के साथ अपनी यात्रा शुरू करें
+अपनी यात्रा शुरू करें **[GitHub Copilot ऐप](./01-copilot-app/README.md)** के साथ
 
 ---
 
-*इन टूल्स के साथ MCP का उपयोग करके बेहतर उत्पादकता और सहज इंटीग्रेशन के लिए इन्हें मास्टर करें।*
+*इन टूल्स के साथ MCP का उपयोग करके इन पर महारत हासिल करें, जिससे उत्पादकता बढ़ेगी और सहज एकीकरण होगा।*
 
 ---
 

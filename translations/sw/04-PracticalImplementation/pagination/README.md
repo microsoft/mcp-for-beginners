@@ -1,49 +1,50 @@
-# Upangaji na Mkusanyiko Mkubwa wa Matokeo katika MCP
+# Utengezaji wa Kurasa na Mikutano Mikubwa ya Matokeo katika MCP
 
-Wakati seva yako ya MCP inashughulikia seti kubwa za data - iwe ni kuorodhesha maelfu ya faili, rekodi za hifadhidata, au matokeo ya utafutaji - unahitaji upangaji ili kusimamia kumbukumbu kwa ufanisi na kutoa uzoefu wa mtumiaji mwenye usikivu. Mwongozo huu unahusu jinsi ya kutekeleza na kutumia upangaji katika MCP.
+Wakati seva yako ya MCP inashughulikia seti kubwa za data - iwe orodha ya maelfu ya faili, rekodi za hifadhidata, au matokeo ya utafutaji - unahitaji utengezaji wa kurasa kudhibiti kumbukumbu kwa ufanisi na kutoa uzoefu wa mtumiaji wa haraka. Mwongozo huu unashughulikia jinsi ya kutekeleza na kutumia utengezaji wa kurasa katika MCP.
 
-## Kwa Nini Upangaji Ni Muhimu
+## Kwa Nini Utengezaji wa Kurasa Ni Muhimu
 
-Bila upangaji, majibu makubwa yanaweza kusababisha:
+Bila utengezaji wa kurasa, majibu makubwa yanaweza kusababisha:
 
-- **Kutumika kwa kumbukumbu kwa kiasi kikubwa** - Kupakia rekodi milioni moja kwa wakati mmoja
-- **Muda wa majibu polepole** - Watumiaji wanangoja wakati data yote inapakiwa
-- **Makosa ya muda kuisha** - Maombi yanazidi mipaka ya muda
-- **Utendaji duni wa AI** - LLMs zinapata shida na muktadha mkubwa sana
+- **Uchovu wa kumbukumbu** - Kupakia mamilioni ya rekodi mara moja
+- **Muda mrefu wa majibu** - Watumiaji husubiri data yote ipakie
+- **Makosa ya muda wa kusubiri** - Maombi yanazidi muda wa kusubiri uliowekwa
+- **Utendaji mbaya wa AI** - LLMs husumbuliwa na muktadha mkubwa sana
 
-MCP inatumia **upangaji unaotumia kielekezi** kwa upenyezaji unaotegemewa na thabiti kupitia seti za matokeo.
+MCP inatumia **utengezaji wa kurasa unaotegemea kidole (cursor)** kwa upitishaji wa kurasa unaoaminika na thabiti kupitia seti za matokeo.
 
 ---
 
-## Jinsi Upangaji wa MCP Unavyofanya Kazi
+## Jinsi Utengezaji wa Kurasa Katika MCP Unavyofanya Kazi
 
-### Dhana ya Kielekezi
+### Dhana ya Kidole (Cursor)
 
-**Kielekezi** ni mfuatano usio wazi unaoashiria nafasi yako katika seti ya matokeo. Fikiria kama alama ya ukurasa katika kitabu ndefu.
+**Kidole** ni mfuatano usioonekana unaoashiria nafasi yako katika seti ya matokeo. Fikiria kama alama ya kurasa katika kitabu kirefu.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (hakuna cursor)
-    Server-->>Client: tools [1-10], nextCursor: "abc123"
+    Client->>Server: zana/orodha (hakuna kielekezi)
+    Server-->>Client: zana [1-10], kielekeziKijacho: "abc123"
     
-    Client->>Server: tools/list (cursor: "abc123")
-    Server-->>Client: tools [11-20], nextCursor: "def456"
+    Client->>Server: zana/orodha (kielekezi: "abc123")
+    Server-->>Client: zana [11-20], kielekeziKijacho: "def456"
     
-    Client->>Server: tools/list (cursor: "def456")
-    Server-->>Client: tools [21-25], nextCursor: null (mwisho)
+    Client->>Server: zana/orodha (kielekezi: "def456")
+    Server-->>Client: zana [21-25], kielekeziKijacho: null (mwisho)
 ```
-### Upangaji katika Mbinu za MCP
 
-Mbinu hizi za MCP zinaunga mkono upangaji:
+### Utengezaji wa Kurasa Katika Mbinu za MCP
 
-| Mbinu | Inarudisha | Msaada wa Kielekezi |
+Mbinu hizi za MCP zinaunga mkono utengezaji wa kurasa:
+
+| Mbinu | Inarudisha | Msaada wa Kidole |
 |--------|---------|----------------|
 | `tools/list` | Maelezo ya zana | ✅ |
 | `resources/list` | Maelezo ya rasilimali | ✅ |
-| `prompts/list` | Maelezo ya maswali | ✅ |
+| `prompts/list` | Maelezo ya viratibu | ✅ |
 | `resources/templates/list` | Violezo vya rasilimali | ✅ |
 
 ---
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Kijumlishi kikubwa kilichofanikishwa
+# Sampuli kubwa ya data zilizojirudia
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Tafsiri kielekezi kupata index ya kuanzia
+    # Fumbua cursor kupata nambari ya kuanzia
     start_index = 0
     if cursor:
         try:
@@ -83,7 +84,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Hesabu kielekezi kinachofuata
+    # Hesabu cursor inayofuata
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Seti kubwa la data lililojaribishwa
+// Seti kubwa ya data iliyohisiwa
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Tambua kidokezo
+  // Tafsiri kursor
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // Hesabu kidokezo kinachofuata
+  // Hesabu kursor inayofuata
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -153,7 +154,7 @@ public class PaginatedToolService {
     
     @McpMethod("tools/list")
     public ListToolsResult listTools(@Param("cursor") String cursor) {
-        // Tafsiri kashkursi
+        // Tafsiri kielekezi
         int startIndex = 0;
         if (cursor != null && !cursor.isEmpty()) {
             try {
@@ -167,7 +168,7 @@ public class PaginatedToolService {
         int endIndex = Math.min(startIndex + PAGE_SIZE, allTools.size());
         List<Tool> pageTools = allTools.subList(startIndex, endIndex);
         
-        // Hesabu kashkursi inayofuata
+        // Hesabu kielekezi kinachofuata
         String nextCursor = endIndex < allTools.size() ? String.valueOf(endIndex) : null;
         
         return new ListToolsResult(pageTools, nextCursor);
@@ -228,9 +229,9 @@ const tools = await getAllTools(client);
 console.log(`Found ${tools.length} tools`);
 ```
 
-### Mwamko wa Kupakia Polepole
+### Mfumo wa Kupakia Taratibu (Lazy Loading)
 
-Kwa seti kubwa sana za data, pakia kurasa unapotaka:
+Kwa seti kubwa sana za data, pakia kurasa kwa mahitaji:
 
 ```python
 class PaginatedToolIterator:
@@ -243,7 +244,7 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Rudisha kutoka kwa buffer ikiwa inapatikana
+        # Rudisha kutoka buffer ikiwa inapatikana
         if self.buffer:
             return self.buffer.pop(0)
         
@@ -267,16 +268,16 @@ class PaginatedToolIterator:
     def __aiter__(self):
         return self
 
-# Matumizi - ya kuokoa kumbukumbu kwa hifadhidata kubwa
+# Matumizi - ufanisi wa kumbukumbu kwa seti kubwa za data
 async for tool in PaginatedToolIterator(session):
     process_tool(tool)
 ```
 
 ---
 
-## Upangaji kwa Rasilimali
+## Utengezaji wa Kurasa kwa Rasilimali
 
-Rasilimali mara nyingi zinahitaji upangaji kwa saraka au seti kubwa za data:
+Rasilimali mara nyingi zinahitaji utengezaji wa kurasa kwa saraka au seti kubwa za data:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Tafsiri kielekezi (fayili ya faharasa)
+    # Tafsiri kielekezi (kiashiria cha faili)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Tengeneza orodha ya rasilimali kwa ukurasa huu
+    # Unda orodha ya rasilimali kwa ukurasa huu
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Hisa kielekezi kinachofuata
+    # Hesabu kielekezi kinachofuata
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -318,29 +319,29 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ---
 
-## Mikakati ya Kubuni Kielekezi
+## Mikakati ya Ubunifu wa Kidole (Cursor)
 
-### Mkakati 1: Kifani cha Index (Rahisi)
+### Mkakati 1: Kulingana na Faharasa (Rahisi)
 
 ```python
-# Kainushi ni tu kiambatisho
-cursor = "50"  # Anza kwenye kipengee cha 50
+# Kielekezi ni tu fahirisi
+cursor = "50"  # Anza kwa kipengee cha 50
 ```
 
 **Faida:** Rahisi, haina hali
-**Hasara:** Matokeo yanaweza kubadilika ikiwa vitu vinaongezwa/kuondolewa
+**Hasara:** Matokeo yanaweza kubadilika ikiwa vitu vinaongezwa/kutolewa
 
-### Mkakati 2: Kifani cha ID (Thabiti)
+### Mkakati 2: Kulingana na Kitambulisho (Thabiti)
 
 ```python
-# Kielekezi ni ID ya mwisho kuona
+# Kielekezi ni ID ya mwisho iliyotazamwa
 cursor = "item_abc123"  # Anza baada ya kipengee hiki
 ```
 
-**Faida:** Thabiti hata kama vitu vinabadilika
-**Hasara:** Inahitaji IDs zilizo pangwa
+**Faida:** Thabiti hata ikiwa vitu vinabadilika
+**Hasara:** Inahitaji vitambulisho vilivyo pangwa
 
-### Mkakati 3: Hali Iliyo Kodishwa (Ngumu)
+### Mkakati 3: Hali Iliyofichwa (Ngumu)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Kursor ina nyanja nyingi za hali
+# Kursor ina nywanja nyingi za hali
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,23 +361,23 @@ cursor = encode_cursor({
 })
 ```
 
-**Faida:** Inaweza kukodisha hali ngumu
-**Hasara:** Ngumu zaidi, kielekezi kikubwa
+**Faida:** Inaweza kuficha hali ngumu
+**Hasara:** Ngumu zaidi, mfuatano mrefu wa kidole
 
 ---
 
-## Mambo Bora Za Kufanywa
+## Misingi Bora
 
 ### 1. Chagua Ukubwa wa Kurasa Unaofaa
 
 ```python
-# Zingatia ukubwa wa data
+# Fikiria ukubwa wa data
 PAGE_SIZE_SMALL_ITEMS = 100   # Metadata rahisi
-PAGE_SIZE_MEDIUM_ITEMS = 20   # Vitu vyenye utajiri zaidi
-PAGE_SIZE_LARGE_ITEMS = 5     # Maudhui changamano
+PAGE_SIZE_MEDIUM_ITEMS = 20   # Vitu vyenye taarifa zaidi
+PAGE_SIZE_LARGE_ITEMS = 5     # Yaliyomo tata
 ```
 
-### 2. Hudumia Kielekezi Kisicho Sahihi kwa Upole
+### 2. Shughulikia Vidole Visivyo Sahihi kwa Upole
 
 ```python
 @app.list_tools()
@@ -384,13 +385,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
-            start_index = 0  # Weka upya kutoka mwanzo
+            start_index = 0  # Weka upya hadi mwanzo
     except (ValueError, TypeError):
         start_index = 0  # Kielekezi batili, anza upya
     # ...
 ```
 
-### 3. Jumuisha Jumla ya Hesabu (Hiari)
+### 3. Jumuisha Idadi Jumla (Hiari)
 
 ```python
 return ListToolsResult(
@@ -401,11 +402,11 @@ return ListToolsResult(
 )
 ```
 
-### 4. Jaribu Mikataba ya Kiwango cha Juu
+### 4. Jaribu Mikataba ya Kiwiko (Edge Cases)
 
 ```python
 async def test_pagination():
-    # Seti ya matokeo tupu
+    # Seti tupu ya matokeo
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
@@ -414,16 +415,16 @@ async def test_pagination():
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Kirusha batili
+    # Kidirisha batili
     result = await session.list_tools(cursor="invalid")
     assert result.tools  # Inapaswa kurudisha ukurasa wa kwanza
 ```
 
 ---
 
-## Makosa Ya Kawaida
+## Makosa ya Kawaida
 
-### ❌ Kurudisha Matokeo Yote Kisha Kufanya Upangaji Kwenye Mteja
+### ❌ Kurudisha Matokeo Yote Kisha Kutengeza Kurasa Katika Mteja
 
 ```python
 # MBAYA: Inaleta kila kitu kwenye kumbukumbu
@@ -433,10 +434,10 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Fanya Upangaji Kwenye Chanzo cha Data
+### ✅ Tengenezaji wa Kurasa Kwenye Chanzo cha Data
 
 ```python
-# BORA: Inapakia tu kile kinachohitajika
+# BORA: Inapakia tu kinachohitajika
 @app.list_tools()
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     offset = int(cursor) if cursor else 0
@@ -446,23 +447,23 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ---
 
-## Ifuatayo Ni Nini
+## Nini Kinafuata
 
 - [Moduli 5.14 - Uhandisi wa Muktadha](../../05-AdvancedTopics/mcp-contextengineering/README.md)
-- [Moduli 8 - Mambo Bora Za Kufanywa](../../08-BestPractices/README.md)
+- [Moduli 8 - Misingi Bora](../../08-BestPractices/README.md)
 - [3.8 - Kupima Seva Yako ya MCP](../../03-GettingStarted/08-testing/README.md)
 
 ---
 
 ## Rasilimali Zaidi
 
-- [Maelezo ya MCP - Upangaji](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Maelezo ya Upangaji Unaotumia Kielekezi](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Majaribio ya upangaji ya SDK ya Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Maelezo ya MCP - Utengezaji wa Kurasa](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Maelezo ya Utengezaji wa Kurasa Unaotegemea Kidole](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Majaribio ya Utengezaji wa Kurasa ya SDK ya Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kiarifu cha Msamaha**:
-Nyaraka hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kuwa sahihi, tafadhali fahamu kwamba tafsiri za otomati zinaweza kuwa na makosa au kasoro. Nyaraka ya asili katika lugha yake halali inapaswa kuzingatiwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu ya binadamu inapendekezwa. Hatuwajibiki kwa kutoelewana au tafsiri potofu zinazotokana na matumizi ya tafsiri hii.
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,37 +1,37 @@
 # Študija primera: Objavljanje na družbenih omrežjih iz agenta z oddaljenim MCP strežnikom
 
-> **Opozorilo:** Več storitev in odprtokodnih projektov lahko objavlja na družbenih omrežjih, prav tako lahko ekipa neposredno integrira API vsakega omrežja. Spodnji scenarij je predstavljen kot en delujoč primer, kako je mogoče oblikovati in uporabljati **oddaljeni MCP strežnik z možnostjo zapisovanja**. Publora je komercialna storitev s prostim nivojem; vzorci, opisani tukaj, veljajo za vsak MCP strežnik, ki izvaja nepovratne ukrepe v imenu uporabnika.
+> **Opozorilo:** Več storitev in odprtokodnih projektov lahko objavlja na družbenih omrežjih, ekipa pa lahko tudi neposredno integrira API vsakega omrežja. Spodnji scenarij je predstavljen kot en delujoč primer, kako je mogoče oblikovati in uporabljati **zapisovalni oddaljeni MCP strežnik**. Publora je komercialna storitev s prostim paketom; vzorci, opisani tukaj, veljajo za vsak MCP strežnik, ki na uporabnikov račun izvaja nepreklicne ukrepe.
 
 ## Pregled
 
-Agenti so dobri pri pripravi vsebin in slabi pri njihovi dostavi. Model lahko v nekaj sekundah napiše objavo o novici, nato pa delo ustavi: objavljanje pomeni API za vsako omrežje, OAuth aplikacijo za vsako omrežje in drugačen nabor pravil za medije za vsako. Večina ekip to reši tako, da besedilo ročno kopira v brskalnik.
+Agenti so dobri pri pripravi vsebin, slabi pa pri njihovi dostavi. Model lahko v nekaj sekundah zapiše obvestilo za izdajo, nato pa delo ustavi: objava pomeni API za vsako omrežje, OAuth aplikacijo za vsako omrežje in drugačen nabor pravil za medije za vsako. Večina ekip to reši tako, da ročno kopira besedilo v brskalnik.
 
-Ta študija primera preučuje, kako se ta zadnji korak zaključi z enim samim oddaljenim MCP strežnikom in — bolj uporabno za vsakogar, ki ga gradi — oblikovalske odločitve, ki jih mora strežnik z možnostjo pisanja pravilno izpeljati. Branje podatkov je odpuščajoče. Objavljanje ni: napačen klic orodja je viden publiki in ga ni mogoče razveljaviti.
+Ta študija primera preuči, kako je ta zadnji korak zaključen z enim samim oddaljenim MCP strežnikom in — kar je bolj uporabno za vsakogar, ki ga gradi — oblikovne odločitve, ki jih mora pravilno izpeljati **zapisovalni** strežnik. Branje podatkov je odpuščajoče. Objavljanje ni: napačen klic orodja je viden občinstvu in ga ni mogoče razveljaviti.
 
 ## Scenarij
 
 Majhna ekipa za odnose z razvijalci pripravlja objave znotraj agenta (Claude, VS Code, Cursor — odjemalec ni pomemben). Želijo, da agent:
 
-- vidi, katere povezane račune ima ekipa,
-- sestavi objavo in jo obdrži kot osnutek za potrditev s strani človeka,
-- pripne sliko,
-- razporedi objavo na več omrežij ob izbranem času,
-- in pozneje poroča o njenem učinku.
+- vidi, kateri družbeni računi so povezani z ekipo,
+- pripravi osnutek objave in jo hrani kot osnutek, da jo odobri človek,
+- priloži sliko,
+- načrtuje objavo na več omrežjih ob izbranem času,
+- in pozneje poroča o uspešnosti.
 
-Ključno je, da želijo, da agent *ne more* pomotoma objaviti, medtem ko še vedno preizkušajo.
+Ključno je, da želijo, da agent *ne more* nehote objavljati, ko še eksperimentirajo.
 
-## Uporabljena orodja
+## Orodja, uporabljena
 
-- [Publora MCP strežnik](https://github.com/publora/mcp-server) — oddaljeni MCP strežnik (`streamable-http`), ki izpostavlja orodja za objavljanje, razporejanje, medije in analitiko LinkedIna. Registriran v uradnem MCP registru kot `com.publora/mcp-server`.
+- [Publora MCP strežnik](https://github.com/publora/mcp-server) — oddaljeni MCP strežnik (`streamable-http`), ki omogoča orodja za objavljanje, načrtovanje, medije in analitiko LinkedIna. Registriran v uradnem MCP registru kot `com.publora/mcp-server`.
 
-## Korak za korakom delovni tok
+## Korak-po-korak delovni proces
 
-1. **Povežite strežnik.** Odjemalci, ki podpirajo OAuth, zaključijo avtentikacijski rezultatni tok s PKCE preko lastnega zaslona soglasja strežnika; odjemalci, ki tega ne podpirajo, na primer brezglavi CLI, uporabljajo Publora API ključ v glavi. Obe poti sta podprti, katero boste dobili, pa je odvisno od odjemalca, ne od strežnika.
-2. **Naštejte povezave.** Agent kliče `list_connections` in prejme povezane račune z njihovimi identifikatorji.
-3. **Pripravite osnutek.** Agent kliče `create_post` *brez* razporejenega časa. Objavo shrani kot osnutek — nič ni objavljeno.
-4. **Pripnite medije.** Javne URL-je slik posreduje v istem klicu; strežnik jih prenese in preveri.
-5. **Razporedite.** Ko človek potrdi, `update_post` nastavi status na razporejeno s časom ISO 8601.
-6. **Merite.** Za LinkedIn `linkedin_post_stats` vrne angažiranost, ko je objava aktivna.
+1. **Poveži strežnik.** Odjemalci, ki podpirajo OAuth, opravijo tok avtorizacijskega kode s PKCE skozi lastni zaslon za privolitev strežnika; odjemalci, ki tega ne podpirajo, na primer nezaznavne ukazne vrstice, uporabljajo API ključ Publora v glavi. Podprti so oboji; katero metodo dobite, je odvisno od odjemalca, ne od strežnika.
+2. **Naštej povezave.** Agent pokliče `list_connections` in prejme povezane račune z njihovimi identifikatorji.
+3. **Pripravi osnutek.** Agent pokliče `create_post` *brez* načrtovanega časa. Objavo shrani kot osnutek — nič ni objavljeno.
+4. **Priloži medije.** Javne URL-je slik pošlje v istem klicu; strežnik jih prenese in preveri.
+5. **Načrtuj.** Ko človek odobri, `update_post` nastavi stanje na načrtovano z ISO 8601 časom.
+6. **Merjenje.** Za LinkedIn `linkedin_post_stats` vrne angažiranost, ko je objava živa.
 
 ## Primer poziva
 
@@ -42,88 +42,98 @@ https://example.com/changelog.png, and keep it as a draft — do not publish it.
 Once I approve, schedule it to LinkedIn and Bluesky for tomorrow at 09:00 UTC.
 ```
 
-## Zanka Mermaid
+## Mermaid diagram poteka
 
 ```mermaid
 flowchart TD
-    A[Uporabniški poziv v MCP odjemalcu] --> B[Odjemalec izvede OAuth s strežnikom]
+    A[Uporabniški poziv v MCP odjemalcu] --> B[Odjemalec izvaja OAuth s strežnikom]
     B --> C[seznam_povezav]
     C --> D{Ciljna omrežja povezana?}
-    D -- No --> E[Agent poroča, katera manjkajo]
-    D -- Yes --> F[ustvari_objavo brez scheduledTime -> osnutek]
+    D -- No --> E[Agent sporoči, katera manjkajo]
+    D -- Yes --> F[create_post brez scheduledTime -> osnutek]
     F --> G[Človek pregleda osnutek]
     G -- Approved --> H[update_post: status=načrtovano]
-    G -- Rejected --> I[izbriši_objavo]
+    G -- Rejected --> I[delete_post]
     H --> J[Strežnik objavi ob načrtovanem času]
-    J --> K[linkedin_statistika_objave za vključenost]
+    J --> K[linkedin_post_stats za angažiranost]
 ```
 
-## Tehnična izvedba
+## Tehnična implementacija
 
 Spodnje lekcije so prenosljivi del te študije primera.
 
-### Odprto odkrivanje, avtenticirano izvajanje
+### Odprta odkritja, avtorizirano izvajanje
 
-`tools/list` je dostopen brez poverilnic; vsak `tools/call` zahteva žeton in sicer vrne `401` z glavo `WWW-Authenticate`, ki kaže na metapodatke zaščitenega vira. (Strežnik odgovarja tudi na neavtenticiran `initialize`, kar je pomembno le za odjemalce na različicah protokola pred `2026-07-28`; ta revizija je popolnoma odstranila rokovanje.)
+`tools/list` je dostopen brez poverilnic; vsak `tools/call` zahteva žeton
+in sicer vrača `401` z glavo `WWW-Authenticate`, ki kaže na
+metapodatke zaščitenega vira. Starejši strežniški konektor prav tako odgovarja na
+neavtorizirani `initialize` za odjemalce z različic protokola pred
+`2026-07-28`; trenutni odjemalci tega protokola ne uporabljajo.
 
-Ta razdelitev v praksi šteje. Registri, kataloški imeniki in odjemalci lahko pregledujejo orodja — imena, sheme, oznake — brez skrivnosti, medtem ko se nič ne da *izvajati* anonimno. Strežnik, ki zahteva žeton za `initialize`, je dejansko neviden za orodje; strežnik, ki dovoljuje anonimni `tools/call`, pa je odgovornost.
+Ta strežniško-specifična delitev omogoča registracijam, katalogom in odjemalcem ogled imen, shem in oznak orodij brez skrivnosti, ob prepovedi anonimnega
+izvajanja. Odprta odkritja so izbira pri nameščanju, ne MCP zahteva; zaščitena namestitev lahko zahteva tudi avtorizacijo za `tools/list`.
 
-### Registracija: dinamična registracija odjemalca in kaj jo nadomesti
 
-Strežnik oglašuje `/.well-known/oauth-protected-resource` in `/.well-known/oauth-authorization-server` ter podpira avtorizacijski tok s kodo in PKCE (`S256`), osvežitvene žetone in **dinamično registracijo odjemalcev**.
 
-Dinamična registracija odstrani ročni korak: brez nje vsak odjemalec potrebuje predhodno izdan `client_id`, kar pomeni zahtevo zunaj kanala za vsakega novega odjemalca.
 
-Obravnavajte to kot združljivostno vedenje, ne pa kot načrt za kopiranje. Revizija specifikacije `2026-07-28` ukinja dinamično registracijo v korist dokumentov meta-podatkov ID odjemalca (Client ID Metadata Documents), kjer odjemalec gostuje dokument na stabilnem HTTPS URL in ta URL *je* `client_id`. DCR trenutno še deluje, vendar naj strežnik, ki se gradi danes, načrtuje CIMD in ohrani DCR le za starejše odjemalce.
 
-### Oznake orodij niso okras
 
-Vsako orodje nosi `title` in ustrezne namige: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
 
-Dva razloga za vlaganje vanje. Prvič, odjemalci uporabijo namige, da odločijo, kaj potrditi z uporabnikom — odjemalec lahko samodejno izvede iskanje samo za branje in se ustavi za potrditev pred brisanjem. Specifikacija izrecno določa, da so oznake nezanesljivi namigi, ne mehanizem avtoritete: oblikujejo, kaj odjemalec ponuja storiti, ne ustavijo ničesar na strežniku, strežnik pa mora še vedno uveljavljati svoje pravilnike. Drugič, glavni imeniki povezovalcev zdaj *zahtevajo* njihovo prisotnost za pregled; strežnik brez naslovov in namigov bo zavrnjen ne glede na to, kako dobro deluje.
+moral vsak odjemalec imeti predhodno dodeljen `client_id` od prodajalca.
+
+
+
+
+### Oznake orodij niso dekoracija
+
+Vsako orodje nosi `title` in uporabo namige: `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`.
+
+Dva razloga za vlaganje vanje. Prvič, odjemalci uporabljajo namige za odločanje, kaj potrditi z uporabnikom — odjemalec lahko samodejno izvede iskanje samo za branje in se ustavi za potrditev pred brisanjem. Specifikacija izračno navaja, da so oznake nezaupljivi namigi, ne avtorizacijski mehanizem: oblikujejo, kaj odjemalec ponuja, ne ustavijo ničesar na strežniku, kjer strežnik še vedno mora uveljaviti svoja pravila. Drugič, glavni direktoriji konektorjev jih zdaj *zahtevajo* za pregled; strežnik, ki nima naslovov in namigov orodij, bo kljub delovanju zavrnjen.
 
 ### Naredite identifikatorje neizmišljive
 
-Identifikatorji platform so neprozorni nizi, ki jih vrne `list_connections`, in opis sheme izrecno pravi, da jih je treba dobesedno kopirati in nikoli ugibati. Strežnik zavrne vse drugo.
+Identifikatorji platform so neprozorne nizi, ki jih vrne `list_connections`, in opis sheme jasno določa, da jih je treba dobesedno kopirati in nikoli ugibati. Strežnik zavrne vse ostalo.
 
-Modeli so vešči ugibalci. Vsak strežnik z možnostjo pisanja naj predpostavi, da bo identifikator na koncu nastal kot iluzija, in naj ta potovanje neuspešno in glasno zaustavi čim prej, namesto da bi ukrepal na verjetni vrednosti.
+Modeli so tekoči ugibalci. Vsak zapisovalni strežnik bi moral predvideti, da bo identifikator slej ko prej haluciniran in naj ta pot glasno in zgodaj propade, namesto da bi ukrepal na podlagi verjetne vrednosti.
 
-### Neuspeh pred objavo z uporabnim sporočilom
+### Propadnite pred objavo, s sporočilom, ki je uporabno
 
-Nekatera omrežja zavračajo samo-besedilne objave in zahtevajo sliko ali video. To se preveri ob razporeditvi objave, napaka pa navede platformo in manjkajoči pogoj.
+Nekatera omrežja zavračajo objave samo z besedilom in zahtevajo sliko ali video. To se preverja, ko je objava načrtovana, in napaka navede platformo in manjkajočo zahtevo.
 
-Agent se lahko povrne od "Instagram zahteva medije — pripnite sliko ali video" brez dodatnega klica. Ne more se povrniti od splošne `400` napake.
+Agent se lahko odpravi od "Instagram zahteva medije — priložite sliko ali video" brez dodatnega kroga. Ni pa sposoben okrevanja pri splošni `400`.
 
-### Naredite ponovitve varne
+### Naredi ponovitve varne
 
-Dve orodji za ustvarjanje vsebin, `create_post` in `update_post`, sprejemata ključ idempotence: ponovna uporaba z enako zahtevo ponovi prvotni odgovor namesto, da bi ustvarila drugo objavo. Agentovi časi izvajanja poskušajo ob časovnih omejitvah; brez idempotence postane počasni odziv podvojena objava. Druga orodja za zapisovanje — brisanja, koraki medijev, reakcije in komentarji LinkedIna — ne sprejemajo ključa, zato ponovitev ni samodejno varna. Velja vedeti, katere vaše mutacije so zaščitene in katere ne.
+Dve orodji, ki ustvarjata vsebino, `create_post` in `update_post`, sprejemata ključ idempotentnosti: ponovna uporaba z enakim zahtevkom ponovi prvotni odgovor namesto da ustvari drugo objavo. Agenti v času izvajanja ponavljajo pri časovni omejitvi; brez idempotentnosti se počasni odziv spremeni v dvojno objavo. Druga orodja za zapis — brisanje, koraki z mediji, odzivi in komentarji na LinkedIn — ne sprejemajo ključa, zato ponovitev ni samodejno varna. Dobro je poznati, katere vaše mutacije so zaščitene in katere ne.
 
-### Omogočite preizkus brez objave
+### Omogoči način testiranja, ki ne objavi ničesar
 
-Strežnik sprejema rezerviran cilj, `publora-playground`, ki se preveri in potrdi kot pravi cilj, nato pa zavrže — nič ne doseže aktivnega računa. Opisano je v sami shemi orodij, ki jo lahko vsak odjemalec prebere brez poverilnic: polje `platforms` pri `create_post` ga dokumentira kot "cilj testiranja povezave, ki ne zahteva prave povezave — objava je potrjena in zavrnjena, nič ne objavi". Kliče se tako, da ga pošljete kot edini vnos: `platforms: ["publora-playground"]`.
+Strežnik sprejema rezerviran cilj, `publora-playground`, ki je preverjen in priznan kot pravi cilj in nato zavržen — nič ne pride do živega računa. To je opisano v sami shemi orodja, ki jo lahko vsak odjemalec prebere brez poverilnic: polje `platforms` pri `create_post` ga dokumentira kot "cilj za testiranje povezave, ki ne zahteva dejanske povezave — objava je priznana in zavržena, nič ni objavljeno". Pokličite ga tako, da ga daste kot edini vnos: `platforms: ["publora-playground"]`.
 
-To se je izkazalo za eno najbolj uporabnih podrobnosti celotne površine. Pregledovalci imenikov povezovalcev, sodelavci in CI lahko izvedejo celotno pot pisanja brez tveganja za resnično publiko. Vsak MCP strežnik z nepovratnimi ukrepi ima korist od dokumentiranega cilja za brezdejanje.
+Izkazalo se je, da je to ena najbolj uporabnih podrobnosti celotne površine. Pregledovalci direktorijev konektorjev, sodelavci in CI lahko izvedejo celotno pot pisanja od začetka do konca brez tveganja za pravo občinstvo. Vsak MCP strežnik z nepreklicnimi ukrepi ima korist od dokumentiranega cilja no-op.
 
 ## Rezultati in vpliv
 
-- Korak objavljanja se je premaknil iz brskalnika v isti pogovor, kjer je vsebina napisana, in navada osnutka najprej ohranja človeka v zanki. Bodite natančni, kaj to pomeni: osnutek je konvencija, ne meja. Enake poverilnice lahko razporedijo ali objavijo, zato mora vsak, ki potrebuje pravo stopnjo odobritve, to uveljavljati zunaj orodjne površine — ločene poverilnice ali sloj politike pred strežnikom.
-- Razlike po omrežjih — zahteve za medije, nitkanje, nadzori odgovorov — se obravnavajo enkrat na strežniku namesto v vsakem agentu posebej.
-- Enak strežnik podpira več MCP odjemalcev brez dela po odjemalcu, ker je odkrivanje odprto in registracija dinamična.
-- Oblikovne omejitve zgoraj so oblikovali tako pregledi imenikov povezovalcev kot uporabniki: oznake, OAuth in varni testni cilj so vsak posebej zahtevali vsaj eni od njih.
+- Korak objave se je premaknil iz brskalnika v isti pogovor, kjer se piše vsebina, navada osnutka najprej pa ohranja človeka v zanki. Bodite natančni glede tega, kaj to pomeni: osnutek je konvencija, ne meja. Enake poverilnice lahko načrtujejo ali objavijo, zato mora vsak, ki potrebuje pravo odobritev, uveljaviti to zunaj orodja — ločene poverilnice ali sloj pravil pred strežnikom.
+- Razlike med omrežji — zahteve medija, povezovanje v niti, kontrole odgovorov — se obravnavajo enkrat na strežniku, ne v vsakem agentu posebej.
+- Enak strežnik podpira več MCP odjemalcev brez predhodno izdanih poverilnic.
+    Trenutni odjemalci lahko uporabljajo Dokumente metapodatkov odjemalcev; DCR ostaja rezervna možnost
+    za starejše odjemalce.
+- Zasnovne omejitve zgoraj so oblikovali kot pregledi direktorijev konektorjev, tako kot uporabniki: oznake, OAuth in varen cilj za testi so bili vsaj enkrat zahtevani.
 
 ## Reference
 
-- [Publora MCP strežnik (izvorno kodo)](https://github.com/publora/mcp-server)
+- [Publora MCP strežnik (izvorna koda)](https://github.com/publora/mcp-server)
 - [Publora API in MCP dokumentacija](https://docs.publora.com)
-- [Vnos v MCP registru: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
-- [MCP specifikacija — Avtorizacija](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [MCP registracija: `com.publora/mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=com.publora/mcp-server)
+- [MCP specifikacija — Avtorizacija](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP specifikacija — Oznake orodij](https://modelcontextprotocol.io/docs/concepts/tools)
 
 ## Kaj sledi
 
-- Vzemite MCP strežnik, ki ga gradite, in preverite tri najcenejše izboljšave tukaj: oznake na vsakem orodju, ključ idempotence pri vsakem zapisu in dokumentiran cilj brez dejanja.
-- Preizkusite razdeljeno odprto odkrivanje: pokličite `tools/list` proti javnemu oddaljenemu strežniku brez poverilnic, nato pokličite orodje in preglejte izziv `401`.
-- Premislite, kaj "razveljavitev" pomeni za vašo domeno. Objavljanje ima osnutke in brisanje; če vaši ukrepi nimajo ekvivalenta, potrjevanje spada v zasnovo orodja, ne v poziv.
+- Vzemite MCP strežnik, ki ga gradite, in preglejte tri najcenejše zmage tukaj: oznake na vsakem orodju, idempotentni ključ na vsakem zapisu in dokumentiran cilj no-op.
+- Preizkusite delitev odprtih odkritij: pokličite `tools/list` na javnem oddaljenem strežniku brez poverilnic, nato pa orodje in preglejte izziv `401`.
+- Premislite, kaj "razveljavitev" pomeni v vašem področju. Objavljanje ima osnutke in brisanje; če vaši ukrepi nimajo ustreznika, je potrjevanje v zasnovi orodja, ne v pozivu.
 
 ---
 

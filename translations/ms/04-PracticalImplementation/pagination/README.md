@@ -1,49 +1,50 @@
-# Penomboran dan Set Keputusan Besar dalam MCP
+# Penulisan Halaman dan Set Keputusan Besar dalam MCP
 
-Apabila pelayan MCP anda mengendalikan set data yang besar - sama ada menyenaraikan beribu-ribu fail, rekod pangkalan data, atau keputusan carian - anda memerlukan penomboran untuk mengurus memori secara cekap dan menyediakan pengalaman pengguna yang responsif. Panduan ini merangkumi cara melaksanakan dan menggunakan penomboran dalam MCP.
+Apabila pelayan MCP anda mengendalikan set data besar - sama ada menyenaraikan beribu-ribu fail, rekod pangkalan data, atau keputusan carian - anda memerlukan penulisan halaman untuk menguruskan memori dengan cekap dan menyediakan pengalaman pengguna yang responsif. Panduan ini menerangkan cara melaksanakan dan menggunakan penulisan halaman dalam MCP.
 
-## Mengapa Penomboran Penting
+## Kenapa Penulisan Halaman Penting
 
-Tanpa penomboran, maklum balas yang besar boleh menyebabkan:
+Tanpa penulisan halaman, tindak balas yang besar boleh menyebabkan:
 
-- **Kekurangan memori** - Memuatkan jutaan rekod sekaligus
+- **Keletihan memori** - Memuat jutaan rekod sekaligus
 - **Masa tindak balas yang perlahan** - Pengguna menunggu semasa semua data dimuatkan
 - **Ralat tamat masa** - Permintaan melebihi had tamat masa
-- **Prestasi AI yang lemah** - LLM sukar mengendalikan konteks yang sangat besar
+- **Prestasi AI yang buruk** - LLM sukar mengendalikan konteks yang besar
 
-MCP menggunakan **penomboran berasaskan kursor** untuk penomboran yang boleh dipercayai dan konsisten melalui set keputusan.
+MCP menggunakan **penulisan halaman berasaskan kursor** untuk penulisan halaman yang boleh dipercayai dan konsisten melalui set keputusan.
 
 ---
 
-## Bagaimana Penomboran MCP Berfungsi
+## Cara Penulisan Halaman MCP Berfungsi
 
 ### Konsep Kursor
 
-Sebuah **kursor** ialah rentetan kabur yang menandakan kedudukan anda dalam set keputusan. Fikirkan ia seperti penanda buku dalam sebuah buku yang panjang.
+**Kursor** ialah rentetan kabur yang menandakan kedudukan anda dalam set keputusan. Fikirkan ia seperti penanda buku dalam sebuah buku yang panjang.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/list (tiada kursor)
+    Client->>Server: tools/list (tiada penunjuk)
     Server-->>Client: tools [1-10], nextCursor: "abc123"
     
-    Client->>Server: tools/list (kursor: "abc123")
+    Client->>Server: tools/list (penunjuk: "abc123")
     Server-->>Client: tools [11-20], nextCursor: "def456"
     
-    Client->>Server: tools/list (kursor: "def456")
+    Client->>Server: tools/list (penunjuk: "def456")
     Server-->>Client: tools [21-25], nextCursor: null (akhir)
 ```
-### Penomboran dalam Kaedah MCP
 
-Kaedah MCP berikut menyokong penomboran:
+### Penulisan Halaman dalam Kaedah MCP
+
+Kaedah MCP berikut menyokong penulisan halaman:
 
 | Kaedah | Pulangan | Sokongan Kursor |
-|--------|----------|-----------------|
-| `tools/list` | Takrifan alat | ✅ |
-| `resources/list` | Takrifan sumber | ✅ |
-| `prompts/list` | Takrifan arahan | ✅ |
+|--------|---------|----------------|
+| `tools/list` | Definisi alat | ✅ |
+| `resources/list` | Definisi sumber | ✅ |
+| `prompts/list` | Definisi prompt | ✅ |
 | `resources/templates/list` | Templat sumber | ✅ |
 
 ---
@@ -59,7 +60,7 @@ import math
 
 app = Server("paginated-server")
 
-# Set data besar yang disimulasikan
+# Dataset besar yang disimulasikan
 ALL_TOOLS = [
     Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
     for i in range(100)
@@ -71,7 +72,7 @@ PAGE_SIZE = 10
 async def list_tools(cursor: str | None = None) -> ListToolsResult:
     """List tools with pagination support."""
     
-    # Nyahkod penuding untuk mendapatkan indeks permulaan
+    # Nyahkod kursor untuk mendapatkan indeks permulaan
     start_index = 0
     if cursor:
         try:
@@ -79,11 +80,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
         except ValueError:
             start_index = 0
     
-    # Dapatkan halaman keputusan
+    # Dapatkan halaman hasil
     end_index = min(start_index + PAGE_SIZE, len(ALL_TOOLS))
     page_tools = ALL_TOOLS[start_index:end_index]
     
-    # Kira penuding seterusnya
+    # Kira kursor seterusnya
     next_cursor = None
     if end_index < len(ALL_TOOLS):
         next_cursor = str(end_index)
@@ -105,7 +106,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-// Set data besar yang disimulasikan
+// Dataset besar yang disimulasikan
 const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
   name: `tool_${i}`,
   description: `Tool number ${i}`,
@@ -115,7 +116,7 @@ const ALL_TOOLS = Array.from({ length: 100 }, (_, i) => ({
 const PAGE_SIZE = 10;
 
 server.setRequestHandler(ListToolsResultSchema, async (request) => {
-  // Nyahkodkan kursor
+  // Nyahkod penunjuk
   let startIndex = 0;
   if (request.params?.cursor) {
     startIndex = parseInt(request.params.cursor, 10) || 0;
@@ -125,7 +126,7 @@ server.setRequestHandler(ListToolsResultSchema, async (request) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, ALL_TOOLS.length);
   const pageTools = ALL_TOOLS.slice(startIndex, endIndex);
   
-  // Kira kursor seterusnya
+  // Kira penunjuk seterusnya
   const nextCursor = endIndex < ALL_TOOLS.length ? String(endIndex) : undefined;
   
   return {
@@ -177,9 +178,9 @@ public class PaginatedToolService {
 
 ---
 
-## Pelaksanaan Klien
+## Pelaksanaan Pelanggan
 
-### Klien Python
+### Pelanggan Python
 
 ```python
 from mcp import ClientSession
@@ -205,7 +206,7 @@ async with client_session as session:
     print(f"Found {len(tools)} tools")
 ```
 
-### Klien TypeScript
+### Pelanggan TypeScript
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -230,7 +231,7 @@ console.log(`Found ${tools.length} tools`);
 
 ### Corak Pemuatan Malas
 
-Untuk set data yang sangat besar, muatkan muka surat mengikut permintaan:
+Untuk set data sangat besar, muatkan halaman mengikut permintaan:
 
 ```python
 class PaginatedToolIterator:
@@ -243,11 +244,11 @@ class PaginatedToolIterator:
         self.exhausted = False
     
     async def __anext__(self):
-        # Pulangkan dari penimbal jika ada
+        # Kembalikan dari buffer jika ada
         if self.buffer:
             return self.buffer.pop(0)
         
-        # Semak jika kita telah habiskan semua halaman
+        # Semak jika kita telah menggunakan semua halaman
         if self.exhausted:
             raise StopAsyncIteration
         
@@ -274,9 +275,9 @@ async for tool in PaginatedToolIterator(session):
 
 ---
 
-## Penomboran untuk Sumber
+## Penulisan Halaman untuk Sumber
 
-Sumber sering memerlukan penomboran untuk direktori atau set data besar:
+Sumber sering memerlukan penulisan halaman untuk direktori atau set data besar:
 
 ```python
 from mcp.server import Server
@@ -292,12 +293,12 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
     
-    # Nyahkod penunjuk (indeks fail)
+    # Nyahkod kursor (indeks fail)
     start_index = int(cursor) if cursor else 0
     page_size = 20
     end_index = min(start_index + page_size, len(all_files))
     
-    # Cipta senarai sumber untuk halaman ini
+    # Buat senarai sumber untuk halaman ini
     resources = []
     for filename in all_files[start_index:end_index]:
         filepath = os.path.join(directory, filename)
@@ -307,7 +308,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
             mimeType="application/octet-stream"
         ))
     
-    # Kira penunjuk seterusnya
+    # Kira kursor seterusnya
     next_cursor = str(end_index) if end_index < len(all_files) else None
     
     return ListResourcesResult(
@@ -320,27 +321,27 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
 
 ## Strategi Reka Bentuk Kursor
 
-### Strategi 1: Berasaskan Indeks (Ringkas)
+### Strategi 1: Berasaskan Indeks (Mudah)
 
 ```python
 # Kursor hanyalah indeks
 cursor = "50"  # Mula pada item 50
 ```
 
-**Kelebihan:** Ringkas, tanpa keadaan  
-**Kekurangan:** Keputusan boleh berubah jika item ditambah/dibuang
+**Kelebihan:** Mudah, tanpa status
+**Kekurangan:** Keputusan boleh bergeser jika item ditambah/dikeluarkan
 
 ### Strategi 2: Berasaskan ID (Stabil)
 
 ```python
-# Kursor adalah ID yang terakhir dilihat
+# Penunjuk adalah ID yang terakhir dilihat
 cursor = "item_abc123"  # Mula selepas item ini
 ```
 
-**Kelebihan:** Stabil walaupun item berubah  
-**Kekurangan:** Memerlukan ID yang teratur
+**Kelebihan:** Stabil walaupun item berubah
+**Kekurangan:** Memerlukan ID yang disusun
 
-### Strategi 3: Keadaan Tersulitkan (Kompleks)
+### Strategi 3: Keadaan Terencode (Rumit)
 
 ```python
 import base64
@@ -352,7 +353,7 @@ def encode_cursor(state: dict) -> str:
 def decode_cursor(cursor: str) -> dict:
     return json.loads(base64.b64decode(cursor).decode())
 
-# Penuding mengandungi berbilang medan status
+# Kursor mengandungi pelbagai medan keadaan
 cursor = encode_cursor({
     "offset": 50,
     "filter": "active",
@@ -360,20 +361,20 @@ cursor = encode_cursor({
 })
 ```
 
-**Kelebihan:** Boleh menyulitkan keadaan yang kompleks  
-**Kekurangan:** Lebih kompleks, rentetan kursor lebih besar
+**Kelebihan:** Boleh encode keadaan kompleks
+**Kekurangan:** Lebih rumit, rentetan kursor lebih besar
 
 ---
 
 ## Amalan Terbaik
 
-### 1. Pilih Saiz Muka Surat yang Sesuai
+### 1. Pilih Saiz Halaman yang Sesuai
 
 ```python
 # Pertimbangkan saiz data
-PAGE_SIZE_SMALL_ITEMS = 100   # Metadata mudah
+PAGE_SIZE_SMALL_ITEMS = 100   # Metadata ringkas
 PAGE_SIZE_MEDIUM_ITEMS = 20   # Objek yang lebih kaya
-PAGE_SIZE_LARGE_ITEMS = 5     # Kandungan kompleks
+PAGE_SIZE_LARGE_ITEMS = 5     # Kandungan yang kompleks
 ```
 
 ### 2. Tangani Kursor Tidak Sah dengan Baik
@@ -390,7 +391,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     # ...
 ```
 
-### 3. Sertakan Jumlah Keseluruhan (Pilihan)
+### 3. Sertakan Jumlah Kiraan (Opsional)
 
 ```python
 return ListToolsResult(
@@ -401,29 +402,29 @@ return ListToolsResult(
 )
 ```
 
-### 4. Uji Kes-kes Sempadan
+### 4. Uji Kes Tepi
 
 ```python
 async def test_pagination():
-    # Set hasil kosong
+    # Set keputusan kosong
     result = await session.list_tools()
     assert result.tools == []
     assert result.nextCursor is None
     
-    # Halaman tunggal
+    # Satu halaman
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
-    # Penunjuk tidak sah
+    # Penuding tidak sah
     result = await session.list_tools(cursor="invalid")
-    assert result.tools  # Patut kembali halaman pertama
+    assert result.tools  # Patut kembalikan halaman pertama
 ```
 
 ---
 
 ## Perangkap Biasa
 
-### ❌ Memulangkan Semua Keputusan Kemudian Penomboran Di Pihak Klien
+### ❌ Memulangkan Semua Keputusan Kemudian Menulis Halaman di Pihak Pelanggan
 
 ```python
 # BURUK: Memuatkan semuanya ke dalam memori
@@ -433,7 +434,7 @@ async def list_tools() -> ListToolsResult:
     return ListToolsResult(tools=all_tools)
 ```
 
-### ✅ Penomboran di Sumber Data
+### ✅ Menulis Halaman di Sumber Data
 
 ```python
 # BAIK: Hanya memuatkan apa yang diperlukan
@@ -456,13 +457,13 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 
 ## Sumber Tambahan
 
-- [Spesifikasi MCP - Penomboran](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Penjelasan Penomboran Berasaskan Kursor](https://slack.engineering/evolving-api-pagination-at-slack/)
-- [Ujian penomboran SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
+- [Spesifikasi MCP - Penulisan Halaman](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Penulisan Halaman Berasaskan Kursor Dijelaskan](https://slack.engineering/evolving-api-pagination-at-slack/)
+- [Ujian penulisan halaman SDK Python](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidakakuratan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sah. Untuk maklumat penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggungjawab terhadap sebarang salah faham atau tafsiran yang timbul daripada penggunaan terjemahan ini.
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

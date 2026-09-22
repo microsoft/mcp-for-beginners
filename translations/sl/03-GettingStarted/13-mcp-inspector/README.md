@@ -1,25 +1,30 @@
-# Razhroščevanje z MCP Inspector
+# Odpravljanje napak z MCP Inspector
 
-**MCP Inspector** je ključno orodje za razhroščevanje, ki vam omogoča interaktivno testiranje in odpravljanje težav vaših MCP strežnikov brez potrebe po polni AI gostujoči aplikaciji. Pomislite nanj kot "Postman za MCP" - nudi vizualni vmesnik za pošiljanje zahtevkov, ogled odgovorov in razumevanje obnašanja vašega strežnika.
+> [!NOTE]
+> Ukazi z uporabo `--sse` in URL-ji, ki se končajo z `/sse`, testirajo zastareli HTTP+SSE
+> transport. Za nov MCP strežnik `2026-07-28` uporabite različico Inspectorja, ki
+> podpira Streamable HTTP in izberite ta transport.
+
+**MCP Inspector** je bistveno orodje za odpravljanje napak, ki vam omogoča interaktivno testiranje in odpravljanje težav z vašimi MCP strežniki brez potrebe po celotni AI gostiteljski aplikaciji. Lahko si ga predstavljate kot "Postman za MCP" - nudi vizualni vmesnik za pošiljanje zahtevkov, ogled odgovorov in razumevanje delovanja vašega strežnika.
 
 ## Zakaj uporabljati MCP Inspector?
 
-Pri izdelavi MCP strežnikov se pogosto srečate s temi izzivi:
+Pri ustvarjanju MCP strežnikov se pogosto srečate s temi izzivi:
 
-- **"Ali moj strežnik sploh teče?"** - Inspector prikazuje stanje povezave
-- **"So moji pripomočki pravilno registrirani?"** - Inspector prikaže vse razpoložljive pripomočke
+- **"Ali moj strežnik sploh deluje?"** - Inspector prikazuje stanje povezave
+- **"So moji tooli pravilno registrirani?"** - Inspector navaja vse razpoložljive toole
 - **"Kakšen je format odgovora?"** - Inspector prikazuje celoten JSON odgovor
-- **"Zakaj ta pripomoček ne deluje?"** - Inspector prikazuje podrobna sporočila o napakah
+- **"Zakaj ta tool ne deluje?"** - Inspector prikazuje podrobna sporočila o napakah
 
-## Predpogoj
+## Predpogoji
 
-- Nameščen Node.js 18 ali novejši
-- npm (priložen z Node.js)
+- Nameščen Node.js 18+
+- npm (prisoten z Node.js)
 - MCP strežnik za testiranje (glej [Modul 3.1 - Prvi strežnik](../01-first-server/README.md))
 
 ## Namestitev
 
-### Možnost 1: Zagon z npx (priporočeno za hitro testiranje)
+### Možnost 1: Zagon z npx (Priporočeno za hitro testiranje)
 
 ```bash
 npx @modelcontextprotocol/inspector
@@ -32,14 +37,14 @@ npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Možnost 3: Dodajanje v vaš projekt
+### Možnost 3: Dodaj v svoj projekt
 
 ```bash
 cd your-mcp-server-project
 npm install --save-dev @modelcontextprotocol/inspector
 ```
 
-Dodajte v `package.json`:
+Dodaj v `package.json`:
 ```json
 {
   "scripts": {
@@ -50,9 +55,9 @@ Dodajte v `package.json`:
 
 ---
 
-## Povezava z vašim strežnikom
+## Povezava na vaš strežnik
 
-### stdio strežniki (lokalen proces)
+### stdio strežniki (lokalni proces)
 
 Za strežnike, ki komunicirajo preko standardnega vhoda/izhoda:
 
@@ -67,11 +72,11 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP strežniki (mreža)
+### SSE/HTTP strežniki (omrežni)
 
-Za strežnike, ki tečejo kot HTTP storitve:
+Za strežnike, ki delujejo kot HTTP storitve:
 
-1. Najprej zaženite strežnik:
+1. Najprej zaženite svoj strežnik:
    ```bash
    python server.py  # Strežnik teče na http://localhost:8080
    ```
@@ -83,9 +88,9 @@ Za strežnike, ki tečejo kot HTTP storitve:
 
 ---
 
-## Pregled vmesnika Inspectora
+## Pregled vmesnika Inspectorja
 
-Ko zaženete Inspector, boste videli spletni vmesnik (običajno na `http://localhost:5173`):
+Ko zaženete Inspector, videli boste spletni vmesnik (navadno na `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Ko zaženete Inspector, boste videli spletni vmesnik (običajno na `http://local
 
 ---
 
-## Testiranje pripomočkov
+## Testiranje toolov
 
-### Seznam razpoložljivih pripomočkov
+### Prikaz razpoložljivih toolov
 
 1. Kliknite na zavihek **Tools**
-2. Inspector samodejno pokliče `tools/list`
-3. Prikažejo se vsi registrirani pripomočki z:
-   - Imenom pripomočka
+2. Inspector samodejno kliče `tools/list`
+3. Videli boste vse registrirane toole z:
+   - Imenom toola
    - Opisom
-   - Shemo vhodnih parametrov
+   - Vhodno shemo (parametre)
 
-### Klic pripomočka
+### Klic toola
 
-1. Izberite pripomoček s seznama
+1. Izberite tool s seznama
 2. Izpolnite zahtevane parametre v obrazcu
 3. Kliknite **Run Tool**
-4. Oglejte si odgovor v panelu z rezultati
+4. Oglejte si odgovor v panelu rezultatov
 
-**Primer: testiranje kalkulatorja**
+**Primer: Testiranje orodja kalkulator**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Razhroščevanje napak pripomočkov
+### Odpravljanje napak toolov
 
-Ko pripomoček ne uspe, Inspector prikaže:
+Ko tool odpove, Inspector prikaže:
 
 ```
 Error Response:
@@ -165,7 +170,7 @@ Error Response:
 Pogoste kode napak:
 | Koda | Pomen |
 |------|---------|
-| -32700 | Napaka razčlenjevanja (neveljaven JSON) |
+| -32700 | Napaka pri parsiranju (neveljaven JSON) |
 | -32600 | Neveljavna zahteva |
 | -32601 | Metoda ni najdena |
 | -32602 | Neveljavni parametri |
@@ -175,10 +180,10 @@ Pogoste kode napak:
 
 ## Testiranje virov
 
-### Seznam virov
+### Prikaz virov
 
 1. Kliknite na zavihek **Resources**
-2. Inspector pokliče `resources/list`
+2. Inspector kliče `resources/list`
 3. Videli boste:
    - URI-je virov
    - Imena in opise
@@ -188,9 +193,9 @@ Pogoste kode napak:
 
 1. Izberite vir
 2. Kliknite **Read Resource**
-3. Oglejte si vsebino, ki je bila vrnjena
+3. Oglejte si vrnjeno vsebino
 
-**Primer izhoda:**
+**Primer izpisa:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Testiranje pozivov (prompts)
+## Testiranje pozivov
 
-### Seznam pozivov
+### Prikaz pozivov
 
 1. Kliknite na zavihek **Prompts**
-2. Inspector pokliče `prompts/list`
-3. Ogled razpoložljivih predlog pozivov
+2. Inspector kliče `prompts/list`
+3. Oglejte si razpoložljive predloge pozivov
 
 ### Pridobitev poziva
 
 1. Izberite poziv
-2. Izpolnite zahtevane argumente
+2. Izpolnite potrebne argumente
 3. Kliknite **Get Prompt**
-4. Prikažejo se upodobljena sporočila poziva
+4. Oglejte si prikazane sporočila poziva
 
 ---
 
 ## Analiza dnevnika sporočil
 
-Dnevnik sporočil prikazuje vsa sporočila MCP protokola:
+Dnevnik sporočil prikazuje vsa sporočila MCP protokola. Spodnji prepis je iz
+zastarelega strežnika `2025-11-25`, ki vključuje odstranjen rokovalni `initialize`. Strežnik
+`2026-07-28` uporablja samostojno metapodatke zahtev in `server/discover`
+namesto tega.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Dnevnik sporočil prikazuje vsa sporočila MCP protokola:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Na kaj biti pozoren
+### Na kaj paziti
 
-- **Pari zahteva/odgovor**: Vsak `→` mora imeti svoj ujemajoči `←`
-- **Sporočila o napakah**: Poiščite `"error"` v odgovorih
-- **Časovni zamiki**: Veliki premori lahko nakazujejo težave z zmogljivostjo
-- **Različica protokola**: Preverite, da se strežnik in odjemalec strinjata z verzijo
+- **Povratne pare zahteva/odgovor**: Vsak `→` naj ima ustrezen `←`
+- **Sporočila o napakah**: Iščite `"error"` v odgovorih
+- **Časovne zamike**: Veliki premori lahko nakazujejo težave s performansom
+- **Različica protokola**: Preverite, da se strežnik in odjemalec strinjata glede različice
 
 ---
 
@@ -280,7 +288,7 @@ Dodajte v `.vscode/launch.json`:
 }
 ```
 
-### Uporaba opravil (tasks)
+### Uporaba Tasks
 
 Dodajte v `.vscode/tasks.json`:
 
@@ -310,55 +318,55 @@ Dodajte v `.vscode/tasks.json`:
 
 ---
 
-## Pogoste situacije pri razhroščevanju
+## Pogosti primeri odpravljanja napak
 
-### Situacija 1: Strežnik se ne poveže
+### Primer 1: Strežnik se ne poveže
 
-**Simptomi:** Inspector kaže "Disconnected" ali se zatakne na "Connecting..."
+**Simptomi:** Inspector prikazuje "Disconnected" ali se zatakne pri "Connecting..."
 
 **Kontrolni seznam:**
-1. ✅ Je ukaz za zagon strežnika pravilen?
-2. ✅ Ali so vse odvisnosti nameščene?
-3. ✅ Je pot do strežnika absolutna ali relativna na trenutni imenik?
-4. ✅ So nastavljene zahtevane okoljske spremenljivke?
+1. ✅ Je ukaz za strežnik pravilen?
+2. ✅ So vsi odvisni moduli nameščeni?
+3. ✅ Je pot do strežnika absolutna ali relativna glede na trenutno mapo?
+4. ✅ So nastavljene potrebne okoljske spremenljivke?
 
-**Koraki za razhroščevanje:**
+**Koraki za odpravljanje:**
 ```bash
 # Najprej ročno preizkusite strežnik
 python -c "import your_server_module; print('OK')"
 
-# Preverite za napake pri uvozu
+# Preverite napake pri uvozu
 python -m your_server_module 2>&1 | head -20
 
 # Preverite, ali je MCP SDK nameščen
 pip show mcp
 ```
 
-### Situacija 2: Pripomočki se ne prikažejo
+### Primer 2: Tooli se ne prikazujejo
 
-**Simptomi:** Zavihek pripomočki pokaže prazen seznam
+**Simptomi:** Zavihek Tools prikazuje prazen seznam
 
 **Možni vzroki:**
-1. Pripomočki niso registrirani med inicializacijo strežnika
-2. Strežnik se je zrušil po zagonu
-3. Obdelovalec `tools/list` vrača prazno polje
+1. Tooli niso bili registrirani med inicializacijo strežnika
+2. Strežnik se je sesul po zagonu
+3. Obdelovalec `tools/list` vrača prazno tabelo
 
-**Koraki za razhroščevanje:**
+**Koraki za odpravljanje:**
 1. Preverite dnevnik sporočil za odgovor `tools/list`
-2. Dodajte beleženje v kodo za registracijo pripomočkov
-3. Preverite prisotnost dekoratorjev `@mcp.tool()` (Python)
+2. Dodajte beleženje v kodo za registracijo toolov
+3. Preverite, ali so prisotni dekoratorji `@mcp.tool()` (Python)
 
-### Situacija 3: Pripomoček vrne napako
+### Primer 3: Tool vrne napako
 
-**Simptomi:** Klic pripomočka vrne sporočilo o napaki
+**Simptomi:** Klic toola vrne napako v odgovoru
 
-**Pristop k razhroščevanju:**
-1. Previdno preberite sporočilo o napaki
-2. Preverite, ali tipi parametrov ustrezajo shemi
-3. Dodajte try/catch z natančnimi sporočili o napakah
-4. Preverite strežniške dnevnike za sledove napak
+**Pristop k odpravljanju:**
+1. Natančno preberite sporočilo o napaki
+2. Preverite, da tipi parametrov ustrezajo shemi
+3. Dodajte try/catch z detaljnimi sporočili o napakah
+4. Preverite strežniške dnevnike za sledove skladov
 
-**Primer izboljšanega obravnavanja napak:**
+**Primer izboljšanega ravnanja z napakami:**
 
 ```python
 @mcp.tool()
@@ -373,18 +381,18 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Situacija 4: Vsebina vira je prazna
+### Primer 4: Vsebina vira je prazna
 
-**Simptomi:** Vir vrne prazno ali ničelno vsebino
+**Simptomi:** Vir vrne, a vsebina je prazna ali ničelna
 
 **Kontrolni seznam:**
-1. ✅ Pot do datoteke ali URI je pravilna
-2. ✅ Strežnik ima dovoljenje za branje vira
-3. ✅ Vsebina vira se pravilno vrača
+1. ✅ Pot do datoteke ali URI je pravilen
+2. ✅ Strežnik ima pravice za branje vira
+3. ✅ Vsebina vira je pravilno vrnjena
 
 ---
 
-## Napredne funkcije Inspectora
+## Napredne funkcije Inspectorja
 
 ### Prilagojeni glavi (SSE)
 
@@ -394,48 +402,48 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Obsežno beleženje
+### Podrobno beleženje
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Snemanje seans
+### Snemanje sej
 
 Inspector lahko izvozi dnevnike sporočil za poznejšo analizo:
-1. Kliknite **Export Log** v panelu za sporočila
-2. Shranite JSON datoteko
-3. Delite z člani ekipe za razhroščevanje
+1. Kliknite **Export Log** v panelu sporočil
+2. Shrani JSON datoteko
+3. Delite s člani ekipe za odpravljanje napak
 
 ---
 
 ## Najboljše prakse
 
-1. **Testirajte zgodaj in pogosto** - uporabite Inspector med razvojem, ne šele, ko se pojavijo težave
-2. **Začnite preprosto** - najprej testirajte osnovno povezljivost pred zahtevnejšimi klici pripomočkov
-3. **Preverite shemo** - veliko napak izhaja iz neusklajenosti tipov parametrov
-4. **Bodite pozorni na napake** - MCP napake so običajno opisne
-5. **Ohranite Inspector odprt** - pomaga odkriti težave med razvojem
+1. **Testirajte zgodaj in pogosto** - Uporabljajte Inspector med razvojem, ne samo, ko se kaj pokvari
+2. **Začnite preprosto** - Preverite osnovno povezljivost pred kompleksnimi klici toolov
+3. **Preverite shemo** - Veliko napak izvira iz neujemanja tipov parametrov
+4. **Beri sporočila o napakah** - Napake MCP so navadno opisne
+5. **Imejte Inspector odprt** - Pomaga ujeti težave med razvojem
 
 ---
 
 ## Kaj sledi
 
-Končali ste Modul 3: Prvi koraki! Nadaljujte z učenjem:
+Zaključili ste Modul 3: Začetek! Nadaljujte z učenjem:
 
-- [Modul 4: Praktična izvedba](../../04-PracticalImplementation/README.md)
+- [Modul 4: Praktična implementacija](../../04-PracticalImplementation/README.md)
 
 ---
 
 ## Dodatni viri
 
-- [MCP Inspector GitHub repozitorij](https://github.com/modelcontextprotocol/inspector)
-- [MCP specifikacija - sporočila protokola](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Repositorij MCP Inspector na GitHubu](https://github.com/modelcontextprotocol/inspector)
+- [Specifikacija MCP - Protokolna sporočila](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 specifikacija](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Omejitev odgovornosti**:
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za točnost, upoštevajte, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za kritične informacije priporočamo profesionalni človeški prevod. Nismo odgovorni za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

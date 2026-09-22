@@ -1,110 +1,110 @@
-# Modell Kontex Protocol az Élő Webes Kereséshez
+# Modell Kontext Protokoll valós idejű webes kereséshez
 
 ## Áttekintés
 
-Az élő webes keresés napjaink információvezérelt környezetében elengedhetetlen, ahol az alkalmazásoknak azonnali hozzáférésre van szükségük a naprakész információkhoz az interneten keresztül, hogy releváns és időben megfelelő válaszokat nyújtsanak. A Modell Kontex Protocol (MCP) jelentős előrelépést képvisel ezen élő keresési folyamatok optimalizálásában, növelve a keresés hatékonyságát, megőrizve a kontextuális integritást, és javítva az általános rendszer teljesítményét.
+A valós idejű webes keresés elengedhetetlené vált a mai információközpontú környezetben, ahol az alkalmazásoknak azonnali hozzáférésre van szükségük a naprakész információkhoz az interneten keresztül, hogy releváns és időben megfelelő válaszokat adhassanak. A Modell Kontext Protokoll (MCP) jelentős előrelépést képvisel ezen valós idejű keresési folyamatok optimalizálásában, növelve a keresés hatékonyságát, megőrizve a kontextuális integritást, és javítva az általános rendszer teljesítményét.
 
-Ez a modul azt vizsgálja, hogyan alakítja át az MCP az élő webes keresést úgy, hogy szabványosított megközelítést biztosít a kontextus kezelésében AI modellek, keresőmotorok és alkalmazások között.
+Ez a modul bemutatja, hogyan alakítja át az MCP a valós idejű webes keresést úgy, hogy egységes megközelítést kínál a kontextuskezeléshez az MI-modellek, keresőmotorok és alkalmazások között.
 
-### Mit Fogsz Megtanulni
+### Amit megtanulsz
 
-Ebben az átfogó útmutatóban felfedezheted:
+Ebben az átfogó útmutatóban megismerheted:
 
-- Hogyan teremt az MCP zökkenőmentes hidat az AI modellek és az élő webes keresési képességek között
-- Architektúrális minták a hatékony és méretezhető keresési megoldások MCP-vel történő megvalósításához
-- Technikák a keresési kontextus több lekérdezés és interakció során történő megőrzésére
-- Gyakorlati kódpéldák Pythonban és JavaScriptben különböző keresési forgatókönyvekhez
-- Módszerek a relevancia, aktualitás és teljesítmény egyensúlyának fenntartására MCP-alapú keresőrendszerekben
+- Hogyan teremt az MCP zökkenőmentes kapcsolatot az MI-modellek és a valós idejű webes keresési képességek között
+- Az MCP-vel hatékony és skálázható keresési megoldások megvalósításának építészeti mintáit
+- Technikákat a keresési kontextus megőrzésére több lekérdezés és interakció során
+- Gyakorlati kódmegvalósításokat Pythonban és JavaScriptben különböző keresési forgatókönyvekhez
+- Módszereket a relevancia, frissesség és teljesítmény egyensúlyának megteremtésére MCP-alapú keresőrendszerekben
 
-## Bevezetés az Élő Webes Keresésbe
+## Bevezetés a valós idejű webes keresésbe
 
-Az élő webes keresés egy technológiai megközelítés, amely lehetővé teszi a webalapú információk folyamatos lekérdezését, feldolgozását és elemzését, amint azok megjelennek vagy frissülnek, így a rendszerek friss és releváns információkat tudnak szolgáltatni minimális késleltetéssel. Ellentétben a hagyományos keresőrendszerekkel, amelyek indexált, akár órákkal vagy napokkal régebbi adatokat használnak, az élő keresés az internet élő adatait dolgozza fel, olyan betekintéseket és információkat nyújtva, amelyek az online tartalom aktuális állapotát tükrözik.
+A valós idejű webes keresés egy olyan technológiai megközelítés, amely lehetővé teszi a webes információk folyamatos lekérdezését, feldolgozását és elemzését, miközben azok közzéteszik vagy frissítik az adatokat, lehetővé téve a rendszerek számára, hogy friss és releváns információkat szolgáltassanak minimális késleltetéssel. Ellentétben a hagyományos kereső rendszerekkel, amelyek indexelt, akár órákkal vagy napokkal ezelőtti adatokon alapulnak, a valós idejű keresés élő adatokat használ a webről, így az eredmények a jelenlegi online tartalom állapotát tükrözik.
 
-### Az Élő Webes Keresés Alapvető Fogalmai:
+### A valós idejű webes keresés alapfogalmai:
 
-- **Folyamatos Lekérdezés Feldolgozás**: A keresési lekérdezések állandóan frissülő adatforrások alapján kerülnek feldolgozásra
-- **Akutalizáltság Prioritása**: A rendszerek úgy vannak tervezve, hogy elsőbbséget adjanak a friss információnak
-- **Relevancia Egyensúlyozás**: A relevancia és aktualitás közötti egyensúly fenntartása
-- **Méretezhető Architektúra**: A rendszereknek képesnek kell lenniük kezelni a változó lekérdezési terheléseket és adattömegeket
-- **Kontextuális Megértés**: A felhasználói kontextus megőrzése a keresési iterációk során alapvető a jelentős eredményekhez
-- **Dinamikus Lekérdezés Átalakítás**: A lekérdezések adaptív módosítása a kontextus és az előző eredmények alapján
-- **Több Forrás Integráció**: Eredmények kombinálása több keresőszolgáltató és webforrás anyagaiból
-- **Szemantikus Megértés**: A lekérdezések és tartalom feldolgozása a jelentés alapján, nem pusztán kulcsszavak szerint
-- **Élő Rangsorolás**: Az eredmények rangsorolásának folyamatos módosítása, ahogy új információ érkezik
+- **Folyamatos lekérdezés feldolgozás**: A keresési lekérdezéseket folyamatosan frissülő adatforrások ellen dolgozzák fel
+- **Frissesség előtérbe helyezése**: A rendszerek a friss információkat részesítik előnyben
+- **Relevancia és frissesség egyensúlyozása**: A relevancia és a frissesség egyensúlyának fenntartása
+- **Skálázható architektúra**: A rendszereknek képesnek kell lenniük változó lekérdezési terhelések és adatmennyiségek kezelésére
+- **Kontextuális megértés**: A felhasználói kontextus folyamatos megőrzése keresési iterációk során elengedhetetlen a értelmes eredményekhez
+- **Dinamikus lekérdezés újraformálás**: A lekérdezések adaptív módosítása a kontextus és az előző eredmények alapján
+- **Többforrású integráció**: Eredmények kombinálása több keresőszolgáltatótól és webes forrásból
+- **Szemantikus megértés**: Lekérdezések és tartalmak jelentés-alapú feldolgozása, nem csak kulcsszavak alapján
+- **Valós idejű rangsorolás**: Az eredmények rangsorolásának folyamatos igazítása új információk érkezésekor
 
-### A Modell Kontex Protocol és az Élő Webes Keresés
+### A Modell Kontext Protokoll és a valós idejű webes keresés
 
-A Modell Kontex Protocol (MCP) számos kritikus kihívást kezel az élő webes keresési környezetekben:
+A Modell Kontext Protokoll (MCP) több kritikus kihívást kezel a valós idejű webes keresési környezetekben:
 
-1. **Keresési Kontextus Megőrzés**: Az MCP szabványosítja a kontextus fenntartását az elosztott keresési összetevők között, biztosítva, hogy az AI modellek és a feldolgozó egységek hozzáférjenek a releváns lekérdezési előzményekhez és felhasználói preferenciákhoz.
+1. **Keresési kontextus megőrzése**: Az MCP szabványosítja, hogyan tartják fenn a kontextust az elosztott keresési komponensek között, biztosítva, hogy az MI-modellek és feldolgozó egységek hozzáférjenek a releváns lekérdezési történelemhez és felhasználói preferenciákhoz.
 
-2. **Hatékony Lekérdezés Kezelés**: Strukturált mechanizmusokat biztosítva a kontextus továbbítására, az MCP csökkenti annak overhead-jét, hogy a kontextust minden keresési iterációban ismételni kelljen.
+2. **Hatékony lekérdezéskezelés**: Struktúrált mechanizmusokat kínálva a kontextus átvitelére, az MCP csökkenti a kontextus ismétlésének többletterhét minden keresési iterációban.
 
-3. **Interoperabilitás**: Az MCP közös nyelvet teremt a kontextus megosztására különféle keresőtechnológiák és AI modellek között, lehetővé téve a rugalmasabb és bővíthetőbb architektúrákat.
+3. **Interoperabilitás**: Az MCP közös nyelvet teremt a kontextus-megosztáshoz különféle keresési technológiák és MI-modellek között, lehetővé téve rugalmasabb és bővíthetőbb architektúrák létrehozását.
 
-4. **Keresésre Optimalizált Kontextus**: Az MCP implementációk priorizálhatják, hogy mely kontextus elemek a leghatékonyabbak a keresés szempontjából, optimalizálva a teljesítményt és a pontosságot.
+4. **Keresésre optimalizált kontextus**: Az MCP megvalósítások priorizálhatják, mely kontextuselemek a leghatékonyabb kereséshez a legrelevánsabbak, optimalizálva a teljesítményt és a pontosságot.
 
-5. **Adaptív Keresési Feldolgozás**: Az MCP megfelelő kontextuskezelésével a keresőrendszerek dinamikusan állíthatják be a feldolgozást a változó felhasználói igények és információs környezet alapján.
+5. **Adaptív keresési feldolgozás**: Az MCP segítségével a keresőrendszerek dinamikusan igazíthatják a feldolgozást a felhasználói igények és az információs környezet változásai alapján.
 
-A modern alkalmazásokban, az újság aggregációtól a kutatási asszisztensekig, az MCP integrációja a webes kereső technológiákkal intelligensebb, kontextus-érzékeny keresést tesz lehetővé, amely a felhasználói interakciók folytatásával egyre relevánsabb eredményeket nyújt.
+A modern alkalmazásokban, a híroldal aggregálástól a kutatási asszisztensekig, az MCP és a webes keresési technológiák integrációja intelligensebb, kontextus-érzékeny keresést tesz lehetővé, amely egyre relevánsabb eredményeket tud nyújtani a felhasználói interakciók folyamán.
 
-## Tanulási Célok
+## Tanulási célok
 
 A lecke végére képes leszel:
 
-- Megérteni az élő webes keresés alapjait és kihívásait a modern alkalmazásokban
-- Elmagyarázni, hogyan javítja a Modell Kontex Protocol (MCP) az élő webes keresési képességeket
+- Megérteni a valós idejű webes keresés alapjait és a modern alkalmazásokban lévő kihívásait
+- Elmagyarázni, hogyan fejleszti a Modell Kontext Protokoll (MCP) a valós idejű webes keresési képességeket
 - Megvalósítani MCP-alapú keresési megoldásokat népszerű keretrendszerek és API-k használatával
-- Tervezni és telepíteni méretezhető, nagy teljesítményű keresési architektúrákat MCP-vel
-- Alkalmazni az MCP fogalmait különböző felhasználási esetekhez, beleértve a szemantikus keresést, kutatási asszisztenciát és AI-támogatott böngészést
-- Értékelni az MCP-alapú kereső technológiák feltörekvő trendjeit és jövőbeli innovációit
+- Megtervezni és telepíteni skálázható, nagy teljesítményű keresési architektúrákat MCP-vel
+- Alkalmazni az MCP fogalmait különböző felhasználási esetekben, beleértve a szemantikus keresést, kutatási segítséget és MI-vel támogatott böngészést
+- Értékelni az MCP-alapú keresési technológiák feltörekvő trendjeit és jövőbeli innovációit
 - Fejleszteni kontextus-érzékeny keresőrendszereket, amelyek tanulnak a felhasználói interakciókból
-- Integrálni a webes keresési képességeket AI asszisztensekbe szabványosított MCP protokollokon keresztül
-- Létrehozni többlépcsős kereső pipeline-okat, amelyek kontextus alapján fokozatosan finomítják az eredményeket
-- Optimalizálni a keresési teljesítményt úgy, hogy közben átfogó kontextus tudatosságot tart fenn
+- Integrálni a webes keresési képességeket MI-asszisztensekbe szabványosított MCP protokollok segítségével
+- Létrehozni többfázisú keresési folyamatokat, amelyek fokozatosan finomítják az eredményeket a kontextus alapján
+- Optimalizálni a keresési teljesítményt, miközben megőrzöd a teljes kontextus-észlelést
 
-### Definíció és Jelentőség
+### Definíció és jelentőség
 
-Az élő webes keresés folyamatos lekérdezést, keresést és webes információk minimális késleltetésű továbbítását jelenti. Ellentétben a hagyományos keresőmotorokkal, amelyek időszakosan feltérképezik és indexelik a webet, az élő keresés célja, hogy az információk megjelenésük pillanatában legyenek elérhetők, lehetővé téve azonnali hozzáférést a legfrissebb tartalomhoz.
+A valós idejű webes keresés a webes információk folyamatos lekérdezését, lekérését és szolgáltatását jelenti minimális késleltetéssel. Ellentétben a hagyományos keresőmotorokkal, amelyek időszakosan pásztázzák és indexelik az internetet, a valós idejű keresés célja, hogy az információ akkor váljon elérhetővé, amikor megjelenik, biztosítva az azonnali hozzáférést a legfrissebb tartalomhoz.
 
-Az élő webes keresés kulcsjellemzői:
+A valós idejű webes keresés fő jellemzői:
 
-- **Frissesség**: Az új tartalom és frissítések prioritása
-- **Folyamatos Feldolgozás**: Állandó új információk figyelése
-- **Lekérdezés Adaptáció**: A keresési lekérdezések finomítása kontextus és visszacsatolás alapján
-- **Azonnali Szolgáltatás**: Keresési eredmények nyújtása minimális késéssel
-- **Kontextus Megőrzése**: A korábbi lekérdezéseken alapuló relevancia javítása
+- **Frissesség**: A legújabb tartalom és frissítések előtérbe helyezése
+- **Folyamatos feldolgozás**: Az új információk állandó figyelése
+- **Lekérdezés adaptációja**: Keresési lekérdezések finomítása a kontextus és visszajelzések alapján
+- **Azonnali szolgáltatás**: A keresési eredmények minimális késedelemmel történő szolgáltatása
+- **Kontextus megőrzése**: Korábbi lekérdezésekre alapozva a relevancia javítása érdekében
 
-### Kihívások a Hagyományos Webes Keresésben
+### Kihívások a hagyományos webes keresésben
 
-A hagyományos webes keresési megközelítések számos korláttal szembesülnek, ha élő környezetben alkalmazzák őket:
+A hagyományos webes keresési megközelítések számos korlátozással szembesülnek valós idejű forgatókönyvekben:
 
-1. **Kontextus Tördelés**: Nehézségek a keresési kontextus fenntartásában több lekérdezésen keresztül
-2. **Információ Frissessége**: A legfrissebb információk elérésének és priorizálásának kihívásai
-3. **Integrációs Bonyolultság**: Közös működés problémái keresőrendszerek és alkalmazások között
-4. **Késleltetési Problémák**: A átfogó keresés és a válaszidő követelmények egyensúlya
-5. **Relevancia Finomhangolás**: Pontosság és relevancia biztosítása az aktualitás prioritásával együtt
+1. **Kontextus töredezettség**: Nehézség a keresési kontextus fenntartásában több lekérdezés alatt
+2. **Információ frissessége**: A legfrissebb információk elérésének és prioritásának kihívásai
+3. **Integrációs bonyodalmak**: Interoperabilitási problémák a kereső rendszerek és alkalmazások között
+4. **Késleltetési problémák**: Az átfogó keresés és a válaszidő egyensúlyozása
+5. **Relevancia hangolás**: A pontosság és relevancia biztosítása a frissesség priorizálása mellett
 
-## A Modell Kontex Protocol (MCP) Megértése a Kereséshez
+## Modell Kontext Protokoll (MCP) megértése kereséshez
 
-### Mi az MCP a Keresési Kontextusban?
+### Mi az MCP keresési kontextusban?
 
-A Modell Kontex Protocol (MCP) egy szabványosított kommunikációs protokoll, amelyet az AI modellek és alkalmazások közötti hatékony interakciók elősegítésére terveztek. Az élő webes keresés kontextusában az MCP egy keretrendszert biztosít:
+A Modell Kontext Protokoll (MCP) egy szabványosított kommunikációs protokoll, amely hatékony interakciót tesz lehetővé MI-modellek és alkalmazások között. Valós idejű webes keresés kontextusában az MCP egy keretet nyújt:
 
 - A keresési kontextus megőrzésére a lekérdezési sorozatok során
-- A keresési lekérdezési és eredményformátumok szabványosítására
+- A keresési lekérdezés és eredményformátumok szabványosítására
 - A keresési paraméterek és eredmények továbbításának optimalizálására
-- Az AI modell és a keresőmotor közötti kommunikáció javítására
+- Az MI-modellek és keresőmotorok közötti kommunikáció fejlesztésére
 
-### Fő Komponensek és Architektúra
+### Alapvető összetevők és architektúra
 
-Az MCP architektúrája élő webes kereséshez több kulcsfontosságú elemből áll:
+Az MCP valós idejű webes kereséshez több fő összetevőből áll:
 
-1. **Lekérdezés Kontextus Kezelők**: Keresési kontextus kezelése és fenntartása több lekérdezésen keresztül
-2. **Keresési Feldolgozók**: Kontextus-érzékeny technikákkal dolgozzák fel a beérkező keresési kérelmeket
-3. **Protokoll Adapterek**: Különböző kereső API-k közti átváltás miközben megőrzik a kontextust
-4. **Kontextus Tároló**: Hatékonyan tárolja és lekéri a keresési előzményeket és preferenciákat
-5. **Keresési Kapcsolók**: Különféle keresőmotorokhoz és web API-khoz való kapcsolódás
+1. **Lekérdezés-kontekstus kezelők**: Kezelik és fenntartják a keresési kontextust több lekérdezés során
+2. **Keresési feldolgozók**: Kontextus-érzékeny technikákat alkalmazva dolgozzák fel a bejövő keresési kéréseket
+3. **Protokoll adapterek**: Különböző kereső API-k közötti átalakítás, miközben megőrzik a kontextust
+4. **Kontextustár**: Hatékony tárolás és visszakeresés a keresési előzményekhez és preferenciákhoz
+5. **Keresési kapcsolók**: Kapcsolódás különböző keresőmotorokhoz és webes API-khoz
 
 ```mermaid
 graph TD
@@ -116,21 +116,21 @@ graph TD
     end
 
     subgraph "MCP Keresési Réteg"
-        SC[Keresési Csatlakozók]
+        SC[Keresési Kapcsolók]
         PA[Protokoll Adapterek]
-        CH[Kontextus Kezelők]
+        CH[Kontextuskezelők]
         SP[Keresési Feldolgozók]
-        CS[Kontextus Tároló]
+        CS[Kontextustár]
     end
 
-    subgraph "Feldolgozás & Elemzés"
+    subgraph "Feldolgozás és Elemzés"
         RE[Relevancia Motor]
         ML[Gépi Tanulási Modellek]
         NLP[NLP Feldolgozás]
-        Rank[Rendezési Rendszer]
+        Rank[Rangsort Készítő Rendszer]
     end
 
-    subgraph "Alkalmazások & Szolgáltatások"
+    subgraph "Alkalmazások és Szolgáltatások"
         RA[Kutatási Asszisztens]
         Alerts[Értesítési Rendszerek]
         KB[Tudásbázis]
@@ -144,23 +144,23 @@ graph TD
     
     SC -->|Nyers Eredmények| PA
     PA -->|Normalizált Eredmények| CH
-    CH <-->|Kontextus Műveletek| CS
+    CH <-->|Kontextusműveletek| CS
     CH -->|Kontextussal Gazdagított Eredmények| SP
     SP -->|Feldolgozott Eredmények| RE
     SP -->|Jellemzők| ML
     SP -->|Szöveg| NLP
     
-    RE -->|Rendezett Eredmények| Rank
+    RE -->|Rangsort Készített Eredmények| Rank
     ML -->|Előrejelzések| Rank
-    NLP -->|Entitások & Kapcsolatok| Rank
+    NLP -->|Entitások és Kapcsolatok| Rank
     
-    Rank -->|Végleges Eredmények| RA
+    Rank -->|Végső Eredmények| RA
     ML -->|Elemzések| Alerts
     NLP -->|Strukturált Adatok| KB
     
     RA -->|Kutatás| Users((Users))
     Alerts -->|Értesítések| Users
-    KB <-->|Tudáshoz Való Hozzáférés| API
+    KB <-->|Tudáshozzáférés| API
 
     classDef sources fill:#f9f,stroke:#333,stroke-width:2px,color:#4a004a
     classDef mcp fill:#bbf,stroke:#333,stroke-width:2px,color:#00004a
@@ -173,43 +173,43 @@ graph TD
     class RA,Alerts,KB,API apps
 ```
 
-### Hogyan Javítja az MCP az Élő Webes Keresést
+### Hogyan fejleszti az MCP a valós idejű webes keresést
 
-Az MCP a hagyományos webes keresési kihívásokat így kezeli:
+Az MCP a hagyományos webes keresés kihívásait így kezeli:
 
-- **Kontextuális Folytonosság**: A lekérdezések közti kapcsolatok fenntartása az egész keresési munkamenetben
-- **Optimalizált Továbbítás**: A keresési paraméterek redundanciájának csökkentése intelligens kontextuskezeléssel
-- **Szabványosított Felületek**: Egységes API-k biztosítása a keresési összetevők részére
-- **Csökkentett Késleltetés**: Feldolgozási overhead minimalizálása hatékony kontextuskezelés révén
-- **Javított Relevancia**: A keresési relevancia növelése a felhasználói szándék megőrzésével több lekérdezés során
+- **Kontextuális folytonosság**: Fenntartja a lekérdezések közötti kapcsolatokat az egész keresési munkamenet során
+- **Optimalizált továbbítás**: Csökkenti a keresési paraméterek redundanciáját intelligens kontextuskezeléssel
+- **Szabványosított interfészek**: Egységes API-kat biztosít a keresési komponensek számára
+- **Csökkentett késleltetés**: Minimalizálja a feldolgozási többletterhet a hatékony kontextuskezelés által
+- **Fokozott relevancia**: Javítja a keresés relevanciáját azáltal, hogy megőrzi a felhasználói szándékot több lekérdezés során
 
-## Integráció és Megvalósítás
+## Integráció és megvalósítás
 
-Az élő webes keresőrendszerek gondos architekturális tervezést és megvalósítást igényelnek a teljesítmény és a kontextuális integritás fenntartásához. A Modell Kontex Protocol szabványos megközelítést kínál az AI modellek és keresőtechnológiák integrálására, lehetővé téve kifinomultabb, kontextus-érzékeny keresési folyamatokat.
+A valós idejű webes kereső rendszerek gondos építészeti tervezést és megvalósítást igényelnek a teljesítmény és a kontextuális integritás fenntartásához. A Modell Kontext Protokoll egységes megközelítést kínál az MI-modellek és kereső technológiák integrálására, lehetővé téve fejlettebb, kontextus-érzékeny keresési folyamatok kialakítását.
 
-### Az MCP Integráció Áttekintése a Keresési Architektúrákban
+### Az MCP integráció áttekintése a keresési architektúrákban
 
-Az MCP megvalósítása élő webes keresési környezetekben több szempontot foglal magában:
+Az MCP megvalósítása valós idejű webes keresési környezetben több kulcsfontosságú szempontot igényel:
 
-1. **Keresési Kontextus Szerializálás**: Az MCP hatékony mechanizmusokat biztosít a kontextuális információk kódolására a keresési kérelmekben, biztosítva, hogy az alapvető kontextus a lekérdezés folyamatán végigkövesse azt. Ez tartalmaz szabványos szerializációs formátumokat, optimalizáltakat a kereséshez kapcsolódó metaadatok számára.
+1. **Keresési kontextus szerializációja**: Az MCP hatékony mechanizmusokat kínál a kontextuális információk keresési kérésben történő kódolására, biztosítva, hogy a lényeges kontextus végigkövesse a lekérdezést a feldolgozási láncon. Ez magában foglal szabványosított szerializációs formátumokat, melyek optimalizáltak a kereséshez kapcsolódó metaadatok számára.
 
-2. **Állapotmegőrző Keresési Feldolgozás**: Az MCP intelligensebb állapotmegőrző feldolgozást tesz lehetővé a kontextus konzisztens reprezentációjának fenntartásával a keresési iterációk során. Ez különösen értékes a többlépcsős keresési pipeline-ok esetében, ahol a kontextus finomítása javítja az eredményeket.
+2. **Állapotmegőrző keresési feldolgozás**: Az MCP lehetővé teszi az intelligensebb állapottartó feldolgozást úgy, hogy a keresési iterációk során konzisztens kontextusábrázolást tart fenn. Ez különösen értékes többfázisú keresési folyamatoknál, ahol a kontextus finomítása javítja az eredményeket.
 
-3. **Lekérdezés Bővítés és Finomítás**: Az MCP implementációk lehetővé teszik a kifinomult lekérdezés-bővítést és finomítást az összegyűjtött kontextus alapján, biztosítva egyre relevánsabb eredményeket a keresési munkamenet előrehaladtával.
+3. **Lekérdezésbővítés és finomítás**: MCP megvalósítások elősegíthetik a kifinomult lekérdezésbővítést és finomítást az összegyűjtött kontextus alapján, lehetővé téve a keresési munkamenet előrehaladtával egyre relevánsabb eredményeket.
 
-4. **Eredmény Gyorsítótárazás és Prioritizálás**: A kontextuskezelés szabványosításával az MCP segíti az eredmények gyorsítótárazásának és prioritizálásának menedzselését, lehetővé téve az összetevők számára az alkalmazkodást az alakuló keresési kontextus alapján.
+4. **Eredmények gyorsítótárazása és priorizálása**: A kontextuskezelés szabványosításával az MCP segít az eredmények gyorsítótárazásának és priorizálásának kezelésében, lehetővé téve a komponenseknek, hogy az alakuló keresési kontextus alapján alkalmazkodjanak.
 
-5. **Keresési Föderáció és Aggregáció**: Az MCP elősegíti a keresések összetettebb föderációját több háttérszolgáltató között, strukturált reprezentációkat biztosítva a keresési kontextusról, lehetővé téve az eredmények értelmes agregációját különböző forrásokból.
+5. **Keresési összefoglalás és aggregáció**: Az MCP támogatja a komplexebb keresések összefoglalását több háttérrendszer között, strukturált kontextusábrázolást nyújtva, ezzel lehetővé téve az eredmények tartalmasabb összegzését különböző forrásokból.
 
-Az MCP megvalósítása különböző keresőtechnológiák között egységes megközelítést teremt a kontextuskezelésre, csökkentve az egyedi integrációs kódok szükségességét, miközben növeli a rendszer képességét a jelentős kontextus megőrzésére a keresési lekérdezések fejlődése során.
+Az MCP különböző keresési technológiákban történő megvalósítása egységes megközelítést teremt a kontextuskezeléshez, csökkentve az egyedi integrációs kód szükségességét, miközben növeli a rendszer képességét, hogy a keresési lekérdezések fejlődése során is megőrizze a jelentőségteljes kontextust.
 
-### MCP Különféle Webes Keresési Megvalósításokban
+### MCP különböző webes keresési megvalósításokban
 
-Ezek a példák a jelenlegi MCP specifikáción alapulnak, amely egy JSON-RPC alapú protokollra és megkülönböztetett szállítási mechanizmusokra fókuszál. A kód bemutatja, hogyan valósítható meg egyedi keresési integrációk, miközben teljes kompatibilitást tart fenn az MCP protokollal.
+Ezek a példák követik a jelenlegi MCP specifikációt, amely egy JSON-RPC alapú protokollra összpontosít, elkülönült szállítási mechanizmusokkal. A kód bemutatja, hogyan valósítható meg egyedi keresési integráció miközben teljes kompatibilitást tart fenn az MCP protokollal.
 
 
 <details>
-<summary>Python megvalósítás generikus kereső API-val</summary>
+<summary>Python megvalósítás általános keresési API-val</summary>
 
 ```python
 import asyncio
@@ -225,10 +225,10 @@ from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
 from mcp.server.fastmcp import FastMCP
 
-# GyorsMCP szerver létrehozása webes kereséshez
+# Gyors MCP szerver létrehozása webes kereséshez
 search_server = FastMCP("WebSearch")
 
-# Webes keresési műveletek kezelésére szolgáló osztály
+# Osztály a webes keresési műveletek kezelésére
 class WebSearchHandler:
     def __init__(self, api_endpoint: str, api_key: str):
         self.api_endpoint = api_endpoint
@@ -276,7 +276,7 @@ class WebSearchHandler:
                 
                 search_data = await response.json()
                 
-                # API-specifikus válasz átalakítása szabványos formátummá
+                # API-specifikus válasz átalakítása szabványos formátumba
                 results = []
                 for item in search_data.get("results", []):
                     results.append({
@@ -296,13 +296,13 @@ class WebSearchHandler:
             print(f"Search API request error: {e}")
             raise
 
-# Kereséskezelő inicializálása
+# A keresés kezelő inicializálása
 search_handler = WebSearchHandler(
     api_endpoint="https://api.search-service.example/search",
     api_key="your-api-key-here"
 )
 
-# Élettartam beállítása a kereséskezelő kezeléséhez
+# Élettartam beállítása a keresés kezelő kezeléséhez
 @asyncio.asynccontextmanager
 async def app_lifespan(server: FastMCP):
     """Manage application lifecycle"""
@@ -312,7 +312,7 @@ async def app_lifespan(server: FastMCP):
     finally:
         await search_handler.close()
 
-# Szerver élettartamának beállítása
+# Élettartam beállítása a szerverhez
 search_server = FastMCP("WebSearch", lifespan=app_lifespan)
 
 # Webes kereső eszköz regisztrálása
@@ -347,12 +347,12 @@ async def web_search(query: str, max_results: int = 5,
     
     return results
 
-# Példa kliens használatra
+# Példa kliens használatára
 async def client_example():
-    # Kapcsolódás a keresőszerverhez Streamable HTTP átvitel segítségével
+    # Kapcsolódás a kereső szerverhez Streamable HTTP szállítással
     async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
         async with ClientSession(read, write) as session:
-            # Kapcsolat inicializálása
+            # A kapcsolat inicializálása
             await session.initialize()
             
             # A web_search eszköz meghívása
@@ -370,17 +370,17 @@ async def client_example():
 
 # Szerver futtatási példa
 if __name__ == "__main__":
-    # Szerver futtatása Streamable HTTP átvitel segítségével
+    # A szerver futtatása Streamable HTTP szállítással
     search_server.run(transport="streamable-http")
 ```
 </details> 
 
 <details>
-<summary>JavaScript megvalósítás böngészőalapú kereséssel</summary>
+<summary>JavaScript megvalósítás böngésző-alapú kereséssel</summary>
 
 
 ```javascript
-// MCP szerver megvalósítása webes kereséshez
+// MCP szerver megvalósítás webes kereséshez
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
@@ -458,7 +458,7 @@ class SearchService {
     }
 }
 
-// Keresési szolgáltatás inicializálása
+// A keresési szolgáltatás inicializálása
 const searchService = new SearchService(
     'https://api.search-service.example/search',
     'your-api-key-here'
@@ -512,12 +512,12 @@ searchServer.tool({
     }
 });
 
-// Példa klienskód a kereső szerverhez való kapcsolódáshoz
+// Példa klienskód a kereső szerverhez való csatlakozáshoz
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 async function connectToSearchServer() {
-    // Kapcsolódás a kereső szerverhez
+    // Csatlakozás a kereső szerverhez
     const transport = new StreamableHTTPClientTransport(
         new URL('http://localhost:8000/mcp')
     );
@@ -529,7 +529,7 @@ async function connectToSearchServer() {
     
     await client.connect(transport);
     
-    // Kereső eszköz végrehajtása
+    // A kereső eszköz végrehajtása
     const searchResults = await client.callTool({
         name: 'web_search',
         arguments: {
@@ -546,7 +546,7 @@ async function connectToSearchServer() {
     await client.disconnect();
 }
 
-// Szerver indítása
+// A szerver indítása
 const transport = new StreamableHTTPServerTransport();
 await searchServer.connect(transport);
 console.log('Search server running at http://localhost:8000/mcp');
@@ -559,214 +559,217 @@ console.log('Search server running at http://localhost:8000/mcp');
 
 
 
-## Kódpéldák Jogi Nyilatkozata
+## Kódpéldák felelősségkizárás
 
-> **Fontos Megjegyzés**: Az alábbi kódpéldák bemutatják a Modell Kontex Protocol (MCP) integrálását webes keresési funkciókkal. Bár követik az hivatalos MCP SDK-k mintáit és szerkezeteit, oktatási célokra egyszerűsítettek.
+> **Fontos megjegyzés**: Az alábbi kódpéldák a Modell Kontext Protokoll (MCP) és a webes keresési funkció integrációját mutatják be. Bár követik az hivatalos MCP SDK-k mintáit és szerkezeteit, oktatási célból egyszerűsítettek.
 > 
-> Ezek a példák magukban foglalják:
+> Ezek a példák bemutatják:
 > 
-> 1. **Python Megvalósítás**: Egy FastMCP szerver megvalósítást, amely webes keresési eszközt biztosít és csatlakozik egy külső kereső API-hoz. Ez a példa bemutatja a megfelelő élettartam kezelést, kontextuskezelést és eszköz implementációt, az [hivatalos MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) mintái szerint. A szerver a javasolt Streamable HTTP szállítást használja, amely leváltotta a régebbi SSE szállítást a termelési környezetekben.
+> 1. **Python megvalósítás**: Egy FastMCP szerver megvalósítás, amely webes kereső eszközt biztosít, és külső kereső API-hoz kapcsolódik. Ez a példa bemutatja a megfelelő élettartam-kezelést, a kontextuskezelést és az eszköz megvalósítást az [hivatalos MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) mintáit követve. A szerver a javasolt Streamable HTTP szállítást használja, amely felváltotta a korábbi SSE szállítást a termelési környezetekben.
 > 
-> 2. **JavaScript Megvalósítás**: Egy TypeScript/JavaScript implementáció a FastMCP mintájára, az [hivatalos MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) alapján, amely egy kereső szervert hoz létre megfelelő eszköz definíciókkal és kliens kapcsolatokkal. Követi a legfrissebb javasolt mintákat a munkamenet-kezelés és kontextus megőrzés terén.
+> 2. **JavaScript megvalósítás**: Egy TypeScript/JavaScript megvalósítás a FastMCP mintát használva az [hivatalos MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) alapján, keresőszerver létrehozásához megfelelő eszköz-definíciókkal és klienskapcsolatokkal. Követi a legfrissebb javasolt mintákat a munkamenet-kezelés és kontextus-megőrzés terén.
 > 
-> Ezek a példák további hibakezelést, hitelesítést és specifikus API integrációs kódot igényelnének éles használathoz. A bemutatott kereső API végpontok (`https://api.search-service.example/search`) helykitöltők, melyeket tényleges keresőszolgáltató végpontokra kellene cserélni.
+> Ezek a példák további hibakezelést, hitelesítést és specifikus API integrációs kódot igényelnének a termelési használathoz. A bemutatott kereső API végpontok (`https://api.search-service.example/search`) helykitöltők, amelyeket tényleges keresőszolgáltatói végpontokra kell cserélni.
 > 
-> A teljes megvalósítási részletekért és a legfrissebb megközelítésekért kérjük, tekintsd meg az [hivatalos MCP specifikációt](https://spec.modelcontextprotocol.io/) és az SDK dokumentációt.
+> A teljes megvalósítási részletekért és a legfrissebb megközelítésekért tekintsd meg az [hivatalos MCP specifikációt](https://modelcontextprotocol.io/specification/2026-07-28/)
+> és az SDK dokumentációt.
+
 
 ## Alapfogalmak
 
-### A Modell Kontex Protocol (MCP) Keretrendszer
+### A Modell Kontext Protokoll (MCP) keretrendszer
 
-Alapvetően a Modell Kontextus Protocol szabványosított módot biztosít AI modellek, alkalmazások és szolgáltatások számára a kontextus cseréjére. Az élő webes keresésben ez a keret alapvető a koherens, többszörös körös keresési élmények létrehozásához. A fő komponensek közé tartozik:
+Alapvetően a Modell Kontext Protokoll egységes módszert biztosít az MI-modellek, alkalmazások és szolgáltatások számára a kontextus cseréjéhez. A valós idejű webes keresésben ez a keretrendszer nélkülözhetetlen a koherens, többfordulós keresési élmények létrehozásához. Fő összetevők:
 
-1. **Kliens-Szerver Architektúra**: Az MCP világos elkülönítést teremt a keresési kliensek (kérvényezők) és a kereső szerverek (szolgáltatók) között, rugalmas telepítési modellek engedélyezésével.
+1. **Kliens-szerver architektúra**: Az MCP tiszta szétválasztást hoz létre a keresési kliens (kérést küldők) és a keresési szerver (szolgáltatók) között, rugalmas telepítési modelleket engedélyezve.
 
-2. **JSON-RPC Kommunikáció**: A protokoll JSON-RPC-n keresztül küldi az üzeneteket, így kompatibilis a webes technológiákkal és könnyen megvalósítható különböző platformokon.
+2. **JSON-RPC kommunikáció**: A protokoll JSON-RPC-t használ üzenet-cserére, így kompatibilis a webes technológiákkal és könnyen megvalósítható különböző platformokon.
 
-3. **Kontextuskezelés**: Az MCP strukturált módszereket definiál a keresési kontextus fenntartására, frissítésére és hasznosítására több interakció során.
+3. **Kontextuskezelés**: Az MCP strukturált módszereket határoz meg a keresési kontextus fenntartására, frissítésére és hasznosítására több interakció során.
 
-4. **Eszköz Definíciók**: A keresési képességek szabványosított eszközökként válnak elérhetővé, jól definiált paraméterekkel és visszatérési értékekkel.
+4. **Eszközdefiníciók**: Keresési képességek szabványosított eszközökként jelennek meg jól definiált paraméterekkel és visszatérési értékekkel.
 
-5. **Streaming Támogatás**: A protokoll támogatja az eredmények streamelését, ami elengedhetetlen az élő keresésnél, ahol az eredmények fokozatosan érkeznek.
+5. **Streaming támogatás**: A protokoll támogatja az eredmények folyamatos továbbítását, ami létfontosságú a valós idejű keresésnél, ahol az eredmények fokozatosan érkeznek.
 
-### Webes Keresési Integrációs Minták
+### Webes keresési integrációs minták
 
-Az MCP webes kereséssel történő integrálásakor több minta is megjelenik:
+Az MCP webes kereséssel való integrálásakor több minta figyelhető meg:
 
-#### 1. Direkt Keresőszolgáltató Integráció
+#### 1. Közvetlen keresőszolgáltató integráció
 
 ```mermaid
 graph LR
-    Client[MCP Kliens] --> |MCP Kérelem| Server[MCP Szerver]
+    Client[MCP Kliens] --> |MCP Kérés| Server[MCP Szerver]
     Server --> |API Hívás| SearchAPI[Keresési API]
     SearchAPI --> |Eredmények| Server
     Server --> |MCP Válasz| Client
 ```
 
-Ebben a mintában az MCP szerver közvetlenül interfészel egy vagy több kereső API-val, MCP kéréseket API-specifikus hívásokká alakítva át, és az eredményeket MCP válaszokká formázva.
+Ebben a mintában az MCP szerver közvetlenül kommunikál egy vagy több kereső API-val, az MCP kéréseket API-specifikus hívásokká alakítva, és az eredményeket MCP válaszokká formázva.
 
-#### 2. Federált Keresés Kontextus Megőrzéssel
+#### 2. Szövetséges keresés kontextus megőrzéssel
 
 ```mermaid
 graph LR
-    Client[MCP Ügyfél] --> |MCP Kérelem| Federation[MCP Szövetségi Réteg]
-    Federation --> |MCP Kérelem 1| Search1[Keresési Szolgáltató 1]
-    Federation --> |MCP Kérelem 2| Search2[Keresési Szolgáltató 2]
-    Federation --> |MCP Kérelem 3| Search3[Keresési Szolgáltató 3]
+    Client[MCP Ügyfél] --> |MCP Kérés| Federation[MCP Szövetségi Réteg]
+    Federation --> |MCP Kérés 1| Search1[Keresési Szolgáltató 1]
+    Federation --> |MCP Kérés 2| Search2[Keresési Szolgáltató 2]
+    Federation --> |MCP Kérés 3| Search3[Keresési Szolgáltató 3]
     Search1 --> |MCP Válasz 1| Federation
     Search2 --> |MCP Válasz 2| Federation
     Search3 --> |MCP Válasz 3| Federation
     Federation --> |Összegzett MCP Válasz| Client
 ```
 
-Ez a minta a keresési lekérdezéseket több, MCP-kompatibilis keresőszolgáltató között osztja szét, mindegyik potenciálisan a tartalom vagy keresési képesség különböző típusaira szakosodva, miközben egységes kontextust tart fenn.
+Ez a minta elosztja a keresési lekérdezéseket több MCP-kompatibilis keresőszolgáltató között, amelyek egyenként specializálódhatnak különböző tartalomtípusokra vagy keresési képességekre, miközben egységes kontextust tart fenn.
 
-#### 3. Kontextusban Gazdagított Keresési Lánc
+#### 3. Kontextusalapú keresési lánc
 
 ```mermaid
 graph LR
-    Client[MCP Ügyfél] --> |Lekérdezés + Kontextus| Server[MCP Szerver]
-    Server --> |1. Lekérdezés Elemzés| NLP[NLP Szolgáltatás]
-    NLP --> |Fejlesztett Lekérdezés| Server
-    Server --> |2. Keresés Végrehajtás| Search[Keresőmotor]
-    Search --> |Nyers Eredmények| Server
-    Server --> |3. Eredmény Feldolgozás| Enhancement[Eredmény Javítás]
-    Enhancement --> |Fejlesztett Eredmények| Server
-    Server --> |Végső Eredmények + Frissített Kontextus| Client
+    Client[MCP kliens] --> |Lekérdezés + Kontextus| Server[MCP szerver]
+    Server --> |1. Lekérdezés elemzése| NLP[NLP szolgáltatás]
+    NLP --> |Kiterjesztett lekérdezés| Server
+    Server --> |2. Keresés végrehajtása| Search[Keresőmotor]
+    Search --> |Nyers találatok| Server
+    Server --> |3. Eredmények feldolgozása| Enhancement[Eredmény javítása]
+    Enhancement --> |Kiterjesztett eredmények| Server
+    Server --> |Végső eredmények + Frissített kontextus| Client
 ```
 
-Ebben a mintában a keresési folyamat több szakaszra oszlik, a kontextus minden lépésben gazdagodik, ami egyre relevánsabb eredményekhez vezet.
+Ebben a mintában a keresési folyamat több szakaszra oszlik, ahol a kontextus lépésenként gazdagodik, fokozatosan egyre relevánsabb eredményekhez vezetve.
 
-### Keresési Kontextus Komponensek
+### Keresési kontextus összetevők
 
-Az MCP-alapú webes keresésben a kontextus általában tartalmazza:
+MCP-alapú webes keresésben a kontextus általában magában foglalja:
 
-- **Lekérdezési Előzmények**: A munkamenet korábbi keresési lekérdezései
-- **Felhasználói Preferenciák**: Nyelv, régió, biztonságos keresési beállítások
-- **Interakciós Előzmények**: Mely eredményeket kattintották meg, mennyi időt töltöttek az eredményeken
-- **Keresési Paraméterek**: Szűrők, rendezési sorrendek és egyéb keresési módosítók
-- **Tárgyi Tudás**: A keresés szempontjából releváns témaspecifikus kontextus
-- **Időbeli Kontextus**: Időalapú relevanciaszempontok
-- **Forrás Preferenciák**: Megbízható vagy preferált információforrások
+- **Lekérdezéstörténet**: A munkamenet korábbi keresési lekérdezései
+- **Felhasználói preferenciák**: Nyelv, régió, biztonságos keresési beállítások
+- **Interakciós előzmények**: Mely eredményekre kattintottak, az eredményeken eltöltött idő
+- **Keresési paraméterek**: Szűrők, rendezési sorrendek és egyéb keresési módosítók
+- **Témaspecifikus tudás**: A keresés szempontjából releváns szakterületi kontextus
+- **Időbeli kontextus**: Időalapú relevancia tényezők
+- **Forrás preferenciák**: Megbízható vagy előnyben részesített információforrások
 
-## Használati Esetek és Alkalmazások
+## Felhasználási esetek és alkalmazások
 
-### Kutatás és Információgyűjtés
+### Kutatás és információgyűjtés
 
-Az MCP javítja a kutatási munkafolyamatokat azáltal, hogy:
+Az MCP javítja a kutatási munkafolyamatokat:
 
-- Megőrzi a kutatási kontextust a keresési munkameneteken keresztül
-- Lehetővé teszi a kifinomultabb és kontextusban relevánsabb lekérdezéseket
-- Támogatja a többforrásos keresési föderációt
-- Elősegíti a tudás kinyerést a keresési eredményekből
+- Megőrzi a kutatási kontextust a keresési munkamenetek során
+- Lehetővé teszi a kifinomultabb és kontextuálisan releváns lekérdezéseket
+- Támogatja a többforrású keresési összefoglalást
+- Segíti az ismeretkinyerést a keresési eredményekből
 
-### Élő Hírek és Trendfigyelés
+### Valós idejű hírek és trendfigyelés
 
-Az MCP-alapú keresés előnyöket kínál a hírek monitorozásában:
+Az MCP-alapú keresés előnyöket kínál a hírek figyelésében:
 
-- Közel valós idejű felderítése a felbukkanó híreknek
-- Kontextus alapú releváns információk szűrése
-- Témák és entitások követése több forrás között
-- Személyre szabott hírriasztások a felhasználói kontextus alapján
+- Közel valós idejű felfedezés megjelenő hírtémákból
+- Kontextuális szűrés a releváns információk számára
+- Téma- és entitáskövetés több forrásban
+- Személyre szabott hírértesítések a felhasználói kontextus alapján
 
-### AI-Támogatott Böngészés és Kutatás
+### MI-vel támogatott böngészés és kutatás
 
-Az MCP új lehetőségeket teremt AI-támogatott böngészésre:
+Az MCP új lehetőségeket teremt az MI-vel támogatott böngészéshez:
 
-- Kontextus alapú keresési javaslatok a jelenlegi böngészési tevékenység alapján
-- Zökkenőmentes integráció a webes keresés és LLM-alapú asszisztensek között
-- Többszörös körös keresési finomítás megőrzött kontextussal
-- Fejlettebb tényellenőrzés és információ ellenőrzés
+- Kontextuális keresési javaslatok a jelenlegi böngészői tevékenység alapján
+- Zökkenőmentes integráció webes kereséssel LLM-alapú asszisztensekkel
+- Többfordulós keresési finomítás megőrzött kontextussal
+- Fejlettebb tényellenőrzés és információhitelesítés
 
-## Jövőbeli Trendek és Innovációk
+## Jövőbeli trendek és innovációk
 
-### Az MCP Evolúciója a Webes Keresésben
+### MCP fejlődése a webes keresésben
 
-Előre tekintve, várhatóan az MCP továbbfejlődik, hogy kezelje:
+Előretekintve várható, hogy az MCP fejlődni fog az alábbiak kezelésére:
 
 
-- **Multimodális Keresés**: Szöveg, kép, hang és videó keresés integrálása megőrzött kontextussal
+- **Multimodális Keresés**: Szöveg, kép, hang és videó keresés integrálása a megőrzött kontextussal
 - **Decentralizált Keresés**: Elosztott és szövetségi keresési ökoszisztémák támogatása
-- **Keresési Adatvédelem**: Kontextus-érzékeny adatvédelmi mechanizmusok a keresés során
-- **Lekérdezés Értelmezés**: Mély szemantikai elemzés a természetes nyelvű keresési lekérdezésekhez
+- **Keresési Adatvédelem**: Kontextus-érzékeny adatvédelmi keresési mechanizmusok
+- **Lekérdezés Értelmezése**: Mély szemantikai elemzés a természetes nyelvű keresési lekérdezésekhez
 
-### Potenciális Technológiai Fejlesztések
+### A technológia lehetséges fejlődései
 
-Az MCP-k keresés jövőjét alakító újonnan megjelenő technológiák:
+Az új technológiák, amelyek alakítani fogják a MCP keresés jövőjét:
 
-1. **Neuronális Keresési Architektúrák**: Beágyazás-alapú keresési rendszerek, amelyek MCP-re optimalizáltak
+1. **Neurális Keresési Architektúrák**: Beágyazáson alapuló kereső rendszerek, amelyek az MCP-hez vannak optimalizálva
 2. **Személyre szabott Keresési Kontextus**: Egyéni felhasználói keresési minták tanulása idővel
-3. **Tudásgráf Integráció**: Kontextus-alapú keresés specifikus tudásgráfokkal kiegészítve
-4. **Kereszt-modális Kontextus**: Kontextus megtartása különböző keresési módok között
+3. **Tudásgráf Integráció**: Kontextus-alapú keresés domain-specifikus tudásgráfok által kiegészítve
+4. **Kereszt-modal Kontextus**: Kontextus megőrzése különböző keresési modalitások között
 
 ## Gyakorlati Feladatok
 
-### 1. Gyakorlat: Alap MCP keresési csővezeték beállítása
+### 1. feladat: Egyszerű MCP keresési folyamat beállítása
 
-Ebben a gyakorlatban megtanulod, hogyan:
-- Alap MCP keresési környezetet konfigurálj
-- Kontextus-kezelőket valósíts meg webes kereséshez
-- Teszteld és validáld a kontextus megőrzését keresési iterációk során
+Ebben a feladatban megtanulod, hogyan kell:
+- Egy alap MCP keresési környezet konfigurálása
+- Kontextuskezelők implementálása webes kereséshez
+- A kontextus megőrzésének tesztelése és ellenőrzése több keresési iteráción keresztül
 
-### 2. Gyakorlat: Kutatási asszisztens építése MCP kereséssel
+### 2. feladat: Kutatási asszisztens építése MCP kereséssel
 
-Készíts egy teljes alkalmazást, amely:
-- Feldolgozza a természetes nyelvű kutatási kérdéseket
+Hozz létre egy teljes alkalmazást, amely:
+- Természetes nyelvű kutatási kérdések feldolgozása
 - Kontextus-érzékeny webes kereséseket végez
-- Több forrásból származó információkat szintetizál
-- Rendszerezett kutatási eredményeket mutat be
+- Információt szintetizál több forrásból
+- Rendezett kutatási eredményeket mutat be
 
-### 3. Gyakorlat: Több-forrású keresési szövetség megvalósítása MCP-vel
+### 3. feladat: Többforrású keresési szövetség megvalósítása MCP-vel
 
-Haladó gyakorlat, amely lefedi:
-- Kontextus-érzékeny lekérdezés továbbítást több keresőmotorhoz
-- Eredmények rangsorolását és aggregálását
-- Kontextuális duplikációmentesítést a keresési eredmények között
-- Forrásspecifikus metaadatok kezelését
+Haladó feladat, amely lefedi:
+- Kontextus-alapú lekérdezés-kiosztás több keresőmotor felé
+- Eredmény rangsorolás és összevonás
+- Keresési eredmények kontextuális duplikációmentesítése
+- Forrás-specifikus metaadatok kezelése
 
-## További Források
+## További források
 
-- [Model Context Protocol Specification](https://spec.modelcontextprotocol.io/) - Hivatalos MCP specifikáció és részletes protokoll dokumentáció
-- [Model Context Protocol Dokumentáció](https://modelcontextprotocol.io/) - Részletes oktatóanyagok és megvalósítási útmutatók
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - MCP protokoll hivatalos Python megvalósítása
-- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - MCP protokoll hivatalos TypeScript megvalósítása
-- [MCP Referencia Szerverek](https://github.com/modelcontextprotocol/servers) - MCP szerverek referencia implementációi
-- [Bing Web Search API Dokumentáció](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - A Microsoft webes kereső API-ja
-- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - A Google testreszabható keresőmotorja
-- [SerpAPI Dokumentáció](https://serpapi.com/search-api) - Keresőmotor eredményoldal API
-- [Meilisearch Dokumentáció](https://www.meilisearch.com/docs) - Nyílt forráskódú keresőmotor
-- [Elasticsearch Dokumentáció](https://www.elastic.co/guide/index.html) - Elosztott keresési és analitikai motor
-- [LangChain Dokumentáció](https://python.langchain.com/docs/get_started/introduction) - Alkalmazások építése LLM-ekkel
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2026-07-28/) - Az MCP hivatalos specifikációja és részletes protokoll dokumentáció
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io/) - Részletes oktatóanyagok és megvalósítási útmutatók
+- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Az MCP protokoll hivatalos Python implementációja
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - Az MCP protokoll hivatalos TypeScript implementációja
+- [MCP Reference Servers](https://github.com/modelcontextprotocol/servers) - MCP kiszolgálók referencia implementációi
+- [Bing Web Search API Documentation](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview) - A Microsoft webes keresési API-ja
+- [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) - A Google programozható keresőmotorja
+- [SerpAPI Documentation](https://serpapi.com/search-api) - Keresőmotor eredményoldal API
+- [Meilisearch Documentation](https://www.meilisearch.com/docs) - Nyílt forráskódú keresőmotor
+- [Elasticsearch Documentation](https://www.elastic.co/guide/index.html) - Elosztott keresési és elemzőmotor
+- [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction) - Alkalmazásfejlesztés nagynyelvű modellekkel
 
-## Tanulási Eredmények
+## Tanulási eredmények
 
-A modul elvégzése után képes leszel:
+E modul elvégzése után képes leszel:
 
 - Megérteni a valós idejű webes keresés alapjait és kihívásait
-- Elmagyarázni, hogyan javítja a Model Context Protocol (MCP) a valós idejű webes keresést
-- MCP-alapú keresési megoldásokat megvalósítani népszerű keretrendszerek és API-k segítségével
-- Skálázható, nagy teljesítményű keresési architektúrákat tervezni és telepíteni MCP-vel
-- MCP koncepciókat alkalmazni különféle esetekben, például szemantikai keresés, kutatási asszisztencia, és MI-vel támogatott böngészés során
-- Értékelni a felmerülő trendeket és jövőbeni innovációkat az MCP-alapú keresési technológiákban
+- Elmagyarázni, hogyan növeli a Model Context Protocol (MCP) a valós idejű webes keresés képességeit
+- MCP-alapú keresési megoldások megvalósítása népszerű keretrendszerek és API-k használatával
+- Skálázható, nagy teljesítményű keresési architektúrák tervezése és bevezetése MCP-vel
+- MCP koncepciók alkalmazása különféle felhasználási esetekben, beleértve a szemantikus keresést, kutatási asszisztenciát és AI-vel támogatott böngészést
+- Értékelni az MCP-alapú keresési technológiák feltörekvő trendjeit és jövőbeli újításait
 
 
-### Bizalom és Biztonság Megfontolások
+### Bizalom és biztonság szempontjai
 
-Az MCP-alapú webes keresési megoldások megvalósításakor tartsd szem előtt a MCP specifikáció fontos alapelveit:
+MCP-alapú webes keresési megoldások megvalósításakor emlékezz ezekre a fontos elvekre az MCP specifikációból:
 
-1. **Felhasználói Hozzájárulás és Ellenőrzés**: A felhasználóknak kifejezetten bele kell egyezniük, és meg kell érteniük minden adat-hozzáférést és műveletet. Ez különösen fontos a külső adatforrásokat elérő webes keresési megvalósítások esetén.
+1. **Felhasználói beleegyezés és ellenőrzés**: A felhasználóknak kifejezetten bele kell egyezniük és érteniük kell minden adat-hozzáférést és műveletet. Ez különösen fontos a webes keresési megvalósításoknál, amelyek külső adatforrásokhoz férhetnek hozzá.
 
-2. **Adatvédelem**: Biztosítani kell a keresési lekérdezések és eredmények megfelelő kezelését, különösen, ha érzékeny információkat tartalmazhatnak. Megfelelő hozzáférés-vezérlést kell alkalmazni felhasználói adatok védelmére.
+2. **Adatvédelem**: Biztosítani kell a keresési lekérdezések és eredmények megfelelő kezelését, különösen ha érzékeny információkat tartalmazhatnak. Megfelelő hozzáférés-ellenőrzést kell bevezetni a felhasználói adatok védelmére.
 
-3. **Eszközbiztonság**: Megfelelő jogosultság-ellenőrzést és validációt kell bevezetni a keresőeszközöknél, mert ezek potenciális biztonsági kockázatot jelentenek tetszőleges kód végrehajtásán keresztül. Az eszközök viselkedésének leírásait nem szabad megbízhatónak tekinteni, kivéve, ha azokat megbízható szerver szolgáltatja.
+3. **Eszközbiztonság**: Keresési eszközök esetén megfelelő jogosultságkezelést és érvényesítést kell végrehajtani, mivel ezek potenciális biztonsági kockázatot jelentenek önkényes kódvégrehajtás által. Az eszközök viselkedésének leírásait csak akkor szabad megbízhatónak tekinteni, ha azokat egy megbízható szervertől kaptuk.
 
-4. **Átlátható Dokumentáció**: Biztosíts világos dokumentációt az MCP-alapú keresési megvalósítás képességeiről, korlátairól és biztonsági megfontolásairól, az MCP specifikáció megvalósítási útmutatóit követve.
+4. **Egyértelmű dokumentáció**: Nyújts világos dokumentációt az MCP-alapú keresési megoldás képességeiről, korlátairól és biztonsági szempontjairól, az MCP specifikáció megvalósítási irányelvei szerint.
 
-5. **Robusztus Hozzájárulási Folyamatok**: Építs ki erős hozzájárulási és engedélyezési folyamatokat, amelyek egyértelműen elmagyarázzák, mit csinál az adott eszköz, mielőtt engedélyeznéd a használatát, különösen az olyan eszközöknél, amelyek külső webes erőforrásokkal lépnek kapcsolatba.
+5. **Robusztus beleegyezési folyamatok**: Építs robusztus beleegyezési és jogosultságkezelési folyamatokat, amelyek világosan elmagyarázzák, mit csinál minden eszköz, mielőtt engedélyeznéd a használatát, különösen az olyan eszközöknél, amelyek külső webes forrásokkal lépnek kapcsolatba.
 
-A MCP biztonságára és bizalmi megfontolásaira vonatkozó teljes részletekért tekintsd meg a [hivatalos dokumentációt](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices).
+Az MCP biztonsági és bizalom szempontjaira vonatkozó teljes részletekért lásd a
+[hivatalos dokumentációt](https://modelcontextprotocol.io/specification/2026-07-28/basic/security_best_practices).
 
-## Mi következik ezután
+## Mi következik
 
 - [5.12 Entra ID hitelesítés Model Context Protocol szerverekhez](../mcp-security-entra/README.md)
 

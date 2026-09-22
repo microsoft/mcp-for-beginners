@@ -1,5 +1,10 @@
 # Führen Sie das Beispiel aus
 
+> [!WARNING]
+> Dieses Beispiel verwendet veraltetes Sampling und einen Legacy HTTP+SSE-Endpunkt. Es wird
+> für die MCP-Kompatibilität `2025-11-25` beibehalten. Neue Implementierungen sollten
+> direkt einen LLM-Anbieter aufrufen und Streamable HTTP für entfernten MCP-Verkehr verwenden.
+
 ## Virtuelle Umgebung erstellen
 
 ```sh
@@ -21,7 +26,7 @@ uvicorn server:app --port 8000
 
 ## Testen Sie den Server mit GitHub Copilot und VS Code
 
-Fügen Sie den Eintrag wie folgt in mcp.json ein:
+Fügen Sie den Eintrag wie folgt in mcp.json hinzu:
 
 ```json
 "servers": {
@@ -32,7 +37,7 @@ Fügen Sie den Eintrag wie folgt in mcp.json ein:
 }
 ```
 
-Stellen Sie sicher, dass Sie im Server auf "starten" klicken.
+Stellen Sie sicher, dass Sie auf dem Server auf "Start" klicken.
 
 Fügen Sie in GitHub Copilot die folgende Eingabeaufforderung ein:
 
@@ -40,7 +45,7 @@ Fügen Sie in GitHub Copilot die folgende Eingabeaufforderung ein:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Beim ersten Mal werden Sie gefragt, ob Sie eine Sampling-Aktion akzeptieren möchten, danach werden Sie gebeten, das Tool auszuführen, um "create_blog" zu akzeptieren. Sie sollten eine Antwort ähnlich wie folgt sehen:
+Beim ersten Mal werden Sie gefragt, ob Sie eine Sampling-Aktion akzeptieren möchten, danach werden Sie aufgefordert, das Tool zum Ausführen von "create_blog" zu akzeptieren. Sie sollten eine Antwort ähnlich der folgenden sehen:
 
 ```json
 {
@@ -51,6 +56,6 @@ Beim ersten Mal werden Sie gefragt, ob Sie eine Sampling-Aktion akzeptieren möc
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die durch die Nutzung dieser Übersetzung entstehen.
+**Haftungsausschluss**:
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Bei kritischen Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

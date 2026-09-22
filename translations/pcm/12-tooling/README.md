@@ -2,12 +2,12 @@
 
 ## 🧠 Overview of the MCP Database Integration Learning Path
 
-For here, you go learn how to use tools wey dey use MCP. Your experience to use these tools go beta as you connect MCP servers to dem.
+For here, you go learn how to use tools wey dey use MCP. How you dey use these tools go beta as you connect MCP servers to dem.
 
 ## 🔗 Official MCP Resources
 
 - 📘 [MCP Documentation](https://modelcontextprotocol.io/) – Detailed tutorials and user guides
-- 📜 [MCP Specification (2025-11-25)](https://spec.modelcontextprotocol.io/specification/2025-11-25/) – Protocol architecture and technical references
+- 📜 [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/) – Protocol architecture and technical references
 - 🧑‍💻 [MCP GitHub Repository](https://github.com/modelcontextprotocol) – Open-source SDKs, tools, and code samples
 - 🌐 [MCP Community](https://github.com/orgs/modelcontextprotocol/discussions) – Join discussions and contribute to the community
 - 🔒 [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) – Security best practices and risk mitigations
@@ -23,7 +23,7 @@ For here, you go learn how to use tools wey dey use MCP. Your experience to use 
 
 ## 🚀 Ready to Start?
 
-Begin your journey with **[GitHub Copilot app](./01-copilot-app/README.md)**
+Start your waka with **[GitHub Copilot app](./01-copilot-app/README.md)**
 
 ---
 

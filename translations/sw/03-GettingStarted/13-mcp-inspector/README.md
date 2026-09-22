@@ -1,31 +1,36 @@
-# Kutatua matatizo na MCP Inspector
+# Kurekebisha Hitilafu kwa MCP Inspector
 
-**MCP Inspector** ni chombo muhimu cha kutatua matatizo kinachokuwezesha kujaribu kwa mwingiliano na kuchunguza seva zako za MCP bila haja ya programu kamili ya mwenyeji wa AI. Fikiria kama "Postman kwa MCP" - kinatoa kiolesura cha kuona kupeleka maombi, kuona majibu, na kuelewa jinsi seva yako inavyoenda.
+> [!NOTE]
+> Amri zinazotumia `--sse` na URL zinazomalizika kwa `/sse` hujaribu usafirishaji wa zamani wa HTTP+SSE.
+> Kwa seva mpya ya MCP `2026-07-28`, tumia toleo la Inspector linalounga mkono HTTP Inayoweza Kutiririka na chagua usafirishaji huo badala yake.
+
+
+**MCP Inspector** ni chombo muhimu cha kurekebisha hitilafu kinachokuwezesha kupima na kutatua matatizo ya seva zako za MCP kwa maingiliano bila hitaji la programu kamili ya mwenyeji AI. Fikiria kama "Postman kwa MCP" - kinatoa interface ya kuona kutuma maombi, kuona majibu, na kuelewa jinsi seva yako inavyotenda.
 
 ## Kwa Nini Utumie MCP Inspector?
 
 Unapojenga seva za MCP, mara nyingi utakutana na changamoto hizi:
 
-- **"Je seva yangu inafanya kazi hata?"** - Inspector inaonyesha hali ya muunganisho
-- **"Je zana zangu zimeorodheshwa vizuri?"** - Inspector inaorodhesha zana zote zinazopatikana
-- **"Muundo wa majibu ni gani?"** - Inspector inaonyesha majibu kamili ya JSON
-- **"Kwa nini zana hii haifanyi kazi?"** - Inspector inaonyesha ujumbe wa makosa kwa undani
+- **"Je, seva yangu inaendelea kufanya kazi?"** - Inspector inaonyesha hali ya muunganisho
+- **"Je, zana zangu zimesajiliwa ipasavyo?"** - Inspector inaorodhesha zana zote zinazopatikana
+- **"Ni muundo gani wa majibu?"** - Inspector inaonyesha majibu kamili ya JSON
+- **"Kwanini chombo hiki hakifanyi kazi?"** - Inspector inaonyesha ujumbe wa makosa kwa undani
 
-## Mahitaji
+## Masharti
 
 - Node.js 18+ imewekwa
-- npm (inaambatana na Node.js)
-- Seva ya MCP ya kujaribu (angalia [Module 3.1 - Server ya Kwanza](../01-first-server/README.md))
+- npm (huambatana na Node.js)
+- Seva ya MCP ya kupima (angalia [Module 3.1 - Seva ya Kwanza](../01-first-server/README.md))
 
 ## Ufungaji
 
-### Chaguo 1: Endesha kwa npx (Inapendekezwa kwa Jaribio la Haraka)
+### Chaguo 1: Endesha kwa npx (Inapendekezwa kwa Upimaji wa Haraka)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Chaguo 2: Sakinisha Kwa Ulimwenguni
+### Chaguo 2: Sakinisha Kwanza
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -50,42 +55,42 @@ Ongeza kwenye `package.json`:
 
 ---
 
-## Kuungana na Seva Yako
+## Kuunganisha na Seva Yako
 
-### seva za stdio (Mchakato wa Kanda)
+### seva za stdio (Mchakato wa Ndani)
 
-Kwa seva zinazozungumza kupitia pembejeo/pembezaji ya kawaida:
+Kwa seva zinazowasiliana kupitia ingizo/totizo la kawaida:
 
 ```bash
-# Server ya Python
+# Seva ya Python
 npx @modelcontextprotocol/inspector python -m your_server_module
 
-# Server ya Node.js
+# Seva ya Node.js
 npx @modelcontextprotocol/inspector node ./build/index.js
 
-# Kwa vigezo vya mazingira
+# Kwa kutumia mabadiliko ya mazingira
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### seva SSE/HTTP (Mtandao)
+### seva za SSE/HTTP (Mtandao)
 
-Kwa seva zinazotumia huduma za HTTP:
+Kwa seva zinazofanya kazi kama huduma za HTTP:
 
 1. Anzisha seva yako kwanza:
    ```bash
-   python server.py  # Seva inayoendesha kwenye http://localhost:8080
+   python server.py  # Seva inafanya kazi kwenye http://localhost:8080
    ```
 
-2. Anzisha Inspector na uunganishe:
+2. Anzisha Inspector na uungane:
    ```bash
    npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
    ```
 
 ---
 
-## Muhtasari wa Kiolesura cha Inspector
+## Muhtasari wa Interface ya Inspector
 
-Unapoanzisha Inspector, utaona kiolesura cha wavuti (kawaida kwenye `http://localhost:5173`):
+Unapoanzisha Inspector, utaona interface ya wavuti (kwa kawaida kwenye `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,23 +118,23 @@ Unapoanzisha Inspector, utaona kiolesura cha wavuti (kawaida kwenye `http://loca
 
 ## Kupima Zana
 
-### Orodhesha Zana Zinazopatikana
+### Orodhesha Zana Zilizopo
 
-1. Bonyeza kichupo cha **Tools**
-2. Inspector huorodhesha `tools/list` kwa kiotomatiki
-3. Utaona zana zote zilizoandikishwa kwa:
-   - Jina la zana
+1. Bonyeza kichupo cha **Zana**
+2. Inspector huita moja kwa moja `tools/list`
+3. Utaona zana zote zilizosajiliwa pamoja na:
+   - Jina la chombo
    - Maelezo
-   - Muundo wa pembejeo (vigezo)
+   - Mfumo wa ingizo (vigezo)
 
-### Kwenda kwa Zana
+### Kupiga Chombo
 
-1. Chagua zana kutoka kwenye orodha
+1. Chagua chombo kutoka kwenye orodha
 2. Jaza vigezo vinavyohitajika kwenye fomu
-3. Bonyeza **Run Tool**
-4. Tazama jibu kwenye paneli ya matokeo
+3. Bonyeza **Endesha Chombo**
+4. Angalia jibu kwenye paneli ya matokeo
 
-**Mfano: Kupima zana ya kalkuleta**
+**Mfano: Kupima chombo cha kalikuleta**
 
 ```
 Tool: add
@@ -148,9 +153,9 @@ Response:
 }
 ```
 
-### Kutatua Makosa ya Zana
+### Kurekebisha Makosa ya Zana
 
-Wakati zana inashindwa, Inspector inaonyesha:
+Ukishindwa, Inspector inaonyesha:
 
 ```
 Error Response:
@@ -162,12 +167,12 @@ Error Response:
 }
 ```
 
-Nambari za kawaida za makosa:
-| Nambari | Maana |
+Msimbo wa makosa wa kawaida:
+| Msimbo | Maana |
 |------|---------|
-| -32700 | Hitilafu ya kusoma (JSON isiyo sahihi) |
-| -32600 | Ombi halali |
-| -32601 | Mbinu haijapatikana |
+| -32700 | Hitilafu ya tafsiri (JSON batili) |
+| -32600 | Ombi batili |
+| -32601 | Njia haipatikani |
 | -32602 | Vigezo batili |
 | -32603 | Hitilafu ya ndani |
 
@@ -177,7 +182,7 @@ Nambari za kawaida za makosa:
 
 ### Orodhesha Rasilimali
 
-1. Bonyeza kichupo cha **Resources**
+1. Bonyeza kichupo cha **Rasilimali**
 2. Inspector huita `resources/list`
 3. Utaona:
    - URI za rasilimali
@@ -187,8 +192,8 @@ Nambari za kawaida za makosa:
 ### Kusoma Rasilimali
 
 1. Chagua rasilimali
-2. Bonyeza **Read Resource**
-3. Tazama yaliyorejeshwa
+2. Bonyeza **Soma Rasilimali**
+3. Angalia yaliyorejeshwa
 
 **Matokeo ya mfano:**
 
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Kupima Msaada
+## Kupima Maelekezo
 
-### Orodhesha Misaada
+### Orodhesha Maelekezo
 
-1. Bonyeza kichupo cha **Prompts**
+1. Bonyeza kichupo cha **Maelekezo**
 2. Inspector huita `prompts/list`
-3. Tazama templeti za msaada zinazopatikana
+3. Angalia templeti za maelekezo zinazopatikana
 
-### Kupata Msaada
+### Kupata Maelekezo
 
-1. Chagua msaada
-2. Jaza hoja zinazohitajika
-3. Bonyeza **Get Prompt**
-4. Tazama ujumbe wa msaada uliotengenezwa
+1. Chagua maelekezo
+2. Jaza vilivyoombwa vigezo
+3. Bonyeza **Pata Maelekezo**
+4. Ona ujumbe wa maelekezo yaliyotolewa
 
 ---
 
-## Uchambuzi wa Rekodi ya Ujumbe
+## Uchambuzi wa Rekodi za Ujumbe
 
-Rekodi ya ujumbe inaonyesha ujumbe wote wa itifaki ya MCP:
+Rekodi ya ujumbe inaonyesha ujumbe wote wa itifaki ya MCP. Mwisho wa mazungumzo hapo chini unatoka kwa
+seva ya zamani ya `2025-11-25` na inaonyesha utambulisho wa 'initialize' uliotolewa. Seva ya
+`2026-07-28` hutumia metadata ya maombi yenyewe na badala yake hutumia `server/discover`.
+
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,16 +244,16 @@ Rekodi ya ujumbe inaonyesha ujumbe wote wa itifaki ya MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Unachopaswa Kuangalia
+### Kile Kinachopaswa Kutazamiwa
 
-- **Mikapo ya Ombi/Jibu**: Kila `→` inapaswa kuwa na `←` inayolingana
-- **Ujumbe wa Makosa**: Angalia `"error"` katika majibu
+- **Jozi za Ombi/Majibu**: Kila `→` inapaswa kuwa na inayoambatana na `←`
+- **Ujumbe wa makosa**: Tafuta `"error"` katika majibu
 - **Muda**: Mapengo makubwa yanaweza kuashiria matatizo ya utendaji
 - **Toleo la itifaki**: Hakikisha seva na mteja wanakubaliana juu ya toleo
 
 ---
 
-## Muunganisho wa VS Code
+## Kuunganishwa na VS Code
 
 Unaweza kuendesha Inspector moja kwa moja kutoka VS Code:
 
@@ -310,61 +318,61 @@ Ongeza kwenye `.vscode/tasks.json`:
 
 ---
 
-## Hali za Kawaida za Kuchunguza
+## Matukio ya Kawaida ya Kurekebisha Hitilafu
 
-### Hali 1: Seva Haikuunganishi
+### Tukio 1: Seva Haikuunganishi
 
-**Dalili:** Inspector inaonyesha "Disconnected" au inasimama kwenye "Connecting..."
+**Dalili:** Inspector inaonyesha "Imevunjika" au inashikilia kwenye "Inaunganishwa..."
 
-**Orodha ya kuchunguza:**
-1. ✅ Je amri ya seva ni sahihi?
-2. ✅ Je utegemezi wote umewekwa?
-3. ✅ Je njia ya seva ni ya kudumu au inahusiana na saraka ya sasa?
-4. ✅ Je vigezo vya mazingira vilivyohitajika vimewekwa?
+**Orodha ya Kukagua:**
+1. ✅ Je, amri ya seva ni sahihi?
+2. ✅ Je, utegemezi wote umewekwa?
+3. ✅ Njia ya seva ni kamili au ni jamaa na saraka ya sasa?
+4. ✅ Je, mabadiliko ya mazingira yanayohitajika yamewekwa?
 
-**Hatua za kuchunguza:**
+**Hatua za kurekebisha:**
 ```bash
 # Jaribu seva kwa mkono kwanza
 python -c "import your_server_module; print('OK')"
 
-# Angalia makosa ya uingizaji
+# Angalia kwa makosa ya kuingiza
 python -m your_server_module 2>&1 | head -20
 
 # Thibitisha MCP SDK imewekwa
 pip show mcp
 ```
 
-### Hali 2: Zana Hazionekani
+### Tukio 2: Zana Hazionekani
 
-**Dalili:** Kichupo cha Zana kinaonyesha orodha tupu
+**Dalili:** Kichupo cha zana kinaonyesha orodha tupu
 
 **Sababu zinazowezekana:**
-1. Zana hazijaandikishwa wakati wa kuanzisha seva
-2. Seva ilifanikiwa baada ya kuanzisha
-3. Msimamizi wa `tools/list` anarejesha orodha tupu
+1. Zana hazijasajiliwa wakati wa kuanzishwa kwa seva
+2. Seva iliharibika baada ya kuanzishwa
+3. Msimamizi wa `tools/list` anarudisha safu tupu
 
-**Hatua za kuchunguza:**
-1. Angalia rekodi ya ujumbe kwa jibu la `tools/list`
-2. Ongeza kuandika kwenye kumbukumbu kwenye msimbo wako wa usajili wa zana
-3. Hakikisha mapambo ya `@mcp.tool()` yapo (Python)
+**Hatua za kurekebisha:**
+1. Kagua rekodi ya ujumbe kwa jibu la `tools/list`
+2. Ongeza kurekodi katika msajili wa zana zako
+3. Thibitisha kuwa maandiko ya `@mcp.tool()` yapo (Python)
 
-### Hali 3: Zana Inarudisha Hitsilafu
+### Tukio 3: Chombo Kinarejesha Hitilafu
 
-**Dalili:** Mwito wa zana unarejesha jibu la hitilafu
+**Dalili:** Kuitwa kwa chombo kurudisha jibu la hitilafu
 
-**Njia ya kuchunguza:**
-1. Soma kwa makini ujumbe wa makosa
-2. Angalia aina za vigezo zinakubaliana na muundo
-3. Ongeza jaribu/kamata pamoja na ujumbe wa makosa kwa undani
-4. Angalia kumbukumbu za seva kwa mistari ya makosa
+**Mbinu ya kurekebisha:**
+1. Soma ujumbe wa makosa kwa makini
+2. Angalia aina za vigezo zililingana na mfumo
+3. Ongeza jaribu/shika na ujumbe wa makosa ya kina
+4. Kagua rekodi za seva kwa taarifa za mfululizo wa makosa
 
-**Mfano wa kuboresha usimamizi wa makosa:**
+**Mfano wa kuboresha utunzaji wa makosa:**
 
 ```python
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Hapa ni mantiki ya chombo
+        # Mantiki ya chombo hapa
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -373,20 +381,20 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Hali 4: Maudhui ya Rasilimali Yamo Tupu
+### Tukio 4: Yaliyomo ya Rasilimali YEmpty
 
-**Dalili:** Rasilimali inarudisha lakini maudhui ni tupu au ni null
+**Dalili:** Rasilimali inarudisha lakini yaliyomo ni tupu au ni sifuri
 
-**Orodha ya kuchunguza:**
+**Orodha ya Kukagua:**
 1. ✅ Njia ya faili au URI ni sahihi
 2. ✅ Seva ina ruhusa ya kusoma rasilimali
 3. ✅ Maudhui ya rasilimali yanarudishwa ipasavyo
 
 ---
 
-## Sifa Zaidi za Inspector
+## Vipengele vya Juu vya Inspector
 
-### Vichwa vya Habari Maalum (SSE)
+### Vichwa Maalum (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -394,7 +402,7 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Kumbukumbu za Undani Zaidi
+### Uandikishaji wa kina (Verbose Logging)
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
@@ -402,40 +410,41 @@ DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 
 ### Kurekodi Vikao
 
-Inspector inaweza kuuza kumbukumbu za ujumbe kwa uchambuzi wa baadaye:
+Inspector inaweza kutoa rekodi za ujumbe kwa uchambuzi wa baadaye:
 1. Bonyeza **Export Log** kwenye paneli ya ujumbe
 2. Hifadhi faili la JSON
-3. Shiriki na wanahabari wa timu kwa ajili ya utatuzi
+3. Shiriki na wanateam kwa ajili ya kurekebisha hitilafu
 
 ---
 
-## Misingi Bora
 
-1. **Jaribu mapema na mara kwa mara** - Tumia Inspector wakati wa maendeleo, sio tu wakati vitu vina-vunja
-2. **Anzisha kwa urahisi** - Jaribu muunganisho wa msingi kabla ya kuita zana ngumu
-3. **Kagua muundo** - Makosa mengi hutokana na aina za vigezo zisizoendana
-4. **Soma ujumbe wa hitilafu** - Makosa ya MCP mara nyingi yana maelezo
-5. **Weka Inspector wazi** - Husaidia kugundua matatizo wakati wa maendeleo
+## Mazoezi Bora
+
+1. **Jaribu mapema na mara kwa mara** - Tumia Inspector wakati wa maendeleo, si tu wakati vitu vinavunjika
+2. **Anza kwa urahisi** - Jaribu muunganisho wa msingi kabla ya simu za zana ngumu
+3. **Angalia schema** - Makosa mengi hutokea kutokana na kutofanana kwa aina za vigezo
+4. **Soma ujumbe wa makosa** - Makosa ya MCP kawaida ni ya kueleweka
+5. **Weka Inspector wazi** - Husaidia kugundua matatizo unapoendelea kuendeleza
 
 ---
 
 ## Nini Kifuatacho
 
-Umekamilisha Moduli 3: Kuanzia! Endelea kujifunza:
+Umeumaliza Moduli 3: Kuanzisha! Endelea na mafunzo yako:
 
-- [Moduli 4: Utekelezaji wa Vitendo](../../04-PracticalImplementation/README.md)
+- [Moduli 4: Utekelezaji wa Kivitendo](../../04-PracticalImplementation/README.md)
 
 ---
 
 ## Rasilimali Zaidi
 
-- [Hifadhi ya MCP Inspector GitHub](https://github.com/modelcontextprotocol/inspector)
-- [Maelezo ya MCP - Ujumbe wa Itifaki](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
-- [Maelezo ya JSON-RPC 2.0](https://www.jsonrpc.org/specification)
+- [Hazina ya MCP Inspector GitHub](https://github.com/modelcontextprotocol/inspector)
+- [Ufafanuzi wa MCP - Ujumbe za Itifaki](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Ufafanuzi wa JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Kumbusho**:
-Nyaraka hii imetafsiriwa kwa kutumia huduma ya utafsiri wa AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kwa usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au ukosefu wa usahihi. Nyaraka ya asili katika lugha yake ya asili inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inashauriwa. Hatuna dhamana kwa kutoelewana au tafsiri potofu zinazotokana na utumiaji wa tafsiri hii.
+**Kionyozo**:
+Hati hii imetafsiriwa kwa kutumia huduma ya tafsiri ya AI [Co-op Translator](https://github.com/Azure/co-op-translator). Ingawa tunajitahidi kupata usahihi, tafadhali fahamu kwamba tafsiri za kiotomatiki zinaweza kuwa na makosa au upungufu wa usahihi. Hati ya asili katika lugha yake halisi inapaswa kuchukuliwa kama chanzo cha mamlaka. Kwa taarifa muhimu, tafsiri ya kitaalamu inayofanywa na binadamu inapendekezwa. Hatutojibu kwa kuelewa vibaya au tafsiri potofu zinazotokea kutokana na matumizi ya tafsiri hii.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

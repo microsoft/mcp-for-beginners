@@ -1,12 +1,17 @@
 # Debuggen met MCP Inspector
 
-De **MCP Inspector** is een essentiële debuggingtool waarmee je interactief je MCP-servers kunt testen en problemen kunt oplossen zonder dat je een volledige AI-hostapplicatie nodig hebt. Zie het als "Postman voor MCP" - het biedt een visuele interface om verzoeken te versturen, antwoorden te bekijken en te begrijpen hoe je server zich gedraagt.
+> [!NOTE]
+> Opdrachten die `--sse` gebruiken en URL's die eindigen op `/sse` testen de legacy HTTP+SSE
+> transport. Voor een nieuwe MCP `2026-07-28` server, gebruik een Inspector-versie die
+> Streamable HTTP ondersteunt en selecteer die transportmodus in plaats daarvan.
+
+De **MCP Inspector** is een essentieel debughulpmiddel waarmee je interactieve tests kunt uitvoeren en je MCP-servers kunt troubleshooten zonder een volledige AI-hostapplicatie nodig te hebben. Zie het als de "Postman voor MCP" - het biedt een visuele interface om verzoeken te verzenden, antwoorden te bekijken en te begrijpen hoe je server zich gedraagt.
 
 ## Waarom MCP Inspector gebruiken?
 
-Bij het bouwen van MCP-servers kom je vaak deze uitdagingen tegen:
+Bij het bouwen van MCP-servers kom je vaak de volgende uitdagingen tegen:
 
-- **"Draait mijn server eigenlijk wel?"** - Inspector toont de verbindingsstatus
+- **"Draait mijn server eigenlijk?"** - Inspector toont de verbindingsstatus
 - **"Zijn mijn tools correct geregistreerd?"** - Inspector toont alle beschikbare tools
 - **"Wat is het antwoordformaat?"** - Inspector toont volledige JSON-antwoorden
 - **"Waarom werkt deze tool niet?"** - Inspector toont gedetailleerde foutmeldingen
@@ -14,18 +19,18 @@ Bij het bouwen van MCP-servers kom je vaak deze uitdagingen tegen:
 ## Vereisten
 
 - Node.js 18+ geïnstalleerd
-- npm (meegeleverd met Node.js)
+- npm (wordt meegeleverd met Node.js)
 - Een MCP-server om te testen (zie [Module 3.1 - Eerste Server](../01-first-server/README.md))
 
 ## Installatie
 
-### Optie 1: Uitvoeren met npx (Aanbevolen voor snelle tests)
+### Optie 1: Direct uitvoeren met npx (Aanbevolen voor snelle tests)
 
 ```bash
 npx @modelcontextprotocol/inspector
 ```
 
-### Optie 2: Globaal Installeren
+### Optie 2: Globaal installeren
 
 ```bash
 npm install -g @modelcontextprotocol/inspector
@@ -50,11 +55,11 @@ Toevoegen aan `package.json`:
 
 ---
 
-## Verbinden met je Server
+## Verbinden met je server
 
-### stdio Servers (Lokaal Proces)
+### stdio-servers (Lokaal proces)
 
-Voor servers die communiceren via standaard in-/uitvoer:
+Voor servers die communiceren via standaard invoer/uitvoer:
 
 ```bash
 # Python-server
@@ -67,11 +72,11 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP Servers (Netwerk)
+### SSE/HTTP-servers (Netwerk)
 
-Voor servers die draaien als HTTP-diensten:
+Voor servers die draaien als HTTP-services:
 
-1. Start je server eerst:
+1. Start eerst je server:
    ```bash
    python server.py  # Server draait op http://localhost:8080
    ```
@@ -83,9 +88,9 @@ Voor servers die draaien als HTTP-diensten:
 
 ---
 
-## Overzicht van de Inspector Interface
+## Overzicht van de Inspector-interface
 
-Wanneer Inspector opstart, zie je een webinterface (gebruikelijk op `http://localhost:5173`):
+Als Inspector start, zie je een webinterface (meestal op `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Wanneer Inspector opstart, zie je een webinterface (gebruikelijk op `http://loca
 
 ---
 
-## Tools Testen
+## Tools testen
 
-### Beschikbare Tools Weergeven
+### Beschikbare tools weergeven
 
 1. Klik op het tabblad **Tools**
-2. Inspector roept automatisch `tools/list` aan
+2. Inspector roept automatisch `tools/list` op
 3. Je ziet alle geregistreerde tools met:
-   - Toolnaam
+   - Naam van de tool
    - Beschrijving
    - Invoerschema (parameters)
 
-### Een Tool Aanroepen
+### Een tool aanroepen
 
 1. Selecteer een tool uit de lijst
 2. Vul de vereiste parameters in het formulier in
 3. Klik op **Run Tool**
 4. Bekijk het antwoord in het resultatenpaneel
 
-**Voorbeeld: Een calculator-tool testen**
+**Voorbeeld: testen van een rekenmachinetool**
 
 ```
 Tool: add
@@ -148,7 +153,7 @@ Response:
 }
 ```
 
-### Debuggen van Tool-fouten
+### Fouten in tools debuggen
 
 Als een tool faalt, toont Inspector:
 
@@ -164,8 +169,8 @@ Error Response:
 
 Veelvoorkomende foutcodes:
 | Code | Betekenis |
-|------|------------|
-| -32700 | Parsefout (ongeldige JSON) |
+|------|-----------|
+| -32700 | Parse-fout (ongeldige JSON) |
 | -32600 | Ongeldig verzoek |
 | -32601 | Methode niet gevonden |
 | -32602 | Ongeldige parameters |
@@ -173,24 +178,24 @@ Veelvoorkomende foutcodes:
 
 ---
 
-## Bronnen Testen
+## Resources testen
 
-### Bronnen Weergeven
+### Resources weergeven
 
 1. Klik op het tabblad **Resources**
-2. Inspector roept `resources/list` aan
+2. Inspector roept `resources/list` op
 3. Je ziet:
-   - Resource URI's
+   - Resource-URI's
    - Namen en beschrijvingen
    - MIME-typen
 
-### Een Resource Lezen
+### Een resource lezen
 
 1. Selecteer een resource
 2. Klik op **Read Resource**
 3. Bekijk de teruggegeven inhoud
 
-**Voorbeeldoutput:**
+**Voorbeelduitvoer:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,26 +211,29 @@ Content-Type: application/json
 
 ---
 
-## Prompts Testen
+## Prompts testen
 
-### Prompts Weergeven
+### Prompts weergeven
 
 1. Klik op het tabblad **Prompts**
-2. Inspector roept `prompts/list` aan
-3. Bekijk beschikbare prompt-templates
+2. Inspector roept `prompts/list` op
+3. Bekijk beschikbare prompt-sjablonen
 
-### Een Prompt Ophalen
+### Een prompt ophalen
 
 1. Selecteer een prompt
-2. Vul eventuele vereiste argumenten in
+2. Vul vereiste argumenten in
 3. Klik op **Get Prompt**
-4. Zie de gerenderde prompt-berichten
+4. Bekijk de gerenderde promptberichten
 
 ---
 
-## Analyse van het Berichtlogboek
+## Analyse van berichtlogboeken
 
-Het berichtlogboek toont alle MCP-protocolberichten:
+Het berichtlogboek toont alle MCP-protocolberichten. De transcriptie hieronder is van een
+legacy `2025-11-25` server en bevat de verwijderde `initialize` handshake. Een
+`2026-07-28` server gebruikt zelfvoorzienende requestmetadata en `server/discover`
+in plaats daarvan.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,20 +244,20 @@ Het berichtlogboek toont alle MCP-protocolberichten:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Waar op te Letten
+### Waar op te letten
 
 - **Request/Response-paren**: Elke `→` moet een bijpassende `←` hebben
 - **Foutmeldingen**: Zoek naar `"error"` in antwoorden
-- **Timing**: Grote gaps kunnen duiden op prestatieproblemen
-- **Protocolversie**: Zorg dat server en client dezelfde versie gebruiken
+- **Tijdstip**: Grote pauzes kunnen prestatieproblemen aangeven
+- **Protocolversie**: Zorg dat server en client het eens zijn over de versie
 
 ---
 
-## VS Code Integratie
+## VS Code-integratie
 
-Je kunt Inspector rechtstreeks vanuit VS Code uitvoeren:
+Je kunt Inspector direct vanuit VS Code starten:
 
-### Gebruik van launch.json
+### Met launch.json
 
 Toevoegen aan `.vscode/launch.json`:
 
@@ -280,7 +288,7 @@ Toevoegen aan `.vscode/launch.json`:
 }
 ```
 
-### Gebruik van Tasks
+### Met Tasks
 
 Toevoegen aan `.vscode/tasks.json`:
 
@@ -310,19 +318,19 @@ Toevoegen aan `.vscode/tasks.json`:
 
 ---
 
-## Veelvoorkomende Debug-scenario's
+## Veelvoorkomende debugscenario's
 
-### Scenario 1: Server Maakt Geen Verbinding
+### Scenario 1: Server maakt geen verbinding
 
-**Symptomen:** Inspector toont "Disconnected" of blijft hangen bij "Connecting..."
+**Symptomen:** Inspector toont "Disconnected" of blijft hangen op "Connecting..."
 
 **Checklist:**
-1. ✅ Is het servercommando correct?
-2. ✅ Zijn alle dependencies geïnstalleerd?
+1. ✅ Is de serveropdracht correct?
+2. ✅ Zijn alle afhankelijkheden geïnstalleerd?
 3. ✅ Is het serverpad absoluut of relatief ten opzichte van de huidige map?
 4. ✅ Zijn vereiste omgevingsvariabelen ingesteld?
 
-**Debug-stappen:**
+**Debugstappen:**
 ```bash
 # Test de server eerst handmatig
 python -c "import your_server_module; print('OK')"
@@ -330,33 +338,33 @@ python -c "import your_server_module; print('OK')"
 # Controleer op importfouten
 python -m your_server_module 2>&1 | head -20
 
-# Verifieer dat MCP SDK is geïnstalleerd
+# Controleer of MCP SDK is geïnstalleerd
 pip show mcp
 ```
 
-### Scenario 2: Tools Verschijnen Niet
+### Scenario 2: Tools verschijnen niet
 
-**Symptomen:** Tools-tab toont een lege lijst
+**Symptomen:** Het tabblad Tools toont een lege lijst
 
 **Mogelijke oorzaken:**
 1. Tools niet geregistreerd tijdens serverinitialisatie
-2. Server is gecrasht na opstarten
-3. `tools/list` handler geeft een lege array terug
+2. Server crashte na het opstarten
+3. `tools/list` handler retourneert een lege array
 
-**Debug-stappen:**
+**Debugstappen:**
 1. Controleer het berichtlogboek op `tools/list` antwoord
 2. Voeg logging toe aan je tool-registratiecode
-3. Verifieer dat `@mcp.tool()` decorators aanwezig zijn (Python)
+3. Controleer of `@mcp.tool()` decorateurs aanwezig zijn (Python)
 
-### Scenario 3: Tool Geeft Fout Terug
+### Scenario 3: Tool retourneert fout
 
-**Symptomen:** Tool-aanroep geeft foutrespons
+**Symptomen:** Tool-aanroep geeft een foutantwoord terug
 
 **Debug-aanpak:**
-1. Lees de foutmelding goed door
+1. Lees het foutbericht zorgvuldig
 2. Controleer of parametertypen overeenkomen met het schema
 3. Voeg try/catch toe met gedetailleerde foutmeldingen
-4. Controleer serverlogs op stacktraces
+4. Controleer serverlogboeken op stacktraces
 
 **Voorbeeld van verbeterde foutafhandeling:**
 
@@ -364,7 +372,7 @@ pip show mcp
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Logica van het hulpmiddel hier
+        # Gereedschapslogica hier
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -373,9 +381,9 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Scenario 4: Resource-inhoud is Leeg
+### Scenario 4: Inhoud resource is leeg
 
-**Symptomen:** Resource levert antwoord, maar inhoud is leeg of null
+**Symptomen:** Resource wordt geretourneerd, maar de inhoud is leeg of null
 
 **Checklist:**
 1. ✅ Bestandspad of URI is correct
@@ -384,9 +392,9 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ---
 
-## Geavanceerde Inspector Functies
+## Geavanceerde Inspector-functies
 
-### Aangepaste Headers (SSE)
+### Aangepaste headers (SSE)
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -394,48 +402,48 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Gedetailleerde Logging
+### Uitgebreide logging
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Sessies Opnemen
+### Sessies opnemen
 
 Inspector kan berichtlogboeken exporteren voor latere analyse:
-1. Klik op **Export Log** in het berichtpaneel
+1. Klik op **Export Log** in het berichtenpaneel
 2. Sla het JSON-bestand op
 3. Deel met teamleden voor debugging
 
 ---
 
-## Beste Praktijken
+## Beste praktijken
 
-1. **Test vroeg en vaak** - Gebruik Inspector tijdens ontwikkeling, niet alleen als er problemen zijn
-2. **Begin eenvoudig** - Test basisconnectiviteit voor complexe tool-aanroepen
-3. **Controleer het schema** - Veel fouten komen door typefouten in parameters
+1. **Test vroeg en vaak** - Gebruik Inspector tijdens ontwikkeling, niet alleen als er iets misgaat
+2. **Begin eenvoudig** - Test basisconnectiviteit voordat je complexe toolaanroepen doet
+3. **Controleer het schema** - Veel fouten ontstaan door verkeerde parameter-types
 4. **Lees foutmeldingen** - MCP-fouten zijn meestal beschrijvend
-5. **Houd Inspector open** - Het helpt problemen te ontdekken tijdens ontwikkeling
+5. **Houd Inspector open** - Het helpt problemen te signaleren tijdens ontwikkeling
 
 ---
 
-## Wat Nu?
+## Wat nu?
 
-Je hebt Module 3: Aan de slag voltooid! Ga door met leren:
+Je hebt Module 3: Aan de slag voltooid! Ga verder met je leren:
 
-- [Module 4: Praktische Implementatie](../../04-PracticalImplementation/README.md)
+- [Module 4: Praktische implementatie](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Aanvullende Bronnen
+## Extra bronnen
 
 - [MCP Inspector GitHub Repository](https://github.com/modelcontextprotocol/inspector)
-- [MCP Specificatie - Protocolberichten](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specificatie - Protocolberichten](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Specificatie](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dit document is vertaald met behulp van de AI-vertalingsdienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel wij streven naar nauwkeurigheid, dient u er rekening mee te houden dat automatische vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal dient als gezaghebbende bron te worden beschouwd. Voor belangrijke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
+**Disclaimer**:
+Dit document is vertaald met behulp van de AI vertaaldienst [Co-op Translator](https://github.com/Azure/co-op-translator). Hoewel we streven naar nauwkeurigheid, dient u er rekening mee te houden dat geautomatiseerde vertalingen fouten of onnauwkeurigheden kunnen bevatten. Het originele document in de oorspronkelijke taal moet worden beschouwd als de gezaghebbende bron. Voor kritieke informatie wordt professionele menselijke vertaling aanbevolen. Wij zijn niet aansprakelijk voor eventuele misverstanden of verkeerde interpretaties die voortvloeien uit het gebruik van deze vertaling.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

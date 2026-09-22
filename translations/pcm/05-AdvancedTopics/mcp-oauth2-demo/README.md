@@ -1,46 +1,52 @@
 # MCP OAuth2 Demo
 
+> [!WARNING]
+> Dis na local learning sample, e no be production authorization service. E
+> dey use in-memory client and e go generate new signing key when e start. No
+> ever deploy am wit shared, default, or source-controlled client secret.
+
 ## Introduction
 
-OAuth2 na di industry-standard protocol for authorization, wey dey enable secure access to resources without sharing credentials. For MCP (Model Context Protocol) implementations, OAuth2 dey provide beta way to authenticate and authorize clients (like AI agents) to access MCP servers and their tools.
+OAuth2 na di industry-standard protocol for authorization, e dey enable secure access to resources without make person share credentials. For MCP (Model Context Protocol) implementations, OAuth2 dey provide strong way to authenticate and authorize clients (like AI agents) to fit access MCP servers and their tools.
 
-Dis lesson dey show how to implement OAuth2 authentication for MCP servers using Spring Boot, wey na common pattern for enterprise and production deployments.
+Dis lesson dey show how to implement OAuth2 authentication for MCP servers using Spring Boot, wey be common style for enterprise and production deployments.
 
 ## Learning Objectives
 
 By di end of dis lesson, you go:
-- Understand how OAuth2 take connect with MCP servers
+- Understand how OAuth2 dey join with MCP servers
 - Implement Spring Authorization Server for token issuance
-- Protect MCP endpoints with JWT-based authentication
+- Protect MCP endpoints wit JWT-based authentication
 - Configure client credentials flow for machine-to-machine communication
 
 ## Prerequisites
 
-- Basic understanding of Java and Spring Boot
-- Familiarity with MCP concepts from earlier modules
-- Maven or Gradle installed
+- Basic knowledge of Java and Spring Boot
+- Familiarity wit MCP concepts from earlier modules
+- Maven or Gradle wey you don install
 
 ---
 
 ## Project Overview
 
-Dis project na **minimal Spring Boot application** wey dey act as both:
+Dis project na **minimal Spring Boot application** wey dey act as:
 
-* a **Spring Authorization Server** (wey dey issue JWT access tokens via di `client_credentials` flow), and  
-* a **Resource Server** (wey dey protect im own `/hello` endpoint).
+* a **Spring Authorization Server** (wey dey issue JWT access tokens via `client_credentials` flow), and  
+* a **Resource Server** (wey dey protect its own `/hello` endpoint).
 
-E dey mirror di setup wey show for di [Spring blog post (2 Apr 2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
+E dey mirror the setup wey spring show for [Spring blog post (2 Apr 2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
 
 ---
 
 ## Quick start (local)
 
 ```bash
-# build & run
-./mvnw spring-boot:run
+# Use one unique local value and keep am outside shell history wen e possible.
+export OAUTH_CLIENT_SECRET="replace-with-a-random-local-secret"
+mvn spring-boot:run
 
-# knack beta token
-curl -u mcp-client:secret -d grant_type=client_credentials \
+# make you get token
+curl -u "mcp-client:${OAUTH_CLIENT_SECRET}" -d grant_type=client_credentials \
      http://localhost:8081/oauth2/token | jq -r .access_token > token.txt
 
 # call di protected endpoint
@@ -51,44 +57,49 @@ curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 
 ## Testing the OAuth2 Configuration
 
-You fit test di OAuth2 security configuration with dis steps:
+You fit test the OAuth2 security configuration wit dis steps:
 
-### 1. Verify say di server dey run and e secure
+### 1. Check say di server dey run and e dey secured
 
 ```bash
-# Dis suppose return 401 Unauthorized, to show say OAuth2 security dey active
+# Dis go return 401 Unauthorized, e show say OAuth2 security dey active
 curl -v http://localhost:8081/
 ```
 
 ### 2. Get access token using client credentials
 
 ```bash
-# Get and comot all di token response
+# Comot and open full token response
 curl -v -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access"
 
-# Or to comot only di token (you need jq)
+# Or make you comot only the token (e go need jq)
 curl -s -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access" | jq -r .access_token > token.txt
 ```
 
-Note: Di Basic Authentication header (`bWNwLWNsaWVudDpzZWNyZXQ=`) na di Base64 encoding of `mcp-client:secret`.
+For PowerShell, set the local secret before you run Maven:
 
-### 3. Access di protected endpoint with di token
+```powershell
+$env:OAUTH_CLIENT_SECRET = "replace-with-a-random-local-secret"
+mvn spring-boot:run
+```
+
+### 3. Access the protected endpoint wit the token
 
 ```bash
-# Di token wey we don save dey use
+# Using di saved token
 curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 
-# Or you fit use di token value directly
+# Or straight wit di token value
 curl -H "Authorization: Bearer eyJra...token_value...xyz" http://localhost:8081/hello
 ```
 
-If response come successful wit "Hello from MCP OAuth2 Demo!" e mean say di OAuth2 configuration dey work well.
+If you receive "Hello from MCP OAuth2 Demo!" e mean say the OAuth2 configuration dey work well.
 
 ---
 
@@ -96,8 +107,22 @@ If response come successful wit "Hello from MCP OAuth2 Demo!" e mean say di OAut
 
 ```bash
 docker build -t mcp-oauth2-demo .
-docker run -p 8081:8081 mcp-oauth2-demo
+docker run --rm -p 8081:8081 \
+  -e OAUTH_CLIENT_SECRET="$OAUTH_CLIENT_SECRET" \
+  mcp-oauth2-demo
 ```
+
+## Production Security
+
+For production deployment, make you use dedicated identity provider no be
+dis in-process demo authorization server. Make you store credentials for managed
+secret store, rotate dem, use persistent signing keys, limit scopes, and
+set explicit issuer. No ever put client secret for source code, container
+images, deployment manifests, or command output.
+
+For Azure Container Apps, store the value as Container Apps secret backed by
+Key Vault if you fit, then make only secret reference dey through
+`OAUTH_CLIENT_SECRET` environment variable.
 
 ---
 
@@ -110,8 +135,8 @@ az containerapp up -n mcp-oauth2 \
   --ingress external --target-port 8081
 ```
 
-Di ingress FQDN go become your **issuer** (`https://<fqdn>`).  
-Azure go automatically provide trusted TLS certificate for `*.azurecontainerapps.io`.
+The ingress FQDN go become your **issuer** (`https://<fqdn>`).  
+Azure go provide trusted TLS certificate automatically for `*.azurecontainerapps.io`.
 
 ---
 
@@ -131,11 +156,11 @@ Add dis inbound policy to your API:
 </inbound>
 ```
 
-APIM go fetch di JWKS and validate every request.
+APIM go dey fetch the JWKS and dey validate every request.
 
 ---
 
-## What's next
+## Wetin dey next
 
 - [5.4 Root contexts](../mcp-root-contexts/README.md)
 
@@ -143,5 +168,5 @@ APIM go fetch di JWKS and validate every request.
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even though we try make e correct, abeg remember say automated translation fit get some errors or wahala. Di original document wey dem write for im own language na di correct one. For important info, better make professional human translate am. We no go take responsibility if person misunderstand or misinterpret di translation.
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
