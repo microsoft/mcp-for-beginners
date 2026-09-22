@@ -21,7 +21,7 @@ This section consists of several lessons:
 	plus the legacy session-based implementation retained in the lesson.
 	[to the lesson](06-http-streaming/README.md)
 
-- **7 Utilising AI Toolkit for VSCode** to consume and test your MCP Clients and Servers [to the lesson](07-aitk/README.md)
+- **7 Using Microsoft Foundry Toolkit for Visual Studio Code** to consume and test your MCP clients and servers [in this lesson](07-aitk/README.md)
 
 - **8 Testing**. Here we will focus especially how we can test out our server and client in different ways, [to the lesson](08-testing/README.md)
 

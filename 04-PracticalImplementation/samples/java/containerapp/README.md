@@ -40,9 +40,11 @@ Before using the content safety features, you need to create an Azure Content Sa
 
 ### Configuring Environment Variables
 
-Set the `GITHUB_TOKEN` environment variable for GitHub models authentication:
+Set the Microsoft Foundry model endpoint, API key, and deployment name:
 ```sh
-export GITHUB_TOKEN=<your_github_token>
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 For content safety features, set:
@@ -63,7 +65,7 @@ This project demonstrates the integration of Model Context Protocol (MCP) with L
 
 - Using MCP to connect to a calculator service for basic math operations
 - Dual-layer content safety checking on both user prompts and bot responses
-- Integration with GitHub's gpt-4.1-nano model via LangChain4j
+- Integration with a deployed Microsoft Foundry model via LangChain4j
 - Using Server-Sent Events (SSE) for MCP transport
 
 ## Content Safety Integration

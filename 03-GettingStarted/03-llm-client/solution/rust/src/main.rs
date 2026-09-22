@@ -15,10 +15,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
     
     // Setup OpenAI client
-    let api_key = std::env::var("OPENAI_API_KEY")?;
+    let endpoint = std::env::var("AZURE_OPENAI_ENDPOINT")?;
+    let api_key = std::env::var("AZURE_OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
-            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_base(format!("{}/openai/v1", endpoint.trim_end_matches('/')))
             .with_api_key(api_key),
     );
 
@@ -140,11 +141,13 @@ async fn call_llm(
     messages: &[Value],
     tools: &ListToolsResult,
 ) -> Result<Value, Box<dyn Error>> {
+    let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
+        .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
         .completions()
         .create_byot(json!({
             "messages": messages,
-            "model": "openai/gpt-5-mini",
+            "model": model,
             "tools": format_tools(tools).await?,
         }))
         .await?;

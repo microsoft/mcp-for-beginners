@@ -187,4 +187,4 @@ To deepen your understanding, explore these official resources:
 ## What's Next
 
 - Back to: [Case Studies Overview](../README.md)
-- Continue to: [Module 10: Streamlining AI Workflows with AI Toolkit](../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Continue to: [Module 10: Streamlining AI Workflows with Microsoft Foundry Toolkit](../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)

@@ -178,4 +178,4 @@ These examples collectively demonstrate that MCP is not merely a theoretical fra
 ## What's Next
 
 - Previous: [Module 8: Best Practices](../08-BestPractices/README.md)
-- Next: [Module 10: Streamlining AI Workflows: Building an MCP Server with AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Next: [Module 10: Streamlining AI Workflows: Building an MCP Server with Microsoft Foundry Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)

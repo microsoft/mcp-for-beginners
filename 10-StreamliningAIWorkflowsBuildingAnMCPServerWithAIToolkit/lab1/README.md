@@ -58,7 +58,7 @@ The **Microsoft Foundry Toolkit Extension for VS Code** is Microsoft's flagship 
 - [ ] Extension is enabled and activated
 - [ ] No installation errors in the output panel
 
-## 🧪 Hands-on Exercise 1: Exploring GitHub Models
+## 🧪 Hands-on Exercise 1: Exploring Microsoft Foundry Models
 
 **🎯 Objective**: Master the Model Catalog and test your first AI model
 
@@ -74,16 +74,18 @@ Click on **MODELS - Catalog** in the Microsoft Foundry Toolkit sidebar
 
 **💡 Pro Tip**: Look for models with specific capabilities that match your use case (e.g., code generation, creative writing, analysis).
 
-**⚠️ Note**: GitHub-hosted models (i.e. GitHub Models) are free to use but are subject to rate limits on requests and tokens. If you want to access non-GitHub models (that is, external models hosted via Azure AI or other endpoints), you'll need to supply the appropriate API key or authentication.
+> [!NOTE]
+> GitHub Models was retired on July 30, 2026. Use a Microsoft Foundry model
+> deployment and authenticate with Microsoft Entra ID or an Azure API key.
 
 ### 🚀 Step 2: Add and Configure Your First Model
 
 **Model Selection Strategy:**
-- **GPT-4.1**: Best for complex reasoning and analysis
+- **GPT-5.1**: Recommended general-purpose model for tool use and reasoning
 - **Phi-4-mini**: Lightweight, fast responses for simple tasks
 
 **🔧 Configuration Process:**
-1. Select **OpenAI GPT-4.1** from the catalog
+1. Select **OpenAI GPT-5.1** from the catalog
 2. Click **Add to My Models** - this registers the model for use
 3. Choose **Try in Playground** to launch the testing environment
 4. Wait for model initialization (first-time setup may take a moment)
@@ -125,7 +127,7 @@ The Playground is your AI experimentation lab. Here's how to maximize its potent
 
 **📋 Instructions:**
 1. Add **Phi-4-mini** to your workspace
-2. Use the same prompt for both GPT-4.1 and Phi-4-mini
+2. Use the same prompt for both GPT-5.1 and Phi-4-mini
 
 ![set](../../images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab1/set.png)
 
@@ -148,7 +150,7 @@ The Playground is your AI experimentation lab. Here's how to maximize its potent
 Agent Builder is where Microsoft Foundry Toolkit truly shines. It allows you to create purpose-built AI assistants that combine the power of large language models with custom instructions, specific parameters, and specialized knowledge.
 
 **🧠 Agent Architecture Components:**
-- **Core Model**: The foundation LLM (GPT-4, Groks, Phi, etc.)
+- **Core Model**: The foundation LLM (GPT-5.1, Phi, etc.)
 - **System Prompt**: Defines agent personality and behavior
 - **Parameters**: Fine-tuned settings for optimal performance
 - **Tools Integration**: Connect to external APIs and MCP services

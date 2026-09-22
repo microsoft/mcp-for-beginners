@@ -12,7 +12,6 @@ from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 from mcp.shared.context import RequestContext
 
-import os
 from openai import OpenAI
 
 # Create server parameters for stdio connection
@@ -23,9 +22,9 @@ server_params = StdioServerParameters(
 
 async def call_llm(prompt: str, system_prompt: str) -> str:
     client = OpenAI(
-    base_url="https://models.github.ai/inference",
-    api_key=os.environ["GITHUB_TOKEN"],
-)
+        base_url=f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/",
+        api_key=os.environ["AZURE_OPENAI_API_KEY"],
+    )
 
     response = client.chat.completions.create(
         messages=[
@@ -38,10 +37,8 @@ async def call_llm(prompt: str, system_prompt: str) -> str:
                 "content": prompt,
             }
         ],
-        model="openai/gpt-4o-mini",
-        temperature=1,
-        max_tokens=200,
-        top_p=1
+        model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
+        max_completion_tokens=200,
     )
 
     return response.choices[0].message.content
@@ -64,7 +61,7 @@ async def handle_sampling_message(
             type="text",
             text=response,
         ),
-        model="gpt-3.5-turbo",
+        model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
         stopReason="endTurn",
     )
 

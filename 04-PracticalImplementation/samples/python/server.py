@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Define available models
-AVAILABLE_MODELS = ["gpt-4", "llama-3-70b", "claude-3-sonnet"]
+AVAILABLE_MODELS = ["gpt-5.1"]
 
 # Create an MCP server
 mcp = FastMCP("Python MCP Demo Server")
@@ -79,19 +79,9 @@ def get_models() -> str:
     logger.info("Retrieving available models")
     models_data = [
         {
-            "id": "gpt-4", 
-            "name": "GPT-4",
-            "description": "OpenAI's GPT-4 large language model"
-        },
-        {
-            "id": "llama-3-70b",
-            "name": "LLaMA 3 (70B)",
-            "description": "Meta's LLaMA 3 with 70 billion parameters"
-        },
-        {
-            "id": "claude-3-sonnet",
-            "name": "Claude 3 Sonnet",
-            "description": "Anthropic's Claude 3 Sonnet model"
+            "id": "gpt-5.1",
+            "name": "GPT-5.1",
+            "description": "OpenAI's GPT-5.1 model in Microsoft Foundry"
         }
     ]
     

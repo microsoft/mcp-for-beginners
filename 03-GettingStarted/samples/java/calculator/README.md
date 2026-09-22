@@ -59,59 +59,33 @@ A simple test client is included in the `com.microsoft.mcp.sample.client` packag
 
 ## Using the LangChain4j Client
 
-The project includes a LangChain4j example client in `com.microsoft.mcp.sample.client.LangChain4jClient` that demonstrates how to integrate the calculator service with LangChain4j and GitHub models:
+The project includes a LangChain4j example client in
+`com.microsoft.mcp.sample.client.LangChain4jClient` that demonstrates how to
+integrate the calculator service with a Microsoft Foundry model.
 
 ### Prerequisites
 
-1. **GitHub Token Setup**:
-   
-   To use GitHub's AI models (like phi-4), you need a GitHub personal access token:
+1. Create a Microsoft Foundry resource and deploy an active model such as
+   `gpt-5.1`.
+2. Set the model endpoint, API key, and deployment name:
 
-   a. Go to your GitHub account settings: https://github.com/settings/tokens
-   
-   b. Click "Generate new token" → "Generate new token (classic)"
-   
-   c. Give your token a descriptive name
-   
-   d. Select the following scopes:
-      - `repo` (Full control of private repositories)
-      - `read:org` (Read org and team membership, read org projects)
-      - `gist` (Create gists)
-      - `user:email` (Access user email addresses (read-only))
-   
-   e. Click "Generate token" and copy your new token
-   
-   f. Set it as an environment variable:
-      
-      On Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      On macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. For persistent setup, add it to your environment variables through system settings
-
-2. Add the LangChain4j GitHub dependency to your project (already included in pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Ensure the calculator server is running on `localhost:8080`
+3. Check the
+   [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   before selecting a deployment.
+4. Ensure the calculator server is running on `localhost:8080`.
 
 ### Running the LangChain4j Client
 
 This example demonstrates:
 - Connecting to the calculator MCP server via SSE transport
 - Using LangChain4j to create a chat bot that leverages calculator operations
-- Integrating with GitHub AI models (now using phi-4 model)
+- Integrating with a deployed Microsoft Foundry model
 
 The client sends the following sample queries to demonstrate functionality:
 1. Calculating the sum of two numbers
@@ -120,21 +94,24 @@ The client sends the following sample queries to demonstrate functionality:
 
 Run the example and check the console output to see how the AI model uses the calculator tools to respond to queries.
 
-### GitHub Model Configuration
+### Microsoft Foundry Model Configuration
 
-The LangChain4j client is configured to use GitHub's phi-4 model with the following settings:
+The LangChain4j client uses the Azure OpenAI v1-compatible endpoint exposed by
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-To use different GitHub models, simply change the `modelName` parameter to another supported model (e.g., "claude-3-haiku-20240307", "llama-3-70b-8192", etc.).
+`AZURE_OPENAI_DEPLOYMENT` must match the name assigned when the model was
+deployed, which may differ from the underlying model name.
 
 ## Dependencies
 
@@ -154,10 +131,10 @@ The project requires the following key dependencies:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
@@ -223,14 +200,15 @@ You can access the service at `http://localhost:8080` once the container is runn
 
 ## Troubleshooting
 
-### Common Issues with GitHub Token
+### Common Model Connection Issues
 
-1. **Token Permission Issues**: If you get a 403 Forbidden error, check that your token has the correct permissions as outlined in the prerequisites.
+1. **Authentication errors**: Confirm `AZURE_OPENAI_API_KEY` belongs to the
+   resource identified by `AZURE_OPENAI_ENDPOINT`.
+2. **Deployment not found**: Confirm `AZURE_OPENAI_DEPLOYMENT` exactly matches
+   the deployment name in Microsoft Foundry.
+3. **Rate limiting**: Review the deployment quota and retry after the interval
+   returned by the service.
 
-2. **Token Not Found**: If you get a "No API key found" error, ensure the GITHUB_TOKEN environment variable is properly set.
-
-3. **Rate Limiting**: GitHub API has rate limits. If you encounter a rate limit error (status code 429), wait a few minutes before trying again.
-
-4. **Token Expiration**: GitHub tokens can expire. If you receive authentication errors after some time, generate a new token and update your environment variable.
-
-If you need further assistance, check the [LangChain4j documentation](https://github.com/langchain4j/langchain4j) or [GitHub API documentation](https://docs.github.com/en/rest).
+For more help, see the
+[LangChain4j documentation](https://github.com/langchain4j/langchain4j) and
+[Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/).

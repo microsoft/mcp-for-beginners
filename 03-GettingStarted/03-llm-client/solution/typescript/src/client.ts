@@ -8,9 +8,15 @@ class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+      const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+      const apiKey = process.env.AZURE_OPENAI_API_KEY;
+      if (!endpoint || !apiKey) {
+        throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY are required");
+      }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // might need to change to this url in the future: https://models.github.ai/inference
-            apiKey: process.env.GITHUB_TOKEN,
+        baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+        apiKey,
         });
 
        
@@ -21,11 +27,7 @@ class MyClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+              capabilities: {}
             }
             );    
     }
@@ -103,8 +105,8 @@ class MyClient {
 
         console.log("Querying LLM: ", messages[0].content);
         let response = this.openai.chat.completions.create({
-            model: "gpt-4.1-mini",
-            max_tokens: 1000,
+          model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+          max_completion_tokens: 1000,
             messages,
             tools: tools,
         });    
