@@ -591,7 +591,7 @@ Model Context Protocol（MCP）は標準化されセキュアで相互運用可�
 
 ## 次に進む
 
-さらに探求： [Microsoft MCP Servers](./microsoft-mcp-servers.md)
+さらに探求： [Microsoft MCPサーバー](./microsoft-mcp-servers.md)
 
 続けて： [モジュール8：ベストプラクティス](../08-BestPractices/README.md)
 
