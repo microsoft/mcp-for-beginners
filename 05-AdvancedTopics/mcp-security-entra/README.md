@@ -71,8 +71,10 @@ sequenceDiagram
     participant Entra as 🔐 Microsoft Entra ID
     participant Server as 🔧 MCP Server
 
-  Server->>Entra: Fetch OpenID metadata and public signing keys
-  Entra-->>Server: Return metadata and JSON Web Key Set (cached by server)
+  Server->>Entra: Fetch OpenID Connect metadata
+  Entra-->>Server: Return metadata containing jwks_uri
+  Server->>Entra: Fetch public keys from jwks_uri
+  Entra-->>Server: Return JSON Web Key Set (cached by server)
 
   Client->>User: Please sign in to continue.
   User->>Entra: Enters credentials (username/password).
@@ -87,10 +89,11 @@ sequenceDiagram
 The MCP server does not call Entra ID to validate each access token. It
 cryptographically verifies the JWT signature with Entra ID's cached public key
 and validates the token's claims, including its issuer, audience, and lifetime.
-The server obtains the keys from the OpenID Connect metadata endpoint and
-refreshes them periodically to handle key rotation. Use a supported token
-validation library rather than implementing this logic yourself. For details,
-see [Validate tokens in the Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/access-tokens#validate-tokens).
+The server reads `jwks_uri` from the OpenID Connect metadata, fetches the public
+keys from that URI, and refreshes them periodically to handle key rotation. Use
+a supported token validation library rather than implementing this logic
+yourself. For details, see
+[Validate tokens in the Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/access-tokens#validate-tokens).
 
 ### Introducing the Microsoft Authentication Library (MSAL)
 

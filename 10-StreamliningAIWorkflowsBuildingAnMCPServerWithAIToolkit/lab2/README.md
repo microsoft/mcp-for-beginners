@@ -225,9 +225,9 @@ perform complex web interactions.
 1. **Open Microsoft Foundry Toolkit Agent Builder**
 2. **Create New Agent** with the following configuration:
    - **Name**: `BrowserAgent`
-   - **Model**: Choose GPT-5.1, is recommended see the
-     [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
-     for current model lifecycle information.
+   - **Model**: Choose GPT-5.1. See the
+      [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+      for current model lifecycle information.
 
 ![BrowserAgent](../../images/10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab2/BrowserAgent.png)
 
