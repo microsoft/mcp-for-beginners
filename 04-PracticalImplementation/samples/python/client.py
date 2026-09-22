@@ -49,7 +49,7 @@ async def main():
                 completion_result = await session.call_tool(
                     "completion", 
                     arguments={
-                        "model": "gpt-4",
+                        "model": "gpt-5.1",
                         "prompt": "What is the meaning of life?",
                         "temperature": 0.7
                     }

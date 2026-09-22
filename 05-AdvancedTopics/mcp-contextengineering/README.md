@@ -421,7 +421,7 @@ graph TD
 - [Context Window Optimization Techniques](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
 - [Advanced RAG Techniques](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
 - [Semantic Kernel Documentation](https://github.com/microsoft/semantic-kernel)
-- [AI Toolkit for Context Management](https://github.com/microsoft/aitoolkit)
+- [Microsoft Foundry Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-ai-toolkit)
 
 ## What's next 
 

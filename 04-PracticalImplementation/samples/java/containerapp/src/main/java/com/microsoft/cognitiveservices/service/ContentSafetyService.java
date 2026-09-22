@@ -30,11 +30,12 @@ public class ContentSafetyService {
     private final Bot bot;
 
     public ContentSafetyService() {
-        // Initialize the model with GitHub token from environment variables
+        String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
         this.model = OpenAiOfficialChatModel.builder()
-                .isGitHubModels(true)
-                .apiKey(System.getenv("GITHUB_TOKEN"))
-                .modelName("gpt-4.1-nano")
+            .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+            .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+            .isAzure(true)
+            .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
                 .timeout(Duration.ofMinutes(60))
                 .build();
 

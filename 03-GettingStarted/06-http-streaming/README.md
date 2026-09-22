@@ -641,4 +641,4 @@ To continue your journey with MCP streaming and expand your knowledge, this sect
 
 - Try building more advanced MCP tools that use streaming for real-time analytics, chat, or collaborative editing.
 - Explore integrating MCP streaming with frontend frameworks (React, Vue, etc.) for live UI updates.
-- Next: [Utilising AI Toolkit for VSCode](../07-aitk/README.md)
+- Next: [Using Microsoft Foundry Toolkit for Visual Studio Code](../07-aitk/README.md)

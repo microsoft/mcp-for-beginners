@@ -28,11 +28,13 @@ public class LangChain4jClient {
          * calculator tools.
          */
         public static void main(String[] args) throws Exception {
+                String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
 
                 ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                                .isGitHubModels(true)
-                                .apiKey(System.getenv("GITHUB_TOKEN"))
-                                .modelName("gpt-4.1-nano")
+                                .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+                                .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+                                .isAzure(true)
+                                .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
                                 .timeout(Duration.ofMinutes(60))
                                 .build();
 

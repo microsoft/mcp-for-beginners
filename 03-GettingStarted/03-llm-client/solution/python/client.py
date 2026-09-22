@@ -3,9 +3,7 @@ from mcp.client.stdio import stdio_client
 
 # llm
 import os
-from azure.ai.inference import ChatCompletionsClient
-from azure.ai.inference.models import SystemMessage, UserMessage
-from azure.core.credentials import AzureKeyCredential
+from openai import OpenAI
 import json
 
 # Create server parameters for stdio connection
@@ -16,18 +14,13 @@ server_params = StdioServerParameters(
 )
 
 def call_llm(prompt, functions):
-    token = os.environ["GITHUB_TOKEN"]
-    endpoint = "https://models.inference.ai.azure.com"
-
-    model_name = "gpt-5.1"
-
-    client = ChatCompletionsClient(
-        endpoint=endpoint,
-        credential=AzureKeyCredential(token),
+    client = OpenAI(
+        base_url=f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/",
+        api_key=os.environ["AZURE_OPENAI_API_KEY"],
     )
 
     print("CALLING LLM")
-    response = client.complete(
+    response = client.chat.completions.create(
         messages=[
             {
             "role": "system",
@@ -38,12 +31,9 @@ def call_llm(prompt, functions):
             "content": prompt,
             },
         ],
-        model=model_name,
+        model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
         tools = functions,
-        # Optional parameters
-        temperature=1.,
-        max_tokens=1000,
-        top_p=1.    
+        max_completion_tokens=1000,
     )
 
     response_message = response.choices[0].message

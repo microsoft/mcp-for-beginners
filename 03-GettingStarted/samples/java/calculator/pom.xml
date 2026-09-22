@@ -62,11 +62,6 @@
             <artifactId>langchain4j-open-ai-official</artifactId>
             <version>${langchain4j.version}</version>
           </dependency>
-          <dependency>
-            <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-github-models</artifactId>
-            <version>${langchain4j.version}</version>
-        </dependency>
         <!-- JUnit dependencies for testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -19,10 +19,24 @@ venv\Scrips\activate
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Run the sample
+## -3- Configure Microsoft Foundry
+
+Deploy an active model such as `gpt-5.1` in Microsoft Foundry, then set:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` is the deployment name, which may differ from the
+underlying model name. Check the
+[Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+before selecting a model.
+
+## -4- Run the sample
 
 
 ```bash

@@ -194,7 +194,7 @@ By completing this workshop, you will achieve mastery in:
 
 - [ ] Set up and configure Microsoft Foundry Toolkit in VS Code
 - [ ] Design and implement custom MCP servers
-- [ ] Integrate GitHub Models with MCP architecture
+- [ ] Integrate Microsoft Foundry models with MCP architecture
 - [ ] Build automated testing workflows with Playwright
 - [ ] Deploy AI agents for production use
 - [ ] Debug and optimize MCP server performance

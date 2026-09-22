@@ -17,7 +17,9 @@ By the end of this lesson, you will be able to:
 
 ## Azure OpenAI Integration
 
-Azure OpenAI provides access to powerful AI models like GPT-4 and others. Integrating MCP with Azure OpenAI allows you to utilize these models while maintaining the flexibility of MCP's tool orchestration.
+Microsoft Foundry provides access to current AI models such as GPT-5.1.
+Integrating MCP with Foundry models preserves the flexibility of MCP tool
+orchestration while using a managed model deployment.
 
 ### C# Implementation
 

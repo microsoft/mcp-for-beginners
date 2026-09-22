@@ -39,15 +39,21 @@ Great, now we understand how we can do this at high level, let's try this out in
 
 In this exercise, we will learn to add an LLM to our client.
 
-### Authentication using GitHub Personal Access Token
+### Configure Microsoft Foundry
 
-Creating a GitHub token is a straightforward process. Here’s how you can do it:
+GitHub Models was retired on July 30, 2026. Create a Microsoft Foundry resource,
+deploy an active model such as `gpt-5.1`, and set these environment variables:
 
-- Go to GitHub Settings – Click on your profile picture in the top right corner and select Settings.
-- Navigate to Developer Settings – Scroll down and click on Developer Settings.
-- Select Personal Access Tokens – Click on Fine-grained tokens and then Generate new token.
-- Configure Your Token – Add a note for reference, set an expiration date, and select the necessary scopes (permissions). In this case be sure to add the Models permission.
-- Generate and Copy the Token – Click Generate token, and make sure to copy it immediately, as you won’t be able to see it again.
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+Use the deployment name in API calls. It may differ from the underlying model
+name. Review the
+[Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+before choosing a model.
 
 ### -1- Connect to server
 
@@ -66,9 +72,15 @@ class MCPClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", 
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -77,11 +89,7 @@ class MCPClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -92,7 +100,7 @@ In the preceding code we've:
 
 - Imported the needed libraries
 - Create a class with two members, `client` and `openai` that will help us manage a client and interact with an LLM respectively.
-- Configured our LLM instance to use GitHub Models by setting `baseUrl` to point to the inference API.
+- Configured the OpenAI client to use the Microsoft Foundry v1 endpoint and API key.
 
 #### Python
 
@@ -132,17 +140,27 @@ In the preceding code we've:
 #### .NET
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
 using System.Text.Json;
+
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+var client = new ChatClient(
+    deployment,
+    new ApiKeyCredential(apiKey),
+    new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -342,11 +360,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Initial message
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // Setup OpenAI client
-    let api_key = std::env::var("OPENAI_API_KEY")?;
+    // Setup Microsoft Foundry client
+    let endpoint = std::env::var("AZURE_OPENAI_ENDPOINT")?;
+    let api_key = std::env::var("AZURE_OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
-            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_base(format!("{}/openai/v1", endpoint.trim_end_matches('/')))
             .with_api_key(api_key),
     );
 
@@ -373,10 +392,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
-This code sets up a basic Rust application that will connect to an MCP server and GitHub Models for LLM interactions.
+This code sets up a Rust application that connects to an MCP server and a
+Microsoft Foundry model deployment for LLM interactions.
 
 > [!IMPORTANT]
-> Make sure to set the `OPENAI_API_KEY` environment variable with your GitHub token before running the application.
+> Set `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, and
+> `AZURE_OPENAI_DEPLOYMENT` before running the application.
 
 Great, for our next step, let's list the capabilities on the server.
 
@@ -432,12 +453,12 @@ Here's what we added:
 #### .NET
 
 ```csharp
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -580,40 +601,29 @@ Next step after listing server capabilities is to convert them into a format tha
 1. Let's add code to convert the MCP tool response to something the LLM can understand
 
 ```csharp
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 ```
 
 In the preceding code we've:
 
 - Created a function `ConvertFrom` that takes, name, description and input schema.
-- Defined functionality that creates a FunctionDefinition that gets passed to a ChatCompletionsDefinition. The latter is something the LLM can understand.
+- Created an OpenAI `ChatTool` from the MCP tool's JSON schema.
 
 2. Let's see how we can update some existing code to take advantage of this function above:
 
     ```csharp
-    async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+    async Task<List<ChatTool>> GetMcpTools()
     {
         Console.WriteLine("Listing tools");
         var tools = await mcpClient.ListToolsAsync();
 
-        List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+        List<ChatTool> toolDefinitions = [];
 
         foreach (var tool in tools)
         {
@@ -621,14 +631,9 @@ In the preceding code we've:
             Console.WriteLine($"Tool description: {tool.Description}");
             Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-            JsonElement propertiesElement;
-            tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-            var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+            var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
             Console.WriteLine($"Tool definition: {def}");
             toolDefinitions.Add(def);
-
-            Console.WriteLine($"Properties: {propertiesElement}");        
         }
 
         return toolDefinitions;
@@ -795,8 +800,8 @@ In this part of the code, we will handle user requests.
 
     // 2. Calling the LLM
     let response = this.openai.chat.completions.create({
-        model: "gpt-4.1-mini",
-        max_tokens: 1000,
+        model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+        max_completion_tokens: 1000,
         messages,
         tools: tools,
     });    
@@ -826,9 +831,15 @@ class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // might need to change to this url in the future: https://models.github.ai/inference
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -837,11 +848,7 @@ class MyClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -921,8 +928,8 @@ class MyClient {
 
         console.log("Querying LLM: ", messages[0].content);
         let response = this.openai.chat.completions.create({
-            model: "gpt-4.1-mini",
-            max_tokens: 1000,
+            model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+            max_completion_tokens: 1000,
             messages,
             tools: tools,
         });    
@@ -957,14 +964,12 @@ client.connectToServer(transport);
     ```python
     # llm
     import os
-    from azure.ai.inference import ChatCompletionsClient
-    from azure.ai.inference.models import SystemMessage, UserMessage
-    from azure.core.credentials import AzureKeyCredential
+    from openai import OpenAI
     import json
     ```
 
-2. Next, let's add the function that will call the LLM. This example uses
-    `gpt-5.1`, the recommended replacement for `gpt-4o`. Check the
+2. Next, let's add the function that will call the LLM. This example uses the
+    active `gpt-5.1` model. Check the
     [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
     when selecting a model for your application.
 
@@ -972,18 +977,15 @@ client.connectToServer(transport);
     # llm
 
     def call_llm(prompt, functions):
-        token = os.environ["GITHUB_TOKEN"]
-        endpoint = "https://models.inference.ai.azure.com"
-
-        model_name = "gpt-5.1"
-
-        client = ChatCompletionsClient(
-            endpoint=endpoint,
-            credential=AzureKeyCredential(token),
+        client = OpenAI(
+            base_url=(
+                f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/"
+            ),
+            api_key=os.environ["AZURE_OPENAI_API_KEY"],
         )
 
         print("CALLING LLM")
-        response = client.complete(
+        response = client.chat.completions.create(
             messages=[
                 {
                 "role": "system",
@@ -994,12 +996,9 @@ client.connectToServer(transport);
                 "content": prompt,
                 },
             ],
-            model=model_name,
-            tools = functions,
-            # Optional parameters
-            temperature=1.,
-            max_tokens=1000,
-            top_p=1.    
+            model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
+            tools=functions,
+            max_completion_tokens=1000,
         )
 
         response_message = response.choices[0].message
@@ -1058,23 +1057,19 @@ client.connectToServer(transport);
     // 0. Define the chat history and the user message
     var userMessage = "add 2 and 4";
 
-    chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
-    // 1. Define tools
-    ChatCompletionsToolDefinition def = CreateToolDefinition();
+    chatHistory.Add(new UserChatMessage(userMessage));
 
 
     // 2. Define options, including the tools
-    var options = new ChatCompletionsOptions(chatHistory)
+    var options = new ChatCompletionOptions
     {
-        Model = "gpt-4.1-mini",
         Tools = { tools[0] }
     };
 
     // 3. Call the model  
 
-    ChatCompletions? response = await client.CompleteAsync(options);
-    var content = response.Content;
+    ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+    var content = response.Content.FirstOrDefault()?.Text;
 
     ```
 
@@ -1089,21 +1084,24 @@ client.connectToServer(transport);
 
     ```csharp
     // 4. Check if the response contains a function call
-    ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
     for (int i = 0; i < response.ToolCalls.Count; i++)
     {
         var call = response.ToolCalls[i];
-        Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+        Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
         //Tool call 0: add with arguments {"a":2,"b":4}
 
-        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
         var result = await mcpClient.CallToolAsync(
-            call.Name,
+            call.FunctionName,
             dict!,
             cancellationToken: CancellationToken.None
         );
 
-        Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+        var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+        if (textBlock != null)
+        {
+            Console.WriteLine(textBlock.Text);
+        }
 
     }
     ```
@@ -1116,25 +1114,38 @@ client.connectToServer(transport);
 Here's the code in full:
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+using System.Text.Json;
 
-var endpoint = "https://models.inference.ai.azure.com";
-var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
-var client = new ChatCompletionsClient(new Uri(endpoint), new AzureKeyCredential(token));
-var chatHistory = new List<ChatRequestMessage>
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+if (string.IsNullOrWhiteSpace(endpoint) || string.IsNullOrWhiteSpace(apiKey))
 {
-    new ChatRequestSystemMessage("You are a helpful assistant that knows about AI")
+    Console.WriteLine("Please set AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY.");
+    return;
+}
+
+var client = new ChatClient(
+    model: deployment,
+    credential: new ApiKeyCredential(apiKey),
+    options: new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
+var chatHistory = new List<ChatMessage>
+{
+    new SystemChatMessage("You are a helpful assistant that knows about AI")
 };
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -1142,33 +1153,20 @@ Console.WriteLine("Setting up stdio transport");
 
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 
-
-
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -1176,14 +1174,9 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+        var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
         Console.WriteLine($"Tool definition: {def}");
         toolDefinitions.Add(def);
-
-        Console.WriteLine($"Properties: {propertiesElement}");        
     }
 
     return toolDefinitions;
@@ -1201,37 +1194,38 @@ for (int i = 0; i < tools.Count; i++)
 // 2. Define the chat history and the user message
 var userMessage = "add 2 and 4";
 
-chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
+chatHistory.Add(new UserChatMessage(userMessage));
 
 // 3. Define options, including the tools
-var options = new ChatCompletionsOptions(chatHistory)
+var options = new ChatCompletionOptions
 {
-    Model = "gpt-4.1-mini",
     Tools = { tools[0] }
 };
 
 // 4. Call the model  
 
-ChatCompletions? response = await client.CompleteAsync(options);
-var content = response.Content;
+ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+var content = response.Content.FirstOrDefault()?.Text;
 
 // 5. Check if the response contains a function call
-ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
 for (int i = 0; i < response.ToolCalls.Count; i++)
 {
     var call = response.ToolCalls[i];
-    Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+    Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
     //Tool call 0: add with arguments {"a":2,"b":4}
 
-    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
     var result = await mcpClient.CallToolAsync(
-        call.Name,
+        call.FunctionName,
         dict!,
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
+    var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+    if (textBlock != null)
+    {
+        Console.WriteLine(textBlock.Text);
+    }
 
 }
 
@@ -1390,11 +1384,13 @@ async fn call_llm(
     messages: &[Value],
     tools: &ListToolsResult,
 ) -> Result<Value, Box<dyn Error>> {
+    let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
+        .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
         .completions()
         .create_byot(json!({
             "messages": messages,
-            "model": "openai/gpt-4.1",
+            "model": model,
             "tools": format_tools(tools).await?,
         }))
         .await?;

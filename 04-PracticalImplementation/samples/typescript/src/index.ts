@@ -23,7 +23,7 @@ export class ExtendedMcpServer {
   } = {}) {
     this.serverName = options.serverName || 'TypeScript MCP Server';
     this.version = options.version || '1.0.0';
-    this.models = options.models || ['gpt-4', 'llama-3-70b', 'claude-3-sonnet'];
+    this.models = options.models || ['gpt-5.1'];
     this.events = new EventEmitter();
 
     // Create the core MCP server

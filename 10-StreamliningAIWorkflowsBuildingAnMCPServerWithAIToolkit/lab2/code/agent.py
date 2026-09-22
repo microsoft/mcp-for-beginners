@@ -1,23 +1,19 @@
 """Connect model with mcp tools in Python
 # Run this python script
-> pip install mcp azure-ai-inference
+> pip install mcp openai
 > python <this-script-path>.py
 """
 import asyncio
 import json
 import os
-from typing import Dict, Optional
+from typing import Any, Dict
 from contextlib import AsyncExitStack
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from mcp.client.sse import sse_client
 
-
-from azure.ai.inference import ChatCompletionsClient
-from azure.ai.inference.models import AssistantMessage, SystemMessage, UserMessage, ToolMessage
-from azure.ai.inference.models import ImageContentItem, ImageUrl, TextContentItem
-from azure.core.credentials import AzureKeyCredential
+from openai import OpenAI
 
 class MCPClient:
     def __init__(self):
@@ -25,13 +21,11 @@ class MCPClient:
         self._servers = {}
         self._tool_to_server_map = {}
         self.exit_stack = AsyncExitStack()
-        # To authenticate with the model you will need to generate a personal access token (PAT) in your GitHub settings.
-        # Create your PAT token by following instructions here: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
-        self.azureai = ChatCompletionsClient(
-            endpoint = "https://models.inference.ai.azure.com",
-            credential = AzureKeyCredential(os.environ["GITHUB_TOKEN"]),
-            api_version = "2024-08-01-preview",
+        self.azureai = OpenAI(
+            base_url=f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/",
+            api_key=os.environ["AZURE_OPENAI_API_KEY"],
         )
+        self.model = os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1")
 
     async def connect_stdio_server(self, server_id: str, command: str, args: list[str], env: Dict[str, str]):
         """Connect to an MCP server using STDIO transport
@@ -95,7 +89,7 @@ class MCPClient:
             
         print(f"\nConnected to server '{server_id}' with tools:", [tool.name for tool in tools])
 
-    async def chatWithTools(self, messages: list[any]) -> str:
+    async def chatWithTools(self, messages: list[Any]) -> None:
         """Chat with model and using tools
         Args:
             messages: Messages to send to the model
@@ -119,13 +113,10 @@ class MCPClient:
         while True:
 
             # Call model
-            response = self.azureai.complete(
+            response = self.azureai.chat.completions.create(
                 messages = messages,
-                model = "gpt-5.1",
+                model = self.model,
                 tools=available_tools,
-                response_format = "text",
-                temperature = 1,
-                top_p = 1,
             )
             hasToolCall = False
 
@@ -134,18 +125,7 @@ class MCPClient:
                     hasToolCall = True
                     tool_name = tool.function.name
                     tool_args = json.loads(tool.function.arguments)
-                    messages.append(
-                        AssistantMessage(
-                            tool_calls = [{
-                                "id": tool.id,
-                                "type": "function",
-                                "function": {
-                                    "name": tool.function.name,
-                                    "arguments": tool.function.arguments,
-                                }
-                            }]
-                        )
-                    )
+                    messages.append(response.choices[0].message.model_dump(exclude_none=True))
                 
                 
                     # Find the appropriate server for this tool
@@ -157,18 +137,16 @@ class MCPClient:
                         result = await server_session.call_tool(tool_name, tool_args)
                         print(f"[Server '{server_id}' call tool '{tool_name}' with args {tool_args}]: {result.content}")
 
-                        messages.append(
-                            ToolMessage(
-                                tool_call_id = tool.id,
-                                content = str(result.content)
-                            )
-                        )
+                        messages.append({
+                            "role": "tool",
+                            "tool_call_id": tool.id,
+                            "content": str(result.content),
+                        })
             else:
-                messages.append(
-                    AssistantMessage(
-                        content = response.choices[0].message.content
-                    )
-                )
+                messages.append({
+                    "role": "assistant",
+                    "content": response.choices[0].message.content,
+                })
                 print(f"[Model Response]: {response.choices[0].message.content}")
         
             if not hasToolCall:
@@ -182,10 +160,8 @@ class MCPClient:
 async def main():
     client = MCPClient()
     messages = [
-        SystemMessage(content = "You are my browser automation assistant, helping me operate the browser"),
-        UserMessage(content = [
-            TextContentItem(text = "Navigation to github.com/kinfey"),
-        ]),
+        {"role": "system", "content": "You are my browser automation assistant, helping me operate the browser"},
+        {"role": "user", "content": "Navigate to github.com/kinfey"},
     ]
     try:
         await client.connect_stdio_server(

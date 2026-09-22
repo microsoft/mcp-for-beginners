@@ -122,11 +122,6 @@
             <artifactId>langchain4j-open-ai-official</artifactId>
             <version>${langchain4j.version}</version>
           </dependency>
-          <dependency>
-            <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-github-models</artifactId>
-            <version>${langchain4j.version}</version>
-        </dependency>
     </dependencies>
     <properties>
         <java.version>21</java.version>

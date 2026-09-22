@@ -71,7 +71,7 @@ Ok, now we have a mile high view of a credible scenario, let's talk about the sa
     "modelPreferences": {
       "hints": [
         {
-          "name": "claude-3-sonnet"
+          "name": "gpt-5.1"
         }
       ],
       "intelligencePriority": 0.8,
@@ -105,13 +105,16 @@ This response is what the MCP Client ends up sending back to the the MCP Server 
       "type": "text",
       "text": "Here's your abstract <ABSTRACT>"
     },
-    "model": "gpt-5",
+    "model": "gpt-5.1",
     "stopReason": "endTurn"
   }
 }
 ```
 
-Note how the response is an abstract of the blog post just like we asked for. Also note how the used `model` isn't what we asked for but "gpt-5" over "claude-3-sonnet". This is to illustrate that the user can change their mind on what to use and that your sampling request is a recommendation.
+The response is an abstract of the blog post just as requested. The client
+selected the active `gpt-5.1` deployment from the server's model preference;
+model preferences are recommendations, so the client may choose another active
+deployment when required.
 
 Ok, now that we understand the main flow, and useful task to use it for "blog post creation + abstract", let's see what we need to do to get it to work.
 

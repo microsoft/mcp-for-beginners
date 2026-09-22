@@ -296,7 +296,7 @@ The GitHub MCP Server will:
 
 **Featured example**: To quote the [MarkItDown docs](https://github.com/microsoft/markitdown#why-markdown):
 
-> Markdown is extremely close to plain text, with minimal markup or formatting, but still provides a way to represent important document structure. Mainstream LLMs, such as OpenAI's GPT-4o, natively "speak" Markdown, and often incorporate Markdown into their responses unprompted. This suggests that they have been trained on vast amounts of Markdown-formatted text, and understand it well. As a side benefit, Markdown conventions are also highly token-efficient.
+> Markdown is extremely close to plain text, with minimal markup or formatting, but still provides a way to represent important document structure. Mainstream LLMs, such as OpenAI's GPT-5.1, natively "speak" Markdown, and often incorporate Markdown into their responses unprompted. This suggests that they have been trained on vast amounts of Markdown-formatted text, and understand it well. As a side benefit, Markdown conventions are also highly token-efficient.
 
 MarkItDown is really good at preserving document structure, which is important for AI workflows. For instance, when converting a PowerPoint presentation, it keeps slide organization with the right headings, extracts tables as Markdown tables, includes alt text for images, and even processes the speaker notes. Charts get converted to readable data tables, and the resulting Markdown maintains the logical flow of the original presentation. This makes it perfect for feeding presentation content into AI systems or creating documentation from existing slides.
 ### 6. 🗃️ SQL Server MCP Server

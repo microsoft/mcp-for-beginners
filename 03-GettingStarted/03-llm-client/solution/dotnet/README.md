@@ -1,16 +1,21 @@
 # Run this sample
 
 > [!NOTE]
-> This sample assumes you're using a GitHub Codespaces instance. If you want to run this locally, you need to set up a personal access token (PAT) on GitHub.
+> Deploy an active model such as `gpt-5.1` in Microsoft Foundry and configure
+> its endpoint, API key, and deployment name.
 >
 > ```bash
 > # zsh/bash
-> export GITHUB_TOKEN="{{YOUR_GITHUB_PAT}}"
+> export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+> export AZURE_OPENAI_API_KEY="<api-key>"
+> export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 > ```
 >
 > ```powershell
 > # PowerShell
-> $env:GITHUB_TOKEN = "{{YOUR_GITHUB_PAT}}"
+> $env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+> $env:AZURE_OPENAI_API_KEY = "<api-key>"
+> $env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 > ```
 
 ## Install libraries
@@ -19,7 +24,7 @@
 dotnet restore
 ```
 
-Should install the following libraries: Azure AI Inference, Azure Identity, Microsoft.Extension, Model.Hosting, ModelContextProtcol 
+This installs the OpenAI .NET client and the Model Context Protocol SDK.
 
 ## Run
 
@@ -35,9 +40,8 @@ Listing tools
 Connected to server with tools: Add
 Tool description: Adds two numbers
 Tool parameters: {"title":"Add","description":"Adds two numbers","type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}
-Tool definition: Azure.AI.Inference.ChatCompletionsToolDefinition
-Properties: {"a":{"type":"integer"},"b":{"type":"integer"}}
-MCP Tools def: 0: Azure.AI.Inference.ChatCompletionsToolDefinition
+Tool definition: OpenAI.Chat.ChatTool
+MCP Tools def: 0: OpenAI.Chat.ChatTool
 Tool call 0: Add with arguments {"a":2,"b":4}
 Sum 6
 ```

@@ -42,7 +42,7 @@ mindmap
       (VS Code Extensions)
       (SSE Server Setup)
       (HTTP Streaming)
-      (AI Toolkit Integration)
+      (Microsoft Foundry Toolkit Integration)
       (Testing Frameworks)
       (Advanced Server Usage)
       (Simple Auth)
@@ -109,7 +109,7 @@ mindmap
       ::icon(fa fa-laptop)
       (MCP Server Fundamentals)
       (Advanced Development)
-      (AI Toolkit Integration)
+      (Microsoft Foundry Toolkit Integration)
       (Production Deployment)
       (4-Lab Structure)
     11. Database Integration Labs
@@ -171,7 +171,7 @@ The repository is organized into twelve main sections, each focusing on differen
      - Server-Sent Events (SSE) server
      - Advanced server usage
      - HTTP streaming
-     - AI Toolkit integration
+    - Microsoft Foundry Toolkit integration
      - Testing strategies
      - Deployment guidelines
 
@@ -237,13 +237,13 @@ The repository is organized into twelve main sections, each focusing on differen
     - Implementation examples spanning enterprise integration, developer productivity, and ecosystem development
 
 11. **Hands-on Workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Comprehensive hands-on workshop combining MCP with AI Toolkit
+    - Comprehensive hands-on workshop combining MCP with Microsoft Foundry Toolkit
     - Building intelligent applications bridging AI models with real-world tools
     - Practical modules covering fundamentals, custom server development, and production deployment strategies
     - **Lab Structure**:
       - Lab 1: MCP Server Fundamentals
       - Lab 2: Advanced MCP Server Development
-      - Lab 3: AI Toolkit Integration
+      - Lab 3: Microsoft Foundry Toolkit Integration
       - Lab 4: Production Deployment and Scaling
     - Lab-based learning approach with step-by-step instructions
 
