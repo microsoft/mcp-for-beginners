@@ -101,20 +101,20 @@ Visual Studio CodeでMCPサーバーを追加する方法を見てみましょ�
 
 1. 設定をワークスペース設定かユーザー設定のどちらに保存するか選択します。
 
-  - <strong>ワークスペース設定</strong> - 設定は現在のワークスペース内でのみ利用可能な.vscode/mcp.jsonファイルに保存されます。
+    - <strong>ワークスペース設定</strong> - 設定は現在のワークスペース内でのみ利用可能な.vscode/mcp.jsonファイルに保存されます。
 
-    *mcp.json*
+      *mcp.json*
 
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "http",
-            "url": "url-to-mcp-server/mcp"
-        }
-    }
-    ```
+      ```json
+      "servers": {
+          "APIM petstore" : {
+              "type": "http",
+              "url": "url-to-mcp-server/mcp"
+          }
+      }
+      ```
 
-  - <strong>ユーザー設定</strong> - 設定はグローバルな<em>settings.json</em>ファイルに追加され、全ワークスペースで利用可能です。構成は概ね以下のようになります：
+    - <strong>ユーザー設定</strong> - 設定はグローバルな<em>settings.json</em>ファイルに追加され、全ワークスペースで利用可能です。構成は概ね以下のようになります：
 
     ![ユーザー設定](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
@@ -183,13 +183,13 @@ Visual Studio CodeでMCPサーバーを追加する方法を見てみましょ�
 - [VS Code用Azure API Management拡張機能でAPIをインポート・管理](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
 - [Azure API CenterでリモートMCPサーバーを登録・検出](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway)！Azure API Managementを用いた多くのAI機能を示す優れたリポジトリ
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Azure API Managementを用いた多くのAI機能を示す優れたリポジトリ
 - [AI Gateway ワークショップ](https://azure-samples.github.io/AI-Gateway/) Azure Portalを使ったワークショップが含まれており、AI機能の評価を始めるには最適です。
 
 ## 次にやること
 
 - 前に戻る: [ケーススタディの概要](./README.md)
-- 次へ: [Azure AI Travel Agents](./travelagentsample.md)
+- 次へ: [Azure AI トラベルエージェント](./travelagentsample.md)
 
 ---
 
