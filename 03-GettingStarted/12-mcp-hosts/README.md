@@ -307,7 +307,7 @@ Windsurf configuration is managed through the settings UI:
 
 ## Connecting to a Remote Server
 
-Every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+Apart from the VS Code `my-database` entry (an SSE URL), every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
 
 **VS Code** (`.vscode/mcp.json`):
 
@@ -334,7 +334,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 }
 ```
 
-**Cline** (the VS Code extension; the MCP Servers panel → Configure MCP Servers button opens its `cline_mcp_settings.json`). The CLI flags shown earlier in this lesson start local servers; a remote server is added through this file:
+**Cline (VS Code extension)**. This is a different client from the terminal Cline covered earlier in this lesson: the terminal client takes its servers from CLI flags and `~/.clinerc`, while the VS Code extension keeps them in `cline_mcp_settings.json` (MCP Servers panel → Configure MCP Servers). A remote server goes into that file:
 
 ```json
 {
@@ -359,7 +359,7 @@ Every example above starts a local server with `command` and `args`. A remote se
 }
 ```
 
-Claude Desktop does not read an HTTP entry from its configuration file (see the table below), so this example skips it.
+Claude Desktop does not read an HTTP entry from `claude_desktop_config.json`; it adds remote servers through Settings → Connectors → Add custom connector, where you paste the same URL, so there is no JSON snippet for it.
 
 After you save the file and reload the host, check its tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
 
@@ -371,7 +371,7 @@ Different hosts support different transport mechanisms:
 
 | Host | stdio | SSE / Streamable HTTP | WebSocket |
 |------|-------|----------|-----------|
-| Claude Desktop | ✅ | ❌ | ❌ |
+| Claude Desktop | ✅ | ✅ (Connectors UI, not the config file) | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
 | Cursor | ✅ | ✅ | ❌ |
 | Cline | ✅ | ✅ | ❌ |
