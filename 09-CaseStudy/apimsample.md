@@ -85,7 +85,7 @@ Let's ensure our MCP Server is working as intended.
 > HTTP `/mcp` endpoint. The older HTTP+SSE `/sse` transport is deprecated and
 > should be used only with legacy clients.
 
-For this, we will use Visual Studio Code and GitHub Copilot and its Agent mode. We will add the MCP server to a *mcp.json* while. By doing so, Visual Studio Code will act as a client with agentic capabilities and end users will be able to type a prompt and interact with said server.
+For this, we will use Visual Studio Code and GitHub Copilot and its Agent mode. We will add the MCP server to a *mcp.json* file. By doing so, Visual Studio Code will act as a client with agentic capabilities and end users will be able to type a prompt and interact with said server.
 
 Let's see how, to add the MCP server in Visual Studio Code:
 
@@ -101,28 +101,29 @@ Let's see how, to add the MCP server in Visual Studio Code:
 
 1. Select whether to save the configuration to your workspace settings or user settings.
 
-  - **Workspace settings** - The server configuration is saved to a .vscode/mcp.json file only available in the current workspace.
+    - **Workspace settings** - The server configuration is saved to a `.vscode/mcp.json` file, which is only available in the current workspace.
 
-    *mcp.json*
+      *mcp.json*
 
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "http",
-            "url": "url-to-mcp-server/mcp"
-        }
-    }
-    ```
+      ```json
+      "servers": {
+          "APIM petstore" : {
+              "type": "http",
+              "url": "url-to-mcp-server/mcp"
+          }
+      }
+      ```
 
-  - **User settings** - The server configuration is added to your global *settings.json* file and is available in all workspaces. The configuration looks similar to the following:
+    - **User settings** - The server configuration is added to your global *settings.json* file and is available across all workspaces. The configuration looks similar to the following:
 
-    ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+      ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. You also need to add configuration, a header to make sure it authenticates properly towards Azure API Management. It uses a header called **Ocp-Apim-Subscription-Key*. 
+1. You also need to add a configuration header to ensure proper authentication towards Azure API Management. This uses a header named **Ocp-Apim-Subscription-Key**.
 
     - Here's how you can add it to settings:
 
-    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), this will cause the a prompt to be displayed to ask your for the API key value which you can find in Azure Portal for your Azure API Management instance.
+
+    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), this will cause a prompt to be displayed to ask your for the API key value which you can find in Azure Portal for your Azure API Management instance.
 
    - To add it to *mcp.json* instead, you can add it like so:
 
@@ -168,7 +169,7 @@ There should be a Tools icon like so, where the exposed tools from your server a
 
     ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **what you see above depends what tools you've setup, but the ideas is that you get a textual response like above**
+    **what you see above depends on what tools you've setup, but the ideas is that you get a textual response like above**
 
 
 ## References
