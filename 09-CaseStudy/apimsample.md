@@ -118,7 +118,7 @@ Let's see how, to add the MCP server in Visual Studio Code:
 
       ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. You also need to add a configuration header to ensure proper authentication towards Azure API Management. This uses a header named **Ocp-Apim-Subscription-Key**.
+1. You also need to add a configuration header to make sure it authenticates properly towards Azure API Management. It uses a header called **Ocp-Apim-Subscription-Key**.
 
     - Here's how you can add it to settings:
 
