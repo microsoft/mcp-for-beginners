@@ -29,7 +29,7 @@
 
 環境設定後は、ローカル開発機でAgent BuilderをMCPクライアントとして使用してサーバーを起動できます：
 1. VS Codeのデバッグパネルを開きます。`Debug in Agent Builder`を選択するか、`F5`キーを押してMCPサーバーのデバッグを開始します。
-2. Microsoft Foundry Toolkit Agent Builderを使用し、[このプロンプト](../../../../../../../../../../../open_prompt_builder)でサーバーをテストします。サーバーは自動的にAgent Builderに接続されます。
+2. Microsoft Foundry Toolkit Agent Builderで、`gpt-5.1`などのアクティブなFoundryデプロイメントを選択し、`What is the weather in Shanghai?`と入力します。サーバーへの接続が自動的に行われます。
 3. `Run`をクリックしてプロンプトでサーバーをテストします。
 
 <strong>おめでとうございます</strong>！Agent BuilderをMCPクライアントとして使用し、ローカル開発機上でWeather MCPサーバーが正常に起動しました。
