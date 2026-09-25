@@ -51,7 +51,7 @@
 
 | デバッグモード | 説明 | デバッグ手順 |
 | ---------- | ----------- | --------------- |
-| Agent Builder | Microsoft Foundry Toolkit経由でAgent Builder内のMCPサーバーをデバッグします。 | 1. VS Codeのデバッグパネルを開きます。`Debug in Agent Builder`を選択し、`F5`キーを押してMCPサーバーのデバッグを開始します。<br>2. Microsoft Foundry Toolkit Agent Builderを使用し、[このプロンプト](../../../../../../../../../../../open_prompt_builder)でサーバーをテストします。サーバーは自動的にAgent Builderに接続されます。<br>3. `Run`をクリックしてプロンプトでサーバーをテストします。 |
+| Agent Builder | Microsoft Foundry Toolkit経由でAgent Builder内のMCPサーバーをデバッグします。 | 1. VS Codeのデバッグパネルを開きます。`Debug in Agent Builder`を選択し、`F5`キーを押してMCPサーバーのデバッグを開始します。<br>2. `gpt-5.1`などのアクティブなFoundryデプロイメントを選択し、「What is the weather in Shanghai?」と入力します。サーバーへの接続が自動的に行われます。<br>3. `Run`をクリックしてプロンプトでサーバーをテストします。 |
 | MCP Inspector | MCP Inspectorを使ってMCPサーバーをデバッグします。 | 1. [Node.js](https://nodejs.org/)をインストール<br>2. Inspectorをセットアップ：`cd inspector` && `npm install` <br>3. VS Codeのデバッグパネルを開き、`Debug SSE in Inspector (Edge)`または`Debug SSE in Inspector (Chrome)`を選択。F5を押してデバッグを開始。<br>4. MCP Inspectorがブラウザで起動したら、`Connect`ボタンをクリックしてこのMCPサーバーに接続。<br>5. その後、`List Tools`でツールを選択し、パラメーターを入力して`Run Tool`でサーバーコードのデバッグが可能です。<br> |
 
 ## デフォルトポートとカスタマイズ
