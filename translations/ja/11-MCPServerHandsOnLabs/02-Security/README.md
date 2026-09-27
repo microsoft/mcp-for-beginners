@@ -1209,7 +1209,7 @@ penetration_testing:
 
 ## 🚀 次に進むこと
 
-**[Lab 03: 環境セットアップ](../03-Setup/README.md)** に進み、以下を行います：
+**[ラボ03: 環境セットアップ](../03-Setup/README.md)** に進み、以下を行います：
 
 - セキュリティのベストプラクティスに沿った開発環境を構築
 - 認証と監視のためのAzureサービスを設定
@@ -1235,8 +1235,8 @@ penetration_testing:
 
 ---
 
-<strong>前へ</strong>: [Lab 01: コアアーキテクチャコンセプト](../01-Architecture/README.md)  
-<strong>次へ</strong>: [Lab 03: 環境セットアップ](../03-Setup/README.md)
+<strong>前へ</strong>: [ラボ01: コアアーキテクチャコンセプト](../01-Architecture/README.md)  
+<strong>次へ</strong>: [ラボ03: 環境セットアップ](../03-Setup/README.md)
 
 ---
 
