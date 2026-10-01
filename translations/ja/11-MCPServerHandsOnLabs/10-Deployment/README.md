@@ -1347,7 +1347,7 @@ echo "✅ Production environment setup complete!"
 
 ## 🚀 次のステップ
 
-**[ラボ11: 監視と観測性](../11-Monitoring/README.md)** に進んで以下を学びましょう：
+**[ラボ11: モニタリングと可観測性](../11-Monitoring/README.md)** に進んで以下を学びましょう：
 
 - Application Insightsを使用した包括的な監視の設定  
 - 構造化ログと分散トレーシングの設定  
@@ -1374,7 +1374,7 @@ echo "✅ Production environment setup complete!"
 ---
 
 **前回**: [ラボ09: VS Code統合](../09-VS-Code/README.md)  
-**次回**: [ラボ11: 監視と観測性](../11-Monitoring/README.md)  
+**次回**: [ラボ11: モニタリングと可観測性](../11-Monitoring/README.md)  
 
 ---
 
