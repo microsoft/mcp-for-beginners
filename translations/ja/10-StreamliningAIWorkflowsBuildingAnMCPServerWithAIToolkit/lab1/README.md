@@ -265,7 +265,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
 
 ### 🔜 次のモジュールへ進む
 
-さらに高度な機能に挑戦したいですか？**[モジュール 2: MCP with Microsoft Foundry Toolkit Fundamentals](../lab2/README.md)** に進んで、以下を学びます：
+さらに高度な機能に挑戦したいですか？**[モジュール2: Microsoft Foundry Toolkit Fundamentals を使用した MCP](../lab2/README.md)** に進んで、以下を学びます：
 - エージェントを Model Context Protocol (MCP) を使って外部ツールに接続する方法
 - Playwright を使ったブラウザ自動化エージェントの構築
 - MCP サーバーを Microsoft Foundry Toolkit エージェントと統合
