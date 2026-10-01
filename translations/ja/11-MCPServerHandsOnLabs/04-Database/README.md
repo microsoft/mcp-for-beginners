@@ -1089,7 +1089,7 @@ echo "Verified $TABLES_COUNT tables in retail schema"
 
 ## 🚀 次のステップ
 
-**[Lab 05: MCP Server Implementation](../05-MCP-Server/README.md)** に進み、以下を行います：
+**[ラボ05: MCPサーバーの実装](../05-MCP-Server/README.md)** に進み、以下を行います：
 
 - このデータベースに接続するFastMCPサーバーを構築
 - MCPプロトコル用のデータベースクエリツールを実装
@@ -1115,8 +1115,8 @@ echo "Verified $TABLES_COUNT tables in retail schema"
 
 ---
 
-<strong>前へ</strong>: [Lab 03: Environment Setup](../03-Setup/README.md)  
-<strong>次へ</strong>: [Lab 05: MCP Server Implementation](../05-MCP-Server/README.md)
+<strong>前へ</strong>: [ラボ03: 環境セットアップ](../03-Setup/README.md)  
+<strong>次へ</strong>: [ラボ05: MCPサーバーの実装](../05-MCP-Server/README.md)
 
 ---
 
