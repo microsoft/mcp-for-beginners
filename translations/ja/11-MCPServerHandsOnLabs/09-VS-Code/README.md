@@ -1024,7 +1024,7 @@ export function deactivate() {}
 
 ## 🚀 次に進むこと
 
-**[Lab 10: Deployment Strategies](../10-Deployment/README.md)** を続けて実施して:
+**[ラボ10: デプロイメント戦略](../10-Deployment/README.md)** を続けて実施して:
 
 - MCP サーバーの本番環境展開
 - スケーラビリティのためのクラウドインフラ設定
@@ -1050,8 +1050,8 @@ export function deactivate() {}
 
 ---
 
-<strong>前へ</strong>: [Lab 08: Testing and Debugging](../08-Testing/README.md)  
-<strong>次へ</strong>: [Lab 10: Deployment Strategies](../10-Deployment/README.md)
+<strong>前へ</strong>: [ラボ08: テストとデバッグ](../08-Testing/README.md)  
+<strong>次へ</strong>: [ラボ10: デプロイメント戦略](../10-Deployment/README.md)
 
 ---
 
