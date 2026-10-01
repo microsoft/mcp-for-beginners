@@ -33,7 +33,7 @@
 
 環境設定後は、Agent BuilderをMCPクライアントとしてローカル開発マシンでサーバーを起動して始めましょう：
 1. VS Codeのデバッグパネルを開きます。`Debug in Agent Builder` を選択するか、`F5`キーを押してMCPサーバーのデバッグを開始します。
-2. AI ToolkitのAgent Builderを使い、[こちらのプロンプト](../../../../../../../../../../../open_prompt_builder)でサーバーをテストします。サーバーは自動的にAgent Builderに接続されます。
+2. Microsoft Foundry Toolkit for Visual Studio Code Agent Builder で、`gpt-5.1` などのアクティブな Foundry デプロイメントを選択し、「What is the weather in Shanghai?」と入力します。サーバーへの接続が自動的に行われます。
 3. `Run` をクリックしてプロンプトでサーバーをテストします。
 
 **おめでとうございます！** Agent BuilderをMCPクライアントとして使用し、ローカル開発マシンでWeather MCP Serverを正常に実行できました。
@@ -88,15 +88,15 @@
 
 | デバッグモード | 説明 | デバッグ手順 |
 | -------------- | ---- | ----------- |
-| Agent Builder | AI ToolkitのAgent Builder内でMCPサーバーをデバッグする。 | 1. VS Codeのデバッグパネルを開き、`Debug in Agent Builder` を選択し `F5` を押してMCPサーバーのデバッグを開始。<br>2. AI ToolkitのAgent Builderを使い[こちらのプロンプト](../../../../../../../../../../../open_prompt_builder)でサーバーをテスト。サーバーは自動的にAgent Builderに接続される。<br>3. `Run` をクリックしてプロンプトでテスト。 |
+| Agent Builder | AI ToolkitのAgent Builder内でMCPサーバーをデバッグする。 | 1. VS Codeのデバッグパネルを開き、`Debug in Agent Builder` を選択し `F5` を押してMCPサーバーのデバッグを開始。<br>2. Select an active Foundry deployment such as `gpt-5.1`, then enter `What is the weather in Shanghai?`. The server will be connected automatically.<br>3. `Run` をクリックしてプロンプトでテスト。 |
 | MCP Inspector | MCP Inspectorを使ってMCPサーバーをデバッグする。 | 1. [Node.js](https://nodejs.org/) をインストール<br>2. Inspectorをセットアップ：`cd inspector` && `npm install`<br>3. VS Codeのデバッグパネルを開き、`Debug SSE in Inspector (Edge)` または `Debug SSE in Inspector (Chrome)` を選択し、`F5`キーでデバッグ開始。<br>4. MCP Inspectorがブラウザで起動したら、`Connect`ボタンをクリックしてMCPサーバーに接続。<br>5. その後、`List Tools` でツールを選択し、パラメーターを入力し、`Run Tool` でサーバーコードをデバッグ。 |
 
 ## デフォルトポートとカスタマイズ
 
 | デバッグモード | ポート | 定義ファイル | カスタマイズ方法 | 備考 |
 | -------------- | ------ | ----------- | ---------------- | ---- |
-| Agent Builder  | 3001   | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json)、[tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json)、[__init__.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py)、[mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) を編集してポートを変更可能 | N/A |
-| MCP Inspector  | 3001（サーバー）；5173 と 3000（Inspector） | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json)、[tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json)、[__init__.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py)、[mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) を編集してポートを変更可能 | N/A |
+| Agent Builder  | 3001   | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json)、[tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json)、[\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py)、[mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) を編集してポートを変更可能 | N/A |
+| MCP Inspector  | 3001（サーバー）；5173 と 3000（Inspector） | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json) | [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/launch.json)、[tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.vscode/tasks.json)、[\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/src/__init__.py)、[mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab4/code/github_mcp_server/.aitk/mcp.json) を編集してポートを変更可能 | N/A |
 
 ## フィードバック
 
@@ -106,5 +106,5 @@
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **免責事項**：  
-本書類はAI翻訳サービス「Co-op Translator」(https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性の確保に努めていますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文の母国語による文書を正本としてご参照ください。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。
+本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されています。正確性の確保に努めていますが、自動翻訳には誤りや不正確な箇所が含まれる場合があります。原文の母国語による文書を正本としてご参照ください。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じた誤解や誤訳について、当方は一切の責任を負いかねます。
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
