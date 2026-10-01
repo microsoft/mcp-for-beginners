@@ -1,4 +1,4 @@
-# 🌐 モジュール 2: Microsoft Foundry Toolkit 基礎による MCP
+# 🌐 モジュール2: Microsoft Foundry Toolkit Fundamentals を使用した MCP
 
 [![Duration](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()
 [![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)]()
