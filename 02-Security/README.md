@@ -477,6 +477,7 @@ These foundational practices create a robust security baseline that enhances the
 - [Prompt Injection in MCP (Simon Willison)](https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/)
 - [Tool Poisoning Attacks (Invariant Labs)](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
 - [MCP Security Research Briefing (Wiz Security)](https://www.wiz.io/blog/mcp-security-research-briefing#remote-servers-22)
+- [OrcaPromptVault — tool schemas and system prompts of shipped agents](https://github.com/Continuum-AI-Corp/OrcaPromptVault) — dated JSON tool schemas captured off the wire, usable as the known-good baseline a suspected poisoned tool definition is diffed against
 
 ### **Microsoft Security Solutions**
 - [Microsoft Prompt Shields Documentation](https://learn.microsoft.com/azure/ai-services/content-safety/concepts/jailbreak-detection)
