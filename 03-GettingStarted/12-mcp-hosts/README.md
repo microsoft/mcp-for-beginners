@@ -216,45 +216,29 @@ Cursor uses a similar configuration format to Claude Desktop.
 
 ## 4. Cline (Terminal-Based)
 
-**Cline** is a terminal-based MCP client, ideal for command-line workflows.
+**Cline CLI** runs the Cline agent in the terminal, ideal for command-line workflows. It shares its MCP settings (`cline_mcp_settings.json`) with the Cline VS Code extension, so a server added in one is configured for both.
 
 ### Installation
 
 ```bash
-npm install -g @anthropic/cline
+npm install -g cline
+
+# Choose a provider and model
+cline auth
 ```
 
 ### Configuration
 
-Cline uses environment variables and command-line arguments.
-
-**Using environment variables:**
+Add servers with `cline mcp install`. For a local (stdio) server, put the command and its arguments after `--`:
 
 ```bash
-export ANTHROPIC_API_KEY="your-api-key"
-export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
+cline mcp install calculator -- python -m mcp_calculator_server
+cline mcp install weather -- node /path/to/weather/index.js
 ```
 
-**Using command-line arguments:**
+Each command opens the MCP add wizard with the fields prefilled; add `--yes` to skip the wizard. Running `cline mcp` on its own opens the same wizard, where you can list, edit, enable, disable or delete servers.
 
-```bash
-cline --mcp-server "calculator:python -m mcp_calculator_server" \
-      --mcp-server "weather:node /path/to/weather/index.js"
-```
-
-**Configuration file** (`~/.clinerc`):
-
-```json
-{
-  "apiKey": "your-api-key",
-  "mcpServers": {
-    "calculator": {
-      "command": "python",
-      "args": ["-m", "mcp_calculator_server"]
-    }
-  }
-}
-```
+**Configuration file** (`~/.cline/data/settings/cline_mcp_settings.json`): the CLI stores the servers here, so you rarely need to edit it by hand.
 
 ### Using Cline
 
@@ -265,8 +249,8 @@ cline
 # Single query with MCP
 cline "Calculate the square root of 144 using the calculator"
 
-# List available tools
-cline --list-tools
+# List configured MCP servers
+cline config mcp
 ```
 
 ---
@@ -334,7 +318,7 @@ Apart from the VS Code `my-database` entry (an SSE URL), every example above sta
 }
 ```
 
-**Cline (VS Code extension)**. This is a different client from the terminal Cline covered earlier in this lesson: the terminal client takes its servers from CLI flags and `~/.clinerc`, while the VS Code extension keeps them in `cline_mcp_settings.json` (MCP Servers panel → Configure MCP Servers). A remote server goes into that file:
+**Cline** (VS Code extension and CLI). In the extension, open the MCP Servers panel → Configure → Configure MCP Servers and add the entry below to `cline_mcp_settings.json`, or use the Remote Servers tab with the same URL and the Streamable HTTP transport. From the terminal, `cline mcp install keenable --transport http https://api.keenable.ai/mcp` adds the same server:
 
 ```json
 {
@@ -361,7 +345,7 @@ Apart from the VS Code `my-database` entry (an SSE URL), every example above sta
 
 Claude Desktop does not read an HTTP entry from `claude_desktop_config.json`; it adds remote servers through Settings → Connectors → Add custom connector, where you paste the same URL, so there is no JSON snippet for it.
 
-After you save the file and reload the host, check its tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
+For a host configured through a JSON file, save the file and reload the host; the Claude Desktop connector and `cline mcp install` need no file edit or reload. Then check the host's tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
 
 ---
 
