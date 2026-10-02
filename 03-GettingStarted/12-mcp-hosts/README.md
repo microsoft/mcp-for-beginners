@@ -221,45 +221,29 @@ Cursor uses a similar configuration format to Claude Desktop.
 
 ## 4. Cline (Terminal-Based)
 
-**Cline** is a terminal-based MCP client, ideal for command-line workflows.
+**Cline CLI** runs the Cline agent in the terminal, ideal for command-line workflows. It shares its MCP settings (`cline_mcp_settings.json`) with the Cline VS Code extension, so a server added in one is configured for both.
 
 ### Installation
 
 ```bash
-npm install -g @anthropic/cline
+npm install -g cline
+
+# Choose a provider and model
+cline auth
 ```
 
 ### Configuration
 
-Cline uses environment variables and command-line arguments.
-
-**Using environment variables:**
+Add servers with `cline mcp install`. For a local (stdio) server, put the command and its arguments after `--`:
 
 ```bash
-export ANTHROPIC_API_KEY="your-api-key"
-export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
+cline mcp install calculator -- python -m mcp_calculator_server
+cline mcp install weather -- node /path/to/weather/index.js
 ```
 
-**Using command-line arguments:**
+Each command opens the MCP add wizard with the fields prefilled; add `--yes` to skip the wizard. Running `cline mcp` on its own opens the same wizard, where you can list, edit, enable, disable or delete servers.
 
-```bash
-cline --mcp-server "calculator:python -m mcp_calculator_server" \
-      --mcp-server "weather:node /path/to/weather/index.js"
-```
-
-**Configuration file** (`~/.clinerc`):
-
-```json
-{
-  "apiKey": "your-api-key",
-  "mcpServers": {
-    "calculator": {
-      "command": "python",
-      "args": ["-m", "mcp_calculator_server"]
-    }
-  }
-}
-```
+**Configuration file** (`~/.cline/data/settings/cline_mcp_settings.json`): the CLI stores the servers here, so you rarely need to edit it by hand.
 
 ### Using Cline
 
@@ -270,8 +254,8 @@ cline
 # Single query with MCP
 cline "Calculate the square root of 144 using the calculator"
 
-# List available tools
-cline --list-tools
+# List configured MCP servers
+cline config mcp
 ```
 
 ---
@@ -310,20 +294,82 @@ Windsurf configuration is managed through the settings UI:
 
 ---
 
+## Connecting to a Remote Server
+
+Apart from the VS Code `my-database` entry (an SSE URL), every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+
+**VS Code** (`.vscode/mcp.json`):
+
+```json
+{
+  "servers": {
+    "keenable": {
+      "type": "http",
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Cursor** (`~/.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Cline** (VS Code extension and CLI). In the extension, open the MCP Servers panel → Configure → Configure MCP Servers and add the entry below to `cline_mcp_settings.json`, or use the Remote Servers tab with the same URL and the Streamable HTTP transport. From the terminal, `cline mcp install keenable --transport http https://api.keenable.ai/mcp` adds the same server:
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "type": "streamableHttp",
+      "url": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+**Windsurf** (`~/.codeium/windsurf/mcp_config.json`; this is the file that Settings → Cascade → MCP Servers → "View raw config" opens, separate from the editor's `settings.json` shown earlier):
+
+```json
+{
+  "mcpServers": {
+    "keenable": {
+      "serverUrl": "https://api.keenable.ai/mcp"
+    }
+  }
+}
+```
+
+Claude Desktop does not read an HTTP entry from `claude_desktop_config.json`; it adds remote servers through Settings → Connectors → Add custom connector, where you paste the same URL, so there is no JSON snippet for it.
+
+For a host configured through a JSON file, save the file and reload the host; the Claude Desktop connector and `cline mcp install` need no file edit or reload. Then check the host's tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
+
+---
+
 ## Transport Types Comparison
 
 Different hosts support different transport mechanisms:
 
-| Host | stdio | SSE/HTTP | WebSocket |
+| Host | stdio | SSE / Streamable HTTP | WebSocket |
 |------|-------|----------|-----------|
-| Claude Desktop | ✅ | ❌ | ❌ |
+| Claude Desktop | ✅ | ✅ (Connectors UI, not the config file) | ❌ |
 | VS Code | ✅ | ✅ | ❌ |
 | Cursor | ✅ | ✅ | ❌ |
 | Cline | ✅ | ✅ | ❌ |
 | Windsurf | ✅ | ✅ | ❌ |
 
 **stdio** (standard input/output): Best for local servers started by the host
-**SSE/HTTP**: Best for remote servers or servers shared between multiple clients
+**SSE / Streamable HTTP**: Best for remote servers or servers shared between multiple clients (Streamable HTTP is the current remote transport; SSE is its predecessor and is still accepted by most hosts)
+
+See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for a Streamable HTTP configuration example for the hosts that support it.
 
 ---
 
@@ -391,3 +437,4 @@ Different hosts support different transport mechanisms:
 - [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
 - [MCP Specification - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
+- [Keenable Hosted MCP Server](https://docs.keenable.ai/mcp-server)
