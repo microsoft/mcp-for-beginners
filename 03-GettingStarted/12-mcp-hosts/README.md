@@ -291,16 +291,16 @@ Windsurf configuration is managed through the settings UI:
 
 ## Connecting to a Remote Server
 
-Apart from the VS Code `my-database` entry (an SSE URL), every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the hosted MCP server from [Keenable](https://keenable.ai) at `https://api.keenable.ai/mcp`, which is free to use without an account or API key; anonymous requests are rate limited per IP.
+Apart from the VS Code `my-database` entry (an SSE URL), every example above starts a local server with `command` and `args`. A remote server is already running somewhere else, so instead of a command you give the host the server's URL (each host has its own field for it, shown below). For HTTP-based remote connections, MCP has two transports: the older SSE transport (what the VS Code example earlier in this lesson configures with `"type": "sse"` and an `/sse` URL) and the current Streamable HTTP transport (configured with `"type": "http"` in VS Code), which typically uses a single endpoint URL (often `/mcp`). The snippets below use the [Microsoft Learn MCP server](https://learn.microsoft.com/training/support/mcp) at `https://learn.microsoft.com/api/mcp`, which searches and reads Microsoft's official documentation and needs no account or API key; the [Docs MCP case study](../../09-CaseStudy/docs-mcp/README.md) builds on the same server.
 
 **VS Code** (`.vscode/mcp.json`):
 
 ```json
 {
   "servers": {
-    "keenable": {
+    "microsoft-learn": {
       "type": "http",
-      "url": "https://api.keenable.ai/mcp"
+      "url": "https://learn.microsoft.com/api/mcp"
     }
   }
 }
@@ -311,21 +311,21 @@ Apart from the VS Code `my-database` entry (an SSE URL), every example above sta
 ```json
 {
   "mcpServers": {
-    "keenable": {
-      "url": "https://api.keenable.ai/mcp"
+    "microsoft-learn": {
+      "url": "https://learn.microsoft.com/api/mcp"
     }
   }
 }
 ```
 
-**Cline** (VS Code extension and CLI). In the extension, open the MCP Servers panel → Configure → Configure MCP Servers and add the entry below to `cline_mcp_settings.json`, or use the Remote Servers tab with the same URL and the Streamable HTTP transport. From the terminal, `cline mcp install keenable --transport http https://api.keenable.ai/mcp` adds the same server:
+**Cline** (VS Code extension and CLI). In the extension, open the MCP Servers panel → Configure → Configure MCP Servers and add the entry below to `cline_mcp_settings.json`, or use the Remote Servers tab with the same URL and the Streamable HTTP transport. From the terminal, `cline mcp install microsoft-learn --transport http https://learn.microsoft.com/api/mcp` adds the same server:
 
 ```json
 {
   "mcpServers": {
-    "keenable": {
+    "microsoft-learn": {
       "type": "streamableHttp",
-      "url": "https://api.keenable.ai/mcp"
+      "url": "https://learn.microsoft.com/api/mcp"
     }
   }
 }
@@ -336,8 +336,8 @@ Apart from the VS Code `my-database` entry (an SSE URL), every example above sta
 ```json
 {
   "mcpServers": {
-    "keenable": {
-      "serverUrl": "https://api.keenable.ai/mcp"
+    "microsoft-learn": {
+      "serverUrl": "https://learn.microsoft.com/api/mcp"
     }
   }
 }
@@ -345,7 +345,11 @@ Apart from the VS Code `my-database` entry (an SSE URL), every example above sta
 
 Claude Desktop does not read an HTTP entry from `claude_desktop_config.json`; it adds remote servers through Settings → Connectors → Add custom connector, where you paste the same URL, so there is no JSON snippet for it.
 
-For a host configured through a JSON file, save the file and reload the host; the Claude Desktop connector and `cline mcp install` need no file edit or reload. Then check the host's tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection or rate-limit error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
+For a host configured through a JSON file, save the file and reload the host; the Claude Desktop connector and `cline mcp install` need no file edit or reload. Then check the host's tool list: once the connection succeeds, the server's tools appear there. If nothing shows up, look at the host's MCP output for a connection error before changing the configuration. Then ask a question that needs one of the listed tools and the assistant should call it.
+
+### Optional: a third-party hosted search server
+
+Any other Streamable HTTP server is added the same way: change the name and the URL in the snippets above. For example, [Keenable](https://keenable.ai), a third-party web search service, runs a hosted MCP server at `https://api.keenable.ai/mcp` with two tools, `search_web_pages` and `fetch_page_content`. It needs no account or API key; anonymous use is rate limited per IP address. Using it sends your search queries, and the URLs of pages you ask it to read, to Keenable. Keep queries to public information; see its [terms](https://keenable.ai/terms) and [privacy policy](https://keenable.ai/privacy). An assistant with these tools may call them on its own during a task, so treat retrieved web text as untrusted data.
 
 ---
 
@@ -432,4 +436,4 @@ See [Connecting to a Remote Server](#connecting-to-a-remote-server) above for a 
 - [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
 - [MCP Specification - Transports](https://spec.modelcontextprotocol.io/specification/2025-11-25/basic/transports/)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
-- [Keenable Hosted MCP Server](https://docs.keenable.ai/mcp-server)
+- [Microsoft Learn MCP Server](https://learn.microsoft.com/training/support/mcp)
