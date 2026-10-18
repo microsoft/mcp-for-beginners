@@ -1,36 +1,36 @@
 > [!WARNING]
 > Vzorcevanje je v MCP `2026-07-28` zastarelo. Ta lekcija je ohranjena za
-> starodobne izvedbe. Novi strežniki naj se neposredno povežejo z API ponudnika LLM.
+> starejše izvedbe. Novi strežniki naj se neposredno povežejo z LLM
+> ponudnikovo API.
 
-
-# Vzorcevanje - prenašanje funkcij na klienta
+# Vzorcevanje - delegiranje funkcij klientu
 
 > Vzorcevanje ostaja v specifikaciji `2026-07-28` zaradi združljivosti in je
-> upravičeno do odstranitve ob prvi reviziji, izdani na današnji dan ali po 28.
-> juliju 2027. Primeri v tej lekciji lahko uporabljajo SDK API-je, ki implementirajo `2025-11-25`.
+> primerno za odstranitev v prvi reviziji, izdani na ali po 28. juliju
+> 2027. Primeri v tej lekciji lahko uporabljajo SDK API-je, ki izvajajo `2025-11-25`.
 > Glej [Kaj se je spremenilo v MCP: Specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-V starodobnih izvedbah omogoča Vzorcevanje MCP strežniku, da zaprosi za pomoč LLM
-, ki ga upravlja klient. Za nove izvedbe raje kličite izbranega ponudnika LLM
+V starih izvedbah omogoča Vzorcevanje strežnik MCP, da zaprosi za pomoč LLM,
+ki ga upravlja klient. Pri novih izvedbah pokličite izbranega ponudnika LLM
 neposredno.
 
-Raziščimo nekaj primerov uporabe in kako sestaviti rešitev, ki vključuje vzorcevanje.
+Raziščimo nekaj primerov uporabe in kako zgraditi rešitev, ki vključuje vzorcevanje.
 
 ## Pregled
 
-V tej lekciji se osredotočimo na razlago, kdaj in kje uporabljati Vzorcevanje in kako ga nastaviti.
+V tej lekciji se osredotočamo na pojasnitev kdaj in kje uporabiti vzorcevanje ter kako ga konfigurirati.
 
 ## Cilji učenja
 
-V tem poglavju bomo:
+V tej poglavju bomo:
 
-- Razložili, kaj je Vzorcevanje in kdaj ga uporabiti.
-- Pokažemo, kako nastaviti Vzorcevanje v MCP.
-- Podali primere uporabe Vzorcevanja v praksi.
+- Pojasnili, kaj je vzorcevanje in kdaj ga uporabiti.
+- Pokazali kako konfigurirati vzorcevanje v MCP.
+- Podali primere uporabe vzorcevanja v praksi.
 
-## Kaj je Vzorcevanje in zakaj ga uporabljati?
+## Kaj je vzorcevanje in zakaj ga uporabiti?
 
-Vzorcevanje je napredna funkcionalnost, ki deluje na naslednji način:
+Vzorcevanje je napredna funkcija, ki deluje na naslednji način:
 
 ```mermaid
 sequenceDiagram
@@ -39,19 +39,19 @@ sequenceDiagram
     participant LLM
     participant MCP Server
 
-    User->>MCP Client: Avtorjev blog zapis
-    MCP Client->>MCP Server: Klic orodja (osnutek blog zapisa)
-    MCP Server->>MCP Client: Zahteva po vzorčenju (ustvari povzetek)
-    MCP Client->>LLM: Ustvari povzetek blog zapisa
-    LLM->>MCP Client: Rezultat povzetka
-    MCP Client->>MCP Server: Odgovor vzorčenja (povzetek)
-    MCP Server->>MCP Client: Dokončan blog zapis (osnutek + povzetek)
-    MCP Client->>User: Blog zapis pripravljen
+    User->>MCP Client: Author blog post
+    MCP Client->>MCP Server: Tool call (blog post draft)
+    MCP Server->>MCP Client: Sampling request (create summary)
+    MCP Client->>LLM: Generate blog post summary
+    LLM->>MCP Client: Summary result
+    MCP Client->>MCP Server: Sampling response (summary)
+    MCP Server->>MCP Client: Complete blog post (draft + summary)
+    MCP Client->>User: Blog post ready
 ```
 
 ### Zahteva za vzorcevanje
 
-Ok, zdaj ko imamo širok pogled na verjeten scenarij, poglejmo zahtevo za vzorcevanje, ki jo strežnik pošlje klientu. Takšna zahteva v formatu JSON-RPC je videti takole:
+V redu, zdaj imamo splošni pogled na verodostojen scenarij, poglejmo zahtevo za vzorcevanje, ki jo strežnik pošlje klientu. Tako izgleda taka zahteva v formatu JSON-RPC:
 
 ```json
 {
@@ -71,7 +71,7 @@ Ok, zdaj ko imamo širok pogled na verjeten scenarij, poglejmo zahtevo za vzorce
     "modelPreferences": {
       "hints": [
         {
-          "name": "claude-3-sonnet"
+          "name": "gpt-5.1"
         }
       ],
       "intelligencePriority": 0.8,
@@ -83,17 +83,17 @@ Ok, zdaj ko imamo širok pogled na verjeten scenarij, poglejmo zahtevo za vzorce
 }
 ```
 
-Tu je nekaj opozoril:
+V tem primeru je nekaj stvari vrednih omeniti:
 
-- Poziv (prompt) v vsebini -> besedilo je naš poziv, ki je navodilo LLM, naj povzame vsebino blog prispevka.
+- Spodbuda, pod content -> text, je naša spodbuda, ki je navodilo LLM za povzema vsebino bloga.
 
-- **modelPreferences**. Ta del je ravno to, priporočilo, kaj konfigurirati v LLM. Uporabnik se lahko odloči, ali sledi tem priporočilom ali jih spremeni. V tem primeru so priporočila glede modela, hitrosti in prioritete inteligence.
-- **systemPrompt**, to je vaš običajen sistemski poziv, ki daje LLM osebnost in vsebuje navodila.
-- **maxTokens**, lastnost, ki pove, koliko žetonov se priporoča uporabiti za to nalogo.
+- **modelPreferences**. Ta razdelek je pravzaprav želja, priporočilo o konfiguraciji, ki naj se uporablja z LLM. Uporabnik lahko izbere, ali bo upošteval ta priporočila ali jih spremenil. V tem primeru so priporočila glede modela, hitrosti in prioritete inteligence.
+- **systemPrompt**, to je običajna sistemska spodbuda, ki vašemu LLM daje osebnost in vsebuje navodila.
+- **maxTokens**, to je še ena lastnost, ki določa, koliko žetonov je priporočljivo uporabiti za to nalogo.
 
 ### Odgovor na vzorcevanje
 
-Ta odgovor pošlje MCP klient nazaj MCP strežniku in je rezultat klica LLM-ja, čakanja na odgovor in nato sestave tega sporočila. Tako izgleda v formatu JSON-RPC:
+Ta odgovor je tisto, kar MCP klient na koncu pošlje nazaj MCP strežniku in je rezultat klientovega klica LLM, počakajte na ta odgovor in nato sestavite to sporočilo. Tako izgleda v JSON-RPC:
 
 ```json
 {
@@ -105,19 +105,22 @@ Ta odgovor pošlje MCP klient nazaj MCP strežniku in je rezultat klica LLM-ja, 
       "type": "text",
       "text": "Here's your abstract <ABSTRACT>"
     },
-    "model": "gpt-5",
+    "model": "gpt-5.1",
     "stopReason": "endTurn"
   }
 }
 ```
 
-Opazite, da je odgovor povzetek blog prispevka, točno kot smo zahtevali. Prav tako opazite, da uporabljen model ni tisti, za katerega smo prosili, ampak "gpt-5" namesto "claude-3-sonnet". To ilustrira, da uporabnik lahko spremeni odločitev o uporabi in da je vaša zahteva za vzorcevanje priporočilo.
+Odgovor je povzetek blog posta, kot je bilo zahtevano. Klient
+je izbral aktivno `gpt-5.1` izvedbo iz strežnikove preference modela;
+preference modela so priporočila, zato lahko klient izbere drugo aktivno
+izvedbo, če je potrebno.
 
-Ok, zdaj ko razumemo glavni potek in koristno nalogo za to "ustvarjanje blog prispevkov + povzetek", poglejmo, kaj moramo storiti, da bo delovalo.
+V redu, zdaj ko razumemo glavni potek in uporabno nalogo za "ustvarjanje blog posta + povzetek", poglejmo, kaj moramo storiti, da to deluje.
 
 ### Vrste sporočil
 
-Sporočila za vzorcevanje niso omejena le na besedilo, lahko pošljete tudi slike in zvočne datoteke. Tako JSON-RPC izgleda drugače:
+Sporočila za vzorcevanje niso omejena samo na besedilo, lahko pa pošljete tudi slike in zvok. Tako JSON-RPC izgleda drugače:
 
 **Besedilo**
 
@@ -138,7 +141,7 @@ Sporočila za vzorcevanje niso omejena le na besedilo, lahko pošljete tudi slik
 }
 ```
 
-**Zvočna vsebina**
+**Vsebina avdia**
 
 ```json
 {
@@ -148,14 +151,14 @@ Sporočila za vzorcevanje niso omejena le na besedilo, lahko pošljete tudi slik
 }
 ```
 
-> OPOMBA: Za trenutni status in navodila za migracijo glejte
-> [zastarelo dokumentacijo o vzorcevanju](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
+> NOTE: Za trenutni status in smernice za migracijo glejte
+> [zastarelo dokumentacijo za vzorcevanje](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Kako nastaviti Vzorcevanje v klientu
+## Kako konfigurirati vzorcevanje v klientu
 
-> Opomba: če gradite samo strežnik, tukaj ne potrebujete veliko narediti.
+> Opomba: če gradite samo strežnik, tukaj ne potrebujete veliko storiti.
 
-V klientu morate funkcijo nastaviti tako:
+V klientu morate funkcijo določiti takole:
 
 ```json
 {
@@ -165,15 +168,15 @@ V klientu morate funkcijo nastaviti tako:
 }
 ```
 
-To bo upoštevano, ko se vaš izbrani klient poveže s strežnikom.
+To se bo nato zaznalo, ko se vaš izbrani klient inicializira s strežnikom.
 
-## Primer vzorcevanja v praksi - Ustvarjanje blog prispevka
+## Primer vzorcevanja v praksi - ustvarjanje blog posta
 
-Skupaj napišimo vzorcevalni strežnik, potrebujemo narediti naslednje:
+Skupaj napišimo vzorčni strežnik, potrebno bo narediti naslednje:
 
-1. Ustvariti orodje na strežniku.
-1. To orodje naj ustvari zahtevo za vzorcevanje.
-1. Orodje naj počaka na odgovor na zahtevo za vzorcevanje klienta.
+1. Ustvarite orodje na strežniku.
+1. Orodje naj ustvari zahtevo za vzorcevanje
+1. Orodje naj počaka na odgovor na klientovo zahtevo za vzorcevanje.
 1. Nato naj se ustvari rezultat orodja.
 
 Poglejmo kodo korak za korakom:
@@ -191,7 +194,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ### -2- Ustvari zahtevo za vzorcevanje
 
-Razširite orodje z naslednjo kodo:
+Razširite orodje s sledečo kodo:
 
 **python**
 
@@ -226,7 +229,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# vrni končni izdelek
+# return the complete product
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -295,7 +298,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # vrni celoten blog objavo
+    # return the complete blog post
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -306,7 +309,7 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# zaženi aplikacijo z: python server.py
+# run app with: python server.py
 ```
 
 ### -5- Testiranje v Visual Studio Code
@@ -314,7 +317,7 @@ if __name__ == "__main__":
 Za testiranje v Visual Studio Code naredite naslednje:
 
 1. Zaženite strežnik v terminalu
-1. Dodajte ga v *mcp.json* (in zagotovite, da se zažene), npr. nekaj takega:
+1. Dodajte ga v *mcp.json* (in zagotovite, da je zagnan), na primer takole:
 
    ```json
    "servers": {
@@ -325,41 +328,41 @@ Za testiranje v Visual Studio Code naredite naslednje:
    }
    ```
 
-1. Vnesite poziv:
+1. Vnesite spodbudo:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Dovolite vzorcevanje. Ob prvem testu boste prejeli dodatno pogovorno okno, ki ga morate sprejeti, nato pa se prikaže običajno okno z prošnjo za zagon orodja.
+1. Omogočite vzorcevanje. Prvič, ko to preizkusite, boste prejeli dodatno pogovorno okno, ki ga boste morali potrditi, nato se bo prikazalo običajno okno, ki vas bo prosilo za zagon orodja.
 
-1. Preverite rezultate. Rezultate boste videli lepo prikazane v GitHub Copilot Chat, lahko pa tudi pregledate surovi JSON odgovor.
+1. Preglejte rezultate. Rezultate boste videli lepo prikazane v GitHub Copilot Chatu, lahko pa tudi pregledate surovi JSON odgovor.
 
-**Bonus**. Orodja Visual Studio Code odlično podpirajo vzorcevanje. Dostop do vzorcevanja na vašem nameščenem strežniku lahko konfigurirate tako:
+**Bonus**. Orodja Visual Studio Code imajo odlično podporo za vzorcevanje. Dostop do vzorcevanja na vašem nameščenem strežniku lahko konfigurirate tako:
 
 1. Pojdite v razdelek z razširitvami.
 1. Izberite ikono zobnika za vaš nameščeni strežnik v razdelku "MCP SERVERS - INSTALLED".
-1 Izberite "Configure Model Access", kjer lahko izbirate, katere modele lahko GitHub Copilot uporablja pri vzorcevanju. Prav tako lahko vidite vse zadnje zahteve za vzorcevanje s klikom na "Show Sampling requests".
+1 Izberite "Configure Model Access", tukaj lahko izberete, katere modele sme GitHub Copilot uporabiti med vzorcevanjem. Prav tako lahko vidite vse zahteve za vzorcevanje nazadnje izvršene tako, da izberete "Show Sampling requests".
 
 ## Naloga
 
-V tej nalogi boste zgradili nekoliko drugačno vzorcevanje, namreč integracijo vzorcevanja, ki podpira generiranje opisa izdelka. Tu je vaš scenarij:
+V tej nalogi boste zgradili malo drugačno vzorecavanje, namreč integracijo vzorcevanja, ki podpira generiranje opisa izdelka. Tukaj je vaš scenarij:
 
-**Scenarij**: delavec v administraciji na e-trgovini potrebuje pomoč, saj ustvarjanje opisov izdelkov traja predolgo. Zato morate zgraditi rešitev, kjer lahko pokličete orodje "create_product" s parametri "title" in "keywords", ki naj generira celoten izdelek vključno z poljem "description", ki naj bo napolnjeno z LLM klienta.
+**Scenarij**: Delo v upravi e-trgovine vzame preveč časa za izdelavo opisov izdelkov. Zato boste zgradili rešitev, kjer pokličete orodje "create_product" s parametri "title" in "keywords" in naj bi proizvedlo celoten izdelek vključno z "description" poljem, ki ga napolni LLM klienta.
 
-NAMIG: uporabite prej naučeno, da sestavite ta strežnik in njegovo orodje z uporabo zahteve za vzorcevanje.
+NAMIG: uporabite, kar ste se naučili prej za konstrukcijo tega strežnika in njegovega orodja z uporabo zahteve za vzorcevanje.
 
 ## Rešitev
 
 [Rešitev](./solution/README.md)
 
-## Ključne ugotovitve
+## Ključne točke
 
-Vzorcevanje je močna funkcija, ki strežniku omogoča, da delegira naloge klientu, kadar potrebuje pomoč LLM.
+Vzorcevanje je zmogljiva funkcija, ki omogoča strežniku, da oddelegira naloge klientu, kadar potrebuje pomoč LLM.
 
 ## Kaj sledi
 
-- [Poglavje 4 - Praktična implementacija](../../04-PracticalImplementation/README.md)
+- [Poglavje 4 - Praktična izvedba](../../04-PracticalImplementation/README.md)
 
 ---
 

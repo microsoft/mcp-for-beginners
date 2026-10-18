@@ -1,27 +1,29 @@
-# Integracija u poduzeću
+# Enterprise integracija
 
-Prilikom izgradnje MCP poslužitelja u kontekstu poduzeća, često je potrebno integrirati se s postojećim AI platformama i servisima. Ovaj odjeljak obuhvaća način integracije MCP-a s poduzećnim sustavima poput Azure OpenAI i Microsoft AI Foundry, omogućujući napredne AI mogućnosti i orkestraciju alata.
+Prilikom izgradnje MCP poslužitelja u kontekstu poduzeća, često je potrebno integrirati se s postojećim AI platformama i uslugama. Ovaj odjeljak objašnjava kako integrirati MCP s poduzećkim sustavima poput Azure OpenAI i Microsoft AI Foundry, omogućujući napredne AI mogućnosti i orkestraciju alata.
 
 ## Uvod
 
-U ovoj lekciji naučit ćete kako integrirati Model Context Protocol (MCP) s poduzećnim AI sustavima, s fokusom na Azure OpenAI i Microsoft AI Foundry. Ove integracije omogućuju vam korištenje moćnih AI modela i alata uz zadržavanje fleksibilnosti i proširivosti MCP-a.
+U ovoj lekciji naučit ćete kako integrirati Model Context Protocol (MCP) s poduzećkim AI sustavima, s fokusom na Azure OpenAI i Microsoft AI Foundry. Ove integracije omogućuju vam da iskoristite moćne AI modele i alate, uz održavanje fleksibilnosti i proširivosti MCP-a.
 
 ## Ciljevi učenja
 
-Na kraju ove lekcije bit ćete u stanju:
+Na kraju ove lekcije moći ćete:
 
 - Integrirati MCP s Azure OpenAI kako biste iskoristili njegove AI mogućnosti.
 - Implementirati orkestraciju MCP alata s Azure OpenAI.
-- Kombinirati MCP s Microsoft AI Foundry za napredne AI agentne sposobnosti.
-- Iskoristiti Azure Machine Learning (ML) za izvršavanje ML cjevovoda i registraciju modela kao MCP alata.
+- Kombinirati MCP s Microsoft AI Foundry za napredne AI agentne mogućnosti.
+- Iskoristiti Azure Machine Learning (ML) za izvođenje ML tokova rada i registraciju modela kao MCP alata.
 
-## Integracija s Azure OpenAI
+## Integracija Azure OpenAI
 
-Azure OpenAI pruža pristup moćnim AI modelima kao što su GPT-4 i drugi. Integracija MCP-a s Azure OpenAI omogućuje vam korištenje tih modela uz zadržavanje fleksibilnosti orkestracije alata MCP-a.
+Microsoft Foundry pruža pristup aktualnim AI modelima poput GPT-5.1.
+Integracija MCP-a s Foundry modelima očuva fleksibilnost orkestracije MCP alata dok se koristi upravljano postavljanje modela.
+
 
 ### Implementacija u C#
 
-U ovom isječku koda prikazujemo kako integrirati MCP s Azure OpenAI koristeći Azure OpenAI SDK.
+U ovom isječku koda demonstriramo kako integrirati MCP s Azure OpenAI koristeći Azure OpenAI SDK.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -91,18 +93,18 @@ U prethodnom kodu smo:
 - Kreirali metodu `GetCompletionWithToolsAsync` za dobivanje dovršetaka s podrškom za alate.
 - Obradili pozive alata u odgovoru.
 
-Potaknuti ste implementirati stvarnu logiku rukovanja alatima na temelju vaše specifične MCP server postavke.
+Preporučujemo da implementirate stvarnu logiku obrade alata prema vašem konkretnom MCP poslužiteljskom okruženju.
 
-## Integracija s Microsoft Foundry
+## Integracija Microsoft Foundry
 
-Microsoft Foundry pruža platformu za izgradnju i implementaciju AI agenata. Integracija MCP-a s Microsoft Foundry omogućuje vam iskorištavanje njegovih sposobnosti uz zadržavanje fleksibilnosti MCP-a.
+Microsoft Foundry pruža platformu za izgradnju i primjenu AI agenata. Integracija MCP-a s Microsoft Foundry omogućava vam da iskoristite njegove mogućnosti uz održavanje fleksibilnosti MCP-a.
 
-U donjem kodu razvijamo integraciju agenta koja obrađuje zahtjeve i rukuje pozivima alata koristeći MCP.
+U donjem kodu razvijamo integraciju agenta koja obrađuje zahtjeve i rukuje pozive alata koristeći MCP.
 
 ### Implementacija u Javi
 
 ```java
-// Integracija Java AI Foundry Agenta
+// Java AI Foundry Agent Integration
 package com.example.mcp.enterprise;
 
 import com.microsoft.aifoundry.AgentClient;
@@ -125,26 +127,26 @@ public class AIFoundryMcpBridge {
     }
     
     public AgentResponse processAgentRequest(AgentRequest request) {
-        // Obradite zahtjev AI Foundry Agenta
+        // Process the AI Foundry Agent request
         AgentResponse initialResponse = agentClient.processRequest(request);
         
-        // Provjerite je li agent zatražio korištenje alata
+        // Check if the agent requested to use tools
         if (initialResponse.getToolCalls() != null && !initialResponse.getToolCalls().isEmpty()) {
-            // Za svaki poziv alata, usmjerite ga na odgovarajući MCP alat
+            // For each tool call, route it to the appropriate MCP tool
             for (AgentToolCall toolCall : initialResponse.getToolCalls()) {
                 String toolName = toolCall.getName();
                 Map<String, Object> parameters = toolCall.getArguments();
                 
-                // Izvršite alat koristeći MCP
+                // Execute the tool using MCP
                 ToolResponse mcpResponse = mcpClient.executeTool(toolName, parameters);
                 
-                // Kreirajte odgovor alata za AI Foundry
+                // Create tool response for AI Foundry
                 AgentToolResponse toolResponse = new AgentToolResponse(
                     toolCall.getId(),
                     mcpResponse.getResult()
                 );
                 
-                // Pošaljite odgovor alata natrag agentu
+                // Submit tool response back to the agent
                 initialResponse = agentClient.submitToolResponse(
                     request.getConversationId(), 
                     toolResponse
@@ -159,18 +161,18 @@ public class AIFoundryMcpBridge {
 
 U prethodnom kodu smo:
 
-- Kreirali klasu `AIFoundryMcpBridge` koja integrira AI Foundry i MCP.
+- Kreirali `AIFoundryMcpBridge` klasu koja integrira AI Foundry i MCP.
 - Implementirali metodu `processAgentRequest` koja obrađuje zahtjev AI Foundry agenta.
-- Rukovali pozivima alata izvršavajući ih preko MCP klijenta i vraćajući rezultate natrag AI Foundry agentu.
+- Obradili pozive alata izvođenjem kroz MCP klijenta i slanjem rezultata natrag AI Foundry agentu.
 
-## Integracija MCP-a s Azure ML
+## Integracija MCP s Azure ML
 
-Integracija MCP-a s Azure Machine Learning (ML) omogućuje vam iskorištavanje moćnih ML mogućnosti Azure-a uz zadržavanje fleksibilnosti MCP-a. Ova integracija može se koristiti za izvršavanje ML cjevovoda, registraciju modela kao alata i upravljanje računalnim resursima.
+Integracija MCP s Azure Machine Learning (ML) omogućuje vam da iskoristite snažne ML mogućnosti Azure-a uz održavanje fleksibilnosti MCP-a. Ova integracija se može koristiti za izvođenje ML tokova rada, registraciju modela kao alata i upravljanje računalnim resursima.
 
 ### Implementacija u Pythonu
 
 ```python
-# Python Azure AI integracija
+# Python Azure AI Integration
 from mcp_client import McpClient
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
@@ -180,10 +182,10 @@ import asyncio
 
 class EnterpriseAiIntegration:
     def __init__(self, mcp_server_url, subscription_id, resource_group, workspace_name):
-        # Postavi MCP klijenta
+        # Set up MCP client
         self.mcp_client = McpClient(server_url=mcp_server_url)
         
-        # Postavi Azure ML klijenta
+        # Set up Azure ML client
         self.credential = DefaultAzureCredential()
         self.ml_client = MLClient(
             self.credential,
@@ -194,7 +196,7 @@ class EnterpriseAiIntegration:
     
     async def execute_ml_pipeline(self, pipeline_name, input_data):
         """Executes an ML pipeline in Azure ML"""
-        # Prvo obradi ulazne podatke koristeći MCP alate
+        # First process the input data using MCP tools
         processed_data = await self.mcp_client.execute_tool(
             "dataPreprocessor",
             {
@@ -203,7 +205,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # Pošalji pipeline na Azure ML
+        # Submit the pipeline to Azure ML
         pipeline_job = self.ml_client.jobs.create_or_update(
             entity={
                 "name": pipeline_name,
@@ -215,7 +217,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # Vrati informacije o zadatku
+        # Return job information
         return {
             "job_id": pipeline_job.id,
             "status": pipeline_job.status,
@@ -224,22 +226,22 @@ class EnterpriseAiIntegration:
     
     async def register_ml_model_as_tool(self, model_name, model_version="latest"):
         """Registers an Azure ML model as an MCP tool"""
-        # Dohvati detalje modela
+        # Get model details
         if model_version == "latest":
             model = self.ml_client.models.get(name=model_name, label="latest")
         else:
             model = self.ml_client.models.get(name=model_name, version=model_version)
         
-        # Kreiraj okruženje za implementaciju
+        # Create deployment environment
         env = Environment(
             name="mcp-model-env",
             conda_file="./environments/inference-env.yml"
         )
         
-        # Postavi računsku snagu
+        # Set up compute
         compute = self.ml_client.compute.get("mcp-inference")
         
-        # Implementiraj model kao online endpoint
+        # Deploy model as online endpoint
         deployment = self.ml_client.online_deployments.create_or_update(
             endpoint_name=f"mcp-{model_name}",
             deployment={
@@ -255,22 +257,22 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # Kreiraj MCP alat schemu temeljenu na schemi modela
+        # Create MCP tool schema based on model schema
         tool_schema = {
             "type": "object",
             "properties": {},
             "required": []
         }
         
-        # Dodaj ulazna svojstva na temelju scheme modela
+        # Add input properties based on model schema
         for input_name, input_spec in model.signature.inputs.items():
             tool_schema["properties"][input_name] = {
                 "type": self._map_ml_type_to_json_type(input_spec.type)
             }
             tool_schema["required"].append(input_name)
         
-        # Registriraj kao MCP alat
-        # U pravoj implementaciji, kreirali biste alat koji poziva endpoint
+        # Register as MCP tool
+        # In a real implementation, you would create a tool that calls the endpoint
         return {
             "model_name": model_name,
             "model_version": model.version,
@@ -293,15 +295,15 @@ class EnterpriseAiIntegration:
 
 U prethodnom kodu smo:
 
-- Kreirali klasu `EnterpriseAiIntegration` koja integrira MCP s Azure ML.
-- Implementirali metodu `execute_ml_pipeline` koja obrađuje ulazne podatke koristeći MCP alate i šalje ML cjevovod u Azure ML.
-- Implementirali metodu `register_ml_model_as_tool` koja registrira Azure ML model kao MCP alat, uključujući stvaranje potrebnog okruženja za implementaciju i računalnih resursa.
-- Mapirali Azure ML vrste podataka na JSON sheme za registraciju alata.
-- Koristili asinhrono programiranje za upravljanje potencijalno dugotrajnim radnjama poput izvršavanja ML cjevovoda i registracije modela.
+- Kreirali `EnterpriseAiIntegration` klasu koja integrira MCP s Azure ML.
+- Implementirali `execute_ml_pipeline` metodu koja obrađuje ulazne podatke koristeći MCP alate i podnosi ML tok rada Azure ML-u.
+- Implementirali `register_ml_model_as_tool` metodu koja registrira Azure ML model kao MCP alat, uključujući kreiranje potrebnog okruženja za implementaciju i računalnih resursa.
+- Mapirali Azure ML tipove podataka u JSON shemu za registraciju alata.
+- Koristili asinkrono programiranje za rukovanje potencijalno dugotrajnim operacijama poput izvođenja ML tokova rada i registracije modela.
 
-## Što je sljedeće
+## Što slijedi
 
-- [5.2 Multimodalnost](../mcp-multi-modality/README.md)
+- [5.2 Višestruka modalnost](../mcp-multi-modality/README.md)
 
 ---
 

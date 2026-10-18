@@ -1,58 +1,66 @@
-> [ZASTARJELO: IZDANJE KANDIDATA 2026-07-28](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/#roots-sampling-and-logging-are-deprecated)
+> [!WARNING]
+> Uzorkovanje je zastarjelo u MCP-u `2026-07-28`. Ova lekcija je zadržana za
+> naslijeđene implementacije. Novi serveri bi trebali izravno integrirati s LLM
+> pružateljem API-ja.
 
-# Uzorkovanje u Model Context Protocolu
+# Uzorkovanje u protokolu konteksta modela
 
-> **Obavijest o zastarijevanju:** specifikacija MCP izdanja kandidata verzije `2026-07-28` označava Uzorkovanje kao zastarjelo u korist izravne integracije s API-jima LLM pružatelja. Uzorkovanje nastavlja funkcionirati u `2025-11-25` i barem godinu dana nakon bilo kojeg formalnog zastarijevanja, tako da je sve u ovom lekciji i dalje valjano - no novi dizajni poslužitelja trebali bi razmotriti zamjenski obrazac. Vidi [Što se mijenja u MCP-u: Izdanju kandidata 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> Uzorkovanje ostaje u specifikaciji `2026-07-28` radi kompatibilnosti i
+> može biti uklonjeno u prvom izdanju nakon 28. srpnja
+> 2027. Primjeri u ovoj lekciji mogu koristiti SDK API-je koji implementiraju `2025-11-25`.
+> Pogledajte [Što se promijenilo u MCP-u: Specifikacija 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Uzorkovanje je moćna značajka MCP-a koja omogućuje poslužiteljima da zahtijevaju LLM dovršetke putem klijenta, omogućujući sofisticirano agentno ponašanje uz održavanje sigurnosti i privatnosti. Prava konfiguracija uzorkovanja dramatično može poboljšati kvalitetu i performanse odgovora. MCP pruža standardizirani način za kontrolu kako modeli generiraju tekst s određenim parametrima koji utječu na slučajnost, kreativnost i koherentnost.
+U naslijeđenim MCP implementacijama, Uzorkovanje omogućuje poslužiteljima da zatraže LLM
+dovršetke putem klijenta. Ova lekcija objašnjava taj zastarjeli protokol
+za kompatibilnost i migracijski rad.
 
 ## Uvod
 
-U ovoj lekciji istražit ćemo kako konfigurirati parametre uzorkovanja u MCP zahtjevima i razumjeti osnovnu protokolarnu mehaniku uzorkovanja.
+U ovoj lekciji istražit ćemo kako konfigurirati parametre uzorkovanja u MCP zahtjevima i razumjeti osnovnu mehaniku protokola uzorkovanja.
 
 ## Ciljevi učenja
 
-Do kraja ove lekcije moći ćete:
+Na kraju ove lekcije bit ćete sposobni:
 
 - Razumjeti ključne parametre uzorkovanja dostupne u MCP-u.
 - Konfigurirati parametre uzorkovanja za različite slučajeve upotrebe.
 - Implementirati determinističko uzorkovanje za reproducibilne rezultate.
-- Dinamički prilagoditi parametre uzorkovanja na temelju konteksta i korisničkih preferencija.
-- Primijeniti strategije uzorkovanja za unapređenje performansi modela u različitim scenarijima.
-- Razumjeti kako uzorkovanje funkcionira u protoku klijent-poslužitelj MCP-a.
+- Dinamički prilagođavati parametre uzorkovanja na temelju konteksta i korisničkih preferencija.
+- Primijeniti strategije uzorkovanja za poboljšanje performansi modela u različitim scenarijima.
+- Razumjeti kako uzorkovanje funkcionira u klijent-poslužitelj tijeku MCP-a.
 
 ## Kako uzorkovanje funkcionira u MCP-u
 
 Tijek uzorkovanja u MCP-u slijedi ove korake:
 
-1. Poslužitelj šalje `sampling/createMessage` zahtjev klijentu
-2. Klijent pregledava zahtjev i može ga modificirati
+1. Poslužitelj šalje zahtjev `sampling/createMessage` klijentu
+2. Klijent pregledava zahtjev i može ga izmijeniti
 3. Klijent uzorkuje iz LLM-a
 4. Klijent pregledava dovršetak
 5. Klijent vraća rezultat poslužitelju
 
-Ovaj dizajn sa sudjelovanjem čovjeka osigurava da korisnici zadržavaju kontrolu nad onim što LLM vidi i generira.
+Ovaj dizajn s uključenim čovjekom u petlju osigurava da korisnici zadrže kontrolu nad onim što LLM vidi i generira.
 
 ## Pregled parametara uzorkovanja
 
-MCP definira sljedeće parametre uzorkovanja koje je moguće konfigurirati u zahtjevima klijenta:
+MCP definira sljedeće parametre uzorkovanja koje je moguće konfigurirati u klijentskim zahtjevima:
 
 | Parametar | Opis | Tipični raspon |
 |-----------|-------------|---------------|
-| `temperature` | Kontrolira slučajnost u izboru tokena | 0.0 - 1.0 |
-| `maxTokens` | Najveći broj tokena za generiranje | Cijela vrijednost |
-| `stopSequences` | Prilagođene sekvence koje zaustavljaju generiranje kad se pojave | Niz stringova |
-| `metadata` | Dodatni parametri specifični za pružatelja | JSON objekt |
+| `temperature` | Kontrolira slučajnost u odabiru tokena | 0.0 - 1.0 |
+| `maxTokens` | Maksimalan broj tokena za generiranje | Cijeli broj |
+| `stopSequences` | Prilagođeni nizovi koji zaustavljaju generiranje kad se naiđe na njih | Niz stringova |
+| `metadata` | Dodatni parametri specifični za pružatelja usluge | JSON objekt |
 
-Mnogi LLM pružatelji podržavaju dodatne parametre putem polja `metadata`, koja mogu uključivati:
+Mnogi pružatelji LLM-a podržavaju dodatne parametre kroz polje `metadata`, koji mogu uključivati:
 
-| Uobičajeni prošireni parametar | Opis | Tipični raspon |
+| Uobičajeni parametar proširenja | Opis | Tipični raspon |
 |-----------|-------------|---------------|
-| `top_p` | Nucleus sampling - ograničava tokene na vrhovnu kumulativnu vjerojatnost | 0.0 - 1.0 |
-| `top_k` | Ograničava izbor tokena na top K opcija | 1 - 100 |
-| `presence_penalty` | Kažnjava tokene na temelju njihovog prisustva u tekstu do sada | -2.0 - 2.0 |
-| `frequency_penalty` | Kažnjava tokene na temelju njihove učestalosti u tekstu do sada | -2.0 - 2.0 |
-| `seed` | Specifičan slučajni početni broj za reproducibilne rezultate | Cijela vrijednost |
+| `top_p` | Nukleus uzorkovanje - ograničava tokene na vrh kumulativne vjerojatnosti | 0.0 - 1.0 |
+| `top_k` | Ograničava odabir tokena na top K opcija | 1 - 100 |
+| `presence_penalty` | Penalizira tokene na temelju njihove prisutnosti u tekstu dosad | -2.0 - 2.0 |
+| `frequency_penalty` | Penalizira tokene na temelju njihove učestalosti u tekstu dosad | -2.0 - 2.0 |
+| `seed` | Specifični slučajni seed za reproducibilne rezultate | Cijeli broj |
 
 ## Primjer formata zahtjeva
 
@@ -95,40 +103,40 @@ Klijent vraća rezultat dovršetka:
 }
 ```
 
-## Kontrole sudjelovanja čovjeka
+## Kontrole s uključenim čovjekom u petlju
 
-MCP uzorkovanje je dizajnirano s ljudskom nadzorom na umu:
+MCP uzorkovanje je dizajnirano imajući na umu ljudski nadzor:
 
 - **Za upite**:
-  - Klijenti bi trebali prikazivati korisnicima predloženi upit
-  - Korisnici bi trebali moći mijenjati ili odbacivati upite
-  - Sistemski upiti mogu biti filtrirani ili modificirani
+  - Klijenti bi trebali pokazati korisnicima predloženi upit
+  - Korisnici bi trebali moći modificirati ili odbiti upite
+  - Sustavni upiti mogu biti filtrirani ili izmijenjeni
   - Uključivanje konteksta kontrolira klijent
 
 - **Za dovršetke**:
-  - Klijenti bi trebali prikazivati korisnicima dovršetak
-  - Korisnici bi trebali moći mijenjati ili odbacivati dovršetke
-  - Klijenti mogu filtrirati ili mijenjati dovršetke
-  - Korisnici kontroliraju koji se model koristi
+  - Klijenti bi trebali pokazati korisnicima dovršetak
+  - Korisnici bi trebali moći modificirati ili odbiti dovršetke
+  - Klijenti mogu filtrirati ili modificirati dovršetke
+  - Korisnici kontroliraju koji model se koristi
 
-S ovim principima na umu, pogledajmo kako implementirati uzorkovanje u različitim programskim jezicima, fokusirajući se na parametre koje uglavnom podržavaju svi LLM pružatelji.
+Imajući na umu ove principe, pogledajmo kako implementirati uzorkovanje u različitim programskim jezicima, fokusirajući se na parametre koje inače podržavaju pružatelji LLM-a.
 
-## Sigurnosne napomene
+## Sigurnosni razlozi
 
-Kada implementirate uzorkovanje u MCP-u, uzmite u obzir ove najbolje sigurnosne prakse:
+Pri implementaciji uzorkovanja u MCP imajte na umu ove sigurnosne najbolje prakse:
 
-- **Provjerite sav sadržaj poruka** prije slanja klijentu
+- **Provjerite sav sadržaj poruke** prije slanja klijentu
 - **Očistite osjetljive informacije** iz upita i dovršetaka
-- **Primijenite ograničenja brzine** da spriječite zloupotrebe
-- **Nadzor upotrebe uzorkovanja** za neuobičajene obrasce
+- **Implementirajte ograničenja brzine** da spriječite zloupotrebu
+- **Nadzirite korištenje uzorkovanja** radi neobičnih uzoraka
 - **Šifrirajte podatke u prijenosu** koristeći sigurne protokole
-- **Upravljajte privatnošću korisničkih podataka** u skladu s relevantnim propisima
-- **Revizija zahtjeva za uzorkovanje** zbog usklađenosti i sigurnosti
-- **Kontrola izloženosti troškovima** s odgovarajućim ograničenjima
-- **Implementacija vremenskih ograničenja** za zahtjeve uzorkovanja
-- **Upravljanje pogreškama modela s prikladnim rezervnim opcijama**
+- **Rukujte privatnošću korisničkih podataka** prema odgovarajućim propisima
+- **Revizija zahtjeva za uzorkovanje** radi usklađenosti i sigurnosti
+- **Kontrolirajte izloženost troškovima** odgovarajućim ograničenjima
+- **Implementirajte vremenska ograničenja** za zahtjeve uzorkovanja
+- **Rukujte pogreškama modela iskreno** s odgovarajućim rezervnim rješenjima
 
-Parametri uzorkovanja omogućuju fino podešavanje ponašanja jezičnih modela radi postizanja željene ravnoteže između determinističkih i kreativnih izlaza.
+Parametri uzorkovanja omogućuju fino podešavanje ponašanja jezičnih modela kako bi se postigla željena ravnoteža između determinističkih i kreativnih izlaza.
 
 Pogledajmo kako konfigurirati ove parametre u različitim programskim jezicima.
 
@@ -171,46 +179,46 @@ public class SamplingExample
 U prethodnom kodu smo:
 
 - Kreirali MCP klijenta s određenim URL-om poslužitelja.
-- Konfigurirali zahtjev s parametrima uzorkovanja kao što su `temperature`, `top_p` i `top_k`.
+- Konfigurirali zahtjev s parametrima za uzorkovanje kao što su `temperature`, `top_p` i `top_k`.
 - Poslali zahtjev i ispisali generirani tekst.
-- Koristili smo:
-    - `allowedTools` za specificiranje koje alate model može koristiti tijekom generiranja. U ovom slučaju, dozvolili smo alate `ideaGenerator` i `marketAnalyzer` za pomoć u generiranju kreativnih ideja za aplikacije.
+- Koristili:
+    - `allowedTools` da specificiramo koje alate model može koristiti tijekom generiranja. U ovom slučaju dopustili smo alate `ideaGenerator` i `marketAnalyzer` da pomognu u generiranju kreativnih ideja za aplikacije.
     - `frequencyPenalty` i `presencePenalty` za kontrolu ponavljanja i raznolikosti u izlazu.
-    - `temperature` za kontrolu slučajnosti izlaza, gdje veće vrijednosti vode do kreativnijih odgovora.
-    - `top_p` za ograničenje izbora tokena na one koji doprinose vrhovnoj kumulativnoj vjerojatnosti, poboljšavajući kvalitetu generiranog teksta.
-    - `top_k` za ograničenje modela na top K najvjerojatnije tokene, što može pomoći u stvaranju koherentnijih odgovora.
+    - `temperature` za kontrolu slučajnosti izlaza, gdje veće vrijednosti vode ka kreativnijim odgovorima.
+    - `top_p` za ograničavanje odabira tokena na one koji pridonose vrhu kumulativne vjerojatnosti mase, poboljšavajući kvalitetu generiranog teksta.
+    - `top_k` za ograničavanje modela na top K najvjerojatnijih tokena, što može pomoći u generiranju koherentnijih odgovora.
     - `frequencyPenalty` i `presencePenalty` za smanjenje ponavljanja i poticanje raznolikosti u generiranom tekstu.
 
 # [JavaScript](#tab/javascript)
 
 ```javascript
-// JavaScript primjer: Konfiguracija temperature i Top-P uzorkovanja
+// JavaScript Example: Temperature and Top-P sampling configuration
 const { McpClient } = require('@mcp/client');
 
 async function demonstrateSampling() {
-  // Inicijaliziraj MCP klijenta
+  // Initialize the MCP client
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com',
     apiKey: process.env.MCP_API_KEY
   });
   
-  // Konfiguriraj zahtjev s različitim parametrima uzorkovanja
+  // Configure request with different sampling parameters
   const creativeSampling = {
-    temperature: 0.9,    // Viša temperatura = veća slučajnost/kreativnost
-    topP: 0.92,          // Uzmite u obzir tokene s 92% ukupne vjerojatnosti
-    frequencyPenalty: 0.6, // Smanji ponavljanje sekvenci tokena
-    presencePenalty: 0.4   // Kazni tokene koji su se do sada pojavili u tekstu
+    temperature: 0.9,    // Higher temperature = more randomness/creativity
+    topP: 0.92,          // Consider tokens with top 92% probability mass
+    frequencyPenalty: 0.6, // Reduce repetition of token sequences
+    presencePenalty: 0.4   // Penalize tokens that have appeared in the text so far
   };
   
   const factualSampling = {
-    temperature: 0.2,    // Niža temperatura = više deterministički/činjenični
-    topP: 0.85,          // Malo fokusiraniji odabir tokena
-    frequencyPenalty: 0.2, // Minimalna kazna za ponavljanje
-    presencePenalty: 0.1   // Minimalna kazna za prisutnost
+    temperature: 0.2,    // Lower temperature = more deterministic/factual
+    topP: 0.85,          // Slightly more focused token selection
+    frequencyPenalty: 0.2, // Minimal repetition penalty
+    presencePenalty: 0.1   // Minimal presence penalty
   };
   
   try {
-    // Pošalji dva zahtjeva s različitim konfiguracijama uzorkovanja
+    // Send two requests with different sampling configurations
     const creativeResponse = await client.sendPrompt(
       "Generate innovative ideas for sustainable urban transportation",
       {
@@ -244,54 +252,54 @@ demonstrateSampling();
 U prethodnom kodu smo:
 
 - Inicijalizirali MCP klijenta s URL-om poslužitelja i API ključem.
-- Konfigurirali dvije skupine parametara uzorkovanja: jednu za kreativne zadatke, drugu za faktografske.
-- Poslali zahtjeve s ovim konfiguracijama, dopuštajući modelu korištenje specifičnih alata za svaki zadatak.
+- Konfigurirali dva seta parametara uzorkovanja: jedan za kreativne zadatke, drugi za faktualne zadatke.
+- Poslali zahtjeve s ovim konfiguracijama, dopuštajući modelu da koristi specifične alate za svaki zadatak.
 - Ispisali generirane odgovore da demonstriramo učinke različitih parametara uzorkovanja.
-- Koristili `allowedTools` kako bismo naveli koje alate model može koristiti tijekom generiranja. U ovom slučaju, dozvolili smo `ideaGenerator` i `environmentalImpactTool` za kreativne zadatke, te `factChecker` i `dataAnalysisTool` za faktografske zadatke.
-- Koristili `temperature` za kontrolu slučajnosti izlaza, gdje veće vrijednosti vode do kreativnijih odgovora.
-- Koristili `top_p` za ograničenje izbora tokena na one koji doprinose vrhovnoj kumulativnoj vjerojatnosti, poboljšavajući kvalitetu generiranog teksta.
+- Koristili `allowedTools` da specificiramo koje alate model može koristiti tijekom generiranja. U ovom slučaju dopustili smo `ideaGenerator` i `environmentalImpactTool` za kreativne zadatke, te `factChecker` i `dataAnalysisTool` za faktualne zadatke.
+- Koristili `temperature` da kontroliramo slučajnost izlaza, gdje veće vrijednosti vode ka kreativnijim odgovorima.
+- Koristili `top_p` za ograničavanje odabira tokena na one koji pridonose vrhu kumulativne vjerojatnosti mase, poboljšavajući kvalitetu generiranog teksta.
 - Koristili `frequencyPenalty` i `presencePenalty` za smanjenje ponavljanja i poticanje raznolikosti u izlazu.
-- Koristili `top_k` za ograničenje modela na top K najvjerojatnije tokene, što može pomoći u stvaranju koherentnijih odgovora.
+- Koristili `top_k` za ograničenje modela na top K najvjerojatnijih tokena, što može pomoći u generiranju koherentnijih odgovora.
 
 ---
 
 ## Determinističko uzorkovanje
 
-Za aplikacije koje zahtijevaju dosljedne izlaze, determinističko uzorkovanje osigurava reproducibilne rezultate. To postiže upotrebom fiksnog slučajnog sjemena i postavljanjem temperature na nulu.
+Za aplikacije koje zahtijevaju dosljedne izlaze, determinističko uzorkovanje osigurava reproducibilne rezultate. To čini korištenjem fiksiranog slučajnog seeda i postavljanjem temperature na nulu.
 
-Pogledajmo primjer implementacije u nastavku za demonstraciju determinističkog uzorkovanja u različitim programskim jezicima.
+Pogledajmo dolje primjerni primjer implementacije koji demonstrira determinističko uzorkovanje u različitim programskim jezicima.
 
 # [Java](#tab/java)
 
 ```java
-// Primjer u Javi: Deterministički odgovori s fiksnim sjeme
+// Java Example: Deterministic responses with fixed seed
 public class DeterministicSamplingExample {
     public void demonstrateDeterministicResponses() {
         McpClient client = new McpClient.Builder()
             .setServerUrl("https://mcp-server-example.com")
             .build();
             
-        long fixedSeed = 12345; // Korištenje fiksnog sjemena za determinističke rezultate
+        long fixedSeed = 12345; // Using a fixed seed for deterministic results
         
-        // Prvi zahtjev s fiksnim sjemenom
+        // First request with fixed seed
         McpRequest request1 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
-            .setTemperature(0.0) // Temperatura nula za maksimalnu determinističnost
+            .setTemperature(0.0) // Zero temperature for maximum determinism
             .build();
             
-        // Drugi zahtjev s istim sjemenom
+        // Second request with the same seed
         McpRequest request2 = new McpRequest.Builder()
             .setPrompt("Generate a random number between 1 and 100")
             .setSeed(fixedSeed)
             .setTemperature(0.0)
             .build();
         
-        // Izvrši oba zahtjeva
+        // Execute both requests
         McpResponse response1 = client.sendRequest(request1);
         McpResponse response2 = client.sendRequest(request2);
         
-        // Odgovori bi trebali biti identični zbog istog sjemena i temperature=0
+        // Responses should be identical due to same seed and temperature=0
         System.out.println("Response 1: " + response1.getGeneratedText());
         System.out.println("Response 2: " + response2.getGeneratedText());
         System.out.println("Are responses identical: " + 
@@ -302,17 +310,17 @@ public class DeterministicSamplingExample {
 
 U prethodnom kodu smo:
 
-- Kreirali MCP klijenta sa specificiranim URL-om poslužitelja.
-- Konfigurirali dva zahtjeva s istim upitom, fiksnim sjemenom i temperaturom nula.
+- Kreirali MCP klijenta s određenim URL-om poslužitelja.
+- Konfigurirali dva zahtjeva s istim upitom, fiksiranim seed-om i temperaturom nula.
 - Poslali oba zahtjeva i ispisali generirani tekst.
-- Demonstrirali da su odgovori identični zbog determinističke prirode konfiguracije uzorkovanja (isto sjeme i temperatura).
-- Koristili `setSeed` za specificiranje fiksnog slučajnog sjemena, osiguravajući da model uvijek generira isti izlaz za isti unos.
-- Postavili `temperature` na nulu da zajamče maksimalni deterministički rezultat, što znači da model uvijek bira najvjerojatniji sljedeći token bez slučajnosti.
+- Demonstrirali da su odgovori identični zbog determinističke prirode konfiguracije uzorkovanja (isti seed i temperatura).
+- Koristili `setSeed` da specificiramo fiksirani slučajni seed, osiguravajući da model uvijek generira isti izlaz za isti unos.
+- Postavili `temperature` na nulu da osiguramo maksimalnu determinističnost, što znači da će model uvijek odabrati najvjerojatniji sljedeći token bez slučajnosti.
 
 # [JavaScript](#tab/javascript-deterministic)
 
 ```javascript
-// JavaScript primjer: Deterministički odgovori s kontrolom sjemena
+// JavaScript Example: Deterministic responses with seed control
 const { McpClient } = require('@mcp/client');
 
 async function deterministicSampling() {
@@ -324,19 +332,19 @@ async function deterministicSampling() {
   const prompt = "Generate a random password with 8 characters";
   
   try {
-    // Prvi zahtjev s fiksnim sjemenom
+    // First request with fixed seed
     const response1 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
-      temperature: 0.0  // Temperatura nula za maksimalni determinizam
+      temperature: 0.0  // Zero temperature for maximum determinism
     });
     
-    // Drugi zahtjev s istim sjemenom i temperaturom
+    // Second request with same seed and temperature
     const response2 = await client.sendPrompt(prompt, {
       seed: fixedSeed,
       temperature: 0.0
     });
     
-    // Treći zahtjev s različitim sjemenom ali istom temperaturom
+    // Third request with different seed but same temperature
     const response3 = await client.sendPrompt(prompt, {
       seed: 67890,
       temperature: 0.0
@@ -359,25 +367,25 @@ deterministicSampling();
 U prethodnom kodu smo:
 
 - Inicijalizirali MCP klijenta s URL-om poslužitelja.
-- Konfigurirali dva zahtjeva s istim upitom, fiksnim sjemenom i temperaturom nula.
+- Konfigurirali dva zahtjeva s istim upitom, fiksiranim seed-om i temperaturom nula.
 - Poslali oba zahtjeva i ispisali generirani tekst.
-- Demonstrirali da su odgovori identični zbog determinističke prirode konfiguracije uzorkovanja (isto sjeme i temperatura).
-- Koristili `seed` za specificiranje fiksnog slučajnog sjemena, osiguravajući da model uvijek generira isti izlaz za isti unos.
-- Postavili `temperature` na nulu da zajamče maksimalni deterministički rezultat, što znači da model uvijek bira najvjerojatniji sljedeći token bez slučajnosti.
-- Koristili drugačije sjeme za treći zahtjev da pokažemo kako promjena sjemena dovodi do različitih izlaza, čak i sa istim upitom i temperaturom.
+- Demonstrirali da su odgovori identični zbog determinističke prirode konfiguracije uzorkovanja (isti seed i temperatura).
+- Koristili `seed` da specificiramo fiksirani slučajni seed, osiguravajući da model uvijek generira isti izlaz za isti unos.
+- Postavili `temperature` na nulu da osiguramo maksimalnu determinističnost, što znači da će model uvijek odabrati najvjerojatniji sljedeći token bez slučajnosti.
+- Koristili drugi seed za treći zahtjev da pokažemo da promjena seeda vodi različitim izlazima, čak i s istim upitom i temperaturom.
 
 ---
 
 ## Dinamička konfiguracija uzorkovanja
 
-Inteligentno uzorkovanje prilagođava parametre na temelju konteksta i zahtjeva svakog zahtjeva. To znači dinamičko podešavanje parametara kao što su temperatura, top_p i kazne na temelju vrste zadatka, korisničkih preferencija ili povijesnih rezultata.
+Inteligentno uzorkovanje prilagođava parametre na temelju konteksta i zahtjeva svakog zahtjeva. To znači dinamičko podešavanje parametara poput temperature, top_p i kazni na temelju tipa zadatka, korisničkih preferencija ili povijesnih performansi.
 
 Pogledajmo kako implementirati dinamičko uzorkovanje u različitim programskim jezicima.
 
 # [Python](#tab/python)
 
 ```python
-# Python Primjer: Dinamično uzorkovanje temeljeno na kontekstu zahtjeva
+# Python Example: Dynamic sampling based on request context
 class DynamicSamplingService:
     def __init__(self, mcp_client):
         self.client = mcp_client
@@ -385,7 +393,7 @@ class DynamicSamplingService:
     async def generate_with_adaptive_sampling(self, prompt, task_type, user_preferences=None):
         """Uses different sampling strategies based on task type and user preferences"""
         
-        # Definirajte presete uzorkovanja za različite vrste zadataka
+        # Define sampling presets for different task types
         sampling_presets = {
             "creative": {"temperature": 0.9, "top_p": 0.95, "frequency_penalty": 0.7},
             "factual": {"temperature": 0.2, "top_p": 0.85, "frequency_penalty": 0.2},
@@ -393,22 +401,22 @@ class DynamicSamplingService:
             "analytical": {"temperature": 0.4, "top_p": 0.92, "frequency_penalty": 0.3}
         }
         
-        # Odaberite osnovni preset
+        # Select base preset
         sampling_params = sampling_presets.get(task_type, sampling_presets["factual"])
         
-        # Prilagodite prema korisničkim preferencijama ako su dostupne
+        # Adjust based on user preferences if provided
         if user_preferences:
             if "creativity_level" in user_preferences:
-                # Skalirajte temperaturu prema preferenciji kreativnosti (1-10)
+                # Scale temperature based on creativity preference (1-10)
                 creativity = min(max(user_preferences["creativity_level"], 1), 10) / 10
                 sampling_params["temperature"] = 0.1 + (0.9 * creativity)
             
             if "diversity" in user_preferences:
-                # Prilagodite top_p prema željenoj raznolikosti odgovora
+                # Adjust top_p based on desired response diversity
                 diversity = min(max(user_preferences["diversity"], 1), 10) / 10
                 sampling_params["top_p"] = 0.6 + (0.39 * diversity)
         
-        # Kreirajte i pošaljite zahtjev s prilagođenim parametrima uzorkovanja
+        # Create and send request with custom sampling parameters
         response = await self.client.send_request(
             prompt=prompt,
             temperature=sampling_params["temperature"],
@@ -416,7 +424,7 @@ class DynamicSamplingService:
             frequency_penalty=sampling_params["frequency_penalty"]
         )
         
-        # Vratite odgovor s metadata uzorkovanja za transparentnost
+        # Return response with sampling metadata for transparency
         return {
             "text": response.generated_text,
             "applied_sampling": sampling_params,
@@ -426,30 +434,30 @@ class DynamicSamplingService:
 
 U prethodnom kodu smo:
 
-- Kreirali klasu `DynamicSamplingService` koja upravlja prilagodljivim uzorkovanjem.
-- Definirali uzorkovne presete za različite vrste zadataka (kreativni, faktografski, kodni, analitički).
-- Odabrali osnovni preset uzorkovanja na temelju vrste zadatka.
-- Prilagodili parametre uzorkovanja prema korisničkim preferencijama, poput razine kreativnosti i raznolikosti.
+- Kreirali klasu `DynamicSamplingService` koja upravlja adaptivnim uzorkovanjem.
+- Definirali predloške uzorkovanja za različite vrste zadataka (kreativni, faktualni, kod, analitički).
+- Odabrali osnovni predložak uzorkovanja na temelju vrste zadatka.
+- Prilagodili parametre uzorkovanja na temelju korisničkih preferencija, poput razine kreativnosti i raznolikosti.
 - Poslali zahtjev s dinamički konfiguriranim parametrima uzorkovanja.
 - Vratili generirani tekst zajedno s primijenjenim parametrima uzorkovanja i vrstom zadatka radi transparentnosti.
-- Koristili `temperature` za kontrolu slučajnosti izlaza, gdje veće vrijednosti vode do kreativnijih odgovora.
-- Koristili `top_p` za ograničenje izbora tokena na one koji doprinose vrhovnoj kumulativnoj vjerojatnosti, poboljšavajući kvalitetu generiranog teksta.
+- Koristili `temperature` da kontroliramo slučajnost izlaza, gdje veće vrijednosti vode ka kreativnijim odgovorima.
+- Koristili `top_p` za ograničavanje odabira tokena na one koji pridonose vrhu kumulativne vjerojatnosti mase, poboljšavajući kvalitetu generiranog teksta.
 - Koristili `frequency_penalty` za smanjenje ponavljanja i poticanje raznolikosti u izlazu.
-- Koristili `user_preferences` za omogućavanje prilagodbe parametara uzorkovanja na temelju korisnički definirane razine kreativnosti i raznolikosti.
-- Koristili `task_type` za određivanje primjerene strategije uzorkovanja za zahtjev, dopuštajući preciznije odgovore bazirane na prirodi zadatka.
-- Koristili metodu `send_request` za slanje upita s konfiguriranim parametrima uzorkovanja, osiguravajući da model generira tekst prema specificiranim zahtjevima.
-- Koristili `generated_text` za dohvaćanje odgovora modela, koji se zatim vraća zajedno s parametrima uzorkovanja i vrstom zadatka za daljnju analizu ili prikaz.
-- Koristili funkcije `min` i `max` da osiguramo da su korisničke preferencije ograničene unutar valjanih raspona, sprječavajući nevaljane konfiguracije uzorkovanja.
+- Koristili `user_preferences` za omogućavanje prilagodbe parametara uzorkovanja na temelju definirane razine kreativnosti i raznolikosti korisnika.
+- Koristili `task_type` da odredimo odgovarajuću strategiju uzorkovanja za zahtjev, dopuštajući preciznije odgovore na temelju prirode zadatka.
+- Koristili metodu `send_request` za slanje upita s konfiguriranim parametrima uzorkovanja, osiguravajući da model generira tekst prema zadanim zahtjevima.
+- Koristili `generated_text` za dohvat odgovora modela, koji se zatim vraća zajedno s parametrima uzorkovanja i vrstom zadatka radi daljnje analize ili prikaza.
+- Koristili funkcije `min` i `max` da osiguramo da su korisničke preferencije ograničene unutar valjanih raspona, sprječavajući nevažeće konfiguracije uzorkovanja.
 
 # [JavaScript Dinamički](#tab/javascript-dynamic)
 
 ```javascript
-// JavaScript primjer: Dinamička konfiguracija uzorkovanja temeljena na korisničkom kontekstu
+// JavaScript Example: Dynamic sampling configuration based on user context
 class AdaptiveSamplingManager {
   constructor(mcpClient) {
     this.client = mcpClient;
     
-    // Definirajte osnovne profile uzorkovanja
+    // Define base sampling profiles
     this.samplingProfiles = {
       creative: { temperature: 0.85, topP: 0.94, frequencyPenalty: 0.7, presencePenalty: 0.5 },
       factual: { temperature: 0.2, topP: 0.85, frequencyPenalty: 0.3, presencePenalty: 0.1 },
@@ -457,15 +465,15 @@ class AdaptiveSamplingManager {
       conversational: { temperature: 0.7, topP: 0.9, frequencyPenalty: 0.6, presencePenalty: 0.4 }
     };
     
-    // Pratite povijesne performanse
+    // Track historical performance
     this.performanceHistory = [];
   }
   
-  // Otkrivanje vrste zadatka iz upita
+  // Detect task type from prompt
   detectTaskType(prompt, context = {}) {
     const promptLower = prompt.toLowerCase();
     
-    // Jednostavna heuristička detekcija - može se poboljšati klasifikacijom strojnog učenja
+    // Simple heuristic detection - could be enhanced with ML classification
     if (context.taskType) return context.taskType;
     
     if (promptLower.includes('code') || 
@@ -486,57 +494,57 @@ class AdaptiveSamplingManager {
       return 'creative';
     }
     
-    // Zadano na razgovorni način ako nije otkrivena jasna vrsta
+    // Default to conversational if no clear type is detected
     return 'conversational';
   }
   
-  // Izračunajte parametre uzorkovanja temeljeno na kontekstu i korisničkim postavkama
+  // Calculate sampling parameters based on context and user preferences
   getSamplingParameters(prompt, context = {}) {
-    // Otkrivanje vrste zadatka
+    // Detect the type of task
     const taskType = this.detectTaskType(prompt, context);
     
-    // Dohvati osnovni profil
+    // Get base profile
     let params = {...this.samplingProfiles[taskType]};
     
-    // Prilagodba temeljem korisničkih preferencija
+    // Adjust based on user preferences
     if (context.userPreferences) {
       const { creativity, precision, consistency } = context.userPreferences;
       
       if (creativity !== undefined) {
-        // Skaliranje s 1-10 na odgovarajući raspon temperature
+        // Scale from 1-10 to appropriate temperature range
         params.temperature = 0.1 + (creativity * 0.09); // 0.1-1.0
       }
       
       if (precision !== undefined) {
-        // Veća preciznost znači manji topP (fokusiraniji odabir)
+        // Higher precision means lower topP (more focused selection)
         params.topP = 1.0 - (precision * 0.05); // 0.5-1.0
       }
       
       if (consistency !== undefined) {
-        // Veća konzistentnost znači manje kazni
+        // Higher consistency means lower penalties
         params.frequencyPenalty = 0.1 + ((10 - consistency) * 0.08); // 0.1-0.9
       }
     }
     
-    // Primijeni naučene prilagodbe iz povijesti performansi
+    // Apply learned adjustments from performance history
     this.applyLearnedAdjustments(params, taskType);
     
     return params;
   }
   
   applyLearnedAdjustments(params, taskType) {
-    // Jednostavna prilagodljiva logika - može se poboljšati sofisticiranijim algoritmima
+    // Simple adaptive logic - could be enhanced with more sophisticated algorithms
     const relevantHistory = this.performanceHistory
       .filter(entry => entry.taskType === taskType)
-      .slice(-5); // Razmotri samo nedavnu povijest
+      .slice(-5); // Only consider recent history
     
     if (relevantHistory.length > 0) {
-      // Izračunaj prosječne ocjene performansi
+      // Calculate average performance scores
       const avgScore = relevantHistory.reduce((sum, entry) => sum + entry.score, 0) / relevantHistory.length;
       
-      // Ako su performanse ispod praga, prilagodi parametre
+      // If performance is below threshold, adjust parameters
       if (avgScore < 0.7) {
-        // Blaga prilagodba prema sigurnijim vrijednostima
+        // Slight adjustment toward safer values
         params.temperature = Math.max(params.temperature * 0.9, 0.1);
         params.topP = Math.max(params.topP * 0.95, 0.5);
       }
@@ -544,32 +552,32 @@ class AdaptiveSamplingManager {
   }
   
   recordPerformance(prompt, samplingParams, response, score) {
-    // Zabilježi performanse za buduće prilagodbe
+    // Record performance for future adjustments
     this.performanceHistory.push({
       timestamp: Date.now(),
       taskType: this.detectTaskType(prompt),
       samplingParams,
       responseLength: response.generatedText.length,
-      score // Ocjena kvalitete odgovora od 0 do 1
+      score // 0-1 rating of response quality
     });
     
-    // Ograniči veličinu povijesti
+    // Limit history size
     if (this.performanceHistory.length > 100) {
       this.performanceHistory.shift();
     }
   }
   
   async generateResponse(prompt, context = {}) {
-    // Dohvati optimizirane parametre uzorkovanja
+    // Get optimized sampling parameters
     const samplingParams = this.getSamplingParameters(prompt, context);
     
-    // Pošalji zahtjev s optimiziranim parametrima
+    // Send request with optimized parameters
     const response = await this.client.sendPrompt(prompt, {
       ...samplingParams,
       allowedTools: context.allowedTools || []
     });
     
-    // Ako korisnik da povratnu informaciju, zabilježi je za buduću optimizaciju
+    // If user provides feedback, record it for future optimization
     if (context.recordPerformance) {
       this.recordPerformance(prompt, samplingParams, response, context.feedbackScore || 0.5);
     }
@@ -582,7 +590,7 @@ class AdaptiveSamplingManager {
   }
 }
 
-// Primjer korištenja
+// Example usage
 async function demonstrateAdaptiveSampling() {
   const client = new McpClient({
     serverUrl: 'https://mcp-server-example.com'
@@ -591,13 +599,13 @@ async function demonstrateAdaptiveSampling() {
   const samplingManager = new AdaptiveSamplingManager(client);
   
   try {
-    // Kreativni zadatak s prilagođenim korisničkim postavkama
+    // Creative task with custom user preferences
     const creativeResult = await samplingManager.generateResponse(
       "Write a short poem about artificial intelligence",
       {
         userPreferences: {
-          creativity: 9,  // Visoka kreativnost (1-10)
-          consistency: 3  // Niska konzistentnost (1-10)
+          creativity: 9,  // High creativity (1-10)
+          consistency: 3  // Low consistency (1-10)
         }
       }
     );
@@ -607,14 +615,14 @@ async function demonstrateAdaptiveSampling() {
     console.log('Applied sampling:', creativeResult.appliedSamplingParams);
     console.log(creativeResult.response.generatedText);
     
-    // Zadatak generiranja koda
+    // Code generation task
     const codeResult = await samplingManager.generateResponse(
       "Write a JavaScript function to calculate the Fibonacci sequence",
       {
         userPreferences: {
-          creativity: 2,  // Niska kreativnost
-          precision: 8,   // Visoka preciznost
-          consistency: 9  // Visoka konzistentnost
+          creativity: 2,  // Low creativity
+          precision: 8,   // High precision
+          consistency: 9  // High consistency
         }
       }
     );
@@ -634,25 +642,25 @@ demonstrateAdaptiveSampling();
 
 U prethodnom kodu smo:
 
-- Kreirali klasu `AdaptiveSamplingManager` koja upravlja dinamičkim uzorkovanjem prema vrsti zadatka i korisničkim preferencijama.
-- Definirali profile uzorkovanja za različite vrste zadataka (kreativni, faktografski, kodni, konverzacijski).
+- Kreirali klasu `AdaptiveSamplingManager` koja upravlja dinamičkim uzorkovanjem na temelju vrste zadatka i korisničkih preferencija.
+- Definirali profile uzorkovanja za različite vrste zadataka (kreativni, faktualni, kod, konverzacijski).
 - Implementirali metodu za detekciju vrste zadatka iz upita koristeći jednostavne heuristike.
-- Izračunali parametre uzorkovanja na temelju otkrivene vrste zadatka i korisničkih preferencija.
-- Primijenili naučene prilagodbe temeljene na povijesnim rezultatima za optimizaciju parametara uzorkovanja.
-- Evidentirali performanse za buduće prilagodbe, omogućujući sustavu učenje iz prošlih interakcija.
-- Poslali zahtjeve s dinamički konfiguriranim parametrima uzorkovanja i vratili generirani tekst zajedno s primijenjenim parametrima i otkrivenom vrstom zadatka.
-- Koristili smo:
-    - `userPreferences` za omogućavanje prilagodbe parametara uzorkovanja na temelju korisnički definiranih razina kreativnosti, preciznosti i dosljednosti.
-    - `detectTaskType` za određivanje prirode zadatka na temelju upita, što omogućuje preciznije odgovore.
-    - `recordPerformance` za evidentiranje performansi generiranih odgovora, omogućujući sustavu prilagodbu i poboljšanje tijekom vremena.
-    - `applyLearnedAdjustments` za modificiranje parametara uzorkovanja na temelju povijesnih rezultata, unapređujući sposobnost modela za generiranje kvalitetnijih odgovora.
-    - `generateResponse` za objedinjavanje cjelokupnog procesa generiranja odgovora s adaptivnim uzorkovanjem, što olakšava pozive s različitim upitima i kontekstima.
-    - `allowedTools` za specificiranje alata koje model može koristiti tijekom generiranja, omogućujući odgovore koji bolje razumiju kontekst.
-    - `feedbackScore` za dopuštanje korisnicima da daju povratne informacije o kvaliteti generiranog odgovora, što se može koristiti za dodatno usavršavanje performansi modela tijekom vremena.
-    - `performanceHistory` za održavanje zapisa o prošlim interakcijama, omogućujući sustavu učenje iz prethodnih uspjeha i neuspjeha.
-    - `getSamplingParameters` za dinamičko prilagođavanje parametara uzorkovanja na temelju konteksta zahtjeva, omogućujući fleksibilnije i reaktivnije ponašanje modela.
-    - `detectTaskType` za klasifikaciju zadatka na temelju upita, omogućujući sustavu primjenu odgovarajućih strategija uzorkovanja za različite vrste zahtjeva.
-    - `samplingProfiles` za definiranje osnovnih konfiguracija uzorkovanja za različite vrste zadataka, što omogućuje brze prilagodbe temeljene na prirodi zahtjeva.
+- Izračunali parametre uzorkovanja na temelju detektirane vrste zadatka i korisničkih preferencija.
+- Primijenili naučene prilagodbe na temelju povijesnih performansi za optimizaciju parametara uzorkovanja.
+- Zabilježili performanse za buduće prilagodbe, omogućujući sustavu učenje iz prošlih interakcija.
+- Poslali zahtjeve s dinamički konfiguriranim parametrima uzorkovanja i vratili generirani tekst zajedno s primijenjenim parametrima i detektiranom vrstom zadatka.
+- Koristili:
+    - `userPreferences` za omogućavanje prilagodbe parametara uzorkovanja na temelju definirane razine kreativnosti, preciznosti i dosljednosti korisnika.
+    - `detectTaskType` za određivanje prirode zadatka na temelju upita, dopuštajući preciznije odgovore.
+    - `recordPerformance` za bilježenje performansi generiranih odgovora, što omogućava sustavu adaptaciju i poboljšanje tijekom vremena.
+    - `applyLearnedAdjustments` za izmjenu parametara uzorkovanja temeljem povijesnih performansi, poboljšavajući sposobnosti modela za generiranje kvalitetnih odgovora.
+    - `generateResponse` za obuhvat cijelog procesa generiranja odgovora s adaptivnim uzorkovanjem, olakšavajući pozive s različitim upitima i kontekstima.
+    - `allowedTools` za specificiranje koje alate model može koristiti tijekom generiranja, dopuštajući odgovore svjesne konteksta.
+    - `feedbackScore` za omogućavanje korisnicima da daju povratne informacije o kvaliteti generiranog odgovora, što se može koristiti za daljnju optimizaciju performansi modela tijekom vremena.
+    - `performanceHistory` za održavanje zapisa prethodnih interakcija, omogućavajući sustavu učenje iz prošlih uspjeha i neuspjeha.
+    - `getSamplingParameters` za dinamičko prilagođavanje parametara uzorkovanja na temelju konteksta zahtjeva, dopuštajući fleksibilnije i responzivnije ponašanje modela.
+    - `detectTaskType` za klasifikaciju zadatka na temelju upita, omogućavajući sustavu primjenu odgovarajućih strategija uzorkovanja za različite vrste zahtjeva.
+    - `samplingProfiles` za definiranje osnovnih konfiguracija uzorkovanja za različite vrste zadataka, omogućavajući brze prilagodbe temeljene na prirodi zahtjeva.
 
 ---
 

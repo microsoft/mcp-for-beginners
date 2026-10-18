@@ -1,27 +1,32 @@
-# Kalkulator LLM Klijent
+# Klijent kalkulatora LLM
 
-Java aplikacija koja pokazuje kako koristiti LangChain4j za povezivanje s MCP (Model Context Protocol) kalkulator servisom putem MiniMax OpenAI-kompatibilnog API-ja.
+> [!NOTE]
+> Ovo rješenje se povezuje s naslijeđenom HTTP+SSE kalkulator uslugom tečaja i
+> cilja na MCP `2025-11-25` SDK API-je. Nije primjer `2026-07-28` Streamable HTTP
+> primjera.
+
+Java aplikacija koja demonstrira kako koristiti LangChain4j za povezivanje na MCP (Model Context Protocol) kalkulator uslugu preko MiniMax OpenAI-kompatibilnog API-ja.
 
 ## Preduvjeti
 
 - Java 21 ili noviji
-- Maven 3.6+ (ili koristite priloženi Maven wrapper)
+- Maven 3.6+ (ili koristite pridruženi Maven wrapper)
 - MiniMax API ključ
-- MCP kalkulator servis koji radi na `http://localhost:8080`
+- MCP kalkulator usluga pokrenuta na `http://localhost:8080`
 
-## Dobivanje API Ključa
+## Dobivanje API ključa
 
-Ova aplikacija koristi MiniMax OpenAI-kompatibilni API. Slijedite ove korake da dobijete svoj ključ i endpoint:
+Ova aplikacija koristi MiniMax OpenAI-kompatibilni API. Slijedite ove korake da biste dobili svoj ključ i endpoint:
 
-### 1. Odaberite endpoint
+### 1. Izaberite endpoint
 1. Koristite `https://api.minimax.io/v1` za globalni endpoint
-2. Koristite `https://api.minimaxi.com/v1` za China endpoint
+2. Koristite `https://api.minimaxi.com/v1` za Kina endpoint
 
 ### 2. Kreirajte API ključ
 1. Kreirajte MiniMax API ključ iz svog MiniMax računa
-2. Čuvajte ključ na sigurnom mjestu
+2. Pazite da taj ključ držite na sigurnom mjestu
 
-### 3. Postavite varijable okoline
+### 3. Postavite varijable okruženja
 
 #### Na Windowsu (Command Prompt):
 ```cmd
@@ -46,21 +51,21 @@ export MINIMAX_MODEL_ID=MiniMax-M3
 
 ## Postavljanje i instalacija
 
-1. **Klonirajte ili navigirajte do direktorija projekta**
+1. **Klonirajte ili otvorite direktorij projekta**
 
 2. **Instalirajte ovisnosti**:
    ```cmd
    mvnw clean install
    ```
-   Ili ako imate Maven instaliran globalno:
+   Ili ako imate globalno instaliran Maven:
    ```cmd
    mvn clean install
    ```
 
-3. **Postavite varijable okoline** (pogledajte odjeljak "Dobivanje API Ključa" iznad)
+3. **Postavite varijable okruženja** (pogledajte odjeljak "Dobivanje API ključa" gore)
 
-4. **Pokrenite MCP Kalkulator Servis**:
-   Provjerite da imate pokrenut MCP kalkulator servis iz poglavlja 1 na `http://localhost:8080/sse`. To bi trebalo biti pokrenuto prije nego što pokrenete klijenta.
+4. **Pokrenite MCP kalkulator uslugu**:
+   Provjerite da je MCP kalkulator usluga iz poglavlja 1 pokrenuta na `http://localhost:8080/sse`. Ovo treba biti pokrenuto prije nego što pokrenete klijent.
 
 ## Pokretanje aplikacije
 
@@ -71,15 +76,15 @@ java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 
 ## Što aplikacija radi
 
-Aplikacija demonstrira tri glavne interakcije s kalkulator servisom:
+Aplikacija demonstrira tri glavne interakcije s kalkulator uslugom:
 
 1. **Zbrajanje**: Izračunava zbroj 24.5 i 17.3
 2. **Kvadratni korijen**: Izračunava kvadratni korijen od 144
 3. **Pomoć**: Prikazuje dostupne funkcije kalkulatora
 
-## Očekivani izlaz
+## Očekivani ispis
 
-Kada se uspješno pokrene, trebali biste vidjeti izlaz sličan:
+Kada se uspješno pokrene, trebali biste vidjeti ispis sličan ovom:
 
 ```
 The sum of 24.5 and 17.3 is 41.8.
@@ -89,27 +94,27 @@ The calculator service provides the following functions: add, subtract, multiply
 
 ## Rješavanje problema
 
-### Česti problemi
+### Uobičajeni problemi
 
-1. **"OPENAI_API_KEY varijabla okoline nije postavljena"**
-   - Provjerite jeste li postavili `OPENAI_API_KEY` varijablu okoline
+1. **"OPENAI_API_KEY varijabla okruženja nije postavljena"**
+   - Provjerite jeste li postavili varijablu okruženja `OPENAI_API_KEY`
    - Ponovno pokrenite terminal/command prompt nakon postavljanja varijable
 
-2. **"Povezivanje odbijeno na localhost:8080"**
-   - Provjerite je li MCP kalkulator servis pokrenut na portu 8080
-   - Provjerite koristi li neki drugi servis port 8080
+2. **"Veza odbijena na localhost:8080"**
+   - Provjerite da je MCP kalkulator usluga pokrenuta na portu 8080
+   - Provjerite koristi li neka druga usluga port 8080
 
-3. **"Autentikacija nije uspjela"**
-   - Provjerite je li vaš API ključ valjan
-   - Provjerite da `OPENAI_BASE_URL` odgovara endpointu koji ste namjeravali koristiti
+3. **"Autentifikacija nije uspjela"**
+   - Potvrdite da je vaš API ključ valjan
+   - Provjerite da se `OPENAI_BASE_URL` poklapa s endpointom koji ste namjeravali koristiti
 
-4. **Greške pri Maven buildu**
-   - Provjerite koristite li Java 21 ili noviji: `java -version`
+4. **Greške prilikom Maven builda**
+   - Provjerite da koristite Java 21 ili noviji: `java -version`
    - Pokušajte očistiti build: `mvnw clean`
 
-### Debugging
+### Otklanjanje pogrešaka
 
-Za uključivanje debug logiranja, dodajte sljedeći JVM argument prilikom pokretanja:
+Za omogućavanje debug logiranja, dodajte sljedeći JVM argument prilikom pokretanja:
 ```cmd
 java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
@@ -117,22 +122,22 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Konfiguracija
 
 Aplikacija je konfigurirana da:
-- Koristi MiniMax-M3 prema zadanim postavkama; postavite `MINIMAX_MODEL_ID` da odaberete između `MiniMax-M3` ili `MiniMax-M2.7`
-- Povezuje se na `OPENAI_BASE_URL` ako je postavljen; inače koristi `https://api.minimaxi.com/v1` ako je `MINIMAX_REGION=cn_zh`, ili `https://api.minimax.io/v1` prema zadanim postavkama
-- Povezuje se na MCP servis na `http://localhost:8080/sse`
+- Po zadanom koristi MiniMax-M3; postavite `MINIMAX_MODEL_ID` za odabir između `MiniMax-M3` ili `MiniMax-M2.7`
+- Povezuje se na `OPENAI_BASE_URL` kad je postavljen; inače koristi `https://api.minimaxi.com/v1` kad je `MINIMAX_REGION=cn_zh`, ili `https://api.minimax.io/v1` po zadanim postavkama
+- Povezuje se na MCP uslugu na `http://localhost:8080/sse`
 - Koristi timeout od 60 sekundi za zahtjeve
 
 ## Ovisnosti
 
-Ključne ovisnosti u ovom projektu:
+Ključne ovisnosti korištene u ovom projektu:
 - **LangChain4j**: Za AI integraciju i upravljanje alatima
-- **LangChain4j MCP**: Za podršku Model Context Protocol-a
-- **LangChain4j OpenAI official**: Za integraciju MiniMax OpenAI-kompatibilnog API-ja
-- **Spring Boot**: Za aplikacijski framework i dependency injection
+- **LangChain4j MCP**: Za podršku Model Context Protocol-u
+- **LangChain4j OpenAI službeni**: Za integraciju MiniMax OpenAI-kompatibilnog API-ja
+- **Spring Boot**: Za aplikacijski okvir i injekciju ovisnosti
 
 ## Licenca
 
-Ovaj projekt je licenciran pod Apache licencom 2.0 - pogledajte [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) datoteku za detalje.
+Ovaj projekt je licenciran pod Apache licencom 2.0 - pogledajte datoteku [LICENSE](../../../../../../03-GettingStarted/03-llm-client/solution/java/LICENSE) za detalje.
 
 ---
 
