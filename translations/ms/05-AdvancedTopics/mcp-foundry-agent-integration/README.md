@@ -4,21 +4,21 @@ Panduan ini menunjukkan cara mengintegrasikan pelayan Model Context Protocol (MC
 
 ## Pengenalan
 
-Model Context Protocol (MCP) ialah piawaian terbuka yang membolehkan aplikasi AI berhubung dengan selamat ke sumber data dan alat luaran. Apabila diintegrasikan dengan Microsoft Foundry, MCP membolehkan ejen mengakses dan berinteraksi dengan pelbagai perkhidmatan, API, dan sumber data luaran secara berstandard.
+Model Context Protocol (MCP) adalah piawaian terbuka yang membolehkan aplikasi AI untuk menyambung secara selamat ke sumber data luaran dan alat. Apabila diintegrasikan dengan Microsoft Foundry, MCP membenarkan ejen mengakses dan berinteraksi dengan pelbagai perkhidmatan luaran, API, dan sumber data secara cara yang piawai.
 
-Integrasi ini menggabungkan fleksibiliti ekosistem alat MCP dengan rangka kerja ejen Microsoft Foundry yang mantap, menyediakan penyelesaian AI bertaraf perusahaan dengan keupayaan penyesuaian yang meluas.
+Integrasi ini menggabungkan fleksibiliti ekosistem alat MCP dengan kerangka ejen Microsoft Foundry yang teguh, menyediakan penyelesaian AI peringkat perusahaan dengan keupayaan penyesuaian yang meluas.
 
-**Nota:** Jika anda ingin menggunakan MCP dalam Perkhidmatan Ejen Microsoft Foundry, buat masa ini hanya wilayah berikut disokong: westus, westus2, uaenorth, southindia dan switzerlandnorth
+> **Nota:** Jika anda ingin menggunakan MCP dalam Perkhidmatan Ejen Microsoft Foundry, buat masa ini hanya wilayah berikut disokong: westus, westus2, uaenorth, southindia dan switzerlandnorth
 
 ## Objektif Pembelajaran
 
-Menjelang tamat panduan ini, anda akan dapat:
+Pada akhir panduan ini, anda akan boleh:
 
-- Memahami Model Context Protocol dan manfaatnya
+- Memahami Model Context Protocol dan faedahnya
 - Menyediakan pelayan MCP untuk digunakan dengan ejen Microsoft Foundry
-- Membuat dan mengkonfigurasi ejen dengan integrasi alat MCP
+- Mencipta dan mengkonfigurasikan ejen dengan integrasi alat MCP
 - Melaksanakan contoh praktikal menggunakan pelayan MCP sebenar
-- Mengendalikan tindak balas alat dan rujukan dalam perbualan ejen
+- Mengendalikan respons alat dan sitasi dalam perbualan ejen
 
 ## Prasyarat
 
@@ -26,17 +26,17 @@ Sebelum bermula, pastikan anda mempunyai:
 
 - Langganan Azure dengan akses Microsoft Foundry
 - Python 3.10+ atau .NET 8.0+
-- Azure CLI yang dipasang dan dikonfigurasi
+- Azure CLI dipasang dan dikonfigurasi
 - Kebenaran yang sesuai untuk mencipta sumber AI
 
-## Apa itu Model Context Protocol (MCP)?
+## Apakah Model Context Protocol (MCP)?
 
-Model Context Protocol ialah cara berstandard bagi aplikasi AI untuk berhubung ke sumber data dan alat luaran. Manfaat utama termasuk:
+Model Context Protocol ialah cara piawai untuk aplikasi AI menyambung ke sumber data luaran dan alat. Faedah utama termasuk:
 
-- **Integrasi Berstandard**: Antara muka konsisten merentasi pelbagai alat dan perkhidmatan
+- **Integrasi Piawai**: Antara muka yang konsisten merentas pelbagai alat dan perkhidmatan
 - **Keselamatan**: Mekanisme pengesahan dan kebenaran yang selamat
-- **Fleksibiliti**: Sokongan untuk pelbagai sumber data, API, dan alat tersuai
-- **Keterluasan**: Mudah untuk menambah keupayaan dan integrasi baru
+- **Fleksibiliti**: Sokongan untuk pelbagai sumber data, API, dan alat khusus
+- **Kebolehluasan**: Mudah untuk menambah keupayaan dan integrasi baharu
 
 ## Menyediakan MCP dengan Microsoft Foundry
 
@@ -44,16 +44,16 @@ Model Context Protocol ialah cara berstandard bagi aplikasi AI untuk berhubung k
 
 Pilih persekitaran pembangunan pilihan anda:
 
-- [Implementasi Python](#implementasi-python)
-- [Implementasi .NET](#codeblock5)
+- [Pelaksanaan Python](#python-implementation)
+- [Pelaksanaan .NET](#net-implementation)
 
 ---
 
-## Implementasi Python
+## Pelaksanaan Python
 
 ***Nota*** Anda boleh menjalankan [notebook](./mcp_support_python.ipynb) ini
 
-### 1. Pasang Pek Perlu
+### 1. Pasang Pakej Diperlukan
 
 ```bash
 pip install azure-ai-projects -U
@@ -71,7 +71,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. Konfigurasi Tetapan MCP
+### 3. Konfigurasikan Tetapan MCP
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
@@ -93,17 +93,17 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Pilihan: nyatakan alat yang dibenarkan
+    allowed_tools=[],  # Optional: specify allowed tools
 )
 ```
 
-### 6. Contoh Python Lengkap
+### 6. Contoh Lengkap Python
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # Cipta ejen baru dengan alat MCP
+    # Create a new agent with MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Cipta benang untuk komunikasi
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Cipta mesej ke benang
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Urus kelulusan alat dan jalankan ejen
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Paparkan perbualan
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -178,11 +178,11 @@ with project_client:
 
 ---
 
-## Implementasi .NET
+## Pelaksanaan .NET
 
 ***Nota*** Anda boleh menjalankan [notebook](./mcp_support_dotnet.ipynb) ini
 
-### 1. Pasang Pek Perlu
+### 1. Pasang Pakej Diperlukan
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
@@ -196,7 +196,7 @@ using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. Konfigurasi Tetapan
+### 3. Konfigurasikan Tetapan
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. Contoh .NET Lengkap
+### 6. Contoh Lengkap .NET
 
 ```csharp
 // Create thread and message
@@ -299,15 +299,15 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ## Pilihan Konfigurasi Alat MCP
 
-Apabila mengkonfigurasi alat MCP untuk ejen anda, anda boleh menentukan beberapa parameter penting:
+Apabila mengkonfigurasi alat MCP untuk ejen anda, anda boleh menyatakan beberapa parameter penting:
 
 ### Konfigurasi Python
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Pengecam untuk pelayan MCP
-    server_url="https://api.example.com/mcp", # Titik akhir pelayan MCP
-    allowed_tools=[],                       # Pilihan: nyatakan alat yang dibenarkan
+    server_label="unique_server_name",      # Identifier for the MCP server
+    server_url="https://api.example.com/mcp", # MCP server endpoint
+    allowed_tools=[],                       # Optional: specify allowed tools
 )
 ```
 
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Pengesahan dan Tajuk
+## Pengesahan dan Header
 
-Kedua-dua implementasi menyokong tajuk tersuai untuk pengesahan:
+Kedua-dua pelaksanaan menyokong header khusus untuk pengesahan:
 
 ### Python
 ```python
@@ -335,16 +335,16 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Menyelesaikan Isu Biasa
+## Menyelesaikan Masalah Lazim
 
 ### 1. Isu Sambungan
-- Sahkan URL pelayan MCP boleh diakses
-- Semak kelayakan pengesahan
+- Sahkan URL pelayan MCP boleh dicapai
+- Periksa kelayakan pengesahan
 - Pastikan sambungan rangkaian
 
 ### 2. Kegagalan Panggilan Alat
 - Semak argumen dan format alat
-- Semak keperluan khusus pelayan
+- Periksa keperluan khusus pelayan
 - Laksanakan pengendalian ralat yang betul
 
 ### 3. Isu Prestasi
@@ -354,12 +354,12 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 
 ## Langkah Seterusnya
 
-Untuk lebih meningkatkan integrasi MCP anda:
+Untuk meningkatkan lagi integrasi MCP anda:
 
 1. **Terokai Pelayan MCP Tersuai**: Bina pelayan MCP anda sendiri untuk sumber data proprietari
 2. **Laksanakan Keselamatan Lanjutan**: Tambah OAuth2 atau mekanisme pengesahan tersuai
-3. **Pantauan dan Analitik**: Laksanakan pencatatan dan pemantauan untuk penggunaan alat
-4. **Skalakan Penyelesaian Anda**: Pertimbangkan pengimbangan beban dan seni bina pelayan MCP teragih
+3. **Pemantauan dan Analitik**: Laksanakan log dan pemantauan penggunaan alat
+4. **Skala Penyelesaian Anda**: Pertimbangkan penyeimbangan beban dan seni bina pelayan MCP yang diedarkan
 
 ## Sumber Tambahan
 
@@ -370,11 +370,11 @@ Untuk lebih meningkatkan integrasi MCP anda:
 
 ## Sokongan
 
-Untuk sokongan dan pertanyaan tambahan:
+Untuk sokongan tambahan dan pertanyaan:
 - Semak [dokumentasi Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
 - Periksa [sumber komuniti MCP](https://modelcontextprotocol.io/)
 
-## Apa Seterusnya
+## Apa Yang Seterusnya
 
 - [5.14 Kejuruteraan Konteks MCP](../mcp-contextengineering/README.md)
 

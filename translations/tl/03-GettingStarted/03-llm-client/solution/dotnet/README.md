@@ -1,25 +1,30 @@
 # Patakbuhin ang sample na ito
 
 > [!NOTE]
-> Ipinapalagay ng sample na ito na gumagamit ka ng GitHub Codespaces na instance. Kung gusto mong patakbuhin ito nang lokal, kailangan mong gumawa ng personal access token (PAT) sa GitHub.
+> I-deploy ang isang aktibong modelo tulad ng `gpt-5.1` sa Microsoft Foundry at i-configure
+> ang endpoint, API key, at pangalan ng deployment nito.
 >
 > ```bash
 > # zsh/bash
-> export GITHUB_TOKEN="{{YOUR_GITHUB_PAT}}"
+> export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+> export AZURE_OPENAI_API_KEY="<api-key>"
+> export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 > ```
 >
 > ```powershell
 > # PowerShell
-> $env:GITHUB_TOKEN = "{{YOUR_GITHUB_PAT}}"
+> $env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+> $env:AZURE_OPENAI_API_KEY = "<api-key>"
+> $env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 > ```
 
-## I-install ang mga library
+## Mag-install ng mga library
 
 ```sh
 dotnet restore
 ```
 
-Dapat mai-install ang mga sumusunod na library: Azure AI Inference, Azure Identity, Microsoft.Extension, Model.Hosting, ModelContextProtcol
+Ini-install nito ang OpenAI .NET client at ang Model Context Protocol SDK.
 
 ## Patakbuhin
 
@@ -35,14 +40,17 @@ Listing tools
 Connected to server with tools: Add
 Tool description: Adds two numbers
 Tool parameters: {"title":"Add","description":"Adds two numbers","type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}
-Tool definition: Azure.AI.Inference.ChatCompletionsToolDefinition
-Properties: {"a":{"type":"integer"},"b":{"type":"integer"}}
-MCP Tools def: 0: Azure.AI.Inference.ChatCompletionsToolDefinition
+Tool definition: OpenAI.Chat.ChatTool
+MCP Tools def: 0: OpenAI.Chat.ChatTool
 Tool call 0: Add with arguments {"a":2,"b":4}
 Sum 6
 ```
 
-Marami sa output ay para lang sa debugging pero ang mahalaga ay inililista mo ang mga tools mula sa MCP Server, ginagawa mo itong mga LLM tools at magtatapos ka sa isang MCP client response na "Sum 6".
+Marami sa output ay para lang sa debugging ngunit ang mahalaga ay inililista mo ang mga kagamitan mula sa MCP Server, ginagawa mo ito bilang mga LLM na kagamitan at makakakuha ka ng tugon mula sa MCP client na "Sum 6".
 
-**Paalala**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagamat nagsusumikap kami para sa katumpakan, pakatandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o di-tumpak na impormasyon. Ang orihinal na dokumento sa kanyang sariling wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Pagtatanggi**:
+Ang dokumentong ito ay isinalin gamit ang serbisyo ng AI translation na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't nagsusumikap kami para sa katumpakan, pakatandaan na ang awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa orihinal nitong wika ang dapat ituring na pangunahing sanggunian. Para sa mahahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang maling pagkakaintindi o maling interpretasyon na nagmula sa paggamit ng pagsasaling ito.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

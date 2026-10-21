@@ -2,86 +2,105 @@
 
 [![Konsep Teras MCP](../../../translated_images/ms/02.8203e26c6fb5a797.webp)](https://youtu.be/earDzWGtE84)
 
-_(Klik imej di atas untuk menonton video pelajaran ini)_
+_(Klik imej di atas untuk melihat video pelajaran ini)_
 
-[Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) adalah rangka kerja berstandard yang berkuasa yang mengoptimumkan komunikasi antara Large Language Models (LLM) dan alat luaran, aplikasi, serta sumber data. 
-Panduan ini akan membawa anda meneroka konsep teras MCP. Anda akan mempelajari mengenai seni bina klien-pelayan, komponen penting, mekanisme komunikasi, dan amalan terbaik pelaksanaan.
+[Protokol Konteks Model (MCP)](https://github.com/modelcontextprotocol) ialah rangka kerja berkuasa dan piawai yang mengoptimumkan komunikasi antara Model Bahasa Besar (LLM) dan alat luar, aplikasi, dan sumber data. 
+Panduan ini akan membimbing anda melalui konsep teras MCP. Anda akan mempelajari tentang seni bina klien-pelayan, komponen penting, mekanik komunikasi, dan amalan terbaik pelaksanaan.
 
-- **Persetujuan Pengguna Secara Eksplisit**: Semua akses data dan operasi memerlukan kelulusan eksplisit pengguna sebelum dijalankan. Pengguna mesti memahami dengan jelas data apa yang akan diakses dan tindakan apa yang akan dilakukan, dengan kawalan terperinci ke atas kebenaran dan kuasa.
+- **Kawalan dan Persetujuan Pengguna**: Hos harus menunjukkan dengan jelas data dan alat yang p
+  elayan dedahkan, membenarkan pengguna menolak operasi, dan mendapatkan pengesahan
+  secara eksplisit untuk tindakan sensitif atau berakibat. MCP tidak memerlukan dialog
+  pengesahan sebelum setiap panggilan alat.
 
-- **Perlindungan Privasi Data**: Data pengguna hanya didedahkan dengan persetujuan eksplisit dan mesti dilindungi oleh kawalan akses yang kukuh sepanjang kitaran interaksi. Pelaksanaan mesti menghalang penghantaran data yang tidak sah dan mengekalkan sempadan privasi yang ketat.
+- **Perlindungan Privasi Data**: Data pengguna hanya didedahkan dengan persetujuan jelas dan mesti dilindungi oleh kawalan akses yang kukuh sepanjang kitaran hidup interaksi. Pelaksanaan mesti menghalang penghantaran data tanpa izin dan mengekalkan sempadan privasi yang ketat.
 
-- **Keselamatan Pelaksanaan Alat**: Setiap panggilan alat memerlukan persetujuan pengguna yang jelas dengan pemahaman fungsi alat, parameter, dan impak berpotensi. Sempadan keselamatan yang kukuh mesti menghalang pelaksanaan alat yang tidak diingini, tidak selamat, atau berniat jahat.
+- **Keselamatan Pelaksanaan Alat**: Hos harus menjadikan panggilan alat kelihatan dan memastikan
+  manusia boleh menolaknya. Operasi sensitif harus menunjukkan input alat
+  dan impak sebelum pelaksanaan, dengan sempadan keselamatan yang menghalang
+  tindakan tidak sengaja atau berniat jahat.
 
-- **Keselamatan Lapisan Penghantaran**: Semua saluran komunikasi harus menggunakan penyulitan dan mekanisme pengesahan yang sesuai. Sambungan jauh harus melaksanakan protokol penghantaran yang selamat dan pengurusan kelayakan yang betul.
+- **Keselamatan Pengangkutan**: Sambungan jauh harus menggunakan HTTPS dan model
+  kebenaran MCP. Pelayan stdio tempatan bergantung pada pengasingan proses,
+  konfigurasi yang dipercayai, dan pengendalian selamat kelayakan yang diwarisi.
 
 #### Garis Panduan Pelaksanaan:
 
-- **Pengurusan Kebenaran**: Laksanakan sistem kebenaran terperinci yang membenarkan pengguna mengawal pelayan, alat, dan sumber mana yang boleh diakses
-- **Pengesahan & Kebenaran**: Gunakan kaedah pengesahan yang selamat (OAuth, kunci API) dengan pengurusan token dan tamat tempoh yang betul  
-- **Pengesahan Input**: Sahkan semua parameter dan input data mengikut skema yang ditetapkan untuk mengelakkan serangan suntikan
-- **Log Audit**: Simpan log komprehensif semua operasi untuk pemantauan keselamatan dan pematuhan
+- **Pengurusan Kebenaran**: Laksanakan sistem kebenaran terperinci yang membenarkan pengguna mengawal pelayan, alat, dan sumber yang dapat diakses
+- **Pengesahan & Kebenaran**: Gunakan kaedah pengesahan yang selamat (OAuth, kunci API) dengan pengurusan token dan luput yang betul  
+- **Pengesahan Input**: Sahkan semua parameter dan input data mengikut skema yang ditakrifkan untuk mengelakkan serangan suntikan
+- **Log Audit**: Kekalkan rekod terperinci semua operasi untuk pemantauan keselamatan dan pematuhan
 
 ## Gambaran Keseluruhan
 
-Pelajaran ini meneroka seni bina dan komponen asas yang membentuk ekosistem Model Context Protocol (MCP). Anda akan mempelajari seni bina klien-pelayan, komponen utama, dan mekanisme komunikasi yang menggerakkan interaksi MCP.
+Pelajaran ini meneroka seni bina asas dan komponen yang membentuk ekosistem Protokol Konteks Model (MCP). Anda akan belajar tentang seni bina klien-pelayan, komponen utama, dan mekanisme komunikasi yang menggerakkan interaksi MCP.
 
-## Objektif Pembelajaran Utama
+## Objektif Utama Pembelajaran
 
-Pada akhir pelajaran ini, anda akan:
+Menjelang akhir pelajaran ini, anda akan:
 
 - Memahami seni bina klien-pelayan MCP.
 - Mengenal pasti peranan dan tanggungjawab Hos, Klien, dan Pelayan.
-- Menganalisis ciri utama yang menjadikan MCP lapisan integrasi yang fleksibel.
-- Mempelajari bagaimana aliran maklumat dalam ekosistem MCP.
+- Menganalisis ciri teras yang menjadikan MCP lapisan integrasi yang fleksibel.
+- Mempelajari bagaimana maklumat mengalir dalam ekosistem MCP.
 - Mendapatkan pandangan praktikal melalui contoh kod dalam .NET, Java, Python, dan JavaScript.
 
 ## Seni Bina MCP: Tinjauan Mendalam
 
-Ekosistem MCP dibina pada model klien-pelayan. Struktur modular ini membolehkan aplikasi AI berinteraksi dengan alat, pangkalan data, API, dan sumber kontekstual dengan cekap. Mari kita pecahkan seni bina ini kepada komponen terasnya.
+Ekosistem MCP dibina atas model klien-pelayan. Struktur modular ini membenarkan aplikasi AI berinteraksi dengan alat, pangkalan data, API, dan sumber kontekstual dengan cekap. Mari kita pecahkan seni bina ini ke dalam komponen terasnya.
 
-Pada terasnya, MCP mengikuti seni bina klien-pelayan di mana aplikasi hos boleh menyambung ke beberapa pelayan:
+Pada terasnya, MCP mengikuti seni bina klien-pelayan dimana aplikasi hos boleh menyambung ke pelbagai pelayan:
 
 ```mermaid
 flowchart LR
-    subgraph "Komputer Anda"
-        Host["Hos dengan MCP (Visual Studio, VS Code, IDE, Alat)"]
-        S1["Pelayan MCP A"]
-        S2["Pelayan MCP B"]
-        S3["Pelayan MCP C"]
-        Host <-->|"Protokol MCP"| S1
-        Host <-->|"Protokol MCP"| S2
-        Host <-->|"Protokol MCP"| S3
-        S1 <--> D1[("Lokal\Sumber Data A")]
-        S2 <--> D2[("Lokal\Sumber Data B")]
+    subgraph "Your Computer"
+        Host["Host with MCP (Visual Studio, VS Code, IDEs, Tools)"]
+        S1["MCP Server A"]
+        S2["MCP Server B"]
+        S3["MCP Server C"]
+        Host <-->|"MCP Protocol"| S1
+        Host <-->|"MCP Protocol"| S2
+        Host <-->|"MCP Protocol"| S3
+        S1 <--> D1[("Local\Data Source A")]
+        S2 <--> D2[("Local\Data Source B")]
     end
     subgraph "Internet"
-        S3 <-->|"API Web"| D3[("Jauh\Perkhidmatan")]
+        S3 <-->|"Web APIs"| D3[("Remote\Services")]
     end
 ```
 
 - **Hos MCP**: Program seperti VSCode, Claude Desktop, IDE, atau alat AI yang ingin mengakses data melalui MCP
-- **Klien MCP**: Klien protokol yang mengekalkan sambungan 1:1 dengan pelayan
-- **Pelayan MCP**: Program ringan yang masing-masing mendedahkan kebolehan tertentu melalui Model Context Protocol yang distandardkan
-- **Sumber Data Tempatan**: Fail komputer, pangkalan data, dan perkhidmatan yang boleh diakses dengan selamat oleh pelayan MCP
-- **Perkhidmatan Jauh**: Sistem luaran yang tersedia melalui internet yang boleh disambungkan oleh pelayan MCP melalui API.
+- **Klien MCP**: Komponen protokol yang mengekalkan satu hubungan logik
+  dengan pelayan; permintaan MCP `2026-07-28` tidak bergantung pada satu sambungan kekal
+  atau sesi
+- **Pelayan MCP**: Program ringan yang masing-masing mendedahkan keupayaan khusus melalui Protokol Konteks Model yang distandardkan
+- **Sumber Data Tempatan**: Fail, pangkalan data, dan perkhidmatan komputer anda yang pelayan MCP boleh akses dengan selamat
+- **Perkhidmatan Jauh**: Sistem luaran yang tersedia melalui internet yang pelayan MCP boleh sambungkan melalui API.
 
-Protokol MCP adalah standard yang berkembang menggunakan versi berasaskan tarikh (format YYYY-MM-DD). Versi protokol semasa ialah **2025-11-25**. Anda boleh melihat kemas kini terkini pada [spesifikasi protokol](https://modelcontextprotocol.io/specification/2025-11-25/)
+Protokol MCP adalah piawaian yang berkembang menggunakan penomboran versi berdasarkan tarikh
+(format YYYY-MM-DD). Versi protokol semasa ialah **2026-07-28**. Lihat
+[spesifikasi protokol 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/).
 
-> **Melihat ke hadapan:** calon pelepasan untuk versi spesifikasi seterusnya, **2026-07-28**, telah diumumkan pada Mei 2026 dan dijadualkan dilancarkan pada 28 Julai 2026. Ia menjadikan protokol tanpa status pada lapisan pengangkutan (menghapuskan jabat tangan `initialize` dan ID sesi), memformalkan rangka kerja Sambungan, dan menghentikan Roots, Sampling, dan Logging demi corak yang lebih baru. Lihat [Apa Yang Berubah dalam MCP: Calon Pelepasan 2026-07-28](./mcp-2026-07-28-release-candidate.md) untuk pecahan penuh.
+> **Keluaran semasa:** MCP `2026-07-28` menjadikan protokol tidak bernegara di
+> lapisan pengangkutan dengan membuang jabat tangan `initialize` dan
+> ID sesi pada peringkat protokol. Ia juga memformalkan rangka kerja Sambungan dan
+> menghentikan penggunaan Roots, Sampling, dan Logging demi corak yang lebih baru.
+> Lihat [Perubahan dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md)
+> untuk penjelasan penuh dan panduan migrasi. Contoh yang secara eksplisit
+> mensasarkan `2025-11-25` dikekalkan sebagai pelajaran keserasian lama.
 
 ### 1. Hos
 
-Dalam Model Context Protocol (MCP), **Hos** adalah aplikasi AI yang berfungsi sebagai antara muka utama di mana pengguna berinteraksi dengan protokol. Hos menyelaras dan mengurus sambungan kepada beberapa pelayan MCP dengan mencipta klien MCP khusus untuk setiap sambungan pelayan. Contoh Hos termasuk:
+Dalam Protokol Konteks Model (MCP), **Hos** adalah aplikasi AI yang berfungsi sebagai antara muka utama melalui mana pengguna berinteraksi dengan protokol. Hos menyelaraskan dan mengurus sambungan ke pelbagai pelayan MCP dengan mencipta klien MCP khusus untuk setiap sambungan pelayan. Contoh Hos termasuk:
 
 - **Aplikasi AI**: Claude Desktop, Visual Studio Code, Claude Code
 - **Persekitaran Pembangunan**: IDE dan penyunting kod dengan integrasi MCP  
-- **Aplikasi Khusus**: Ejen dan alat AI yang dibina khas
+- **Aplikasi Khusus**: Ejen AI dan alat yang dibina khas
 
-**Hos** adalah aplikasi yang menyelaras interaksi model AI. Mereka:
+**Hos** adalah aplikasi yang menyelaraskan interaksi model AI. Mereka:
 
-- **Mengorkestrakan Model AI**: Melaksanakan atau berinteraksi dengan LLM untuk menjana respons dan menyelaras aliran kerja AI
-- **Mengurus Sambungan Klien**: Mencipta dan mengekalkan satu klien MCP bagi setiap sambungan pelayan MCP
+- **Mengatur Model AI**: Melaksanakan atau berinteraksi dengan LLM untuk menjana respons dan menyelaraskan aliran kerja AI
+- **Mengurus Hubungan Klien**: Mencipta dan mengurus satu klien MCP untuk setiap
+  pelayan MCP yang digunakan hos
 - **Mengawal Antara Muka Pengguna**: Mengendalikan aliran perbualan, interaksi pengguna, dan penyampaian respons  
 - **Menguatkuasakan Keselamatan**: Mengawal kebenaran, kekangan keselamatan, dan pengesahan
 - **Mengendalikan Persetujuan Pengguna**: Mengurus kelulusan pengguna untuk perkongsian data dan pelaksanaan alat
@@ -89,39 +108,44 @@ Dalam Model Context Protocol (MCP), **Hos** adalah aplikasi AI yang berfungsi se
 
 ### 2. Klien
 
-**Klien** adalah komponen penting yang mengekalkan sambungan khusus satu-ke-satu antara Hos dan pelayan MCP. Setiap klien MCP dihasilkan oleh Hos untuk menyambung ke pelayan MCP tertentu, memastikan saluran komunikasi yang teratur dan selamat. Beberapa klien membolehkan Hos menyambung ke beberapa pelayan secara serentak.
+**Klien** adalah komponen protokol yang dicipta oleh hos untuk pelayan MCP tertentu. Ini adalah hubungan logik satu-ke-satu, bukan keperluan untuk sambungan rangkaian kekal. Dalam MCP `2026-07-28`, setiap permintaan berdiri sendiri dan boleh dikendalikan oleh mana-mana contoh pelayan.
 
 **Klien** adalah komponen penyambung dalam aplikasi hos. Mereka:
 
-- **Komunikasi Protokol**: Menghantar permintaan JSON-RPC 2.0 kepada pelayan dengan arahan dan stimuli
-- **Perundingan Kebolehan**: Rundingan ciri yang disokong dan versi protokol dengan pelayan semasa inisialisasi
-- **Pelaksanaan Alat**: Mengurus permintaan pelaksanaan alat daripada model dan memproses respons
-- **Kemas Kini Masa Nyata**: Mengendalikan notifikasi dan kemas kini masa nyata daripada pelayan
+
+- **Penemuan Keupayaan**: Gunakan `server/discover` untuk mengetahui versi protokol yang disokong, keupayaan, dan sambungan pelayan
+
+- **Kemaskini Masa-Sebenar**: Mengendalikan notifikasi dan kemas kini masa sebenar dari pelayan
 - **Pemprosesan Respons**: Memproses dan memformat respons pelayan untuk dipaparkan kepada pengguna
 
 ### 3. Pelayan
 
-**Pelayan** adalah program yang menyediakan konteks, alat, dan kebolehan kepada klien MCP. Mereka boleh dijalankan secara tempatan (di mesin yang sama dengan Hos) atau jauh (di platform luaran), dan bertanggungjawab mengendalikan permintaan klien serta menyediakan respons berstruktur. Pelayan mendedahkan fungsi tertentu melalui Model Context Protocol yang distandardkan.
+**Pelayan** adalah program yang menyediakan konteks, alat, dan keupayaan kepada klien MCP. Mereka boleh dilaksanakan secara tempatan (mesin yang sama dengan Hos) atau jauh (pada platform luaran), dan bertanggungjawab untuk mengendalikan permintaan klien serta menyediakan respons berstruktur. Pelayan mendedahkan fungsi tertentu melalui Protokol Konteks Model yang distandardkan.
 
-**Pelayan** adalah perkhidmatan yang menyediakan konteks dan kebolehan. Mereka:
+**Pelayan** adalah perkhidmatan yang menyediakan konteks dan keupayaan. Mereka:
 
-- **Pendaftaran Ciri**: Mendaftar dan mendedahkan primitif yang tersedia (sumber, isyarat, alat) kepada klien
-- **Pemprosesan Permintaan**: Menerima dan melaksanakan panggilan alat, permintaan sumber, dan permintaan isyarat daripada klien
+- **Pendaftaran Ciri**: Mendaftar dan mendedahkan primitif tersedia (sumber, gesaan, alat) kepada klien
+
 - **Penyediaan Konteks**: Menyediakan maklumat dan data kontekstual untuk meningkatkan respons model
-- **Pengurusan Keadaan**: Mengekalkan keadaan sesi dan mengendalikan interaksi berkeadaan bila perlu
-- **Notifikasi Masa Nyata**: Menghantar notifikasi tentang perubahan kebolehan dan kemas kini kepada klien yang disambungkan
 
-Pelayan boleh dibangunkan oleh sesiapa untuk meluaskan kebolehan model dengan fungsi khusus, dan menyokong kedua-dua senario pelaksanaan lokal dan jauh.
+- **Pendaftaran Ciri**: Daftar dan dedahkan primitif yang tersedia (sumber, arahan, alat) kepada klien
+- **Pemprosesan Permintaan**: Terima dan laksanakan panggilan alat, permintaan sumber, dan permintaan arahan dari klien
+- **Penyediaan Konteks**: Sediakan maklumat dan data kontekstual untuk mempertingkatkan respons model
+- **Pengurusan Keadaan**: Kekalkan keadaan aplikasi dengan pemegang yang jelas disampaikan
+  dalam permintaan apabila diperlukan; MCP `2026-07-28` tiada sesi peringkat protokol
+- **Pemberitahuan Masa Nyata**: Hantar pemberitahuan mengenai perubahan dan kemas kini keupayaan kepada klien yang disambungkan
+
+Pelayan boleh dibangunkan oleh sesiapa sahaja untuk memperluas keupayaan model dengan fungsi khusus, dan mereka menyokong senario penyebaran tempatan dan jauh.
 
 ### 4. Primitif Pelayan
 
-Pelayan dalam Model Context Protocol (MCP) menyediakan tiga **primitif** teras yang mentakrifkan blok bangunan asas untuk interaksi kaya antara klien, hos, dan model bahasa. Primitif ini menentukan jenis maklumat kontekstual dan tindakan yang tersedia melalui protokol.
+Pelayan dalam Protokol Konteks Model (MCP) menyediakan tiga **primitif** teras yang mentakrifkan blok binaan asas untuk interaksi kaya antara klien, hos, dan model bahasa. Primitif ini menentukan jenis maklumat kontekstual dan tindakan yang tersedia melalui protokol.
 
-Pelayan MCP boleh mendedahkan mana-mana gabungan daripada tiga primitif teras berikut:
+Pelayan MCP boleh mendedahkan apa-apa gabungan tiga primitif teras berikut:
 
-#### Sumber 
+#### Sumber
 
-**Sumber** adalah sumber data yang menyediakan maklumat kontekstual kepada aplikasi AI. Mereka mewakili kandungan statik atau dinamik yang boleh meningkatkan pemahaman dan pembuatan keputusan model:
+**Sumber** adalah sumber data yang menyediakan maklumat kontekstual kepada aplikasi AI. Mereka mewakili kandungan statik atau dinamik yang boleh meningkatkan pemahaman model dan membuat keputusan:
 
 - **Data Kontekstual**: Maklumat berstruktur dan konteks untuk penggunaan model AI
 - **Pangkalan Pengetahuan**: Repositori dokumen, artikel, manual, dan kertas penyelidikan
@@ -129,7 +153,7 @@ Pelayan MCP boleh mendedahkan mana-mana gabungan daripada tiga primitif teras be
 - **Data Luaran**: Respons API, perkhidmatan web, dan data sistem jauh
 - **Kandungan Dinamik**: Data masa nyata yang dikemas kini berdasarkan keadaan luaran
 
-Sumber dikenal pasti oleh URI dan menyokong penemuan melalui metode `resources/list` dan pengambilan melalui metode `resources/read`:
+Sumber dikenalpasti dengan URI dan menyokong penemuan melalui kaedah `resources/list` dan pengambilan melalui kaedah `resources/read`:
 
 ```text
 file://documents/project-spec.md
@@ -137,17 +161,17 @@ database://production/users/schema
 api://weather/current
 ```
 
-#### Isyarat
+#### Prompt
 
-**Isyarat** adalah templat semula yang membantu menyusun interaksi dengan model bahasa. Mereka menyediakan corak interaksi berstandard dan aliran kerja berformat:
+**Prompt** adalah templat boleh guna semula yang membantu menyusun interaksi dengan model bahasa. Mereka menyediakan corak interaksi yang standard dan aliran kerja bertemplak:
 
-- **Interaksi Berasaskan Templat**: Mesej praterstruktur dan permulaan perbualan
+- **Interaksi Berasaskan Templat**: Mesej pra-tersusun dan pemula perbualan
 - **Templat Aliran Kerja**: Urutan standard untuk tugas dan interaksi biasa
 - **Contoh Few-shot**: Templat berasaskan contoh untuk arahan model
-- **Isyarat Sistem**: Isyarat asas yang mentakrifkan tingkah laku dan konteks model
-- **Templat Dinamik**: Isyarat berparameter yang menyesuaikan dengan konteks tertentu
+- **Prompt Sistem**: Prompt asas yang mentakrifkan perilaku dan konteks model
+- **Templat Dinamik**: Prompt yang diparameterkan yang menyesuaikan dengan konteks tertentu
 
-Isyarat menyokong penggantian pemboleh ubah dan boleh ditemui melalui `prompts/list` dan diambil dengan `prompts/get`:
+Prompt menyokong penggantian pembolehubah dan boleh ditemui melalui `prompts/list` dan diambil dengan `prompts/get`:
 
 ```markdown
 Generate a {{task_type}} for {{product}} targeting {{audience}} with the following requirements: {{requirements}}
@@ -155,19 +179,19 @@ Generate a {{task_type}} for {{product}} targeting {{audience}} with the followi
 
 #### Alat
 
-**Alat** adalah fungsi yang boleh dilaksanakan yang boleh dipanggil oleh model AI untuk melaksanakan tindakan tertentu. Mereka mewakili "kata kerja" ekosistem MCP, membolehkan model berinteraksi dengan sistem luaran:
+**Alat** adalah fungsi boleh laksana yang boleh dipanggil oleh model AI untuk melakukan tindakan khusus. Mereka mewakili "kata kerja" dalam ekosistem MCP, membolehkan model berinteraksi dengan sistem luaran:
 
-- **Fungsi Boleh Dilaksanakan**: Operasi diskret yang boleh dipanggil model dengan parameter tertentu
+- **Fungsi Boleh Laksana**: Operasi berasingan yang boleh dipanggil oleh model dengan parameter khusus
 - **Integrasi Sistem Luaran**: Panggilan API, pertanyaan pangkalan data, operasi fail, pengiraan
-- **Identiti Unik**: Setiap alat mempunyai nama, penerangan, dan skema parameter tersendiri
-- **I/O Berstruktur**: Alat menerima parameter yang disahkan dan mengembalikan respons yang berstruktur dan bertipe
-- **Kebolehan Tindakan**: Membolehkan model melaksanakan tindakan dunia sebenar dan mengambil data langsung
+- **Identiti Unik**: Setiap alat mempunyai nama, penerangan, dan skema parameter yang berbeza
+- **I/O Berstruktur**: Alat menerima parameter yang disahkan dan memulangkan respons berstruktur, bertipe
+- **Keupayaan Tindakan**: Membolehkan model melakukan tindakan dunia sebenar dan mendapatkan data langsung
 
-Alat ditakrifkan dengan JSON Schema untuk pengesahan parameter dan ditemui melalui `tools/list` serta dilaksanakan melalui `tools/call`. Alat juga boleh termasuk **ikon** sebagai metadata tambahan untuk penyampaian UI yang lebih baik.
+Alat ditakrifkan dengan JSON Schema untuk pengesahan parameter dan ditemui melalui `tools/list` serta dilaksanakan melalui `tools/call`. Alat juga boleh menyertakan **ikon** sebagai metadata tambahan untuk persembahan UI yang lebih baik.
 
-**Anotasi Alat**: Alat menyokong anotasi tingkah laku (contohnya, `readOnlyHint`, `destructiveHint`) yang menerangkan sama ada alat itu hanya baca atau destruktif, membantu klien membuat keputusan termaklum tentang pelaksanaan alat.
+**Anotasi Alat**: Alat menyokong anotasi perilaku (contoh, `readOnlyHint`, `destructiveHint`) yang menerangkan sama ada alat tersebut hanya baca atau merosakkan, membantu klien membuat keputusan berinformasi mengenai pelaksanaan alat.
 
-Contoh definisi alat:
+Contoh takrif alat:
 
 ```typescript
 server.tool(
@@ -178,7 +202,7 @@ server.tool(
     max_results: z.number().default(10).describe("Maximum results to return")
   }, 
   async (params) => {
-    // Laksanakan carian dan pulangkan hasil terstruktur
+    // Execute search and return structured results
     return await productService.search(params);
   }
 );
@@ -186,93 +210,110 @@ server.tool(
 
 ## Primitif Klien
 
-Dalam Model Context Protocol (MCP), **klien** boleh mendedahkan primitif yang membolehkan pelayan memohon kebolehan tambahan daripada aplikasi hos. Primitif sisi klien ini membolehkan pelaksanaan pelayan yang lebih kaya dan interaktif yang boleh mengakses kebolehan model AI dan interaksi pengguna.
+Dalam Protokol Konteks Model (MCP), **klien** boleh mendedahkan primitif yang membolehkan pelayan membuat permintaan keupayaan tambahan dari aplikasi hos. Primitif sisi klien ini membolehkan pelaksanaan pelayan yang lebih kaya dan interaktif yang boleh mengakses keupayaan model AI dan interaksi pengguna.
 
-### Sampling
+### Pensampelan
 
-> **Notis penghapusan:** calon pelepasan `2026-07-28` menandakan Sampling sebagai dihentikan demi integrasi terus dengan API pembekal LLM. Ia terus berfungsi pada `2025-11-25` dan sekurang-kurangnya setahun selepas apa-apa penghapusan, tetapi reka bentuk baru harus mengutamakan corak penggantian. Lihat [Apa Yang Berubah dalam MCP: Calon Pelepasan 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+> **Dihapuskan dalam MCP `2026-07-28`:** Pensampelan kekal tersedia untuk
+> keserasian, tetapi pelaksanaan baru harus berintegrasi terus dengan API pembekal LLM.
+> Ia layak dipadam dalam semakan spesifikasi pertama
+> yang dikeluarkan pada atau selepas 28 Julai 2027. Lihat
+> [Apa Yang Telah Berubah dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md).
 
-**Sampling** membolehkan pelayan memohon penyelesaian model bahasa daripada aplikasi AI klien. Primitif ini membolehkan pelayan mengakses kebolehan LLM tanpa menyematkan pergantungan model sendiri:
+**Pensampelan** membolehkan pelayan meminta penyempurnaan model bahasa dari aplikasi AI klien. Primitif ini membolehkan pelayan mengakses keupayaan LLM tanpa menyertakan kebergantungan model mereka sendiri:
 
-- **Akses Bebas Model**: Pelayan boleh memohon penyelesaian tanpa memasukkan SDK LLM atau mengurus akses model
-- **AI Inisiatif Pelayan**: Membolehkan pelayan menjana kandungan secara autonomi menggunakan model AI klien
-- **Interaksi LLM Bersiri**: Menyokong senario kompleks di mana pelayan memerlukan bantuan AI untuk pemprosesan
-- **Penjanaan Kandungan Dinamik**: Membolehkan pelayan membuat respons kontekstual menggunakan model hos
-- **Sokongan Panggilan Alat**: Pelayan boleh memasukkan parameter `tools` dan `toolChoice` untuk membolehkan model klien memanggil alat semasa sampling
+- **Akses Bebas Model**: Pelayan boleh meminta penyempurnaan tanpa memasukkan SDK LLM atau mengurus akses model
+- **AI Dimulakan Pelayan**: Membolehkan pelayan menghasilkan kandungan secara autonomi menggunakan model AI klien
+- **Interaksi LLM Berulang**: Menyokong senario kompleks di mana pelayan memerlukan bantuan AI untuk pemprosesan
+- **Penjanaan Kandungan Dinamik**: Membolehkan pelayan mencipta respons kontekstual menggunakan model hos
+- **Sokongan Panggilan Alat**: Pelayan boleh menyertakan parameter `tools` dan `toolChoice` untuk membolehkan model klien memanggil alat semasa pensampelan
 
-Sampling dimulakan melalui metode `sampling/complete`, di mana pelayan menghantar permintaan penyelesaian ke klien.
+Pensampelan menggunakan kaedah `sampling/createMessage`, di mana pelayan meminta
+penyempurnaan dari klien.
 
-### Roots
+### Akar
 
-> **Notis penghapusan:** calon pelepasan `2026-07-28` menandakan Roots sebagai dihentikan demi parameter alat, URI sumber, atau konfigurasi pelayan. Ia terus berfungsi pada `2025-11-25` dan sekurang-kurangnya setahun selepas apa-apa penghapusan. Lihat [Apa Yang Berubah dalam MCP: Calon Pelepasan 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+> **Dihapuskan dalam MCP `2026-07-28`:** Akar kekal tersedia untuk
+> keserasian, tetapi pelaksanaan baru harus memindahkan direktori atau fail melalui
+> parameter alat, URI sumber, atau konfigurasi pelayan. Akar layak
+> dipadam dalam semakan spesifikasi pertama yang dikeluarkan pada atau selepas 28
+> Julai 2027. Lihat
+> [Apa Yang Telah Berubah dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md).
 
-**Roots** menyediakan cara standard untuk klien mendedahkan sempadan sistem fail kepada pelayan, membantu pelayan faham direktori dan fail mana yang boleh diakses:
+**Akar** menyediakan cara standard untuk klien mengenal pasti lokasi sistem fail
+yang relevan kepada pelayan:
 
-- **Sempadan Sistem Fail**: Mentakrifkan sempadan di mana pelayan boleh beroperasi dalam sistem fail
-- **Kawalan Akses**: Membantu pelayan faham direktori dan fail mana yang mereka ada kebenaran untuk akses
-- **Kemas Kini Dinamik**: Klien boleh memberitahu pelayan apabila senarai roots berubah
-- **Pengenalpastian Berasaskan URI**: Roots menggunakan URI `file://` untuk mengenal pasti direktori dan fail yang boleh diakses
+- **Petunjuk Sistem Fail**: Mengenal pasti direktori dan fail yang relevan untuk permintaan
+- **Pengesahan Berasingan**: Tidak memberikan akses atau menguatkuasakan sempadan keselamatan
+- **Keupayaan Per Permintaan**: Klien mengiklankan sokongan Akar dalam metadata permintaan
+- **Pengenalpastian Berasaskan URI**: Akar menggunakan URI `file://` untuk mengenal pasti direktori dan fail yang boleh diakses
 
-Roots ditemui melalui metode `roots/list`, dengan klien menghantar `notifications/roots/list_changed` apabila roots berubah.
+Dalam MCP `2026-07-28`, pelayan meminta `roots/list` melalui
+`InputRequiredResult` semasa memproses permintaan klien yang disokong. Klien
+memulangkan akar apabila ia mencuba semula permintaan asal itu.
 
-### Elicitation  
+### Pengumpulan Maklumat  
 
-**Elicitation** membolehkan pelayan memohon maklumat tambahan atau pengesahan daripada pengguna melalui antara muka klien:
+**Pengumpulan Maklumat** membolehkan pelayan meminta maklumat tambahan atau pengesahan daripada pengguna melalui antara muka klien:
 
 - **Permintaan Input Pengguna**: Pelayan boleh meminta maklumat tambahan apabila diperlukan untuk pelaksanaan alat
-- **Dialog Pengesahan**: Memohon kelulusan pengguna untuk operasi sensitif atau berimpak
-- **Aliran Kerja Interaktif**: Membolehkan pelayan mencipta interaksi pengguna secara langkah demi langkah
-- **Pengumpulan Parameter Dinamik**: Mengumpul parameter yang hilang atau pilihan semasa pelaksanaan alat
+- **Dialog Pengesahan**: Meminta kelulusan pengguna untuk operasi sensitif atau berimpak
+- **Aliran Kerja Interaktif**: Membolehkan pelayan mencipta interaksi pengguna langkah demi langkah
+- **Pengumpulan Parameter Dinamik**: Mengumpul parameter hilang atau pilihan semasa pelaksanaan alat
 
-Permintaan elicitation dibuat menggunakan metode `elicitation/request` untuk mengumpulkan input pengguna melalui antara muka klien.
+Pengumpulan Maklumat menggunakan kaedah `elicitation/create` di dalam
+`InputRequiredResult` untuk mengumpul input pengguna melalui antara muka klien.
 
-**Mod Elicitation URL**: Pelayan juga boleh memohon interaksi pengguna berasaskan URL, membolehkan pelayan mengarahkan pengguna ke halaman web luaran untuk pengesahan, pengesahan identiti, atau masukan data.
+**Pemanggilan Mod URL**: Pelayan juga boleh meminta interaksi pengguna berasaskan URL, membolehkan pelayan mengarahkan pengguna ke halaman web luaran untuk pengesahan, pengesahan semula, atau kemasukan data.
 
-### Logging
+### Log
 
+> **Dihentikan dalam MCP `2026-07-28`:** Logging kekal tersedia untuk
+> keserasian, tetapi pelaksanaan baru harus menggunakan `stderr` dengan stdio dan
+> OpenTelemetry untuk kebolehlihatan berstruktur. Logging layak untuk dihapuskan
+> dalam semakan spesifikasi pertama yang dikeluarkan pada atau selepas 28 Julai 2027. Lihat
+> [Apa yang Berubah dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md).
 
-> **Notis pemansuhan:** calon keluaran `2026-07-28` menandakan Pencatatan sebagai sudah lapuk demi `stderr` untuk pengangkutan stdio dan OpenTelemetry untuk pemerhatian berstruktur. Ia terus berfungsi dalam `2025-11-25` dan sekurang-kurangnya setahun selepas sebarang pemansuhan. Lihat [Apa yang Berubah dalam MCP: Calon Keluaran 2026-07-28](./mcp-2026-07-28-release-candidate.md).
-
-**Pencatatan** membolehkan pelayan menghantar mesej log berstruktur kepada klien untuk penyahpepijatan, pemantauan dan keterlihatan operasi:
+**Logging** membolehkan pelayan menghantar mesej log berstruktur kepada klien untuk penyahpepijatan, pemantauan, dan kebolehlihatan operasi:
 
 - **Sokongan Penyahpepijatan**: Membolehkan pelayan menyediakan log pelaksanaan terperinci untuk penyelesaian masalah
-- **Pemantauan Operasi**: Menghantar kemaskini status dan metrik prestasi kepada klien
-- **Pelaporan Ralat**: Menyediakan konteks ralat terperinci dan maklumat diagnostik
-- **Jejak Audit**: Membuat log komprehensif bagi operasi dan keputusan pelayan
+- **Pemantauan Operasi**: Hantar kemas kini status dan metrik prestasi kepada klien
+- **Laporan Ralat**: Sediakan konteks ralat terperinci dan maklumat diagnostik
+- **Jejak Audit**: Cipta log komprehensif operasi dan keputusan pelayan
 
-Mesej pencatatan dihantar kepada klien untuk menyediakan ketelusan dalam operasi pelayan dan memudahkan penyahpepijatan.
+Mesej log dihantar kepada klien untuk memberi ketelusan ke dalam operasi pelayan dan memudahkan penyahpepijatan.
 
 ## Aliran Maklumat dalam MCP
 
-Protokol Konteks Model (MCP) mentakrifkan aliran maklumat berstruktur antara hos, klien, pelayan, dan model. Memahami aliran ini membantu menjelaskan bagaimana permintaan pengguna diproses dan bagaimana alat serta data luar diintegrasikan ke dalam respons model.
+Protokol Konteks Model (MCP) mentakrifkan aliran maklumat berstruktur antara hos, klien, pelayan, dan model. Memahami aliran ini membantu menjelaskan bagaimana permintaan pengguna diproses dan bagaimana alat luaran serta data diintegrasikan ke dalam respons model.
 
 - **Hos Memulakan Sambungan**  
   Aplikasi hos (seperti IDE atau antara muka sembang) mewujudkan sambungan ke pelayan MCP, biasanya melalui STDIO, WebSocket, atau pengangkutan lain yang disokong.
 
-- **Perundingan Keupayaan**  
-  Klien (terbenam dalam hos) dan pelayan bertukar maklumat tentang ciri, alat, sumber, dan versi protokol yang disokong. Ini memastikan kedua-dua pihak memahami keupayaan yang tersedia untuk sesi.
+- **Rundingan Keupayaan**  
+  Klien (tertanam dalam hos) dan pelayan bertukar maklumat tentang ciri, alat, sumber, dan versi protokol yang disokong. Ini memastikan kedua-dua pihak memahami apa keupayaan yang tersedia untuk sesi itu.
 
 - **Permintaan Pengguna**  
-  Pengguna berinteraksi dengan hos (contoh: memasukkan prompt atau arahan). Hos mengumpul input ini dan menghantarnya kepada klien untuk pemprosesan.
+  Pengguna berinteraksi dengan hos (contohnya, memasukkan prompt atau arahan). Hos mengumpul input ini dan menyerahkannya kepada klien untuk diproses.
 
 - **Penggunaan Sumber atau Alat**  
-  - Klien mungkin meminta konteks tambahan atau sumber daripada pelayan (seperti fail, entri pangkalan data, atau artikel pangkalan pengetahuan) untuk memerkaya pemahaman model.
+  - Klien boleh meminta konteks tambahan atau sumber dari pelayan (seperti fail, entri pangkalan data, atau artikel pangkalan pengetahuan) untuk memperkayakan pemahaman model.
   - Jika model menentukan bahawa alat diperlukan (contohnya, untuk mendapatkan data, melakukan pengiraan, atau memanggil API), klien menghantar permintaan panggilan alat kepada pelayan, menyatakan nama alat dan parameter.
 
 - **Pelaksanaan Pelayan**  
-  Pelayan menerima permintaan sumber atau alat, menjalankan operasi yang diperlukan (seperti menjalankan fungsi, membuat pertanyaan pangkalan data, atau mendapatkan fail), dan mengembalikan hasil ke klien dalam format berstruktur.
+  Pelayan menerima permintaan sumber atau alat, melaksanakan operasi yang diperlukan (seperti menjalankan fungsi, membuat pertanyaan pangkalan data, atau mengambil fail), dan mengembalikan keputusan kepada klien dalam format berstruktur.
 
 - **Penjanaan Respons**  
-  Klien mengintegrasikan respons pelayan (data sumber, output alat, dll.) ke dalam interaksi model yang sedang berjalan. Model menggunakan maklumat ini untuk menjana respons yang menyeluruh dan relevan secara kontekstual.
+  Klien menggabungkan respons pelayan (data sumber, output alat, dll.) ke dalam interaksi model yang sedang berjalan. Model menggunakan maklumat ini untuk menjana respons yang komprehensif dan relevan dengan konteks.
 
 - **Pembentangan Keputusan**  
-  Hos menerima output akhir dari klien dan membentangkannya kepada pengguna, biasanya termasuk teks yang dijana model serta sebarang hasil daripada pelaksanaan alat atau pencarian sumber.
+  Hos menerima output akhir dari klien dan membentangkannya kepada pengguna, sering termasuk teks yang dijana oleh model dan sebarang keputusan daripada pelaksanaan alat atau pencarian sumber.
 
-Aliran ini membolehkan MCP menyokong aplikasi AI yang maju, interaktif, dan peka konteks dengan menghubungkan model secara lancar dengan alat dan sumber data luar.
+Aliran ini membolehkan MCP menyokong aplikasi AI interaktif, maju, dan peka konteks dengan menghubungkan model secara lancar dengan alat dan sumber data luaran.
 
 ## Seni Bina & Lapisan Protokol
 
-MCP terdiri daripada dua lapisan seni bina berbeza yang bekerjasama untuk menyediakan rangka kerja komunikasi lengkap:
+MCP terdiri daripada dua lapisan seni bina berbeza yang bekerjasama menyediakan rangka kerja komunikasi lengkap:
 
 ### Lapisan Data
 
@@ -280,59 +321,59 @@ MCP terdiri daripada dua lapisan seni bina berbeza yang bekerjasama untuk menyed
 
 #### Komponen Teras:
 
-- **Protokol JSON-RPC 2.0**: Semua komunikasi menggunakan format mesej JSON-RPC 2.0 yang standard untuk panggilan kaedah, respons, dan notifikasi
-- **Pengurusan Kitaran Hayat**: Mengendalikan inisialisasi sambungan, perundingan keupayaan, dan penamatan sesi antara klien dan pelayan
+- **Protokol JSON-RPC 2.0**: Semua komunikasi menggunakan format mesej JSON-RPC 2.0 piawai untuk panggilan metode, respons, dan pemberitahuan
+- **Pengurusan Kitaran Hayat**: Mengendalikan inisialisasi sambungan, rundingan keupayaan, dan penamatan sesi antara klien dan pelayan
 - **Primitif Pelayan**: Membolehkan pelayan menyediakan fungsi teras melalui alat, sumber, dan prompt
-- **Primitif Klien**: Membolehkan pelayan meminta pensampeyan dari LLM, mendapatkan input pengguna, dan menghantar mesej log
-- **Notifikasi Masa Nyata**: Menyokong notifikasi tak segerak untuk kemaskini dinamik tanpa pengundian
+- **Primitif Klien**: Membolehkan pelayan meminta pengambilan sampel dari LLM, memanggil input pengguna, dan menghantar mesej log
+- **Pemberitahuan Masa Nyata**: Menyokong pemberitahuan tak segerak untuk kemas kini dinamik tanpa pengimbasan berterusan
 
 #### Ciri Utama:
 
-- **Perundingan Versi Protokol**: Menggunakan versi berasaskan tarikh (YYYY-MM-DD) untuk memastikan keserasian
+- **Rundingan Versi Protokol**: Menggunakan penomboran versi berasaskan tarikh (YYYY-MM-DD) untuk memastikan keserasian
 - **Penemuan Keupayaan**: Klien dan pelayan bertukar maklumat ciri yang disokong semasa inisialisasi
-- **Sesi Berstatus**: Mengekalkan keadaan sambungan merentas pelbagai interaksi untuk kesinambungan konteks
+- **Sesi Berkeadaan**: Mengekalkan status sambungan merentas beberapa interaksi untuk kesinambungan konteks
 
 ### Lapisan Pengangkutan
 
-**Lapisan Pengangkutan** menguruskan saluran komunikasi, pembingkaian mesej, dan pengesahan antara peserta MCP:
+**Lapisan Pengangkutan** mengurus saluran komunikasi, pembingkaian mesej, dan pengesahan antara peserta MCP:
 
-#### Mekanisme Pengangkutan yang Disokong:
+#### Mekanisme Pengangkutan Disokong:
 
 1. **Pengangkutan STDIO**:
    - Menggunakan aliran input/output standard untuk komunikasi proses langsung
-   - Optimum untuk proses tempatan pada mesin yang sama tanpa overhead rangkaian
-   - Sering digunakan untuk pelaksanaan pelayan MCP tempatan
+   - Optimal untuk proses tempatan pada mesin yang sama tanpa beban rangkaian
+   - Biasa digunakan untuk pelaksanaan pelayan MCP tempatan
 
 2. **Pengangkutan HTTP Boleh Alir**:
    - Menggunakan HTTP POST untuk mesej klien-ke-pelayan  
-   - Pilihan Server-Sent Events (SSE) untuk aliran pelayan-ke-klien
+   - Pilihan Server-Sent Events (SSE) untuk aliran data pelayan-ke-klien
    - Membolehkan komunikasi pelayan jauh merentas rangkaian
-   - Menyokong pengesahan HTTP standard (token pembawa, kunci API, header tersuai)
+   - Menyokong pengesahan HTTP standard (token bearer, kunci API, header tersuai)
    - MCP mengesyorkan OAuth untuk pengesahan berasaskan token yang selamat
 
 #### Abstraksi Pengangkutan:
 
-Lapisan pengangkutan mengabstrakkan butiran komunikasi daripada lapisan data, membolehkan format mesej JSON-RPC 2.0 yang sama merentas semua mekanisme pengangkutan. Abstraksi ini membolehkan aplikasi bertukar antara pelayan tempatan dan jauh dengan lancar.
+Lapisan pengangkutan mengasingkan butiran komunikasi dari lapisan data, membolehkan format mesej JSON-RPC 2.0 yang sama digunakan merentas semua mekanisme pengangkutan. Abstraksi ini membolehkan aplikasi beralih lancar antara pelayan tempatan dan jauh.
 
 ### Pertimbangan Keselamatan
 
-Pelaksanaan MCP mesti mematuhi beberapa prinsip keselamatan kritikal untuk memastikan interaksi yang selamat, boleh dipercayai, dan terjamin di seluruh operasi protokol:
+Pelaksanaan MCP mesti mematuhi beberapa prinsip keselamatan kritikal untuk memastikan interaksi yang selamat, boleh dipercayai, dan terjamin merentas semua operasi protokol:
 
-- **Persetujuan dan Kawalan Pengguna**: Pengguna mesti memberikan persetujuan jelas sebelum sebarang data diakses atau operasi dilakukan. Mereka harus mempunyai kawalan jelas terhadap data yang dikongsi dan tindakan yang dibenarkan, disokong oleh antara muka pengguna intuitif untuk menyemak dan meluluskan aktiviti.
+- **Persetujuan dan Kawalan Pengguna**: Pengguna mesti memberikan persetujuan jelas sebelum sebarang data diakses atau operasi dilakukan. Mereka harus mempunyai kawalan yang jelas terhadap data yang dikongsi dan tindakan yang dibenarkan, disokong oleh antara muka pengguna yang intuitif untuk meninjau dan meluluskan aktiviti.
 
-- **Privasi Data**: Data pengguna hanya boleh didedahkan dengan persetujuan jelas dan mesti dilindungi oleh kawalan akses yang sesuai. Pelaksanaan MCP mesti melindungi daripada penghantaran data tanpa kebenaran dan memastikan privasi dikekalkan sepanjang interaksi.
+- **Privasi Data**: Data pengguna hanya harus didedahkan dengan persetujuan jelas dan mesti dilindungi oleh kawalan akses yang sesuai. Pelaksanaan MCP mesti melindungi daripada penghantaran data tanpa kebenaran dan memastikan privasi dikekalkan sepanjang semua interaksi.
 
-- **Keselamatan Alat**: Sebelum memanggil mana-mana alat, persetujuan pengguna yang jelas diperlukan. Pengguna mesti memahami dengan jelas fungsi setiap alat, dan sempadan keselamatan kukuh mesti dikuatkuasakan untuk mengelakkan pelaksanaan alat yang tidak sengaja atau tidak selamat.
+- **Keselamatan Alat**: Sebelum memanggil mana-mana alat, persetujuan jelas dari pengguna diperlukan. Pengguna harus mempunyai kefahaman yang jelas tentang fungsi setiap alat, dan batas keselamatan kukuh mesti dikuatkuasakan untuk mengelakkan pelaksanaan alat yang tidak disengajakan atau tidak selamat.
 
-Dengan mengikuti prinsip keselamatan ini, MCP memastikan kepercayaan pengguna, privasi, dan keselamatan dikekalkan di seluruh interaksi protokol sambil membolehkan integrasi AI yang berkuasa.
+Dengan mengikuti prinsip keselamatan ini, MCP memastikan kepercayaan pengguna, privasi, dan keselamatan dikekalkan merentas semua interaksi protokol sambil membolehkan integrasi AI yang berkuasa.
 
 ## Contoh Kod: Komponen Utama
 
-Di bawah adalah contoh kod dalam beberapa bahasa pengaturcaraan popular yang menggambarkan cara melaksanakan komponen pelayan MCP utama dan alat.
+Berikut adalah contoh kod dalam beberapa bahasa pengaturcaraan popular yang menunjukkan cara melaksanakan komponen pelayan MCP utama dan alat.
 
-### Contoh .NET: Mewujudkan Pelayan MCP Ringkas dengan Alat
+### Contoh .NET: Membina Pelayan MCP Mudah dengan Alat
 
-Berikut adalah contoh kod .NET praktikal yang menunjukkan bagaimana melaksanakan pelayan MCP ringkas dengan alat tersuai. Contoh ini memaparkan cara mentakrif dan mendaftar alat, mengendalikan permintaan, dan menyambung pelayan menggunakan Protokol Konteks Model.
+Berikut adalah contoh kod .NET praktikal yang menunjukkan cara melaksanakan pelayan MCP mudah dengan alat tersuai. Contoh ini mempamerkan cara mendefinisi dan mendaftar alat, mengendalikan permintaan, dan menyambungkan pelayan menggunakan Protokol Konteks Model.
 
 ```csharp
 using System;
@@ -393,7 +434,7 @@ public class WeatherData
 
 ### Contoh Java: Komponen Pelayan MCP
 
-Contoh ini menunjukkan pelayan MCP yang sama dan pendaftaran alat seperti contoh .NET di atas, tetapi dilaksanakan dalam Java.
+Contoh ini menunjukkan pelayan MCP dan pendaftaran alat yang sama seperti contoh .NET di atas, tetapi dilaksanakan dalam Java.
 
 ```java
 import io.modelcontextprotocol.server.McpServer;
@@ -404,23 +445,23 @@ import io.modelcontextprotocol.server.tool.ToolResponse;
 
 public class WeatherMcpServer {
     public static void main(String[] args) throws Exception {
-        // Cipta pelayan MCP
+        // Create an MCP server
         McpServer server = McpServer.builder()
             .name("Weather MCP Server")
             .version("1.0.0")
             .build();
             
-        // Daftar alat cuaca
+        // Register a weather tool
         server.registerTool(McpToolDefinition.builder("weatherTool")
             .description("Gets current weather for a location")
             .parameter("location", String.class)
             .execute((ToolExecutionContext ctx) -> {
                 String location = ctx.getParameter("location", String.class);
                 
-                // Dapatkan data cuaca (dipermudahkan)
+                // Get weather data (simplified)
                 WeatherData data = getWeatherData(location);
                 
-                // Pulangkan respons yang diformat
+                // Return formatted response
                 return ToolResponse.content(
                     String.format("Temperature: %.1f°F, Conditions: %s, Location: %s", 
                     data.getTemperature(), 
@@ -430,18 +471,18 @@ public class WeatherMcpServer {
             })
             .build());
         
-        // Sambungkan pelayan menggunakan pengangkutan stdio
+        // Connect the server using stdio transport
         try (StdioServerTransport transport = new StdioServerTransport()) {
             server.connect(transport);
             System.out.println("Weather MCP Server started");
-            // Kekalkan pelayan berjalan sehingga proses ditamatkan
+            // Keep server running until process is terminated
             Thread.currentThread().join();
         }
     }
     
     private static WeatherData getWeatherData(String location) {
-        // Pelaksanaan akan memanggil API cuaca
-        // Dipermudahkan untuk tujuan contoh
+        // Implementation would call a weather API
+        // Simplified for example purposes
         return new WeatherData(72.5, "Sunny", location);
     }
 }
@@ -473,7 +514,7 @@ class WeatherData {
 
 ### Contoh Python: Membina Pelayan MCP
 
-Contoh ini menggunakan fastmcp, jadi pastikan anda memasangnya terlebih dahulu:
+Contoh ini menggunakan fastmcp, jadi sila pastikan anda memasangnya terlebih dahulu:
 
 ```python
 pip install fastmcp
@@ -486,7 +527,7 @@ import asyncio
 from fastmcp import FastMCP
 from fastmcp.transports.stdio import serve_stdio
 
-# Cipta pelayan FastMCP
+# Create a FastMCP server
 mcp = FastMCP(
     name="Weather MCP Server",
     version="1.0.0"
@@ -501,7 +542,7 @@ def get_weather(location: str) -> dict:
         "location": location
     }
 
-# Pendekatan alternatif menggunakan kelas
+# Alternative approach using a class
 class WeatherTools:
     @mcp.tool()
     def forecast(self, location: str, days: int = 1) -> dict:
@@ -514,39 +555,39 @@ class WeatherTools:
             ]
         }
 
-# Daftarkan alat kelas
+# Register class tools
 weather_tools = WeatherTools()
 
-# Mula pelayan
+# Start the server
 if __name__ == "__main__":
     asyncio.run(serve_stdio(mcp))
 ```
 
-### Contoh JavaScript: Mewujudkan Pelayan MCP
+### Contoh JavaScript: Membina Pelayan MCP
 
-Contoh ini menunjukkan penciptaan pelayan MCP dalam JavaScript dan cara mendaftarkan dua alat berkaitan cuaca.
+Contoh ini menunjukkan penciptaan pelayan MCP dalam JavaScript dan cara mendaftar dua alat berkaitan cuaca.
 
 ```javascript
-// Menggunakan SDK Protokol Konteks Model rasmi
+// Using the official Model Context Protocol SDK
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod"; // Untuk pengesahan parameter
+import { z } from "zod"; // For parameter validation
 
-// Cipta pelayan MCP
+// Create an MCP server
 const server = new McpServer({
   name: "Weather MCP Server",
   version: "1.0.0"
 });
 
-// Tentukan alat cuaca
+// Define a weather tool
 server.tool(
   "weatherTool",
   {
     location: z.string().describe("The location to get weather for")
   },
   async ({ location }) => {
-    // Ini biasanya akan memanggil API cuaca
-    // Dipermudahkan untuk demonstrasi
+    // This would normally call a weather API
+    // Simplified for demonstration
     const weatherData = await getWeatherData(location);
     
     return {
@@ -560,7 +601,7 @@ server.tool(
   }
 );
 
-// Tentukan alat ramalan
+// Define a forecast tool
 server.tool(
   "forecastTool",
   {
@@ -568,8 +609,8 @@ server.tool(
     days: z.number().default(3).describe("Number of days for forecast")
   },
   async ({ location, days }) => {
-    // Ini biasanya akan memanggil API cuaca
-    // Dipermudahkan untuk demonstrasi
+    // This would normally call a weather API
+    // Simplified for demonstration
     const forecast = await getForecastData(location, days);
     
     return {
@@ -583,9 +624,9 @@ server.tool(
   }
 );
 
-// Fungsi pembantu
+// Helper functions
 async function getWeatherData(location) {
-  // Menyimulasikan panggilan API
+  // Simulate API call
   return {
     temperature: 72.5,
     conditions: "Sunny",
@@ -594,7 +635,7 @@ async function getWeatherData(location) {
 }
 
 async function getForecastData(location, days) {
-  // Menyimulasikan panggilan API
+  // Simulate API call
   return Array.from({ length: days }, (_, i) => ({
     day: i + 1,
     temperature: 70 + Math.floor(Math.random() * 10),
@@ -602,105 +643,131 @@ async function getForecastData(location, days) {
   }));
 }
 
-// Sambungkan pelayan menggunakan pengangkutan stdio
+// Connect the server using stdio transport
 const transport = new StdioServerTransport();
 server.connect(transport).catch(console.error);
 
 console.log("Weather MCP Server started");
 ```
 
-Contoh JavaScript ini menunjukkan cara mewujudkan pelayan MCP menggunakan SDK Protokol Konteks Model. Ia menunjukkan cara mendaftarkan dua alat bernama `weatherTool` dan `forecastTool` dan menjadikan ia tersedia kepada klien MCP melalui `StdioServerTransport`.
+Contoh JavaScript ini menunjukkan cara mencipta pelayan MCP menggunakan SDK Protokol Konteks Model. Ia menunjukkan cara mendaftar dua alat bernama `weatherTool` dan `forecastTool` dan menjadikannya tersedia kepada klien MCP melalui `StdioServerTransport`.
 
 ## Keselamatan dan Kebenaran
 
-MCP merangkumi beberapa konsep dan mekanisme terbina dalam untuk mengurus keselamatan dan kebenaran sepanjang protokol:
+MCP termasuk beberapa konsep dan mekanisme terbina dalam untuk menguruskan keselamatan dan kebenaran sepanjang protokol:
 
 1. **Kawalan Kebenaran Alat**:  
-  Klien boleh menentukan alat mana yang dibenarkan untuk digunakan oleh model semasa sesi. Ini memastikan hanya alat yang diluluskan secara jelas dapat diakses, mengurangkan risiko operasi tidak sengaja atau tidak selamat. Kebenaran boleh dikonfigurasi secara dinamik berdasarkan keutamaan pengguna, dasar organisasi, atau konteks interaksi.
+  Klien boleh menentukan alat mana yang boleh digunakan model untuk setiap permintaan atau aliran kerja.
+  Ini memastikan hanya alat yang dibenarkan secara eksplisit boleh diakses, mengurangkan
+  risiko operasi yang tidak disengajakan atau tidak selamat.
 
 2. **Pengesahan**:  
-  Pelayan boleh memerlukan pengesahan sebelum memberikan akses kepada alat, sumber, atau operasi sensitif. Ini mungkin melibatkan kunci API, token OAuth, atau skim pengesahan lain. Pengesahan yang betul memastikan hanya klien dan pengguna dipercayai dapat memanggil keupayaan pelayan.
+  Pelayan boleh memerlukan pengesahan sebelum memberi akses kepada alat, sumber, atau operasi sensitif. Ini mungkin melibatkan kunci API, token OAuth, atau skema pengesahan lain. Pengesahan yang betul memastikan hanya klien dan pengguna dipercayai boleh menggunakan keupayaan sisi pelayan.
 
 3. **Pengesahan Parameter**:  
-  Pengesahan parameter dikuatkuasakan untuk semua panggilan alat. Setiap alat mentakrifkan jenis, format, dan sekatan yang dijangka untuk parameternya, dan pelayan mengesahkan permintaan masuk dengan sewajarnya. Ini menghalang input yang rosak atau berniat jahat daripada mencapai pelaksanaan alat dan membantu mengekalkan integriti operasi.
+  Pengesahan parameter dikuatkuasakan untuk semua panggilan alat. Setiap alat mentakrifkan jenis, format, dan kekangan yang dijangka untuk parameternya, dan pelayan memeriksa permintaan yang masuk dengan sewajarnya. Ini mengelakkan input yang cacat atau berniat jahat daripada sampai ke pelaksanaan alat dan membantu mengekalkan integriti operasi.
 
-4. **Pengehadkan Kadar**:  
-  Untuk mengelakkan penyalahgunaan dan memastikan penggunaan sumber pelayan yang adil, pelayan MCP boleh melaksanakan pengehadkan kadar untuk panggilan alat dan akses sumber. Had kadar boleh dikenakan per pengguna, per sesi, atau secara global, dan membantu melindungi daripada serangan penafian perkhidmatan atau penggunaan sumber berlebihan.
+4. **Had Kadar**:  
+  Untuk mengelakkan penyalahgunaan dan memastikan penggunaan sumber pelayan yang adil, pelayan MCP boleh
+  melaksanakan had kadar untuk panggilan alat dan akses sumber. Had kadar boleh
+  diterapkan bagi setiap pengguna, kredensial, operasi, atau secara global.
 
-Dengan menggabungkan mekanisme ini, MCP menyediakan asas selamat untuk mengintegrasi model bahasa dengan alat dan sumber data luar, sambil memberikan kawalan terperinci kepada pengguna dan pembangun terhadap akses dan penggunaan.
+Dengan menggabungkan mekanisme ini, MCP menyediakan asas yang selamat untuk mengintegrasikan model bahasa dengan alat dan sumber data luaran, sambil memberi pengguna dan pembangun kawalan terperinci ke atas akses dan penggunaan.
 
 ## Mesej Protokol & Aliran Komunikasi
 
-Komunikasi MCP menggunakan mesej berstruktur **JSON-RPC 2.0** untuk memudahkan interaksi yang jelas dan boleh dipercayai antara hos, klien, dan pelayan. Protokol mentakrifkan corak mesej khusus untuk pelbagai jenis operasi:
+Komunikasi MCP menggunakan mesej berstruktur **JSON-RPC 2.0** untuk memudahkan interaksi yang jelas dan boleh dipercayai antara hos, klien, dan pelayan. Protokol mentakrifkan corak mesej khusus untuk jenis operasi berbeza:
 
-### Jenis Mesej Teras:
+### Jenis Mesej Teras
 
-#### **Mesej Inisialisasi**
-- **Permintaan `initialize`**: Membina sambungan dan merunding versi protokol dan keupayaan
-- **Respons `initialize`**: Mengesahkan ciri dan maklumat pelayan yang disokong  
-- **`notifications/initialized`**: Menandakan bahawa inisialisasi selesai dan sesi sedia
+#### **Metadata Permintaan dan Penemuan**
+
+- **Metadata setiap permintaan**: Setiap permintaan `2026-07-28` adalah lengkap dan
+  mengandungi versi protokol, identiti klien, dan keupayaan klien dalam `_meta`.
+- **Permintaan `server/discover`**: Mendapatkan versi protokol yang disokong, identiti pelayan,
+  keupayaan, dan peluasan apabila diperlukan oleh klien.
+- **Header HTTP Boleh Alir**: Permintaan HTTP termasuk `MCP-Protocol-Version` dan
+  `Mcp-Method`; kaedah yang merujuk alat bernama atau sumber juga termasuk
+  `Mcp-Name`.
+
+Jabat tangan `initialize`/`initialized` dan ID sesi peringkat protokol
+adalah milik semakan protokol terdahulu dan bukan sebahagian daripada MCP `2026-07-28`.
 
 #### **Mesej Penemuan**
-- **Permintaan `tools/list`**: Meneroka alat yang tersedia dari pelayan
-- **Permintaan `resources/list`**: Senaraikan sumber yang tersedia (sumber data)
+- **Permintaan `tools/list`**: Menemui alat yang tersedia dari pelayan
+- **Permintaan `resources/list`**: Menyenaraikan sumber (pangkalan data) yang tersedia
 - **Permintaan `prompts/list`**: Mendapatkan templat prompt yang tersedia
 
 #### **Mesej Pelaksanaan**  
 - **Permintaan `tools/call`**: Melaksanakan alat tertentu dengan parameter yang diberikan
-- **Permintaan `resources/read`**: Mendapatkan kandungan dari sumber tertentu
+- **Permintaan `resources/read`**: Mendapatkan kandungan daripada sumber tertentu
 - **Permintaan `prompts/get`**: Mendapatkan templat prompt dengan parameter pilihan
 
-#### **Mesej Pihak Klien**
-- **Permintaan `sampling/complete`**: Pelayan meminta lengkap LLM dari klien
-- **Permintaan `elicitation/request`**: Pelayan meminta input pengguna melalui antara muka klien
-- **Mesej Pencatatan**: Pelayan menghantar mesej log berstruktur kepada klien
+#### **Permintaan Input Sisi Klien**
 
-#### **Mesej Notifikasi**
-- **`notifications/tools/list_changed`**: Pelayan memberitahu klien perubahan alat
-- **`notifications/resources/list_changed`**: Pelayan memberitahu klien perubahan sumber  
-- **`notifications/prompts/list_changed`**: Pelayan memberitahu klien perubahan prompt
+- **`elicitation/create`**: Pelayan meminta input pengguna melalui antara muka pelanggan
+  semasa memproses permintaan pelanggan.
+- **`sampling/createMessage`**: Permintaan pelayan yang usang untuk penyempurnaan LLM.
+- **`roots/list`**: Permintaan pelayan yang usang untuk akar sistem fail pelanggan.
+
+Di bawah `2026-07-28`, permintaan input dari pelayan ke pelanggan menggunakan corak
+pelbagai pusingan-trip `InputRequiredResult` dan bukannya bergantung pada sesi berterusan.
+
+#### **Mesej Pemberitahuan**
+- **`notifications/tools/list_changed`**: Pelayan memberitahu pelanggan tentang perubahan alat
+- **`notifications/resources/list_changed`**: Pelayan memberitahu pelanggan tentang perubahan sumber  
+- **`notifications/prompts/list_changed`**: Pelayan memberitahu pelanggan tentang perubahan arahan
 
 ### Struktur Mesej:
 
 Semua mesej MCP mengikuti format JSON-RPC 2.0 dengan:
 - **Mesej Permintaan**: Termasuk `id`, `method`, dan `params` pilihan
 - **Mesej Respons**: Termasuk `id` dan sama ada `result` atau `error`  
-- **Mesej Notifikasi**: Termasuk `method` dan `params` pilihan (tiada `id` atau respons dijangka)
+- **Mesej Pemberitahuan**: Termasuk `method` dan `params` pilihan (tiada `id` atau respons dijangka)
 
-Komunikasi berstruktur ini memastikan interaksi yang boleh dipercayai, dapat dijejak, dan boleh dikembangkan yang menyokong senario maju seperti kemaskini masa nyata, rantai alat, dan pengendalian ralat yang mantap.
+Komunikasi yang berstruktur ini memastikan interaksi yang boleh dipercayai, boleh dijejak, dan boleh dikembangkan untuk menyokong senario canggih seperti kemas kini masa nyata, rantai alat, dan pengendalian ralat yang kukuh.
 
-### Tugasan (Eksperimen)
+### Sambungan Tugas
 
-> **Melihat ke hadapan:** calon keluaran `2026-07-28` mengalihkan Tugasan dari spesifikasi teras eksperimen ke sambungan Tugasan khusus dengan kitaran hayat reka semula (`tasks/get`, `tasks/update`, `tasks/cancel`; `tasks/list` dipadam). Jika anda membina menggunakan API eksperimen yang diterangkan di bawah, rancang untuk migrasi. Lihat [Apa yang Berubah dalam MCP: Calon Keluaran 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+Dalam MCP `2026-07-28`, Tugas adalah sambungan rasmi dan bukan ciri teras percubaan.
+Ia menggunakan kitaran hayat `tasks/get`, `tasks/update`, dan
+`tasks/cancel` yang direka semula; `tasks/list` telah dikeluarkan. API Tugas Percubaan
+`2025-11-25` tidak serasi ke belakang dengan sambungan ini. Lihat
+[Apa yang Berubah dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md).
 
-**Tugasan** adalah ciri eksperimen yang menyediakan pembungkus pelaksanaan tahan lama membolehkan pengambilan keputusan tertunda dan penjejakan status untuk permintaan MCP:
+**Tugas** menyediakan pembalut pelaksanaan tahan lama untuk pengambilan keputusan tertunda dan
+penjejakan status:
 
-- **Operasi Berlaku Lama**: Menjejaki pengiraan mahal, automasi aliran kerja, dan pemprosesan kelompok
-- **Keputusan Tertunda**: Menyemak status tugasan dan mendapatkan keputusan apabila operasi selesai
-- **Penjejakan Status**: Memantau kemajuan tugasan melalui keadaan kitaran hayat yang ditakrifkan
+- **Operasi Jangka Panjang**: Menjejak pengiraan mahal, automasi aliran kerja, dan pemprosesan kumpulan
+- **Keputusan Tertunda**: Membuat tinjauan status tugas dan mengambil keputusan apabila operasi selesai
+- **Penjejakan Status**: Memantau kemajuan tugas melalui keadaan kitaran hayat yang ditakrifkan
 - **Operasi Berbilang Langkah**: Menyokong aliran kerja kompleks yang merangkumi pelbagai interaksi
 
-Tugasan membungkus permintaan MCP standard untuk membolehkan corak pelaksanaan tak segerak bagi operasi yang tidak boleh diselesaikan segera.
+Tugas membalut permintaan MCP standard untuk membolehkan corak pelaksanaan tak segerak bagi operasi yang tidak boleh disiapkan dengan segera.
 
-## Pokok-Pokok Penting
+## Perkara Penting
 
-- **Seni Bina**: MCP menggunakan seni bina klien-pelayan di mana hos menguruskan pelbagai sambungan klien ke pelayan
-- **Peserta**: Ekosistem merangkumi hos (aplikasi AI), klien (penyambung protokol), dan pelayan (penyedia keupayaan)
-- **Mekanisme Pengangkutan**: Komunikasi menyokong STDIO (tempatan) dan HTTP Boleh Alir dengan SSE pilihan (jauh)
-- **Primitif Teras**: Pelayan mendedahkan alat (fungsi boleh laksana), sumber (sumber data), dan prompt (templat)
-- **Primitif Klien**: Pelayan boleh meminta pensampeyan (lengkap LLM dengan sokongan panggilan alat), pemintaan (input pengguna termasuk mod URL), root (sempadan sistem fail), dan pencatatan dari klien
-- **Ciri Eksperimen**: Tugasan menyediakan pembungkus pelaksanaan tahan lama untuk operasi berlalu lama
-- **Asas Protokol**: Dibina atas JSON-RPC 2.0 dengan versi berasaskan tarikh (semasa: 2025-11-25)
-- **Keupayaan Masa Nyata**: Menyokong notifikasi untuk kemaskini dinamik dan penyegerakan masa nyata
-- **Keutamaan Keselamatan**: Persetujuan jelas pengguna, perlindungan privasi data, dan pengangkutan selamat adalah keperluan teras
+- **Arkitektur**: MCP menggunakan arkitektur pelanggan-pelayan di mana hos menguruskan pelbagai sambungan pelanggan ke pelayan
+- **Peserta**: Ekosistem merangkumi hos (aplikasi AI), pelanggan (penyambung protokol), dan pelayan (penyedia keupayaan)
+- **Mekanisme Pengangkutan**: Komunikasi menyokong stdio (tempatan) dan Streamable
+  HTTP (jarak jauh); `2026-07-28` menghapuskan aliran acara GET berdiri sendiri
+- **Primitif Teras**: Pelayan mendedahkan alat (fungsi boleh dijalankan), sumber (sumber data), dan arahan (templat)
+- **Primitif Pelanggan**: Elicitation menyokong input pengguna, manakala Sampling dan
+  Roots dikekalkan hanya sebagai ciri keserasian usang
+- **Sambungan**: Sambungan Tugas rasmi menyediakan pembalut pelaksanaan yang tahan lama
+  untuk operasi jangka masa panjang
+- **Asas Protokol**: Dibina di atas JSON-RPC 2.0 dengan penentuan versi berasaskan tarikh
+  (semasa: `2026-07-28`)
+- **Keupayaan Masa Nyata**: Menyokong pemberitahuan untuk kemas kini dinamik dan penyelarasan masa nyata
+- **Keselamatan Diutamakan**: Persetujuan pengguna yang jelas, perlindungan privasi data, dan pengangkutan selamat adalah keperluan teras
 
 ## Latihan
 
-Reka bentuk alat MCP ringkas yang berguna dalam domain anda. Takrifkan:
+Reka alat MCP ringkas yang berguna dalam domain anda. Tetapkan:
 1. Apakah nama alat tersebut
 2. Parameter apa yang akan diterima
-3. Apakah output yang akan diberikan
-4. Bagaimana model boleh menggunakan alat ini untuk menyelesaikan masalah pengguna
+3. Output apa yang akan dikembalikan
+4. Bagaimana model mungkin menggunakan alat ini untuk menyelesaikan masalah pengguna
 
 
 ---
@@ -709,8 +776,8 @@ Reka bentuk alat MCP ringkas yang berguna dalam domain anda. Takrifkan:
 
 Seterusnya: [Bab 2: Keselamatan](../02-Security/README.md)
 
-
-Ingin tahu apa yang akan datang selepas `2025-11-25`? Baca [Apa Yang Berubah dalam MCP: Calon Keluaran 2026-07-28](./mcp-2026-07-28-release-candidate.md).
+Baca [Apa yang Berubah dalam MCP: Spesifikasi 2026-07-28](./mcp-2026-07-28.md)
+untuk panduan migrasi dari `2025-11-25`.
 
 ---
 
