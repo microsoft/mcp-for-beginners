@@ -1,6 +1,6 @@
 # Dịch vụ Máy tính Cơ bản MCP
 
-Dịch vụ này cung cấp các phép toán cơ bản thông qua Model Context Protocol (MCP). Nó được thiết kế như một ví dụ đơn giản dành cho người mới bắt đầu tìm hiểu về triển khai MCP.
+Dịch vụ này cung cấp các phép tính cơ bản thông qua Giao thức Ngữ cảnh Mô hình (MCP). Nó được thiết kế như một ví dụ đơn giản dành cho những người mới bắt đầu tìm hiểu về triển khai MCP.
 
 Để biết thêm thông tin, xem [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 
@@ -10,17 +10,17 @@ Dịch vụ máy tính này cung cấp các khả năng sau:
 
 1. **Các phép toán số học cơ bản**:
    - Cộng hai số
-   - Trừ một số cho số khác
+   - Trừ một số cho số còn lại
    - Nhân hai số
    - Chia một số cho số khác (có kiểm tra chia cho 0)
 
-## Sử dụng loại `stdio`
+## Sử dụng `stdio` Type
   
 ## Cấu hình
 
 1. **Cấu hình MCP Servers**:
    - Mở workspace của bạn trong VS Code.
-   - Tạo file `.vscode/mcp.json` trong thư mục workspace để cấu hình MCP servers. Ví dụ cấu hình:
+   - Tạo một tập tin `.vscode/mcp.json` trong thư mục workspace để cấu hình các MCP server. Ví dụ cấu hình:
 
      ```jsonc
      {
@@ -45,14 +45,14 @@ Dịch vụ máy tính này cung cấp các khả năng sau:
      }
      ```
 
-   - Bạn sẽ được yêu cầu nhập thư mục gốc của kho GitHub, có thể lấy bằng lệnh `git rev-parse --show-toplevel`.
+   - Bạn sẽ được yêu cầu nhập thư mục gốc của kho GitHub, có thể lấy được từ lệnh `git rev-parse --show-toplevel`.
 
 ## Sử dụng Dịch vụ
 
-Dịch vụ cung cấp các API endpoint sau thông qua giao thức MCP:
+Dịch vụ cung cấp các điểm cuối API sau qua giao thức MCP:
 
 - `add(a, b)`: Cộng hai số
-- `subtract(a, b)`: Trừ số thứ hai cho số thứ nhất
+- `subtract(a, b)`: Trừ số thứ hai khỏi số thứ nhất
 - `multiply(a, b)`: Nhân hai số
 - `divide(a, b)`: Chia số thứ nhất cho số thứ hai (có kiểm tra chia cho 0)
 - isPrime(n): Kiểm tra một số có phải là số nguyên tố không
@@ -60,52 +60,57 @@ Dịch vụ cung cấp các API endpoint sau thông qua giao thức MCP:
 ## Thử nghiệm với Github Copilot Chat trong VS Code
 
 1. Thử gửi yêu cầu đến dịch vụ sử dụng giao thức MCP. Ví dụ, bạn có thể hỏi:
-   - "Add 5 and 3"
-   - "Subtract 10 from 4"
-   - "Multiply 6 and 7"
-   - "Divide 8 by 2"
-   - "Does 37854 prime?"
-   - "What are the 3 prime numbers before after 4242?"
-2. Để chắc chắn đang sử dụng công cụ, thêm #MyCalculator vào câu hỏi. Ví dụ:
-   - "Add 5 and 3 #MyCalculator"
-   - "Subtract 10 from 4 #MyCalculator"
+   - "Cộng 5 và 3"
+   - "Trừ 10 từ 4"
+   - "Nhân 6 và 7"
+   - "Chia 8 cho 2"
+   - "Số 37854 có phải là số nguyên tố không?"
+   - "Ba số nguyên tố trước và sau 4242 là gì?"
+2. Để chắc chắn nó sử dụng công cụ, thêm #MyCalculator vào câu lệnh. Ví dụ:
+   - "Cộng 5 và 3 #MyCalculator"
+   - "Trừ 10 từ 4 #MyCalculator"
 
-## Phiên bản Container
 
-Giải pháp trước rất tốt khi bạn đã cài đặt .NET SDK và tất cả các phụ thuộc đã sẵn sàng. Tuy nhiên, nếu bạn muốn chia sẻ giải pháp hoặc chạy nó trong môi trường khác, bạn có thể sử dụng phiên bản container.
+## Phiên bản Đóng container
+
+Giải pháp trước đó rất tốt khi bạn đã cài đặt .NET SDK và các phụ thuộc đã có sẵn. Tuy nhiên, nếu bạn muốn chia sẻ giải pháp hoặc chạy nó trong môi trường khác, bạn có thể sử dụng phiên bản đóng container.
 
 1. Khởi động Docker và đảm bảo nó đang chạy.
-1. Từ terminal, điều hướng đến thư mục `03-GettingStarted\samples\csharp\src`
-1. Để xây dựng image Docker cho dịch vụ máy tính, thực thi lệnh sau (thay `<YOUR-DOCKER-USERNAME>` bằng tên người dùng Docker Hub của bạn):
+1. Từ terminal, di chuyển đến thư mục `03-GettingStarted\samples\csharp\src` 
+1. Để build hình ảnh Docker cho dịch vụ máy tính, thực thi lệnh sau (thay `<YOUR-DOCKER-USERNAME>` bằng tên người dùng Docker Hub của bạn):
    ```bash
    docker build -t <YOUR-DOCKER-USERNAME>/mcp-calculator .
    ``` 
-1. Sau khi image được xây dựng, hãy tải nó lên Docker Hub bằng lệnh sau:
+1. Sau khi hình ảnh được build, hãy upload nó lên Docker Hub. Chạy lệnh sau:
    ```bash
-    docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
-  ```
+   docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
+   ```
 
-## Sử dụng Phiên bản Docker
+## Sử dụng Phiên bản Dockerized
 
-1. Trong file `.vscode/mcp.json`, thay thế cấu hình server bằng đoạn sau:
+1. Trong tập tin `.vscode/mcp.json`, thay thế cấu hình server bằng đoạn sau:
    ```json
-    "mcp-calc": {
+    "mcp-calculator": {
       "command": "docker",
       "args": [
         "run",
         "--rm",
         "-i",
-        "<YOUR-DOCKER-USERNAME>/mcp-calc"
+        "<YOUR-DOCKER-USERNAME>/mcp-calculator"
       ],
       "envFile": "",
       "env": {}
     }
    ```
-   Nhìn vào cấu hình, bạn sẽ thấy lệnh là `docker` và các tham số là `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc`. Cờ `--rm` đảm bảo container sẽ bị xóa sau khi dừng, và cờ `-i` cho phép bạn tương tác với đầu vào chuẩn của container. Tham số cuối cùng là tên image mà chúng ta vừa xây dựng và đẩy lên Docker Hub.
+   Khi xem cấu hình, bạn có thể thấy lệnh là `docker` và các tham số là `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calculator`. Cờ `--rm` đảm bảo container được xóa sau khi dừng, và cờ `-i` cho phép bạn tương tác với input chuẩn của container. Tham số cuối cùng là tên hình ảnh chúng ta vừa build và đẩy lên Docker Hub.
 
-## Thử nghiệm Phiên bản Docker
+## Thử nghiệm Phiên bản Dockerized
 
-Khởi động MCP Server bằng cách nhấn nút Start nhỏ phía trên `"mcp-calc": {`, và giống như trước, bạn có thể yêu cầu dịch vụ máy tính thực hiện các phép toán cho bạn.
+Khởi động MCP Server bằng cách nhấn nút Start nhỏ phía trên `"mcp-calculator": {`, và giống như trước bạn có thể yêu cầu dịch vụ máy tính thực hiện một số phép tính cho bạn.
 
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,43 +1,43 @@
-Dưới đây là ví dụ minh họa MCP App
+Dưới đây là một ví dụ minh họa MCP App
 
 ## Cài đặt
 
 1. Điều hướng đến thư mục *mcp-app*
-1. Chạy `npm install`, bước này sẽ cài đặt các phụ thuộc frontend và backend
+1. Chạy `npm install`, lệnh này sẽ cài đặt các phụ thuộc frontend và backend
 
-Xác minh backend biên dịch bằng cách chạy:
+Kiểm tra việc biên dịch backend bằng cách chạy:
 
 ```sh
 npx tsc --noEmit
 ```
 
-Sẽ không có đầu ra nếu mọi thứ đều ổn.
+Sẽ không có đầu ra nếu mọi thứ ổn.
 
 ## Chạy backend
 
-> Việc này sẽ phức tạp hơn một chút nếu bạn đang sử dụng máy Windows vì giải pháp MCP Apps sử dụng thư viện `concurrently` để chạy, bạn cần tìm một thay thế tương ứng. Dưới đây là dòng gây lỗi trong *package.json* của MCP App:
+> Điều này sẽ phức tạp hơn một chút nếu bạn dùng máy Windows vì giải pháp MCP Apps sử dụng thư viện `concurrently` để chạy mà bạn cần tìm phương án thay thế. Dòng gây sự cố trong *package.json* của MCP App như sau:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
-Ứng dụng này gồm hai phần, phần backend và phần host.
+Ứng dụng này có hai phần, một phần backend và một phần host.
 
-Khởi động backend bằng lệnh:
+Khởi động backend bằng cách gọi:
 
 ```sh
 npm start
 ```
 
-Điều này sẽ khởi động backend tại `http://localhost:3001/mcp`.
+Lệnh này sẽ khởi chạy backend trên `http://localhost:3001/mcp`.
 
-> Lưu ý, nếu bạn đang ở trong Codespace, bạn có thể cần đặt cổng hiển thị ở chế độ công khai. Kiểm tra xem bạn có thể truy cập endpoint trong trình duyệt qua https://<tên Codespace>.app.github.dev/mcp
+> Lưu ý, nếu bạn đang trong Codespace, bạn có thể cần đặt cổng thành public. Kiểm tra bạn có thể truy cập endpoint qua https://<name của Codespace>.app.github.dev/mcp
 
-## Lựa chọn -1 Kiểm thử ứng dụng trong Visual Studio Code
+## Lựa chọn -1 Kiểm tra ứng dụng trong Visual Studio Code
 
-Để thử nghiệm giải pháp trong Visual Studio Code, làm theo các bước sau:
+Để kiểm tra giải pháp trong Visual Studio Code, làm như sau:
 
-- Thêm một mục máy chủ vào `mcp.json` như sau:
+- Thêm một mục server vào `mcp.json` như sau:
 
     ```json
     {
@@ -52,17 +52,17 @@ npm start
     ```
 
 1. Nhấn nút "start" trong *mcp.json*
-1. Đảm bảo cửa sổ chat đang mở và gõ `get-faq`, bạn sẽ thấy kết quả như sau:
+1. Đảm bảo cửa sổ chat mở và nhập `get-faq`, bạn sẽ thấy kết quả như sau:
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/vi/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Lựa chọn -2- Kiểm thử ứng dụng với một host
+## Lựa chọn -2- Kiểm tra ứng dụng với một host
 
-Kho lưu trữ <https://github.com/modelcontextprotocol/ext-apps> chứa nhiều host khác nhau mà bạn có thể dùng để thử nghiệm MVP Apps của mình.
+Repo <https://github.com/modelcontextprotocol/ext-apps> chứa nhiều host khác nhau mà bạn có thể sử dụng để kiểm tra các ứng dụng MVP của mình.
 
-Chúng tôi sẽ cung cấp cho bạn hai lựa chọn dưới đây:
+Chúng tôi sẽ trình bày hai lựa chọn khác nhau ở đây:
 
-### Máy tính cá nhân
+### Máy tính cục bộ
 
 - Điều hướng đến *ext-apps* sau khi bạn đã clone repo.
 
@@ -72,9 +72,9 @@ Chúng tôi sẽ cung cấp cho bạn hai lựa chọn dưới đây:
    npm install
    ```
 
-- Mở một cửa sổ terminal riêng, điều hướng tới *ext-apps/examples/basic-host*
+- Trong một cửa sổ terminal mới, điều hướng đến *ext-apps/examples/basic-host*
 
-    > Nếu bạn dùng Codespace, bạn cần mở serve.ts dòng 27 và thay thế http://localhost:3001/mcp bằng URL Codespace của backend, ví dụ https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > Nếu bạn dùng Codespace, bạn cần điều hướng đến serve.ts dòng 27 và thay thế http://localhost:3001/mcp bằng URL Codespace của backend của bạn, ví dụ như https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
 - Chạy host:
 
@@ -82,19 +82,19 @@ Chúng tôi sẽ cung cấp cho bạn hai lựa chọn dưới đây:
     npm start
     ```
 
-    Điều này sẽ kết nối host với backend và bạn sẽ thấy ứng dụng chạy như hình:
+    Lệnh này sẽ kết nối host với backend và bạn sẽ thấy ứng dụng chạy như sau:
 
     ![App running](../../../../../../translated_images/vi/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-Cần một số bước bổ sung để thiết lập môi trường Codespace hoạt động. Để sử dụng host qua Codespace:
+Cần một chút công sức thêm để thiết lập môi trường Codespace hoạt động. Để sử dụng host thông qua Codespace:
 
 - Xem thư mục *ext-apps* và điều hướng đến *examples/basic-host*.
-- Chạy `npm install` để cài đặt phụ thuộc
+- Chạy `npm install` để cài đặt các phụ thuộc
 - Chạy `npm start` để khởi động host.
 
-## Thử nghiệm ứng dụng
+## Kiểm tra ứng dụng
 
 Thử ứng dụng theo cách sau:
 
@@ -102,11 +102,11 @@ Thử ứng dụng theo cách sau:
 
     ![Tool result](../../../../../../translated_images/vi/tool-result.cfec4814ce8e0146.webp)
 
-Tuyệt vời, mọi thứ đang hoạt động bình thường.
+Tuyệt vời, tất cả đều hoạt động.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi nỗ lực đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc không chính xác. Văn bản gốc bằng ngôn ngữ gốc nên được coi là nguồn tham khảo chính thức. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu nhầm hoặc sai lệch nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

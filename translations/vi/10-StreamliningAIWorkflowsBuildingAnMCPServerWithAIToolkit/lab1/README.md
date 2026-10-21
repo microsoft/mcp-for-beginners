@@ -1,4 +1,4 @@
-# 🚀 Module 1: Kiến Thức Cơ Bản về Microsoft Foundry Toolkit
+# 🚀 Module 1: Những Kiến Thức Cơ Bản về Bộ Công Cụ Microsoft Foundry
 
 [![Duration](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()
 [![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green.svg)]()
@@ -7,105 +7,107 @@
 ## 📋 Mục Tiêu Học Tập
 
 Vào cuối module này, bạn sẽ có thể:
-- ✅ Cài đặt và cấu hình Microsoft Foundry Toolkit Extension cho VS Code
-- ✅ Duyệt Catalog Mô Hình và hiểu các nguồn mô hình khác nhau
-- ✅ Sử dụng Playground để thử nghiệm và kiểm tra mô hình
+- ✅ Cài đặt và cấu hình Tiện ích mở rộng Microsoft Foundry Toolkit cho VS Code
+- ✅ Duyệt qua Danh mục Mô hình và hiểu các nguồn mô hình khác nhau
+- ✅ Sử dụng Playground để thử nghiệm và thử nghiệm mô hình
 - ✅ Tạo các tác nhân AI tùy chỉnh bằng Agent Builder
 - ✅ So sánh hiệu suất mô hình giữa các nhà cung cấp khác nhau
-- ✅ Áp dụng các thực hành tốt nhất cho kỹ thuật tạo prompt
+- ✅ Áp dụng các thực hành tốt nhất cho thiết kế prompt
 
-## 🧠 Giới Thiệu về Microsoft Foundry Toolkit
+## 🧠 Giới Thiệu về Bộ Công Cụ Microsoft Foundry
 
-**Microsoft Foundry Toolkit Extension cho VS Code** là tiện ích mở rộng chủ lực của Microsoft biến VS Code thành môi trường phát triển AI toàn diện. Nó nối cầu khoảng cách giữa nghiên cứu AI và phát triển ứng dụng thực tiễn, giúp AI sinh tạo trở nên dễ dàng tiếp cận với các nhà phát triển ở mọi trình độ.
+**Tiện ích mở rộng Microsoft Foundry Toolkit cho VS Code** là tiện ích mở rộng chủ lực của Microsoft biến VS Code thành môi trường phát triển AI toàn diện. Nó kết nối khoảng cách giữa nghiên cứu AI và phát triển ứng dụng thực tiễn, giúp AI tạo sinh trở nên dễ tiếp cận với các nhà phát triển ở mọi trình độ.
 
 ### 🌟 Các Tính Năng Chính
 
 | Tính Năng | Mô Tả | Trường Hợp Sử Dụng |
 |---------|-------------|----------|
-| **🗂️ Model Catalog** | Truy cập 100+ mô hình từ GitHub, ONNX, OpenAI, Anthropic, Google | Khám phá và lựa chọn mô hình |
-| **🔌 BYOM Support** | Tích hợp mô hình riêng của bạn (cục bộ/ từ xa) | Triển khai mô hình tùy chỉnh |
-| **🎮 Interactive Playground** | Thử nghiệm mô hình thời gian thực với giao diện chat | Phát triển nhanh và thử nghiệm |
-| **📎 Multi-Modal Support** | Xử lý văn bản, hình ảnh và tệp đính kèm | Ứng dụng AI phức tạp |
-| **⚡ Batch Processing** | Chạy nhiều lệnh cùng lúc | Quy trình thử nghiệm hiệu quả |
-| **📊 Model Evaluation** | Các chỉ số tích hợp (F1, liên quan, tương đồng, mạch lạc) | Đánh giá hiệu suất |
+| **🗂️ Danh mục Mô hình** | Truy cập hơn 100 mô hình từ GitHub, ONNX, OpenAI, Anthropic, Google | Khám phá và chọn mô hình |
+| **🔌 Hỗ trợ BYOM** | Tích hợp mô hình của bạn (cục bộ/từ xa) | Triển khai mô hình tùy chỉnh |
+| **🎮 Playground Tương tác** | Thử nghiệm mô hình thời gian thực với giao diện chat | Phát triển nguyên mẫu và thử nghiệm nhanh |
+| **📎 Hỗ trợ đa phương tiện** | Xử lý văn bản, hình ảnh và tệp đính kèm | Ứng dụng AI phức tạp |
+| **⚡ Xử lý hàng loạt** | Chạy nhiều prompt cùng lúc | Quy trình thử nghiệm hiệu quả |
+| **📊 Đánh giá mô hình** | Các chỉ số tích hợp (F1, liên quan, tương tự, mạch lạc) | Đánh giá hiệu suất |
 
-### 🎯 Tại Sao Microsoft Foundry Toolkit Quan Trọng
+### 🎯 Tại Sao Bộ Công Cụ Microsoft Foundry Quan Trọng
 
-- **🚀 Phát Triển Tăng Tốc**: Từ ý tưởng đến nguyên mẫu trong vài phút
-- **🔄 Quy Trình Làm Việc Thống Nhất**: Một giao diện cho nhiều nhà cung cấp AI
-- **🧪 Thí Nghiệm Dễ Dàng**: So sánh mô hình không cần cài đặt phức tạp
-- **📈 Sẵn Sàng Sản Xuất**: Chuyển đổi liền mạch từ nguyên mẫu sang triển khai
+- **🚀 Phát triển tăng tốc**: Từ ý tưởng đến nguyên mẫu trong vài phút
+- **🔄 Quy trình làm việc thống nhất**: Một giao diện cho nhiều nhà cung cấp AI
+- **🧪 Dễ dàng thử nghiệm**: So sánh mô hình mà không cần cài đặt phức tạp
+- **📈 Sẵn sàng sản xuất**: Chuyển đổi liền mạch từ nguyên mẫu sang triển khai
 
-## 🛠️ Yêu Cầu & Thiết Lập
+## 🛠️ Yêu Cầu & Cài Đặt
 
-### 📦 Cài Đặt Microsoft Foundry Toolkit Extension
+### 📦 Cài đặt Tiện ích mở rộng Microsoft Foundry Toolkit
 
-**Bước 1: Truy cập Marketplace Extensions**
+**Bước 1: Truy cập Cửa hàng Tiện ích mở rộng**
 1. Mở Visual Studio Code
-2. Điều hướng tới phần Extension (`Ctrl+Shift+X` hoặc `Cmd+Shift+X`)
+2. Điều hướng đến chế độ xem Tiện ích mở rộng (`Ctrl+Shift+X` hoặc `Cmd+Shift+X`)
 3. Tìm kiếm "Microsoft Foundry Toolkit"
 
-**Bước 2: Chọn Phiên Bản của Bạn**
-- **🟢 Phiên bản Phát Hành**: Được khuyến nghị cho sử dụng sản xuất
-- **🔶 Phiên bản Tiền Phát Hành**: Truy cập sớm các tính năng tiên tiến
+**Bước 2: Chọn Phiên bản của Bạn**
+- **🟢 Bản phát hành**: Được khuyến nghị cho sử dụng sản xuất
+- **🔶 Bản tiền phát hành**: Truy cập sớm các tính năng mới nhất
 
-**Bước 3: Cài Đặt và Kích Hoạt**
+**Bước 3: Cài đặt và Kích hoạt**
 
 ![Microsoft Foundry Toolkit Extension](../../../../translated_images/vi/aitkext.d28945a03eed003c.webp)
 
-### ✅ Danh Sách Kiểm Tra Xác Nhận
-- [ ] Biểu tượng Microsoft Foundry Toolkit xuất hiện ở thanh bên của VS Code
-- [ ] Tiện ích được bật và kích hoạt
+### ✅ Danh sách Kiểm tra Xác nhận
+- [ ] Biểu tượng Microsoft Foundry Toolkit xuất hiện ở thanh bên VS Code
+- [ ] Tiện ích mở rộng đã được bật và kích hoạt
 - [ ] Không có lỗi cài đặt trong bảng đầu ra
 
-## 🧪 Bài Tập Thực Hành 1: Khám Phá Mô Hình GitHub
+## 🧪 Bài Tập Thực Hành 1: Khám Phá Mô Hình Microsoft Foundry
 
-**🎯 Mục Tiêu**: Thông thạo Catalog Mô Hình và thử mô hình AI đầu tiên của bạn
+**🎯 Mục tiêu**: Làm chủ Danh mục Mô hình và thử nghiệm mô hình AI đầu tiên của bạn
 
-### 📊 Bước 1: Duyệt Catalog Mô Hình
+### 📊 Bước 1: Duyệt Qua Danh mục Mô hình
 
-Catalog Mô Hình là cổng vào hệ sinh thái AI của bạn. Nó tổng hợp các mô hình từ nhiều nhà cung cấp khác nhau, giúp bạn dễ dàng khám phá và so sánh các lựa chọn.
+Danh mục Mô hình là cánh cổng dẫn bạn đến hệ sinh thái AI. Nó tổng hợp các mô hình từ nhiều nhà cung cấp, giúp bạn dễ dàng khám phá và so sánh các lựa chọn.
 
-**🔍 Hướng Dẫn Duyệt:**
+**🔍 Hướng dẫn Duyệt:**
 
-Nhấn vào **MODELS - Catalog** trong thanh bên Microsoft Foundry Toolkit
+Nhấp vào **MODELS - Catalog** trong thanh bên Microsoft Foundry Toolkit
 
 ![Model Catalog](../../../../translated_images/vi/aimodel.263ed2be013d8fb0.webp)
 
-**💡 Mẹo Hữu Ích**: Tìm các mô hình có khả năng cụ thể phù hợp với trường hợp sử dụng của bạn (ví dụ: tạo mã, viết sáng tạo, phân tích).
+**💡 Mẹo Chuyên Nghiệp**: Tìm các mô hình có khả năng cụ thể phù hợp với trường hợp sử dụng của bạn (ví dụ: tạo mã, viết sáng tạo, phân tích).
 
-**⚠️ Lưu Ý**: Mô hình lưu trữ trên GitHub (tức là GitHub Models) được sử dụng miễn phí nhưng bị giới hạn số lượng yêu cầu và token. Nếu bạn muốn truy cập các mô hình không phải trên GitHub (ví dụ, mô hình bên ngoài được lưu trữ qua Azure AI hoặc các điểm cuối khác), bạn cần cung cấp khóa API hoặc xác thực phù hợp.
+> [!NOTE]
+> Mô hình GitHub đã được ngưng vào ngày 30 tháng 7 năm 2026. Hãy sử dụng mô hình Microsoft Foundry để triển khai và xác thực bằng Microsoft Entra ID hoặc khóa API Azure.
+> 
 
-### 🚀 Bước 2: Thêm và Cấu Hình Mô Hình Đầu Tiên
+### 🚀 Bước 2: Thêm và Cấu hình Mô hình Đầu tiên của Bạn
 
-**Chiến Lược Lựa Chọn Mô Hình:**
-- **GPT-4.1**: Tốt nhất cho tư duy phức tạp và phân tích
+**Chiến lược Lựa chọn Mô hình:**
+- **GPT-5.1**: Mô hình đa năng được khuyến nghị dùng cho công cụ và lý luận
 - **Phi-4-mini**: Nhẹ, phản hồi nhanh cho các tác vụ đơn giản
 
-**Quy Trình Cấu Hình:**
-1. Chọn **OpenAI GPT-4.1** từ catalog
-2. Nhấn **Add to My Models** - đăng ký mô hình để sử dụng
-3. Chọn **Try in Playground** để mở môi trường thử nghiệm
-4. Chờ mô hình khởi tạo (lần đầu có thể mất chút thời gian)
+**🔧 Quá trình Cấu hình:**
+1. Chọn **OpenAI GPT-5.1** từ danh mục
+2. Nhấp **Add to My Models** - điều này đăng ký mô hình để sử dụng
+3. Chọn **Try in Playground** để khởi chạy môi trường thử nghiệm
+4. Chờ khởi tạo mô hình (lần đầu có thể mất thời gian)
 
 ![Playground Setup](../../../../translated_images/vi/playground.dd6f5141344878ca.webp)
 
-**⚙️ Hiểu Tham Số Mô Hình:**
-- **Temperature**: Kiểm soát độ sáng tạo (0 = nhất quán, 1 = sáng tạo)
-- **Max Tokens**: Độ dài câu trả lời tối đa
-- **Top-p**: Nucleus sampling để đa dạng câu trả lời
+**⚙️ Hiểu Các Tham Số Mô hình:**
+- **Temperature**: Kiểm soát độ sáng tạo (0 = xác định, 1 = sáng tạo)
+- **Max Tokens**: Độ dài phản hồi tối đa
+- **Top-p**: Lấy mẫu nhân tố hạt nhân cho sự đa dạng phản hồi
 
 ### 🎯 Bước 3: Làm Chủ Giao Diện Playground
 
-Playground là phòng thí nghiệm thử nghiệm AI của bạn. Đây là cách tối đa hóa tiềm năng của nó:
+Playground là phòng thí nghiệm thử nghiệm AI của bạn. Đây là cách tận dụng tối đa tiềm năng của nó:
 
-**🎨 Thực Hành Tạo Prompt Hiệu Quả:**
-1. **Cụ Thể**: Hướng dẫn rõ ràng, chi tiết cho kết quả tốt hơn
-2. **Cung Cấp Ngữ Cảnh**: Bao gồm thông tin nền liên quan
-3. **Dùng Ví Dụ**: Cho mô hình thấy yêu cầu cụ thể qua ví dụ
-4. **Lặp Lại**: Tinh chỉnh prompt dựa trên kết quả ban đầu
+**🎨 Thực hành tốt nhất cho thiết kế prompt:**
+1. **Cụ thể**: Hướng dẫn rõ ràng, chi tiết mang lại kết quả tốt hơn
+2. **Cung cấp bối cảnh**: Bao gồm thông tin nền phù hợp
+3. **Dùng ví dụ**: Cho mô hình thấy bạn muốn gì qua ví dụ
+4. **Lặp lại**: Tinh chỉnh prompt dựa trên kết quả ban đầu
 
-**🧪 Các Kịch Bản Thử Nghiệm:**
+**🧪 Kịch bản thử nghiệm:**
 ```markdown
 # Example 1: Code Generation
 "Write a Python function that calculates the factorial of a number using recursion. Include error handling and docstrings."
@@ -119,46 +121,46 @@ Playground là phòng thí nghiệm thử nghiệm AI của bạn. Đây là cá
 
 ![Testing Results](../../../../translated_images/vi/result.1dfcf211fb359cf6.webp)
 
-### 🏆 Thử Thách: So Sánh Hiệu Suất Mô Hình
+### 🏆 Bài Tập Thách Thức: So Sánh Hiệu Suất Mô hình
 
-**🎯 Mục Tiêu**: So sánh các mô hình khác nhau dùng prompt giống nhau để hiểu điểm mạnh
+**🎯 Mục Tiêu**: So sánh các mô hình khác nhau sử dụng cùng prompt để hiểu điểm mạnh của chúng
 
-**📋 Hướng Dẫn:**
+**📋 Hướng dẫn:**
 1. Thêm **Phi-4-mini** vào không gian làm việc của bạn
-2. Dùng cùng một prompt cho cả GPT-4.1 và Phi-4-mini
+2. Sử dụng cùng một prompt cho cả GPT-5.1 và Phi-4-mini
 
 ![set](../../../../translated_images/vi/set.88132df189ecde2c.webp)
 
-3. So sánh chất lượng câu trả lời, tốc độ và độ chính xác
-4. Ghi lại kết quả trong phần kết quả
+3. So sánh chất lượng phản hồi, tốc độ và độ chính xác
+4. Ghi lại kết quả vào phần kết quả
 
 ![Model Comparison](../../../../translated_images/vi/compare.97746cd0f9074955.webp)
 
 **💡 Những Kiến Thức Quan Trọng Cần Khám Phá:**
-- Khi nào nên dùng LLM so với SLM
-- So sánh chi phí và hiệu năng
+- Khi nào nên dùng LLM và khi nào nên dùng SLM
+- Đánh đổi chi phí và hiệu suất
 - Khả năng chuyên biệt của các mô hình khác nhau
 
-## 🤖 Bài Tập Thực Hành 2: Xây Dựng Đại Lý Tùy Chỉnh với Agent Builder
+## 🤖 Bài Tập Thực Hành 2: Tạo Tác Nhân Tùy Chỉnh với Agent Builder
 
-**🎯 Mục Tiêu**: Tạo các đại lý AI chuyên biệt phù hợp với tác vụ và quy trình làm việc cụ thể
+**🎯 Mục tiêu**: Tạo các tác nhân AI chuyên biệt phù hợp với các tác vụ và quy trình làm việc cụ thể
 
-### 🏗️ Bước 1: Hiểu Về Agent Builder
+### 🏗️ Bước 1: Hiểu về Agent Builder
 
-Agent Builder là nơi Microsoft Foundry Toolkit thể hiện sức mạnh thực sự. Nó cho phép bạn tạo các trợ lý AI được xây dựng cho mục đích riêng, kết hợp sức mạnh của các mô hình ngôn ngữ lớn với các hướng dẫn tùy chỉnh, tham số cụ thể và kiến thức chuyên môn.
+Agent Builder là nơi Microsoft Foundry Toolkit thực sự tỏa sáng. Nó cho phép bạn tạo các trợ lý AI chuyên biệt kết hợp sức mạnh của mô hình ngôn ngữ lớn với các hướng dẫn tùy chỉnh, tham số cụ thể và kiến thức chuyên môn.
 
-**🧠 Các Thành Phần Kiến Trúc Đại Lý:**
-- **Core Model**: Mô hình nền tảng LLM (GPT-4, Groks, Phi, v.v.)
-- **System Prompt**: Định hình cá tính và hành vi đại lý
-- **Parameters**: Cấu hình tinh chỉnh để tối ưu hiệu suất
-- **Tools Integration**: Kết nối API bên ngoài và dịch vụ MCP
-- **Memory**: Ngữ cảnh hội thoại và duy trì phiên làm việc
+**🧠 Thành phần kiến trúc tác nhân:**
+- **Mô hình Cốt lõi**: LLM nền tảng (GPT-5.1, Phi, v.v.)
+- **System Prompt**: Xác định cá tính và hành vi tác nhân
+- **Tham số**: Cài đặt tinh chỉnh để hiệu suất tối ưu
+- **Tích hợp Công cụ**: Kết nối với API bên ngoài và dịch vụ MCP
+- **Bộ nhớ**: Bối cảnh hội thoại và duy trì phiên làm việc
 
 ![Agent Builder Interface](../../../../translated_images/vi/agentbuilder.25895b2d2f8c02e7.webp)
 
-### ⚙️ Bước 2: Tìm Hiểu Sâu về Cấu Hình Đại Lý
+### ⚙️ Bước 2: Đào sâu cấu hình tác nhân
 
-**🎨 Tạo Prompt Hệ Thống Hiệu Quả:**
+**🎨 Tạo System Prompt hiệu quả:**
 ```markdown
 # Template Structure:
 ## Role Definition
@@ -178,25 +180,25 @@ You are a [specific role] with expertise in [domain].
 Provide 2-3 examples of ideal interactions
 ```
 
-*Dĩ nhiên, bạn cũng có thể sử dụng Generate System Prompt để AI hỗ trợ bạn tạo và tối ưu prompt*
+*Dĩ nhiên, bạn cũng có thể dùng tính năng Generate System Prompt để AI giúp bạn tạo và tối ưu prompt*
 
-**🔧 Tối Ưu Tham Số:**
-| Tham Số | Phạm Vi Khuyến Nghị | Trường Hợp Sử Dụng |
+**🔧 Tối ưu hóa tham số:**
+| Tham số | Khoảng Khuyến nghị | Trường hợp sử dụng |
 |-----------|------------------|----------|
 | **Temperature** | 0.1-0.3 | Phản hồi kỹ thuật/chính xác |
-| **Temperature** | 0.7-0.9 | Tác vụ sáng tạo/ý tưởng |
-| **Max Tokens** | 500-1000 | Câu trả lời ngắn gọn |
+| **Temperature** | 0.7-0.9 | Tác vụ sáng tạo/động não |
+| **Max Tokens** | 500-1000 | Phản hồi cô đọng |
 | **Max Tokens** | 2000-4000 | Giải thích chi tiết |
 
-### 🐍 Bước 3: Bài Tập Thực Tế - Đại Lý Lập Trình Python
+### 🐍 Bước 3: Bài Tập Thực Tế - Tác nhân Lập trình Python
 
-**🎯 Nhiệm Vụ**: Tạo trợ lý chuyên biệt cho lập trình Python
+**🎯 Nhiệm vụ**: Tạo trợ lý lập trình Python chuyên biệt
 
-**📋 Các Bước Cấu Hình:**
+**📋 Các bước cấu hình:**
 
-1. **Chọn Mô Hình**: Chọn **Claude 3.5 Sonnet** (xuất sắc cho mã code)
+1. **Chọn Mô hình**: Chọn **Claude 3.5 Sonnet** (xuất sắc cho mã)
 
-2. **Thiết Kế Prompt Hệ Thống**:
+2. **Thiết kế System Prompt**:
 ```markdown
 # Python Programming Expert Agent
 
@@ -223,53 +225,53 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
 - Write readable, maintainable code
 ```
 
-3. **Cấu Hình Tham Số**:
+3. **Cấu hình Tham số**:
    - Temperature: 0.2 (cho mã ổn định, đáng tin cậy)
    - Max Tokens: 2000 (giải thích chi tiết)
-   - Top-p: 0.9 (cân bằng sáng tạo)
+   - Top-p: 0.9 (sáng tạo cân bằng)
 
 ![Python Agent Configuration](../../../../translated_images/vi/pythonagent.5e51b406401c165f.webp)
 
-### 🧪 Bước 4: Thử Nghiệm Đại Lý Python Của Bạn
+### 🧪 Bước 4: Thử nghiệm Tác nhân Python của Bạn
 
-**Kịch Bản Thử Nghiệm:**
-1. **Chức Năng Cơ Bản**: "Tạo hàm tìm số nguyên tố"
-2. **Thuật Toán Phức Tạp**: "Triển khai cây tìm kiếm nhị phân với các phương thức chèn, xóa và tìm kiếm"
-3. **Vấn Đề Thực Tế**: "Xây dựng trình thu thập dữ liệu web xử lý giới hạn tốc độ và thử lại"
-4. **Gỡ Lỗi**: "Sửa đoạn code này [dán đoạn code lỗi]"
+**Kịch bản thử nghiệm:**
+1. **Chức năng cơ bản**: "Tạo hàm tìm số nguyên tố"
+2. **Thuật toán phức tạp**: "Triển khai cây tìm kiếm nhị phân với các phương thức chèn, xóa và tìm kiếm"
+3. **Vấn đề thực tế**: "Xây dựng trình thu thập dữ liệu web xử lý giới hạn tốc độ và thử lại"
+4. **Gỡ lỗi**: "Sửa đoạn mã này [dán mã lỗi]"
 
-**🏆 Tiêu Chuẩn Thành Công:**
+**🏆 Tiêu chí thành công:**
 - ✅ Mã chạy không lỗi
-- ✅ Bao gồm tài liệu thích hợp
-- ✅ Tuân theo các thực hành tốt nhất về Python
-- ✅ Cung cấp giải thích rõ ràng
-- ✅ Đề xuất cải tiến
+- ✅ Có tài liệu hướng dẫn đúng cách
+- ✅ Tuân thủ các thực hành tốt nhất của Python
+- ✅ Giải thích rõ ràng
+- ✅ Đề xuất các cải tiến
 
-## 🎓 Tổng Kết Module 1 & Các Bước Tiếp Theo
+## 🎓 Kết Thúc Module 1 & Các Bước Tiếp Theo
 
 ### 📊 Kiểm Tra Kiến Thức
 
-Kiểm tra hiểu biết của bạn:
-- [ ] Bạn có thể giải thích sự khác biệt giữa các mô hình trong catalog không?
-- [ ] Bạn đã tạo và thử nghiệm đại lý tùy chỉnh thành công chưa?
-- [ ] Bạn hiểu cách tối ưu tham số cho các trường hợp sử dụng khác nhau chưa?
-- [ ] Bạn có thể thiết kế prompt hệ thống hiệu quả không?
+Kiểm tra sự hiểu biết của bạn:
+- [ ] Bạn có thể giải thích sự khác biệt giữa các mô hình trong danh mục không?
+- [ ] Bạn đã tạo và thử nghiệm tác nhân tùy chỉnh thành công chưa?
+- [ ] Bạn có hiểu cách tối ưu tham số cho các trường hợp sử dụng khác nhau không?
+- [ ] Bạn có thể thiết kế các system prompt hiệu quả không?
 
 ### 📚 Tài Nguyên Bổ Sung
 
-- **Tài liệu Microsoft Foundry Toolkit**: [Microsoft Docs chính thức](https://github.com/microsoft/vscode-ai-toolkit)
-- **Hướng dẫn Prompt Engineering**: [Thực hành tốt nhất](https://platform.openai.com/docs/guides/prompt-engineering)
-- **Mô hình trong Microsoft Foundry Toolkit**: [Mô hình đang phát triển](https://github.com/microsoft/vscode-ai-toolkit/blob/main/doc/models.md)
+- **Tài liệu Microsoft Foundry Toolkit**: [Tài liệu chính thức của Microsoft](https://github.com/microsoft/vscode-ai-toolkit)
+- **Hướng dẫn Thiết kế prompt**: [Thực hành tốt nhất](https://platform.openai.com/docs/guides/prompt-engineering)
+- **Mô hình trong Microsoft Foundry Toolkit**: [Các mô hình đang phát triển](https://github.com/microsoft/vscode-ai-toolkit/blob/main/doc/models.md)
 
-**🎉 Chúc Mừng!** Bạn đã nắm vững kiến thức cơ bản của Microsoft Foundry Toolkit và sẵn sàng xây dựng các ứng dụng AI nâng cao hơn!
+**🎉 Chúc mừng!** Bạn đã làm chủ các kiến thức cơ bản về Microsoft Foundry Toolkit và sẵn sàng xây dựng các ứng dụng AI nâng cao hơn!
 
-### 🔜 Tiếp Tục Module Kế Tiếp
+### 🔜 Tiếp tục sang Module tiếp theo
 
-Sẵn sàng khám phá các tính năng nâng cao hơn? Tiếp tục với **[Module 2: MCP với Kiến Thức Cơ Bản Microsoft Foundry Toolkit](../lab2/README.md)** để học cách:
-- Kết nối đại lý với công cụ bên ngoài sử dụng Model Context Protocol (MCP)
-- Xây dựng đại lý tự động hóa trình duyệt với Playwright
-- Tích hợp máy chủ MCP với đại lý Microsoft Foundry Toolkit của bạn
-- Tăng cường đại lý với dữ liệu và chức năng bên ngoài
+Sẵn sàng với các khả năng nâng cao hơn? Tiếp tục đến **[Module 2: MCP với Những Kiến Thức Cơ Bản về Microsoft Foundry Toolkit](../lab2/README.md)** nơi bạn sẽ học cách:
+- Kết nối tác nhân của bạn với các công cụ bên ngoài bằng Giao thức Ngữ cảnh Mô hình (Model Context Protocol - MCP)
+- Xây dựng tác nhân tự động hóa trình duyệt với Playwright
+- Tích hợp các máy chủ MCP với tác nhân Microsoft Foundry Toolkit của bạn
+- Tăng cường tác nhân của bạn với dữ liệu và khả năng bên ngoài
 
 ---
 
