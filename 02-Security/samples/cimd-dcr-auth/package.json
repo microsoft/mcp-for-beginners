@@ -10,7 +10,7 @@
     "test": "node --test --import=tsx test/dcr.test.ts test/oauth.test.ts test/registration.test.ts test/server.test.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/express": "^2.0.0",
+    "@modelcontextprotocol/express": "^2.0.2",
     "@modelcontextprotocol/node": "^2.0.0",
     "@modelcontextprotocol/server": "^2.3.1",
     "express": "^5.2.1",
