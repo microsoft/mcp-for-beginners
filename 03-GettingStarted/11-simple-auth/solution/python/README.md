@@ -10,7 +10,7 @@ source ./venv/bin/activate
 ## Install dependencies
 
 ```sh
-pip install "mcp[cli]" dotenv PyJWT requeests
+pip install "mcp[cli]" dotenv PyJWT requests
 ```
 
 ## Generate token

@@ -963,7 +963,7 @@ Here you will take what you've learnt in terms of sending credentials through he
 
 ## Solution 1
 
-[Solution 1](./code/basic/README.md)
+[Solution 1](./code/README.md)
 
 ## Assignment 2: Upgrade the solution from Assignment 1 to use JWT
 
@@ -973,7 +973,7 @@ Instead of using Basic Auth, let's use JWT.
 
 ## Solution 2
 
-[Solution 2](./solution/jwt-solution/README.md)
+[Solution 2](./solution/README.md)
 
 ## Challenge
 
