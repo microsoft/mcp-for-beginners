@@ -1,22 +1,28 @@
-# Deze voorbeeld uitvoeren
+# Dit voorbeeld uitvoeren
 
-Dit is de Rust-oplossing voor de LLM-clientvoorbeeld. Je hebt een Rust-toolchain nodig; zie de [officiële installatiewijzer](https://www.rust-lang.org/tools/install).
+Dit is de Rust-oplossing voor het LLM-clientvoorbeeld. Je hebt een Rust-toolchain nodig; zie de [officiële installatiewijzer](https://www.rust-lang.org/tools/install).
 
-De client roept een model aan via het GitHub Models-inferentie-eindpunt (`https://models.github.ai/inference/chat`) en leest je persoonlijke GitHub-toegangstoken (PAT) uit de omgevingsvariabele `OPENAI_API_KEY`.
+De client roept een geïmplementeerd Microsoft Foundry-model aan via de Azure OpenAI
+v1 endpoint.
 
 > [!NOTE]
-> Andere oplossingen in deze repo gebruiken `GITHUB_TOKEN`. Voor Rust stel je `OPENAI_API_KEY` in op dezelfde waarde om overeen te komen met de OpenAI-clientconfiguratie.
+> De waarde die wordt doorgegeven als `model` is de naam van je Foundry-implementatie, niet noodzakelijkerwijs
+> de onderliggende modelnaam.
 
-## -0- Stel je GitHub-token in
+## -0- Configureer Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- Bouw het voorbeeld
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-De client start de calculator MCP-server, haalt zijn lijsten met tools op en gebruikt het model (`openai/gpt-5-mini`) om de `add`-tool aan te roepen. Je zou een uitvoer moeten zien die de toolaanroep aangeeft (bijvoorbeeld, "Calling tool: add") en het resultaat van die aanroep.
+De client start de calculator MCP-server, haalt de lijst met tools op en gebruikt
+het geïmplementeerde model om de `add` tool aan te roepen. Je zou uitvoer moeten zien die
+de tool-aanroep aangeeft (bijvoorbeeld "Calling tool: add") en het resultaat van die aanroep.
 
 ---
 

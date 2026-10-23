@@ -1,36 +1,36 @@
 ## Testiranje in odpravljanje napak
 
-Preden začnete testirati svoj MCP strežnik, je pomembno razumeti razpoložljiva orodja in najboljše prakse za odpravljanje napak. Učinkovito testiranje zagotavlja, da se vaš strežnik obnaša po pričakovanjih, in vam pomaga hitro prepoznati in odpraviti težave. Naslednji oddelek povzema priporočene pristope za preverjanje vaše izvedbe MCP.
+Preden začnete s testiranjem svojega MCP strežnika, je pomembno razumeti razpoložljiva orodja in najboljše prakse za odpravljanje napak. Učinkovito testiranje zagotavlja, da se vaš strežnik obnaša tako, kot je pričakovano, in vam pomaga hitro identificirati in odpraviti težave. Naslednji odsek opisuje priporočene pristope za preverjanje vaše MCP implementacije.
 
 ## Pregled
 
-Ta lekcija obravnava, kako izbrati pravi pristop k testiranju in najučinkovitejše testno orodje.
+Ta lekcija zajema, kako izbrati pravi pristop k testiranju in najučinkovitejše orodje za testiranje.
 
 ## Cilji učenja
 
-Ob koncu te lekcije boste znali:
+Do konca te lekcije boste znali:
 
-- Opisati različne pristope za testiranje.
-- Uporabiti različna orodja za učinkovito testiranje svoje kode.
+- Opisati različne pristope k testiranju.
+- Uporabiti različna orodja za učinkovito testiranje vaše kode.
 
 
 ## Testiranje MCP strežnikov
 
-MCP nudi orodja za pomoč pri testiranju in odpravljanju napak vaših strežnikov:
+MCP nudi orodja, ki vam pomagajo testirati in odpravljati napake vaših strežnikov:
 
-- **MCP Inspector**: Orodje ukazne vrstice, ki ga lahko uporabljate tako kot CLI orodje kot tudi kot vizualno orodje.
-- **Ročno testiranje**: Lahko uporabite orodje, kot je curl, za izvajanje spletnih zahtevkov, a ustrezno je vsako orodje, ki zna izvajati HTTP.
-- **Enotsko testiranje**: Možno je uporabiti vaš priljubljeni testni okvir za testiranje funkcij tako strežnika kot odjemalca.
+- **MCP Inspector**: Orodje v ukazni vrstici, ki ga lahko zaženete kot CLI orodje ali kot vizualno orodje.
+- **Ročno testiranje**: Lahko uporabite orodje, kot je curl, za izvajanje spletnih zahtevkov, vendar bo vsako orodje, ki podpira HTTP, ustrezalo.
+- **Enotsko testiranje**: Možno je uporabiti vašo priljubljeno testno ogrodje za testiranje funkcij tako strežnika kot odjemalca.
 
-### Uporaba MCP Inspectorja
+### Uporaba MCP Inspector
 
-Uporabo tega orodja smo opisali v prejšnjih lekcijah, a si ga poglejmo na splošno. To je orodje, zgrajeno v Node.js, in ga lahko uporabite z zagonom `npx` izvršljive datoteke, ki bo začasno prenesla in namestila orodje, nato pa se očistila po zaključku vaše zahteve.
+Uporabo tega orodja smo opisali v prejšnjih lekcijah, a ga na kratko povzemimo na visoki ravni. To je orodje zgrajeno v Node.js in ga lahko uporabljate z zagonom izvršljive datoteke `npx`, ki bo začasno prenesla in namestila orodje ter se samodejno odstranila, ko bo obdelala vaš zahtevek.
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) vam pomaga:
 
-- **Odkrijte zmogljivosti strežnika**: Samodejno zazna razpoložljive vire, orodja in pozive
-- **Testirajte izvajanje orodij**: Preizkusite različne parametre in si oglejte odzive v realnem času
-- **Ogled metapodatkov strežnika**: Preučite informacije o strežniku, sheme in konfiguracije
+- **Odkriti zmogljivosti strežnika**: Samodejno zaznajte razpoložljive vire, orodja in pozive
+- **Testirati izvajanje orodja**: Preizkusite različne parametre in spremljajte odzive v realnem času
+- **Ogledati metapodatke strežnika**: Preučite informacije o strežniku, sheme in konfiguracije
 
 Tipičen zagon orodja izgleda tako:
 
@@ -38,11 +38,11 @@ Tipičen zagon orodja izgleda tako:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Zgornji ukaz zažene MCP in njegovo vizualno vmesnik ter odpre lokalni spletni vmesnik v vašem brskalniku. Lahko pričakujete nadzorno ploščo, ki prikazuje vaše registrirane MCP strežnike, njihova razpoložljiva orodja, vire in pozive. Vmesnik vam omogoča interaktivno testiranje izvajanja orodij, pregled metapodatkov strežnika in ogled odzivov v realnem času, kar olajša preverjanje in odpravljanje napak pri izvedbah MCP strežnikov.
+Zgornji ukaz zažene MCP in njegovo vizualno vmesnik ter odpre lokalni spletni vmesnik v vašem brskalniku. Pričakujete lahko prikaz nadzorne plošče z vašimi registriranimi MCP strežniki, njihovimi razpoložljivimi orodji, viri in pozivi. Vmesnik omogoča interaktivno testiranje izvajanja orodja, pregled metapodatkov strežnika in ogled odzivov v realnem času, kar olajša preverjanje in odpravljanje napak v vaših MCP strežniških implementacijah.
 
-Tako je lahko videti: ![Inspector](../../../../translated_images/sl/connect.141db0b2bd05f096.webp)
+Tako lahko izgleda: ![Inspector](../../../../translated_images/sl/connect.141db0b2bd05f096.webp)
 
-Orodje lahko tudi zaženete v načinu CLI, za kar dodate atribut `--cli`. Tukaj je primer zagona orodja v načinu "CLI", ki našteje vsa orodja na strežniku:
+To orodje lahko zaženete tudi v CLI načinu, za kar dodate atribut `--cli`. Tukaj je primer zagona orodja v načinu "CLI", ki izpiše vsa orodja na strežniku:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -50,25 +50,25 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Ročno testiranje
 
-Poleg pisanja in zagona orodja inspector za testiranje zmogljivosti strežnika, je še en podoben pristop zagnati odjemalca, ki zna uporabljati HTTP, na primer curl.
+Poleg zagona orodja inspector za testiranje zmogljivosti strežnika je drug podoben pristop zagon odjemalca, ki zna uporabiti HTTP, na primer curl.
 
-Z curl lahko neposredno testirate MCP strežnike z uporabo HTTP zahtevkov:
+S curl lahko neposredno testirate MCP strežnike z uporabo HTTP zahtev:
 
 ```bash
-# Primer: Metapodatki testnega strežnika
+# Example: Test server metadata
 curl http://localhost:3000/v1/metadata
 
-# Primer: Zaženi orodje
+# Example: Execute a tool
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Kot lahko vidite zgoraj, z uporabo curl pošljete POST zahtevo za klic orodja z uporabo podatkov, ki vsebujejo ime orodja in njegove parametre. Uporabite pristop, ki vam najbolj ustreza. Orodja CLI so na splošno hitrejša in enostavnejša za skriptiranje, kar je lahko koristno v okolju CI/CD.
+Kot lahko vidite iz zgornje uporabe curl, uporabite POST zahtevo za klic orodja s prenosom, ki vsebuje ime orodja in njegove parametre. Uporabite pristop, ki vam najbolj ustreza. CLI orodja so na splošno hitrejša za uporabo in omogočajo skriptno izvajanje, kar je lahko koristno v CI/CD okolju.
 
 ### Enotsko testiranje
 
-Ustvarite enotske teste za svoja orodja in vire, da zagotovite, da delujejo kot je pričakovano. Tukaj je primer testne kode.
+Ustvarite enote testov za vaša orodja in vire, da zagotovite, da delujejo kot je pričakovano. Tukaj je nekaj vzorčne kode za testiranje.
 
 ```python
 import pytest
@@ -78,7 +78,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Označi celoten modul za asinhrone teste
+# Mark the whole module for async tests
 pytestmark = pytest.mark.anyio
 
 
@@ -91,7 +91,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Ustvari nekaj testnih orodij
+    # Create a couple of test tools
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -103,43 +103,43 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testiraj brez parametra cursor (izpuščeno)
+        # Test without cursor parameter (omitted)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # Testiraj z cursor=None
+        # Test with cursor=None
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Testiraj z cursor kot niz
+        # Test with cursor as string
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Testiraj z praznim nizom cursor
+        # Test with empty string cursor
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
 ```
 
-Predhodna koda počne naslednje:
+Zgornja koda naredi naslednje:
 
-- Uporablja ogrodje pytest, ki omogoča ustvarjanje testov kot funkcij in uporabo izjav assert.
+- Uporablja ogrodje pytest, ki omogoča ustvarjanje testov kot funkcij in uporabo assert izjav.
 - Ustvari MCP strežnik z dvema različnima orodjema.
-- Uporablja izjavo `assert` za preverjanje, ali so izpolnjeni določeni pogoji.
+- Uporablja izjavo `assert`, da preveri, ali so izpolnjeni določeni pogoji.
 
 Oglejte si [celotno datoteko tukaj](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Glede na zgornjo datoteko lahko testirate svoj lasten strežnik in zagotovite, da so zmogljivosti ustvarjene, kot morajo biti.
+Glede na zgornjo datoteko lahko testirate svoj strežnik, da zagotovite pravilno ustvarjene zmožnosti.
 
-Vsi glavni SDK-ji imajo podobne testne odseke, tako da se lahko prilagodite svojemu izbranemu runtime okolju.
+Vsi glavni SDK-ji imajo podobne razdelke za testiranje, tako da jih lahko prilagodite svojemu izbranemu času izvajanja.
 
 ## Primeri
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Java kalkulator](../samples/java/calculator/README.md)
+- [.NET kalkulator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript kalkulator](../samples/javascript/README.md)
+- [TypeScript kalkulator](../samples/typescript/README.md)
+- [Python kalkulator](../../../../03-GettingStarted/samples/python) 
 
 ## Dodatni viri
 
@@ -147,7 +147,7 @@ Vsi glavni SDK-ji imajo podobne testne odseke, tako da se lahko prilagodite svoj
 
 ## Kaj sledi
 
-- Naslednje: [Deploy](../09-deployment/README.md)
+- Naslednje: [Namestitev](../09-deployment/README.md)
 
 ---
 

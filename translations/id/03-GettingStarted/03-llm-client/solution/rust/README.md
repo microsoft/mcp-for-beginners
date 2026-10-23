@@ -1,22 +1,28 @@
 # Menjalankan contoh ini
 
-Ini adalah solusi Rust untuk contoh klien LLM. Anda perlu memasang toolchain Rust; lihat [panduan instal resmi](https://www.rust-lang.org/tools/install).
+Ini adalah solusi Rust untuk contoh klien LLM. Anda perlu menginstal Rust toolchain; lihat [panduan instal resmi](https://www.rust-lang.org/tools/install).
 
-Klien memanggil model melalui endpoint inferensi Model GitHub (`https://models.github.ai/inference/chat`) dan membaca token akses personal GitHub (PAT) Anda dari variabel lingkungan `OPENAI_API_KEY`.
+Klien memanggil model Microsoft Foundry yang dideploy melalui endpoint Azure OpenAI
+v1.
 
 > [!NOTE]
-> Solusi lain dalam repo ini menggunakan `GITHUB_TOKEN`. Untuk Rust, setel `OPENAI_API_KEY` ke nilai yang sama agar sesuai dengan konfigurasi klien OpenAI.
+> Nilai yang diteruskan sebagai `model` adalah nama deployment Foundry Anda, tidak harus
+> nama model yang mendasarinya.
 
-## -0- Setel token GitHub Anda
+## -0- Konfigurasikan Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- Bangun contoh
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-Klien memulai server MCP kalkulator, mengambil daftar alatnya, dan menggunakan model (`openai/gpt-5-mini`) untuk memanggil alat `add`. Anda harus melihat keluaran yang menunjukkan panggilan alat (misalnya, "Calling tool: add") dan hasil dari panggilan tersebut.
+Klien memulai server MCP kalkulator, mengambil daftar alatnya, dan menggunakan
+model yang dideploy untuk memanggil alat `add`. Anda harus melihat keluaran yang menunjukkan
+pemanggilan alat (misalnya, "Calling tool: add") dan hasil dari pemanggilan tersebut.
 
 ---
 

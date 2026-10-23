@@ -1,27 +1,29 @@
 # אינטגרציה ארגונית
 
-כאשר בונים שרתי MCP בהקשר ארגוני, לעיתים קרובות יש צורך להתממשק עם פלטפורמות ושירותי AI קיימים. החלק הזה מכסה כיצד לשלב את MCP עם מערכות ארגוניות כמו Azure OpenAI ו-Microsoft AI Foundry, המאפשרים יכולות AI מתקדמות ושליטה יחסית בכלים.
+בעת בניית שרתי MCP בהקשר ארגוני, לעיתים קרובות יש צורך באינטגרציה עם פלטפורמות ושירותי בינה מלאכותית קיימים. חלק זה מתאר כיצד לשלב את MCP עם מערכות ארגוניות כמו Azure OpenAI ו-Microsoft AI Foundry, המאפשרים יכולות בינה מלאכותית מתקדמות ותזמור כלים.
 
-## הקדמה
+## מבוא
 
-בשיעור זה, תלמד כיצד לשלב את פרוטוקול הקשר מודל (MCP) עם מערכות AI ארגוניות, תוך התמקדות ב-Azure OpenAI וב-Microsoft AI Foundry. אינטגרציות אלו מאפשרות לך לנצל דגמי AI חזקים וכלים תוך שמירה על הגמישות וההרחבה של MCP.
+בשיעור זה תלמד כיצד לשלב את פרוטוקול הקשר הדגם (MCP) עם מערכות בינה מלאכותית ארגוניות, תוך התמקדות ב-Azure OpenAI וב-Microsoft AI Foundry. אינטגרציות אלו מאפשרות לך לנצל דגמים וכלים חזקים של בינה מלאכותית תוך שמירה על הגמישות וההרחבה של MCP.
 
 ## יעדי הלמידה
 
 בסיום שיעור זה תוכל:
 
-- לשלב MCP עם Azure OpenAI כדי לנצל את יכולות ה-AI שלה.
-- ליישם תיאום כלים MCP עם Azure OpenAI.
-- לשלב MCP עם Microsoft AI Foundry ליכולות סוכן AI מתקדמות.
-- לנצל את Azure Machine Learning (ML) לביצוע צינורות ML ורישום דגמים ככלים ב-MCP.
+- לשלב את MCP עם Azure OpenAI כדי לנצל את יכולות הבינה המלאכותית שלה.
+- לבצע תזמור כלים של MCP עם Azure OpenAI.
+- לשלב את MCP עם Microsoft AI Foundry עבור יכולות סוכני בינה מלאכותית מתקדמות.
+- לנצל את Azure Machine Learning (ML) לביצוע צינורות ML ולהרשמת דגמים ככלים של MCP.
 
-## אינטגרציית Azure OpenAI
+## אינטגרציה עם Azure OpenAI
 
-Azure OpenAI מספקת גישה לדגמי AI חזקים כמו GPT-4 ואחרים. שילוב MCP עם Azure OpenAI מאפשר לך להשתמש בדגמים אלה תוך שמירה על גמישות תיאום הכלים של MCP.
+Microsoft Foundry מספקת גישה לדגמי בינה מלאכותית עדכניים כגון GPT-5.1.
+שילוב MCP עם דגמי Foundry שומר על גמישות תזמור הכלים של MCP 
+תוך שימוש בפריסה מנוהלת של הדגם.
 
-### יישום ב-C#
+### מימוש ב-C#
 
-בקטע הקוד הזה, אנו מראים כיצד לשלב את MCP עם Azure OpenAI באמצעות Azure OpenAI SDK.
+בקטע קוד זה אנו מדגימים כיצד לשלב את MCP עם Azure OpenAI באמצעות ערכת הפיתוח של Azure OpenAI.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -85,24 +87,24 @@ namespace EnterpriseIntegration
 }
 ```
 
-בקוד הקודם עשינו:
+בקוד שלמעלה ביצענו:
 
-- קונפיגורציה של לקוח Azure OpenAI עם נקודת הקצה, שם הפריסה ומפתח ה-API.
-- יצירת מתודה `GetCompletionWithToolsAsync` לקבלת השלמות עם תמיכה בכלים.
-- טיפול בקריאות כלים בתגובה.
+- הגדרנו את לקוח Azure OpenAI עם נקודת הקצה, שם הפריסה ומפתח ה-API.
+- יצרנו שיטת `GetCompletionWithToolsAsync` לקבלת השלמות עם תמיכה בכלים.
+- טיפלנו בקריאות כלים בתגובה.
 
-מומלץ שתיישם את הלוגיקה לטיפול בכלים בהתאם להגדרת שרת MCP הספציפית שלך.
+מומלץ לך ליישם את הלוגיקה האמיתית לטיפול בכלים בהתבסס על תצורת שרת ה-MCP הספציפית שלך.
 
-## אינטגרציית Microsoft Foundry
+## אינטגרציה עם Microsoft Foundry
 
-Microsoft Foundry מספקת פלטפורמה לבניית פריסת סוכני AI. שילוב MCP עם Microsoft Foundry מאפשר לך לנצל את יכולותיה תוך שמירה על גמישות MCP.
+Microsoft Foundry מספק פלטפורמה לבניית סוכני בינה מלאכותית ופריסתם. שילוב MCP עם Microsoft Foundry מאפשר לך לנצל את יכולותיה תוך שמירה על גמישות MCP.
 
-בקטע הקוד למטה, אנו מפתחים אינטגרציית סוכן שמעבד בקשות ומטפל בקריאות כלים באמצעות MCP.
+בקוד הבא, אנו מפתחים אינטגרציה של סוכן שמטפל בבקשות ומטפל בקריאות כלים באמצעות MCP.
 
-### יישום ב-Java
+### מימוש ב-Java
 
 ```java
-// אינטגרציה של סוכן Java AI Foundry
+// Java AI Foundry Agent Integration
 package com.example.mcp.enterprise;
 
 import com.microsoft.aifoundry.AgentClient;
@@ -125,26 +127,26 @@ public class AIFoundryMcpBridge {
     }
     
     public AgentResponse processAgentRequest(AgentRequest request) {
-        // עיבוד בקשת סוכן AI Foundry
+        // Process the AI Foundry Agent request
         AgentResponse initialResponse = agentClient.processRequest(request);
         
-        // בדוק אם הסוכן ביקש להשתמש בכלים
+        // Check if the agent requested to use tools
         if (initialResponse.getToolCalls() != null && !initialResponse.getToolCalls().isEmpty()) {
-            // עבור כל קריאת כלי, נהל זאת לכלי MCP המתאים
+            // For each tool call, route it to the appropriate MCP tool
             for (AgentToolCall toolCall : initialResponse.getToolCalls()) {
                 String toolName = toolCall.getName();
                 Map<String, Object> parameters = toolCall.getArguments();
                 
-                // הפעל את הכלי באמצעות MCP
+                // Execute the tool using MCP
                 ToolResponse mcpResponse = mcpClient.executeTool(toolName, parameters);
                 
-                // צור תגובת כלי עבור AI Foundry
+                // Create tool response for AI Foundry
                 AgentToolResponse toolResponse = new AgentToolResponse(
                     toolCall.getId(),
                     mcpResponse.getResult()
                 );
                 
-                // הגש את תגובת הכלי חזרה לסוכן
+                // Submit tool response back to the agent
                 initialResponse = agentClient.submitToolResponse(
                     request.getConversationId(), 
                     toolResponse
@@ -157,20 +159,20 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-בקוד הקודם עשינו:
+בקוד לעיל ביצענו:
 
-- יצירת מחלקת `AIFoundryMcpBridge` שמשלבת בין AI Foundry לבין MCP.
-- מימוש מתודה `processAgentRequest` שמעבדת בקשה מסוכן AI Foundry.
-- טיפול בקריאות כלים באמצעות ביצוען דרך לקוח MCP ושליחת התוצאות חזרה לסוכן AI Foundry.
+- יצירת מחלקה `AIFoundryMcpBridge` שמשלבת גם עם AI Foundry וגם עם MCP.
+- יישום שיטה `processAgentRequest` המעבדת בקשות מסוכן AI Foundry.
+- טיפול בקריאות כלים על ידי הרצתן דרך לקוח MCP והחזרת התוצאות לסוכן AI Foundry.
 
 ## שילוב MCP עם Azure ML
 
-שילוב MCP עם Azure Machine Learning (ML) מאפשר לך לנצל את יכולות ה-ML החזקות של Azure תוך שמירה על הגמישות של MCP. אינטגרציה זו מאפשרת הפעלת צינורות ML, רישום דגמים ככלים וניהול משאבי חישוב.
+שילוב MCP עם Azure Machine Learning (ML) מאפשר לך לנצל את יכולות ה-ML החזקות של Azure תוך שמירה על גמישות MCP. אינטגרציה זו מאפשרת ביצוע צינורות ML, הרשמת דגמים ככלים וניהול משאבי חישוב.
 
-### יישום בפייתון
+### מימוש בפייתון
 
 ```python
-# אינטגרציית Python עם Azure AI
+# Python Azure AI Integration
 from mcp_client import McpClient
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
@@ -180,10 +182,10 @@ import asyncio
 
 class EnterpriseAiIntegration:
     def __init__(self, mcp_server_url, subscription_id, resource_group, workspace_name):
-        # הגדר לקוח MCP
+        # Set up MCP client
         self.mcp_client = McpClient(server_url=mcp_server_url)
         
-        # הגדר לקוח Azure ML
+        # Set up Azure ML client
         self.credential = DefaultAzureCredential()
         self.ml_client = MLClient(
             self.credential,
@@ -194,7 +196,7 @@ class EnterpriseAiIntegration:
     
     async def execute_ml_pipeline(self, pipeline_name, input_data):
         """Executes an ML pipeline in Azure ML"""
-        # עיבוד ראשוני של נתוני הקלט באמצעות כלי MCP
+        # First process the input data using MCP tools
         processed_data = await self.mcp_client.execute_tool(
             "dataPreprocessor",
             {
@@ -203,7 +205,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # שלח את הצנרת ל-Azure ML
+        # Submit the pipeline to Azure ML
         pipeline_job = self.ml_client.jobs.create_or_update(
             entity={
                 "name": pipeline_name,
@@ -215,7 +217,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # החזר מידע על המשימה
+        # Return job information
         return {
             "job_id": pipeline_job.id,
             "status": pipeline_job.status,
@@ -224,22 +226,22 @@ class EnterpriseAiIntegration:
     
     async def register_ml_model_as_tool(self, model_name, model_version="latest"):
         """Registers an Azure ML model as an MCP tool"""
-        # קבל פרטי המודל
+        # Get model details
         if model_version == "latest":
             model = self.ml_client.models.get(name=model_name, label="latest")
         else:
             model = self.ml_client.models.get(name=model_name, version=model_version)
         
-        # צור סביבת פריסה
+        # Create deployment environment
         env = Environment(
             name="mcp-model-env",
             conda_file="./environments/inference-env.yml"
         )
         
-        # הגדר חישוב
+        # Set up compute
         compute = self.ml_client.compute.get("mcp-inference")
         
-        # פרוס את המודל כנקודת קצה מקוונת
+        # Deploy model as online endpoint
         deployment = self.ml_client.online_deployments.create_or_update(
             endpoint_name=f"mcp-{model_name}",
             deployment={
@@ -255,22 +257,22 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # צור סכמת כלי MCP בהתבסס על סכמת המודל
+        # Create MCP tool schema based on model schema
         tool_schema = {
             "type": "object",
             "properties": {},
             "required": []
         }
         
-        # הוסף מאפייני קלט בהתבסס על סכמת המודל
+        # Add input properties based on model schema
         for input_name, input_spec in model.signature.inputs.items():
             tool_schema["properties"][input_name] = {
                 "type": self._map_ml_type_to_json_type(input_spec.type)
             }
             tool_schema["required"].append(input_name)
         
-        # רשם ככלי MCP
-        # ביישום אמיתי, תיצור כלי שקורא לנקודת הקצה
+        # Register as MCP tool
+        # In a real implementation, you would create a tool that calls the endpoint
         return {
             "model_name": model_name,
             "model_version": model.version,
@@ -291,17 +293,17 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-בקוד הקודם עשינו:
+בקוד שלמעלה ביצענו:
 
-- יצירת מחלקת `EnterpriseAiIntegration` שמשלבת את MCP עם Azure ML.
-- מימוש מתודה `execute_ml_pipeline` שטוענת נתוני קלט באמצעות כלים של MCP ומגישה צינור ML ל-Azure ML.
-- מימוש מתודה `register_ml_model_as_tool` שרושמת דגם Azure ML ככלי MCP, כולל יצירת סביבה ופריסת משאבים.
-- מיפוי סוגי הנתונים של Azure ML לסכמות JSON לרישום כלי.
-- שימוש בתכנות אסינכרוני לטיפול בפעולות ארוכות כמו הפעלת צינורות ML ורישום דגמים.
+- יצירת מחלקה `EnterpriseAiIntegration` שמשלבת MCP עם Azure ML.
+- יישום שיטה `execute_ml_pipeline` המעבדת נתוני קלט באמצעות כלי MCP ומשגרת צינור ML ל-Azure ML.
+- יישום שיטה `register_ml_model_as_tool` הרשמת דגם Azure ML ככלי MCP, כולל יצירת סביבת הפריסה ומשאבי החישוב הנדרשים.
+- מיפוי סוגי נתונים של Azure ML לסוגי סכמת JSON עבור רישום הכלי.
+- שימוש בתכנות אסינכרוני לטיפול בתהליכים שעשויים להיות ארוכים כמו הפעלת צינורות ML ורישום דגמים.
 
 ## מה הלאה
 
-- [5.2 מולטי מודאליות](../mcp-multi-modality/README.md)
+- [5.2 מולטימודליות](../mcp-multi-modality/README.md)
 
 ---
 

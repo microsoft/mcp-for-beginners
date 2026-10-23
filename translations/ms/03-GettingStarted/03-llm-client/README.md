@@ -1,57 +1,63 @@
-# Membuat klien dengan LLM
+# Mewujudkan klien dengan LLM
 
 > [!NOTE]
-> Contoh klien Java menyambung melalui legacy tranport HTTP+SSE dan
-> menyasarkan API SDK MCP `2025-11-25`. Gunakan SDK yang serasi `2026-07-28` dan
-> Streamable HTTP untuk klien jauh yang baru.
+> Contoh klien Java berhubung melalui pengangkutan HTTP+SSE lama dan
+> mensasarkan API SDK MCP `2025-11-25`. Gunakan SDK yang serasi `2026-07-28` dan
+> HTTP Streamable untuk klien jauh baru.
 
-Setakat ini, anda telah melihat cara membuat pelayan dan klien. Klien telah dapat memanggil pelayan secara eksplisit untuk menyenaraikan alat, sumber, dan arahan yang dimilikinya. Walau bagaimanapun, ini bukan pendekatan yang sangat praktikal. Pengguna anda hidup di era agen dan menjangka menggunakan arahan dan berkomunikasi dengan LLM sebaliknya. Mereka tidak kisah sama ada anda menggunakan MCP untuk menyimpan keupayaan anda; mereka hanya menjangka berinteraksi menggunakan bahasa semula jadi. Jadi bagaimana kita menyelesaikan ini? Penyelesaiannya ialah menambah LLM ke klien.
+Setakat ini, anda telah melihat cara untuk mencipta pelayan dan klien. Klien telah dapat memanggil pelayan secara jelas untuk menyenaraikan alat, sumber, dan promptnya. Walau bagaimanapun, ini bukanlah pendekatan yang sangat praktikal. Pengguna anda hidup dalam era agen dan mengharapkan untuk menggunakan prompt dan berkomunikasi dengan LLM. Mereka tidak kisah sama ada anda menggunakan MCP untuk menyimpan keupayaan anda; mereka hanya mengharapkan berinteraksi menggunakan bahasa semula jadi. Jadi bagaimana kita menyelesaikannya? Penyelesaian adalah dengan menambah LLM ke klien.
 
 ## Gambaran Keseluruhan
 
-Dalam pelajaran ini, kita memfokuskan kepada menambah LLM untuk klien anda dan menunjukkan bagaimana ini memberikan pengalaman yang lebih baik untuk pengguna anda.
+Dalam pelajaran ini, kita fokus pada penambahan LLM ke klien anda dan menunjukkan bagaimana ini menyediakan pengalaman yang lebih baik untuk pengguna anda.
 
 ## Objektif Pembelajaran
 
-Menjelang akhir pelajaran ini, anda akan dapat:
+Pada akhir pelajaran ini, anda akan dapat:
 
-- Membuat klien dengan LLM.
-- Berinteraksi lancar dengan pelayan MCP menggunakan LLM.
-- Menyediakan pengalaman pengguna akhir yang lebih baik di pihak klien.
+- Mewujudkan klien dengan LLM.
+- Berinteraksi dengan lancar dengan pelayan MCP menggunakan LLM.
+- Memberikan pengalaman pengguna akhir yang lebih baik di pihak klien.
 
 ## Pendekatan
 
 Mari kita cuba memahami pendekatan yang perlu kita ambil. Menambah LLM kedengaran mudah, tetapi adakah kita benar-benar akan melakukannya?
 
-Ini adalah bagaimana klien akan berinteraksi dengan pelayan:
+Inilah cara klien akan berinteraksi dengan pelayan:
 
 1. Menjalin sambungan dengan pelayan.
 
-1. Menyenaraikan keupayaan, arahan, sumber dan alat, dan menyimpan skema mereka.
+1. Menyenaraikan keupayaan, prompt, sumber dan alat, dan menyimpan skema mereka.
 
-1. Menambah LLM dan menghantar keupayaan yang disimpan dan skemanya dalam format yang difahami oleh LLM.
+1. Menambah LLM dan menghantar keupayaan yang disimpan serta skema mereka dalam format yang difahami oleh LLM.
 
-1. Mengendalikan arahan pengguna dengan menyerahkannya kepada LLM bersama dengan alat yang disenaraikan oleh klien.
+1. Mengendalikan prompt pengguna dengan menghantarnya ke LLM bersama alat yang disenaraikan oleh klien.
 
-Bagus, sekarang kita faham bagaimana kita boleh melakukan ini secara keseluruhan, mari kita cuba dalam latihan di bawah.
+Bagus, kini kita faham bagaimana kita boleh melakukan ini pada peringkat tinggi, mari cuba dalam latihan di bawah.
 
-## Latihan: Membuat klien dengan LLM
+## Latihan: Mewujudkan klien dengan LLM
 
-Dalam latihan ini, kita akan belajar menambah LLM ke klien kita.
+Dalam latihan ini, kita akan belajar untuk menambah LLM ke klien kita.
 
-### Pengesahan menggunakan Token Akses Peribadi GitHub
+### Konfigurasi Microsoft Foundry
 
-Membuat token GitHub adalah proses yang mudah. Berikut adalah cara anda boleh melakukannya:
+GitHub Models telah ditamatkan pada 30 Julai 2026. Buat sumber Microsoft Foundry,
+lancarkan model aktif seperti `gpt-5.1`, dan tetapkan pembolehubah persekitaran ini:
 
-- Pergi ke Tetapan GitHub – Klik pada gambar profil anda di sudut atas kanan dan pilih Tetapan.
-- Navigasi ke Tetapan Pemaju – Tatal ke bawah dan klik pada Tetapan Pemaju.
-- Pilih Token Akses Peribadi – Klik pada token Berbutir Halus dan kemudian Hasilkan token baru.
-- Konfigurasikan Token Anda – Tambah nota sebagai rujukan, tetapkan tarikh luput, dan pilih skop (izin) yang diperlukan. Dalam kes ini pastikan menambah izin Model.
-- Hasilkan dan Salin Token – Klik Hasilkan token, dan pastikan untuk menyalinnya dengan segera, kerana anda tidak akan dapat melihatnya lagi.
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+Gunakan nama pelancaran dalam panggilan API. Ia mungkin berbeza daripada nama model asas.
+Semak
+[jadual persaraan model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+sebelum memilih model.
 
 ### -1- Sambung ke pelayan
 
-Mari kita buat klien kita terlebih dahulu:
+Mari kita cipta klien kita terlebih dahulu:
 
 #### TypeScript
 
@@ -60,15 +66,21 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Import zod untuk pengesahan skema
+import { z } from "zod"; // Import zod for schema validation
 
 class MCPClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", 
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -77,11 +89,7 @@ class MCPClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -91,8 +99,8 @@ class MCPClient {
 Dalam kod sebelum ini kami telah:
 
 - Mengimport perpustakaan yang diperlukan
-- Membuat kelas dengan dua ahli, `client` dan `openai` yang akan membantu kita mengurus klien dan berinteraksi dengan LLM masing-masing.
-- Mengonfigurasikan instans LLM kami untuk menggunakan Model GitHub dengan menetapkan `baseUrl` yang menunjuk ke API inferens.
+- Mencipta kelas dengan dua anggota, `client` dan `openai` yang akan membantu kita mengurus klien dan berinteraksi dengan LLM masing-masing.
+- Mengkonfigurasi klien OpenAI untuk menggunakan titik akhir Microsoft Foundry v1 dan kunci API.
 
 #### Python
 
@@ -100,11 +108,11 @@ Dalam kod sebelum ini kami telah:
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Cipta parameter pelayan untuk sambungan stdio
+# Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="mcp",  # Boleh laku
-    args=["run", "server.py"],  # Argumen baris perintah pilihan
-    env=None,  # Pembolehubah persekitaran pilihan
+    command="mcp",  # Executable
+    args=["run", "server.py"],  # Optional command line arguments
+    env=None,  # Optional environment variables
 )
 
 
@@ -113,7 +121,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Inisialisasikan sambungan
+            # Initialize the connection
             await session.initialize()
 
 
@@ -127,22 +135,32 @@ if __name__ == "__main__":
 Dalam kod sebelum ini kami telah:
 
 - Mengimport perpustakaan yang diperlukan untuk MCP
-- Membuat klien
+- Mencipta klien
 
 #### .NET
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
 using System.Text.Json;
+
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+var client = new ChatClient(
+    deployment,
+    new ApiKeyCredential(apiKey),
+    new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -151,7 +169,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Pertama, anda perlu menambah pergantungan LangChain4j ke fail `pom.xml` anda. Tambahkan pergantungan ini untuk mengaktifkan integrasi MCP dan API MiniMax yang serasi dengan OpenAI:
+Pertama, anda perlu menambah pergantungan LangChain4j ke fail `pom.xml` anda. Tambah pergantungan ini untuk mengaktifkan integrasi MCP dan API MiniMax yang serasi OpenAI:
 
 ```xml
 <properties>
@@ -181,9 +199,9 @@ Pertama, anda perlu menambah pergantungan LangChain4j ke fail `pom.xml` anda. Ta
 </dependencies>
 ```
 
-Tetapkan kunci API MiniMax anda dan, secara pilihan, titik akhir dan model.
+Tetapkan kunci API MiniMax anda dan, jika mahu, titik akhir dan model.
 `MINIMAX_MODEL_ID` menyokong `MiniMax-M3` dan `MiniMax-M2.7`. Jika
-`OPENAI_BASE_URL` tidak ditetapkan, `MINIMAX_REGION` menyokong `global_en` dan `cn_zh`.
+`OPENAI_BASE_URL` tidak diset, `MINIMAX_REGION` menyokong `global_en` dan `cn_zh`.
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
@@ -191,14 +209,14 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-Untuk memilih titik akhir mengikut rantau, abaikan `OPENAI_BASE_URL`:
+Untuk memilih titik akhir mengikut rantau, jangan sertakan `OPENAI_BASE_URL`:
 
 ```bash
 unset OPENAI_BASE_URL
 export MINIMAX_REGION=cn_zh
 ```
 
-Kemudian buat kelas klien Java anda:
+Kemudian cipta kelas klien Java anda:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -234,7 +252,7 @@ public class LangChain4jClient {
                 .modelName(resolveModelName())
                 .build();
 
-        // Cipta pengangkutan MCP untuk menyambung ke pelayan
+        // Create MCP transport for connecting to server
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -242,7 +260,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Cipta klien MCP
+        // Create MCP client
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -293,16 +311,16 @@ Dalam kod sebelum ini kami telah:
 
 - **Menambah pergantungan LangChain4j**: Diperlukan untuk integrasi MCP dan API MiniMax yang serasi OpenAI
 - **Mengimport perpustakaan LangChain4j**: Untuk integrasi MCP dan fungsi model sembang OpenAI
-- **Membuat `ChatLanguageModel`**: Dikonfigurasikan untuk menggunakan MiniMax dengan kunci API MiniMax, titik akhir, dan ID model yang disokong anda
-- **Menyediakan pengangkutan HTTP**: Menggunakan Server-Sent Events (SSE) untuk menyambung ke pelayan MCP
-- **Membuat klien MCP**: Yang akan mengendalikan komunikasi dengan pelayan
+- **Mencipta `ChatLanguageModel`**: Dikonfigurasi untuk menggunakan MiniMax dengan kunci API MiniMax, titik akhir, dan ID model yang disokong
+- **Menetapkan pengangkutan HTTP**: Menggunakan Server-Sent Events (SSE) untuk menyambung ke pelayan MCP
+- **Mencipta klien MCP**: Yang akan mengendalikan komunikasi dengan pelayan
 - **Menggunakan sokongan MCP terbina dalam LangChain4j**: Yang memudahkan integrasi antara LLM dan pelayan MCP
 
 #### Rust
 
-Contoh ini menganggap anda mempunyai pelayan MCP berasaskan Rust yang sedang berjalan. Jika anda tidak mempunyai satu, rujuk kembali pelajaran [01-first-server](../01-first-server/README.md) untuk membuat pelayan.
+Contoh ini mengandaikan anda mempunyai pelayan MCP berasaskan Rust yang berjalan. Jika anda belum ada, rujuk kembali pelajaran [01-first-server](../01-first-server/README.md) untuk mencipta pelayan.
 
-Setelah anda mempunyai pelayan MCP Rust anda, buka terminal dan navigasi ke direktori yang sama dengan pelayan. Kemudian jalankan perintah berikut untuk membuat projek klien LLM baru:
+Setelah anda mempunyai pelayan MCP Rust anda, buka terminal dan navigasi ke direktori yang sama dengan pelayan. Kemudian jalankan arahan berikut untuk mencipta projek klien LLM baru:
 
 ```bash
 mkdir calculator-llmclient
@@ -310,7 +328,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-Tambahkan pergantungan berikut ke fail `Cargo.toml` anda:
+Tambah pergantungan berikut ke fail `Cargo.toml` anda:
 
 ```toml
 [dependencies]
@@ -321,7 +339,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Tiada perpustakaan Rust rasmi untuk OpenAI, namun, `async-openai` adalah [perpustakaan yang dikendalikan komuniti](https://platform.openai.com/docs/libraries/rust#rust) yang biasa digunakan.
+> Tiada perpustakaan Rust rasmi untuk OpenAI, namun, crate `async-openai` adalah [perpustakaan yang dikendalikan komuniti](https://platform.openai.com/docs/libraries/rust#rust) yang biasa digunakan.
 
 Buka fail `src/main.rs` dan gantikan kandungannya dengan kod berikut:
 
@@ -339,18 +357,19 @@ use tokio::process::Command;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    // Mesej awal
+    // Initial message
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // Sediakan klien OpenAI
-    let api_key = std::env::var("OPENAI_API_KEY")?;
+    // Setup Microsoft Foundry client
+    let endpoint = std::env::var("AZURE_OPENAI_ENDPOINT")?;
+    let api_key = std::env::var("AZURE_OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
-            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_base(format!("{}/openai/v1", endpoint.trim_end_matches('/')))
             .with_api_key(api_key),
     );
 
-    // Sediakan klien MCP
+    // Setup MCP client
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -365,18 +384,20 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: Dapatkan senarai alat MCP
+    // TODO: Get MCP tool listing 
 
-    // TODO: Perbualan LLM dengan panggilan alat
+    // TODO: LLM conversation with tool calls
 
     Ok(())
 }
 ```
 
-Kod ini menyediakan aplikasi Rust asas yang akan menyambung ke pelayan MCP dan Model GitHub untuk interaksi LLM.
+Kod ini menyediakan aplikasi Rust yang berhubung ke pelayan MCP dan
+pelancaran model Microsoft Foundry untuk interaksi LLM.
 
 > [!IMPORTANT]
-> Pastikan untuk menetapkan pembolehubah persekitaran `OPENAI_API_KEY` dengan token GitHub anda sebelum menjalankan aplikasi ini.
+> Tetapkan `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, dan
+> `AZURE_OPENAI_DEPLOYMENT` sebelum menjalankan aplikasi.
 
 Bagus, untuk langkah seterusnya, mari kita senaraikan keupayaan pada pelayan.
 
@@ -398,7 +419,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // menyenaraikan alat
+    // listing tools
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -406,18 +427,18 @@ async run() {
 Dalam kod sebelum ini kami telah:
 
 - Menambah kod untuk menyambung ke pelayan, `connectToServer`.
-- Membuat kaedah `run` yang bertanggungjawab mengendalikan aliran aplikasi kita. Setakat ini ia hanya menyenaraikan alat tetapi kita akan menambah lagi sebentar lagi.
+- Mencipta kaedah `run` yang bertanggungjawab mengendalikan aliran aplikasi kami. Setakat ini, ia hanya menyenaraikan alat tetapi kami akan tambah lebih banyak tidak lama lagi.
 
 #### Python
 
 ```python
-# Senaraikan sumber yang tersedia
+# List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Senaraikan alat yang tersedia
+# List available tools
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -425,19 +446,19 @@ for tool in tools.tools:
     print("Tool", tool.inputSchema["properties"])
 ```
 
-Inilah apa yang kami tambah:
+Berikut ialah apa yang kami tambah:
 
-- Menyenaraikan sumber dan alat dan mencetaknya. Untuk alat, kami juga menyenaraikan `inputSchema` yang akan kami gunakan kemudian.
+- Menyenaraikan sumber dan alat serta mencetaknya. Untuk alat kami juga menyenaraikan `inputSchema` yang akan kami gunakan nanti.
 
 #### .NET
 
 ```csharp
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -454,45 +475,45 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 Dalam kod sebelum ini kami telah:
 
-- Menyenaraikan alat yang tersedia pada Pelayan MCP
-- Untuk setiap alat, menyenaraikan nama, penerangan dan skemanya. Yang terakhir adalah sesuatu yang akan kita gunakan untuk memanggil alat sebentar lagi.
+- Menyenaraikan alat-alat yang tersedia pada Pelayan MCP
+- Untuk setiap alat, menyenaraikan nama, deskripsi dan skemanya. Yang terakhir adalah sesuatu yang akan kami gunakan untuk memanggil alat tidak lama lagi.
 
 #### Java
 
 ```java
-// Cipta pembekal alat yang secara automatik menemui alat MCP
+// Create a tool provider that automatically discovers MCP tools
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// Pembekal alat MCP secara automatik mengendalikan:
-// - Menyenaraikan alatan yang tersedia dari pelayan MCP
-// - Menukar skema alat MCP ke format LangChain4j
-// - Menguruskan pelaksanaan alat dan respons
+// The MCP tool provider automatically handles:
+// - Listing available tools from the MCP server
+// - Converting MCP tool schemas to LangChain4j format
+// - Managing tool execution and responses
 ```
 
 Dalam kod sebelum ini kami telah:
 
-- Membuat `McpToolProvider` yang secara automatik menemui dan mendaftarkan semua alat dari pelayan MCP
+- Mencipta `McpToolProvider` yang secara automatik mengesan dan mendaftar semua alat dari pelayan MCP
 - Penyedia alat mengendalikan penukaran antara skema alat MCP dan format alat LangChain4j secara dalaman
-- Pendekatan ini mengabstrakkan proses penyenaraian dan penukaran alat manual
+- Pendekatan ini mengabstrakkan proses penyenaraian dan penukaran alat secara manual
 
 #### Rust
 
-Mendapatkan alat dari pelayan MCP dilakukan menggunakan kaedah `list_tools`. Dalam fungsi `main` anda, selepas menyediakan klien MCP, tambah kod berikut:
+Pengambilan alat dari pelayan MCP dilakukan menggunakan kaedah `list_tools`. Dalam fungsi `main` anda, selepas menyediakan klien MCP, tambahkan kod berikut:
 
 ```rust
-// Dapatkan senarai alat MCP
+// Get MCP tool listing 
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Tukar keupayaan pelayan kepada alat LLM
+### -3- Menukar keupayaan pelayan ke alat LLM
 
-Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke format yang difahami LLM. Setelah kita melakukan itu, kita boleh menyediakan keupayaan ini sebagai alat kepada LLM kita.
+Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah untuk menukarnya ke format yang difahami oleh LLM. Setelah kita melakukan itu, kita boleh menyediakan keupayaan ini sebagai alat kepada LLM kita.
 
 #### TypeScript
 
-1. Tambah kod berikut untuk menukar jawapan dari Pelayan MCP ke format alat yang boleh digunakan oleh LLM:
+1. Tambah kod berikut untuk menukar respons dari Pelayan MCP ke format alat yang boleh digunakan oleh LLM:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -500,11 +521,11 @@ Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke 
         description?: string;
         input_schema: any;
         }) {
-        // Buat skema zod berdasarkan input_schema
+        // Create a zod schema based on the input_schema
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // Tetapkan jenis dengan jelas kepada "function"
+            type: "function" as const, // Explicitly set type to "function"
             function: {
             name: tool.name,
             description: tool.description,
@@ -519,7 +540,7 @@ Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke 
 
     ```
 
-    Kod di atas mengambil jawapan dari Pelayan MCP dan menukarnya ke format definisi alat yang boleh difahami LLM.
+    Kod di atas mengambil respons dari Pelayan MCP dan menukarnya ke format definisi alat yang difahami oleh LLM.
 
 2. Mari kita kemas kini kaedah `run` seterusnya untuk menyenaraikan keupayaan pelayan:
 
@@ -537,11 +558,11 @@ Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke 
     }
     ```
 
-    Dalam kod sebelum ini, kami mengemas kini kaedah `run` untuk menatal hasil dan bagi setiap entri memanggil `openAiToolAdapter`.
+    Dalam kod sebelum ini, kami kemas kini kaedah `run` untuk memetakan melalui hasil dan bagi setiap entri memanggil `openAiToolAdapter`.
 
 #### Python
 
-1. Pertama, mari kita buat fungsi penukar berikut
+1. Pertama, mari kita cipta fungsi penukar berikut
 
     ```python
     def convert_to_llm_tool(tool):
@@ -561,9 +582,9 @@ Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke 
         return tool_schema
     ```
 
-    Dalam fungsi `convert_to_llm_tools` di atas kami mengambil jawapan alat MCP dan menukarnya ke format yang dapat difahami LLM.
+    Dalam fungsi di atas `convert_to_llm_tools` kami mengambil respons alat MCP dan menukarnya ke format yang boleh difahami LLM.
 
-2. Seterusnya, mari kita kemas kini kod klien kita untuk menggunakan fungsi ini seperti berikut:
+2. Seterusnya, mari kita kemas kini kod klien kita untuk memanfaatkan fungsi ini seperti berikut:
 
     ```python
     functions = []
@@ -573,47 +594,36 @@ Langkah seterusnya selepas menyenaraikan keupayaan pelayan adalah menukarnya ke 
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Di sini, kami menambah panggilan ke `convert_to_llm_tool` untuk menukar jawapan alat MCP kepada sesuatu yang kita boleh berikan kepada LLM kemudian.
+    Di sini, kami menambah panggilan ke `convert_to_llm_tool` untuk menukar respons alat MCP ke sesuatu yang boleh kita beri makan pada LLM kemudian.
 
 #### .NET
 
-1. Mari kita tambah kod untuk menukar jawapan alat MCP kepada sesuatu yang difahami oleh LLM
+1. Mari kita tambah kod untuk menukar respons alat MCP ke sesuatu yang boleh difahami LLM
 
 ```csharp
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 ```
 
 Dalam kod sebelum ini kami telah:
 
-- Membuat fungsi `ConvertFrom` yang mengambil nama, penerangan dan skema input.
-- Mendefinisikan fungsi yang membuat `FunctionDefinition` yang dihantar kepada `ChatCompletionsDefinition`. Yang terakhir adalah sesuatu yang boleh difahami oleh LLM.
+- Mencipta fungsi `ConvertFrom` yang mengambil, nama, deskripsi dan skema input.
+- Mencipta OpenAI `ChatTool` dari skema JSON alat MCP.
 
-2. Mari kita lihat bagaimana kita boleh mengemas kini kod sedia ada untuk memanfaatkan fungsi ini:
+2. Mari lihat bagaimana kami boleh mengemas kini beberapa kod sedia ada untuk memanfaatkan fungsi ini:
 
     ```csharp
-    async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+    async Task<List<ChatTool>> GetMcpTools()
     {
         Console.WriteLine("Listing tools");
         var tools = await mcpClient.ListToolsAsync();
 
-        List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+        List<ChatTool> toolDefinitions = [];
 
         foreach (var tool in tools)
         {
@@ -621,42 +631,39 @@ Dalam kod sebelum ini kami telah:
             Console.WriteLine($"Tool description: {tool.Description}");
             Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-            JsonElement propertiesElement;
-            tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-            var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+            var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
             Console.WriteLine($"Tool definition: {def}");
             toolDefinitions.Add(def);
-
-            Console.WriteLine($"Properties: {propertiesElement}");        
         }
 
         return toolDefinitions;
     }
-    ```    In the preceding code, we've:
+    ```
+    
+Dalam kod sebelum ini, kami telah:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+- Kemas kini fungsi untuk menukar respons alat MCP ke alat LLM. Mari tandakan kod yang kami tambah:
 
-        ```csharp
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
+   ```csharp
+   JsonElement propertiesElement;
+   tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
 
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
-        Console.WriteLine($"Tool definition: {def}");
-        toolDefinitions.Add(def);
-        ```
+   var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+   Console.WriteLine($"Tool definition: {def}");
+   toolDefinitions.Add(def);
+   ```
 
-        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
+Skema input adalah sebahagian daripada respons alat tetapi pada atribut "properties", jadi kita perlu mengeluarkan. Selanjutnya, kita kini memanggil `ConvertFrom` dengan butiran alat. Kini kita telah melakukan kerja berat, mari lihat bagaimana panggilan itu digabungkan semasa kita mengendalikan prompt pengguna seterusnya.
 
 #### Java
 
 ```java
-// Cipta antara muka Bot untuk interaksi bahasa semula jadi
+// Create a Bot interface for natural language interaction
 public interface Bot {
     String chat(String prompt);
 }
 
-// Konfigurasikan perkhidmatan AI dengan alat LLM dan MCP
+// Configure the AI service with LLM and MCP tools
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
@@ -665,14 +672,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 Dalam kod sebelum ini kami telah:
 
-- Mendefinisikan antara muka mudah `Bot` untuk interaksi bahasa semula jadi
-- Menggunakan `AiServices` LangChain4j untuk mengikat LLM dengan penyedia alat MCP secara automatik
-- Rangka kerja mengendalikan penukaran skema alat dan pemanggilan fungsi secara automatik di belakang tabir
+- Mendefinisikan antara muka `Bot` mudah untuk interaksi bahasa semula jadi
+- Menggunakan `AiServices` LangChain4j untuk secara automatik mengikat LLM dengan penyedia alat MCP
+- Rangka kerja mengendalikan penukaran skema alat dan panggilan fungsi di belakang tabir secara automatik
 - Pendekatan ini menghapuskan penukaran alat manual - LangChain4j mengendalikan semua kerumitan menukar alat MCP ke format serasi LLM
 
 #### Rust
 
-Untuk menukar jawapan alat MCP ke format yang difahami LLM, kita akan menambah fungsi pembantu yang memformat senarai alat. Tambah kod berikut ke fail `main.rs` anda di bawah fungsi `main`. Ini akan dipanggil semasa membuat permintaan ke LLM:
+Untuk menukar respons alat MCP ke format yang boleh difahami oleh LLM, kita akan tambah fungsi pembantu yang memformat senarai alat. Tambah kod berikut pada fail `main.rs` anda di bawah fungsi `main`. Ini akan dipanggil apabila membuat permintaan ke LLM:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -707,9 +714,9 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Bagus, kita sudah bersedia untuk mengendalikan sebarang permintaan pengguna, jadi mari kita tangani itu seterusnya.
+Bagus, kita sudah sedia untuk mengendalikan sebarang permintaan pengguna, jadi mari kita tangani itu seterusnya.
 
-### -4- Mengendalikan permintaan arahan pengguna
+### -4- Mengendalikan permintaan prompt pengguna
 
 Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
 
@@ -729,7 +736,7 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Panggil alat pelayan
+        // 2. Call the server's tool 
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -737,17 +744,17 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Lakukan sesuatu dengan hasilnya
-        // TODO
+        // 3. Do something with the result
+        // TODO  
 
         }
     }
     ```
 
-    Dalam kod sebelum ini kami:
+    Dalam kod sebelum ini kita:
 
     - Menambah kaedah `callTools`.
-    - Kaedah tersebut mengambil respons LLM dan memeriksa alat apa yang telah dipanggil, jika ada:
+    - Kaedah ini mengambil respons LLM dan menyemak alat apa yang telah dipanggil, jika ada:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -756,14 +763,14 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // panggil alat
+        // call tool
         }
         ```
 
-    - Memanggil alat, jika LLM menunjukkan ia patut dipanggil:
+    - Memanggil alat, jika LLM menunjukkan ia harus dipanggil:
 
         ```typescript
-        // 2. Panggil alat server
+        // 2. Call the server's tool 
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -771,15 +778,15 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Lakukan sesuatu dengan keputusan
-        // BUAT
+        // 3. Do something with the result
+        // TODO  
         ```
 
-2. Kemas kini kaedah `run` untuk memasukkan panggilan kepada LLM dan memanggil `callTools`:
+2. Kemas kini kaedah `run` untuk memasukkan panggilan ke LLM dan panggilan `callTools`:
 
     ```typescript
 
-    // 1. Cipta mesej yang menjadi input untuk LLM
+    // 1. Create messages that's input for the LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -791,17 +798,17 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Memanggil LLM
+    // 2. Calling the LLM
     let response = this.openai.chat.completions.create({
-        model: "gpt-4.1-mini",
-        max_tokens: 1000,
+        model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+        max_completion_tokens: 1000,
         messages,
         tools: tools,
     });    
 
     let results: any[] = [];
 
-    // 3. Semak respons LLM, untuk setiap pilihan, periksa jika ada panggilan alat
+    // 3. Go through the LLM response,for each choice, check if it has tool calls 
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -811,22 +818,28 @@ Dalam bahagian kod ini, kita akan mengendalikan permintaan pengguna.
     });
     ```
 
-Bagus, mari kita senaraikan kod penuh:
+Bagus, mari senaraikan kod penuh:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Import zod untuk pengesahan skema
+import { z } from "zod"; // Import zod for schema validation
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // mungkin perlu tukar kepada url ini pada masa hadapan: https://models.github.ai/inference
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -835,11 +848,7 @@ class MyClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -855,11 +864,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // Cipta skema zod berdasarkan input_schema
+          // Create a zod schema based on the input_schema
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Tetapkan jenis secara jelas kepada "function"
+            type: "function" as const, // Explicitly set type to "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -883,7 +892,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Panggil alat pelayan
+          // 2. Call the server's tool 
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -891,8 +900,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. Lakukan sesuatu dengan hasilnya
-          // TODO
+          // 3. Do something with the result
+          // TODO  
     
          }
     }
@@ -919,15 +928,15 @@ class MyClient {
 
         console.log("Querying LLM: ", messages[0].content);
         let response = this.openai.chat.completions.create({
-            model: "gpt-4.1-mini",
-            max_tokens: 1000,
+            model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+            max_completion_tokens: 1000,
             messages,
             tools: tools,
         });    
 
         let results: any[] = [];
     
-        // 3. Teliti respons LLM, untuk setiap pilihan, periksa jika ia mempunyai panggilan alat
+        // 3. Go through the LLM response, for each choice, check if it has tool calls 
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -950,35 +959,33 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Mari kita tambah beberapa import yang diperlukan untuk memanggil LLM
+1. Mari tambah beberapa import yang diperlukan untuk memanggil LLM
 
     ```python
     # llm
     import os
-    from azure.ai.inference import ChatCompletionsClient
-    from azure.ai.inference.models import SystemMessage, UserMessage
-    from azure.core.credentials import AzureKeyCredential
+    from openai import OpenAI
     import json
     ```
 
-2. Seterusnya, mari kita tambah fungsi yang akan memanggil LLM:
+2. Seterusnya, mari tambah fungsi yang akan memanggil LLM. Contoh ini menggunakan
+    model `gpt-5.1` aktif. Semak
+    [jadual persaraan model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+    semasa memilih model untuk aplikasi anda.
 
     ```python
     # llm
 
     def call_llm(prompt, functions):
-        token = os.environ["GITHUB_TOKEN"]
-        endpoint = "https://models.inference.ai.azure.com"
-
-        model_name = "gpt-4o"
-
-        client = ChatCompletionsClient(
-            endpoint=endpoint,
-            credential=AzureKeyCredential(token),
+        client = OpenAI(
+            base_url=(
+                f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/"
+            ),
+            api_key=os.environ["AZURE_OPENAI_API_KEY"],
         )
 
         print("CALLING LLM")
-        response = client.complete(
+        response = client.chat.completions.create(
             messages=[
                 {
                 "role": "system",
@@ -989,12 +996,9 @@ client.connectToServer(transport);
                 "content": prompt,
                 },
             ],
-            model=model_name,
-            tools = functions,
-            # Parameter pilihan
-            temperature=1.,
-            max_tokens=1000,
-            top_p=1.    
+            model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
+            tools=functions,
+            max_completion_tokens=1000,
         )
 
         response_message = response.choices[0].message
@@ -1013,33 +1017,33 @@ client.connectToServer(transport);
 
     Dalam kod sebelum ini kami telah:
 
-    - Menyerahkan fungsi kita, yang kita temui di pelayan MCP dan telah ditukar, kepada LLM.
-    - Kemudian kita memanggil LLM dengan fungsi tersebut.
-    - Kemudian, kita memeriksa hasil untuk melihat fungsi apa yang patut kita panggil, jika ada.
-    - Akhir sekali, kita menyerahkan satu larik fungsi untuk dipanggil.
+    - Meneruskan fungsi kami, yang kami temukan pada pelayan MCP dan tukar, kepada LLM.
+    - Kemudian kami memanggil LLM dengan fungsi tersebut.
+    - Kemudian, kami memeriksa hasil untuk melihat fungsi mana yang harus kami panggil, kalau ada.
+    - Akhir sekali, kami meneruskan susunan fungsi untuk dipanggil.
 
-3. Langkah terakhir, mari kita kemas kini kod utama:
+3. Langkah akhir, mari kemas kini kod utama kami:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # tanya LLM alat apa yang semua, jika ada
+    # ask LLM what tools to all, if any
     functions_to_call = call_llm(prompt, functions)
 
-    # panggil fungsi yang dicadangkan
+    # call suggested functions
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    Itu, itu adalah langkah terakhir, dalam kod di atas kami:
+    Itu, itulah langkah terakhir, dalam kod di atas kami:
 
-    - Memanggil alat MCP melalui `call_tool` menggunakan fungsi yang LLM fikir patut dipanggil berdasarkan arahan kita.
-    - Mencetak hasil panggilan alat kepada Pelayan MCP.
+    - Memanggil alat MCP melalui `call_tool` menggunakan fungsi yang LLM fikir kami harus panggil berdasarkan prompt kami.
+    - Mencetak hasil panggilan alat ke Pelayan MCP.
 
 #### .NET
 
-1. Mari kita tunjukkan sedikit kod untuk melakukan permintaan arahan LLM:
+1. Mari tunjukkan kod untuk membuat permintaan prompt LLM:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1053,83 +1057,95 @@ client.connectToServer(transport);
     // 0. Define the chat history and the user message
     var userMessage = "add 2 and 4";
 
-    chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
-    // 1. Define tools
-    ChatCompletionsToolDefinition def = CreateToolDefinition();
+    chatHistory.Add(new UserChatMessage(userMessage));
 
 
     // 2. Define options, including the tools
-    var options = new ChatCompletionsOptions(chatHistory)
+    var options = new ChatCompletionOptions
     {
-        Model = "gpt-4.1-mini",
         Tools = { tools[0] }
     };
 
     // 3. Call the model  
 
-    ChatCompletions? response = await client.CompleteAsync(options);
-    var content = response.Content;
+    ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+    var content = response.Content.FirstOrDefault()?.Text;
 
     ```
 
     Dalam kod sebelum ini kami telah:
 
-    - Mendapatkan alat dari pelayan MCP, `var tools = await GetMcpTools()`.
-    - Mendefinisikan arahan pengguna `userMessage`.
-    - Membina objek pilihan yang menentukan model dan alat.
-    - Membuat permintaan ke LLM.
+    - Alat diambil dari pelayan MCP, `var tools = await GetMcpTools()`.
+    - Ditakrifkan prompt pengguna `userMessage`.
+    - Pembina objek pilihan yang menentukan model dan alat.
+    - Membuat permintaan ke arah LLM.
 
-2. Satu langkah terakhir, mari kita lihat jika LLM fikir kita patut memanggil fungsi:
+2. Satu langkah terakhir, mari kita lihat jika LLM berfikir kita perlu memanggil fungsi:
 
     ```csharp
     // 4. Check if the response contains a function call
-    ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
     for (int i = 0; i < response.ToolCalls.Count; i++)
     {
         var call = response.ToolCalls[i];
-        Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+        Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
         //Tool call 0: add with arguments {"a":2,"b":4}
 
-        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
         var result = await mcpClient.CallToolAsync(
-            call.Name,
+            call.FunctionName,
             dict!,
             cancellationToken: CancellationToken.None
         );
 
-        Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+        var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+        if (textBlock != null)
+        {
+            Console.WriteLine(textBlock.Text);
+        }
 
     }
     ```
 
-    Dalam kod sebelum ini kami telah:
+    Dalam kod sebelumnya kami telah:
 
     - Melalui senarai panggilan fungsi.
-    - Untuk setiap panggilan alat, menguraikan nama dan argumen dan memanggil alat pada pelayan MCP menggunakan klien MCP. Akhir sekali kita cetak hasilnya.
+    - Untuk setiap panggilan alat, mengurai nama dan argumen serta memanggil alat di pelayan MCP menggunakan klien MCP. Akhir sekali kami cetak hasilnya.
 
-Ini adalah kod lengkapnya:
+Berikut adalah kod secara penuh:
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+using System.Text.Json;
 
-var endpoint = "https://models.inference.ai.azure.com";
-var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
-var client = new ChatCompletionsClient(new Uri(endpoint), new AzureKeyCredential(token));
-var chatHistory = new List<ChatRequestMessage>
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+if (string.IsNullOrWhiteSpace(endpoint) || string.IsNullOrWhiteSpace(apiKey))
 {
-    new ChatRequestSystemMessage("You are a helpful assistant that knows about AI")
+    Console.WriteLine("Please set AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY.");
+    return;
+}
+
+var client = new ChatClient(
+    model: deployment,
+    credential: new ApiKeyCredential(apiKey),
+    options: new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
+var chatHistory = new List<ChatMessage>
+{
+    new SystemChatMessage("You are a helpful assistant that knows about AI")
 };
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -1137,33 +1153,20 @@ Console.WriteLine("Setting up stdio transport");
 
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 
-
-
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -1171,14 +1174,9 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+        var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
         Console.WriteLine($"Tool definition: {def}");
         toolDefinitions.Add(def);
-
-        Console.WriteLine($"Properties: {propertiesElement}");        
     }
 
     return toolDefinitions;
@@ -1196,37 +1194,38 @@ for (int i = 0; i < tools.Count; i++)
 // 2. Define the chat history and the user message
 var userMessage = "add 2 and 4";
 
-chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
+chatHistory.Add(new UserChatMessage(userMessage));
 
 // 3. Define options, including the tools
-var options = new ChatCompletionsOptions(chatHistory)
+var options = new ChatCompletionOptions
 {
-    Model = "gpt-4.1-mini",
     Tools = { tools[0] }
 };
 
 // 4. Call the model  
 
-ChatCompletions? response = await client.CompleteAsync(options);
-var content = response.Content;
+ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+var content = response.Content.FirstOrDefault()?.Text;
 
 // 5. Check if the response contains a function call
-ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
 for (int i = 0; i < response.ToolCalls.Count; i++)
 {
     var call = response.ToolCalls[i];
-    Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+    Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
     //Tool call 0: add with arguments {"a":2,"b":4}
 
-    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
     var result = await mcpClient.CallToolAsync(
-        call.Name,
+        call.FunctionName,
         dict!,
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
+    var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+    if (textBlock != null)
+    {
+        Console.WriteLine(textBlock.Text);
+    }
 
 }
 
@@ -1238,7 +1237,7 @@ Console.WriteLine($"Assistant response: {content}");
 
 ```java
 try {
-    // Laksanakan permintaan bahasa semula jadi yang secara automatik menggunakan alat MCP
+    // Execute natural language requests that automatically use MCP tools
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1252,15 +1251,15 @@ try {
 }
 ```
 
-Dalam kod sebelum ini kami telah:
+Dalam kod sebelumnya kami telah:
 
-- Menggunakan arahan bahasa semula jadi mudah untuk berinteraksi dengan alat pelayan MCP
+- Menggunakan arahan bahasa semula jadi yang mudah untuk berinteraksi dengan alat pelayan MCP
 - Rangka kerja LangChain4j secara automatik mengendalikan:
-  - Menukar arahan pengguna kepada panggilan alat bila perlu
+  - Menukar arahan pengguna menjadi panggilan alat apabila diperlukan
   - Memanggil alat MCP yang sesuai berdasarkan keputusan LLM
-  - Mengurus aliran perbualan antara LLM dan pelayan MCP
-- Kaedah `bot.chat()` memulangkan respons bahasa semula jadi yang mungkin termasuk keputusan daripada pelaksanaan alat MCP
-- Pendekatan ini menyediakan pengalaman pengguna yang lancar di mana pengguna tidak perlu tahu tentang pelaksanaan MCP yang mendasari
+  - Menguruskan aliran perbualan antara LLM dan pelayan MCP
+- Kaedah `bot.chat()` mengembalikan respons bahasa semula jadi yang mungkin termasuk hasil dari pelaksanaan alat MCP
+- Pendekatan ini menyediakan pengalaman pengguna yang lancar di mana pengguna tidak perlu mengetahui tentang pelaksanaan MCP yang mendasari
 
 Contoh kod lengkap:
 
@@ -1375,10 +1374,9 @@ public class LangChain4jClient {
 
 #### Rust
 
+Di sinilah sebahagian besar kerja dilakukan. Kami akan memanggil LLM dengan arahan pengguna awal, kemudian memproses respons untuk melihat jika ada alat yang perlu dipanggil. Jika ya, kami akan memanggil alat tersebut dan meneruskan perbualan dengan LLM sehingga tiada panggilan alat lagi diperlukan dan kami mendapat respons akhir.
 
-Di sinilah sebahagian besar kerja berlaku. Kami akan memanggil LLM dengan arahan pengguna awal, kemudian memproses respons untuk melihat sama ada sebarang alat perlu dipanggil. Jika ya, kami akan memanggil alat tersebut dan meneruskan perbualan dengan LLM sehingga tiada lagi panggilan alat diperlukan dan kami mempunyai respons akhir.
-
-Kami akan membuat beberapa panggilan kepada LLM, jadi mari kita tentukan fungsi yang akan mengendalikan panggilan LLM. Tambahkan fungsi berikut ke dalam fail `main.rs` anda:
+Kami akan membuat pelbagai panggilan ke LLM, jadi mari kita definisikan fungsi yang akan mengendalikan panggilan LLM. Tambahkan fungsi berikut ke dalam fail `main.rs` anda:
 
 ```rust
 async fn call_llm(
@@ -1386,11 +1384,13 @@ async fn call_llm(
     messages: &[Value],
     tools: &ListToolsResult,
 ) -> Result<Value, Box<dyn Error>> {
+    let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
+        .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
         .completions()
         .create_byot(json!({
             "messages": messages,
-            "model": "openai/gpt-4.1",
+            "model": model,
             "tools": format_tools(tools).await?,
         }))
         .await?;
@@ -1400,7 +1400,7 @@ async fn call_llm(
 
 Fungsi ini mengambil klien LLM, senarai mesej (termasuk arahan pengguna), alat dari pelayan MCP, dan menghantar permintaan ke LLM, mengembalikan respons.
 
-Respons dari LLM akan mengandungi array `choices`. Kami perlu memproses hasil untuk melihat sama ada terdapat `tool_calls`. Ini memberitahu kita bahawa LLM meminta alat tertentu dipanggil dengan argumen. Tambahkan kod berikut ke bahagian bawah fail `main.rs` anda untuk mentakrifkan fungsi untuk mengendalikan respons LLM:
+Respons dari LLM akan mengandungi array `choices`. Kami perlu memproses hasil untuk melihat jika ada `tool_calls` yang hadir. Ini membolehkan kita mengetahui LLM meminta alat tertentu dipanggil dengan argumen. Tambahkan kod berikut di bahagian bawah fail `main.rs` anda untuk mendefinisikan fungsi bagi mengendalikan respons LLM:
 
 ```rust
 async fn process_llm_response(
@@ -1419,16 +1419,16 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // Cetak kandungan jika ada
+    // Print content if available
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // Kendalikan panggilan alat
+    // Handle tool calls
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // Tambah mesej pembantu
+        messages.push(message.clone()); // Add assistant message
 
-        // Laksanakan setiap panggilan alat
+        // Execute each tool call
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1440,7 +1440,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Tambah keputusan alat ke mesej
+            // Add tool result to messages
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1448,7 +1448,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Teruskan perbualan dengan keputusan alat
+        // Continue conversation with tool results
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1463,9 +1463,9 @@ async fn process_llm_response(
 }
 ```
 
-Jika `tool_calls` hadir, ia mengekstrak maklumat alat, memanggil pelayan MCP dengan permintaan alat, dan menambah hasilnya ke mesej perbualan. Ia kemudian meneruskan perbualan dengan LLM dan mesej dikemas kini dengan respons pembantu dan hasil panggilan alat.
+Jika `tool_calls` hadir, ia mengekstrak maklumat alat, memanggil pelayan MCP dengan permintaan alat, dan menambah hasilnya ke mesej perbualan. Kemudian ia meneruskan perbualan dengan LLM dan mesej dikemas kini dengan respons pembantu dan hasil panggilan alat.
 
-Untuk mengekstrak maklumat panggilan alat yang LLM kembalikan untuk panggilan MCP, kami akan menambah satu fungsi pembantu lagi untuk mengekstrak segala yang diperlukan untuk membuat panggilan tersebut. Tambahkan kod berikut di bahagian bawah fail `main.rs` anda:
+Untuk mengekstrak maklumat panggilan alat yang LLM kembalikan untuk panggilan MCP, kami akan menambah satu fungsi pembantu lagi untuk mengekstrak segala yang diperlukan untuk membuat panggilan itu. Tambahkan kod berikut ke bahagian bawah fail `main.rs` anda:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1489,10 +1489,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Dengan semua bahagian pada tempatnya, kita sekarang boleh mengendalikan arahan pengguna awal dan memanggil LLM. Kemas kini fungsi `main` anda untuk memasukkan kod berikut:
+Dengan semua bahagian sudah tersedia, kini kami boleh mengendalikan arahan pengguna awal dan memanggil LLM. Kemas kini fungsi `main` anda untuk memasukkan kod berikut:
 
 ```rust
-// Perbualan LLM dengan panggilan alat
+// LLM conversation with tool calls
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1504,37 +1504,37 @@ process_llm_response(
 .await?;
 ```
 
-Ini akan bertanya kepada LLM dengan arahan pengguna awal meminta jumlah dua nombor, dan ia akan memproses respons untuk mengendalikan panggilan alat secara dinamik.
+Ini akan membuat pertanyaan kepada LLM dengan arahan pengguna awal yang meminta jumlah dua nombor, dan memproses respons untuk mengendalikan panggilan alat secara dinamik.
 
-Bagus, anda telah berjaya!
+Hebat, anda berjaya!
 
 ## Tugasan
 
-Ambil kod daripada latihan dan bina pelayan dengan lebih banyak alat. Kemudian buat pelanggan dengan LLM, seperti dalam latihan, dan uji dengan pelbagai arahan untuk memastikan semua alat pelayan anda dipanggil secara dinamik. Cara membina pelanggan ini bermakna pengguna akhir akan mempunyai pengalaman pengguna yang hebat kerana mereka boleh menggunakan arahan, bukannya arahan pelanggan yang tepat, dan tidak menyedari sebarang pelayan MCP dipanggil.
+Ambil kod dari latihan dan bina pelayan dengan lebih banyak alat. Kemudian buat klien dengan LLM, seperti dalam latihan, dan uji dengan arahan berbeza untuk memastikan semua alat pelayan anda dipanggil secara dinamik. Cara membina klien ini membolehkan pengguna akhir mempunyai pengalaman pengguna yang hebat kerana mereka dapat menggunakan arahan, bukannya arahan klien yang tepat, dan tidak menyedari sebarang pelayan MCP yang dipanggil.
 
 ## Penyelesaian
 
 [Penyelesaian](./solution/README.md)
 
-## Pengajaran Utama
+## Perkara Penting
 
-- Menambah LLM ke pelanggan anda menyediakan cara yang lebih baik untuk pengguna berinteraksi dengan Pelayan MCP.
-- Anda perlu menukar respons Pelayan MCP kepada sesuatu yang dapat difahami oleh LLM.
+- Menambah LLM ke klien anda menyediakan cara yang lebih baik untuk pengguna berinteraksi dengan Pelayan MCP.
+- Anda perlu menukar respons Pelayan MCP kepada sesuatu yang LLM boleh fahami.
 
 ## Contoh
 
-- [Kalkulator Java](../samples/java/calculator/README.md)
-- [Kalkulator .Net](../../../../03-GettingStarted/samples/csharp)
-- [Kalkulator JavaScript](../samples/javascript/README.md)
-- [Kalkulator TypeScript](../samples/typescript/README.md)
-- [Kalkulator Python](../../../../03-GettingStarted/samples/python)
-- [Kalkulator Rust](../../../../03-GettingStarted/samples/rust)
+- [Java Calculator](../samples/java/calculator/README.md)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Calculator](../samples/javascript/README.md)
+- [TypeScript Calculator](../samples/typescript/README.md)
+- [Python Calculator](../../../../03-GettingStarted/samples/python)
+- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
 
 ## Sumber Tambahan
 
 ## Apa Seterusnya
 
-- Seterusnya: [Menggunakan pelayan menggunakan Visual Studio Code](../04-vscode/README.md)
+- Seterusnya: [Menggunakan pelayan dengan Visual Studio Code](../04-vscode/README.md)
 
 ---
 

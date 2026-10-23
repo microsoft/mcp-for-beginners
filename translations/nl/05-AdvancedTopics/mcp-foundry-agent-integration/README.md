@@ -1,39 +1,39 @@
-# Integratie van Model Context Protocol (MCP) met Microsoft Foundry
+# Model Context Protocol (MCP) Integratie met Microsoft Foundry
 
-Deze gids laat zien hoe je Model Context Protocol (MCP) servers integreert met Microsoft Foundry-agents, waarmee krachtige toolorchestratie en AI-mogelijkheden voor ondernemingen mogelijk worden.
+Deze gids laat zien hoe Model Context Protocol (MCP)-servers geïntegreerd kunnen worden met Microsoft Foundry-agenten, waardoor krachtige toolorkestratie en enterprise AI-mogelijkheden mogelijk worden.
 
-## Introductie
+## Inleiding
 
-Model Context Protocol (MCP) is een open standaard die AI-toepassingen in staat stelt om veilig verbinding te maken met externe databronnen en tools. Wanneer geïntegreerd met Microsoft Foundry, stelt MCP agents in staat om op een gestandaardiseerde manier toegang te krijgen tot en te interacteren met diverse externe diensten, API's en databronnen.
+Model Context Protocol (MCP) is een open standaard die AI-toepassingen in staat stelt om veilig verbinding te maken met externe databronnen en tools. Wanneer geïntegreerd met Microsoft Foundry, stelt MCP agenten in staat om op een gestandaardiseerde manier toegang te krijgen tot en te communiceren met diverse externe services, API's en databronnen.
 
-Deze integratie combineert de flexibiliteit van MCP's tool-ecosysteem met het robuuste agent-framework van Microsoft Foundry, wat enterprise-grade AI-oplossingen biedt met uitgebreide aanpassingsmogelijkheden.
+Deze integratie combineert de flexibiliteit van MCP's tool-ecosysteem met het robuuste agentframework van Microsoft Foundry, en biedt AI-oplossingen van ondernemingsniveau met uitgebreide aanpassingsmogelijkheden.
 
-**Opmerking:** Als je MCP wilt gebruiken in Microsoft Foundry Agent Service, worden momenteel alleen de volgende regio's ondersteund: westus, westus2, uaenorth, southindia en switzerlandnorth
+> **Opmerking:** Als u MCP wilt gebruiken in Microsoft Foundry Agent Service, worden momenteel alleen de volgende regio's ondersteund: westus, westus2, uaenorth, southindia en switzerlandnorth
 
 ## Leerdoelen
 
-Aan het einde van deze gids kun je:
+Aan het einde van deze gids zult u in staat zijn om:
 
-- Het Model Context Protocol en de voordelen begrijpen
-- MCP-servers opzetten voor gebruik met Microsoft Foundry agents
-- Agents maken en configureren met MCP-toolintegratie
-- Praktische voorbeelden implementeren met echte MCP-servers
-- Antwoorden van tools en citaties behandelen in agentgesprekken
+- Het Model Context Protocol en de voordelen ervan begrijpen
+- MCP-servers opzetten voor gebruik met Microsoft Foundry-agenten
+- Agenten maken en configureren met MCP-toolintegratie
+- Praktische voorbeelden uitvoeren met echte MCP-servers
+- Omgaan met toolantwoorden en citaties in agentgesprekken
 
 ## Vereisten
 
-Voordat je begint, zorg dat je:
+Zorg voordat u begint dat u:
 
-- Een Azure-abonnement hebt met toegang tot Microsoft Foundry
+- Een Azure-abonnement met toegang tot Microsoft Foundry
 - Python 3.10+ of .NET 8.0+
 - Azure CLI geïnstalleerd en geconfigureerd
-- Geschikte rechten om AI-bronnen aan te maken
+- Passende machtigingen voor het aanmaken van AI-resources
 
 ## Wat is Model Context Protocol (MCP)?
 
-Model Context Protocol is een gestandaardiseerde manier voor AI-toepassingen om verbinding te maken met externe databronnen en tools. De belangrijkste voordelen zijn:
+Model Context Protocol is een gestandaardiseerde manier voor AI-toepassingen om verbinding te maken met externe databronnen en tools. Belangrijke voordelen zijn:
 
-- **Gestandaardiseerde Integratie**: Consistente interface over verschillende tools en diensten
+- **Gestandaardiseerde Integratie**: Consistente interface voor verschillende tools en services
 - **Beveiliging**: Veilige authenticatie- en autorisatiemechanismen
 - **Flexibiliteit**: Ondersteuning voor diverse databronnen, API's en aangepaste tools
 - **Uitbreidbaarheid**: Gemakkelijk nieuwe mogelijkheden en integraties toevoegen
@@ -42,16 +42,16 @@ Model Context Protocol is een gestandaardiseerde manier voor AI-toepassingen om 
 
 ### Omgevingsconfiguratie
 
-Kies je voorkeursontwikkelomgeving:
+Kies uw voorkeursontwikkelomgeving:
 
-- [Python-implementatie](#python-implementatie)
-- [.NET-implementatie](#codeblock5)
+- [Python-implementatie](#python-implementation)
+- [.NET-implementatie](#net-implementation)
 
 ---
 
 ## Python-implementatie
 
-***Opmerking*** Je kunt deze [notebook](./mcp_support_python.ipynb) uitvoeren
+***Opmerking*** U kunt deze [notebook](./mcp_support_python.ipynb) uitvoeren
 
 ### 1. Vereiste pakketten installeren
 
@@ -71,7 +71,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. MCP-instellingen configureren
+### 3. MCP-configuratie instellen
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
@@ -87,23 +87,23 @@ project_client = AIProjectClient(
 )
 ```
 
-### 5. MCP-tool aanmaken
+### 5. MCP-tool maken
 
 ```python
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Optioneel: geef toegestane gereedschappen op
+    allowed_tools=[],  # Optional: specify allowed tools
 )
 ```
 
-### 6. Compleet Python-voorbeeld
+### 6. Volledig Python-voorbeeld
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # Maak een nieuwe agent met MCP-tools
+    # Create a new agent with MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Maak een thread aan voor communicatie
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Maak een bericht aan voor de thread
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Beheer toolgoedkeuringen en start agent
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Toon gesprek
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -180,7 +180,7 @@ with project_client:
 
 ## .NET-implementatie
 
-***Opmerking*** Je kunt deze [notebook](./mcp_support_dotnet.ipynb) uitvoeren
+***Opmerking*** U kunt deze [notebook](./mcp_support_dotnet.ipynb) uitvoeren
 
 ### 1. Vereiste pakketten installeren
 
@@ -206,13 +206,13 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. MCP-tooldefinitie aanmaken
+### 4. MCP-tooldefinitie maken
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
 ```
 
-### 5. Agent aanmaken met MCP-tools
+### 5. Agent maken met MCP-tools
 
 ```csharp
 PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
@@ -223,7 +223,7 @@ PersistentAgent agent = await agentClient.Administration.CreateAgentAsync(
    );
 ```
 
-### 6. Compleet .NET-voorbeeld
+### 6. Volledig .NET-voorbeeld
 
 ```csharp
 // Create thread and message
@@ -297,17 +297,17 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## MCP-tool configuratieopties
+## MCP-toolconfiguratieopties
 
-Bij het configureren van MCP-tools voor je agent kun je verschillende belangrijke parameters specificeren:
+Bij het configureren van MCP-tools voor uw agent kunt u verschillende belangrijke parameters opgeven:
 
 ### Python-configuratie
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Identifier voor de MCP-server
-    server_url="https://api.example.com/mcp", # MCP-server eindpunt
-    allowed_tools=[],                       # Optioneel: geef toegestane tools op
+    server_label="unique_server_name",      # Identifier for the MCP server
+    server_url="https://api.example.com/mcp", # MCP server endpoint
+    allowed_tools=[],                       # Optional: specify allowed tools
 )
 ```
 
@@ -335,7 +335,7 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Problemen oplossen - Veelvoorkomende problemen
+## Problemen oplossen bij veelvoorkomende problemen
 
 ### 1. Verbindingsproblemen
 - Controleer of de MCP-server-URL toegankelijk is
@@ -345,36 +345,36 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ### 2. Fouten bij tool-aanroepen
 - Bekijk toolargumenten en opmaak
 - Controleer serverspecifieke vereisten
-- Implementeer juiste foutafhandeling
+- Implementeer correcte foutafhandeling
 
 ### 3. Prestatieproblemen
 - Optimaliseer de frequentie van tool-aanroepen
-- Implementeer caching waar gepast
-- Monitor server-responstijden
+- Implementeer caching waar van toepassing
+- Monitor responstijden van de server
 
 ## Volgende stappen
 
-Om je MCP-integratie verder te verbeteren:
+Om uw MCP-integratie verder te verbeteren:
 
-1. **Verken aangepaste MCP-servers**: Bouw je eigen MCP-servers voor propriëtaire databronnen
+1. **Verken aangepaste MCP-servers**: Bouw uw eigen MCP-servers voor proprietaire databronnen
 2. **Implementeer geavanceerde beveiliging**: Voeg OAuth2 of aangepaste authenticatiemechanismen toe
-3. **Monitoring en analyse**: Implementeer logging en monitoring voor toolgebruik
-4. **Schaal je oplossing**: Overweeg load balancing en gedistribueerde MCP-serverarchitecturen
+3. **Monitoren en analyses**: Implementeer logging en monitoring voor toolgebruik
+4. **Schaal uw oplossing**: Overweeg load balancing en gedistribueerde MCP-serverarchitecturen
 
 ## Aanvullende bronnen
 
 - [Microsoft Foundry-documentatie](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol-voorbeelden](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Voorbeelden van Model Context Protocol](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Overzicht Microsoft Foundry Agents](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP-specificatie](https://spec.modelcontextprotocol.io/)
+- [MCP-specificatie](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Ondersteuning
 
 Voor extra ondersteuning en vragen:
 - Bekijk de [Microsoft Foundry-documentatie](https://learn.microsoft.com/azure/ai-foundry/)
-- Bekijk de [MCP-communitybronnen](https://modelcontextprotocol.io/)
+- Controleer de [MCP-communitybronnen](https://modelcontextprotocol.io/)
 
-## Wat nu
+## Wat nu?
 
 - [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
 

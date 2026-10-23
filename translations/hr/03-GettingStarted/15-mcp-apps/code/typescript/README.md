@@ -1,9 +1,9 @@
-Evo primjera koji prikazuje MCP App
+Evo primjera koji pokazuje MCP App
 
-## Instalacija
+## Instaliraj
 
-1. Idite u mapu *mcp-app*
-1. Pokrenite `npm install`, to bi trebalo instalirati frontend i backend ovisnosti
+1. Navigirajte do mape *mcp-app*
+1. Pokrenite `npm install`, to bi trebalo instalirati ovisnosti za frontend i backend
 
 Provjerite kompajlira li backend pokretanjem:
 
@@ -11,15 +11,15 @@ Provjerite kompajlira li backend pokretanjem:
 npx tsc --noEmit
 ```
 
-Ne bi trebalo biti izlaza ako je sve u redu.
+Ne bi trebalo biti nikakvog outputa ako je sve u redu.
 
-## Pokrenite backend
+## Pokreni backend
 
-> To zahtijeva malo dodatnog posla ako ste na Windows računalu jer MCP Apps rješenje koristi biblioteku `concurrently` za pokretanje za koju trebate pronaći zamjenu. Evo sporne linije u *package.json* u MCP App:
+> Ovo zahtijeva malo dodatnog posla ako koristite Windows stroj jer MCP Apps rješenje koristi `concurrently` biblioteku za pokretanje za koju trebate pronaći zamjenu. Evo problematičnog retka u *package.json* na MCP App:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
 Ova aplikacija ima dva dijela, backend dio i host dio.
 
@@ -31,13 +31,13 @@ npm start
 
 Ovo bi trebalo pokrenuti backend na `http://localhost:3001/mcp`.
 
-> Napomena, ako ste u Codespace, možda ćete morati postaviti vidljivost porta na javnu. Provjerite možete li pristupiti endpointu u pregledniku preko https://<ime Codespace>.app.github.dev/mcp
+> Napomena, ako ste u Codespace-u, možda ćete morati postaviti vidljivost porta na javnu. Provjerite možete li doći do endpointa u pregledniku preko https://<name of Codespace>.app.github.dev/mcp
 
-## Izbor -1 Testirajte aplikaciju u Visual Studio Codeu
+## Opcija -1 Testirajte aplikaciju u Visual Studio Code
 
-Za testiranje rješenja u Visual Studio Codeu, učinite sljedeće:
+Za testiranje rješenja u Visual Studio Code, učinite sljedeće:
 
-- Dodajte unos za server u `mcp.json` ovako:
+- Dodajte unos servera u `mcp.json` ovako:
 
     ```json
     {
@@ -51,20 +51,20 @@ Za testiranje rješenja u Visual Studio Codeu, učinite sljedeće:
     }
     ```
 
-1. Kliknite na "start" tipku u *mcp.json*
-1. Provjerite da je prozor za chat otvoren i upišite `get-faq`, trebali biste vidjeti rezultat ovako:
+1. Kliknite gumb "start" u *mcp.json*
+1. Provjerite je li otvoren chat prozor i upišite `get-faq`, trebali biste vidjeti rezultat ovako:
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/hr/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Izbor -2- Testirajte aplikaciju s hostom
+## Opcija -2- Testirajte aplikaciju s hostom
 
-Repozitorij <https://github.com/modelcontextprotocol/ext-apps> sadrži nekoliko različitih hostova koje možete koristiti za testiranje vaših MVP aplikacija.
+Repo <https://github.com/modelcontextprotocol/ext-apps> sadrži nekoliko različitih hostova koje možete koristiti za testiranje vaših MVP aplikacija.
 
 Ovdje ćemo vam predstaviti dvije različite opcije:
 
 ### Lokalno računalo
 
-- Idite u *ext-apps* nakon što ste klonirali repozitorij.
+- Nakon što ste klonirali repo, navigirajte do *ext-apps*.
 
 - Instalirajte ovisnosti
 
@@ -72,9 +72,9 @@ Ovdje ćemo vam predstaviti dvije različite opcije:
    npm install
    ```
 
-- U drugom terminal prozoru idite u *ext-apps/examples/basic-host*
+- U zasebnom terminal prozoru, navigirajte do *ext-apps/examples/basic-host*
 
-    > ako ste u Codespace, morate otići do serve.ts i na liniji 27 zamijeniti http://localhost:3001/mcp sa URL-om vašeg Codespace-a za backend, na primjer https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > ako ste u Codespace-u, trebate navigirati do serve.ts i redak 27 te zamijeniti http://localhost:3001/mcp vašim Codespace URL-om za backend, primjerice https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
 - Pokrenite host:
 
@@ -82,19 +82,19 @@ Ovdje ćemo vam predstaviti dvije različite opcije:
     npm start
     ```
 
-    Ovo bi trebalo povezati host s backendom i trebali biste vidjeti aplikaciju u radu ovako:
+    Ovo bi trebalo povezati host s backendom i trebali biste vidjeti aplikaciju kako radi ovako:
 
     ![App running](../../../../../../translated_images/hr/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-Potrebno je malo dodatnog posla da bi Codespace okruženje radilo. Za korištenje hosta kroz Codespace:
+Potreban je malo dodatni posao da bi Codespace okruženje funkcioniralo. Za korištenje hosta kroz Codespace:
 
-- Pogledajte direktorij *ext-apps* i idite u *examples/basic-host*.
+- Pogledajte direktorij *ext-apps* i navigirajte do *examples/basic-host*.
 - Pokrenite `npm install` za instalaciju ovisnosti
 - Pokrenite `npm start` za pokretanje hosta.
 
-## Isprobajte aplikaciju
+## Testirajte aplikaciju
 
 Isprobajte aplikaciju na sljedeći način:
 
@@ -107,6 +107,6 @@ Super, sve radi.
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden pomoću AI usluge prevođenja [Co-op Translator](https://github.com/Azure/co-op-translator). Iako nastojimo osigurati točnost, molimo imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporučuje se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakve nesporazume ili pogrešna tumačenja nastala korištenjem ovog prijevoda.
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

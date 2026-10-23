@@ -6,97 +6,97 @@ _(Klik op de afbeelding hierboven om de video van deze les te bekijken)_
 
 Deze sectie bestaat uit verschillende lessen:
 
-- **1 Je eerste server**, in deze eerste les leer je hoe je je eerste server maakt en deze inspeert met de inspector-tool, een waardevolle manier om je server te testen en te debuggen, [naar de les](01-first-server/README.md)
+- **1 Je eerste server**, in deze eerste les leer je hoe je je eerste server maakt en deze inspecteert met de inspector tool, een waardevolle manier om je server te testen en debuggen, [naar de les](01-first-server/README.md)
 
 - **2 Client**, in deze les leer je hoe je een client schrijft die verbinding kan maken met je server, [naar de les](02-client/README.md)
 
-- **3 Client met LLM**, een nog betere manier om een client te schrijven is door er een LLM aan toe te voegen zodat het met je server kan "onderhandelen" over wat te doen, [naar de les](03-llm-client/README.md)
+- **3 Client met LLM**, een nog betere manier om een client te schrijven is door er een LLM aan toe te voegen zodat deze met je server kan "onderhandelen" over wat te doen, [naar de les](03-llm-client/README.md)
 
-- **4 Gebruik van de server GitHub Copilot Agent-modus in Visual Studio Code**. Hier bekijken we het draaien van onze MCP Server binnen Visual Studio Code, [naar de les](04-vscode/README.md)
+- **4 Het gebruik van de GitHub Copilot Agent-modus van de server in Visual Studio Code**. Hier kijken we naar het draaien van onze MCP-server vanuit Visual Studio Code, [naar de les](04-vscode/README.md)
 
-- **5 stdio Transport Server** stdio transport is de aanbevolen standaard voor lokale MCP-server-naar-client communicatie, met veilige subprocess-gebaseerde communicatie en ingebouwde procesisolatie [naar de les](05-stdio-server/README.md)
+- **5 stdio Transport Server** stdio transport is de aanbevolen standaard voor lokale MCP server-naar-client communicatie, waarbij veilige subprocess-communicatie met ingebouwde procesisolatie wordt geboden [naar de les](05-stdio-server/README.md)
 
-- **6 HTTP Streaming met MCP (Streambare HTTP)**. Leer over de standaard
+- **6 HTTP streaming met MCP (Streamable HTTP)**. Leer over de standaard
 	remote transport in [MCP Specificatie 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
-	plús de legacy sessiegebaseerde implementatie behouden in de les.
+	plus de legacy sessiegebaseerde implementatie die blijft bestaan in de les.
 	[naar de les](06-http-streaming/README.md)
 
-- **7 Gebruik van AI Toolkit voor VSCode** om je MCP Clients en Servers te gebruiken en testen [naar de les](07-aitk/README.md)
+- **7 Gebruik van Microsoft Foundry Toolkit voor Visual Studio Code** om je MCP-clients en -servers te gebruiken en testen [in deze les](07-aitk/README.md)
 
-- **8 Testen**. Hier ligt de focus op hoe we onze server en client op verschillende manieren kunnen testen, [naar de les](08-testing/README.md)
+- **8 Testen**. Hier richten we ons vooral op hoe we onze server en client op verschillende manieren kunnen testen, [naar de les](08-testing/README.md)
 
-- **9 Implementatie**. Dit hoofdstuk behandelt verschillende manieren om je MCP-oplossingen te implementeren, [naar de les](09-deployment/README.md)
+- **9 Deployment**. Dit hoofdstuk kijkt naar verschillende manieren om je MCP-oplossingen te implementeren, [naar de les](09-deployment/README.md)
 
 - **10 Geavanceerd servergebruik**. Dit hoofdstuk behandelt geavanceerd servergebruik, [naar de les](./10-advanced/README.md)
 
-- **11 Authenticatie**. Dit hoofdstuk behandelt het toevoegen van eenvoudige authenticatie, van Basic Auth tot het gebruik van JWT en RBAC. We raden je aan hier te beginnen en dan te kijken naar gevorderde onderwerpen in Hoofdstuk 5 en aanvullende beveiligingsversterking via aanbevelingen in Hoofdstuk 2, [naar de les](./11-simple-auth/README.md)
+- **11 Auth**. Dit hoofdstuk behandelt hoe je eenvoudige authenticatie toevoegt, van Basic Auth tot het gebruik van JWT en RBAC. Je wordt aangemoedigd hier te beginnen en dan naar Geavanceerde onderwerpen te kijken in Hoofdstuk 5 en extra beveiligingsverharding uit te voeren volgens aanbevelingen in Hoofdstuk 2, [naar de les](./11-simple-auth/README.md)
 
-- **12 MCP Hosts**. Configureer en gebruik populaire MCP host clients zoals Claude Desktop, Cursor, Cline en Windsurf. Leer transporttypes en probleemoplossing, [naar de les](./12-mcp-hosts/README.md)
+- **12 MCP Hosts**. Configureer en gebruik populaire MCP host-clients zoals Claude Desktop, Cursor, Cline, en Windsurf. Leer over transporttypes en probleemoplossing, [naar de les](./12-mcp-hosts/README.md)
 
-- **13 MCP Inspector**. Debug en test je MCP servers interactief met de MCP Inspector tool. Leer tools, bronnen en protocolberichten troubleshooten, [naar de les](./13-mcp-inspector/README.md)
+- **13 MCP Inspector**. Debug en test je MCP-servers interactief met behulp van de MCP Inspector tool. Leer tools, bronnen en protocolberichten te troubleshooten, [naar de les](./13-mcp-inspector/README.md)
 
-- **14 Sampling**. Leer de legacy Sampling-primitief voor `2025-11-25` en
-	hoe je nieuwe ontwerpen migreert naar directe LLM-provider integratie. Sampling is
-	afgeschreven in MCP `2026-07-28`. [naar de les](./14-sampling/README.md)
+- **14 Sampling**. Leer de legacy Sampling primitief voor `2025-11-25` en
+	hoe nieuwe ontwerpen te migreren naar directe LLM-provider integratie. Sampling is
+	verouderd in MCP `2026-07-28`. [naar de les](./14-sampling/README.md)
 
-- **15 MCP Apps**. Bouw MCP Servers die ook reageren met UI-instructies, [naar de les](./15-mcp-apps/README.md)
+- **15 MCP Apps**. Bouw MCP-servers die ook reageren met UI-instructies, [naar de les](./15-mcp-apps/README.md)
 
-Het Model Context Protocol (MCP) is een open protocol dat standaardiseert hoe applicaties context aan LLMs bieden. Zie MCP als een USB-C poort voor AI applicaties - het biedt een gestandaardiseerde manier om AI modellen aan verschillende databronnen en tools te koppelen.
+Het Model Context Protocol (MCP) is een open protocol dat standaardiseert hoe applicaties context bieden aan LLM's. Zie MCP als een USB-C poort voor AI-toepassingen - het biedt een gestandaardiseerde manier om AI-modellen te verbinden met verschillende databronnen en tools.
 
 ## Leerdoelen
 
 Aan het einde van deze les kun je:
 
-- Ontwikkelomgevingen opzetten voor MCP in C#, Java, Python, TypeScript en JavaScript
-- Basis MCP servers bouwen en implementeren met aangepaste functies (resources, prompts en tools)
-- Hostapplicaties maken die verbinding maken met MCP servers
-- MCP implementaties testen en debuggen
-- Veelvoorkomende setup problemen en hun oplossingen begrijpen
-- Je MCP implementaties koppelen aan populaire LLM diensten
+- Ontwikkelomgevingen voor MCP opzetten in C#, Java, Python, TypeScript en JavaScript
+- Basis MCP-servers bouwen en implementeren met aangepaste functies (bronnen, prompts en tools)
+- Hostapplicaties maken die verbinding maken met MCP-servers
+- MCP-implementaties testen en debuggen
+- Veelvoorkomende setup-uitdagingen begrijpen en hun oplossingen
+- Je MCP-implementaties verbinden met populaire LLM-diensten
 
-## Je MCP omgeving opzetten
+## Je MCP-omgeving instellen
 
-Voordat je begint met werken met MCP is het belangrijk je ontwikkelomgeving voor te bereiden en de basisworkflow te begrijpen. Deze sectie begeleidt je bij de eerste setup stappen voor een soepele start met MCP.
+Voordat je begint met MCP is het belangrijk om je ontwikkelomgeving voor te bereiden en de basisworkflow te begrijpen. Deze sectie begeleidt je door de eerste instellingen om een soepele start met MCP te garanderen.
 
 ### Vereisten
 
-Zorg voordat je met MCP ontwikkeling begint dat je:
+Voordat je duikt in MCP-ontwikkeling, zorg ervoor dat je:
 
-- **Ontwikkelomgeving**: Voor je gekozen taal (C#, Java, Python, TypeScript of JavaScript)
-- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm of een moderne code-editor
-- **Package Managers**: NuGet, Maven/Gradle, pip of npm/yarn
-- **API Sleutels**: Voor alle AI diensten die je in je hostapplicaties wil gebruiken
+- **Ontwikkelomgeving**: Voor je gekozen taal (C#, Java, Python, TypeScript, of JavaScript)
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm, of een moderne code-editor
+- **Pakketbeheerders**: NuGet, Maven/Gradle, pip, of npm/yarn
+- **API-sleutels**: Voor alle AI-diensten die je wilt gebruiken in je hostapplicaties
 
 
-### Officiële SDKs
+### Officiële SDK's
 
-In de komende hoofdstukken zie je oplossingen gebouwd met Python, TypeScript,
-Java en .NET. Hier zijn de officiële SDKs.
+In de aankomende hoofdstukken zie je oplossingen gebouwd met Python, TypeScript,
+Java en .NET. Hier zijn de officiële SDK's.
 
-SDK ondersteuning voor MCP `2026-07-28` komt onafhankelijk beschikbaar per taal.
-Controleer, voordat je een voorbeeld draait, de versies van het pakket en de release notes van de SDK
+SDK-ondersteuning voor MCP `2026-07-28` wordt onafhankelijk per taal uitgerold.
+Controleer voor het uitvoeren van een voorbeeld de versie van het pakket en de release-opmerkingen van de SDK
 voor ondersteunde protocolrevisies. Zie de
-[officiële SDK lijst](https://modelcontextprotocol.io/docs/sdk):
-- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Onderhouden in samenwerking met Microsoft
-- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Onderhouden in samenwerking met Spring AI
-- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - De officiële TypeScript implementatie
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - De officiële Python implementatie (FastMCP)
-- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - De officiële Kotlin implementatie
-- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Onderhouden in samenwerking met Loopwork AI
-- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - De officiële Rust implementatie
-- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - De officiële Go implementatie
+[officiële SDK-lijst](https://modelcontextprotocol.io/docs/sdk):
+- [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Geïntegreerd in samenwerking met Microsoft
+- [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Geïntegreerd in samenwerking met Spring AI
+- [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - De officiële TypeScript-implementatie
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - De officiële Python-implementatie (FastMCP)
+- [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - De officiële Kotlin-implementatie
+- [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Geïntegreerd in samenwerking met Loopwork AI
+- [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - De officiële Rust-implementatie
+- [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - De officiële Go-implementatie
 
-## Belangrijke punten
+## Belangrijkste punten
 
-- Het opzetten van een MCP ontwikkelomgeving is eenvoudig met taal-specifieke SDKs
-- MCP servers bouwen betekent tools maken en registreren met duidelijke schema's
-- MCP clients verbinden met servers en modellen om uitgebreide mogelijkheden te benutten
-- Testen en debuggen zijn essentieel voor betrouwbare MCP implementaties
-- Implementatieopties variëren van lokale ontwikkeling tot cloud-gebaseerde oplossingen
+- Het opzetten van een MCP-ontwikkelomgeving is eenvoudig met taalspecifieke SDK's
+- MCP-servers bouwen omvat het creëren en registreren van tools met duidelijke schema's
+- MCP-clients maken verbinding met servers en modellen om uitgebreide mogelijkheden te benutten
+- Testen en debuggen zijn essentieel voor betrouwbare MCP-implementaties
+- Implementatie-opties variëren van lokale ontwikkeling tot cloudoplossingen
 
 ## Oefenen
 
-We hebben een set voorbeelden die de oefeningen aanvullen die je in alle hoofdstukken van deze sectie ziet. Daarnaast heeft elk hoofdstuk ook eigen oefeningen en opdrachten
+We hebben een reeks voorbeelden die de oefeningen aanvullen die je in alle hoofdstukken in deze sectie zult zien. Daarnaast heeft elk hoofdstuk ook eigen oefeningen en opdrachten
 
 - [Java Calculator](./samples/java/calculator/README.md)
 - [.NET Calculator](../../../03-GettingStarted/samples/csharp)
@@ -106,15 +106,15 @@ We hebben een set voorbeelden die de oefeningen aanvullen die je in alle hoofdst
 
 ## Extra bronnen
 
-- [Bouw Agents met Model Context Protocol op Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Agents bouwen met Model Context Protocol op Azure](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Remote MCP met Azure Container Apps (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
 - [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
-## Wat volgende is
+## Wat nu
 
-Begin met de eerste les: [Je eerste MCP Server maken](01-first-server/README.md)
+Begin met de eerste les: [Je eerste MCP-server maken](01-first-server/README.md)
 
-Zodra je deze module hebt afgerond, ga verder naar: [Module 4: Praktische Implementatie](../04-PracticalImplementation/README.md)
+Zodra je deze module hebt afgerond, ga verder met: [Module 4: Praktische implementatie](../04-PracticalImplementation/README.md)
 
 ---
 

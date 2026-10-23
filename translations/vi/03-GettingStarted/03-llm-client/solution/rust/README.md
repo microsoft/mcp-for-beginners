@@ -1,37 +1,45 @@
-# Chạy ví dụ này
+# Chạy mẫu này
 
-Đây là giải pháp Rust cho ví dụ client LLM. Bạn cần cài đặt bộ công cụ Rust; xem [hướng dẫn cài đặt chính thức](https://www.rust-lang.org/tools/install).
+Đây là giải pháp Rust cho mẫu client LLM. Bạn cần cài đặt toolchain Rust; xem [hướng dẫn cài đặt chính thức](https://www.rust-lang.org/tools/install).
 
-Client gọi một mô hình qua endpoint suy luận Models của GitHub (`https://models.github.ai/inference/chat`) và đọc token truy cập cá nhân GitHub (PAT) của bạn từ biến môi trường `OPENAI_API_KEY`.
+Client gọi một mô hình Microsoft Foundry đã triển khai thông qua endpoint Azure OpenAI
+v1.
 
 > [!NOTE]
-> Các giải pháp khác trong kho này sử dụng `GITHUB_TOKEN`. Đối với Rust, hãy đặt `OPENAI_API_KEY` thành cùng một giá trị để phù hợp với cấu hình client OpenAI.
+> Giá trị được truyền dưới dạng `model` là tên triển khai Foundry của bạn, không nhất thiết
+> là tên mô hình cơ bản.
 
-## -0- Thiết lập token GitHub của bạn
+## -0- Cấu hình Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Biên dịch ví dụ
+## -1- Xây dựng mẫu
 
 ```bash
 cargo build
 ```
 
-## -2- Chạy ví dụ
+## -2- Chạy mẫu
 
 ```bash
 cargo run
 ```
 
-Client khởi động máy chủ MCP calculator, lấy danh sách công cụ của nó, và sử dụng mô hình (`openai/gpt-5-mini`) để gọi công cụ `add`. Bạn sẽ thấy kết quả hiển thị việc gọi công cụ (ví dụ, "Calling tool: add") và kết quả của lần gọi đó.
+Client khởi động server MCP máy tính, lấy danh sách công cụ của nó, và sử dụng
+mô hình đã triển khai để gọi công cụ `add`. Bạn sẽ thấy kết quả hiển thị cho biết
+thao tác gọi công cụ (ví dụ, "Calling tool: add") và kết quả của thao tác đó.
 
 ---
 
