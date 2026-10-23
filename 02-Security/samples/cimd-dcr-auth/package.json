@@ -12,7 +12,7 @@
   "dependencies": {
     "@modelcontextprotocol/express": "^2.0.0",
     "@modelcontextprotocol/node": "^2.0.0",
-    "@modelcontextprotocol/server": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.3.1",
     "express": "^5.2.1",
     "jose": "^6.2.12",
     "zod": "^4.5.4"
