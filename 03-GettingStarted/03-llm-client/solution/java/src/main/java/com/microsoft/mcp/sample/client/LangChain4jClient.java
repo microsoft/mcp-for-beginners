@@ -12,26 +12,19 @@ import dev.langchain4j.service.tool.ToolProvider;
 
 import java.time.Duration;
 import java.util.Map;
-import java.util.Set;
 import java.util.List;
 
 public class LangChain4jClient {
 
         private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
-        private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+        private static final String DEFAULT_MODEL_ID = "MiniMax-M3.1-Flash";
         private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
                         "global_en", "https://api.minimax.io/v1",
                         "cn_zh", "https://api.minimaxi.com/v1");
-        private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
 
         public static void main(String[] args) throws Exception {
 
-                ChatLanguageModel model = OpenAiOfficialChatModel.builder()
-                                .baseUrl(resolveBaseUrl())
-                                .apiKey(requireEnv("OPENAI_API_KEY"))
-                                .timeout(Duration.ofSeconds(60))
-                                .modelName(resolveModelName())
-                                .build();
+                ChatLanguageModel model = createModel(System.getenv());
 
                 McpTransport transport = new HttpMcpTransport.Builder()
                                 .sseUrl("http://localhost:8080/sse")
@@ -66,13 +59,22 @@ public class LangChain4jClient {
                 }
         }
 
-        private static String resolveBaseUrl() {
-                String baseUrl = System.getenv("OPENAI_BASE_URL");
+        static ChatLanguageModel createModel(Map<String, String> environment) {
+                return OpenAiOfficialChatModel.builder()
+                                .baseUrl(resolveBaseUrl(environment))
+                                .apiKey(requireEnv(environment, "OPENAI_API_KEY"))
+                                .timeout(Duration.ofSeconds(60))
+                                .modelName(resolveModelName(environment))
+                                .build();
+        }
+
+        static String resolveBaseUrl(Map<String, String> environment) {
+                String baseUrl = environment.get("OPENAI_BASE_URL");
                 if (baseUrl != null && !baseUrl.isBlank()) {
                         return baseUrl;
                 }
 
-                String region = System.getenv("MINIMAX_REGION");
+                String region = environment.get("MINIMAX_REGION");
                 if (region == null || region.isBlank()) {
                         return DEFAULT_BASE_URL;
                 }
@@ -84,19 +86,17 @@ public class LangChain4jClient {
                 return regionalBaseUrl;
         }
 
-        private static String resolveModelName() {
-                String modelId = System.getenv("MINIMAX_MODEL_ID");
+        private static String resolveModelName(Map<String, String> environment) {
+                String modelId = environment.get("MINIMAX_MODEL_ID");
                 if (modelId == null || modelId.isBlank()) {
                         return DEFAULT_MODEL_ID;
                 }
-                if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
-                        throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId);
-                }
+                // Preserve explicit legacy and custom model IDs.
                 return modelId;
         }
 
-        private static String requireEnv(String name) {
-                String value = System.getenv(name);
+        private static String requireEnv(Map<String, String> environment, String name) {
+                String value = environment.get(name);
                 if (value == null || value.isBlank()) {
                         throw new IllegalStateException(name + " environment variable is not set");
                 }

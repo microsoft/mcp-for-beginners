@@ -200,13 +200,15 @@ First, you'll need to add the LangChain4j dependencies to your `pom.xml` file. A
 ```
 
 Set your MiniMax API key and, optionally, the endpoint and model.
-`MINIMAX_MODEL_ID` supports `MiniMax-M3` and `MiniMax-M2.7`. If
-`OPENAI_BASE_URL` is not set, `MINIMAX_REGION` supports `global_en` and `cn_zh`.
+The default model is `MiniMax-M3.1-Flash`; use `MiniMax-M3` for the other
+current model. Explicit legacy or custom `MINIMAX_MODEL_ID` values are passed
+through unchanged; availability depends on your endpoint. If `OPENAI_BASE_URL`
+is not set, `MINIMAX_REGION` supports `global_en` and `cn_zh`.
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
 export OPENAI_BASE_URL=https://api.minimax.io/v1
-export MINIMAX_MODEL_ID=MiniMax-M3
+export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
 ```
 
 To select the endpoint by region instead, omit `OPENAI_BASE_URL`:
@@ -232,17 +234,15 @@ import dev.langchain4j.service.tool.ToolProvider;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class LangChain4jClient {
 
     private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
-    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3.1-Flash";
     private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
             "global_en", "https://api.minimax.io/v1",
             "cn_zh", "https://api.minimaxi.com/v1");
-    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
 
     public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
@@ -290,10 +290,7 @@ public class LangChain4jClient {
         if (modelId == null || modelId.isBlank()) {
             return DEFAULT_MODEL_ID;
         }
-        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
-                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
-        }
+        // Preserve explicit legacy and custom model IDs.
         return modelId;
     }
 
@@ -1277,17 +1274,15 @@ import dev.langchain4j.service.tool.ToolProvider;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class LangChain4jClient {
 
     private static final String DEFAULT_BASE_URL = "https://api.minimax.io/v1";
-    private static final String DEFAULT_MODEL_ID = "MiniMax-M3";
+    private static final String DEFAULT_MODEL_ID = "MiniMax-M3.1-Flash";
     private static final Map<String, String> REGIONAL_BASE_URLS = Map.of(
             "global_en", "https://api.minimax.io/v1",
             "cn_zh", "https://api.minimaxi.com/v1");
-    private static final Set<String> SUPPORTED_MODEL_IDS = Set.of("MiniMax-M3", "MiniMax-M2.7");
 
     public static void main(String[] args) throws Exception {
         ChatLanguageModel model = OpenAiOfficialChatModel.builder()
@@ -1355,10 +1350,7 @@ public class LangChain4jClient {
         if (modelId == null || modelId.isBlank()) {
             return DEFAULT_MODEL_ID;
         }
-        if (!SUPPORTED_MODEL_IDS.contains(modelId)) {
-            throw new IllegalArgumentException("Unsupported MINIMAX_MODEL_ID value: " + modelId
-                    + ". Supported values: " + new TreeSet<>(SUPPORTED_MODEL_IDS));
-        }
+        // Preserve explicit legacy and custom model IDs.
         return modelId;
     }
 
