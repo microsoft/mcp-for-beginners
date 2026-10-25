@@ -1,4 +1,4 @@
-# Streamlining AI Workflows: Building an MCP Server wit Microsoft Foundry Toolkit
+# Make AI Workflows Simple: Build MCP Server wit Microsoft Foundry Toolkit
 
 [![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
@@ -6,60 +6,60 @@
 
 ![logo](../../../translated_images/pcm/logo.ec93918ec338dadd.webp)
 
-## 🎯 Overview
+## 🎯  Wetin Dis Paper Mean
 
-[![Build AI Agents in VS Code: 4 Hands-On Labs wit MCP and Microsoft Foundry Toolkit](../../../translated_images/pcm/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
+[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/pcm/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Click di pikshua we de for up to watch dis video lesson)_
+_(Click the image above to view video of this lesson)_
 
-Welcome to di **Model Context Protocol (MCP) Workshop**! Dis complete hands-on workshop combine two beta technologies to change how AI app development dey done:
+Welcome to the **Model Context Protocol (MCP) Workshop**! Dis na full hands-on workshop wey join two latest technologies to change how people dey build AI apps:
 
-> **Compatibility note:** di workshop code dem build and test wit MCP
-> `2025-11-25`, like di badge we de for above show. Use di
+> **Compatibility note:** the workshop code was built and tested with MCP
+> `2025-11-25`, as shown by the badge above. Use the
 > [current `2026-07-28` specification](https://modelcontextprotocol.io/specification/2026-07-28/)
-> for new protocol creations and check SDK release notes before
-> you move di labs.
+> for new protocol implementations and review SDK release notes before
+> migrating the labs.
 
-- **🔗 Model Context Protocol (MCP)**: Na open standard for easy AI tool joining
-- **🛠️ Microsoft Foundry Toolkit Extension for VS Code**: Microsoft strong AI development tool extension
+- **🔗 Model Context Protocol (MCP)**: Na open standard wey make AI tools and external data dem connect without wahala
+- **🛠️ Microsoft Foundry Toolkit Extension for VS Code**: Microsoft powerful extension wey dey for AI development
 
 ### 🎓 Wetin You Go Learn
 
-By di time you finish dis workshop, you go sabi how to build smart applications wey go connect AI models wit normal tools and services. From automatic testing to custom API connection, you go get real skills wey fit solve serious business wahala.
+By the end of dis workshop, you go sabi how to build intelligent apps wey link AI models with real-world tools and services. From automatic testing to custom API integrations, you go get practical skills to solve complex business wahala.
 
 ## 🏗️ Technology Stack
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP na **"USB-C for AI"** - na general standard wey dey connect AI models to tools and data outside.
+MCP na **"USB-C for AI"** - one universal standard wey connect AI models to external tools and data sources.
 
 **✨ Key Features:**
 
-- 🔄 **Standardized Integration**: One way wey dey universal to join AI to tools
-- 🏛️ **Flexible Architecture**: Local and remote servers through stdio/SSE transport
-- 🧰 **Rich Ecosystem**: Tools, prompts and resources all dey one protocol
-- 🔒 **Enterprise-Ready**: Security and dependability dey inside
+- 🔄 **Standardized Integration**: Universal interface for AI-tool connections
+- 🏛️ **Flexible Architecture**: Local & remote servers via stdio/SSE transport
+- 🧰 **Rich Ecosystem**: Tools, prompts, and resources inside one protocol
+- 🔒 **Enterprise-Ready**: Built-in security and reliability
 
 **🎯 Why MCP Matter:**
-Just like USB-C stop cable confusion, MCP stop AI integration palava. One protocol, plenty possibilities.
+E be like how USB-C take stop cable gbege — MCP dey remove wahala wey dey for AI integrations. One protocol, plenty possibilities.
 
 ### 🤖 Microsoft Foundry Toolkit Extension for VS Code
 
-Microsoft main AI development extension wey turn VS Code to strong AI system.
+Microsoft main extension for AI development wey turn VS Code to strong AI tool.
 
 **🚀 Core Capabilities:**
 
 - 📦 **Model Catalog**: Access models from Azure AI, GitHub, Hugging Face, Ollama
 - ⚡ **Local Inference**: ONNX-optimized CPU/GPU/NPU execution
-- 🏗️ **Agent Builder**: Visual AI agent development wit MCP join
+- 🏗️ **Agent Builder**: Visual AI agent development with MCP integration
 - 🎭 **Multi-Modal**: Text, vision, and structured output support
 
 **💡 Development Benefits:**
 
-- No wahala config model deployment
+- Zero-config model deployment
 - Visual prompt engineering
 - Real-time testing playground
-- Smooth MCP server integration
+- Seamless MCP server integration
 
 ## 📚 Learning Journey
 
@@ -67,51 +67,51 @@ Microsoft main AI development extension wey turn VS Code to strong AI system.
 
 **Duration**: 15 minutes
 
-- 🛠️ Install and setup Microsoft Foundry Toolkit for VS Code
-- 🗂️ Check out di Model Catalog (100+ models from GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Master di interactive playground for real-time model testing
-- 🤖 Build your first AI agent wit Agent Builder
-- 📊 Check how model perform wit built-in metrics (F1, relevance, similarity, coherence)
-- ⚡ Learn batch processing and multi-modal support features
+- 🛠️ Install and configure Microsoft Foundry Toolkit for VS Code
+- 🗂️ Explore the Model Catalog (100+ models from GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Master the Interactive Playground for real-time model testing
+- 🤖 Build your first AI agent with Agent Builder
+- 📊 Evaluate model performance with built-in metrics (F1, relevance, similarity, coherence)
+- ⚡ Learn batch processing and multi-modal support capabilities
 
-**🎯 Learning Outcome**: Build working AI agent wit full understanding of Microsoft Foundry Toolkit capabilities
+**🎯 Learning Outcome**: Create a functional AI agent and sabi well how Microsoft Foundry Toolkit dey work
 
-### [🌐 Module 2: MCP wit Microsoft Foundry Toolkit Fundamentals](./lab2/README.md)
+### [🌐 Module 2: MCP with Microsoft Foundry Toolkit Fundamentals](./lab2/README.md)
 
 **Duration**: 20 minutes
 
 - 🧠 Master Model Context Protocol (MCP) architecture and concepts
-- 🌐 Explore Microsoft MCP server ecosystem
-- 🤖 Build browser automation agent using Playwright MCP server
-- 🔧 Join MCP servers wit Microsoft Foundry Toolkit Agent Builder
+- 🌐 Explore Microsoft's MCP server ecosystem
+- 🤖 Build a browser automation agent using Playwright MCP server
+- 🔧 Integrate MCP servers with Microsoft Foundry Toolkit Agent Builder
 - 📊 Configure and test MCP tools inside your agents
-- 🚀 Export and deploy MCP-powered agents make dem ready for work
+- 🚀 Export and deploy MCP-powered agents for production use
 
-**🎯 Learning Outcome**: Use AI agent wey dey powered by external tools through MCP
+**🎯 Learning Outcome**: Deploy AI agent wey get external tools through MCP
 
-### [🔧 Module 3: Advanced MCP Development wit Microsoft Foundry Toolkit](./lab3/README.md)
+### [🔧 Module 3: Advanced MCP Development with Microsoft Foundry Toolkit](./lab3/README.md)
 
 **Duration**: 20 minutes
 
-- 💻 Build custom MCP servers using Microsoft Foundry Toolkit
-- 🐍 Setup and use di newest MCP Python SDK (v1.9.3)
-- 🔍 Setup and use MCP Inspector for debugging
-- 🛠️ Build Weather MCP Server wit professional debugging workflows
-- 🧪 Debug MCP servers for both Agent Builder and Inspector area
+- 💻 Create custom MCP servers using Microsoft Foundry Toolkit
+- 🐍 Configure and use the latest MCP Python SDK (v1.9.3)
+- 🔍 Set up and use MCP Inspector for debugging
+- 🛠️ Build a Weather MCP Server with professional debugging workflows
+- 🧪 Debug MCP servers in both Agent Builder and Inspector environments
 
-**🎯 Learning Outcome**: Develop and debug custom MCP servers wit powerful tools
+**🎯 Learning Outcome**: Develop and debug custom MCP servers with modern tooling
 
 ### [🐙 Module 4: Practical MCP Development - Custom GitHub Clone Server](./lab4/README.md)
 
 **Duration**: 30 minutes
 
 - 🏗️ Build real-world GitHub Clone MCP Server for development workflows
-- 🔄 Implement smart repo cloning wit validation and error control
-- 📁 Create smart directory management and VS Code join
-- 🤖 Use GitHub Copilot Agent Mode wit custom MCP tools
-- 🛡️ Apply production-level reliability and cross-platform support
+- 🔄 Implement smart repository cloning with validation and error handling
+- 📁 Create intelligent directory management and VS Code integration
+- 🤖 Use GitHub Copilot Agent Mode with custom MCP tools
+- 🛡️ Apply production-ready reliability and cross-platform compatibility
 
-**🎯 Learning Outcome**: Deploy production-ready MCP server wey go smooth real development workflows
+**🎯 Learning Outcome**: Deploy production-ready MCP server wey go make real development workflows easier
 
 ## 💡 Real-World Applications & Impact
 
@@ -119,35 +119,35 @@ Microsoft main AI development extension wey turn VS Code to strong AI system.
 
 #### 🔄 DevOps Automation
 
-Change your development workflow wit smart automation:
+Transform your development workflow with intelligent automation:
 
-- **Smart Repository Management**: AI-based code review and merge decisions
-- **Intelligent CI/CD**: Auto pipeline improvement based on code changes
+- **Smart Repository Management**: AI-driven code review and merge decisions
+- **Intelligent CI/CD**: Automated pipeline optimization based on code changes
 - **Issue Triage**: Automatic bug classification and assignment
 
 #### 🧪 Quality Assurance Revolution
 
-Make testing beta wit AI-powered automation:
+Make testing pass beta level with AI automation:
 
-- **Intelligent Test Generation**: Automatically create full test suites
+- **Intelligent Test Generation**: Automatically create comprehensive test suites
 - **Visual Regression Testing**: AI-powered UI change detection
-- **Performance Monitoring**: Find and fix problem before e big
+- **Performance Monitoring**: Find and solve issues before dem turn big problem
 
 #### 📊 Data Pipeline Intelligence
 
 Build smarter data processing workflows:
 
-- **Adaptive ETL Processes**: Self-improve data transformations
-- **Anomaly Detection**: Real-time data quality checking
+- **Adaptive ETL Processes**: Self-optimizing data transformations
+- **Anomaly Detection**: Real-time data quality monitoring
 - **Intelligent Routing**: Smart data flow management
 
 #### 🎧 Customer Experience Enhancement
 
-Create better customer interaction:
+Create better customer interactions:
 
-- **Context-Aware Support**: AI agents wey get access to customer history
-- **Proactive Issue Resolution**: Predictive customer service
-- **Multi-Channel Integration**: Unified AI experience across different platforms
+- **Context-Aware Support**: AI agents wey fit use customer history
+- **Proactive Issue Resolution**: Predict problems and fix am before e scatter
+- **Multi-Channel Integration**: One consistent AI experience across platforms
 
 ## 🛠️ Prerequisites & Setup
 
@@ -168,7 +168,7 @@ Create better customer interaction:
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Optional but dey helpful
+- **GitHub Copilot** (GitHub.copilot) - Optional but helpful
 
 #### Optional Tools
 
@@ -180,32 +180,32 @@ Create better customer interaction:
 
 ### 🏆 Skill Mastery Checklist
 
-By finishing dis workshop, you go master for:
+By completing this workshop, you go achieve mastery for:
 
 #### 🎯 Core Competencies
 
-- [ ] **MCP Protocol Mastery**: Deep sabi for architecture and how to implement am
-- [ ] **Microsoft Foundry Toolkit Proficiency**: Expert level use of Microsoft Foundry Toolkit for fast development
+- [ ] **MCP Protocol Mastery**: Deep understanding of architecture and implementation patterns
+- [ ] **Microsoft Foundry Toolkit Proficiency**: Expert-level usage of Microsoft Foundry Toolkit for rapid development
 - [ ] **Custom Server Development**: Build, deploy, and maintain production MCP servers
-- [ ] **Tool Integration Excellence**: Smooth join AI wit existing development workflows
-- [ ] **Problem-Solving Application**: Use wetin you learn solve real business problem
+- [ ] **Tool Integration Excellence**: Seamlessly connect AI with existing development workflows
+- [ ] **Problem-Solving Application**: Use the skills you learn to solve real business problems
 
 #### 🔧 Technical Skills
 
-- [ ] Set up and configure Microsoft Foundry Toolkit inside VS Code
-- [ ] Design and create custom MCP servers
-- [ ] Join GitHub Models wit MCP architecture
-- [ ] Build automated testing workflows wit Playwright
+- [ ] Set up and configure Microsoft Foundry Toolkit in VS Code
+- [ ] Design and implement custom MCP servers
+- [ ] Integrate Microsoft Foundry models with MCP architecture
+- [ ] Build automated testing workflows with Playwright
 - [ ] Deploy AI agents for production use
 - [ ] Debug and optimize MCP server performance
 
 #### 🚀 Advanced Capabilities
 
 - [ ] Architect enterprise-scale AI integrations
-- [ ] Implement best security practices for AI apps
+- [ ] Implement security best practices for AI applications
 - [ ] Design scalable MCP server architectures
-- [ ] Create custom tool chains for specific areas
-- [ ] Teach others about AI-native development
+- [ ] Create custom tool chains for specific domains
+- [ ] Mentor others for AI-native development
 
 ## 📖 Additional Resources
 
@@ -217,11 +217,11 @@ By finishing dis workshop, you go master for:
 
 ---
 
-**🚀 Ready to change your AI development workflow?**
+**🚀 You ready make you change how you dey build AI development workflow?**
 
-Make we build di future of smart applications together wit MCP and Microsoft Foundry Toolkit!
+Make we build the future of intelligent applications together with MCP and Microsoft Foundry Toolkit!
 
-## Wetin Go Happen Next
+## Wetin Next Be
 
 Continue to: [Module 11: MCP Server Hands-On Labs](../11-MCPServerHandsOnLabs/README.md)
 

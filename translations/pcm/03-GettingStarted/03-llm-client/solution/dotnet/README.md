@@ -1,25 +1,30 @@
 # Run dis sample
 
 > [!NOTE]
-> Dis sample dey assume say you dey use GitHub Codespaces instance. If you wan run am for your local machine, you go need set up personal access token (PAT) for GitHub.
+> Deploy one active model like `gpt-5.1` for Microsoft Foundry and set up
+> im endpoint, API key, and deployment name.
 >
 > ```bash
 > # zsh/bash
-> export GITHUB_TOKEN="{{YOUR_GITHUB_PAT}}"
+> export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+> export AZURE_OPENAI_API_KEY="<api-key>"
+> export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 > ```
 >
 > ```powershell
 > # PowerShell
-> $env:GITHUB_TOKEN = "{{YOUR_GITHUB_PAT}}"
+> $env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+> $env:AZURE_OPENAI_API_KEY = "<api-key>"
+> $env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 > ```
 
-## Install libraries
+## Install di libraries
 
 ```sh
 dotnet restore
 ```
 
-You go need install dis libraries: Azure AI Inference, Azure Identity, Microsoft.Extension, Model.Hosting, ModelContextProtcol 
+Dis go install di OpenAI .NET client and di Model Context Protocol SDK.
 
 ## Run
 
@@ -27,7 +32,7 @@ You go need install dis libraries: Azure AI Inference, Azure Identity, Microsoft
 dotnet run
 ```
 
-You suppose see output wey go look like dis:
+You go see output wey dey like dis:
 
 ```text
 Setting up stdio transport
@@ -35,18 +40,17 @@ Listing tools
 Connected to server with tools: Add
 Tool description: Adds two numbers
 Tool parameters: {"title":"Add","description":"Adds two numbers","type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}
-Tool definition: Azure.AI.Inference.ChatCompletionsToolDefinition
-Properties: {"a":{"type":"integer"},"b":{"type":"integer"}}
-MCP Tools def: 0: Azure.AI.Inference.ChatCompletionsToolDefinition
+Tool definition: OpenAI.Chat.ChatTool
+MCP Tools def: 0: OpenAI.Chat.ChatTool
 Tool call 0: Add with arguments {"a":2,"b":4}
 Sum 6
 ```
 
-Plenty of di output na just debugging, but wetin important be say you dey list tools from di MCP Server, turn dem to LLM tools and you go end up with MCP client response "Sum 6".
+Plenty of di output na just debugging but wetin important be say you dey list tools from the MCP Server, turn dem into LLM tools and you go end up with an MCP client response "Sum 6".
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even as we dey try make am accurate, abeg make you sabi say automatic translation fit get mistake or no dey correct well. Di original dokyument for im native language na di main source wey you go fit trust. For important information, e good make professional human translation dey use. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

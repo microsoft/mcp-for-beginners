@@ -1,8 +1,8 @@
 # How to run dis sample
 
-E good make you install `uv` but e no dey compulsory, check [instructions](https://docs.astral.sh/uv/#highlights)
+We recommend say you install `uv` but e no be must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
-## -0- Create virtual environment
+## -0- Make virtual environment
 
 ```bash
 python -m venv venv
@@ -19,16 +19,31 @@ venv\Scrips\activate
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Run di sample
+## -3- Configure Microsoft Foundry
+
+Deploy one active model like `gpt-5.1` for Microsoft Foundry, den set:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` na di deployment name, wey fit differ from di
+underlying model name. Check di
+[Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+before you select a model.
+
+## -4- Run di sample
+
 
 ```bash
 python client.py
 ```
 
-You go see output wey resemble dis:
+You go see output wey similar to:
 
 ```text
 LISTING RESOURCES
@@ -48,6 +63,6 @@ TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI translet service [Co-op Translator](https://github.com/Azure/co-op-translator) do di translet. Even though we dey try make am correct, abeg sabi say AI translet fit get mistake or no dey accurate well. Di original dokyument for im native language na di one wey you go take as di correct source. For important mata, e good make professional human translet am. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis translet.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
