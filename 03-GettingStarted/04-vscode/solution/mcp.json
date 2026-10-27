@@ -1,0 +1,11 @@
+{
+    "inputs": [],
+    "servers": {
+        "hello-mcp": {
+            "command": "node",
+            "args": [
+                "build/index.js"
+            ]
+        }
+    }
+}
