@@ -76,7 +76,8 @@ mcp = FastMCP("WebSearchServer")
 
 @mcp.tool()
 async def general_search(query: str, num_results: int = 5, ctx: Context = None) -> str:
-    # ...implementation...
+    # ...implementation (see server.py)...
+    raise NotImplementedError
 
 if __name__ == "__main__":
     mcp.run()
