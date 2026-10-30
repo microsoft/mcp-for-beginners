@@ -70,16 +70,17 @@ Here is a brief example of how the server defines and registers a tool:
 
 ```python
 # server.py (excerpt)
-from mcp.server import MCPServer, Tool
+from mcp.server.fastmcp import FastMCP, Context
 
-async def general_search(query: str):
-    # ...implementation...
+mcp = FastMCP("WebSearchServer")
 
-server = MCPServer()
-server.add_tool(Tool("general_search", general_search))
+@mcp.tool()
+async def general_search(query: str, num_results: int = 5, ctx: Context = None) -> str:
+    # ...implementation (see server.py)...
+    raise NotImplementedError
 
 if __name__ == "__main__":
-    server.run()
+    mcp.run()
 ```
 
 ---
