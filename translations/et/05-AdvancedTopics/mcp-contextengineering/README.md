@@ -2,47 +2,48 @@
 
 ## Ülevaade
 
-Kontekstiinsenerlus on tehisintellekti valdkonnas tekkiv mõiste, mis uurib, kuidas teavet struktureeritakse, edastatakse ja hoitakse klientide ning tehisintellekti teenuste vaheliste interaktsioonide käigus. Kuna Model Context Protocoli (MCP) ökosüsteem areneb, muutub konteksti tõhus haldamine üha olulisemaks. See moodul tutvustab kontekstiinsenerluse mõistet ja uurib selle potentsiaalseid rakendusi MCP implementatsioonides.
+Kontekstiinsenerlus on tehisintellekti valdkonnas tekkiv kontseptsioon, mis uurib, kuidas teave struktureeritakse, edastatakse ja säilitatakse klientide ja AI-teenuste vaheliste interaktsioonide jooksul. Kuna Model Context Protocol (MCP) ökosüsteem areneb, muutub konteksti tõhus haldamine üha olulisemaks. See moodul tutvustab kontekstiinsenerluse kontseptsiooni ja uurib selle võimalikke rakendusi MCP teostustes.
 
 ## Õpieesmärgid
 
-Selle mooduli lõpuks suudad sa:
+Selle mooduli lõpuks suudate:
 
-- Mõista tekkivat kontekstiinsenerluse mõistet ja selle võimalikku rolli MCP rakendustes
-- Tuvastada peamised konteksti halduse väljakutsed, mida MCP protokolli disain käsitleb
-- Uurida tehnikaid mudeli jõudluse parandamiseks parema konteksti haldamise kaudu
-- Kaaluada lähenemisviise konteksti tõhususe mõõtmiseks ja hindamiseks
-- Rakendada neid uuenenud mõisteid AI kogemuste parandamiseks MCP raamistikus
+- Mõista tekkivat kontekstiinsenerluse kontseptsiooni ja selle potentsiaalset rolli MCP rakendustes
+- Tuvastada peamised konteksti haldamise väljakutsed, millele MCP protokolli kujundus vastab
+- Uurida tehnikaid mudeli jõudluse parandamiseks parema konteksti käsitlemise kaudu
+- Mõelda lähenemistele konteksti tõhususe mõõtmiseks ja hindamiseks
+- Rakendada neid tekkivaid kontseptsioone tehisintellekti kogemuste parandamiseks MCP raamistikus
 
-## Tutvustus kontekstiinsenerlusse
+## Sissejuhatus kontekstiinsenerlusse
 
-Kontekstiinsenerlus on tekkiv mõiste, mis keskendub kasutajate, rakenduste ja tehisintellekti mudelite vahelise teabe voo kavandatud disainile ja haldamisele. Erinevalt kindlustatud valdkondadest nagu promptinsenerlus, on kontekstiinsenerlus praktikutel veel määratlemisel, kui nad töötavad AI mudelitele õigel ajal õige teabe pakkimise ainulaadsete väljakutsete lahendamisel.
+Kontekstiinsenerlus on tekkiv valdkond, mis keskendub teadlikule teabevoo kavandamisele ja haldamisele kasutajate, rakenduste ja AI-mudelite vahel. Erinevalt väljakujunenud valdkondadest nagu promptide insenerlus on kontekstiinsenerlus veel praktikute poolt defineerimisel, kui nad töötavad unikaalsete väljakutsete lahendamise kallal, et anda AI-mudelitele õiget teavet õigel ajal.
 
-Suure keelemudelite (LLMide) arenguga on konteksti tähtsus saanud järjest selgemaks. Pakutava konteksti kvaliteet, asjakohasus ja struktuur mõjutavad otseselt mudeli väljundeid. Kontekstiinsenerlus uurib seda suhet ning püüab välja töötada põhimõtteid tõhusaks konteksti haldamiseks.
+Kuna suured keelemudelid (LLM-id) on arenenud, on konteksti olulisus muutunud üha ilmsemaks. Kvaliteet, asjakohasus ja konteksti struktuur, mida me pakume, mõjutavad otseselt mudeli väljundeid. Kontekstiinsenerlus uurib seda seost ja püüab välja töötada põhimõtteid efektiivseks konteksti haldamiseks.
 
-> "Aastal 2025 on mudelid seal väga intelligentsed. Kuid isegi kõige targem inimene ei suuda oma tööd tõhusalt teha ilma kontekstita, mida temalt nõutakse... 'Kontekstiinsenerlus' on promptinsenerluse järgmine tase. See seisneb automaatse toimimise tagamises dünaamilises süsteemis." — Walden Yan, Cognition AI
+> "Aastal 2025 on väljas olevad mudelid äärmiselt targad. Kuid isegi kõige nutikam inimene ei suuda oma tööd tõhusalt teha ilma kontekstita sellest, mida neilt nõutakse... 'Kontekstiinsenerlus' on järgmine tase promptide insenerlusest. See seisneb selle automaatseks tegemises dünaamilises süsteemis." — Walden Yan, Cognition AI
 
 Kontekstiinsenerlus võib hõlmata:
 
-1. **Konteksti valimine**: Otsustamine, milline teave on antud ülesande jaoks asjakohane
-2. **Konteksti struktureerimine**: Teabe organiseerimine mudeli parema mõistmise maksimeerimiseks
-3. **Konteksti edastamine**: Optimeerimine, kuidas ja millal teavet mudelitele saadetakse
-4. **Konteksti säilitamine**: Seisundi ja konteksti arengujärguline haldamine aja jooksul
+1. **Konteksti valik**: Määratlemine, milline teave on antud ülesande jaoks asjakohane
+2. **Konteksti struktureerimine**: Teabe korraldamine mudeli arusaamise maksimeerimiseks
+3. **Konteksti edastamine**: Optimeerimine, kuidas ja millal teave mudelitele saadetakse
+4. **Konteksti hooldus**: Konteksti oleku ja evolutsiooni haldamine aja jooksul
 5. **Konteksti hindamine**: Konteksti tõhususe mõõtmine ja parandamine
 
-Need fookusvaldkonnad on eriti olulised MCP ökosüsteemile, mis pakub standardiseeritud viisi, kuidas rakendused saavad LLMidele konteksti pakkuda.
+Need fookusvaldkonnad on eriti olulised MCP ökosüsteemile, mis pakub standardiseeritud viisi, kuidas rakendused saavad LLM-idele konteksti anda.
 
-## Konteksti teekonna perspektiiv
 
-Üks viis kontekstiinsenerlust visualiseerida on jälgida teabe teekonda MCP süsteemi kaudu:
+## Konteksti teekonna vaatenurk
+
+Üks viis kontekstiinsenerlust visualiseerida on jälgida teabe teekonda läbi MCP süsteemi:
 
 ```mermaid
 graph LR
-    A[Kasutaja sisend] --> B[Konteksti kokkupanek]
-    B --> C[Mudeli töötlemine]
-    C --> D[Vastuse genereerimine]
-    D --> E[Seisundi haldamine]
-    E -->|Järgmine suhtlus| A
+    A[User Input] --> B[Context Assembly]
+    B --> C[Model Processing]
+    C --> D[Response Generation]
+    D --> E[State Management]
+    E -->|Next Interaction| A
     
     style A fill:#A8D5BA,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#7FB3D5,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -53,32 +54,32 @@ graph LR
 
 ### Peamised etapid konteksti teekonnas:
 
-1. **Kasutaja sisend**: tooraine teave kasutajalt (tekst, pildid, dokumendid)
-2. **Konteksti koostamine**: kasutaja sisendi kombineerimine süsteemi konteksti, vestluse ajalooga ja muu otsitud teabega
-3. **Mudeli töötlemine**: AI mudel töötleb koostatud konteksti
-4. **Vastuse genereerimine**: mudel toodab väljundeid antud konteksti põhjal
-5. **Seisundi haldamine**: süsteem uuendab oma sisemist seisundit vastavalt interaktsioonile
+1. **Kasutaja sisend**: Kasutajalt pärinev toorandmed (tekst, pildid, dokumendid)
+2. **Konteksti koostamine**: Kasutaja sisendi kombineerimine süsteemi konteksti, vestluse ajaloo ja muu hangitud teabega
+3. **Mudeli töötlemine**: AI-mudel töötleb koostatud konteksti
+4. **Vastuse genereerimine**: Mudel toodab väljundeid antud konteksti põhjal
+5. **Oleku haldus**: Süsteem uuendab oma sisemist olekut interaktsiooni põhjal
 
-See perspektiiv toob esile konteksti dünaamilise olemuse AI süsteemides ning tõstatab olulisi küsimusi, kuidas kõige paremini hallata teavet igas etapis.
+See vaatenurk toob esile konteksti dünaamilise olemuse AI-süsteemides ja tekitab olulisi küsimusi selle kohta, kuidas igas etapis kõige paremini teavet hallata.
 
-## Tekivad põhimõtted kontekstiinsenerluses
+## Tekkivad põhimõtted kontekstiinsenerluses
 
-Kuna kontekstiinsenerluse valdkond hakkab kujunema, ilmuvad mõned varajased põhimõtted praktikute poolt. Need põhimõtted võivad aidata MCP rakenduste valikuid suunata:
+Kui kontekstiinsenerluse valdkond kujuneb, hakkavad praktikute seas ilmuma mõned esialgsed põhimõtted. Need põhimõtted võivad aidata suunata MCP rakenduse valikuid:
 
-### Põhimõte 1: Jaga konteksti täielikult
+### Põhimõte 1: Jagage konteksti täielikult
 
-Konteksti tuleks jagada süsteemi kõigi komponentide vahel täielikult, mitte killustatult mitme agendi või protsessi vahel. Kui kontekst on jagatud, võivad ühe süsteemi osa otsused vastanduda mujal tehtud otsustega.
+Kontekst tuleks jagada täielikult süsteemi kõigi komponentide vahel, mitte lõigata mitme agendi või protsessi vahel fragmentideks. Kui kontekst on jaotatud, võivad otsused, mis tehakse ühes süsteemi osas, olla vastuolus teiste osadega tehtud otsustega.
 
 ```mermaid
 graph TD
-    subgraph "Killustatud konteksti lähenemine"
-    A1[Agent 1] --- C1[Kontekst 1]
-    A2[Agent 2] --- C2[Kontekst 2]
-    A3[Agent 3] --- C3[Kontekst 3]
+    subgraph "Fragmented Context Approach"
+    A1[Agent 1] --- C1[Context 1]
+    A2[Agent 2] --- C2[Context 2]
+    A3[Agent 3] --- C3[Context 3]
     end
     
-    subgraph "Ühtne konteksti lähenemine"
-    B1[Agent] --- D1[Jagatud täielik kontekst]
+    subgraph "Unified Context Approach"
+    B1[Agent] --- D1[Shared Complete Context]
     end
     
     style A1 fill:#AED6F1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -91,82 +92,82 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-MCP rakendustes viitab see süsteemide disainile, kus kontekst voolab sujuvalt kogu torujuhtme kaudu selle asemel, et olla compartmentaliseeritud.
+MCP rakendustes tähendab see süsteemide kujundamist nii, et kontekst voolaks sujuvalt kogu töövoo kaudu, selle asemel et see oleks lahutatud.
 
-### Põhimõte 2: Tunnista, et toimingud kannavad kaudseid otsuseid
+### Põhimõte 2: Tunnistage, et tegevused kannavad endas implitsiitseid otsuseid
 
-Iga mudeli tehtud toiming sisaldab kaudseid otsuseid selle kohta, kuidas konteksti tõlgendada. Kui mitu komponenti tegutsevad erinevate kontekstide põhjal, võivad need kaudsed otsused konflikti sattuda, põhjustades ebajärjekindlaid tulemusi.
+Iga mudeli tegevus sisaldab endas implitsiitseid otsuseid selle kohta, kuidas konteksti tõlgendada. Kui mitu komponenti tegutsevad erinevate kontekstide alusel, võivad need implitsiitsed otsused konflikti sattuda, põhjustades ebajärjekindlaid tulemusi.
 
-Sellel põhimõttel on olulised tagajärjed MCP rakendustele:
-- Eelista keeruliste ülesannete lineaarset töötlemist paralleelsele teostusele killustatud kontekstiga
-- Tagada, et kõigil otsustuspunktidel on ligipääs samale kontekstitundlikule infole
-- Kujunda süsteemid nii, et hilisemad sammud näevad varasemate otsuste kogu konteksti
+Sellel põhimõttel on MCP rakenduste jaoks olulised tagajärjed:
+- Eelistada keerukate ülesannete lineaarset töötlemist paralleelsele täitmisele fragmenteeritud kontekstiga
+- Tagada, et kõigil otsustuspunktidel oleks juurdepääs samale kontekstuaalsele teabele
+- Kujundada süsteeme nii, et hilisemad sammud näeksid varasemate otsuste kogu konteksti
 
-### Põhimõte 3: Tasakaalusta konteksti sügavust akna piirangutega
+### Põhimõte 3: Tasakaalustage konteksti sügavust kontekstiakna piirangutega
 
-Kuna vestlused ja protsessid pikenema kipuvad, saavad konteksti aknad täis. Tõhus kontekstiinsenerlus otsib lähenemisviise selle pingete juhtimiseks kogu konteksti ja tehniliste piirangute vahel.
+Kui vestlused ja protsessid venivad pikemaks, siis kontekstiaknad lõpuks täituvad. Tõhus kontekstiinsenerlus uurib lähenemisviise selle pinge haldamiseks põhjaliku konteksti ja tehniliste piirangute vahel.
 
-Võimalikud uuritavad lähenemisviisid:
-- Konteksti tihendamine, mis säilitab olulise info, vähendades samal ajal tokenite kasutust
-- Konteksti järkjärguline laadimine vastavalt asjakohasusele praegustele vajadustele
-- Eelmiste interaktsioonide kokku võtmine, säilitades tähtsad otsused ja faktid
+Uuritavad võimalikud lähenemised hõlmavad:
+- Konteksti tihendamine, mis säilitab olulise teabe, vähendades samal ajal tokenite kasutust
+- Konteksti progressiivne laadimine vastavalt selle tähtsusele praegustele vajadustele
+- Varasemate interaktsioonide kokkuvõtete tegemine säilitades samal ajal olulised otsused ja faktid
 
-## Konteksti väljakutsed ja MCP protokolli disain
+## Konteksti väljakutsed ja MCP protokolli kujundus
 
-Model Context Protocol (MCP) on loodud, arvestades konteksti haldamise ainulaadseid väljakutseid. Nende väljakutsete mõistmine aitab selgitada MCP protokolli disaini võtmeaspekte:
+Model Context Protocol (MCP) loodi, arvestades konteksti haldamise ainulaadseid väljakutseid. Nende väljakutsete mõistmine aitab selgitada MCP protokolli kujunduse peamisi aspekte:
 
 
-### Väljakutse 1: Konteksti akna piirangud
-Enamik AI mudeleid omab fikseeritud konteksti akna suurust, mis piirab, kui palju teavet nad korraga suudavad töödelda.
+### Väljakutse 1: kontekstiakna piirangud
+Enamik AI-mudeleid omab fikseeritud kontekstiakna suurust, mis piirab, kui palju teavet nad suudavad korraga töödelda.
 
-**MCP disaini vastus:**
-- Protokoll toetab struktureeritud, ressursipõhist konteksti, mida saab efektiivselt viidata
-- Ressursse saab lehekülgede kaupa laadida ja progressiivselt juurde tuua
+**MCP kujunduse vastus:** 
+- Protokoll toetab struktureeritud, ressursipõhist konteksti, millele saab viidata tõhusalt
+- Ressursse saab leheküljestada ja laadida progressiivselt
 
-### Väljakutse 2: Asjakohasuse määramine
-Otsustamine, milline teave on konteksti kaasamiseks kõige asjakohasem, on keeruline.
+### Väljakutse 2: asjakohasuse määramine
+Otsustada, milline teave on konteksti kaasamiseks kõige asjakohasem, on keeruline.
 
-**MCP disaini vastus:**
-- Paindlik tööriistakomplekt võimaldab dünaamilist teabe otsimist vastavalt vajadusele
-- Struktureeritud promptid lubavad järjepidevat konteksti organiseerimist
+**MCP kujunduse vastus:**
+- Paindlikud tööriistad võimaldavad teabe dünaamilist päringut vastavalt vajadusele
+- Struktureeritud promptid võimaldavad järjepidevat konteksti organiseerimist
 
-### Väljakutse 3: Konteksti püsivus
-Seisundi haldamine interaktsioonide vahel nõuab hoolikat konteksti jälgimist.
+### Väljakutse 3: konteksti püsivus
+Olekute haldamine interaktsioonide vahel nõuab konteksti hoolikat jälgimist.
 
-**MCP disaini vastus:**
+**MCP kujunduse vastus:**
 - Standardiseeritud sessioonihaldus
 - Selgelt määratletud interaktsioonimustrid konteksti arenguks
 
-### Väljakutse 4: Multi-modaalne kontekst
-Erinevad andmetüübid (tekst, pildid, struktureeritud andmed) nõuavad erinevat käsitlust.
+### Väljakutse 4: multimodaalne kontekst
+Erinevat tüüpi andmed (tekst, pildid, struktureeritud andmed) nõuavad erinevat käsitlemist.
 
-**MCP disaini vastus:**
-- Protokolli disain võtab arvesse mitut sisutüüpi
-- Multi-modaalse info standardiseeritud representatsioon
+**MCP kujunduse vastus:**
+- Protokolli kujundus toetab erinevaid sisutüüpe
+- Mitmemodaalse info standardiseeritud esitus
 
-### Väljakutse 5: Turvalisus ja privaatsus
+### Väljakutse 5: turvalisus ja privaatsus
 Kontekst sisaldab sageli tundlikku teavet, mida tuleb kaitsta.
 
-**MCP disaini vastus:**
+**MCP kujunduse vastus:**
 - Selged piirid kliendi ja serveri vastutuste vahel
-- Kohalikud töötlemise võimalused andmete avalikustamise minimeerimiseks
+- Kohalikud töötlemisvõimalused andmete avalikustamise minimeerimiseks
 
-Nende väljakutsete mõistmine ja MCP lahenduste tundmine annab aluse keerukamate kontekstiinsenerluse tehnika uurimiseks.
+Nende väljakutsete ja MCP lahenduste mõistmine annab aluse keerukamate kontekstiinsenerluse tehnikaid uurida.
 
-## Tekivad kontekstiinsenerluse lähenemisviisid
+## Tekkivad kontekstiinsenerluse lähenemisviisid
 
-Kuna kontekstiinsenerluse valdkond areneb, ilmuvad mitmed paljutõotavad lähenemisviisid. Need esindavad tänast mõtlemist, mitte kehtestatud parimaid tavasid ning tõenäoliselt arenevad MCP rakenduste kogemuse kasvades edasi.
+Kuna kontekstiinsenerluse valdkond areneb, ilmub välja mitmeid paljutõotavaid lähenemisviise. Need peegeldavad praegust mõtlemist, mitte väljakujunenud parimaid tavasid, ja tõenäoliselt arenevad edasi, kui meil tekib rohkem kogemusi MCP rakendustega.
 
-### 1. Ühevoogiline lineaarne töötlemine
+### 1. Üksikult järjestikune lineaarne töötlemine
 
-Erinevalt multiagendi arhitektuuridest, mis konteksti jaotavad, leiavad mõned praktikandid, et ühevoogiline lineaarne töötlemine annab järjekindlamaid tulemusi. See sobib põhimõttega säilitada ühtne kontekst.
+Erinevalt mitmeagendilistest arhitektuuridest, mis jaotavad konteksti, leiavad mõned praktikud, et üksikult järjestikune lineaarne töötlemine annab järjekindlamad tulemused. See on kooskõlas põhimõttega hoida kontekst ühtsena.
 
 ```mermaid
 graph TD
-    A[Tööülesande algus] --> B[Protsessi samm 1]
-    B --> C[Protsessi samm 2]
-    C --> D[Protsessi samm 3]
-    D --> E[Tulemus]
+    A[Task Start] --> B[Process Step 1]
+    B --> C[Process Step 2]
+    C --> D[Process Step 3]
+    D --> E[Result]
     
     style A fill:#A9CCE3,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A3E4D7,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -175,36 +176,36 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Kuigi see lähenemine võib tunduda vähem tõhus kui paralleeltöötlus, toodab see sageli selgemaid ja usaldusväärsemaid tulemusi, sest iga samm tugineb täielikul arusaamisel varasematest otsustest.
+Kuigi see lähenemine võib tunduda vähem tõhus kui paralleelne töötlemine, annab see sageli koherentsemad ja usaldusväärsemad tulemused, sest iga samm tugineb eelnevate otsuste täielikul mõistmisel.
 
-### 2. Konteksti tükkideks jagamine ja prioriseerimine
+### 2. Konteksti killustamine ja prioriseerimine
 
-Suure konteksti jagamine hallatavatesse osadesse ja kõige olulisema esile tõstmine.
+Suure konteksti jagamine hallatavatesse osadesse ja kõige olulisema prioriseerimine.
 
 ```python
-# Kontseptuaalne näide: konteksti tükeldamine ja prioriteetide seadmine
+# Conceptual Example: Context Chunking and Prioritization
 def process_with_chunked_context(documents, query):
-    # 1. Jagage dokumendid väiksemateks tükkideks
+    # 1. Break documents into smaller chunks
     chunks = chunk_documents(documents)
     
-    # 2. Arvutage iga tükikese asjakohasuse skoorid
+    # 2. Calculate relevance scores for each chunk
     scored_chunks = [(chunk, calculate_relevance(chunk, query)) for chunk in chunks]
     
-    # 3. Sorteerige tükkid asjakohasuse skoori järgi
+    # 3. Sort chunks by relevance score
     sorted_chunks = sorted(scored_chunks, key=lambda x: x[1], reverse=True)
     
-    # 4. Kasutage kõige asjakohasemaid tükke kontekstina
+    # 4. Use the most relevant chunks as context
     context = create_context_from_chunks([chunk for chunk, score in sorted_chunks[:5]])
     
-    # 5. Töötle prioriseeritud kontekstiga
+    # 5. Process with the prioritized context
     return generate_response(context, query)
 ```
 
-Ülaltoodud kontseptsioon illustreerib, kuidas me võiksime suuri dokumente tükkideks jagada ja valida konteksti jaoks kõige asjakohasemad osad. See lähenemine aitab töötada konteksti akna piirangutega, samal ajal kasutades suuremaid teadmiste baase.
+Ülaltoodud kontseptsioon illustreerib, kuidas me võiksime jagada suuri dokumente hallatavatesse osadesse ja valida konteksti jaoks ainult kõige asjakohasemad osad. See lähenemine aitab tegutseda kontekstiakna piirangute raames, samal ajal kasutades ära suuri teadmistebaase.
 
-### 3. Konteksti progressiivne laadimine
+### 3. Progressiivne konteksti laadimine
 
-Konteksti laadimine järk-järgult vastavalt vajadusele, mitte kõike korraga.
+Konteksti laadimine progressiivselt vastavalt vajadusele, mitte kõike korraga.
 
 ```mermaid
 sequenceDiagram
@@ -213,34 +214,34 @@ sequenceDiagram
     participant MCP Server
     participant AI Model
 
-    User->>App: Küsi Küsimus
-    App->>MCP Server: Esialgne Päring
-    MCP Server->>AI Model: Minimaalne Kontekst
-    AI Model->>MCP Server: Esialgne Vastus
+    User->>App: Ask Question
+    App->>MCP Server: Initial Request
+    MCP Server->>AI Model: Minimal Context
+    AI Model->>MCP Server: Initial Response
     
-    alt Vajab Rohkem Konteksti
-        MCP Server->>MCP Server: Tuvasta Puuduv Kontekst
-        MCP Server->>MCP Server: Laadi Lisakontekst
-        MCP Server->>AI Model: Täiendatud Kontekst
-        AI Model->>MCP Server: Lõplik Vastus
+    alt Needs More Context
+        MCP Server->>MCP Server: Identify Missing Context
+        MCP Server->>MCP Server: Load Additional Context
+        MCP Server->>AI Model: Enhanced Context
+        AI Model->>MCP Server: Final Response
     end
     
-    MCP Server->>App: Vastus
-    App->>User: Vastus
+    MCP Server->>App: Response
+    App->>User: Answer
 ```
 
-Progressiivne konteksti laadimine algab minimaalse kontekstiga ja laieneb vaid vajaduse korral. See võib oluliselt vähendada tokeni kasutust lihtsamate päringute puhul, säilitades võime käsitleda keerukaid küsimusi.
+Progressiivne konteksti laadimine algab minimaalse kontekstiga ja laieneb ainult siis, kui see on vajalik. See võib oluliselt vähendada tokenite kasutust lihtsate päringute puhul, säilitades samal ajal võime käsitleda keerukaid küsimusi.
 
-### 4. Konteksti tihendamine ja kokkuvõtlikkus
+### 4. Konteksti tihendamine ja kokkuvõtete tegemine
 
-Konteksti suuruse vähendamine, säilitades olulise info.
+Konteksti suuruse vähendamine, säilitades samal ajal olulise teabe.
 
 ```mermaid
 graph TD
-    A[Täielik kontekst] --> B[Kompressioonimudel]
-    B --> C[Komprimeeritud kontekst]
-    C --> D[Põhitöötlusmudel]
-    D --> E[Vastus]
+    A[Full Context] --> B[Compression Model]
+    B --> C[Compressed Context]
+    C --> D[Main Processing Model]
+    D --> E[Response]
     
     style A fill:#A9CCE3,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A3E4D7,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -250,141 +251,142 @@ graph TD
 ```
 
 Konteksti tihendamine keskendub:
-- Ülekattuva info eemaldamisele
-- Pikkade sisude kokkuvõttele
-- Oluliste faktide ja detailide eraldamisele
-- Kriitiliste konteksti elementide säilitamisele
-- Tokenite efektiivsuse optimeerimisele
+- Korduva teabe eemaldamine
+- Pikkade sisude kokkuvõtete tegemine
+- Oluliste faktide ja detailide eraldamine
+- Kriitiliste konteksti elementide säilitamine
+- Tokenite kasutamise optimeerimine
 
-See lähenemine võib olla eriti väärtuslik pikkade vestluste säilitamiseks konteksti akendes või suurte dokumentide tõhusaks töötlemiseks. Mõned praktikandid kasutavad spetsiaalseid mudeleid just konteksti tihendamiseks ja vestluse ajaloo kokkuvõtmiseks.
+See lähenemine võib olla eriti väärtuslik pikkade vestluste säilitamiseks kontekstiakendes või suurte dokumentide efektiivseks töötlemiseks. Mõned praktikud kasutavad spetsialiseeritud mudeleid konteksti tihendamiseks ja vestluse ajaloo kokkuvõtete tegemiseks.
 
-## Uurivad kontekstiinsenerluse kaalutlused
 
-Kontekstiinsenerluse tekkiva valdkonna uurimisel on mitmed kaalutlused vajalikud meeles pidada MCP rakendustega töötamisel. Need ei ole käsud parimate tavade kohta, vaid uurimisvaldkonnad, mis võivad sinu konkreetse kasutusjuhtumi puhul parandusi tuua.
+## Uurivad kaalutlused kontekstiinsenerluses
 
-### Kaalu oma konteksti eesmärke
+Uurides kontekstiinsenerluse tekkivat valdkonda, on mitmeid kaalutlusi, mida tasub MCP rakendustega töötades silmas pidada. Need ei ole ettekirjutavad parimad tavad, vaid pigem uuritavad valdkonnad, mis võivad teie konkreetse kasutusjuhtumi puhul parandusi anda.
 
-Enne keerukate konteksti halduslahenduste juurutamist sõnasta selgelt, mida soovid saavutada:
-- Millist konkreetset teavet mudel edu saavutamiseks vajab?
-- Milline info on oluline ja milline lisainfo?
-- Millised on sinu jõudluse piirangud (latentsus, tokeni limiidid, kulud)?
+### Mõelge oma konteksti eesmärkidele
 
-### Uuri kihilisi konteksti lähenemisi
+Enne keerukate konteksti haldamise lahenduste rakendamist sõnastage selgelt, mida te üritate saavutada:
+- Millist konkreetset teavet mudel vajab, et olla edukas?
+- Milline teave on oluline ja milline täiendav?
+- Millised on teie jõudluse piirangud (latentsus, tokenite piirid, kulud)?
 
-Mõned praktikandid leiavad edu konteksti organiseerimisel kontseptuaalsetes kihtides:
-- **Tuumikkiht**: Üdini vajalik info, mida mudel alati vajab
+### Uurige kihilisi konteksti lähenemisviise
+
+Mõned praktikud on leidnud edu konteksti korraldamisel kontseptuaalsetesse kihtidesse:
+- **Põhikiht**: Oluline teave, mida mudel alati vajab
 - **Situatsioonikiht**: Kontekst, mis on spetsiifiline praegusele interaktsioonile
-- **Toetav kiht**: Täiendav info, mis võib olla abiks
-- **Varukiht**: Info, mis on ligipääsetav vaid vajaduse korral
+- **Toetav kiht**: Lisateave, mis võib olla kasulik
+- **Varukiht**: Teave, millele pöördutakse ainult vajaduse korral
 
-### Uuri teabeotsingu strateegiaid
+### Uurige päringustrateegiaid
 
-Sinu konteksti tõhusus sõltub sageli sellest, kuidas sa infot otsid:
-- Semantiline otsing ja embeddings kontseptuaalselt asjakohase info leidmiseks
-- Märksõnal põhinev otsing konkreetsete faktide leidmiseks
-- Hübriidlähenemised, mis kombineerivad mitut otsingumeetodit
-- Metaandmete filtreerimine kategooriate, kuupäevade või allikate põhjal
+Konteksti tõhusus sõltub sageli sellest, kuidas teavet pärite:
+- Semantiline otsing ja embeddings kontseptuaalselt asjakohase teabe leidmiseks
+- Märksõnapõhine otsing konkreetsete faktide leidmiseks
+- Hübriidlähenemised, mis kombineerivad mitut päringumeetodit
+- Metaandmete filtrimine ulatuse kitsendamiseks kategooriate, kuupäevade või allikate põhjal
 
-### Katseta konteksti sidusust
+### Katsetage konteksti koherentsust
 
-Konteksti struktuur ja vool võivad mõjutada mudeli arusaamist:
-- Seotud info grupeerimine omavahel
-- Järjepidev vormindus ja organiseerimine
-- Loogilise või kronoloogilise järjekorra säilitamine kus sobib
-- Vastuolulise info vältimine
+Teie konteksti struktuur ja voog võivad mõjutada mudeli mõistmist:
+- Seotud teabe grupeerimine kokku
+- Järjepideva vorminduse ja organiseerimise kasutamine
+- Loogilise või kronoloogilise järjestuse säilitamine, kus see on asjakohane
+- Vastuolulise teabe vältimine
 
-### Hinda multiagendi arhitektuuride kompromisse
+### Hinnake mitmeagendiliste arhitektuuride kompromisse
 
-Kuigi multiagendi arhitektuurid on paljude AI raamistikute seas populaarsed, kaasnevad nendega märkimisväärsed konteksti halduse väljakutsed:
-- Konteksti killustumine võib viia vastuoluliste otsusteni agendi vahel
-- Paralleeltöötlemine võib tekitada konflikte, mida raske lahendada on
-- Agentide vahelise kommunikatsiooni ülekanne võib jõudlust kasu asemel vähendada
-- Sidususe säilitamiseks on vaja keerukat seisundihaldust
+Kuigi mitmeagendilised arhitektuurid on paljude AI raamistikute hulgas populaarsed, kaasnevad nendega konteksti haldamisega märkimisväärsed väljakutsed:
+- Konteksti killustatus võib viia ebajärjekindlate otsusteni agentide vahel
+- Paralleeltöötlus võib tekitada konflikte, mida on raske lahendada
+- Agentide vaheline kommunikatsioonikoormus võib tühistada jõudluse kasud
+- Koherentsuse säilitamiseks on vajalik keeruline oleku haldus
 
-Paljudel juhtudel võib üheagendi lähenemine, mis hõlmab põhjalikku konteksti haldust, anda usaldusväärsemaid tulemusi kui mitu spetsialiseeritud agenti killustatud kontekstiga.
+Paljudel juhtudel võib üheagendiline lähenemine koos kõikehõlmava konteksti haldamisega anda usaldusväärsemaid tulemusi kui mitu spetsialiseeritud agenti fragmenteeritud kontekstiga.
 
-### Arenda hindamismeetodeid
+### Töötage välja hindamismeetodid
 
-Kontekstiinsenerluse parandamiseks aja jooksul kaalu, kuidas edu mõõdad:
-- A/B testimine erinevate konteksti struktuuride vahel
-- Tokenite kasutuse ja vastuse aegade jälgimine
-- Kasutajate rahulolu ja ülesannete täitmise määrade jälgimine
-- Juhtumite analüüs, kus konteksti strateegiad ebaõnnestuvad
+Et kontekstiinsenerlust ajas parendada, kaaluge, kuidas te mõõdate edu:
+- A/B testimine erinevate kontekstistruktuuride puhul
+- Tokenite kasutuse ja vastuseaegade jälgimine
+- Kasutajate rahulolu ja ülesannete lõpetamise määrade jälgimine
+- Konteksti strateegiate ebaõnnestumise aegade ja põhjuste analüüsimine
 
-Need kaalutlused esindavad aktiivset uurimisvaldkonda kontekstiinsenerluse ruumis. Valdkonna küpsemisel ilmuvad tõenäoliselt kindlamad mustrid ja praktikad.
+Need kaalutlused esindavad aktiivseid uurimisvaldkondi kontekstiinsenerluse alal. Kui valdkond küpseb, ilmuvad tõenäoliselt välja selgemad mustrid ja praktikad.
 
 ## Konteksti tõhususe mõõtmine: arenev raamistik
 
-Kuna kontekstiinsenerlus kujuneb mõisteks, alustavad praktikandid jõupingutusi selle tõhususe mõõtmiseks. Ühtset raamistikku veel ei ole, kuid kaalutakse erinevaid mõõdikuid, mis võivad tulevikus töö suuna määrata.
+Kuna kontekstiinsenerlus tekib kontseptsioonina, hakkavad praktikud uurima, kuidas me võiksime mõõta selle tõhusust. Ükski väljakujunenud raamistik pole veel olemas, kuid kaalumisele on võetud mitmeid mõõdikuid, mis võiksid aidata suunata tulevast tööd.
 
 ### Võimalikud mõõtmisdimensioonid
 
 
 #### 1. Sisendi efektiivsuse kaalutlused
 
-- **Konteksti ja vastuse suhe**: kui palju konteksti on vaja vastuse suuruse suhtes?
-- **Tokenite kasutamine**: mis protsent antud konteksti tokenitest mõjutab nähtavasti vastust?
-- **Konteksti vähendamine**: kui tõhusalt võiksime toorest infot tihendada?
+- **Konteksti–vastuse suhe**: Kui palju konteksti on vaja võrreldes vastuse mahuga?
+- **Tokenite kasutamine**: Mis protsent pakutud konteksti tokenitest tundub mõjutavat vastust?
+- **Konteksti vähendamine**: Kui tõhusalt saame toorinfo tihendada?
 
 #### 2. Jõudluse kaalutlused
 
-- **Latentsuse mõju**: kuidas konteksti haldus mõjutab vastuse aega?
-- **Tokeni majanduslikkus**: kas me optimeerime tokenite kasutust efektiivselt?
-- **Otsingu täpsus**: kui asjakohane on leitud info?
-- **Ressursside kasutus**: milliseid arvutusressursse on vaja?
+- **Latentsuse mõju**: Kuidas konteksti haldamine mõjutab vastuse aega?
+- **Tokenite ökonoomia**: Kas me optimeerime tokenite kasutust tõhusalt?
+- **Päringu täpsus**: Kui asjakohane on hangitud teave?
+- **Ressursside kasutus**: Milliseid arvutusressursse on vaja?
 
 #### 3. Kvaliteedi kaalutlused
 
-- **Vastuse asjakohasus**: kui hästi vastus käsitleb päringut?
-- **Faktide täpsus**: kas konteksti haldus parandab faktide täpsust?
-- **Järjepidevus**: kas vastused on sarnastele päringutele järjepidevad?
-- **Hallutsinatsioonide määr**: kas parem kontekst vähendab mudeli hallutsinatsioone?
+- **Vastuse asjakohasus**: Kui hästi vastus adresseerib päringut?
+- **Faktide täpsus**: Kas konteksti haldamine parandab faktilist õigsust?
+- **Järjepidevus**: Kas vastused on sarnaste päringute puhul järjekindlad?
+- **Hallutsinatsioonide sagedus**: Kas parem kontekst vähendab mudeli hallutsinatsioone?
 
 #### 4. Kasutajakogemuse kaalutlused
 
-- **Järgpäringute määr**: kui tihti vajavad kasutajad täpsustust?
-- **Ülesande täitmine**: kas kasutajad saavutavad oma eesmärgid edukalt?
-- **Rahulolu näitajad**: kuidas kasutajad hindavad oma kogemust?
+- **Järgimise sagedus**: Kui sageli kasutajad vajavad täpsustusi?
+- **Ülesannete täitmine**: Kas kasutajad saavutavad edukalt oma eesmärgid?
+- **Rahulolu näitajad**: Kuidas kasutajad hindavad oma kogemust?
 
 ### Uurivad mõõtmislähenemised
 
-Katsetades kontekstiinsenerlust MCP rakendustes, kaalu neid uurivaid lähenemisi:
+MCP rakendustes kontekstiinsenerlusega katsetades kaaluge neid uurivaid lähenemisviise:
 
-1. **Võrdlus alusjoonega**: alusta lihtsate konteksti lähenemisviisidega, enne keerukamate testimist
+1. **Võrdlusalus**: Looge baas lihtsate kontekstilähenemistega enne keerukamate meetodite testimist
 
-2. **Järk-järgult muudatused**: muuda korraga üks aspekt konteksti halduses, et eraldada selle mõju
+2. **Järkjärgulised muutused**: Muutke korraga vaid ühte konteksti haldamise aspekti, et isoleerida selle mõju
 
-3. **Kasutajakeskne hindamine**: ühenda kvantitatiivsed mõõdikud kvalitatiivse kasutajate tagasisidega
+3. **Kasutajakeskne hindamine**: Ühendage kvantitatiivsed mõõdikud kvalitatiivse kasutajate tagasisidega
 
-4. **Ebaõnnestumiste analüüs**: analüüsi juhtumeid, kus konteksti strateegiad ebaõnnestuvad, et mõista võimalikke parandusi
+4. **Rikkeanalüüs**: Uurige juhtumeid, kus konteksti strateegiad ebaõnnestuvad, et mõista võimalikke parandusi
 
-5. **Mitmemõõtmeline hindamine**: kaalu kompromisse efektiivsuse, kvaliteedi ja kasutajakogemuse vahel
+5. **Mitmemõõtmeline hindamine**: Arvestage kompromisse efektiivsuse, kvaliteedi ja kasutajakogemuse vahel
 
-See katsekeskne, mitmekülgne lähenemine sobitub kontekstiinsenerluse tekkiva olemusega.
+See eksperimentaalne, mitmekülgne mõõtmislähenemine sobib kokku kontekstiinsenerluse tekkiva olemusega.
 
-## Lõppsõnad
+## Lõpumõtted
 
-Kontekstiinsenerlus on tekkiv uurimisvaldkond, mis võib osutuda keskseks tõhusates MCP rakendustes. Mõistlikult kaaludes, kuidas info sinu süsteemis voolab, võid luua tehisintellekti kogemusi, mis on efektiivsemad, täpsemad ja kasutajate jaoks väärtuslikumad.
+Kontekstiinsenerlus on tekkiv uurimisvaldkond, mis võib osutuda keskseks tõhusate MCP rakenduste puhul. Mõeldes hoolikalt läbi, kuidas teave teie süsteemis voolab, võite luua tehisintellekti kogemusi, mis on kasutajatele tõhusamad, täpsemad ja väärtuslikumad.
 
-Selles moodulis kirjeldatud tehnikad ja lähenemised esindavad varajast mõtlemist selles valdkonnas, mitte kehtestatud praktikaid. Kontekstiinsenerlus võib areneda määratumaks distsipliiniks koos AI võimekuse arenemise ja meie arusaama süvenemisega. Praegu paistab katsetamine koos hoolika mõõtmisega olevat kõige viljakam lähenemine.
+Siin kirjeldatud tehnikad ja lähenemised esindavad valdkonna varajast mõtlemist, mitte väljakujunenud praktikaid. Kontekstiinsenerlus võib areneda selgemaks distsipliiniks, kui AI võimekused arenevad ja meie arusaam süveneb. Praegu tundub katsetamine, kombineerituna hoolika mõõtmisega, olevat kõige produktiivsem lähenemine.
 
-## Võimalikud tulevikusuunad
+## Võimalikud tuleviku suunad
 
-Kontekstiinsenerluse valdkond on veel algusjärgus, kuid mitmed paljutõotavad suunad ilmnevad:
+Kontekstiinsenerluse valdkond on endiselt algjärgus, kuid ilmneb mitu paljutõotavat suunda:
 
-- Kontekstiinsenerluse põhimõtted võivad oluliselt mõjutada mudeli jõudlust, efektiivsust, kasutajakogemust ja töökindlust
-- Ühevoolilise, põhjaliku konteksti haldusega lähenemised võivad ületada multiagendi arhitektuuride tulemusi paljudes kasutusjuhtumites
-- Spetsialiseeritud konteksti tihendusmudelid võivad muutuda AI torujuhtmete standardkomponentideks
-- Konteksti täielikkuse ja tokenipiirangute pinge võib innustada innovatsiooni konteksti haldamises
-- Kui mudelid muutuvad võimekamaks inimlikult efektiivseks suhtlemiseks, võib tõeline multiagentide koostöö muutuda elujõulisemaks
-- MCP implementatsioonid võivad areneda, standardiseerides konteksti haldamise mustrid, mis tekivad praegusest katsetustegevusest
+- Kontekstiinsenerluse põhimõtted võivad oluliselt mõjutada mudelite jõudlust, tõhusust, kasutajakogemust ja töökindlust
+- Üheahelalised lähenemised koos kõikehõlmava konteksti haldusega võivad paljudes kasutusjuhtumites ületada mitmeagendilisi arhitektuure
+- Spetsialiseeritud konteksti tihendamise mudelid võivad saada tavapärasteks komponentideks AI töövoogudes
+- Konteksti täielikkuse ja tokenipiirangute vaheline pinge tõenäoliselt ajendab innovatsiooni konteksti käsitlemisel
+- Kuna mudelid muutuvad võimekamaks efektiivseks inimlaadseks suhtluseks, võib tõeline mitmeagendiline koostöö muutuda elujõulisemaks
+- MCP rakendused võivad areneda, et standardiseerida konteksti haldamise mustreid, mis tekivad praegusest katsetamisest
 
 ```mermaid
 graph TD
-    A[Varased Uurimised] -->|Katsetamine| B[Esile Tõusvad Mustrid]
-    B -->|Kinnitamine| C[Kehtestatud Praktikad]
-    C -->|Rakendamine| D[Uued Väljakutsed]
-    D -->|Innovatsioon| A
+    A[Early Explorations] -->|Experimentation| B[Emerging Patterns]
+    B -->|Validation| C[Established Practices]
+    C -->|Application| D[New Challenges]
+    D -->|Innovation| A
     
     style A fill:#AED6F1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A9DFBF,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -395,33 +397,33 @@ graph TD
 ## Ressursid
 
 ### Ametlikud MCP ressursid
-- [Model Context Protocoli veebisait](https://modelcontextprotocol.io/)
+- [Model Context Protocol veebisait](https://modelcontextprotocol.io/)
 - [Model Context Protocoli spetsifikatsioon](https://github.com/modelcontextprotocol/modelcontextprotocol)
-- [MCP Dokumentatsioon](https://modelcontextprotocol.io/docs)
+- [MCP dokumentatsioon](https://modelcontextprotocol.io/docs)
 - [MCP C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - MCP serverite visuaalne testimise tööriist
+- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Visuaalne testimise tööriist MCP-serveritele
 
-### Konteksti inseneriteemalised artiklid
-- [Ärge ehitage mitmeagente: konteksti inseneritehnika põhimõtted](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yani mõtted konteksti inseneritehnika põhimõtete kohta
-- [Praktiline juhend agentide loomiseks](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI juhend tõhusa agentide disaini kohta
-- [Tõhusate agentide loomine](https://www.anthropic.com/engineering/building-effective-agents) - Anthropicu lähenemine agentide arendusele
+### Kontekstiinsenerluse artiklid
+- [Ärge looge mitmeagente: kontekstiinsenerluse põhimõtted](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yani vaated kontekstiinsenerluse põhimõtetele
+- [Praktiline juhend agentide ehitamiseks](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI juhend tõhusa agentide kujundamise kohta
+- [Tõhusate agentide loomine](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic lähenemine agentide arendamisele
 
-### Seotud uurimistööd
-- [Dünaamiline otsingu täiendamine suurte keelemudelite jaoks](https://arxiv.org/abs/2310.01487) - Uurimus dünaamiliste otsingumeetodite kohta
-- [Kadunud keskel: kuidas keelemudelid kasutavad pikki kontekste](https://arxiv.org/abs/2307.03172) - Oluline uurimus kontekstitöötluse mustrite kohta
-- [Hierarhiline teksti-konditsioneeritud pildigeneratsioon CLIP latentsidega](https://arxiv.org/abs/2204.06125) - DALL-E 2 töö konteksti struktuuri kohta
+### Seotud uuringud
+- [Dünaamiline päringute täiendus suurtele keelemudelitele](https://arxiv.org/abs/2310.01487) - Uuringud dünaamiliste päringulähenemiste kohta
+- [Kadunud keskel: kuidas keelemudelid kasutavad pikki kontekste](https://arxiv.org/abs/2307.03172) - Oluline uurimus konteksti töötlemise mustrite kohta
+- [Hierarhiline teksti-konditsioneeritud piltide genereerimine CLIP-latentidega](https://arxiv.org/abs/2204.06125) - DALL-E 2 artikkel, mis annab teadmisi konteksti struktureerimisest
 - [Konteksti rolli uurimine suurte keelemudeli arhitektuurides](https://aclanthology.org/2023.findings-emnlp.124/) - Hiljutine uurimus konteksti käsitlemisest
-- [Mitmeagendi koostöö: ülevaade](https://arxiv.org/abs/2304.03442) - Uurimus mitmeagendisüsteemide ja nende väljakutsete kohta
+- [Mitmeagendi koostöö: ülevaade](https://arxiv.org/abs/2304.03442) - Uuring mitmeagendi süsteemide ja nende väljakutsete kohta
 
-### Lisavarad
+### Täiendavad ressursid
 - [Kontekstiakna optimeerimise tehnikad](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
-- [Arendatud RAG tehnikad](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
-- [Semantic Kernel dokumentatsioon](https://github.com/microsoft/semantic-kernel)
-- [Tehisintellekti tööriistikomplekt kontekstimajanduseks](https://github.com/microsoft/aitoolkit)
+- [Täiustatud RAG-tehnikad](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
+- [Semantic Kerneli dokumentatsioon](https://github.com/microsoft/semantic-kernel)
+- [Microsoft Foundry Toolkit Visual Studio Code'i jaoks](https://github.com/microsoft/vscode-ai-toolkit)
 
-## Mis järgmine  
+## Mis järgmiseks 
 
 - [5.15 MCP kohandatud transport](../mcp-transport/README.md)
 

@@ -1,20 +1,20 @@
-# Basic Calculator MCP Service
+# Baisik Kalkuleita MCP Savais
 
 > [!NOTE]
-> Dis example dey use di old HTTP+SSE transport and im dey target SDK wey dey compatible
-> wit MCP `2025-11-25`. New remote servers suppose use `2026-07-28` Streamable
+> Dis sample dey use di old HTTP+SSE transport an e dey target an SDK wey dey compatible
+> with MCP `2025-11-25`. New remote servers suppose use `2026-07-28` Streamable
 > HTTP support.
 
-Dis service dey provide basic calculator operations through di Model Context Protocol (MCP) wey dey use Spring Boot wit WebFlux transport. E design as simple example for beginners wey dey learn about MCP implementations.
+Dis service dey provide baisik kalkuleita operations through di Model Context Protocol (MCP) using Spring Boot wit WebFlux transport. E design as simple example for beginners wey dey learn about MCP implementations.
 
-For more info, see di [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
+For more info, see the [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
 
 ## Overview
 
-Di service dey show:
+Di service dey showcase:
 - Support for SSE (Server-Sent Events)
 - Automatic tool registration using Spring AI's `@Tool` annotation
-- Basic calculator functions:
+- Baisik kalkuleita functions:
   - Addition, subtraction, multiplication, division
   - Power calculation and square root
   - Modulus (remainder) and absolute value
@@ -22,17 +22,17 @@ Di service dey show:
 
 ## Features
 
-Dis calculator service get di following capabilities:
+Dis kalkuleita service get di following capabilities:
 
 1. **Basic Arithmetic Operations**:
    - Addition of two numbers
    - Subtraction of one number from another
    - Multiplication of two numbers
-   - Division of one number by another (wit zero division check)
+   - Division of one number by another (with zero division check)
 
 2. **Advanced Operations**:
    - Power calculation (raising a base to an exponent)
-   - Square root calculation (wit negative number check)
+   - Square root calculation (with negative number check)
    - Modulus (remainder) calculation
    - Absolute value calculation
 
@@ -44,101 +44,78 @@ Dis calculator service get di following capabilities:
 Di service dey expose di following API endpoints through di MCP protocol:
 
 - `add(a, b)`: Add two numbers together
-- `subtract(a, b)`: Subtract di second number from di first
+- `subtract(a, b)`: Subtract the second number from the first
 - `multiply(a, b)`: Multiply two numbers
-- `divide(a, b)`: Divide di first number by di second (wit zero check)
-- `power(base, exponent)`: Calculate di power of number
-- `squareRoot(number)`: Calculate di square root (wit negative number check)
-- `modulus(a, b)`: Calculate di remainder wen you divide
-- `absolute(number)`: Calculate di absolute value
-- `help()`: Get information about di available operations
+- `divide(a, b)`: Divide the first number by the second (with zero check)
+- `power(base, exponent)`: Calculate the power of a number
+- `squareRoot(number)`: Calculate the square root (with negative number check)
+- `modulus(a, b)`: Calculate the remainder when dividing
+- `absolute(number)`: Calculate the absolute value
+- `help()`: Get information about available operations
 
 ## Test Client
 
-Simple test client dey inside di `com.microsoft.mcp.sample.client` package. Di `SampleCalculatorClient` class dey show di available operations of di calculator service.
+Simple test client dey included for the `com.microsoft.mcp.sample.client` package. The `SampleCalculatorClient` class dey demonstrate di available operations of di calculator service.
 
 ## Using the LangChain4j Client
 
-Di project get LangChain4j example client for `com.microsoft.mcp.sample.client.LangChain4jClient` wey dey show how to integrate di calculator service wit LangChain4j and GitHub models:
+Di project include one LangChain4j example client for
+`com.microsoft.mcp.sample.client.LangChain4jClient` wey dey show how to
+integrate di calculator service wit a Microsoft Foundry model.
 
 ### Prerequisites
 
-1. **GitHub Token Setup**:
-   
-   To use GitHub AI models (like phi-4), you need GitHub personal access token:
+1. Make a Microsoft Foundry resource an deploy an active model like
+   `gpt-5.1`.
+2. Set di model endpoint, API key, and deployment name:
 
-   a. Go your GitHub account settings: https://github.com/settings/tokens
-   
-   b. Click "Generate new token" → "Generate new token (classic)"
-   
-   c. Give your token better name wey explain am well
-   
-   d. Select these scopes:
-      - `repo` (Full control of private repositories)
-      - `read:org` (Read org and team membership, read org projects)
-      - `gist` (Create gists)
-      - `user:email` (Access user email addresses (read-only))
-   
-   e. Click "Generate token" and copy your new token
-   
-   f. Set am as environment variable:
-      
-      For Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      For macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. For permanent setup, add am to your environment variables through system settings
-
-2. Add LangChain4j GitHub dependency to your project (e don already dey inside pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Make sure sey di calculator server dey run for `localhost:8080`
+3. Check di
+   [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   before you select deployment.
+4. Make sure di calculator server dey run on `localhost:8080`.
 
 ### Running the LangChain4j Client
 
-Dis example dey show:
-- Connecting to di calculator MCP server using SSE transport
-- Using LangChain4j to create chat bot wey dey use calculator operations
-- Integrating wit GitHub AI models (now dey use phi-4 model)
+Dis example dey demonstrate:
+- Connecting to the calculator MCP server via SSE transport
+- Using LangChain4j to create a chat bot wey go leverage calculator operations
+- Integrating with a deployed Microsoft Foundry model
 
-Di client dey send these sample queries to show how e dey work:
-1. Calculate sum of two numbers
-2. Find square root of number
-3. Get help information about available calculator operations
+Di client go send di following sample queries to show functionality:
+1. Calculating the sum of two numbers
+2. Finding the square root of a number
+3. Getting help information about available calculator operations
 
-Run di example and check console output to see how AI model dey use calculator tools respond to queries.
+Run di example an check di console output make you see how di AI model dey use di calculator tools to respond to queries.
 
-### GitHub Model Configuration
+### Microsoft Foundry Model Configuration
 
-LangChain4j client dey configured to use GitHub phi-4 model wit dis settings:
+Di LangChain4j client dey use di Azure OpenAI v1-compatible endpoint wey
+Microsoft Foundry expose:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-To use different GitHub models, just change di `modelName` parameter to another model wey e support (e.g., "claude-3-haiku-20240307", "llama-3-70b-8192", etc.).
+`AZURE_OPENAI_DEPLOYMENT` must match di name wey dem assign wen dem deploy di model,
+deployed, which may differ from the underlying model name.
 
 ## Dependencies
 
-Di project need these main dependencies:
+Di project need di following key dependencies:
 
 ```xml
 <!-- For MCP Server -->
@@ -154,10 +131,10 @@ Di project need these main dependencies:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
@@ -179,61 +156,62 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Using MCP Inspector
 
-MCP Inspector na better tool for interacting wit MCP services. To use am wit dis calculator service:
+MCP Inspector na helpful tool for interacting wit MCP services. To use am wit dis calculator service:
 
 1. **Install and run MCP Inspector** for new terminal window:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Access di web UI** by clicking di URL wey di app show (normally http://localhost:6274)
+2. **Access the web UI** by clicking di URL wey di app display (typically http://localhost:6274)
 
-3. **Configure di connection**:
-   - Set transport type to "SSE"
-   - Set URL to your server SSE endpoint: `http://localhost:8080/sse`
+3. **Configure the connection**:
+   - Set di transport type to "SSE"
+   - Set di URL to your running server's SSE endpoint: `http://localhost:8080/sse`
    - Click "Connect"
 
-4. **Use di tools**:
+4. **Use the tools**:
    - Click "List Tools" to see available calculator operations
-   - Select tool and click "Run Tool" to perform operation
+   - Select a tool and click "Run Tool" to execute an operation
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/pcm/tool.c75a0b2380efcf1a.webp)
 
 ### Using Docker
 
-Di project get Dockerfile for containerized deployment:
+Di project include one Dockerfile for containerized deployment:
 
-1. **Build di Docker image**:
+1. **Build the Docker image**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
 
-2. **Run di Docker container**:
+2. **Run the Docker container**:
    ```bash
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Dis one go:
-- Build multi-stage Docker image wit Maven 3.9.9 and Eclipse Temurin 24 JDK
-- Create optimized container image
-- Expose service for port 8080
-- Start MCP calculator service inside di container
+This go do:
+- Build a multi-stage Docker image with Maven 3.9.9 and Eclipse Temurin 24 JDK
+- Create an optimized container image
+- Expose the service on port 8080
+- Start the MCP calculator service inside the container
 
-You fit access di service at `http://localhost:8080` after di container start run.
+You fit access di service at `http://localhost:8080` once di container dey run.
 
 ## Troubleshooting
 
-### Common Issues with GitHub Token
+### Common Model Connection Issues
 
-1. **Token Permission Issues**: If you see 403 Forbidden error, check say your token get correct permissions as we talk for prerequisites.
+1. **Authentication errors**: Confirm `AZURE_OPENAI_API_KEY` belong to di
+   resource identified by `AZURE_OPENAI_ENDPOINT`.
+2. **Deployment not found**: Confirm `AZURE_OPENAI_DEPLOYMENT` exactly matches
+   di deployment name for Microsoft Foundry.
+3. **Rate limiting**: Check di deployment quota an retry after di interval
+   wey di service return.
 
-2. **Token Not Found**: If you see "No API key found" error, make sure GITHUB_TOKEN environment variable set well.
-
-3. **Rate Limiting**: GitHub API get rate limits. If you get rate limit error (status code 429), wait small time before you try again.
-
-4. **Token Expiration**: GitHub tokens fit expire. If you get authentication errors afta some time, generate new token and update your environment variable.
-
-If you need more help, check [LangChain4j documentation](https://github.com/langchain4j/langchain4j) or [GitHub API documentation](https://docs.github.com/en/rest).
+For more help, see di
+[LangChain4j documentation](https://github.com/langchain4j/langchain4j) and
+[Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

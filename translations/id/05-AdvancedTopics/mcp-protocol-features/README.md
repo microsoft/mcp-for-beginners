@@ -1,23 +1,28 @@
-# Studi Mendalam Fitur Protokol MCP
+# Penjelajahan Mendalam Fitur Protokol MCP
 
-Panduan ini mengeksplorasi fitur protokol MCP lanjutan yang melampaui penanganan alat dan sumber daya dasar. Memahami fitur-fitur ini membantu Anda membangun server MCP yang lebih kuat, ramah pengguna, dan siap produksi.
+Panduan ini mengeksplorasi fitur protokol MCP lanjutan yang melampaui penanganan alat dan sumber daya dasar. Memahami fitur-fitur ini membantu Anda membangun server MCP yang lebih tangguh, ramah pengguna, dan siap produksi.
 
-> **Melihat ke depan:** kandidat rilis `2026-07-28` menghentikan primitif Logging (mengutamakan `stderr` untuk stdio dan OpenTelemetry untuk observabilitas terstruktur), menghapus model `initialize`/sesi yang dirujuk dalam Peristiwa Siklus Hidup Server di bawah, dan memindahkan fitur eksperimental Tasks ke ekstensi Tasks khusus dengan siklus hidup baru `tasks/get`/`tasks/update`/`tasks/cancel`. Lihat [Apa yang Berubah di MCP: Kandidat Rilis 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Lingkup MCP `2026-07-28`:** proses startup dan shutdown server tetap menjadi
+> perhatian aplikasi, tetapi handshake `initialize` MCP dan sesi tingkat protokol
+> dihapus. Bagian Logging di bawah ini dipertahankan untuk implementasi warisan;
+> server baru harus menggunakan `stderr` atau OpenTelemetry. Tasks sekarang
+> adalah ekstensi yang versi secara terpisah. Lihat
+> [Apa yang Berubah di MCP: Spesifikasi 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Fitur yang Dibahas
+## Fitur yang Dicakup
 
-1. **Notifikasi Kemajuan** - Melaporkan kemajuan operasi yang berjalan lama
+1. **Notifikasi Progres** - Melaporkan progres untuk operasi yang berjalan lama
 2. **Pembatalan Permintaan** - Memungkinkan klien membatalkan permintaan yang sedang berjalan
 3. **Template Sumber Daya** - URI sumber daya dinamis dengan parameter
-4. **Peristiwa Siklus Hidup Server** - Inisialisasi dan penghentian yang tepat
-5. **Kontrol Logging** - Konfigurasi logging sisi server
-6. **Pola Penanganan Kesalahan** - Respons kesalahan yang konsisten
+4. **Siklus Hidup Aplikasi** - Startup dan shutdown proses server
+5. **Kontrol Logging (Warisan)** - Konfigurasi logging MCP yang sudah usang
+6. **Polanya Penanganan Kesalahan** - Respon kesalahan yang konsisten
 
 ---
 
-## 1. Notifikasi Kemajuan
+## 1. Notifikasi Progres
 
-Untuk operasi yang memakan waktu (pemrosesan data, unduhan file, panggilan API), notifikasi kemajuan menjaga pengguna tetap terinformasi.
+Untuk operasi yang memakan waktu (pemrosesan data, pengunduhan file, panggilan API), notifikasi progres menjaga pengguna tetap diinformasikan.
 
 ### Cara Kerjanya
 
@@ -26,11 +31,11 @@ sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/panggilan (operasi panjang)
-    Server-->>Client: notifikasi: kemajuan 10%
-    Server-->>Client: notifikasi: kemajuan 50%
-    Server-->>Client: notifikasi: kemajuan 90%
-    Server->>Client: hasil (selesai)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
 
 ### Implementasi Python
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Dapatkan ukuran file untuk perhitungan kemajuan
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Proses potongan
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Kirim pemberitahuan kemajuan
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Laporkan kemajuan setelah setiap item
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Kirim notifikasi kemajuan
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -134,10 +139,10 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Daftarkan penangan
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Panggil alat (pembaruan kemajuan akan diterima melalui penangan)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -145,7 +150,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Pembatalan Permintaan
 
-Memungkinkan klien membatalkan permintaan yang tidak lagi dibutuhkan atau terlalu lama.
+Izinkan klien membatalkan permintaan yang tidak lagi diperlukan atau yang memakan waktu terlalu lama.
 
 ### Implementasi Python
 
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Cari melalui banyak halaman
-            # Periksa apakah pembatalan diminta
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simulasikan pencarian halaman
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Penundaan kecil memungkinkan pemeriksaan pembatalan
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Kembalikan hasil parsial
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Waktu habis normal, lanjutkan
+            pass  # Normal timeout, continue
 ```
 
-### Pembatalan Sisi Klien
+### Pembatalan di Sisi Klien
 
 ```python
 import asyncio
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Permintaan pembatalan
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Mengurai URI untuk mengambil parameter
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Mengurai URI masalah GitHub
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Peristiwa Siklus Hidup Server
+## 4. Siklus Hidup Aplikasi
 
-Penanganan inisialisasi dan penghentian yang tepat memastikan manajemen sumber daya yang bersih.
+Bagian ini membahas startup dan shutdown proses aplikasi, bukan
+handshake MCP yang dihapus `initialize`. Penanganan siklus hidup yang tepat menjamin pengelolaan sumber daya yang bersih.
+
 
 ### Manajemen Siklus Hidup Python
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Status bersama
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Mulai
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Server berjalan di sini
+    yield  # Server runs here
     
-    # Matikan
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // Inisialisasi sumber daya
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Mulai server
+    // Start server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Bersihkan sumber daya
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Gunakan this.dbConnection dengan aman
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Penggunaan dengan penghentian yang elegan
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Kontrol Logging
+## 5. Kontrol Logging (Legacy)
 
-MCP mendukung tingkat logging sisi server yang dapat dikontrol oleh klien.
+> [!WARNING]
+> Pencatatan MCP sudah tidak digunakan lagi di `2026-07-28` dan berpotensi dihapus pada
+> revisi spesifikasi pertama yang dirilis pada atau setelah 28 Juli 2027. Contoh-contoh
+> di bawah ini untuk kompatibilitas dengan implementasi lama. Gunakan `stderr` dengan
+> stdio dan OpenTelemetry untuk observabilitas terstruktur di server baru.
 
-### Mengimplementasikan Tingkat Logging
+Versi MCP lama mendukung level pencatatan sisi server yang dapat dikontrol oleh klien.
+
+### Mengimplementasikan Level Pencatatan
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Petakan tingkat MCP ke tingkat logging Python
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -519,13 +532,13 @@ async def debug_operation(data: str) -> str:
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Kirim notifikasi log ke klien
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Melakukan pekerjaan...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -540,7 +553,7 @@ async def complex_operation(input: str, ctx) -> str:
 
 ## 6. Pola Penanganan Kesalahan
 
-Penanganan kesalahan yang konsisten meningkatkan debug dan pengalaman pengguna.
+Penanganan kesalahan yang konsisten meningkatkan debugging dan pengalaman pengguna.
 
 ### Kode Kesalahan MCP
 
@@ -579,7 +592,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Validasi input
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Periksa izin
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Lakukan operasi
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Catat kesalahan tak terduga
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Lebih banyak validasi...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Sudah merupakan kesalahan MCP
+      throw error;  // Already an MCP error
     }
     
-    // Konversi kesalahan lain
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Kesalahan tidak dikenal
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,65 +669,35 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Fitur Eksperimental (MCP 2025-11-25)
+## Fitur yang Sensitif terhadap Versi
 
-Fitur-fitur ini ditandai sebagai eksperimental dalam spesifikasi:
+### Ekstensi Tasks
 
-### Tasks (Operasi Berjalan Lama)
-
-```python
-# Tugas memungkinkan pelacakan operasi yang berjalan lama dengan status
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Laporkan tugas dimulai
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Loop pelatihan
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+Tasks adalah ekstensi resmi yang diberi versi terpisah di MCP `2026-07-28`. Sebuah
+server dapat mengembalikan pegangan tugas dari panggilan alat, dan klien menjalankan tugas
+dengan `tasks/get`, `tasks/update`, dan `tasks/cancel`. API Tasks eksperimental
+`2025-11-25` tidak kompatibel ke belakang, dan `tasks/list` tidak lagi
+ada.
 
 ### Anotasi Alat
 
-```python
-# Anotasi menyediakan metadata tentang perilaku alat
-@app.tool(
-    annotations={
-        "destructive": False,      # Tidak mengubah data
-        "idempotent": True,        # Aman untuk dicoba ulang
-        "timeout_seconds": 30,     # Durasi maksimum yang diharapkan
-        "requires_approval": False # Tidak perlu persetujuan pengguna
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Anotasi alat menggambarkan perilaku seperti hanya-baca, destruktif, idempoten,
+atau operasi dunia terbuka. Mereka adalah petunjuk dan tidak boleh dianggap sebagai
+otorisasi terpercaya atau jaminan keamanan kecuali berasal dari server yang dipercaya.
 
 ---
 
-## Apa Selanjutnya
+## Selanjutnya
 
 - [Modul 8 - Praktik Terbaik](../../08-BestPractices/README.md)
 - [5.14 - Rekayasa Konteks](../mcp-contextengineering/README.md)
-- [Catatan Perubahan Spesifikasi MCP](https://spec.modelcontextprotocol.io/)
+- [Catatan Perubahan Spesifikasi MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Sumber Daya Tambahan
 
-- [Spesifikasi MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Spesifikasi MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Kode Kesalahan JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
 - [Contoh SDK Python](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [Contoh SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

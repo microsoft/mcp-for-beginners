@@ -1,49 +1,49 @@
-# Inženjering Konteksta: Novi Koncept u MCP Ekosustavu
+# Inženjering konteksta: Novi pojam u MCP ekosustavu
 
 ## Pregled
 
-Inženjering konteksta je novi koncept u području umjetne inteligencije koji istražuje kako se informacije strukturiraju, dostavljaju i održavaju tijekom interakcija između klijenata i AI usluga. Kako ekosustav Protokola za Model Konteksta (MCP) evoluira, razumijevanje kako učinkovito upravljati kontekstom postaje sve važnije. Ovaj modul uvodi pojam inženjeringa konteksta i istražuje njegove potencijalne primjene u MCP implementacijama.
+Inženjering konteksta je novi pojam u području umjetne inteligencije koji istražuje kako se informacije strukturiraju, prenose i održavaju tijekom interakcija između klijenata i AI usluga. Kako ekosustav Model Context Protocol (MCP) napreduje, razumijevanje učinkovite uprave kontekstom postaje sve važnije. Ova modul uvodi pojam inženjeringa konteksta i istražuje njegove potencijalne primjene u MCP implementacijama.
 
-## Ciljevi Učenja
+## Ciljevi učenja
 
-Do kraja ovog modula bit ćete u stanju:
+Do kraja ovog modula, moći ćete:
 
-- Razumjeti novi koncept inženjeringa konteksta i njegovu potencijalnu ulogu u MCP aplikacijama
-- Identificirati ključne izazove u upravljanju kontekstom koje MCP protokol dizajn rješava
-- Istražiti tehnike za poboljšanje performansi modela boljim upravljanjem kontekstom
+- Razumjeti novi pojam inženjeringa konteksta i njegovu potencijalnu ulogu u MCP aplikacijama
+- Identificirati ključne izazove u upravljanju kontekstom koje MCP protokol adresira
+- Istražiti tehnike za poboljšanje performansi modela kroz bolje rukovanje kontekstom
 - Razmotriti pristupe za mjerenje i evaluaciju učinkovitosti konteksta
 - Primijeniti ove nove koncepte za poboljšanje AI iskustava kroz MCP okvir
 
-## Uvod u Inženjering Konteksta
+## Uvod u inženjering konteksta
 
-Inženjering konteksta je novi koncept fokusiran na namjerno dizajniranje i upravljanje protokom informacija između korisnika, aplikacija i AI modela. Za razliku od uspostavljenih područja poput inženjeringa promptova, inženjering konteksta još uvijek definiraju praktičari dok rade na rješavanju jedinstvenih izazova pružanja pravih informacija AI modelima u pravom trenutku.
+Inženjering konteksta je novi pojam fokusiran na namjerno dizajniranje i upravljanje protokom informacija između korisnika, aplikacija i AI modela. Za razliku od etabliranih područja poput inženjeringa prompta, inženjering konteksta još se definira od strane praktičara dok rješavaju jedinstvene izazove pružanja modelima umjetne inteligencije ispravnih informacija u pravo vrijeme.
 
-Kako su veliki jezični modeli (LLM) evoluirali, važnost konteksta postaje sve očitija. Kvaliteta, relevantnost i struktura konteksta koji pružamo izravno utječu na rezultate modela. Inženjering konteksta istražuje ovaj odnos i nastoji razviti principe za učinkovito upravljanje kontekstom.
+Kako su se veliki jezični modeli (LLM) razvijali, važnost konteksta postala je sve očitija. Kvaliteta, relevantnost i struktura konteksta koji pružamo izravno utječu na izlaze modela. Inženjering konteksta istražuje ovaj odnos i nastoji razviti principe za učinkovito upravljanje kontekstom.
 
-> "Godine 2025. modeli su izuzetno inteligentni. Ali čak ni najsvjesniji čovjek neće moći učinkovito obavljati svoj posao bez konteksta onoga što se od njega traži... 'Inženjering konteksta' je sljedeća razina inženjeringa prompta. Radi se o automatskom upravljanju u dinamičkom sustavu." — Walden Yan, Cognition AI
+> "Godine 2025., modeli su iznimno inteligentni. Ali čak ni najpametniji čovjek neće moći učinkovito obavljati svoj posao bez konteksta onoga što se od njega traži... 'Inženjering konteksta' je sljedeća razina inženjeringa prompta. Radi se o automatskom upravljanju u dinamičkom sustavu." — Walden Yan, Cognition AI
 
-Inženjering konteksta može uključivati:
+Inženjering konteksta može obuhvaćati:
 
-1. **Odabir Konteksta**: Određivanje koje su informacije relevantne za određeni zadatak
-2. **Strukturiranje Konteksta**: Organiziranje informacija za maksimalno razumijevanje modela
-3. **Dostava Konteksta**: Optimizacija načina i vremena slanja informacija modelima
-4. **Održavanje Konteksta**: Upravljanje stanjem i evolucijom konteksta tijekom vremena
-5. **Evaluacija Konteksta**: Mjerenje i poboljšanje učinkovitosti konteksta
+1. **Izbor konteksta**: Određivanje koje su informacije relevantne za zadani zadatak
+2. **Strukturiranje konteksta**: Organiziranje informacija za maksimalno razumijevanje modela
+3. **Dostava konteksta**: Optimizacija kako i kada se informacije šalju modelima
+4. **Održavanje konteksta**: Upravljanje stanjem i evolucijom konteksta tijekom vremena
+5. **Evaluacija konteksta**: Mjerenje i poboljšanje učinkovitosti konteksta
 
-Ova područja fokusiranja su posebno relevantna za MCP ekosustav, koji pruža standardiziran način aplikacijama za dostavu konteksta LLM modelima.
+Ova područja usredotočenosti posebno su relevantna za MCP ekosustav, koji pruža standardizirani način za aplikacije da pruže kontekst LLM-ovima.
 
 
-## Perspektiva Putovanja Konteksta
+## Perspektiva putovanja konteksta
 
-Jedan način za vizualizaciju inženjeringa konteksta je pratiti put informacije kroz MCP sustav:
+Jedan način za vizualizaciju inženjeringa konteksta je praćenje puta kojim informacije prolaze kroz MCP sustav:
 
 ```mermaid
 graph LR
-    A[Unos korisnika] --> B[Sastavljanje konteksta]
-    B --> C[Obrada modela]
-    C --> D[Generiranje odgovora]
-    D --> E[Upravljanje stanjem]
-    E -->|Sljedeća interakcija| A
+    A[User Input] --> B[Context Assembly]
+    B --> C[Model Processing]
+    C --> D[Response Generation]
+    D --> E[State Management]
+    E -->|Next Interaction| A
     
     style A fill:#A8D5BA,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#7FB3D5,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -52,34 +52,34 @@ graph LR
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-### Ključne Faze u Putovanju Konteksta:
+### Ključne faze u putovanju konteksta:
 
-1. **Unos Korisnika**: Sirove informacije od korisnika (tekst, slike, dokumenti)
-2. **Sastavljanje Konteksta**: Kombiniranje korisničkog unosa sa sistemskim kontekstom, poviješću razgovora i drugim dohvaćenim informacijama
-3. **Obrada Modela**: AI model obrađuje sastavljeni kontekst
-4. **Generiranje Odgovora**: Model proizvodi izlaze na temelju pruženog konteksta
-5. **Upravljanje Stanjem**: Sustav ažurira svoj interni status na temelju interakcije
+1. **Unos korisnika**: Sirove informacije od korisnika (tekst, slike, dokumenti)
+2. **Sastavljanje konteksta**: Kombinirajući unos korisnika s kontekstom sustava, poviješću razgovora i drugim dohvaćenim informacijama
+3. **Obrada modela**: AI model obrađuje sastavljeni kontekst
+4. **Generiranje odgovora**: Model proizvodi izlaze na temelju danog konteksta
+5. **Upravljanje stanjem**: Sustav ažurira svoj interni status temeljem interakcije
 
-Ova perspektiva ističe dinamičku prirodu konteksta u AI sustavima i postavlja važne upite o najboljem upravljanju informacijama u svakoj fazi.
+Ova perspektiva ističe dinamičnu prirodu konteksta u AI sustavima i postavlja važna pitanja o tome kako najbolje upravljati informacijama u svakoj fazi.
 
-## Novi Principi u Inženjeringu Konteksta
+## Izlazeći principi u inženjeringu konteksta
 
-Kako se područje inženjeringa konteksta oblikuje, neke početne smjernice počinju izlaziti od praktičara. Ti principi mogu pomoći ubirati smjernice za MCP implementacije:
+Kako se područje inženjeringa konteksta oblikuje, neki rani principi počinju se pojavljivati od strane praktičara. Ovi principi mogu pomoći u informiranju izbora implementacija MCP-a:
 
-### Princip 1: Dijelite Kontekst Potpuno
+### Princip 1: Dijelite kontekst u potpunosti
 
-Kontekst treba dijeliti potpuno između svih komponenti sustava, a ne fragmentirano kroz više agenata ili procesa. Kada je kontekst raspoređen, odluke donesene u jednom dijelu sustava mogu biti u sukobu s onima donesnima drugdje.
+Krokontekst treba biti u potpunosti podijeljen između svih komponenti sustava, umjesto da bude fragmentiran preko više agenata ili procesa. Kada je kontekst distribuiran, odluke donošene u jednom dijelu sustava mogu biti u sukobu s onima u drugom dijelu.
 
 ```mermaid
 graph TD
-    subgraph "Pristup fragmentiranom kontekstu"
-    A1[Agent 1] --- C1[Kontekst 1]
-    A2[Agent 2] --- C2[Kontekst 2]
-    A3[Agent 3] --- C3[Kontekst 3]
+    subgraph "Fragmented Context Approach"
+    A1[Agent 1] --- C1[Context 1]
+    A2[Agent 2] --- C2[Context 2]
+    A3[Agent 3] --- C3[Context 3]
     end
     
-    subgraph "Pristup jedinstvenom kontekstu"
-    B1[Agent] --- D1[Zajednički potpuni kontekst]
+    subgraph "Unified Context Approach"
+    B1[Agent] --- D1[Shared Complete Context]
     end
     
     style A1 fill:#AED6F1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -92,82 +92,82 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-U MCP aplikacijama, to sugerira dizajn sustava gdje kontekst teče besprijekorno kroz cijeli procesni lanac, umjesto da je podijeljen u zasebne dijelove.
+U MCP aplikacijama, ovo sugerira dizajniranje sustava u kojima kontekst neometano teče cijelim procesom, umjesto da bude podijeljen na dijelove.
 
-### Princip 2: Prepoznajte da Akcije Nose Implicitne Odluke
+### Princip 2: Prepoznajte da akcije sadrže implicitne odluke
 
-Svaka akcija koju model poduzme uključuje implicitne odluke o tome kako interpretirati kontekst. Kada više komponenti djeluje na različitim kontekstima, te implicitne odluke mogu biti u sukobu, što dovodi do nedosljednih rezultata.
+Svaka akcija koju model poduzima utjelovljuje implicitne odluke o tome kako interpretirati kontekst. Kada više komponenti djeluje na različitim kontekstima, ove implicitne odluke mogu biti u sukobu, što vodi do nekonzistentnih ishoda.
 
 Ovaj princip ima važne implikacije za MCP aplikacije:
-- Preferirati linearno procesiranje složenih zadataka nad paralelnim izvođenjem s fragmentiranim kontekstom
-- Osigurati da sve odluke imaju pristup istim kontekstualnim informacijama
-- Dizajnirati sustave gdje kasniji koraci mogu vidjeti puni kontekst ranijih odluka
+- Preferirajte linearno procesiranje složenih zadataka umjesto paralelnog izvršavanja s fragmentiranim kontekstom
+- Osigurajte da svi točke odlučivanja imaju pristup istoj kontekstualnoj informaciji
+- Dizajnirajte sustave gdje kasniji koraci mogu vidjeti cjelokupni kontekst ranijih odluka
 
-### Princip 3: Uravnotežite Dubinu Konteksta s Ograničenjima Prozora
+### Princip 3: Uravnotežite dubinu konteksta s ograničenjima prozora
 
-Kako razgovori i procesi postaju dulji, kontekstualni prozori na kraju prelaze svoj kapacitet. Učinkovit inženjering konteksta istražuje pristupe za upravljanje tim napetostima između sveobuhvatnog konteksta i tehničkih ograničenja.
+Kako razgovori i procesi rastu dulje, kontekstualni prozori na kraju prelijevaju. Učinkovit inženjering konteksta istražuje pristupe za upravljanje tom napetošću između sveobuhvatnog konteksta i tehničkih ograničenja.
 
-Potencijalni pristupi koji se istražuju uključuju:
-- Kompresiju konteksta koja zadržava bitne informacije dok smanjuje korištenje tokena
-- Postepeno učitavanje konteksta prema relevantnosti trenutnim potrebama
+Mogući pristupi koji se istražuju uključuju:
+- Kompresiju konteksta koja održava ključne informacije uz smanjenje korištenja tokena
+- Postupno učitavanje konteksta na temelju relevantnosti za trenutne potrebe
 - Sažimanje prethodnih interakcija uz očuvanje ključnih odluka i činjenica
 
-## Izazovi Konteksta i Dizajn MCP Protokola
+## Izazovi konteksta i dizajn MCP protokola
 
-Protokol Model Konteksta (MCP) dizajniran je s osviještenošću o jedinstvenim izazovima upravljanja kontekstom. Razumijevanje ovih izazova pomaže objasniti ključne aspekte dizajna MCP protokola:
+Model Context Protocol (MCP) dizajniran je uz svijest o jedinstvenim izazovima upravljanja kontekstom. Razumijevanje tih izazova pomaže objasniti ključne aspekte dizajna MCP protokola:
 
 
-### Izazov 1: Ograničenja Prozora Konteksta
-Većina AI modela ima fiksne veličine prozora konteksta, što ograničava koliko informacija mogu obraditi odjednom.
+### Izazov 1: Ograničenja kontekstualnog prozora
+Većina AI modela ima fiksne veličine kontekstualnih prozora, što ograničava koliko informacija mogu obraditi odjednom.
 
-**Odgovor MCP dizajna:** 
-- Protokol podržava strukturirani, resursno bazirani kontekst koji se može učinkovito referencirati
-- Resursi se mogu paginirati i učitavati postupno
+**Odgovor dizajna MCP-a:**
+- Protokol podržava strukturirani, na resursima bazirani kontekst koji se može učinkovito referencirati
+- Resursi se mogu stranicirati i učitavati postupno
 
-### Izazov 2: Određivanje Relevantnosti
-Teško je utvrditi koje su informacije najrelevantnije za uključivanje u kontekst.
+### Izazov 2: Određivanje relevantnosti
+Određivanje koje su informacije najvažnije za uključiti u kontekst je teško.
 
-**Odgovor MCP dizajna:**
+**Odgovor dizajna MCP-a:**
 - Fleksibilni alati omogućuju dinamično dohvaćanje informacija prema potrebi
-- Strukturirani promptovi omogućuju dosljednu organizaciju konteksta
+- Strukturirani upiti omogućuju dosljednu organizaciju konteksta
 
-### Izazov 3: Postojanost Konteksta
+### Izazov 3: Očuvanje konteksta
 Upravljanje stanjem kroz interakcije zahtijeva pažljivo praćenje konteksta.
 
-**Odgovor MCP dizajna:**
+**Odgovor dizajna MCP-a:**
 - Standardizirano upravljanje sesijama
-- Jasno definirani obrasci interakcija za evoluciju konteksta
+- Jasno definirani obrasci interakcije za evoluciju konteksta
 
-### Izazov 4: Višedimenzionalni Kontekst
-Različite vrste podataka (tekst, slike, strukturirani podaci) zahtijevaju različito postupanje.
+### Izazov 4: Više-modalni kontekst
+Različite vrste podataka (tekst, slike, strukturirani podaci) zahtijevaju različito rukovanje.
 
-**Odgovor MCP dizajna:**
-- Dizajn protokola prilagođava se različitim vrstama sadržaja
-- Standardizirana reprezentacija višemodalnih informacija
+**Odgovor dizajna MCP-a:**
+- Dizajn protokola prilagođen različitim tipovima sadržaja
+- Standardizirana reprezentacija više-modalnih informacija
 
-### Izazov 5: Sigurnost i Privatnost
-Kontekst često sadrži osjetljive informacije koje je potrebno zaštititi.
+### Izazov 5: Sigurnost i privatnost
+Kontekst često sadrži osjetljive informacije koje se moraju zaštititi.
 
-**Odgovor MCP dizajna:**
+**Odgovor dizajna MCP-a:**
 - Jasne granice između odgovornosti klijenta i servera
-- Opcije lokalne obrade radi smanjenja izloženosti podataka
+- Lokalne opcije obrade za minimiziranje izloženosti podataka
 
-Razumijevanje ovih izazova i načina na koji ih MCP rješava pruža temelj za istraživanje naprednijih tehnika inženjeringa konteksta.
+Razumijevanje ovih izazova i kako ih MCP rješava pruža temelj za istraživanje naprednijih tehnika inženjeringa konteksta.
 
-## Novi Pristupi u Inženjeringu Konteksta
+## Izlazeći pristupi inženjeringa konteksta
 
-Kako se područje inženjeringa konteksta razvija, pojavljuju se nekoliko obećavajućih pristupa. Oni predstavljaju trenutno razmišljanje, a ne uspostavljene prakse, i vjerojatno će se razvijati kako stječemo više iskustva s MCP implementacijama.
+Kako se područje inženjeringa konteksta razvija, pojavljuju se nekoliko obećavajućih pristupa. Oni predstavljaju trenutna razmišljanja, a ne uspostavljene najbolje prakse, i vjerojatno će evoluirati kako stječemo više iskustva s MCP implementacijama.
 
-### 1. Jednolančano Linearno Procesiranje
+### 1. Linearna obrada jednim tokom
 
-Za razliku od višestrukih agentnih arhitektura koje distribuiraju kontekst, neki praktičari otkrivaju da jednolančano linearno procesiranje daje dosljednije rezultate. To je u skladu s principom održavanja jedinstvenog konteksta.
+Za razliku od višestrukih agentnih arhitektura koje distribuiraju kontekst, neki praktičari otkrivaju da linearna obrada jednim tokom daje dosljednije rezultate. To je u skladu s principom održavanja jedinstvenog konteksta.
 
 ```mermaid
 graph TD
-    A[Početak zadatka] --> B[Korak procesa 1]
-    B --> C[Korak procesa 2]
-    C --> D[Korak procesa 3]
-    D --> E[Rezultat]
+    A[Task Start] --> B[Process Step 1]
+    B --> C[Process Step 2]
+    C --> D[Process Step 3]
+    D --> E[Result]
     
     style A fill:#A9CCE3,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A3E4D7,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -176,36 +176,36 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Iako ovaj pristup može djelovati manje učinkovit od paralelnog procesiranja, često daje koherentnije i pouzdanije rezultate jer svaki korak gradi na potpunom razumijevanju prethodnih odluka.
+Iako se ovaj pristup može činiti manje učinkovitim od paralelnog procesiranja, često daje koherentnije i pouzdanije rezultate jer svaki korak gradi na potpunom razumijevanju ranijih odluka.
 
-### 2. Razdvajanje i Prioritizacija Konteksta
+### 2. Dijeljenje i prioritetizacija konteksta
 
-Razbijanje velikih konteksta na upravljive dijelove i prioritiziranje onoga što je najvažnije.
+Razbijanje velikih konteksta u upravljive dijelove i prioritetizacija onoga što je najvažnije.
 
 ```python
-# Konceptualni primjer: Razdvajanje i prioritetizacija konteksta
+# Conceptual Example: Context Chunking and Prioritization
 def process_with_chunked_context(documents, query):
-    # 1. Podijelite dokumente na manje dijelove
+    # 1. Break documents into smaller chunks
     chunks = chunk_documents(documents)
     
-    # 2. Izračunajte ocjene relevantnosti za svaki dio
+    # 2. Calculate relevance scores for each chunk
     scored_chunks = [(chunk, calculate_relevance(chunk, query)) for chunk in chunks]
     
-    # 3. Sortirajte dijelove prema ocjeni relevantnosti
+    # 3. Sort chunks by relevance score
     sorted_chunks = sorted(scored_chunks, key=lambda x: x[1], reverse=True)
     
-    # 4. Koristite najrelevantnije dijelove kao kontekst
+    # 4. Use the most relevant chunks as context
     context = create_context_from_chunks([chunk for chunk, score in sorted_chunks[:5]])
     
-    # 5. Obradite s prioritetiziranim kontekstom
+    # 5. Process with the prioritized context
     return generate_response(context, query)
 ```
 
-Gornji koncept ilustrira kako možemo razbiti velike dokumente na upravljive dijelove i odabrati samo najrelevantnije dijelove za kontekst. Ovaj pristup može pomoći u radu unutar ograničenja kontekstualnog prozora, dok se i dalje koristi velika baza znanja.
+Koncept gore ilustrira kako bismo mogli razbiti velike dokumente na upravljive dijelove i odabrati samo najrelevantnije dijelove za kontekst. Ovaj pristup može pomoći u radu unutar ograničenja kontekstualnog prozora, a istovremeno iskoristiti velike baze znanja.
 
-### 3. Postepeno Učitavanje Konteksta
+### 3. Postupno učitavanje konteksta
 
-Učitavanje konteksta postepeno prema potrebi, umjesto odjednom.
+Učitavanje konteksta postupno po potrebi, a ne odjednom.
 
 ```mermaid
 sequenceDiagram
@@ -214,34 +214,34 @@ sequenceDiagram
     participant MCP Server
     participant AI Model
 
-    User->>App: Postavi pitanje
-    App->>MCP Server: Početni zahtjev
-    MCP Server->>AI Model: Minimalni kontekst
-    AI Model->>MCP Server: Početni odgovor
+    User->>App: Ask Question
+    App->>MCP Server: Initial Request
+    MCP Server->>AI Model: Minimal Context
+    AI Model->>MCP Server: Initial Response
     
-    alt Potreban je veći kontekst
-        MCP Server->>MCP Server: Identificiraj nedostajući kontekst
-        MCP Server->>MCP Server: Učitaj dodatni kontekst
-        MCP Server->>AI Model: Poboljšani kontekst
-        AI Model->>MCP Server: Završni odgovor
+    alt Needs More Context
+        MCP Server->>MCP Server: Identify Missing Context
+        MCP Server->>MCP Server: Load Additional Context
+        MCP Server->>AI Model: Enhanced Context
+        AI Model->>MCP Server: Final Response
     end
     
-    MCP Server->>App: Odgovor
-    App->>User: Odgovor
+    MCP Server->>App: Response
+    App->>User: Answer
 ```
 
-Postepeno učitavanje konteksta započinje s minimalnim kontekstom i proširuje se samo kada je potrebno. Ovo može značajno smanjiti korištenje tokena za jednostavne upite, dok se i dalje može nositi s kompleksnim pitanjima.
+Postupno učitavanje konteksta započinje s minimalnim kontekstom i širi se samo kad je potrebno. Ovo može znatno smanjiti korištenje tokena za jednostavne upite dok istovremeno održava sposobnost za složena pitanja.
 
-### 4. Kompresija i Sažimanje Konteksta
+### 4. Kompresija i sažimanje konteksta
 
 Smanjenje veličine konteksta uz očuvanje bitnih informacija.
 
 ```mermaid
 graph TD
-    A[Potpuni kontekst] --> B[Model kompresije]
-    B --> C[Komprimirani kontekst]
-    C --> D[Glavni model obrade]
-    D --> E[Odgovor]
+    A[Full Context] --> B[Compression Model]
+    B --> C[Compressed Context]
+    C --> D[Main Processing Model]
+    D --> E[Response]
     
     style A fill:#A9CCE3,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A3E4D7,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -251,142 +251,142 @@ graph TD
 ```
 
 Kompresija konteksta fokusira se na:
-- Uklanjanje suvišnih informacija
-- Sažimanje dugog sadržaja
-- Izdvajanje ključnih činjenica i detalja
+- Uklanjanje redundantnih informacija
+- Sažimanje opsežnog sadržaja
+- Izvlačenje ključnih činjenica i detalja
 - Očuvanje kritičnih elemenata konteksta
 - Optimizaciju za učinkovitost tokena
 
-Ovaj pristup može biti posebno vrijedan za održavanje dugih razgovora u okviru ograničenja kontekstualnih prozora ili za učinkovitu obradu velikih dokumenata. Neki praktičari koriste specijalizirane modele posebno za kompresiju konteksta i sažimanje povijesti razgovora.
+Ovaj pristup može biti posebno vrijedan za održavanje dugih razgovora unutar kontekstualnih prozora ili za učinkovitu obradu velikih dokumenata. Neki praktičari koriste specijalizirane modele posebno za kompresiju konteksta i sažimanje povijesti razgovora.
 
 
-## Razmatranja u Eksploratornom Inženjeringu Konteksta
+## Razmatranja istraživačkog inženjeringa konteksta
 
-Dok istražujemo područje inženjeringa konteksta, vrijedi imati na umu nekoliko razmatranja kod rada s MCP implementacijama. Ovo nisu propisane najbolje prakse, već područja istraživanja koja mogu donijeti poboljšanja u vašem konkretnom slučaju upotrebe.
+Dok istražujemo novo područje inženjeringa konteksta, nekoliko razmatranja vrijedi imati na umu prilikom rada s MCP implementacijama. Ovo nisu propisane najbolje prakse nego područja istraživanja koja mogu donijeti poboljšanja u vašem specifičnom slučaju korištenja.
 
-### Razmislite o Svojim Ciljevima Konteksta
+### Razmotrite svoje ciljeve konteksta
 
-Prije implementacije složenih rješenja upravljanja kontekstom, jasno artikulirajte što želite postići:
+Prije implementacije složenih rješenja za upravljanje kontekstom, jasno izrazite što želite postići:
 - Koje specifične informacije model treba za uspjeh?
-- Koje su informacije bitne, a koje dodatne?
-- Koja su vaša ograničenja performansi (latencija, ograničenja tokena, troškovi)?
+- Koje su informacije ključne, a koje dopunske?
+- Koja su vaša ograničenja u performansama (latencija, ograničenja tokena, troškovi)?
 
-### Istražite Slojevite Pristupe Kontekstu
+### Istražite slojevite pristupe kontekstu
 
-Neki praktičari nalaze uspjeh s kontekstom organiziranim u konceptualne slojeve:
-- **Osnovni sloj**: Bitne informacije koje model uvijek treba
+Neki praktičari pronalaze uspjeh s kontekstom aranžiranim u konceptualne slojeve:
+- **Temeljni sloj**: Ključne informacije koje model uvijek treba
 - **Situacijski sloj**: Kontekst specifičan za trenutnu interakciju
-- **Pomoćni sloj**: Dodatne informacije koje mogu biti korisne
-- **Sloj za rezervu**: Informacije do kojih se pristupa samo po potrebi
+- **Potporni sloj**: Dodatne informacije koje mogu biti korisne
+- **Rezervni sloj**: Informacije dostupne samo po potrebi
 
-### Istražite Strategije Dohvata
+### Istražite strategije dohvaćanja
 
 Učinkovitost vašeg konteksta često ovisi o načinu na koji dohvaćate informacije:
-- Semantičko pretraživanje i ugrađivanja za pronalazak konceptualno relevantnih podataka
-- Pretraživanje temeljeno na ključnim riječima za specifične činjenice
+- Semantičko pretraživanje i ugradnje za pronalaženje konceptualno relevantnih informacija
+- Pretraživanje po ključnim riječima za specifične faktografske detalje
 - Hibridni pristupi koji kombiniraju više metoda dohvaćanja
-- Filtriranje metapodataka za sužavanje opsega prema kategorijama, datumima ili izvorima
+- Filtriranje metapodataka za suženje opsega prema kategorijama, datumima ili izvorima
 
-### Eksperimentirajte s Koherencijom Konteksta
+### Eksperimentirajte s koherencijom konteksta
 
 Struktura i protok vašeg konteksta mogu utjecati na razumijevanje modela:
 - Grupiranje povezanih informacija zajedno
 - Korištenje dosljednog oblikovanja i organizacije
-- Održavanje logičkog ili kronološkog redoslijeda gdje je prikladno
+- Održavanje logičnog ili kronološkog redoslijeda gdje je primjereno
 - Izbjegavanje kontradiktornih informacija
 
-### Procijenite Kompromise Više-Agentnih Arhitektura
+### Procijenite kompromise višestrukih agentnih arhitektura
 
-Dok su više-agentne arhitekture popularne u mnogim AI okvirima, one donose značajne izazove u upravljanju kontekstom:
-- Fragmentacija konteksta može dovesti do nedosljednih odluka među agentima
-- Paralelna obrada može uvesti sukobe koje je teško pomiriti
-- Troškovi komunikacije između agenata mogu poništiti dobivene performanse
-- Za održavanje koherencije potrebna je složena kontrola stanja
+Iako su višestruke agentske arhitekture popularne u mnogim AI okvirima, one dolaze s značajnim izazovima za upravljanje kontekstom:
+- Fragmentacija konteksta može dovesti do nekonzistentnih odluka među agentima
+- Paralelna obrada može uvoditi sukobe koje je teško riješiti
+- Overhead komunikacije među agentima može poništiti dobitke u performansama
+- Potrebno je složeno upravljanje stanjem za održavanje koherence
 
-U mnogim slučajevima, pristup jednim agentom s cjelovitim upravljanjem kontekstom može dati pouzdanije rezultate nego višestruki specijalizirani agenti s fragmentiranim kontekstom.
+U mnogim slučajevima, pristup s jednim agentom koji obuhvaća cjelokupno upravljanje kontekstom može dati pouzdanije rezultate nego više specijaliziranih agenata s fragmentiranim kontekstom.
 
-### Razvijajte Metode Evaluacije
+### Razvijte metode evaluacije
 
-Kako biste poboljšali inženjering konteksta tijekom vremena, razmislite kako ćete mjeriti uspjeh:
+Za poboljšanje inženjeringa konteksta tijekom vremena, razmotrite kako ćete mjeriti uspjeh:
 - A/B testiranje različitih struktura konteksta
 - Praćenje korištenja tokena i vremena odgovora
-- Praćenje zadovoljstva korisnika i stope dovršenja zadataka
+- Praćenje zadovoljstva korisnika i stope dovršetka zadataka
 - Analiza kada i zašto strategije konteksta ne uspijevaju
 
-Ova razmatranja predstavljaju aktivna područja istraživanja u prostoru inženjeringa konteksta. Kako se područje razvija, vjerojatno će se pojaviti jasniji obrasci i prakse.
+Ova razmatranja predstavljaju aktivna područja istraživanja u prostoru inženjeringa konteksta. Kako područje sazrijeva, vjerojatno će se pojaviti jasniji obrasci i prakse.
 
-## Mjerenje Učinkovitosti Konteksta: Razvijajući Okvir
+## Mjerenje učinkovitosti konteksta: Razvijajući okvir
 
-Kako inženjering konteksta izlazi kao koncept, praktičari počinju istraživati kako bismo mogli mjeriti njegovu učinkovitost. Još ne postoji uspostavljeni okvir, ali razni metrički pokazatelji se razmatraju za vođenje budućeg rada.
+Kako se inženjering konteksta pojavljuje kao pojam, praktičari počinju istraživati kako bismo mogli mjeriti njegovu učinkovitost. Još ne postoji uspostavljeni okvir, ali razni metrički pristupi razmatraju se koji bi mogli pomoći u vođenju budućeg rada.
 
-### Potencijalne Dimenzije Mjerenja
+### Potencijalne dimenzije mjerenja
 
 
-#### 1. Razmatranja Učinkovitosti Unosa
+#### 1. Razmatranja učinkovite ulaznosti
 
-- **Omjer Kontekst-Odgovor**: Koliko konteksta je potrebno u odnosu na veličinu odgovora?
-- **Iskorištenje Tokena**: Koji postotak tokena pruženog konteksta utječe na odgovor?
-- **Smanjenje Konteksta**: Koliko učinkovito možemo komprimirati sirove informacije?
+- **Omjer konteksta i odgovora**: Koliko je konteksta potrebno u odnosu na veličinu odgovora?
+- **Iskorištenje tokena**: Koji postotak danih tokena konteksta utječe na odgovor?
+- **Smanjenje konteksta**: Koliko učinkovito možemo komprimirati sirove informacije?
 
-#### 2. Razmatranja Performansi
+#### 2. Razmatranja performansi
 
-- **Utjecaj na Latenciju**: Kako upravljanje kontekstom utječe na vrijeme odgovora?
-- **Ekonomija Tokena**: Optimiziramo li učinkovito korištenje tokena?
-- **Preciznost Dohvata**: Koliko je relevantna dohvaćena informacija?
-- **Korištenje Resursa**: Koji su potrebni računalni resursi?
+- **Utjecaj na latenciju**: Kako upravljanje kontekstom utječe na vrijeme odgovora?
+- **Ekonomija tokena**: Optimiziramo li korištenje tokena učinkovito?
+- **Preciznost dohvaćanja**: Koliko je relevantna dohvaćena informacija?
+- **Korištenje resursa**: Koji su zahtjevi za računalne resurse?
 
-#### 3. Razmatranja Kvalitete
+#### 3. Razmatranja kvalitete
 
-- **Relevantnost Odgovora**: Koliko dobro odgovor zadovoljava upit?
-- **Činjenicna Točnost**: Poboljšava li upravljanje kontekstom točnost činjenica?
+- **Relevantnost odgovora**: Koliko dobro odgovor zadovoljava upit?
+- **Činjenična točnost**: Poboljšava li upravljanje kontekstom faktografsku točnost?
 - **Dosljednost**: Jesu li odgovori dosljedni za slične upite?
-- **Stopa Halucinacija**: Smanjuje li bolji kontekst halucinacije modela?
+- **Stopa halucinacija**: Smanjuje li bolji kontekst ishitrene odgovore modela?
 
-#### 4. Razmatranja Korisničkog Iskustva
+#### 4. Razmatranja korisničkog iskustva
 
-- **Stopa Praćenja**: Koliko često korisnici traže pojašnjenja?
-- **Dovršenje Zadataka**: Hoće li korisnici uspješno ostvariti svoje ciljeve?
-- **Pokazatelji Zadovoljstva**: Kako korisnici ocjenjuju svoje iskustvo?
+- **Stopa daljnjih upita**: Koliko često korisnici trebaju pojašnjenja?
+- **Dovršenost zadatka**: Ostvaruju li korisnici svoje ciljeve?
+- **Pokazatelji zadovoljstva**: Kako korisnici ocjenjuju svoje iskustvo?
 
-### Eksploratorni Pristupi Mjerenju
+### Istraživački pristupi mjerenju
 
-Dok eksperimentirate s inženjeringom konteksta u MCP implementacijama, razmislite o ovim istraživačkim pristupima:
+Kada eksperimentirate s inženjeringom konteksta u MCP implementacijama, razmotrite ove istraživačke pristupe:
 
-1. **Usporedbe s Bazom**: Uspostavite osnovnu liniju s jednostavnim pristupima kontekstu prije testiranja složenijih metoda
+1. **Usporedbe s temeljnim linijama**: Uspostavite referentu vrijednost sa jednostavnim pristupima kontekstu prije testiranja složenijih metoda
 
-2. **Postepene Promjene**: Mijenjajte jedan aspekt upravljanja kontekstom u isto vrijeme kako biste izolirali njegove učinke
+2. **Postupne promjene**: Mijenjajte jedan aspekt upravljanja kontekstom ujedno da biste izolirali njegove učinke
 
-3. **Evaluacija Usmjerena na Korisnika**: Kombinirajte kvantitativne metrike s kvalitativnim povratnim informacijama korisnika
+3. **Evaluacija usmjerena na korisnika**: Kombinirajte kvantitativne metrike s kvalitativnim povratnim informacijama korisnika
 
-4. **Analiza Neuspjeha**: Istražite slučajeve kada strategije konteksta ne funkcioniraju da biste razumjeli potencijalna poboljšanja
+4. **Analiza neuspjeha**: Istražite slučajeve gdje strategije konteksta ne uspijevaju kako biste razumjeli potencijalna poboljšanja
 
-5. **Višedimenzionalna Procjena**: Razmotrite kompromise između učinkovitosti, kvalitete i korisničkog iskustva
+5. **Višedimenzionalna procjena**: Razmotrite kompromise između učinkovitosti, kvalitete i korisničkog iskustva
 
-Ovaj eksperimentalni, višestruki pristup mjerenju usklađuje se s novim karakterom inženjeringa konteksta.
+Ovaj eksperimentalni, višestruki pristup mjerenju usklađuje se s rastućom prirodom inženjeringa konteksta.
 
-## Završne Misli
+## Završne misli
 
-Inženjering konteksta je novo područje istraživanja koje bi moglo biti ključno za učinkovite MCP aplikacije. Pažljivim razmatranjem protoka informacija kroz vaš sustav, možete potencijalno stvoriti AI doživljaje koji su učinkovitiji, točniji i vrijedniji za korisnike.
+Inženjering konteksta je novo područje istraživanja koje bi moglo postati središnje za učinkovite MCP aplikacije. Pažljivim razmatranjem kako informacije prolaze kroz vaš sustav, možete potencijalno stvoriti AI iskustva koja su učinkovitija, točnija i vrijednija korisnicima.
 
-Tehnike i pristupi opisani u ovom modulu predstavljaju početna razmišljanja u ovom području, a ne utvrđene prakse. Inženjering konteksta mogao bi se razviti u definiranu disciplinu kako AI mogućnosti rastu i naše razumijevanje produbljuje. Za sada, eksperimentiranje u kombinaciji s pažljivim mjerenjem čini se najproduktivnijim pristupom.
+Te tehnike i pristupi opisani u ovom modulu predstavljaju rane ideje u ovom prostoru, a ne utvrđene prakse. Inženjering konteksta može se razviti u jasniju disciplinu kako se AI sposobnosti razvijaju i naše razumijevanje produbljuje. Za sada čini se da je kombinacija eksperimentiranja i pažljivog mjerenja najproduktivniji pristup.
 
-## Potencijalni Budući Smjerovi
+## Potencijalni budući smjerovi
 
-Područje inženjeringa konteksta još je u ranoj fazi, ali pojavljuju se nekoliko obećavajućih smjerova:
+Područje inženjeringa konteksta još je u ranim fazama, ali pojavljuju se nekoliko obećavajućih smjerova:
 
-- Principi inženjeringa konteksta mogli bi značajno utjecati na performanse modela, učinkovitost, korisničko iskustvo i pouzdanost
-- Jednolančani pristupi s cjelovitim upravljanjem kontekstom mogli bi nadmašiti višestruke agente u mnogim slučajevima upotrebe
-- Specijalizirani modeli za kompresiju konteksta mogli bi postati standardni dijelovi AI lanaca
-- Napetost između potpunosti konteksta i ograničenja tokena vjerojatno će potaknuti inovacije u upravljanju kontekstom
-- Kako modeli postaju sposobniji za učinkovitu komunikaciju nalik ljudskoj, prava suradnja više agenata mogla bi postati izvedivija
-- MCP implementacije mogli bi se razviti u standardizirane obrasce upravljanja kontekstom koji proizlaze iz trenutnog eksperimentiranja
+- Principi inženjeringa konteksta mogli bi znatno utjecati na performanse modela, učinkovitost, korisničko iskustvo i pouzdanost
+- Linearni pristupi s cjelovitim upravljanjem kontekstom mogli bi nadmašiti višestruke agentske arhitekture u mnogim slučajevima korištenja
+- Specijalizirani modeli za kompresiju konteksta mogli bi postati standardni dijelovi AI cjevovoda
+- Napetost između potpune pokrivenosti konteksta i ograničenja tokena vjerojatno će potaknuti inovacije u rukovanju kontekstom
+- Kako modeli postaju sposobniji za učinkovitu ljudsku komunikaciju, prava višestruka suradnja agenata može postati izvedivija
+- MCP implementacije mogli bi se razviti kako bi standardizirali obrasce upravljanja kontekstom koji proizlaze iz trenutačnih eksperimenata
 
 ```mermaid
 graph TD
-    A[Rana istraživanja] -->|Eksperimentiranje| B[Pojavljujući obrasci]
-    B -->|Validacija| C[Uspostavljene prakse]
-    C -->|Primjena| D[Novi izazovi]
-    D -->|Inovacija| A
+    A[Early Explorations] -->|Experimentation| B[Emerging Patterns]
+    B -->|Validation| C[Established Practices]
+    C -->|Application| D[New Challenges]
+    D -->|Innovation| A
     
     style A fill:#AED6F1,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
     style B fill:#A9DFBF,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
@@ -396,37 +396,36 @@ graph TD
 
 ## Resursi
 
-### Službeni MCP Resursi
+### Službeni MCP resursi
 - [Model Context Protocol Website](https://modelcontextprotocol.io/)
 - [Model Context Protocol Specification](https://github.com/modelcontextprotocol/modelcontextprotocol)
-
 - [MCP Dokumentacija](https://modelcontextprotocol.io/docs)
 - [MCP C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Vizualni alat za testiranje MCP servera
+- [MCP Inspektor](https://github.com/modelcontextprotocol/inspector) - Alat za vizualno testiranje MCP servera
 
-### Članci o kontekstualnom inženjerstvu
-- [Ne gradite višestruke agente: Principi kontekstualnog inženjerstva](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yanovi uvidi o principima kontekstualnog inženjerstva
+### Članci o inženjerstvu konteksta
+- [Ne gradite višestruke agente: Principi inženjerstva konteksta](https://cognition.ai/blog/dont-build-multi-agents) - Uvidi Walden Yana o principima inženjerstva konteksta
 - [Praktični vodič za izgradnju agenata](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI vodič za učinkoviti dizajn agenata
 - [Izgradnja učinkovitih agenata](https://www.anthropic.com/engineering/building-effective-agents) - Anthropicov pristup razvoju agenata
 
 ### Povezana istraživanja
-- [Dinamička nadopuna pretraživanja za velike jezične modele](https://arxiv.org/abs/2310.01487) - Istraživanje o dinamičkim pristupima pretraživanju
-- [Izgubljeni usred: Kako jezični modeli koriste dug kontekst](https://arxiv.org/abs/2307.03172) - Važno istraživanje o obrascima obrade konteksta
+- [Dinamičko poboljšanje dohvaćanja za velike jezične modele](https://arxiv.org/abs/2310.01487) - Istraživanje o dinamičkim pristupima dohvaćanju
+- [Izgubljeni u sredini: Kako jezični modeli koriste dugi kontekst](https://arxiv.org/abs/2307.03172) - Važno istraživanje o obrascima obrade konteksta
 - [Hijerarhijska generacija slika uvjetovana tekstom s CLIP latentima](https://arxiv.org/abs/2204.06125) - DALL-E 2 rad s uvidima o strukturiranju konteksta
-- [Istraživanje uloge konteksta u arhitekturama velikih jezičnih modela](https://aclanthology.org/2023.findings-emnlp.124/) - Najnovije istraživanje o rukovanju kontekstom
-- [Suradnja višestrukih agenata: Pregled](https://arxiv.org/abs/2304.03442) - Istraživanje o sustavima višestrukih agenata i njihovim izazovima
+- [Istraživanje uloge konteksta u arhitekturama velikih jezičnih modela](https://aclanthology.org/2023.findings-emnlp.124/) - Nedavno istraživanje o rukovanju kontekstom
+- [Višestruka suradnja agenata: Pregled](https://arxiv.org/abs/2304.03442) - Istraživanje o sustavima višestrukih agenata i njihovim izazovima
 
 ### Dodatni resursi
 - [Tehnike optimizacije kontekstnog prozora](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
 - [Napredne RAG tehnike](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
 - [Dokumentacija Semantic Kernel](https://github.com/microsoft/semantic-kernel)
-- [AI Toolkit za upravljanje kontekstom](https://github.com/microsoft/aitoolkit)
+- [Microsoft Foundry Toolkit za Visual Studio Code](https://github.com/microsoft/vscode-ai-toolkit)
 
 ## Što slijedi
 
-- [5.15 MCP Custom Transport](../mcp-transport/README.md)
+- [5.15 MCP Prilagođeni transport](../mcp-transport/README.md)
 
 ---
 

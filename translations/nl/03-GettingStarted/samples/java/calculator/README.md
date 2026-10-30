@@ -1,20 +1,20 @@
 # Basisrekenmachine MCP-service
 
 > [!NOTE]
-> Dit voorbeeld gebruikt de legacy HTTP+SSE-transport en richt zich op een SDK die compatibel is
-> met MCP `2025-11-25`. Nieuwe externe servers zouden de `2026-07-28` Streamable
-> HTTP-ondersteuning moeten gebruiken.
+> Dit voorbeeld gebruikt het verouderde HTTP+SSE transport en richt zich op een SDK die compatibel is
+> met MCP `2025-11-25`. Nieuwe externe servers moeten gebruikmaken van `2026-07-28` Streamable
+> HTTP-ondersteuning.
 
-Deze service biedt basisrekenmachinebewerkingen via het Model Context Protocol (MCP) met behulp van Spring Boot met WebFlux-transport. Het is ontworpen als een eenvoudig voorbeeld voor beginners die leren over MCP-implementaties.
+Deze service biedt basis rekenmachinebewerkingen via het Model Context Protocol (MCP) met Spring Boot en WebFlux-transport. Het is ontworpen als een eenvoudig voorbeeld voor beginners die MCP-implementaties leren.
 
-Voor meer informatie, zie de [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) referentiedocumentatie.
+Voor meer informatie, zie de referentiedocumentatie van de [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 ## Overzicht
 
 De service toont:
 - Ondersteuning voor SSE (Server-Sent Events)
-- Automatische toolregistratie met de `@Tool` annotatie van Spring AI
-- Basisrekenmachinefuncties:
+- Automatische toolregistratie via Spring AI's `@Tool` annotatie
+- Basis rekenmachinefuncties:
   - Optellen, aftrekken, vermenigvuldigen, delen
   - Machtsberekening en vierkantswortel
   - Modulus (rest) en absolute waarde
@@ -26,17 +26,17 @@ Deze rekenmachineservice biedt de volgende mogelijkheden:
 
 1. **Basisrekenkundige bewerkingen**:
    - Optellen van twee getallen
-   - Aftrekken van één getal van een ander
+   - Aftrekken van het tweede getal van het eerste
    - Vermenigvuldigen van twee getallen
-   - Delen van één getal door een ander (inclusief controle op deling door nul)
+   - Delen van het eerste getal door het tweede (met controle op nul)
 
 2. **Geavanceerde bewerkingen**:
-   - Machtsberekening (het verheffen van een grondgetal tot een exponent)
-   - Berekening van de vierkantswortel (met controle op negatieve getallen)
+   - Machtsberekening (basis tot exponent verheffen)
+   - Vierkantswortelberekening (met controle op negatieve getallen)
    - Modulus (rest) berekening
-   - Berekening van de absolute waarde
+   - Berekening van absolute waarde
 
-3. **Helpsysteem**:
+3. **Hulpsysteem**:
    - Ingebouwde helpfunctie die alle beschikbare bewerkingen uitlegt
 
 ## Gebruik van de service
@@ -46,99 +46,76 @@ De service biedt de volgende API-eindpunten via het MCP-protocol:
 - `add(a, b)`: Tel twee getallen bij elkaar op
 - `subtract(a, b)`: Trek het tweede getal af van het eerste
 - `multiply(a, b)`: Vermenigvuldig twee getallen
-- `divide(a, b)`: Deel het eerste getal door het tweede (met controle op nul)
+- `divide(a, b)`: Deel het eerste getal door het tweede (met nulcontrole)
 - `power(base, exponent)`: Bereken de macht van een getal
-- `squareRoot(number)`: Bereken de vierkantswortel (met controle op negatieve getallen)
+- `squareRoot(number)`: Bereken de vierkantswortel (met negatieve getalcontrole)
 - `modulus(a, b)`: Bereken de rest bij deling
 - `absolute(number)`: Bereken de absolute waarde
 - `help()`: Verkrijg informatie over beschikbare bewerkingen
 
 ## Testclient
 
-Er is een eenvoudige testclient opgenomen in het pakket `com.microsoft.mcp.sample.client`. De klasse `SampleCalculatorClient` toont de beschikbare bewerkingen van de rekenmachineservice.
+Een eenvoudige testclient is inbegrepen in het `com.microsoft.mcp.sample.client`-pakket. De `SampleCalculatorClient`-klasse demonstreert de beschikbare bewerkingen van de rekenmachineservice.
 
 ## Gebruik van de LangChain4j-client
 
-Het project bevat een voorbeeldclient LangChain4j in `com.microsoft.mcp.sample.client.LangChain4jClient` die laat zien hoe je de rekenmachineservice integreert met LangChain4j en GitHub-modellen:
+Het project bevat een LangChain4j voorbeeldclient in
+`com.microsoft.mcp.sample.client.LangChain4jClient` die laat zien hoe
+je de rekenmachineservice integreert met een Microsoft Foundry-model.
 
 ### Vereisten
 
-1. **GitHub Token Setup**:
-   
-   Om de AI-modellen van GitHub (zoals phi-4) te gebruiken, heb je een persoonlijk toegangstoken van GitHub nodig:
+1. Maak een Microsoft Foundry-resource aan en implementeer een actief model zoals
+   `gpt-5.1`.
+2. Stel het model eindpunt, de API-sleutel en de implementatienaam in:
 
-   a. Ga naar je GitHub-accountinstellingen: https://github.com/settings/tokens
-   
-   b. Klik op "Generate new token" → "Generate new token (classic)"
-   
-   c. Geef je token een beschrijvende naam
-   
-   d. Selecteer de volgende scopes:
-      - `repo` (Volledige controle over privé-repositories)
-      - `read:org` (Lees org- en teamlidmaatschappen, lees org-projecten)
-      - `gist` (Maak gists)
-      - `user:email` (Toegang tot e-mailadressen van gebruikers (alleen-lezen))
-   
-   e. Klik op "Generate token" en kopieer je nieuwe token
-   
-   f. Stel deze in als een omgevingsvariabele:
-      
-      Op Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      Op macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. Voor een blijvende instelling, voeg het toe aan je omgevingsvariabelen via systeeminstellingen
-
-2. Voeg de LangChain4j GitHub-afhankelijkheid toe aan je project (al opgenomen in pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Zorg ervoor dat de rekenmachineserver draait op `localhost:8080`
+3. Controleer de
+   [Microsoft Foundry model stopzettingsschema](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   voordat je een implementatie selecteert.
+4. Zorg dat de rekenmachineserver draait op `localhost:8080`.
 
-### De LangChain4j-client uitvoeren
+### Uitvoeren van de LangChain4j-client
 
 Dit voorbeeld demonstreert:
-- Verbinden met de calculator MCP-server via SSE-transport
-- Gebruik van LangChain4j om een chatbot te maken die rekenmachinebewerkingen gebruikt
-- Integratie met GitHub AI-modellen (nu met phi-4 model)
+- Verbinding maken met de calculator MCP-server via SSE-transport
+- LangChain4j gebruiken om een chatbot te maken die rekenmachinebewerkingen benut
+- Integratie met een geïmplementeerd Microsoft Foundry-model
 
-De client stuurt de volgende voorbeeldvragen om functionaliteit te demonstreren:
-1. Berekening van de som van twee getallen
-2. Het vinden van de vierkantswortel van een getal
-3. Informatie over beschikbare rekenmachinebewerkingen opvragen
+De client verstuurt de volgende voorbeeldqueries om functionaliteit te demonstreren:
+1. Optellen van twee getallen
+2. Berekenen van de vierkantswortel van een getal
+3. Verkrijgen van helpinformatie over beschikbare rekenmachinebewerkingen
 
-Voer het voorbeeld uit en controleer de console-uitvoer om te zien hoe het AI-model de rekenmachinetools gebruikt om op vragen te reageren.
+Voer het voorbeeld uit en controleer de console-uitvoer om te zien hoe het AI-model de rekenmachinetools gebruikt om te reageren op queries.
 
-### GitHub-modelconfiguratie
+### Microsoft Foundry modelconfiguratie
 
-De LangChain4j-client is geconfigureerd om het phi-4 model van GitHub te gebruiken met de volgende instellingen:
+De LangChain4j-client gebruikt het Azure OpenAI v1-compatibele eindpunt dat wordt aangeboden door
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-Om verschillende GitHub-modellen te gebruiken, wijzig je eenvoudig de parameter `modelName` naar een ander ondersteund model (bijv. "claude-3-haiku-20240307", "llama-3-70b-8192", etc.).
+`AZURE_OPENAI_DEPLOYMENT` moet overeenkomen met de naam die is toegewezen bij het
+implementeren van het model, wat kan verschillen van de onderliggende modelnaam.
 
 ## Afhankelijkheden
 
-Het project vereist de volgende belangrijke afhankelijkheden:
+Het project vereist de volgende kernafhankelijkheden:
 
 ```xml
 <!-- For MCP Server -->
@@ -154,22 +131,22 @@ Het project vereist de volgende belangrijke afhankelijkheden:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
 
-## Het project bouwen
+## Project bouwen
 
 Bouw het project met Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## De server starten
+## Server uitvoeren
 
 ### Gebruik van Java
 
@@ -179,18 +156,18 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Gebruik van MCP Inspector
 
-De MCP Inspector is een handig hulpmiddel om met MCP-diensten te communiceren. Om het met deze rekenmachineservice te gebruiken:
+De MCP Inspector is een handig hulpmiddel om met MCP-services te communiceren. Om het te gebruiken met deze rekenmachineservice:
 
 1. **Installeer en start MCP Inspector** in een nieuw terminalvenster:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Ga naar de web-UI** door op de URL van de app te klikken (typisch http://localhost:6274)
+2. **Toegang tot de web-UI** door op de URL te klikken die door de app wordt getoond (meestal http://localhost:6274)
 
 3. **Configureer de verbinding**:
    - Stel het transporttype in op "SSE"
-   - Stel de URL in naar de SSE-eindpunt van je draaiende server: `http://localhost:8080/sse`
+   - Stel de URL in op het SSE-eindpunt van je draaiende server: `http://localhost:8080/sse`
    - Klik op "Connect"
 
 4. **Gebruik de tools**:
@@ -203,7 +180,7 @@ De MCP Inspector is een handig hulpmiddel om met MCP-diensten te communiceren. O
 
 Het project bevat een Dockerfile voor containerimplementatie:
 
-1. **Bouw de Docker-image**:
+1. **Bouw de Docker-afbeelding**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
@@ -215,25 +192,26 @@ Het project bevat een Dockerfile voor containerimplementatie:
 
 Dit zal:
 - Een multi-stage Docker-image bouwen met Maven 3.9.9 en Eclipse Temurin 24 JDK
-- Een geoptimaliseerde container-image creëren
-- De service exposen op poort 8080
+- Een geoptimaliseerde containerafbeelding aanmaken
+- De service blootstellen op poort 8080
 - De MCP rekenmachineservice binnen de container starten
 
 Je kunt de service bereiken op `http://localhost:8080` zodra de container draait.
 
 ## Problemen oplossen
 
-### Veelvoorkomende problemen met GitHub-token
+### Veelvoorkomende verbindingsproblemen met het model
 
-1. **Token-permissieproblemen**: Als je een 403 Forbidden-fout krijgt, controleer dan of je token de juiste permissies heeft zoals beschreven in de vereisten.
+1. **Authenticatiefouten**: Bevestig dat `AZURE_OPENAI_API_KEY` hoort bij de
+   resource die wordt geïdentificeerd door `AZURE_OPENAI_ENDPOINT`.
+2. **Implementatie niet gevonden**: Bevestig dat `AZURE_OPENAI_DEPLOYMENT` exact overeenkomt met
+   de implementatienaam in Microsoft Foundry.
+3. **Beperkingen in het aantal verzoeken**: Bekijk de implementatiequota en probeer het opnieuw na het interval
+   dat door de service wordt teruggegeven.
 
-2. **Token niet gevonden**: Als je een "No API key found"-fout krijgt, zorg dan dat de GITHUB_TOKEN-omgevingsvariabele correct is ingesteld.
-
-3. **Rate limiting**: De GitHub API kent limieten. Als je een rate limit-fout (statuscode 429) krijgt, wacht dan een paar minuten voordat je het opnieuw probeert.
-
-4. **Tokenvervaldatum**: GitHub-tokens kunnen verlopen. Als je authenticatiefouten krijgt na enige tijd, genereer dan een nieuw token en werk je omgevingsvariabele bij.
-
-Als je verdere hulp nodig hebt, bekijk dan de [LangChain4j-documentatie](https://github.com/langchain4j/langchain4j) of de [GitHub API-documentatie](https://docs.github.com/en/rest).
+Voor meer hulp, zie de
+[LangChain4j documentatie](https://github.com/langchain4j/langchain4j) en
+[Microsoft Foundry documentatie](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

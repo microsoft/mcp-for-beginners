@@ -1,27 +1,27 @@
 Tukaj je primer, ki prikazuje MCP aplikacijo
 
-## Namestitev
+## Namestitev 
 
-1. Pojdite v mapo *mcp-app*
-1. Zaženite `npm install`, to bo namestilo odvisnosti za frontend in backend
+1. Pomaknite se do mape *mcp-app*
+1. Zaženite `npm install`, s čimer boste namestili odvisnosti za frontend in backend
 
-Preverite, da se backend prevede z zagonom:
+Preverite, ali se backend prevede, tako da zaženete:
 
 ```sh
 npx tsc --noEmit
 ```
 
-Če je vse v redu, ne bi smelo biti nobenega izpisa.
+Če je vse v redu, izhoda ne bi smelo biti.
 
-## Zagon backend-a
+## Zaženi backend
 
-> To zahteva nekaj dodatnega dela, če uporabljate računalnik z Windows, saj rešitev MCP Apps uporablja knjižnico `concurrently` za zagon, za katero morate najti nadomestilo. Tukaj je sporna vrstica v *package.json* MCP aplikacije:
+> To zahteva nekaj dodatnega dela, če uporabljate Windows napravo, saj MCP Apps rešitev uporablja knjižnico `concurrently`, za katero morate najti nadomestilo. Tu je problematična vrstica iz *package.json* v MCP aplikaciji:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
-Ta aplikacija ima dve komponenti, backend del in gostiteljski del.
+Ta aplikacija ima dva dela, backend del in gostiteljski del.
 
 Zaženite backend z ukazom:
 
@@ -29,15 +29,15 @@ Zaženite backend z ukazom:
 npm start
 ```
 
-To bi moralo zagnati backend na `http://localhost:3001/mcp`.
+S tem bi moral backend začeti na `http://localhost:3001/mcp`.
 
-> Opomba, če uporabljate Codespace, boste morda morali nastaviti vidnost vrat na javno. Preverite, ali lahko dosegate konec v brskalniku preko https://<ime Codespace>.app.github.dev/mcp
+> Opomba, če ste v Codespace okolju, boste morda morali nastaviti vidnost vrat na javno. Preverite, ali lahko dostopate do končne točke v brskalniku prek https://<name Codespace>.app.github.dev/mcp
 
-## Možnost 1 - Preskusite aplikacijo v Visual Studio Code
+## Možnost -1 Preizkus aplikacije v Visual Studio Code
 
 Za testiranje rešitve v Visual Studio Code naredite naslednje:
 
-- Dodajte zapis strežnika v `mcp.json` tako:
+- Dodajte zapis strežnika v `mcp.json` na naslednji način:
 
     ```json
     {
@@ -51,20 +51,20 @@ Za testiranje rešitve v Visual Studio Code naredite naslednje:
     }
     ```
 
-1. Kliknite gumb "start" v *mcp.json*
-1. Prepričajte se, da je odprto klepetalno okno in vpišite `get-faq`, videli bi morali rezultat, kot je ta:
+1. Kliknite na gumb "start" v *mcp.json*
+1. Prepričajte se, da je odprto okno klepeta in vpišite `get-faq`, videli boste rezultat, kot je ta:
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/sl/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Možnost 2 - Preizkusite aplikacijo z gostiteljem
+## Možnost -2- Testiranje aplikacije s gostiteljem
 
-Repozitorij <https://github.com/modelcontextprotocol/ext-apps> vsebuje več različnih gostiteljev, ki jih lahko uporabite za testiranje vaših MVP aplikacij.
+Repo <https://github.com/modelcontextprotocol/ext-apps> vsebuje več različnih gostiteljev, ki jih lahko uporabite za testiranje vaših MVP aplikacij.
 
-Predstavljamo vam dve različni možnosti:
+Tukaj vam predstavljamo dve različni možnosti:
 
-### Lokalni računalnik
+### Lokalna naprava
 
-- Pojdite v mapo *ext-apps*, potem ko ste klonirali repozitorij.
+- Po kloniranju repozitorija se pomaknite do *ext-apps*.
 
 - Namestite odvisnosti
 
@@ -72,9 +72,9 @@ Predstavljamo vam dve različni možnosti:
    npm install
    ```
 
-- V ločenem terminalskem oknu pojdite v *ext-apps/examples/basic-host*
+- V ločenem oknu terminala se pomaknite do *ext-apps/examples/basic-host*
 
-    > Če uporabljate Codespace, morate odpreti datoteko serve.ts na vrstici 27 in zamenjati http://localhost:3001/mcp z URL-jem vašega Codespace za backend, na primer https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > Če ste v Codespace-u, pojdite v serve.ts in na vrstico 27 ter nadomestite http://localhost:3001/mcp z vašo Codespace URL za backend, na primer https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
 - Zaženite gostitelja:
 
@@ -82,31 +82,31 @@ Predstavljamo vam dve različni možnosti:
     npm start
     ```
 
-    To bi moralo povezati gostitelja z backendom in prikazati aplikacijo, ki teče tako:
+    S tem naj bi gostitelj povezal backend, aplikacijo pa videli, kot je prikazano:
 
-    ![App running](../../../../../../translated_images/sl/mcp-app.50dd20a779bea32f.webp)
+    ![Aplikacija v teku](../../../../../../translated_images/sl/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-Za uporabo okolja Codespace je potrebno nekaj dodatnega dela. Če želite uporabiti gostitelja preko Codespace:
+Delo v Codespace okolju zahteva nekaj dodatnega dela. Če želite uporabiti gostitelja prek Codespace:
 
-- Pojdite v imenik *ext-apps* in se premaknite v *examples/basic-host*.
-- Zaženite `npm install` za namestitev odvisnosti
-- Zaženite `npm start` za zagon gostitelja.
+- Poglejte v mapo *ext-apps* in pojdite do *examples/basic-host*. 
+- Za namestitev odvisnosti zaženite `npm install`
+- Za zagon gostitelja zaženite `npm start`.
 
 ## Preizkusite aplikacijo
 
-Preizkusite aplikacijo na naslednji način:
+Poskusite aplikacijo na naslednji način:
 
-- Izberite gumb "Call Tool" in videli boste rezultate tako:
+- Izberite gumb "Call Tool" in videli boste rezultate, kot so ti:
 
-    ![Tool result](../../../../../../translated_images/sl/tool-result.cfec4814ce8e0146.webp)
+    ![Rezultat orodja](../../../../../../translated_images/sl/tool-result.cfec4814ce8e0146.webp)
 
-Super, vse deluje.
+Odlično, vse deluje.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, upoštevajte, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem maternem jeziku velja za avtoritativni vir. Za kritične informacije je priporočljivo uporabiti profesionalen človeški prevod. Nismo odgovorni za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

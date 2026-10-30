@@ -1,23 +1,28 @@
-# חקירת תכונות פרוטוקול MCP לעומק
+# הסתכלות מעמיקה על תכונות פרוטוקול MCP
 
-המדריך הזה בוחן תכונות מתקדמות של פרוטוקול MCP שמעבר לטיפול בסיסי בכלים ובמשאבים. הבנת תכונות אלו עוזרת לכם לבנות שרתי MCP חזקים, ידידותיים למשתמש ומוכנים לייצור.
+מדריך זה בוחן תכונות מתקדמות בפרוטוקול MCP שמעבר לטיפול בסיסי בכלים ובמשאבים. הבנת תכונות אלה מסייעת בבניית שרתי MCP יציבים, ידידותיים למשתמש ומוכנים לייצור.
 
-> **מבט קדימה:** הגרסה המועמדת ל־`2026-07-28` מפסיקה להשתמש במבנה ההצפנה Logging (בעדיפות ל־`stderr` עבור stdio ו־OpenTelemetry לניטור מובנה), מסירה את מודל ה־`initialize`/session שמוזכר באירועי מחזור חיי השרת למטה, ומעבירה את תכונת המשימות הניסיונית להרחבת משימות ייעודית עם מחזור חיים חדש `tasks/get`/`tasks/update`/`tasks/cancel`. ראו [מה משתנה ב־MCP: גרסת מועמד 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **תחום MCP `2026-07-28`:** אתחול וכיבוי תהליך השרת נשארים
+> דאגות של היישום, אך שלב האחיזה `initialize` והרמות הפרוטוקול של MCP
+> מוסרות. קטע הרישום למטה נשמר למימושים מורשת;
+> שרתים חדשים צריכים להשתמש ב-`stderr` או OpenTelemetry. משימות היא
+> כעת הרחבה עם ניהול גרסאות נפרד. ראו
+> [מה השתנה ב-MCP: המפרט מ-2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## תכונות מכוסות
+## תכונות שנכללות
 
-1. **התראות התקדמות** - דיווח על התקדמות עבור פעולות ארוכות טווח  
-2. **ביטול בקשות** - לאפשר ללקוחות לבטל בקשות בתהליך  
-3. **תבניות משאב** - יצירת URI דינמי עם פרמטרים  
-4. **אירועי מחזור חיים של שרת** - איתחול וסגירה נכונים  
-5. **בקרת רישום** - תצורת רישום בצד השרת  
-6. **תבניות טיפול בשגיאות** - תגובות שגיאה עקביות  
+1. **התראות התקדמות** - דיווח התקדמות לפעולות ארוכות
+2. **ביטול בקשות** - אפשר ללקוחות לבטל בקשות שבוצעו
+3. **תבניות משאבים** - URI דינמיים עם פרמטרים
+4. **מחזור חיי היישום** - אתחול וכיבוי תהליך השרת
+5. **שליטת רישום (מורשת)** - קונפיגורציית רישום MCP מיושנת
+6. **תבניות טיפול בשגיאות** - תגובות שגיאה אחידות
 
 ---
 
 ## 1. התראות התקדמות
 
-עבור פעולות שלוקחות זמן (עיבוד נתונים, הורדת קבצים, קריאות API), התראות התקדמות שומרות על משתמשים מעודכנים.
+עבור פעולות שלוקחות זמן (עיבוד נתונים, הורדות קבצים, קריאות API), התראות התקדמות שומרות על המשתמשים מעודכנים.
 
 ### איך זה עובד
 
@@ -26,14 +31,14 @@ sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (פעולה ארוכה)
-    Server-->>Client: הודעה: התקדמות 10%
-    Server-->>Client: הודעה: התקדמות 50%
-    Server-->>Client: הודעה: התקדמות 90%
-    Server->>Client: תוצאה (הושלם)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
-  
-### יישום בפייתון
+
+### מימוש בפייתון
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # קבל גודל קובץ לחישוב ההתקדמות
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # עיבוד קטע
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # שלח הודעת התקדמות
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # דווח על ההתקדמות לאחר כל פריט
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -92,8 +97,8 @@ async def batch_operation(items: list[str], ctx) -> str:
     
     return f"Completed {total} items"
 ```
-  
-### יישום בטייפסקריפט
+
+### מימוש ב-TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // שלח התראה על ההתקדמות
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -125,8 +130,8 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
   }
 });
 ```
-  
-### טיפול בצד הלקוח (פייתון)
+
+### טיפול לקוח (פייתון)
 
 ```python
 async def handle_progress(notification):
@@ -134,20 +139,20 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# רשום מטפל
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# קריאת כלי (עדכוני התקדמות יגיעו דרך המטפל)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
-  
+
 ---
 
 ## 2. ביטול בקשות
 
-מאפשר ללקוחות לבטל בקשות שלא דרושות עוד או שלוקחות יותר מדי זמן.
+אפשר ללקוחות לבטל בקשות שכבר לא נדרשות או שלוקחות זמן רב מדי.
 
-### יישום בפייתון
+### מימוש בפייתון
 
 ```python
 from mcp.server import Server
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # חפש דרך עמודים רבים
-            # בדוק אם התקבלה בקשת ביטול
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # סמלץ חיפוש בעמוד
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # השהיה קצרה מאפשרת בדיקות ביטול
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # החזר תוצאות חלקיות
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -200,7 +205,7 @@ async def download_file(url: str, ctx) -> str:
             
             return f"Downloaded {downloaded} bytes"
 ```
-  
+
 ### יישום הקשר ביטול
 
 ```python
@@ -234,9 +239,9 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # פסק זמן רגיל, המשך
+            pass  # Normal timeout, continue
 ```
-  
+
 ### ביטול בצד הלקוח
 
 ```python
@@ -253,19 +258,19 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # בקשת ביטול
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
         })
         return "Search timed out"
 ```
-  
+
 ---
 
-## 3. תבניות משאב
+## 3. תבניות משאבים
 
-תבניות משאב מאפשרות בניית URI דינמי עם פרמטרים, שימושי ל־APIs ולמסדי נתונים.
+תבניות משאבים מאפשרות יצירת URI דינמי עם פרמטרים, שימושי ל-API ולמסדי נתונים.
 
 ### הגדרת תבניות
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # נתח את ה-URI כדי להפיק פרמטרים
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -319,8 +324,8 @@ async def read_resource(uri: str) -> str:
     
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
-  
-### יישום בטייפסקריפט
+
+### מימוש ב-TypeScript
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // פרש URI של נושא בגיטהאב
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -362,12 +367,14 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
   throw new Error(`Unknown resource URI: ${uri}`);
 });
 ```
-  
+
 ---
 
-## 4. אירועי מחזור חיים של שרת
+## 4. מחזור חיי היישום
 
-איתחול וסגירה נכונים מבטיחים ניהול משאבים נקי.
+קטע זה כולל אתחול וכיבוי תהליך היישום, לא שלב האחיזה המוסר
+ב-MCP `initialize`. טיפול נכון במחזור החיים מבטיח ניהול משאבים נקי.
+
 
 ### ניהול מחזור חיים בפייתון
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# מצב משותף
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # אתחול
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # השרת רץ כאן
+    yield  # Server runs here
     
-    # כיבוי
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -408,8 +415,8 @@ async def query_database(sql: str) -> str:
     result = await db_connection.execute(sql)
     return str(result)
 ```
-  
-### מחזור חיים בטייפסקריפט
+
+### מחזור חיים של TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // לאתחל משאבים
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // להפעיל שרת
+    // Start server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // לנקות משאבים
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // להשתמש ב-this.dbConnection בבטחה
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// שימוש עם כיבוי חלק
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -465,14 +472,20 @@ process.on('SIGINT', async () => {
 
 await server.start();
 ```
-  
+
 ---
 
-## 5. בקרת רישום
+## 5. שליטת רישום (Legacy)
 
-MCP תומך ברמות רישום בצד השרת שניתן לשלוט בהן מהלקוח.
+> [!WARNING]
+> רישום MCP מיושן ב `2026-07-28` וניתן להסרה במהדורת תקן ראשונה שתפורסם ב-28 ביולי 2027 או לאחר מכן. הדוגמאות
+> למטה מיועדות לתמיכה בהטמעות ישנות יותר. השתמש ב `stderr` יחד עם
+> stdio ו-OpenTelemetry לצפייה מובנית בשרתים חדשים.
 
-### יישום רמות רישום
+
+גרסאות Legacy של MCP תומכות ברמות רישום בצד השרת שיכולות להיות מבוקרות ע"י הלקוח.
+
+### מימוש רמות רישום
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# מיפוי רמות MCP לרמות רישום בפייתון
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -511,21 +524,21 @@ async def debug_operation(data: str) -> str:
         logger.error(f"Processing failed: {e}")
         raise
 ```
-  
-### שליחת הודעות יומן ללקוח
+
+### שליחת הודעות רישום ללקוח
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # שלח התראת יומן ללקוח
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # מבצע עבודה...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -535,14 +548,14 @@ async def complex_operation(input: str, ctx) -> str:
     
     return result
 ```
-  
+
 ---
 
-## 6. תבניות טיפול בשגיאות
+## 6. דפוסים לטיפול בטעויות
 
-טיפול שגיאות עקבי משפר את תהליך איתור התקלות וחוויית המשתמש.
+טיפול עקבי בטעויות משפר את איתור הבאגים ואת חוויית המשתמש.
 
-### קודי שגיאה ב־MCP
+### קודי שגיאה ב-MCP
 
 ```python
 from mcp.types import McpError, ErrorCode
@@ -571,7 +584,7 @@ class InternalError(ToolError):
     def __init__(self, message: str):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
-  
+
 ### תגובות שגיאה מובנות
 
 ```python
@@ -579,7 +592,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # אמת קלט
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # בדוק הרשאות
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # בצע פעולה
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,12 +617,12 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # רשם שגיאות לא צפויות
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
-  
-### טיפול בשגיאות בטייפסקריפט
+
+### טיפול בשגיאות ב-TypeScript
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // אימות נוסף...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // כבר שגיאת MCP
+      throw error;  // Already an MCP error
     }
     
-    // המרת שגיאות אחרות
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // שגיאה לא ידועה
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -653,71 +666,41 @@ server.setRequestHandler(CallToolSchema, async (request) => {
   }
 });
 ```
-  
+
 ---
 
-## תכונות ניסיוניות (MCP 2025-11-25)
+## תכונות רגישות לגרסה
 
-תכונות אלה מסומנות כניסיוניות במפרט:
+### תוספת Tasks
 
-### משימות (פעולות ארוכות טווח)
+Tasks היא תוספת רשמית, מתועדת נפרדת ב-MCP `2026-07-28`. שרת יכול להחזיר טיפול מטלה משיחת כלים, והלקוח מנהל את המטלה
+באמצעות `tasks/get`, `tasks/update` ו-`tasks/cancel`. ממשק ה-API הניסיוני של `2025-11-25` Tasks לא תואם לאחור, ו-`tasks/list` אינו קיים עוד.
 
-```python
-# משימות מאפשרות מעקב אחרי פעולות ארוכות טווח עם מצב
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # דווח על תחילת המשימה
-    await ctx.report_status("running", "Initializing training...")
-    
-    # לולאת אימון
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
-  
-### הערות כלי
 
-```python
-# הערות מספקות מטאדאטה לגבי התנהגות הכלי
-@app.tool(
-    annotations={
-        "destructive": False,      # אינו משנה נתונים
-        "idempotent": True,        # בטוח לנסות שוב
-        "timeout_seconds": 30,     # משך מקסימלי צפוי
-        "requires_approval": False # לא נדרש אישור משתמש
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
-  
+
+
+### הערות על כלים
+
+ההערות על כלים מתארות התנהגות כמו קריאה בלבד, הרס, פונקציה א-ידידומנטית,
+או פעולה בעולם פתוח. אלו רמזים ואסור לראותם כאישורים או ערבויות ביטחון אמינים אלא אם כן הם מגיעים משרת אמין.
+
+
 ---
 
 ## מה הלאה
 
-- [מודול 8 - שיטות עבודה מומלצות](../../08-BestPractices/README.md)  
-- [5.14 - הנדסת הקשר](../mcp-contextengineering/README.md)  
-- [יומן שינויים במפרט MCP](https://spec.modelcontextprotocol.io/)  
+- [מודול 8 - שיטות עבודה מומלצות](../../08-BestPractices/README.md)
+- [5.14 - הנדסת הקשר](../mcp-contextengineering/README.md)
+- [יומן שינויים לתקן MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## משאבים נוספים
 
-- [מפרט MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [קודי שגיאה JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)  
-- [דוגמאות SDK בפייתון](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
-- [דוגמאות SDK בטייפסקריפט](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [תקן MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [קודי שגיאה JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
+- [דוגמאות SDK בפייתון](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
+- [דוגמאות SDK ב-TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 

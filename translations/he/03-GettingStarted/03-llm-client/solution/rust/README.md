@@ -1,22 +1,28 @@
 # הפעלת הדוגמה הזו
 
-זוהי הפתרון בשפת Rust לדוגמת לקוח LLM. יש צורך בכלי Rust מותקן; ראה את [מדריך ההתקנה הרשמי](https://www.rust-lang.org/tools/install).
+זוהי הפתרון ב-Rust לדוגמת ה-LLM client. יש צורך בכלי עבודה של Rust מותקן; ראה את [המדריך הרשמי להתקנה](https://www.rust-lang.org/tools/install).
 
-הלקוח קורא למודל דרך נקודת הקצה למודלים של GitHub (`https://models.github.ai/inference/chat`) וקורא את אסימון הגישה האישי (PAT) שלך מ- `OPENAI_API_KEY` במשתנה הסביבה.
+הלקוח קורא למודל Microsoft Foundry לפריסה דרך נקודת הקצה Azure OpenAI
+v1.
 
 > [!NOTE]
-> פתרונות אחרים במאגר זה משתמשים ב- `GITHUB_TOKEN`. עבור Rust, הגדר `OPENAI_API_KEY` לאותה ערך כדי להתאים את תצורת לקוח OpenAI.
+> הערך המועבר כ-`model` הוא שם הפריסה שלך ב-Foundry, ולא בהכרח
+> שם המודל הבסיסי.
 
-## -0- הגדר את אסימון GitHub שלך
+## -0- קונפיגורציה של Microsoft Foundry
 
 ```bash
-# זש/בש
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+# zsh/bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- בניית הדוגמה
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-הלקוח מתחיל את שרת MCP של מחשבון, מושך את רשימת הכלים שלו, ומשתמש במודל (`openai/gpt-5-mini`) כדי לקרוא לכלי `add`. אתה אמור לראות פלט שמראה את קריאת הכלי (לדוגמה, "Calling tool: add") ואת תוצאת הקריאה הזו.
+הלקוח מפעיל את שרת MCP של המחשבון, מושך את רשימת הכלים שלו, ומשתמש
+במודל שפרסת כדי לקרוא לכלי `add`. אמור להופיע פלט המציג
+את קריאת הכלי (למשל, "Calling tool: add") ואת תוצאת הקריאה.
 
 ---
 

@@ -1,33 +1,38 @@
 # Käivita see näidis
 
 > [!NOTE]
-> See näidis eeldab, et kasutate GitHub Codespaces'i instantsi. Kui soovite seda kohapeal käivitada, peate GitHubis seadistama isikliku juurdepääsuluba (PAT).
+> Paigalda aktiivne mudel, näiteks `gpt-5.1` Microsoft Foundrysse ja konfigureeri
+> selle lõpp-punkti, API-võtme ja juurutamise nime.
 >
 > ```bash
 > # zsh/bash
-> export GITHUB_TOKEN="{{YOUR_GITHUB_PAT}}"
+> export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+> export AZURE_OPENAI_API_KEY="<api-key>"
+> export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 > ```
 >
 > ```powershell
 > # PowerShell
-> $env:GITHUB_TOKEN = "{{YOUR_GITHUB_PAT}}"
+> $env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+> $env:AZURE_OPENAI_API_KEY = "<api-key>"
+> $env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 > ```
 
-## Raamatukogude installimine
+## Paigalda teegid
 
 ```sh
 dotnet restore
 ```
 
-Peaks installima järgmised raamatukogud: Azure AI Inference, Azure Identity, Microsoft.Extension, Model.Hosting, ModelContextProtocol 
+See installib OpenAI .NET kliendi ja Model Context Protocol SDK-i.
 
-## Käivitamine
+## Käivita
 
 ```sh 
 dotnet run
 ```
 
-Peaksite nägema väljundit, mis sarnaneb järgmisega:
+Peaksid nägema sarnast väljundit:
 
 ```text
 Setting up stdio transport
@@ -35,16 +40,17 @@ Listing tools
 Connected to server with tools: Add
 Tool description: Adds two numbers
 Tool parameters: {"title":"Add","description":"Adds two numbers","type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}
-Tool definition: Azure.AI.Inference.ChatCompletionsToolDefinition
-Properties: {"a":{"type":"integer"},"b":{"type":"integer"}}
-MCP Tools def: 0: Azure.AI.Inference.ChatCompletionsToolDefinition
+Tool definition: OpenAI.Chat.ChatTool
+MCP Tools def: 0: OpenAI.Chat.ChatTool
 Tool call 0: Add with arguments {"a":2,"b":4}
 Sum 6
 ```
 
-Suur osa väljundist on lihtsalt silumine, kuid oluline on see, et loetlete tööriistad MCP serverist, muudate need LLM tööriistadeks ja tulemuseks on MCP kliendi vastus "Sum 6".
+Suur osa väljundist on lihtsalt silumiseks, kuid oluline on, et loetlete tööriistu MCP serverist, muudate need LLM-tööriistadeks ning lõpuks saate MCP kliendi vastuse "Sum 6".
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,57 +1,63 @@
-# Креирање клијента са LLM
+# Креирање клијента са LLM-ом
 
 > [!NOTE]
-> Примери Java клијента повезују се преко старог HTTP+SSE транспорта и
-> циљају MCP `2025-11-25` SDK API-је. За нове удаљене клијенте користите SDK компатибилан са `2026-07-28` и
-> Streamable HTTP.
+> Примери Java клијената повезују се преко застарелог HTTP+SSE транспорта и
+> циљају MCP `2025-11-25` SDK API-је. Користите SDK компатибилан са `2026-07-28` и
+> Streamable HTTP за нове даљинске клијенте.
 
-До сада сте видели како да креирате сервер и клијента. Клијент је могао изричито да позове сервер да наброји његове алате, ресурсе и упите. Међутим, ово није баш практичан приступ. Ваши корисници живе у агентској ери и очекују да користе упите и комуницирају са LLM-ом. Не занима их да ли користите MCP за чување ваших могућности; они једноставно очекују интеракцију природним језиком. Како то онда решити? Решење је да се клијенту дода LLM.
+До сада сте видели како да креирате сервер и клијента. Клијент је могао експлицитно да позове сервер да листа његове алате, ресурсе и упите. Међутим, ово није баш практичан приступ. Ваша корисници живе у агенцијској ери и очекују да користе упите и комуницирају са LLM-ом уместо тога. Они не брину да ли користите MCP за складиштење ваших капацитета; једноставно очекују да комуницирају користећи природни језик. Како то онда решавамо? Решење је да додамо LLM клијенту.
 
 ## Преглед
 
-У овом лекцији фокусирамо се на додавање LLM-а вашем клијенту и показујемо како то пружа много боље корисничко искуство.
+У овој лекцији фокусирамо се на додавање LLM-а клијенту и показујемо како то пружа много боље корисничко искуство.
 
 ## Циљеви учења
 
-До краја ове лекције моћи ћете да:
+На крају ове лекције ћете моћи да:
 
-- Направите клијента са LLM-ом.
+- Креирате клијента са LLM-ом.
 - Беспрекорно комуницирате са MCP сервером користећи LLM.
-- Обезбедите боље корисничко искуство на страни клијента.
+- Пружите боље корисничко искуство на клијентској страни.
 
 ## Приступ
 
-Покушајмо да разумемо приступ који треба да користимо. Додавање LLM-а звучи једноставно, али да ли ћемо то стварно урадити?
+Хајде да покушамо да разумемо приступ који треба да применимо. Додавање LLM-а звучи једноставно, али да ли ћемо то заправо урадити?
 
 Ево како ће клијент комуницирати са сервером:
 
 1. Успостављање везе са сервером.
 
-1. Набрајање могућности, упита, ресурса и алата и чување њихове шеме.
+1. Листати капацитете, упите, ресурсе и алате, и сачувати њихове шеме.
 
-1. Додавање LLM-а и прослеђивање сачуваних могућности и њихове шеме у формату који LLM разуме.
+1. Додати LLM и проследити сачуване капацитете и њихове шеме у формату који LLM разуме.
 
-1. Обрада корисничког упита тако што се прослеђује LLM-у заједно са алатима које је клијент набројао.
+1. Обрадити кориснички упит прослеђивањем LLM-у заједно са алатима које је клијент листао.
 
-Сјајно, сада разумемо како можемо ово урадити на високом нивоу, хајде да испробамо у вежби испод.
+Одлично, сада када разумемо како можемо ово урадити на високом нивоу, хајде да покушамо у доњој вежби.
 
 ## Вежба: Креирање клијента са LLM-ом
 
-У овој вежби научићемо како да додамо LLM нашем клијенту.
+У овој вежби ћемо научити како додати LLM нашем клијенту.
 
-### Аутентификација коришћењем GitHub Personal Access Token-a
+### Конфигуришите Microsoft Foundry
 
-Креирање GitHub токена је једноставан процес. Ево како то можете урадити:
+GitHub Models је повучен 30. јула 2026. Креирајте Microsoft Foundry ресурс,
+активирајте модел као што је `gpt-5.1`, и подесите ове променљиве окружења:
 
-- Идите на GitHub Settings – Кликните на слику свог профила горе десно и изаберите Settings.
-- Идите на Developer Settings – Померите се доле и кликните на Developer Settings.
-- Изаберите Personal Access Tokens – Кликните на Fine-grained tokens и затим Generate new token.
-- Конфигуришите свој токен – Додајте напомена за референцу, подесите датум истека и изаберите потребне дозволе (permissions). У овом случају, обавезно додајте Models дозволу.
-- Генеришите и копирајте токен – Кликните Generate token и обавезно га одмах сачувајте, јер га нећете моћи поново видети.
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
 
-### -1- Повезивање са сервером
+Користите име распоређивања у позивима API-ја. Оно може бити другачије од имена основног модела. Прегледајте
 
-Прво креирајмо наш клијент:
+[распоред повлачења Microsoft Foundry модела](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+пре избора модела.
+
+### -1- Повежите се са сервером
+
+Прво хајде да креирамо нашег клијента:
 
 #### TypeScript
 
@@ -60,15 +66,21 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Увоз zod за валидацију шеме
+import { z } from "zod"; // Import zod for schema validation
 
 class MCPClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", 
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -77,11 +89,7 @@ class MCPClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -91,8 +99,8 @@ class MCPClient {
 У претходном коду смо:
 
 - Увезли потребне библиотеке
-- Креирали класу са два члана, `client` и `openai` који ће нам помоћи да управљамо клијентом и комуницирамо са LLM-ом.
-- Конфигурисали нашу LLM инстанцу да користи GitHub Models постављањем `baseUrl` на inference API.
+- Креирали класу са два члана, `client` и `openai`, која ће нам помоћи да управљамо клијентом и комуницирамо са LLM-ом.
+- Конфигурисали OpenAI клијента да користи Microsoft Foundry v1 крајњу тачку и API кључ.
 
 #### Python
 
@@ -100,11 +108,11 @@ class MCPClient {
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
-# Креирај параметре сервера за стддио везу
+# Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="mcp",  # Извршна датотека
-    args=["run", "server.py"],  # Опциони аргументи командне линије
-    env=None,  # Опционе променљиве окружења
+    command="mcp",  # Executable
+    args=["run", "server.py"],  # Optional command line arguments
+    env=None,  # Optional environment variables
 )
 
 
@@ -113,7 +121,7 @@ async def run():
         async with ClientSession(
             read, write
         ) as session:
-            # Иницијализуј везу
+            # Initialize the connection
             await session.initialize()
 
 
@@ -132,17 +140,27 @@ if __name__ == "__main__":
 #### .NET
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
 using System.Text.Json;
+
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+var client = new ChatClient(
+    deployment,
+    new ApiKeyCredential(apiKey),
+    new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -151,7 +169,7 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
 #### Java
 
-Прво ћете морати да додате LangChain4j зависности у ваш `pom.xml` фајл. Додајте ове зависности за омогућавање MCP интеграције и OpenAI-јевог MiniMax API-ја:
+Прво, потребно је да додате зависности LangChain4j у ваш `pom.xml` фајл. Додајте ове зависности да бисте омогућили интеграцију с MCP-ом и OpenAI компатибилним MiniMax API-јем:
 
 ```xml
 <properties>
@@ -181,9 +199,9 @@ await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 </dependencies>
 ```
 
-Подесите своју MiniMax API кључ и, опционално, крајњу тачку и модел.
+Подесите ваш MiniMax API кључ и опционално крајњу тачку и модел.
 `MINIMAX_MODEL_ID` подржава `MiniMax-M3` и `MiniMax-M2.7`. Ако
-`OPENAI_BASE_URL` није постављен, `MINIMAX_REGION` подржава `global_en` и `cn_zh`.
+`OPENAI_BASE_URL` није подешен, `MINIMAX_REGION` подржава `global_en` и `cn_zh`.
 
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
@@ -191,14 +209,14 @@ export OPENAI_BASE_URL=https://api.minimax.io/v1
 export MINIMAX_MODEL_ID=MiniMax-M3
 ```
 
-Да бисте изабрали крајњу тачку по региону уместо тога, изоставите `OPENAI_BASE_URL`:
+За избор крајње тачке по региону уместо тога, прескочите `OPENAI_BASE_URL`:
 
 ```bash
 unset OPENAI_BASE_URL
 export MINIMAX_REGION=cn_zh
 ```
 
-Затим креирајте своју Java клијент класу:
+Затим креирајте вашу Java клијент класу:
 
 ```java
 import dev.langchain4j.mcp.McpToolProvider;
@@ -234,7 +252,7 @@ public class LangChain4jClient {
                 .modelName(resolveModelName())
                 .build();
 
-        // Направите MCP транспорт за повезивање на сервер
+        // Create MCP transport for connecting to server
         McpTransport transport = new HttpMcpTransport.Builder()
                 .sseUrl("http://localhost:8080/sse")
                 .timeout(Duration.ofSeconds(60))
@@ -242,7 +260,7 @@ public class LangChain4jClient {
                 .logResponses(true)
                 .build();
 
-        // Направите MCP клијента
+        // Create MCP client
         McpClient mcpClient = new DefaultMcpClient.Builder()
                 .transport(transport)
                 .build();
@@ -291,18 +309,18 @@ public class LangChain4jClient {
 
 У претходном коду смо:
 
-- **Додали LangChain4j зависности**: Потребне за MCP интеграцију и OpenAI-јев MiniMax API
-- **Увезли LangChain4j библиотеке**: За MCP интеграцију и функционалност OpenAI чат модела
-- **Креирали `ChatLanguageModel`**: Конфигурисан да користи MiniMax са вашим MiniMax API кључем, крајњом тачком и подржаним ID модела
+- **Додали LangChain4j зависности**: Потребно за интеграцију MCP-а и OpenAI компатибилног MiniMax API-ја
+- **Увезли LangChain4j библиотеке**: За интеграцију MCP-а и OpenAI чат модела
+- **Креирали `ChatLanguageModel`**: Конфигурисан за коришћење MiniMax-а са вашим MiniMax API кључем, крајњом тачком и подржаним ID-ом модела
 - **Подесили HTTP транспорт**: Користећи Server-Sent Events (SSE) за повезивање са MCP сервером
 - **Креирали MCP клијента**: Који ће обрађивати комуникацију са сервером
-- **Користили уграђену подршку LangChain4j-а за MCP**: Што поједностављује интеграцију између LLM и MCP сервера
+- **Користили уграђену подршку LangChain4j за MCP**: Која поједностављује интеграцију између LLM-ова и MCP сервера
 
 #### Rust
 
-Овај пример претпоставља да имате Rust заснован MCP сервер у раду. Ако га немате, вратите се на лекцију [01-first-server](../01-first-server/README.md) да креирате сервер.
+Овај пример претпоставља да имате настављен MCP сервер заснован на Rust-у. Ако га немате, погледајте назад у лекцију [01-first-server](../01-first-server/README.md) да бисте креирали сервер.
 
-Када имате свој Rust MCP сервер, отворите терминал и идите у исти директоријум где је сервер. Онда покрените следећу наредбу да креирате нови LLM клијентски пројекат:
+Када имате ваш Rust MCP сервер, отворите терминал и идите у исту фасциклу као и сервер. Затим покрените следећу команду да бисте креирали нови LLM клијент пројекат:
 
 ```bash
 mkdir calculator-llmclient
@@ -310,7 +328,7 @@ cd calculator-llmclient
 cargo init
 ```
 
-Додајте следеће зависности у свој `Cargo.toml` фајл:
+Додајте следеће зависности у ваш `Cargo.toml` фајл:
 
 ```toml
 [dependencies]
@@ -321,7 +339,7 @@ tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
 
 > [!NOTE]
-> Не постоји званична Rust библиотека за OpenAI, али `async-openai` crate је [заступљена библиотека заједнице](https://platform.openai.com/docs/libraries/rust#rust) која се често користи.
+> Не постоји званична Rust библиотека за OpenAI, али `async-openai` crate је [једна библиотека коју одржава заједница](https://platform.openai.com/docs/libraries/rust#rust) и често се користи.
 
 Отворите `src/main.rs` фајл и замените његов садржај следећим кодом:
 
@@ -339,18 +357,19 @@ use tokio::process::Command;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    // Почетна порука
+    // Initial message
     let mut messages = vec![json!({"role": "user", "content": "What is the sum of 3 and 2?"})];
 
-    // Подешавање OpenAI клијента
-    let api_key = std::env::var("OPENAI_API_KEY")?;
+    // Setup Microsoft Foundry client
+    let endpoint = std::env::var("AZURE_OPENAI_ENDPOINT")?;
+    let api_key = std::env::var("AZURE_OPENAI_API_KEY")?;
     let openai_client = Client::with_config(
         OpenAIConfig::new()
-            .with_api_base("https://models.github.ai/inference/chat")
+            .with_api_base(format!("{}/openai/v1", endpoint.trim_end_matches('/')))
             .with_api_key(api_key),
     );
 
-    // Подешавање MCP клијента
+    // Setup MCP client
     let server_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -365,28 +384,30 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    // TODO: Преузми листу MCP алата
+    // TODO: Get MCP tool listing 
 
-    // TODO: Разговор са LLM уз позиве алата
+    // TODO: LLM conversation with tool calls
 
     Ok(())
 }
 ```
 
-Овај код поставља основну Rust апликацију која ће се повезати са MCP сервером и GitHub Models за LLM интеракције.
+Овај код подешава Rust апликацију која се повезује са MCP сервером и
+Microsoft Foundry моделом за интеракције са LLM-ом.
 
 > [!IMPORTANT]
-> Обавезно подесите варијаблу окружења `OPENAI_API_KEY` са својим GitHub токеном пре покретања апликације.
+> Подесите `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, и
+> `AZURE_OPENAI_DEPLOYMENT` пре покретања апликације.
 
-Одлично, за наш следећи корак, хајде да набројимо могућности на серверу.
+Одлично, за следећи корак, хајде да листамо капацитете на серверу.
 
-### -2- Набројати могућности сервера
+### -2- Листање капацитета сервера
 
-Сада ћемо се повезати са сервером и затражити његове могућности:
+Сада ћемо се повезати са сервером и затражити његове капацитете:
 
-#### TypeScript
+#### Typescript
 
-У истој класи додајте следеће методе:
+У истој класи, додајте следеће методе:
 
 ```typescript
 async connectToServer(transport: Transport) {
@@ -398,7 +419,7 @@ async connectToServer(transport: Transport) {
 async run() {
     console.log("Asking server for available tools");
 
-    // набрајање алата
+    // listing tools
     const toolsResult = await this.client.listTools();
 }
 ```
@@ -406,18 +427,18 @@ async run() {
 У претходном коду смо:
 
 - Додали код за повезивање са сервером, `connectToServer`.
-- Креирали метод `run` који управља током апликације. До сада само набраја алате, али ћемо му ускоро додати још функционалности.
+- Креирали `run` методу која управља током апликације. Тренутно само листа алате, али ускоро ћемо додати још.
 
 #### Python
 
 ```python
-# Листа доступних ресурса
+# List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
 for resource in resources:
     print("Resource: ", resource)
 
-# Листа доступних алата
+# List available tools
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
@@ -427,17 +448,17 @@ for tool in tools.tools:
 
 Ево шта смо додали:
 
-- Набрајање ресурса и алата и њихов испис. За алате такође набрајамо `inputSchema` који касније користимо.
+- Листање ресурса и алата и њихово исписивање. За алате такође листамо `inputSchema` који ћемо касније користити.
 
 #### .NET
 
 ```csharp
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -454,45 +475,45 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
 
 У претходном коду смо:
 
-- Набројали алате доступне на MCP серверу
-- За сваки алат набројали назив, опис и његову шему. Ово последње ћемо касније користити за позив са алатима.
+- Листали алате доступне на MCP серверу
+- За сваки алат, листали име, опис и његову схему. Ово последње ћемо користити за позивање алата ускоро.
 
 #### Java
 
 ```java
-// Креирајте провајдера алата који аутоматски открива MCP алате
+// Create a tool provider that automatically discovers MCP tools
 ToolProvider toolProvider = McpToolProvider.builder()
         .mcpClients(List.of(mcpClient))
         .build();
 
-// MCP провајдер алата аутоматски управља:
-// - Листингом доступних алата са MCP сервера
-// - Претварањем MCP шема алата у LangChain4j формат
-// - Управљањем извршењем алата и одговорима
+// The MCP tool provider automatically handles:
+// - Listing available tools from the MCP server
+// - Converting MCP tool schemas to LangChain4j format
+// - Managing tool execution and responses
 ```
 
 У претходном коду смо:
 
 - Креирали `McpToolProvider` који аутоматски открива и региструје све алате са MCP сервера
-- Провајдер алата унутрашње управља конверзијом између MCP алат шема и LangChain4j формата алата
-- Овај приступ уклања потребу за ручним набрајањем и конверзијом алата
+- Провајдер алата управља конверзијом између MCP алатских шема и LangChain4j алатског формата интерно
+- Овај приступ апстрахује ручно листање и конверзију алата
 
 #### Rust
 
-Прикупљање алата са MCP сервера се ради методом `list_tools`. У вашем `main` фајлу, након подешавања MCP клијента, додајте следећи код:
+Добијање алата са MCP сервера се врши користећи `list_tools` методу. У вашој `main` функцији, након подешавања MCP клијента, додајте следећи код:
 
 ```rust
-// Добијање листе MCP алата
+// Get MCP tool listing 
 let tools = mcp_client.list_tools(Default::default()).await?;
 ```
 
-### -3- Претворити могућности сервера у LLM алате
+### -3- Конверзија капацитета сервера у LLM алате
 
-Следећи корак након набрајања могућности сервера је да их претворимо у формат који LLM разуме. Када то урадимо, можемо ове могућности дати као алате нашем LLM-у.
+Следећи корак након листања капацитета сервера је да их конвертујемо у формат који LLM разуме. Када то урадимо, можемо ове капацитете пружити као алате нашем LLM-у.
 
 #### TypeScript
 
-1. Додајте следећи код да бисте претворили одговор са MCP сервера у формат алата који LLM може користити:
+1. Додајте следећи код да конвертујете одговор са MCP сервера у формат алата који LLM може користити:
 
     ```typescript
     openAiToolAdapter(tool: {
@@ -500,11 +521,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         description?: string;
         input_schema: any;
         }) {
-        // Направите зод шему засновану на улазној шеми
+        // Create a zod schema based on the input_schema
         const schema = z.object(tool.input_schema);
     
         return {
-            type: "function" as const, // Јасно подесите тип на "функција"
+            type: "function" as const, // Explicitly set type to "function"
             function: {
             name: tool.name,
             description: tool.description,
@@ -519,9 +540,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
 
     ```
 
-    Горњи код узима одговор са MCP сервера и претвара га у дефиницију алата коју LLM може разумети.
+    Горњи код узима одговор са MCP сервера и конвертује га у дефиницију алата коју LLM разуме.
 
-2. Хајде да ажурирамо метод `run` да наброји могућности сервера:
+2. Хајде да ажурирамо `run` методу следеће да листамо капацитете сервера:
 
     ```typescript
     async run() {
@@ -537,11 +558,11 @@ let tools = mcp_client.list_tools(Default::default()).await?;
     }
     ```
 
-    У претходном коду ажурирали смо метод `run` да прође кроз резултат и за сваки запис позове `openAiToolAdapter`.
+    У претходном коду, ажурирали смо `run` методу да мапира кроз резултат и за сваки унос позове `openAiToolAdapter`.
 
 #### Python
 
-1. Прво, креирајмо функцију за конверзију:
+1. Прво, хајде да креирамо следећу конверзијску функцију
 
     ```python
     def convert_to_llm_tool(tool):
@@ -561,9 +582,9 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         return tool_schema
     ```
 
-    У функцији `convert_to_llm_tools` претварамо одговор са MCP алата у формат који LLM разуме.
+    У функцији `convert_to_llm_tools` узимамо MCP алатски одговор и конвертујемо га у формат који LLM разуме.
 
-2. Следеће, ажурирајмо наш клијентски код да користи ову функцију овако:
+2. Следеће, ажурирајмо наш код клијента да искористи ову функцију овако:
 
     ```python
     functions = []
@@ -573,47 +594,36 @@ let tools = mcp_client.list_tools(Default::default()).await?;
         functions.append(convert_to_llm_tool(tool))
     ```
 
-    Овде позивамо `convert_to_llm_tool` да претворимо одговор MCP алата у нешто што касније можемо проследити LLM-у.
+    Овде додајемо позив `convert_to_llm_tool` да конвертујемо MCP алатски одговор у нешто што можемо касније проследити LLM-у.
 
 #### .NET
 
-1. Додајмо код да претворимо одговор MCP алата у нешто што LLM разуме
+1. Додајмо код за конверзију MCP алатског одговора у нешто што LLM разуме
 
 ```csharp
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 ```
 
 У претходном коду смо:
 
-- Креирали функцију `ConvertFrom` која узима назив, опис и улазну шему.
-- Дефинисали функционалност која креира FunctionDefinition која се прослеђује ChatCompletionsDefinition. Ово последње је нешто што LLM може разумети.
+- Креирали функцију `ConvertFrom` која прима име, опис и улазну шему.
+- Креирали OpenAI `ChatTool` из MCP алатског JSON шема.
 
-2. Погледајмо како можемо ажурирати постојећи код да користи ову функцију:
+2. Погледајмо како можемо ажурирати постојећи код да искористи ову функцију:
 
     ```csharp
-    async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+    async Task<List<ChatTool>> GetMcpTools()
     {
         Console.WriteLine("Listing tools");
         var tools = await mcpClient.ListToolsAsync();
 
-        List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+        List<ChatTool> toolDefinitions = [];
 
         foreach (var tool in tools)
         {
@@ -621,42 +631,39 @@ ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonE
             Console.WriteLine($"Tool description: {tool.Description}");
             Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-            JsonElement propertiesElement;
-            tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-            var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+            var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
             Console.WriteLine($"Tool definition: {def}");
             toolDefinitions.Add(def);
-
-            Console.WriteLine($"Properties: {propertiesElement}");        
         }
 
         return toolDefinitions;
     }
-    ```    In the preceding code, we've:
+    ```
+    
+У претходном коду смо:
 
-    - Update the function to convert the MCP tool response to an LLm tool. Let's highlight the code we added:
+- Ажурирали функцију да конвертује MCP алатски одговор у LLM алат. Истакнућемо додат код:
 
-        ```csharp
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
+   ```csharp
+   JsonElement propertiesElement;
+   tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
 
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
-        Console.WriteLine($"Tool definition: {def}");
-        toolDefinitions.Add(def);
-        ```
+   var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+   Console.WriteLine($"Tool definition: {def}");
+   toolDefinitions.Add(def);
+   ```
 
-        The input schema is part of the tool response but on the "properties" attribute, so we need to extract. Furthermore, we now call `ConvertFrom` with the tool details. Now we've done the heavy lifting, let's see how it call comes together as we handle a user prompt next.
+Улазна шема је део одговора алата, али на "properties" атрибуту, па морамо издвојити. Поред тога, сада позивамо `ConvertFrom` са детаљима алата. Сада када смо обавили тешки део, погледајмо како се саставља позив када обрађујемо кориснички упит.
 
 #### Java
 
 ```java
-// Креирајте Бот интерфејс за интеракцију природним језиком
+// Create a Bot interface for natural language interaction
 public interface Bot {
     String chat(String prompt);
 }
 
-// Конфигуришите AI сервис са LLM и MCP алатима
+// Configure the AI service with LLM and MCP tools
 Bot bot = AiServices.builder(Bot.class)
         .chatLanguageModel(model)
         .toolProvider(toolProvider)
@@ -665,14 +672,14 @@ Bot bot = AiServices.builder(Bot.class)
 
 У претходном коду смо:
 
-- Дефинисали једноставан `Bot` интерфејс за интеракције природним језиком
-- Користили LangChain4j-ове `AiServices` да аутоматски повежемо LLM са MCP провајдером алата
-- Фрејмворк аутоматски управља конверзијом шема алата и позивом функција иза кулиса
-- Овај приступ уклања потребу за ручном конверзијом алата - LangChain4j управља свом комплексношћу претварања MCP алата у LLM компатибилан формат
+- Дефинисали једноставан `Bot` интерфејс за интеракције на природном језику
+- Користили LangChain4j `AiServices` да аутоматски повежемо LLM са MCP провајдером алата
+- Фрејмворк аутоматски управља конверзијом схеме алата и позивом функција у позадини
+- Овај приступ елиминише ручну конверзију алата – LangChain4j обрађује сву сложеност конверзије MCP алата у LLM-компатибилан формат
 
 #### Rust
 
-Да бисмо претворили одговор MCP алата у формат који LLM може разумети, додаћемо помоћну функцију која форматира листу алата. Додајте следећи код у `main.rs` испод `main` функције. Ово ће се позивати приликом захтева ка LLM-у:
+Да бисмо конвертовали MCP алатски одговор у формат који LLM разуме, додаћемо помоћну функцију која форматира листу алата. Додајте следећи код у ваш `main.rs` фајл испод функције `main`. Ово ће се позивати приликом захтева ка LLM-у:
 
 ```rust
 async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Error>> {
@@ -707,15 +714,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 }
 ```
 
-Одлично, сада смо спремни да обрадимо корисничке захтеве, па хајде то урадимо следеће.
+Одлично, сада смо спремни да обрађујемо корисничке захтеве, па хајде то урадимо следеће.
 
-### -4- Обрада корисничког упита
+### -4- Обрада корисничких упита
 
 У овом делу кода ћемо обрађивати корисничке захтеве.
 
 #### TypeScript
 
-1. Додајте метод који ће се користити за позив нашег LLM-а:
+1. Додајте методу која ће се користити за позивање нашег LLM-а:
 
     ```typescript
     async callTools(
@@ -729,7 +736,7 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
 
-        // 2. Позови алат сервера
+        // 2. Call the server's tool 
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -737,8 +744,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Уради нешто са резултатом
-        // ЗА УРАДИТИ
+        // 3. Do something with the result
+        // TODO  
 
         }
     }
@@ -746,8 +753,8 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     У претходном коду смо:
 
-    - Додали метод `callTools`.
-    - Метод узима одговор LLM-а и проверава који су алати позвани, ако јесу:
+    - Додали методу `callTools`.
+    - Метода прима LLM одговор и проверава које алате је позвао, ако их је било:
 
         ```typescript
         for (const tool_call of tool_calls) {
@@ -756,14 +763,14 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
 
-        // позови алат
+        // call tool
         }
         ```
 
-    - Позива алат ако LLM назначи да треба бити позван:
+    - Позива алат ако LLM указује да треба да се позове:
 
         ```typescript
-        // 2. Позови алат сервера
+        // 2. Call the server's tool 
         const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -771,15 +778,15 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
         console.log("Tool result: ", toolResult);
 
-        // 3. Уради нешто са резултатом
-        // ЗА УРАДИТИ
+        // 3. Do something with the result
+        // TODO  
         ```
 
-2. Ажурирајте метод `run` да укључи позиве LLM-у и метод `callTools`:
+2. Ажурирајте `run` методу да укључује позиве LLM-у и позив `callTools`:
 
     ```typescript
 
-    // 1. Креирајте поруке које су улаз за ЛЛМ
+    // 1. Create messages that's input for the LLM
     const prompt = "What is the sum of 2 and 3?"
 
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
@@ -791,17 +798,17 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
 
     console.log("Querying LLM: ", messages[0].content);
 
-    // 2. Позивање ЛЛМ-а
+    // 2. Calling the LLM
     let response = this.openai.chat.completions.create({
-        model: "gpt-4.1-mini",
-        max_tokens: 1000,
+        model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+        max_completion_tokens: 1000,
         messages,
         tools: tools,
     });    
 
     let results: any[] = [];
 
-    // 3. Прођите кроз одговор ЛЛМ-а, за сваки избор проверите да ли садржи позиве алата
+    // 3. Go through the LLM response,for each choice, check if it has tool calls 
     (await response).choices.map(async (choice: { message: any; }) => {
         const message = choice.message;
         if (message.tool_calls) {
@@ -811,22 +818,28 @@ async fn format_tools(tools: &ListToolsResult) -> Result<Vec<Value>, Box<dyn Err
     });
     ```
 
-Сјајно, хајде да набројимо цео код:
+Одлично, хајде да прикажемо цео код:
 
 ```typescript
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import OpenAI from "openai";
-import { z } from "zod"; // Увези зод за валидацију шеме
+import { z } from "zod"; // Import zod for schema validation
 
 class MyClient {
     private openai: OpenAI;
     private client: Client;
     constructor(){
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+        const apiKey = process.env.AZURE_OPENAI_API_KEY;
+        if (!endpoint || !apiKey) {
+            throw new Error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set");
+        }
+
         this.openai = new OpenAI({
-            baseURL: "https://models.inference.ai.azure.com", // можда ће бити потребно променити на овај урл у будућности: https://models.github.ai/inference
-            apiKey: process.env.GITHUB_TOKEN,
+            baseURL: `${endpoint.replace(/\/$/, "")}/openai/v1/`,
+            apiKey,
         });
 
         this.client = new Client(
@@ -835,11 +848,7 @@ class MyClient {
                 version: "1.0.0"
             },
             {
-                capabilities: {
-                prompts: {},
-                resources: {},
-                tools: {}
-                }
+                capabilities: {}
             }
             );    
     }
@@ -855,11 +864,11 @@ class MyClient {
         description?: string;
         input_schema: any;
           }) {
-          // Креирај зод шему базирану на input_schema
+          // Create a zod schema based on the input_schema
           const schema = z.object(tool.input_schema);
       
           return {
-            type: "function" as const, // Јасно подеси тип на "function"
+            type: "function" as const, // Explicitly set type to "function"
             function: {
               name: tool.name,
               description: tool.description,
@@ -883,7 +892,7 @@ class MyClient {
           console.log(`Calling tool ${toolName} with args ${JSON.stringify(args)}`);
     
     
-          // 2. Позови алатку сервера
+          // 2. Call the server's tool 
           const toolResult = await this.client.callTool({
             name: toolName,
             arguments: JSON.parse(args),
@@ -891,8 +900,8 @@ class MyClient {
     
           console.log("Tool result: ", toolResult);
     
-          // 3. Уради нешто са резултатом
-          // ЗА УРАДИТИ
+          // 3. Do something with the result
+          // TODO  
     
          }
     }
@@ -919,15 +928,15 @@ class MyClient {
 
         console.log("Querying LLM: ", messages[0].content);
         let response = this.openai.chat.completions.create({
-            model: "gpt-4.1-mini",
-            max_tokens: 1000,
+            model: process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5.1",
+            max_completion_tokens: 1000,
             messages,
             tools: tools,
         });    
 
         let results: any[] = [];
     
-        // 3. Прођи кроз одговор LLM-а, за сваки избор провери да ли има позиве алата
+        // 3. Go through the LLM response, for each choice, check if it has tool calls 
         (await response).choices.map(async (choice: { message: any; }) => {
           const message = choice.message;
           if (message.tool_calls) {
@@ -950,35 +959,33 @@ client.connectToServer(transport);
 
 #### Python
 
-1. Додајмо увозе потребне за позив LLM-а
+1. Додајмо неке потребне увозе за позивање LLM-а
 
     ```python
-    # ллм
+    # llm
     import os
-    from azure.ai.inference import ChatCompletionsClient
-    from azure.ai.inference.models import SystemMessage, UserMessage
-    from azure.core.credentials import AzureKeyCredential
+    from openai import OpenAI
     import json
     ```
 
-2. Следеће, додајмо функцију која ће позивати LLM:
+2. Затим додајмо функцију која ће позивати LLM. Овај пример користи
+    активни модел `gpt-5.1`. Погледајте
+    [распоред повлачења Microsoft Foundry модела](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+    приликом избора модела за вашу апликацију.
 
     ```python
     # llm
 
     def call_llm(prompt, functions):
-        token = os.environ["GITHUB_TOKEN"]
-        endpoint = "https://models.inference.ai.azure.com"
-
-        model_name = "gpt-4o"
-
-        client = ChatCompletionsClient(
-            endpoint=endpoint,
-            credential=AzureKeyCredential(token),
+        client = OpenAI(
+            base_url=(
+                f"{os.environ['AZURE_OPENAI_ENDPOINT'].rstrip('/')}/openai/v1/"
+            ),
+            api_key=os.environ["AZURE_OPENAI_API_KEY"],
         )
 
         print("CALLING LLM")
-        response = client.complete(
+        response = client.chat.completions.create(
             messages=[
                 {
                 "role": "system",
@@ -989,12 +996,9 @@ client.connectToServer(transport);
                 "content": prompt,
                 },
             ],
-            model=model_name,
-            tools = functions,
-            # Опционални параметри
-            temperature=1.,
-            max_tokens=1000,
-            top_p=1.    
+            model=os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"),
+            tools=functions,
+            max_completion_tokens=1000,
         )
 
         response_message = response.choices[0].message
@@ -1011,35 +1015,35 @@ client.connectToServer(transport);
         return functions_to_call
     ```
 
-    У претходном коду смо:
+У претходном коду смо:
 
-    - Проследили своје функције, које смо нашли на MCP серверу и претворили, LLM-у.
-    - Онда позвали LLM са тим функцијама.
-    - Затим прегледавамо резултат да видимо које функције треба позвати, ако уопште.
-    - На крају прослеђујемо низ функција које треба позвати.
+- Проследили функције које смо нашли на MCP серверу и конвертовали LLM-у.
+- Затим позвали LLM са тим функцијама.
+- Затим прегледали резултат да видимо које функције треба позвати, ако их има.
+- На крају проследили низ функција за позив.
 
-3. Последњи корак, ажурирајмо основни код:
+3. Последњи корак, ажурирајмо главни код:
 
     ```python
     prompt = "Add 2 to 20"
 
-    # питај LLM које алате да користи, ако их има
+    # ask LLM what tools to all, if any
     functions_to_call = call_llm(prompt, functions)
 
-    # позови предложене функције
+    # call suggested functions
     for f in functions_to_call:
         result = await session.call_tool(f["name"], arguments=f["args"])
         print("TOOLS result: ", result.content)
     ```
 
-    Ето, то је био последњи корак, у горњем коду смо:
+Ето, то је био последњи корак, у горе наведеном коду ми:
 
-    - Позвали MCP алат преко `call_tool` користећи функцију за коју је LLM мислио да треба позвати на основу нашег упита.
-    - Исписали резултат позива алата са MCP сервера.
+- Позивамо MCP алат преко `call_tool` користећи функцију за коју је LLM мислио да треба да се позове на основу нашег упита.
+- Штампамо резултат позива алата на MCP сервер.
 
 #### .NET
 
-1. Прикажимо пример кода за слање LLM упита:
+1. Прикажимо код за извршавање захтева за LLM упит:
 
     ```csharp
     var tools = await GetMcpTools();
@@ -1053,52 +1057,51 @@ client.connectToServer(transport);
     // 0. Define the chat history and the user message
     var userMessage = "add 2 and 4";
 
-    chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
-    // 1. Define tools
-    ChatCompletionsToolDefinition def = CreateToolDefinition();
+    chatHistory.Add(new UserChatMessage(userMessage));
 
 
     // 2. Define options, including the tools
-    var options = new ChatCompletionsOptions(chatHistory)
+    var options = new ChatCompletionOptions
     {
-        Model = "gpt-4.1-mini",
         Tools = { tools[0] }
     };
 
     // 3. Call the model  
 
-    ChatCompletions? response = await client.CompleteAsync(options);
-    var content = response.Content;
+    ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+    var content = response.Content.FirstOrDefault()?.Text;
 
     ```
 
-    У претходном коду смо:
+У претходном коду смо:
 
-    - Преузели алате са MCP сервера, `var tools = await GetMcpTools()`.
-    - Дефинисали кориснички упит `userMessage`.
-    - Конструисали објекат опција који одређује модел и алате.
-    - Послали захтев према LLM-у.
+    - Преузете алатке са MCP сервера, `var tools = await GetMcpTools()`.
+    - Дефинисана корисничка упит `userMessage`.
+    - Конструктован објекат опција који специфицира модел и алатке.
+    - Послат захтев ка LLM-у.
 
-2. Још корак, да видимо да ли LLM мисли да треба да позове функцију:
+2. Још један последњи корак, хајде да видимо да ли LLM мисли да треба да позовемо функцију:
 
     ```csharp
     // 4. Check if the response contains a function call
-    ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
     for (int i = 0; i < response.ToolCalls.Count; i++)
     {
         var call = response.ToolCalls[i];
-        Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+        Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
         //Tool call 0: add with arguments {"a":2,"b":4}
 
-        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+        var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
         var result = await mcpClient.CallToolAsync(
-            call.Name,
+            call.FunctionName,
             dict!,
             cancellationToken: CancellationToken.None
         );
 
-        Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+        var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+        if (textBlock != null)
+        {
+            Console.WriteLine(textBlock.Text);
+        }
 
     }
     ```
@@ -1106,30 +1109,43 @@ client.connectToServer(transport);
     У претходном коду смо:
 
     - Прошли кроз листу позива функција.
-    - За сваки позив алата, извадили име и аргументе и позвали алат на MCP серверу користећи MCP клијента. На крају исписали резултате.
+    - За сваки позив алата издвојили име и аргументе и позвали алат на MCP серверу користећи MCP клијент. На крају исписујемо резултате.
 
 Ево кода у целини:
 
 ```csharp
-using Azure;
-using Azure.AI.Inference;
-using Azure.Identity;
-using System.Text.Json;
 using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+using System.Text.Json;
 
-var endpoint = "https://models.inference.ai.azure.com";
-var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Your GitHub Access Token
-var client = new ChatCompletionsClient(new Uri(endpoint), new AzureKeyCredential(token));
-var chatHistory = new List<ChatRequestMessage>
+var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT") ?? "gpt-5.1";
+if (string.IsNullOrWhiteSpace(endpoint) || string.IsNullOrWhiteSpace(apiKey))
 {
-    new ChatRequestSystemMessage("You are a helpful assistant that knows about AI")
+    Console.WriteLine("Please set AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY.");
+    return;
+}
+
+var client = new ChatClient(
+    model: deployment,
+    credential: new ApiKeyCredential(apiKey),
+    options: new OpenAIClientOptions
+    {
+        Endpoint = new Uri($"{endpoint.TrimEnd('/')}/openai/v1/")
+    });
+var chatHistory = new List<ChatMessage>
+{
+    new SystemChatMessage("You are a helpful assistant that knows about AI")
 };
 
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net8.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
     Arguments = [],
 });
 
@@ -1137,33 +1153,20 @@ Console.WriteLine("Setting up stdio transport");
 
 await using var mcpClient = await McpClient.CreateAsync(clientTransport);
 
-ChatCompletionsToolDefinition ConvertFrom(string name, string description, JsonElement jsonElement)
+ChatTool ConvertFrom(string name, string description, JsonElement jsonElement)
 { 
-    // convert the tool to a function definition
-    FunctionDefinition functionDefinition = new FunctionDefinition(name)
-    {
-        Description = description,
-        Parameters = BinaryData.FromObjectAsJson(new
-        {
-            Type = "object",
-            Properties = jsonElement
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })
-    };
-
-    // create a tool definition
-    ChatCompletionsToolDefinition toolDefinition = new ChatCompletionsToolDefinition(functionDefinition);
-    return toolDefinition;
+    return ChatTool.CreateFunctionTool(
+        functionName: name,
+        functionDescription: description,
+        functionParameters: BinaryData.FromString(jsonElement.GetRawText()));
 }
 
-
-
-async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
+async Task<List<ChatTool>> GetMcpTools()
 {
     Console.WriteLine("Listing tools");
     var tools = await mcpClient.ListToolsAsync();
 
-    List<ChatCompletionsToolDefinition> toolDefinitions = new List<ChatCompletionsToolDefinition>();
+    List<ChatTool> toolDefinitions = [];
 
     foreach (var tool in tools)
     {
@@ -1171,14 +1174,9 @@ async Task<List<ChatCompletionsToolDefinition>> GetMcpTools()
         Console.WriteLine($"Tool description: {tool.Description}");
         Console.WriteLine($"Tool parameters: {tool.JsonSchema}");
 
-        JsonElement propertiesElement;
-        tool.JsonSchema.TryGetProperty("properties", out propertiesElement);
-
-        var def = ConvertFrom(tool.Name, tool.Description, propertiesElement);
+        var def = ConvertFrom(tool.Name, tool.Description, tool.JsonSchema);
         Console.WriteLine($"Tool definition: {def}");
         toolDefinitions.Add(def);
-
-        Console.WriteLine($"Properties: {propertiesElement}");        
     }
 
     return toolDefinitions;
@@ -1196,37 +1194,38 @@ for (int i = 0; i < tools.Count; i++)
 // 2. Define the chat history and the user message
 var userMessage = "add 2 and 4";
 
-chatHistory.Add(new ChatRequestUserMessage(userMessage));
-
+chatHistory.Add(new UserChatMessage(userMessage));
 
 // 3. Define options, including the tools
-var options = new ChatCompletionsOptions(chatHistory)
+var options = new ChatCompletionOptions
 {
-    Model = "gpt-4.1-mini",
     Tools = { tools[0] }
 };
 
 // 4. Call the model  
 
-ChatCompletions? response = await client.CompleteAsync(options);
-var content = response.Content;
+ChatCompletion response = await client.CompleteChatAsync(chatHistory, options);
+var content = response.Content.FirstOrDefault()?.Text;
 
 // 5. Check if the response contains a function call
-ChatCompletionsToolCall? calls = response.ToolCalls.FirstOrDefault();
 for (int i = 0; i < response.ToolCalls.Count; i++)
 {
     var call = response.ToolCalls[i];
-    Console.WriteLine($"Tool call {i}: {call.Name} with arguments {call.Arguments}");
+    Console.WriteLine($"Tool call {i}: {call.FunctionName} with arguments {call.FunctionArguments}");
     //Tool call 0: add with arguments {"a":2,"b":4}
 
-    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.Arguments);
+    var dict = JsonSerializer.Deserialize<Dictionary<string, object>>(call.FunctionArguments);
     var result = await mcpClient.CallToolAsync(
-        call.Name,
+        call.FunctionName,
         dict!,
         cancellationToken: CancellationToken.None
     );
 
-    Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
+    var textBlock = result.Content.OfType<TextContentBlock>().FirstOrDefault();
+    if (textBlock != null)
+    {
+        Console.WriteLine(textBlock.Text);
+    }
 
 }
 
@@ -1234,11 +1233,11 @@ for (int i = 0; i < response.ToolCalls.Count; i++)
 Console.WriteLine($"Assistant response: {content}");
 ```
 
-#### Java
+#### Јава
 
 ```java
 try {
-    // Извршавајте захтеве на природном језику који аутоматски користе MCP алате
+    // Execute natural language requests that automatically use MCP tools
     String response = bot.chat("Calculate the sum of 24.5 and 17.3 using the calculator service");
     System.out.println(response);
 
@@ -1255,12 +1254,12 @@ try {
 У претходном коду смо:
 
 - Користили једноставне природне језичке упите за интеракцију са алатима MCP сервера
-- LangChain4j фрејмворк аутоматски управља:
+- LangChain4j оквир аутоматски управља:
   - Претварањем корисничких упита у позиве алата кад је то потребно
-  - Позива одговарајуће MCP алате на основу одлуке LLM-а
-  - Управљањем током разговора између LLM и MCP сервера
-- Метод `bot.chat()` враћа одговоре на природном језику који могу садржати резултате извршења MCP алата
-- Овај приступ пружа беспрекорно корисничко искуство где корисници не морају да знају о унутрашњој MCP имплементацији
+  - Позивањем одговарајућих MCP алата на основу одлуке LLM-а
+  - Управљањем током разговора између LLM-а и MCP сервера
+- `bot.chat()` метода враћа одговоре у природном језику који могу укључивати резултате извођења MCP алата
+- Овај приступ обезбеђује беспрекорно корисничко искуство где корисници не морају да знају о унутрашњој имплементацији MCP-а
 
 Комплетан пример кода:
 
@@ -1373,12 +1372,11 @@ public class LangChain4jClient {
 }
 ```
 
-#### Rust
+#### Раст
 
+Овде се одвија већина посла. Позваћемо LLM са почетним корисничким упитом, затим обрадити одговор да видимо да ли је потребно позвати неке алате. Уколико је потребно, позваћемо те алате и наставити разговор са LLM-ом док више не буде потребно позива алата и док не добијемо коначни одговор.
 
-Овде се догађа већина посла. Позваћемо LLM са почетним корисничким упитом, затим обрађивати одговор да видимо да ли треба позвати неке алате. Ако јесте, позваћемо те алате и наставити разговор са LLM док не буде потреба за позивима алата и док не будемо имали коначни одговор.
-
-Бићемо у ситуацији да више пута зовемо LLM, па хајде да дефинишемо функцију која ће обрађивати позив LLM-а. Додајте следећу функцију у вашу `main.rs` датотеку:
+Направићемо више позива LLM-у, па хајде да дефинишемо функцију која ће руковати позивима LLM-а. Додајте следећу функцију у ваш `main.rs` фајл:
 
 ```rust
 async fn call_llm(
@@ -1386,11 +1384,13 @@ async fn call_llm(
     messages: &[Value],
     tools: &ListToolsResult,
 ) -> Result<Value, Box<dyn Error>> {
+    let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
+        .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
         .completions()
         .create_byot(json!({
             "messages": messages,
-            "model": "openai/gpt-4.1",
+            "model": model,
             "tools": format_tools(tools).await?,
         }))
         .await?;
@@ -1398,9 +1398,9 @@ async fn call_llm(
 }
 ```
 
-Ова функција прима LLM клијента, списак порука (укључујући кориснички упит), алате са MCP сервера, и шаље захтев ка LLM-у, враћајући одговор.
+Ова функција прихвата LLM клијента, листу порука (укључујући кориснички упит), алате са MCP сервера, и шаље захтев LLM-у, враћајући одговор.
 
-Одговор од LLM-а ће садржати низ `choices`. Мораћемо да обрадимо резултат да видимо да ли постоје `tool_calls`. Ово нам говори да LLM тражи позив одређеног алата са аргументима. Додајте следећи код на дно ваше `main.rs` датотеке да дефинишете функцију која ће обрадити одговор LLM-а:
+Одговор LLM-а ће садржати низ `choices`. Потребно је да обрадимо резултат да видимо да ли су присутни било какви `tool_calls`. Ово нам говори да LLM тражи да се позове одређени алат са аргументима. Додајте следећи код на крај вашег `main.rs` фајла да дефинишете функцију која ће руковати одговором LLM-а:
 
 ```rust
 async fn process_llm_response(
@@ -1419,16 +1419,16 @@ async fn process_llm_response(
         return Ok(());
     };
 
-    // Испиши садржај ако је доступан
+    // Print content if available
     if let Some(content) = message.get("content").and_then(|c| c.as_str()) {
         println!("🤖 {}", content);
     }
 
-    // Обради позиве алата
+    // Handle tool calls
     if let Some(tool_calls) = message.get("tool_calls").and_then(|tc| tc.as_array()) {
-        messages.push(message.clone()); // Додај поруку помоћника
+        messages.push(message.clone()); // Add assistant message
 
-        // Изврши сваки позив алата
+        // Execute each tool call
         for tool_call in tool_calls {
             let (tool_id, name, args) = extract_tool_call_info(tool_call)?;
             println!("⚡ Calling tool: {}", name);
@@ -1440,7 +1440,7 @@ async fn process_llm_response(
                 })
                 .await?;
 
-            // Додај резултат алата у поруке
+            // Add tool result to messages
             messages.push(json!({
                 "role": "tool",
                 "tool_call_id": tool_id,
@@ -1448,7 +1448,7 @@ async fn process_llm_response(
             }));
         }
 
-        // Настави разговор са резултатима алата
+        // Continue conversation with tool results
         let response = call_llm(openai_client, messages, mcp_tools).await?;
         Box::pin(process_llm_response(
             &response,
@@ -1463,9 +1463,9 @@ async fn process_llm_response(
 }
 ```
 
-Ако су `tool_calls` присутни, извући ће информације о алату, позвати MCP сервер са захтевом за алат, и додати резултате у поруке разговора. Затим наставља разговор са LLM-ом, а поруке се ажурирају одговором асистента и резултатима позива алата.
+Уколико су `tool_calls` присутни, извлачи информације о алату, позива MCP сервер са захтевом за алат, и додаје резултате у поруке разговора. Онда наставља разговор са LLM-ом, при чему се поруке ажурирају одговором асистента и резултатима позива алата.
 
-Да бихо извукли информације о позиву алата које LLM враћа за MCP позиве, додаћемо још једну помоћну функцију која извади све што је потребно за позив. Додајте следећи код на дно ваше `main.rs` датотеке:
+Да бисмо извукли информације о позиву алата које LLM враћа за MCP позиве, додајемо још једну помоћну функцију за извлачење свега што је потребно за позив. Додајте следећи код на крај вашег `main.rs` фајла:
 
 ```rust
 fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String), Box<dyn Error>> {
@@ -1489,10 +1489,10 @@ fn extract_tool_call_info(tool_call: &Value) -> Result<(String, String, String),
 }
 ```
 
-Са свим деловима на месту, сада можемо да обрадимо почетни кориснички упит и позовемо LLM. Ажурирајте вашу `main` функцију да укључи следећи код:
+Са свим деловима на месту, сада можемо да руковамо почетним корисничким упитом и позовемо LLM. Ажурирајте вашу `main` функцију да укључи следећи код:
 
 ```rust
-// Разговор LLM-а са позивима алата
+// LLM conversation with tool calls
 let response = call_llm(&openai_client, &messages, &tools).await?;
 process_llm_response(
     &response,
@@ -1504,37 +1504,37 @@ process_llm_response(
 .await?;
 ```
 
-Ово ће упитати LLM са почетним корисничким упитом тражећи збир два броја, и обрадиће одговор да динамички управља позивима алата.
+Ово ће послати упит LLM-у са почетним корисничким упитом питајући за збир два броја, и обрадиће одговор да динамички рукује позивима алата.
 
-Сјајно, успели сте!
+Одлично, успели сте!
 
 ## Задатак
 
-Узмите код из вежбе и проширите сервер са још алата. Затим направите клијента са LLM-ом, као у вежби, и тестирајте га са различитим упитима да бисте били сигурни да се сви алати са сервера позивају динамички. Оваквим начином израде клијента крајњи корисник има одлично корисничко искуство јер користи упите уместо прецизних команди клијента и не примећује када се позива MCP сервер.
+Узмите код из вежбе и направите сервер са још неколико алата. Затим направите клијента са LLM-ом, као у вежби, и тестирајте са различитим упитима како бисте били сигурни да сви ваши серверски алати могу да се позову динамички. Овим приступом израде клијента крајњи корисник ће имати одлично корисничко искуство јер може да користи упите, уместо тачних команди клијента, и неће бити свестан било каквог позива MCP сервера.
 
 ## Решење
 
 [Решење](./solution/README.md)
 
-## Кључне Напомене
+## Кључне поуке
 
-- Додавање LLM-а у ваш клијент омогућава бољи начин интеракције корисника са MCP серверима.
-- Потребно је конвертовати одговор MCP сервера у нешто што LLM може разумети.
+- Додавање LLM-а у ваш клијент пружа бољи начин корисничке интеракције са MCP серверима.
+- Потребно је да претворите одговор MCP сервера у нешто што LLM може да разуме.
 
 ## Примери
 
-- [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Calculator](../samples/javascript/README.md)
-- [TypeScript Calculator](../samples/typescript/README.md)
-- [Python Calculator](../../../../03-GettingStarted/samples/python)
-- [Rust Calculator](../../../../03-GettingStarted/samples/rust)
+- [Јава калкулатор](../samples/java/calculator/README.md)
+- [.NET калкулатор](../../../../03-GettingStarted/samples/csharp)
+- [ЈаваСкрипт калкулатор](../samples/javascript/README.md)
+- [ТајпСкрипт калкулатор](../samples/typescript/README.md)
+- [Пајтон калкулатор](../../../../03-GettingStarted/samples/python)
+- [Раст калкулатор](../../../../03-GettingStarted/samples/rust)
 
-## Додатни Ресурси
+## Додатни ресурси
 
-## Шта Следи
+## Шта следи
 
-- Следеће: [Коришћење сервера у Visual Studio Code](../04-vscode/README.md)
+- Следеће: [Коришћење сервера помоћу Visual Studio Code](../04-vscode/README.md)
 
 ---
 

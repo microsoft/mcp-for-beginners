@@ -1,107 +1,109 @@
-# Korištenje servera iz AI Toolkit ekstenzije za Visual Studio Code
+# Korištenje servera s Microsoft Foundry Toolkitom za Visual Studio Code
 
-Kada gradite AI agenta, nije riječ samo o generiranju pametnih odgovora; radi se i o davanju vašem agentu mogućnost da poduzme akciju. Tu na scenu stupa Model Context Protocol (MCP). MCP olakšava agentima pristup vanjskim alatima i uslugama na dosljedan način. Zamislite to kao priključivanje vašeg agenta u alatni okvir koji on *zapravo* može koristiti.
+Kada gradite AI agenta, nije riječ samo o generiranju pametnih odgovora; također je važno omogućiti agentu sposobnost djelovanja. Tu dolazi u igru Model Context Protocol (MCP). MCP olakšava agentima pristup vanjskim alatima i uslugama na dosljedan način. Zamislite to kao povezivanje vašeg agenta u alatni set koji on *zaista* može koristiti.
 
-Recimo da povežete agenta s vašim kalkulator MCP serverom. Odjednom, vaš agent može izvršavati matematičke operacije samo primanjem upita kao što je „Koliko je 47 puta 89?“—nema potrebe za ručnim kodiranjem logike ili izradom prilagođenih API-ja.
+Recimo da povežete agenta na MCP server kalkulatora. Odjednom, vaš agent može izvoditi matematičke operacije samo primanjem upita poput "Koliko je 47 puta 89?" — bez potrebe za tvrdo kodiranom logikom ili izradom prilagođenih API-ja.
 
 ## Pregled
 
-Ova lekcija pokriva kako povezati kalkulator MCP server s agentom koristeći [AI Toolkit](https://aka.ms/AIToolkit) ekstenziju u Visual Studio Code-u, omogućujući vašem agentu da izvršava matematičke operacije kao što su zbrajanje, oduzimanje, množenje i dijeljenje putem prirodnog jezika.
+Ova lekcija obuhvaća kako povezati kalkulator MCP server sa agentom koristeći
+[Microsoft Foundry Toolkit za Visual Studio Code](https://aka.ms/AIToolkit),
+omogućujući vašem agentu izvođenje matematičkih operacija kroz prirodni jezik.
 
-AI Toolkit je moćna ekstenzija za Visual Studio Code koja pojednostavljuje razvoj agenata. AI inženjeri mogu lako graditi AI aplikacije razvijanjem i testiranjem generativnih AI modela—lokalno ili u oblaku. Ekstenzija podržava većinu glavnih današnjih generativnih modela.
+Microsoft Foundry Toolkit pojednostavljuje razvoj i testiranje generativnih
+AI aplikacija s lokalnim i u oblaku hostiranim modelima.
 
-*Napomena*: AI Toolkit trenutačno podržava Python i TypeScript.
+*Napomena*: Toolkit trenutno podržava Python i TypeScript MCP predloške.
 
 ## Ciljevi učenja
 
-Do kraja ove lekcije, moći ćete:
+Na kraju ove lekcije, moći ćete:
 
-- Koristiti MCP server putem AI Toolkita.
-- Konfigurirati postavke agenta kako bi mogao otkriti i koristiti alate koje pruža MCP server.
+- Koristiti MCP server s Microsoft Foundry Toolkitom.
+- Konfigurirati postavke agenta kako biste mu omogućili pronalazak i korištenje alata koje nudi MCP server.
 - Koristiti MCP alate putem prirodnog jezika.
 
 ## Pristup
 
-Evo kako trebamo pristupiti ovome na visokoj razini:
+Evo kako trebamo pristupiti ovom zadatku na visokoj razini:
 
 - Kreirati agenta i definirati njegov sistemski prompt.
-- Kreirati MCP server s kalkulator alatima.
+- Kreirati MCP server s alatima za kalkulator.
 - Povezati Agent Builder s MCP serverom.
 - Testirati pozivanje alata agenta putem prirodnog jezika.
 
-Odlično, sada kad razumijemo tijek, konfigurirajmo AI agenta da koristi vanjske alate preko MCP-a, čime ćemo unaprijediti njegove sposobnosti!
+Odlično, sada kada razumijemo tijek, konfigurirajmo AI agenta da koristi vanjske alate preko MCP-a, povećavajući njegove sposobnosti!
 
 ## Preduvjeti
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit za Visual Studio Code](https://aka.ms/AIToolkit)
+- [Microsoft Foundry Toolkit za Visual Studio Code](https://aka.ms/AIToolkit)
 
 ## Vježba: Korištenje servera
 
 > [!WARNING]
-> Napomena za korisnike macOS-a. Trenutno istražujemo problem s instalacijom ovisnosti na macOS-u. Kao rezultat toga, korisnici macOS-a trenutno neće moći dovršiti ovaj vodič. Ažurirat ćemo upute čim poprave budu dostupne. Hvala na vašem strpljenju i razumijevanju!
+> Napomena za korisnike macOS-a. Trenutno istražujemo problem koji utječe na instalaciju ovisnosti na macOS-u. Stoga korisnici macOS-a trenutno neće moći završiti ovaj vodič. Ažurirat ćemo upute čim bude dostupan popravak. Hvala na strpljenju i razumijevanju!
 
-U ovoj vježbi izgradit ćete, pokrenuti i unaprijediti AI agenta s alatima s MCP servera unutar Visual Studio Code koristeći AI Toolkit.
+U ovoj vježbi ćete izgraditi, pokrenuti i poboljšati AI agenta s alatima s
+MCP servera unutar Visual Studio Code-a koristeći Microsoft Foundry Toolkit.
 
-### -0- Prekorak, dodajte OpenAI GPT-4o model u Moje modele
+### -0- Priprema, dodavanje Microsoft Foundry GPT-5.1 implementacije
 
-Vježba koristi **GPT-4o** model. Model treba biti dodan u **Moje modele** prije stvaranja agenta.
+Kreirajte Microsoft Foundry resurs, implementirajte **GPT-5.1** i dodajte implementaciju
+u **Moje modele**. Pregledajte
+[raspored povlačenja modela](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+prilikom odabira implementacije.
 
-![Screenshot sučelja za odabir modela u AI Toolkit ekstenziji Visual Studio Codea. Naslov glasi "Pronađite pravi model za svoje AI rješenje" s podnaslovom koji poziva korisnike da otkriju, testiraju i implementiraju AI modele. Ispod, pod "Popularni modeli," prikazano je šest model karata: DeepSeek-R1 (hostan na GitHubu), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Mali, Brzi) i DeepSeek-R1 (hostan na Ollami). Svaka karta uključuje opcije "Dodaj" model ili "Isprobaj u Playgroundu](../../../../translated_images/hr/aitk-model-catalog.2acd38953bb9c119.webp)
+1. Otvorite **Microsoft Foundry Toolkit** s **Trake aktivnosti**.
+1. U odjeljku **Katalog** odaberite **Modele** da otvorite **Katalog modela**. Odabir **Modela** otvara **Katalog modela** u novom kartici uređivača.
+1. Povežite svoj Microsoft Foundry projekt i odaberite svoju **GPT-5.1** implementaciju.
+1. Kliknite **+ Dodaj** za dodavanje implementacije na popis **Moji modeli**.
+1. Na **Traci aktivnosti** potvrdite da se implementacija pojavljuje na popisu.
 
-1. Otvorite **AI Toolkit** ekstenziju iz **Activity Bar**.
-1. U odjeljku **Katalog** odaberite **Modele** da otvorite **Katalog modela**. Odabirom **Modeli** otvara se **Katalog modela** u novoj kartici uređivača.
-1. U tražilici **Kataloga modela** unesite **OpenAI GPT-4o**.
-1. Kliknite **+ Dodaj** da dodate model na svoj popis **Moji modeli**. Provjerite da ste odabrali model koji je **hostan na GitHubu**.
-1. U **Activity Bar** potvrdite da se model **OpenAI GPT-4o** nalazi na popisu.
+### -1- Kreiranje agenta
 
-### -1- Kreirajte agenta
+**Agent (Prompt) Builder** omogućuje vam kreiranje i prilagodbu AI agenata po vašem izboru. U ovom dijelu ćete stvoriti novog agenta i dodijeliti model koji će pokretati razgovor.
 
-**Agent (Prompt) Builder** omogućuje vam stvaranje i prilagodbu vlastitih AI-agenta. U ovom dijelu kreirat ćete novog agenta i odabrati model koji će pokretati razgovor.
-
-![Screenshot sučelja "Calculator Agent" builder u AI Toolkit ekstenziji za Visual Studio Code. Na lijevoj ploči odabrani model je "OpenAI GPT-4o (putem GitHuba)." Sistemski prompt glasi "Vi ste profesor na sveučilištu koji predaje matematiku," a korisnički prompt kaže "Objasni mi Fourierovu jednadžbu jednostavnim rječnikom." Dodatne opcije uključuju gumbe za dodavanje alata, omogućavanje MCP Servera i odabir strukturiranog izlaza. Na dnu plave “Pokreni” tipke. Na desnoj ploči, pod "Započnite s primjerima," navedena su tri uzorka agenta: Web Developer (s MCP Serverom, pojednostavniteljem za drugi razred i tumačem snova, svaki sa kratkim opisima funkcija).](../../../../translated_images/hr/aitk-agent-builder.901e3a2960c3e477.webp)
-
-1. Otvorite **AI Toolkit** ekstenziju iz **Activity Bar**.
-1. U odjeljku **Alati** odaberite **Agent (Prompt) Builder**. Odabirom **Agent (Prompt) Builder** otvara se u novoj kartici uređivača.
-1. Kliknite gumb **+ Novi agent**. Ekstenzija će pokrenuti postavke putem **Command Palette**.
+1. Otvorite **Microsoft Foundry Toolkit** s **Trake aktivnosti**.
+1. U odjeljku **Alati** odaberite **Agent (Prompt) Builder**. Odabir **Agent (Prompt) Builder** otvara ga u novom kartici uređivača.
+1. Kliknite gumb **+ Novi agent**. Ekstenzija će pokrenuti čarobnjak za postavljanje putem **Command Palette**.
 1. Unesite naziv **Calculator Agent** i pritisnite **Enter**.
-1. U **Agent (Prompt) Builder**, u polju **Model**, odaberite model **OpenAI GPT-4o (putem GitHuba)**.
+1. U **Agent (Prompt) Builder** odaberite vašu **GPT-5.1** Foundry implementaciju.
 
-### -2- Kreirajte sistemski prompt za agenta
+### -2- Kreiranje sistemskog prompta za agenta
 
-Sada kad ste kreirali načelo agenta, vrijeme je da definirate njegovu osobnost i svrhu. U ovom dijelu koristit ćete značajku **Generate system prompt** da opišete namjeravano ponašanje agenta—u ovom slučaju agenta kalkulatora—i da model napiše sistemski prompt za vas.
+Nakon što je agent postavljen, vrijeme je definirati njegovu osobnost i svrhu. U ovom dijelu ćete koristiti značajku **Generiraj sistemski prompt** kako biste opisali namjeravano ponašanje agenta – u ovom slučaju kalkulatorskog agenta – i omogućiti modelu da napiše sistemski prompt za vas.
 
-![Screenshot sučelja "Calculator Agent" u AI Toolkitu za Visual Studio Code sa otvorenim modalnim prozorom pod nazivom "Generate a prompt." Modal objašnjava da se predložak prompta može generirati dijeljenjem osnovnih podataka i sadrži tekstni okvir s primjerom sistemskog prompta: "Vi ste koristan i učinkovit pomoćnik za matematiku. Kada vam se ponudi problem koji uključuje osnovnu aritmetiku, odgovarate s točnim rezultatom." Ispod tekstnog okvira su gumbi "Zatvori" i "Generiraj." U pozadini je vidljiv dio konfiguracije agenta, uključujući odabrani model "OpenAI GPT-4o (putem GitHuba)" i polja za sistemski i korisnički prompt.](../../../../translated_images/hr/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
+1. U odjeljku **Promptovi** kliknite gumb **Generiraj sistemski prompt**. Ovaj gumb otvara builder prompta koji koristi AI za generiranje sistemskog prompta za agenta.
+1. U prozoru **Generiraj prompt** unesite sljedeće: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
+1. Kliknite gumb **Generiraj**. Obavijest će se pojaviti u donjem desnom kutu potvrđujući da se sistemski prompt generira. Kada je generiranje prompta završeno, prompt će se pojaviti u polju **Sistemski prompt** u **Agent (Prompt) Builderu**.
+1. Pregledajte **Sistemski prompt** i po potrebi izmijenite.
 
-1. U odjeljku **Promptovi** kliknite gumb **Generate system prompt**. Ovaj gumb otvara alat za izradu prompta koji koristi AI za generiranje sistemskog prompta za agenta.
-1. U prozoru **Generate a prompt** unesite sljedeće: `Vi ste koristan i učinkovit matematički pomoćnik. Kada vam se ponudi problem koji uključuje osnovnu aritmetiku, odgovarate točnim rezultatom.`
-1. Kliknite gumb **Generate**. Obavijest će se pojaviti u donjem desnom kutu potvrđujući da se sistemski prompt generira. Nakon što generiranje prompta završi, prompt će se pojaviti u polju **System prompt** u **Agent (Prompt) Builderu**.
-1. Pregledajte **System prompt** i po potrebi ga izmijenite.
+### -3- Kreiranje MCP servera
 
-### -3- Kreirajte MCP server
+Sad kad ste definirali sistemski prompt agenta – koji usmjerava njegovo ponašanje i odgovore – vrijeme je opremiti agenta praktičnim sposobnostima. U ovom dijelu ćete stvoriti kalkulatorski MCP server s alatima za izvođenje zbrajanja, oduzimanja, množenja i dijeljenja. Ovaj server će omogućiti vašem agentu da izvodi matematičke operacije u stvarnom vremenu kao odgovor na upite prirodnim jezikom.
 
-Sada kad ste definirali sistemski prompt vašeg agenta—koji vodi njegovo ponašanje i odgovore—vrijeme je da agenta opremite praktičnim sposobnostima. U ovom dijelu kreirat ćete kalkulator MCP server s alatima za izvođenje zbrajanja, oduzimanja, množenja i dijeljenja. Ovaj server će omogućiti vašem agentu da izvede matematičke operacije u stvarnom vremenu kao odgovor na upite na prirodnom jeziku.
+![Snimka zaslona donjeg dijela sučelja Calculator Agent u Microsoft Foundry Toolkitu za Visual Studio Code.](../../../../translated_images/hr/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-!["Screenshot donjeg dijela sučelja Calculator Agent u AI Toolkit ekstenziji za Visual Studio Code. Prikazuje proširive izbornike za “Alate” i “Strukturirani izlaz,” zajedno s padajućim izbornikom naziva “Odaberi format izlaza” postavljenim na “tekst.” S desne strane gumb “+ MCP Server” za dodavanje Model Context Protocol servera. Iznad sekcije Alati prikazuje se rezervirano mjesto za ikonu slike.](../../../../translated_images/hr/aitk-add-mcp-server.9742cfddfe808353.webp)
+Microsoft Foundry Toolkit uključuje predloške za izradu MCP servera. Koristit ćemo
+Python predložak za kalkulatorski MCP server.
 
-AI Toolkit opremljen je predlošcima za lakše kreiranje vlastitih MCP servera. Koristit ćemo Python predložak za kreiranje kalkulator MCP servera.
+*Napomena*: Toolkit trenutno podržava Python i TypeScript MCP predloške.
 
-*Napomena*: AI Toolkit trenutačno podržava Python i TypeScript.
-
-1. U odjeljku **Alati** u **Agent (Prompt) Builderu**, kliknite gumb **+ MCP Server**. Ekstenzija će pokrenuti postavke putem **Command Palette**.
+1. U odjeljku **Alati** u **Agent (Prompt) Builderu**, kliknite gumb **+ MCP Server**. Ekstenzija će pokrenuti čarobnjak za postavljanje putem **Command Palette**.
 1. Odaberite **+ Dodaj server**.
 1. Odaberite **Kreiraj novi MCP server**.
-1. Odaberite predložak **python-weather**.
-1. Odaberite **Zadana mapa** za spremanje predloška MCP servera.
-1. Unesite sljedeći naziv za server: **Calculator**
-1. Otvorit će se novi Visual Studio Code prozor. Odaberite **Da, vjerujem autorima**.
+1. Odaberite **python-weather** kao predložak.
+1. Odaberite **Zadani direktorij** za spremanje MCP server predloška.
+1. Unesite sljedeći naziv servera: **Calculator**
+1. Otvorit će se novi prozor Visual Studio Code-a. Odaberite **Da, vjerujem autorima**.
 1. Koristeći terminal (**Terminal** > **Novi terminal**), kreirajte virtualno okruženje: `python -m venv .venv`
 1. Koristeći terminal, aktivirajte virtualno okruženje:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
 1. Koristeći terminal, instalirajte ovisnosti: `pip install -e .[dev]`
-1. U pogledu **Explorer** u **Activity Bar**, proširite direktorij **src** i odaberite **server.py** da otvorite datoteku u uređivaču.
-1. Zamijenite kod u datoteci **server.py** sljedećim i spremite:
+1. U prikazu **Explorer** na **Traci aktivnosti**, proširite direktorij **src** i odaberite **server.py** za otvaranje datoteke u uređivaču.
+1. Zamijenite kod u datoteci **server.py** sa sljedećim i spremite:
 
     ```python
     """
@@ -144,30 +146,30 @@ AI Toolkit opremljen je predlošcima za lakše kreiranje vlastitih MCP servera. 
         return a / b
     ```
 
-### -4- Pokrenite agenta s kalkulator MCP serverom
+### -4- Pokretanje agenta s kalkulatorskim MCP serverom
 
-Sada kad vaš agent ima alate, vrijeme je da ih upotrijebite! U ovom dijelu možete poslati upite agentu da testirate i potvrdite koristi li agent odgovarajući alat s kalkulator MCP servera.
+Sada kada agent ima alate, vrijeme je da ih iskoristite! U ovom dijelu ćete dodavati upite agentu kako biste testirali i potvrdili koristi li agent odgovarajući alat s kalkulatorskog MCP servera.
 
-![Screenshot sučelja Calculator Agent u AI Toolkit ekstenziji za Visual Studio Code. Na lijevom panelu, pod “Alati,” dodan je MCP server pod imenom local-server-calculator_server, koji prikazuje četiri dostupna alata: zbrajanje, oduzimanje, množenje i dijeljenje. Prikazana je oznaka da su četiri alata aktivna. Ispod je sklopljen odjeljak “Strukturirani izlaz” i plavi gumb “Pokreni.” Na desnom panelu, pod “Odgovor modela,” agent poziva alate za množenje i oduzimanje s unosima {"a": 3, "b": 25} i {"a": 75, "b": 20} redom. Konačni “Odgovor alata” prikazan je kao 75.0. Na dnu se pojavljuje gumb “Prikaži kod.”](../../../../translated_images/hr/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Snimka zaslona Calculator Agenta koji poziva MCP kalkulatorske alate u Microsoft Foundry Toolkitu.](../../../../translated_images/hr/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
-Pokrenut ćete kalkulator MCP server na svojem lokalnom razvojnom računalu putem **Agent Buildera** kao MCP klijenta.
+Pokrenut ćete kalkulatorski MCP server na svom lokalnom razvojnome računalu putem **Agent Buildera** kao MCP klijenta.
 
-1. Pritisnite `F5` za početak debugiranja MCP servera. **Agent (Prompt) Builder** otvorit će se u novoj kartici uređivača. Status servera vidljiv je u terminalu.
-1. U polju **User prompt** u **Agent (Prompt) Builderu** unesite ovaj prompt: `Kupio sam 3 artikla po cijeni od 25 $, i zatim iskoristio popust od 20 $. Koliko sam platio?`
-1. Kliknite gumb **Pokreni** da generirate odgovor agenta.
+1. Pritisnite `F5` za pokretanje otklanjanja pogrešaka na MCP serveru. **Agent (Prompt) Builder** otvara se u novom kartici uređivača. Status servera vidljiv je u terminalu.
+1. U polje **Korisnički prompt** u **Agent (Prompt) Builderu**, unesite sljedeći upit: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
+1. Kliknite gumb **Pokreni** za generiranje odgovora agenta.
 1. Pregledajte izlaz agenta. Model bi trebao zaključiti da ste platili **55 $**.
 1. Evo pregleda što bi se trebalo dogoditi:
-    - Agent bira alate **množenje** i **oduzimanje** za pomoć u izračunu.
-    - Dodijeljene su odgovarajuće vrijednosti `a` i `b` za alat **množenje**.
-    - Dodijeljene su odgovarajuće vrijednosti `a` i `b` za alat **oduzimanje**.
-    - Odgovor iz svakog alata prikazan je u polju **Odgovor alata**.
-    - Konačni rezultat iz modela prikazan je u polju **Odgovor modela**.
-1. Pošaljite dodatne upite za daljnje testiranje agenta. Možete izmijeniti postojeći prompt u polju **User prompt** klikom unutar polja i zamjenom postojećeg prompta.
-1. Kad završite s testiranjem agenta, možete zaustaviti server putem **terminala** pritiskom **CTRL/CMD+C** da izađete.
+    - Agent odabire alate **multiply** i **subtract** kako bi pomogao u računanju.
+    - Odgovarajuće vrijednosti `a` i `b` dodjeljuju se za alat **multiply**.
+    - Odgovarajuće vrijednosti `a` i `b` dodjeljuju se za alat **subtract**.
+    - Odgovori svakog alata prikazuju se u pripadajućem polju **Odgovor alata**.
+    - Završni rezultat modela prikazan je u konačnom **Odgovoru modela**.
+1. Pošaljite dodatne upite za daljnje testiranje agenta. Možete izmijeniti postojeći upit u polju **Korisnički prompt** klikom u polje i zamjenom upita.
+1. Kad završite testiranje agenta, možete zaustaviti server putem **terminala** pritiskom na **CTRL/CMD+C** za izlazak.
 
 ## Zadatak
 
-Pokušajte dodati dodatni alat u svoju datoteku **server.py** (npr.: vraćanje kvadratnog korijena broja). Pošaljite dodatne upite koji zahtijevaju da agent koristi novi alat (ili postojeće alate). Obavezno ponovno pokrenite server da bi se učitali novododani alati.
+Pokušajte dodati dodatni ulaz za alat u datoteku **server.py** (npr. izračunati kvadratni korijen broja). Pošaljite dodatne upite za koje bi agent morao iskoristiti novi alat (ili postojeće alate). Obavezno ponovo pokrenite server da bi se učitali novododani alati.
 
 ## Rješenje
 
@@ -177,15 +179,15 @@ Pokušajte dodati dodatni alat u svoju datoteku **server.py** (npr.: vraćanje k
 
 Zaključci iz ovog poglavlja su sljedeći:
 
-- AI Toolkit ekstenzija je izvrstan klijent koji vam omogućuje korištenje MCP servera i njihovih alata.
-- Možete dodavati nove alate MCP serverima, šireći mogućnosti agenta da zadovolji mijenjajuće zahtjeve.
-- AI Toolkit uključuje predloške (npr. Python MCP server predloške) koji pojednostavljuju izradu prilagođenih alata.
+- Microsoft Foundry Toolkit može koristiti MCP servere i njihove alate.
+- Možete dodavati nove alate MCP serverima, šireći sposobnosti agenta za ispunjavanje novih zahtjeva.
+- Microsoft Foundry Toolkit uključuje MCP predloške servera za izradu prilagođenih alata.
 
 ## Dodatni resursi
 
-- [AI Toolkit dokumentacija](https://aka.ms/AIToolkit/doc)
+- [Dokumentacija Microsoft Foundry Toolkita](https://aka.ms/AIToolkit/doc)
 
-## Što slijedi
+## Što dalje
 - Sljedeće: [Testiranje i otklanjanje pogrešaka](../08-testing/README.md)
 
 ---

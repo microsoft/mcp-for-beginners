@@ -1,37 +1,45 @@
-# Zagon tega primera
+# Zagon tega vzorca
 
-To je Rust rešitev za primer odjemalca LLM. Potrebujete nameščen Rust orodjarniški paket; glejte [uradni namestitveni vodnik](https://www.rust-lang.org/tools/install).
+To je Rust rešitev za vzorec odjemalca LLM. Potrebujete nameščen Rust toolchain; poglejte [uradni vodič za namestitev](https://www.rust-lang.org/tools/install).
 
-Odjemalec kliče model preko GitHub Models inference končne točke (`https://models.github.ai/inference/chat`) in prebere vaš osebni GitHub dostopni žeton (PAT) iz okoljske spremenljivke `OPENAI_API_KEY`.
+Odjemalec kliče nameščen Microsoft Foundry model preko Azure OpenAI
+v1 končne točke.
 
 > [!NOTE]
-> Druge rešitve v tem repozitoriju uporabljajo `GITHUB_TOKEN`. Za Rust nastavite `OPENAI_API_KEY` na enako vrednost, da se ujema z konfiguracijo OpenAI odjemalca.
+> Vrednost, posredovana kot `model`, je ime vaše Foundry namestitve, ne nujno
+> ime osnovnega modela.
 
-## -0- Nastavite svoj GitHub žeton
+## -0- Konfiguracija Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Sestavite primer
+## -1- Sestavi vzorec
 
 ```bash
 cargo build
 ```
 
-## -2- Zaženite primer
+## -2- Zaženi vzorec
 
 ```bash
 cargo run
 ```
 
-Odjemalec zažene MCP strežnik kalkulatorja, pridobi njegov seznam orodij in uporabi model (`openai/gpt-5-mini`) za klic orodja `add`. Videli boste izpis, ki kaže na klic orodja (na primer "Calling tool: add") in rezultat tega klica.
+Odjemalec zažene MCP strežnik kalkulatorja, pridobi seznam njegovih orodij in uporabi
+nameščen model za klic orodja `add`. Izpis bi moral prikazati
+klic orodja (na primer, "Kličem orodje: add") in rezultat tega klica.
 
 ---
 

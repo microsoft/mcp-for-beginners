@@ -1,60 +1,60 @@
 # מחקר מקרה: חשיפת REST API בניהול API כשרת MCP
 
-Azure API Management, היא שירות המספק שער על גבי נקודות הקצה של ה-API שלך. הדרך שבה זה עובד היא ש-Azure API Management פועל כמו פרוקסי מול ה-APIs שלך ויכול להחליט מה לעשות עם הבקשות הנכנסות.
+Azure API Management, היא שירות שמספק שער על גבי נקודות הקצה של ה-API שלך. האופן שבו זה עובד הוא ש-Azure API Management מתפקד כפרוקסי מול ה-APIים שלך ויכול להחליט מה לעשות עם בקשות נכנסות.
 
-באמצעותו, אתה מוסיף מגוון רחב של תכונות כגון:
+באמצעותו, אתה מוסיף מגוון תכונות כמו:
 
-- **אבטחה**, ניתן להשתמש בכל דבר ממפתחות API, JWT ועד לזהות מנוהלת.
-- **הגבלת קצב**, תכונה נהדרת היא היכולת להחליט כמה קריאות יעברו במשך יחידת זמן מסוימת. זה עוזר להבטיח שלכל המשתמשים תהיה חווית שימוש טובה וגם שהשירות שלך לא יעמוס עם בקשות.
+- **אבטחה**, אתה יכול להשתמש בכל דבר ממפתחות API, JWT ועד זהות מנוהלת.
+- **הגבלת קצב (Rate limiting)**, תכונה מצוינת היא היכולת להחליט כמה קריאות יעברו בפרק זמן מסוים. זה עוזר להבטיח שכל המשתמשים יקבלו חוויה טובה וגם שהשירות שלך לא יעמוס בבקשות.
 - **קנה מידה ואיזון עומסים**. ניתן להגדיר מספר נקודות קצה כדי לאזן את העומס וגם להחליט כיצד "לאזן את העומס".
-- **תכונות בינה מלאכותית כמו מטמון סמנטי**, הגבלת טוקנים ומעקב אחר טוקנים ועוד. אלו תכונות מצוינות המשפרות את המהירות וגם עוזרות לך לעקוב אחרי ההוצאה על טוקנים. [קרא עוד כאן](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **תכונות AI כמו מטמון סמנטי**, הגבלת טוקנים וניטור טוקנים ועוד. אלו תכונות מצוינות שמשפרות את התגובה וגם מסייעות לך לשלוט בהוצאות הטוקנים. [קרא/י עוד כאן](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
 ## למה MCP + Azure API Management?
 
-פרוטוקול Model Context Protocol הופך במהירות לסטנדרט לאפליקציות AI סוכניות ואופן החשיפה של כלים ונתונים בצורה עקבית. Azure API Management הוא בחירה טבעית כאשר צריך "לנהל" APIs. שרתי MCP לעיתים משתלבים עם APIs אחרים כדי לפתור בקשות לכלי, למשל. לכן שילוב של Azure API Management ו-MCP הגיוני מאוד.
+פרוטוקול הקשר מודל (Model Context Protocol) הופך במהירות לתקן עבור אפליקציות AI סוכניות ואיך לחשוף כלים ונתונים בצורה עקבית. Azure API Management הוא בחירה טבעית כשצריך "לנהל" APIs. שרתי MCP משולבים לעיתים קרובות עם APIs אחרים כדי לפתור בקשות לכלי למשל. לכן שילוב Azure API Management ו-MCP הגיוני מאוד.
 
-## מבט כללי
+## סקירה כללית
 
-במקרה שימוש ספציפי זה נלמד כיצד לחשוף נקודות קצה של API כשרת MCP. על ידי כך, נוכל להפוך נקודות קצה אלו לחלק מאפליקציה סוכנית תוך ניצול התכונות של Azure API Management.
+במקרה שימוש זה נלמד כיצד לחשוף נקודות קצה של API כשרת MCP. על ידי כך, נוכל לשלב את נקודות הקצה האלה כחלק מאפליקציה סוכנית וגם לנצל את התכונות של Azure API Management.
 
-## תכונות מפתח
+## תכונות מרכזיות
 
-- אתה בוחר את פעולות הנקודות קצה שברצונך לחשוף ככלים.
-- התכונות הנוספות שתקבלות תלויות במה שאתה מגדיר במדור המדיניות של ה-API שלך. כאן נראה איך ניתן להוסיף הגבלת קצב.
+- אתה בוחר את שיטות נקודת הקצה שאתה רוצה לחשוף ככלים.
+- התכונות הנוספות שאתה מקבל תלויות בהגדרות שאתה מגדיר בחלק המדיניות עבור ה-API שלך. אבל כאן נראה לך איך להוסיף הגבלת קצב.
 
 ## שלב מקדים: ייבוא API
 
-אם כבר יש לך API ב-Azure API Management, מצוין, אז תוכל לדלג על שלב זה. אם לא, בדוק קישור זה, [ייבוא API ל-Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+אם כבר יש לך API ב-Azure API Management, מצוין, תוכל לדלג על שלב זה. אם לא, בדוק קישור זה, [ייבוא API ל-Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
 ## חשיפת API כשרת MCP
 
 כדי לחשוף את נקודות הקצה של ה-API, נעקוב אחר השלבים הבאים:
 
-1. נווט לפורטל Azure לכתובת <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>
-נווט למופע ניהול ה-API שלך.
+1. עבור ל-Portal של Azure והכתובת הבאה <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
+עבור למופע Azure API Management שלך.
 
 1. בתפריט השמאלי, בחר APIs > MCP Servers > + יצירת שרת MCP חדש.
 
-1. ב-API, בחר REST API שברצונך לחשוף כשרת MCP.
+1. ב-API, בחר REST API לחשוף כשרת MCP.
 
-1. בחר פעולה אחת או יותר של ה-API לחשיפה ככלים. תוכל לבחור בכל הפעולות או רק פעולות ספציפיות.
+1. בחר אחת או יותר פעולות API לחשוף ככלים. אפשר לבחור את כל הפעולות או רק פעולות ספציפיות.
 
-    ![Select methods to expose](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![בחר שיטות לחשיפה](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 
-1. בחר **צור**.
+1. בחר **Create**.
 
-1. נווט לאפשרות בתפריט **APIs** ו-**MCP Servers**, אמור להופיע כפי שמוצג:
+1. עבור לתפריט **APIs** ו-**MCP Servers**, תראה את הבא:
 
-    ![See the MCP Server in the main pane](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![ראה את שרת ה-MCP בפאנל הראשי](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    שרת MCP נוצר והפעולות של ה-API נחשפו ככלים. שרת MCP מופיע בלשונית שרתי MCP. עמודת ה-URL מציגה את כתובת נקודת הקצה של שרת MCP שניתן לקרוא לה לבדיקה או מתוך אפליקציית לקוח.
+    שרת ה-MCP נוצר ופעולות ה-API נחשפו ככלים. שרת ה-MCP מפורט בפאנל שרתי MCP. עמודת ה-URL מציגה את נקודת הקצה של שרת ה-MCP שאתה יכול לקרוא לה לצורך בדיקות או בתוך אפליקציית לקוח.
 
-## אופציונלי: הגדרת מדיניות
+## אפשרות: הגדרת מדיניות
 
-ל-Azure API Management יש את המושג המרכזי של מדיניות שבה מגדירים חוקים שונים לנקודות הקצה שלך כמו לדוגמה הגבלת קצב או מטמון סמנטי. מדיניות זו מוגדרת ב-XML.
+ל-Azure API Management יש את הקונספט המרכזי של מדיניות, שבו אתה מגדיר חוקים שונים לנקודות הקצה שלך כמו הגבלת קצב או מטמון סמנטי. המדיניות נכתבת ב-XML.
 
-כך תוכל להגדיר מדיניות להגבלת קצב בשרת MCP שלך:
+כך תוכל להגדיר מדיניות להגבלת קצב עבור שרת MCP שלך:
 
 1. בפורטל, תחת APIs, בחר **MCP Servers**.
 
@@ -62,7 +62,7 @@ Azure API Management, היא שירות המספק שער על גבי נקודו
 
 1. בתפריט השמאלי, תחת MCP, בחר **Policies**.
 
-1. בעורך המדיניות, הוסף או ערוך את המדיניות שברצונך להחיל על כלים של שרת MCP. המדיניות מוגדרת בפורמט XML. לדוגמה, ניתן להוסיף מדיניות להגבלת קריאות לכלי השרת (בדוגמה זו, 5 קריאות ל-30 שניות לכל כתובת IP של לקוח). הנה XML שיגרום להגבלת קצב:
+1. בעורך המדיניות, הוסף או ערוך את המדיניות שברצונך להחיל על הכלים של שרת ה-MCP. המדיניות מוגדרת בפורמט XML. לדוגמה, תוכל להוסיף מדיניות להגבלת קריאות לכלי שרת ה-MCP (בדוגמה זו, 5 קריאות לכל 30 שניות לפי כתובת IP של הלקוח). הנה XML שיגרום להגבלת קצב:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -74,57 +74,58 @@ Azure API Management, היא שירות המספק שער על גבי נקודו
 
     הנה תמונה של עורך המדיניות:
 
-    ![Policy editor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+    ![עורך מדיניות](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
  
-## נסה זאת
+## נסה את זה
 
-נוודא ששרת ה-MCP שלנו פועל כפי שנדרש.
+בוא נוודא ששרתי MCP שלנו פועל כפי שמתכוונים.
 
 > [!NOTE]
-> Azure API Management חושף כעת שרת זה דרך נקודת הקצה Streamable
-> HTTP `/mcp`. הבניין הישן HTTP+SSE `/sse` מוצהב
-> ויש להשתמש בו רק עם לקוחות ישנים.
+> Azure API Management כיום חושף את השרת הזה דרך נקודת קצה Streamable
+> HTTP `/mcp`. שיטת ההעברה HTTP+SSE `/sse` הוותיקה מוצהרת כמיושנת
+> ויש להשתמש בה רק עם לקוחות ישנים.
 
-לשם כך, נשתמש ב-Visual Studio Code וב-GitHub Copilot במצב סוכן. נוסיף את שרת MCP לקובץ *mcp.json*. כך Visual Studio Code יפעל כלקוח עם יכולות סוכניות ומשתמשי הקצה יוכלו להקליד פקודה ולתקשר עם השרת.
+לשם כך, נשתמש ב-Visual Studio Code ו-GitHub Copilot במצב סוכן. נוסיף את שרת ה-MCP לקובץ *mcp.json*. כך, Visual Studio Code ישמש כלקוח עם יכולות סוכניות ומשתמשי קצה יוכלו להקליד פקודות ולתקשר עם השרת.
 
-נראה כיצד, להוסיף את שרת ה-MCP ב-Visual Studio Code:
+בוא נראה איך להוסיף את שרת ה-MCP ב-Visual Studio Code:
 
-1. השתמש בפקודת MCP: **Add Server מתוך פלטת הפקודות**.
+1. השתמש בפקודת MCP: **Add Server מ-Command Palette**.
 
-1. כאשר תתבקש, בחר את סוג השרת: **HTTP (HTTP או Server Sent Events)**.
+1. כשהתבקש, בחר את סוג השרת: **HTTP (HTTP או Server Sent Events)**.
 
-1. הזן את כתובת ה-URL של ה-HTTP Streamable שמוצגת לשרת MCP בניהול API.
-    למשל:
+1. הזן את כתובת ה-Streamable HTTP שמוצגת עבור שרת ה-MCP בניהול API.
+    לדוגמה:
     `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
-1. הזן מזהה שרת לבחירתך. זהו ערך לא חשוב אך יעזור לך לזכור מהו מופע השרת הזה.
+1. הזן מזהה שרת לבחירתך. זו לא ערך חשוב אבל יעזור לך לזכור מהו מופע השרת הזה.
 
-1. בחר האם לשמור את ההגדרות בהגדרות סביבת העבודה שלך או בהגדרות המשתמש.
+1. בחר האם לשמור את ההגדרה בהגדרות סביבת העבודה או בהגדרות המשתמש.
 
-  - **הגדרות סביבת עבודה** - הגדרות השרת נשמרות בקובץ .vscode/mcp.json הזמין רק בסביבת העבודה הנוכחית.
+    - **הגדרות סביבת עבודה** - קונפיגורציית השרת נשמרת בקובץ `.vscode/mcp.json`, הזמין רק בסביבת העבודה הנוכחית.
 
-    *mcp.json*
+      *mcp.json*
 
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "http",
-            "url": "url-to-mcp-server/mcp"
-        }
-    }
-    ```
+      ```json
+      "servers": {
+          "APIM petstore" : {
+              "type": "http",
+              "url": "url-to-mcp-server/mcp"
+          }
+      }
+      ```
 
-  - **הגדרות משתמש** - הגדרות השרת מתווספות לקובץ הגלובלי *settings.json* וזמינות בכל סביבת עבודה. ההגדרות נראות כך:
+    - **הגדרות משתמש** - קונפיגורציית השרת מתווספת לקובץ *settings.json* הגלובלי שלך וזמינה בכל סביבת עבודה. ההגדרה נראית כך:
 
-    ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+      ![הגדרות משתמש](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. יש להוסיף גם הגדרה, כותרת כדי לוודא שהאימות מתבצע כראוי כלפי Azure API Management. משתמשים בכותרת בשם **Ocp-Apim-Subscription-Key**.
+1. יש גם להוסיף כותרת קונפיגורציה כדי להבטיח אימות נכון לעבר Azure API Management. משתמשים בכותרת בשם **Ocp-Apim-Subscription-Key**.
 
-    - הנה איך להוסיף זאת להגדרות:
+    - כך תוכל להוסיף אותה להגדרות:
 
-    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), זה יגרום להצגת פקודה לשאלה על ערך מפתח ה-API שניתן למצוא בפורטל Azure עבור מופע Azure API Management שלך.
 
-   - כדי להוסיף זאת ל-*mcp.json* במקום, אפשר להוסיף כך:
+    ![הוספת כותרת לאימות](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), תגרום להצגת בקשה להזנת ערך מפתח ה-API שניתן למצוא ב-Azure Portal עבור מופע Azure API Management שלך.
+
+   - להוסיפה במקום ל-*mcp.json* אפשר לעשות זאת כך:
 
     ```json
     "inputs": [
@@ -146,50 +147,50 @@ Azure API Management, היא שירות המספק שער על גבי נקודו
     }
     ```
 
-### שימוש במצב סוכן
+### השתמש במצב סוכן
 
-עכשיו כל ההגדרות בוצעו, בין אם בהגדרות או בקובץ *.vscode/mcp.json*. בוא ננסה.
+עכשיו כשכולנו מוגדרים בהגדרות או ב-*.vscode/mcp.json*, בוא ננסה.
 
-אמור להופיע סמל כלים כפי שמוצג, שבו הכלים החשופים מהשרת שלך מופיעים ברשימה:
+אמור להיות אייקון כלים כך, שם הכלים החשופים מהשרת שלך מופיעים ברשימה:
 
-![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
+![כלים מהשרת](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. לחץ על סמל הכלים ותראה רשימת כלים כמו כך:
+1. לחץ על אייקון הכלים ותראה רשימת כלים כך:
 
-    ![Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
+    ![כלים](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. הזן פקודה בשיחה כדי להפעיל את הכלי. לדוגמה, אם בחרת כלי לקבלת מידע על הזמנה, אתה יכול לשאול את הסוכן על הזמנה. הנה דוגמת פקודה:
+1. הכנס פקודה בצ׳אט כדי להפעיל את הכלי. לדוגמה, אם בחרת כלי לקבל מידע על הזמנה, תוכל לשאול את הסוכן על הזמנה. הנה דוגמה לפקודה:
 
     ```text
     get information from order 2
     ```
 
-    כעת יוצג סמל כלים שיבקש ממך להמשיך ולהפעיל את הכלי. בחר להמשיך בפעולה, ותראה פלט כזה:
+    כעת יוצג לך אייקון כלים שישאל אם להמשיך לקרוא לכלי. בחר להמשיך להפעיל את הכלי, כעת תראה פלט כך:
 
-    ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![תוצאה מהפקודה](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **מה שתראה למעלה תלוי בכלים שהגדרת, אבל הרעיון הוא שתקבל תגובה טקסטואלית כפי שמוצג**
+    **מה שאתה רואה למעלה תלוי בכלים שהגדרת, אבל הרעיון הוא שאתה מקבל תגובה טקסטואלית כמו למעלה**
 
 
 ## הפניות
 
-הנה דרכים ללמוד עוד:
+כך תוכל ללמוד עוד:
 
 - [מדריך על Azure API Management ו-MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [דוגמת Python: אבטחת שרתי MCP מרוחקים עם Azure API Management (במצב ניסיוני)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [דוגמה בפייתון: אבטחת שרתי MCP מרוחקים באמצעות Azure API Management (נסיוני)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
-- [מעבדת הרשאת לקוח MCP](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
+- [מעבדת הרשאות לקוח MCP](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [שימוש בתוסף Azure API Management ל-VS Code ליבוא וניהול APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [שימוש בתוסף Azure API Management ל-VS Code לייבוא וניהול APIs](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [רישום וגילוי שרתי MCP מרוחקים במרכז Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) מאגר נפלא שמראה יכולות רבות של AI עם Azure API Management
-- [סדנאות AI Gateway](https://azure-samples.github.io/AI-Gateway/) מכילות סדנאות באמצעות פורטל Azure, דרך נהדרת להתחיל להעריך יכולות AI.
+- [הרשמה וגילוי שרתי MCP מרוחקים במרכז Azure API](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [שער AI](https://github.com/Azure-Samples/AI-Gateway) ריפוזיטורי מעולה שמראה יכולות AI רבות עם Azure API Management
+- [סדנאות שער AI](https://azure-samples.github.io/AI-Gateway/) מכילות סדנאות בשימוש ב-Azure Portal, דרך מצוינת להתחיל להעריך יכולות AI.
 
 ## מה הלאה
 
 - חזרה אל: [סקירת מחקרי מקרה](./README.md)
-- הבא: [סוכני נסיעות בינה מלאכותית ב-Azure](./travelagentsample.md)
+- הבא: [סוכני נסיעות AI ב-Azure](./travelagentsample.md)
 
 ---
 
