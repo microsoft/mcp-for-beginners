@@ -110,7 +110,7 @@ MCP is a protocol - a set of agreed-upon rules that help AI models and applicati
 
 You already use client-server relationships every day! When you use a web browser (the client) to visit a website, you're connecting to a web server that sends you the page content. The browser knows how to ask for information, and the server knows how to respond.
 
-In MCP, we have a similar relationship: AI models act as clients that request information or actions, while MCP servers provide those capabilities. It's like having a helpful assistant (the server) that the AI can ask to perform specific tasks.
+In MCP, the AI application is the **host**. It creates an MCP **client** for each server it connects to, while the MCP **server** provides tools, resources, and prompts. The AI model is not itself an MCP client. See the [MCP architecture specification](https://modelcontextprotocol.io/specification/2026-07-28/architecture) for the roles of hosts, clients, and servers.
 
 ### Why Standardization Matters (Making Things Work Together)
 
