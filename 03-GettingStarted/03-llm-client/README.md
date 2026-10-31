@@ -190,6 +190,14 @@ First, you'll need to add the LangChain4j dependencies to your `pom.xml` file. A
         <artifactId>langchain4j-open-ai-official</artifactId>
         <version>${langchain4j.version}</version>
     </dependency>
+
+    <!-- Required at runtime by the pinned OpenAI official adapter -->
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-core</artifactId>
+        <version>1.54.1</version>
+        <scope>runtime</scope>
+    </dependency>
     
     <!-- Spring Boot Starter (optional, for production apps) -->
     <dependency>
