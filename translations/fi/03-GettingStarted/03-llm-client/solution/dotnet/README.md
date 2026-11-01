@@ -1,16 +1,21 @@
 # Suorita tämä esimerkki
 
 > [!NOTE]
-> Tämä esimerkki olettaa, että käytät GitHub Codespaces -instanssia. Jos haluat suorittaa tämän paikallisesti, sinun täytyy luoda henkilökohtainen käyttöoikeustunnus (PAT) GitHubissa.
+> Ota käyttöön aktiivinen malli kuten `gpt-5.1` Microsoft Foundryssa ja määritä
+> sen päätepiste, API-avain ja käyttöönoton nimi.
 >
 > ```bash
 > # zsh/bash
-> export GITHUB_TOKEN="{{YOUR_GITHUB_PAT}}"
+> export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+> export AZURE_OPENAI_API_KEY="<api-key>"
+> export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 > ```
 >
 > ```powershell
 > # PowerShell
-> $env:GITHUB_TOKEN = "{{YOUR_GITHUB_PAT}}"
+> $env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+> $env:AZURE_OPENAI_API_KEY = "<api-key>"
+> $env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 > ```
 
 ## Asenna kirjastot
@@ -19,7 +24,7 @@
 dotnet restore
 ```
 
-Tämän pitäisi asentaa seuraavat kirjastot: Azure AI Inference, Azure Identity, Microsoft.Extension, Model.Hosting, ModelContextProtcol
+Tämä asentaa OpenAI .NET -asiakasohjelman ja Model Context Protocol SDK:n.
 
 ## Suorita
 
@@ -35,14 +40,17 @@ Listing tools
 Connected to server with tools: Add
 Tool description: Adds two numbers
 Tool parameters: {"title":"Add","description":"Adds two numbers","type":"object","properties":{"a":{"type":"integer"},"b":{"type":"integer"}},"required":["a","b"]}
-Tool definition: Azure.AI.Inference.ChatCompletionsToolDefinition
-Properties: {"a":{"type":"integer"},"b":{"type":"integer"}}
-MCP Tools def: 0: Azure.AI.Inference.ChatCompletionsToolDefinition
+Tool definition: OpenAI.Chat.ChatTool
+MCP Tools def: 0: OpenAI.Chat.ChatTool
 Tool call 0: Add with arguments {"a":2,"b":4}
 Sum 6
 ```
 
-Suurin osa tulosteesta on vain virheenkorjausta, mutta tärkeää on, että listaat työkalut MCP Serveriltä, muutat ne LLM-työkaluiksi ja lopulta saat MCP-asiakasvastauksen "Sum 6".
+Suurin osa tulosteesta on vain virheenkorjausta, mutta tärkeintä on, että luettelet työkaluja MCP-palvelimelta, muutat ne LLM-työkaluiksi ja lopuksi saat MCP-asiakasvastauksen "Sum 6".
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

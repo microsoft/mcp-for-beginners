@@ -1,37 +1,45 @@
 # Tämän esimerkin suorittaminen
 
-Tämä on Rust-ratkaisu LLM-asiakasnäytteelle. Sinulla tulee olla Rust-työkaluketju asennettuna; katso [virallinen asennusopas](https://www.rust-lang.org/tools/install).
+Tämä on Rust-ratkaisu LLM-asiakasnäytteelle. Sinulla tulee olla asennettuna Rust-työkaluketju; katso [virallinen asennusopas](https://www.rust-lang.org/tools/install).
 
-Asiakas kutsuu mallia GitHub Models -päättelyn kautta (`https://models.github.ai/inference/chat`) ja lukee GitHub-henkilökohtaisen käyttöoikeustunnuksesi (PAT) `OPENAI_API_KEY`-ympäristömuuttujasta.
+Asiakas kutsuu käyttöön otettua Microsoft Foundry -mallia Azure OpenAI
+v1-päätepisteen kautta.
 
 > [!NOTE]
-> Muut tässä repossa olevat ratkaisut käyttävät `GITHUB_TOKEN`-arvoa. Rustille aseta `OPENAI_API_KEY` samaan arvoon, jotta se vastaa OpenAI-asiakkaan asetuksia.
+> Arvo, joka välitetään `model`, on Foundry-käyttöönottosi nimi, ei välttämättä
+> varsinaisen mallin nimi.
 
-## -0- Aseta GitHub-tokenisi
+## -0- Määritä Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Käännä esimerkkiohjelma
+## -1- Rakenna esimerkki
 
 ```bash
 cargo build
 ```
 
-## -2- Suorita esimerkkiohjelma
+## -2- Suorita esimerkki
 
 ```bash
 cargo run
 ```
 
-Asiakas käynnistää laskin-MCP-palvelimen, hakee sen työkalulistan ja käyttää mallia (`openai/gpt-5-mini`) kutsuakseen `add`-työkalua. Näet todennäköisesti tulosteessa työkalukutsun (esim. "Calling tool: add") ja sen kutsun tuloksen.
+Asiakas käynnistää laskin-MCP-palvelimen, hakee sen työkaluluettelon ja käyttää
+käyttöön otettua mallia kutsuakseen `add`-työkalua. Näet tulostuksen, joka ilmaisee
+työkalukutsun (esimerkiksi "Calling tool: add") ja kutsun tuloksen.
 
 ---
 

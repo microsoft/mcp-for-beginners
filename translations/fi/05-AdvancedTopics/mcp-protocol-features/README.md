@@ -1,36 +1,41 @@
-# MCP-protokollan ominaisuudet syvällisesti
+# MCP-protokollan ominaisuuksien syväluotaus
 
-Tämä opas käsittelee edistyneitä MCP-protokollan ominaisuuksia, jotka ylittävät perus työkalujen ja resurssien käsittelyn. Näiden ominaisuuksien ymmärtäminen auttaa rakentamaan vakaampia, käyttäjäystävällisempiä ja tuotantovalmiita MCP-palvelimia.
+Tämä opas käsittelee edistyneitä MCP-protokollan ominaisuuksia, jotka ylittävät peruskäsittelyn työkaluissa ja resursseissa. Näiden ominaisuuksien ymmärtäminen auttaa rakentamaan vakaampia, käyttäjäystävällisempiä ja tuotantokelpoisia MCP-palvelimia.
 
-> **Katse tulevaan:** `2026-07-28` julkaisutarkoituksen ehdokas poistaa käytöstä Logging-primitiivin (suositellen `stderr`:iä stdion kanssa ja OpenTelemetryä rakenteelliselle havaittavuudelle), poistaa alla Server Lifecycle Events -osiossa mainitun `initialize`/istuntomallin ja siirtää kokeellisen Tasks-ominaisuuden omaan Tasks-laajennukseensa uuden `tasks/get`/`tasks/update`/`tasks/cancel`-elinkaaren kera. Katso [Mitä MCP:ssä muuttuu: 2026-07-28 julkaisutarkoituksen ehdokas](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28`-alue:** palvelinprosessin käynnistys ja sammutus pysyvät
+> sovelluksen asioina, mutta MCP `initialize` -kädenpuristus ja protokollatasoiset
+> istunnot on poistettu. Alla oleva Lokit-osio on säilytetty vanhojen
+> toteutusten takia; uudet palvelimet käyttävät `stderr` tai OpenTelemetrya. Tasks on
+> nyt erikseen versioitu laajennus. Katso
+> [Mitä MCP:ssä on muuttunut: 2026-07-28 määrittely](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Käsitellyt ominaisuudet
+## Kattavat ominaisuudet
 
-1. **Edistymisilmoitukset** – Raportoi pitkäkestoisten operaatioiden edistyminen
-2. **Pyyntöjen peruutus** – Salli asiakkaiden peruuttaa keskeneräiset pyynnöt
-3. **Resurssipohjat** – Dynaamiset resurssien URI:t parametreilla
-4. **Palvelimen elinkaaritapahtumat** – Oikea alustus ja sammutus
-5. **Lokituksen hallinta** – Palvelinpuolen lokituksen konfigurointi
-6. **Virheenkäsittelymallit** – Johdonmukaiset virhevastaukset
+1. **Etenemisilmoitukset** - Raportoi edistymistä pitkissä toiminnoissa
+2. **Pyyntöjen peruutus** - Salli asiakkaiden peruuttaa käynnissä olevat pyynnöt
+3. **Resurssipohjat** - Dynaamiset resurssi-URI:t parametreilla
+4. **Sovelluksen elinkaari** - Palvelinprosessin käynnistys ja sammutus
+5. **Lokituksen hallinta (vanhentunut)** - Vanha MCP-lokituksen konfiguraatio
+6. **Virheiden käsittelymallit** - Johdonmukaiset virhevastaavat
 
 ---
 
-## 1. Edistymisilmoitukset
+## 1. Etenemisilmoitukset
 
-Toimintojen, jotka vievät aikaa (datan käsittely, tiedostojen lataukset, API-kutsut), edistymisilmoitukset pitävät käyttäjät ajan tasalla.
+Toiminnoille, jotka vievät aikaa (datan käsittely, tiedostojen lataukset, API-kutsut), etenemisilmoitukset pitävät käyttäjät ajan tasalla.
 
-### Miten se toimii
+### Kuinka se toimii
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (pitkä operaatio)
-    Server-->>Client: ilmoitus: eteneminen 10%
-    Server-->>Client: ilmoitus: eteneminen 50%
-    Server-->>Client: ilmoitus: eteneminen 90%
-    Server->>Client: tulos (valmis)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
 
 ### Python-toteutus
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Hae tiedoston koko etenemisen laskemista varten
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Käsittele osa
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Lähetä etenemisilmoitus
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Raportoi eteneminen jokaisen kohteen jälkeen
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Lähetä etenemisilmoitus
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -126,7 +131,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Asiakkaan käsittely (Python)
+### Asiakashallinta (Python)
 
 ```python
 async def handle_progress(notification):
@@ -134,10 +139,10 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Rekisteröi handleri
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Kutsu työkalua (edistymispäivitykset tulevat handlerin kautta)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -145,7 +150,7 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Pyyntöjen peruutus
 
-Salli asiakkaiden peruuttaa pyynnöt, joita ei enää tarvita tai jotka kestävät liian kauan.
+Salli asiakkaiden peruuttaa tarpeettomat tai liian kauan kestävät pyynnöt.
 
 ### Python-toteutus
 
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Hae monien sivujen läpi
-            # Tarkista, onko peruutuspyyntö tehty
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simuloi sivun hakua
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Pieni viive mahdollistaa peruutustarkistukset
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Palauta osittaiset tulokset
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Normaali aikakatkaisu, jatka
+            pass  # Normal timeout, continue
 ```
 
-### Asiakaspuolen peruutus
+### Asiakkaan peruutuspuoli
 
 ```python
 import asyncio
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Peruutuspyyntö
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -265,7 +270,7 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Resurssipohjat
 
-Resurssipohjat mahdollistavat URI:n dynaamisen muodostamisen parametreilla, hyödyllinen API:ille ja tietokannoille.
+Resurssipohjat mahdollistavat dynaamisen URI-rakenteen parametrien avulla, hyödyllinen APIeille ja tietokannoille.
 
 ### Pohjien määrittely
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Jäsennä URI poimiaksesi parametrit
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Jäsennä GitHub-ongelman URI
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,9 +370,11 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Palvelimen elinkaaritapahtumat
+## 4. Sovelluksen elinkaari
 
-Oikea alustus- ja sammutuskäsittely varmistaa siistin resurssien hallinnan.
+Tämä osio kattaa sovellusprosessin käynnistyksen ja sammuttamisen, ei poistettua
+MCP `initialize` -kädenpuristusta. Oikea elinkaaren hallinta varmistaa puhtaan resurssien
+hallinnan.
 
 ### Pythonin elinkaaren hallinta
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Jaettu tila
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Käynnistys
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Palvelin pyörii täällä
+    yield  # Server runs here
     
-    # Sammutus
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -409,7 +416,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### TypeScriptin elinkaari
+### TypeScript-elinkaari
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // Alusta resurssit
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Käynnistä palvelin
+    // Start server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Siivoa resurssit
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Käytä tätä.dbConnection turvallisesti
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Käyttö sulavasti sammuttaen
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,9 +475,15 @@ await server.start();
 
 ---
 
-## 5. Lokituksen hallinta
+## 5. Lokituksen hallinta (vanhentunut)
 
-MCP tukee palvelinpuolen lokitustasoja, joita asiakkaat voivat ohjata.
+> [!WARNING]
+> MCP-lokitusta ei suositella käytettäväksi `2026-07-28`:ssa ja se on valmiina poistettavaksi
+> ensimmäisessä määrittelypäivityksessä, joka julkaistaan 28. heinäkuuta 2027 tai sen jälkeen. Alla olevat esimerkit
+> ovat yhteensopivuuden vuoksi vanhempien toteutusten kanssa. Käytä `stderr`:a yhdessä
+> stdio:n ja OpenTelemetryn kanssa uuden palvelinohjelmiston jäsenneltyyn havaittavuuteen.
+
+Vanhemmat MCP-versiot tukevat palvelinpuolen lokitustasoja, joita asiakkaat voivat hallita.
 
 ### Lokitustasojen toteutus
 
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Määritä MCP-tasot Pythonin lokitus tasoihin
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -519,13 +532,13 @@ async def debug_operation(data: str) -> str:
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Lähetä lokiviesti asiakkaalle
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Tee työtä...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -538,11 +551,11 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Virheenkäsittelymallit
+## 6. Virheiden käsittelymallit
 
-Johdonmukainen virheenkäsittely parantaa virheenkorjausta ja käyttökokemusta.
+Johdonmukainen virheiden käsittely parantaa virheiden jäljitystä ja käyttäjäkokemusta.
 
-### MCP-virhekoodit
+### MCP:n virhekoodit
 
 ```python
 from mcp.types import McpError, ErrorCode
@@ -572,14 +585,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Rakenteelliset virhevastaukset
+### Jäsennellyt virhevastaukset
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Tarkista syöte
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Tarkista käyttöoikeudet
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Suorita operaatio
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Kirjaa odottamattomat virheet
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Lisää tarkistusta...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Jo MCP-virhe
+      throw error;  // Already an MCP error
     }
     
-    // Muunna muut virheet
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Tuntematon virhe
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,68 +669,38 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Kokeelliset ominaisuudet (MCP 2025-11-25)
+## Versioriippuvaiset ominaisuudet
 
-Nämä ominaisuudet on merkitty spesifikaatiossa kokeellisiksi:
+### Tasks-laajennus
 
-### Tehtävät (pitkäkestoiset operaatiot)
+Tasks on virallinen, erikseen versioitu laajennus MCP `2026-07-28`:ssa. A
+palvelin voi palauttaa tehtävän käsitteen työkalukutsusta, ja asiakas hoitaa tehtävää
+`tasks/get`, `tasks/update` ja `tasks/cancel` avulla. Kokeellinen
+`2025-11-25` Tasks API ei ole taaksepäin yhteensopiva, eikä `tasks/list` enää
+ole olemassa.
 
-```python
-# Tehtävät mahdollistavat pitkien operaatioiden seurannan tilan kanssa
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Ilmoita tehtävän aloitus
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Koulutussilmukka
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+### Työkalun merkinnät
 
-### Työkalujen annotaatiot
-
-```python
-# Annotaatiot tarjoavat metatietoa työkalun käyttäytymisestä
-@app.tool(
-    annotations={
-        "destructive": False,      # Ei muuta dataa
-        "idempotent": True,        # Turvallista yrittää uudelleen
-        "timeout_seconds": 30,     # Odotettu enimmäiskesto
-        "requires_approval": False # Ei vaadi käyttäjän hyväksyntää
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Työkalun merkinnät kuvaavat käyttäytymistä, kuten vain luku, tuhoava, idempotentti
+tai avoimen maailman toiminto. Ne ovat vihjeitä, eikä niitä saa käsitellä luotettuina
+valtuutuksina tai turvallisuuslupauksina, elleivät ne tule luotettavalta palvelimelta.
 
 ---
 
-## Mitä seuraavaksi
+## Seuraavaksi
 
 - [Moduuli 8 - Parhaat käytännöt](../../08-BestPractices/README.md)
 - [5.14 - Kontekstisuunnittelu](../mcp-contextengineering/README.md)
-- [MCP Spesifikaation muutokset](https://spec.modelcontextprotocol.io/)
+- [MCP-määritelmän muutokset](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Lisäresurssit
 
-- [MCP spesifikaatio 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP-määritelmä 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 virhekoodit](https://www.jsonrpc.org/specification#error_object)
-- [Python SDK esimerkit](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
-- [TypeScript SDK esimerkit](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
+- [Python SDK -esimerkit](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
+- [TypeScript SDK -esimerkit](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---
 

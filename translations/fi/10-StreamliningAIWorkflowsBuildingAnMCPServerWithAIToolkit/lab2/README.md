@@ -1,270 +1,315 @@
-# 🌐 Moduuli 2: MCP Microsoft Foundry Toolkitin perusteilla
+# 🌐 Moduuli 2: MCP Microsoft Foundry Toolkitin perusteiden kanssa
 
-[![Kesto](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()
-[![Vaikeustaso](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)]()
-[![Esivaatimukset](https://img.shields.io/badge/Prerequisites-Module%201%20Complete-orange.svg)]()
+![Kesto](https://img.shields.io/badge/Duration-20_minutes-blue.svg)
+![Vaikeustaso](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)
+![Esitaidot](https://img.shields.io/badge/Prerequisites-Module_1-orange.svg)
 
 ## 📋 Oppimistavoitteet
 
-Tämän moduulin lopussa osaat:
-- ✅ Ymmärtää Model Context Protocolin (MCP) arkkitehtuurin ja edut
-- ✅ Tutustua Microsoftin MCP-palvelin-ekosysteemiin
-- ✅ Integroida MCP-palvelimia Microsoft Foundry Toolkit Agent Builderin kanssa
-- ✅ Rakentaa toimiva selainautomaatioagentti käyttäen Playwright MCP:tä
-- ✅ Konfiguroida ja testata MCP-työkaluja agenteissasi
-- ✅ Viedä ja käyttää MCP-vetoisia agenteja tuotannossa
+Tämän moduulin lopuksi osaat:
 
-## 🎯 Jatkoa moduuli 1:lle
+- ✅ Ymmärtää Model Context Protocol (MCP) -arkkitehtuurin ja sen hyödyt
+- ✅ Tutustua Microsoftin MCP-palvelinympäristöön
+- ✅ Integroida MCP-palvelimet Microsoft Foundry Toolkit Agent Builderiin
+- ✅ Rakentaa toimiva selainautomaatiovelho Playwright MCP:n avulla
+- ✅ Määrittää ja testata MCP-työkaluja agenteissasi
+- ✅ Viedä ja ottaa MCP-tehoa käyttävät agentit tuotantokäyttöön
 
-Moduulissa 1 hallitsimme Microsoft Foundry Toolkitin perusteet ja loimme ensimmäisen Python-agenttimme. Nyt **tehostamme** agenttejasi kytkemällä ne ulkoisiin työkaluihin ja palveluihin vallankumouksellisen **Model Context Protocolin (MCP)** kautta.
+## 🎯 Rakentaminen Moduulin 1 päälle
 
-Voit ajatella tätä siirtymänä peruslaskimesta koko tietokoneeseen — tekoälyagenttisi saavat kyvyn:
-- 🌐 Selailla ja olla vuorovaikutuksessa verkkosivujen kanssa
+Moduulissa 1 hallitsimme Microsoft Foundry Toolkitin perusteet ja loimme ensimmäisen
+Python- agenttimme. Nyt **tehostamme** agenttejasi yhdistämällä ne ulkoisiin työkaluihin
+ja palveluihin mullistavan **Model Context Protocolin (MCP)** avulla.
+
+
+
+
+
 - 📁 Käyttää ja käsitellä tiedostoja
 - 🔧 Integroitua yritysjärjestelmiin
 - 📊 Käsitellä reaaliaikaista dataa API:sta
 
-## 🧠 Model Context Protocolin (MCP) ymmärtäminen
 
-### 🔍 Mikä on MCP?
 
-Model Context Protocol (MCP) on **”USB-C tekoälysovelluksille”** — vallankumouksellinen avoin standardi, joka yhdistää suuria kielimalleja (LLM) ulkoisiin työkaluihin, tietolähteisiin ja palveluihin. Aivan kuten USB-C poisti kaoskaapelit tarjoamalla yhden universaalin liittimen, MCP poistaa tekoälyintegraatioiden monimutkaisuuden yhtenäisellä protokollalla.
 
-### 🎯 MCP:n ratkaisema ongelma
 
-**Ennen MCP:tä:**
-- 🔧 Räätälöidyt integraatiot joka työkaluun
-- 🔄 Toimittajalukkoon jääminen suljetuilla ratkaisuilla  
-- 🔒 Turva-aukot ad-hoc-yhteyksistä
-- ⏱️ Kuukausien kehitystyö perusintegraatioihin
 
-**MCP:n kanssa:**
-- ⚡ Plug-and-play työkalujen integraatio
-- 🔄 Toimittajasta riippumaton arkkitehtuuri
-- 🛡️ Sisäänrakennetut turvatoiminnot
-- 🚀 Minuutit uusien kyvykkyyksien lisäämiseen
+yhdistää Suuret Kielenmallit (LLM) ulkoisiin työkaluihin, tietolähteisiin ja palveluihin.
+Kuten USB-C tarjoaa yhden yleisen liittimen, MCP vähentää tekoälyintegraatioiden
+monimutkaisuutta yhden standardoidun protokollan avulla.
 
-### 🏗️ MCP-arkkitehtuurin syväluotaus
 
-MCP seuraa **asiakas-palvelinarkkitehtuuria**, joka luo turvallisen ja skaalautuvan ekosysteemin:
+
+
+
+
+- 🔄 Toimittajalukko suljetuilla ratkaisuilla
+- 🔒 Turva-aukot ad-hoc -yhteyksistä
+- ⏱️ Kuukausia kehitystyötä perusintegraatioihin
+
+
+
+
+- 🔄 Toimittajariippumaton arkkitehtuuri
+- 🛡️ Sisäänrakennetut turvallisuuden parhaat käytännöt
+- 🚀 Minuutit uusien ominaisuuksien lisäämiseen
+
+
+
+
+
 
 ```mermaid
 graph TB
-    A[AI-sovellus/agentti] --> B[MCP-asiakas]
-    B --> C[MCP-palvelin 1: Tiedostot]
-    B --> D[MCP-palvelin 2: Web-rajapinnat]
-    B --> E[MCP-palvelin 3: Tietokanta]
-    B --> F[MCP-palvelin N: Räätälöidyt työkalut]
+    A[AI Application/Agent] --> B[MCP Client]
+    B --> C[MCP Server 1: Files]
+    B --> D[MCP Server 2: Web APIs]
+    B --> E[MCP Server 3: Database]
+    B --> F[MCP Server N: Custom Tools]
     
-    C --> G[Paikallinen tiedostojärjestelmä]
-    D --> H[Ulkoiset rajapinnat]
-    E --> I[Tietokantajärjestelmät]
-    F --> J[Yritysjärjestelmät]
+    C --> G[Local File System]
+    D --> H[External APIs]
+    E --> I[Database Systems]
+    F --> J[Enterprise Systems]
 ```
 
-**🔧 Keskeiset komponentit:**
+**🔧 Ydinosa komponentit:**
 
 | Komponentti | Rooli | Esimerkkejä |
-|-------------|-------|-------------|
-| **MCP Hostit** | Sovellukset, jotka käyttävät MCP-palveluja | Claude Desktop, VS Code, Microsoft Foundry Toolkit |
-| **MCP Clientit** | Protokollakäsittelijät (1:1 palvelimiin) | Sisäänrakennettu host-sovelluksiin |
-| **MCP Palvelimet** | Tarjoavat kyvykkyyksiä standardin protokollan kautta | Playwright, Files, Azure, GitHub |
-| **Kuljetuskerros** | Viestintätavat | stdio, HTTP, WebSockets |
-
+| --------- | ---- | -------- |
+| **MCP Hosts** | Kuluttavat MCP-palveluita | VS Code, Foundry Toolkit |
+| **MCP Clients** | Käsittelevät protokollayhteyksiä | Sisäänrakennettu isäntiin |
+| **MCP Servers** | Tarjoavat toiminnallisuuksia | Playwright, Files, Azure, GitHub |
+| **Transport Layer** | Yhdistää asiakkaat ja palvelimet | stdio, HTTP, WebSockets |
 
 ## 🏢 Microsoftin MCP-palvelin-ekosysteemi
 
-Microsoft johtaa MCP-ekosysteemiä kattavalla yritysluokan palvelinjoukolla, jotka ratkovat todellisia liiketoiminnan tarpeita.
+Microsoft johtaa MCP-ekosysteemiä kattavalla
+yritystason palvelinvalikoimalla, jotka vastaavat todellisiin liiketoiminnan tarpeisiin.
 
 ### 🌟 Esitellyt Microsoft MCP -palvelimet
 
 #### 1. ☁️ Azure MCP -palvelin
-**🔗 Repositorio**: [azure/azure-mcp](https://github.com/azure/azure-mcp)
-**🎯 Tavoite**: Kattava Azure-resurssien hallinta tekoälyintegraatiolla
+
+**🔗 Repo**: [azure/azure-mcp](https://github.com/azure/azure-mcp)
+**🎯 Tarkoitus**: Laaja Azure-resurssien hallinta AI-integraatiolla
 
 **✨ Keskeiset ominaisuudet:**
-- Deklaratiivinen infrastruktuurin provisiointi
-- Reaaliaikainen resurssien seuranta
-- Kustannusoptimointisuositukset
+
+- Määrittelevä infrastruktuurin provisiointi
+- Resurssien reaaliaikainen valvonta
+- Kustannusten optimointisuositukset
 - Turvallisuusvaatimusten tarkistus
 
 **🚀 Käyttötapaukset:**
+
 - Infrastructure-as-Code AI-avusteisesti
 - Automaattinen resurssien skaalaus
-- Pilvikulujen optimointi
+- Pilvikustannusten optimointi
 - DevOps-työnkulkujen automaatio
 
 #### 2. 📊 Microsoft Dataverse MCP
+
 **📚 Dokumentaatio**: [Microsoft Dataverse Integration](https://go.microsoft.com/fwlink/?linkid=2320176)
-**🎯 Tavoite**: Luonnollisen kielen käyttöliittymä liiketoimintadataan
+**🎯 Tarkoitus**: Luonnollisen kielen käyttöliittymä liiketoimintadataan
 
 **✨ Keskeiset ominaisuudet:**
+
 - Luonnollisen kielen tietokantakyselyt
-- Liiketoimintaymmärrys kontekstina
-- Räätälöidyt prompt-mallit
-- Yrityksen datanhallinta
+- Liiketoimintayhteyksien ymmärrys
+- Räätälöidyt kehotemallit
+- Yritystason datanhallinta
 
 **🚀 Käyttötapaukset:**
+
 - Liiketoimintatiedon raportointi
 - Asiakasdatan analysointi
-- Myyntiputken näkymät
-- Sääntelyn vaatimat datakyselyt
+- Myyntiputken näkemykset
+- Säädösten mukaiset datakyselyt
 
 #### 3. 🌐 Playwright MCP -palvelin
-**🔗 Repositorio**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
-**🎯 Tavoite**: Selainautomaatio ja verkkovuorovaikutus
+
+**🔗 Repo**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
+**🎯 Tarkoitus**: Selaimen automaatio ja web-interaktiot
 
 **✨ Keskeiset ominaisuudet:**
+
 - Moniselainautomaatio (Chrome, Firefox, Safari)
 - Älykäs elementtien tunnistus
-- Kuvakaappaukset ja PDF:n luonti
+- Kuvakaappaukset ja PDF-luonti
 - Verkkoliikenteen seuranta
 
 **🚀 Käyttötapaukset:**
+
 - Automaattiset testityönkulut
-- Verkkosivujen tietojen keruu ja purku
-- Käyttöliittymän valvonta
+- Web-kaavinta ja tiedon poiminta
+- Käyttöliittymän seuranta
 - Kilpailija-analyysin automaatio
 
 #### 4. 📁 Files MCP -palvelin
-**🔗 Repositorio**: [microsoft/files-mcp-server](https://github.com/microsoft/files-mcp-server)
-**🎯 Tavoite**: Älykäs tiedostojärjestelmän hallinta
+
+**🔗 Repo**: [microsoft/files-mcp-server](https://github.com/microsoft/files-mcp-server)
+**🎯 Tarkoitus**: Älykäs tiedostojärjestelmän käsittely
 
 **✨ Keskeiset ominaisuudet:**
-- Deklaratiivinen tiedostojen hallinta
+
+- Määrittelevä tiedostohallinta
 - Sisällön synkronointi
 - Versiohallinnan integrointi
-- Metatietojen poiminta
+- Metadataekstraktio
 
 **🚀 Käyttötapaukset:**
+
 - Dokumentaation hallinta
-- Koodivaraston järjestely
+- Koodivarastojen organisointi
 - Sisällön julkaisutyönkulut
-- Datan putken tiedostokäsittely
+- Dataputken tiedostokäsittely
 
 #### 5. 📝 MarkItDown MCP -palvelin
-**🔗 Repositorio**: [microsoft/markitdown](https://github.com/microsoft/markitdown)
-**🎯 Tavoite**: Kehittynyt Markdown-käsittely ja muokkaus
+
+**🔗 Repo**: [microsoft/markitdown](https://github.com/microsoft/markitdown)
+**🎯 Tarkoitus**: Edistynyt Markdownin käsittely ja manipulointi
 
 **✨ Keskeiset ominaisuudet:**
-- Monipuolinen Markdown-jäsentäminen
-- Muotoilun muunnokset (MD ↔ HTML ↔ PDF)
+
+- Rikas Markdown-parsinta
+- Muunnokset (MD ↔ HTML ↔ PDF)
 - Sisällön rakenteen analyysi
 - Malliprosessointi
 
 **🚀 Käyttötapaukset:**
-- Tekninen dokumentaatio
+
+- Teknisen dokumentaation työnkulut
 - Sisällönhallintajärjestelmät
-- Raporttien automaatio
-- Tietopankin ylläpito
+- Raporttien generointi
+- Tietopankin automaatio
 
 #### 6. 📈 Clarity MCP -palvelin
+
 **📦 Paketti**: [@microsoft/clarity-mcp-server](https://www.npmjs.com/package/@microsoft/clarity-mcp-server)
-**🎯 Tavoite**: Verkkosivuanalytiikka ja käyttäjäkäyttäytymisen seuranta
+**🎯 Tarkoitus**: Web-analytiikka ja käyttäjäkäyttäytymisen näkymät
 
 **✨ Keskeiset ominaisuudet:**
-- Lämpökarttatiedon analyysi
-- Käyttäjäistuntojen tallenteet
+
+- Heatmap-datan analyysi
+- Käyttäjän istuntotallenteet
 - Suorituskykymittarit
-- Konversiokanavien analyysi
+- Konversiokanavan analyysi
 
 **🚀 Käyttötapaukset:**
-- Verkkosivujen optimointi
+
+- Verkkosivun optimointi
 - Käyttäjäkokemuksen tutkimus
 - A/B-testauksen analyysi
-- Liiketoiminnan raportointinäkymät
+- Liiketoimintatiedon kojelaudat
 
 ### 🌍 Yhteisön ekosysteemi
 
 Microsoftin palvelimien lisäksi MCP-ekosysteemiin kuuluu:
+
 - **🐙 GitHub MCP**: Varaston hallinta ja koodianalyysi
-- **🗄️ TietokantamCP:t**: PostgreSQL, MySQL, MongoDB -integraatiot
-- **☁️ Pilvipalveluntarjoajien MCP:t**: AWS, GCP, Digital Ocean työkalut
+- **🗄️ Tietokannat MCP:t**: PostgreSQL, MySQL, MongoDB -integraatiot
+- **☁️ Pilvipalveluntarjoajat MCP:t**: AWS, GCP, Digital Ocean -välineet
 - **📧 Viestintä MCP:t**: Slack, Teams, Sähköposti-integraatiot
 
-## 🛠️ Käytännön harjoitus: Selainautomaatioagentin rakentaminen
+## 🛠️ Käytännön työpaja: Selainautomaation agentin rakentaminen
 
-**🎯 Projektin tavoite**: Luo älykäs selainautomaatioagentti Playwright MCP -palvelimella, joka osaa navigoida verkkosivuilla, poimia tietoa ja suorittaa monimutkaista verkkovuorovaikutusta.
+**🎯 Projektin tavoite**: Luoda älykäs selainautomaation agentti käyttämällä
+Playwright MCP -palvelinta, joka pystyy navigoimaan verkkosivuilla, poimimaan tietoja ja
+suorittamaan monimutkaisia web-interaktioita.
 
-### 🚀 Vaihe 1: Agentin perusasetukset
+### 🚀 Vaihe 1: Agentin perustuksen luominen
 
-#### Vaihe 1: Aloita agenttisi luominen
+#### Vaihe 1: Alusta agenttisi
+
 1. **Avaa Microsoft Foundry Toolkit Agent Builder**
-2. **Luo uusi agentti** seuraavilla määrityksillä:
+2. **Luo uusi agentti** seuraavilla asetuksilla:
    - **Nimi**: `BrowserAgent`
-   - **Malli**: Valitse GPT-4o 
+   - **Malli**: Valitse GPT-5.1. Katso
+      [Microsoft Foundry mallin elinkaariaikataulu](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+      ajantasaiset tiedot mallin elinkaaresta.
 
 ![BrowserAgent](../../../../translated_images/fi/BrowserAgent.09c1adde5e136573.webp)
-
 
 ### 🔧 Vaihe 2: MCP-integraation työnkulku
 
 #### Vaihe 3: Lisää MCP-palvelinintegraatio
-1. **Siirry Tools-osioon** Agent Builderissa
+
+1. **Siirry työkalut-osioon** Agent Builderissa
 2. **Klikkaa "Add Tool"** avataksesi integraatiovalikon
-3. **Valitse "MCP Server"** saatavilla olevista vaihtoehdoista
+3. **Valitse "MCP Server"** valikoimasta
 
 ![AddMCP](../../../../translated_images/fi/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Työkalutyyppien ymmärtäminen:**
-- **Rakennettu työkalut**: Microsoft Foundry Toolkitin esikonfiguroidut funktiot
+
+- **Sisäänrakennetut työkalut**: Esiasetetut Microsoft Foundry Toolkit -funktiot
 - **MCP-palvelimet**: Ulkoiset palveluintegratiot
-- **Mukautetut API:t**: Omien palvelupisteiden käyttö
-- **Funktiokutsut**: Suora pääsy mallin toimintoihin
+- **Omat API:t**: Omien palvelupisteidesi rajapinnat
+- **Funktiokutsut**: Suora mallin funktiokutsu käyttö
 
 #### Vaihe 4: MCP-palvelimen valinta
+
 1. **Valitse "MCP Server"** jatkaaksesi
 ![AddMCPServer](../../../../translated_images/fi/AddMCPServer.69b911ccef872cbd.webp)
 
-2. **Selaa MCP-katalogia** tutkiaksesi tarjolla olevia integraatioita
+2. **Selaa MCP-katalogia** tutustuaksesi tarjolla oleviin integraatioihin
 ![MCPCatalog](../../../../translated_images/fi/MCPCatalog.a817d05314569900.webp)
-
 
 ### 🎮 Vaihe 3: Playwright MCP:n konfigurointi
 
 #### Vaihe 5: Valitse ja konfiguroi Playwright
-1. **Klikkaa "Use Featured MCP Servers"** päästäksesi Microsoftin hyväksyttyihin palvelimiin
-2. **Valitse "Playwright"** esitellyistä vaihtoehdoista
-3. **Hyväksy oletus MCP ID** tai muokkaa ympäristöösi sopivaksi
+
+1. **Klikkaa "Use Featured MCP Servers"** avataksesi Microsoftin varmennetut palvelimet
+2. **Valitse "Playwright"** esitellyistä
+3. **Hyväksy oletus MCP ID** tai räätälöi ympäristöösi sopivaksi
 
 ![MCPID](../../../../translated_images/fi/MCPID.67d446052979e819.webp)
 
-#### Vaihe 6: Ota Playwrightin kyvyt käyttöön
-**🔑 Kritiittinen vaihe**: Valitse **KAIKKI** saatavilla olevat Playwright-menetelmät maksimaaliseen toiminnallisuuteen
+#### Vaihe 6: Ota Playwright-ominaisuudet käyttöön
+
+**🔑 Tärkeä vaihe**: Valitse **KAIKKI** käytettävissä olevat Playwright-menetelmät maksimaalisen toiminnallisuuden takaamiseksi
 
 ![Tools](../../../../translated_images/fi/Tools.3ea23c447b4d9fec.webp)
 
-**🛠️ Oleelliset Playwright-työkalut:**
+**🛠️ Välttämättömät Playwright-työkalut:**
+
 - **Navigointi**: `goto`, `goBack`, `goForward`, `reload`
 - **Vuorovaikutus**: `click`, `fill`, `press`, `hover`, `drag`
-- **Uuttaminen**: `textContent`, `innerHTML`, `getAttribute`
-- **Vahvistus**: `isVisible`, `isEnabled`, `waitForSelector`
-- **Kaappaus**: `screenshot`, `pdf`, `video`
+- **Tiedon poiminta**: `textContent`, `innerHTML`, `getAttribute`
+- **Varmistus**: `isVisible`, `isEnabled`, `waitForSelector`
+- **Tallennus**: `screenshot`, `pdf`, `video`
 - **Verkko**: `setExtraHTTPHeaders`, `route`, `waitForResponse`
 
-#### Vaihe 7: Tarkista integraation onnistuminen
+#### Vaihe 7: Varmista integraation onnistuminen
+
 **✅ Onnistumisen merkit:**
+
 - Kaikki työkalut näkyvät Agent Builderin käyttöliittymässä
-- Integraatiopaneelissa ei virheilmoituksia
+- Integraatiopaneelissa ei ole virheilmoituksia
 - Playwright-palvelimen tila näyttää "Connected"
 
 ![AgentTools](../../../../translated_images/fi/AgentTools.053cfb96a17e0219.webp)
 
-**🔧 Yleisiä ongelmia ja ratkaisuja:**
-- **Yhteys epäonnistui**: Tarkista verkkoyhteys ja palomuuriasetukset
-- **Työkaluja puuttuu**: Varmista, että kaikki kyvyt valittiin asetuksissa
-- **Oikeusongelmat**: Varmista, että VS Code:lla on tarvittavat järjestelmän oikeudet
+**🔧 Yleiset ongelmat ja niiden ratkaisut:**
 
-### 🎯 Vaihe 4: Edistynyt kehotemuotoilu
+- **Yhteys epäonnistui**: Tarkista internet-yhteys ja palomuuriasetukset
+- **Puuttuvat työkalut**: Varmista, että kaikki ominaisuudet valittiin asennuksen aikana
+- **Oikeusvirheet**: Varmista, että VS Code:lla on tarvittavat järjestelmäoikeudet
 
-#### Vaihe 8: Suunnittele älykkäät järjestelmäkehotteet
-Luo monipuolisia kehotteita, jotka hyödyntävät Playwrightin kaikkia kykyjä:
+### 🎯 Vaihe 4: Edistynyt prompttitekniikka
+
+#### Vaihe 8: Suunnittele älykkäät järjestelmäpromptit
+
+Luo monimutkaisia promptteja, jotka hyödyntävät Playwrightin koko toiminnallisuutta:
 
 ```markdown
 # Web Automation Expert System Prompt
 
 ## Core Identity
-You are an advanced web automation specialist with deep expertise in browser automation, web scraping, and user experience analysis. You have access to Playwright tools for comprehensive browser control.
+You are an advanced web automation specialist with deep expertise in browser
+automation, web scraping, and user experience analysis. You have access to
+Playwright tools for comprehensive browser control.
 
 ## Capabilities & Approach
 ### Navigation Strategy
@@ -298,10 +343,12 @@ You are an advanced web automation specialist with deep expertise in browser aut
 - Follow website terms of service
 ```
 
-#### Vaihe 9: Luo dynaamisia käyttäjäkehotteita
-Muotoile kehotteita, jotka demonstroivat eri kyvykkyyksiä:
+#### Vaihe 9: Luo dynaamisia käyttäjäpromptteja
 
-**🌐 Verkkosivuanalyysin esimerkki:**
+Suunnittele promptteja, jotka demonstroivat eri toiminnallisuuksia:
+
+**🌐 Verkanalyysin esimerkki:**
+
 ```markdown
 Navigate to github.com/kinfey and provide a comprehensive analysis including:
 1. Repository structure and organization
@@ -318,57 +365,65 @@ Include screenshots at key steps and provide actionable insights.
 
 ### 🚀 Vaihe 5: Suoritus ja testaus
 
-#### Vaihe 10: Käynnistä ensimmäinen automaatiosi
-1. **Klikkaa "Run"** käynnistääksesi automaatiojakson
-2. **Seuraa reaaliaikaista suorituslogia**:
+#### Vaihe 10: Suorita ensimmäinen automaatiosi
+
+1. **Klikkaa "Run"** käynnistääksesi automaatiosarjan
+2. **Seuraa suoritusta reaaliajassa**:
    - Chrome-selain avautuu automaattisesti
    - Agentti navigoi kohdesivustolle
-   - Kuvakaappaukset otetaan jokaisessa merkittävässä vaiheessa
-   - Analyysitulokset virtaavat reaaliajassa
+   - Kuvakaappaukset tallentavat tärkeät vaiheet
+   - Analyysitulokset saapuvat reaaliajassa
 
 ![Browser](../../../../translated_images/fi/Browser.ec011d0bd64d0d11.webp)
 
 #### Vaihe 11: Analysoi tulokset ja näkemykset
+
 Tarkastele kattavaa analyysiä Agent Builderin käyttöliittymässä:
 
 ![Result](../../../../translated_images/fi/Result.8638f2b6703e9ea6.webp)
 
-### 🌟 Vaihe 6: Edistyneet kyvykkyydet ja käyttöönotto
+### 🌟 Vaihe 6: Edistyneet ominaisuudet ja tuotantoon vienti
 
-#### Vaihe 12: Vienti ja tuotantokäyttöönotto
-Agent Builder tukee useita käyttöönottoja:
+#### Vaihe 12: Export ja tuotantoon vienti
+
+Agent Builder tukee useita käyttöönotto vaihtoehtoja:
 
 ![Code](../../../../translated_images/fi/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Moduuli 2 yhteenveto & seuraavat askeleet
 
-### 🏆 Saavutettu: MCP-integraation mestari
+### 🏆 Saavutus avattu: MCP-integraation mestari
 
-**✅ Hallitsemasi taidot:**
-- [ ] MCP-arkkitehtuurin ja etujen ymmärtäminen
+**✅ Hallitut taidot:**
+
+- [ ] MCP-arkkitehtuurin ja hyötyjen ymmärtäminen
 - [ ] Microsoftin MCP-palvelin-ekosysteemin navigointi
 - [ ] Playwright MCP:n integrointi Microsoft Foundry Toolkitin kanssa
-- [ ] Monimutkaisten selainautomaatioagenttien rakentaminen
-- [ ] Edistynyt kehotemuotoilu web-automaatioon
+- [ ] Kehittyneiden selainautomaatioagenttien rakentaminen
+- [ ] Edistynyt prompttitekniikka web-automaatioon
 
 ### 📚 Lisäresurssit
 
 - **🔗 MCP-spesifikaatio**: [Virallinen protokolladokumentaatio](https://modelcontextprotocol.io/)
-- **🛠️ Playwright API**: [Täydellinen menetelmäreferenssi](https://playwright.dev/docs/api/class-playwright)
-- **🏢 Microsoft MCP -palvelimet**: [Yritysintegrointiohje](https://github.com/microsoft/mcp-servers)
-- **🌍 Yhteisön esimerkit**: [MCP Server Gallery](https://github.com/modelcontextprotocol/servers)
+- **🛠️ Playwright API**: [Täydellinen metodiviite](https://playwright.dev/docs/api/class-playwright)
+- **🏢 Microsoft MCP -palvelimet**:
+   [Yritysintegrointiohje](https://github.com/microsoft/mcp-servers)
+- **🌍 Yhteisöesimerkit**: [MCP-palvelinkuvagalleria](https://github.com/modelcontextprotocol/servers)
 
-**🎉 Onneksi olkoon!** Olet onnistuneesti hallinnut MCP-integraation ja voit nyt rakentaa tuotantovalmiita tekoälyagentteja ulkoisilla työkalukyvykkyyksillä!
-
+**🎉 Onnittelut!** Olet onnistuneesti hallinnut MCP-integraation ja voit
+nyt rakentaa tuotantovalmiita AI-agentteja ulkoisilla työkalutoiminnoilla!
 
 ### 🔜 Jatka seuraavaan moduuliin
 
-Valmiina viemään MCP-taitosi uudelle tasolle? Siirry **[Moduuli 3: Edistynyt MCP-kehitys Microsoft Foundry Toolkitillä](../lab3/README.md)**, missä opit:
-- Luomaan omat räätälöidyt MCP-palvelimet
-- Konfiguroimaan ja käyttämään uutta MCP Python SDK:ta
-- Asentamaan MCP Inspectorin virheenkorjaukseen
-- Hallitsemaan edistyneitä MCP-palvelinten kehitystyönkulkuja
-- Rakentamaan Sää MCP -palvelimen alusta alkaen
+Valmis viemään MCP-taitosi seuraavalle tasolle? Jatka
+**[Moduuli 3: Edistynyt MCP:n kehitys Microsoft Foundry Toolkitillä](../lab3/README.md)**
+missä opit:
+
+- Luo omat räätälöidyt MCP-palvelimesi
+- Konfiguroi ja käytä uusinta MCP Python SDK:ta
+- Ota MCP Inspector käyttöön virheenkorjausta varten
+- Hallitse edistyneet MCP-palvelin-kehitystyönkulut
+- Rakenna sää MCP-palvelin alusta alkaen
 
 ---
 

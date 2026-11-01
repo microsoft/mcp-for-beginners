@@ -1,37 +1,45 @@
-# Kør denne prøve
+# Kør dette eksempel
 
-Dette er Rust-løsningen til LLM-klienteksemplet. Du skal have en Rust-værktøjskæde installeret; se den [officielle installationsvejledning](https://www.rust-lang.org/tools/install).
+Dette er Rust-løsningen til LLM-klienteksemplet. Du skal have en Rust toolchain installeret; se den [officielle installationsvejledning](https://www.rust-lang.org/tools/install).
 
-Klienten kalder en model gennem GitHub Models inference-endpointet (`https://models.github.ai/inference/chat`) og læser din GitHub personlige adgangskode (PAT) fra miljøvariablen `OPENAI_API_KEY`.
+Klienten kalder en deployeret Microsoft Foundry-model via Azure OpenAI
+v1-endpointet.
 
 > [!NOTE]
-> Andre løsninger i dette repo bruger `GITHUB_TOKEN`. For Rust, sæt `OPENAI_API_KEY` til samme værdi for at matche OpenAI-klientkonfigurationen.
+> Værdien, der sendes som `model`, er navnet på din Foundry-udrulning, ikke nødvendigvis
+> det underliggende modelnavn.
 
-## -0- Sæt dit GitHub-token
+## -0- Konfigurer Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Byg prøven
+## -1- Byg eksemplet
 
 ```bash
 cargo build
 ```
 
-## -2- Kør prøven
+## -2- Kør eksemplet
 
 ```bash
 cargo run
 ```
 
-Klienten starter calculator MCP-serveren, henter dens værktøjsliste og bruger modellen (`openai/gpt-5-mini`) til at kalde `add`-værktøjet. Du skulle se output, der indikerer værktøjskaldet (for eksempel, "Calling tool: add") og resultatet af det kald.
+Klienten starter calculator MCP-serveren, henter dens liste over værktøjer og bruger
+den deployerede model til at kalde `add`-værktøjet. Du bør se output, der viser
+kaldet af værktøjet (for eksempel "Calling tool: add") og resultatet af det kald.
 
 ---
 

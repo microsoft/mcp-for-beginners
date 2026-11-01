@@ -1,52 +1,52 @@
-# Case Study: Yhteys Microsoft Learn Docs MCP -palvelimelle asiakkaalta
+# Tapaustutkimus: Yhteyden muodostaminen Microsoft Learn Docs MCP -palvelimeen asiakkaalta
 
-Oletko joskus huomannut itsesi hyppivän dokumentaatiosivustojen, Stack Overflow’n ja loputtomien hakukonesivujen välillä yrittäessäsi ratkaista ongelmaa koodissasi? Ehkä pidät toista näyttöä vain dokumentaatiota varten tai vaihdat jatkuvasti Alt+Tabilla IDE:si ja selaimen välillä. Eikö olisi parempi, jos voisit tuoda dokumentaation suoraan työvirtaasi—integroituna sovelluksiisi, IDE:si tai jopa omiin räätälöityihin työkaluihisi? Tässä tapaustutkimuksessa tutkimme, kuinka tehdä juuri näin muodostamalla suora yhteys Microsoft Learn Docs MCP -palvelimelle omasta asiakasohjelmastasi.
+Oletko koskaan huomannut hyppääväsi dokumentaatiosivustojen, Stack Overflown ja loputtomien hakukonevälilehtien välillä yrittäessäsi ratkaista ongelmaa koodissasi? Ehkä sinulla on toinen näyttö vain dokumentaatiota varten, tai vaihdat jatkuvasti IDE:n ja selaimen välillä alt-tab-näppäimellä. Eikö olisi parempi, jos voisit tuoda dokumentaation suoraan työnkulkuusi — integroituna sovelluksiisi, IDE:hesi tai jopa omiin räätälöityihin työkaluihisi? Tässä tapaustutkimuksessa tutustumme siihen, miten se tehdään yhdistämällä suoraan Microsoft Learn Docs MCP -palvelimeen omasta asiakasohjelmastasi.
 
-## Yleiskuva
+## Yleiskatsaus
 
-Nykykehitys on enemmän kuin pelkkää koodin kirjoittamista—kyse on oikean tiedon löytämisestä oikeaan aikaan. Dokumentaatio on kaikkialla, mutta harvoin siellä, missä sitä eniten tarvitset: työkaluissasi ja työprosesseissasi. Integroimalla dokumentaation hakemisen suoraan sovelluksiisi voit säästää aikaa, vähentää kontekstin vaihtamista ja lisätä tuottavuutta. Tässä osiossa näytämme, kuinka yhdistää asiakas Microsoft Learn Docs MCP -palvelimeen, jotta voit päästä käsiksi reaaliaikaiseen, kontekstista tietävään dokumentaatioon ilman, että poistut sovelluksestasi.
+Moderni kehitys ei ole pelkkää koodin kirjoittamista — kyse on oikean tiedon löytämisestä oikeaan aikaan. Dokumentaatiota on kaikkialla, mutta se ei useinkaan ole siellä, missä sitä eniten tarvitset: työkalujesi ja työnkulkujensi sisällä. Integroimalla dokumentaation hakeminen suoraan sovelluksiisi voit säästää aikaa, vähentää kontekstin vaihtamista ja lisätä tuottavuutta. Tässä osiossa näytämme, miten asiakas yhdistetään Microsoft Learn Docs MCP -palvelimeen, jotta voit käyttää reaaliaikaista, kontekstitietoista dokumentaatiota poistumatta sovelluksestasi.
 
-Käymme läpi yhteyden muodostamisen, pyynnön lähettämisen ja suoravirtojen vastausten käsittelyn tehokkaasti. Tämä lähestymistapa virtaviivaistaa työvirtaasi ja avaa oven älykkäämpien, avuliaiden kehittäjätyökalujen rakentamiseen.
+Käymme läpi yhteyden muodostamisen, pyynnön lähettämisen ja virtaavien vastausten tehokkaan käsittelyn. Tämä lähestymistapa sujuvoittaa työnkulkua ja avaa ovet älykkäämpien, hyödyllisempien kehittäjätyökalujen rakentamiseen.
 
 ## Oppimistavoitteet
 
-Miksi teemme tämän? Koska parhaat kehittäjäkokemukset ovat niitä, jotka poistavat kitkaa. Kuvittele maailma, jossa koodieditorisi, chatbotisi tai verkkosovelluksesi voi vastata dokumentaatiokysymyksiisi välittömästi käyttäen Microsoft Learnin uusimpia sisältöjä. Tämän luvun lopussa osaat:
+Miksi teemme tämän? Koska parhaat kehittäjäkokemukset poistavat kitkan. Kuvittele maailma, jossa koodieditorisi, chatbotisi tai web-sovelluksesi voi vastata dokumentaatiokysymyksiisi välittömästi käyttäen Microsoft Learnin uusinta sisältöä. Tämän luvun lopussa osaat:
 
-- Ymmärtää MCP-palvelin-asiakaskommunikaation perusteet dokumentaatiolle
-- Toteuttaa konsoli- tai web-sovelluksen, joka yhdistää Microsoft Learn Docs MCP -palvelimeen
-- Käyttää suoratoistavia HTTP-asiakkaita reaaliaikaiseen dokumentaation hakemiseen
-- Lokittaa ja tulkita dokumentaatiovastauksia sovelluksessasi
+- Ymmärtää MCP-palvelin-asiakasviestinnän perusteet dokumentaatiota varten
+- Toteuttaa konsoli- tai web-sovellus, joka muodostaa yhteyden Microsoft Learn Docs MCP -palvelimeen
+- Käyttää virtaavia HTTP-asiakkaita reaaliaikaiseen dokumentaation hakemiseen
+- Kirjata ja tulkita dokumentaatiovastauksia sovelluksessasi
 
-Näet, kuinka nämä taidot auttavat sinua rakentamaan työkaluja, jotka eivät ole vain reaktiivisia, vaan aidosti interaktiivisia ja kontekstitietoisia.
+Näet, miten nämä taidot auttavat sinua rakentamaan työkaluja, jotka eivät ole vain reaktiivisia, vaan aidosti vuorovaikutteisia ja kontekstitietoisia.
 
-## Tilanne 1 – Reaaliaikainen dokumentaation haku MCP:n avulla
+## Tilanne 1 - Reaaliaikainen dokumentaation haku MCP:llä
 
-Tässä tilanteessa näytämme, kuinka yhdistää asiakas Microsoft Learn Docs MCP -palvelimeen, jotta pääset käsiksi reaaliaikaiseen, kontekstiin perustuvaan dokumentaatioon poistumatta sovelluksestasi.
+Tässä tilanteessa näytämme, miten yhdistää asiakas Microsoft Learn Docs MCP -palvelimeen, jotta voit käyttää reaaliaikaista, kontekstitietoista dokumentaatiota poistumatta sovelluksestasi.
 
-Sovelletaan tätä käytäntöön. Tehtäväsi on kirjoittaa sovellus, joka yhdistää Microsoft Learn Docs MCP -palvelimeen, kutsuu `microsoft_docs_search` -työkalua ja kirjaa suoratoistovastauksen konsoliin.
+Otetaan tämä käytäntöön. Tehtäväsi on kirjoittaa sovellus, joka muodostaa yhteyden Microsoft Learn Docs MCP -palvelimeen, kutsuu `microsoft_docs_search`-työkalua ja kirjaa virtaavan vastauksen konsoliin.
 
 ### Miksi tämä lähestymistapa?
-Koska se on perusta kehittyneempien integraatioiden rakentamiselle—olipa tarkoituksenasi tehostaa chatbotia, IDE-laajennusta tai web-hallintapaneelia.
+Koska se on pohja kehittyneemmille integraatioille — halusitpa sitten voiman antaa chatbotille, IDE-laajennukselle tai web-hallintapaneelille.
 
-Löydät tämän tilanteen koodin ja ohjeet [`solution`](./solution/README.md) -kansiosta tässä tapaustutkimuksessa. Vaiheet opastavat sinut yhteyden muodostamisessa:
-- Käytä virallista MCP SDK:ta ja suoratoistettavaa HTTP-asiakasta yhteyteen
-- Kutsu `microsoft_docs_search` -työkalu hakuehdolla dokumentaation hakemiseksi
+Löydät tämän tilanteen koodin ja ohjeet [`solution`](./solution/README.md) -kansiosta tässä tapaustutkimuksessa. Vaiheet opastavat sinua yhteyden muodostamisessa:
+- Käytä virallista MCP SDK:ta ja virtaavaa HTTP-asiakasta yhteyteen
+- Kutsu `microsoft_docs_search`-työkalua kyselyparametrilla dokumentaation hakemiseksi
 - Toteuta asianmukainen lokitus ja virheenkäsittely
-- Luo interaktiivinen konsolirajapinta, joka antaa käyttäjien syöttää useita hakukyselyjä
+- Luo vuorovaikutteinen konsoli, jolla käyttäjät voivat syöttää useita hakukyselyjä
 
-Tämä skenaario osoittaa kuinka:
-- Yhdistää Docs MCP -palvelimeen
-- Lähettää hakukysely
-- Jäsentää ja tulostaa tulokset
+Tämä tilanne havainnollistaa, miten:
+- Yhdistetään Docs MCP -palvelimeen
+- Lähetetään kysely
+- Tulokset jäsennetään ja tulostetaan
 
-Näin ratkaisun ajo saattaa näyttää:
+Näin ratkaisun suorittaminen voisi näyttää:
 
 ```
 Prompt> What is Azure Key Vault?
 Answer> Azure Key Vault is a cloud service for securely storing and accessing secrets. ...
 ```
-  
-Alla on minimaalinen esimerkkiratkaisu. Kokonaiskoodi ja yksityiskohdat löytyvät solution-kansiosta.
+
+Alla on minimaalinen esimerkkiratkaisu. Täysi koodi ja yksityiskohdat löytyvät ratkaisukansiosta.
 
 <details>
 <summary>Python</summary>
@@ -66,21 +66,22 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
-  
-- Täyden toteutuksen ja lokituksen löydät tiedostosta [`scenario1.py`](../../../../09-CaseStudy/docs-mcp/solution/python/scenario1.py).  
-- Asennus- ja käyttöohjeet löytyvät samasta kansiosta olevasta [`README.md`](./solution/python/README.md) tiedostosta.  
+
+- Täyden toteutuksen ja lokituksen löydät osoitteesta [`scenario1.py`](../../../../09-CaseStudy/docs-mcp/solution/python/scenario1.py).
+- Asennus- ja käyttöönotto-ohjeet ovat tiedostossa [`README.md`](./solution/python/README.md) samassa kansiossa.
 </details>
 
-## Tilanne 2 – Interaktiivinen opintosuunnitelman generaattori verkkosovelluksella MCP:n avulla
 
-Tässä skenaariossa opit, kuinka Docs MCP integroidaan web-kehitysprojektiin. Tavoitteena on antaa käyttäjien hakea Microsoft Learn -dokumentaatiota suoraan verkkokäyttöliittymästä, jolloin dokumentaatio on heti saatavilla sovelluksessasi tai sivustollasi.
+## Tilanne 2 - Vuorovaikutteinen opintosuunnitelman generaattorin web-sovellus MCP:llä
 
-Näet kuinka:
-- Rakentaa web-sovellus
-- Yhdistää Docs MCP -palvelimeen
-- Käsitellä käyttäjän syötettä ja näyttää tulokset
+Tässä tilanteessa opit integroimaan Docs MCP:n web-kehitysprojektiin. Tavoitteena on mahdollistaa käyttäjien hakea Microsoft Learnin dokumentaatiota suoraan web-käyttöliittymästä, jolloin dokumentaatio on heti saatavilla sovelluksessasi tai sivustollasi.
 
-Näin ratkaisun ajo saattaa näyttää:
+Näet, miten:
+- Otat käyttöön web-sovelluksen
+- Yhdistät Docs MCP -palvelimeen
+- Käsittelet käyttäjän syötteen ja näytät tulokset
+
+Näin ratkaisun suorittaminen voisi näyttää:
 
 ```
 User> I want to learn about AI102 - so suggest the roadmap to get it started from learn for 6 weeks
@@ -98,15 +99,15 @@ Assistant> Here’s a detailed 6-week roadmap to start your preparation for the 
 
 Let me know if you want module-specific recommendations or need more customized weekly tasks!
 ```
-  
-Alla on minimaalinen esimerkkiratkaisu. Kokonaiskoodi ja yksityiskohdat löytyvät solution-kansiosta.
 
-![Tilanne 2 Yleiskuva](../../../../translated_images/fi/scenario2.0c92726d5cd81f68.webp)
+Alla on minimaalinen esimerkkiratkaisu. Täysi koodi ja yksityiskohdat löytyvät ratkaisukansiosta.
+
+![Tilanne 2 Yleiskatsaus](../../../../translated_images/fi/scenario2.0c92726d5cd81f68.webp)
 
 <details>
 <summary>Python (Chainlit)</summary>
 
-Chainlit on kehys keskustelupohjaisten tekoälyweb-sovellusten rakentamiseen. Sen avulla on helppo luoda interaktiivisia chatteja ja avustajia, jotka voivat kutsua MCP-työkaluja ja näyttää tuloksia reaaliajassa. Se on ihanteellinen nopeaan prototyyppien luomiseen ja käyttäjäystävällisiin käyttöliittymiin.
+Chainlit on kehys keskustelevien tekoäly-web-sovellusten rakentamiseen. Sen avulla on helppo luoda vuorovaikutteisia chatboteja ja assistentteja, jotka voivat kutsua MCP-työkaluja ja näyttää tuloksia reaaliajassa. Se on ihanteellinen nopeaan prototypointiin ja käyttäjäystävällisiin toiminnallisuuksiin.
 
 ```python
 import chainlit as cl
@@ -124,25 +125,26 @@ def handle_message(message):
     else:
         cl.Message(content="Error: " + response.text).send()
 ```
-  
-- Täyden toteutuksen löydät tiedostosta [`scenario2.py`](../../../../09-CaseStudy/docs-mcp/solution/python/scenario2.py).  
-- Asennus- ja ajo-ohjeet löytyvät samasta kansiosta olevasta [`README.md`](./solution/python/README.md) tiedostosta.  
+
+- Täyden toteutuksen löydät osoitteesta [`scenario2.py`](../../../../09-CaseStudy/docs-mcp/solution/python/scenario2.py).
+- Asennus- ja ajo-ohjeet ovat tiedoissa [`README.md`](./solution/python/README.md).
 </details>
 
-## Tilanne 3: Sisällön tarkasteleminen suoraan editorissa MCP-palvelimella VS Codessa
 
-Jos haluat saada Microsoft Learn Docs -sisältöä suoraan VS Codeen (sen sijaan että vaihdat selaimen välilehtiä), voit käyttää MCP-palvelinta editorissasi. Tämä mahdollistaa:
-- Dokumentaation hakemisen ja lukemisen VS Codessa poistumatta koodausympäristöstäsi.
-- Dokumentaation viittaamisen ja linkkien lisäämisen suoraan README- tai kurssitiedostoihin.
-- GitHub Copilotin ja MCP:n käytön yhdessä saumattomaan, tekoälyavusteiseen dokumentaatiotyöskentelyyn.
+## Tilanne 3: Dokumentaatiot suoraan editorissa MCP-palvelimella VS Codessa
 
-**Näet kuinka:**
-- Lisää kelvollinen `.vscode/mcp.json` -tiedosto työtilasi juureen (katso esimerkki alla).
-- Avaa MCP-paneeli tai käytä komentovalikkoa VS Codessa dokumentaation hakemiseen ja lisäämiseen.
-- Viittaa dokumentaatioon suoraan markdown-tiedostoissasi työskennellessäsi.
-- Yhdistä tämä työnkulku GitHub Copilotiin entistä parempaa tuottavuutta varten.
+Jos haluat saada Microsoft Learn Docsin suoraan VS Codeen (sen sijaan, että vaihtaisit selaimen välilehtiä), voit käyttää MCP-palvelinta editorissasi. Tämä mahdollistaa, että:
+- Etsit ja luet dokumentaatiota VS Codessa poistumatta koodausympäristöstäsi.
+- Viittaat dokumentaatioon ja lisäät linkkejä suoraan README- tai kurssitiedostoihisi.
+- Hyödynnät GitHub Copilotia ja MCP:tä yhdessä saumattomaan tekoälypohjaiseen dokumentaatiotyönkulkuun.
 
-Näin voit määrittää MCP-palvelimen VS Codessa:
+**Näet, miten:**
+- Lisäät kelvollisen `.vscode/mcp.json`-tiedoston työtilasi juureen (katso alla oleva esimerkki).
+- Avatset MCP-paneelin tai käytät komentopalettia VS Codessa dokumentaation hakuun ja lisäämiseen.
+- Viittaat dokumentaatioon suoraan markdown-tiedostoissasi työn aikana.
+- Yhdistät tämän työnkulun GitHub Copilotin kanssa entistä suurempaan tuottavuuteen.
+
+Tässä esimerkki siitä, miten MCP-palvelin asetetaan VS Codeen:
 
 ```json
 {
@@ -154,41 +156,42 @@ Näin voit määrittää MCP-palvelimen VS Codessa:
 }
 ```
 
+</details>
 
-> Yksityiskohtaiset läpikäynnit kuvakaappauksineen ja vaiheittaisine ohjeineen löydät tiedostosta [`README.md`](./solution/scenario3/README.md).
+> Yksityiskohtaisen läpikäynnin kuvakaappauksineen ja vaihe vaiheelta -oppaan löydät osoitteesta [`README.md`](./solution/scenario3/README.md).
 
-![Tilanne 3 Yleiskuva](../../../../translated_images/fi/step4-prompt-chat.12187bb001605efc.webp)
+![Tilanne 3 Yleiskatsaus](../../../../translated_images/fi/step4-prompt-chat.12187bb001605efc.webp)
 
-Tämä lähestymistapa on erinomainen kaikille, jotka rakentavat teknisiä kursseja, kirjoittavat dokumentaatiota tai kehittävät koodia, jossa tarvitaan usein viitteitä.
+Tämä lähestymistapa sopii erinomaisesti teknisten kurssien laatijoille, dokumentaation kirjoittajille tai koodin kehittäjille, joilla on tarve usein viitata materiaaliin.
 
-## Keskeiset opit
+## Keskeiset Opit
 
-Dokumentaation integroiminen suoraan työkaluihisi ei ole pelkkä mukavuus—se on tuottavuuden mullistaja. Yhdistämällä Microsoft Learn Docs MCP -palvelimeen asiakkaaltasi voit:
+Dokumentaation integroiminen suoraan työkaluihisi ei ole vain mukavuutta — se on tuottavuuden mullistaja. Yhdistämällä Microsoft Learn Docs MCP -palvelimeen asiakkaaltasi voit:
 
 - Poistaa kontekstin vaihtamisen koodin ja dokumentaation välillä
-- Hakea ajan tasalla olevaa, kontekstiin perustuvaa dokumentaatiota reaaliajassa
-- Rakentaa älykkäämpiä ja vuorovaikutteisempia kehittäjätyökaluja
+- Hakea ajan tasalla olevaa, kontekstitietoista dokumentaatiota reaaliajassa
+- Rakentaa älykkäämpiä, vuorovaikutteisempia kehittäjätyökaluja
 
-Nämä taidot auttavat sinua luomaan ratkaisuja, jotka eivät ole vain tehokkaita, vaan myös miellyttäviä käyttää.
+Nämä taidot auttavat sinua luomaan ratkaisuja, jotka eivät ole vain tehokkaita vaan myös miellyttäviä käyttää.
 
 ## Lisäresurssit
 
-Syventääksesi ymmärrystäsi, tutustu näihin virallisiin resursseihin:
+Syventääksesi ymmärrystäsi tutustu näihin virallisiin resursseihin:
 
 - [Microsoft Learn Docs MCP Server (GitHub)](https://github.com/MicrosoftDocs/mcp)
-- [Aloita Azure MCP Serverin kanssa (mcp-python)](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/get-started#create-the-python-app)
+- [Aloita Azure MCP Serverilla (mcp-python)](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/get-started#create-the-python-app)
 - [Mikä on Azure MCP Server?](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/)
-- [Model Context Protocol (MCP) Johdanto](https://modelcontextprotocol.io/introduction)
-- [Lisää MCP Serveristä saatavia plugineja (Python)](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins)
+- [Model Context Protocol (MCP) Esittely](https://modelcontextprotocol.io/introduction)
+- [Lisää liitännäisiä MCP-palvelimelta (Python)](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins)
 
-## Mitä seuraavaksi
+## Mitä Seuraavaksi
 
 - Takaisin: [Tapaustutkimusten yleiskatsaus](../README.md)
-- Jatka: [Moduuli 10: AI-työvirtojen tehostaminen AI Toolkitin avulla](../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Jatka: [Moduuli 10: AI-työnkulkujen virtaviivaistaminen Microsoft Foundry Toolkitilla](../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, muistathan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen omalla kielellä on katsottava viralliseksi lähteeksi. Tärkeitä tietoja varten suositellaan ammattilaisten tekemää ihmiskäännöstä. Emme ole vastuussa mahdollisista väärinymmärryksistä tai tulkinnoista, jotka johtuvat tämän käännöksen käytöstä.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

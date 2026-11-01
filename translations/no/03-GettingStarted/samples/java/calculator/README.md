@@ -1,8 +1,8 @@
 # Grunnleggende Kalkulator MCP-tjeneste
 
 > [!NOTE]
-> Dette eksempelet bruker den gamle HTTP+SSE-transporten og retter seg mot en SDK som er kompatibel
-> med MCP `2025-11-25`. Nye fjernservere bør bruke `2026-07-28` Streamable
+> Dette eksempelet bruker den eldre HTTP+SSE-transporten og er rettet mot en SDK-kompatibel
+> med MCP `2025-11-25`. Nye eksterne servere bør bruke `2026-07-28` Streamable
 > HTTP-støtte.
 
 Denne tjenesten tilbyr grunnleggende kalkulatoroperasjoner gjennom Model Context Protocol (MCP) ved bruk av Spring Boot med WebFlux-transport. Den er designet som et enkelt eksempel for nybegynnere som lærer om MCP-implementasjoner.
@@ -13,7 +13,7 @@ For mer informasjon, se [MCP Server Boot Starter](https://docs.spring.io/spring-
 
 Tjenesten viser:
 - Støtte for SSE (Server-Sent Events)
-- Automatisk verktøyregistrering ved bruk av Spring AI sin `@Tool` annotasjon
+- Automatisk verktøyregistrering ved bruk av Spring AI sin `@Tool`-annotasjon
 - Grunnleggende kalkulatorfunksjoner:
   - Addisjon, subtraksjon, multiplikasjon, divisjon
   - Potensberegning og kvadratrot
@@ -22,7 +22,7 @@ Tjenesten viser:
 
 ## Funksjoner
 
-Denne kalkulatortjenesten tilbyr følgende funksjonaliteter:
+Denne kalkulatortjenesten tilbyr følgende muligheter:
 
 1. **Grunnleggende aritmetiske operasjoner**:
    - Addisjon av to tall
@@ -34,7 +34,7 @@ Denne kalkulatortjenesten tilbyr følgende funksjonaliteter:
    - Potensberegning (heve en base til en eksponent)
    - Kvadratrotberegning (med kontroll for negative tall)
    - Modulus (rest) beregning
-   - Absoluttverdi beregning
+   - Beregning av absoluttverdi
 
 3. **Hjelpesystem**:
    - Innebygd hjelpefunksjon som forklarer alle tilgjengelige operasjoner
@@ -46,8 +46,8 @@ Tjenesten eksponerer følgende API-endepunkter gjennom MCP-protokollen:
 - `add(a, b)`: Legg sammen to tall
 - `subtract(a, b)`: Trekk det andre tallet fra det første
 - `multiply(a, b)`: Multipliser to tall
-- `divide(a, b)`: Del det første tallet med det andre (med null-kontroll)
-- `power(base, exponent)`: Beregn potensen av et tall
+- `divide(a, b)`: Del det første tallet på det andre (med nullkontroll)
+- `power(base, exponent)`: Beregn potens av et tall
 - `squareRoot(number)`: Beregn kvadratroten (med kontroll for negative tall)
 - `modulus(a, b)`: Beregn resten ved divisjon
 - `absolute(number)`: Beregn absoluttverdien
@@ -59,86 +59,63 @@ En enkel testklient er inkludert i `com.microsoft.mcp.sample.client`-pakken. Kla
 
 ## Bruke LangChain4j-klienten
 
-Prosjektet inkluderer et LangChain4j-eksempelklient i `com.microsoft.mcp.sample.client.LangChain4jClient` som viser hvordan man integrerer kalkulatortjenesten med LangChain4j og GitHub-modeller:
+Prosjektet inkluderer en eksempelklient for LangChain4j i
+`com.microsoft.mcp.sample.client.LangChain4jClient` som viser hvordan man
+integrerer kalkulatortjenesten med en Microsoft Foundry-modell.
 
 ### Forutsetninger
 
-1. **Oppsett av GitHub-token**:
-   
-   For å bruke GitHubs AI-modeller (som phi-4), trenger du en personlig tilgangstoken:
+1. Opprett en Microsoft Foundry-ressurs og deployer en aktiv modell som
+   `gpt-5.1`.
+2. Sett modellendepunkt, API-nøkkel og deployeringsnavn:
 
-   a. Gå til innstillingene for GitHub-kontoen din: https://github.com/settings/tokens
-   
-   b. Klikk "Generate new token" → "Generate new token (classic)"
-   
-   c. Gi token et beskrivende navn
-   
-   d. Velg følgende tilganger:
-      - `repo` (Full kontroll over private repositorier)
-      - `read:org` (Les organisasjon- og teammedlemskap, les organisasjonsprosjekter)
-      - `gist` (Opprett gists)
-      - `user:email` (Tilgang til epostadresser (kun lesetilgang))
-   
-   e. Klikk "Generate token" og kopier den nye tokenen din
-   
-   f. Sett den som en miljøvariabel:
-      
-      På Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      På macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. For permanent oppsett, legg den til miljøvariablene via systeminnstillinger
-
-2. Legg til LangChain4j GitHub-avhengigheten i prosjektet ditt (allerede inkludert i pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Sørg for at kalkulatorserveren kjører på `localhost:8080`
+3. Sjekk
+   [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   før du velger en deployment.
+4. Sørg for at kalkulatorserveren kjører på `localhost:8080`.
 
 ### Kjøre LangChain4j-klienten
 
-Dette eksempelet demonstrerer:
-- Tilkobling til kalkulator MCP-serveren via SSE-transport
-- Bruk av LangChain4j for å lage en chat-bot som benytter kalkulatoroperasjoner
-- Integrasjon med GitHub AI-modeller (nå med phi-4-modellen)
+Dette eksempelet viser:
+- Tilkobling til kalkulator MCP-server via SSE-transport
+- Bruke LangChain4j for å lage en chatbot som bruker kalkulatoroperasjoner
+- Integrasjon med en deployert Microsoft Foundry-modell
 
-Klienten sender følgende prøvespørringer for å vise funksjonalitet:
+Klienten sender følgende eksempelspørringer for å demonstrere funksjonalitet:
 1. Beregning av summen av to tall
 2. Finne kvadratroten av et tall
-3. Hente hjelpeinformasjon om tilgjengelige kalkulatoroperasjoner
+3. Få hjelp med informasjon om tilgjengelige kalkulatoroperasjoner
 
-Kjør eksempelet og sjekk konsollutskriften for å se hvordan AI-modellen bruker kalkulatorverktøyene for å svare på spørringer.
+Kjør eksempelet og sjekk konsollutgangen for å se hvordan AI-modellen bruker kalkulatorverktøyene til å svare på spørringer.
 
-### GitHub modellkonfigurasjon
+### Microsoft Foundry-modellkonfigurasjon
 
-LangChain4j-klienten er konfigurert til å bruke GitHubs phi-4-modell med følgende innstillinger:
+LangChain4j-klienten bruker Azure OpenAI v1-kompatibelt endepunkt eksponert av
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-For å bruke andre GitHub-modeller, endre bare `modelName`-parameteren til en annen støttet modell (f.eks. "claude-3-haiku-20240307", "llama-3-70b-8192", osv.).
+`AZURE_OPENAI_DEPLOYMENT` må samsvare med navnet gitt ved deployering av modellen,
+som kan avvike fra det underliggende modellnavnet.
 
 ## Avhengigheter
 
-Prosjektet krever følgende viktige avhengigheter:
+Prosjektet krever følgende nøkkelavhengigheter:
 
 ```xml
 <!-- For MCP Server -->
@@ -154,10 +131,10 @@ Prosjektet krever følgende viktige avhengigheter:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
@@ -179,19 +156,19 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Bruke MCP Inspector
 
-MCP Inspector er et nyttig verktøy for å samhandle med MCP-tjenester. For å bruke det med denne kalkulatortjenesten:
+MCP Inspector er et nyttig verktøy for interaksjon med MCP-tjenester. For å bruke det med denne kalkulatortjenesten:
 
 1. **Installer og kjør MCP Inspector** i et nytt terminalvindu:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Åpne webgrensesnittet** ved å klikke på URL’en vist av appen (vanligvis http://localhost:6274)
+2. **Åpne webgrensesnittet** ved å klikke på URL som vises av appen (vanligvis http://localhost:6274)
 
 3. **Konfigurer tilkoblingen**:
    - Sett transporttypen til "SSE"
-   - Sett URL til SSE-endepunktet for din kjørende server: `http://localhost:8080/sse`
-   - Klikk "Connect"
+   - Sett URL til kjørende servers SSE-endepunkt: `http://localhost:8080/sse`
+   - Klikk "Koble til"
 
 4. **Bruk verktøyene**:
    - Klikk "List Tools" for å se tilgjengelige kalkulatoroperasjoner
@@ -201,7 +178,7 @@ MCP Inspector er et nyttig verktøy for å samhandle med MCP-tjenester. For å b
 
 ### Bruke Docker
 
-Prosjektet inkluderer en Dockerfile for containerisert distribusjon:
+Prosjektet inkluderer en Dockerfile for containerisert deployering:
 
 1. **Bygg Docker-bildet**:
    ```bash
@@ -214,7 +191,7 @@ Prosjektet inkluderer en Dockerfile for containerisert distribusjon:
    ```
 
 Dette vil:
-- Bygge et multistadie Docker-bilde med Maven 3.9.9 og Eclipse Temurin 24 JDK
+- Bygge et multi-stadium Docker-bilde med Maven 3.9.9 og Eclipse Temurin 24 JDK
 - Lage et optimalisert containerbilde
 - Eksponere tjenesten på port 8080
 - Starte MCP kalkulatortjenesten inne i containeren
@@ -223,17 +200,18 @@ Du kan få tilgang til tjenesten på `http://localhost:8080` når containeren kj
 
 ## Feilsøking
 
-### Vanlige problemer med GitHub-token
+### Vanlige problemer med modelltilkobling
 
-1. **Tillatelsesproblemer med token**: Hvis du får en 403 Forbidden-feil, sjekk at token har riktige tillatelser som beskrevet i forutsetningene.
+1. **Autentiseringsfeil**: Bekreft at `AZURE_OPENAI_API_KEY` tilhører
+   ressursen identifisert av `AZURE_OPENAI_ENDPOINT`.
+2. **Deployment ikke funnet**: Bekreft at `AZURE_OPENAI_DEPLOYMENT` samsvarer
+   nøyaktig med deployeringsnavnet i Microsoft Foundry.
+3. **Hastighetsbegrensning**: Se over deployeringskvoten og prøv igjen etter intervall
+   oppgitt av tjenesten.
 
-2. **Token ikke funnet**: Hvis du får feilmeldingen "No API key found", sørg for at miljøvariabelen GITHUB_TOKEN er korrekt satt.
-
-3. **Begrensning på API-bruk**: GitHub API har begrensninger for hvor mye som kan kalles. Hvis du møter på rate limit-feil (statuskode 429), vent noen minutter før du prøver igjen.
-
-4. **Token-utløp**: GitHub-tokens kan utløpe. Hvis du får autentiseringsfeil etter en stund, generer en ny token og oppdater miljøvariabelen din.
-
-Trenger du mer hjelp, se [LangChain4j-dokumentasjonen](https://github.com/langchain4j/langchain4j) eller [GitHub API-dokumentasjonen](https://docs.github.com/en/rest).
+For mer hjelp, se
+[LangChain4j-dokumentasjon](https://github.com/langchain4j/langchain4j) og
+[Microsoft Foundry-dokumentasjon](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

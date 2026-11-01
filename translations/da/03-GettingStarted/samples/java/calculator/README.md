@@ -1,140 +1,117 @@
 # Grundlæggende Lommeregner MCP Service
 
 > [!NOTE]
-> Dette eksempel bruger den ældre HTTP+SSE transport og retter sig mod et SDK kompatibelt
-> med MCP `2025-11-25`. Nye fjernservere bør benytte `2026-07-28` Streamable
+> Dette eksempel bruger den ældre HTTP+SSE transport og henvender sig til en SDK kompatibel
+> med MCP `2025-11-25`. Nye fjernservere bør bruge `2026-07-28` Streamable
 > HTTP support.
 
-Denne service leverer grundlæggende lommeregneroperationer gennem Model Context Protocol (MCP) ved hjælp af Spring Boot med WebFlux transport. Det er designet som et enkelt eksempel for begyndere, der lærer om MCP-implementeringer.
+Denne service leverer grundlæggende lommeregnerfunktioner via Model Context Protocol (MCP) ved hjælp af Spring Boot med WebFlux transport. Den er designet som et simpelt eksempel for begyndere, der lærer om MCP-implementeringer.
 
 For mere information, se [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference dokumentationen.
 
 ## Oversigt
 
 Servicen demonstrerer:
-- Support til SSE (Server-Sent Events)
-- Automatisk værktøjsregistrering ved hjælp af Spring AI's `@Tool` annotation
+- Support for SSE (Server-Sent Events)
+- Automatisk værktøjsregistrering ved brug af Spring AI’s `@Tool` annotation
 - Grundlæggende lommeregnerfunktioner:
   - Addition, subtraktion, multiplikation, division
-  - Eksponentberegning og kvadratrod
+  - Potensberegning og kvadratrod
   - Modulus (rest) og absolut værdi
-  - Hjælpefunktion til operationbeskrivelser
+  - Hjælpefunktion til funktionsbeskrivelser
 
 ## Funktioner
 
 Denne lommeregner-service tilbyder følgende funktionaliteter:
 
-1. **Grundlæggende Aritmetiske Operationer**:
+1. **Grundlæggende aritmetiske operationer**:
    - Addition af to tal
    - Subtraktion af et tal fra et andet
    - Multiplikation af to tal
-   - Division af et tal med et andet (med nul divisionskontrol)
+   - Division af et tal med et andet (med kontrol for division med nul)
 
-2. **Avancerede Operationer**:
-   - Eksponentberegning (ophævning af en base til en eksponent)
+2. **Avancerede operationer**:
+   - Potensberegning (at ophøje en base til en eksponent)
    - Kvadratrodsberegning (med kontrol for negative tal)
    - Modulus (rest) beregning
-   - Beregning af absolut værdi
+   - Absolut værdiberegning
 
 3. **Hjælpesystem**:
    - Indbygget hjælpefunktion, der forklarer alle tilgængelige operationer
 
-## Brug af Servicen
+## Brug af servicen
 
-Servicen udstiller følgende API endpoints gennem MCP protokollen:
+Servicen udstiller følgende API-endpoints via MCP-protokollen:
 
-- `add(a, b)`: Læg to tal sammen
-- `subtract(a, b)`: Træk det andet tal fra det første
-- `multiply(a, b)`: Gange to tal
+- `add(a, b)`: Lægge to tal sammen
+- `subtract(a, b)`: Trække det andet tal fra det første
+- `multiply(a, b)`: Multiplicere to tal
 - `divide(a, b)`: Divider det første tal med det andet (med nul-kontrol)
 - `power(base, exponent)`: Beregn potens af et tal
-- `squareRoot(number)`: Beregn kvadratroden (med kontrol for negative tal)
-- `modulus(a, b)`: Beregn resten ved division
-- `absolute(number)`: Beregn den absolutte værdi
+- `squareRoot(number)`: Beregn kvadratrod (med kontrol for negative tal)
+- `modulus(a, b)`: Beregn rest ved division
+- `absolute(number)`: Beregn absolut værdi
 - `help()`: Få information om tilgængelige operationer
 
 ## Testklient
 
-En simpel testklient er inkluderet i pakken `com.microsoft.mcp.sample.client`. Klassen `SampleCalculatorClient` demonstrerer de tilgængelige operationer i lommeregner-servicen.
+En simpel testklient er inkluderet i `com.microsoft.mcp.sample.client` pakken. `SampleCalculatorClient` klassen demonstrerer de tilgængelige operationer i lommeregner-servicen.
 
-## Brug af LangChain4j Klient
+## Brug af LangChain4j klienten
 
-Projektet inkluderer et eksempel på en LangChain4j klient i `com.microsoft.mcp.sample.client.LangChain4jClient`, som demonstrerer integration af lommeregner-servicen med LangChain4j og GitHub modeller:
+Projektet inkluderer en LangChain4j eksempelklient i
+`com.microsoft.mcp.sample.client.LangChain4jClient` der demonstrerer, hvordan man
+integrerer lommeregner-servicen med en Microsoft Foundry model.
 
 ### Forudsætninger
 
-1. **GitHub Tokenopsætning**:
-   
-   For at bruge GitHubs AI modeller (som phi-4), behøver du et personlig adgangstoken fra GitHub:
+1. Opret en Microsoft Foundry-ressource og deployer en aktiv model såsom
+   `gpt-5.1`.
+2. Indstil model-endpoint, API-nøgle og deployeringsnavn:
 
-   a. Gå til dine GitHub kontoindstillinger: https://github.com/settings/tokens
-   
-   b. Klik på "Generate new token" → "Generate new token (classic)"
-   
-   c. Giv dit token et beskrivende navn
-   
-   d. Vælg følgende scopes:
-      - `repo` (Fuld kontrol med private repositories)
-      - `read:org` (Læs organisations- og teammedlemskab, læs organisationsprojekter)
-      - `gist` (Opret gists)
-      - `user:email` (Adgang til brugerens email adresser (read-only))
-   
-   e. Klik på "Generate token" og kopier dit nye token
-   
-   f. Sæt det som en miljøvariabel:
-      
-      På Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      På macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. For permanent opsætning, tilføj det til dine miljøvariabler via systemindstillinger
-
-2. Tilføj LangChain4j GitHub afhængigheden til dit projekt (allerede inkluderet i pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Sørg for at lommeregner serveren kører på `localhost:8080`
+3. Tjek
+   [Microsoft Foundry model retirementsplan](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   før valg af deployment.
+4. Sørg for, at lommeregnerserveren kører på `localhost:8080`.
 
-### Kørsel af LangChain4j Klient
+### Kørsel af LangChain4j klient
 
 Dette eksempel demonstrerer:
-- Forbindelse til lommeregner MCP serveren via SSE transport
-- Brug af LangChain4j til at skabe en chatbot, der udnytter lommeregnerfunktioner
-- Integration med GitHub AI modeller (nu med phi-4 modellen)
+- Tilslutning til lommeregner MCP-server via SSE transport
+- Brug af LangChain4j til at skabe en chatbot, som anvender lommeregneroperationer
+- Integration med en deployeret Microsoft Foundry model
 
-Klienten sender følgende eksempelspørgsmål for at demonstrere funktionalitet:
+Klienten sender følgende eksempelspørgsmål for at demonstrere funktionaliteten:
 1. Beregning af summen af to tal
-2. Find kvadratroden af et tal
-3. Få hjælpeinformation om tilgængelige lommeregneroperationer
+2. Find kvadratrod af et tal
+3. Få hjælpeinformation om tilgængelige lommeregner-operationer
 
-Kør eksemplet og tjek konsoloutputtet for at se, hvordan AI-modellen bruger lommeregner-værktøjerne til at svare på forespørgsler.
+Kør eksemplet og tjek konsoludgangen for at se, hvordan AI-modellen bruger lommeregner-værktøjerne til at svare på forespørgsler.
 
-### GitHub Modelkonfiguration
+### Microsoft Foundry Modelkonfiguration
 
-LangChain4j klienten er konfigureret til at bruge GitHubs phi-4 model med følgende indstillinger:
+LangChain4j klienten bruger Azure OpenAI v1-kompatible endpoint eksponeret af
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-For at bruge andre GitHub modeller, skift blot `modelName` parameteren til en anden understøttet model (f.eks. "claude-3-haiku-20240307", "llama-3-70b-8192", osv.).
+`AZURE_OPENAI_DEPLOYMENT` skal matche navnet tildelt ved modellens
+deployment, hvilket kan adskille sig fra det underliggende modelnavn.
 
 ## Afhængigheder
 
@@ -154,22 +131,22 @@ Projektet kræver følgende nøgleafhængigheder:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
 
-## Bygning af Projektet
+## Bygning af projektet
 
 Byg projektet med Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
 
-## Kørsel af Serveren
+## Kørsel af serveren
 
 ### Brug af Java
 
@@ -179,43 +156,43 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Brug af MCP Inspector
 
-MCP Inspector er et nyttigt værktøj til at interagere med MCP services. For at bruge det med denne lommeregner service:
+MCP Inspector er et nyttigt værktøj til at interagere med MCP-services. For at bruge det med denne lommeregnerservice:
 
 1. **Installer og kør MCP Inspector** i et nyt terminalvindue:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Adgang til web UI** ved at klikke på den URL, som appen viser (typisk http://localhost:6274)
+2. **Åbn web UI** ved at klikke på URL’en vist af appen (typisk http://localhost:6274)
 
 3. **Konfigurer forbindelsen**:
    - Sæt transporttypen til "SSE"
-   - Sæt URL til din kørende servers SSE endpoint: `http://localhost:8080/sse`
-   - Klik på "Connect"
+   - Indstil URL’en til SSE-endpointet på din kørende server: `http://localhost:8080/sse`
+   - Klik "Connect"
 
 4. **Brug værktøjerne**:
-   - Klik på "List Tools" for at se tilgængelige lommeregneroperationer
+   - Klik "List Tools" for at se tilgængelige lommeregner-funktioner
    - Vælg et værktøj og klik "Run Tool" for at udføre en operation
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/da/tool.c75a0b2380efcf1a.webp)
 
 ### Brug af Docker
 
-Projektet inkluderer en Dockerfile til containeriseret udrulning:
+Projektet indeholder en Dockerfile til containeriseret deployment:
 
 1. **Byg Docker-billedet**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
 
-2. **Kør Docker-containere**:
+2. **Kør Docker-containeren**:
    ```bash
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
 Dette vil:
-- Bygge et multi-stage Docker-billede med Maven 3.9.9 og Eclipse Temurin 24 JDK
-- Oprette et optimeret containerbillede
+- Bygge et flertrins Docker-billede med Maven 3.9.9 og Eclipse Temurin 24 JDK
+- Oprette et optimeret container-billede
 - Eksponere servicen på port 8080
 - Starte MCP lommeregner-servicen inde i containeren
 
@@ -223,17 +200,18 @@ Du kan tilgå servicen på `http://localhost:8080` når containeren kører.
 
 ## Fejlfinding
 
-### Almindelige Problemer med GitHub Token
+### Almindelige model-tilslutningsproblemer
 
-1. **Token Tilladelsesproblemer**: Hvis du får en 403 Forbidden fejl, tjek om dit token har de korrekte rettigheder som angivet i forudsætningerne.
+1. **Autentificeringsfejl**: Bekræft at `AZURE_OPENAI_API_KEY` tilhører
+   ressourcen identificeret ved `AZURE_OPENAI_ENDPOINT`.
+2. **Deployment ikke fundet**: Bekræft at `AZURE_OPENAI_DEPLOYMENT` præcist matcher
+   deployeringsnavnet i Microsoft Foundry.
+3. **Ratebegrænsning**: Tjek deployeringskvoten og prøv igen efter det interval,
+   som servicen returnerer.
 
-2. **Token Ikke Fundet**: Hvis du får en "No API key found" fejl, sikre at miljøvariablen GITHUB_TOKEN er sat korrekt.
-
-3. **Rate Begrænsning**: GitHub API har begrænsninger for antal kald. Hvis du rammer en rate limit fejl (statuskode 429), vent et par minutter og prøv igen.
-
-4. **Token Udløb**: GitHub tokens kan udløbe. Hvis du modtager autentificeringsfejl efter noget tid, generer et nyt token og opdater din miljøvariabel.
-
-Hvis du har brug for yderligere hjælp, se [LangChain4j dokumentationen](https://github.com/langchain4j/langchain4j) eller [GitHub API dokumentationen](https://docs.github.com/en/rest).
+For mere hjælp, se
+[LangChain4j dokumentationen](https://github.com/langchain4j/langchain4j) og
+[Microsoft Foundry dokumentationen](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

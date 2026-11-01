@@ -1,109 +1,111 @@
-# 🚀 Moduuli 1: Microsoft Foundry Toolkit - Perusteet
+# 🚀 Moduuli 1: Microsoft Foundry Toolkit -periaatteet
 
-[![Duration](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()
-[![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green.svg)]()
-[![Prerequisites](https://img.shields.io/badge/Prerequisites-VS%20Code-orange.svg)]()
+[![Kesto](https://img.shields.io/badge/Duration-15%20minutes-blue.svg)]()
+[![Vaikeustaso](https://img.shields.io/badge/Difficulty-Beginner-green.svg)]()
+[![Esivaatimukset](https://img.shields.io/badge/Prerequisites-VS%20Code-orange.svg)]()
 
 ## 📋 Oppimistavoitteet
 
-Tämän moduulin lopuksi osaat:
+Tämän moduulin lopussa osaat:
 - ✅ Asentaa ja konfiguroida Microsoft Foundry Toolkit -laajennuksen VS Codeen
-- ✅ Selailla Malliluetteloa ja ymmärtää erilaisia mallilähteitä
-- ✅ Käyttää Playgroundia mallin testaukseen ja kokeiluun
-- ✅ Luoda räätälöityjä tekoälyagentteja Agent Builderin avulla
+- ✅ Navigoida Malliluettelossa ja ymmärtää eri mallilähteet
+- ✅ Käyttää Playgroundia mallin testaamiseen ja kokeiluun
+- ✅ Luoda omia tekoälyagentteja Agent Builderilla
 - ✅ Verrata mallien suorituskykyä eri tarjoajien välillä
-- ✅ Soveltaa parhaimpia käytäntöjä kehotteiden suunnittelussa
+- ✅ Soveltaa parhaita käytäntöjä kehotteiden suunnittelussa
 
-## 🧠 Johdanto Microsoft Foundry Toolkitiin
+## 🧠 Johdanto Microsoft Foundry Toolkit -työkalupakkiin
 
-**Microsoft Foundry Toolkit -laajennus VS Codeen** on Microsoftin lippulaivalaajennus, joka muuttaa VS Coden kattavaksi tekoälykehitysympäristöksi. Se yhdistää tekoälytutkimuksen ja käytännön sovelluskehityksen, tehden generatiivisesta tekoälystä kaikkien kehittäjien ulottuvilla olevan.
+**Microsoft Foundry Toolkit Extension for VS Code** on Microsoftin lippulaivalaajennus, joka muuttaa VS Coden kaikenkattavaksi tekoälyn kehitysympäristöksi. Se yhdistää tekoälytutkimuksen ja käytännön sovelluskehityksen, tehden generatiivisesta tekoälystä saavutettavaa kehittäjille kaikilla taitotasoilla.
 
 ### 🌟 Keskeiset ominaisuudet
 
 | Ominaisuus | Kuvaus | Käyttötapaus |
 |---------|-------------|----------|
-| **🗂️ Malliluettelo** | Yli 100 mallia GitHubista, ONNX:stä, OpenAI:sta, Anthropicista, Googlelta | Mallien etsiminen ja valinta |
-| **🔌 BYOM-tuki** | Integroi omat mallit (paikalliset/etä) | Räätälöity mallien käyttöönotto |
+| **🗂️ Malliluettelo** | Pääsy 100+ malliin GitHubista, ONNX:stä, OpenAI:sta, Anthropicista, Googlelta | Mallien löytäminen ja valinta |
+| **🔌 BYOM-tuki** | Omien mallien integrointi (paikallinen/kaukainen) | Räätälöityjen mallien käyttöönotto |
 | **🎮 Interaktiivinen Playground** | Reaaliaikainen mallin testaus chat-käyttöliittymällä | Nopea prototypointi ja testaus |
-| **📎 Monimodaalituki** | Tekstin, kuvien ja liitteiden käsittely | Monimutkaiset tekoälysovellukset |
-| **⚡ Eräajot** | Suorita useita kehotteita samanaikaisesti | Tehokas testaus |
-| **📊 Mallien arviointi** | Sisäänrakennetut mittarit (F1, relevanssi, samankaltaisuus, koherenssi) | Suorituskyvyn arviointi |
+| **📎 Monimuotoinen tuki** | Käsittele tekstiä, kuvia ja liitteitä | Monimutkaiset tekoälysovellukset |
+| **⚡ Eräajot** | Suorita useita kehotteita samanaikaisesti | Tehokkaat testausprosessit |
+| **📊 Mallin arviointi** | Sisäänrakennetut mittarit (F1, relevanssi, samankaltaisuus, johdonmukaisuus) | Suorituskyvyn arviointi |
 
 ### 🎯 Miksi Microsoft Foundry Toolkit on tärkeä
 
-- **🚀 Kehityksen kiihdytys**: Ideasta prototyyppiin minuuteissa
-- **🔄 Yhtenäinen työnkulku**: Yksi käyttöliittymä useille tekoälypalveluille
+- **🚀 Nopeutettu kehitys**: Ideasta prototyyppiin minuuteissa
+- **🔄 Yhtenäinen työnkulku**: Yksi käyttöliittymä useille tekoälypalveluntarjoajille
 - **🧪 Helppo kokeilu**: Vertaa malleja ilman monimutkaista asetusta
-- **📈 Valmis tuotantoon**: Saumaton siirtymä prototyypistä käyttöönottoon
+- **📈 Tuotantovalmius**: Saumaton siirtymä prototyypistä käyttöönottoon
 
-## 🛠️ Esivalmistelut ja asennus
+## 🛠️ Esivaatimukset & käyttöönotto
 
 ### 📦 Asenna Microsoft Foundry Toolkit -laajennus
 
-**Vaihe 1: Avaa Laajennukset-markkinapaikka**
+**Vaihe 1: Pääsy laajennustoriin**
 1. Avaa Visual Studio Code
 2. Siirry Laajennukset-näkymään (`Ctrl+Shift+X` tai `Cmd+Shift+X`)
-3. Etsi "Microsoft Foundry Toolkit"
+3. Hae "Microsoft Foundry Toolkit"
 
 **Vaihe 2: Valitse versiosi**
-- **🟢 Julkaistu versio**: Suositellaan tuotantokäyttöön
-- **🔶 Esijulkaisu**: Pääsy uusimpiin ominaisuuksiin
+- **🟢 Julkaisu**: Suositeltu tuotantokäyttöön
+- **🔶 Esijulkaisu**: Varhainen pääsy uusimpiin ominaisuuksiin
 
 **Vaihe 3: Asenna ja ota käyttöön**
 
 ![Microsoft Foundry Toolkit Extension](../../../../translated_images/fi/aitkext.d28945a03eed003c.webp)
 
-### ✅ Varmistuslista
-- [ ] Microsoft Foundry Toolkit -kuvake näkyy VS Coden sivupalkissa
-- [ ] Laajennus on aktivoitu ja käytössä
-- [ ] Asennuksessa ei virheitä tulospaneelissa
+### ✅ Tarkistuslista
+- [ ] Microsoft Foundry Toolkit -kuvake näkyy VS Code sivupalkissa
+- [ ] Laajennus on käytössä ja aktivoitu
+- [ ] Asennuksessa ei ole virheitä tulosruudussa
 
-## 🧪 Käytännön harjoitus 1: GitHub-mallien tutkiminen
+## 🧪 Käytännön harjoitus 1: Microsoft Foundry -mallien tutkiminen
 
 **🎯 Tavoite**: Hallitse Malliluettelo ja testaa ensimmäinen tekoälymallisi
 
-### 📊 Vaihe 1: Selaa Malliluetteloa
+### 📊 Vaihe 1: Navigoi Malliluettelossa
 
-Malliluettelo on porttisi tekoälyekosysteemiin. Se kokoaa malleja useilta tarjoajilta, mikä helpottaa vaihtoehtojen löytämistä ja vertailua.
+Malliluettelo on porttisi tekoälyekosysteemiin. Se kokoaa malleja useilta tarjoajilta, mikä helpottaa mallien löytämistä ja vertailua.
 
-**🔍 Navigointiohjeet:**
+**🔍 Navigointiohje:**
 
-Klikkaa **MODELS - Catalog** Microsoft Foundry Toolkitin sivupalkissa
+Klikkaa **MODELS - Catalog** Microsoft Foundry Toolkit -sivupalkissa
 
 ![Model Catalog](../../../../translated_images/fi/aimodel.263ed2be013d8fb0.webp)
 
-**💡 Vinkki**: Etsi malleja, joilla on juuri sinun käyttötapaukseesi sopivia ominaisuuksia (esim. koodin generointi, luova kirjoittaminen, analyysi).
+**💡 Vinkki**: Etsi malleja, joilla on erityisiä ominaisuuksia, jotka sopivat käyttötarkoitukseesi (esim. koodin generointi, luova kirjoittaminen, analyysi).
 
-**⚠️ Huom:** GitHubissa isännöidyt mallit (GitHub Models) ovat ilmaisia käyttää, mutta niihin liittyy pyyntö- ja token-rajoituksia. Jos haluat käyttää muita kuin GitHub-malleja (eli ulkoisia malleja Azure AI:n tai muiden päätepisteiden kautta), sinun on annettava tarvittava API-avain tai todennus.
+> [!NOTE]
+> GitHub-mallit poistettiin käytöstä 30.7.2026. Käytä Microsoft Foundry -mallin käyttöönottoa ja varmista tunnistautuminen Microsoft Entra ID:llä tai Azure API-avaimella.
+
 
 ### 🚀 Vaihe 2: Lisää ja konfiguroi ensimmäinen mallisi
 
 **Mallin valintastrategia:**
-- **GPT-4.1**: Parhaat monimutkaiseen päättelyyn ja analyysiin
-- **Phi-4-mini**: Kevyt, nopea vastauksiin yksinkertaisiin tehtäviin
+- **GPT-5.1**: Suositeltu yleiskäyttöinen malli työkalujen käyttöön ja päättelyyn
+- **Phi-4-mini**: Kevyt, nopea vaste yksinkertaisiin tehtäviin
 
 **🔧 Konfigurointiprosessi:**
-1. Valitse katalogista **OpenAI GPT-4.1**
-2. Klikkaa **Add to My Models** – malli rekisteröityy käyttöä varten
+1. Valitse **OpenAI GPT-5.1** luettelosta
+2. Klikkaa **Add to My Models** - tämä rekisteröi mallin käytettäväksi
 3. Valitse **Try in Playground** käynnistääksesi testausympäristön
-4. Odota mallin käynnistymistä (ensiasennus voi kestää hetken)
+4. Odota mallin aloitus (ensiasetus voi kestää hetken)
 
 ![Playground Setup](../../../../translated_images/fi/playground.dd6f5141344878ca.webp)
 
-**⚙️ Mallin parametrien ymmärtäminen:**
+**⚙️ Malliparametrien ymmärtäminen:**
 - **Temperature**: Ohjaa luovuutta (0 = deterministinen, 1 = luova)
-- **Max Tokens**: Vastauksen enimmäispituus
-- **Top-p**: Nucleus-näytteenotto vastauksen monipuolisuuteen
+- **Max Tokens**: Maksimivasteen pituus
+- **Top-p**: Nucleus-sampling vastauksen monipuolisuudelle
 
-### 🎯 Vaihe 3: Hallitse Playground-käyttöliittymää
+### 🎯 Vaihe 3: Hallitse Playgroundin käyttöliittymää
 
-Playground on tekoälykokeilusi laboratorio. Näin hyödynnät sen mahdollisuudet maksimaalisesti:
+Playground on tekoälykokeilu laboratoriosi. Näin hyödynnät sitä parhaalla tavalla:
 
-**🎨 Kehotetyön parhaat käytännöt:**
+**🎨 Kehoteinsinööritaidon parhaat käytännöt:**
 1. **Ole täsmällinen**: Selkeät ja yksityiskohtaiset ohjeet tuottavat parempia tuloksia
-2. **Anna kontekstia**: Sisällytä olennaista taustatietoa
-3. **Käytä esimerkkejä**: Näytä mallille, mitä haluat esimerkein
-4. **Iteroi**: Hio kehotteita alkuperäisten tulosten pohjalta
+2. **Tarjoa konteksti**: Sisällytä oleellista taustatietoa
+3. **Käytä esimerkkejä**: Näytä mallille, mitä haluat esimerkkien avulla
+4. **Iteroi**: Hio kehotteita alkuperäisten tulosten perusteella
 
 **🧪 Testausvaihtoehdot:**
 ```markdown
@@ -119,46 +121,46 @@ Playground on tekoälykokeilusi laboratorio. Näin hyödynnät sen mahdollisuude
 
 ![Testing Results](../../../../translated_images/fi/result.1dfcf211fb359cf6.webp)
 
-### 🏆 Haaste: Mallien suorituskyvyn vertailu
+### 🏆 Haasteharjoitus: Mallien suorituskyvyn vertailu
 
-**🎯 Tavoite**: Vertaa eri malleja identtisillä kehotteilla ymmärtääksesi niiden vahvuudet
+**🎯 Tavoite**: Vertaa eri malleja samoilla kehotteilla ymmärtääksesi niiden vahvuudet
 
 **📋 Ohjeet:**
-1. Lisää **Phi-4-mini** työtilaasi
-2. Käytä samaa kehotetta sekä GPT-4.1:lle että Phi-4-minille
+1. Lisää **Phi-4-mini** työtilaan
+2. Käytä samaa kehotetta sekä GPT-5.1:lle että Phi-4-minille
 
 ![set](../../../../translated_images/fi/set.88132df189ecde2c.webp)
 
 3. Vertaa vastausten laatua, nopeutta ja tarkkuutta
-4. Dokumentoi löydöksesi tulosten osiossa
+4. Dokumentoi havaintosi tulososiossa
 
 ![Model Comparison](../../../../translated_images/fi/compare.97746cd0f9074955.webp)
 
-**💡 Tärkeät oivallukset:**
-- Milloin käyttää LLM:iä vs. SLM:iä
-- Kustannus- ja suorituskykyväärisuhteet
+**💡 Keskeiset oivallukset:**
+- Milloin käyttää LLM:ää vs. SLM:ää
+- Kustannusten ja suorituskyvyn kompromissit
 - Mallien erityisominaisuudet
 
 ## 🤖 Käytännön harjoitus 2: Räätälöityjen agenttien rakentaminen Agent Builderilla
 
-**🎯 Tavoite**: Luo erikoistuneita tekoälyagentteja tiettyjä tehtäviä ja työnkulkuja varten
+**🎯 Tavoite**: Luo erikoistuneita tekoälyagentteja tiettyihin tehtäviin ja työnkulkuihin
 
-### 🏗️ Vaihe 1: Agent Builderin ymmärtäminen
+### 🏗️ Vaihe 1: Ymmärrä Agent Builder
 
-Agent Builder on Microsoft Foundry Toolkitin kirkas tähti. Sen avulla voit luoda tarkoituksenmukaisia tekoälyavustajia, jotka yhdistävät suurten kielimallien voiman räätälöityihin ohjeisiin, erityisiin parametreihin ja erikoistuneeseen tietämykseen.
+Agent Builder on Microsoft Foundry Toolkitin todellinen voimannäyttö. Sen avulla voit luoda tarkoituksenmukaisia tekoälyavustajia, jotka yhdistävät suurten kielimallien voiman mukautettuihin ohjeisiin, erityisiin parametreihin ja asiantuntijatietoon.
 
-**🧠 Agentin arkkitehtuurikomponentit:**
-- **Perusmalli**: LLM:n perusta (GPT-4, Groks, Phi jne.)
-- **Järjestelmäkehotus**: Määrittää agentin persoonallisuuden ja käyttäytymisen
-- **Parametrit**: Optimoidut asetukset suorituskyvyn maksimoimiseksi
-- **Työkalujen integrointi**: Yhdistä ulkoisiin API:hin ja MCP-palveluihin
-- **Muisti**: Keskustelukonteksti ja istunnon pysyvyys
+**🧠 Agentin arkkitehtuurin osat:**
+- **Päällekainen malli**: Perustana LLM (GPT-5.1, Phi jne.)
+- **Järjestelmäkehotus**: Määrittelee agentin persoonallisuuden ja käyttäytymisen
+- **Parametrit**: Optimaaliset asetukset suorituskyvyn parantamiseksi
+- **Työkalujen integrointi**: Yhdistää ulkoisiin API:ihin ja MCP-palveluihin
+- **Muisti**: Keskustelun konteksti ja istunnon kesto
 
 ![Agent Builder Interface](../../../../translated_images/fi/agentbuilder.25895b2d2f8c02e7.webp)
 
-### ⚙️ Vaihe 2: Syväsukellus agentin konfigurointiin
+### ⚙️ Vaihe 2: Agentin konfiguroinnin syväluotaus
 
-**🎨 Tehokkaiden järjestelmäkehotteiden luominen:**
+**🎨 Tehokkaiden järjestelmäkehotusten luominen:**
 ```markdown
 # Template Structure:
 ## Role Definition
@@ -178,23 +180,23 @@ You are a [specific role] with expertise in [domain].
 Provide 2-3 examples of ideal interactions
 ```
 
-*Voit tietenkin käyttää myös Generate System Prompt -toimintoa, jossa AI auttaa sinua luomaan ja optimoimaan kehotteita*
+*Tietysti voit myös käyttää Generate System Promptia apuna kehotteiden generoinnissa ja optimoinnissa tekoälyn avulla*
 
 **🔧 Parametrien optimointi:**
-| Parametri | Suositeltu alue | Käyttötapaus |
-|-----------|------------------|--------------|
-| **Temperature** | 0.1-0.3 | Tekninen/faktuaalinen vastaus |
-| **Temperature** | 0.7-0.9 | Luovat/aivoriihi-tehtävät |
-| **Max Tokens** | 500-1000 | Tiiviit vastaukset |
-| **Max Tokens** | 2000-4000 | Yksityiskohtaiset selitykset |
+| Parametri | Suositeltu vaihteluväli | Käyttötapaus |
+|-----------|------------------|----------|
+| **Temperature** | 0.1-0.3 | Teknisiä/faktapohjaisia vastauksia varten |
+| **Temperature** | 0.7-0.9 | Luovia/aivoriihitehtäviä varten |
+| **Max Tokens** | 500-1000 | Ytimekkäitä vastauksia |
+| **Max Tokens** | 2000-4000 | Yksityiskohtaisia selityksiä |
 
-### 🐍 Vaihe 3: Käytännön harjoitus – Python-ohjelmointiagentti
+### 🐍 Vaihe 3: Käytännön harjoitus - Python-ohjelmointiagentti
 
-**🎯 Missio**: Luo erikoistunut Python-koodausavustaja
+**🎯 Tehtävä**: Luo erikoistunut Python-koodausavustaja
 
 **📋 Konfigurointivaiheet:**
 
-1. **Mallin valinta**: Valitse **Claude 3.5 Sonnet** (erinomainen koodiin)
+1. **Mallin valinta**: Valitse **Claude 3.5 Sonnet** (erinomainen koodaukseen)
 
 2. **Järjestelmäkehotteen suunnittelu**:
 ```markdown
@@ -224,7 +226,7 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
 ```
 
 3. **Parametrien konfigurointi**:
-   - Temperature: 0.2 (johdonmukainen, luotettava koodi)
+   - Temperature: 0.2 (vakaaseen, luotettavaan koodiin)
    - Max Tokens: 2000 (yksityiskohtaiset selitykset)
    - Top-p: 0.9 (tasapainoinen luovuus)
 
@@ -232,44 +234,44 @@ You are a senior Python developer with 10+ years of experience. You excel at wri
 
 ### 🧪 Vaihe 4: Testaa Python-agenttisi
 
-**Testatilanteet:**
-1. **Perustoiminto**: "Luo funktio, joka löytää alkuluvut"
-2. **Monimutkainen algoritmi**: "Toteuta binaarinen hakupuu, jolla on lisäämis-, poisto- ja hakumenetelmät"
-3. **Todellisen elämän ongelma**: "Rakenna web-skräppäri, joka käsittelee pyyntörajoitukset ja uudet yritykset"
-4. **Vianetsintä**: "Korjaa tämä koodi [liitä viallinen koodi]"
+**Testitilanteet:**
+1. **Perustoiminto**: "Luo funktio alkulukujen löytämiseksi"
+2. **Monimutkainen algoritmi**: "Toteuta binaarihaku-puu, jossa on lisäys-, poisto- ja hakuoperaatiot"
+3. **Reaaliaikainen ongelma**: "Rakenna verkkosivujen kaavin, joka käsittelee nopeuden rajoitukset ja uudet yritykset"
+4. **Virheiden korjaus**: "Korjaa tämä koodi [liitä virheellinen koodi]"
 
 **🏆 Onnistumiskriteerit:**
 - ✅ Koodi toimii virheittä
 - ✅ Sisältää asianmukaisen dokumentaation
 - ✅ Noudattaa Pythonin parhaita käytäntöjä
-- ✅ Antaa selkeät selitykset
+- ✅ Tarjoaa selkeät selitykset
 - ✅ Ehdottaa parannuksia
 
 ## 🎓 Moduuli 1 Yhteenveto & Seuraavat askeleet
 
-### 📊 Tietojen tarkistus
+### 📊 Tietovisa
 
-Testaa ymmärryksesi:
-- [ ] Osaatko selittää eron mallien välillä katalogissa?
+Testaa ymmärrystäsi:
+- [ ] Osaatko selittää eron mallien välillä luettelossa?
 - [ ] Oletko onnistuneesti luonut ja testannut räätälöidyn agentin?
-- [ ] Ymmärrätkö, miten parametreja optimoidaan eri käyttötapauksiin?
+- [ ] Ymmärrätkö, miten optimoida parametreja eri käyttötarkoituksiin?
 - [ ] Osaatko suunnitella tehokkaita järjestelmäkehotteita?
 
 ### 📚 Lisäresurssit
 
-- **Microsoft Foundry Toolkit -dokumentaatio**: [Viralliset Microsoft Docsit](https://github.com/microsoft/vscode-ai-toolkit)
-- **Kehotetyön opas**: [Parhaat käytännöt](https://platform.openai.com/docs/guides/prompt-engineering)
-- **Microsoft Foundry Toolkitiin sisältyvät mallit**: [Kehitteillä olevat mallit](https://github.com/microsoft/vscode-ai-toolkit/blob/main/doc/models.md)
+- **Microsoft Foundry Toolkit -dokumentaatio**: [Viralliset Microsoftin dokumentit](https://github.com/microsoft/vscode-ai-toolkit)
+- **Kehoteinsinöörin opas**: [Parhaat käytännöt](https://platform.openai.com/docs/guides/prompt-engineering)
+- **Mallien kehitys Microsoft Foundry Toolkitissa**: [Kehitteillä olevat mallit](https://github.com/microsoft/vscode-ai-toolkit/blob/main/doc/models.md)
 
-**🎉 Onnittelut!** Olet hallinnut Microsoft Foundry Toolkitin perusteet ja olet valmis rakentamaan edistyneempiä tekoälysovelluksia!
+**🎉 Onnittelut!** Olet hallinnut Microsoft Foundry Toolkitin perusteet ja olet valmis rakentamaan kehittyneempiä tekoälysovelluksia!
 
 ### 🔜 Jatka seuraavaan moduuliin
 
-Valmiina edistyneempiin ominaisuuksiin? Jatka **[Moduuliin 2: MCP with Microsoft Foundry Toolkit Fundamentals](../lab2/README.md)**, jossa opit:
-- Yhdistämään agentit ulkoisiin työkaluihin Model Context Protocolin (MCP) avulla
-- Rakentamaan selaimen automaatioagenteja Playwrightilla
-- Integroimaan MCP-palvelimet Microsoft Foundry Toolkit -agenteihisi
-- Tehostamaan agentejasi ulkoisilla tiedoilla ja ominaisuuksilla
+Valmiina edistyneempiin ominaisuuksiin? Jatka kohtaan **[Moduuli 2: MCP Microsoft Foundry Toolkitin perusteiden kanssa](../lab2/README.md)**, jossa opit miten:
+- Yhdistää agenttisi ulkoisiin työkaluihin Model Context Protocolin (MCP) avulla
+- Rakentaa selaimen automaatioagentteja Playwrightilla
+- Integroida MCP-palvelimet Microsoft Foundry Toolkitin agentteihisi
+- Tehostaa agenttejasi ulkoisilla tiedoilla ja kyvyillä
 
 ---
 

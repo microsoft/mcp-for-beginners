@@ -1,81 +1,81 @@
 ## Aloittaminen  
 
-[![Luo ensimmäinen MCP-palvelimesi](../../../translated_images/fi/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
+[![Rakenna Ensimmäinen MCP Palvelimesi](../../../translated_images/fi/04.0ea920069efd979a.webp)](https://youtu.be/sNDZO9N4m9Y)
 
-_(Napsauta yllä olevaa kuvaa nähdäksesi tämän oppitunnin videon)_
+_(Klikkaa yllä olevaa kuvaa katsoaksesi tämän oppitunnin videon)_
 
 Tämä osio koostuu useista oppitunneista:
 
-- **1 Ensimmäinen palvelimesi**, tässä ensimmäisessä oppitunnissa opit luomaan ensimmäisen palvelimesi ja tarkastelemaan sitä inspector-työkalulla, joka on arvokas tapa testata ja debugata palvelintasi, [oppitunnille](01-first-server/README.md)
+- **1 Ensimmäinen palvelimesi**, tässä ensimmäisessä oppitunnissa opit luomaan ensimmäisen palvelimesi ja tarkastelemaan sitä inspector-työkalulla, arvokas tapa testata ja debugata palvelinta, [oppitunnille](01-first-server/README.md)
 
-- **2 Asiakasohjelma**, tässä oppitunnissa opit kirjoittamaan asiakasohjelman, joka voi yhdistää palvelimeesi, [oppitunnille](02-client/README.md)
+- **2 Asiakas**, tässä oppitunnissa opit kirjoittamaan asiakkaan, joka pystyy yhdistämään palvelimeesi, [oppitunnille](02-client/README.md)
 
-- **3 Asiakasohjelma LLM:llä**, vielä parempi tapa kirjoittaa asiakasohjelma on lisätä siihen LLM, jotta se voi "neuvotella" palvelimesi kanssa mitä tehdä, [oppitunnille](03-llm-client/README.md)
+- **3 Asiakas LLM:llä**, vielä parempi tapa kirjoittaa asiakas on lisätä siihen LLM, jotta se voi "neuvotella" palvelimesi kanssa siitä, mitä tehdä, [oppitunnille](03-llm-client/README.md)
 
 - **4 Palvelimen GitHub Copilot Agent -tilan käyttäminen Visual Studio Codessa**. Tässä tarkastelemme MCP-palvelimen ajamista Visual Studio Coden sisällä, [oppitunnille](04-vscode/README.md)
 
-- **5 stdio Transport Server** stdio siirto on suositeltu standardi paikalliselle MCP-palvelin-asiakasviestinnälle, tarjoten turvallisen aliohjelmapohjaisen viestinnän sisäänrakennetulla prosessien eristämisellä [oppitunnille](05-stdio-server/README.md)
+- **5 stdio Transport Server** stdio-siirto on suositeltu standardi paikalliseen MCP-palvelin-asiakasviestintään, tarjoten turvallisen alaiheprosessipohjaisen viestinnän sisäänrakennetulla prosessieristyksellä [oppitunnille](05-stdio-server/README.md)
 
-- **6 MCP:n HTTP-suoratoisto (Streamable HTTP)**. Opi standardoidusta
-	etäsiirtotekniikasta [MCP-spezifikaatiossa 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
-	sekä perittyä istuntopohjaista toteutusta oppitunnilla.
+- **6 HTTP Streaming MCP:llä (Streamable HTTP)**. Opi standardista
+	etäsiirrosta [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http),
+	sekä perintönä säilytetystä istuntopohjaisesta toteutuksesta oppitunnissa.
 	[oppitunnille](06-http-streaming/README.md)
 
-- **7 AI-työkalupakin käyttäminen VSCodea varten** kuluttaaksesi ja testataksesi MCP-asiakas- ja palvelinohjelmiasi [oppitunnille](07-aitk/README.md)
+- **7 Microsoft Foundry Toolkitin käyttäminen Visual Studio Codessa** MCP-asiakas- ja palvelinohjelmien kulutukseen ja testaamiseen [tässä oppitunnissa](07-aitk/README.md)
 
-- **8 Testaus**. Tässä keskitymme erityisesti eri tapoihin testata palvelintamme ja asiakastamme, [oppitunnille](08-testing/README.md)
+- **8 Testaus**. Tässä keskitymme erityisesti siihen, miten voimme testata palvelinta ja asiakasta eri tavoin, [oppitunnille](08-testing/README.md)
 
-- **9 Julkaisu**. Tämä luku käsittelee erilaisia tapoja julkaista MCP-ratkaisusi, [oppitunnille](09-deployment/README.md)
+- **9 Käyttöönotto**. Tämä luku tarkastelee eri tapoja ottaa MCP-ratkaisut käyttöön, [oppitunnille](09-deployment/README.md)
 
-- **10 Edistynyt palvelimen käyttö**. Tämä luku kattaa edistyneen palvelinkäytön, [oppitunnille](./10-advanced/README.md)
+- **10 Edistynyt palvelimen käyttö**. Tämä luku käsittelee edistynyttä palvelimen käyttöä, [oppitunnille](./10-advanced/README.md)
 
-- **11 Todennus**. Tämä luku käsittelee yksinkertaisen todennuksen lisäämistä, Basic Authista JWT:n ja RBAC:n käyttöön. Suosittelemme aloittamaan tästä ja tutkimaan sitten edistyneitä aiheita luvussa 5 ja suorittamaan lisäturvatoimia kohdassa luku 2, [oppitunnille](./11-simple-auth/README.md)
+- **11 Todennus**. Tämä luku käsittelee yksinkertaisen todennuksen lisäämistä, Basic Authista JWT:hen ja RBACiin. On suositeltavaa aloittaa tästä ja katsoa sitten Edistyneet Aiheet luvussa 5 sekä suorittaa lisäturvavahvistuksia luvun 2 suositusten mukaan, [oppitunnille](./11-simple-auth/README.md)
 
-- **12 MCP-isännät**. Määritä ja käytä suosittuja MCP-isäntäasiakkaita, mukaan lukien Claude Desktop, Cursor, Cline ja Windsurf. Opiskele siirtotyyppejä ja vianmääritystä, [oppitunnille](./12-mcp-hosts/README.md)
+- **12 MCP Isännät**. Konfiguroi ja käytä suosittuja MCP-asiakasisäntäsovelluksia kuten Claude Desktop, Cursor, Cline ja Windsurf. Opi siirtotyypeistä ja vianmäärityksestä, [oppitunnille](./12-mcp-hosts/README.md)
 
-- **13 MCP Inspector**. Debuggaa ja testaa MCP-palvelimesi interaktiivisesti MCP Inspector -työkalulla. Opiskele työkalujen, resurssien ja protokollaviestien vianmääritystä, [oppitunnille](./13-mcp-inspector/README.md)
+- **13 MCP Inspector**. Debuggaa ja testaa MCP-palvelimiasi interaktiivisesti MCP Inspector -työkalulla. Opi vianmääritystyökaluista, resursseista ja protokollaviesteistä, [oppitunnille](./13-mcp-inspector/README.md)
 
-- **14 Näytteenotto**. Opi perinteinen Näytteenoton primitiivi `2025-11-25` ja
-	miten siirtyä uusiin suunnitelmiin suoran LLM-palveluntarjoajan integroinnissa. Näytteenotto on
-	vanhentunut MCP `2026-07-28`:ssa. [oppitunnille](./14-sampling/README.md)
+- **14 Näytteistäminen**. Opi perintönä oleva Näytteistäminen `2025-11-25`:llä ja
+	miten siirtyä uusiin suunnitelmiin suorassa LLM-palvelinintegraatiossa. Näytteistäminen on
+	vanhentunut MCP:ssa `2026-07-28`. [oppitunnille](./14-sampling/README.md)
 
-- **15 MCP-sovellukset**. Rakenna MCP-palvelimia, jotka myös vastaavat UI-ohjeilla, [oppitunnille](./15-mcp-apps/README.md)
+- **15 MCP Sovellukset**. Rakenna MCP-palvelimia, jotka myös vastaavat käyttöliittymäohjeilla, [oppitunnille](./15-mcp-apps/README.md)
 
-Model Context Protocol (MCP) on avoin protokolla, joka standardisoi sen, miten sovellukset tarjoavat kontekstia LLM:ille. Ajattele MCP:tä kuin AI-sovellusten USB-C-porttina – se tarjoaa standardoidun tavan yhdistää AI-mallit erilaisiin tietolähteisiin ja työkaluihin.
+Model Context Protocol (MCP) on avoin protokolla, joka standardisoi sovellusten tavan tarjota kontekstia LLM-malleille. Ajattele MCP:tä kuin USB-C-porttina tekoälysovelluksille – se tarjoaa standardisoidun tavan yhdistää tekoälymalleja erilaisiin tietolähteisiin ja työkaluihin.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopussa osaat:
+Tämän oppitunnin jälkeen osaat:
 
-- Määrittää kehitysympäristöt MCP:lle C#, Java, Python, TypeScript ja JavaScript -kielille
-- Rakentaa ja julkaista perus MCP-palvelimia räätälöidyillä ominaisuuksilla (resurssit, kehote ja työkalut)
-- Luoda isäntäohjelmia, jotka yhdistyvät MCP-palvelimiin
+- Määrittää MCP-kehitysympäristöt C#, Java, Python, TypeScript ja JavaScript -kielille
+- Rakentaa ja ottaa käyttöön perustason MCP-palvelimia, joissa on mukautettuja ominaisuuksia (resurssit, kehotteet ja työkalut)
+- Luoda isäntäsovelluksia, jotka yhdistävät MCP-palvelimiin
 - Testata ja debugata MCP-toteutuksia
-- Ymmärtää yleiset asennushaasteet ja niiden ratkaisut
+- Ymmärtää yleisiä asennushaasteita ja niiden ratkaisuja
 - Yhdistää MCP-toteutuksesi suosittuihin LLM-palveluihin
 
-## MCP-ympäristön määrittäminen
+## MCP-ympäristösi määrittäminen
 
-Ennen MCP:n kanssa työskentelyn aloittamista on tärkeää valmistella kehitysympäristösi ja ymmärtää perus työnkulku. Tämä osio ohjaa sinut alkuasetusvaiheiden läpi varmistaen sujuvan aloituksen MCP:n parissa.
+Ennen kuin alat työstää MCP:tä, on tärkeää valmistella kehitysympäristösi ja ymmärtää perus työnkulku. Tämä osio ohjaa sinua alkuasetuksissa varmistaaksesi sujuvan alun MCP:n kanssa.
 
-### Vaatimukset
+### Esivaatimukset
 
-Ennen MCP-kehitykseen sukeltamista varmista, että sinulla on:
+Ennen MCP-kehityksen aloittamista varmista, että sinulla on:
 
 - **Kehitysympäristö**: Valitsemallesi kielelle (C#, Java, Python, TypeScript tai JavaScript)
-- **IDE/Editori**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm tai mikä tahansa moderni koodieditori
-- **Pakettien hallintaohjelmat**: NuGet, Maven/Gradle, pip tai npm/yarn
-- **API-avaimet**: Kaikille tekoälypalveluille, joita aiot käyttää isäntäohjelmissasi
+- **IDE/Editor**: Visual Studio, Visual Studio Code, IntelliJ, Eclipse, PyCharm tai mikä tahansa moderni koodieditori
+- **Pakettien hallinta**: NuGet, Maven/Gradle, pip tai npm/yarn
+- **API-avaimet**: Kaikille AI-palveluille, joita aiot käyttää isäntäsovelluksissasi
 
 
 ### Viralliset SDK:t
 
-Seuraavissa luvuissa näet ratkaisujen rakentamista Pythonilla, TypeScripillä,
+Tulevissa luvuissa näet ratkaisuja, jotka on rakennettu Pythonilla, TypeScriptillä,
 Javalla ja .NET:llä. Tässä ovat viralliset SDK:t.
 
-MCP `2026-07-28` tukevat SDK:t julkaistaan kielikohtaisesti itsenäisesti.
+SDK-tuki MCP `2026-07-28`:lle ilmestyy kielikohtaisesti itsenäisesti.
 Ennen esimerkin ajamista tarkista sen pakettiversio ja SDK:n julkaisumuistiinpanot
-tuetuista protokollan versioista. Katso
+tuetuista protokollaversioista. Katso
 [virallinen SDK-lista](https://modelcontextprotocol.io/docs/sdk):
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Ylläpidetään yhteistyössä Microsoftin kanssa
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Ylläpidetään yhteistyössä Spring AI:n kanssa
@@ -86,33 +86,33 @@ tuetuista protokollan versioista. Katso
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - Virallinen Rust-toteutus
 - [Go SDK](https://github.com/modelcontextprotocol/go-sdk) - Virallinen Go-toteutus
 
-## Tärkeimmät opit
+## Keskeiset Opit
 
-- MCP-kehitysympäristön määrittäminen on suoraviivaista kielikohtaisten SDK:iden avulla
-- MCP-palvelimien rakentaminen sisältää työkalujen luomisen ja rekisteröinnin selkeillä kaavioilla
-- MCP-asiakkaat yhdistyvät palvelimiin ja malleihin hyödyntääkseen laajennettuja ominaisuuksia
-- Testaus ja debuggaus ovat olennaisia luotettaville MCP-toteutuksille
-- Julkaisuvaihtoehdot vaihtelevat paikallisesta kehityksestä pilvipohjaisiin ratkaisuihin
+- MCP-kehitysympäristön määrittäminen on suoraviivaista kielikohtaisilla SDK:illa
+- MCP-palvelinten rakentaminen sisältää työkalujen luomisen ja rekisteröinnin selkeillä skeemoilla
+- MCP-asiakkaat yhdistävät palvelimiin ja malleihin laajennettujen ominaisuuksien hyödyntämiseksi
+- Testaus ja debuggaus ovat välttämättömiä luotettaville MCP-toteutuksille
+- Käyttöönotto vaihtoehdot vaihtelevat paikallisesta kehityksestä pilvipohjaisiin ratkaisuihin
 
-## Harjoitteleminen
+## Harjoittelu
 
-Meillä on joukko esimerkkejä, jotka täydentävät harjoitustehtäviä, joita näet kaikissa tämän osion luvuissa. Lisäksi jokaisella luvulla on omat harjoituksensa ja tehtävänsä
+Meillä on joukko näytteitä, jotka täydentävät harjoituksia, joita näet kaikissa tämän osion luvuissa. Lisäksi jokaisella luvulla on omat harjoituksensa ja tehtävänsä.
 
-- [Java-laskin](./samples/java/calculator/README.md)
-- [.NET-laskin](../../../03-GettingStarted/samples/csharp)
-- [JavaScript-laskin](./samples/javascript/README.md)
-- [TypeScript-laskin](./samples/typescript/README.md)
-- [Python-laskin](../../../03-GettingStarted/samples/python)
+- [Java Laskin](./samples/java/calculator/README.md)
+- [.NET Laskin](../../../03-GettingStarted/samples/csharp)
+- [JavaScript Laskin](./samples/javascript/README.md)
+- [TypeScript Laskin](./samples/typescript/README.md)
+- [Python Laskin](../../../03-GettingStarted/samples/python)
 
 ## Lisäresurssit
 
-- [Agenttien rakentaminen Model Context Protocolilla Azurella](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
+- [Rakenna Agentteja käyttäen Model Context Protocolia Azurella](https://learn.microsoft.com/azure/developer/ai/intro-agents-mcp)
 - [Etä-MCP Azure Container Appsilla (Node.js/TypeScript/JavaScript)](https://learn.microsoft.com/samples/azure-samples/mcp-container-ts/mcp-container-ts/)
-- [.NET OpenAI MCP Agent](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
+- [.NET OpenAI MCP Agentti](https://learn.microsoft.com/samples/azure-samples/openai-mcp-agent-dotnet/openai-mcp-agent-dotnet/)
 
 ## Mitä seuraavaksi
 
-Aloita ensimmäisestä oppitunnista: [Ensimmäisen MCP-palvelimesi luominen](01-first-server/README.md)
+Aloita ensimmäisestä oppitunnista: [Luomalla ensimmäinen MCP-palvelimesi](01-first-server/README.md)
 
 Kun olet suorittanut tämän moduulin, jatka: [Moduuli 4: Käytännön toteutus](../04-PracticalImplementation/README.md)
 
