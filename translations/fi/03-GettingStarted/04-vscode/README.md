@@ -1,27 +1,27 @@
-# Palvelimen käyttäminen GitHub Copilot Agent -tilasta
+# Palvelimen käyttäminen GitHub Copilot Agent -tilassa
 
-Visual Studio Code ja GitHub Copilot voivat toimia asiakkaana ja käyttää MCP-palvelinta. Saatat miettiä, miksi haluamme tehdä niin? Se tarkoittaa, että kaikki MCP-palvelimen ominaisuudet voidaan nyt käyttää IDE:ssäsi. Kuvittele esimerkiksi, että lisäät GitHubin MCP-palvelimen, joka mahdollistaisi GitHubin hallinnan kehotteiden avulla sen sijaan, että kirjoittaisit tiettyjä komentoja terminaalissa. Tai kuvita, että mikä tahansa asia, joka voisi parantaa kehittäjäkokemustasi, hallitaan luonnollisella kielellä. Nyt alat nähdä hyödyn, eikö?
+Visual Studio Code ja GitHub Copilot voivat toimia asiakkaana ja käyttää MCP-palvelinta. Saatat kysyä, miksi sitä haluaisimme tehdä? No, se tarkoittaa, että MCP-palvelimen kaikki ominaisuudet voidaan nyt käyttää suoraan IDE:stäsi. Kuvittele esimerkiksi, että lisäät GitHubin MCP-palvelimen, tämä mahdollistaisi GitHubin ohjaamisen kehotteiden avulla sen sijaan, että kirjoitat tiettyjä komentoja terminaaliin. Tai kuvittele ylipäätään mitä tahansa, mikä voisi parantaa kehittäjäkokemustasi, kaikki ohjattuna luonnollisella kielellä. Nyt alat nähdä hyödyn, eikö vain?
 
 ## Yleiskatsaus
 
-Tämä oppitunti käsittelee, kuinka käyttää Visual Studio Codea ja GitHub Copilotin Agent-tilaa MCP-palvelimesi asiakkaana.
+Tässä oppitunnissa käydään läpi, miten käyttää Visual Studio Codea ja GitHub Copilotin Agent-tilaa asiakkaana MCP-palvelimellesi.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopussa osaat:
+Oppitunnin lopuksi osaat:
 
 - Käyttää MCP-palvelinta Visual Studio Coden kautta.
-- Suorittaa toimintoja, kuten työkaluja, GitHub Copilotilla.
-- Määrittää Visual Studio Code etsimään ja hallinnoimaan MCP-palvelintasi.
+- Käyttää toiminnallisuuksia kuten työkaluja GitHub Copilotin kautta.
+- Määrittää Visual Studio Coden löytämään ja hallitsemaan MCP-palvelintasi.
 
 ## Käyttö
 
-Voit hallita MCP-palvelintasi kahdella eri tavalla:
+Voit ohjata MCP-palvelintasi kahdella eri tavalla:
 
-- Käyttöliittymän kautta, näet miten se tehdään myöhemmin tässä luvussa.
-- Terminaalin kautta, palvelinta voidaan ohjata terminaalista `code`-suoritustiedoston avulla:
+- Käyttöliittymä, näet myöhemmin tässä luvussa miten se tehdään.
+- Terminaali, voit ohjata asioita terminaalin kautta käyttämällä `code` suoritettavaa tiedostoa:
 
-  Lisätäksesi MCP-palvelimen käyttäjäprofiiliisi, käytä --add-mcp komentorivivalintaa ja anna JSON-muotoinen palvelinkonfiguraatio muodossa {\"name\":\"server-name\",\"command\":...}.
+  Lisätäksesi MCP-palvelimen käyttäjäprofiiliisi, käytä --add-mcp komentorivioptiota ja toimita JSON-muotoinen palvelinasetustiedosto muodossa {\"name\":\"palvelimen-nimi\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,37 +29,37 @@ Voit hallita MCP-palvelintasi kahdella eri tavalla:
 
 ### Kuvakaappaukset
 
-![Ohjattu MCP-palvelinkonfiguraatio Visual Studio Codessa](../../../../translated_images/fi/chat-mode-agent.729a22473f822216.webp)
-![Työkalujen valinta agenttisessiota varten](../../../../translated_images/fi/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![Virheiden helppo virheenkorjaus MCP-kehityksen aikana](../../../../translated_images/fi/mcp-list-servers.fce89eefe3f30032.webp)
+![Opastettu MCP-palvelimen määritys Visual Studio Codessa](../../../../translated_images/fi/chat-mode-agent.729a22473f822216.webp)
+![Työkalun valinta per agenttisessio](../../../../translated_images/fi/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![Virheiden helppo vianmääritys MCP-kehityksen aikana](../../../../translated_images/fi/mcp-list-servers.fce89eefe3f30032.webp)
 
-Keskustellaan lisää käyttöliittymän käyttämisestä seuraavissa osioissa.
+Keskustellaan seuraavaksi lisää siitä, miten käytämme visuaalista käyttöliittymää seuraavissa osioissa.
 
 ## Lähestymistapa
 
 Näin meidän tulee lähestyä asiaa yleisellä tasolla:
 
 - Määritä tiedosto MCP-palvelimen löytämiseksi.
-- Käynnistä/Yhdistä kyseiseen palvelimeen saadaksesi luettelon sen ominaisuuksista.
+- Käynnistä/Yhdistä kyseiseen palvelimeen, jotta palvelin listaa ominaisuutensa.
 - Käytä näitä ominaisuuksia GitHub Copilot Chat -käyttöliittymän kautta.
 
-Hienoa, nyt kun ymmärrämme työnkulun, kokeillaan MCP-palvelimen käyttöä Visual Studio Coden kautta harjoituksen avulla.
+Hienoa, nyt kun ymmärrämme työnkulun, kokeillaan MCP-palvelimen käyttöä Visual Studio Coden kautta harjoituksessa.
 
 ## Harjoitus: Palvelimen käyttäminen
 
-Tässä harjoituksessa määritämme Visual Studio Coden löytämään MCP-palvelimesi, jotta sitä voidaan käyttää GitHub Copilot Chat -käyttöliittymässä.
+Tässä harjoituksessa määritämme Visual Studio Coden löytämään MCP-palvelimesi, jotta sitä voi käyttää GitHub Copilot Chat -käyttöliittymässä.
 
-### -0- Ennen aloitusta, ota MCP Serverin hakutoiminto käyttöön
+### -0- Alkutoimenpide, ota MCP-palvelinten löytäminen käyttöön
 
-Saatat joutua ottamaan MCP-palvelinten haun käyttöön.
+Saatat joutua ottamaan MCP-palvelinten löytymisen käyttöön.
 
-1. Mene Visual Studio Codessa kohtaan `File -> Preferences -> Settings`.
+1. Siirry kohdassa `File -> Preferences -> Settings` Visual Studio Codessa.
 
-1. Etsi "MCP" ja ota käyttöön `chat.mcp.discovery.enabled` settings.json -tiedostossa.
+1. Etsi "MCP" ja ota käyttöön asetus `chat.mcp.discovery.enabled` tiedostossa settings.json.
 
-### -1- Luo konfiguraatiotiedosto
+### -1- Luo määritystiedosto
 
-Aloita luomalla konfiguraatiotiedosto projektisi juureen, tarvitset tiedoston nimeltä MCP.json ja aseta se kansioon nimeltä .vscode. Sen tulee näyttää tältä:
+Aloita luomalla määritystiedosto projektisi juureen, tarvitset MCP.json-tiedoston, joka sijoitetaan .vscode-kansioon. Sen pitäisi näyttää tältä:
 
 ```text
 .vscode
@@ -70,7 +70,7 @@ Seuraavaksi katsotaan, miten palvelinmerkintä lisätään.
 
 ### -2- Määritä palvelin
 
-Lisää seuraava sisältö tiedostoon *mcp.json*:
+Lisää seuraava sisältö *mcp.json*-tiedostoon:
 
 ```json
 {
@@ -86,29 +86,29 @@ Lisää seuraava sisältö tiedostoon *mcp.json*:
 }
 ```
 
-Yllä on yksinkertainen esimerkki Node.js:llä kirjoitetun palvelimen käynnistämisestä, muiden ajonaikojen kohdalla määritä oikea käynnistyskomento käyttämällä `command` ja `args`.
+Yllä on yksinkertainen esimerkki Node.js:llä kirjoitetun palvelimen käynnistämisestä, muille ajoympäristöille määritä oikea käynnistyskomento käyttäen `command` ja `args`.
 
 ### -3- Käynnistä palvelin
 
-Nyt kun olet lisännyt merkinnän, käynnistetään palvelin:
+Nyt kun olet lisännyt merkinnän, käynnistä palvelin:
 
-1. Etsi merkintäsi *mcp.json*-tiedostosta ja varmista, että näet "play"-ikonin:
+1. Etsi merkintäsi *mcp.json*-tiedostosta ja varmista, että löydät "toista" kuvakkeen:
 
   ![Palvelimen käynnistäminen Visual Studio Codessa](../../../../translated_images/fi/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Klikkaa "play"-ikonia, GitHub Copilot Chat -työkalujen kuvakkeen pitäisi näyttää useampia työkaluja. Klikkaamalla sitä näet rekisteröityjen työkalujen listan. Voit valita tai poistaa valinnan kunkin työkalun kohdalla riippuen siitä, haluatko GitHub Copilotin käyttävän niitä kontekstina:
+1. Klikkaa "toista"-kuvaketta, näet, kuinka työkaluikoni GitHub Copilot Chatissa kasvaa saatavilla olevien työkalujen määrällä. Jos klikkaat työkalun kuvaketta, näet rekisteröityjen työkalujen listan. Voit valita työkalut, joita GitHub Copilot saa käyttää kontekstina:
 
   ![Palvelimen käynnistäminen Visual Studio Codessa](../../../../translated_images/fi/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Käyttääksesi työkalua, kirjoita kehotteeksi lause, jonka tiedät vastaavan yhtä työkaluistasi, esimerkiksi "add 22 to 1":
+1. Käyttääksesi työkalua, kirjoita kehotus, jonka tiedät vastaavan yhtä työkaluistasi, esimerkiksi kehotus "add 22 to 1":
 
-  ![Työkalun suorittaminen GitHub Copilotista](../../../../translated_images/fi/vscode-agent.d5a0e0b897331060.webp)
+  ![Työkalun käyttö GitHub Copilotista](../../../../translated_images/fi/vscode-agent.d5a0e0b897331060.webp)
 
-  Sinun pitäisi nähdä vastaus 23.
+  Näet vastauksen, joka sanoo 23.
 
 ## Tehtävä
 
-Kokeile lisätä palvelinmerkintä *mcp.json*-tiedostoon ja varmista, että voit käynnistää ja pysäyttää palvelimen. Varmista myös, että voit kommunikoida palvelimesi työkalujen kanssa GitHub Copilot Chat -käyttöliittymän kautta.
+Kokeile lisätä palvelinmerkintä *mcp.json*-tiedostoosi ja varmista, että voit käynnistää ja pysäyttää palvelimen. Varmista myös, että voit kommunikoida palvelimellesi rekisteröityjen työkalujen kanssa GitHub Copilot Chat -käyttöliittymän kautta.
 
 ## Ratkaisu
 
@@ -118,14 +118,14 @@ Kokeile lisätä palvelinmerkintä *mcp.json*-tiedostoon ja varmista, että voit
 
 Tämän luvun keskeiset opit ovat seuraavat:
 
-- Visual Studio Code on loistava asiakas, jolla voit käyttää useita MCP-palvelimia ja niiden työkaluja.
-- GitHub Copilot Chat -käyttöliittymän kautta olet vuorovaikutuksessa palvelimien kanssa.
-- Voit pyytää käyttäjältä syötteitä, kuten API-avaimia, jotka voidaan välittää MCP-palvelimelle määrittäessäsi palvelinmerkintää *mcp.json*-tiedostossa.
+- Visual Studio Code on erinomainen asiakas, jonka kautta voit käyttää useita MCP-palvelimia ja niiden työkaluja.
+- GitHub Copilot Chat -käyttöliittymä on tapa, jolla kommunikoit palvelimien kanssa.
+- Voit pyytää käyttäjää antamaan syötteitä kuten API-avaimia, jotka voidaan välittää MCP-palvelimelle määritettäessä palvelinmerkintää *mcp.json*-tiedostossa.
 
 ## Esimerkit
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python)

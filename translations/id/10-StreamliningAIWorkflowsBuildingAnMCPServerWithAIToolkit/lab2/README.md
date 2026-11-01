@@ -1,14 +1,15 @@
-# 🌐 Modul 2: MCP dengan Dasar-dasar Microsoft Foundry Toolkit
+# 🌐 Modul 2: MCP dengan Dasar-Dasar Microsoft Foundry Toolkit
 
-[![Duration](https://img.shields.io/badge/Duration-20%20minutes-blue.svg)]()
-[![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)]()
-[![Prerequisites](https://img.shields.io/badge/Prerequisites-Module%201%20Complete-orange.svg)]()
+![Durasi](https://img.shields.io/badge/Duration-20_minutes-blue.svg)
+![Kesulitan](https://img.shields.io/badge/Difficulty-Intermediate-yellow.svg)
+![Prasyarat](https://img.shields.io/badge/Prerequisites-Module_1-orange.svg)
 
 ## 📋 Tujuan Pembelajaran
 
 Pada akhir modul ini, Anda akan dapat:
+
 - ✅ Memahami arsitektur dan manfaat Model Context Protocol (MCP)
-- ✅ Menjelajahi ekosistem server MCP Microsoft
+- ✅ Mengeksplorasi ekosistem server MCP Microsoft
 - ✅ Mengintegrasikan server MCP dengan Microsoft Foundry Toolkit Agent Builder
 - ✅ Membangun agen otomatisasi browser fungsional menggunakan Playwright MCP
 - ✅ Mengonfigurasi dan menguji alat MCP dalam agen Anda
@@ -16,255 +17,299 @@ Pada akhir modul ini, Anda akan dapat:
 
 ## 🎯 Melanjutkan dari Modul 1
 
-Di Modul 1, kita menguasai dasar-dasar Microsoft Foundry Toolkit dan membuat Agen Python pertama kita. Sekarang kita akan **menguatkan** agen Anda dengan menghubungkannya ke alat dan layanan eksternal melalui **Model Context Protocol (MCP)** yang revolusioner.
+Dalam Modul 1, kita menguasai dasar Microsoft Foundry Toolkit dan membuat
+Agen Python pertama kita. Sekarang kita akan **memperkuat** agen Anda dengan menghubungkannya
+ke alat dan layanan eksternal melalui protokol revolusioner
+**Model Context Protocol (MCP)**.
 
-Anggap ini seperti meng-upgrade dari kalkulator dasar ke komputer penuh - agen AI Anda akan mendapatkan kemampuan untuk:
+Anggap ini sebagai peningkatan dari kalkulator dasar menjadi komputer penuh. Agen AI Anda
+akan mendapatkan kemampuan untuk:
+
 - 🌐 Menjelajah dan berinteraksi dengan situs web
 - 📁 Mengakses dan memanipulasi file
-- 🔧 Mengintegrasikan dengan sistem enterprise
+- 🔧 Mengintegrasikan dengan sistem perusahaan
 - 📊 Memproses data waktu nyata dari API
 
 ## 🧠 Memahami Model Context Protocol (MCP)
 
 ### 🔍 Apa itu MCP?
 
-Model Context Protocol (MCP) adalah **"USB-C untuk aplikasi AI"** - standar terbuka revolusioner yang menghubungkan Large Language Models (LLM) ke alat eksternal, sumber data, dan layanan. Sama seperti USB-C menghilangkan kekacauan kabel dengan menyediakan satu konektor universal, MCP menghilangkan kompleksitas integrasi AI dengan satu protokol standar.
+Model Context Protocol (MCP) adalah **"USB-C untuk aplikasi AI"**: sebuah
+standar terbuka yang menghubungkan Large Language Models (LLM) ke alat eksternal,
+sumber data, dan layanan. Sama seperti USB-C menyediakan satu konektor universal, MCP
+mengurangi kompleksitas integrasi AI melalui satu protokol standar.
 
 ### 🎯 Masalah yang Diselesaikan MCP
 
 **Sebelum MCP:**
+
 - 🔧 Integrasi khusus untuk setiap alat
-- 🔄 Terikat vendor dengan solusi proprietari
-- 🔒 Kerentanan keamanan akibat koneksi ad-hoc
+- 🔄 Terikat vendor dengan solusi proprietari  
+- 🔒 Kerentanan keamanan dari koneksi ad-hoc
 - ⏱️ Berbulan-bulan pengembangan untuk integrasi dasar
 
 **Dengan MCP:**
+
 - ⚡ Integrasi alat plug-and-play
-- 🔄 Arsitektur vendor-agnostik
+- 🔄 Arsitektur yang bebas vendor
 - 🛡️ Praktik keamanan terbaik bawaan
-- 🚀 Beberapa menit untuk menambahkan kemampuan baru
+- 🚀 Menambah kemampuan baru dalam hitungan menit
 
-### 🏗️ Pendalaman Arsitektur MCP
+### 🏗️ Penyajian Mendalam Arsitektur MCP
 
-MCP mengikuti arsitektur **client-server** yang menciptakan ekosistem aman dan dapat diskalakan:
+MCP mengikuti **arsitektur klien-server** yang menciptakan ekosistem yang aman dan skalabel:
 
 ```mermaid
 graph TB
-    A[Aplikasi/ Agen AI] --> B[Klien MCP]
-    B --> C[Server MCP 1: File]
-    B --> D[Server MCP 2: API Web]
-    B --> E[Server MCP 3: Basis Data]
-    B --> F[Server MCP N: Alat Kustom]
+    A[AI Application/Agent] --> B[MCP Client]
+    B --> C[MCP Server 1: Files]
+    B --> D[MCP Server 2: Web APIs]
+    B --> E[MCP Server 3: Database]
+    B --> F[MCP Server N: Custom Tools]
     
-    C --> G[Sistem File Lokal]
-    D --> H[API Eksternal]
-    E --> I[Sistem Basis Data]
-    F --> J[Sistem Perusahaan]
+    C --> G[Local File System]
+    D --> H[External APIs]
+    E --> I[Database Systems]
+    F --> J[Enterprise Systems]
 ```
 
-**🔧 Komponen Inti:**
+**🔧 Komponen Utama:**
 
 | Komponen | Peran | Contoh |
-|-----------|------|----------|
-| **MCP Hosts** | Aplikasi yang menggunakan layanan MCP | Claude Desktop, VS Code, Microsoft Foundry Toolkit |
-| **MCP Clients** | Penangkap protokol (1:1 dengan server) | Terintegrasi dalam aplikasi host |
-| **MCP Servers** | Mengekspos kemampuan melalui protokol standar | Playwright, Files, Azure, GitHub |
-| **Layer Transportasi** | Metode komunikasi | stdio, HTTP, WebSockets |
-
+| --------- | ---- | -------- |
+| **MCP Hosts** | Mengonsumsi layanan MCP | VS Code, Foundry Toolkit |
+| **MCP Clients** | Menangani koneksi protokol | Terintegrasi dalam host |
+| **MCP Servers** | Menyediakan kapabilitas | Playwright, Files, Azure, GitHub |
+| **Lapisan Transportasi** | Menghubungkan klien dan server | stdio, HTTP, WebSockets |
 
 ## 🏢 Ekosistem Server MCP Microsoft
 
-Microsoft memimpin ekosistem MCP dengan rangkaian server tingkat enterprise yang komprehensif yang mengatasi kebutuhan bisnis dunia nyata.
+Microsoft memimpin ekosistem MCP dengan kumpulan server kelas enterprise yang
+komprehensif yang menjawab kebutuhan bisnis dunia nyata.
 
 ### 🌟 Server MCP Microsoft Unggulan
 
 #### 1. ☁️ Azure MCP Server
-**🔗 Repository**: [azure/azure-mcp](https://github.com/azure/azure-mcp)
+
+**🔗 Repositori**: [azure/azure-mcp](https://github.com/azure/azure-mcp)
 **🎯 Tujuan**: Manajemen sumber daya Azure komprehensif dengan integrasi AI
 
 **✨ Fitur Utama:**
+
 - Penyediaan infrastruktur deklaratif
 - Pemantauan sumber daya waktu nyata
 - Rekomendasi optimasi biaya
 - Pemeriksaan kepatuhan keamanan
 
 **🚀 Kasus Penggunaan:**
+
 - Infrastruktur-sebagai-Kode dengan bantuan AI
-- Pengaturan skala sumber daya otomatis
+- Skala sumber daya otomatis
 - Optimasi biaya cloud
-- Otomatisasi alur kerja DevOps
+- Otomasi alur kerja DevOps
 
 #### 2. 📊 Microsoft Dataverse MCP
-**📚 Dokumentasi**: [Microsoft Dataverse Integration](https://go.microsoft.com/fwlink/?linkid=2320176)
+
+**📚 Dokumentasi**: [Integrasi Microsoft Dataverse](https://go.microsoft.com/fwlink/?linkid=2320176)
 **🎯 Tujuan**: Antarmuka bahasa alami untuk data bisnis
 
 **✨ Fitur Utama:**
-- Query database dalam bahasa alami
+
+- Query database dengan bahasa alami
 - Pemahaman konteks bisnis
 - Template prompt kustom
 - Tata kelola data enterprise
 
 **🚀 Kasus Penggunaan:**
+
 - Pelaporan intelijen bisnis
 - Analisis data pelanggan
 - Wawasan pipeline penjualan
 - Query data kepatuhan
 
 #### 3. 🌐 Playwright MCP Server
-**🔗 Repository**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
-**🎯 Tujuan**: Otomatisasi browser dan kemampuan interaksi web
+
+**🔗 Repositori**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
+**🎯 Tujuan**: Otomatisasi browser dan kapabilitas interaksi web
 
 **✨ Fitur Utama:**
+
 - Otomatisasi lintas browser (Chrome, Firefox, Safari)
 - Deteksi elemen cerdas
-- Generasi tangkapan layar dan PDF
+- Pengambilan screenshot dan pembuatan PDF
 - Pemantauan trafik jaringan
 
 **🚀 Kasus Penggunaan:**
+
 - Alur kerja pengujian otomatis
-- Web scraping dan ekstraksi data
+- Pengambilan data dan scraping web
 - Pemantauan UI/UX
 - Otomatisasi analisis kompetitif
 
 #### 4. 📁 Files MCP Server
-**🔗 Repository**: [microsoft/files-mcp-server](https://github.com/microsoft/files-mcp-server)
+
+**🔗 Repositori**: [microsoft/files-mcp-server](https://github.com/microsoft/files-mcp-server)
 **🎯 Tujuan**: Operasi sistem file cerdas
 
 **✨ Fitur Utama:**
+
 - Manajemen file deklaratif
 - Sinkronisasi konten
 - Integrasi kontrol versi
 - Ekstraksi metadata
 
 **🚀 Kasus Penggunaan:**
+
 - Manajemen dokumentasi
 - Organisasi repositori kode
-- Alur kerja penerbitan konten
+- Alur kerja publikasi konten
 - Penanganan file pipeline data
 
 #### 5. 📝 MarkItDown MCP Server
-**🔗 Repository**: [microsoft/markitdown](https://github.com/microsoft/markitdown)
-**🎯 Tujuan**: Pemrosesan dan manipulasi Markdown lanjutan
+
+**🔗 Repositori**: [microsoft/markitdown](https://github.com/microsoft/markitdown)
+**🎯 Tujuan**: Pemrosesan dan manipulasi Markdown tingkat lanjut
 
 **✨ Fitur Utama:**
-- Parsing Markdown kaya fitur
+
+- Penguraian Markdown kaya
 - Konversi format (MD ↔ HTML ↔ PDF)
 - Analisis struktur konten
 - Pemrosesan template
 
 **🚀 Kasus Penggunaan:**
+
 - Alur kerja dokumentasi teknis
 - Sistem manajemen konten
-- Generasi laporan
+- Pembuatan laporan
 - Otomasi basis pengetahuan
 
 #### 6. 📈 Clarity MCP Server
+
 **📦 Paket**: [@microsoft/clarity-mcp-server](https://www.npmjs.com/package/@microsoft/clarity-mcp-server)
 **🎯 Tujuan**: Analitik web dan wawasan perilaku pengguna
 
 **✨ Fitur Utama:**
+
 - Analisis data heatmap
 - Rekaman sesi pengguna
 - Metrik performa
-- Analisis funnel konversi
+- Analisis corong konversi
 
 **🚀 Kasus Penggunaan:**
-- Optimasi website
+
+- Optimasi situs web
 - Riset pengalaman pengguna
 - Analisis A/B testing
-- Dasbor intelijen bisnis
+- Dashboard intelijen bisnis
 
 ### 🌍 Ekosistem Komunitas
 
-Selain server Microsoft, ekosistem MCP juga meliputi:
+Selain server Microsoft, ekosistem MCP mencakup:
+
 - **🐙 GitHub MCP**: Manajemen repositori dan analisis kode
-- **🗄️ Database MCP**: Integrasi PostgreSQL, MySQL, MongoDB
-- **☁️ Cloud Provider MCP**: Alat AWS, GCP, Digital Ocean
-- **📧 Komunikasi MCP**: Integrasi Slack, Teams, Email
+- **🗄️ Database MCPs**: Integrasi PostgreSQL, MySQL, MongoDB
+- **☁️ Cloud Provider MCPs**: Alat AWS, GCP, Digital Ocean
+- **📧 Komunikasi MCPs**: Integrasi Slack, Teams, Email
 
 ## 🛠️ Lab Praktik: Membangun Agen Otomatisasi Browser
 
-**🎯 Tujuan Proyek**: Membuat agen otomatisasi browser cerdas menggunakan server Playwright MCP yang dapat menavigasi situs web, mengekstrak informasi, dan melakukan interaksi web yang kompleks.
+**🎯 Tujuan Proyek**: Membuat agen otomatisasi browser cerdas menggunakan
+server Playwright MCP yang dapat menavigasi situs web, mengekstrak informasi, dan
+melakukan interaksi web yang kompleks.
 
 ### 🚀 Fase 1: Persiapan Dasar Agen
 
 #### Langkah 1: Inisialisasi Agen Anda
+
 1. **Buka Microsoft Foundry Toolkit Agent Builder**
 2. **Buat Agen Baru** dengan konfigurasi berikut:
    - **Nama**: `BrowserAgent`
-   - **Model**: Pilih GPT-4o
+   - **Model**: Pilih GPT-5.1. Lihat
+      [jadwal penghentian model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+      untuk informasi siklus hidup model terkini.
 
 ![BrowserAgent](../../../../translated_images/id/BrowserAgent.09c1adde5e136573.webp)
 
-
-### 🔧 Fase 2: Alur Kerja Integrasi MCP
+### 🔧 Fase 2: Alur Integrasi MCP
 
 #### Langkah 3: Tambahkan Integrasi Server MCP
-1. **Navigasi ke Bagian Tools** di Agent Builder
+
+1. **Masuk ke Bagian Tools** di Agent Builder
 2. **Klik "Add Tool"** untuk membuka menu integrasi
 3. **Pilih "MCP Server"** dari opsi yang tersedia
 
 ![AddMCP](../../../../translated_images/id/AddMCP.afe3308ac20aa944.webp)
 
 **🔍 Memahami Jenis Alat:**
-- **Built-in Tools**: Fungsi Microsoft Foundry Toolkit yang telah dikonfigurasi
+
+- **Built-in Tools**: Fungsi pre-konfigurasi Microsoft Foundry Toolkit
 - **MCP Servers**: Integrasi layanan eksternal
 - **Custom APIs**: Endpoint layanan Anda sendiri
 - **Function Calling**: Akses fungsi model langsung
 
 #### Langkah 4: Pemilihan Server MCP
+
 1. **Pilih opsi "MCP Server"** untuk melanjutkan
 ![AddMCPServer](../../../../translated_images/id/AddMCPServer.69b911ccef872cbd.webp)
 
 2. **Jelajahi Katalog MCP** untuk mengeksplorasi integrasi yang tersedia
 ![MCPCatalog](../../../../translated_images/id/MCPCatalog.a817d05314569900.webp)
 
-
 ### 🎮 Fase 3: Konfigurasi Playwright MCP
 
 #### Langkah 5: Pilih dan Konfigurasi Playwright
-1. **Klik "Use Featured MCP Servers"** untuk mengakses server terverifikasi Microsoft
+
+1. **Klik "Use Featured MCP Servers"** untuk mengakses server Microsoft yang diverifikasi
 2. **Pilih "Playwright"** dari daftar unggulan
-3. **Terima MCP ID Default** atau sesuaikan untuk lingkungan Anda
+3. **Setujui MCP ID Default** atau sesuaikan untuk lingkungan Anda
 
 ![MCPID](../../../../translated_images/id/MCPID.67d446052979e819.webp)
 
-#### Langkah 6: Aktifkan Kemampuan Playwright
-**🔑 Langkah Krusial**: Pilih **SEMUA** metode Playwright yang tersedia untuk fungsionalitas maksimal
+#### Langkah 6: Aktifkan Kapabilitas Playwright
+
+**🔑 Langkah Penting**: Pilih **SEMUA** metode Playwright yang tersedia untuk fungsi maksimal
 
 ![Tools](../../../../translated_images/id/Tools.3ea23c447b4d9fec.webp)
 
 **🛠️ Alat Playwright Esensial:**
+
 - **Navigasi**: `goto`, `goBack`, `goForward`, `reload`
 - **Interaksi**: `click`, `fill`, `press`, `hover`, `drag`
 - **Ekstraksi**: `textContent`, `innerHTML`, `getAttribute`
 - **Validasi**: `isVisible`, `isEnabled`, `waitForSelector`
-- **Tangkap**: `screenshot`, `pdf`, `video`
+- **Pengambilan**: `screenshot`, `pdf`, `video`
 - **Jaringan**: `setExtraHTTPHeaders`, `route`, `waitForResponse`
 
 #### Langkah 7: Verifikasi Keberhasilan Integrasi
+
 **✅ Indikator Keberhasilan:**
+
 - Semua alat muncul di antarmuka Agent Builder
-- Tidak ada pesan kesalahan pada panel integrasi
+- Tidak ada pesan kesalahan di panel integrasi
 - Status server Playwright menunjukkan "Connected"
 
 ![AgentTools](../../../../translated_images/id/AgentTools.053cfb96a17e0219.webp)
 
 **🔧 Pemecahan Masalah Umum:**
+
 - **Koneksi Gagal**: Periksa konektivitas internet dan pengaturan firewall
-- **Alat Hilang**: Pastikan semua kemampuan dipilih saat konfigurasi
+- **Alat Hilang**: Pastikan semua kapabilitas dipilih saat setup
 - **Kesalahan Izin**: Verifikasi VS Code memiliki izin sistem yang diperlukan
 
-### 🎯 Fase 4: Rekayasa Prompt Lanjutan
+### 🎯 Fase 4: Pengembangan Prompt Lanjutan
 
 #### Langkah 8: Rancang Prompt Sistem Cerdas
-Buat prompt canggih yang memanfaatkan kemampuan penuh Playwright:
+
+Buat prompt canggih yang memanfaatkan kapabilitas penuh Playwright:
 
 ```markdown
 # Web Automation Expert System Prompt
 
 ## Core Identity
-You are an advanced web automation specialist with deep expertise in browser automation, web scraping, and user experience analysis. You have access to Playwright tools for comprehensive browser control.
+You are an advanced web automation specialist with deep expertise in browser
+automation, web scraping, and user experience analysis. You have access to
+Playwright tools for comprehensive browser control.
 
 ## Capabilities & Approach
 ### Navigation Strategy
@@ -299,9 +344,11 @@ You are an advanced web automation specialist with deep expertise in browser aut
 ```
 
 #### Langkah 9: Buat Prompt Pengguna Dinamis
-Rancang prompt yang menunjukkan berbagai kemampuan:
+
+Rancang prompt yang menunjukkan berbagai kapabilitas:
 
 **🌐 Contoh Analisis Web:**
+
 ```markdown
 Navigate to github.com/kinfey and provide a comprehensive analysis including:
 1. Repository structure and organization
@@ -319,56 +366,64 @@ Include screenshots at key steps and provide actionable insights.
 ### 🚀 Fase 5: Eksekusi dan Pengujian
 
 #### Langkah 10: Jalankan Otomatisasi Pertama Anda
-1. **Klik "Run"** untuk memulai rangkaian otomatisasi
+
+1. **Klik "Run"** untuk memulai urutan otomatisasi
 2. **Pantau Eksekusi Waktu Nyata**:
-   - Browser Chrome terbuka otomatis
-   - Agen menavigasi situs target
-   - Tangkapan layar diambil pada setiap langkah utama
-   - Hasil analisis mengalir waktu nyata
+   - Browser Chrome meluncur otomatis
+   - Agen menavigasi ke situs web target
+   - Screenshot menangkap setiap langkah utama
+   - Hasil analisis mengalir secara waktu nyata
 
 ![Browser](../../../../translated_images/id/Browser.ec011d0bd64d0d11.webp)
 
 #### Langkah 11: Analisis Hasil dan Wawasan
-Tinjau analisis komprehensif di antarmuka Agent Builder:
+
+Tinjau analisis menyeluruh di antarmuka Agent Builder:
 
 ![Result](../../../../translated_images/id/Result.8638f2b6703e9ea6.webp)
 
-### 🌟 Fase 6: Kemampuan Lanjutan dan Penerapan
+### 🌟 Fase 6: Kapabilitas Lanjutan dan Penerapan
 
 #### Langkah 12: Ekspor dan Penerapan Produksi
+
 Agent Builder mendukung berbagai opsi penerapan:
 
 ![Code](../../../../translated_images/id/Code.d9eeeead0b96db0c.webp)
 
 ## 🎓 Ringkasan Modul 2 & Langkah Selanjutnya
 
-### 🏆 Pencapaian Dibuka: Master Integrasi MCP
+### 🏆 Prestasi Tercapai: Master Integrasi MCP
 
-**✅ Keterampilan yang Dikuasai:**
+**✅ Keahlian yang Dikuasai:**
+
 - [ ] Memahami arsitektur dan manfaat MCP
 - [ ] Menavigasi ekosistem server MCP Microsoft
 - [ ] Mengintegrasikan Playwright MCP dengan Microsoft Foundry Toolkit
-- [ ] Membangun agen otomatisasi browser canggih
-- [ ] Rekayasa prompt lanjutan untuk otomatisasi web
+- [ ] Membangun agen otomatisasi browser yang canggih
+- [ ] Pengembangan prompt lanjutan untuk otomatisasi web
 
-### 📚 Sumber Tambahan
+### 📚 Sumber Daya Tambahan
 
 - **🔗 Spesifikasi MCP**: [Dokumentasi Protokol Resmi](https://modelcontextprotocol.io/)
 - **🛠️ API Playwright**: [Referensi Metode Lengkap](https://playwright.dev/docs/api/class-playwright)
-- **🏢 Server MCP Microsoft**: [Panduan Integrasi Enterprise](https://github.com/microsoft/mcp-servers)
+- **🏢 Server MCP Microsoft**:
+   [Panduan Integrasi Enterprise](https://github.com/microsoft/mcp-servers)
 - **🌍 Contoh Komunitas**: [Galeri Server MCP](https://github.com/modelcontextprotocol/servers)
 
-**🎉 Selamat!** Anda telah berhasil menguasai integrasi MCP dan kini dapat membangun agen AI siap produksi dengan kemampuan alat eksternal!
-
+**🎉 Selamat!** Anda telah berhasil menguasai integrasi MCP dan kini dapat
+membangun agen AI siap produksi dengan kapabilitas alat eksternal!
 
 ### 🔜 Lanjut ke Modul Berikutnya
 
-Siap meningkatkan keterampilan MCP Anda ke level berikutnya? Lanjutkan ke **[Modul 3: Pengembangan MCP Lanjutan dengan Microsoft Foundry Toolkit](../lab3/README.md)** di mana Anda akan belajar bagaimana:
+Siap meningkatkan keterampilan MCP Anda lebih jauh? Lanjutkan ke
+**[Modul 3: Pengembangan MCP Lanjutan dengan Microsoft Foundry Toolkit](../lab3/README.md)**
+di mana Anda akan belajar bagaimana:
+
 - Membuat server MCP kustom Anda sendiri
 - Mengonfigurasi dan menggunakan SDK Python MCP terbaru
-- Menyiapkan MCP Inspector untuk debugging
+- Mengatur MCP Inspector untuk debugging
 - Menguasai alur kerja pengembangan server MCP lanjutan
-- Membangun Server MCP Cuaca dari nol
+- Membangun Weather MCP Server dari awal
 
 ---
 

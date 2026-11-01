@@ -1,27 +1,27 @@
-# Serveri kasutamine GitHub Copilot Agendi režiimist
+# GitHub Copilot Agendi režiimist serveri kasutamine
 
-Visual Studio Code ja GitHub Copilot võivad toimida kliendina ning tarbida MCP serverit. Miks me seda tahaksime? See tähendab, et kõiki MCP serveri funktsioone saab nüüd kasutada otse teie IDEst. Kujutage ette, et lisate näiteks GitHubi MCP serveri – see võimaldaks GitHubi juhtimist promptide abil ilma, et peaks terminalis konkreetseid käske tippima. Või kujutage ette üldiselt midagi, mis võiks teie arendajakogemust loomuliku keelega juhtides parandada. Nüüd hakkate võitu nägema, eks?
+Visual Studio Code ja GitHub Copilot võivad toimida kliendina ja tarbida MCP-serverit. Võite küsida, miks me seda tahaksime? See tähendab, et kõik MCP-serveri funktsioonid saab nüüd kasutada otse teie IDE-st. Kujutage ette, et lisate näiteks GitHubi MCP-serveri — see võimaldaks GitHubi juhtimist promptide abil asemel spetsiifiliste käskude tippimisest terminali. Või kujutage ette mida iganes, mis võiks parandada teie arendajakogemust ja mida juhitakse loomuliku keelega. Nüüd hakkab kasu ilmselt selge olema, eks?
 
 ## Ülevaade
 
-See õppetund käsitleb, kuidas kasutada Visual Studio Code'i ja GitHub Copiloti Agendi režiimi kliendina teie MCP serveri tarbimiseks.
+Selles õppetükis käsitletakse, kuidas kasutada Visual Studio Code'i ja GitHub Copiloti agendi režiimi kliendina teie MCP-serveri jaoks.
 
 ## Õpieesmärgid
 
-Selle õppetunni lõpuks oskate:
+Selle õppetüki lõpuks oskate:
 
-- Tarbida MCP serverit Visual Studio Code abil.
-- Käivitada funktsioone nagu tööriistu GitHub Copiloti kaudu.
-- Konfigureerida Visual Studio Code leidmaks ja haldamaks teie MCP serverit.
+- Kasutada MCP-serverit Visual Studio Code'i kaudu.
+- Käivitada tööriistu ja muid võimekusi GitHub Copiloti kaudu.
+- Konfigureerida Visual Studio Code leidma ja haldama teie MCP-serverit.
 
 ## Kasutamine
 
-Saate oma MCP serverit kontrollida kahel viisil:
+Te saate oma MCP-serverit juhtida kahel erineval viisil:
 
-- Kasutajaliides, näete hiljem peatükis kuidas see täpselt toimub.
-- Terminal, võimalik on kontrollida terminalist `code` käsutäitjaga:
+- Kasutajaliidese kaudu, näete, kuidas seda selles peatükis hiljem tehakse.
+- Terminali kaudu, terminalist on võimalik juhtida asju, kasutades `code` käivitatavat programmi:
 
-  MCP serveri lisamiseks oma kasutajaprofiilile kasutage käsurea valikut --add-mcp ja esitage JSON serveri konfiguratsioon kujul {\"name\":\"server-name\",\"command\":...}.
+  MCP-serveri lisamiseks oma kasutajaprofiili kasutage käsureavalikut --add-mcp ja esitage serveri JSON-konfiguratsioon vormingus {\"name\":\"server-name\",\"command\":...}.
 
   ```
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
@@ -29,46 +29,46 @@ Saate oma MCP serverit kontrollida kahel viisil:
 
 ### Ekraanipildid
 
-![Juhendatud MCP serveri konfiguratsioon Visual Studio Codes](../../../../translated_images/et/chat-mode-agent.729a22473f822216.webp)
-![Tööriistade valik iga agendi sessiooni jaoks](../../../../translated_images/et/agent-mode-select-tools.522c7ba5df0848f8.webp)
-![MCP arenduse vead lihtsalt siluma](../../../../translated_images/et/mcp-list-servers.fce89eefe3f30032.webp)
+![Juhendatud MCP-serveri konfiguratsioon Visual Studio Code'is](../../../../translated_images/et/chat-mode-agent.729a22473f822216.webp)
+![Tööriistade valik agendi sessiooni kohta](../../../../translated_images/et/agent-mode-select-tools.522c7ba5df0848f8.webp)
+![MCP-arenduse ajal vigade lihtne silumine](../../../../translated_images/et/mcp-list-servers.fce89eefe3f30032.webp)
 
-Räägime nüüd rohkem, kuidas me visuaalset liidest järgmistes peatükkides kasutame.
+Järgnevates jaotistes räägime rohkem, kuidas me visuaalset liidest kasutame.
 
 ## Lähenemine
 
-Siin on, kuidas me peame seda kõrgtasemel käsitlema:
+Siin on kõrgetasemeline lähenemine:
 
-- Konfigureerida fail, et leida meie MCP server.
-- Käivitada/ühendada nimetatud serveriga, et saada selle funktsioonide nimekiri.
-- Kasutada nimetatud funktsioone GitHub Copiloti Chati liidese kaudu.
+- Konfigureerige fail, mis leiab meie MCP-serveri.
+- Käivitage/ühenduge nimetatud serveriga, et see loetleks oma võimalused.
+- Kasutage nimetatud võimalusi GitHub Copiloti vestlusliidese kaudu.
 
-Suurepärane, nüüd kui me mõistame protsessi, proovime MCP serverit Visual Studio Code'i kaudu kasutada harjutuse abil.
+Suurepärane — nüüd, kui me mõistame voogu, proovime harjutuse käigus MCP-serverit kasutada Visual Studio Code'i kaudu.
 
 ## Harjutus: serveri kasutamine
 
-Selles harjutuses konfigureerime Visual Studio Code'i leidmaks teie MCP serverit, et seda saaks kasutada GitHub Copiloti Chati liidesest.
+Selles harjutuses konfigureerime Visual Studio Code'i nii, et see leiaks teie MCP-serveri, võimaldades seda kasutada GitHub Copiloti vestlusliidesest.
 
-### -0- Eeltingimus, MCP serveri avastamise lubamine
+### -0- Eeltingimus: lubage MCP-serveri avastamine
 
-Võib olla vajalik MCP serverite avastamise lubamine.
+Võib-olla peate lubama MCP-serverite avastamise.
 
-1. Minge Visual Studio Codes menüüsse `File -> Preferences -> Settings`.
+1. Avage Visual Studio Code'is `File -> Preferences -> Settings`.
 
-1. Otsige "MCP" ja lubage `chat.mcp.discovery.enabled` sättetes failis settings.json.
+1. Otsige "MCP" ja lubage settings.json failis `chat.mcp.discovery.enabled`.
 
-### -1- Konfiguratsioonifaili loomine
+### -1- Loo konfiguratsioonifail
 
-Alustage konfiguratsioonifaili loomisega oma projekti juurkataloogis, teil on vaja faili nimega MCP.json ja see tuleb paigutada kausta nimega .vscode. Selle sisu peaks olema selline:
+Alustage, luues oma projekti juurkausta konfiguratsioonifaili; teil peab olema fail nimega MCP.json ja see tuleb paigutada kausta .vscode. See peaks välja nägema nii:
 
 ```text
 .vscode
 |-- mcp.json
 ```
 
-Järgmine, vaatame kuidas serveri kirjet lisada.
+Järgnevalt vaatame, kuidas lisada serverikirjet.
 
-### -2- Serveri konfigureerimine
+### -2- Konfigureeri server
 
 Lisage järgmine sisu faili *mcp.json*:
 
@@ -86,49 +86,49 @@ Lisage järgmine sisu faili *mcp.json*:
 }
 ```
 
-Ülaltoodud on lihtne näide, kuidas Node.js server käivitada, teiste jooksutamiste puhul märkige sobiv käsklus kasutades `command` ja `args`.
+Siin on lihtne näide, kuidas alustada Node.js-is kirjutatud serverit; teiste käituskeskkondade puhul näidake sobiv käsk serveri käivitamiseks, kasutades `command` ja `args`.
 
-### -3- Serveri käivitamine
+### -3- Käivitage server
 
-Nüüd, kui olete kirje lisanud, alustame serveri käivitamisega:
+Nüüd, kui olete kirje lisanud, käivitame serveri:
 
-1. Leidke oma kirje failist *mcp.json* ja veenduge, et näete "play" ikooni:
+1. Leidke oma kirje failis *mcp.json* ja veenduge, et leiate "esitus" ikooni:
 
-  ![Serveri käivitamine Visual Studio Codes](../../../../translated_images/et/vscode-start-server.8e3c986612e3555d.webp)  
+  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/et/vscode-start-server.8e3c986612e3555d.webp)  
 
-1. Klõpsake "play" ikoonil, GitHub Copiloti Chati tööriistade ikoonis peaks ilmnema rohkem tööriistu. Kui klõpsate sellel tööriistade ikoonil, näete registreeritud tööriistade nimekirja. Saate iga tööriista valida või tühistada, olenevalt sellest, kas soovite, et GitHub Copilot neid kasutaks kontekstina:
+1. Klõpsake "esitus" ikooni — peaksite nägema, et tööriistaikoon GitHub Copiloti vestluses suurendab saadaolevate tööriistade arvu. Kui klõpsate nimetatud tööriistaikooni, näete registreeritud tööriistade loendit. Saate iga tööriista märgistada või tühistada sõltuvalt sellest, kas soovite, et GitHub Copilot neid kontekstina kasutaks:
 
-  ![Serveri käivitamine Visual Studio Codes](../../../../translated_images/et/vscode-tool.0b3bbea2fb7d8c26.webp)
+  ![Serveri käivitamine Visual Studio Code'is](../../../../translated_images/et/vscode-tool.0b3bbea2fb7d8c26.webp)
 
-1. Tööriista käivitamiseks tippige prompt, mis vastab ühe tööriista kirjeldusele, näiteks prompt "add 22 to 1":
+1. Tööriista käivitamiseks tippige prompt, mis vastab ühe teie tööriista kirjeldusele; näiteks prompt "liida 22 ja 1":
 
-  ![Tööriista käivitamine GitHub Copilotist](../../../../translated_images/et/vscode-agent.d5a0e0b897331060.webp)
+  ![Tööriista käivitamine GitHub Copiloti kaudu](../../../../translated_images/et/vscode-agent.d5a0e0b897331060.webp)
 
-  Peaks ilmuma vastus 23.
+  Te peaksite nägema vastust, mis ütleb 23.
 
 ## Ülesanne
 
-Proovige lisada serveri kirje oma *mcp.json* faili ja veenduge, et saate serveri käivitada/peatada. Veenduge ka, et saate GitHub Copiloti Chati liidese kaudu serveri tööriistadega suhelda.
+Proovige lisada serverikirje faili *mcp.json* ja veenduge, et saate serverit käivitada/peatada. Veenduge ka, et saate suhelda serveri tööriistadega GitHub Copiloti vestlusliidese kaudu.
 
 ## Lahendus
 
 [Lahendus](./solution/README.md)
 
-## Peamised õppetunnid
+## Peamised järeldused
 
-Selle peatüki peamised õppetunnid on järgmised:
+Selle peatüki peamised järeldused on järgmised:
 
-- Visual Studio Code on suurepärane klient, mis võimaldab tarbida mitut MCP serverit ja nende tööriistu.
-- GitHub Copiloti Chati liides on see, kuidas te serveritega suhtlete.
-- Saate kasutajalt küsida sisendeid, näiteks API võtmeid, mida saab MCP serverile edasi anda, määrates need serveri kirjes failis *mcp.json*.
+- Visual Studio Code on suurepärane klient, mis võimaldab teil kasutada mitut MCP-serverit ja nende tööriistu.
+- GitHub Copiloti vestlusliides on viis, kuidas serveritega suhelda.
+- Võite kasutajalt küsida sisendeid, nagu API-võtmed, mida saab edastada MCP-serverile serverikirjet konfigureerides faili *mcp.json*.
 
 ## Näited
 
-- [Java Kalkulaator](../samples/java/calculator/README.md)
-- [.Net Kalkulaator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript Kalkulaator](../samples/javascript/README.md)
-- [TypeScript Kalkulaator](../samples/typescript/README.md)
-- [Python Kalkulaator](../../../../03-GettingStarted/samples/python)
+- [Java kalkulaator](../samples/java/calculator/README.md)
+- [.NET kalkulaator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript kalkulaator](../samples/javascript/README.md)
+- [TypeScript kalkulaator](../samples/typescript/README.md)
+- [Python kalkulaator](../../../../03-GettingStarted/samples/python)
 
 ## Lisamaterjalid
 
@@ -136,7 +136,7 @@ Selle peatüki peamised õppetunnid on järgmised:
 
 ## Mis järgmiseks
 
-- Järgmine: [stdio serveri loomine](../05-stdio-server/README.md)
+- Järgmisena: [stdio-serveri loomine](../05-stdio-server/README.md)
 
 ---
 

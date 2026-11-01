@@ -1,137 +1,150 @@
-# Zavarovanje potekov dela AI: Entra ID avtentikacija za strežnike protokola Model Context
+# Zavarovanje AI potekov dela: Avtentikacija Entra ID za strežnike Model Context Protocol
 
 > [!NOTE]
-> Koda oddaljenega strežnika v tej lekciji varuje dedne `/sse` in `/message`
-> končne točke ter cilja na MCP `2025-11-25`. Ohranjajte njegove prakse za
-> prepoznavanje identitete in preverjanje žetonov, vendar za nove
-> implementacije uporabljajte združljiv Streamable HTTP transport `2026-07-28`.
+> Koda oddaljenega strežnika v tej lekciji varuje zastarele končne točke `/sse` in `/message`
+> in cilja na MCP `2025-11-25`. Ohranite njegove prakse identifikacije in preverjanja žetonov,
+> vendar za nove implementacije uporabite prenos Streamable HTTP, združljiv z `2026-07-28`.
+
 
 ## Uvod
-Zavarovanje vašega strežnika Model Context Protcola (MCP) je prav tako pomembno kot zaklepanje vhodnih vrat hiše. Če strežnik MCP pustite odprt, so vaša orodja in podatki izpostavljeni nepooblaščenim dostopom, kar lahko povzroči varnostne kršitve. Microsoft Entra ID nudi robustno rešitev za upravljanje identitete in dostopa v oblaku, ki zagotavlja, da lahko z vašim strežnikom MCP komunicirajo le pooblaščeni uporabniki in aplikacije. V tem razdelku se boste naučili, kako varovati vaše AI poteke dela z uporabo Entra ID avtentikacije.
+Zavarovanje vašega strežnika Model Context Protocol (MCP) je tako pomembno kot zaklepanje vhodnih vrat vašega doma. Če pustite strežnik MCP odprt, lahko vaše orodje in podatki postanejo dostopni nepooblaščenim osebam, kar lahko vodi do varnostnih kršitev. Microsoft Entra ID zagotavlja robustno oblačno rešitev za upravljanje identitet in dostopa, ki pomaga zagotoviti, da lahko z vašim strežnikom MCP komunicirajo samo pooblaščeni uporabniki in aplikacije. V tem razdelku se boste naučili, kako zaščititi vaše AI poteke dela z uporabo avtentikacije Entra ID.
 
 ## Cilji učenja
-Na koncu tega razdelka boste znali:
+Do konca tega razdelka boste lahko:
 
-- Razumeti pomen zavarovanja MCP strežnikov.
-- Pojasniti osnove Microsoft Entra ID in OAuth 2.0 avtentikacije.
-- Razlikovati med javnimi in zaupnimi odjemalci.
-- Uvesti Entra ID avtentikacijo tako v lokalnih (javni odjemalec) kot oddaljenih (zaupni odjemalec) scenarijih MCP strežnika.
-- Uporabiti najboljše varnostne prakse pri razvoju AI potekov dela.
+- Razumeli pomen zavarovanja strežnikov MCP.
+- Razložili osnove Microsoft Entra ID in avtentikacije OAuth 2.0.
+- Prepoznali razliko med javnimi in zaupnimi odjemalci.
+- Implementirali avtentikacijo Entra ID v lokalnih (javni odjemalec) in oddaljenih (zaupni odjemalec) scenarijih strežnika MCP.
+- Uporabili varnostne najboljše prakse pri razvoju AI potekov dela.
 
 ## Varnost in MCP
 
-Tako kot ne bi pustili odklenjenih vhodnih vrat svoje hiše, tudi MCP strežnika ne smete pustiti odprtega za vsakogar. Zavarovanje vaših AI potekov dela je ključno za gradnjo robustnih, zaupanja vrednih in varnih aplikacij. Ta poglavje vas bo uvedlo v uporabo Microsoft Entra ID za zavarovanje vaših MCP strežnikov, da bodo do vaših orodij in podatkov lahko dostopali le pooblaščeni uporabniki in aplikacije.
+Tako kot ne bi pustili odklepana vhodna vrata svojega doma, ne smete pustiti strežnika MCP odprtega za dostop komurkoli. Zavarovanje vaših AI potekov dela je bistvenega pomena za gradnjo robustnih, zaupanja vrednih in varnih aplikacij. Ta poglavje vas bo seznanilo z uporabo Microsoft Entra ID za zavarovanje vaših strežnikov MCP, kar zagotavlja, da lahko z vašimi orodji in podatki komunicirajo samo pooblaščeni uporabniki in aplikacije.
 
-## Zakaj je varnost pomembna za MCP strežnike
+## Zakaj je varnost pomembna za strežnike MCP
 
-Predstavljajte si, da ima vaš MCP strežnik orodje, ki lahko pošilja e-pošto ali dostopa do baze podatkov strank. Nenadzorovan strežnik bi pomenil, da lahko kdorkoli potencialno uporablja to orodje, kar vodi do nepooblaščenega dostopa do podatkov, neželene pošte ali drugih zlonamernih dejavnosti.
+Predstavljajte si, da ima vaš strežnik MCP orodje, ki lahko pošilja e-pošto ali dostopa do baze podatkov strank. Nezaščiten strežnik bi pomenil, da lahko vsakdo potencialno uporabi to orodje, kar lahko vodi do nepooblaščenega dostopa do podatkov, pošiljanja vsiljene pošte ali drugih zlonamernih dejanj.
 
-Z implementacijo avtentikacije zagotovite, da se vsak zahtevek na vaš strežnik preveri, s čimer se potrdi identiteta uporabnika ali aplikacije, ki zahtevek pošilja. To je prvi in najpomembnejši korak pri zavarovanju vaših AI potekov dela.
+Z implementacijo avtentikacije zagotovite, da je vsakemu zahtevku do vašega strežnika preverjena pristnost, s čimer potrdite identiteto uporabnika ali aplikacije, ki zahteva dostop. To je prvi in najpomembnejši korak pri zavarovanju vaših AI potekov dela.
 
 ## Uvod v Microsoft Entra ID
 
-[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) je storitev za upravljanje identitete in dostopa v oblaku. Predstavljajte si ga kot univerzalnega varnostnika za vaše aplikacije. Ukvarja se z zahtevnim postopkom preverjanja uporabniških identitet (avtentikacija) in določitvijo, kaj jim je dovoljeno početi (avtorizacija).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) je oblačna storitev za upravljanje identitet in dostopa. Lahko si jo predstavljate kot univerzalnega varnostnika za vaše aplikacije. Obvladuje zapleten proces preverjanja identitet uporabnikov (avtentikacije) in določa, kaj jim je dovoljeno početi (avtorizacija).
 
 Z uporabo Entra ID lahko:
 
-- Omogočite varen prijavni postopek za uporabnike.
+- Omogočite varno prijavo za uporabnike.
 - Zaščitite API-je in storitve.
-- Upravljate varnostne politike na centraliziran način.
+- Upravljate politike dostopa iz osrednje lokacije.
 
-Za MCP strežnike Entra ID zagotavlja robustno in široko zaupanja vredno rešitev za upravljanje, kdo ima dostop do zmožnosti vašega strežnika.
+Za strežnike MCP Entra ID ponuja robustno in široko zaupanja vredno rešitev za upravljanje tega, kdo lahko dostopa do zmogljivosti vašega strežnika.
 
 ---
 
-## Razumevanje magije: Kako deluje Entra ID avtentikacija
+## Razumevanje magije: Kako deluje avtentikacija Entra ID
 
-Entra ID uporablja odprte standarde kot je **OAuth 2.0** za obdelavo avtentikacije. Čeprav so podrobnosti lahko kompleksne, je osnovni koncept preprost in ga je mogoče razložiti z analogijo.
+Entra ID uporablja odprte standarde, kot je **OAuth 2.0**, za obravnavo avtentikacije. Čeprav so podrobnosti lahko kompleksne, je osnovni koncept preprost in ga je mogoče razumeti s pomočjo analogije.
 
-### Rahlo pojasnilo OAuth 2.0: Ključ vratarja
+### Prijazni uvod v OAuth 2.0: Ključ vratarja
 
-Predstavljajte si OAuth 2.0 kot službo parkirnega vratarja za vaš avtomobil. Ko pridete v restavracijo, vratarju ne daste glavnega ključa. Namesto tega mu daste **ključ vratarja**, ki ima omejene pravice – lahko vklopi avto in zaklene vrata, vendar ne more odpreti prtljažnika ali predala s priročniki.
+OAuth 2.0 lahko primerjamo s storitvijo, ki vam parkira avto. Ko pridete v restavracijo, ne date vratarju vašega glavnega ključa od avta, ampak mu daste **ključ vratarja**, ki ima omejene pravice – lahko zažene avto in zaklene vrata, vendar ne more odpreti prtljažnika ali predala za rokavice.
 
 V tej analogiji:
 
-- **Vi** ste **Uporabnik**.
-- **Vaš avtomobil** je **MCP strežnik** z njegovimi dragocenimi orodji in podatki.
+- **Vi** ste **uporabnik**.
+- **Vaš avto** je **strežnik MCP** z njegovimi dragocenimi orodji in podatki.
 - **Vratar** je **Microsoft Entra ID**.
-- **Parkirni asistent** je **MCP odjemalec** (aplikacija, ki poskuša dostopati do strežnika).
+- **Parkirni uslužbenec** je **MCP odjemalec** (aplikacija, ki poskuša dostopati do strežnika).
 - **Ključ vratarja** je **dostopni žeton**.
 
-Dostopni žeton je varen niz znakov, ki ga MCP odjemalec dobi od Entra ID po vaši prijavi. Nato odjemalec predstavi ta žeton MCP strežniku z vsakim zahtevkom. Strežnik lahko preveri žeton, da zagotovi, da je zahtevek veljaven in da ima odjemalec potrebna dovoljenja, vse to brez da bi kdaj moral obravnavati vaše dejanske poverilnice (kot je geslo).
+Dostopni žeton je varen niz znakov, ki ga MCP odjemalec prejme od Entra ID po vaši prijavi. Odjemalec nato ta žeton predstavi strežniku MCP pri vsakem zahtevku. Strežnik lahko preveri ta žeton, da zagotovi, da je zahtevek zakonit in da ima odjemalec potrebna dovoljenja, vse to brez da bi moral kdajkoli obdelovati vaše dejanske poverilnice (kot je geslo).
 
 ### Potek avtentikacije
 
-Tako potek proces v praksi:
+Tako proces v praksi poteka:
 
 ```mermaid
 sequenceDiagram
-    actor User as 👤 Uporabnik
-    participant Client as 🖥️ MCP Odjemalec
+    actor User as 👤 User
+    participant Client as 🖥️ MCP Client
     participant Entra as 🔐 Microsoft Entra ID
-    participant Server as 🔧 MCP Strežnik
+    participant Server as 🔧 MCP Server
 
-    Client->>+User: Prosimo, prijavite se za nadaljevanje.
-    User->>+Entra: Vnese poverilnice (uporabniško ime/geslo).
-    Entra-->>Client: Tukaj je vaš dostopni žeton.
-    User-->>-Client: (Vrne se na aplikacijo)
+  Server->>Entra: Fetch OpenID Connect metadata
+  Entra-->>Server: Return metadata containing jwks_uri
+  Server->>Entra: Fetch public keys from jwks_uri
+  Entra-->>Server: Return JSON Web Key Set (cached by server)
 
-    Client->>+Server: Potrebujem orodje. Tukaj je moj dostopni žeton.
-    Server->>+Entra: Je ta dostopni žeton veljaven?
-    Entra-->>-Server: Da, je.
-    Server-->>-Client: Žeton je veljaven. Tukaj je rezultat orodja.
+  Client->>User: Please sign in to continue.
+  User->>Entra: Enters credentials (username/password).
+    Entra-->>Client: Here is your access token.
+  User-->>Client: (Returns to the application)
+
+  Client->>Server: I need to use a tool. Here is my access token.
+  Server->>Server: Verify signature and validate issuer, audience, and lifetime
+  Server-->>Client: Token is valid. Here is the result of the tool.
 ```
+
+Strežnik MCP ne kliče Entra ID za preverjanje vsakogar dostopnega žetona. On
+kriptografsko preverja podpis JWT s predpomnjeno javno ključavnico Entra ID
+in potrjuje trditve žetona, vključno z izdajateljem, občinstvom in življenjsko dobo.
+Strežnik prebere `jwks_uri` iz OpenID Connect metapodatkov, pridobi javne
+ključe s tega URI-ja in jih občasno osvežuje zaradi rotacije ključev. Namesto, da bi to logiko
+implementirali sami, uporabite podprto knjižnico za preverjanje žetonov.
+Za več podrobnosti glejte
+[Preverjanje žetonov na Microsoft identity platformi](https://learn.microsoft.com/entra/identity-platform/access-tokens#validate-tokens).
 
 ### Predstavitev Microsoft Authentication Library (MSAL)
 
 Preden se poglobimo v kodo, je pomembno predstaviti ključno komponento, ki jo boste videli v primerih: **Microsoft Authentication Library (MSAL)**.
 
-MSAL je knjižnica, ki jo razvija Microsoft in razvijalcem bistveno olajša upravljanje avtentikacije. Namesto da pišete kompleksno kodo za upravljanje varnostnih žetonov, prijav in osveževanja sej, MSAL opravi večino zahtevnega dela.
+MSAL je knjižnica, ki jo je razvil Microsoft in olajša razvijalcem upravljanje avtentikacije. Namesto da bi morali vi pisati vso zapleteno kodo za rokovanje z varnostnimi žetoni, upravljanje prijav in osveževanje sej, MSAL opravi večji del dela namesto vas.
 
 Uporaba knjižnice, kot je MSAL, je zelo priporočljiva, ker:
 
-- **Je varna:** Implementira industrijske standarde in najboljše varnostne prakse, zmanjšuje tveganje ranljivosti v vaši kodi.
-- **Poenostavlja razvoj:** Odvzame zapletenost protokolov OAuth 2.0 in OpenID Connect ter vam omogoča, da k svoji aplikaciji dodate robustno avtentikacijo s samo nekaj vrsticami kode.
-- **Je vzdrževana:** Microsoft aktivno vzdržuje in posodablja MSAL za odzivanje na nove varnostne grožnje in spremembe platform.
+- **Je varna:** Uveljavlja industrijske standarde in varnostne najboljše prakse, s čimer zmanjšuje tveganje ranljivosti v vaši kodi.
+- **Poenostavlja razvoj:** Skrije kompleksnost protokolov OAuth 2.0 in OpenID Connect, kar vam omogoča, da v svojo aplikacijo z nekaj vrsticami kode dodate robustno avtentikacijo.
+- **Je vzdrževana:** Microsoft aktivno vzdržuje in posodablja MSAL, da odgovori na nove varnostne grožnje in spremembe platforme.
 
-MSAL podpira širok nabor jezikov in razvojnih okvirov, vključno z .NET, JavaScript/TypeScript, Python, Java, Go, in mobilnimi platformami, kot sta iOS in Android. To pomeni, da lahko uporabljate enake vzorce avtentikacije po celotni vaši tehnološki hrbtenici.
+MSAL podpira širok nabor jezikov in ogrodij za aplikacije, vključno z .NET, JavaScript/TypeScript, Python, Java, Go ter mobilnimi platformami, kot sta iOS in Android. To pomeni, da lahko uporabljate enake dosledne vzorce avtentikacije v celotnem vašem tehnološkem zbiru.
 
-Za več informacij o MSAL si lahko ogledate uradno [MSAL povzetek dokumentacije](https://learn.microsoft.com/entra/identity-platform/msal-overview).
+Za več informacij o MSAL si lahko ogledate uradno [dokumentacijo MSAL pregleda](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## Zavarovanje vašega MCP strežnika z Entra ID: Vodnik po korakih
+## Zavarovanje vašega strežnika MCP z Entra ID: korak za korakom
 
-Zdaj si poglejmo, kako zavarovati lokalni MCP strežnik (ta komunicira preko `stdio`) z uporabo Entra ID. Ta primer uporablja **javnega odjemalca**, ki je primeren za aplikacije, ki tečejo na uporabniški napravi, kot je namizna aplikacija ali lokalni razvojni strežnik.
+Zdaj pa si oglejmo, kako zavarovati lokalni strežnik MCP (ki komunicira prek `stdio`) z uporabo Entra ID. Ta primer uporablja **javni odjemalec**, ki je primeren za aplikacije, ki tečejo na uporabniškem računalniku, kot je namizna aplikacija ali lokalni razvojni strežnik.
 
-### Scenarij 1: Zavarovanje lokalnega MCP strežnika (z javnim odjemalcem)
+### Scenarij 1: Zavarovanje lokalnega strežnika MCP (z javnim odjemalcem)
 
-V tem scenariju bomo pogledali MCP strežnik, ki teče lokalno, komunicira preko `stdio` in uporablja Entra ID za avtentikacijo uporabnika, preden mu dovoli dostop do njegovih orodij. Strežnik bo imel eno orodje, ki pridobi profilne informacije uporabnika iz Microsoft Graph API.
+V tem scenariju si bomo ogledali strežnik MCP, ki teče lokalno, komunicira prek `stdio` in uporablja Entra ID za avtentikacijo uporabnika, preden omogoči dostop do svojih orodij. Strežnik bo imel eno orodje, ki pridobi uporabnikove podatke iz Microsoft Graph API.
 
 #### 1. Nastavitev aplikacije v Entra ID
 
-Preden napišete kodo, morate registrirati svojo aplikacijo v Microsoft Entra ID. To Entra ID pove za vašo aplikacijo in ji podeli dovoljenje za uporabo avtentikacijskih storitev.
+Pred pisanjem kode morate registrirati vašo aplikacijo v Microsoft Entra ID. Tako Entra ID dobi informacije o vaši aplikaciji in ji dodeli dovoljenje za uporabo avtentikacijske storitve.
 
 1. Pojdite na **[Microsoft Entra portal](https://entra.microsoft.com/)**.
-2. Izberite **Registracije aplikacij** in kliknite **Nova registracija**.
-3. Vaši aplikaciji dajte ime (npr. "Moj lokalni MCP strežnik").
-4. Za **Vrste podprtih računov** izberite **Samo računi v tem organizacijskem imeniku**.
+2. Pomaknite se do **Registracije aplikacij** in kliknite **Nova registracija**.
+3. Vaši aplikaciji dajte ime (na primer "Moj lokalni strežnik MCP").
+4. Za **Podprte tipe računov** izberite **Računi samo v tem organizacijskem imeniku**.
 5. Polje **Preusmeritveni URI** lahko v tem primeru pustite prazno.
 6. Kliknite **Registriraj**.
 
-Ko je registracija dokončana, si zabeležite **ID aplikacije (odjemalca)** in **ID imenika (najemnika)**. Te podatke boste potrebovali v kodi.
+Ko je registracija končana, si zabeležite **ID aplikacije (odjemalca)** in **ID imenika (načrtnika)**. Potrebovali jih boste v kodi.
 
-#### 2. Koda: Razčlenitev
+#### 2. Koda: analiza
 
-Poglejmo ključne dele kode, ki obdelujejo avtentikacijo. Celotna koda za ta primer je na voljo v mapi [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) v repozitoriju [mcp-auth-servers na GitHubu](https://github.com/Azure-Samples/mcp-auth-servers).
+Oglejmo si ključne dele kode, ki upravljajo avtentikacijo. Celotna koda tega primera je na voljo v mapi [Entra ID - Local - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) v [mcp-auth-servers GitHub repozitoriju](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-Ta razred je odgovoren za interakcijo z Entra ID.
+Ta razred je odgovoren za rokovanje z Entra ID.
 
-- **`CreateAsync`**: Ta metoda inicializira `PublicClientApplication` iz MSAL (Microsoft Authentication Library). Konfigurirana je z vašo `clientId` in `tenantId`.
-- **`WithBroker`**: To omogoča uporabo posrednika (kot je Windows Web Account Manager), ki zagotavlja bolj varen in nemoten enotni prijavni proces.
-- **`AcquireTokenAsync`**: To je osrednja metoda. Najprej poskuša tiho pridobiti žeton (kar pomeni, da uporabnik ne bo moral ponovno prijavljati, če ima že veljavno sejo). Če tihega žetona ni mogoče pridobiti, bo interaktivno pozvala uporabnika k prijavi.
+- **`CreateAsync`**: Ta metoda inicializira `PublicClientApplication` iz MSAL (Microsoft Authentication Library). Nastavljena je z ID-jem aplikacije `clientId` in ID-jem najemnika `tenantId`.
+- **`WithBroker`**: Omogoča uporabo posrednika (kot je Windows Web Account Manager), ki zagotavlja varnejšo in bolj tekočo izkušnjo enotne prijave.
+- **`AcquireTokenAsync`**: To je ključna metoda. Najprej skuša tiho pridobiti žeton (kar pomeni, da uporabnik ne bo moral ponovno potrditi prijave, če je že v veljavni seji). Če tihe pridobitve žetona ni mogoče, bo uporabnik pozvan k interaktivni prijavi.
 
 ```csharp
 // Simplified for clarity
@@ -181,10 +194,10 @@ public async Task<string> AcquireTokenAsync()
 
 **`Program.cs`**
 
-Tukaj se nastavi MCP strežnik in integrira avtentikacijska storitev.
+Tukaj je vzpostavljen strežnik MCP in integrirana avtentikacijska storitev.
 
-- **`AddSingleton<AuthenticationService>`**: Registrira `AuthenticationService` v vsebnik za odvisnostno inekcijo, da ga lahko uporabljajo drugi deli aplikacije (kot naše orodje).
-- **Orodje `GetUserDetailsFromGraph`**: To orodje zahteva primer `AuthenticationService`. Preden karkoli stori, kliče `authService.AcquireTokenAsync()`, da pridobi veljaven dostopni žeton. Če je avtentikacija uspešna, z žetonom pokliče Microsoft Graph API in pridobi podatke o uporabniku.
+- **`AddSingleton<AuthenticationService>`**: Registrira `AuthenticationService` v vsebnik odvisnosti, da ga lahko uporabljajo drugi deli aplikacije (kot naše orodje).
+- **`GetUserDetailsFromGraph` orodje**: To orodje potrebuje instanco `AuthenticationService`. Preden karkoli naredi, kliče `authService.AcquireTokenAsync()`, da pridobi veljavni dostopni žeton. Če je avtentikacija uspešna, s tem žetonom kliče Microsoft Graph API in pridobi uporabnikove podatke.
 
 ```csharp
 // Simplified for clarity
@@ -214,84 +227,84 @@ public static async Task<string> GetUserDetailsFromGraph(
 
 #### 3. Kako vse skupaj deluje
 
-1. Ko MCP odjemalec poskuša uporabiti orodje `GetUserDetailsFromGraph`, to orodje najprej kliče `AcquireTokenAsync`.
-2. `AcquireTokenAsync` sproži MSAL knjižnico, da preveri veljavnost žetona.
-3. Če žeton ni najden, MSAL, preko posrednika, pozove uporabnika k prijavi z njihovim Entra ID računom.
+1. Ko MCP odjemalec poskuša uporabiti `GetUserDetailsFromGraph` orodje, to orodje najprej kliče `AcquireTokenAsync`.
+2. `AcquireTokenAsync` sproži knjižnico MSAL, da preveri veljavni žeton.
+3. Če žeton ni najden, uporabnika posrednik (broker) pozove, da se prijavi z računom Entra ID.
 4. Ko se uporabnik prijavi, Entra ID izda dostopni žeton.
-5. Orodje prejme žeton in ga uporabi za varen klic Microsoft Graph API.
-6. Podatki o uporabniku se vrnejo MCP odjemalcu.
+5. Orodje prejme žeton in ga uporabi za varni klic Microsoft Graph API.
+6. Podatki o uporabniku so vrnjeni MCP odjemalcu.
 
-Ta postopek zagotavlja, da lahko orodje uporablja le avtenticirani uporabniki in tako učinkovito zavaruje vaš lokalni MCP strežnik.
+Ta postopek zagotavlja, da lahko orodje uporabljajo le avtenticirani uporabniki, s čimer učinkovito varuje vaš lokalni strežnik MCP.
 
-### Scenarij 2: Zavarovanje oddaljenega MCP strežnika (z zaupnim odjemalcem)
+### Scenarij 2: Zavarovanje oddaljenega strežnika MCP (z zaupnim odjemalcem)
 
-Ko MCP strežnik teče na oddaljeni napravi (kot je strežnik v oblaku) in komunicira prek protokola, kot je HTTP Streaming, so varnostne zahteve drugačne. V tem primeru uporabite **zaupnega odjemalca** in **potek po avtorizacijskem kodu**. To je varnejša metoda, ker aplikacijski skrivnosti nikoli niso razkrite v brskalniku.
+Ko vaš strežnik MCP teče na oddaljenem računalniku (kot je strežnik v oblaku) in komunicira prek protokola, kot je HTTP Streaming, so varnostne zahteve drugačne. V tem primeru morate uporabiti **zaupni odjemalec** in **Authorization Code Flow**. To je varnejša metoda, saj aplikacijski skrivnosti niso nikoli razkrite brskalniku.
 
-Ta primer uporablja MCP strežnik na osnovi TypeScript, ki uporablja Express.js za obdelavo HTTP zahtevkov.
+Ta primer uporablja MCP strežnik, zasnovan v TypeScript, ki uporablja Express.js za obravnavo HTTP zahtevkov.
 
 #### 1. Nastavitev aplikacije v Entra ID
 
-Nastavitev v Entra ID je podobna kot pri javnem odjemalcu, vendar je ena ključna razlika: potrebno je ustvariti **skrivnost odjemalca**.
+Nastavitev v Entra ID je podobna kot pri javnem odjemalcu, vendar z eno pomembno razliko: morate ustvariti **skrivnost odjemalca**.
 
 1. Pojdite na **[Microsoft Entra portal](https://entra.microsoft.com/)**.
-2. V registraciji vaše aplikacije pojdite na zavihek **Certifikati in skrivnosti**.
-3. Kliknite **Nova skrivnost odjemalca**, ji dajte opis in kliknite **Dodaj**.
-4. **Pomembno:** Takoj kopirajte vrednost skrivnosti. Kasneje si je ne boste mogli več ogledati.
-5. Potrebno je tudi konfigurirati **Preusmeritveni URI**. Pojdite na zavihek **Avtentikacija**, kliknite **Dodaj platformo**, izberite **Splet** in vnesite preusmeritveni URI za vašo aplikacijo (npr. `http://localhost:3001/auth/callback`).
+2. Vregistraciji aplikacije pojdite na zavihek **Certifikati in skrivnosti**.
+3. Kliknite **Nova skrivnost odjemalca**, ji dodajte opis in kliknite **Dodaj**.
+4. **Pomembno:** Takoj kopirajte vrednost skrivnosti. Kasneje je ne boste mogli več videti.
+5. Prav tako morate konfigurirati **Preusmeritveni URI**. Pojdite na zavihek **Avtentikacija**, kliknite **Dodaj platformo**, izberite **Splet** in vnesite preusmeritveni URI za vašo aplikacijo (npr. `http://localhost:3001/auth/callback`).
 
-> **⚠️ Pomembno varnostno opozorilo:** Za produkcijske aplikacije Microsoft močno priporoča uporabo metod **avtentikacije brez skrivnosti**, kot sta **Upravljana identiteta** ali **Zveza identitete delovne obremenitve**, namesto skrivnosti odjemalca. Skrivnosti odjemalca predstavljajo varnostno tveganje, saj se lahko razkrijejo ali kompromitirajo. Upravljane identitete nudijo varnejši pristop, saj ni potrebe po shranjevanju poverilnic v vaši kodi ali konfiguraciji.
+> **⚠️ Pomembno varnostno opozorilo:** Za produkcijske aplikacije Microsoft močno priporoča uporabo metod avtentikacije brez skrivnosti, kot sta **Managed Identity** ali **Workload Identity Federation**, namesto skrivnosti odjemalcev. Skrivnosti odjemalcev predstavljajo varnostna tveganja, saj so lahko razkrite ali ogrožene. Upravljane identitete nudijo varnejši pristop, saj ni potrebe po shranjevanju poverilnic v vaši kodi ali konfiguraciji.
 >
-> Za več informacij o upravljanih identitetah in kako jih implementirati si oglejte [Pregled upravljanih identitet za Azure vire](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> Za več informacij o upravljanih identitetah in kako jih implementirati, glejte [Pregled upravljanih identitet za Azure vire](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
 
-#### 2. Koda: Razčlenitev
+#### 2. Koda: analiza
 
-Ta primer uporablja pristop z upravljanjem sej. Ko se uporabnik avtenticira, strežnik shrani dostopni in osvežitveni žeton v sejo ter uporabniku dodeli žeton seje. Ta žeton se nato uporablja za naslednje zahtevke. Celotna koda za ta primer je na voljo v mapi [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) v repozitoriju [mcp-auth-servers na GitHubu](https://github.com/Azure-Samples/mcp-auth-servers).
+Ta primer uporablja sejnijski pristop. Ko se uporabnik avtenticira, strežnik shrani dostopni in osvežitveni žeton v sejo in uporabniku dodeli sejnijski žeton. Ta sejnijski žeton se nato uporablja za nadaljnje zahtevke. Celotna koda tega primera je na voljo v mapi [Entra ID - Confidential client](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) v [mcp-auth-servers GitHub repozitoriju](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
 Ta datoteka nastavi Express strežnik in MCP transportno plast.
 
-- **`requireBearerAuth`**: To je vmesna programska oprema, ki varuje `/sse` in `/message` končne točke. Preverja veljaven žeton prenašalca v glavi `Authorization` zahtevka.
+- **`requireBearerAuth`**: To je vmesna programska oprema, ki ščiti končne točke `/sse` in `/message`. Preverja veljavni nosilec žetona (bearer token) v glavi zahtevka `Authorization`.
 - **`EntraIdServerAuthProvider`**: To je prilagojeni razred, ki implementira vmesnik `McpServerAuthorizationProvider`. Odgovoren je za upravljanje OAuth 2.0 poteka.
-- **`/auth/callback`**: Ta končna točka obdeluje preusmeritev iz Entra ID potem, ko se uporabnik avtenticira. Zamenja avtorizacijsko kodo za dostopni in osvežitveni žeton.
+- **`/auth/callback`**: Ta končna točka obravnava preusmeritev iz Entra ID, potem ko se je uporabnik avtenticiral. Zamenja avtentikacijsko kodo za dostopni in osvežitveni žeton.
 
 ```typescript
-// Poenostavljeno za jasnost
+// Simplified for clarity
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
 
-// Zaščitite SSE konec
+// Protect the SSE endpoint
 app.get("/sse", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... povežite se s transportom ...
+  // ... connect to the transport ...
 });
 
-// Zaščitite konec sporočila
+// Protect the message endpoint
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... obdelajte sporočilo ...
+  // ... handle the message ...
 });
 
-// Obdelajte OAuth 2.0 povratni klic
+// Handle the OAuth 2.0 callback
 app.get("/auth/callback", (req, res) => {
   provider.handleCallback(req.query.code, req.query.state)
     .then(result => {
-      // ... obdelajte uspeh ali neuspeh ...
+      // ... handle success or failure ...
     });
 });
 ```
 
 **`Tools.ts`**
 
-Ta datoteka definira orodja, ki jih nudi MCP strežnik. Orodje `getUserDetails` je podobno kot v prejšnjem primeru, vendar dostopni žeton pridobi iz seje.
+Ta datoteka določa orodja, ki jih zagotavlja MCP strežnik. Orodje `getUserDetails` je podobno tistemu iz prejšnjega primera, vendar pridobi dostopni žeton iz seje.
 
 ```typescript
-// Poenostavljeno za jasnost
+// Simplified for clarity
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name } = request.params;
   const context = request.params?.context as { token?: string } | undefined;
@@ -302,7 +315,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       throw new AuthenticationError("Authentication token is missing or invalid. Ensure the token is provided in the request context.");
     }
 
-    // Pridobi Entra ID žeton iz shrambe sej
+    // Get the Entra ID token from the session store
     const tokenData = tokenStore.getToken(sessionToken);
     const entraIdToken = tokenData.accessToken;
 
@@ -314,116 +327,115 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const user = await graphClient.api('/me').get();
 
-    // ... vrni podatke o uporabniku ...
+    // ... return user details ...
   }
 });
 ```
 
 **`auth/EntraIdServerAuthProvider.ts`**
 
-Ta razred upravlja z logiko za:
+Ta razred upravlja logiko za:
 
-- Preusmeritev uporabnika na prijavno stran Entra ID.
-- Zamenjavo avtorizacijske kode za dostopni žeton.
+- Preusmerjanje uporabnika na prijavno stran Entra ID.
+- Zamenjavo avtentikacijskega kodeksa za dostopni žeton.
 - Shranjevanje žetonov v `tokenStore`.
 - Osveževanje dostopnega žetona, ko poteče.
 
-
 #### 3. Kako vse to deluje skupaj
 
-1. Ko se uporabnik prvič poskuša povezati na MCP strežnik, bo `requireBearerAuth` vmesnik zaznal, da nima veljavne seje in ga preusmeril na stran za prijavo v Entra ID.
-2. Uporabnik se prijavi s svojim računom Entra ID.
-3. Entra ID preusmeri uporabnika nazaj na končno točko `/auth/callback` z avtentikacijskim kodo.
-4. Strežnik zamenja kodo za dostopni žeton in osvežitveni žeton, jih shrani in ustvari žeton seje, ki ga pošlje odjemalcu.
-5. Odjemalec lahko zdaj uporablja ta žeton seje v glavi `Authorization` za vse prihodnje zahteve MCP strežniku.
-6. Ko se pokliče orodje `getUserDetails`, uporabi žeton seje za iskanje dostopnega žetona Entra ID in nato uporabi ta žeton za klic Microsoft Graph API.
+1. Ko se uporabnik prvič poskuša povezati z MCP strežnikom, bo vmesnik `requireBearerAuth` zaznal, da nima veljavne seje in ga preusmeril na prijavno stran Entra ID.
+2. Uporabnik se prijavi z nalogom Entra ID.
+3. Entra ID preusmeri uporabnika nazaj na `/auth/callback` končno točko z avtentikacijskim kodeksom.
+4. Strežnik zamenja kodeks za dostopni in osvežitveni žeton, jih shrani in ustvari sejni žeton, ki ga pošlje odjemalcu.
+5. Odjemalec zdaj lahko uporabi ta sejni žeton v glavi `Authorization` za vse prihodnje zahteve na MCP strežnik.
+6. Ko je orodje `getUserDetails` klicano, uporabi sejen žeton za iskanje dostopnega žetona Entra ID in nato uporabi ta žeton za klic Microsoft Graph API.
 
-Ta potek je bolj zapleten kot potek za javne odjemalce, vendar je potreben za internetno izpostavljene končne točke. Ker so oddaljeni MCP strežniki dostopni preko javnega interneta, potrebujejo močnejše varnostne ukrepe za zaščito pred nepooblaščenim dostopom in morebitnimi napadi.
+Ta potek je bolj zapleten kot potek javnega odjemalca, vendar je zahtevan za internetno dostopne končne točke. Ker so oddaljeni MCP strežniki dostopni preko javnega interneta, potrebujejo močnejše varnostne ukrepe za zaščito pred nepooblaščenim dostopom in morebitnimi napadi.
 
 
 ## Najboljše varnostne prakse
 
-- **Vedno uporabljajte HTTPS**: Šifrirajte komunikacijo med odjemalcem in strežnikom, da zaščitite žetone pred prestrezanjem.
-- **Uvedite nadzor dostopa na osnovi vlog (RBAC)**: Ne preverjajte le *ali* je uporabnik avtenticiran, temveč tudi *kaj* je pooblaščen storiti. V Entra ID lahko opredelite vloge in jih preverite v svojem MCP strežniku.
-- **Nadzorujte in izvajajte revizijo**: Beležite vse dogodke avtentikacije, da lahko zaznate in se odzovete na sumljive dejavnosti.
-- **Obvladujte omejevanje hitrosti in dušenje zahtevkov**: Microsoft Graph in drugi API-ji uvajajo omejevanje hitrosti za preprečevanje zlorab. Vzpostavite eksponentno vračanje nazaj in logiko ponovitve v vašem MCP strežniku, da lepo obravnavate HTTP 429 (preveč zahtevkov) odzive. Razmislite o predpomnilniku pogosto dostopanih podatkov, da zmanjšate klice API.
-- **Varnostno shranjevanje žetonov**: Shranjujte dostopne žetone in osvežitvene žetone varno. Za lokalne aplikacije uporabite varnostne mehanizme sistema. Za strežniške aplikacije razmislite o uporabi šifriranega shranjevanja ali varnih storitev za upravljanje ključev, kot je Azure Key Vault.
-- **Obdelava poteka žetonov**: Dostopni žetoni imajo omejeno življenjsko dobo. Implementirajte samodejno osveževanje žetonov z uporabo osvežitvenih žetonov za nemoteno uporabniško izkušnjo brez ponovne avtentikacije.
-- **Razmislite o uporabi Azure API Management**: Medtem ko implementacija varnosti neposredno v vašem MCP strežniku nudi natančen nadzor, lahko API prehodi, kot je Azure API Management, samodejno upravljajo mnoge vidike varnosti, vključno z avtentikacijo, avtoritacijo, omejevanjem hitrosti in nadzorom. Nudijo centralizirano varnostno plast, ki stoji med vašimi odjemalci in MCP strežniki. Za več podrobnosti o uporabi API prehodov z MCP glejte [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Vedno uporabljajte HTTPS**: šifrirajte komunikacijo med odjemalcem in strežnikom, da zaščitite žetone pred prestrezanjem.
+- **Implementirajte nadzor dostopa na podlagi vlog (RBAC)**: ne preverjajte samo *če* je uporabnik avtenticiran; preverite *kaj* je pooblaščen narediti. Vloge lahko definirate v Entra ID in jih preverjate v svojem MCP strežniku.
+- **Spremljajte in pregledujte**: beležite vse dogodke avtentikacije, da lahko zaznate in reagirate na sumljivo dejavnost.
+- **Obvladovanje omejitev hitrosti in zategovanja**: Microsoft Graph in drugi API-ji implementirajo omejitve hitrosti, da preprečijo zlorabe. V svoj MCP strežnik implementirajte eksponentno vračanje in logiko ponovnih poskusov za elegantno obravnavo HTTP 429 (Preveč zahtev). Razmislite o predpomnjenju pogosto dostopnih podatkov za zmanjšanje klicev API.
+- **Varnostno shranjevanje žetonov**: varno shranjujte dostopne in osvežitvene žetone. Za lokalne aplikacije uporabite varnostne mehanizme sistema. Za strežniške aplikacije razmislite o uporabi šifriranega shranjevanja ali varnih storitev za upravljanje ključev, kot je Azure Key Vault.
+- **Obravnava poteka žetonov**: dostopni žetoni imajo omejeno življenjsko dobo. Implementirajte samodejno osveževanje žetonov z uporabo osvežitvenih žetonov, da ohranite nemoteno uporabniško izkušnjo brez potrebe po ponovni prijavi.
+- **Razmislite o uporabi Azure API Management**: medtem ko vam implementacija varnosti neposredno v vašem MCP strežniku omogoča fino nadzorovanje, lahko API prehodi, kot je Azure API Management, samodejno obravnavajo mnoge varnostne vidike, vključno z avtentikacijo, avtorizacijo, omejitvijo hitrosti in spremljanjem. Nudijo centralizirano varnostno plast, ki stoji med vašimi odjemalci in vašimi MCP strežniki. Za več podrobnosti o uporabi API prehodov z MCP glejte: [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
 
 
-## Ključne ugotovitve
+## Ključni poudarki
 
-- Varnost vašega MCP strežnika je ključnega pomena za zaščito vaših podatkov in orodij.
-- Microsoft Entra ID nudi robustno in razširljivo rešitev za avtentikacijo in avtoritacijo.
-- Za lokalne aplikacije uporabite **javni odjemalec**, za oddaljene strežnike pa **zaupnega odjemalca**.
-- **Avtentikacijski potek z avtoritacijsko kodo** je najbolj varna možnost za spletne aplikacije.
+- Zagotavljanje varnosti vašega MCP strežnika je ključno za zaščito vaših podatkov in orodij.
+- Microsoft Entra ID nudi robustno in razširljivo rešitev za avtentikacijo in avtorizacijo.
+- Uporabite **javni odjemalec** za lokalne aplikacije in **zaupnega odjemalca** za oddaljene strežnike.
+- **Authorization Code Flow** je najsrečnejša možnost za spletne aplikacije.
 
 
 ## Vaja
 
-1. Premislite o MCP strežniku, ki bi ga morda zgradili. Bi bil lokalni strežnik ali oddaljeni strežnik?
+1. Pomislite na MCP strežnik, ki ga morda boste ustvarili. Bi bil to lokalni ali oddaljeni strežnik?
 2. Glede na vaš odgovor, bi uporabili javnega ali zaupanja vrednega odjemalca?
-3. Katere pravice bi vaš MCP strežnik zahteval za izvajanje dejanj v Microsoft Graph?
+3. Kakšno dovoljenje bi vaš MCP strežnik zahteval za izvajanje dejanj proti Microsoft Graph?
 
 
 ## Praktične vaje
 
 ### Vaja 1: Registracija aplikacije v Entra ID
-Obiščite Microsoft Entra portal.
+Pojdite na portal Microsoft Entra.
 Registrirajte novo aplikacijo za vaš MCP strežnik.
 Zapišite ID aplikacije (odjemalca) in ID imenika (najemnika).
 
-### Vaja 2: Varnost lokalnega MCP strežnika (javni odjemalec)
-- Sledite primerom kode za integracijo MSAL (Microsoft Authentication Library) za avtentikacijo uporabnikov.
-- Preizkusite potek avtentikacije z klicem orodja MCP, ki pridobi uporabnične podatke iz Microsoft Graph.
+### Vaja 2: Zavarovanje lokalnega MCP strežnika (javni odjemalec)
+- Sledite primerom kode za integracijo MSAL (Microsoft Authentication Library) za uporabniško avtentikacijo.
+- Testirajte avtentikacijski potek s klicem MCP orodja, ki pridobiva podatke o uporabniku iz Microsoft Graph.
 
-### Vaja 3: Varnost oddaljenega MCP strežnika (zaupanja vredni odjemalec)
+### Vaja 3: Zavarovanje oddaljenega MCP strežnika (zaupanja vreden odjemalec)
 - Registrirajte zaupanja vrednega odjemalca v Entra ID in ustvarite skrivnost odjemalca.
-- Konfigurirajte svoj Express.js MCP strežnik za uporabo avtoritacijskega poteka z avtentikacijsko kodo.
-- Preizkusite zaščitene končne točke in potrdite dostop s pomočjo žetonov.
+- Konfigurirajte vaš Express.js MCP strežnik za uporabo Authorization Code Flow.
+- Testirajte zaščitene končne točke in potrdite dostop z žetonom.
 
-### Vaja 4: Uveljavljanje najboljših varnostnih praks
+### Vaja 4: Uporabite najboljše varnostne prakse
 - Omogočite HTTPS za vaš lokalni ali oddaljeni strežnik.
-- Uvedite nadzor dostopa na osnovi vlog (RBAC) v vaši strežniški logiki.
+- Implementirajte nadzor dostopa na podlagi vlog (RBAC) v svoji strežniški logiki.
 - Dodajte obravnavo poteka žetonov in varno shranjevanje žetonov.
 
 ## Viri
 
-1. **Dokumentacija pregleda MSAL**  
-   Naučite se, kako Microsoft Authentication Library (MSAL) omogoča varno pridobivanje žetonov na različnih platformah:  
+1. **MSAL pregled dokumentacije**  
+   Naučite se, kako Microsoft Authentication Library (MSAL) omogoča varno pridobivanje žetonov prek platform:  
    [MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
-2. **GitHub repozitorij Azure-Samples/mcp-auth-servers**  
-   Referenčne implementacije MCP strežnikov, ki prikazujejo poteke avtentikacije:  
+2. **Azure-Samples/mcp-auth-servers GitHub repozitorij**  
+   Referenčne implementacije MCP strežnikov, ki prikazujejo avtentikacijske tokove:  
    [Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
 
-3. **Pregled Upravljanih identitet za Azure vire**  
-   Razumite, kako odpraviti skrivnosti s sistemsko ali uporabniško dodeljenimi upravljanimi identitetami:  
+3. **Pregled upravljanih identitet za Azure vire**  
+   Razumite, kako odpraviti skrivnosti z uporabo sistemskih ali uporabniških dodeljenih upravljanih identitet:  
    [Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
-4. **Azure API Management: Vaša avtentikacijska prehod za MCP strežnike**  
-   Poglobljen pregled uporabe APIM kot varne OAuth2 prehoda za MCP strežnike:  
+4. **Azure API Management: Vaš avtorizacijski prehod za MCP strežnike**  
+   Poglobljen vpogled v uporabo APIM kot varnega OAuth2 prehoda za MCP strežnike:  
    [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
-5. **Referenca dovoljenj Microsoft Graph**  
+5. **Microsoft Graph referenca dovoljenj**  
    Celovit seznam delegiranih in aplikacijskih dovoljenj za Microsoft Graph:  
    [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
 
 ## Cilji učenja
-Po končanem tem delu boste lahko:
+Po zaključku tega razdelka boste:
 
-- Pojasnili, zakaj je avtentikacija ključnega pomena za MCP strežnike in AI delovne tokove.
-- Nastavili in konfigurirali avtentikacijo Entra ID za scenarije lokalnega in oddaljenega MCP strežnika.
+- Lahko opišete, zakaj je avtentikacija ključna za MCP strežnike in AI delovne tokove.
+- Nastavili in konfigurirali Entra ID avtentikacijo za scenarije lokalnega in oddaljenega MCP strežnika.
 - Izbrali ustrezno vrsto odjemalca (javni ali zaupanja vreden) glede na namestitev vašega strežnika.
-- Uporabili varne prakse kodiranja, vključno s shranjevanjem žetonov in avtoritacijo na osnovi vlog.
-- Zaupno zaščitili vaš MCP strežnik in njegova orodja pred nepooblaščenim dostopom.
+- Implementirali varne prakse kodiranja, vključno s shranjevanjem žetonov in avtorizacijo na podlagi vlog.
+- Zaupanja vredno zaščitili svoj MCP strežnik in njegova orodja pred nepooblaščenim dostopom.
 
 ## Kaj sledi
 
-- [5.13 Protokol modelnega konteksta (MCP) integracija z Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
+- [5.13 Model Context Protocol (MCP) integracija z Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
 
 ---
 

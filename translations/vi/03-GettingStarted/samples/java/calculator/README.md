@@ -1,24 +1,24 @@
 # Dịch vụ Máy tính Cơ bản MCP
 
 > [!NOTE]
-> Ví dụ này sử dụng giao thức truyền tải HTTP+SSE cũ và hướng đến một SDK tương thích
-> với MCP `2025-11-25`. Các máy chủ từ xa mới nên sử dụng hỗ trợ HTTP Streamable
-> `2026-07-28`.
+> Mẫu này sử dụng giao thức HTTP+SSE cũ và nhắm đến một SDK tương thích
+> với MCP `2025-11-25`. Các máy chủ từ xa mới nên sử dụng `2026-07-28` Streamable
+> HTTP.
 
-Dịch vụ này cung cấp các phép tính cơ bản qua Giao thức Ngữ cảnh Mô hình (MCP) sử dụng Spring Boot với giao thức WebFlux. Nó được thiết kế như một ví dụ đơn giản cho người mới bắt đầu tìm hiểu về triển khai MCP.
+Dịch vụ này cung cấp các phép toán máy tính cơ bản thông qua Giao thức Ngữ cảnh Mô hình (MCP) sử dụng Spring Boot với giao thức WebFlux. Nó được thiết kế như một ví dụ đơn giản dành cho người mới bắt đầu học về các triển khai MCP.
 
 Để biết thêm thông tin, xem tài liệu tham khảo [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 ## Tổng quan
 
-Dịch vụ trình diễn:
-- Hỗ trợ SSE (Sự kiện do máy chủ gửi)
+Dịch vụ trình bày:
+- Hỗ trợ SSE (Server-Sent Events)
 - Đăng ký công cụ tự động sử dụng chú thích `@Tool` của Spring AI
 - Các chức năng máy tính cơ bản:
   - Cộng, trừ, nhân, chia
   - Tính lũy thừa và căn bậc hai
-  - Phép lấy phần dư (modulus) và giá trị tuyệt đối
-  - Hàm trợ giúp mô tả các phép toán
+  - Tính dư (modulus) và trị tuyệt đối
+  - Chức năng trợ giúp mô tả các phép tính
 
 ## Tính năng
 
@@ -26,117 +26,94 @@ Dịch vụ máy tính này cung cấp các khả năng sau:
 
 1. **Các phép toán số học cơ bản**:
    - Cộng hai số
-   - Trừ số thứ hai từ số thứ nhất
+   - Trừ một số từ số khác
    - Nhân hai số
-   - Chia số thứ nhất cho số thứ hai (có kiểm tra chia cho 0)
+   - Chia một số cho số khác (kiểm tra không chia cho 0)
 
-2. **Phép toán nâng cao**:
-   - Tính lũy thừa (nâng cơ số lên mũ)
-   - Tính căn bậc hai (có kiểm tra số âm)
+2. **Các phép toán nâng cao**:
+   - Tính lũy thừa (nâng cơ số lên số mũ)
+   - Tính căn bậc hai (kiểm tra số âm)
    - Tính phần dư (modulus)
-   - Tính giá trị tuyệt đối
+   - Tính trị tuyệt đối
 
 3. **Hệ thống trợ giúp**:
-   - Hàm trợ giúp tích hợp giải thích tất cả các phép toán có sẵn
+   - Chức năng trợ giúp tích hợp giải thích tất cả các phép toán có sẵn
 
 ## Sử dụng Dịch vụ
 
-Dịch vụ cung cấp các điểm cuối API sau qua giao thức MCP:
+Dịch vụ cung cấp các điểm cuối API sau thông qua giao thức MCP:
 
-- `add(a, b)`: Cộng hai số lại với nhau
-- `subtract(a, b)`: Trừ số thứ hai từ số thứ nhất
+- `add(a, b)`: Cộng hai số
+- `subtract(a, b)`: Trừ số thứ hai từ số đầu tiên
 - `multiply(a, b)`: Nhân hai số
-- `divide(a, b)`: Chia số thứ nhất cho số thứ hai (có kiểm tra số 0)
+- `divide(a, b)`: Chia số đầu tiên cho số thứ hai (với kiểm tra số 0)
 - `power(base, exponent)`: Tính lũy thừa của một số
-- `squareRoot(number)`: Tính căn bậc hai (có kiểm tra số âm)
+- `squareRoot(number)`: Tính căn bậc hai (với kiểm tra số âm)
 - `modulus(a, b)`: Tính phần dư khi chia
-- `absolute(number)`: Tính giá trị tuyệt đối
+- `absolute(number)`: Tính trị tuyệt đối
 - `help()`: Lấy thông tin về các phép toán có sẵn
 
-## Khách hàng Thử nghiệm
+## Khách hàng kiểm tra
 
-Một khách hàng thử nghiệm đơn giản được bao gồm trong gói `com.microsoft.mcp.sample.client`. Lớp `SampleCalculatorClient` trình bày các phép toán có sẵn của dịch vụ máy tính.
+Một khách hàng kiểm tra đơn giản được bao gồm trong gói `com.microsoft.mcp.sample.client`. Lớp `SampleCalculatorClient` minh họa các phép toán có sẵn của dịch vụ máy tính.
 
 ## Sử dụng Khách hàng LangChain4j
 
-Dự án bao gồm một khách hàng LangChain4j ví dụ trong `com.microsoft.mcp.sample.client.LangChain4jClient` minh họa cách tích hợp dịch vụ máy tính với LangChain4j và các mô hình GitHub:
+Dự án bao gồm một ví dụ khách hàng LangChain4j trong
+`com.microsoft.mcp.sample.client.LangChain4jClient` minh họa cách
+tích hợp dịch vụ máy tính với mô hình Microsoft Foundry.
 
-### Yêu cầu Trước
+### Yêu cầu trước
 
-1. **Cài đặt Token GitHub**:
-   
-   Để sử dụng các mô hình AI của GitHub (như phi-4), bạn cần một token truy cập cá nhân GitHub:
+1. Tạo một tài nguyên Microsoft Foundry và triển khai mô hình hoạt động như
+   `gpt-5.1`.
+2. Đặt điểm cuối mô hình, khóa API và tên triển khai:
 
-   a. Vào phần cài đặt tài khoản GitHub của bạn: https://github.com/settings/tokens
-   
-   b. Nhấn "Generate new token" → "Generate new token (classic)"
-   
-   c. Đặt tên mô tả cho token
-   
-   d. Chọn các phạm vi sau:
-      - `repo` (Quản lý đầy đủ kho riêng tư)
-      - `read:org` (Đọc tổ chức và thành viên nhóm, đọc dự án tổ chức)
-      - `gist` (Tạo gists)
-      - `user:email` (Truy cập địa chỉ email người dùng (chỉ đọc))
-   
-   e. Nhấn "Generate token" và sao chép token mới
-   
-   f. Đặt nó làm biến môi trường:
-      
-      Trên Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      Trên macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. Để thiết lập lâu dài, thêm vào biến môi trường qua cài đặt hệ thống
-
-2. Thêm phụ thuộc LangChain4j GitHub vào dự án của bạn (đã có trong pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Đảm bảo máy chủ máy tính đang chạy tại `localhost:8080`
+3. Kiểm tra
+   [lịch nghỉ hưu mô hình Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   trước khi chọn triển khai.
+4. Đảm bảo máy chủ máy tính đang chạy trên `localhost:8080`.
 
 ### Chạy Khách hàng LangChain4j
 
-Ví dụ này trình bày:
+Ví dụ này minh họa:
 - Kết nối với máy chủ MCP máy tính qua giao thức SSE
-- Sử dụng LangChain4j để tạo chatbot tận dụng các phép toán máy tính
-- Tích hợp với các mô hình AI của GitHub (hiện dùng mô hình phi-4)
+- Sử dụng LangChain4j để tạo bot trò chuyện tận dụng các phép tính của máy tính
+- Tích hợp với mô hình Microsoft Foundry đã triển khai
 
-Khách hàng gửi các truy vấn ví dụ sau để minh họa chức năng:
+Khách hàng gửi các truy vấn mẫu sau để minh họa chức năng:
 1. Tính tổng hai số
 2. Tìm căn bậc hai của một số
 3. Lấy thông tin trợ giúp về các phép toán máy tính có sẵn
 
-Chạy ví dụ và xem đầu ra console để thấy cách mô hình AI sử dụng các công cụ máy tính để trả lời truy vấn.
+Chạy ví dụ và kiểm tra đầu ra trên console để xem cách mô hình AI sử dụng công cụ máy tính để trả lời truy vấn.
 
-### Cấu hình Mô hình GitHub
+### Cấu hình Mô hình Microsoft Foundry
 
-Khách hàng LangChain4j được cấu hình sử dụng mô hình phi-4 của GitHub với các thiết lập sau:
+Khách hàng LangChain4j sử dụng điểm cuối tương thích Azure OpenAI v1 được Microsoft Foundry
+cung cấp:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-Để dùng các mô hình GitHub khác, chỉ cần thay đổi tham số `modelName` sang mô hình được hỗ trợ khác (ví dụ: "claude-3-haiku-20240307", "llama-3-70b-8192", v.v.).
+`AZURE_OPENAI_DEPLOYMENT` phải khớp với tên được gán khi mô hình
+được triển khai, có thể khác với tên mô hình gốc.
 
-## Phụ thuộc
+## Các phụ thuộc
 
 Dự án yêu cầu các phụ thuộc chính sau:
 
@@ -154,17 +131,17 @@ Dự án yêu cầu các phụ thuộc chính sau:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
 
 ## Xây dựng Dự án
 
-Xây dựng dự án bằng Maven:
+Xây dựng dự án sử dụng Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
@@ -179,29 +156,29 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### Sử dụng MCP Inspector
 
-MCP Inspector là công cụ hữu ích để tương tác với các dịch vụ MCP. Để sử dụng nó với dịch vụ máy tính này:
+MCP Inspector là công cụ hữu ích để tương tác với dịch vụ MCP. Để sử dụng với dịch vụ máy tính này:
 
 1. **Cài đặt và chạy MCP Inspector** trong cửa sổ terminal mới:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Truy cập giao diện web** bằng cách nhấp vào URL được ứng dụng hiển thị (thông thường là http://localhost:6274)
+2. **Truy cập giao diện web** bằng cách nhấp vào URL hiển thị bởi ứng dụng (thường là http://localhost:6274)
 
 3. **Cấu hình kết nối**:
-   - Đặt loại giao thức truyền tải thành "SSE"
+   - Đặt loại giao thức là "SSE"
    - Đặt URL đến điểm cuối SSE của máy chủ đang chạy: `http://localhost:8080/sse`
    - Nhấn "Connect"
 
-4. **Sử dụng các công cụ**:
-   - Nhấn "List Tools" để xem các phép toán máy tính sẵn có
-   - Chọn một công cụ và nhấn "Run Tool" để thực thi phép toán
+4. **Sử dụng công cụ**:
+   - Nhấn "List Tools" để xem các phép tính máy tính có sẵn
+   - Chọn một công cụ và nhấn "Run Tool" để thực hiện phép toán
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/vi/tool.c75a0b2380efcf1a.webp)
 
 ### Sử dụng Docker
 
-Dự án bao gồm Dockerfile để triển khai đóng gói:
+Dự án bao gồm một Dockerfile cho việc triển khai container:
 
 1. **Xây dựng ảnh Docker**:
    ```bash
@@ -213,27 +190,28 @@ Dự án bao gồm Dockerfile để triển khai đóng gói:
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
-Việc này sẽ:
+Điều này sẽ:
 - Xây dựng ảnh Docker đa giai đoạn với Maven 3.9.9 và Eclipse Temurin 24 JDK
-- Tạo ảnh container tối ưu hóa
+- Tạo ảnh container tối ưu
 - Mở cổng dịch vụ trên 8080
-- Khởi động dịch vụ máy tính MCP bên trong container
+- Khởi chạy dịch vụ MCP máy tính bên trong container
 
-Bạn có thể truy cập dịch vụ tại `http://localhost:8080` sau khi container chạy.
+Bạn có thể truy cập dịch vụ tại `http://localhost:8080` khi container đang chạy.
 
 ## Khắc phục sự cố
 
-### Các vấn đề thường gặp với Token GitHub
+### Các sự cố kết nối mô hình phổ biến
 
-1. **Vấn đề quyền Token**: Nếu bạn nhận lỗi 403 Forbidden, hãy kiểm tra token của bạn có quyền đúng như yêu cầu trong phần cài đặt trước hay không.
+1. **Lỗi xác thực**: Xác nhận `AZURE_OPENAI_API_KEY` thuộc về
+   tài nguyên được xác định bởi `AZURE_OPENAI_ENDPOINT`.
+2. **Không tìm thấy triển khai**: Xác nhận `AZURE_OPENAI_DEPLOYMENT` khớp chính xác
+   tên triển khai trong Microsoft Foundry.
+3. **Giới hạn tốc độ**: Xem xét hạn mức triển khai và thử lại sau khoảng thời gian
+   được dịch vụ trả về.
 
-2. **Không tìm thấy Token**: Nếu bạn nhận lỗi "No API key found", đảm bảo biến môi trường GITHUB_TOKEN đã được thiết lập đúng.
-
-3. **Giới hạn tốc độ**: API của GitHub có giới hạn tốc độ. Nếu gặp lỗi giới hạn (mã trạng thái 429), hãy chờ vài phút rồi thử lại.
-
-4. **Token hết hạn**: Token GitHub có thể hết hạn. Nếu nhận lỗi xác thực sau một thời gian, hãy tạo token mới và cập nhật biến môi trường.
-
-Nếu cần thêm trợ giúp, hãy xem [tài liệu LangChain4j](https://github.com/langchain4j/langchain4j) hoặc [tài liệu API GitHub](https://docs.github.com/en/rest).
+Để được trợ giúp thêm, xem
+[tài liệu LangChain4j](https://github.com/langchain4j/langchain4j) và
+[tài liệu Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

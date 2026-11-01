@@ -1,6 +1,6 @@
-# Menjalankan contoh ini
+# Menjalankan sampel ini
 
-Anda disarankan untuk memasang `uv` tetapi ia tidak wajib, lihat [arahan](https://docs.astral.sh/uv/#highlights)
+Anda disyorkan untuk memasang `uv` tetapi ia tidak wajib, lihat [arahan](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Cipta persekitaran maya
 
@@ -19,10 +19,24 @@ venv\Scrips\activate
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Jalankan contoh
+## -3- Konfigurasi Microsoft Foundry
+
+Pasang model aktif seperti `gpt-5.1` dalam Microsoft Foundry, kemudian tetapkan:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` adalah nama pemasangan, yang mungkin berbeza daripada
+nama model asas. Semak
+[jadual persaraan model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+sebelum memilih model.
+
+## -4- Jalankan sampel
 
 
 ```bash
@@ -46,5 +60,9 @@ TOOL:  {'function': {'arguments': '{"a":2,"b":20}', 'name': 'add'}, 'id': 'call_
 TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 ```
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

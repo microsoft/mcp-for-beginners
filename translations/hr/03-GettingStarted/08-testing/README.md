@@ -1,36 +1,36 @@
-## Testiranje i ispravljanje pogrešaka
+## Testiranje i otklanjanje pogrešaka
 
-Prije nego što započnete s testiranjem vašeg MCP servera, važno je razumjeti dostupne alate i najbolje prakse za ispravljanje pogrešaka. Učinkovito testiranje osigurava da vaš server radi kako se očekuje i pomaže vam brzo identificirati i riješiti probleme. Sljedeći odlomak prikazuje preporučene pristupe za validaciju vaše MCP implementacije.
+Prije nego što započnete testiranje vašeg MCP servera, važno je razumjeti dostupne alate i najbolje prakse za otklanjanje pogrešaka. Učinkovito testiranje osigurava da se vaš server ponaša kako se očekuje i pomaže vam da brzo identificirate i riješite probleme. Sljedeći odjeljak opisuje preporučene pristupe za validaciju vaše MCP implementacije.
 
 ## Pregled
 
-Ova lekcija pokriva kako odabrati ispravan pristup testiranju i najefikasniji alat za testiranje.
+Ova lekcija obuhvaća kako odabrati pravi pristup testiranju i najučinkovitiji alat za testiranje.
 
 ## Ciljevi učenja
 
 Do kraja ove lekcije moći ćete:
 
-- Opišite različite pristupe testiranju.
-- Koristite različite alate za učinkovito testiranje vašeg koda.
+- Opisati različite pristupe testiranju.
+- Koristiti različite alate za učinkovito testiranje vašeg koda.
 
 
 ## Testiranje MCP servera
 
-MCP pruža alate koji vam pomažu testirati i otkloniti pogreške na vašim serverima:
+MCP pruža alate koji će vam pomoći u testiranju i otklanjanju pogrešaka vaših servera:
 
-- **MCP Inspector**: Alat naredbene linije koji se može pokrenuti kao CLI alat i kao vizualni alat.
-- **Ručni testiranje**: Možete koristiti alat poput curl za pokretanje web zahtjeva, ali bilo koji alat koji može izvršavati HTTP će biti dovoljan.
-- **Jedinično testiranje**: Moguće je koristiti vaš omiljeni testni okvir za testiranje funkcija i servera i klijenta.
+- **MCP Inspector**: Alat za komandnu liniju koji se može pokrenuti i kao CLI alat i kao vizualni alat.
+- **Ručno testiranje**: Možete koristiti alat poput curl za pokretanje web zahtjeva, ali bilo koji alat sposoban za HTTP će biti dovoljan.
+- **Jedinično testiranje**: Moguće je koristiti vaš omiljeni okvir za testiranje za testiranje značajki kako servera tako i klijenta.
 
 ### Korištenje MCP Inspectora
 
-Opisali smo korištenje ovog alata u prethodnim lekcijama, ali razgovarajmo malo o njemu na visokoj razini. To je alat izgrađen u Node.js i možete ga koristiti pozivom `npx` izvršnog programa koji će privremeno preuzeti i instalirati sam alat, a zatim se ukloniti nakon što izvrši vaš zahtjev.
+Opisali smo upotrebu ovog alata u prijašnjim lekcijama, ali hajde da ga malo općenito predstavimo. To je alat izgrađen u Node.js i možete ga koristiti tako da pozovete izvršnu datoteku `npx` koja će privremeno preuzeti i instalirati sam alat te se očistiti kada završi s obradom vašeg zahtjeva.
 
 [MCP Inspector](https://github.com/modelcontextprotocol/inspector) vam pomaže:
 
-- **Otkrivanje sposobnosti servera**: Automatski prepoznajte dostupne resurse, alate i upite
+- **Otkrivanje mogućnosti servera**: Automatski otkriva dostupne resurse, alate i prompte
 - **Testiranje izvršenja alata**: Isprobajte različite parametre i vidite odgovore u stvarnom vremenu
-- **Pregled metapodataka servera**: Istražite informacije o serveru, sheme i konfiguracije
+- **Pregled metapodataka servera**: Pregledajte informacije o serveru, sheme i konfiguracije
 
 Tipično pokretanje alata izgleda ovako:
 
@@ -38,11 +38,11 @@ Tipično pokretanje alata izgleda ovako:
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-Gornja naredba pokreće MCP i njegov vizualni sučelje te starta lokalno web sučelje u vašem pregledniku. Možete očekivati nadzornu ploču koja prikazuje vaše registrirane MCP servere, njihove dostupne alate, resurse i upite. Sučelje omogućava interaktivno testiranje izvršenja alata, pregled metapodataka servera i prikaz odgovora u stvarnom vremenu, što olakšava validaciju i otklanjanje pogrešaka u vašim MCP implementacijama servera.
+Gornja naredba pokreće MCP i njegov vizualni sučelje te otvara lokalno web sučelje u vašem pregledniku. Možete očekivati da vidite nadzornu ploču koja prikazuje vaše registrirane MCP servere, njihove dostupne alate, resurse i prompte. Sučelje vam omogućuje interaktivno testiranje izvršenja alata, pregled metapodataka servera i gledanje odgovora u stvarnom vremenu, što olakšava validaciju i otklanjanje pogrešaka u implementacijama vašeg MCP servera.
 
 Evo kako to može izgledati: ![Inspector](../../../../translated_images/hr/connect.141db0b2bd05f096.webp)
 
-Također možete pokrenuti ovaj alat u CLI načinu rada, za što dodajete atribut `--cli`. Evo primjera pokretanja alata u "CLI" načinu rada koji navodi sve alate na serveru:
+Također možete pokrenuti ovaj alat u CLI načinu rada, u kojem slučaju dodajete atribut `--cli`. Evo primjera pokretanja alata u "CLI" načinu koji ispisuje sve alate na serveru:
 
 ```sh
 npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list
@@ -50,25 +50,25 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Ručno testiranje
 
-Osim pokretanja alata inspector za testiranje sposobnosti servera, sličan pristup je pokretanje klijenta koji može koristiti HTTP, na primjer curl.
+Osim pokretanja Inspectora za testiranje mogućnosti servera, sličan pristup je pokretanje klijenta sposoban za korištenje HTTP-a, primjerice curl.
 
-S curlom možete izravno testirati MCP servere koristeći HTTP zahtjeve:
+Pomoću curl-a možete testirati MCP servere izravno koristeći HTTP zahtjeve:
 
 ```bash
-# Primjer: Metapodaci testnog poslužitelja
+# Example: Test server metadata
 curl http://localhost:3000/v1/metadata
 
-# Primjer: Pokreni alat
+# Example: Execute a tool
 curl -X POST http://localhost:3000/v1/tools/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
 ```
 
-Kao što vidite iz gore prikazane uporabe curl-a, koristite POST zahtjev za pozivanje alata koristeći payload koji sadrži naziv alata i njegove parametre. Koristite pristup koji vam najviše odgovara. CLI alati obično su brži za korištenje i mogu se skriptirati što može biti korisno u CI/CD okruženju.
+Kao što vidite iz gornje upotrebe curl-a, koristite POST zahtjev za pozivanje alata s uporabom payloada koji se sastoji od imena alata i njegovih parametara. Koristite pristup koji vam najviše odgovara. CLI alati općenito su brži za korištenje i pogodni za skriptiranje, što može biti korisno u CI/CD okruženju.
 
 ### Jedinično testiranje
 
-Kreirajte jedinične testove za vaše alate i resurse kako biste osigurali da rade kako se očekuje. Evo primjera testnog koda.
+Kreirajte jedinične testove za vaše alate i resurse kako biste osigurali da rade kako se očekuje. Evo primjera koda za testiranje.
 
 ```python
 import pytest
@@ -78,7 +78,7 @@ from mcp.shared.memory import (
     create_connected_server_and_client_session as create_session,
 )
 
-# Označi cijeli modul za asinhrone testove
+# Mark the whole module for async tests
 pytestmark = pytest.mark.anyio
 
 
@@ -91,7 +91,7 @@ async def test_list_tools_cursor_parameter():
 
  server = FastMCP("test")
 
-    # Kreiraj nekoliko testnih alata
+    # Create a couple of test tools
     @server.tool(name="test_tool_1")
     async def test_tool_1() -> str:
         """First test tool"""
@@ -103,43 +103,43 @@ async def test_list_tools_cursor_parameter():
         return "Result 2"
 
     async with create_session(server._mcp_server) as client_session:
-        # Testiraj bez parametra kursora (izostavljeno)
+        # Test without cursor parameter (omitted)
         result1 = await client_session.list_tools()
         assert len(result1.tools) == 2
 
-        # Testiraj s kursorm=None
+        # Test with cursor=None
         result2 = await client_session.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
-        # Testiraj s kursorm kao string
+        # Test with cursor as string
         result3 = await client_session.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
-        # Testiraj s praznim string kursorom
+        # Test with empty string cursor
         result4 = await client_session.list_tools(cursor="")
         assert len(result4.tools) == 2
     
 ```
 
-Navedeni kod radi sljedeće:
+Prethodni kod radi sljedeće:
 
-- Koristi pytest okvir koji omogućuje kreiranje testova kao funkcija i korištenje assert naredbi.
-- Kreira MCP Server s dva različita alata.
-- Koristi `assert` naredbu da provjeri da su određeni uvjeti ispunjeni.
+- Koristi pytest okvir koji vam omogućuje kreiranje testova kao funkcija i korištenje assert izjava.
+- Kreira MCP Server sa dva različita alata.
+- Koristi `assert` izjavu za provjeru ispunjenosti određenih uvjeta.
 
 Pogledajte [cijelu datoteku ovdje](https://github.com/modelcontextprotocol/python-sdk/blob/main/tests/client/test_list_methods_cursor.py)
 
-Na temelju gore navedene datoteke, možete testirati vlastiti server kako biste bili sigurni da su sposobnosti kreirane kako treba.
+Na temelju navedene datoteke, možete testirati vlastiti server kako biste osigurali da su mogućnosti stvorene kako treba.
 
-Svi glavni SDK-ovi imaju slične sekcije za testiranje pa ih možete prilagoditi odabranom runtime-u.
+Svi glavni SDK imaju slične sekcije za testiranje pa ih možete prilagoditi svom odabranom runtime-u.
 
 ## Primjeri 
 
-- [Java kalkulator](../samples/java/calculator/README.md)
-- [.Net kalkulator](../../../../03-GettingStarted/samples/csharp)
-- [JavaScript kalkulator](../samples/javascript/README.md)
-- [TypeScript kalkulator](../samples/typescript/README.md)
-- [Python kalkulator](../../../../03-GettingStarted/samples/python) 
+- [Java Kalkulator](../samples/java/calculator/README.md)
+- [.NET Kalkulator](../../../../03-GettingStarted/samples/csharp)
+- [JavaScript Kalkulator](../samples/javascript/README.md)
+- [TypeScript Kalkulator](../samples/typescript/README.md)
+- [Python Kalkulator](../../../../03-GettingStarted/samples/python) 
 
 ## Dodatni resursi
 
@@ -147,7 +147,7 @@ Svi glavni SDK-ovi imaju slične sekcije za testiranje pa ih možete prilagoditi
 
 ## Što slijedi
 
-- Sljedeće: [Deploy](../09-deployment/README.md)
+- Sljedeće: [Implementacija](../09-deployment/README.md)
 
 ---
 

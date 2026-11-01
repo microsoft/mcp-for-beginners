@@ -1,39 +1,44 @@
-# MCP Protokolfunktioner Dybdegående
+# MCP-protokolfunktioner dybdegående
 
-Denne guide udforsker avancerede MCP protokolfunktioner, der går ud over grundlæggende håndtering af værktøjer og ressourcer. Forståelse af disse funktioner hjælper dig med at bygge mere robuste, brugervenlige og produktionsklare MCP servere.
+Denne vejledning udforsker avancerede MCP-protokolfunktioner, der går ud over grundlæggende håndtering af værktøjer og ressourcer. Forståelse af disse funktioner hjælper dig med at bygge mere robuste, brugervenlige og produktionsklare MCP-servere.
 
-> **Fremadskuende:** `2026-07-28` releasekandidaten udfaser Logging-primitivet (favoriserer `stderr` til stdio og OpenTelemetry til struktureret observabilitet), fjerner `initialize`/sessionsmodellen nævnt under Serverens Livscyklus Events nedenfor og flytter den eksperimentelle Tasks-funktion til en dedikeret Tasks-udvidelse med en ny `tasks/get`/`tasks/update`/`tasks/cancel` livscyklus. Se [Hvad ændres i MCP: 2026-07-28 Releasekandidat](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` omfang:** serverprocesstart og -afslutning forbliver
+> applikationshensyn, men MCP `initialize` håndtryk og protokolniveau-
+> sessioner fjernes. Afsnittet Logning nedenfor bevares til ældre
+> implementeringer; nye servere bør bruge `stderr` eller OpenTelemetry. Opgaver er
+> nu en separat versionsstyret udvidelse. Se
+> [Hvad er ændret i MCP: Specifikationen fra 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-## Dækkede Funktioner
+## Dækkede funktioner
 
-1. **Fremskridtsnotifikationer** - Rapportér fremskridt for langvarige operationer
-2. **Annullering af Anmodninger** - Tillad klienter at annullere igangværende anmodninger
-3. **Ressourcetemplater** - Dynamiske resource-URI’er med parametre
-4. **Server Livscyklus Events** - Korrekt initialisering og nedlukning
-5. **Logningskontrol** - Server-side logningskonfiguration
-6. **Mønstre for Fejlhåndtering** - Konsistente fejlsvar
+1. **Fremskridtsmeddelelser** - Rapportér fremdrift for langvarige operationer
+2. **Annullering af forespørgsler** - Giv klienter mulighed for at annullere igangværende forespørgsler
+3. **Ressourcetemplater** - Dynamiske ressource-URI’er med parametre
+4. **Applikationslivscyklus** - Serverprocesstart og -afslutning
+5. **Logningskontrol (Ældre)** - Udadgående MCP-logningskonfiguration
+6. **Fejlhåndteringsmønstre** - Konsistente fejlresponser
 
 ---
 
-## 1. Fremskridtsnotifikationer
+## 1. Fremskridtsmeddelelser
 
-For operationer, der tager tid (databehandling, filoverførsler, API-opkald), holder fremskridtsnotifikationer brugerne informerede.
+For operationer, der tager tid (databehandling, filoverførsler, API-kald), holder fremskridtsmeddelelser brugerne informerede.
 
-### Sådan Fungerer Det
+### Hvordan det virker
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (lang operation)
-    Server-->>Client: notifikation: fremgang 10%
-    Server-->>Client: notifikation: fremgang 50%
-    Server-->>Client: notifikation: fremgang 90%
-    Server->>Client: resultat (færdig)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
 
-### Python Implementering
+### Python-implementering
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Hent filstørrelse til fremdriftsberegning
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Behandl bid
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Send fremdriftsmeddelelse
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Rapporter fremdrift efter hvert element
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -93,7 +98,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     return f"Completed {total} items"
 ```
 
-### TypeScript Implementering
+### TypeScript-implementering
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Send statusmeddelelse
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -134,20 +139,20 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Registrer håndteringsfunktion
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Kald værktøj (fremgangsopdateringer modtages via håndteringsfunktionen)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
 ---
 
-## 2. Annullering af Anmodninger
+## 2. Annullering af forespørgsler
 
-Tillad klienter at annullere anmodninger, der ikke længere er nødvendige eller tager for lang tid.
+Giv klienter mulighed for at annullere forespørgsler, der ikke længere er nødvendige eller tager for lang tid.
 
-### Python Implementering
+### Python-implementering
 
 ```python
 from mcp.server import Server
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Søg gennem mange sider
-            # Tjek om annullering blev anmodet
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simuler side-søgning
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Lille forsinkelse tillader annulleringskontroller
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Returner delvise resultater
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -201,7 +206,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### Implementering af Annulleringskontekst
+### Implementering af annulleringskontekst
 
 ```python
 class CancellableContext:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Normal timeout, fortsæt
+            pass  # Normal timeout, continue
 ```
 
-### Klientside Annullering
+### Klientsideannullering
 
 ```python
 import asyncio
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Anmod om annullering
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -265,9 +270,9 @@ async def search_with_timeout(session, query, timeout=30):
 
 ## 3. Ressourcetemplater
 
-Ressourcetemplater tillader dynamisk konstruktion af URI’er med parametre, nyttigt til API’er og databaser.
+Ressourcetemplater tillader dynamisk opbygning af URI’er med parametre, nyttigt til API’er og databaser.
 
-### Definering af Templater
+### Definition af templater
 
 ```python
 from mcp.server import Server
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Analyser URI'en for at udtrække parametre
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -320,7 +325,7 @@ async def read_resource(uri: str) -> str:
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
 
-### TypeScript Implementering
+### TypeScript-implementering
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Analyser GitHub-issue-URI
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,11 +370,13 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Server Livscyklus Events
+## 4. Applikationslivscyklus
 
-Korrekt håndtering af initialisering og nedlukning sikrer ren ressourceadministration.
+Dette afsnit dækker opstart og lukning af applikationsprocesser, ikke det fjernede
+MCP `initialize` håndtryk. Korrekt håndtering af livscyklus sikrer ren ressource-
+styring.
 
-### Python Livscyklus Administration
+### Python livscyklusadministration
 
 ```python
 from mcp.server import Server
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Delt tilstand
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Opstart
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Server kører her
+    yield  # Server runs here
     
-    # Lukning
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -409,7 +416,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### TypeScript Livscyklus
+### TypeScript-livscyklus
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -428,7 +435,7 @@ class ManagedServer {
   }
   
   async start() {
-    // Initialiser ressourcer
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
@@ -438,7 +445,7 @@ class ManagedServer {
   }
   
   async stop() {
-    // Ryd op i ressourcer
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Brug this.dbConnection sikkert
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Brug med blid nedlukning
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Logningskontrol
+## 5. Logningskontrol (Ældre)
 
-MCP understøtter server-side logningsniveauer, som klienter kan styre.
+> [!WARNING]
+> MCP-logning er forældet i `2026-07-28` og kan fjernes i den
+> første specifikationsrevision udgivet på eller efter den 28. juli 2027. Eksemplerne
+> nedenfor er til kompatibilitet med ældre implementeringer. Brug `stderr` med
+> stdio og OpenTelemetry for struktureret observerbarhed i nye servere.
 
-### Implementering af Logningsniveauer
+Ældre MCP-versioner understøtter serverstyringslogningsniveauer, som klienter kan styre.
+
+### Implementering af logningsniveauer
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Kortlæg MCP-niveauer til Python-logningsniveauer
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -512,20 +525,20 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Afsendelse af Logbeskeder til Klient
+### Afsendelse af logbeskeder til klient
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Send lognotifikation til klienten
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Udfør arbejde...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -538,11 +551,11 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Mønstre for Fejlhåndtering
+## 6. Fejlhåndteringsmønstre
 
 Konsistent fejlhåndtering forbedrer fejlfinding og brugeroplevelse.
 
-### MCP Fejlkoder
+### MCP-fejlkoder
 
 ```python
 from mcp.types import McpError, ErrorCode
@@ -572,14 +585,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Strukturerede Fejlsvar
+### Strukturerede fejlsvar
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Validér input
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Kontroller tilladelser
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Udfør operation
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Log uventede fejl
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Mere validering...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Allerede en MCP-fejl
+      throw error;  // Already an MCP error
     }
     
-    // Konverter andre fejl
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Ukendt fejl
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,65 +669,35 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Eksperimentelle Funktioner (MCP 2025-11-25)
+## Versionsfølsomme funktioner
 
-Disse funktioner er markeret som eksperimentelle i specifikationen:
+### Opgaveudvidelse
 
-### Tasks (Langvarige operationer)
+Opgaver er en officiel, separat versionsstyret udvidelse i MCP `2026-07-28`. En
+server kan returnere et opgavehåndtag fra et værktøjskald, og klienten styrer opgaven
+med `tasks/get`, `tasks/update` og `tasks/cancel`. Den eksperimentelle
+`2025-11-25` opgave-API er ikke bagudkompatibel, og `tasks/list` eksisterer ikke længere.
 
-```python
-# Opgaver tillader sporing af langvarige processer med tilstand
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Rapportér opgave startede
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Træningssløjfe
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
 
-### Værktøjsannoteringer
 
-```python
-# Annotationer giver metadata om værktøjets adfærd
-@app.tool(
-    annotations={
-        "destructive": False,      # Ændrer ikke data
-        "idempotent": True,        # Sikkert at prøve igen
-        "timeout_seconds": 30,     # Forventet maksimal varighed
-        "requires_approval": False # Ingen bruger-godkendelse nødvendig
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+
+eller åbent verdensdrift. De er hints og må ikke behandles som betroede
+autorisations- eller sikkerhedsgarantier, medmindre de kommer fra en betroet server.
+
+
+
+
+
+
+- [Modul 8 - Bedste praksis](../../08-BestPractices/README.md)
+- [5.14 - Kontext Engineering](../mcp-contextengineering/README.md)
+- [MCP Specifikations Ændringslog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
-## Hvad Kommer Næste
+## Yderligere ressourcer
 
-- [Modul 8 - Best Practices](../../08-BestPractices/README.md)
-- [5.14 - Context Engineering](../mcp-contextengineering/README.md)
-- [MCP Specifikationsændringer](https://spec.modelcontextprotocol.io/)
-
----
-
-## Yderligere Ressourcer
-
-- [MCP Specifikation 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [MCP Specifikation 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [JSON-RPC 2.0 Fejlkoder](https://www.jsonrpc.org/specification#error_object)
 - [Python SDK Eksempler](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK Eksempler](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

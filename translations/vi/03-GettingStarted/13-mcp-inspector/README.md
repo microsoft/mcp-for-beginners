@@ -1,25 +1,30 @@
 # Gỡ lỗi với MCP Inspector
 
-**MCP Inspector** là một công cụ gỡ lỗi thiết yếu cho phép bạn kiểm tra và khắc phục sự cố các máy chủ MCP một cách tương tác mà không cần một ứng dụng máy chủ AI đầy đủ. Hãy nghĩ về nó như "Postman cho MCP" - nó cung cấp một giao diện trực quan để gửi yêu cầu, xem phản hồi và hiểu cách máy chủ của bạn hoạt động.
+> [!NOTE]
+> Các lệnh sử dụng `--sse` và các URL kết thúc bằng `/sse` kiểm tra truyền tải HTTP+SSE cũ.
+> Đối với máy chủ MCP `2026-07-28` mới, hãy sử dụng phiên bản Inspector hỗ trợ Streamable HTTP và chọn truyền tải đó thay thế.
 
-## Tại sao sử dụng MCP Inspector?
 
-Khi xây dựng các máy chủ MCP, bạn thường gặp những thách thức sau:
 
-- **"Máy chủ của tôi có đang chạy không?"** - Inspector hiển thị trạng thái kết nối
-- **"Các công cụ của tôi đã được đăng ký đúng chưa?"** - Inspector liệt kê tất cả các công cụ có sẵn
-- **"Định dạng phản hồi là gì?"** - Inspector hiển thị toàn bộ phản hồi JSON
-- **"Tại sao công cụ này không hoạt động?"** - Inspector hiển thị thông báo lỗi chi tiết
 
-## Yêu cầu trước
 
-- Node.js 18+ đã được cài đặt
-- npm (đã có sẵn cùng với Node.js)
-- Một máy chủ MCP để thử nghiệm (xem [Module 3.1 - Máy Chủ Đầu Tiên](../01-first-server/README.md))
 
-## Cài đặt
 
-### Tùy chọn 1: Chạy với npx (Khuyến nghị để thử nghiệm nhanh)
+
+- **"Các công cụ của tôi có đăng ký đúng không?"** - Inspector liệt kê tất cả công cụ có sẵn
+- **"Định dạng phản hồi là gì?"** - Inspector hiển thị phản hồi JSON đầy đủ
+- **"Tại sao công cụ này không hoạt động?"** - Inspector hiển thị chi tiết lỗi
+
+
+
+
+- npm (được cài cùng Node.js)
+- Một máy chủ MCP để thử nghiệm (xem [Module 3.1 - Máy chủ đầu tiên](../01-first-server/README.md))
+
+
+
+
+
 
 ```bash
 npx @modelcontextprotocol/inspector
@@ -32,7 +37,7 @@ npm install -g @modelcontextprotocol/inspector
 mcp-inspector
 ```
 
-### Tùy chọn 3: Thêm vào dự án của bạn
+### Tùy chọn 3: Thêm vào Dự án của Bạn
 
 ```bash
 cd your-mcp-server-project
@@ -50,30 +55,30 @@ Thêm vào `package.json`:
 
 ---
 
-## Kết nối với Máy Chủ của Bạn
+## Kết nối tới Máy chủ của Bạn
 
 ### Máy chủ stdio (Quy trình cục bộ)
 
 Đối với các máy chủ giao tiếp qua đầu vào/đầu ra tiêu chuẩn:
 
 ```bash
-# Máy chủ Python
+# Python server
 npx @modelcontextprotocol/inspector python -m your_server_module
 
-# Máy chủ Node.js
+# Node.js server
 npx @modelcontextprotocol/inspector node ./build/index.js
 
-# Với biến môi trường
+# With environment variables
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
 ### Máy chủ SSE/HTTP (Mạng)
 
-Đối với các máy chủ chạy dưới dạng dịch vụ HTTP:
+Đối với các máy chủ chạy như dịch vụ HTTP:
 
-1. Khởi động máy chủ trước:
+1. Khởi động máy chủ của bạn trước:
    ```bash
-   python server.py  # Máy chủ chạy trên http://localhost:8080
+   python server.py  # Server running on http://localhost:8080
    ```
 
 2. Khởi chạy Inspector và kết nối:
@@ -83,9 +88,9 @@ OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 
 ---
 
-## Tổng quan giao diện Inspector
+## Tổng quan Giao diện Inspector
 
-Khi Inspector được khởi chạy, bạn sẽ thấy một giao diện web (thông thường tại `http://localhost:5173`):
+Khi Inspector khởi chạy, bạn sẽ thấy giao diện web (thường tại `http://localhost:5173`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,25 +116,25 @@ Khi Inspector được khởi chạy, bạn sẽ thấy một giao diện web (t
 
 ---
 
-## Thử nghiệm các Công cụ
+## Công cụ Kiểm thử
 
-### Liệt kê các Công cụ có sẵn
+### Liệt kê Các Công cụ Có sẵn
 
 1. Nhấp vào tab **Tools**
 2. Inspector tự động gọi `tools/list`
-3. Bạn sẽ thấy tất cả các công cụ đã đăng ký cùng với:
+3. Bạn sẽ thấy tất cả các công cụ đã đăng ký với:
    - Tên công cụ
    - Mô tả
-   - Định dạng đầu vào (tham số)
+   - Lược đồ đầu vào (tham số)
 
 ### Gọi một Công cụ
 
 1. Chọn một công cụ từ danh sách
-2. Điền các tham số cần thiết vào biểu mẫu
-3. Nhấn **Run Tool**
+2. Điền các tham số cần thiết trong biểu mẫu
+3. Nhấp **Run Tool**
 4. Xem phản hồi trong bảng kết quả
 
-**Ví dụ: Thử nghiệm công cụ máy tính**
+**Ví dụ: Kiểm thử công cụ máy tính**
 
 ```
 Tool: add
@@ -167,13 +172,13 @@ Các mã lỗi phổ biến:
 |------|---------|
 | -32700 | Lỗi phân tích (JSON không hợp lệ) |
 | -32600 | Yêu cầu không hợp lệ |
-| -32601 | Phương thức không tìm thấy |
+| -32601 | Không tìm thấy phương thức |
 | -32602 | Tham số không hợp lệ |
 | -32603 | Lỗi nội bộ |
 
 ---
 
-## Thử nghiệm Tài nguyên
+## Tài nguyên Kiểm thử
 
 ### Liệt kê Tài nguyên
 
@@ -187,10 +192,10 @@ Các mã lỗi phổ biến:
 ### Đọc một Tài nguyên
 
 1. Chọn một tài nguyên
-2. Nhấn **Read Resource**
-3. Xem nội dung trả về
+2. Nhấp **Read Resource**
+3. Xem nội dung được trả về
 
-**Ví dụ kết quả:**
+**Ví dụ đầu ra:**
 
 ```
 Resource: file:///config/settings.json
@@ -206,11 +211,11 @@ Content-Type: application/json
 
 ---
 
-## Thử nghiệm Các Prompt
+## Kiểm thử Các Prompt
 
 ### Liệt kê Các Prompt
 
-1. Nhấp vào tab **Prompts**
+1. Nhấp tab **Prompts**
 2. Inspector gọi `prompts/list`
 3. Xem các mẫu prompt có sẵn
 
@@ -218,14 +223,17 @@ Content-Type: application/json
 
 1. Chọn một prompt
 2. Điền các đối số cần thiết
-3. Nhấn **Get Prompt**
-4. Xem các thông điệp prompt được dựng sẵn
+3. Nhấp **Get Prompt**
+4. Xem các tin nhắn prompt đã được kết xuất
 
 ---
 
 ## Phân tích Nhật ký Tin nhắn
 
-Nhật ký tin nhắn hiển thị tất cả các tin nhắn giao thức MCP:
+Nhật ký tin nhắn hiển thị tất cả các tin nhắn giao thức MCP. Bản ghi dưới đây là từ một
+máy chủ `2025-11-25` kế thừa và bao gồm việc loại bỏ bắt tay `initialize`. Một
+máy chủ `2026-07-28` sử dụng siêu dữ liệu yêu cầu tự chứa và `server/discover`
+thay thế.
 
 ```
 14:32:01 → {"jsonrpc":"2.0","id":1,"method":"initialize",...}
@@ -236,12 +244,12 @@ Nhật ký tin nhắn hiển thị tất cả các tin nhắn giao thức MCP:
 14:32:05 ← {"jsonrpc":"2.0","id":3,"result":{"content":[...]}}
 ```
 
-### Những điều cần chú ý
+### Cần Quan tâm Điều gì
 
-- **Các cặp Yêu cầu/Phản hồi**: Mỗi `→` nên có một `←` tương ứng
-- **Thông báo lỗi**: Tìm `"error"` trong các phản hồi
-- **Thời gian**: Khoảng trống lớn có thể chỉ ra vấn đề về hiệu năng
-- **Phiên bản giao thức**: Đảm bảo máy chủ và client đồng ý về phiên bản
+- **Cặp Yêu cầu/Phản hồi**: Mỗi `→` nên có một `←` tương ứng
+- **Thông báo lỗi**: Tìm `"error"` trong phản hồi
+- **Thời gian**: Khoảng cách lớn có thể chỉ ra vấn đề hiệu suất
+- **Phiên bản giao thức**: Đảm bảo máy chủ và client đồng thuận phiên bản
 
 ---
 
@@ -310,61 +318,61 @@ Thêm vào `.vscode/tasks.json`:
 
 ---
 
-## Các Tình Huống Gỡ Lỗi Thường Gặp
+## Các Tình huống Gỡ lỗi Thường gặp
 
-### Tình huống 1: Máy chủ không kết nối được
+### Tình huống 1: Máy chủ Không Kết nối được
 
-**Triệu chứng:** Inspector hiển thị "Disconnected" hoặc kẹt ở "Connecting..."
+**Triệu chứng:** Inspector hiển thị "Disconnected" hoặc bị treo ở "Connecting..."
 
 **Danh sách kiểm tra:**
 1. ✅ Lệnh máy chủ có đúng không?
-2. ✅ Tất cả các phụ thuộc đã được cài đặt chưa?
-3. ✅ Đường dẫn máy chủ là tuyệt đối hay tương đối so với thư mục hiện tại?
-4. ✅ Các biến môi trường cần thiết đã được thiết lập chưa?
+2. ✅ Tất cả phụ thuộc có được cài đặt không?
+3. ✅ Đường dẫn máy chủ có phải tuyệt đối hoặc tương đối với thư mục hiện tại?
+4. ✅ Biến môi trường cần thiết đã được thiết lập?
 
 **Các bước gỡ lỗi:**
 ```bash
-# Kiểm tra máy chủ thủ công trước
+# Test server manually first
 python -c "import your_server_module; print('OK')"
 
-# Kiểm tra lỗi nhập khẩu
+# Check for import errors
 python -m your_server_module 2>&1 | head -20
 
-# Xác minh MCP SDK đã được cài đặt
+# Verify MCP SDK is installed
 pip show mcp
 ```
 
-### Tình huống 2: Công cụ không hiển thị
+### Tình huống 2: Không Hiển thị Công cụ
 
-**Triệu chứng:** Tab Tools hiển thị danh sách trống
+**Triệu chứng:** Tab công cụ hiển thị danh sách trống
 
 **Nguyên nhân có thể:**
 1. Công cụ không được đăng ký trong quá trình khởi tạo máy chủ
-2. Máy chủ gặp sự cố sau khi khởi động
-3. Handler `tools/list` trả về mảng rỗng
+2. Máy chủ bị lỗi sau khi khởi động
+3. `tools/list` handler trả về mảng rỗng
 
 **Các bước gỡ lỗi:**
 1. Kiểm tra nhật ký tin nhắn cho phản hồi `tools/list`
-2. Thêm logging vào mã đăng ký công cụ của bạn
-3. Xác minh các decorator `@mcp.tool()` có mặt (Python)
+2. Thêm ghi log vào mã đăng ký công cụ của bạn
+3. Xác minh các decorators `@mcp.tool()` có mặt (Python)
 
-### Tình huống 3: Công cụ trả về lỗi
+### Tình huống 3: Công cụ Trả về Lỗi
 
-**Triệu chứng:** Lệnh gọi công cụ trả về phản hồi lỗi
+**Triệu chứng:** Cuộc gọi công cụ trả về phản hồi lỗi
 
-**Cách gỡ lỗi:**
+**Cách tiếp cận gỡ lỗi:**
 1. Đọc kỹ thông báo lỗi
-2. Kiểm tra kiểu tham số có khớp với schema không
+2. Kiểm tra loại tham số có khớp lược đồ không
 3. Thêm try/catch với thông báo lỗi chi tiết
-4. Kiểm tra nhật ký máy chủ để xem các stack trace
+4. Kiểm tra nhật ký máy chủ cho dấu vết ngăn xếp
 
-**Ví dụ cải tiến xử lý lỗi:**
+**Ví dụ xử lý lỗi cải tiến:**
 
 ```python
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
-        # Logic công cụ ở đây
+        # Tool logic here
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
@@ -373,13 +381,13 @@ async def my_tool(param1: str, param2: int) -> str:
         raise McpError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
-### Tình huống 4: Nội dung tài nguyên trống
+### Tình huống 4: Nội dung Tài nguyên Trống
 
 **Triệu chứng:** Tài nguyên trả về nhưng nội dung trống hoặc null
 
 **Danh sách kiểm tra:**
 1. ✅ Đường dẫn tệp hoặc URI đúng
-2. ✅ Máy chủ có quyền đọc tài nguyên không
+2. ✅ Máy chủ có quyền đọc tài nguyên
 3. ✅ Nội dung tài nguyên được trả về chính xác
 
 ---
@@ -394,48 +402,48 @@ npx @modelcontextprotocol/inspector \
   --header "Authorization: Bearer your-token"
 ```
 
-### Ghi nhật ký chi tiết
+### Ghi log chi tiết
 
 ```bash
 DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
 ```
 
-### Ghi lại phiên làm việc
+### Ghi lại các Phiên làm việc
 
 Inspector có thể xuất nhật ký tin nhắn để phân tích sau:
-1. Nhấn **Export Log** trong bảng tin nhắn
-2. Lưu tập tin JSON
-3. Chia sẻ với đồng đội để gỡ lỗi
+1. Nhấp **Export Log** trong bảng tin nhắn
+2. Lưu tệp JSON
+3. Chia sẻ với thành viên nhóm để gỡ lỗi
 
 ---
 
 ## Thực hành Tốt nhất
 
-1. **Thử nghiệm sớm và thường xuyên** - Sử dụng Inspector trong quá trình phát triển, không chỉ khi gặp sự cố
-2. **Bắt đầu đơn giản** - Kiểm tra kết nối cơ bản trước khi gọi các công cụ phức tạp
-3. **Kiểm tra schema** - Nhiều lỗi đến từ việc không khớp kiểu tham số
-4. **Đọc thông báo lỗi** - Lỗi MCP thường có mô tả rõ ràng
-5. **Giữ Inspector mở** - Giúp phát hiện sự cố khi bạn phát triển
+1. **Kiểm thử sớm và thường xuyên** - Dùng Inspector trong suốt quá trình phát triển, không chỉ khi gặp sự cố
+2. **Bắt đầu đơn giản** - Kiểm thử kết nối cơ bản trước khi gọi các công cụ phức tạp
+3. **Kiểm tra lược đồ** - Nhiều lỗi do không khớp loại tham số
+4. **Đọc thông báo lỗi** - Lỗi MCP thường mô tả rõ ràng
+5. **Giữ Inspector mở** - Giúp phát hiện lỗi khi bạn phát triển
 
 ---
 
-## Tiếp theo là gì
+## Tiếp theo Là Gì
 
-Bạn đã hoàn thành Module 3: Bắt đầu! Tiếp tục học:
+Bạn đã hoàn thành Module 3: Bắt đầu! Tiếp tục học tập:
 
-- [Module 4: Triển khai Thực tế](../../04-PracticalImplementation/README.md)
+- [Module 4: Thực thi Thực tế](../../04-PracticalImplementation/README.md)
 
 ---
 
-## Tài nguyên bổ sung
+## Tài nguyên Bổ sung
 
-- [Kho GitHub MCP Inspector](https://github.com/modelcontextprotocol/inspector)
-- [Đặc tả MCP - Tin nhắn Giao thức](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Kho MCP Inspector trên GitHub](https://github.com/modelcontextprotocol/inspector)
+- [Đặc tả MCP - Tin nhắn Giao thức](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Đặc tả JSON-RPC 2.0](https://www.jsonrpc.org/specification)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố miễn trách nhiệm**:
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc của nó nên được coi là nguồn chính xác và đáng tin cậy. Đối với các thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp do con người thực hiện. Chúng tôi không chịu trách nhiệm đối với bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
+**Tuyên bố miễn trừ trách nhiệm**:
+Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi cố gắng đảm bảo độ chính xác, xin lưu ý rằng bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn tin chính thức. Đối với thông tin quan trọng, nên sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

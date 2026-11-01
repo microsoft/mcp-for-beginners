@@ -1,23 +1,28 @@
 # MCP OAuth2 Demo
 
+> [!WARNING]
+> Tämä on paikallinen oppimismalli, ei tuotantoon tarkoitettu valtuutuspalvelu. Se
+> käyttää muistissa olevaa asiakasta ja luo uuden allekirjoitusavaimen käynnistyksen yhteydessä. Älä koskaan
+> ota käyttöön jaetun, oletus- tai lähdekoodinhallinnassa olevan asiakassalaisuuden kanssa.
+
 ## Johdanto
 
-OAuth2 on alan standardiprotokolla valtuutukseen, joka mahdollistaa turvallisen pääsyn resursseihin ilman tunnistetietojen jakamista. MCP (Model Context Protocol) -toteutuksissa OAuth2 tarjoaa vankan tavan todentaa ja valtuuttaa asiakkaat (kuten tekoälyagentit) pääsemään MCP-palvelimille ja niiden työkaluihin.
+OAuth2 on teollisuuden standardiprotokolla valtuutukselle, joka mahdollistaa turvallisen pääsyn resursseihin ilman tunnistetietojen jakamista. MCP:n (Model Context Protocol) toteutuksissa OAuth2 tarjoaa vankan tavan todentaa ja valtuuttaa asiakkaita (kuten tekoälyagentteja) pääsemään MCP-palvelimille ja niiden työkaluihin.
 
-Tämä opetus näyttää, kuinka toteuttaa OAuth2-todennus MCP-palvelimille käyttäen Spring Bootia, joka on yleinen malli yritys- ja tuotantoympäristöissä.
+Tämä oppitunti näyttää, kuinka toteuttaa OAuth2-todennus MCP-palvelimille käyttäen Spring Bootia, joka on yleinen malli yritys- ja tuotantoympäristössä.
 
 ## Oppimistavoitteet
 
-Tämän oppitunnin lopussa osaat:
-- Ymmärtää, miten OAuth2 integroituu MCP-palvelimiin
-- Toteuttaa Spring Authorization Serverin tokenien myöntämistä varten
+Oppitunnin lopussa osaat:
+- Ymmärtää, miten OAuth2 integroidaan MCP-palvelimiin
+- Toteuttaa Spring Authorization Server tokenien myöntämiseksi
 - Suojata MCP-päätepisteet JWT-pohjaisella todennuksella
-- Määrittää client credentials -vuon koneiden väliseen viestintään
+- Konfiguroida client credentials -virta koneiden väliseen kommunikointiin
 
 ## Esivaatimukset
 
-- Perustietämys Javasta ja Spring Bootista
-- Tutustuminen MCP-käsitteisiin aiemmista moduuleista
+- Perustiedot Javasta ja Spring Bootista
+- Tutustuminen MCP-konsepteihin aiemmista moduuleista
 - Maven tai Gradle asennettuna
 
 ---
@@ -26,65 +31,71 @@ Tämän oppitunnin lopussa osaat:
 
 Tämä projekti on **minimaalinen Spring Boot -sovellus**, joka toimii sekä:
 
-* **Spring Authorization Serverina** (joka myöntää JWT-pääsytokeneita `client_credentials`-vuon kautta), että  
-* **Resource Serverina** (joka suojaa oman `/hello`-päätepisteensä).
+* a **Spring Authorization Server** (myöntäen JWT-pääsytunnuksia `client_credentials`-virran kautta), ja  
+* a **Resurssipalvelin** (suojaamalla oman `/hello` päätepisteensä).
 
-Se peilaa asetusta, joka on esitetty [Spring-blogikirjoituksessa (2.4.2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
+Se peilaa asetusta, joka on esitetty [Springin blogikirjoituksessa (2. huhtikuuta 2025)](https://spring.io/blog/2025/04/02/mcp-server-oauth2).
 
 ---
 
-## Nopeasti käyntiin (paikallisesti)
+## Nopeaan alkuun (paikallinen)
 
 ```bash
-# käännä ja suorita
-./mvnw spring-boot:run
+# Use a unique local value and keep it out of shell history where possible.
+export OAUTH_CLIENT_SECRET="replace-with-a-random-local-secret"
+mvn spring-boot:run
 
-# hanki tunnus
-curl -u mcp-client:secret -d grant_type=client_credentials \
+# obtain a token
+curl -u "mcp-client:${OAUTH_CLIENT_SECRET}" -d grant_type=client_credentials \
      http://localhost:8081/oauth2/token | jq -r .access_token > token.txt
 
-# kutsu suojattua päätepistettä
+# call the protected endpoint
 curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 ```
 
 ---
 
-## OAuth2-konfiguraation testaus
+## OAuth2-konfiguraation testaaminen
 
-Voit testata OAuth2-tietoturvakonfiguraatiota seuraavin vaiheisin:
+Voit testata OAuth2-turvakonfiguraatiota seuraavin ohjein:
 
-### 1. Varmista palvelimen käynnissäolo ja suojaus
+### 1. Varmista, että palvelin on käynnissä ja suojattu
 
 ```bash
-# Tämän pitäisi palauttaa 401 Unauthorized, vahvistaen että OAuth2-suojaus on aktiivinen
+# This should return 401 Unauthorized, confirming OAuth2 security is active
 curl -v http://localhost:8081/
 ```
 
-### 2. Hanki pääsytoken client credentials -menetelmällä
+### 2. Hanki pääsytunnus käyttämällä asiakastunnistetta
 
 ```bash
-# Hae ja pura täydellinen tunnistusmerkin vastaus
+# Get and extract the full token response
 curl -v -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access"
 
-# Tai pura pelkkä tunnistusmerkki (vaatii jq:n)
+# Or to extract just the token (requires jq)
 curl -s -X POST http://localhost:8081/oauth2/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -H "Authorization: Basic bWNwLWNsaWVudDpzZWNyZXQ=" \
+  -u "mcp-client:${OAUTH_CLIENT_SECRET}" \
   -d "grant_type=client_credentials&scope=mcp.access" | jq -r .access_token > token.txt
 ```
 
-Huomautus: Basic-todennusotsikko (`bWNwLWNsaWVudDpzZWNyZXQ=`) on Base64-koodaus merkkijonosta `mcp-client:secret`.
+PowerShellissä aseta paikallinen salaisuus ennen Mavenin suorittamista:
 
-### 3. Käytä suojattua päätepistettä tokenilla
+```powershell
+$env:OAUTH_CLIENT_SECRET = "replace-with-a-random-local-secret"
+mvn spring-boot:run
+```
+
+### 3. Käytä suojattua päätettä tunnuksella
 
 ```bash
-# Tallennetun tunnisteen käyttäminen
+# Using the saved token
 curl -H "Authorization: Bearer $(cat token.txt)" http://localhost:8081/hello
 
-# Tai suoraan tunnistearvolla
+# Or directly with the token value
 curl -H "Authorization: Bearer eyJra...token_value...xyz" http://localhost:8081/hello
 ```
 
@@ -92,16 +103,30 @@ Onnistunut vastaus "Hello from MCP OAuth2 Demo!" vahvistaa, että OAuth2-konfigu
 
 ---
 
-## Kontin rakentaminen
+## Kontin rakennus
 
 ```bash
 docker build -t mcp-oauth2-demo .
-docker run -p 8081:8081 mcp-oauth2-demo
+docker run --rm -p 8081:8081 \
+  -e OAUTH_CLIENT_SECRET="$OAUTH_CLIENT_SECRET" \
+  mcp-oauth2-demo
 ```
+
+## Tuotannon turvallisuus
+
+Tuotantokäyttöön käytä omistettua identiteetin tarjoajaa tämän prosessin sisäisen demoauktorisointipalvelimen sijaan. Tallenna tunnistetiedot hallittuun salaisuuskauppaan, kierrätä niitä, käytä pysyviä allekirjoitusavaimia, rajoita skooppeja ja määritä selkeä julkaisija. Älä koskaan laita asiakas salaista lähdekoodiin, kontin kuviin, käyttöönoton manifestiin tai komentotulosteisiin.
+
+
+
+
+
+Azure Container Appseille tallenna arvo Container Apps -salaisuutena, jota tuetaan
+Käytä mahdollisuuksien mukaan Key Vaultia, ja paljasta sitten vain salaisuuden viite
+`OAUTH_CLIENT_SECRET`-ympäristömuuttujan kautta.
 
 ---
 
-## Julkaisu **Azure Container Apps** -ympäristöön
+## Ota käyttöön **Azure Container Apps** -palveluun
 
 ```bash
 az containerapp up -n mcp-oauth2 \
@@ -110,14 +135,14 @@ az containerapp up -n mcp-oauth2 \
   --ingress external --target-port 8081
 ```
 
-Sisäänpääsyn FQDN toimii sinun **issuerinä** (`https://<fqdn>`).  
-Azure tarjoaa automaattisesti luotettavan TLS-varmenteen `*.azurecontainerapps.io`-domainille.
+Ingressin FQDN:stä tulee sinun **julkaisijasi** (`https://<fqdn>`).  
+Azure tarjoaa automaattisesti luotetun TLS-varmenteen `*.azurecontainerapps.io`:lle.
 
 ---
 
-## Yhdistäminen **Azure API Management**iin
+## Kytke **Azure API Managementiin**
 
-Lisää tämä inbound-politiikka API:llesi:
+Lisää tämä sisääntuleva sääntö API:hesi:
 
 ```xml
 <inbound>
@@ -137,11 +162,11 @@ APIM hakee JWKS:n ja validoi jokaisen pyynnön.
 
 ## Mitä seuraavaksi
 
-- [5.4 Root contexts](../mcp-root-contexts/README.md)
+- [5.4 Juurikontekstit](../mcp-root-contexts/README.md)
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta ota huomioon, että automaattikäännöksissä voi esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäisellä kielellä tulisi pitää auktoritatiivisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinkäsityksistä tai virhetulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,22 +1,28 @@
-# Pagpapatakbo ng halimbawang ito
+# Pagpapatakbo ng sample na ito
 
-Ito ang solusyon sa Rust para sa sample ng LLM client. Kailangan mo ng Rust toolchain na naka-install; tingnan ang [opisyal na gabay sa pag-install](https://www.rust-lang.org/tools/install).
+Ito ang Rust na solusyon para sa LLM client sample. Kailangan mong may naka-install na Rust toolchain; tingnan ang [opisyal na gabay sa pag-install](https://www.rust-lang.org/tools/install).
 
-Tinatawagan ng kliyente ang isang modelo sa pamamagitan ng GitHub Models inference endpoint (`https://models.github.ai/inference/chat`) at binabasa ang iyong personal access token (PAT) ng GitHub mula sa `OPENAI_API_KEY` na environment variable.
+Tinatawag ng client ang isang naka-deploy na Microsoft Foundry na modelo sa pamamagitan ng Azure OpenAI
+v1 endpoint.
 
 > [!NOTE]
-> Ang ibang mga solusyon sa repo na ito ay gumagamit ng `GITHUB_TOKEN`. Para sa Rust, itakda ang `OPENAI_API_KEY` sa parehong halaga para tumugma sa OpenAI client configuration.
+> Ang halagang ipinasa bilang `model` ay ang iyong Foundry deployment name, hindi kinakailangang
+> ang pangalan ng batayang modelo.
 
-## -0- Itakda ang iyong GitHub token
+## -0- I-configure ang Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- I-build ang sample
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-Sinisimulan ng client ang calculator MCP server, kinukuha ang listahan ng mga kasangkapan nito, at ginagamit ang modelo (`openai/gpt-5-mini`) upang tawagan ang tool na `add`. Makikita mo dapat ang output na nagpapahiwatig ng tawag sa tool (halimbawa, "Calling tool: add") at ang resulta ng tawag na iyon.
+Sinisimulan ng client ang calculator MCP server, kinukuha ang listahan ng mga tool nito, at ginagamit
+ang naka-deploy na modelo upang tawagan ang `add` na tool. Dapat mong makita ang output na nagpapakita
+ng pagtawag ng tool (halimbawa, "Calling tool: add") at ang resulta ng pagtawag na iyon.
 
 ---
 

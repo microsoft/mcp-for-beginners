@@ -1,6 +1,11 @@
 # Menyebarkan Pelayan MCP
 
-Menyebarkan pelayan MCP anda membolehkan orang lain mengakses alat dan sumbernya di luar persekitaran tempatan anda. Terdapat beberapa strategi penyebaran yang perlu dipertimbangkan, bergantung pada keperluan anda untuk kebolehskalaan, kebolehpercayaan, dan kemudahan pengurusan. Di bawah anda akan menemui panduan untuk menyebarkan pelayan MCP secara tempatan, dalam bekas, dan ke awan.
+> [!NOTE]
+> Contoh konfigurasi yang menggunakan `/sse` titik akhir mensasarkan pengangkutan HTTP+SSE warisan.
+> Pelayan jauh MCP `2026-07-28` menggunakan HTTP Boleh-Alir, biasanya pada
+> titik akhir yang ditetapkan oleh pelayan seperti `/mcp`.
+
+Menyebarkan pelayan MCP anda membolehkan orang lain mengakses alat dan sumbernya di luar persekitaran tempatan anda. Terdapat beberapa strategi penyebaran yang boleh dipertimbangkan, bergantung pada keperluan anda untuk skalabiliti, kebolehpercayaan, dan kemudahan pengurusan. Di bawah, anda akan menemui panduan untuk menyebarkan pelayan MCP secara tempatan, dalam bekas, dan ke awan.
 
 ## Gambaran Keseluruhan
 
@@ -15,14 +20,14 @@ Menjelang akhir pelajaran ini, anda akan dapat:
 
 ## Pembangunan dan Penyebaran Tempatan
 
-Jika pelayan anda dimaksudkan untuk digunakan dengan dijalankan pada mesin pengguna, anda boleh mengikuti langkah-langkah berikut:
+Jika pelayan anda direka untuk digunakan dengan menjalankannya pada mesin pengguna, anda boleh mengikuti langkah-langkah berikut:
 
-1. **Muat turun pelayan**. Jika anda tidak menulis pelayan, muat turun dahulu ke mesin anda.
+1. **Muat turun pelayan**. Jika anda tidak menulis pelayan itu, muat turun dahulu ke mesin anda.
 1. **Mulakan proses pelayan**: Jalankan aplikasi pelayan MCP anda
 
 Untuk SSE (tidak diperlukan untuk pelayan jenis stdio)
 
-1. **Konfigurasikan rangkaian**: Pastikan pelayan boleh diakses pada port yang dijangka
+1. **Konfigurasikan rangkaian**: Pastikan pelayan boleh diakses pada port yang dijangkakan
 1. **Sambungkan klien**: Gunakan URL sambungan tempatan seperti `http://localhost:3000`
 
 ## Penyebaran Awan
@@ -35,11 +40,11 @@ Pelayan MCP boleh disebarkan ke pelbagai platform awan:
 
 ### Contoh: Azure Container Apps
 
-Azure Container Apps menyokong penyebaran Pelayan MCP. Ia masih dalam pembangunan dan kini menyokong pelayan SSE.
+Azure Container Apps menyokong penyebaran Pelayan MCP. Ia masih dalam proses pembangunan dan kini menyokong pelayan SSE.
 
-Berikut adalah cara anda boleh melakukannya:
+Berikut cara anda boleh melakukannya:
 
-1. Klon repo:
+1. Klon repositori:
 
   ```sh
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
@@ -59,7 +64,7 @@ Berikut adalah cara anda boleh melakukannya:
   uv run fastapi dev main.py
   ```
 
-1. Untuk mencuba secara tempatan, buat fail *mcp.json* dalam direktori *.vscode* dan tambahkan kandungan berikut:
+1. Untuk mencubanya secara tempatan, buatkan fail *mcp.json* dalam direktori *.vscode* dan tambah kandungan berikut:
 
   ```json
   {
@@ -83,7 +88,7 @@ Berikut adalah cara anda boleh melakukannya:
   }
   ```
 
-  Setelah pelayan SSE dimulakan, anda boleh klik ikon main dalam fail JSON, anda kini harus melihat alat pada pelayan diambil oleh GitHub Copilot, lihat ikon Alat.
+  Setelah pelayan SSE dimulakan, anda boleh klik ikon main dalam fail JSON itu, anda kini sepatutnya melihat alat pada pelayan yang diambil oleh GitHub Copilot, lihat ikon Alat.
 
 1. Untuk menyebarkan, jalankan arahan berikut:
 
@@ -91,13 +96,13 @@ Berikut adalah cara anda boleh melakukannya:
   az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
   ```
 
-Itulah anda, sebarkan secara tempatan, sebarkan ke Azure melalui langkah-langkah ini.
+Itu dia, sebarkan secara tempatan, sebarkan ke Azure melalui langkah-langkah ini.
 
 ## Sumber Tambahan
 
 - [Azure Functions + MCP](https://learn.microsoft.com/en-us/samples/azure-samples/remote-mcp-functions-dotnet/remote-mcp-functions-dotnet/)
 - [Artikel Azure Container Apps](https://techcommunity.microsoft.com/blog/appsonazureblog/host-remote-mcp-servers-in-azure-container-apps/4403550)
-- [Repo Azure Container Apps MCP](https://github.com/anthonychu/azure-container-apps-mcp-sample)
+- [Repositori MCP Azure Container Apps](https://github.com/anthonychu/azure-container-apps-mcp-sample)
 
 
 ## Apa Seterusnya
@@ -108,5 +113,5 @@ Itulah anda, sebarkan secara tempatan, sebarkan ke Azure melalui langkah-langkah
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila maklum bahawa terjemahan automatik mungkin mengandungi ralat atau ketidaktepatan. Dokumen asal dalam bahasa asalnya perlu dianggap sebagai sumber yang sahih. Untuk maklumat yang kritikal, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau tafsiran yang salah yang timbul daripada penggunaan terjemahan ini.
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan oleh manusia profesional adalah disyorkan. Kami tidak bertanggungjawab terhadap sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

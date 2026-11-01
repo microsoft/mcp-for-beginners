@@ -1,30 +1,30 @@
 # Model Context Protocol (MCP) -integrointi Microsoft Foundryn kanssa
 
-Tämä opas näyttää, kuinka integroidaan Model Context Protocol (MCP) -palvelimia Microsoft Foundry -agenttien kanssa, mahdollistaen tehokkaan työkalujen orkestroinnin ja yritystason tekoälytoiminnot.
+Tässä oppaassa näytetään, miten Model Context Protocol (MCP) -palvelimet integroidaan Microsoft Foundryn agenteihin, mahdollistaen tehokkaan työkalujen orkestroinnin ja yritystason tekoälyominaisuudet.
 
 ## Johdanto
 
-Model Context Protocol (MCP) on avoin standardi, joka mahdollistaa tekoälysovellusten turvallisen yhteyden ulkoisiin tietolähteisiin ja työkaluihin. Kun MCP integroituu Microsoft Foundryn kanssa, agentit voivat päästä käsiksi ja olla vuorovaikutuksessa erilaisten ulkoisten palveluiden, API-rajapintojen ja tietolähteiden kanssa standardoidulla tavalla.
+Model Context Protocol (MCP) on avoin standardi, joka mahdollistaa tekoälysovelluksille turvallisen yhteyden ulkoisiin tietolähteisiin ja työkaluihin. Kun MCP integroidaan Microsoft Foundryn kanssa, agentit saavat pääsyn ja voivat olla vuorovaikutuksessa erilaisten ulkoisten palveluiden, API:iden ja tietolähteiden kanssa yhdenmukaisella tavalla.
 
-Tämä integraatio yhdistää MCP:n työkaluekosysteemin joustavuuden Microsoft Foundryn vahvaan agenttikehykseen, tarjoten yritystason tekoälyratkaisuja laajalla räätälöintikyvykkyydellä.
+Tämä integraatio yhdistää MCP:n työkaluekosysteemin joustavuuden Microsoft Foundryn vahvaan agenttikehykseen, tarjoten yritystason tekoälyratkaisuja laajoilla räätälöintimahdollisuuksilla.
 
-**Huom:** Jos haluat käyttää MCP:tä Microsoft Foundry Agent Service -palvelussa, tällä hetkellä tuetut alueet ovat: westus, westus2, uaenorth, southindia ja switzerlandnorth
+> **Huomautus:** Jos haluat käyttää MCP:tä Microsoft Foundry Agent Servicessä, tällä hetkellä tuetut alueet ovat: westus, westus2, uaenorth, southindia ja switzerlandnorth
 
 ## Oppimistavoitteet
 
-Tämän oppaan lopussa osaat:
+Tämän oppaan lopuksi osaat:
 
 - Ymmärtää Model Context Protocolin ja sen hyödyt
-- Määrittää MCP-palvelimet Microsoft Foundry -agenttien käyttöön
-- Luoda ja konfiguroida agentteja MCP-työkaluiden integroinnilla
-- Toteuttaa käytännön esimerkkejä käyttäen todellisia MCP-palvelimia
+- Ota MCP-palvelimet käyttöön Microsoft Foundryn agenteille
+- Luo ja konfiguroi agentteja MCP-työkalujen integraatiolla
+- Toteuttaa käytännön esimerkkejä oikeiden MCP-palvelimien avulla
 - Käsitellä työkalujen vastauksia ja lähdeviittauksia agenttikeskusteluissa
 
-## Vaatimukset
+## Esivaatimukset
 
-Ennen aloittamista varmista, että sinulla on:
+Ennen aloittamista varmistathan, että sinulla on:
 
-- Azure-tilaus, jolla on pääsy Microsoft Foundryyn
+- Azure-tilaus, jossa on pääsy Microsoft Foundryyn
 - Python 3.10+ tai .NET 8.0+
 - Azure CLI asennettuna ja konfiguroituna
 - Soveltuvat oikeudet tekoälyresurssien luomiseen
@@ -33,25 +33,25 @@ Ennen aloittamista varmista, että sinulla on:
 
 Model Context Protocol on standardoitu tapa tekoälysovelluksille yhdistää ulkoisiin tietolähteisiin ja työkaluihin. Keskeisiä hyötyjä ovat:
 
-- **Standardoitu integraatio**: Johdonmukainen rajapinta eri työkaluille ja palveluille
-- **Turvallisuus**: Turvalliset autentikointi- ja valtuutusmekanismit
-- **Joustavuus**: Tuki erilaisille tietolähteille, API-rajapinnoille ja mukautetuille työkaluilla
-- **Laajennettavuus**: Helppo lisätä uusia toimintoja ja integraatioita
+- **Standardoitu integraatio**: Yhtenäinen rajapinta eri työkaluille ja palveluille
+- **Turvallisuus**: Turvalliset todennus- ja valtuutusmekanismit
+- **Joustavuus**: Tuki erilaisille tietolähteille, API:ille ja räätälöidyille työkaluilla
+- **Laajennettavuus**: Helppo lisätä uusia ominaisuuksia ja integraatioita
 
-## MCP:n määrittäminen Microsoft Foundryn kanssa
+## MCP:n käyttöönotto Microsoft Foundryn kanssa
 
-### Ympäristöasetukset
+### Ympäristön konfigurointi
 
-Valitse suosimasi kehitysympäristö:
+Valitse kehitysympäristösi mieltymyksesi mukaan:
 
-- [Python-toteutus](#python-toteutus)
-- [.NET-toteutus](#codeblock5)
+- [Python-toteutus](#python-implementation)
+- [.NET-toteutus](#net-implementation)
 
 ---
 
 ## Python-toteutus
 
-***Huom:*** Voit suorittaa tämän [muistion](./mcp_support_python.ipynb)
+***Huomautus*** Voit suorittaa tämän [muistion](./mcp_support_python.ipynb)
 
 ### 1. Asenna tarvittavat paketit
 
@@ -71,14 +71,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. Määritä MCP-asetukset
+### 3. Konfiguroi MCP-asetukset
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. Alusta projektiasiakas
+### 4. Alusta projekti-client
 
 ```python
 project_client = AIProjectClient(
@@ -93,7 +93,7 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Valinnainen: määritä sallitut työkalut
+    allowed_tools=[],  # Optional: specify allowed tools
 )
 ```
 
@@ -103,7 +103,7 @@ mcp_tool = McpTool(
 with project_client:
     agents_client = project_client.agents
 
-    # Luo uusi agentti MCP-työkaluilla
+    # Create a new agent with MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Luo säie viestintää varten
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Luo viesti säikeelle
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Käsittele työkalujen hyväksynnät ja suorita agentti
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Näytä keskustelu
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -180,7 +180,7 @@ with project_client:
 
 ## .NET-toteutus
 
-***Huom:*** Voit suorittaa tämän [muistion](./mcp_support_dotnet.ipynb)
+***Huomautus*** Voit suorittaa tämän [muistion](./mcp_support_dotnet.ipynb)
 
 ### 1. Asenna tarvittavat paketit
 
@@ -196,7 +196,7 @@ using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. Määritä asetukset
+### 3. Konfiguroi asetukset
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -206,7 +206,7 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. Luo MCP-työkalun määritelmä
+### 4. Luo MCP-työkalumääritelmä
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
@@ -297,21 +297,21 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## MCP-työkalun määritysvaihtoehdot
+## MCP-työkalun konfigurointivaihtoehdot
 
-Määrittäessäsi MCP-työkaluja agentillesi voit asettaa useita tärkeitä parametreja:
+Kun konfiguroit MCP-työkaluja agentillesi, voit määrittää useita tärkeitä parametreja:
 
-### Python-määritys
+### Python-konfiguraatio
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # Tunniste MCP-palvelimelle
-    server_url="https://api.example.com/mcp", # MCP-palvelimen päätepiste
-    allowed_tools=[],                       # Valinnainen: määritä sallitut työkalut
+    server_label="unique_server_name",      # Identifier for the MCP server
+    server_url="https://api.example.com/mcp", # MCP server endpoint
+    allowed_tools=[],                       # Optional: specify allowed tools
 )
 ```
 
-### .NET-määritys
+### .NET-konfiguraatio
 
 ```csharp
 MCPToolDefinition mcpTool = new(
@@ -320,9 +320,9 @@ MCPToolDefinition mcpTool = new(
 );
 ```
 
-## Autentikointi ja otsikot
+## Todennus ja otsikot
 
-Molemmat toteutukset tukevat mukautettuja otsikoita autentikointiin:
+Molemmat toteutukset tukevat mukautettuja otsikoita todennusta varten:
 
 ### Python
 ```python
@@ -335,46 +335,46 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Yleisten ongelmien vianmääritys
+## Yleisten ongelmien ratkaisu
 
-### 1. Yhteysongelmat
+### 1. Yhdysongelmat
 - Varmista, että MCP-palvelimen URL on saavutettavissa
-- Tarkista autentikointitiedot
+- Tarkista todennus- ja valtuutustiedot
 - Varmista verkkoyhteys
 
-### 2. työkalukutsujen epäonnistumiset
-- Tarkastele työkalujen argumentteja ja muotoilua
+### 2. Työkalukutsujen epäonnistumiset
+- Tarkista työkalun argumentit ja muotoilu
 - Tarkista palvelinkohtaiset vaatimukset
 - Toteuta asianmukainen virheenkäsittely
 
 ### 3. Suorituskykyongelmat
 - Optimoi työkalukutsujen tiheys
-- Toteuta välimuisti tarvittaessa
+- Käytä välimuistia tarpeen mukaan
 - Seuraa palvelimen vasteaikoja
 
 ## Seuraavat askeleet
 
-Parantaaksesi MCP-integraatiotasi:
+Jatka MCP-integraation kehittämistä:
 
-1. **Tutustu mukautettuihin MCP-palvelimiin**: Rakenna omia MCP-palvelimia propriatääritietolähteille
-2. **Ota käyttöön kehittynyt turvallisuus**: Lisää OAuth2- tai mukautettu autentikointimekanismi
-3. **Seuranta ja analytiikka**: Ota käyttöön lokitus ja seuranta työkalujen käytölle
-4. **Laajenna ratkaisua**: Harkitse kuormantasauksen ja hajautettujen MCP-palvelinarkkitehtuurien käyttöä
+1. **Tutki räätälöityjä MCP-palvelimia**: Rakenna omia MCP-palvelimia suojattuja tietolähteitä varten
+2. **Toteuta edistynyt turvallisuus**: Lisää OAuth2- tai mukautetut todennusmekanismit
+3. **Valvonta ja analytiikka**: Ota käyttöön lokitus ja seuranta työkalujen käytölle
+4. **Skaalaa ratkaisusi**: Harkitse kuormantasauksen ja hajautettujen MCP-palvelinararkkitehtuurien käyttöä
 
 ## Lisäresurssit
 
 - [Microsoft Foundryn dokumentaatio](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol -esimerkit](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Model Context Protocol -näytteet](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Microsoft Foundryn agenttien yleiskatsaus](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [MCP-spesifikaatio](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [MCP-määrittely](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Tuki
 
-Lisätuen ja kysymysten osalta:
-- Tarkista [Microsoft Foundryn dokumentaatio](https://learn.microsoft.com/azure/ai-foundry/)
-- Katso [MCP-yhteisöresurssit](https://modelcontextprotocol.io/)
+Lisätuen ja kysymysten varalta:
+- Tutustu [Microsoft Foundryn dokumentaatioon](https://learn.microsoft.com/azure/ai-foundry/)
+- Tarkista [MCP-yhteisön resurssit](https://modelcontextprotocol.io/)
 
-## Mitä seuraavaksi 
+## Mitä seuraavaksi
 
 - [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
 

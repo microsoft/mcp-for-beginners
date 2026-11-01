@@ -1,43 +1,43 @@
-Here's a sample wey dey show how MCP App dey work
+Dis na sample wey dey show how MCP App dey work
 
 ## Install 
 
-1. Go *mcp-app* folder
-1. Run `npm install`, dis one go install frontend and backend dependencies
+1. Go to *mcp-app* folder
+1. Run `npm install`, dis go install frontend and backend dependencies
 
-Make sure say the backend dey compile by running:
+Make sure backend dey compile by running:
 
 ```sh
 npx tsc --noEmit
 ```
 
-E no suppose get output if everything no get wahala.
+No output suppose show if everything dey fine.
 
 ## Run backend
 
-> Dis one need small extra work if you dey use Windows machine as MCP Apps solution dey use `concurrently` library to run and you need find another way take replace am. Dis na the wahala line for *package.json* on the MCP App:
+> Dis go need small extra work if you dey on a Windows machine because the MCP Apps solution dey use `concurrently` library wey e run and you go need find replacement for am. Na dis line for *package.json* dey cause wahala on the MCP App:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
-This app get two parts, backend part and host part.
+Dis app get two parts: one na backend, the other na host.
 
-Start backend by calling:
+Start the backend like dis:
 
 ```sh
 npm start
 ```
 
-Dis one go start backend for `http://localhost:3001/mcp`. 
+Dis suppose shart the backend on `http://localhost:3001/mcp`. 
 
-> Note, if you dey Codespace, you fit need set port visibility to public. Check say you fit reach endpoint for browser through https://<name of Codespace>.app.github.dev/mcp
+> Note, if you dey in a Codespace, you fit need set port visibility to public. Make sure say you fit reach the endpoint for the browser through https://<name of Codespace>.app.github.dev/mcp
 
-## Choice -1 Test the app inside Visual Studio Code
+## Choice -1 Test di app for Visual Studio Code
 
-To test the solution for Visual Studio Code, do dis:
+If you wan test di solution for Visual Studio Code, do dis:
 
-- Add server entry to `mcp.json` like dis:
+- Add a server entry to `mcp.json` like dis:
 
     ```json
     {
@@ -51,20 +51,20 @@ To test the solution for Visual Studio Code, do dis:
     }
     ```
 
-1. Click the "start" button for *mcp.json*
-1. Make sure chat window open and type `get-faq`, you go see result like dis:
+1. Click the "start" button inside *mcp.json*
+1. Make sure say chat window dey open and type `get-faq`, you go see result like dis:
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/pcm/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Choice -2- Test the app with host
+## Choice -2- Test di app with a host
 
-The repo <https://github.com/modelcontextprotocol/ext-apps> get different hosts wey you fit use test your MVP Apps.
+The repo <https://github.com/modelcontextprotocol/ext-apps> get several different hosts wey you fit use to test your MVP Apps. 
 
-We go show you two different options here:
+We go present you with two different options here:
 
 ### Local machine
 
-- Go *ext-apps* after you don clone the repo.
+- Navigate to *ext-apps* after you don clone the repo.
 
 - Install dependencies
 
@@ -72,9 +72,9 @@ We go show you two different options here:
    npm install
    ```
 
-- For another terminal window, go *ext-apps/examples/basic-host*
+- In another terminal window, go to *ext-apps/examples/basic-host*
 
-    > if you dey Codespace, you go need find serve.ts for line 27 and change http://localhost:3001/mcp to your Codespace URL for backend, example https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > if you dey in a Codespace, you need to navigate to serve.ts and line 27 and replace http://localhost:3001/mcp with your Codespace URL for the backend, so for example https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
 - Run the host:
 
@@ -82,31 +82,31 @@ We go show you two different options here:
     npm start
     ```
 
-    Dis one go connect host with backend and you go see app dey run like dis:
+    This suppose connect the host with backend and you go see the app dey run like dis:
 
-    ![App running](../../../../../../translated_images/pcm/mcp-app.50dd20a779bea32f.webp)
+    ![App dey run](../../../../../../translated_images/pcm/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-E need small extra work make Codespace environment work well. To use host through Codespace:
+E go take small extra work to make a Codespace environment work. To use a host through Codespace: 
 
-- See *ext-apps* directory and enter *examples/basic-host*.
-- Run `npm install` to install dependencies
-- Run `npm start` to start host.
+- Go to the *ext-apps* directory and navigate to *examples/basic-host*. 
+- Run `npm install` to install the dependencies
+- Run `npm start` to start the host.
 
-## Test the app
+## Test out the app
 
-Try d app like dis:
+Try di app like dis:
 
-- Select "Call Tool" button and you go see results like dis:
+- Select "Call Tool" button and you go see the results like dis:
 
-    ![Tool result](../../../../../../translated_images/pcm/tool-result.cfec4814ce8e0146.webp)
+    ![Result wey tool give](../../../../../../translated_images/pcm/tool-result.cfec4814ce8e0146.webp)
 
-Good, everything dey work fine.
+Great, everything dey work.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Warnin**:  
-Dis document na AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator) wey translate am. Even though we dey try make am correct, abeg sabi say sometimes automated translation fit get mistake or no clear well. The original document wey get for im own language na di correct one. If na important mata, make person use professional human translation. We no go responsible if person jaga jaga or no understand well because of this translation.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

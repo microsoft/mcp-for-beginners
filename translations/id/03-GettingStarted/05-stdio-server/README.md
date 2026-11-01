@@ -1,41 +1,41 @@
-# Server MCP dengan Transportasi stdio
+# Server MCP dengan Transport stdio
 
-> **⚠️ Pembaruan Penting**: Mulai dari Spesifikasi MCP 2025-06-18, transportasi SSE (Server-Sent Events) mandiri telah **dihentikan** dan digantikan oleh transportasi "Streamable HTTP". Spesifikasi MCP saat ini mendefinisikan dua mekanisme transportasi utama:
+> **⚠️ Pembaruan Penting**: Mulai MCP Spesifikasi 2025-06-18, transport SSE (Server-Sent Events) mandiri telah **dihapus** dan digantikan dengan transport "Streamable HTTP". Spesifikasi MCP saat ini mendefinisikan dua mekanisme transport utama:
 > 1. **stdio** - Input/output standar (direkomendasikan untuk server lokal)
 > 2. **Streamable HTTP** - Untuk server jarak jauh yang mungkin menggunakan SSE secara internal
 >
-> Pelajaran ini telah diperbarui untuk fokus pada **transportasi stdio**, yang merupakan pendekatan yang direkomendasikan untuk sebagian besar implementasi server MCP.
+> Pelajaran ini telah diperbarui untuk fokus pada **transport stdio**, yang merupakan pendekatan yang direkomendasikan untuk sebagian besar implementasi server MCP.
 
-Transportasi stdio memungkinkan server MCP berkomunikasi dengan klien melalui aliran input dan output standar. Ini adalah mekanisme transportasi yang paling umum digunakan dan direkomendasikan dalam spesifikasi MCP saat ini, menyediakan cara yang sederhana dan efisien untuk membangun server MCP yang dapat dengan mudah diintegrasikan dengan berbagai aplikasi klien.
+Transport stdio memungkinkan server MCP berkomunikasi dengan klien melalui aliran input dan output standar. Ini adalah mekanisme transport yang paling umum digunakan dan direkomendasikan dalam spesifikasi MCP saat ini, menyediakan cara yang sederhana dan efisien untuk membangun server MCP yang dapat dengan mudah terintegrasi dengan berbagai aplikasi klien.
 
 ## Ikhtisar
 
-Pelajaran ini membahas cara membangun dan menggunakan Server MCP menggunakan transportasi stdio.
+Pelajaran ini membahas cara membangun dan menggunakan Server MCP dengan transport stdio.
 
 ## Tujuan Pembelajaran
 
 Pada akhir pelajaran ini, Anda akan dapat:
 
-- Membangun Server MCP menggunakan transportasi stdio.
+- Membangun Server MCP menggunakan transport stdio.
 - Debug Server MCP menggunakan Inspector.
-- Menggunakan Server MCP melalui Visual Studio Code.
-- Memahami mekanisme transportasi MCP saat ini dan mengapa stdio direkomendasikan.
+- Menggunakan Server MCP menggunakan Visual Studio Code.
+- Memahami mekanisme transport MCP saat ini dan mengapa stdio direkomendasikan.
 
 
-## Transportasi stdio - Cara Kerjanya
+## Transport stdio - Cara Kerjanya
 
-Transportasi stdio adalah salah satu dari dua transportasi standar dalam Spesifikasi MCP
+Transport stdio adalah salah satu dari dua transport standar dalam Spesifikasi MCP
 `2026-07-28`. Berikut cara kerjanya:
 
 - **Komunikasi Sederhana**: Server membaca pesan JSON-RPC dari input standar (`stdin`) dan mengirim pesan ke output standar (`stdout`).
-- **Berbasis Proses**: Klien menjalankan server MCP sebagai subprocess.
-- **Format Pesan**: Pesan adalah permintaan JSON-RPC individual, notifikasi, atau respons, yang dipisahkan oleh baris baru.
-- **Pencatatan**: Server BOLEH menulis string UTF-8 ke error standar (`stderr`) untuk keperluan logging.
+- **Berbasis Proses**: Klien meluncurkan server MCP sebagai proses anak.
+- **Format Pesan**: Pesan berupa permintaan, notifikasi, atau respons JSON-RPC individual, dipisahkan oleh baris baru.
+- **Logging**: Server BOLEH menulis string UTF-8 ke error standar (`stderr`) untuk keperluan logging.
 
-### Persyaratan Utama:
-- Pesan HARUS dipisahkan oleh baris baru dan TIDAK BOLEH mengandung baris baru yang tertanam
-- Server TIDAK BOLEH menulis apa pun ke `stdout` yang bukan pesan MCP yang valid
-- Klien TIDAK BOLEH menulis apa pun ke `stdin` server yang bukan pesan MCP yang valid
+### Persyaratan Kunci:
+- Pesan HARUS dipisahkan oleh baris baru dan TIDAK BOLEH mengandung baris baru tertanam
+- Server TIDAK BOLEH menulis apa pun ke `stdout` yang bukan pesan MCP valid
+- Klien TIDAK BOLEH menulis apa pun ke `stdin` server yang bukan pesan MCP valid
 
 ### TypeScript
 
@@ -77,7 +77,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Buat instance server
+# Create server instance
 server = Server("example-server")
 
 @server.tool()
@@ -100,8 +100,8 @@ if __name__ == "__main__":
 Dalam kode sebelumnya kami:
 
 - Membuat instance server menggunakan MCP SDK
-- Mendefinisikan tools menggunakan dekorator
-- Menggunakan context manager stdio_server untuk menangani transportasi
+- Mendefinisikan alat menggunakan dekorator
+- Menggunakan manajer konteks stdio_server untuk menangani transport
 
 ### .NET
 
@@ -124,10 +124,10 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Perbedaan utama dari SSE adalah server stdio:
+Perbedaan utama dari SSE adalah bahwa server stdio:
 
 - Tidak memerlukan pengaturan server web atau endpoint HTTP
-- Dijalankan sebagai subprocess oleh klien
+- Diluncurkan sebagai proses anak oleh klien
 - Berkomunikasi melalui aliran stdin/stdout
 - Lebih sederhana untuk diimplementasikan dan debug
 
@@ -138,13 +138,13 @@ Untuk membuat server kita, kita perlu mengingat dua hal:
 - Kita perlu menggunakan server web untuk mengekspos endpoint untuk koneksi dan pesan.
 ## Lab: Membuat server MCP stdio sederhana
 
-Dalam lab ini, kita akan membuat server MCP sederhana menggunakan transportasi stdio yang direkomendasikan. Server ini akan mengekspos tools yang dapat dipanggil klien menggunakan Protokol Konteks Model standar.
+Dalam lab ini, kita akan membuat server MCP sederhana menggunakan transport stdio yang direkomendasikan. Server ini akan mengekspos alat yang dapat dipanggil klien menggunakan Model Context Protocol standar.
 
 ### Prasyarat
 
 - Python 3.8 atau lebih baru
 - MCP Python SDK: `pip install mcp`
-- Pemahaman dasar tentang pemrograman asinkron
+- Pemahaman dasar tentang pemrograman async
 
 Mari mulai dengan membuat server MCP stdio pertama kita:
 
@@ -155,11 +155,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Konfigurasikan pencatatan
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Buat server
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -173,7 +173,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Gunakan transport stdio
+    # Use stdio transport
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -185,34 +185,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Perbedaan utama dari pendekatan SSE yang dihentikan
+## Perbedaan kunci dari pendekatan SSE yang sudah tidak digunakan
 
-**Transportasi stdio (Standar Saat Ini):**
-- Model subprocess sederhana - klien menjalankan server sebagai proses anak
+**Transport Stdio (Standar Saat Ini):**
+- Model subprocess sederhana - klien meluncurkan server sebagai proses anak
 - Komunikasi melalui stdin/stdout menggunakan pesan JSON-RPC
-- Tidak memerlukan pengaturan server HTTP
-- Performa dan keamanan lebih baik
-- Debugging dan pengembangan lebih mudah
+- Tidak perlu pengaturan server HTTP
+- Kinerja dan keamanan lebih baik
+- Lebih mudah dalam debugging dan pengembangan
 
-**Transportasi SSE (Dihentikan sejak MCP 2025-06-18):**
+**Transport SSE (Tidak Digunakan Mulai MCP 2025-06-18):**
 - Memerlukan server HTTP dengan endpoint SSE
 - Pengaturan lebih kompleks dengan infrastruktur server web
 - Pertimbangan keamanan tambahan untuk endpoint HTTP
 - Kini digantikan oleh Streamable HTTP untuk skenario berbasis web
 
-### Membuat server dengan transportasi stdio
+### Membuat server dengan transport stdio
 
 Untuk membuat server stdio kita, kita perlu:
 
-1. **Impor pustaka yang diperlukan** - Kita membutuhkan komponen server MCP dan transportasi stdio
-2. **Buat instance server** - Definisikan server dengan kapabilitasnya
-3. **Definisikan tools** - Tambahkan fungsi yang ingin diekspos
-4. **Atur transportasi** - Konfigurasikan komunikasi stdio
+1. **Impor pustaka yang dibutuhkan** - Kita membutuhkan komponen server MCP dan transport stdio
+2. **Buat instance server** - Mendefinisikan server dengan kemampuannya
+3. **Definisikan alat** - Tambahkan fungsi yang ingin kita ekspos
+4. **Atur transport** - Konfigurasikan komunikasi stdio
 5. **Jalankan server** - Mulai server dan tangani pesan
 
-Mari bangun ini langkah demi langkah:
+Mari kita bangun langkah demi langkah:
 
-### Langkah 1: Buat server stdio dasar
+### Langkah 1: Membuat server stdio dasar
 
 ```python
 import asyncio
@@ -220,11 +220,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Konfigurasikan pencatatan
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Buat server
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -244,7 +244,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Langkah 2: Tambah lebih banyak tools
+### Langkah 2: Menambahkan lebih banyak alat
 
 ```python
 @server.tool()
@@ -276,15 +276,15 @@ Simpan kode sebagai `server.py` dan jalankan dari baris perintah:
 python server.py
 ```
 
-Server akan mulai dan menunggu input dari stdin. Ia berkomunikasi menggunakan pesan JSON-RPC melalui transportasi stdio.
+Server akan mulai dan menunggu input dari stdin. Server berkomunikasi menggunakan pesan JSON-RPC melalui transport stdio.
 
-### Langkah 4: Menguji dengan Inspector
+### Langkah 4: Pengujian dengan Inspector
 
 Anda dapat menguji server Anda menggunakan MCP Inspector:
 
 1. Instal Inspector: `npx @modelcontextprotocol/inspector`
 2. Jalankan Inspector dan arahkan ke server Anda
-3. Uji tools yang telah Anda buat
+3. Uji alat yang telah Anda buat
 
 ### .NET
 
@@ -293,11 +293,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## Debugging server stdio Anda
+## Debug server stdio Anda
 
 ### Menggunakan MCP Inspector
 
-MCP Inspector adalah alat yang berharga untuk debugging dan pengujian server MCP. Berikut cara menggunakannya dengan server stdio Anda:
+MCP Inspector adalah alat berharga untuk debugging dan pengujian server MCP. Berikut cara menggunakannya dengan server stdio Anda:
 
 1. **Instal Inspector**:
    ```bash
@@ -309,15 +309,15 @@ MCP Inspector adalah alat yang berharga untuk debugging dan pengujian server MCP
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Uji server Anda**: Inspector menyediakan antarmuka web dimana Anda bisa:
-   - Melihat kapabilitas server
-   - Menguji tools dengan berbagai parameter
+3. **Uji server Anda**: Inspector menyediakan antarmuka web dimana Anda dapat:
+   - Melihat kemampuan server
+   - Menguji alat dengan parameter berbeda
    - Memantau pesan JSON-RPC
    - Debug masalah koneksi
 
 ### Menggunakan VS Code
 
-Anda juga dapat debugging server MCP langsung di VS Code:
+Anda juga dapat debug server MCP Anda langsung di VS Code:
 
 1. Buat konfigurasi peluncuran di `.vscode/launch.json`:
    ```json
@@ -335,19 +335,19 @@ Anda juga dapat debugging server MCP langsung di VS Code:
    }
    ```
 
-2. Tetapkan breakpoint di kode server Anda
+2. Atur breakpoint di kode server Anda
 3. Jalankan debugger dan uji dengan Inspector
 
 ### Tips debugging umum
 
-- Gunakan `stderr` untuk logging - jangan pernah menulis ke `stdout` karena itu dikhususkan untuk pesan MCP
+- Gunakan `stderr` untuk logging - jangan pernah menulis ke `stdout` karena itu tercadangkan untuk pesan MCP
 - Pastikan semua pesan JSON-RPC dipisahkan oleh baris baru
-- Uji dengan tools sederhana terlebih dahulu sebelum menambah fungsi yang kompleks
+- Uji dengan alat sederhana dulu sebelum menambahkan fungsi kompleks
 - Gunakan Inspector untuk memverifikasi format pesan
 
 ## Menggunakan server stdio Anda di VS Code
 
-Setelah Anda membangun server MCP stdio Anda, Anda dapat mengintegrasikannya dengan VS Code untuk digunakan dengan Claude atau klien MCP kompatibel lainnya.
+Setelah Anda membangun server MCP stdio Anda, Anda dapat mengintegrasikannya dengan VS Code untuk digunakan dengan Claude atau klien kompatibel MCP lainnya.
 
 ### Konfigurasi
 
@@ -366,14 +366,14 @@ Setelah Anda membangun server MCP stdio Anda, Anda dapat mengintegrasikannya den
 
 2. **Restart Claude**: Tutup dan buka kembali Claude untuk memuat konfigurasi server baru.
 
-3. **Uji koneksi**: Mulai percakapan dengan Claude dan coba gunakan tools server Anda:
-   - "Bisakah kamu menyapa saya menggunakan alat sapaan?"
+3. **Uji koneksi**: Mulai percakapan dengan Claude dan coba gunakan alat server Anda:
+   - "Bisakah kamu menyapaku menggunakan alat sapaan?"
    - "Hitung jumlah 15 dan 27"
-   - "Apa info servernya?"
+   - "Apa info server?"
 
 ### Contoh server stdio TypeScript
 
-Berikut contoh lengkap TypeScript sebagai referensi:
+Berikut contoh lengkap TypeScript untuk referensi:
 
 ```typescript
 #!/usr/bin/env node
@@ -393,7 +393,7 @@ const server = new Server(
   }
 );
 
-// Tambahkan alat-alat
+// Add tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -476,20 +476,20 @@ public class Tools
 
 ## Ringkasan
 
-Dalam pelajaran yang diperbarui ini, Anda belajar bagaimana:
+Dalam pelajaran yang diperbarui ini, Anda telah belajar bagaimana:
 
-- Membangun server MCP menggunakan **transportasi stdio** saat ini (pendekatan yang direkomendasikan)
-- Memahami mengapa transportasi SSE dihentikan digantikan oleh stdio dan Streamable HTTP
-- Membuat tools yang dapat dipanggil oleh klien MCP
+- Membangun server MCP menggunakan **transport stdio** saat ini (pendekatan yang direkomendasikan)
+- Memahami alasan penghapusan transport SSE dan mengapa stdio dan Streamable HTTP yang dipilih
+- Membuat alat yang dapat dipanggil oleh klien MCP
 - Debug server Anda menggunakan MCP Inspector
 - Mengintegrasikan server stdio Anda dengan VS Code dan Claude
 
-Transportasi stdio menyediakan cara yang lebih sederhana, lebih aman, dan lebih berkinerja untuk membangun server MCP dibandingkan pendekatan SSE yang dihentikan. Ini adalah transportasi yang direkomendasikan untuk sebagian besar implementasi server MCP sejak spesifikasi 2025-06-18.
+Transport stdio menawarkan cara yang lebih sederhana, lebih aman, dan lebih berkinerja untuk membangun server MCP dibandingkan pendekatan SSE yang sudah tidak digunakan. Ini adalah transport yang direkomendasikan untuk sebagian besar implementasi server MCP sesuai spesifikasi 2025-06-18.
 
 
 ### .NET
 
-1. Mari kita buat beberapa tools terlebih dahulu, untuk ini kita akan membuat file *Tools.cs* dengan isi berikut:
+1. Mari kita buat beberapa alat terlebih dahulu, untuk ini kita akan membuat file *Tools.cs* dengan isi berikut:
 
   ```csharp
   using System.ComponentModel;
@@ -499,16 +499,16 @@ Transportasi stdio menyediakan cara yang lebih sederhana, lebih aman, dan lebih 
 
 ## Latihan: Menguji server stdio Anda
 
-Sekarang setelah Anda membangun server stdio Anda, mari kita uji untuk memastikan ia berfungsi dengan benar.
+Sekarang setelah Anda membangun server stdio, mari uji agar memastikan server berjalan dengan benar.
 
 ### Prasyarat
 
-1. Pastikan Anda telah memasang MCP Inspector:
+1. Pastikan Anda sudah menginstal MCP Inspector:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Kode server Anda harus tersimpan (misalnya, sebagai `server.py`)
+2. Kode server Anda sudah tersimpan (misalnya sebagai `server.py`)
 
 ### Pengujian dengan Inspector
 
@@ -517,59 +517,59 @@ Sekarang setelah Anda membangun server stdio Anda, mari kita uji untuk memastika
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Buka antarmuka web**: Inspector akan membuka jendela browser yang menampilkan kapabilitas server Anda.
+2. **Buka antarmuka web**: Inspector akan membuka jendela browser yang menampilkan kemampuan server Anda.
 
-3. **Uji tools**: 
-   - Coba tool `get_greeting` dengan nama yang berbeda
-   - Uji tool `calculate_sum` dengan berbagai angka
-   - Panggil tool `get_server_info` untuk melihat metadata server
+3. **Uji alat**: 
+   - Coba alat `get_greeting` dengan nama berbeda
+   - Uji alat `calculate_sum` dengan berbagai angka
+   - Panggil alat `get_server_info` untuk melihat metadata server
 
 4. **Pantau komunikasi**: Inspector menampilkan pesan JSON-RPC yang dipertukarkan antara klien dan server.
 
-### Apa yang harus Anda lihat
+### Yang harus Anda lihat
 
-Ketika server Anda berjalan dengan benar, Anda harus melihat:
-- Kapabilitas server tercantum di Inspector
-- Tools tersedia untuk pengujian
-- Pertukaran pesan JSON-RPC yang berhasil
-- Respon tool ditampilkan di antarmuka
+Ketika server Anda mulai dengan benar, Anda harus melihat:
+- Kemampuan server tercantum di Inspector
+- Alat tersedia untuk pengujian
+- Pertukaran pesan JSON-RPC berhasil
+- Respons alat ditampilkan di antarmuka
 
 ### Masalah umum dan solusi
 
-**Server tidak mau start:**
-- Periksa bahwa semua dependensi terpasang: `pip install mcp`
-- Periksa sintaks dan indentasi Python
+**Server tidak mulai:**
+- Periksa apakah semua dependensi sudah terinstal: `pip install mcp`
+- Verifikasi sintaks dan indentasi Python
 - Cari pesan error di konsol
 
-**Tools tidak muncul:**
+**Alat tidak muncul:**
 - Pastikan dekorator `@server.tool()` ada
-- Periksa fungsi tool sudah didefinisikan sebelum `main()`
-- Pastikan server dikonfigurasi dengan benar
+- Periksa fungsi alat sudah didefinisikan sebelum `main()`
+- Verifikasi server sudah dikonfigurasi dengan benar
 
 **Masalah koneksi:**
-- Pastikan server menggunakan transportasi stdio dengan benar
-- Periksa tidak ada proses lain yang mengganggu
+- Pastikan server menggunakan transport stdio dengan benar
+- Periksa bahwa tidak ada proses lain yang mengganggu
 - Verifikasi sintaks perintah Inspector
 
 ## Tugas
 
-Cobalah membangun server Anda dengan kapabilitas lebih banyak. Lihat [halaman ini](https://api.chucknorris.io/) untuk, misalnya, menambahkan tool yang memanggil API. Anda tentukan bagaimana servernya harus terlihat. Selamat bersenang-senang :)
+Cobalah membangun server Anda dengan kemampuan lebih banyak. Lihat [halaman ini](https://api.chucknorris.io/) misalnya untuk menambahkan alat yang memanggil API. Anda tentukan bagaimana seharusnya server tampil. Selamat bersenang-senang :)
 ## Solusi
 
-[Solusi](./solution/README.md) Berikut adalah solusi yang mungkin dengan kode kerja.
+[Solusi](./solution/README.md) Berikut solusi yang mungkin dengan kode yang berfungsi.
 
 ## Poin Penting
 
-Poin-poin penting dari bab ini adalah sebagai berikut:
+Poin penting dari bab ini adalah:
 
-- Transportasi stdio adalah mekanisme yang direkomendasikan untuk server MCP lokal.
-- Transportasi stdio memungkinkan komunikasi mulus antara server dan klien MCP menggunakan aliran input dan output standar.
-- Anda dapat menggunakan baik Inspector maupun Visual Studio Code untuk langsung menggunakan server stdio, membuat debugging dan integrasi menjadi mudah.
+- Transport stdio adalah mekanisme yang direkomendasikan untuk server MCP lokal.
+- Transport stdio memungkinkan komunikasi lancar antara server MCP dan klien menggunakan aliran input dan output standar.
+- Anda dapat menggunakan Inspector dan Visual Studio Code untuk menggunakan server stdio secara langsung, memudahkan debugging dan integrasi.
 
 ## Contoh 
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python) 
@@ -582,17 +582,17 @@ Poin-poin penting dari bab ini adalah sebagai berikut:
 
 ## Langkah Berikutnya
 
-Sekarang setelah Anda belajar cara membangun server MCP dengan transportasi stdio, Anda dapat mengeksplorasi topik yang lebih lanjut:
+Sekarang Anda telah belajar cara membangun server MCP dengan transport stdio, Anda dapat menjelajahi topik yang lebih lanjut:
 
-- **Selanjutnya**: [HTTP Streaming dengan MCP (Streamable HTTP)](../06-http-streaming/README.md) - Pelajari mekanisme transportasi lainnya yang didukung untuk server jarak jauh
-- **Lanjutan**: [Praktik Terbaik Keamanan MCP](../../02-Security/README.md) - Terapkan keamanan pada server MCP Anda
-- **Produksi**: [Strategi Deployment](../09-deployment/README.md) - Deploy server Anda untuk penggunaan produksi
+- **Berikutnya**: [HTTP Streaming dengan MCP (Streamable HTTP)](../06-http-streaming/README.md) - Pelajari mekanisme transport lain yang didukung untuk server jarak jauh
+- **Lanjutan**: [Praktik Terbaik Keamanan MCP](../../02-Security/README.md) - Terapkan keamanan di server MCP Anda
+- **Produksi**: [Strategi Penyebaran](../09-deployment/README.md) - Menyebarkan server Anda untuk penggunaan produksi
 
 ## Sumber Daya Tambahan
 
-- [Spesifikasi MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Spesifikasi terkini
+- [Spesifikasi MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Spesifikasi saat ini
 - [Dokumentasi MCP SDK](https://github.com/modelcontextprotocol/sdk) - Referensi SDK untuk semua bahasa
-- [Contoh Komunitas](../../06-CommunityContributions/README.md) - Lebih banyak contoh server dari komunitas
+- [Contoh Komunitas](../../06-CommunityContributions/README.md) - Contoh server lebih banyak dari komunitas
 
 ---
 

@@ -1,37 +1,45 @@
 # Покретање овог примера
 
-Ово је Rust решење за пример LLM клијента. Потребно је да имате инсталиран Rust toolchain; погледајте [службени водич за инсталацију](https://www.rust-lang.org/tools/install).
+Ово је Rust решење за пример LLM клијента. Потребно је да имате инсталиран Rust тулчејн; погледајте [официјални приручник за инсталацију](https://www.rust-lang.org/tools/install).
 
-Клијент позива модел преко GitHub Models inference endpoint (`https://models.github.ai/inference/chat`) и учитава ваш GitHub personal access token (PAT) из `OPENAI_API_KEY` променљиве окружења.
+Клијент позива постављени Microsoft Foundry модел преко Azure OpenAI
+v1 крајње тачке.
 
 > [!NOTE]
-> Остала решења у овом репозиторијуму користе `GITHUB_TOKEN`. За Rust, поставите `OPENAI_API_KEY` на исту вредност да бисте уклопили конфигурацију OpenAI клијента.
+> Вредност која се прослеђује као `model` је име ваше Foundry имплементације, не нужно
+> име основног модела.
 
-## -0- Поставите ваш GitHub токен
+## -0- Конфигурација Microsoft Foundry
 
 ```bash
-# зш/баш
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+# zsh/bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Изградите пример
+## -1- Изградња примера
 
 ```bash
 cargo build
 ```
 
-## -2- Покрените пример
+## -2- Покретање примера
 
 ```bash
 cargo run
 ```
 
-Клијент покреће MCP сервер калкулатора, преузима листу алата, и користи модел (`openai/gpt-5-mini`) да позове `add` алат. Требало би да видите излаз који указује на позив алата (на пример, "Calling tool: add") и резултат тог позива.
+Клијент покреће MCP сервер калкулатора, преузима листу алата и користи
+постављени модел за позив алата `add`. Требало би да видите излаз који указује
+на позив алата (на пример, "Позив алата: add") и резултат тог позива.
 
 ---
 

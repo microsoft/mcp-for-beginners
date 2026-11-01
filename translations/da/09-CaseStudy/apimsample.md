@@ -1,68 +1,68 @@
 # Case Study: Eksponer REST API i API Management som en MCP-server
 
-Azure API Management er en tjeneste, der leverer en Gateway oven på dine API Endpoints. Måden det fungerer på er, at Azure API Management fungerer som en proxy foran dine API'er og kan beslutte, hvad der skal ske med indkommende forespørgsler.
+Azure API Management er en tjeneste, der leverer en Gateway oven på dine API-endpoints. Sådan fungerer det, at Azure API Management agerer som en proxy foran dine API'er og kan beslutte, hvad der skal ske med indkommende forespørgsler.
 
-Ved at bruge det tilføjer du en masse funktioner som:
+Ved at bruge det tilføjer du en hel række funktioner som:
 
 - **Sikkerhed**, du kan bruge alt fra API-nøgler, JWT til managed identity.
-- **Ratebegrænsning**, en fantastisk funktion er at kunne beslutte, hvor mange opkald der går igennem per en bestemt tidsenhed. Dette hjælper med at sikre, at alle brugere får en god oplevelse, og at din tjeneste ikke bliver overbelastet med forespørgsler.
-- **Skalering & Load balancing**. Du kan opsætte et antal endpoints til at fordele belastningen, og du kan også beslutte, hvordan du vil "load balance".
-- **AI-funktioner som semantisk caching**, tokenbegrænsning og tokenovervågning samt mere. Disse er fremragende funktioner, der forbedrer responstiden samt hjælper dig med at holde styr på dit tokenforbrug. [Læs mere her](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Begrænsning af antal kald**, en stor fordel er muligheden for at bestemme, hvor mange kald der må passere per en bestemt tidsenhed. Dette hjælper med at sikre, at alle brugere får en god oplevelse, og at din tjeneste ikke overbelastes med forespørgsler.
+- **Skalering og load balancing**. Du kan opsætte flere endpoints for at fordele belastningen, og du kan også bestemme, hvordan "load balancing" skal foregå.
+- **AI-funktioner som semantisk caching**, tokenbegrænsning og tokenovervågning med mere. Disse er fantastiske funktioner, der forbedrer responsiviteten samt hjælper dig med at holde styr på dine token-forbrug. [Læs mere her](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
 
 ## Hvorfor MCP + Azure API Management?
 
-Model Context Protocol bliver hurtigt en standard for agentiske AI-apps og måder at eksponere værktøjer og data på en ensartet måde. Azure API Management er et naturligt valg, når du har brug for at "styre" API'er. MCP-servere integrerer ofte med andre API'er for at løse forespørgsler til et værktøj, for eksempel. Derfor giver det meget mening at kombinere Azure API Management og MCP.
+Model Context Protocol er ved at blive en standard for agentiske AI-apps og hvordan man eksponerer værktøjer og data på en ensartet måde. Azure API Management er et naturligt valg, når du har brug for at "styre" API'er. MCP Servers integrerer ofte med andre API'er for eksempelvis at løse forespørgsler til et værktøj. Derfor giver det god mening at kombinere Azure API Management og MCP.
 
 ## Oversigt
 
-I denne specifikke brugssag lærer vi at eksponere API endpoints som en MCP Server. Ved at gøre dette kan vi nemt gøre disse endpoints til en del af en agentisk app samtidig med, at vi udnytter funktionerne fra Azure API Management.
+I denne specifikke brugssag lærer vi at eksponere API-endpoints som en MCP-server. Ved at gøre dette kan vi nemt gøre disse endpoints til en del af en agentisk app samtidig med, at vi udnytter funktionerne fra Azure API Management.
 
 ## Nøglefunktioner
 
-- Du vælger de endpoint-metoder, du ønsker eksponeret som værktøjer.
-- De ekstra funktioner, du får, afhænger af, hvad du konfigurerer i politiksektionen for dit API. Men her vil vi vise dig, hvordan du kan tilføje ratebegrænsning.
+- Du vælger de endpoint-metoder, du ønsker skal eksponeres som værktøjer.
+- De ekstra funktioner, du får, afhænger af, hvad du konfigurerer i policy-sektionen for dit API. Men her vil vi vise, hvordan du kan tilføje begrænsning af antal kald.
 
-## Fortrin: importér et API
+## Fortrin: importer en API
 
-Hvis du allerede har et API i Azure API Management, er det fantastisk, så kan du springe dette trin over. Hvis ikke, kan du tjekke dette link, [import af et API til Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Hvis du allerede har en API i Azure API Management, er det fint – så kan du springe dette trin over. Hvis ikke, kan du tjekke dette link, [import af en API til Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
-## Eksponer API som MCP Server
+## Eksponer API som MCP-server
 
-For at eksponere API endpoints, følg disse trin:
+For at eksponere API-endpoints følger vi disse trin:
 
-1. Naviger til Azure Portal og følgende adresse <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>
-Naviger til din API Management instans.
+1. Naviger til Azure Portal og adressen <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
+Naviger til din API Management-instans.
 
-1. I venstremenuen, vælg APIs > MCP Servers > + Opret ny MCP Server.
+1. Vælg i venstremenuen APIs > MCP Servers > + Opret ny MCP Server.
 
-1. I API vælger du et REST API til at eksponere som en MCP server.
+1. Vælg i API et REST API, som skal eksponeres som en MCP-server.
 
-1. Vælg en eller flere API Operationer til at eksponere som værktøjer. Du kan vælge alle operationer eller kun specifikke operationer.
+1. Vælg en eller flere API-operationer, der skal eksponeres som værktøjer. Du kan vælge alle operationer eller kun bestemte operationer.
 
-    ![Select methods to expose](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![Vælg metoder til eksponering](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 
 1. Vælg **Opret**.
 
-1. Naviger til menupunktet **API'er** og **MCP Servers**, du skulle nu se følgende:
+1. Naviger til menuvalget **APIs** og **MCP Servers**, du burde se følgende:
 
-    ![See the MCP Server in the main pane](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Se MCP Server i hovedpanelet](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    MCP-serveren er oprettet, og API operationerne er eksponeret som værktøjer. MCP-serveren vises i MCP Servers-panelet. URL-kolonnen viser endpoint'et for MCP-serveren, som du kan kalde til test eller inden for en klientapplikation.
+    MCP-serveren er oprettet, og API-operationerne er eksponeret som værktøjer. MCP-serveren er listet i MCP Servers-panelet. URL-kolonnen viser endpointet for MCP-serveren, som du kan kalde til test eller fra en klientapplikation.
 
 ## Valgfrit: Konfigurer politikker
 
-Azure API Management har kernekonceptet politikker, hvor du opsætter forskellige regler for dine endpoints som for eksempel ratebegrænsning eller semantisk caching. Disse politikker defineres i XML.
+Azure API Management har kernebegrebet politikker, hvor du kan sætte forskellige regler for dine endpoints, som for eksempel begrænsning af antal kald eller semantisk caching. Disse politikker skrives i XML.
 
-Sådan kan du opsætte en politik til at ratebegrænse din MCP Server:
+Sådan kan du opsætte en politik til at begrænse antal kald på din MCP-server:
 
-1. I portalen, under APIs, vælg **MCP Servers**.
+1. I portalen under APIs, vælg **MCP Servers**.
 
 1. Vælg den MCP-server, du oprettede.
 
-1. I venstremenuen, under MCP, vælg **Politikker**.
+1. I venstremenuen under MCP, vælg **Policies**.
 
-1. I politikeditoren, tilføj eller rediger de politikker, du ønsker skal gælde for MCP-serverens værktøjer. Politikkerne defineres i XML-format. For eksempel kan du tilføje en politik til at begrænse kald til MCP-serverens værktøjer (i dette eksempel 5 kald per 30 sekunder per client IP-adresse). Her er XML, der vil forårsage ratebegrænsning:
+1. I policy-editoren tilføj eller rediger de politikker, du ønsker at anvende på MCP-serverens værktøjer. Politikkerne defineres i XML-format. For eksempel kan du tilføje en politik, der begrænser kald til MCP-serverens værktøjer (i dette eksempel 5 kald pr. 30 sekunder per klient-IP-adresse). Her er XML, der vil forårsage denne begrænsning:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -72,59 +72,60 @@ Sådan kan du opsætte en politik til at ratebegrænse din MCP Server:
     />
     ```
 
-    Her er et billede af politikeditoren:
+    Her er et billede af policy-editoren:
 
     ![Policy editor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
  
 ## Prøv det af
 
-Lad os sikre, at vores MCP Server fungerer som forventet.
+Lad os sikre, at vores MCP-server fungerer som tiltænkt.
 
 > [!NOTE]
-> Azure API Management eksponerer i øjeblikket denne server gennem Streamable
+> Azure API Management eksponerer i øjeblikket denne server via Streamable
 > HTTP `/mcp` endpoint. Den ældre HTTP+SSE `/sse` transport er forældet og
-> bør kun bruges med ældre klienter.
+> bør kun bruges med legacy-klienter.
 
-Til dette vil vi bruge Visual Studio Code og GitHub Copilot i dets Agent-tilstand. Vi tilføjer MCP-serveren til en *mcp.json*. Ved at gøre dette vil Visual Studio Code fungere som klient med agentiske kapaciteter, og slutbrugere vil kunne skrive en prompt og interagere med denne server.
+Til dette vil vi bruge Visual Studio Code og GitHub Copilot med dets Agent-mode. Vi tilføjer MCP-serveren til en *mcp.json*-fil. På den måde fungerer Visual Studio Code som en klient med agentiske kapaciteter, og slutbrugere kan skrive en prompt og interagere med den pågældende server.
 
-Lad os se hvordan, for at tilføje MCP-serveren i Visual Studio Code:
+Lad os se, hvordan man tilføjer MCP-serveren i Visual Studio Code:
 
-1. Brug MCP: **Tilføj Server-kommandoen fra Kommandopaletten**.
+1. Brug kommandoen MCP: **Add Server fra Command Palette**.
 
-1. Når du bliver bedt om det, vælg servertypen: **HTTP (HTTP eller Server Sent Events)**.
+1. Når du bliver bedt om det, vælg servertype: **HTTP (HTTP eller Server Sent Events)**.
 
-1. Indtast Streamable HTTP URL'en vist for MCP-serveren i API Management.
+1. Indtast den Streamable HTTP-URL, der vises for MCP-serveren i API Management.
     For eksempel:
     `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
-1. Indtast et server-id efter eget valg. Dette er ikke en vigtig værdi, men det vil hjælpe dig med at huske, hvad denne serverinstans er.
+1. Indtast et valgfrit server-ID. Det er ikke afgørende, men hjælper dig med at huske, hvad denne serverinstans er.
 
-1. Vælg om konfigurationen skal gemmes i dine workspace-indstillinger eller brugerindstillinger.
+1. Vælg, om konfigurationen skal gemmes i dine workspace-indstillinger eller brugerindstillinger.
 
-  - **Workspace-indstillinger** - Serverkonfigurationen gemmes i en .vscode/mcp.json fil, som kun er tilgængelig i det nuværende workspace.
+    - **Workspace settings** - Serverkonfigurationen gemmes i en `.vscode/mcp.json` fil, som kun er tilgængelig i det aktuelle workspace.
 
-    *mcp.json*
+      *mcp.json*
 
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "http",
-            "url": "url-to-mcp-server/mcp"
-        }
-    }
-    ```
+      ```json
+      "servers": {
+          "APIM petstore" : {
+              "type": "http",
+              "url": "url-to-mcp-server/mcp"
+          }
+      }
+      ```
 
-  - **Brugerindstillinger** - Serverkonfigurationen tilføjes til din globale *settings.json* fil og er tilgængelig i alle workspaces. Konfigurationen ser omtrent sådan ud:
+    - **User settings** - Serverkonfigurationen tilføjes til din globale *settings.json*-fil og er tilgængelig på tværs af alle workspaces. Konfigurationen ser omtrent således ud:
 
-    ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+      ![User setting](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Du skal også tilføje en konfiguration, et headerfelt for at sikre, at den godkender korrekt mod Azure API Management. Den bruger et header kaldet **Ocp-Apim-Subscription-Key**.
+1. Du skal også tilføje en konfigurationsheader for at sikre, at der autentificeres korrekt mod Azure API Management. Den bruger en header kaldet **Ocp-Apim-Subscription-Key**.
 
-    - Sådan kan du tilføje det til indstillinger:
+    - Sådan tilføjer du den til indstillinger:
 
-    ![Adding header for authentication](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), dette vil medføre, at en prompt vises, som beder om din API-nøgle, som du kan finde i Azure Portalen for din Azure API Management instans.
 
-   - For at tilføje det til *mcp.json* i stedet, kan du tilføje det sådan:
+    ![Tilføj header for autentificering](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), dette vil fremkalde en prompt, der beder dig om API-nøglens værdi, som du kan finde i Azure Portal for din Azure API Management-instans.
+
+   - For at tilføje den til *mcp.json* i stedet, kan du gøre det således:
 
     ```json
     "inputs": [
@@ -146,47 +147,47 @@ Lad os se hvordan, for at tilføje MCP-serveren i Visual Studio Code:
     }
     ```
 
-### Brug Agent-tilstand
+### Brug Agent Mode
 
-Nu er vi klar i enten indstillinger eller i *.vscode/mcp.json*. Lad os prøve det.
+Nu er vi sat op enten i indstillinger eller i *.vscode/mcp.json*. Lad os prøve det.
 
-Der burde være et Ikon for Værktøjer som her, hvor de eksponerede værktøjer fra din server er listet:
+Der burde være et Værktøjer-ikon som dette, hvor de eksponerede værktøjer fra din server er vist:
 
-![Tools from the server](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
+![Værktøjer fra serveren](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Klik på værktøjsikonet, og du skulle se en liste over værktøjer som her:
+1. Klik på værktøjsikonet, og du burde se en liste over værktøjer som følger:
 
-    ![Tools](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
+    ![Værktøjer](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Indtast en prompt i chatten for at kalde værktøjet. For eksempel, hvis du har valgt et værktøj til at få information om en ordre, kan du spørge agenten om en ordre. Her er et eksempel på en prompt:
+1. Indtast en prompt i chatten for at aktivere værktøjet. For eksempel, hvis du valgte et værktøj til at få oplysninger om en ordre, kan du spørge agenten om en ordre. Her er et eksempel på en prompt:
 
     ```text
     get information from order 2
     ```
 
-    Du vil nu få vist et værktøjsikon, der beder dig fortsætte med at kalde værktøjet. Vælg at fortsætte med at køre værktøjet, og du burde nu se et output som her:
+    Du vil nu blive præsenteret for et værktøjsikon, der spørger, om du vil fortsætte med at kalde værktøjet. Vælg at fortsætte, og du burde nu se et output som dette:
 
-    ![Result from prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![Resultat fra prompt](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **Det du ser ovenfor afhænger af, hvilke værktøjer du har sat op, men idéen er, at du får et tekstbaseret svar som ovenfor**
+    **Det, du ser ovenfor, afhænger af, hvilke værktøjer du har sat op, men idéen er, at du får et tekstbaseret svar som ovenfor**
 
 
 ## Referencer
 
-Her er hvordan du kan lære mere:
+Her kan du lære mere:
 
 - [Tutorial om Azure API Management og MCP](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Python eksempel: Sikker fjern-MCP-servere ved hjælp af Azure API Management (eksperimentel)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Python eksempel: Sikker fjern-MCP-servere ved hjælp af Azure API Management (eksperimentelt)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
-- [MCP klient autorisations-laboratorium](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
+- [MCP klient-autorisation lab](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Brug Azure API Management udvidelsen til VS Code til import og håndtering af API'er](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Brug Azure API Management-udvidelsen til VS Code til at importere og administrere API'er](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Registrer og find fjern-MCP-servere i Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Fantastisk repository, der viser mange AI-funktioner med Azure API Management
-- [AI Gateway workshops](https://azure-samples.github.io/AI-Gateway/) Indeholder workshops ved brug af Azure Portal, hvilket er en god måde at begynde at evaluere AI-funktioner på.
+- [Registrer og opdag fjern-MCP-servere i Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Fantastisk repo, der viser mange AI-kapaciteter med Azure API Management
+- [AI Gateway workshops](https://azure-samples.github.io/AI-Gateway/) Indeholder workshops ved brug af Azure Portal, som er en god måde at starte evaluering af AI-kapaciteter på.
 
-## Hvad er det næste
+## Hvad nu?
 
 - Tilbage til: [Case Studies Oversigt](./README.md)
 - Næste: [Azure AI Rejseagenter](./travelagentsample.md)

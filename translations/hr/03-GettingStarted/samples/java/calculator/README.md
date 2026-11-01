@@ -1,11 +1,11 @@
-# Osnovna usluga kalkulatora MCP
+# Osnovna kalkulator MCP usluga
 
 > [!NOTE]
-> Ovaj primjer koristi naslijeđeni HTTP+SSE prijenos i cilja SDK kompatibilan
+> Ovaj primjer koristi naslijeđeni HTTP+SSE transport i cilja SDK kompatibilan
 > s MCP `2025-11-25`. Novi udaljeni poslužitelji trebaju koristiti `2026-07-28` Streamable
 > HTTP podršku.
 
-Ova usluga pruža osnovne kalkulatorske operacije putem Model Context Protocol (MCP) koristeći Spring Boot s WebFlux transportom. Dizajnirana je kao jednostavan primjer za početnike koji uče o MCP implementacijama.
+Ova usluga pruža osnovne operacije kalkulatora putem Model Context Protocol (MCP) koristeći Spring Boot s WebFlux transportom. Dizajnirana je kao jednostavan primjer za početnike koji uče o MCP implementacijama.
 
 Za više informacija, pogledajte referentnu dokumentaciju [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
@@ -13,27 +13,27 @@ Za više informacija, pogledajte referentnu dokumentaciju [MCP Server Boot Start
 
 Usluga prikazuje:
 - Podršku za SSE (Server-Sent Events)
-- Automatsku registraciju alata pomoću Spring AI `@Tool` anotacije
-- Osnovne kalkulatorske funkcije:
+- Automatsku registraciju alata koristeći Spring AI-jev `@Tool` anotaciju
+- Osnovne funkcije kalkulatora:
   - Zbrajanje, oduzimanje, množenje, dijeljenje
-  - Izračun potencije i kvadratnog korijena
-  - Modulo (ostatak) i apsolutna vrijednost
-  - Funkcija pomoći za opis operacija
+  - Izračun potencije i korijena
+  - Modulus (ostatak) i apsolutna vrijednost
+  - Funkcija pomoći za opise operacija
 
 ## Značajke
 
-Ova usluga kalkulatora nudi sljedeće mogućnosti:
+Ova kalkulator usluga nudi sljedeće mogućnosti:
 
 1. **Osnovne aritmetičke operacije**:
    - Zbrajanje dva broja
    - Oduzimanje jednog broja od drugog
    - Množenje dva broja
-   - Dijeljenje jednog broja drugim (s provjerom dijeljenja s nulom)
+   - Dijeljenje jednog broja s drugim (s provjerom dijeljenja s nulom)
 
 2. **Napredne operacije**:
-   - Izračun potencije (potenciranje baze na eksponent)
-   - Izračun kvadratnog korijena (s provjerom negativnog broja)
-   - Izračun modulusa (ostatka)
+   - Izračun potencije (podizanje baze na eksponent)
+   - Izračun korijena (s provjerom negativnog broja)
+   - Izračun modula (ostatka)
    - Izračun apsolutne vrijednosti
 
 3. **Sustav pomoći**:
@@ -43,98 +43,75 @@ Ova usluga kalkulatora nudi sljedeće mogućnosti:
 
 Usluga izlaže sljedeće API krajnje točke putem MCP protokola:
 
-- `add(a, b)`: Zbroji dva broja
-- `subtract(a, b)`: Oduzmi drugi broj od prvog
-- `multiply(a, b)`: Pomnoži dva broja
-- `divide(a, b)`: Podijeli prvi broj s drugim (s provjerom na nulu)
-- `power(base, exponent)`: Izračunaj potenciju broja
-- `squareRoot(number)`: Izračunaj kvadratni korijen (s provjerom na negativan broj)
-- `modulus(a, b)`: Izračunaj ostatak pri dijeljenju
-- `absolute(number)`: Izračunaj apsolutnu vrijednost
-- `help()`: Dobij informacije o dostupnim operacijama
+- `add(a, b)`: Zbrajanje dva broja
+- `subtract(a, b)`: Oduzimanje drugog broja od prvog
+- `multiply(a, b)`: Množenje dva broja
+- `divide(a, b)`: Dijeljenje prvog broja s drugim (s provjerom nulom)
+- `power(base, exponent)`: Izračun potencije broja
+- `squareRoot(number)`: Izračun korijena (s provjerom negativnog broja)
+- `modulus(a, b)`: Izračun ostatka pri dijeljenju
+- `absolute(number)`: Izračun apsolutne vrijednosti
+- `help()`: Dobivanje informacija o dostupnim operacijama
 
 ## Testni klijent
 
-Jednostavan testni klijent uključen je u paket `com.microsoft.mcp.sample.client`. Klasa `SampleCalculatorClient` demonstrira dostupne operacije kalkulatora.
+Jednostavan testni klijent uključen je u `com.microsoft.mcp.sample.client` paket. `SampleCalculatorClient` klasa demonstrira dostupne operacije kalkulator usluge.
 
 ## Korištenje LangChain4j klijenta
 
-Projekt uključuje LangChain4j primjer klijenta u `com.microsoft.mcp.sample.client.LangChain4jClient` koji pokazuje kako integrirati uslugu kalkulatora s LangChain4j i GitHub modelima:
+Projekt uključuje LangChain4j primjer klijenta u
+`com.microsoft.mcp.sample.client.LangChain4jClient` koji pokazuje kako
+integrirati kalkulator uslugu s Microsoft Foundry modelom.
 
 ### Preduvjeti
 
-1. **Postavljanje GitHub tokena**:
-   
-   Za korištenje GitHub AI modela (poput phi-4) potrebno je imati osobni pristupni token:
+1. Kreirajte Microsoft Foundry resurs i implementirajte aktivni model poput
+   `gpt-5.1`.
+2. Postavite model endpoint, API ključ i naziv implementacije:
 
-   a. Idite na postavke svog GitHub računa: https://github.com/settings/tokens
-   
-   b. Kliknite "Generate new token" → "Generate new token (classic)"
-   
-   c. Dajte tokenu opisno ime
-   
-   d. Odaberite sljedeće opsege ovlasti:
-      - `repo` (Potpuna kontrola privatnih repozitorija)
-      - `read:org` (Čitanje članstva organizacije i timova, čitanje organizacijskih projekata)
-      - `gist` (Kreiranje gistova)
-      - `user:email` (Pristup adresama e-pošte korisnika (samo za čitanje))
-   
-   e. Kliknite "Generate token" i kopirajte novi token
-   
-   f. Postavite ga kao varijablu okruženja:
-      
-      Na Windowsu:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      Na macOS/Linuxu:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. Za trajno postavljanje, dodajte ga u varijable okruženja kroz postavke sustava
-
-2. Dodajte LangChain4j GitHub ovisnost u svoj projekt (već uključena u pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Provjerite je li kalkulator poslužitelj pokrenut na `localhost:8080`
+3. Provjerite
+   [raspored umirovljenja modela Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   prije odabira implementacije.
+4. Osigurajte da kalkulator poslužitelj radi na `localhost:8080`.
 
 ### Pokretanje LangChain4j klijenta
 
 Ovaj primjer demonstrira:
-- Povezivanje na kalkulator MCP poslužitelj putem SSE transporta
-- Korištenje LangChain4j za stvaranje chat bota koji koristi kalkulatorske operacije
-- Integraciju s GitHub AI modelima (sada koristeći phi-4 model)
+- Povezivanje s kalkulator MCP poslužiteljem preko SSE transporta
+- Korištenje LangChain4j za kreiranje chat bota koji koristi kalkulator operacije
+- Integraciju s implementiranim Microsoft Foundry modelom
 
-Klijent šalje sljedeće primjere upita za demonstraciju funkcionalnosti:
-1. Izračun zbroja dva broja
-2. Pronalaženje kvadratnog korijena broja
-3. Dobivanje pomoći o dostupnim kalkulatorskim operacijama
+Klijent šalje sljedeće uzorke upita za demonstraciju funkcionalnosti:
+1. Izračunavanje zbroja dva broja
+2. Pronalaženje korijena broja
+3. Dobivanje pomoći o dostupnim kalkulator operacijama
 
-Pokrenite primjer i provjerite izlaz na konzoli da vidite kako AI model koristi kalkulatorske alate za odgovore na upite.
+Pokrenite primjer i provjerite ispis na konzoli da vidite kako AI model koristi kalkulator alate za odgovaranje na upite.
 
-### Konfiguracija GitHub modela
+### Konfiguracija Microsoft Foundry modela
 
-LangChain4j klijent je konfiguriran za korištenje GitHub phi-4 modela sa sljedećim postavkama:
+LangChain4j klijent koristi Azure OpenAI v1-kompatibilni endpoint izložen od
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-Da biste koristili različite GitHub modele, jednostavno promijenite parametar `modelName` u neki drugi podržani model (npr. "claude-3-haiku-20240307", "llama-3-70b-8192" itd.).
+`AZURE_OPENAI_DEPLOYMENT` mora odgovarati imenu dodijeljenom prilikom implementacije modela,
+što može biti različito od temeljnog imena modela.
 
 ## Ovisnosti
 
@@ -154,10 +131,10 @@ Projekt zahtijeva sljedeće ključne ovisnosti:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
@@ -177,31 +154,31 @@ Izgradite projekt koristeći Maven:
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### Korištenje MCP Inspectora
+### Korištenje MCP Inspektora
 
-MCP Inspector je koristan alat za interakciju s MCP uslugama. Za korištenje s ovom kalkulatorskom uslugom:
+MCP Inspektor je koristan alat za interakciju s MCP uslugama. Za korištenje s ovom kalkulator uslugom:
 
-1. **Instalirajte i pokrenite MCP Inspector** u novom terminal prozoru:
+1. **Instalirajte i pokrenite MCP Inspektor** u novom terminal prozoru:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Pristupite web sučelju** klikom na URL prikazan u aplikaciji (obično http://localhost:6274)
+2. **Pristupite web UI-u** klikom na URL prikazan u aplikaciji (obično http://localhost:6274)
 
 3. **Konfigurirajte vezu**:
    - Postavite tip transporta na "SSE"
-   - Postavite URL na SSE krajnju točku vašeg pokrenutog poslužitelja: `http://localhost:8080/sse`
+   - Postavite URL na SSE endpoint vašeg pokrenutog poslužitelja: `http://localhost:8080/sse`
    - Kliknite "Connect"
 
 4. **Koristite alate**:
-   - Kliknite "List Tools" da vidite dostupne kalkulatorske operacije
-   - Odaberite alat i kliknite "Run Tool" da izvršite operaciju
+   - Kliknite "List Tools" za prikaz dostupnih kalkulator operacija
+   - Odaberite alat i kliknite "Run Tool" za izvođenje operacije
 
 ![MCP Inspector Screenshot](../../../../../../translated_images/hr/tool.c75a0b2380efcf1a.webp)
 
 ### Korištenje Dockera
 
-Projekt uključuje Dockerfile za kontejnersku distribuciju:
+Projekt uključuje Dockerfile za kontejnersku implementaciju:
 
 1. **Izgradite Docker sliku**:
    ```bash
@@ -214,26 +191,27 @@ Projekt uključuje Dockerfile za kontejnersku distribuciju:
    ```
 
 Ovo će:
-- Izgraditi višestepenu Docker sliku s Mavendom 3.9.9 i Eclipse Temurin 24 JDK
-- Stvoriti optimiziranu kontejnersku sliku
+- Izgraditi višestepenu Docker sliku s Maven 3.9.9 i Eclipse Temurin 24 JDK
+- Kreirati optimiziranu sliku kontejnera
 - Izložiti uslugu na portu 8080
-- Pokrenuti MCP kalkulatorsku uslugu unutar kontejnera
+- Pokrenuti MCP kalkulator uslugu unutar kontejnera
 
-Usluga će biti dostupna na `http://localhost:8080` nakon što kontejner pokrene.
+Usluga može biti dostupna na `http://localhost:8080` kad je kontejner pokrenut.
 
 ## Rješavanje problema
 
-### Uobičajeni problemi s GitHub tokenom
+### Česti problemi s povezivanjem modela
 
-1. **Problemi s dozvolama tokena**: Ako dobijete 403 Forbidden grešku, provjerite da token ima potrebne dozvole definirane u preduvjetima.
+1. **Greške autentikacije**: Potvrdite da `AZURE_OPENAI_API_KEY` pripada
+   resursu identificiranom s `AZURE_OPENAI_ENDPOINT`.
+2. **Nije pronađena implementacija**: Potvrdite da `AZURE_OPENAI_DEPLOYMENT` točno odgovara
+   nazivu implementacije u Microsoft Foundry.
+3. **Ograničenje brzine (rate limiting)**: Pregledajte kvotu implementacije i pokušajte ponovno nakon razdoblja
+   koje vraća usluga.
 
-2. **Token nije pronađen**: Ako dobijete grešku "No API key found", osigurajte da je varijabla okruženja GITHUB_TOKEN ispravno postavljena.
-
-3. **Ograničenja brzine**: GitHub API ima ograničenja zahtjeva. Ako dobijete grešku ograničenja brzine (statusni kod 429), pričekajte nekoliko minuta prije ponovnog pokušaja.
-
-4. **Istek tokena**: GitHub tokeni mogu isteći. Ako dobijete greške pri autentikaciji nakon nekog vremena, generirajte novi token i ažurirajte varijablu okruženja.
-
-Ako trebate dodatnu pomoć, pogledajte [LangChain4j dokumentaciju](https://github.com/langchain4j/langchain4j) ili [GitHub API dokumentaciju](https://docs.github.com/en/rest).
+Za dodatnu pomoć, pogledajte
+[LangChain4j dokumentaciju](https://github.com/langchain4j/langchain4j) i
+[Microsoft Foundry dokumentaciju](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

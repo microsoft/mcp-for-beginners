@@ -1,40 +1,41 @@
-# Context Engineering: Wetin E Mean for MCP Ecosystem
+# Context Engineering: Na New Concept Wey Dey for MCP Ecosystem
 
-## Overview
+## Wetin E Mean
 
-Context engineering na new idea wey dey come up for AI space. E dey look how we go fit arrange, deliver, and maintain information wey dey happen between clients and AI services. As Model Context Protocol (MCP) ecosystem dey grow, e dey important make we sabi how to manage context well. This module go introduce wetin context engineering mean and how e fit work for MCP.
+Context engineering na new idea for di AI space wey dey look how information dey structured, delivered, and maintained during interactions between clients and AI services. As the Model Context Protocol (MCP) ecosystem dey evolve, to sabi how to manage context well dey important. This module dey introduce di concept of context engineering and go explore how e fit take apply for MCP implementations.
 
 ## Wetin You Go Learn
 
-By the time you finish this module, you go fit:
+When you finish dis module, you go fit:
 
-- Sabi wetin context engineering mean and how e fit work for MCP
-- See the wahala wey dey for context management wey MCP protocol wan solve
-- Learn techniques wey go help model perform better with good context handling
-- Think about how to measure and check how context dey work
-- Use these new ideas to make AI experience better with MCP framework
+- Understand di new concept of context engineering and wetin e fit do for MCP applications
+- Identify main wahala dem for context management wey MCP protocol dey try solve
+- Explore techniques wey fit make model performance beta through better context handling
+- Consider approaches to measure and evaluate how context dey effective
+- Apply these new ideas to make AI experiences better with di MCP framework
 
-## Wetin Be Context Engineering
+## Intro to Context Engineering
 
-Context engineering na new idea wey dey focus on how we go design and manage information flow between users, apps, and AI models. E no be like prompt engineering wey don already get ground; this one still dey grow as people dey try solve the wahala of giving AI models the correct information at the correct time.
+Context engineering na new idea wey dey focus on intentional design and management of how information dey flow between users, applications, and AI models. No be like established fields like prompt engineering; context engineering still dey get definition from practitioners as dem dey try solve di special challenges of giving AI models di correct information at di correct time.
 
-As large language models (LLMs) dey improve, e don clear say context dey very important. The quality, relevance, and how we arrange the context wey we give models dey affect wetin dem go produce. Context engineering dey look this matter and wan create better ways to manage context.
+As large language models (LLMs) don dey evolve, e don clear say context matter wella. The quality, relevance, and structure of di context wey we provide dey directly affect model outputs. Context engineering dey explore dis relationship and dey try develop principles for effective context management.
 
-> "By 2025, the models wey dey go dey very smart. But even the smartest person no go fit do work well if dem no get the context of wetin dem suppose do... 'Context engineering' na the next level of prompt engineering. E dey about how to do am automatically for dynamic system." — Walden Yan, Cognition AI
+> "By 2025, di models wey dey there go dey extremely intelligent. But even di smartest human no go fit do dia work well without di context of wetin dem dey ask dem to do... 'Context engineering' na di next level of prompt engineering. Na about to make dis automatic for a dynamic system." — Walden Yan, Cognition AI
 
 Context engineering fit include:
 
-1. **Context Selection**: To know which information dey important for the task
-2. **Context Structuring**: To arrange information so model go understand am well
-3. **Context Delivery**: To make sure the information reach the model at the right time
-4. **Context Maintenance**: To manage how context dey change over time
-5. **Context Evaluation**: To measure and improve how context dey work
+1. **Context Selection**: To determine which information dey relevant for a given task
+2. **Context Structuring**: To organize information make model fit understand pass
+3. **Context Delivery**: To optimize how and when information dey sent to models
+4. **Context Maintenance**: To manage state and how context dey change over time
+5. **Context Evaluation**: To measure and improve how effective di context be
 
-These things dey very important for MCP ecosystem wey dey provide standard way for apps to give context to LLMs.
+These areas dey specially relevant to di MCP ecosystem, wey dey provide one standardized way for applications to give context to LLMs.
 
-## The Context Journey Perspective
 
-One way to see context engineering na to follow how information dey waka through MCP system:
+## Di Context Journey Perspective
+
+One way to visualize context engineering na to trace di journey wey information dey take through an MCP system:
 
 ```mermaid
 graph LR
@@ -51,23 +52,23 @@ graph LR
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-### Key Stages for Context Journey:
+### Key Stages in di Context Journey:
 
-1. **User Input**: Raw information wey user provide (text, images, documents)
-2. **Context Assembly**: Join user input with system context, conversation history, and other information
-3. **Model Processing**: AI model go process the context wey dem gather
-4. **Response Generation**: Model go produce output based on the context
-5. **State Management**: System go update its state based on the interaction
+1. **User Input**: Raw information from di user (text, images, documents)
+2. **Context Assembly**: To combine user input with system context, conversation history, and other retrieved information
+3. **Model Processing**: Di AI model dey process di assembled context
+4. **Response Generation**: Di model dey produce outputs based on di context wey dem give
+5. **State Management**: Di system go update im internal state based on di interaction
 
-This journey dey show how context dey change for AI systems and dey raise questions on how to manage information well for each stage.
+This perspective dey show how context dey dynamic for AI systems and e dey raise important questions about how best to manage information for each stage.
 
-## New Principles for Context Engineering
+## Emerging Principles in Context Engineering
 
-As context engineering dey grow, some early principles don dey show wey fit help MCP:
+As the field of context engineering take shape, some early principles dey begin to show from practitioners. These principles fit help inform MCP implementation choices:
 
 ### Principle 1: Share Context Completely
 
-Make sure say all parts of the system dey share context well, no be to scatter am everywhere. If context dey scattered, decisions wey one part make fit no match wetin another part dey do.
+Context suppose dey shared completely between all parts of a system instead of being scattered across multiple agents or processes. When context dey distributed, decisions made in one part of the system fit conflict with those made elsewhere.
 
 ```mermaid
 graph TD
@@ -91,74 +92,75 @@ graph TD
     style D1 fill:#D7BDE2,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-For MCP, this mean say make systems dey designed so context go flow well through the pipeline, no be to divide am.
+For MCP applications, dis dey suggest design systems where context go flow smoothly through the whole pipeline instead of being compartmentalized.
 
-### Principle 2: Actions Get Hidden Decisions
+### Principle 2: Recognize That Actions Carry Implicit Decisions
 
-Every action wey model take dey carry hidden decisions about how e see the context. If different parts dey act on different contexts, e fit cause wahala.
+Every action wey model take get implicit decisions about how e go interpret di context. When multiple components act on different contexts, these implicit decisions fit conflict, leading to inconsistent outcomes.
 
-For MCP:
-- Make complex tasks dey processed one after the other, no be to scatter am
-- Make sure all decision points dey see the same context
-- Design system wey later steps fit see wetin earlier steps don do
+This principle get important implications for MCP applications:
+- Make una prefer linear processing for complex tasks pass parallel execution wey get fragmented context
+- Make sure say all decision points get access to di same contextual information
+- Design systems wey later steps fit see the full context of earlier decisions
 
 ### Principle 3: Balance Context Depth with Window Limitations
 
-As conversations dey long, context window go full. Context engineering dey try find balance between full context and technical limits.
+As conversations and processes dey long, context windows go eventually overflow. Effective context engineering dey find ways to manage dis tension between comprehensive context and technical limitations.
 
-Some ways wey dem dey try include:
-- Compress context but keep the important information
-- Load context small small based on wetin dey needed
-- Summarize past interactions but keep key points
+Potential approaches wey dem dey explore include:
+- Context compression wey dey keep essential information but reduce token usage
+- Progressive loading of context based on wetin relevant to current needs
+- Summarization of previous interactions while e dey preserve key decisions and facts
 
-## Context Wahala and MCP Protocol Design
+## Context Challenges and MCP Protocol Design
 
-MCP dey aware of the wahala wey dey for context management. To understand these wahala go help us see why MCP dey the way e be:
+The Model Context Protocol (MCP) dem design am with awareness of di special challenges of context management. To understand these challenges go help explain key parts of di MCP protocol design:
 
-### Wahala 1: Context Window Limitations
-Most AI models get fixed context window size, so dem no fit process too much information at once.
 
-**MCP Response:** 
-- Protocol dey support structured, resource-based context wey fit load small small
-- Resources fit dey paginated
+### Challenge 1: Context Window Limitations
+Most AI models get fixed context window sizes, wey limit how much information dem fit process at once.
 
-### Wahala 2: Relevance Determination
-To know which information dey important fit hard.
+**MCP Design Response:** 
+- The protocol dey support structured, resource-based context wey fit be referenced efficiently
+- Resources fit be paginated and loaded progressively
 
-**MCP Response:**
-- Tools dey to retrieve information dynamically
-- Structured prompts dey help organize context
+### Challenge 2: Relevance Determination
+To decide which information be most relevant to include for context dey hard.
 
-### Wahala 3: Context Persistence
-To manage state across interactions dey require careful tracking.
+**MCP Design Response:**
+- Flexible tooling dey allow dynamic retrieval of information based on need
+- Structured prompts dey enable consistent context organization
 
-**MCP Response:**
+### Challenge 3: Context Persistence
+To manage state across interactions need careful tracking of context.
+
+**MCP Design Response:**
 - Standardized session management
-- Clear interaction patterns for context evolution
+- Clearly defined interaction patterns for context evolution
 
-### Wahala 4: Multi-Modal Context
-Different data types (text, images, structured data) need different handling.
+### Challenge 4: Multi-Modal Context
+Different types of data (text, images, structured data) need different handling.
 
-**MCP Response:**
-- Protocol fit handle different content types
-- Standard way to represent multi-modal information
+**MCP Design Response:**
+- Protocol design dey accommodate various content types
+- Standardized representation of multi-modal information
 
-### Wahala 5: Security and Privacy
-Context fit get sensitive information wey need protection.
+### Challenge 5: Security and Privacy
+Context many times get sensitive information wey must protected.
 
-**MCP Response:**
-- Clear boundary between client and server responsibilities
-- Local processing options to reduce data exposure
+**MCP Design Response:**
+- Clear boundaries between client and server responsibilities
+- Local processing options to minimize data exposure
 
-To sabi these wahala and how MCP dey handle dem go help us explore better context engineering techniques.
+To understand these challenges and how MCP dey address dem go give foundation to explore more advanced context engineering techniques.
 
-## New Context Engineering Approaches
+## Emerging Context Engineering Approaches
 
-As context engineering dey grow, some new ways don dey show. These na ideas wey people dey try, e never be final solution.
+As di field of context engineering dey develop, some promising approaches dey emerge. These represent current thinking instead of established best practices, and dem go likely change as we get more experience with MCP implementations.
 
 ### 1. Single-Threaded Linear Processing
 
-Instead of multi-agent systems wey dey scatter context, some people dey see say single-threaded processing dey give better results. E dey follow the principle of unified context.
+Different from multi-agent architectures wey distribute context, some practitioners don find say single-threaded linear processing dey produce more consistent results. This one align with di principle of keeping context unified.
 
 ```mermaid
 graph TD
@@ -174,11 +176,11 @@ graph TD
     style E fill:#D2B4DE,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-Even though e fit look slow, e dey give better and more consistent results because each step dey build on wetin don happen before.
+Even though this approach fit look less efficient than parallel processing, e often produce more coherent and reliable results because every step dey build on complete understanding of earlier decisions.
 
 ### 2. Context Chunking and Prioritization
 
-To break big context into small pieces and focus on the important ones.
+To break large contexts into manageable pieces and prioritize wetin most important.
 
 ```python
 # Conceptual Example: Context Chunking and Prioritization
@@ -199,11 +201,11 @@ def process_with_chunked_context(documents, query):
     return generate_response(context, query)
 ```
 
-This idea dey help manage context window limits while still using big knowledge bases.
+Di concept above dey show how we fit break large documents into manageable pieces and pick only di most relevant parts for context. This approach fit help work inside context window limitations while still use large knowledge bases.
 
 ### 3. Progressive Context Loading
 
-To load context small small as e dey needed.
+To load context progressively as e needed instead of all at once.
 
 ```mermaid
 sequenceDiagram
@@ -228,11 +230,11 @@ sequenceDiagram
     App->>User: Answer
 ```
 
-This method dey start with small context and go add more only when e dey necessary. E dey save tokens for simple queries.
+Progressive context loading dey start with minimal context and e expand only when necessary. This fit reduce token usage wella for simple queries while still fit handle complex questions.
 
 ### 4. Context Compression and Summarization
 
-To reduce context size but keep the important information.
+To reduce context size while make sure essential information still dey.
 
 ```mermaid
 graph TD
@@ -248,123 +250,136 @@ graph TD
     style E fill:#F9E79F,stroke:#000000,stroke-width:2px,color:#000000,font-weight:bold
 ```
 
-This method dey focus on:
-- Removing things wey no dey important
-- Summarizing long content
-- Keeping key facts
-- Reducing token usage
+Context compression dey focus on:
+- Remove redundant information
+- Summarize long content
+- Extract key facts and details
+- Preserve critical context elements
+- Optimize for token efficiency
 
-E dey useful for long conversations or big documents.
+This approach fit be especially valuable to keep long conversations inside context windows or to process large documents efficiently. Some practitioners dey use specialized models specially for context compression and summarization of conversation history.
 
-## Things to Think About for Context Engineering
 
-As we dey explore context engineering, some things dey important to think about for MCP:
+## Exploratory Context Engineering Considerations
 
-### Know Your Context Goals
+As we explore di emerging field of context engineering, some considerations worth to keep in mind when you dey work with MCP implementations. These no be prescriptive best practices but areas wey fit give improvements for your specific use case.
 
-Before you start, ask yourself:
-- Wetin the model need to work well?
-- Which information dey important and which one no too matter?
-- Wetin be your performance limits (speed, token size, cost)?
+### Think About Your Context Goals
 
-### Try Layered Context
+Before you implement complex context management solutions, talk clear wetin you dey try achieve:
+- Which specific information di model need to succeed?
+- Which information be essential and which be supplementary?
+- Wetin be your performance constraints (latency, token limits, costs)?
 
-Some people dey arrange context in layers:
-- **Core Layer**: Important information wey model always need
-- **Situational Layer**: Context for the current interaction
-- **Supporting Layer**: Extra information wey fit help
-- **Fallback Layer**: Information wey go only show when needed
+### Explore Layered Context Approaches
 
-### Check Retrieval Strategies
+Some practitioners dey find success when dem arrange context in conceptual layers:
+- **Core Layer**: Essential information wey di model always need
+- **Situational Layer**: Context wey specific to di current interaction
+- **Supporting Layer**: Additional information wey fit help
+- **Fallback Layer**: Information wey dem go access only when e needed
 
-How you dey find information fit affect your context:
-- Semantic search for relevant information
-- Keyword search for specific details
-- Hybrid methods wey join different ways
-- Metadata filtering to narrow down information
+### Investigate Retrieval Strategies
 
-### Work on Context Coherence
+How effective your context go dey often depend on how you dey retrieve information:
+- Semantic search and embeddings to find conceptually relevant information
+- Keyword-based search for specific factual details
+- Hybrid approaches wey combine multiple retrieval methods
+- Metadata filtering to narrow scope based on categories, dates, or sources
 
-How you arrange your context fit affect how model go understand am:
+### Experiment with Context Coherence
+
+How you structure and flow your context fit affect model comprehension:
 - Group related information together
-- Use consistent format
-- Arrange things logically or by time
-- Avoid conflicting information
+- Use consistent formatting and organization
+- Keep logical or chronological ordering where appropriate
+- Avoid contradictory information
 
-### Think About Multi-Agent Wahala
+### Weigh the Tradeoffs of Multi-Agent Architectures
 
-Multi-agent systems fit scatter context:
-- Fragmented context fit cause inconsistent decisions
-- Parallel processing fit bring conflicts
-- Communication between agents fit slow things down
-- Managing state go hard
+Even though multi-agent architectures popular for many AI frameworks, dem get big challenges for context management:
+- Context fragmentation fit lead to inconsistent decisions across agents
+- Parallel processing fit introduce conflicts wey hard to reconcile
+- Communication overhead between agents fit cancel performance gains
+- Complex state management dey needed to maintain coherence
 
-Sometimes, single-agent systems with good context management dey work better.
+For many cases, single-agent approach wey get comprehensive context management fit give more reliable results pass multiple specialized agents wey get fragmented context.
 
-### Develop Ways to Measure
+### Develop Evaluation Methods
 
-To improve context engineering, you need to measure:
-- Test different context structures
-- Check token usage and response time
-- Look at user satisfaction and task success
-- Study why context strategies fail
+To improve context engineering over time, think how you go measure success:
+- A/B testing different context structures
+- Monitor token usage and response times
+- Track user satisfaction and task completion rates
+- Analyze when and why context strategies fail
 
-These ideas dey help us explore context engineering better.
+These considerations na active areas wey people dey explore for context engineering. As the field mature, more clear patterns and practices go likely show.
 
-## How to Measure Context Effectiveness
+## Measuring Context Effectiveness: An Evolving Framework
 
-Context engineering still dey grow, but people don dey think of ways to measure am. No standard way dey yet, but these metrics fit help:
+As context engineering dey show, practitioners don begin explore how we fit measure im effectiveness. No standard framework yet, but different metrics dey wey dem dey consider to help guide future work.
 
-### Possible Metrics
+### Potential Measurement Dimensions
 
-#### 1. Input Efficiency
-- **Context-to-Response Ratio**: How much context you need for the response?
-- **Token Utilization**: How many context tokens dey affect the response?
-- **Context Reduction**: How well you fit compress information?
 
-#### 2. Performance
+#### 1. Input Efficiency Considerations
+
+- **Context-to-Response Ratio**: How much context dey needed compared to response size?
+- **Token Utilization**: Which percentage of the provided context tokens dey seem to influence the response?
+- **Context Reduction**: How well fit we compress raw information?
+
+#### 2. Performance Considerations
+
 - **Latency Impact**: How context management dey affect response time?
-- **Token Economy**: Are we using tokens well?
-- **Retrieval Precision**: How relevant the information be?
-- **Resource Use**: How much resources e dey take?
+- **Token Economy**: We dey optimize token usage well?
+- **Retrieval Precision**: How relevant be di retrieved information?
+- **Resource Utilization**: Which computational resources dey required?
 
-#### 3. Quality
-- **Response Relevance**: How well the response fit the query?
-- **Factual Accuracy**: E dey improve correctness?
-- **Consistency**: Responses dey consistent?
-- **Hallucination Rate**: E dey reduce model hallucinations?
+#### 3. Quality Considerations
 
-#### 4. User Experience
-- **Follow-up Rate**: How often users dey ask for clarification?
-- **Task Completion**: Users dey achieve their goals?
-- **Satisfaction**: How users dey rate the experience?
+- **Response Relevance**: How well di response address di query?
+- **Factual Accuracy**: Context management dey improve factual correctness?
+- **Consistency**: Responses dey consistent across similar queries?
+- **Hallucination Rate**: Better context dey reduce model hallucinations?
 
-### How to Measure
+#### 4. User Experience Considerations
 
-1. **Baseline Comparisons**: Start with simple context before trying advanced methods
-2. **Incremental Changes**: Change one thing at a time
-3. **User Feedback**: Combine numbers with user opinions
-4. **Failure Analysis**: Study why context fail
-5. **Multi-Dimensional Check**: Balance efficiency, quality, and user experience
+- **Follow-up Rate**: How often users need clarification?
+- **Task Completion**: Users dey successfully accomplish their goals?
+- **Satisfaction Indicators**: How users rate dia experience?
 
-This way of measuring go help us understand context engineering better.
+### Exploratory Approaches to Measurement
 
-## Final Thoughts
+When you dey experiment with context engineering for MCP implementations, consider these exploratory approaches:
 
-Context engineering na new area wey fit help MCP work better. If we manage information well, we fit make AI more efficient, accurate, and useful.
+1. **Baseline Comparisons**: Establish baseline with simple context approaches before testing more sophisticated methods
 
-The ideas wey dey here na early thoughts, no be final solution. As AI dey improve, context engineering go grow. For now, make we dey experiment and measure well.
+2. **Incremental Changes**: Change one aspect of context management at a time to isolate its effects
 
-## Wetin Fit Happen for Future
+3. **User-Centered Evaluation**: Combine quantitative metrics with qualitative user feedback
 
-Context engineering still dey start, but some things fit happen:
+4. **Failure Analysis**: Examine cases where context strategies fail to understand potential improvements
 
-- E fit improve model performance, efficiency, and user experience
-- Single-threaded systems with good context fit work better than multi-agent systems
-- Models for context compression fit become normal
-- The problem of context size and token limits go bring new ideas
-- As models dey improve, multi-agent collaboration fit work better
-- MCP fit grow to standardize context management patterns
+5. **Multi-Dimensional Assessment**: Consider trade-offs between efficiency, quality, and user experience
+
+This experimental, multi-faceted approach to measurement dey align with di emerging nature of context engineering.
+
+## Closing Thoughts
+
+Context engineering na new area wey people dey explore and e fit turn out to be central to effective MCP applications. If you think well about how information dey flow through your system, you fit create AI experiences wey dey more efficient, accurate, and valuable to users.
+
+Di techniques and approaches wey dis module outline na early thinking for dis space, no be established practices. Context engineering fit develop into a more defined discipline as AI capabilities evolve and our understanding deepen. For now, experimentation plus careful measurement dey look like di most productive approach.
+
+## Potential Future Directions
+
+Di field of context engineering still dey for early stages, but some promising directions dey emerge:
+
+- Context engineering principles fit get big impact for model performance, efficiency, user experience, and reliability
+- Single-threaded approaches with comprehensive context management fit do pass multi-agent architectures for many use cases
+- Specialized context compression models fit become standard components for AI pipelines
+- The tension between context completeness and token limitations go likely drive innovation for context handling
+- As models go dey more capable for efficient human-like communication, true multi-agent collaboration fit become more viable
+- MCP implementations fit evolve to standardize context management patterns wey go emerge from current experimentation
 
 ```mermaid
 graph TD
@@ -388,25 +403,25 @@ graph TD
 - [MCP C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
-- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Tool wey dem dey use test MCP servers visually
+- [MCP Inspector](https://github.com/modelcontextprotocol/inspector) - Tool wey dey test di visual tins for MCP servers
 
-### Context Engineering Articles
-- [No Build Multi-Agents: Principles of Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yan talk about di principles for context engineering
-- [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI guide on how to design agents wey go work well
-- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic way for agent development
+### Context Engineering Atikuls
+- [Don't Build Multi-Agents: Principles of Context Engineering](https://cognition.ai/blog/dont-build-multi-agents) - Walden Yan insight dem on context engineering prinsipol
+- [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI guide on how to design agents wey dey work well
+- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic way to develop agents
 
 ### Related Research
-- [Dynamic Retrieval Augmentation for Large Language Models](https://arxiv.org/abs/2310.01487) - Research wey talk about dynamic retrieval methods
-- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) - Important research wey explain how models dey process long context
-- [Hierarchical Text-Conditioned Image Generation with CLIP Latents](https://arxiv.org/abs/2204.06125) - DALL-E 2 paper wey share insight on how to structure context
-- [Exploring the Role of Context in Large Language Model Architectures](https://aclanthology.org/2023.findings-emnlp.124/) - New research wey focus on how models dey handle context
-- [Multi-Agent Collaboration: A Survey](https://arxiv.org/abs/2304.03442) - Research wey dey talk about multi-agent systems and di challenges dem dey face
+- [Dynamic Retrieval Augmentation for Large Language Models](https://arxiv.org/abs/2310.01487) - Research wey dey look dynamic retrieval approaches
+- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172) - Important research about how context dey processed
+- [Hierarchical Text-Conditioned Image Generation with CLIP Latents](https://arxiv.org/abs/2204.06125) - DALL-E 2 paper wey get insight on how to structure context
+- [Exploring the Role of Context in Large Language Model Architectures](https://aclanthology.org/2023.findings-emnlp.124/) - Recent research about how context dey handled
+- [Multi-Agent Collaboration: A Survey](https://arxiv.org/abs/2304.03442) - Research about multi-agent systems and di challenges dem
 
 ### Additional Resources
 - [Context Window Optimization Techniques](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/context-window)
 - [Advanced RAG Techniques](https://www.microsoft.com/en-us/research/blog/retrieval-augmented-generation-rag-and-frontier-models/)
 - [Semantic Kernel Documentation](https://github.com/microsoft/semantic-kernel)
-- [AI Toolkit for Context Management](https://github.com/microsoft/aitoolkit)
+- [Microsoft Foundry Toolkit for Visual Studio Code](https://github.com/microsoft/vscode-ai-toolkit)
 
 ## Wetin dey next 
 
@@ -415,6 +430,6 @@ graph TD
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Disclaimer**:  
-Dis dokyument don use AI transle-shon service [Co-op Translator](https://github.com/Azure/co-op-translator) do di transle-shon. Even as we dey try make am correct, abeg make you sabi say AI transle-shon fit get mistake or no dey accurate well. Di original dokyument wey dey for im native language na di one wey you go take as di correct source. For important mata, e good make you use professional human transle-shon. We no go fit take blame for any misunderstanding or wrong interpretation wey fit happen because you use dis transle-shon.
+**Disclaimer**:
+Dis document don translate wit AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). Even tho we dey try make am correct, abeg make you know say automated translation fit get errors or mistakes. Di original document for dia own language na im be di correct source. For important info, make person wey sabi human translation do am. We no go responsible for any misunderstanding or wrong understanding wey fit happen because of dis translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

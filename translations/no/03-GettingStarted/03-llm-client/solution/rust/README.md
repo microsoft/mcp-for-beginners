@@ -1,37 +1,45 @@
-# Kjøre dette eksemplet
+# Kjør dette eksempelet
 
-Dette er Rust-løsningen for LLM-klienteksemplet. Du må ha et Rust-verktøysett installert; se den [offisielle installasjonsveiledningen](https://www.rust-lang.org/tools/install).
+Dette er Rust-løsningen for LLM-klienteksemplet. Du trenger en installert Rust-verktøykjede; se den [offisielle installasjonsveiledningen](https://www.rust-lang.org/tools/install).
 
-Klienten kaller en modell gjennom GitHub Models sin inferanse-endepunkt (`https://models.github.ai/inference/chat`) og leser din GitHub personlige tilgangstoken (PAT) fra miljøvariabelen `OPENAI_API_KEY`.
+Klienten kaller en distribuert Microsoft Foundry-modell gjennom Azure OpenAI
+v1-endepunktet.
 
 > [!NOTE]
-> Andre løsninger i dette depotet bruker `GITHUB_TOKEN`. For Rust, sett `OPENAI_API_KEY` til samme verdi for å matche OpenAI-klientkonfigurasjonen.
+> Verdien som sendes som `model` er navnet på Foundry-distribusjonen din, ikke nødvendigvis
+> det underliggende modellnavnet.
 
-## -0- Sett din GitHub-token
+## -0- Konfigurer Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Bygg eksemplet
+## -1- Bygg eksempelet
 
 ```bash
 cargo build
 ```
 
-## -2- Kjør eksemplet
+## -2- Kjør eksempelet
 
 ```bash
 cargo run
 ```
 
-Klienten starter kalkulator MCP-serveren, henter verktøyliste, og bruker modellen (`openai/gpt-5-mini`) til å kalle `add`-verktøyet. Du skal se output som indikerer verktøysamtalen (for eksempel, "Calling tool: add") og resultatet av den samtalen.
+Klienten starter kalkulatorens MCP-server, henter verktøyliste, og bruker
+den distribuerte modellen til å kalle `add`-verktøyet. Du bør se utdata som indikerer
+verktøykallet (for eksempel, "Calling tool: add") og resultatet av det kallet.
 
 ---
 

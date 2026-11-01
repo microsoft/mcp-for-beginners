@@ -1,6 +1,6 @@
-Tässä on esimerkki MCP-sovelluksen käytöstä
+Tässä on esimerkki, joka demonstroi MCP-sovellusta
 
-## Asennus
+## Asennus 
 
 1. Siirry *mcp-app*-kansioon
 1. Suorita `npm install`, tämän pitäisi asentaa frontend- ja backend-riippuvuudet
@@ -11,17 +11,17 @@ Varmista backendin kääntyminen suorittamalla:
 npx tsc --noEmit
 ```
 
-Jos kaikki on kunnossa, ei pitäisi näkyä mitään tulostetta.
+Jos kaikki on kunnossa, ei pitäisi olla mitään tulostetta.
 
-## Aja backend
+## Suorita backend
 
-> Tämä vaatii hieman lisätyötä, jos käytät Windows-konetta, sillä MCP Apps -ratkaisu käyttää `concurrently`-kirjastoa, jolle sinun täytyy löytää korvike. Tässä on kyseinen rivi *package.json*-tiedostosta MCP Appissa:
+> Tämä vaatii hieman lisätyötä, jos käytät Windows-koneetta, koska MCP Apps -ratkaisu käyttää `concurrently`-kirjastoa, jolle sinun täytyy löytää korvaava vaihtoehto. Tässä on ongelmallinen rivi *package.json* tiedostossa MCP Appissa:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
-Tämä sovellus koostuu kahdesta osasta, backend-osiosta ja host-osiosta.
+Tässä sovelluksessa on kaksi osaa, backend-osa ja isäntäosa.
 
 Käynnistä backend kutsumalla:
 
@@ -29,15 +29,15 @@ Käynnistä backend kutsumalla:
 npm start
 ```
 
-Tämän pitäisi käynnistää backend osoitteessa `http://localhost:3001/mcp`.
+Tämä käynnistää backendin osoitteessa `http://localhost:3001/mcp`. 
 
-> Huomaa, että jos olet Codespacessa, sinun täytyy asettaa portin näkyvyys julkiseksi. Tarkista että pääset päätelaitteeseen selaimella osoitteen https://<Codespacen nimi>.app.github.dev/mcp kautta
+> Huomaa, jos olet Codespacessa, saatat joutua asettamaan portin näkyvyyden julkiseksi. Tarkista, että pääset päätepisteeseen selaimessa osoitteessa https://<name of Codespace>.app.github.dev/mcp
 
-## Vaihtoehto -1 Testaa sovellus Visual Studio Codessa
+## Vaihtoehto 1 - Testaa sovellus Visual Studio Codessa
 
-Ratkaisun testaamiseksi Visual Studio Codessa, tee seuraavasti:
+Testataksesi ratkaisua Visual Studio Codessa, tee seuraavat:
 
-- Lisää palvelintieto `mcp.json`-tiedostoon näin:
+- Lisää palvelinmerkintä `mcp.json` tiedostoon seuraavasti:
 
     ```json
     {
@@ -51,20 +51,20 @@ Ratkaisun testaamiseksi Visual Studio Codessa, tee seuraavasti:
     }
     ```
 
-1. Klikkaa "start"-painiketta *mcp.json*:ssa
-1. Varmista, että keskusteluikkuna on auki ja kirjoita `get-faq`, sinun pitäisi nähdä tulos seuraavasti:
+1. Klikkaa "start" painiketta tiedostossa *mcp.json*
+1. Varmista, että chat-ikkuna on auki ja kirjoita `get-faq`, sinun pitäisi nähdä tulos seuraavasti:
 
     ![Visual Studio Code MCP Apps](../../../../../../translated_images/fi/vscode-ui.f2771dcfce25ca0f.webp)
 
-## Vaihtoehto -2- Testaa sovellus hostin kanssa
+## Vaihtoehto 2 - Testaa sovellus isännän kanssa
 
-Repossa <https://github.com/modelcontextprotocol/ext-apps> on useita eri hosteja, joita voit käyttää MVP-sovellusten testaamiseen.
+Repo <https://github.com/modelcontextprotocol/ext-apps> sisältää useita erilaisia isäntiä, joita voit käyttää MVP-sovellustesi testaamiseen. 
 
-Tarjoamme tässä kaksi eri vaihtoehtoa:
+Esittelemme sinulle tässä kaksi eri vaihtoehtoa:
 
 ### Paikallinen kone
 
-- Siirry *ext-apps* -kansioon sen jälkeen, kun olet kloonannut repon.
+- Siirry kansioon *ext-apps* sen jälkeen kun olet kloonannut repositorion.
 
 - Asenna riippuvuudet
 
@@ -72,27 +72,27 @@ Tarjoamme tässä kaksi eri vaihtoehtoa:
    npm install
    ```
 
-- Avaa erillinen terminaali ja siirry *ext-apps/examples/basic-host*
+- Avaa toinen terminaali-ikkuna ja siirry kansioon *ext-apps/examples/basic-host*
 
-    > Jos käytät Codespacea, sinun täytyy avata serve.ts ja riviltä 27 korvata http://localhost:3001/mcp Codespacen backendin URL-osoitteella, esimerkiksi https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > Jos olet Codespacessa, sinun täytyy navigoida tiedostoon serve.ts ja riville 27, ja vaihtaa osoite http://localhost:3001/mcp Codespace-URL:ksi backendille, esimerkiksi https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
-- Käynnistä host:
+- Käynnistä isäntä:
 
     ```sh
     npm start
     ```
 
-    Tämän pitäisi yhdistää host backendiin ja sinun pitäisi nähdä sovelluksen toimivan seuraavasti:
+    Tämän pitäisi yhdistää isäntä backendin kanssa ja sinun pitäisi nähdä sovellus käynnissä seuraavasti:
 
-    ![Sovellus käynnissä](../../../../../../translated_images/fi/mcp-app.50dd20a779bea32f.webp)
+    ![App running](../../../../../../translated_images/fi/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-Codespace-ympäristön käyttöönotto vaatii hieman lisätyötä. Käyttääksesi hostia Codespacen kautta:
+Codespace-ympäristön toimintaan saaminen vaatii hieman ylimääräistä työtä. Isännän käyttäminen Codespacen kautta:
 
-- Katso *ext-apps* -hakemistoa ja siirry *examples/basic-host* -kansioon.
+- Katso *ext-apps* -hakemisto ja siirry kansioon *examples/basic-host*.
 - Suorita `npm install` asentaaksesi riippuvuudet
-- Suorita `npm start` käynnistääksesi hostin.
+- Suorita `npm start` käynnistääksesi isännän.
 
 ## Testaa sovellusta
 
@@ -100,7 +100,7 @@ Kokeile sovellusta seuraavasti:
 
 - Valitse "Call Tool" -painike ja sinun pitäisi nähdä tulokset seuraavasti:
 
-    ![Työkalun tulos](../../../../../../translated_images/fi/tool-result.cfec4814ce8e0146.webp)
+    ![Tool result](../../../../../../translated_images/fi/tool-result.cfec4814ce8e0146.webp)
 
 Hienoa, kaikki toimii.
 
@@ -108,5 +108,5 @@ Hienoa, kaikki toimii.
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Vastuuvapauslauseke**:
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta huomioithan, että automatisoiduissa käännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä tulisi katsoa ensisijaiseksi lähteeksi. Olennaisen tiedon osalta suosittelemme ammattimaisen ihmiskääntäjän palvelujen käyttöä. Emme ole vastuussa tämän käännöksen käytöstä johtuvista väärinkäsityksistä tai virhetulkinnoista.
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

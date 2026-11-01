@@ -1,22 +1,28 @@
-# Di way to run dis sample
+# How to run dis sample
 
-Dis na di Rust solution for di LLM client sample. You need get Rust toolchain wey don install for your machine; check di [official install guide](https://www.rust-lang.org/tools/install).
+Na Rust solution dis for di LLM client sample. You need Rust toolchain wey don install; see the [official install guide](https://www.rust-lang.org/tools/install).
 
-Di client dey call model through di GitHub Models inference endpoint (`https://models.github.ai/inference/chat`) and e go read your GitHub personal access token (PAT) from di `OPENAI_API_KEY` environment variable.
+Di client dey call one deployed Microsoft Foundry model through di Azure OpenAI
+v1 endpoint.
 
 > [!NOTE]
-> Other solutions for dis repo dey use `GITHUB_TOKEN`. For Rust, make you set `OPENAI_API_KEY` to di same value so dat e go match di OpenAI client configuration.
+> Di value wey you pass as `model` na your Foundry deployment name, e no necessarily
+> di underlying model name.
 
-## -0- Set your GitHub token
+## -0- Set up Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- Build di sample
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-Di client go start di calculator MCP server, go fetch di tool list, and e go use di model (`openai/gpt-5-mini`) to call di `add` tool. You go see output wey dey show say dem dey call di tool (for example, "Calling tool: add") plus di result of dat call.
+Di client go start di calculator MCP server, fetch im tool list, an use
+di deployed model to call the `add` tool. You go see output wey show
+di tool call (for example, "Calling tool: add") an di result of dat call.
 
 ---
 

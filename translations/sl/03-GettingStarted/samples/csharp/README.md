@@ -1,25 +1,25 @@
-# Osnovna kalkulator MCP storitev
+# Osnovna storitev kalkulator MCP
 
-Ta storitev omogoča osnovne kalkulator operacije preko Model Context Protocol (MCP). Namenjena je kot preprost primer za začetnike, ki se učijo o implementacijah MCP.
+Ta storitev nudi osnovne kalkulator operacije preko Model Context Protocol (MCP). Namenjena je kot preprost primer za začetnike pri učenju o implementacijah MCP.
 
-Za več informacij glej [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
+Za več informacij glejte [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk)
 
 ## Značilnosti
 
-Ta kalkulator storitev ponuja naslednje funkcionalnosti:
+Ta kalkulator storitev ponuja naslednje zmogljivosti:
 
 1. **Osnovne aritmetične operacije**:
    - Seštevanje dveh števil
    - Odštevanje enega števila od drugega
    - Množenje dveh števil
-   - Deljenje enega števila z drugim (s preverjanjem deljenja z nič)
+   - Deljenje enega števila z drugim (z preverjanjem deljenja z nič)
 
 ## Uporaba tipa `stdio`
   
 ## Konfiguracija
 
 1. **Konfigurirajte MCP strežnike**:
-   - Odprite svoj delovni prostor v VS Code.
+   - Odprite delovni prostor v VS Code.
    - Ustvarite datoteko `.vscode/mcp.json` v mapi delovnega prostora za konfiguracijo MCP strežnikov. Primer konfiguracije:
 
      ```jsonc
@@ -49,63 +49,68 @@ Ta kalkulator storitev ponuja naslednje funkcionalnosti:
 
 ## Uporaba storitve
 
-Storitev izpostavlja naslednje API končne točke preko MCP protokola:
+Storitev odpre naslednje API končne točke preko MCP protokola:
 
 - `add(a, b)`: Seštej dve števili
 - `subtract(a, b)`: Odštej drugo število od prvega
 - `multiply(a, b)`: Pomnoži dve števili
 - `divide(a, b)`: Deli prvo število z drugim (s preverjanjem ničle)
-- isPrime(n): Preveri, ali je število praštevilo
+- isPrime(n): Preveri, če je število praštevilo
 
-## Testiranje z Github Copilot Chat v VS Code
+## Testirajte z Github Copilot Chat v VS Code
 
-1. Poskusi poslati zahtevo storitvi preko MCP protokola. Na primer, lahko vprašaš:
-   - "Add 5 and 3"
-   - "Subtract 10 from 4"
-   - "Multiply 6 and 7"
-   - "Divide 8 by 2"
-   - "Does 37854 prime?"
-   - "What are the 3 prime numbers before after 4242?"
-2. Da se prepričaš, da uporablja orodja, dodaj #MyCalculator v poziv. Na primer:
-   - "Add 5 and 3 #MyCalculator"
-   - "Subtract 10 from 4 #MyCalculator"
+1. Poskusite poslati zahtevo storitvi z uporabo MCP protokola. Na primer, lahko vprašate:
+   - "Seštej 5 in 3"
+   - "Odštej 10 od 4"
+   - "Pomnoži 6 in 7"
+   - "Deli 8 z 2"
+   - "Je 37854 praštevilo?"
+   - "Katera so 3 praštevila pred in za 4242?"
+2. Da zagotovite uporabo orodij, dodajte #MyCalculator k pozivu. Na primer:
+   - "Seštej 5 in 3 #MyCalculator"
+   - "Odštej 10 od 4 #MyCalculator
 
-## Verzija v kontejnerju
 
-Prejšnja rešitev je odlična, če imaš nameščen .NET SDK in so vse odvisnosti urejene. Če pa želiš rešitev deliti ali jo zagnati v drugem okolju, lahko uporabiš verzijo v kontejnerju.
+## Verzija z vsebnikom
 
-1. Zaženi Docker in preveri, da deluje.
-1. V terminalu se premakni v mapo `03-GettingStarted\samples\csharp\src`
-1. Za izdelavo Docker slike za kalkulator storitev zaženi naslednji ukaz (zamenjaj `<YOUR-DOCKER-USERNAME>` z uporabniškim imenom na Docker Hubu):
+Prejšnja rešitev je odlična, če imate nameščen .NET SDK in so vse odvisnosti urejene. Če pa želite deliti rešitev ali jo zagnati v drugem okolju, lahko uporabite verzijo z vsebnikom.
+
+1. Zaženite Docker in preverite, da teče.
+1. V terminalu se premaknite v mapo `03-GettingStarted\samples\csharp\src` 
+1. Za izgradnjo Docker slike za kalkulatorsko storitev izvedite naslednji ukaz (zamenjajte `<YOUR-DOCKER-USERNAME>` z vašim uporabniškim imenom Docker Hub):
    ```bash
    docker build -t <YOUR-DOCKER-USERNAME>/mcp-calculator .
-   ```
-1. Ko je slika izdelana, jo naloži na Docker Hub z naslednjim ukazom:
+   ``` 
+1. Ko je slika izdelana, jo naložite na Docker Hub. Zaženite naslednji ukaz:
    ```bash
-    docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
-  ```
+   docker push <YOUR-DOCKER-USERNAME>/mcp-calculator
+   ```
 
-## Uporaba Dockerizirane verzije
+## Uporaba verzije z Dockerjem
 
-1. V datoteki `.vscode/mcp.json` zamenjaj konfiguracijo strežnika z naslednjo:
+1. V datoteki `.vscode/mcp.json` zamenjajte konfiguracijo strežnika z naslednjo:
    ```json
-    "mcp-calc": {
+    "mcp-calculator": {
       "command": "docker",
       "args": [
         "run",
         "--rm",
         "-i",
-        "<YOUR-DOCKER-USERNAME>/mcp-calc"
+        "<YOUR-DOCKER-USERNAME>/mcp-calculator"
       ],
       "envFile": "",
       "env": {}
     }
    ```
-   Če pogledaš konfiguracijo, vidiš, da je ukaz `docker`, argumenti pa `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calc`. Preklop `--rm` poskrbi, da se kontejner odstrani po zaustavitvi, `-i` pa omogoča interakcijo s standardnim vhodom kontejnerja. Zadnji argument je ime slike, ki smo jo pravkar izdelali in naložili na Docker Hub.
+   Gledano konfiguracijo, ukaz je `docker` in argumenti so `run --rm -i <YOUR-DOCKER-USERNAME>/mcp-calculator`. Zastavica `--rm` zagotavlja odstranitev vsebnika po zaustavitvi, zastavica `-i` pa omogoča interakcijo z običajnim vhodom vsebnika. Zadnji argument je ime slike, ki smo jo pravkar zgradili in naložili na Docker Hub.
 
-## Testiranje Dockerizirane verzije
+## Testirajte verzijo z Dockerjem
 
-Zaženi MCP strežnik s klikom na majhno tipko Start nad `"mcp-calc": {`, in tako kot prej lahko prosiš kalkulator storitev, da opravi nekaj računskih operacij zate.
+Zaženite MCP strežnik s klikom na majhen gumb Start nad `"mcp-calculator": {` in tako kot prej lahko zaprosite kalkulatorsko storitev za nekaj računskih operacij.
 
-**Omejitev odgovornosti**:  
-Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas opozarjamo, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku velja za avtoritativni vir. Za ključne informacije priporočamo strokovni človeški prevod. Za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda, ne odgovarjamo.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Omejitev odgovornosti**:
+Ta dokument je bil preveden z uporabo AI prevajalske storitve [Co-op Translator](https://github.com/Azure/co-op-translator). Čeprav si prizadevamo za natančnost, vas prosimo, da upoštevate, da avtomatizirani prevodi lahko vsebujejo napake ali netočnosti. Izvirni dokument v njegovem izvirnem jeziku je treba obravnavati kot avtoritativni vir. Za kritične informacije je priporočljiv strokovni človeški prevod. Ne odgovarjamo za morebitna nesporazume ali napačne interpretacije, ki izhajajo iz uporabe tega prevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

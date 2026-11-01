@@ -1,37 +1,45 @@
 # Menjalankan contoh ini
 
-Ini adalah penyelesaian Rust untuk contoh klien LLM. Anda memerlukan rantai alat Rust yang dipasang; lihat [panduan pemasangan rasmi](https://www.rust-lang.org/tools/install).
+Ini adalah penyelesaian Rust untuk contoh klien LLM. Anda perlu memasang rantai alat Rust; lihat [panduan pemasangan rasmi](https://www.rust-lang.org/tools/install).
 
-Klien memanggil model melalui titik akhir inferens Model GitHub (`https://models.github.ai/inference/chat`) dan membaca token akses peribadi GitHub (PAT) anda dari pembolehubah persekitaran `OPENAI_API_KEY`.
+Klien memanggil model Microsoft Foundry yang diterapkan melalui OpenAI Azure
+titik akhir v1.
 
 > [!NOTE]
-> Penyelesaian lain dalam repo ini menggunakan `GITHUB_TOKEN`. Untuk Rust, tetapkan `OPENAI_API_KEY` ke nilai yang sama untuk memadankan konfigurasi klien OpenAI.
+> Nilai yang dihantar sebagai `model` adalah nama pengeluaran Foundry anda, bukan semestinya
+> nama model asas.
 
-## -0- Tetapkan token GitHub anda
+## -0- Konfigurasi Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Bina contoh ini
+## -1- Bina contoh
 
 ```bash
 cargo build
 ```
 
-## -2- Jalankan contoh ini
+## -2- Jalankan contoh
 
 ```bash
 cargo run
 ```
 
-Klien memulakan pelayan MCP kalkulator, mengambil senarai alatnya, dan menggunakan model (`openai/gpt-5-mini`) untuk memanggil alat `add`. Anda akan melihat keluaran yang menunjukkan panggilan alat (contohnya, "Memanggil alat: add") dan hasil panggilan itu.
+Klien memulakan pelayan MCP kalkulator, mengambil senarai alatan, dan menggunakan
+model yang diterapkan untuk memanggil alat `add`. Anda harus melihat output yang menunjukkan
+panggilan alat (contoh, "Memanggil alat: add") dan keputusan panggilan tersebut.
 
 ---
 

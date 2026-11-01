@@ -1,170 +1,170 @@
-# MCP sa Aksyon: Mga Totoong Pag-aaral ng Kaso
+# MCP sa Aksyon: Mga Kaso ng Pag-aaral sa Totoong Mundo
 
-[![MCP sa Aksyon: Mga Totoong Pag-aaral ng Kaso](../../../translated_images/tl/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
+[![MCP sa Aksyon: Mga Kaso ng Pag-aaral sa Totoong Mundo](../../../translated_images/tl/10.3262cc80b4de5071.webp)](https://youtu.be/IxshWb2Az5w)
 
-_(I-click ang larawan sa itaas upang mapanood ang video ng araling ito)_
+_(I-click ang larawan sa itaas upang panoorin ang video ng leksyong ito)_
 
-Binabago ng Model Context Protocol (MCP) ang paraan ng pakikipag-ugnayan ng mga AI application sa data, mga kagamitan, at mga serbisyo. Ipinapakita ng seksyong ito ang mga totoong pag-aaral ng kaso na nagpapakita ng praktikal na mga aplikasyon ng MCP sa iba't ibang senaryo ng negosyo.
+Binabago ng Model Context Protocol (MCP) kung paano nakikipag-ugnayan ang mga aplikasyon ng AI sa data, mga kagamitan, at mga serbisyo. Ipinapakita ng seksyong ito ang mga totoong kaso ng pag-aaral na nagpapakita ng mga praktikal na aplikasyon ng MCP sa iba't ibang mga senaryo ng enterprise.
 
 ## Pangkalahatang-ideya
 
-Ipinapakita ng seksyong ito ang mga kongkretong halimbawa ng mga pagpapatupad ng MCP, na nagha-highlight kung paano ginagamit ng mga organisasyon ang protocol na ito upang lutasin ang mga kumplikadong hamon sa negosyo. Sa pag-aaral ng mga pag-aaral ng kaso na ito, makakakuha ka ng mga pananaw sa pagiging versatile, scalability, at praktikal na benepisyo ng MCP sa mga totoong senaryo.
+Ipinapakita ng seksyong ito ang mga kongkretong halimbawa ng mga pagpapatupad ng MCP, na pinapakita kung paano ginagamit ng mga organisasyon ang protokol na ito upang malutas ang mga kumplikadong hamon sa negosyo. Sa pamamagitan ng pagsusuri sa mga kasong ito, makakakuha ka ng mga pananaw sa kakayahang umangkop, kakayahang palawakin, at mga praktikal na benepisyo ng MCP sa mga totoong sitwasyon.
 
-## Mga Pangunahing Layunin ng Pagkatuto
+## Pangunahing Mga Layunin sa Pagkatuto
 
-Sa pamamagitan ng pag-explore ng mga pag-aaral ng kaso na ito, iyong:
+Sa pagsasaliksik ng mga kasong ito, matututuhan mo:
 
-- Mauunawaan kung paano naiaaplay ang MCP upang lutasin ang mga tiyak na problema sa negosyo
-- Matutunan ang iba't ibang mga pattern sa integrasyon at mga arkitekturang pamamaraan
-- Makikilala ang mga pinakamahusay na kasanayan para sa pagpapatupad ng MCP sa mga kapaligirang pang-enterprise
-- Makakakuha ng mga pananaw sa mga hamon at solusyong naranasan sa mga totoong pagpapatupad
-- Matukoy ang mga oportunidad upang i-apply ang magkatulad na mga pattern sa iyong sariling mga proyekto
+- Maunawaan kung paano maaaring gamitin ang MCP upang malutas ang mga partikular na problema sa negosyo
+- Matutunan ang iba't ibang mga pattern ng integrasyon at mga disenyong arkitektural
+- Kilalanin ang mga pinakamahusay na kasanayan sa pagpapatupad ng MCP sa mga kapaligiran ng enterprise
+- Makakuha ng mga pananaw tungkol sa mga hamon at solusyon na naranasan sa totoong pagpapatupad
+- Matukoy ang mga oportunidad upang magamit ang mga katulad na pattern sa iyong sariling mga proyekto
 
-## Mga Tampok na Pag-aaral ng Kaso
+## Mga Tampok na Kaso ng Pag-aaral
 
 ### 1. [Azure AI Travel Agents – Reference Implementation](./travelagentsample.md)
 
-Sinusuri ng pag-aaral ng kasong ito ang komprehensibong reference solution ng Microsoft na nagpapakita kung paano bumuo ng multi-agent, AI-powered na travel planning application gamit ang MCP, Azure OpenAI, at Azure AI Search. Ipinapakita ng proyekto ang:
+Sinusuri ng kasong ito ang komprehensibong solusyon ng Microsoft na nagpapakita kung paano bumuo ng multi-agent, AI-powered na aplikasyon sa pagpaplano ng paglalakbay gamit ang MCP, Azure OpenAI, at Azure AI Search. Ipinapakita ng proyekto ang:
 
 - Multi-agent orchestration sa pamamagitan ng MCP
-- Integrasyon ng data ng enterprise gamit ang Azure AI Search
-- Ligtas, scalable na arkitektura gamit ang mga serbisyo ng Azure
-- Palawig na tooling gamit ang reusable na mga component ng MCP
-- Conversational user experience na pinapaganahan ng Azure OpenAI
+- Integrasyon ng enterprise data gamit ang Azure AI Search
+- Ligtas, skalableng arkitektura gamit ang mga serbisyo ng Azure
+- Mapapalawak na mga kagamitan gamit ang mga reusable na MCP components
+- Conversational user experience na pinapagana ng Azure OpenAI
 
-Nagbibigay ang mga detalye ng arkitektura at implementasyon ng mahahalagang pananaw sa pagbuo ng kumplikadong multi-agent na mga sistema gamit ang MCP bilang coordination layer.
+Nagbibigay ang mga detalye ng arkitektura at pagpapatupad ng mahahalagang pananaw sa pagbubuo ng mga kumplikadong multi-agent na sistema gamit ang MCP bilang coordination layer.
 
-### 2. [Pag-update ng Azure DevOps Items mula sa YouTube Data](./UpdateADOItemsFromYT.md)
+### 2. [Pag-update ng Azure DevOps Items mula sa Data ng YouTube](./UpdateADOItemsFromYT.md)
 
-Ipinapakita ng pag-aaral ng kasong ito ang praktikal na aplikasyon ng MCP para sa pag-automate ng mga workflow process. Ipinapakita nito kung paano magagamit ang mga tool ng MCP upang:
+Ipinapakita ng kasong ito ang praktikal na aplikasyon ng MCP para sa awtomatiko ng mga proseso sa workflow. Ipinapakita nito kung paano magagamit ang mga MCP tools upang:
 
-- Kunin ang data mula sa mga online platform (YouTube)
-- I-update ang mga work item sa Azure DevOps system
-- Lumikha ng mga repeatable automation workflow
-- Mag-integrate ng data mula sa magkakaibang mga sistema
+- Kunin ang data mula sa mga online na platform (YouTube)
+- I-update ang mga work items sa mga sistema ng Azure DevOps
+- Lumikha ng mga paulit-ulit na automation workflow 
+- Mag-integrate ng data sa iba't ibang mga sistema
 
-Ipinapakita ng halimbawa na ito kung paano ang mga simpleng pagpapatupad ng MCP ay maaaring magdulot ng malaking efficiency gains sa pamamagitan ng pag-automate ng mga rutinang gawain at pagpapabuti ng consistency ng data sa mga sistema.
+Ipinapakita ng halimbawa na ito kung paano kahit ang mga simpleng pagpapatupad ng MCP ay maaaring magbigay ng malaking pagtaas sa kahusayan sa pamamagitan ng pag-automate ng mga rutinang gawain at pagpapabuti ng pagkakaugnay ng data sa mga sistema.
 
 ### 3. [Real-Time na Pagkuha ng Dokumentasyon gamit ang MCP](./docs-mcp/README.md)
 
-Ginagabayan ka ng pag-aaral ng kasong ito sa pag-connect ng isang Python console client sa isang Model Context Protocol (MCP) server upang kumuha at mag-log ng real-time, context-aware na dokumentasyon mula sa Microsoft. Matututuhan mo kung paano:
+Ginagabayan ka ng kasong ito sa pagkonekta ng isang Python console client sa isang Model Context Protocol (MCP) server upang kumuha at mag-log ng real-time, context-aware na dokumentasyon ng Microsoft. Matututuhan mo kung paano:
 
-- Kumonekta sa MCP server gamit ang Python client at opisyal na MCP SDK
-- Gumamit ng streaming HTTP clients para sa episyente, real-time na pagkuha ng data
-- Tawagan ang mga tools sa dokumentasyon sa server at direktang i-log ang mga tugon sa console
+- Kumonekta sa isang MCP server gamit ang Python client at ang opisyal na MCP SDK
+- Gumamit ng streaming HTTP clients para sa mahusay at real-time na pagkuha ng data
+- Tawagan ang mga dokumentasyon tool sa server at i-log ang mga tugon nang direkta sa console
 - Isama ang napapanahong dokumentasyon ng Microsoft sa iyong workflow nang hindi umaalis sa terminal
 
-Kasama sa kabanatang ito ang praktikal na assignment, minimal na sample code na gumagana, at mga link sa karagdagang mga mapagkukunan para sa mas malalim na pag-aaral. Tingnan ang buong walkthrough at code sa naka-link na kabanata upang maunawaan kung paano mababago ng MCP ang access sa dokumentasyon at productivity ng developer sa mga console-based na kapaligiran.
+Kasama sa kabanata ang isang hands-on na asignatura, isang minimal na sample ng working code, at mga link sa karagdagang mapagkukunan para sa mas malalim na pagkatuto. Tingnan ang buong walkthrough at code sa naka-link na kabanata upang maunawaan kung paano makakabago ang MCP sa access ng dokumentasyon at produktibidad ng developer sa console-based na mga kapaligiran.
 
 ### 4. [Interactive Study Plan Generator Web App gamit ang MCP](./docs-mcp/README.md)
 
-Ipinapakita ng pag-aaral ng kasong ito kung paano bumuo ng interactive na web app gamit ang Chainlit at ang Model Context Protocol (MCP) upang lumikha ng personalized na mga study plan para sa anumang paksa. Maitatakda ng mga user ang isang subject (halimbawa, "AI-900 certification") at tagal ng pag-aaral (hal., 8 linggo), at magbibigay ang app ng linggo-linggong breakdown ng mga inirekomendang nilalaman. Nagbibigay ang Chainlit ng conversational chat interface, kaya ang karanasan ay engaging at adaptive.
+Ipinapakita ng kasong ito kung paano bumuo ng isang interactive web application gamit ang Chainlit at Model Context Protocol (MCP) para makagawa ng personalized na mga plano ng pag-aaral para sa anumang paksa. Maaaring tukuyin ng mga user ang isang subject (tulad ng "AI-900 certification") at habang ng pag-aaral (hal. 8 linggo), at magbibigay ang app ng lingguhan-lingguhang breakdown ng mga inirekomendang nilalaman. Pinapagana ng Chainlit ang isang conversational chat interface, na ginagawang kaakit-akit at tatanggapin ang karanasan.
 
 - Conversational web app na pinapagana ng Chainlit
-- Mga user-driven na prompts para sa paksa at tagal
-- Mga rekomendasyon ng nilalaman linggo-linggo gamit ang MCP
-- Real-time, adaptive na mga tugon sa chat interface
+- Mga prompt na pinamumunuan ng user para sa paksa at tagal
+- Lingguhan-lingguhang mga rekomendasyon ng nilalaman gamit ang MCP
+- Real-time, adaptable na mga tugon sa chat interface
 
-Ipinapakita ng proyekto kung paano maaaring pagsamahin ang conversational AI at MCP upang lumikha ng dynamic, user-driven na mga educational tool sa isang modernong web environment.
+Ipinapakita ng proyekto kung paano maaaring pagsamahin ang conversational AI at MCP upang makalikha ng dinamiko, user-driven na mga kasangkapan sa edukasyon sa isang modernong web environment.
 
-### 5. [Mga Dokumento sa Editor gamit ang MCP Server sa VS Code](./docs-mcp/README.md)
+### 5. [In-Editor Docs gamit ang MCP Server sa VS Code](./docs-mcp/README.md)
 
-Ipinapakita ng pag-aaral ng kasong ito kung paano mo maiuugnay ang Microsoft Learn Docs nang direkta sa iyong VS Code environment gamit ang MCP server—hindi na kailangang magpalipat-lipat ng tabs sa browser! Makikita mo kung paano:
+Ipinapakita ng kasong ito kung paano mo maaaring dalhin ang Microsoft Learn Docs nang direkta sa iyong VS Code environment gamit ang MCP server—wala nang palipat-lipat sa mga browser tab! Makikita mo kung paano:
 
-- Mabilis na maghanap at magbasa ng docs sa loob ng VS Code gamit ang MCP panel o command palette
-- Mag-refer sa dokumentasyon at maglagay ng mga link direkta sa iyong README o markdown files ng kurso
-- Pagsamahin ang GitHub Copilot at MCP para sa seamless, AI-powered na workflow ng dokumentasyon at code
-- I-validate at pagandahin ang iyong dokumentasyon gamit ang real-time na feedback at katumpakan mula sa Microsoft
-- Isama ang MCP sa mga workflow ng GitHub para sa tuloy-tuloy na pag-validate ng dokumentasyon
+- Agarang maghanap at magbasa ng docs sa loob ng VS Code gamit ang MCP panel o command palette
+- Mag-refer sa dokumentasyon at magpasok ng mga link nang direkta sa iyong README o course markdown files
+- Gamitin ang GitHub Copilot at MCP nang magkasama para sa seamless, AI-powered na dokumentasyon at mga workflow ng code
+- I-validate at pagandahin ang iyong dokumentasyon gamit ang real-time na feedback at tumpak na Microsoft-sourced na impormasyon
+- Isama ang MCP sa mga workflow ng GitHub para sa tuloy-tuloy na validation ng dokumentasyon
 
-Kasama sa implementasyon ang:
+Kasama sa pagpapatupad ang:
 
-- Halimbawang `.vscode/mcp.json` configuration para sa madaling setup
-- Mga screenshot-based walkthrough ng karanasan sa loob ng editor
-- Mga tip para pagsamahin ang Copilot at MCP para sa pinakamataas na productivity
+- Halimbawa ng `.vscode/mcp.json` configuration para sa madaling setup
+- Mga walkthrough na may screenshot ng karanasan sa loob ng editor
+- Mga tip para sa pagsasama ng Copilot at MCP para sa pinakamataas na produktibidad
 
-Ang senaryong ito ay perpekto para sa mga author ng kurso, manunulat ng dokumentasyon, at mga developer na nais manatiling nakatuon sa kanilang editor habang nagtatrabaho sa mga docs, Copilot, at mga validation tool—lahat ay pinapagana ng MCP.
+Ang senaryong ito ay perpekto para sa mga may-akda ng kurso, manunulat ng dokumentasyon, at mga developer na nais manatiling nakatuon sa kanilang editor habang nagtatrabaho gamit ang docs, Copilot, at mga validation tools—lahat ay pinalakas ng MCP.
 
 ### 6. [Paglikha ng APIM MCP Server](./apimsample.md)
 
-Nagbibigay ang pag-aaral ng kasong ito ng step-by-step na gabay kung paano gumawa ng MCP server gamit ang Azure API Management (APIM). Tinatalakay nito ang:
+Nagbibigay ang kasong ito ng hakbang-hakbang na gabay kung paano lumikha ng isang MCP server gamit ang Azure API Management (APIM). Saklaw nito ang:
 
-- Pag-setup ng MCP server sa Azure API Management
-- Pagkakalantad ng API operations bilang mga MCP tools
+- Pag-set up ng isang MCP server sa Azure API Management
+- Pagpapakita ng mga API operation bilang mga tool ng MCP
 - Pag-configure ng mga polisiya para sa rate limiting at seguridad
 - Pagsusuri ng MCP server gamit ang Visual Studio Code at GitHub Copilot
 
-Ipinapakita ng halimbawa na ito kung paano magamit ang mga kakayahan ng Azure upang makalikha ng matatag na MCP server na maaaring gamitin sa iba't ibang aplikasyon, pinapalakas ang integrasyon ng mga AI system sa enterprise APIs.
+Ipinapakita ng halimbawa na ito kung paano gamitin ang mga kakayahan ng Azure upang makalikha ng matibay na MCP server na maaaring magamit sa iba't ibang aplikasyon, pinapalakas ang integrasyon ng mga AI system sa mga API ng enterprise.
 
-### 7. [GitHub MCP Registry — Pagpapabilis ng Agentic Integration](https://github.com/mcp)
+### 7. [GitHub MCP Registry — Pinapabilis ang Agentic Integration](https://github.com/mcp)
 
-Sinusuri ng pag-aaral ng kasong ito kung paano tinutugunan ng GitHub MCP Registry, na inilunsad noong Setyembre 2025, ang kritikal na hamon sa AI ecosystem: ang pira-pirasong pagtuklas at pag-deploy ng Model Context Protocol (MCP) servers.
+Sinusuri ng kasong ito kung paano tinutugunan ng GitHub MCP Registry, na inilunsad noong Setyembre 2025, ang isang kritikal na hamon sa AI ecosystem: ang pira-pirasong pagtuklas at deployment ng mga Model Context Protocol (MCP) server.
 
 #### Pangkalahatang-ideya
-Nilulutas ng **MCP Registry** ang lumalaking problema ng magkahiwalay na MCP servers sa iba't ibang repositoryo at registry, na nagpapabagal at nagiging prone sa error ang integrasyon noon. Pinagana ng mga server na ito ang mga AI agent na makipag-ugnayan sa mga external na sistema tulad ng mga API, database, at mga pinagmumulan ng dokumentasyon.
+Nilulutas ng **MCP Registry** ang lumalaking problema ng mga nagkalat na MCP server sa mga repositoryo at rehistro, na dati ay nagpapabagal at nagdudulot ng mga error sa integrasyon. Pinapahintulutan ng mga server na ito ang mga AI agent na makipag-ugnayan sa mga panlabas na sistema tulad ng mga API, database, at mga pinagmumulan ng dokumentasyon.
 
-#### Pahayag ng Suliranin
-Nakaranas ang mga developer na gumagawa ng agentic workflows ng mga sumusunod na suliranin:
-- **Mahinang pagkakatuklas** ng MCP servers sa iba't ibang platform
-- **Nauulit-ulit na mga tanong sa setup** na pira-piraso sa mga forum at dokumentasyon
-- **Mga panganib sa seguridad** mula sa hindi beripikado at hindi pinagkakatiwalaang mga pinagmulan
-- **Kakulangan ng standardisasyon** sa kalidad at kompatibilidad ng server
+#### Pahayag ng Problema
+Nakaharap ang mga developer sa mga agentic workflow sa ilang hamon:
+- **Mahinang discoverability** ng mga MCP server sa iba't ibang platform
+- **Ulit-ulit na mga tanong sa setup** na nagkalat sa mga forum at dokumentasyon
+- **Mga panganib sa seguridad** mula sa mga hindi beripikado at hindi pinagkakatiwalaang pinagkukunan
+- **Kakulangan sa standardisasyon** sa kalidad at pagkakatugma ng server
 
 #### Arkitektura ng Solusyon
-Pinagsasama ng MCP Registry ng GitHub ang mga pinagkakatiwalaang MCP server na may mga pangunahing tampok:
-- **One-click install** na integrasyon via VS Code para sa napadaling setup
-- **Signal-over-noise sorting** batay sa stars, aktibidad, at community validation
-- **Direktang integrasyon** sa GitHub Copilot at iba pang MCP-compatible na tools
-- **Open contribution model** na nagpapahintulot sa community at mga enterprise partner na mag-ambag
+Pinagsasama-sama ng GitHub MCP Registry ang mga mapagkakatiwalaang MCP server na may mga pangunahing tampok:
+- **One-click install** na integrasyon sa pamamagitan ng VS Code para sa maayos na setup
+- **Signal-over-noise sorting** ayon sa stars, aktibidad, at pagpapatunay ng komunidad
+- **Direktang integrasyon** sa GitHub Copilot at iba pang MCP-compatible na mga tool
+- **Open contribution model** na nagpapahintulot sa parehong community at enterprise partners na mag-ambag
 
 #### Epekto sa Negosyo
-Naghatid ang registry ng nasusukat na mga pagpapabuti:
-- **Mas mabilis na onboarding** para sa mga developer gamit ang mga tool katulad ng Microsoft Learn MCP Server, na nag-stream ng opisyal na dokumentasyon diretso sa mga agent
-- **Pinahusay na productivity** sa pamamagitan ng mga specialized server tulad ng `github-mcp-server`, na nagpapagana ng natural language GitHub automation (paglikha ng PR, CI reruns, pagsusuri ng code)
-- **Mas matatag na tiwala sa ekosistema** sa pamamagitan ng curated na listahan at transparent na mga pamantayan ng configuration
+Naghatid ang rehistro ng mga nasusukat na pagpapabuti:
+- **Mas mabilis na onboarding** para sa mga developer gamit ang mga tool tulad ng Microsoft Learn MCP Server, na nagsi-stream ng opisyal na dokumentasyon nang diretso sa mga agent
+- **Pinahusay na produktibidad** sa pamamagitan ng mga espesyal na server tulad ng `github-mcp-server`, na nagpapahintulot ng natural language GitHub automation (paglikha ng PR, CI reruns, pag-scan ng code)
+- **Mas matibay na tiwala sa ecosystem** sa pamamagitan ng curated listings at transparent na mga pamantayan sa configuration
 
-#### Halaga sa Estratehiya
-Para sa mga practitioner na dalubhasa sa agent lifecycle management at reproducible workflows, ang MCP Registry ay nagbibigay ng:
-- **Modular na deployment ng agent** gamit ang standardized na mga component
-- **Registry-backed evaluation pipelines** para sa consistent na pagsubok at validation
-- **Cross-tool interoperability** na nagpapagana ng tuloy-tuloy na integrasyon sa iba't ibang AI platform
+#### Estratehikong Halaga
+Para sa mga practitioner na nagdadalubhasa sa agent lifecycle management at reproducible workflows, nagbibigay ang MCP Registry ng:
+- **Modular agent deployment** na kakayahan gamit ang mga standardized na bahagi
+- **Registry-backed evaluation pipelines** para sa pare-parehong pagsusuri at pagpapatunay
+- **Cross-tool interoperability** na nagpapahintulot ng seamless integration sa iba't ibang AI platform
 
-Ipinapakita ng pag-aaral ng kasong ito na ang MCP Registry ay higit pa sa isang direktoryo—ito'y isang pundamental na plataporma para sa scalable, totoong paggamit ng model integration at pag-deploy ng agentic system.
+Ipinapakita ng kasong ito na ang MCP Registry ay higit pa sa isang directory—ito ay isang foundational platform para sa scalable, totoong mundo na integrasyon ng modelo at deployment ng agentic na sistema.
 
 ### 8. [Pag-publish sa Social Networks mula sa isang Agent](./publora-social-publishing.md)
 
-Pinapakita ng pag-aaral ng kasong ito ang isang **write-capable na remote MCP server** — na ang mga tool ay nagsasagawa ng hindi na mababaling aksyon sa ngalan ng user — gamit ang social publishing bilang bagong halimbawa. Ang isang agent ay gumagawa ng draft ng post, ini-approve ito ng tao, at saka ito isinaschedule ng server sa mga network.
+Pinaglalakad ng kasong ito ang isang **remote MCP server na kayang magsulat** — isa na ang mga tool ay kumikilos ng hindi na mababawi sa ngalan ng user — gamit ang social publishing bilang halimbawa. Gumagawa ang isang agent ng draft ng post, inaprubahan ito ng tao, at ini-schedule ng server ito sa mga network.
 
-Ang interesante rito ay ang mga design constraints na ipinapataw ng publishing, na naaangkop sa anumang server na sumusulat sa halip na nagbabasa:
+Ang kawili-wiling bahagi ay ang mga disenyo ng limitasyon na ipinapataw ng publishing, na naaangkop sa anumang server na nagsusulat sa halip na bumabasa:
 
-- **Open discovery, authenticated execution** — ang `tools/list` ay sinasagot nang walang credentials upang makapag-introspect ang mga registry at kliyente, samantalang bawat `tools/call` ay nangangailangan ng token at kung wala, magbabalik ito ng `401` kasama ang `WWW-Authenticate` header
-- **OAuth registration nang walang out-of-band na hakbang** — dynamic client registration ngayon, gamit ang Client ID Metadata Documents bilang direksyon na tinuturo ng `2026-07-28` na espesipikasyon
-- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) na ginagamit ng mga kliyente upang mag-desisyon kung ano ang i-confirm — mga pahiwatig sa halip na pagpapatupad, at isang bagay na inaasahan na ngayon ng connector directory sa review
-- **Hindi mapapasubalian na mga identifier**, kaya ang isang hallucinated na halaga ay maliwanag na magf-fail sa halip na kumilos sa isang mukhang plausible
-- **Mga idempotency keys sa post-creating tools**, kaya ang pag-uulit ng agent runtime ay hindi magreresulta sa duplicate na pag-publish
-- **Isang no-op target na inilarawan sa tool schema** na sinusuri ang buong write path at hindi nagpapublish ng anuman, para sa mga reviewer at CI
+- **Bukas na pagtuklas, authenticated execution** — sina `tools/list` ay sinasagot nang walang credentials upang makapag-introspect ang mga registry at client, habang bawat `tools/call` ay nangangailangan ng token at kung hindi ay nagbabalik ng `401` na may `WWW-Authenticate` header
+- **OAuth registration nang walang out-of-band na hakbang** — dynamic client registration ngayon, na may Client ID Metadata Documents bilang direksyon na tinutukoy ng `2026-07-28` specification
+- **Tool annotations** (`readOnlyHint`, `destructiveHint`, `idempotentHint`) na ginagamit ng mga client para magpasya kung ano ang dapat kumpirmahin — mga palatandaan sa halip na pagpapatupad, at isang bagay na inaasahan na ng mga connector directory sa pagsusuri
+- **Hindi maaaring imbentuhing mga identifier**, kaya ang isang halucinadong halaga ay malakas na nabibigo sa halip na kumilos sa kapani-paniwalang hitsura nito
+- **Idempotency keys sa mga post-creating tools**, kaya ang retry ng agent runtime ay hindi nagiging doble na pag-publish
+- **Isang no-op target na inilalarawan sa tool schema** na sumusubok sa buong write path ngunit walang na-publish, para sa mga tagasuri at CI
 
-Nagtatapos ang kabanata sa isang maikling checklist na maaari mong gamitin sa isang server na iyong binubuo.
+Nagtatapos ang kabanata sa isang maikling checklist na maaari mong ipatupad sa server na iyong binubuo.
 
 ## Konklusyon
 
-Ipinapakita ng walong komprehensibong pag-aaral ng kaso na ito ang kahanga-hangang versatility at praktikal na mga aplikasyon ng Model Context Protocol sa iba't ibang totoong senaryo. Mula sa kumplikadong multi-agent travel planning systems at enterprise API management hanggang sa streamline na workflows ng dokumentasyon at ang rebolusyonaryong GitHub MCP Registry, ipinapakita ng mga halimbawa kung paano nagbibigay ang MCP ng standardized, scalable na paraan upang ipag-ugnay ang mga AI system sa mga kagamitan, data, at serbisyo na kailangan nila upang maghatid ng pambihirang halaga.
+Ipinapakita ng walong komprehensibong kasong ito ang kahanga-hangang kakayahang umangkop at mga praktikal na aplikasyon ng Model Context Protocol sa iba't ibang totoong sitwasyon. Mula sa kumplikadong multi-agent travel planning systems at enterprise API management hanggang sa streamlined documentation workflows at ang rebolusyonaryong GitHub MCP Registry, ipinapakita ng mga halimbawa kung paano nagbibigay ang MCP ng isang standardized, scalable na paraan para ikonekta ang mga AI system sa mga tool, data, at serbisyo na kailangan nila upang maghatid ng natatanging halaga.
 
-Sumasaklaw ang mga pag-aaral ng kaso sa maraming dimensyon ng pagpapatupad ng MCP:
-- **Enterprise Integration**: Azure API Management at Azure DevOps automation
-- **Multi-Agent Orchestration**: Travel planning gamit ang koordinadong mga AI agent
-- **Developer Productivity**: VS Code integration at real-time na pag-access sa dokumentasyon
-- **Ecosystem Development**: Ang MCP Registry ng GitHub bilang pundamental na plataporma
-- **Educational Applications**: Interactive na mga study plan generator at mga conversational interface
+Saklaw ng mga kaso ng pag-aaral ang maraming dimensyon ng pagpapatupad ng MCP:
+- **Integrasyon ng Enterprise**: Azure API Management at automation ng Azure DevOps
+- **Multi-Agent Orchestration**: Pagpaplano ng paglalakbay gamit ang mga koordinadong AI agent
+- **Produktibidad ng Developer**: Integrasyon ng VS Code at real-time na access sa dokumentasyon
+- **Pag-unlad ng Ecosystem**: GitHub MCP Registry bilang isang foundational platform
+- **Mga Aplikasyong Pang-edukasyon**: Interactive study plan generators at conversational interfaces
 
 Sa pag-aaral ng mga pagpapatupad na ito, makakakuha ka ng mahahalagang pananaw sa:
-- **Arkitekturang pattern** para sa iba't ibang scale at gamit
-- **Mga estratehiya ng pagpapatupad** na nagbabalanse ng functionality at maintainability
-- **Seguridad at scalability** na mga konsiderasyon para sa production deployment
-- **Pinakamahusay na kasanayan** para sa pag-develop ng MCP server at client integration
-- **Pag-iisip ng ekosistema** para sa pagbuo ng magkakaugnay na AI-powered na solusyon
+- **Mga pattern ng arkitektura** para sa iba't ibang sukat at gamit na kaso
+- **Mga estratehiya sa pagpapatupad** na naghahalubilo ng functionality at maintainability
+- **Mga konsiderasyon sa seguridad at scalability** para sa mga production deployment
+- **Pinakamahusay na kasanayan** para sa pag-develop ng MCP server at client integrasyon
+- **Ecosystem thinking** para sa pagbuo ng magkakaugnay na mga AI-powered na solusyon
 
-Ang mga halimbawa ng kolektibong ito ay nagpapakita na ang MCP ay hindi lamang isang teoretikal na balangkas kundi isang mature at handang gamitin na protocol na nagpapagana ng praktikal na solusyon sa mga kumplikadong problema sa negosyo. Kung ikaw man ay gumagawa ng simpleng automation tools o mas sopistikadong multi-agent na mga sistema, ang mga pattern at pamamaraan na ipinakita dito ay nagbibigay ng matibay na pundasyon para sa iyong mga proyekto sa MCP.
+Ipinapakita ng mga halimbawa na ito nang sama-sama na ang MCP ay hindi lamang isang teoretikal na balangkas kundi isang mature, production-ready na protokol na nagpapahintulot sa mga praktikal na solusyon sa mga kumplikadong hamon sa negosyo. Kung gumagawa ka man ng mga simpleng automation tool o sopistikadong multi-agent na sistema, ang mga pattern at paraan na ipinakita dito ay nagbibigay ng matibay na pundasyon para sa iyong sariling MCP na mga proyekto.
 
 ## Karagdagang Mga Mapagkukunan
 
@@ -172,13 +172,13 @@ Ang mga halimbawa ng kolektibong ito ay nagpapakita na ang MCP ay hindi lamang i
 - [Azure DevOps MCP Tool](https://github.com/microsoft/azure-devops-mcp)
 - [Playwright MCP Tool](https://github.com/microsoft/playwright-mcp)
 - [Microsoft Docs MCP Server](https://github.com/MicrosoftDocs/mcp)
-- [GitHub MCP Registry — Pagpapabilis ng Agentic Integration](https://github.com/mcp)
+- [GitHub MCP Registry — Pinapabilis ang Agentic Integration](https://github.com/mcp)
 - [MCP Community Examples](https://github.com/microsoft/mcp)
 
-## Ano ang Susunod
+## Ano Pa ang Susunod
 
 - Nakaraan: [Module 8: Best Practices](../08-BestPractices/README.md)
-- Susunod: [Module 10: Streamlining AI Workflows: Building an MCP Server with AI Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
+- Susunod: [Module 10: Streamlining AI Workflows: Building an MCP Server with Microsoft Foundry Toolkit](../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/README.md)
 
 ---
 

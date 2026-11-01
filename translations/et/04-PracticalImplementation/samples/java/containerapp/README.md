@@ -1,116 +1,120 @@
 ## Süsteemi arhitektuur
 
-See projekt demonstreerib veebirakendust, mis kasutab sisuturvalisuse kontrolli enne kasutaja sisendite edastamist kalkulaatoriteenusele Model Context Protocol (MCP) kaudu.
+See projekt demonstreerib veebirakendust, mis kasutab sisuturbe kontrolli enne kasutajapäringute edastamist kalkulaatoriteenusele Model Context Protocoli (MCP) kaudu.
 
-![Süsteemi arhitektuuri diagramm](../../../../../../translated_images/et/plant.b079fed84e945b7c.webp)
+![Süsteemi arhitektuuri skeem](../../../../../../translated_images/et/plant.b079fed84e945b7c.webp)
 
 ### Kuidas see töötab
 
-1. **Kasutaja sisend**: Kasutaja sisestab veebiliideses arvutuse sisendi
-2. **Sisuturvalisuse kontroll (sisend)**: Sisendit analüüsitakse Azure Content Safety API abil
+1. **Kasutaja sisend**: Kasutaja sisestab veebiliidesesse kalkulatsiooni päringu
+2. **Sisu turvalisuse sõelumine (sisend)**: Päringut analüüsib Azure Content Safety API
 3. **Turvalisuse otsus (sisend)**:
-   - Kui sisu on turvaline (kõigis kategooriates raskusaste < 2), edastatakse see kalkulaatorile
+   - Kui sisu on ohutu (raskusaste < 2 kõikides kategooriates), see liigub edasi kalkulaatorisse
    - Kui sisu märgitakse potentsiaalselt kahjulikuks, protsess peatub ja tagastatakse hoiatus
-4. **Kalkulaatori integreerimine**: Turvaline sisu töödeldakse LangChain4j abil, mis suhtleb MCP kalkulaatoriserveriga
-5. **Sisuturvalisuse kontroll (väljund)**: Boti vastust analüüsitakse Azure Content Safety API abil
+4. **Kalkulaatori integratsioon**: Ohutut sisu töötleb LangChain4j, mis suhtleb MCP kalkulaatoriserveriga
+5. **Sisu turvalisuse sõelumine (väljund)**: Boti vastust analüüsib Azure Content Safety API
 6. **Turvalisuse otsus (väljund)**:
-   - Kui boti vastus on turvaline, kuvatakse see kasutajale
+   - Kui boti vastus on ohutu, kuvatakse see kasutajale
    - Kui boti vastus märgitakse potentsiaalselt kahjulikuks, asendatakse see hoiatusega
-7. **Vastus**: Tulemused (kui need on turvalised) kuvatakse kasutajale koos mõlema turvalisuse analüüsiga
+7. **Vastus**: Tulemused (kui need on ohutud) kuvatakse kasutajale koos mõlema turvalisuse analüüsiga
 
-## Model Context Protocol (MCP) kasutamine kalkulaatoriteenustega
+## Model Context Protocoli (MCP) kasutamine kalkulaatoriteenustega
 
-See projekt demonstreerib, kuidas kasutada Model Context Protocol (MCP), et kutsuda kalkulaatori MCP teenuseid LangChain4j kaudu. Rakendus kasutab kohalikku MCP serverit, mis töötab pordil 8080 ja pakub kalkulaatori operatsioone.
+See projekt demonstreerib, kuidas LangChain4j-ist kutsuda kalkulaatori MCP-teenuseid Model Context Protocoli (MCP) abil. Rakenduses kasutatakse kohalikku MCP serverit, mis töötab pordil 8080 ja pakub kalkulaatori toiminguid.
 
 ### Azure Content Safety teenuse seadistamine
 
-Enne sisuturvalisuse funktsioonide kasutamist peate looma Azure Content Safety teenuse ressursi:
+Enne sisu turvalisuse funktsioonide kasutamist peate looma Azure Content Safety teenuse ressursi:
 
-1. Logige sisse [Azure portaalis](https://portal.azure.com)
+1. Logi sisse [Azure'i portaali](https://portal.azure.com)
 2. Klõpsake "Create a resource" ja otsige "Content Safety"
 3. Valige "Content Safety" ja klõpsake "Create"
 4. Sisestage oma ressursile unikaalne nimi
-5. Valige oma tellimus ja ressursigrupp (või looge uus)
-6. Valige toetatud piirkond (vaadake [Piirkonna saadavus](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=cognitive-services) üksikasjade jaoks)
+5. Valige oma tellimus ja ressursirühm (või looge uus)
+6. Valige toetatud piirkond (vaadake üksikasju [Regiooni saadavus](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=cognitive-services) kohta)
 7. Valige sobiv hinnaklass
-8. Klõpsake "Create", et ressurss juurutada
-9. Kui juurutamine on lõpule viidud, klõpsake "Go to resource"
-10. Vasakul paneelil, jaotises "Resource Management", valige "Keys and Endpoint"
-11. Kopeerige üks võtmetest ja lõpp-punkti URL, et kasutada järgmises etapis
+8. Klõpsake "Loo", et juurutada ressurss
+9. Kui juurutamine on lõpule jõudnud, klõpsake "Minge ressursile"
+10. Vasakpoolses paanis, jaotises "Ressursside haldus", valige "Võtmed ja lõpp-punkt"
+11. Kopeerige üks võtmetest ja lõpp-punkti URL järgmises sammus kasutamiseks
 
-### Keskkonnamuutujate konfigureerimine
+### Configuring Environment Variables
 
-Seadistage `GITHUB_TOKEN` keskkonnamuutuja GitHubi mudelite autentimiseks:
+Set the Microsoft Foundry model endpoint, API key, and deployment name:
 ```sh
-export GITHUB_TOKEN=<your_github_token>
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
-Sisuturvalisuse funktsioonide jaoks seadistage:
+For content safety features, set:
 ```sh
 export CONTENT_SAFETY_ENDPOINT=<your_content_safety_endpoint>
 export CONTENT_SAFETY_KEY=<your_content_safety_key>
 ```
 
-Need keskkonnamuutujad võimaldavad rakendusel autentida Azure Content Safety teenusega. Kui neid muutujaid ei ole seadistatud, kasutab rakendus näidisväärtusi, kuid sisuturvalisuse funktsioonid ei tööta korralikult.
+These environment variables are used by the application to authenticate with the Azure Content Safety service. If these variables are not set, the application will use placeholder values for demonstration purposes, but the content safety features will not work properly.
 
-### Kalkulaatori MCP serveri käivitamine
+### Starting the Calculator MCP Server
 
-Enne kliendi käivitamist peate käivitama kalkulaatori MCP serveri SSE režiimis localhost:8080.
+Before running the client, you need to start the calculator MCP server in SSE mode on localhost:8080.
 
-## Projekti kirjeldus
+## Project Description
 
-See projekt demonstreerib Model Context Protocol (MCP) integreerimist LangChain4j-ga, et kutsuda kalkulaatoriteenuseid. Peamised funktsioonid hõlmavad:
+This project demonstrates the integration of Model Context Protocol (MCP) with LangChain4j to call calculator services. Key features include:
 
-- MCP kasutamine kalkulaatoriteenusega ühenduse loomiseks põhiliste matemaatiliste operatsioonide jaoks
-- Kahekihiline sisuturvalisuse kontroll nii kasutaja sisendite kui ka boti vastuste puhul
-- GitHubi gpt-4.1-nano mudeli integreerimine LangChain4j kaudu
-- Server-Sent Events (SSE) kasutamine MCP transpordiks
+- Using MCP to connect to a calculator service for basic math operations
+- Dual-layer content safety checking on both user prompts and bot responses
+- Integration with a deployed Microsoft Foundry model via LangChain4j
+- Using Server-Sent Events (SSE) for MCP transport
 
-## Sisuturvalisuse integreerimine
+## Content Safety Integration
 
-Projekt sisaldab põhjalikke sisuturvalisuse funktsioone, et tagada, et nii kasutaja sisendid kui ka süsteemi vastused oleksid kahjuliku sisuta:
+The project includes comprehensive content safety features to ensure that both user inputs and system responses are free from harmful content:
 
-1. **Sisendi kontroll**: Kõik kasutaja sisendid analüüsitakse kahjuliku sisu kategooriate, nagu vihkamisavaldused, vägivald, enesevigastus ja seksuaalne sisu, osas enne töötlemist.
+1. **Input Screening**: All user prompts are analyzed for harmful content categories such as hate speech, violence, self-harm, and sexual content before processing.
 
-2. **Väljundi kontroll**: Isegi potentsiaalselt tsenseerimata mudelite kasutamisel kontrollib süsteem kõiki genereeritud vastuseid samade sisuturvalisuse filtrite abil enne nende kuvamist kasutajale.
+2. **Output Screening**: Even when using potentially uncensored models, the system checks all generated responses through the same content safety filters before displaying them to the user.
 
-See kahekihiline lähenemine tagab, et süsteem jääb turvaliseks sõltumata sellest, millist AI mudelit kasutatakse, kaitstes kasutajaid nii kahjulike sisendite kui ka potentsiaalselt probleemsete AI genereeritud väljundite eest.
+This dual-layer approach ensures that the system remains safe regardless of which AI model is being used, protecting users from both harmful inputs and potentially problematic AI-generated outputs.
 
-## Veebiklient
+## Web Client
 
-Rakendus sisaldab kasutajasõbralikku veebiliidest, mis võimaldab kasutajatel suhelda sisuturvalisuse kalkulaatorisüsteemiga:
+The application includes a user-friendly web interface that allows users to interact with the Content Safety Calculator system:
 
-### Veebiliidese funktsioonid
+### Web Interface Features
 
-- Lihtne ja intuitiivne vorm arvutuse sisendite sisestamiseks
-- Kahekihiline sisuturvalisuse valideerimine (sisend ja väljund)
-- Reaalajas tagasiside sisendi ja vastuse turvalisuse kohta
-- Värvikoodiga turvalisuse indikaatorid lihtsaks tõlgendamiseks
-- Puhas ja reageeriv disain, mis töötab erinevatel seadmetel
-- Näidiseks turvalised sisendid, et kasutajaid juhendada
+- Simple, intuitive form for entering calculation prompts
+- Dual-layer content safety validation (input and output)
+- Real-time feedback on prompt and response safety
+- Color-coded safety indicators for easy interpretation
+- Clean, responsive design that works on various devices
+- Example safe prompts to guide users
 
-### Veebikliendi kasutamine
+### Using the Web Client
 
-1. Käivitage rakendus:
+1. Start the application:
    ```sh
    mvn spring-boot:run
    ```
 
-2. Avage oma brauser ja navigeerige aadressile `http://localhost:8087`
+2. Open your browser and navigate to `http://localhost:8087`
 
-3. Sisestage arvutuse sisend etteantud tekstialale (nt "Arvuta 24.5 ja 17.3 summa")
+3. Enter a calculation prompt in the provided text area (e.g., "Calculate the sum of 24.5 and 17.3")
 
-4. Klõpsake "Submit", et oma päringut töödelda
+4. Click "Submit" to process your request
 
-5. Vaadake tulemusi, mis sisaldavad:
-   - Teie sisendi sisuturvalisuse analüüsi
-   - Arvutatud tulemust (kui sisend oli turvaline)
-   - Boti vastuse sisuturvalisuse analüüsi
-   - Kõiki hoiatusi, kui sisend või väljund märgiti
+5. View the results, which will include:
+   - Content safety analysis of your prompt
+   - The calculated result (if prompt was safe)
+   - Content safety analysis of the bot's response
+   - Any safety warnings if either the input or output was flagged
 
-Veebiklient haldab automaatselt mõlemat sisuturvalisuse kontrolliprotsessi, tagades, et kõik interaktsioonid on turvalised ja sobivad sõltumata sellest, millist AI mudelit kasutatakse.
+The web client automatically handles both content safety verification processes, ensuring all interactions are safe and appropriate regardless of which AI model is being used.
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

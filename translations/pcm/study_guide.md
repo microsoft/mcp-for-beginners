@@ -1,10 +1,10 @@
 # Model Context Protocol (MCP) for Beginners - Study Guide
 
-Dis study guide dey give overview of di repository structure and di content for di "Model Context Protocol (MCP) for Beginners" curriculum. Use dis guide to waka through di repository well-well and take advantage of di resources wey dey.
+Dis study guide dey give small summary of wetin dey inside di repository and di content for di "Model Context Protocol (MCP) for Beginners" curriculum. Use dis guide to sabi how to waka for di repo quick and make beta use of di resources wey dey.
 
 ## Repository Overview
 
-Di Model Context Protocol (MCP) na one standard framework for how AI models dey interact wit client applications. Dem first create am for Anthropic, but now di bigger MCP community dey maintain am through di official GitHub organization. Dis repository get correct curriculum wit hands-on code examples for C#, Java, JavaScript, Python, and TypeScript, wey dem design for AI developers, system architects, and software engineers.
+Di Model Context Protocol (MCP) na standard waya wey dem dey take make AI models and client applications dey communicate. Anthropic start am, but now di MCP community dey maintain am for di official GitHub organization. Dis repository get full curriculum with hands-on code examples for C#, Java, JavaScript, Python, and TypeScript, wey dem design for AI developers, system architects, and software engineers.
 
 ## Visual Curriculum Map
 
@@ -42,7 +42,7 @@ mindmap
       (VS Code Extensions)
       (SSE Server Setup)
       (HTTP Streaming)
-      (AI Toolkit Integration)
+      (Microsoft Foundry Toolkit Integration)
       (Testing Frameworks)
       (Advanced Server Usage)
       (Simple Auth)
@@ -109,7 +109,7 @@ mindmap
       ::icon(fa fa-laptop)
       (MCP Server Fundamentals)
       (Advanced Development)
-      (AI Toolkit Integration)
+      (Microsoft Foundry Toolkit Integration)
       (Production Deployment)
       (4-Lab Structure)
     11. Database Integration Labs
@@ -128,25 +128,25 @@ mindmap
 
 ## Repository Structure
 
-Di repository organize into twelve main sections, each one focus on different part of MCP:
+Di repository organize into twelve main sections, each one dey focus for different parts of MCP:
 
 1. **Introduction (00-Introduction/)**
-   - Overview of di Model Context Protocol
-   - Why standardization dey important for AI pipelines
+   - Overview of the Model Context Protocol
+   - Why standardization matters in AI pipelines
    - Practical use cases and benefits
 
 2. **Core Concepts (01-CoreConcepts/)**
    - Client-server architecture
    - Key protocol components
-   - Messaging patterns for MCP
-   - Current specification: [Wetin Don Change for MCP: Di 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — di stateless protocol core, Extensions framework, and Roots/Sampling/Logging wey dem don remove
+   - Messaging patterns in MCP
+   - Current specification: [Wetin don change for MCP: The 2026-07-28 Specification](./01-CoreConcepts/mcp-2026-07-28.md) — di stateless protocol core, Extensions framework, and Roots/Sampling/Logging deprecations
 
 3. **Security (02-Security/)**
    - Security threats for MCP-based systems
    - Best practices to secure implementations
    - Authentication and authorization strategies
    - Hands-on [CIMD and DCR authorization sample](./02-Security/samples/cimd-dcr-auth/README.md)
-   - **Complete Security Documentation**:
+   - **Comprehensive Security Documentation**:
      - MCP Security Best Practices
      - Azure Content Safety Implementation Guide
      - MCP Security Controls and Techniques
@@ -155,7 +155,7 @@ Di repository organize into twelve main sections, each one focus on different pa
      - Prompt injection and tool poisoning attacks
      - Session hijacking and confused deputy problems
      - Token passthrough vulnerabilities
-     - Too much permissions and access control
+     - Excessive permissions and access control
      - Supply chain security for AI components
      - Microsoft Prompt Shields integration
 
@@ -171,12 +171,12 @@ Di repository organize into twelve main sections, each one focus on different pa
      - Server-Sent Events (SSE) server
      - Advanced server usage
      - HTTP streaming
-     - AI Toolkit integration
+    - Microsoft Foundry Toolkit integration
      - Testing strategies
      - Deployment guidelines
 
 5. **Practical Implementation (04-PracticalImplementation/)**
-   - Using SDKs for different programming languages
+   - Using SDKs across different programming languages
    - Debugging, testing, and validation techniques
    - Crafting reusable prompt templates and workflows
    - Sample projects with implementation examples
@@ -199,7 +199,7 @@ Di repository organize into twelve main sections, each one focus on different pa
 
 7. **Community Contributions (06-CommunityContributions/)**
    - How to contribute code and documentation
-   - Collaborating through GitHub
+   - Collaborating via GitHub
    - Community-driven enhancements and feedback
    - Using various MCP clients (Claude Desktop, Cline, VSCode)
    - Working with popular MCP servers including image generation
@@ -226,7 +226,7 @@ Di repository organize into twelve main sections, each one focus on different pa
    - Testing and resilience strategies
 
 10. **Case Studies (09-CaseStudy/)**
-    - **Seven complete case studies** wey show how MCP fit work for different situations:
+    - **Seven comprehensive case studies** wey show how MCP fit work for different kin situations:
     - **Azure AI Travel Agents**: Multi-agent orchestration with Azure OpenAI and AI Search
     - **Azure DevOps Integration**: Automating workflow processes with YouTube data updates
     - **Real-Time Documentation Retrieval**: Python console client with streaming HTTP
@@ -234,23 +234,23 @@ Di repository organize into twelve main sections, each one focus on different pa
     - **In-Editor Documentation**: VS Code integration with GitHub Copilot workflows
     - **Azure API Management**: Enterprise API integration with MCP server creation
     - **GitHub MCP Registry**: Ecosystem development and agentic integration platform
-    - Implementation examples from enterprise integration, developer productivity, and ecosystem development
+    - Implementation examples wey cover enterprise integration, developer productivity, and ecosystem development
 
 11. **Hands-on Workshop (10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/)**
-    - Complete hands-on workshop wey combine MCP wit AI Toolkit
-    - Building clever applications to join AI models wit real-world tools
-    - Practical modules covering basics, custom server development, and production deployment strategies
+    - Complete hands-on workshop wey join MCP with Microsoft Foundry Toolkit
+    - Building intelligent applications wey connect AI models to real-world tools
+    - Practical modules wey cover fundamentals, custom server development, and production deployment strategies
     - **Lab Structure**:
       - Lab 1: MCP Server Fundamentals
       - Lab 2: Advanced MCP Server Development
-      - Lab 3: AI Toolkit Integration
+      - Lab 3: Microsoft Foundry Toolkit Integration
       - Lab 4: Production Deployment and Scaling
-    - Lab-based learning wit step-by-step instructions
+    - Lab-based learning approach with step-by-step instructions
 
 12. **MCP Server Database Integration Labs (11-MCPServerHandsOnLabs/)**
     - **Complete 13-lab learning path** for building production-ready MCP servers with PostgreSQL integration
-    - **Real-world retail analytics implementation** using di Zava Retail use case
-    - **Enterprise-grade patterns** like Row Level Security (RLS), semantic search, and multi-tenant data access
+    - **Real-world retail analytics implementation** using the Zava Retail use case
+    - **Enterprise-grade patterns** including Row Level Security (RLS), semantic search, and multi-tenant data access
     - **Complete Lab Structure**:
       - **Labs 00-03: Foundations** - Introduction, Architecture, Security, Environment Setup
       - **Labs 04-06: Building the MCP Server** - Database Design, MCP Server Implementation, Tool Development
@@ -264,10 +264,10 @@ Di repository organize into twelve main sections, each one focus on different pa
 
 ## Additional Resources
 
-Di repository get supporting resources:
+Di repository still get supporting resources:
 
-- **Images folder**: Get diagrams and illustrations wey dem use for di whole curriculum
-- **Translations**: Multi-language support wit automatic translations of documentation
+- **Images folder**: Contains diagrams and illustrations wey dem use for di curriculum
+- **Translations**: Multi-language support with automated translations of documentation
 - **Official MCP Resources**:
   - [MCP Documentation](https://modelcontextprotocol.io/)
   - [MCP Specification](https://modelcontextprotocol.io/specification/2026-07-28/)
@@ -275,11 +275,11 @@ Di repository get supporting resources:
 
 ## How to Use This Repository
 
-1. **Sequential Learning**: Follow di chapters in order (00 through 11) to get structured learning experience.
-2. **Language-Specific Focus**: If you get interest for one programming language, check di samples directories for implementations in di language wey you like.
-3. **Practical Implementation**: Start wit di "Getting Started" section to set up your environment and create your first MCP server and client.
-4. **Advanced Exploration**: When you don sabi di basics, enter di advanced topics to increase your knowledge.
-5. **Community Engagement**: Join di MCP community thru GitHub discussions and Discord channels to connect wit experts and other developers.
+1. **Sequential Learning**: Follow di chapters for order (00 through 11) if you want structured learning.
+2. **Language-Specific Focus**: If you dey interested for one programming language, check di samples directories for implementations for di language wey you like.
+3. **Practical Implementation**: Start for di "Getting Started" section to set up your environment and build your first MCP server and client.
+4. **Advanced Exploration**: When you don sabi di basics, enter di advanced topics to expand your knowledge.
+5. **Community Engagement**: Join di MCP community for GitHub discussions and Discord channels to connect with experts and other developers.
 
 ## MCP Clients and Tools
 
@@ -287,9 +287,9 @@ Di curriculum cover different MCP clients and tools:
 
 1. **Official Clients**:
    - Visual Studio Code 
-   - MCP for Visual Studio Code
+   - MCP in Visual Studio Code
    - Claude Desktop
-   - Claude for VSCode 
+   - Claude in VSCode 
    - Claude API
 
 2. **Community Clients**:
@@ -306,7 +306,7 @@ Di curriculum cover different MCP clients and tools:
 
 ## Popular MCP Servers
 
-Di repository introduce different MCP servers, including:
+Di repository show different MCP servers, including:
 
 1. **Official Microsoft MCP Servers**:
    - Microsoft Learn Docs MCP Server
@@ -343,14 +343,14 @@ Di repository introduce different MCP servers, including:
 
 ## Contributing
 
-Dis repository dey welcome contributions from di community. See di Community Contributions section for example on how to contribute well-well to di MCP ecosystem.
+Dis repository dey welcome contributions from di community. See di Community Contributions section for how to contribute well to di MCP ecosystem.
 
 ----
 
-*Dis study guide last update na September 9, 2026. E dey reflect MCP
+*Dis study guide last update na September 9, 2026. E reflect MCP
 Specification `2026-07-28`, di current protocol revision. Some hands-on
-examples still dey version `2025-11-25` but their SDKs and tools
-don begin use di stateless protocol APIs.*
+examples still get explicit version `2025-11-25` while dia SDKs and tools
+dey adopt di stateless protocol APIs.*
 
 ---
 

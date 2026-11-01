@@ -1,43 +1,43 @@
-Siin on näide, mis demonstreerib MCP rakendust
+Siin on näide, mis demonstreerib MCP-rakendust
 
-## Paigalda
+## Paigaldus 
 
-1. Liigu *mcp-app* kausta
-1. Käivita `npm install`, see peaks paigaldama frontendi ja backendi sõltuvused
+1. Navigeerige kausta *mcp-app*
+1. Käivitage `npm install`, see peaks installima frontend- ja backend-sõltuvused
 
-Kontrolli backendi kompileerimist, käivitades:
+Kinnitage, et backend kompileerub, käivitades:
 
 ```sh
 npx tsc --noEmit
 ```
 
-Kui kõik on korras, ei tohiks mingit väljundit tulla.
+Kui kõik on korras, ei tohiks mingit väljundit olla.
 
 ## Käivita backend
 
-> Windows arvutis nõuab see natuke lisatööd, sest MCP rakenduste lahendus kasutab `concurrently` raamatukogu, mille asemele pead leidma alternatiivi. Siin on süüdlane rida *package.json* failis MCP rakenduses:
+> Selleks kulub natuke lisatööd, kui töötate Windowsi masinal, kuna MCP Apps lahendus kasutab käitamiseks `concurrently` teeki, mille jaoks peate leidma asendaja. Siin on problemaatiline rida *package.json*-s MCP rakenduses:
 
-    ```json
-    "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
-    ```
+```json
+"start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
+```
 
-Sellel rakendusel on kaks osa, backend osa ja host osa.
+Sellel rakendusel on kaks osa: backend-osa ja host-osa.
 
-Käivita backend käsuga:
+Käivitage backend, kutsudes:
 
 ```sh
 npm start
 ```
 
-See peaks käivitama backendi aadressil `http://localhost:3001/mcp`.
+See peaks käivitama backendi aadressil `http://localhost:3001/mcp`. 
 
-> Märkus, kui sa töötad Codespace keskkonnas, võid pärast vajada pordi nähtavuse seadistamist avalikuks. Kontrolli, kas saad brauseris endpointsi kätte aadressilt https://<name of Codespace>.app.github.dev/mcp
+> Märkus: kui olete Codespace'is, võib teil olla vaja seada pordi nähtavus avalikuks. Kontrollige, et pääsete brauseris lõpp-punktile kaudu https://<name of Codespace>.app.github.dev/mcp
 
-## Valik -1 Testi rakendust Visual Studio Code’is
+## Valik -1 Testi rakendust Visual Studio Code'is
 
-Lahenduse testimiseks Visual Studio Code’is tee järgmist:
+Lahenduse testimiseks Visual Studio Code'is tehke järgmist:
 
-- Lisa serveri kirje `mcp.json` faili nii:
+- Lisage serveri kirje faili `mcp.json` järgmiselt:
 
     ```json
     {
@@ -51,62 +51,62 @@ Lahenduse testimiseks Visual Studio Code’is tee järgmist:
     }
     ```
 
-1. Vajuta "start" nuppu *mcp.json* failis
-1. Veendu, et vestlusaken on avatud ja tipi `get-faq`, peaksid nägema tulemust nagu allpool:
+1. Klõpsake *mcp.json*-s nuppu "start"
+1. Veenduge, et vestlusaken on avatud ja tippige `get-faq`, näete tulemust umbes nii:
 
-    ![Visual Studio Code MCP Apps](../../../../../../translated_images/et/vscode-ui.f2771dcfce25ca0f.webp)
+    ![Visual Studio Code MCP-rakendused](../../../../../../translated_images/et/vscode-ui.f2771dcfce25ca0f.webp)
 
 ## Valik -2- Testi rakendust hostiga
 
-Repo <https://github.com/modelcontextprotocol/ext-apps> sisaldab mitmeid erinevaid hoste, mida saad kasutada oma MVP rakenduste testimiseks.
+Repo <https://github.com/modelcontextprotocol/ext-apps> sisaldab mitmeid erinevaid hoste, mida saate kasutada oma MVP-rakenduste testimiseks. 
 
-Siin tutvustame kahte erinevat võimalust:
+Siin esitame teile kaks erinevat võimalust:
 
 ### Kohalik masin
 
-- Liigu *ext-apps* kausta pärast repositooriumi kloonimist.
+- Navigeerige kausta *ext-apps* pärast repo kloonimist.
 
-- Paigalda sõltuvused
+- Paigaldage sõltuvused
 
    ```sh
    npm install
    ```
 
-- Teises terminaliaknas liigu *ext-apps/examples/basic-host* kausta
+- Teises terminali aknas navigeerige kausta *ext-apps/examples/basic-host*
 
-    > Kui kasutad Codespace’i, pead minema serve.ts faili reale 27 ja asendama http://localhost:3001/mcp oma Codespace URL-iga backendile, näiteks https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > kui olete Codespace'is, peate navigeerima failile serve.ts real 27 ja asendama http://localhost:3001/mcp oma Codespace'i backend'i URL-iga, näiteks https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
 
-- Käivita host:
+- Käivitage host:
 
     ```sh
     npm start
     ```
 
-    See peaks ühendama hosti backendiga ja sa peaksid nägema rakenduse töös järgmiselt:
+    See peaks ühendama hosti backendiga ja te peaksite nägema rakendust töötamas umbes nii:
 
-    ![App running](../../../../../../translated_images/et/mcp-app.50dd20a779bea32f.webp)
+    ![Rakendus töötab](../../../../../../translated_images/et/mcp-app.50dd20a779bea32f.webp)
 
 ### Codespace
 
-Codespace keskkonna tööle saamine nõuab veidi lisatööd. Host’i kasutamiseks läbi Codespace’i:
+Codespace'i keskkonna tööle saamine nõuab veidi lisatööd. Host'i kasutamiseks läbi Codespace'i: 
 
-- Mine *ext-apps* kausta ja sealt *examples/basic-host* alla. 
-- Käivita `npm install`, et paigaldada sõltuvused
-- Käivita `npm start`, et käivitada host.
+- Vaadake kataloogi *ext-apps* ja navigeerige *examples/basic-host*. 
+- Käivitage `npm install`, et installida sõltuvused
+- Käivitage `npm start`, et käivitada host.
 
-## Testi rakendust
+## Katsetage rakendust
 
-Proovi rakendust järgmiselt:
+Proovige rakendust järgmisel viisil:
 
-- Vali "Call Tool" nupp ja peaksid nägema tulemusi nagu allpool:
+- Valige nupp "Call Tool" ja peaksite nägema tulemusi järgmiselt:
 
-    ![Tool result](../../../../../../translated_images/et/tool-result.cfec4814ce8e0146.webp)
+    ![Tööriista tulemus](../../../../../../translated_images/et/tool-result.cfec4814ce8e0146.webp)
 
 Suurepärane, kõik töötab.
 
 ---
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Vastutusest loobumine**:
-See dokument on tõlgitud kasutades tehisintellekti tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi püüame tagada täpsust, palun arvestage, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Tähtsa teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta ühegi arusaamatuse või valesti mõistmise eest, mis võivad tekkida selle tõlke kasutamisest.
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

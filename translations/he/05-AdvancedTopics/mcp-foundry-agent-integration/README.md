@@ -1,59 +1,59 @@
-# אינטגרציה של פרוטוקול הקשר למודל (MCP) עם Microsoft Foundry
+# אינטגרציה של פרוטוקול הקשר דגם (MCP) עם Microsoft Foundry
 
-מדריך זה מדגים כיצד לאינטגרציה של שרתי Model Context Protocol (MCP) עם סוכני Microsoft Foundry, המאפשר אורכסטרציה מתקדמת של כלים ויכולות AI ארגוניות חזקות.
+מדריך זה מדגים כיצד לשלב שרתי פרוטוקול הקשר דגם (MCP) עם סוכני Microsoft Foundry, המאפשרים אורקסטרציה חזקה של כלים ויכולות AI ארגוניות.
 
-## מבוא
+## הקדמה
 
-Model Context Protocol (MCP) הוא תקן פתוח המאפשר לאפליקציות AI להתחבר בצורה מאובטחת למקורות נתונים וכלים חיצוניים. בעת אינטגרציה עם Microsoft Foundry, MCP מאפשר לסוכנים לגשת לאינטראקציה עם שירותים חיצוניים שונים, ממשקי API ומקורות נתונים בצורה סטנדרטית.
+פרוטוקול הקשר דגם (MCP) הוא תקן פתוח המאפשר לאפליקציות AI להתחבר בצורה מאובטחת למקורות נתונים וכלים חיצוניים. כאשר משולב עם Microsoft Foundry, MCP מאפשר לסוכנים לגשת ולפעול עם שירותים חיצוניים, API ומקורות נתונים שונים בצורה סטנדרטית.
 
-אינטגרציה זו משלבת את הגמישות של אקוסיסטם הכלים של MCP עם מסגרת הסוכנים החזקה של Microsoft Foundry, ומספקת פתרונות AI מדרגת ארגון עם יכולות התאמה אישית נרחבות.
+אינטגרציה זו משלבת את הגמישות של אקוסיסטם הכלים של MCP עם מסגרת הסוכנים החזקה של Microsoft Foundry, ומספקת פתרונות AI ברמת ארגונים עם יכולות התאמה נרחבות.
 
-**הערה:** אם ברצונך להשתמש ב-MCP בשירות סוכן Microsoft Foundry, כרגע נתמכים רק האזורים הבאים: westus, westus2, uaenorth, southindia ו-switzerlandnorth
+> **הערה:** אם ברצונך להשתמש ב-MCP בשירות הסוכן של Microsoft Foundry, כרגע נתמכות רק האזורים הבאים: westus, westus2, uaenorth, southindia ו-switzerlandnorth
 
-## יעדי הלמידה
+## מטרות הלמידה
 
-עם סיום מדריך זה, תוכל:
+בסיום מדריך זה תוכל:
 
-- להבין את פרוטוקול הקשר למודל ואת יתרונותיו
+- להבין את פרוטוקול הקשר דגם ואת היתרונות שלו
 - להגדיר שרתי MCP לשימוש עם סוכני Microsoft Foundry
 - ליצור ולהגדיר סוכנים עם אינטגרציית כלי MCP
 - ליישם דוגמאות מעשיות באמצעות שרתי MCP אמיתיים
-- לטפל בתגובות כלים וציטוטים בשיחות סוכן
+- לטפל בתגובות כלים ובקישורים בשיחות סוכן
 
 ## דרישות מוקדמות
 
-לפני שתתחיל, ודא שיש לך:
+לפני ההתחלה, ודא שיש לך:
 
-- מנוי Azure עם גישה ל-Microsoft Foundry
+- חשבון Azure עם גישה ל-Microsoft Foundry
 - Python 3.10+ או .NET 8.0+
 - Azure CLI מותקן ומוגדר
 - הרשאות מתאימות ליצירת משאבי AI
 
-## מהו פרוטוקול הקשר למודל (MCP)?
+## מהו פרוטוקול הקשר דגם (MCP)?
 
-Model Context Protocol הוא דרך סטנדרטית לאפליקציות AI להתחבר למקורות נתונים וכלים חיצוניים. היתרונות המרכזיים כוללים:
+פרוטוקול הקשר דגם הוא דרך סטנדרטית לאפליקציות AI להתחבר למקורות נתונים וכלים חיצוניים. היתרונות המרכזיים כוללים:
 
 - **אינטגרציה סטנדרטית**: ממשק עקבי בין כלים ושירותים שונים
 - **אבטחה**: מנגנוני אימות והרשאה מאובטחים
-- **גמישות**: תמיכה במקורות נתונים שונים, ממשקי API וכלים מותאמים אישית
-- **הרחבה**: קלות הוספת יכולות ואינטגרציות חדשות
+- **גמישות**: תמיכה במקורות נתונים שונים, API, וכלים מותאמים אישית
+- **הרחבה**: קל להוסיף יכולות ואינטגרציות חדשות
 
 ## הגדרת MCP עם Microsoft Foundry
 
-### הגדרת סביבה
+### קונפיגורציית סביבה
 
 בחר את סביבת הפיתוח המועדפת עליך:
 
-- [יישום ב-Python](#יישום-ב-python)
-- [יישום ב-.NET](#codeblock5)
+- [מימוש ב-Python](#python-implementation)
+- [מימוש ב-.NET](#net-implementation)
 
 ---
 
-## יישום ב-Python
+## מימוש בפייתון
 
-***הערה*** ניתן להריץ את [פנקס הרשימות](./mcp_support_python.ipynb)
+***הערה*** ניתן להריץ את ה-[פנקס](./mcp_support_python.ipynb) הזה
 
-### 1. התקנת חבילות נדרשות
+### 1. התקנת חבילות דרושות
 
 ```bash
 pip install azure-ai-projects -U
@@ -62,7 +62,7 @@ pip install azure-identity -U
 pip install mcp==1.11.0 -U
 ```
 
-### 2. ייבוא תלויות
+### 2. ייבוא תלותים
 
 ```python
 import os, time
@@ -71,14 +71,14 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 ```
 
-### 3. קביעת הגדרות MCP
+### 3. הגדרת הגדרות MCP
 
 ```python
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
 
-### 4. התחלת לקוח פרויקט
+### 4. אתחול לקוח פרויקט
 
 ```python
 project_client = AIProjectClient(
@@ -93,17 +93,17 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # אופציונלי: ציין את הכלים המותרים
+    allowed_tools=[],  # Optional: specify allowed tools
 )
 ```
 
-### 6. דוגמה מלאה ב-Python
+### 6. דוגמה מלאה בפייתון
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # צור סוכן חדש עם כלים של MCP
+    # Create a new agent with MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # צור נושא לתקשורת
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # צור הודעה לנושא
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # נהל אישורי כלים והפעל את הסוכן
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # הצג שיחה
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -178,25 +178,25 @@ with project_client:
 
 ---
 
-## יישום ב-.NET
+## מימוש ב-.NET
 
-***הערה*** ניתן להריץ את [פנקס הרשימות](./mcp_support_dotnet.ipynb)
+***הערה*** ניתן להריץ את ה-[פנקס](./mcp_support_dotnet.ipynb) הזה
 
-### 1. התקנת חבילות נדרשות
+### 1. התקנת חבילות דרושות
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
 #r "nuget: Azure.Identity, 1.14.2"
 ```
 
-### 2. ייבוא תלויות
+### 2. ייבוא תלותים
 
 ```csharp
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 ```
 
-### 3. קביעת הגדרות
+### 3. הגדרת הגדרות
 
 ```csharp
 var projectEndpoint = "https://your-project-endpoint.services.ai.azure.com/api/projects/your-project";
@@ -297,21 +297,21 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## אפשרויות קונפיגורציית כלי MCP
+## אפשרויות קונפיגורציה של כלי MCP
 
-בעת קונפיגורציית כלי MCP עבור הסוכן שלך, תוכל לציין כמה פרמטרים חשובים:
+בעת קונפיגורציה של כלי MCP לסוכן שלך, תוכל לציין כמה פרמטרים חשובים:
 
-### קונפיגורציית Python
+### קונפיגורציה בפייתון
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # מזהה עבור שרת MCP
-    server_url="https://api.example.com/mcp", # נקודת הקצה של שרת MCP
-    allowed_tools=[],                       # אופציונלי: ציין כלים מותרים
+    server_label="unique_server_name",      # Identifier for the MCP server
+    server_url="https://api.example.com/mcp", # MCP server endpoint
+    allowed_tools=[],                       # Optional: specify allowed tools
 )
 ```
 
-### קונפיגורציית .NET
+### קונפיגורציה ב-.NET
 
 ```csharp
 MCPToolDefinition mcpTool = new(
@@ -322,9 +322,9 @@ MCPToolDefinition mcpTool = new(
 
 ## אימות וכותרות
 
-שתי היישומים תומכים בכותרות מותאמות אישית לאימות:
+שני המימושים תומכים בכותרות מותאמות אישית לאימות:
 
-### Python
+### פייתון
 ```python
 mcp_tool.update_headers("SuperSecret", "123456")
 ```
@@ -338,39 +338,39 @@ mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ## פתרון בעיות נפוצות
 
 ### 1. בעיות חיבור
-- ודא שכתובת ה-URL של שרת MCP נגישה
-- בדוק את אישורי האימות
-- וודא קישוריות רשת
+- בדוק שניתן לגשת לכתובת ה-URL של שרת MCP
+- בדוק את פרטי האימות
+- ודא קישוריות רשת תקינה
 
-### 2. כישלונות קריאת הכלי
-- בדוק ארגומנטים וכללי עיצוב של הכלי
+### 2. כשלים בקריאת כלי
+- בדוק את ארגומנטים הכלי והפורמט שלהם
 - בדוק דרישות ספציפיות לשרת
-- טפל בשגיאות כראוי
+- יישם טיפול שגיאות מתאים
 
 ### 3. בעיות ביצועים
-- אופטימיזציה של תדירות קריאת הכלים
-- יישום זיכרון מטמון במידת הצורך
-- נטר זמני תגובת שרת
+- אופטימיזציה של תדירות קריאות הכלי
+- הפעל מטמון במידת הצורך
+- מעקב אחר זמני תגובת שרת
 
-## הצעדים הבאים
+## שלבים הבאים
 
-להרחבת האינטגרציה עם MCP:
+לשדרג את האינטגרציה עם MCP:
 
-1. **חקור שרתי MCP מותאמים אישית**: בנה שרתי MCP משלך למקורות נתונים פרטיים
-2. **יישם אבטחה מתקדמת**: הוסף מנגנוני OAuth2 או אימות מותאמים אישית
-3. **ניטור וניתוח**: יישם רישום ומעקב על שימוש בכלים
-4. **סקייל את הפתרון שלך**: שקול איזון עומסים וארכיטקטורות שרתים מפוזרים של MCP
+1. **חקור שרתי MCP מותאמים אישית**: בנה שרתי MCP משלך למקורות נתונים קנייניים
+2. **מימוש אבטחה מתקדמת**: הוסף מנגנוני OAuth2 או אימות מותאם אישית
+3. **ניטור וניתוח**: יישם רישום ומעקב לשימוש בכלים
+4. **הגדלת סקייל של הפתרון**: שקול איזון עומסים ומבני שרתי MCP מבוזרים
 
 ## משאבים נוספים
 
 - [תיעוד Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
-- [דוגמאות פרוטוקול הקשר למודל](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [דוגמאות פרוטוקול הקשר דגם](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [סקירת סוכני Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/)
-- [מפרט MCP](https://spec.modelcontextprotocol.io/)
+- [מפרט MCP](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## תמיכה
 
-לתמיכה ושאלות נוספות:
+לתמיכה נוספת ושאלות:
 - עיין ב-[תיעוד Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/)
 - בדוק את [משאבי קהילת MCP](https://modelcontextprotocol.io/)
 

@@ -1,39 +1,44 @@
-# MCP Protocol Features Deep Dive
+# Khám Phá Sâu Các Tính Năng Giao Thức MCP
 
-Hướng dẫn này khám phá các tính năng nâng cao của giao thức MCP vượt ra ngoài việc xử lý công cụ và tài nguyên cơ bản. Hiểu được các tính năng này giúp bạn xây dựng các máy chủ MCP mạnh mẽ hơn, thân thiện với người dùng và sẵn sàng cho sản xuất.
+Hướng dẫn này khám phá các tính năng nâng cao của giao thức MCP vượt ra ngoài việc xử lý công cụ và tài nguyên cơ bản. Hiểu các tính năng này giúp bạn xây dựng các máy chủ MCP mạnh mẽ hơn, thân thiện với người dùng và sẵn sàng cho môi trường sản xuất.
 
-> **Nhìn về phía trước:** phiên bản ứng cử viên phát hành `2026-07-28` ngừng sử dụng nguyên thủy Logging (ưu tiên `stderr` cho stdio và OpenTelemetry cho khả năng quan sát cấu trúc), loại bỏ mô hình `initialize`/phiên làm việc được tham chiếu trong Sự kiện Chu kỳ Máy chủ dưới đây, và chuyển tính năng Tasks thử nghiệm sang phần mở rộng Tasks riêng biệt với vòng đời mới `tasks/get`/`tasks/update`/`tasks/cancel`. Xem thêm [Chuyện gì thay đổi trong MCP: Phiên bản ứng cử viên phát hành 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **Phạm vi MCP `2026-07-28`:** khởi động và tắt bộ xử lý máy chủ vẫn là
+> mối quan tâm của ứng dụng, nhưng vòng bắt tay `initialize` và các phiên mức giao thức
+> đã bị loại bỏ. Phần Ghi nhật ký bên dưới được giữ lại cho các triển khai kế thừa;
+> các máy chủ mới nên sử dụng `stderr` hoặc OpenTelemetry. Tasks hiện nay là
+> một tiện ích mở rộng có phiên bản riêng biệt. Xem
+> [Có Gì Thay Đổi Trong MCP: Bản Đặc Tả 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Các Tính Năng Được Đề Cập
 
-1. **Thông báo tiến trình** - Báo cáo tiến trình cho các hoạt động chạy lâu
-2. **Hủy yêu cầu** - Cho phép khách hàng hủy các yêu cầu đang xử lý
-3. **Mẫu tài nguyên** - URI tài nguyên động với tham số
-4. **Sự kiện Chu kỳ Máy chủ** - Khởi tạo và tắt máy đúng cách
-5. **Điều khiển ghi nhật ký** - Cấu hình ghi nhật ký phía máy chủ
-6. **Mẫu xử lý lỗi** - Phản hồi lỗi nhất quán
+1. **Thông Báo Tiến Trình** - Báo cáo tiến độ cho các thao tác chạy lâu
+2. **Hủy Yêu Cầu** - Cho phép khách hàng hủy các yêu cầu đang xử lý
+3. **Mẫu Tài Nguyên** - Địa chỉ URI tài nguyên động với tham số
+4. **Vòng Đời Ứng Dụng** - Khởi động và tắt bộ xử lý máy chủ
+5. **Kiểm Soát Ghi Nhật Ký (Kế Thừa)** - Cấu hình ghi nhật ký MCP cũ không còn dùng
+6. **Mẫu Xử Lý Lỗi** - Phản hồi lỗi nhất quán
 
 ---
 
-## 1. Thông báo tiến trình
+## 1. Thông Báo Tiến Trình
 
-Đối với các hoạt động mất thời gian (xử lý dữ liệu, tải xuống tập tin, gọi API), thông báo tiến trình giữ người dùng được cập nhật.
+Đối với các thao tác mất thời gian (xử lý dữ liệu, tải file, gọi API), thông báo tiến trình giúp người dùng cập nhật thông tin.
 
-### Hoạt động như thế nào
+### Cách Hoạt Động
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (thao tác dài)
-    Server-->>Client: thông báo: tiến trình 10%
-    Server-->>Client: thông báo: tiến trình 50%
-    Server-->>Client: thông báo: tiến trình 90%
-    Server->>Client: kết quả (hoàn thành)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
 
-### Triển khai Python
+### Triển Khai Python
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Lấy kích thước tệp để tính tiến trình
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Xử lý khối dữ liệu
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Gửi thông báo tiến trình
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Báo cáo tiến trình sau mỗi mục
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -93,7 +98,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     return f"Completed {total} items"
 ```
 
-### Triển khai TypeScript
+### Triển Khai TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Gửi thông báo tiến trình
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -126,7 +131,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
 });
 ```
 
-### Xử lý bên khách hàng (Python)
+### Xử Lý Khách Hàng (Python)
 
 ```python
 async def handle_progress(notification):
@@ -134,20 +139,20 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Đăng ký bộ xử lý
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Gọi công cụ (cập nhật tiến trình sẽ đến thông qua bộ xử lý)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
 ---
 
-## 2. Hủy yêu cầu
+## 2. Hủy Yêu Cầu
 
 Cho phép khách hàng hủy các yêu cầu không còn cần thiết hoặc mất quá nhiều thời gian.
 
-### Triển khai Python
+### Triển Khai Python
 
 ```python
 from mcp.server import Server
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Tìm kiếm qua nhiều trang
-            # Kiểm tra xem có yêu cầu hủy không
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Mô phỏng tìm kiếm trang
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Trễ nhỏ cho phép kiểm tra hủy
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Trả về kết quả một phần
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -201,7 +206,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### Triển khai bối cảnh hủy
+### Triển Khai Ngữ Cảnh Hủy
 
 ```python
 class CancellableContext:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Hết thời gian bình thường, tiếp tục
+            pass  # Normal timeout, continue
 ```
 
-### Hủy phía khách hàng
+### Hủy Ở Phía Khách Hàng
 
 ```python
 import asyncio
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Yêu cầu hủy bỏ
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -263,11 +268,11 @@ async def search_with_timeout(session, query, timeout=30):
 
 ---
 
-## 3. Mẫu tài nguyên
+## 3. Mẫu Tài Nguyên
 
-Mẫu tài nguyên cho phép xây dựng URI động với tham số, hữu ích cho API và cơ sở dữ liệu.
+Mẫu tài nguyên cho phép xây dựng URI động với các tham số, hữu ích cho API và cơ sở dữ liệu.
 
-### Định nghĩa mẫu
+### Định Nghĩa Mẫu
 
 ```python
 from mcp.server import Server
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Phân tích URI để trích xuất các tham số
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -320,7 +325,7 @@ async def read_resource(uri: str) -> str:
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
 
-### Triển khai TypeScript
+### Triển Khai TypeScript
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Phân tích URI của vấn đề GitHub
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,11 +370,13 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Sự kiện Chu kỳ Máy chủ
+## 4. Vòng Đời Ứng Dụng
 
-Xử lý khởi tạo và tắt máy đúng cách đảm bảo quản lý tài nguyên sạch sẽ.
+Phần này đề cập đến khởi động và tắt bộ xử lý ứng dụng, không liên quan đến vòng bắt tay MCP `initialize` đã bị loại bỏ. Xử lý vòng đời đúng cách đảm bảo quản lý tài nguyên sạch sẽ.
 
-### Quản lý chu kỳ mẫu Python
+### Quản Lý Vòng Đời Python
+
+
 
 ```python
 from mcp.server import Server
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Trạng thái chia sẻ
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Khởi động
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Máy chủ chạy ở đây
+    yield  # Server runs here
     
-    # Tắt máy
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -409,7 +416,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### Chu kỳ mẫu TypeScript
+### Vòng đời TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // Khởi tạo tài nguyên
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Khởi động máy chủ
+    // Start server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Dọn dẹp tài nguyên
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Sử dụng this.dbConnection một cách an toàn
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Sử dụng với việc tắt máy khéo léo
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Điều khiển ghi nhật ký
+## 5. Kiểm soát Ghi nhật ký (Di sản)
 
-MCP hỗ trợ mức độ ghi nhật ký phía máy chủ mà khách hàng có thể điều khiển.
+> [!WARNING]
+> MCP Logging bị lỗi thời trong `2026-07-28` và có thể bị loại bỏ trong
+> lần sửa đổi đặc tả đầu tiên phát hành vào hoặc sau ngày 28 tháng 7 năm 2027. Các ví dụ
+> dưới đây dành cho tương thích với các triển khai cũ hơn. Sử dụng `stderr` với
+> stdio và OpenTelemetry để quan sát có cấu trúc trong các máy chủ mới.
 
-### Triển khai mức ghi nhật ký
+Các phiên bản MCP kế thừa hỗ trợ các mức ghi nhật ký phía máy chủ mà các client có thể điều khiển.
+
+### Triển khai Các Mức Ghi Nhật Ký
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Ánh xạ các cấp độ MCP sang các cấp độ ghi nhật ký của Python
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -512,20 +525,20 @@ async def debug_operation(data: str) -> str:
         raise
 ```
 
-### Gửi thông báo ghi nhật ký đến khách hàng
+### Gửi Thông điệp Nhật ký tới Client
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Gửi thông báo nhật ký đến khách hàng
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Thực hiện công việc...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -538,9 +551,9 @@ async def complex_operation(input: str, ctx) -> str:
 
 ---
 
-## 6. Mẫu xử lý lỗi
+## 6. Các Mẫu Xử lý Lỗi
 
-Xử lý lỗi nhất quán cải thiện gỡ lỗi và trải nghiệm người dùng.
+Xử lý lỗi nhất quán cải thiện việc gỡ lỗi và trải nghiệm người dùng.
 
 ### Mã lỗi MCP
 
@@ -579,7 +592,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Xác thực đầu vào
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Kiểm tra quyền
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Thực hiện thao tác
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,7 +617,7 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Ghi nhận lỗi không mong muốn
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Thêm xác thực...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Đã là lỗi MCP
+      throw error;  // Already an MCP error
     }
     
-    // Chuyển đổi các lỗi khác
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Lỗi không xác định
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,65 +669,35 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Các Tính Năng Thử Nghiệm (MCP 2025-11-25)
+## Các Tính năng Nhạy phiên bản
 
-Các tính năng này được đánh dấu là thử nghiệm trong đặc tả:
+### Phần mở rộng Nhiệm vụ
 
-### Tasks (Các hoạt động chạy lâu)
+Nhiệm vụ là phần mở rộng chính thức, có phiên bản riêng trong MCP `2026-07-28`. Một
+máy chủ có thể trả về một tay cầm nhiệm vụ từ cuộc gọi công cụ, và client điều khiển nhiệm vụ
+với `tasks/get`, `tasks/update` và `tasks/cancel`. API Nhiệm vụ thử nghiệm
+`2025-11-25` không tương thích ngược, và `tasks/list` không còn tồn tại.
 
-```python
-# Các tác vụ cho phép theo dõi các hoạt động chạy dài với trạng thái
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Báo cáo tác vụ đã bắt đầu
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Vòng lặp đào tạo
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
 
-### Ghi chú công cụ
+### Chú thích Công cụ
 
-```python
-# Chú thích cung cấp siêu dữ liệu về hành vi công cụ
-@app.tool(
-    annotations={
-        "destructive": False,      # Không sửa đổi dữ liệu
-        "idempotent": True,        # An toàn để thử lại
-        "timeout_seconds": 30,     # Thời gian tối đa dự kiến
-        "requires_approval": False # Không cần sự chấp thuận của người dùng
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Chú thích công cụ mô tả hành vi như chỉ đọc, phá hủy, bất biến,
+hoặc hoạt động thế giới mở. Chúng là gợi ý và không được coi là ủy quyền đáng tin cậy
+hoặc bảo đảm an toàn trừ khi chúng đến từ máy chủ đáng tin cậy.
 
 ---
 
-## Tiếp theo
+## Tiếp theo là gì
 
 - [Module 8 - Thực hành tốt nhất](../../08-BestPractices/README.md)
-- [5.14 - Kỹ thuật bối cảnh](../mcp-contextengineering/README.md)
-- [Nhật ký thay đổi đặc tả MCP](https://spec.modelcontextprotocol.io/)
+- [5.14 - Kỹ thuật Ngữ cảnh](../mcp-contextengineering/README.md)
+- [Nhật ký thay đổi Đặc tả MCP](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Tài nguyên bổ sung
 
-- [Đặc tả MCP 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)
+- [Đặc tả MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
 - [Mã lỗi JSON-RPC 2.0](https://www.jsonrpc.org/specification#error_object)
 - [Ví dụ SDK Python](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [Ví dụ SDK TypeScript](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)

@@ -1,35 +1,49 @@
 # Pokretanje ovog primjera
 
-Preporučuje se instalirati `uv`, ali nije obavezno, pogledajte [upute](https://docs.astral.sh/uv/#highlights)
+Preporučuje se instalacija `uv`, ali nije obavezno, vidi [upute](https://docs.astral.sh/uv/#highlights)
 
-## -0- Kreirajte virtualno okruženje
+## -0- Kreiraj virtualno okruženje
 
 ```bash
 python -m venv venv
 ```
 
-## -1- Aktivirajte virtualno okruženje
+## -1- Aktiviraj virtualno okruženje
 
 ```bash
 venv\Scrips\activate
 ```
 
-## -2- Instalirajte ovisnosti
+## -2- Instaliraj ovisnosti
 
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Pokrenite primjer
+## -3- Konfiguriraj Microsoft Foundry
+
+Postavi aktivni model poput `gpt-5.1` u Microsoft Foundry, zatim postavi:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` je naziv implementacije, koji se može razlikovati od
+imena osnovnog modela. Pregledajte
+[raspored ukidanja Microsoft Foundry modela](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+prije odabira modela.
+
+## -4- Pokreni primjer
 
 
 ```bash
 python client.py
 ```
 
-Trebali biste vidjeti izlaz sličan ovom:
+Trebali biste vidjeti izlaz sličan:
 
 ```text
 LISTING RESOURCES
@@ -46,5 +60,9 @@ TOOL:  {'function': {'arguments': '{"a":2,"b":20}', 'name': 'add'}, 'id': 'call_
 TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 ```
 
-**Odricanje od odgovornosti**:  
-Ovaj dokument je preveden korištenjem AI usluge za prevođenje [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati pogreške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za kritične informacije preporučuje se profesionalni ljudski prijevod. Ne snosimo odgovornost za bilo kakva nesporazume ili pogrešna tumačenja koja proizlaze iz korištenja ovog prijevoda.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Napomena**:
+Ovaj dokument je preveden korištenjem AI prevoditeljskog servisa [Co-op Translator](https://github.com/Azure/co-op-translator). Iako težimo točnosti, imajte na umu da automatski prijevodi mogu sadržavati greške ili netočnosti. Izvorni dokument na izvornom jeziku treba smatrati autoritativnim izvorom. Za važne informacije preporuča se profesionalni ljudski prijevod. Nismo odgovorni za bilo kakva nesporazumevanja ili pogrešne interpretacije koje proizlaze iz korištenja ovog prijevoda.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

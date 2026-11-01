@@ -1,22 +1,28 @@
 # இந்த மாதிரியை இயக்குதல்
 
-இது LLM கிளையண்ட் மாதிரிக்கான ரஸ்ட் தீர்வு ஆகும். உங்களுக்கு ஒரு ரஸ்ட் கருவி சங்கிலி நிறுவப்பட்டிருக்க வேண்டும்; [அதிகாரபூர்வ நிறுவல் வழிகாட்டு](https://www.rust-lang.org/tools/install) கையை பார்க்கவும்.
+இது LLM கிளையன்ட் எடுத்துக்காட்டிற்கான Rust தீர்வு. உங்கள் கணினியில் Rust டூல்செயின் நிறுவப்பட்டிருக்க வேண்டும்; [அதிகாரபூர்வ நிறுவல் வழிகாட்டியை](https://www.rust-lang.org/tools/install) பார்க்கவும்.
 
-கிளையண்ட் GitHub Models inference முடிவுறுப்பு (`https://models.github.ai/inference/chat`) வழியாக ஒரு மாதிரியை அழைக்கிறது மற்றும் உங்கள் GitHub தனிப்பட்ட அணுகல் டோக்கனை (PAT) `OPENAI_API_KEY` சுற்றுச் சூழல் மாறிலியில் இருந்து வாசிக்கிறது.
+கிளையன்ட் Azure OpenAI வழியாக வெளியிடப்பட்ட Microsoft Foundry
+மாடலை v1 endpoint மூலம் அழைக்கிறது.
 
 > [!NOTE]
-> இந்த ரிபோவில் உள்ள பிற தீர்வுகள் `GITHUB_TOKEN` பயன்படுத்துகின்றன. ரஸ்ட் க்கு, OpenAI கிளையண்ட் உள்ளமைவுக்கு பொருந்த `OPENAI_API_KEY` ஐ அதே மதிப்பாக அமைக்கவும்.
+> கொடுக்கப்பட்ட மதிப்பு `model` என்பது உங்கள் Foundry டெப்ளாய்மெண்ட் பெயர்,
+> அது அவசியமாய் அடிப்படை மாதிரி பெயர் ஆக இருக்காது.
 
-## -0- உங்கள் GitHub டோக்கனை அமைக்கவும்
+## -0- Microsoft Foundry ஐ அமைக்கவும்
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
-# பவர் ஷெல்
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+# PowerShell
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- மாதிரியை கட்டமைக்கவும்
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-கிளையண்ட் கால்குலேட்டர் MCP சர்வரை துவக்கி, அதன் கருவி பட்டியலை பெற்றுக்கொண்டு, மாதிரி (`openai/gpt-5-mini`) ஐ பயன்படுத்தி `add` கருவியை அழைக்கிறது. கருவி அழைப்பு (உதாரணமாக, "Calling tool: add") மற்றும் அந்த அழைப்பின் முடிவை நீங்கள் காண்பீர்கள்.
+கிளையன்ட் calculator MCP சர்வரை துவக்கி, அதன் கருவி பட்டியலை பெற்று, மற்றும்
+ஒப்படைக்கப்பட்ட மாதிரியை பயன்படுத்தி `add` கருவியை அழைக்கிறது. நீங்கள் வெளியீட்டில்
+கருவி அழைப்பு (உதாரணமாக, "Calling tool: add") மற்றும் அதன் அழைப்பின் முடிவை காணலாம்.
 
 ---
 

@@ -1,4 +1,4 @@
-# Optimizacija AI Radnih Tokova: Izrada MCP Servera s Microsoft Foundry Toolkit
+# Optimizacija AI radnih tokova: Izrada MCP poslužitelja s Microsoft Foundry Toolkit
 
 [![MCP Spec](https://img.shields.io/badge/MCP%20Spec-2025--11--25-blue.svg)](https://modelcontextprotocol.io/specification/2025-11-25/)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
@@ -10,108 +10,108 @@
 
 [![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/hr/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Kliknite na sliku iznad za prikaz video lekcije)_
+_(Kliknite sliku iznad za prikaz videozapisa ove lekcije)_
 
-Dobrodošli na **Model Context Protocol (MCP) radionicu**! Ova sveobuhvatna praktična radionica kombinira dvije vrhunske tehnologije koje revolucioniraju razvoj AI aplikacija:
+Dobrodošli u **Radionicu Model Context Protocol (MCP)**! Ova sveobuhvatna radionica s praktičnim primjenama spaja dvije vrhunske tehnologije za revoluciju u razvoju AI aplikacija:
 
-> **Napomena o kompatibilnosti:** kod radionice izgrađen je i testiran s MCP
-> `2025-11-25`, kao što pokazuje oznaka gore. Koristite
-> [trenutnu `2026-07-28` specifikaciju](https://modelcontextprotocol.io/specification/2026-07-28/)
-> za nove implementacije protokola i pregledajte SDK napomene o izdanju prije
-> migracije laboratorija.
+> **Napomena o kompatibilnosti:** kod radionice je izrađen i testiran s MCP
+> `2025-11-25`, kao što pokazuje značka iznad. Koristite
+> [trenutnu specifikaciju `2026-07-28`](https://modelcontextprotocol.io/specification/2026-07-28/)
+> za nove implementacije protokola i pregledajte bilješke o izdanju SDK-a prije
+> migracije radionica.
 
 - **🔗 Model Context Protocol (MCP)**: Otvoreni standard za besprijekornu integraciju AI alata
-- **🛠️ Microsoft Foundry Toolkit proširenje za VS Code**: Microsoftovo snažno proširenje za razvoj AI-ja
+- **🛠️ Microsoft Foundry Toolkit proširenje za VS Code**: Moćno Microsoftovo proširenje za razvoj AI-ja
 
 ### 🎓 Što ćete naučiti
 
-Do kraja ove radionice usavršit ćete izradu inteligentnih aplikacija koje povezuju AI modele s alatima i uslugama iz stvarnog svijeta. Od automatiziranog testiranja do prilagođenih API integracija, steći ćete praktične vještine za rješavanje složenih poslovnih izazova.
+Do kraja ove radionice, ovladat ćete izgradnjom inteligentnih aplikacija koje povezuju AI modele s alatima i uslugama iz stvarnog svijeta. Od automatiziranog testiranja do prilagođenih API integracija, steći ćete praktične vještine za rješavanje složenih poslovnih izazova.
 
-## 🏗️ Tehnološki Skup
+## 🏗️ Tehnološki paket
 
 ### 🔌 Model Context Protocol (MCP)
 
-MCP je **"USB-C za AI"** – univerzalni standard koji povezuje AI modele s vanjskim alatima i izvorima podataka.
+MCP je **"USB-C za AI"** - univerzalni standard koji povezuje AI modele s eksternim alatima i izvorima podataka.
 
-**✨ Ključne Značajke:**
+**✨ Ključne značajke:**
 
-- 🔄 **Standardizirana integracija**: Univerzalno sučelje za povezivanje AI alata
-- 🏛️ **Fleksibilna arhitektura**: Lokalne i udaljene poslužiteljske veze preko stdio/SSE prijenosa
-- 🧰 **Bogati ekosustav**: Alati, promptovi i resursi u jednom protokolu
+- 🔄 **Standardizirana integracija**: Univerzalno sučelje za veze AI-alata
+- 🏛️ **Fleksibilna arhitektura**: Lokalni i udaljeni poslužitelji putem stdio/SSE transporta
+- 🧰 **Bogati ekosustav**: Alati, upiti i resursi u jednom protokolu
 - 🔒 **Spreman za poduzeća**: Ugrađena sigurnost i pouzdanost
 
 **🎯 Zašto je MCP važan:**
-Baš kao što je USB-C uklonio nered kabela, MCP uklanja kompleksnost AI integracija. Jedan protokol, beskonačne mogućnosti.
+Kao što je USB-C eliminirao kaos s kablovima, MCP uklanja složenost AI integracija. Jedan protokol, beskrajne mogućnosti.
 
 ### 🤖 Microsoft Foundry Toolkit proširenje za VS Code
 
-Microsoftovo vodeće proširenje za razvoj AI-ja koje pretvara VS Code u AI snagu.
+Microsoftovo vodeće proširenje za razvoj AI-ja koje pretvara VS Code u AI moćnu platformu.
 
-**🚀 Osnovne funkcionalnosti:**
+**🚀 Najvažnije značajke:**
 
 - 📦 **Katalog modela**: Pristup modelima s Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Lokalna inferencija**: ONNX optimizirano izvođenje na CPU/GPU/NPU
-- 🏗️ **Agent Builder**: Vizualni razvoj AI agenta s MCP integracijom
-- 🎭 **Višestruki modaliteti**: Podrška za tekst, vid i strukturirane izlaze
+- ⚡ **Lokalno izvođenje**: ONNX-optimizirano izvođenje na CPU/GPU/NPU
+- 🏗️ **Agent Builder**: Vizualni razvoj AI agenata s MCP integracijom
+- 🎭 **Višestruki modalitet**: Podrška za tekst, vid i strukturirane izlaze
 
 **💡 Prednosti razvoja:**
 
-- Postavljanje modela bez konfiguracije
-- Vizualno inženjerstvo promptova
-- Okruženje za ispitivanje u stvarnom vremenu
-- Besprijekorna integracija MCP servera
+- Implementacija modela bez konfiguracije
+- Vizualno dizajniranje upita
+- Okruženje za testiranje u stvarnom vremenu
+- Besprijekorna MCP poslužiteljska integracija
 
 ## 📚 Put učenja
 
-### [🚀 Modul 1: Osnove Microsoft Foundry Toolkit](./lab1/README.md)
+### [🚀 Modul 1: Osnove Microsoft Foundry Toolkita](./lab1/README.md)
 
 **Trajanje**: 15 minuta
 
 - 🛠️ Instalirajte i konfigurirajte Microsoft Foundry Toolkit za VS Code
-- 🗂️ Istražite Katalog Modela (100+ modela s GitHub, ONNX, OpenAI, Anthropic, Google)
-- 🎮 Ovladavanje Interaktivnim Igralištem za testiranje modela u stvarnom vremenu
-- 🤖 Izradite svog prvog AI agenta s Agent Builderom
-- 📊 Ocijenite izvedbu modela s ugrađenim metrima (F1, relevantnost, sličnost, koherentnost)
-- ⚡ Naučite funkcionalnosti batch obrade i višemodalne podrške
+- 🗂️ Istražite Katalog modela (100+ modela s GitHub, ONNX, OpenAI, Anthropic, Google)
+- 🎮 Ovladavanje Interaktivnim okruženjem za testiranje modela u stvarnom vremenu
+- 🤖 Izgradite svog prvog AI agenta s Agent Builderom
+- 📊 Procijenite performanse modela s ugrađenim metrima (F1, relevantnost, sličnost, koherencija)
+- ⚡ Naučite o serijskoj obradi i podršci za višemodalitet
 
-**🎯 Ishod učenja**: Izradite funkcionalnog AI agenta s potpunim razumijevanjem mogućnosti Microsoft Foundry Toolkit
+**🎯 Ishod učenja**: Izradite funkcionalnog AI agenta s opsežnim razumijevanjem mogućnosti Microsoft Foundry Toolkita
 
-### [🌐 Modul 2: MCP s osnovama Microsoft Foundry Toolkit](./lab2/README.md)
+### [🌐 Modul 2: MCP s osnovama Microsoft Foundry Toolkita](./lab2/README.md)
 
 **Trajanje**: 20 minuta
 
 - 🧠 Ovladavanje arhitekturom i konceptima Model Context Protocol (MCP)
-- 🌐 Istraživanje Microsoftovog MCP server ekosustava
-- 🤖 Izrada agenta za automatizaciju preglednika koristeći Playwright MCP server
-- 🔧 Integracija MCP servera s Microsoft Foundry Toolkit Agent Builderom
-- 📊 Konfiguriranje i testiranje MCP alata u vašim agentima
-- 🚀 Izvoz i implementacija MCP ovlaštenih agenata za produkcijsku upotrebu
+- 🌐 Istražite Microsoftov MCP poslužiteljski ekosustav
+- 🤖 Izgradite agenta za automatizaciju preglednika koristeći Playwright MCP poslužitelj
+- 🔧 Integrirajte MCP poslužitelje s Microsoft Foundry Toolkit Agent Builderom
+- 📊 Konfigurirajte i testirajte MCP alate unutar svojih agenata
+- 🚀 Izvezite i implementirajte agente pokretane MCP-om za produkcijsko korištenje
 
-**🎯 Ishod učenja**: Implementirajte AI agenta s moćnim vanjskim alatima kroz MCP
+**🎯 Ishod učenja**: Implementirajte AI agenta pojačanog vanjskim alatima putem MCP-a
 
 ### [🔧 Modul 3: Napredni MCP razvoj s Microsoft Foundry Toolkit](./lab3/README.md)
 
 **Trajanje**: 20 minuta
 
-- 💻 Izrada prilagođenih MCP servera korištenjem Microsoft Foundry Toolkit
-- 🐍 Konfiguracija i korištenje najnovijeg MCP Python SDK (v1.9.3)
-- 🔍 Postavljanje i korištenje MCP Inspektora za otklanjanje pogrešaka
-- 🛠️ Izrada Weather MCP Servera s profesionalnim tokovima rada za otklanjanje pogrešaka
-- 🧪 Otklanjanje pogrešaka MCP servera u Agent Builder i Inspektor okruženjima
+- 💻 Izrada prilagođenih MCP poslužitelja pomoću Microsoft Foundry Toolkita
+- 🐍 Konfigurirajte i koristite najnoviji MCP Python SDK (v1.9.3)
+- 🔍 Postavite i koristite MCP Inspector za ispravljanje pogrešaka
+- 🛠️ Izgradite Weather MCP Server s profesionalnim tijekovima ispravljanja pogrešaka
+- 🧪 Ispravljajte MCP poslužitelje u okruženjima Agent Builder i Inspector
 
-**🎯 Ishod učenja**: Razvijajte i otklanjajte pogreške prilagođenih MCP servera s modernim alatima
+**🎯 Ishod učenja**: Razvijajte i otklanjajte pogreške prilagođenih MCP poslužitelja s modernim alatima
 
-### [🐙 Modul 4: Praktični MCP razvoj - Prilagođeni GitHub Clone Server](./lab4/README.md)
+### [🐙 Modul 4: Praktični MCP razvoj - Prilagođeni GitHub Clone poslužitelj](./lab4/README.md)
 
 **Trajanje**: 30 minuta
 
-- 🏗️ Izgradnja stvarnog GitHub Clone MCP Servera za razvojne tijekove rada
-- 🔄 Implementacija pametnog kloniranja repozitorija s validacijom i obradom pogrešaka
-- 📁 Izrada inteligentnog upravljanja direktorijem i integracija s VS Code
-- 🤖 Korištenje GitHub Copilot Agent Moda s prilagođenim MCP alatima
-- 🛡️ Primjena pouzdanosti spremne za proizvodnju i kompatibilnosti na više platformi
+- 🏗️ Izradite stvarni GitHub Clone MCP Server za razvojne tijekove rada
+- 🔄 Implementirajte pametno kloniranje repozitorija s validacijom i upravljanjem pogreškama
+- 📁 Kreirajte inteligentno upravljanje direktorijima i integraciju s VS Code
+- 🤖 Koristite GitHub Copilot Agent Mode s prilagođenim MCP alatima
+- 🛡️ Primijenite pouzdanost spremnu za produkciju i kompatibilnost na različitim platformama
 
-**🎯 Ishod učenja**: Implementirajte proizvodno spreman MCP server koji optimizira stvarne razvojne procese
+**🎯 Ishod učenja**: Implementirajte produkcijski spreman MCP poslužitelj koji optimizira stvarne razvojne procese
 
 ## 💡 Primjene u stvarnom svijetu i utjecaj
 
@@ -121,45 +121,45 @@ Microsoftovo vodeće proširenje za razvoj AI-ja koje pretvara VS Code u AI snag
 
 Transformirajte svoj razvojni tijek rada inteligentnom automatizacijom:
 
-- **Pametno upravljanje repozitorijima**: AI vođeni pregled koda i odluke o spajanju
-- **Inteligentni CI/CD**: Automatizirana optimizacija cjevovoda prema promjenama koda
-- **Triage problema**: Automatska klasifikacija i dodjela bugova
+- **Pametno upravljanje repozitorijima**: AI-pokretani pregled i odluke o spajanju koda
+- **Inteligentni CI/CD**: Automatizirana optimizacija pipeline-a na temelju promjena koda
+- **Triage problema**: Automatska klasifikacija i dodjela grešaka
 
-#### 🧪 Revolucija kontrole kvalitete
+#### 🧪 Revolucija u osiguranju kvalitete
 
-Poboljšajte testiranje AI potpomognutom automatizacijom:
+Podignite testiranje pomoću AI automatizacije:
 
-- **Inteligentno generiranje testova**: Automatsko stvaranje sveobuhvatnih testnih skupina
-- **Vizualno regresijsko testiranje**: Otkrivanje promjena UI-jem vođenim umjetnom inteligencijom
+- **Inteligentno generiranje testova**: Automatsko stvaranje sveobuhvatnih testnih skupova
+- **Vizualno regresijsko testiranje**: AI-pokretano otkrivanje promjena UI-a
 - **Praćenje performansi**: Proaktivno otkrivanje i rješavanje problema
 
-#### 📊 Inteligencija podatkovnih tokova
+#### 📊 Inteligencija podatkovnog toka
 
-Kreirajte pametnije tokove obrade podataka:
+Izgradite pametnije tijekove obrade podataka:
 
 - **Adaptivni ETL procesi**: Samooptimizirajuće transformacije podataka
 - **Otkrivanje anomalija**: Nadzor kvalitete podataka u stvarnom vremenu
 - **Inteligentno usmjeravanje**: Pametno upravljanje protokom podataka
 
-#### 🎧 Unapređenje korisničkog iskustva
+#### 🎧 Poboljšanje korisničkog iskustva
 
-Kreirajte izvanredne korisničke interakcije:
+Stvorite izvanredne interakcije s korisnicima:
 
-- **Podrška koja prepoznaje kontekst**: AI agenti s pristupom povijesti korisnika
-- **Proaktivno rješavanje problema**: Prediktivna korisnička podrška
-- **Integracija na više kanala**: Jedinstveno AI iskustvo na svim platformama
+- **Podrška osviještena o kontekstu**: AI agenti s pristupom povijesti korisnika
+- **Proaktivno rješavanje problema**: Prediktivna korisnička služba
+- **Integracija na više kanala**: Jedinstveno AI iskustvo preko platformi
 
 ## 🛠️ Preduvjeti i postavljanje
 
-### 💻 Sistemski zahtjevi
+### 💻 Zahtjevi sustava
 
 | Komponenta | Zahtjev | Napomene |
 |-----------|-------------|-------|
 | **Operativni sustav** | Windows 10+, macOS 10.15+, Linux | Bilo koji moderni OS |
 | **Visual Studio Code** | Najnovija stabilna verzija | Potrebno za Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ i npm | Za razvoj MCP servera |
-| **Python** | 3.10+ | Opcionalno za Python MCP servere |
-| **Memorija** | Minimum 8GB RAM-a | Preporučeno 16GB za lokalne modele |
+| **Node.js** | v18.0+ i npm | Za razvoj MCP poslužitelja |
+| **Python** | 3.10+ | Neobavezno za Python MCP poslužitelje |
+| **Memorija** | minimalno 8GB RAM-a | Preporučeno 16GB za lokalne modele |
 
 ### 🔧 Razvojno okruženje
 
@@ -168,62 +168,62 @@ Kreirajte izvanredne korisničke interakcije:
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Opcionalno ali korisno
+- **GitHub Copilot** (GitHub.copilot) - Opcionalno, ali korisno
 
-#### Opcionalni alati
+#### Dodatni alati
 
-- **uv**: Moderan Python upravitelj paketa
-- **MCP Inspector**: Vizualni alat za otklanjanje pogrešaka MCP servera
-- **Playwright**: Za primjere web automatizacije
+- **uv**: Moderni Python upravitelj paketima
+- **MCP Inspector**: Vizualni alat za ispravljanje pogrešaka MCP poslužitelja
+- **Playwright**: Za primjere automatizacije weba
 
-## 🎖️ Ishodi učenja i put certifikacije
+## 🎖️ Ishodi učenja i put certifikata
 
-### 🏆 Popis ključnih vještina
+### 🏆 Popis za pregled vještina
 
-Završetkom ove radionice steći ćete ovladavanje u:
+Završetkom ove radionice, postat ćete stručnjak u:
 
-#### 🎯 Osnovne kompetencije
+#### 🎯 Temeljne kompetencije
 
 - [ ] **Ovladavanje MCP protokolom**: Duboko razumijevanje arhitekture i obrazaca implementacije
-- [ ] **Sposobnost rada s Microsoft Foundry Toolkit**: Ekspertna razina korištenja za brzi razvoj
-- [ ] **Razvoj prilagođenih servera**: Izgradnja, implementacija i održavanje MCP servera za produkciju
-- [ ] **Izvrsnost u integraciji alata**: Besprijekorna veza AI i postojećih razvojnih tijekova
-- [ ] **Primjena rješavanja problema**: Primjena naučenih vještina na stvarne poslovne izazove
+- [ ] **Vještina rada s Microsoft Foundry Toolkitom**: Ekspertno korištenje za brzi razvoj
+- [ ] **Razvoj prilagođenih poslužitelja**: Izgradnja, implementacija i održavanje MCP poslužitelja za produkciju
+- [ ] **Izvrsnost u integraciji alata**: Besprijekorna povezanost AI-ja s postojećim razvojnim procesima
+- [ ] **Primjena vještina za rješavanje problema**: Primjena naučenih znanja na stvarne poslovne izazove
 
 #### 🔧 Tehničke vještine
 
-- [ ] Postavljanje i konfiguracija Microsoft Foundry Toolkit u VS Code
-- [ ] Dizajniranje i implementacija prilagođenih MCP servera
-- [ ] Integracija GitHub modela s MCP arhitekturom
-- [ ] Izrada automatiziranih tijekova testiranja s Playwrightom
-- [ ] Implementacija AI agenata za produkcijsku upotrebu
-- [ ] Otklanjanje pogrešaka i optimizacija performansi MCP servera
+- [ ] Postavljanje i konfiguracija Microsoft Foundry Toolkita u VS Code
+- [ ] Dizajn i implementacija prilagođenih MCP poslužitelja
+- [ ] Integracija Microsoft Foundry modela s MCP arhitekturom
+- [ ] Izgradnja automatiziranih testnih tijekova s Playwrightom
+- [ ] Implementacija AI agenata za produkcijsko korištenje
+- [ ] Ispravljanje i optimizacija performansi MCP poslužitelja
 
 #### 🚀 Napredne mogućnosti
 
 - [ ] Arhitektura AI integracija na razini poduzeća
-- [ ] Primjena najbolje prakse sigurnosti za AI aplikacije
-- [ ] Dizajn skalabilnih MCP server arhitektura
+- [ ] Implementacija najboljih sigurnosnih praksi za AI aplikacije
+- [ ] Dizajn skalabilnih MCP poslužiteljskih arhitektura
 - [ ] Izrada prilagođenih lanaca alata za specifične domene
-- [ ] Mentorstvo u razvoju s AI-nativnim pristupom
+- [ ] Mentoriranje drugih u AI-nativnom razvoju
 
 ## 📖 Dodatni resursi
 
-- [MCP Specifikacija (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
-- [Microsoft Foundry Toolkit GitHub Repo](https://github.com/microsoft/vscode-ai-toolkit)
-- [Zbirka uzoraka MCP servera](https://github.com/modelcontextprotocol/servers)
-- [Vodič za najbolje prakse](https://modelcontextprotocol.io/docs/best-practices)
-- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Najbolje prakse sigurnosti
+- [MCP specifikacija (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [Microsoft Foundry Toolkit GitHub repozitorij](https://github.com/microsoft/vscode-ai-toolkit)
+- [Zbirka uzoraka MCP poslužitelja](https://github.com/modelcontextprotocol/servers)
+- [Vodič najboljih praksi](https://modelcontextprotocol.io/docs/best-practices)
+- [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Najbolje sigurnosne prakse
 
 ---
 
-**🚀 Spremni za revoluciju vašeg AI razvojog tijeka?**
+**🚀 Spremni za revoluciju u vašem AI razvojnom tijeku?**
 
-Izgradimo zajedno budućnost inteligentnih aplikacija s MCP i Microsoft Foundry Toolkit!
+Izgradimo zajedno budućnost inteligentnih aplikacija s MCP-om i Microsoft Foundry Toolkitom!
 
 ## Što slijedi
 
-Nastavite na: [Modul 11: MCP Server Praktični Laboratoriji](../11-MCPServerHandsOnLabs/README.md)
+Nastavite na: [Modul 11: MCP Server Hands-On Labs](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

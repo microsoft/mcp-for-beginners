@@ -1,42 +1,42 @@
-# Memastikan Aliran Kerja AI: Pengesahan Entra ID untuk Pelayan Protokol Konteks Model
+# Mengamankan Aliran Kerja AI: Pengesahan Entra ID untuk Pelayan Protokol Konteks Model
 
 > [!NOTE]
-> Kod pelayan jauh dalam pelajaran ini melindungi titik akhir `/sse` dan `/message` lama
-> dan mensasarkan MCP `2025-11-25`. Kekalkan identiti dan amalan pengesahan tokennya,
-> tetapi gunakan pengangkutan HTTP Streamable yang serasi `2026-07-28` untuk
-> pelaksanaan baharu.
+> Kod pelayan jauh dalam pelajaran ini melindungi titik hujung `/sse` dan `/message` lama
+> serta menyasarkan MCP `2025-11-25`. Kekalkan identiti dan amalan pengesahan tokennya,
+> tetapi gunakan pengangkutan HTTP Streamable yang serasi dengan `2026-07-28` untuk
+> pelaksanaan baru.
 
 ## Pengenalan
-Memastikan pelayan Protokol Konteks Model (MCP) anda selamat adalah sama penting seperti mengunci pintu depan rumah anda. Meninggalkan pelayan MCP anda terbuka mendedahkan alat dan data anda kepada akses tanpa kebenaran, yang boleh menyebabkan pelanggaran keselamatan. Microsoft Entra ID menyediakan penyelesaian pentadbiran identiti dan akses berasaskan awan yang kukuh, membantu memastikan hanya pengguna dan aplikasi yang dibenarkan boleh berinteraksi dengan pelayan MCP anda. Dalam bahagian ini, anda akan belajar cara melindungi aliran kerja AI anda menggunakan pengesahan Entra ID.
+Mengamankan pelayan Protokol Konteks Model (MCP) anda adalah sama penting seperti mengunci pintu depan rumah anda. Membiarkan pelayan MCP anda terbuka mendedahkan alat dan data anda kepada akses tanpa izin, yang boleh membawa kepada pelanggaran keselamatan. Microsoft Entra ID menyediakan penyelesaian pengurusan identiti dan akses berasaskan awan yang kukuh, membantu memastikan hanya pengguna dan aplikasi yang dibenarkan boleh berinteraksi dengan pelayan MCP anda. Dalam bahagian ini, anda akan belajar bagaimana untuk melindungi aliran kerja AI anda menggunakan pengesahan Entra ID.
 
 ## Objektif Pembelajaran
 Menjelang akhir bahagian ini, anda akan dapat:
 
-- Memahami kepentingan memastikan pelayan MCP selamat.
-- Menerangkan asas-asas Microsoft Entra ID dan pengesahan OAuth 2.0.
-- Mengenal pasti perbezaan antara klien awam dan sulit.
+- Memahami kepentingan mengamankan pelayan MCP.
+- Menjelaskan asas pengesahan Microsoft Entra ID dan OAuth 2.0.
+- Mengenali perbezaan antara klien awam dan sulit.
 - Melaksanakan pengesahan Entra ID dalam senario pelayan MCP tempatan (klien awam) dan jauh (klien sulit).
-- Mengaplikasi amalan keselamatan terbaik semasa membangunkan aliran kerja AI.
+- Mengaplikasikan amalan terbaik keselamatan ketika membangunkan aliran kerja AI.
 
 ## Keselamatan dan MCP
 
-Sama seperti anda tidak akan membiarkan pintu depan rumah anda tidak dikunci, anda juga tidak sepatutnya membiarkan pelayan MCP anda terbuka untuk sesiapa mengakses. Memastikan aliran kerja AI anda selamat adalah penting untuk membina aplikasi yang kukuh, boleh dipercayai, dan selamat. Bab ini akan memperkenalkan anda kepada penggunaan Microsoft Entra ID untuk memastikan pelayan MCP anda selamat, memastikan hanya pengguna dan aplikasi yang dibenarkan boleh berinteraksi dengan alat dan data anda.
+Sama seperti anda tidak akan membiarkan pintu depan rumah anda terbuka, anda juga tidak harus membiarkan pelayan MCP anda terbuka untuk diakses oleh sesiapa sahaja. Mengamankan aliran kerja AI anda adalah penting untuk membina aplikasi yang kukuh, boleh dipercayai, dan selamat. Bab ini akan memperkenalkan anda kepada penggunaan Microsoft Entra ID untuk mengamankan pelayan MCP anda, memastikan hanya pengguna dan aplikasi yang dibenarkan boleh berinteraksi dengan alat dan data anda.
 
 ## Mengapa Keselamatan Penting untuk Pelayan MCP
 
-Bayangkan pelayan MCP anda mempunyai alat yang boleh menghantar emel atau mengakses pangkalan data pelanggan. Pelayan yang tidak selamat bermakna sesiapa sahaja boleh menggunakan alat itu, menyebabkan akses data tanpa kebenaran, spam, atau aktiviti berniat jahat lain.
+Bayangkan pelayan MCP anda mempunyai alat yang boleh menghantar e-mel atau mengakses pangkalan data pelanggan. Pelayan yang tidak selamat bermakna sesiapa sahaja berpotensi boleh menggunakan alat tersebut, yang boleh menyebabkan akses data tanpa izin, spam, atau aktiviti berniat jahat lain.
 
-Dengan melaksanakan pengesahan, anda memastikan setiap permintaan ke pelayan anda disahkan, mengesahkan identiti pengguna atau aplikasi yang membuat permintaan. Ini adalah langkah pertama dan paling kritikal dalam memastikan aliran kerja AI anda selamat.
+Dengan melaksanakan pengesahan, anda memastikan setiap permintaan ke pelayan anda disahkan, mengesahkan identiti pengguna atau aplikasi yang membuat permintaan tersebut. Ini adalah langkah pertama dan paling kritikal untuk mengamankan aliran kerja AI anda.
 
 ## Pengenalan kepada Microsoft Entra ID
 
-[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) ialah perkhidmatan pentadbiran identiti dan akses berasaskan awan. Anggap ia sebagai pengawal keselamatan sejagat untuk aplikasi anda. Ia mengendalikan proses yang rumit untuk mengesahkan identiti pengguna (pengesahan) dan menentukan apa yang mereka dibenarkan lakukan (kebenaran).
+[**Microsoft Entra ID**](https://adoption.microsoft.com/microsoft-security/entra/) ialah perkhidmatan pengurusan identiti dan akses berasaskan awan. Anggaplah ia sebagai pengawal keselamatan sejagat untuk aplikasi anda. Ia mengendalikan proses kompleks untuk mengesahkan identiti pengguna (pengesahan) dan menentukan apa yang mereka dibenarkan lakukan (pemberian kebenaran).
 
 Dengan menggunakan Entra ID, anda boleh:
 
-- Mengaktifkan log masuk yang selamat untuk pengguna.
+- Membolehkan log masuk yang selamat untuk pengguna.
 - Melindungi API dan perkhidmatan.
-- Mengurus dasar akses dari lokasi pusat.
+- Mengurus polisi akses dari lokasi pusat.
 
 Untuk pelayan MCP, Entra ID menyediakan penyelesaian yang kukuh dan dipercayai secara meluas untuk mengurus siapa yang boleh mengakses keupayaan pelayan anda.
 
@@ -44,94 +44,107 @@ Untuk pelayan MCP, Entra ID menyediakan penyelesaian yang kukuh dan dipercayai s
 
 ## Memahami Keajaiban: Bagaimana Pengesahan Entra ID Berfungsi
 
-Entra ID menggunakan piawaian terbuka seperti **OAuth 2.0** untuk mengendalikan pengesahan. Walaupun butiran boleh menjadi kompleks, konsep terasnya adalah mudah dan boleh difahami melalui analogi.
+Entra ID menggunakan piawaian terbuka seperti **OAuth 2.0** untuk mengendalikan pengesahan. Walaupun butiran boleh menjadi rumit, konsep inti adalah mudah dan boleh difahami menggunakan analogi.
 
-### Pengenalan Lembut kepada OAuth 2.0: Kunci Valet
+### Pengenalan Ringkas kepada OAuth 2.0: Kunci Valet
 
-Fikirkan OAuth 2.0 seperti perkhidmatan valet untuk kereta anda. Apabila anda tiba di restoran, anda tidak memberikan kunci induk anda kepada valet. Sebaliknya, anda memberikan **kunci valet** yang mempunyai kebenaran terhad—ia boleh menghidupkan kereta dan mengunci pintu, tetapi tidak boleh membuka but atau petak sarung tangan.
+Anggaplah OAuth 2.0 seperti perkhidmatan valet untuk kereta anda. Apabila anda tiba di restoran, anda tidak memberikan kunci utama anda kepada valet. Sebaliknya, anda menyediakan **kunci valet** yang mempunyai kebenaran terhad—kunci ini boleh menghidupkan kereta dan mengunci pintu, tetapi tidak boleh membuka but kereta atau kompartmen sarung tangan.
 
 Dalam analogi ini:
 
-- **Anda** ialah **Pengguna**.
-- **Kereta anda** ialah **Pelayan MCP** dengan alat dan data berharga.
-- **Valet** ialah **Microsoft Entra ID**.
-- **Juruparkir** ialah **Klien MCP** (aplikasi yang cuba mengakses pelayan).
-- **Kunci Valet** ialah **Token Akses**.
+- **Anda** adalah **Pengguna**.
+- **Kereta anda** adalah **Pelayan MCP** dengan alat dan data berharga.
+- **Valet** adalah **Microsoft Entra ID**.
+- **Pengawal Parkir** adalah **Klien MCP** (aplikasi yang cuba mengakses pelayan).
+- **Kunci Valet** adalah **Token Akses**.
 
-Token akses ialah rentetan teks selamat yang diterima klien MCP daripada Entra ID selepas anda log masuk. Klien kemudian mengemukakan token ini kepada pelayan MCP dengan setiap permintaan. Pelayan boleh mengesahkan token untuk memastikan permintaan itu sah dan klien mempunyai kebenaran yang diperlukan, tanpa perlu mengendalikan kelayakan sebenar anda (seperti kata laluan).
+Token akses adalah rentetan teks yang selamat yang diterima klien MCP dari Entra ID selepas anda log masuk. Klien kemudian membentangkan token ini kepada pelayan MCP dengan setiap permintaan. Pelayan boleh mengesahkan token untuk memastikan permintaan itu sah dan klien mempunyai kebenaran yang diperlukan, semua ini tanpa perlu mengendalikan kelayakan sebenar anda (seperti kata laluan anda).
 
 ### Aliran Pengesahan
 
-Berikut adalah bagaimana proses itu berfungsi secara amali:
+Berikut adalah cara proses ini berfungsi dalam praktik:
 
 ```mermaid
 sequenceDiagram
-    actor User as 👤 Pengguna
-    participant Client as 🖥️ Klien MCP
+    actor User as 👤 User
+    participant Client as 🖥️ MCP Client
     participant Entra as 🔐 Microsoft Entra ID
-    participant Server as 🔧 Pelayan MCP
+    participant Server as 🔧 MCP Server
 
-    Client->>+User: Sila log masuk untuk meneruskan.
-    User->>+Entra: Memasukkan kelayakan (nama pengguna/kata laluan).
-    Entra-->>Client: Ini adalah token akses anda.
-    User-->>-Client: (Kembali ke aplikasi)
+  Server->>Entra: Fetch OpenID Connect metadata
+  Entra-->>Server: Return metadata containing jwks_uri
+  Server->>Entra: Fetch public keys from jwks_uri
+  Entra-->>Server: Return JSON Web Key Set (cached by server)
 
-    Client->>+Server: Saya perlu menggunakan alat. Ini token akses saya.
-    Server->>+Entra: Adakah token akses ini sah?
-    Entra-->>-Server: Ya, ia sah.
-    Server-->>-Client: Token sah. Ini hasil alat tersebut.
+  Client->>User: Please sign in to continue.
+  User->>Entra: Enters credentials (username/password).
+    Entra-->>Client: Here is your access token.
+  User-->>Client: (Returns to the application)
+
+  Client->>Server: I need to use a tool. Here is my access token.
+  Server->>Server: Verify signature and validate issuer, audience, and lifetime
+  Server-->>Client: Token is valid. Here is the result of the tool.
 ```
 
-### Memperkenalkan Microsoft Authentication Library (MSAL)
+Pelayan MCP tidak memanggil Entra ID untuk mengesahkan setiap token akses. Ia
+mengesahkan tandatangan JWT secara kriptografi dengan kunci awam cache Entra ID
+dan mengesahkan tuntutan token, termasuk penerbit, penonton, dan hayatnya.
+Pelayan membaca `jwks_uri` dari metadata OpenID Connect, mengambil kunci awam dari URI tersebut,
+dan mengemas kini secara berkala untuk menangani pusingan kunci. Gunakan
+perpustakaan pengesahan token yang disokong dan bukannya melaksanakan logik ini
+sendiri. Untuk maklumat lanjut, lihat
+[Pengesahan token dalam platform identiti Microsoft](https://learn.microsoft.com/entra/identity-platform/access-tokens#validate-tokens).
 
-Sebelum kita menyelami kod, penting untuk memperkenalkan komponen utama yang akan anda lihat dalam contoh: **Microsoft Authentication Library (MSAL)**.
+### Memperkenalkan Perpustakaan Pengesahan Microsoft (MSAL)
 
-MSAL ialah perpustakaan yang dibangunkan oleh Microsoft yang memudahkan pembangun mengendalikan pengesahan. Daripada anda perlu menulis semua kod rumit untuk mengendalikan token keselamatan, mengurus log masuk, dan memanjangkan sesi, MSAL mengendalikan kerja berat.
+Sebelum kita menyelami kod, penting untuk memperkenalkan komponen utama yang anda akan lihat dalam contoh: **Perpustakaan Pengesahan Microsoft (MSAL)**.
 
-Menggunakan perpustakaan seperti MSAL sangat disarankan kerana:
+MSAL adalah perpustakaan yang dibangunkan oleh Microsoft yang memudahkan para pembangun mengendalikan pengesahan. Daripada anda perlu menulis semua kod kompleks untuk mengendalikan token keselamatan, mengurus log masuk, dan menyegar semula sesi, MSAL menguruskan kerja berat itu.
 
-- **Ia Selamat:** Ia melaksanakan protokol piawaian industri dan amalan keselamatan terbaik, mengurangkan risiko kelemahan dalam kod anda.
-- **Ia Memudahkan Pembangunan:** Ia mengabstrakkan kerumitan protokol OAuth 2.0 dan OpenID Connect, membolehkan anda menambah pengesahan kukuh ke aplikasi anda dengan beberapa baris kod sahaja.
-- **Ia Diselenggara:** Microsoft secara aktif menyelenggara dan mengemas kini MSAL untuk menangani ancaman keselamatan baharu dan perubahan platform.
+Menggunakan perpustakaan seperti MSAL sangat disyorkan kerana:
+
+- **Ia Selamat:** Ia melaksanakan protokol piawai industri dan amalan keselamatan terbaik, mengurangkan risiko kerentanan dalam kod anda.
+- **Ia Memudahkan Pembangunan:** Ia mengabstrakkan kerumitan protokol OAuth 2.0 dan OpenID Connect, membolehkan anda menambah pengesahan kukuh dalam aplikasi dengan hanya beberapa baris kod.
+- **Ia Dikekalkan:** Microsoft secara aktif mengurus dan mengemas kini MSAL untuk menangani ancaman keselamatan baru dan perubahan platform.
 
 MSAL menyokong pelbagai bahasa dan rangka kerja aplikasi, termasuk .NET, JavaScript/TypeScript, Python, Java, Go, dan platform mudah alih seperti iOS dan Android. Ini bermakna anda boleh menggunakan corak pengesahan yang konsisten di seluruh tumpukan teknologi anda.
 
-Untuk mengetahui lebih lanjut tentang MSAL, anda boleh rujuk dokumentasi rasmi [gambaran keseluruhan MSAL](https://learn.microsoft.com/entra/identity-platform/msal-overview).
+Untuk mengetahui lebih lanjut tentang MSAL, anda boleh menyemak [dokumentasi ulasan MSAL rasmi](https://learn.microsoft.com/entra/identity-platform/msal-overview).
 
 ---
 
-## Memastikan Pelayan MCP Anda Selamat dengan Entra ID: Panduan Langkah demi Langkah
+## Mengamankan Pelayan MCP Anda dengan Entra ID: Panduan Langkah demi Langkah
 
-Sekarang, mari kita lalui cara untuk memastikan pelayan MCP tempatan (yang berkomunikasi melalui `stdio`) menggunakan Entra ID. Contoh ini menggunakan **klien awam**, sesuai untuk aplikasi yang berjalan pada mesin pengguna, seperti aplikasi desktop atau pelayan pembangunan tempatan.
+Sekarang, mari kita lalui cara mengamankan pelayan MCP tempatan (yang berkomunikasi melalui `stdio`) menggunakan Entra ID. Contoh ini menggunakan **klien awam**, yang sesuai untuk aplikasi yang berjalan di mesin pengguna, seperti aplikasi desktop atau pelayan pembangunan tempatan.
 
-### Senario 1: Memastikan Pelayan MCP Tempatan (dengan Klien Awam)
+### Senario 1: Mengamankan Pelayan MCP Tempatan (dengan Klien Awam)
 
-Dalam senario ini, kita lihat pelayan MCP yang berjalan secara tempatan, berkomunikasi melalui `stdio`, dan menggunakan Entra ID untuk mengesahkan pengguna sebelum membenarkan akses kepada alatnya. Pelayan akan mempunyai satu alat yang mengambil maklumat profil pengguna dari API Microsoft Graph.
+Dalam senario ini, kita akan melihat pelayan MCP yang berjalan secara tempatan, berkomunikasi melalui `stdio`, dan menggunakan Entra ID untuk mengesahkan pengguna sebelum membenarkan akses ke alatnya. Pelayan akan mempunyai alat tunggal yang mengambil maklumat profil pengguna dari Microsoft Graph API.
 
-#### 1. Menyediakan Aplikasi dalam Entra ID
+#### 1. Mendaftarkan Aplikasi dalam Entra ID
 
-Sebelum menulis sebarang kod, anda perlu mendaftarkan aplikasi anda dalam Microsoft Entra ID. Ini memberitahu Entra ID mengenai aplikasi anda dan memberikan kebenaran untuk menggunakan perkhidmatan pengesahan.
+Sebelum menulis sebarang kod, anda perlu mendaftarkan aplikasi anda dalam Microsoft Entra ID. Ini memberitahu Entra ID tentang aplikasi anda dan memberikannya kebenaran untuk menggunakan perkhidmatan pengesahan.
 
-1. Navigasi ke **[portal Microsoft Entra](https://entra.microsoft.com/)**.
-2. Pergi ke **Pendaftaran Aplikasi** dan klik **Pendaftaran baru**.
-3. Berikan nama kepada aplikasi anda (contoh, "Pelayan MCP Tempatan Saya").
-4. Untuk **Jenis akaun yang disokong**, pilih **Akaun dalam direktori organisasi ini sahaja**.
-5. Anda boleh biarkan **URI Redirect** kosong untuk contoh ini.
+1. Pergi ke **[portal Microsoft Entra](https://entra.microsoft.com/)**.
+2. Pergi ke **Pendaftaran Aplikasi** dan klik **Pendaftaran Baru**.
+3. Berikan nama untuk aplikasi anda (contoh: "Pelayan MCP Tempatan Saya").
+4. Untuk **Jenis akaun yang disokong**, pilih **Akaun di direktori organisasi ini sahaja**.
+5. Anda boleh biarkan **URI Pengalihan** kosong untuk contoh ini.
 6. Klik **Daftar**.
 
-Setelah didaftarkan, ambil perhatian **ID Aplikasi (klien)** dan **ID Direktori (penyewa)**. Anda akan memerlukan ini dalam kod anda.
+Setelah didaftarkan, ambil perhatian **ID Aplikasi (klien)** dan **ID Direktori (penyewa)**. Anda akan memerlukannya dalam kod anda.
 
-#### 2. Kod: Penjelasan
+#### 2. Kod: Pecahan
 
-Mari lihat bahagian utama kod yang mengendalikan pengesahan. Kod penuh untuk contoh ini tersedia dalam folder [Entra ID - Tempatan - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) di repositori [mcp-auth-servers GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
+Mari kita lihat bahagian utama kod yang mengendalikan pengesahan. Kod penuh untuk contoh ini tersedia dalam folder [Entra ID - Tempatan - WAM](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-local-wam) dalam repositori GitHub [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`AuthenticationService.cs`**
 
-Kelas ini bertanggungjawab mengendalikan interaksi dengan Entra ID.
+Kelas ini bertanggungjawab untuk mengendalikan interaksi dengan Entra ID.
 
-- **`CreateAsync`**: Kaedah ini memulakan `PublicClientApplication` dari MSAL (Microsoft Authentication Library). Ia dikonfigurasikan dengan `clientId` dan `tenantId` aplikasi anda.
-- **`WithBroker`**: Ini membolehkan penggunaan broker (seperti Windows Web Account Manager), yang menyediakan pengalaman log masuk tunggal yang lebih selamat dan lancar.
-- **`AcquireTokenAsync`**: Ini adalah kaedah teras. Ia pertama kali cuba mendapatkan token secara senyap (maknanya pengguna tidak perlu log masuk semula jika sudah ada sesi sah). Jika token senyap tidak dapat diperoleh, ia akan meminta pengguna log masuk secara interaktif.
+- **`CreateAsync`**: Kaedah ini menginisialisasi `PublicClientApplication` dari MSAL (Perpustakaan Pengesahan Microsoft). Ia dikonfigurasikan dengan `clientId` dan `tenantId` aplikasi anda.
+- **`WithBroker`**: Ini membolehkan penggunaan broker (seperti Pengurus Akaun Web Windows), yang menyediakan pengalaman log masuk tunggal yang lebih selamat dan lancar.
+- **`AcquireTokenAsync`**: Ini adalah kaedah inti. Ia pertama kali cuba mendapatkan token secara senyap (bermaksud pengguna tidak perlu log masuk semula jika sudah ada sesi yang sah). Jika token senyap tidak boleh diperolehi, ia akan meminta pengguna untuk log masuk secara interaktif.
 
 ```csharp
 // Simplified for clarity
@@ -183,8 +196,8 @@ public async Task<string> AcquireTokenAsync()
 
 Di sinilah pelayan MCP disediakan dan perkhidmatan pengesahan diintegrasikan.
 
-- **`AddSingleton<AuthenticationService>`**: Ini mendaftar `AuthenticationService` dengan bekas suntikan kebergantungan, supaya ia boleh digunakan oleh bahagian lain aplikasi (seperti alat kami).
-- **`GetUserDetailsFromGraph` tool**: Alat ini memerlukan instans `AuthenticationService`. Sebelum melakukan apa-apa, ia memanggil `authService.AcquireTokenAsync()` untuk mendapatkan token akses yang sah. Jika pengesahan berjaya, ia menggunakan token tersebut untuk memanggil API Microsoft Graph dan mengambil maklumat pengguna.
+- **`AddSingleton<AuthenticationService>`**: Ini mendaftar `AuthenticationService` dengan bekas suntikan kebergantungan, supaya boleh digunakan oleh bahagian lain aplikasi (seperti alat kami).
+- **`GetUserDetailsFromGraph` alat**: Alat ini memerlukan instance `AuthenticationService`. Sebelum melakukan apa-apa, ia memanggil `authService.AcquireTokenAsync()` untuk mendapatkan token akses yang sah. Jika pengesahan berjaya, ia menggunakan token tersebut untuk memanggil Microsoft Graph API dan mendapatkan maklumat pengguna.
 
 ```csharp
 // Simplified for clarity
@@ -214,84 +227,84 @@ public static async Task<string> GetUserDetailsFromGraph(
 
 #### 3. Bagaimana Ia Berfungsi Bersama
 
-1. Apabila klien MCP cuba menggunakan alat `GetUserDetailsFromGraph`, alat itu pertama kali memanggil `AcquireTokenAsync`.
+1. Apabila klien MCP cuba menggunakan alat `GetUserDetailsFromGraph`, alat tersebut pertama memanggil `AcquireTokenAsync`.
 2. `AcquireTokenAsync` mencetuskan perpustakaan MSAL untuk memeriksa token yang sah.
-3. Jika tiada token ditemui, MSAL, melalui broker, akan meminta pengguna untuk log masuk menggunakan akaun Entra ID mereka.
+3. Jika tiada token dijumpai, MSAL melalui broker akan meminta pengguna untuk log masuk dengan akaun Entra ID mereka.
 4. Setelah pengguna log masuk, Entra ID mengeluarkan token akses.
-5. Alat menerima token tersebut dan menggunakannya untuk membuat panggilan selamat ke API Microsoft Graph.
+5. Alat menerima token dan menggunakannya untuk membuat panggilan selamat ke Microsoft Graph API.
 6. Maklumat pengguna dikembalikan kepada klien MCP.
 
-Proses ini memastikan hanya pengguna yang diautentikasi sahaja boleh menggunakan alat tersebut, dengan berkesan memastikan pelayan MCP tempatan anda selamat.
+Proses ini memastikan hanya pengguna yang disahkan boleh menggunakan alat tersebut, secara berkesan mengamankan pelayan MCP tempatan anda.
 
-### Senario 2: Memastikan Pelayan MCP Jauh (dengan Klien Sulit)
+### Senario 2: Mengamankan Pelayan MCP Jauh (dengan Klien Sulit)
 
-Apabila pelayan MCP anda berjalan pada mesin jauh (seperti pelayan awan) dan berkomunikasi melalui protokol seperti HTTP Streaming, keperluan keselamatan adalah berbeza. Dalam kes ini, anda harus menggunakan **klien sulit** dan **Aliran Kod Kebenaran**. Ini adalah kaedah yang lebih selamat kerana rahsia aplikasi tidak pernah didedahkan kepada pelayar.
+Apabila pelayan MCP anda berjalan pada mesin jauh (seperti pelayan awan) dan berkomunikasi melalui protokol seperti Streaming HTTP, keperluan keselamatannya adalah berbeza. Dalam kes ini, anda harus menggunakan **klien sulit** dan **Aliran Kod Otorisasi**. Ini adalah kaedah yang lebih selamat kerana rahsia aplikasi tidak pernah didedahkan kepada pelayar.
 
 Contoh ini menggunakan pelayan MCP berasaskan TypeScript yang menggunakan Express.js untuk mengendalikan permintaan HTTP.
 
-#### 1. Menyediakan Aplikasi dalam Entra ID
+#### 1. Mendaftarkan Aplikasi dalam Entra ID
 
-Persediaan di Entra ID adalah serupa dengan klien awam, tetapi dengan satu perbezaan utama: anda perlu membuat **rahsia klien**.
+Persediaan dalam Entra ID adalah serupa dengan klien awam, tetapi dengan satu perbezaan utama: anda perlu membuat **rahsia klien**.
 
-1. Navigasi ke **[portal Microsoft Entra](https://entra.microsoft.com/)**.
+1. Pergi ke **[portal Microsoft Entra](https://entra.microsoft.com/)**.
 2. Dalam pendaftaran aplikasi anda, pergi ke tab **Sijil & rahsia**.
-3. Klik **Rahsia klien baharu**, beri penerangan, dan klik **Tambah**.
-4. **Penting:** Salin nilai rahsia dengan segera. Anda tidak akan dapat melihatnya lagi.
-5. Anda juga perlu mengkonfigurasi **URI Redirect**. Pergi ke tab **Pengesahan**, klik **Tambah platform**, pilih **Web**, dan masukkan URI redirect untuk aplikasi anda (contoh, `http://localhost:3001/auth/callback`).
+3. Klik **Rahsia klien baru**, berikan deskripsi, dan klik **Tambah**.
+4. **Penting:** Salin nilai rahsia itu dengan segera. Anda tidak akan dapat melihatnya lagi.
+5. Anda juga perlu mengkonfigurasi **URI Pengalihan**. Pergi ke tab **Pengesahan**, klik **Tambah platform**, pilih **Web**, dan masukkan URI pengalihan untuk aplikasi anda (contoh, `http://localhost:3001/auth/callback`).
 
-> **⚠️ Nota Keselamatan Penting:** Untuk aplikasi pengeluaran, Microsoft sangat mengesyorkan menggunakan kaedah pengesahan tanpa rahsia seperti **Identiti Terurus** atau **Persekutuan Identiti Beban Kerja** daripada menggunakan rahsia klien. Rahsia klien membawa risiko keselamatan kerana boleh terdedah atau dikompromi. Identiti terurus menyediakan pendekatan yang lebih selamat dengan menghapuskan keperluan menyimpan kelayakan dalam kod atau konfigurasi anda.
+> **⚠️ Nota Keselamatan Penting:** Untuk aplikasi produksi, Microsoft sangat mengesyorkan menggunakan kaedah pengesahan **tanpa rahsia** seperti **Identiti Terkelola (Managed Identity)** atau **Federasi Identiti Beban Kerja (Workload Identity Federation)** sebagai ganti rahsia klien. Rahsia klien berisiko keselamatan kerana boleh didedahkan atau dikompromi. Identiti terkelola menyediakan pendekatan lebih selamat dengan menghapuskan keperluan menyimpan kelayakan dalam kod atau konfigurasi anda.
 >
-> Untuk maklumat lebih lanjut tentang identiti terurus dan cara melaksanakannya, lihat [Gambaran keseluruhan identiti terurus untuk sumber Azure](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+> Untuk maklumat lebih lanjut tentang identiti terkelola dan cara melaksanakannya, lihat [Gambaran keseluruhan identiti terkelola untuk sumber Azure](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
 
-#### 2. Kod: Penjelasan
+#### 2. Kod: Pecahan
 
-Contoh ini menggunakan pendekatan berasaskan sesi. Apabila pengguna mengesahkan, pelayan menyimpan token akses dan token penyegaran dalam sesi dan memberi pengguna token sesi. Token sesi ini kemudiannya digunakan untuk permintaan berikutnya. Kod penuh untuk contoh ini tersedia dalam folder [Entra ID - Klien sulit](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) di repositori [mcp-auth-servers GitHub](https://github.com/Azure-Samples/mcp-auth-servers).
+Contoh ini menggunakan pendekatan berasaskan sesi. Apabila pengguna mengesah, pelayan menyimpan token akses dan token segar dalam sesi dan memberikan pengguna token sesi. Token sesi ini kemudian digunakan untuk permintaan seterusnya. Kod penuh untuk contoh ini ada dalam folder [Entra ID - Klien Sulit](https://github.com/Azure-Samples/mcp-auth-servers/tree/main/src/entra-id-cca-session) dalam repositori GitHub [mcp-auth-servers](https://github.com/Azure-Samples/mcp-auth-servers).
 
 **`Server.ts`**
 
 Fail ini menyediakan pelayan Express dan lapisan pengangkutan MCP.
 
-- **`requireBearerAuth`**: Ini ialah middleware yang melindungi titik akhir `/sse` dan `/message`. Ia memeriksa token pembawa yang sah dalam header `Authorization` permintaan.
-- **`EntraIdServerAuthProvider`**: Ini ialah kelas khusus yang melaksanakan antara muka `McpServerAuthorizationProvider`. Ia bertanggungjawab mengendalikan aliran OAuth 2.0.
-- **`/auth/callback`**: Titik akhir ini mengendalikan pengalihan dari Entra ID selepas pengguna mengesahkan. Ia menukar kod kebenaran kepada token akses dan token penyegaran.
+- **`requireBearerAuth`**: Ini adalah perantaraan yang melindungi titik hujung `/sse` dan `/message`. Ia memeriksa token pembawa yang sah dalam header `Authorization` permintaan.
+- **`EntraIdServerAuthProvider`**: Ini adalah kelas tersuai yang melaksanakan antara muka `McpServerAuthorizationProvider`. Ia bertanggungjawab untuk mengendalikan aliran OAuth 2.0.
+- **`/auth/callback`**: Titik hujung ini mengendalikan pengalihan dari Entra ID selepas pengguna mengesah. Ia menukar kod otorisasi kepada token akses dan token segar.
 
 ```typescript
-// Dipermudahkan untuk kejelasan
+// Simplified for clarity
 const app = express();
 const { server } = createServer();
 const provider = new EntraIdServerAuthProvider();
 
-// Lindungi titik akhir SSE
+// Protect the SSE endpoint
 app.get("/sse", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... sambungkan ke pengangkutan ...
+  // ... connect to the transport ...
 });
 
-// Lindungi titik akhir mesej
+// Protect the message endpoint
 app.post("/message", requireBearerAuth({
   provider,
   requiredScopes: ["User.Read"]
 }), async (req, res) => {
-  // ... kendalikan mesej ...
+  // ... handle the message ...
 });
 
-// Kendalikan panggilan balik OAuth 2.0
+// Handle the OAuth 2.0 callback
 app.get("/auth/callback", (req, res) => {
   provider.handleCallback(req.query.code, req.query.state)
     .then(result => {
-      // ... kendalikan kejayaan atau kegagalan ...
+      // ... handle success or failure ...
     });
 });
 ```
 
 **`Tools.ts`**
 
-Fail ini mentakrifkan alat yang disediakan pelayan MCP. Alat `getUserDetails` serupa dengan contoh sebelumnya, tetapi ia mendapatkan token akses dari sesi.
+Fail ini mendefinisikan alat yang disediakan oleh pelayan MCP. Alat `getUserDetails` adalah serupa dengan yang dalam contoh sebelumnya, tetapi ia mendapatkan token akses dari sesi.
 
 ```typescript
-// Dipermudahkan untuk kejelasan
+// Simplified for clarity
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name } = request.params;
   const context = request.params?.context as { token?: string } | undefined;
@@ -302,7 +315,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       throw new AuthenticationError("Authentication token is missing or invalid. Ensure the token is provided in the request context.");
     }
 
-    // Dapatkan token Entra ID dari penyimpanan sesi
+    // Get the Entra ID token from the session store
     const tokenData = tokenStore.getToken(sessionToken);
     const entraIdToken = tokenData.accessToken;
 
@@ -314,7 +327,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const user = await graphClient.api('/me').get();
 
-    // ... pulangkan butiran pengguna ...
+    // ... return user details ...
   }
 });
 ```
@@ -323,107 +336,106 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 Kelas ini mengendalikan logik untuk:
 
-- Mengalihkan pengguna ke halaman log masuk Entra ID.
-- Menukar kod kebenaran kepada token akses.
+- Mengarahkan pengguna ke halaman masuk Entra ID.
+- Menukar kod kebenaran dengan token akses.
 - Menyimpan token dalam `tokenStore`.
-- Memanjangkan token akses apabila ia tamat tempoh.
+- Menyegarkan token akses apabila ia luput.
 
+#### 3. Bagaimana Ia Berfungsi Bersama
 
-#### 3. Bagaimana Semua Ini Berfungsi Bersama
+1. Apabila pengguna mula-mula cuba menyambung ke pelayan MCP, middleware `requireBearerAuth` akan melihat bahawa mereka tidak mempunyai sesi yang sah dan akan mengarahkan mereka ke halaman masuk Entra ID.
+2. Pengguna masuk dengan akaun Entra ID mereka.
+3. Entra ID mengarahkan pengguna kembali ke titik akhir `/auth/callback` dengan kod kebenaran.
+4. Pelayan menukar kod tersebut kepada token akses dan token segar semula, menyimpannya, dan mencipta token sesi yang dihantar ke klien.
+5. Klien kini boleh menggunakan token sesi ini dalam pengepala `Authorization` untuk semua permintaan masa depan ke pelayan MCP.
+6. Apabila alat `getUserDetails` dipanggil, ia menggunakan token sesi untuk mencari token akses Entra ID dan kemudian menggunakan itu untuk memanggil API Microsoft Graph.
 
-1. Apabila pengguna pertama kali cuba menyambung ke pelayan MCP, middleware `requireBearerAuth` akan melihat bahawa mereka tidak mempunyai sesi yang sah dan akan mengalih mereka ke halaman log masuk Entra ID.
-2. Pengguna log masuk dengan akaun Entra ID mereka.
-3. Entra ID mengalihkan pengguna kembali ke titik akhir `/auth/callback` dengan kod kebenaran.
-4. Pelayan menukar kod tersebut dengan token akses dan token penyegaran, menyimpannya, dan mencipta token sesi yang dihantar ke klien.
-5. Klien kini boleh menggunakan token sesi ini dalam header `Authorization` untuk semua permintaan masa depan ke pelayan MCP.
-6. Apabila alat `getUserDetails` dipanggil, ia menggunakan token sesi untuk mencari token akses Entra ID dan kemudian menggunakan itu untuk memanggil Microsoft Graph API.
-
-Aliran ini lebih kompleks daripada aliran klien awam, tetapi diperlukan untuk titik akhir yang berhadapan dengan internet. Oleh kerana pelayan MCP jauh boleh diakses melalui internet awam, mereka memerlukan langkah keselamatan yang lebih kukuh untuk melindungi daripada akses tidak sah dan potensi serangan.
+Aliran ini lebih kompleks daripada aliran klien awam, tetapi diperlukan untuk titik akhir yang berhadapan dengan internet. Oleh kerana pelayan MCP jauh boleh diakses melalui internet awam, mereka memerlukan langkah keselamatan yang lebih kuat untuk melindungi daripada akses tanpa izin dan serangan berpotensi.
 
 
 ## Amalan Terbaik Keselamatan
 
-- **Sentiasa gunakan HTTPS**: Enkripsi komunikasi antara klien dan pelayan untuk melindungi token daripada dicegat.
-- **Laksanakan Kawalan Akses Berdasarkan Peranan (RBAC)**: Jangan hanya periksa *jika* pengguna diautentikasi; periksa *apa* yang mereka dibenarkan lakukan. Anda boleh mentakrifkan peranan dalam Entra ID dan menyemaknya dalam pelayan MCP anda.
-- **Pantau dan audit**: Log semua acara pengesahan supaya anda boleh mengesan dan bertindak balas terhadap aktiviti mencurigakan.
-- **Urus had kadar dan throttling**: Microsoft Graph dan API lain melaksanakan had kadar untuk mengelakkan penyalahgunaan. Laksanakan exponential backoff dan logik cuba semula dalam pelayan MCP anda untuk mengendalikan respons HTTP 429 (Terlalu Banyak Permintaan) dengan baik. Pertimbangkan caching data yang sering diakses untuk mengurangkan panggilan API.
-- **Penyimpanan token yang selamat**: Simpan token akses dan token penyegaran dengan selamat. Untuk aplikasi tempatan, gunakan mekanisme penyimpanan selamat sistem. Untuk aplikasi pelayan, pertimbangkan menggunakan penyimpanan rentas atau perkhidmatan pengurusan kunci selamat seperti Azure Key Vault.
-- **Pengendalian tempoh tamat token**: Token akses mempunyai jangka hayat yang terhad. Laksanakan penyegaran token automatik menggunakan token penyegaran untuk mengekalkan pengalaman pengguna yang lancar tanpa memerlukan pengesahan semula.
-- **Pertimbangkan menggunakan Pengurusan API Azure**: Walaupun melaksanakan keselamatan secara terus dalam pelayan MCP anda memberikan kawalan terperinci, Gerbang API seperti Pengurusan API Azure boleh mengendalikan banyak kebimbangan keselamatan ini secara automatik, termasuk pengesahan, kebenaran, had kadar, dan pemantauan. Mereka menyediakan lapisan keselamatan berpusat yang duduk di antara klien anda dan pelayan MCP anda. Untuk maklumat lanjut mengenai menggunakan Gerbang API dengan MCP, lihat [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
+- **Sentiasa gunakan HTTPS**: Encrypt komunikasi antara klien dan pelayan untuk melindungi token daripada diserang.
+- **Laksanakan Kawalan Akses Berasaskan Peranan (RBAC)**: Jangan hanya periksa *jika* pengguna disahkan; periksa *apa* yang mereka dibenarkan lakukan. Anda boleh mendefinisikan peranan dalam Entra ID dan memeriksanya dalam pelayan MCP anda.
+- **Pantau dan audit**: Log semua acara pengesahan supaya anda boleh mengesan dan bertindak balas terhadap aktiviti yang mencurigakan.
+- **Urus had kadar dan throttling**: Microsoft Graph dan API lain melaksanakan had kadar untuk mengelakkan penyalahgunaan. Laksanakan logik tolak balik eksponen dan cubaan semula dalam pelayan MCP anda untuk mengendalikan secara lancar tindak balas HTTP 429 (Terlalu Banyak Permintaan). Pertimbangkan untuk menyimpan data yang kerap diakses dalam cache untuk mengurangkan panggilan API.
+- **Penyimpanan token yang selamat**: Simpan token akses dan token segar semula dengan selamat. Untuk aplikasi tempatan, gunakan mekanisme penyimpanan selamat sistem. Untuk aplikasi pelayan, pertimbangkan menggunakan penyimpanan tersulit atau perkhidmatan pengurusan kekunci yang selamat seperti Azure Key Vault.
+- **Pengendalian tamat tempoh token**: Token akses mempunyai jangka hayat terhad. Laksanakan penyegaran token automatik menggunakan token segar semula untuk mengekalkan pengalaman pengguna yang lancar tanpa perlu pengesahan semula.
+- **Pertimbangkan menggunakan Azure API Management**: Walaupun melaksanakan keselamatan secara langsung dalam pelayan MCP anda memberi anda kawalan granularity, Pintu Gerbang API seperti Azure API Management boleh menangani banyak kebimbangan keselamatan ini secara automatik, termasuk pengesahan, kebenaran, had kadar, dan pemantauan. Ia menyediakan lapisan keselamatan berpusat yang terletak di antara klien anda dan pelayan MCP anda. Untuk maklumat lanjut tentang menggunakan Pintu Gerbang API dengan MCP, lihat [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690).
 
 
-##  Pengajaran Utama
+##  Poin Utama
 
-- Mengekalkan keselamatan pelayan MCP anda adalah penting untuk melindungi data dan alat anda.
-- Microsoft Entra ID menyediakan penyelesaian yang kukuh dan boleh berkembang untuk pengesahan dan kebenaran.
+- Melindungi pelayan MCP anda amat penting untuk melindungi data dan alat anda.
+- Microsoft Entra ID menyediakan penyelesaian yang kukuh dan skalabel untuk pengesahan dan kebenaran.
 - Gunakan **klien awam** untuk aplikasi tempatan dan **klien sulit** untuk pelayan jauh.
-- Aliran **Kod Kebenaran** adalah pilihan paling selamat untuk aplikasi web.
+- **Aliran Kod Kebenaran** adalah pilihan paling selamat untuk aplikasi web.
 
 
 ## Latihan
 
 1. Fikirkan tentang pelayan MCP yang mungkin anda bina. Adakah ia pelayan tempatan atau pelayan jauh?
-2. Berdasarkan jawapan anda, adakah anda akan menggunakan klien awam atau sulit?
-3. Apakah keizinan yang akan diminta oleh pelayan MCP anda untuk melaksanakan tindakan terhadap Microsoft Graph?
+2. Berdasarkan jawapan anda, adakah anda akan menggunakan klien awam atau klien sulit?
+3. Apakah kebenaran yang pelayan MCP anda akan minta untuk melaksanakan tindakan terhadap Microsoft Graph?
 
 
 ## Latihan Praktikal
 
 ### Latihan 1: Daftar Aplikasi dalam Entra ID
 Navigasi ke portal Microsoft Entra.
-Daftar aplikasi baru untuk pelayan MCP anda.
-Rekodkan ID Aplikasi (klien) dan ID Direktori (penyewa).
+Daftar aplikasi baharu untuk pelayan MCP anda.
+Catatkan ID Aplikasi (klien) dan ID Direktori (penyewa).
 
-### Latihan 2: Amankan Pelayan MCP Tempatan (Klien Awam)
-- Ikuti contoh kod untuk mengintegrasikan MSAL (Perpustakaan Pengesahan Microsoft) untuk pengesahan pengguna.
-- Uji aliran pengesahan dengan memanggil alat MCP yang mengambil butiran pengguna dari Microsoft Graph.
+### Latihan 2: Lindungi Pelayan MCP Tempatan (Klien Awam)
+- Ikuti contoh kod untuk mengintegrasikan MSAL (Microsoft Authentication Library) untuk pengesahan pengguna.
+- Uji aliran pengesahan dengan memanggil alat MCP yang mengambil maklumat pengguna dari Microsoft Graph.
 
-### Latihan 3: Amankan Pelayan MCP Jauh (Klien Sulit)
+### Latihan 3: Lindungi Pelayan MCP Jauh (Klien Sulit)
 - Daftar klien sulit dalam Entra ID dan cipta rahsia klien.
-- Konfigurasikan pelayan Express.js MCP anda untuk menggunakan Aliran Kod Kebenaran.
-- Uji titik akhir terlindung dan sahkan akses berdasarkan token.
+- Konfigurasi pelayan MCP Express.js anda untuk menggunakan Aliran Kod Kebenaran.
+- Uji titik akhir yang dilindungi dan sahkan akses berdasarkan token.
 
-### Latihan 4: Gunakan Amalan Terbaik Keselamatan
+### Latihan 4: Terapkan Amalan Terbaik Keselamatan
 - Aktifkan HTTPS untuk pelayan tempatan atau jauh anda.
-- Laksanakan kawalan akses berdasarkan peranan (RBAC) dalam logik pelayan anda.
+- Laksanakan kawalan akses berasaskan peranan (RBAC) dalam logik pelayan anda.
 - Tambah pengendalian tamat tempoh token dan penyimpanan token yang selamat.
 
 ## Sumber
 
 1. **Dokumentasi Gambaran Keseluruhan MSAL**  
-   Ketahui bagaimana Microsoft Authentication Library (MSAL) membolehkan pemerolehan token yang selamat merentasi platform:  
-   [MSAL Overview on Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
+   Pelajari bagaimana Microsoft Authentication Library (MSAL) membolehkan pemerolehan token yang selamat merentas platform:  
+   [Gambaran Keseluruhan MSAL di Microsoft Learn](https://learn.microsoft.com/en-gb/entra/msal/overview)
 
 2. **Repositori GitHub Azure-Samples/mcp-auth-servers**  
    Implementasi rujukan pelayan MCP yang menunjukkan aliran pengesahan:  
-   [Azure-Samples/mcp-auth-servers on GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
+   [Azure-Samples/mcp-auth-servers di GitHub](https://github.com/Azure-Samples/mcp-auth-servers)
 
 3. **Gambaran Keseluruhan Identiti Terurus untuk Sumber Azure**  
-   Fahami bagaimana untuk menghapuskan rahsia dengan menggunakan identiti terurus yang diberikan oleh sistem atau pengguna:  
-   [Managed Identities Overview on Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
+   Fahami cara menghapuskan rahsia dengan menggunakan identiti terurus yang ditetapkan oleh sistem atau pengguna:  
+   [Gambaran Keseluruhan Identiti Terurus di Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/)
 
-4. **Pengurusan API Azure: Gerbang Pengesahan Anda untuk Pelayan MCP**  
-   Penjelasan mendalam menggunakan APIM sebagai gerbang OAuth2 yang selamat untuk pelayan MCP:  
+4. **Azure API Management: Gerbang Auth Anda untuk Pelayan MCP**  
+   Kajian mendalam menggunakan APIM sebagai gerbang OAuth2 yang selamat untuk pelayan MCP:  
    [Azure API Management Your Auth Gateway For MCP Servers](https://techcommunity.microsoft.com/blog/integrationsonazureblog/azure-api-management-your-auth-gateway-for-mcp-servers/4402690)
 
 5. **Rujukan Kebenaran Microsoft Graph**  
-   Senarai komprehensif kebenaran yang didelagasi dan permohonan untuk Microsoft Graph:  
-   [Microsoft Graph Permissions Reference](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
+   Senarai lengkap kebenaran yang diwakilkan dan aplikasi untuk Microsoft Graph:  
+   [Rujukan Kebenaran Microsoft Graph](https://learn.microsoft.com/zh-tw/graph/permissions-reference)
 
 
 
 ## Hasil Pembelajaran
-Selepas menyelesaikan bahagian ini, anda akan dapat:
+Selepas melengkapkan bahagian ini, anda akan dapat:
 
-- Menyatakan mengapa pengesahan adalah kritikal untuk pelayan MCP dan aliran kerja AI.
-- Menyediakan dan mengkonfigurasi pengesahan Entra ID untuk kedua-dua senario pelayan MCP tempatan dan jauh.
+- Menjelaskan mengapa pengesahan penting untuk pelayan MCP dan aliran kerja AI.
+- Menyediakan dan mengkonfigurasi pengesahan Entra ID untuk senario pelayan MCP tempatan dan jauh.
 - Memilih jenis klien yang sesuai (awam atau sulit) berdasarkan penyebaran pelayan anda.
 - Melaksanakan amalan pengkodan selamat, termasuk penyimpanan token dan kebenaran berasaskan peranan.
-- Melindungi pelayan MCP anda dan alat-alatnya daripada akses tidak sah dengan yakin.
+- Melindungi pelayan MCP dan alatnya daripada akses tanpa izin dengan yakin.
 
-## Apa Seterusnya 
+## Apa seterusnya
 
-- [5.13 Model Context Protocol (MCP) Integration with Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
+- [5.13 Integrasi Protokol Konteks Model (MCP) dengan Microsoft Foundry](../mcp-foundry-agent-integration/README.md)
 
 ---
 

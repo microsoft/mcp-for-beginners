@@ -1,69 +1,69 @@
 # Weather MCP Server
 
-Ovo je primjer MCP Servera u Pythonu koji implementira alate za vremensku prognozu s lažnim odgovorima. Može se koristiti kao osnova za vaš vlastiti MCP Server. Uključuje sljedeće značajke:
+Ovo je primjer MCP poslužitelja u Pythonu koji implementira vremenske alate s lažnim odgovorima. Može se koristiti kao osnova za vaš vlastiti MCP poslužitelj. Uključuje sljedeće značajke:
 
-- **Weather Tool**: alat koji pruža lažne informacije o vremenu na temelju zadane lokacije.
-- **Povezivanje s Agent Builderom**: značajka koja vam omogućuje povezivanje MCP servera s Agent Builderom radi testiranja i otklanjanja pogrešaka.
-- **Debugiranje u [MCP Inspectoru](https://github.com/modelcontextprotocol/inspector)**: značajka koja vam omogućuje debugiranje MCP Servera pomoću MCP Inspectora.
+- **Vremenski alat**: Alat koji pruža lažne vremenske informacije na temelju zadane lokacije.
+- **Povezivanje s Agent Builderom**: Značajka koja vam omogućuje povezivanje MCP poslužitelja s Agent Builderom za testiranje i ispravljanje pogrešaka.
+- **Ispravljanje pogrešaka u [MCP Inspector](https://github.com/modelcontextprotocol/inspector)**: Značajka koja vam omogućuje ispravljanje pogrešaka MCP poslužitelja koristeći MCP Inspector.
 
-## Početak rada s Weather MCP Server predloškom
+## Početak s predloškom Weather MCP Server
 
 > **Preduvjeti**
 >
-> Za pokretanje MCP Servera na vašem lokalnom razvojnom računalu trebat će vam:
+> Za pokretanje MCP poslužitelja na vašem lokalnom razvojnom računalu potrebni su vam:
 >
 > - [Python](https://www.python.org/)
 > - (*Opcionalno - ako preferirate uv*) [uv](https://github.com/astral-sh/uv)
-> - [Python Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+> - [Proširenje za Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
 
-## Priprema okoline
+## Priprema okruženja
 
-Postoje dva pristupa za postavljanje okoline za ovaj projekt. Možete odabrati jedan ovisno o vašim preferencijama.
+Postoje dva pristupa za postavljanje okruženja za ovaj projekt. Možete odabrati jedan ovisno o vašim željama.
 
-> Napomena: Ponovno pokrenite VSCode ili terminal kako biste osigurali da se koristi Python iz virtualnog okruženja nakon što stvorite virtualno okruženje.
+> Napomena: Ponovo učitajte VSCode ili terminal kako biste osigurali da se koristi Python iz virtualnog okruženja nakon stvaranja virtualnog okruženja.
 
 | Pristup | Koraci |
 | -------- | ----- |
-| Korištenje `uv` | 1. Stvorite virtualno okruženje: `uv venv` <br>2. Pokrenite VSCode naredbu "***Python: Select Interpreter***" i odaberite Python iz stvorenog virtualnog okruženja <br>3. Instalirajte ovisnosti (uključujući razvojne): `uv pip install -r pyproject.toml --extra dev` |
-| Korištenje `pip` | 1. Stvorite virtualno okruženje: `python -m venv .venv` <br>2. Pokrenite VSCode naredbu "***Python: Select Interpreter***" i odaberite Python iz stvorenog virtualnog okruženja<br>3. Instalirajte ovisnosti (uključujući razvojne): `pip install -e .[dev]` |
+| Koristeći `uv` | 1. Napravite virtualno okruženje: `uv venv` <br>2. Pokrenite VSCode naredbu "***Python: Select Interpreter***" i odaberite Python iz stvorenog virtualnog okruženja <br>3. Instalirajte ovisnosti (uključujući razvojne ovisnosti): `uv pip install -r pyproject.toml --extra dev` |
+| Koristeći `pip` | 1. Napravite virtualno okruženje: `python -m venv .venv` <br>2. Pokrenite VSCode naredbu "***Python: Select Interpreter***" i odaberite Python iz stvorenog virtualnog okruženja<br>3. Instalirajte ovisnosti (uključujući razvojne ovisnosti): `pip install -e .[dev]` | 
 
-Nakon što postavite okruženje, možete pokrenuti server na vašem lokalnom razvojnom računalu putem Agent Buildera kao MCP Klijenta za početak:
-1. Otvorite VS Code Debug panel. Odaberite `Debug in Agent Builder` ili pritisnite `F5` za početak debugiranja MCP servera.
-2. Koristite Microsoft Foundry Toolkit Agent Builder za testiranje servera s [ovim upitom](../../../../../../../../../../../open_prompt_builder). Server će se automatski povezati s Agent Builderom.
-3. Kliknite `Run` za testiranje servera s upitom.
+Nakon postavljanja okruženja, možete pokrenuti poslužitelj na vašem lokalnom razvojnom računalu putem Agent Buildera kao MCP klijenta da biste započeli:
+1. Otvorite VS Code Debug panel. Odaberite `Debug in Agent Builder` ili pritisnite `F5` za početak ispravljanja pogrešaka MCP poslužitelja.
+2. U Microsoft Foundry Toolkit Agent Builderu odaberite aktivnu Foundry implementaciju kao što je `gpt-5.1`, zatim unesite: `What is the weather in Shanghai?`. Poslužitelj će se automatski povezati.
+3. Kliknite `Run` za testiranje poslužitelja s promptom.
 
-**Čestitamo**! Uspješno ste pokrenuli Weather MCP Server na svom lokalnom razvojnom računalu putem Agent Buildera kao MCP Klijenta.
+**Čestitamo**! Uspješno ste pokrenuli Weather MCP Server na vašem lokalnom razvoju računala putem Agent Buildera kao MCP klijenta.
 ![DebugMCP](https://raw.githubusercontent.com/microsoft/windows-ai-studio-templates/refs/heads/dev/mcpServers/mcp_debug.gif)
 
-## Što je uključeno u predložak
+## Što predložak uključuje
 
-| Mapа / Datoteka | Sadržaj                                      |
+| Mapa / Datoteka| Sadržaj                                     |
 | ------------ | -------------------------------------------- |
-| `.vscode`    | VSCode datoteke za debugiranje               |
-| `.aitk`      | Konfiguracije za Microsoft Foundry Toolkit   |
-| `src`        | Izvorni kod za weather mcp server             |
+| `.vscode`    | VSCode datoteke za ispravljanje pogrešaka                   |
+| `.aitk`      | Konfiguracije za Microsoft Foundry Toolkit                |
+| `src`        | Izvorni kod za weather MCP poslužitelj   |
 
-## Kako debugirati Weather MCP Server
+## Kako ispravljati pogreške Weather MCP Servera
 
 > Napomene:
-> - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) je vizualni alat za razvijatelje za testiranje i debugiranje MCP servera.
-> - Svi načini debugiranja podržavaju točke prekida (breakpoints), tako da možete dodavati točke prekida u kod implementacije alata.
+> - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) je vizualni razvojni alat za testiranje i ispravljanje pogrešaka MCP poslužitelja.
+> - Svi načini ispravljanja pogrešaka podržavaju prekide, tako da možete dodati prekide u kod implementacije alata.
 
-| Način debugiranja | Opis | Koraci za debugiranje |
+| Način ispravljanja | Opis | Koraci za ispravljanje pogrešaka |
 | ---------- | ----------- | --------------- |
-| Agent Builder | Debugiranje MCP servera u Agent Builderu preko Microsoft Foundry Toolkita. | 1. Otvorite VS Code Debug panel. Odaberite `Debug in Agent Builder` i pritisnite `F5` za početak debugiranja MCP servera.<br>2. Koristite Microsoft Foundry Toolkit Agent Builder za testiranje servera s [ovim upitom](../../../../../../../../../../../open_prompt_builder). Server će se automatski povezati s Agent Builderom.<br>3. Kliknite `Run` za testiranje servera s upitom. |
-| MCP Inspector | Debugiranje MCP servera koristeći MCP Inspector. | 1. Instalirajte [Node.js](https://nodejs.org/)<br> 2. Postavljanje Inspectora: `cd inspector` && `npm install` <br> 3. Otvorite VS Code Debug panel. Odaberite `Debug SSE in Inspector (Edge)` ili `Debug SSE in Inspector (Chrome)`. Pritisnite F5 za početak debugiranja.<br> 4. Kad se MCP Inspector pokrene u pregledniku, kliknite gumb `Connect` za povezivanje s ovim MCP serverom.<br> 5. Zatim možete `List Tools`, odabrati alat, unijeti parametre i `Run Tool` za debugiranje vašeg server koda.<br> |
+| Agent Builder | Ispravljajte pogreške MCP poslužitelja u Agent Builderu putem Microsoft Foundry Toolkit. | 1. Otvorite VS Code Debug panel. Odaberite `Debug in Agent Builder` i pritisnite `F5` za početak ispravljanja pogrešaka MCP poslužitelja.<br>2. Odaberite aktivnu Foundry implementaciju kao što je `gpt-5.1`, zatim unesite `What is the weather in Shanghai?`. Poslužitelj će se automatski povezati.<br>3. Kliknite `Run` za testiranje poslužitelja s promptom. |
+| MCP Inspector | Ispravljajte pogreške MCP poslužitelja koristeći MCP Inspector. | 1. Instalirajte [Node.js](https://nodejs.org/)<br> 2. Postavite Inspector: `cd inspector` && `npm install` <br> 3. Otvorite VS Code Debug panel. Odaberite `Debug SSE in Inspector (Edge)` ili `Debug SSE in Inspector (Chrome)`. Pritisnite F5 za početak ispravljanja.<br> 4. Kad se MCP Inspector pokrene u pregledniku, kliknite gumb `Connect` za povezivanje s ovim MCP poslužiteljem.<br> 5. Tada možete `List Tools`, odabrati alat, unijeti parametre i `Run Tool` za ispravljanje koda poslužitelja.<br> |
 
 ## Zadani portovi i prilagodbe
 
-| Način debugiranja | Portovi | Definicije | Prilagodbe | Napomena |
+| Način ispravljanja | Portovi | Definicije | Prilagodbe | Napomena |
 | ---------- | ----- | ------------ | -------------- |-------------- |
-| Agent Builder | 3001 | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Uredite [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json) za promjenu gore navedenih portova. | N/A |
-| MCP Inspector | 3001 (Server); 5173 i 3000 (Inspector) | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Uredite [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json) za promjenu gore navedenih portova.| N/A |
+| Agent Builder | 3001 | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Uredite [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json) za promjenu navedenih portova. | N/A |
+| MCP Inspector | 3001 (Poslužitelj); 5173 i 3000 (Inspector) | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Uredite [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json) za promjenu navedenih portova. | N/A |
 
 ## Povratne informacije
 
-Ako imate bilo kakve povratne informacije ili prijedloge za ovaj predložak, otvorite pitanja (issues) na [Microsoft Foundry Toolkit GitHub spremištu](https://github.com/microsoft/vscode-ai-toolkit/issues)
+Ako imate bilo kakve povratne informacije ili prijedloge za ovaj predložak, molimo otvorite problem na [Microsoft Foundry Toolkit GitHub spremištu](https://github.com/microsoft/vscode-ai-toolkit/issues)
 
 ---
 

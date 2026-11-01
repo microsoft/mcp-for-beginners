@@ -6,22 +6,22 @@
 
 ![logo](../../../translated_images/id/logo.ec93918ec338dadd.webp)
 
-## 🎯 Ikhtisar
+## 🎯  Ikhtisar
 
-[![Build AI Agents in VS Code: 4 Hands-On Labs with MCP and Microsoft Foundry Toolkit](../../../translated_images/id/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
+[![Membangun Agen AI di VS Code: 4 Lab Praktik dengan MCP dan Microsoft Foundry Toolkit](../../../translated_images/id/11.0f6db6a0fb606885.webp)](https://youtu.be/r34Csn3rkeQ)
 
-_(Klik gambar di atas untuk menonton video pelajaran ini)_
+_(Klik gambar di atas untuk melihat video pelajaran ini)_
 
-Selamat datang di **Model Context Protocol (MCP) Workshop**! Workshop praktis komprehensif ini menggabungkan dua teknologi mutakhir untuk merevolusi pengembangan aplikasi AI:
+Selamat datang di **Workshop Model Context Protocol (MCP)**! Workshop praktis komprehensif ini menggabungkan dua teknologi canggih untuk merevolusi pengembangan aplikasi AI:
 
 > **Catatan kompatibilitas:** kode workshop dibangun dan diuji dengan MCP
 > `2025-11-25`, seperti yang ditunjukkan oleh lencana di atas. Gunakan
 > [spesifikasi `2026-07-28` saat ini](https://modelcontextprotocol.io/specification/2026-07-28/)
 > untuk implementasi protokol baru dan tinjau catatan rilis SDK sebelum
-> memigrasi laboratorium.
+> memigrasi lab.
 
 - **🔗 Model Context Protocol (MCP)**: Standar terbuka untuk integrasi alat AI tanpa hambatan
-- **🛠️ Microsoft Foundry Toolkit Extension untuk VS Code**: Ekstensi pengembangan AI canggih dari Microsoft
+- **🛠️ Microsoft Foundry Toolkit Extension untuk VS Code**: Ekstensi pengembangan AI Microsoft yang kuat
 
 ### 🎓 Apa yang Akan Anda Pelajari
 
@@ -47,107 +47,107 @@ Sama seperti USB-C menghilangkan kekacauan kabel, MCP menghilangkan kompleksitas
 
 Ekstensi pengembangan AI unggulan Microsoft yang mengubah VS Code menjadi pusat kekuatan AI.
 
-**🚀 Kemampuan Inti:**
+**🚀 Kapabilitas Inti:**
 
 - 📦 **Katalog Model**: Akses model dari Azure AI, GitHub, Hugging Face, Ollama
-- ⚡ **Inferensi Lokal**: Eksekusi CPU/GPU/NPU yang dioptimalkan ONNX
-- 🏗️ **Agent Builder**: Pengembangan agen AI visual dengan integrasi MCP
-- 🎭 **Multimodal**: Dukungan teks, visual, dan output terstruktur
+- ⚡ **Inferensi Lokal**: Eksekusi CPU/GPU/NPU dioptimalkan ONNX
+- 🏗️ **Pembuat Agen**: Pengembangan agen AI visual dengan integrasi MCP
+- 🎭 **Multi-Modal**: Dukungan teks, visual, dan keluaran terstruktur
 
 **💡 Manfaat Pengembangan:**
 
-- Deploy model tanpa konfigurasi
+- Penyebaran model tanpa konfigurasi
 - Rekayasa prompt visual
-- Playground pengujian waktu nyata
+- Arena pengujian waktu nyata
 - Integrasi server MCP mulus
 
 ## 📚 Perjalanan Pembelajaran
 
-### [🚀 Modul 1: Dasar-Dasar Microsoft Foundry Toolkit](./lab1/README.md)
+### [🚀 Modul 1: Dasar-dasar Microsoft Foundry Toolkit](./lab1/README.md)
 
 **Durasi**: 15 menit
 
-- 🛠️ Pasang dan konfigurasikan Microsoft Foundry Toolkit untuk VS Code
+- 🛠️ Instalasi dan konfigurasi Microsoft Foundry Toolkit untuk VS Code
 - 🗂️ Jelajahi Katalog Model (100+ model dari GitHub, ONNX, OpenAI, Anthropic, Google)
 - 🎮 Kuasai Interactive Playground untuk pengujian model waktu nyata
 - 🤖 Bangun agen AI pertama Anda dengan Agent Builder
-- 📊 Evaluasi performa model dengan metrik bawaan (F1, relevansi, kemiripan, koherensi)
-- ⚡ Pelajari pemrosesan batch dan kemampuan multimodal
+- 📊 Evaluasi kinerja model dengan metrik bawaan (F1, relevansi, kesamaan, koherensi)
+- ⚡ Pelajari pemrosesan batch dan dukungan multi-modal
 
-**🎯 Hasil Pembelajaran**: Membuat agen AI fungsional dengan pemahaman menyeluruh atas kemampuan Microsoft Foundry Toolkit
+**🎯 Hasil Pembelajaran**: Membuat agen AI fungsional dengan pemahaman komprehensif tentang kapabilitas Microsoft Foundry Toolkit
 
-### [🌐 Modul 2: MCP dengan Dasar-Dasar Microsoft Foundry Toolkit](./lab2/README.md)
+### [🌐 Modul 2: MCP dengan Dasar-dasar Microsoft Foundry Toolkit](./lab2/README.md)
 
 **Durasi**: 20 menit
 
 - 🧠 Kuasai arsitektur dan konsep Model Context Protocol (MCP)
 - 🌐 Jelajahi ekosistem server MCP Microsoft
-- 🤖 Bangun agen otomatisasi browser menggunakan Playwright MCP server
-- 🔧 Integrasikan server MCP dengan Agent Builder Microsoft Foundry Toolkit
+- 🤖 Bangun agen otomatisasi browser menggunakan server Playwright MCP
+- 🔧 Integrasikan server MCP dengan Microsoft Foundry Toolkit Agent Builder
 - 📊 Konfigurasikan dan uji alat MCP dalam agen Anda
-- 🚀 Ekspor dan deploy agen bertenaga MCP untuk penggunaan produksi
+- 🚀 Ekspor dan sebarkan agen bertenaga MCP untuk penggunaan produksi
 
-**🎯 Hasil Pembelajaran**: Mendeploy agen AI yang dipercepat dengan alat eksternal melalui MCP
+**🎯 Hasil Pembelajaran**: Menyebarkan agen AI unggul dengan alat eksternal melalui MCP
 
 ### [🔧 Modul 3: Pengembangan MCP Lanjutan dengan Microsoft Foundry Toolkit](./lab3/README.md)
 
 **Durasi**: 20 menit
 
 - 💻 Buat server MCP khusus menggunakan Microsoft Foundry Toolkit
-- 🐍 Konfigurasikan dan gunakan SDK MCP Python terbaru (v1.9.3)
-- 🔍 Atur dan gunakan MCP Inspector untuk debugging
-- 🛠️ Bangun Server MCP Cuaca dengan alur kerja debugging profesional
+- 🐍 Konfigurasikan dan gunakan SDK Python MCP terbaru (v1.9.3)
+- 🔍 Siapkan dan manfaatkan MCP Inspector untuk debugging
+- 🛠️ Bangun Weather MCP Server dengan alur kerja debugging profesional
 - 🧪 Debug server MCP di lingkungan Agent Builder dan Inspector
 
-**🎯 Hasil Pembelajaran**: Kembangkan dan debug server MCP khusus dengan alat modern
+**🎯 Hasil Pembelajaran**: Mengembangkan dan debugging server MCP khusus dengan alat modern
 
-### [🐙 Modul 4: Pengembangan MCP Praktis - Server Klon GitHub Kustom](./lab4/README.md)
+### [🐙 Modul 4: Pengembangan MCP Praktis - Server Clone GitHub Kustom](./lab4/README.md)
 
 **Durasi**: 30 menit
 
-- 🏗️ Bangun Server MCP Klon GitHub nyata untuk alur kerja pengembangan
-- 🔄 Terapkan kloning repositori cerdas dengan validasi dan penanganan kesalahan
+- 🏗️ Bangun Server MCP GitHub Clone dunia nyata untuk alur kerja pengembangan
+- 🔄 Terapkan cloning repositori cerdas dengan validasi dan penanganan error
 - 📁 Buat manajemen direktori cerdas dan integrasi VS Code
 - 🤖 Gunakan Mode Agen GitHub Copilot dengan alat MCP kustom
 - 🛡️ Terapkan keandalan siap produksi dan kompatibilitas lintas platform
 
-**🎯 Hasil Pembelajaran**: Deploy server MCP siap produksi yang menyederhanakan alur kerja pengembangan nyata
+**🎯 Hasil Pembelajaran**: Menyebarkan server MCP siap produksi yang menyederhanakan alur kerja pengembangan riil
 
-## 💡 Aplikasi Dunia Nyata & Dampak
+## 💡 Aplikasi & Dampak Dunia Nyata
 
 ### 🏢 Kasus Penggunaan Enterprise
 
-#### 🔄 Otomasi DevOps
+#### 🔄 Otomatisasi DevOps
 
-Ubah alur kerja pengembangan Anda dengan otomasi cerdas:
+Transformasi alur kerja pengembangan Anda dengan otomatisasi cerdas:
 
 - **Manajemen Repositori Cerdas**: Tinjauan kode dan keputusan merge berbasis AI
-- **CI/CD Cerdas**: Optimasi pipeline otomatis berdasarkan perubahan kode
-- **Triage Masalah**: Klasifikasi dan penugasan bug otomatis
+- **CI/CD Cerdas**: Optimalisasi pipeline otomatis berdasarkan perubahan kode
+- **Triage Masalah**: Klasifikasi bug dan penugasan otomatis
 
 #### 🧪 Revolusi Jaminan Kualitas
 
-Tingkatkan pengujian dengan otomasi bertenaga AI:
+Tingkatkan pengujian dengan otomatisasi berbasis AI:
 
-- **Generasi Tes Cerdas**: Membuat suite tes komprehensif secara otomatis
-- **Pengujian Regresi Visual**: Deteksi perubahan UI dengan AI
-- **Pemantauan Performa**: Identifikasi dan resolusi masalah secara proaktif
+- **Pembuatan Tes Cerdas**: Membuat suite tes komprehensif secara otomatis
+- **Pengujian Regresi Visual**: Deteksi perubahan UI berbasis AI
+- **Pemantauan Kinerja**: Identifikasi dan solusi masalah secara proaktif
 
-#### 📊 Kecerdasan Pipeline Data
+#### 📊 Intelijen Pipeline Data
 
-Bangun alur kerja pengolahan data yang lebih cerdas:
+Bangun alur kerja pemrosesan data yang lebih cerdas:
 
-- **Proses ETL Adaptif**: Transformasi data yang mengoptimalkan diri sendiri
-- **Deteksi Anomali**: Pemantauan kualitas data secara waktu nyata
-- **Routing Cerdas**: Manajemen alur data pintar
+- **Proses ETL Adaptif**: Transformasi data yang mengoptimalkan diri
+- **Deteksi Anomali**: Pemantauan kualitas data waktu nyata
+- **Pengarahan Cerdas**: Manajemen aliran data pintar
 
 #### 🎧 Peningkatan Pengalaman Pelanggan
 
 Ciptakan interaksi pelanggan yang luar biasa:
 
-- **Dukungan Kontekstual**: Agen AI dengan akses riwayat pelanggan
-- **Resolusi Masalah Proaktif**: Layanan pelanggan prediktif
-- **Integrasi Multi-Channel**: Pengalaman AI terpadu di berbagai platform
+- **Dukungan Berbasis Konteks**: Agen AI dengan akses ke riwayat pelanggan
+- **Penyelesaian Masalah Proaktif**: Layanan pelanggan prediktif
+- **Integrasi Multi-Kanal**: Pengalaman AI terpadu di berbagai platform
 
 ## 🛠️ Prasyarat & Pengaturan
 
@@ -159,7 +159,7 @@ Ciptakan interaksi pelanggan yang luar biasa:
 | **Visual Studio Code** | Versi stabil terbaru | Diperlukan untuk Microsoft Foundry Toolkit |
 | **Node.js** | v18.0+ dan npm | Untuk pengembangan server MCP |
 | **Python** | 3.10+ | Opsional untuk server MCP Python |
-| **Memori** | Minimum 8GB RAM | 16GB disarankan untuk model lokal |
+| **Memori** | Minimal 8GB RAM | Direkomendasikan 16GB untuk model lokal |
 
 ### 🔧 Lingkungan Pengembangan
 
@@ -168,7 +168,7 @@ Ciptakan interaksi pelanggan yang luar biasa:
 - **Microsoft Foundry Toolkit** (ms-windows-ai-studio.windows-ai-studio)
 - **Python** (ms-python.python)
 - **Python Debugger** (ms-python.debugpy)
-- **GitHub Copilot** (GitHub.copilot) - Opsional tetapi berguna
+- **GitHub Copilot** (GitHub.copilot) - Opsional tapi membantu
 
 #### Alat Opsional
 
@@ -178,33 +178,33 @@ Ciptakan interaksi pelanggan yang luar biasa:
 
 ## 🎖️ Hasil Pembelajaran & Jalur Sertifikasi
 
-### 🏆 Checklist Penguasaan Keterampilan
+### 🏆 Daftar Penguasaan Keterampilan
 
 Dengan menyelesaikan workshop ini, Anda akan mencapai penguasaan dalam:
 
 #### 🎯 Kompetensi Inti
 
 - [ ] **Penguasaan Protokol MCP**: Pemahaman mendalam tentang arsitektur dan pola implementasi
-- [ ] **Kemahiran Microsoft Foundry Toolkit**: Penggunaan tingkat ahli dari Microsoft Foundry Toolkit untuk pengembangan cepat
-- [ ] **Pengembangan Server Kustom**: Membangun, mendeploy, dan memelihara server MCP produksi
-- [ ] **Keunggulan Integrasi Alat**: Menghubungkan AI dengan alur kerja pengembangan yang sudah ada secara mulus
-- [ ] **Penerapan Pemecahan Masalah**: Menerapkan keterampilan yang dipelajari untuk tantangan bisnis nyata
+- [ ] **Kefasihan Microsoft Foundry Toolkit**: Penggunaan tingkat ahli dari Microsoft Foundry Toolkit untuk pengembangan cepat
+- [ ] **Pengembangan Server Kustom**: Membangun, menyebarkan, dan memelihara server MCP produksi
+- [ ] **Keunggulan Integrasi Alat**: Menghubungkan AI dengan alur kerja pengembangan yang ada secara mulus
+- [ ] **Aplikasi Pemecahan Masalah**: Menerapkan keterampilan yang dipelajari untuk tantangan bisnis nyata
 
 #### 🔧 Keterampilan Teknis
 
-- [ ] Menyiapkan dan mengkonfigurasi Microsoft Foundry Toolkit di VS Code
+- [ ] Menyiapkan dan mengonfigurasi Microsoft Foundry Toolkit di VS Code
 - [ ] Merancang dan mengimplementasikan server MCP kustom
-- [ ] Mengintegrasikan Model GitHub dengan arsitektur MCP
+- [ ] Mengintegrasikan model Microsoft Foundry dengan arsitektur MCP
 - [ ] Membangun alur kerja pengujian otomatis dengan Playwright
-- [ ] Mendeploy agen AI untuk penggunaan produksi
-- [ ] Debug dan optimalkan performa server MCP
+- [ ] Menyebarkan agen AI untuk penggunaan produksi
+- [ ] Debugging dan mengoptimalkan kinerja server MCP
 
 #### 🚀 Kapabilitas Lanjutan
 
 - [ ] Merancang integrasi AI skala enterprise
 - [ ] Menerapkan praktik keamanan terbaik untuk aplikasi AI
-- [ ] Merancang arsitektur server MCP yang dapat diskalakan
-- [ ] Membuat rantai alat kustom untuk domain tertentu
+- [ ] Merancang arsitektur server MCP yang skalabel
+- [ ] Membuat rantai alat kustom untuk domain spesifik
 - [ ] Membimbing orang lain dalam pengembangan AI-native
 
 ## 📖 Sumber Daya Tambahan
@@ -219,11 +219,11 @@ Dengan menyelesaikan workshop ini, Anda akan mencapai penguasaan dalam:
 
 **🚀 Siap merevolusi alur kerja pengembangan AI Anda?**
 
-Mari bangun masa depan aplikasi cerdas bersama MCP dan Microsoft Foundry Toolkit!
+Mari bangun masa depan aplikasi cerdas bersama dengan MCP dan Microsoft Foundry Toolkit!
 
 ## Apa Selanjutnya
 
-Lanjutkan ke: [Modul 11: Laboratorium Praktis Server MCP](../11-MCPServerHandsOnLabs/README.md)
+Lanjutkan ke: [Modul 11: Lab Praktik Server MCP](../11-MCPServerHandsOnLabs/README.md)
 
 ---
 

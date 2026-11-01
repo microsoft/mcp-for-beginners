@@ -1,22 +1,28 @@
 # Selle näidise käivitamine
 
-See on Rusti lahendus LLM kliendi näidise jaoks. Sul peab olema installitud Rusti tööriistakomplekt; vaata [ametlikku installijuhendit](https://www.rust-lang.org/tools/install).
+See on Rusti lahendus LLM-kliendi näidisele. Selleks on vaja Rusti tööriistakomplekti; vaata [ametlikku installijuhendit](https://www.rust-lang.org/tools/install).
 
-Klient kutsub mudelit läbi GitHubi Mudelite inference lõpp-punkti (`https://models.github.ai/inference/chat`) ja loeb sinu GitHubi isikliku juurdepääsu märgi (PAT) keskkonnamuutujast `OPENAI_API_KEY`.
+Klient kutsub juurutatud Microsoft Foundry mudelit läbi Azure OpenAI
+v1 lõpp-punkti.
 
 > [!NOTE]
-> Teised selles hoidlas olevad lahendused kasutavad `GITHUB_TOKEN`. Rusti puhul seadista `OPENAI_API_KEY` samaks väärtuseks, et see vastaks OpenAI kliendi konfiguratsioonile.
+> Väärtus, mis antakse `model` kaudu, on sinu Foundry juurutuse nimi, mitte tingimata
+> aluseks oleva mudeli nimi.
 
-## -0- Määra oma GitHubi token
+## -0- Konfigureeri Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
 ## -1- Koosta näidis
@@ -31,7 +37,9 @@ cargo build
 cargo run
 ```
 
-Klient käivitab kalkulaatori MCP serveri, hangib selle tööriistade nimekirja ja kasutab mudelit (`openai/gpt-5-mini`), et kutsuda tööriista `add`. Sa peaksid nägema väljundit, mis näitab tööriista kutset (näiteks "Calling tool: add") ja selle kutse tulemust.
+Klient käivitab kalkulaatori MCP-serveri, hangib selle tööriistade loendi ja kasutab
+juurutatud mudelit `add` tööriista kutsumiseks. Sa peaksid nägema väljundit, mis näitab
+tööriista kutset (näiteks, "Calling tool: add") ja selle kutse tulemust.
 
 ---
 

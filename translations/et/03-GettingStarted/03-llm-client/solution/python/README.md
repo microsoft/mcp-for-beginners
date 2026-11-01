@@ -1,6 +1,6 @@
-# Selle näidise käivitamine
+# Käesoleva näite käivitamine
 
-Soovitatav on paigaldada `uv`, kuid see pole kohustuslik, vaata [juhiseid](https://docs.astral.sh/uv/#highlights)
+Soovitatav on installida `uv`, kuid see ei ole kohustuslik; vaata [juhiseid](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Loo virtuaalne keskkond
 
@@ -19,16 +19,31 @@ venv\Scrips\activate
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Käivita näidis
+## -3- Seadista Microsoft Foundry
+
+Juuruta Microsoft Foundry-s aktiivne mudel, näiteks `gpt-5.1`, ja seejärel määra:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` on juurutuse nimi, mis võib erineda
+algsest mudeli nimest. Kontrolli
+[Microsoft Foundry mudelite kasutuse lõppemise ajakava](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+enne mudeli valimist.
+
+## -4- Käivita näide
+
 
 ```bash
 python client.py
 ```
 
-Peaksid nägema väljundit, mis on sarnane järgmisele:
+Peaksid nägema sarnast väljundit:
 
 ```text
 LISTING RESOURCES
@@ -47,5 +62,7 @@ TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 
 ---
 
-**Lahtiütlus**:  
-See dokument on tõlgitud AI tõlketeenuse [Co-op Translator](https://github.com/Azure/co-op-translator) abil. Kuigi püüame tagada täpsust, palume arvestada, et automaatsed tõlked võivad sisaldada vigu või ebatäpsusi. Algne dokument selle algses keeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitame kasutada professionaalset inimtõlget. Me ei vastuta selle tõlke kasutamisest tulenevate arusaamatuste või valesti tõlgenduste eest.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Lahtiütlus**:
+See dokument on tõlgitud kasutades AI tõlketeenust [Co-op Translator](https://github.com/Azure/co-op-translator). Kuigi me püüdleme täpsuse poole, palun pange tähele, et automatiseeritud tõlgetes võib esineda vigu või ebatäpsusi. Originaaldokument selle emakeeles tuleks pidada autoriteetseks allikaks. Olulise teabe puhul soovitatakse kasutada professionaalset inimtõlget. Me ei vastuta selle tõlkega seotud eksimustest või valesti mõistmistest.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,140 +1,117 @@
 # שירות מחשבון בסיסי MCP
 
 > [!NOTE]
-> דוגמה זו משתמשת בפרוטוקול הישן HTTP+SSE ומיועדת ל-SDK תואם
-> ל-MCP ב-`2025-11-25`. שרתים חדשים צריכים להשתמש בתמיכה ב-HTTP סטרימינג
-> בגרסה `2026-07-28`.
+> דוגמה זו משתמשת בהעברת HTTP+SSE ישנה וממוקדת ב-SDK התואם ל-MCP `2025-11-25`. שרתים מרוחקים חדשים צריכים להשתמש בתמיכה ב-HTTP `2026-07-28` Streamable.
 
-שירות זה מספק פעולות מחשבון בסיסיות דרך פרוטוקול Model Context Protocol (MCP) בשימוש עם Spring Boot ו-WebFlux כתחבורה. הוא מיועד כדוגמה פשוטה למתחילים הלומדים על יישומי MCP.
+> HTTP תמיכה.
 
-למידע נוסף, ראה את התיעוד של [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
+שירות זה מספק פעולות מחשבון בסיסיות דרך פרוטוקול הקשר למודל (MCP) באמצעות Spring Boot עם העברת WebFlux. הוא מיועד כדוגמה פשוטה למתחילים הלומדים על יישומי MCP.
+
+למידע נוסף, ראו את תיעוד ההפניה של [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
 ## סקירה כללית
 
-השירות מדגים:
-- תמיכה ב-SSE (אירועים שנשלחים מהשרת)
-- רישום אוטומטי של כלים באמצעות ההערה `@Tool` של Spring AI
+השירות מציג:
+- תמיכה ב-SSE (Server-Sent Events)
+- רישום אוטומטי של כלים באמצעות הסימון `@Tool` של Spring AI
 - פונקציות מחשבון בסיסיות:
   - חיבור, חיסור, כפל, חילוק
-  - חישוב חזקות ושורש ריבועי
-  - מודולו (שארית) וערך מוחלט
-  - פונקציית עזרה לתיאורי פעולות
+  - חישוב חזקה ושורש ריבועי
+  - שארית וחישוב ערך מוחלט
+  - פונקציית עזרה לתיאור פעולות
 
 ## תכונות
 
-שירות המחשבון מציע את היכולות הבאות:
+שירות המחשבון הזה מציע את היכולות הבאות:
 
 1. **פעולות אריתמטיות בסיסיות**:
-   - הצגה של שני מספרים
-   - חיסור של מספר אחד מהשני
+   - חיבור של שני מספרים
+   - חיסור של מספר אחד מאחר
    - כפל של שני מספרים
-   - חילוק של מספר אחד באחר (עם בדיקת אפס)
+   - חילוק של מספר אחד באחר (עם בדיקת חילוק באפס)
 
 2. **פעולות מתקדמות**:
    - חישוב חזקה (העלאת בסיס למעריך)
    - חישוב שורש ריבועי (עם בדיקת מספר שלילי)
-   - חישוב מודולו (שארית)
+   - חישוב שארית
    - חישוב ערך מוחלט
 
 3. **מערכת עזרה**:
-   - פונקציית עזרה מובנית המפרטת את כל הפעולות הזמינות
+   - פונקציית עזרה מובנית המסבירה את כל הפעולות הזמינות
 
 ## שימוש בשירות
 
-השירות מציג את נקודות הקצה API הבאות דרך פרוטוקול MCP:
+השירות מציג את נקודות הקצה של ה-API הבאות דרך פרוטוקול MCP:
 
-- `add(a, b)`: חיבור שני מספרים
+- `add(a, b)`: החבר שני מספרים יחד
 - `subtract(a, b)`: חיסור המספר השני מהראשון
-- `multiply(a, b)`: כפל של שני מספרים
+- `multiply(a, b)`: כפל שני מספרים
 - `divide(a, b)`: חילוק המספר הראשון בשני (עם בדיקת אפס)
-- `power(base, exponent)`: חישוב חזקה של מספר
-- `squareRoot(number)`: חישוב שורש ריבועי (עם בדיקת מספר שלילי)
-- `modulus(a, b)`: חישוב השארית בחילוק
-- `absolute(number)`: חישוב ערך מוחלט
-- `help()`: קבלת מידע על הפעולות הזמינות
+- `power(base, exponent)`: חישוב החזקת מספר
+- `squareRoot(number)`: חישוב השורש הריבועי (עם בדיקת מספר שלילי)
+- `modulus(a, b)`: חישוב השארית מחילוק
+- `absolute(number)`: חישוב הערך המוחלט
+- `help()`: השגת מידע על פעולות זמינות
 
-## לקוח בדיקה
+## לקוח לבדיקה
 
-דוגמת לקוח פשוטה כלולה בחבילת `com.microsoft.mcp.sample.client`. מחלקת `SampleCalculatorClient` מדגימה את הפעולות הזמינות של שירות המחשבון.
+לקוח בדיקה פשוט כלול ב-`com.microsoft.mcp.sample.client` החבילה. מחלקת `SampleCalculatorClient` מדגימה את הפעולות הזמינות של שירות המחשבון.
 
 ## שימוש בלקוח LangChain4j
 
-הפרויקט כולל לקוח דוגמה של LangChain4j ב-`com.microsoft.mcp.sample.client.LangChain4jClient` המדגים כיצד לשלב את שירות המחשבון עם LangChain4j ודגמי GitHub:
+הפרויקט כולל לקוח דוגמה ל-LangChain4j ב
+`com.microsoft.mcp.sample.client.LangChain4jClient` שמדגים כיצד
+לשלב את שירות המחשבון עם מודל Microsoft Foundry.
 
 ### דרישות מוקדמות
 
-1. **הגדרת טוקן GitHub**:
-   
-   לשימוש בדגמי ה-AI של GitHub (כמו phi-4), נדרש טוקן גישה אישי מ-GitHub:
+1. צור משאב Microsoft Foundry ופרוס מודל פעיל כגון
+   `gpt-5.1`.
+2. הגדר את נקודת הקצה של המודל, מפתח ה-API ושם הפריסה:
 
-   a. עבור להגדרות החשבון שלך ב-GitHub: https://github.com/settings/tokens
-   
-   b. לחץ על "Generate new token" → "Generate new token (classic)"
-   
-   c. תן לטוקן שם תיאורי
-   
-   d. בחר את ההרשאות הבאות:
-      - `repo` (שליטה מלאה על מאגרים פרטיים)
-      - `read:org` (קריאה של חברות בארגון ובקבוצות, קריאת פרויקטים בארגון)
-      - `gist` (יצירת gist)
-      - `user:email` (גישה לכתובות הדואר האלקטרוני של המשתמש (קריאה בלבד))
-   
-   e. לחץ על "Generate token" והעתק את הטוקן החדש
-   
-   f. הגדר אותו כמשתנה סביבה:
-      
-      ב-Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      ב-macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. להגדרה קבועה, הוסף אותו למשתני הסביבה דרך הגדרות המערכת
-
-2. הוסף את התלות LangChain4j GitHub לפרויקט שלך (כבר כלול ב-pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. ודא ששירות המחשבון רץ ב-`localhost:8080`
+3. בדוק את
+   [לוח זמנים לפרישת מודל Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   לפני בחירת פריסה.
+4. ודא ששרת המחשבון פועל ב-`localhost:8080`.
 
 ### הרצת לקוח LangChain4j
 
 דוגמה זו מדגימה:
-- התחברות לשרת MCP של המחשבון דרך תחבורת SSE
-- שימוש ב-LangChain4j ליצירת בוט שיחה המשתמש בפעולות המחשבון
-- אינטגרציה עם דגמי AI של GitHub (כעת משתמשים בדגם phi-4)
+- חיבור לשרת מחשבון MCP דרך תחבורה מסוג SSE
+- שימוש ב-LangChain4j ליצירת בוט צ'אט שמנצלת פעולות מחשבון
+- שילוב עם מודל Microsoft Foundry שפורש
 
-הלקוח שולח את שאילתות הדוגמה הבאות להדגמת הפונקציונליות:
-1. חישוב סכום של שני מספרים
-2. מציאת שורש ריבועי של מספר
-3. קבלת מידע עזרה על פעולות המחשבון הזמינות
+הלקוח שולח את שאילתות הדוגמה הבאות כדי להדגים פונקציונליות:
+1. חישוב סכום שני מספרים
+2. מציאת השורש הריבועי של מספר
+3. קבלת מידע עזרה על פעולות מחשבון זמינות
 
-הרץ את הדוגמה ובדוק את פלט הקונסולה כדי לראות כיצד מודל ה-AI משתמש בכלי המחשבון כדי להשיב על השאילתות.
+הרץ את הדוגמה ובדוק את פלט הקונסולה כדי לראות כיצד מודל ה-AI משתמש בכלי המחשבון כדי להגיב לשאילתות.
 
-### הגדרת דגם GitHub
+### תצורת מודל Microsoft Foundry
 
-לקוח LangChain4j מוגדר להשתמש בדגם phi-4 של GitHub עם ההגדרות הבאות:
+לקוח LangChain4j משתמש בנקודת קצה תואמת Azure OpenAI v1 החשופה על ידי
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-לשימוש בדגמי GitHub אחרים, פשוט שנה את פרמטר `modelName` לדגם נתמך אחר (למשל "claude-3-haiku-20240307", "llama-3-70b-8192", וכו').
+`AZURE_OPENAI_DEPLOYMENT` חייב להתאים לשם שהוקצה כשהמודל
+הופץ, שעשוי להיות שונה משם המודל הבסיסי.
 
 ## תלותים
 
@@ -154,17 +131,17 @@ ChatLanguageModel model = GitHubChatModel.builder()
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
 
 ## בניית הפרויקט
 
-בניית הפרויקט באמצעות Maven:
+בנה את הפרויקט באמצעות Maven:
 ```bash
 ./mvnw clean install -DskipTests
 ```
@@ -179,61 +156,62 @@ java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 
 ### שימוש ב-MCP Inspector
 
-MCP Inspector הוא כלי שימושי לאינטראקציה עם שירותי MCP. לשימוש בו עם שירות המחשבון הזה:
+MCP Inspector הוא כלי מועיל לאינטראקציה עם שירותי MCP. לשימוש בו עם שירות המחשבון הזה:
 
 1. **התקן והרץ את MCP Inspector** בחלון טרמינל חדש:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **גש לממשק המשתמש דרך דפדפן** על ידי לחיצה על כתובת ה-URL שמופיעה באפליקציה (בדרך כלל http://localhost:6274)
+2. **גש לממשק הווב** בלחיצה על כתובת ה-URL שמוצגת על ידי האפליקציה (בדרך כלל http://localhost:6274)
 
 3. **הגדר את החיבור**:
    - הגדר את סוג התחבורה ל-"SSE"
-   - הגדר את ה-URL לנקודת הקצה SSE של השרת שלך: `http://localhost:8080/sse`
+   - הגדר את כתובת ה-URL לנקודת הקצה SSE של השרת שלך: `http://localhost:8080/sse`
    - לחץ על "Connect"
 
 4. **השתמש בכלים**:
    - לחץ על "List Tools" כדי לראות את פעולות המחשבון הזמינות
-   - בחר כלי ולחץ על "Run Tool" לביצוע פעולה
+   - בחר כלי ולחץ על "Run Tool" כדי לבצע פעולה
 
 ![צילום מסך של MCP Inspector](../../../../../../translated_images/he/tool.c75a0b2380efcf1a.webp)
 
-### שימוש ב-Docker
+### שימוש בדוקר
 
-הפרויקט כולל Dockerfile לפריסה מכולתית:
+הפרויקט כולל Dockerfile לפריסה במכולה:
 
-1. **בנה את תמונת Docker**:
+1. **בנה את תמונת הדוקר**:
    ```bash
    docker build -t calculator-mcp-service .
    ```
 
-2. **הרץ את מכולת Docker**:
+2. **הפעל את מכולת הדוקר**:
    ```bash
    docker run -p 8080:8080 calculator-mcp-service
    ```
 
 זה י:
-- יבנה תמונת Docker רב-שלבית עם Maven 3.9.9 ו-Eclipse Temurin 24 JDK
+- יבנה תמונת דוקר רב-שלבית עם Maven 3.9.9 ו-Eclipse Temurin 24 JDK
 - ייצור תמונת מכולה אופטימלית
-- יפותח השירות בפורט 8080
+- יחשוף את השירות על פורט 8080
 - יפעיל את שירות המחשבון MCP בתוך המכולה
 
-תוכל לגשת לשירות דרך `http://localhost:8080` לאחר שהמכולה רצה.
+תוכל לגשת לשירות ב-`http://localhost:8080` ברגע שהמכולה רצה.
 
 ## פתרון בעיות
 
-### בעיות נפוצות עם טוקן GitHub
+### בעיות נפוצות בחיבור למודל
 
-1. **בעיות הרשאת טוקן**: אם אתה מקבל שגיאת 403 Forbidden, בדוק שהטוקן שלך כולל את ההרשאות הנכונות כפי שמפורט בדרישות המוקדמות.
+1. **שגיאות אימות**: אמת ש-`AZURE_OPENAI_API_KEY` שייך ל-
+   המשאב שזוהה על ידי `AZURE_OPENAI_ENDPOINT`.
+2. **פריסה לא נמצאה**: אמת ש-`AZURE_OPENAI_DEPLOYMENT` תואם בדיוק
+   את שם הפריסה ב-Microsoft Foundry.
+3. **הגבלת תיעוד (Rate limiting)**: בדוק את מכסת הפריסה ונסה שוב לאחר התקופה
+   שצוינה על ידי השירות.
 
-2. **טוקן לא נמצא**: אם אתה מקבל שגיאה "No API key found", ודא שמשתנה הסביבה GITHUB_TOKEN מוגדר כראוי.
-
-3. **הגבלת קצב**: ל-API של GitHub יש מגבלות קצב. אם נתקלת בשגיאת הגבלת קצב (קוד סטטוס 429), המתן כמה דקות לפני ניסיון נוסף.
-
-4. **פג תוקף טוקן**: לטוקנים של GitHub יש תוקף. אם אתה מקבל שגיאות אימות לאחר זמן מה, צור טוקן חדש ועדכן את משתנה הסביבה.
-
-אם דרושה עזרה נוספת, בדוק את [התיעוד של LangChain4j](https://github.com/langchain4j/langchain4j) או את [התיעוד של GitHub API](https://docs.github.com/en/rest).
+לעזרה נוספת, ראה את
+[התיעוד של LangChain4j](https://github.com/langchain4j/langchain4j) ואת
+[התיעוד של Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

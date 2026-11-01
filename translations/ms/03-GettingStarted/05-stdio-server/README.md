@@ -1,41 +1,41 @@
-# Server MCP dengan Pengangkutan stdio
+# Pelayan MCP dengan Pengangkutan stdio
 
-> **⚠️ Kemas Kini Penting**: Mulai Spesifikasi MCP 2025-06-18, pengangkutan SSE (Server-Sent Events) berdiri sendiri telah **dihentikan** dan digantikan dengan pengangkutan "Streamable HTTP". Spesifikasi MCP semasa menetapkan dua mekanisme pengangkutan utama:
+> **⚠️ Kemas Kini Penting**: Sehingga Spesifikasi MCP 2025-06-18, pengangkutan SSE (Server-Sent Events) yang berdiri sendiri telah **dihentikan** dan digantikan oleh pengangkutan "Streamable HTTP". Spesifikasi MCP semasa mentakrifkan dua mekanisme pengangkutan utama:
 > 1. **stdio** - Input/output standard (disyorkan untuk pelayan tempatan)
 > 2. **Streamable HTTP** - Untuk pelayan jauh yang mungkin menggunakan SSE secara dalaman
 >
 > Pelajaran ini telah dikemas kini untuk memberi tumpuan kepada **pengangkutan stdio**, yang merupakan pendekatan yang disyorkan untuk kebanyakan pelaksanaan pelayan MCP.
 
-Pengangkutan stdio membolehkan pelayan MCP berkomunikasi dengan pelanggan melalui aliran input dan output standard. Ini adalah mekanisme pengangkutan yang paling biasa digunakan dan disyorkan dalam spesifikasi MCP semasa, menyediakan cara yang mudah dan cekap untuk membina pelayan MCP yang boleh disepadukan dengan pelbagai aplikasi pelanggan.
+Pengangkutan stdio membolehkan pelayan MCP berkomunikasi dengan pelanggan melalui aliran input dan output standard. Ini adalah mekanisme pengangkutan yang paling biasa digunakan dan disyorkan dalam spesifikasi MCP semasa, menyediakan cara yang mudah dan cekap untuk membina pelayan MCP yang boleh diintegrasikan dengan mudah dengan pelbagai aplikasi pelanggan.
 
 ## Gambaran Keseluruhan
 
-Pelajaran ini menerangkan cara membina dan menggunakan Pelayan MCP menggunakan pengangkutan stdio.
+Pelajaran ini merangkumi cara membina dan menggunakan Pelayan MCP menggunakan pengangkutan stdio.
 
 ## Objektif Pembelajaran
 
-Pada akhir pelajaran ini, anda akan dapat:
+Menjelang akhir pelajaran ini, anda akan dapat:
 
 - Membina Pelayan MCP menggunakan pengangkutan stdio.
 - Menyahpepijat Pelayan MCP menggunakan Inspector.
-- Menggunakan Pelayan MCP dalam Visual Studio Code.
-- Memahami mekanisme pengangkutan MCP semasa dan sebab pengangkutan stdio disyorkan.
+- Menggunakan Pelayan MCP dengan Visual Studio Code.
+- Memahami mekanisme pengangkutan MCP semasa dan mengapa stdio disyorkan.
 
 
 ## Pengangkutan stdio - Cara Kerjanya
 
 Pengangkutan stdio adalah salah satu daripada dua pengangkutan standard dalam Spesifikasi MCP
-`2026-07-28`. Berikut adalah cara kerjanya:
+`2026-07-28`. Berikut cara ia berfungsi:
 
 - **Komunikasi Mudah**: Pelayan membaca mesej JSON-RPC dari input standard (`stdin`) dan menghantar mesej ke output standard (`stdout`).
-- **Berasaskan Proses**: Pelanggan melancarkan pelayan MCP sebagai subprocess.
-- **Format Mesej**: Mesej adalah permintaan JSON-RPC, notifikasi, atau tindak balas individu, yang dipisahkan oleh baris baru.
-- **Log**: Pelayan BOLEH menulis string UTF-8 ke ralat standard (`stderr`) untuk tujuan logging.
+- **Berasaskan Proses**: Pelanggan melancarkan pelayan MCP sebagai subproses.
+- **Format Mesej**: Mesej adalah permintaan JSON-RPC, pemberitahuan, atau jawapan yang berasingan, dipisahkan oleh baris baru.
+- **Penjejakan**: Pelayan BOLEH menulis rentetan UTF-8 ke ralat standard (`stderr`) untuk tujuan penjejakan.
 
 ### Keperluan Utama:
-- Mesej MESTI dipisahkan oleh baris baru dan TIDAK MESTI mengandungi baris baru tertanam
-- Pelayan TIDAK MESTI menulis apa-apa ke `stdout` yang bukan mesej MCP yang sah
-- Pelanggan TIDAK MESTI menulis apa-apa ke `stdin` pelayan yang bukan mesej MCP yang sah
+- Mesej MESTI dipisahkan oleh baris baru dan TIDAK BOLEH mengandungi baris baru tersemat
+- Pelayan TIDAK BOLEH menulis apa-apa ke `stdout` yang bukan mesej MCP yang sah
+- Pelanggan TIDAK BOLEH menulis apa-apa ke `stdin` pelayan yang bukan mesej MCP yang sah
 
 ### TypeScript
 
@@ -63,11 +63,11 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-Dalam kod di atas:
+Dalam kod sebelum ini:
 
-- Kami mengimport kelas `Server` dan `StdioServerTransport` dari SDK MCP
-- Kami membuat satu instans pelayan dengan konfigurasi dan kebolehan asas
-- Kami membuat instans `StdioServerTransport` dan menghubungkan pelayan kepadanya, membolehkan komunikasi melalui stdin/stdout
+- Kami mengimport kelas `Server` dan `StdioServerTransport` dari MCP SDK
+- Kami membuat contoh pelayan dengan konfigurasi asas dan keupayaan
+- Kami membuat contoh `StdioServerTransport` dan menyambungkan pelayan kepadanya, membolehkan komunikasi melalui stdin/stdout
 
 ### Python
 
@@ -77,7 +77,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Cipta instans pelayan
+# Create server instance
 server = Server("example-server")
 
 @server.tool()
@@ -97,9 +97,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-Dalam kod di atas kami:
+Dalam kod sebelum ini kami:
 
-- Membuat instans pelayan menggunakan SDK MCP
+- Membuat contoh pelayan menggunakan MCP SDK
 - Mendefinisikan alat menggunakan dekorator
 - Menggunakan pengurus konteks stdio_server untuk mengendalikan pengangkutan
 
@@ -126,27 +126,27 @@ await app.RunAsync();
 
 Perbezaan utama daripada SSE ialah pelayan stdio:
 
-- Tidak memerlukan setup pelayan web atau endpoint HTTP
-- Dilancarkan sebagai subprocess oleh pelanggan
+- Tidak memerlukan tetapan pelayan web atau titik akhir HTTP
+- Dilancarkan sebagai subproses oleh pelanggan
 - Berkomunikasi melalui aliran stdin/stdout
-- Lebih mudah untuk diimplementasi dan debug
+- Lebih mudah dilaksanakan dan dibaiki
 
-## Latihan: Membuat Pelayan stdio
+## Latihan: Mencipta Pelayan stdio
 
-Untuk membuat pelayan kita, kita perlu ingat dua perkara:
+Untuk mencipta pelayan kita, kita perlu ingat dua perkara:
 
-- Kita perlu menggunakan pelayan web untuk mendedahkan endpoint untuk sambungan dan mesej.
-## Makmal: Membuat pelayan MCP stdio mudah
+- Kita perlu menggunakan pelayan web untuk mendedahkan titik akhir bagi sambungan dan mesej.
+## Makmal: Mencipta pelayan MCP stdio mudah
 
-Dalam makmal ini, kita akan membuat pelayan MCP mudah menggunakan pengangkutan stdio yang disyorkan. Pelayan ini akan mendedahkan alat yang boleh dipanggil oleh pelanggan menggunakan Protokol Konteks Model standard.
+Dalam makmal ini, kita akan mencipta pelayan MCP mudah menggunakan pengangkutan stdio yang disyorkan. Pelayan ini akan mendedahkan alat yang boleh dipanggil oleh pelanggan menggunakan Protokol Konteks Model standard.
 
 ### Prasyarat
 
 - Python 3.8 atau lebih baru
-- SDK MCP Python: `pip install mcp`
-- Pemahaman asas tentang pengaturcaraan async
+- MCP Python SDK: `pip install mcp`
+- Pemahaman asas mengenai pengaturcaraan async
 
-Mari kita mulakan dengan membuat pelayan MCP stdio pertama kita:
+Mari kita mula dengan mencipta pelayan MCP stdio pertama kita:
 
 ```python
 import asyncio
@@ -155,11 +155,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Konfigurasikan log
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Cipta pelayan
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -173,7 +173,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Gunakan pengangkutan stdio
+    # Use stdio transport
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -188,31 +188,31 @@ if __name__ == "__main__":
 ## Perbezaan utama daripada pendekatan SSE yang dihentikan
 
 **Pengangkutan Stdio (Standard Semasa):**
-- Model subprocess mudah - pelanggan melancarkan pelayan sebagai proses anak
+- Model subproses mudah - pelanggan melancarkan pelayan sebagai proses anak
 - Komunikasi melalui stdin/stdout menggunakan mesej JSON-RPC
-- Tiada setup pelayan HTTP diperlukan
+- Tiada tetapan pelayan HTTP diperlukan
 - Prestasi dan keselamatan lebih baik
-- Mudah untuk debug dan pembangunan
+- Penyahpepijatan dan pembangunan lebih mudah
 
-**Pengangkutan SSE (Dihentikan mulai MCP 2025-06-18):**
-- Memerlukan pelayan HTTP dengan endpoint SSE
-- Setup lebih kompleks dengan infrastruktur pelayan web
-- Pertimbangan keselamatan tambahan untuk endpoint HTTP
+**Pengangkutan SSE (Dihentikan sejak MCP 2025-06-18):**
+- Memerlukan pelayan HTTP dengan titik akhir SSE
+- Tetapan lebih kompleks dengan infrastruktur pelayan web
+- Pertimbangan keselamatan tambahan untuk titik akhir HTTP
 - Kini digantikan oleh Streamable HTTP untuk senario berasaskan web
 
-### Membuat pelayan dengan pengangkutan stdio
+### Mencipta pelayan dengan pengangkutan stdio
 
-Untuk membuat pelayan stdio kita, kita perlu:
+Untuk mencipta pelayan stdio kita, kita perlu:
 
 1. **Import perpustakaan yang diperlukan** - Kita perlukan komponen pelayan MCP dan pengangkutan stdio
-2. **Buat instans pelayan** - Definisikan pelayan dengan kebolehannya
-3. **Definisikan alat** - Tambah fungsi yang mahu didedahkan
-4. **Atur pengangkutan** - Konfigurasi komunikasi stdio
+2. **Cipta contoh pelayan** - Definisikan pelayan dengan keupayaannya
+3. **Definisikan alat** - Tambah fungsi yang kita mahu dedahkan
+4. **Tetapkan pengangkutan** - Konfigurasikan komunikasi stdio
 5. **Jalankan pelayan** - Mulakan pelayan dan kendalikan mesej
 
-Mari bina ini langkah demi langkah:
+Mari bina langkah demi langkah:
 
-### Langkah 1: Buat pelayan stdio asas
+### Langkah 1: Cipta pelayan stdio asas
 
 ```python
 import asyncio
@@ -220,11 +220,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Konfigurasikan pencatatan
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Cipta pelayan
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -284,7 +284,7 @@ Anda boleh menguji pelayan anda menggunakan MCP Inspector:
 
 1. Pasang Inspector: `npx @modelcontextprotocol/inspector`
 2. Jalankan Inspector dan arahkan ke pelayan anda
-3. Uji alat yang telah anda cipta
+3. Uji alat yang anda cipta
 
 ### .NET
 
@@ -297,7 +297,7 @@ builder.Services
 
 ### Menggunakan MCP Inspector
 
-MCP Inspector adalah alat berharga untuk menyahpepijat dan menguji pelayan MCP. Berikut adalah cara menggunakannya dengan pelayan stdio anda:
+MCP Inspector adalah alat berharga untuk menyahpepijat dan menguji pelayan MCP. Berikut cara menggunakannya dengan pelayan stdio anda:
 
 1. **Pasang Inspector**:
    ```bash
@@ -310,16 +310,16 @@ MCP Inspector adalah alat berharga untuk menyahpepijat dan menguji pelayan MCP. 
    ```
 
 3. **Uji pelayan anda**: Inspector menyediakan antara muka web di mana anda boleh:
-   - Melihat kebolehan pelayan
-   - Menguji alat dengan parameter berbeza
+   - Melihat keupayaan pelayan
+   - Uji alat dengan parameter berbeza
    - Memantau mesej JSON-RPC
-   - Menyahpepijat masalah sambungan
+   - Nyahpepijat isu sambungan
 
 ### Menggunakan VS Code
 
 Anda juga boleh menyahpepijat pelayan MCP anda terus dalam VS Code:
 
-1. Buat konfigurasi pelancaran di `.vscode/launch.json`:
+1. Cipta konfigurasi pelancaran dalam `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -340,18 +340,18 @@ Anda juga boleh menyahpepijat pelayan MCP anda terus dalam VS Code:
 
 ### Petua penyahpepijatan biasa
 
-- Gunakan `stderr` untuk logging - jangan tulis ke `stdout` kerana ia dikhaskan untuk mesej MCP
-- Pastikan semua mesej JSON-RPC dipisahkan dengan baris baru
+- Gunakan `stderr` untuk penjejakan - jangan sekali-kali menulis ke `stdout` kerana ia dikhaskan untuk mesej MCP
+- Pastikan semua mesej JSON-RPC dipisahkan oleh baris baru
 - Uji dengan alat mudah terlebih dahulu sebelum menambah fungsi kompleks
 - Gunakan Inspector untuk mengesahkan format mesej
 
 ## Menggunakan pelayan stdio anda dalam VS Code
 
-Setelah anda membina pelayan MCP stdio anda, anda boleh menyepadukannya dengan VS Code untuk menggunakannya dengan Claude atau pelanggan MCP lain.
+Setelah anda membina pelayan MCP stdio anda, anda boleh mengintegrasikannya dengan VS Code untuk menggunakannya dengan Claude atau pelanggan lain yang serasi MCP.
 
 ### Konfigurasi
 
-1. **Buat fail konfigurasi MCP** di `%APPDATA%\Claude\claude_desktop_config.json` (Windows) atau `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Cipta fail konfigurasi MCP** di `%APPDATA%\Claude\claude_desktop_config.json` (Windows) atau `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -364,16 +364,16 @@ Setelah anda membina pelayan MCP stdio anda, anda boleh menyepadukannya dengan V
    }
    ```
 
-2. **Mulakan semula Claude**: Tutup dan buka semula Claude untuk memuat konfigurasi pelayan baru.
+2. **Mulakan semula Claude**: Tutup dan buka semula Claude untuk memuatkan konfigurasi pelayan baru.
 
 3. **Uji sambungan**: Mulakan perbualan dengan Claude dan cuba gunakan alat pelayan anda:
-   - "Bolehkah anda menyapa saya menggunakan alat sapaan?"
+   - "Bolehkah kamu menyapa saya menggunakan alat salam?"
    - "Kira jumlah 15 dan 27"
-   - "Apa maklumat pelayan?"
+   - "Apa info pelayan?"
 
 ### Contoh pelayan stdio TypeScript
 
-Berikut adalah contoh lengkap TypeScript untuk rujukan:
+Berikut contoh lengkap TypeScript untuk rujukan:
 
 ```typescript
 #!/usr/bin/env node
@@ -393,7 +393,7 @@ const server = new Server(
   }
 );
 
-// Tambah alat
+// Add tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -476,20 +476,20 @@ public class Tools
 
 ## Ringkasan
 
-Dalam pelajaran yang dikemas kini ini, anda belajar bagaimana untuk:
+Dalam pelajaran yang dikemas kini ini, anda telah belajar cara untuk:
 
 - Membina pelayan MCP menggunakan **pengangkutan stdio** semasa (pendekatan yang disyorkan)
-- Memahami sebab pengangkutan SSE dihentikan dan digantikan oleh pengangkutan stdio dan Streamable HTTP
-- Membina alat yang boleh dipanggil oleh pelanggan MCP
-- Menyahpepijat pelayan anda menggunakan MCP Inspector
-- Menyepadukan pelayan stdio anda dengan VS Code dan Claude
+- Memahami mengapa pengangkutan SSE dihentikan demi stdio dan Streamable HTTP
+- Cipta alat yang boleh dipanggil oleh pelanggan MCP
+- Nyahpepijat pelayan anda menggunakan MCP Inspector
+- Integrasikan pelayan stdio anda dengan VS Code dan Claude
 
-Pengangkutan stdio menyediakan cara yang lebih mudah, selamat, dan berprestasi untuk membina pelayan MCP berbanding pendekatan SSE yang dihentikan. Ia adalah pengangkutan yang disyorkan untuk kebanyakan pelaksanaan pelayan MCP mulai spesifikasi 2025-06-18.
+Pengangkutan stdio menyediakan cara yang lebih mudah, lebih selamat, dan lebih berprestasi untuk membina pelayan MCP berbanding pendekatan SSE yang dihentikan. Ia adalah pengangkutan yang disyorkan untuk kebanyakan pelaksanaan pelayan MCP sejak spesifikasi 2025-06-18.
 
 
 ### .NET
 
-1. Mari kita cipta beberapa alat terlebih dahulu, untuk ini kita akan membuat fail *Tools.cs* dengan kandungan berikut:
+1. Mari kita cipta beberapa alat dahulu, untuk ini kita akan cipta fail *Tools.cs* dengan kandungan berikut:
 
   ```csharp
   using System.ComponentModel;
@@ -499,7 +499,7 @@ Pengangkutan stdio menyediakan cara yang lebih mudah, selamat, dan berprestasi u
 
 ## Latihan: Menguji pelayan stdio anda
 
-Sekarang anda telah membina pelayan stdio anda, mari uji untuk memastikan ia berfungsi dengan betul.
+Sekarang anda telah membina pelayan stdio anda, mari uji ia untuk memastikan ia berfungsi dengan betul.
 
 ### Prasyarat
 
@@ -508,7 +508,7 @@ Sekarang anda telah membina pelayan stdio anda, mari uji untuk memastikan ia ber
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Kod pelayan anda harus disimpan (contoh, sebagai `server.py`)
+2. Kod pelayan anda harus disimpan (contohnya, sebagai `server.py`)
 
 ### Menguji dengan Inspector
 
@@ -517,43 +517,43 @@ Sekarang anda telah membina pelayan stdio anda, mari uji untuk memastikan ia ber
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Buka antara muka web**: Inspector akan membuka tetingkap pelayar yang memaparkan kebolehan pelayan anda.
+2. **Buka antara muka web**: Inspector akan membuka tetingkap pelayar menunjukkan keupayaan pelayan anda.
 
-3. **Uji alat**:
-   - Cuba alat `get_greeting` dengan nama yang berbeza
-   - Uji alat `calculate_sum` dengan pelbagai nombor
+3. **Uji alat**: 
+   - Cuba alat `get_greeting` dengan nama berbeza
+   - Uji alat `calculate_sum` dengan nombor berlainan
    - Panggil alat `get_server_info` untuk melihat metadata pelayan
 
-4. **Pantau komunikasi**: Inspector memaparkan mesej JSON-RPC yang dipertukarkan antara pelanggan dan pelayan.
+4. **Pantau komunikasi**: Inspector menunjukkan mesej JSON-RPC yang dipertukarkan antara pelanggan dan pelayan.
 
-### Apa yang anda harus lihat
+### Apa yang patut anda lihat
 
-Apabila pelayan anda bermula dengan betul, anda harus melihat:
-- Kebolehan pelayan disenaraikan dalam Inspector
+Bila pelayan anda bermula dengan betul, anda harus melihat:
+- Keupayaan pelayan disenaraikan dalam Inspector
 - Alat tersedia untuk ujian
-- Pertukaran mesej JSON-RPC berjaya
+- Pertukaran mesej JSON-RPC yang berjaya
 - Respons alat dipaparkan dalam antara muka
 
 ### Isu biasa dan penyelesaian
 
 **Pelayan tidak bermula:**
-- Semak semua kebergantungan telah dipasang: `pip install mcp`
-- Semak sintaks dan indentasi Python
+- Semak semua kebergantungan dipasang: `pip install mcp`
+- Periksa sintaks dan indentasi Python
 - Cari mesej ralat dalam konsol
 
 **Alat tidak muncul:**
 - Pastikan dekorator `@server.tool()` ada
-- Semak fungsi alat telah didefinisikan sebelum `main()`
-- Pastikan pelayan dikonfigurasikan dengan betul
+- Periksa bahawa fungsi alat didefinisikan sebelum `main()`
+- Sahkan pelayan dikonfigurasi dengan betul
 
-**Masalah sambungan:**
+**Isu sambungan:**
 - Pastikan pelayan menggunakan pengangkutan stdio dengan betul
-- Semak tiada proses lain mengganggu
-- Semak sintaks arahan Inspector
+- Semak tidak ada proses lain mengganggu
+- Sahkan sintaks arahan Inspector
 
 ## Tugasan
 
-Cuba bina pelayan anda dengan lebih kebolehan. Lihat [halaman ini](https://api.chucknorris.io/) untuk, sebagai contoh, menambah alat yang memanggil API. Anda tentukan bagaimana pelayan harus kelihatan. Selamat berseronok :)
+Cuba bina pelayan anda dengan lebih banyak keupayaan. Lihat [halaman ini](https://api.chucknorris.io/) untuk, sebagai contoh, menambah alat yang memanggil API. Anda tentukan bagaimana rupa pelayan tersebut. Selamat mencuba :)
 ## Penyelesaian
 
 [Penyelesaian](./solution/README.md) Berikut adalah penyelesaian yang mungkin dengan kod yang berfungsi.
@@ -563,16 +563,16 @@ Cuba bina pelayan anda dengan lebih kebolehan. Lihat [halaman ini](https://api.c
 Pengajaran utama dari bab ini adalah:
 
 - Pengangkutan stdio adalah mekanisme yang disyorkan untuk pelayan MCP tempatan.
-- Pengangkutan stdio membolehkan komunikasi lancar antara pelayan MCP dan pelanggan menggunakan aliran input dan output standard.
-- Anda boleh menggunakan kedua-dua Inspector dan Visual Studio Code untuk menggunakan pelayan stdio secara langsung, menjadikan penyahpepijatan dan penyepaduan mudah.
+- Pengangkutan stdio membenarkan komunikasi lancar antara pelayan MCP dan pelanggan menggunakan aliran input dan output standard.
+- Anda boleh guna kedua-dua Inspector dan Visual Studio Code untuk menggunakan pelayan stdio terus, memudahkan penyahpepijatan dan integrasi.
 
 ## Contoh
 
-- [Kalkulator Java](../samples/java/calculator/README.md)
-- [Kalkulator .Net](../../../../03-GettingStarted/samples/csharp)
-- [Kalkulator JavaScript](../samples/javascript/README.md)
-- [Kalkulator TypeScript](../samples/typescript/README.md)
-- [Kalkulator Python](../../../../03-GettingStarted/samples/python) 
+- [Penghitung Java](../samples/java/calculator/README.md)
+- [Penghitung .NET](../../../../03-GettingStarted/samples/csharp)
+- [Penghitung JavaScript](../samples/javascript/README.md)
+- [Penghitung TypeScript](../samples/typescript/README.md)
+- [Penghitung Python](../../../../03-GettingStarted/samples/python)
 
 ## Sumber Tambahan
 
@@ -582,11 +582,11 @@ Pengajaran utama dari bab ini adalah:
 
 ## Langkah Seterusnya
 
-Kini anda telah belajar cara membina pelayan MCP dengan pengangkutan stdio, anda boleh meneroka topik lebih maju:
+Sekarang anda telah belajar bagaimana membina pelayan MCP dengan pengangkutan stdio, anda boleh meneroka topik yang lebih maju:
 
-- **Seterusnya**: [Penstriman HTTP dengan MCP (Streamable HTTP)](../06-http-streaming/README.md) - Pelajari mekanisme pengangkutan lain untuk pelayan jauh
+- **Seterusnya**: [HTTP Streaming dengan MCP (Streamable HTTP)](../06-http-streaming/README.md) - Pelajari mengenai mekanisme pengangkutan lain yang disokong untuk pelayan jauh
 - **Lanjutan**: [Amalan Terbaik Keselamatan MCP](../../02-Security/README.md) - Laksanakan keselamatan dalam pelayan MCP anda
-- **Produksi**: [Strategi Penggubahan](../09-deployment/README.md) - Gunakan pelayan anda untuk penggunaan produksi
+- **Pengeluaran**: [Strategi Penyebaran](../09-deployment/README.md) - Sebarkan pelayan anda untuk kegunaan pengeluaran
 
 ## Sumber Tambahan
 

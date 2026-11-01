@@ -1,68 +1,68 @@
-# Juhtumiuuring: Ava REST API API halduses MCP serverina
+# Juhtumiuuring: Avalda REST API API Managementis kui MCP-server
 
-Azure API Management on teenus, mis pakub teie API lõpp-punktide kohale väravat. Selle toimimispõhimõte on see, et Azure API Management toimib teie API-de ees proksina ja saab otsustada saabuvate päringutega, mida teha.
+Azure API Management on teenus, mis pakub väravat teie API lõpp-punktide kohale. See toimib nii, et Azure API Management käitub teie API-de ees nagu puhverserver ja saab otsustada, mida teha sissetulevate päringutega.
 
-Selle kasutamisel lisate hulga võimalusi, nagu:
+Selle kasutamisel lisate hulga funktsioone, nagu:
 
-- **Turvalisus**, saate kasutada kõike alates API võtmetest, JWT-st kuni hallatava identiteedini.
-- **Kutsu piiramine**, suurepärane funktsioon on võimalus määrata, mitu päringut teatud ajaühiku jooksul lubatakse. See aitab tagada kõigile kasutajatele hea kogemuse ja et teie teenust ei koormata ülemäära.
-- **Skaalamine ja koormuse tasakaalustamine**. Saate seadistada mitu lõpp-punkti, et koormust jagada, ning määrata, kuidas "koormust tasakaalustada".
-- **Tehisintellekti funktsioonid nagu semantilise vahemälu kasutamine**, märgi piirmäär ja jälgimine ning palju muud. Need on suurepärased funktsioonid, mis parandavad reageerimiskiirust ning aitavad teil tokenite kasutust paremini jälgida. [Loe lähemalt siit](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities).
+- **Turvalisus**, saate kasutada kõike alates API-võtmetest ja JWT-st kuni hallatud identiteedini.
+- **Päringute piiramine**, suurepärane omadus on võimalus otsustada, mitu kutsumist mingis ajavahemikus lubada. See aitab tagada, et kõigil kasutajatel oleks hea kogemus ja et teie teenus ei muutuks päringutest ülekoormatuks.
+- **Skaalimine ja koormuse tasakaalustamine**. Saate seadistada mitu lõpp-punkti koormuse jaotamiseks ning otsustada ka, kuidas "koormust tasakaalustada". 
+- **Tehisintellekti funktsioonid nagu semantiline vahemällu salvestamine**, tokeni piirang ja tokeni jälgimine ning palju muud. Need on suurepärased funktsioonid, mis parandavad reageerimiskiirust ja aitavad teil tokeni kulutust kontrolli all hoida. [Loe lisaks](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities). 
 
 ## Miks MCP + Azure API Management?
 
-Mudelikonteksti protokoll (Model Context Protocol) saab kiiresti standardiks agentsetele tehisintellekti rakendustele ning tööriistade ja andmete järjepidevaks avaldamiseks. Azure API Management on loomulik valik, kui peate API-sid "haldama". MCP serverid integreeruvad sageli teiste API-dega, et lahendada päringuid näiteks tööriista jaoks. Seetõttu on Azure API Managementu ja MCP kombineerimine väga mõistlik.
+Model Context Protocol muutub kiiresti agentsete tehisintellekti rakenduste jaoks standardiks ning selleks, kuidas tööriistu ja andmeid järjepideval viisil eksponeerida. Azure API Management on loomulik valik, kui peate API-sid "haldama". MCP-serverid integreeruvad sageli teiste API-dega, et näiteks lahendada päringud tööriistale. Seetõttu on Azure API Managementu ja MCP kombineerimine mõistlik.
 
 ## Ülevaade
 
-Selles konkreetse juhtumi näites õpime API lõpp-punktide avaldamist MCP serverina. Selle kaudu saab neid lõpp-punkte hõlpsasti teha agentse rakenduse osaks ning samal ajal kasutada Azure API Managementu võimalusi.
+Selles konkreetses kasutusjuhus õpime, kuidas avaldada API lõpp-punktid MCP-serverina. Nii saame need lõpp-punktid hõlpsasti muuta osa agentilisest rakendusest ja samal ajal kasutada Azure API Managementu funktsioone.
 
-## Põhifunktsioonid
+## Peamised funktsioonid
 
-- Valite, millised lõpp-punktide meetodid soovite tööriistadena avaldada.
-- Täiendavad funktsioonid sõltuvad teie API poliitikate osas seadistatud konfiguratsioonist. Siin näitame, kuidas lisada kutsete piiramine.
+- Valite lõpp-punkti meetodid, mida soovite tööriistadena avaldada.
+- Täiendavad funktsioonid sõltuvad sellest, mida te API poliitika sektsioonis konfigureerite. Siin näitame teile, kuidas lisada päringute piiramist (rate limiting).
 
-## Eelnev samm: API impordimine
+## Eel-samm: API importimine
 
-Kui teil on Azure API Managementus juba API olemas, siis võite selle sammu vahele jätta. Kui ei, siis vaadake seda linki, [API importimine Azure API Managementusse](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
+Kui teil on Azure API Managementis juba API olemas, siis suurepärane — võite selle sammu vahele jätta. Kui mitte, vaadake seda linki: [API importimine Azure API Managementi](https://learn.microsoft.com/en-us/azure/api-management/import-and-publish#import-and-publish-a-backend-api).
 
-## API avaldamine MCP serverina
+## Avalda API MCP-serverina
 
-API lõpp-punktide avaldamiseks järgime neid samme:
+API lõpp-punktide avaldamiseks järgige neid samme:
 
-1. Minge Azure portaalile aadressil <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp>
-Minge oma API Managementu eksemplari juurde.
+1. Avage Azure'i portaal ja minge aadressile <https://portal.azure.com/?Microsoft_Azure_ApiManagement=mcp> 
+Navigeerige oma API Managementi instantsi juurde.
 
 1. Vasakpoolses menüüs valige APIs > MCP Servers > + Create new MCP Server.
 
-1. API-st valige REST API, mida soovite MCP serverina avaldada.
+1. APIs valige REST API, mida soovite avaldada MCP-serverina.
 
-1. Valige üks või mitu API operatsiooni tööriistadena avaldamiseks. Võite valida kõik või ainult konkreetsed operatsioonid.
+1. Valige üks või mitu API toimingut, mida soovite tööriistadena avaldada. Võite valida kõik toimingud või ainult konkreetsed toimingud.
 
-    ![Valige meetodid avaldamiseks](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
+    ![Vali meetodid, mida avaldada](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/create-mcp-server-small.png)
 
 
 1. Valige **Create**.
 
-1. Navigeerige menüüs valikutele **APIs** ja **MCP Servers**, peaksite nägema järgmist:
+1. Navigeerige menüüvalikusse **APIs** ja **MCP Servers**, te peaksite nägema järgmist:
 
-    ![Vaade MCP serverile põhiaknas](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
+    ![Vaadake MCP-serverit põhivaates](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-list.png)
 
-    MCP server on loodud ja API operatsioonid on avaldatud tööriistadena. MCP server ilmub MCP Servers paanis. URL veerg näitab MCP serveri lõpp-punkti, mida saate testimiseks või kliendirakenduses kasutada.
+    MCP-server on loodud ja API toimingud on avaldatud tööriistadena. MCP-server on loetletud MCP Servers paanis. Veeru URL näitab MCP-serveri lõpp-punkti, mida saate kutsuda testimiseks või kliendirakenduses.
 
-## Vabatahtlik: poliitikate seadistamine
+## Valikuline: poliitikate seadistamine
 
-Azure API Managementu põhikontseptsiooniks on poliitikad, kus saate oma lõpp-punktidele määrata erinevaid reegleid, näiteks kutsete piiramine või semantilise vahemälu kasutamine. Need poliitikad on XML-is.
+Azure API Managementil on põhimõtteliselt poliitikate kontseptsioon, kus saate määrata erinevaid reegleid oma lõpp-punktidele, näiteks päringute piiramine või semantiline vahemälu. Need poliitikad kirjutatakse XML-is.
 
-Siin on, kuidas seadistada poliitika MCP serveri kutsede piiramiseks:
+Siin on, kuidas saate seadistada poliitika MCP-serveri päringute piiramiseks:
 
-1. Portaalis, APIs alt, valige **MCP Servers**.
+1. Portaalis, APIs all, valige **MCP Servers**.
 
-1. Valige loodud MCP server.
+1. Valige loodud MCP-server.
 
-1. Vasakul menüüs, MCP alt, valige **Policies**.
+1. Vasakus menüüs, MCP all, valige **Policies**.
 
-1. Poliitika redaktoris lisage või muutke poliitikaid, mida soovite MCP serveri tööriistadele rakendada. Poliitikad määratakse XML-formaadis. Näiteks saate lisada poliitika, mis piirab MCP serveri tööriistade kutsed (siinkohal 5 kutsumist 30 sekundi jooksul ühe kliendi IP-aadressi kohta). Järgnevalt on XML, mis selle piirangu paneb:
+1. Poliitika redaktoris lisage või muutke poliitikaid, mida soovite MCP-serveri tööriistadele rakendada. Poliitikad on määratletud XML-vormingus. Näiteks saate lisada poliitika, mis piirab kutsed MCP-serveri tööriistadele (selles näites 5 kutsumist 30 sekundi jooksul ühe kliendi IP-aadressi kohta). Järgnev XML põhjustab päringute piiramise:
 
     ```xml
      <rate-limit-by-key calls="5" 
@@ -72,59 +72,60 @@ Siin on, kuidas seadistada poliitika MCP serveri kutsede piiramiseks:
     />
     ```
 
-    Siin on poliitika redaktori pilt:
+    Siin on pilt poliitika redaktorist:
 
-    ![Poliitika redaktor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
+    ![Poliitikate redaktor](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-policies-small.png)
  
-## Proovime seda
+## Proovige seda
 
-Veendume, et meie MCP Server töötab ootuspäraselt.
+Veendume, et meie MCP-server töötab nii, nagu ette nähtud.
 
 > [!NOTE]
-> Azure API Management avaldab praegu seda serverit Streamable
-> HTTP `/mcp` lõpp-punkti kaudu. Vanem HTTP+SSE `/sse` transpordimehhanism on aegunud ja
-> seda tuleks kasutada ainult pärandkliendiga.
+> Azure API Management praegu eksponeerib seda serverit läbi Streamable
+> HTTP `/mcp` lõpp-punkti. Vanem HTTP+SSE `/sse` transport on aegunud ja
+> tuleks seda kasutada ainult pärandklientide puhul.
 
-Selleks kasutame Visual Studio Code’i ja GitHub Copiloti ning selle agendi režiimi. Lisame MCP serveri *mcp.json* faili. Sellega hakkab Visual Studio Code tegutsema agendina ning lõppkasutajad saavad tüüpida päringu ja suhelda selle serveriga.
+Selleks kasutame Visual Studio Code'i ja GitHub Copiloti agentrežiimi. Lisame MCP-serveri *mcp.json* faili. Nii toimides hakkab Visual Studio Code käituma kliendina agendivõimekusega ja lõppkasutajad saavad sisestada prompti ning suhelda nimetatud serveriga.
 
-Vaatame, kuidas MCP server Visual Studio Code’is lisada:
+Vaatame, kuidas MCP-server Visual Studio Code'i lisada:
 
-1. Kasutage käsku MCP: **Add Server Command Command Palette'ist**.
+1. Käivitage käsk MCP: **Add Server** Command Palette'ist.
 
-1. Kui küsitakse, valige serveri tüüp: **HTTP (HTTP või Server Sent Events)**.
+1. Kui küsitakse, valige serveri tüüp: **HTTP (HTTP or Server Sent Events)**.
 
-1. Sisestage Streamable HTTP URL, mis on näidatud MCP serveri jaoks API halduses.
+1. Sisestage Streamable HTTP URL, mis on näidatud MCP-serveri jaoks API Managementis.
     Näiteks:
     `https://<apim-service-name>.azure-api.net/<api-name>-mcp/mcp`.
 
-1. Sisestage serveri ID meelepäraselt. See väärtus ei ole oluline, kuid aitab teil selle serveri eksemplari meeles pidada.
+1. Sisestage serveri ID vastavalt soovile. See ei ole tähtis väärtus, kuid aitab teil meeles pidada, mis see serveri instants on.
 
-1. Valige, kas salvestada konfiguratsioon tööruumi seadetesse või kasutaja seadistustesse.
+1. Valige, kas salvestada konfiguratsioon tööruumi seadistustesse või kasutaja seadistustesse.
 
-  - **Tööruumi seadistused** - serveri konfiguratsioon salvestatakse ainult praeguses tööruumis olevasse .vscode/mcp.json faili.
+    - **Workspace settings** - Serveri konfiguratsioon salvestatakse `.vscode/mcp.json` faili, mis on saadaval ainult praeguses tööruumis.
 
-    *mcp.json*
+      *mcp.json*
 
-    ```json
-    "servers": {
-        "APIM petstore" : {
-            "type": "http",
-            "url": "url-to-mcp-server/mcp"
-        }
-    }
-    ```
+      ```json
+      "servers": {
+          "APIM petstore" : {
+              "type": "http",
+              "url": "url-to-mcp-server/mcp"
+          }
+      }
+      ```
 
-  - **Kasutaja seadistused** - serveri konfiguratsioon lisatakse teie ülemaailmsesse *settings.json* faili ja on saada kõigis tööruumides. Konfiguratsioon näeb välja umbes järgmiselt:
+    - **User settings** - Serveri konfiguratsioon lisatakse teie globaalsesse *settings.json* faili ja on saadaval kõigis tööruumides. Konfiguratsioon näeb välja sarnaselt järgmisele:
 
-    ![Kasutaja seade](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
+      ![Kasutaja seadistus](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-servers-visual-studio-code.png)
 
-1. Peate lisama ka konfiguratsiooni, pealkirja, et autentimine Azure API Managementu poole korralikult toimiks. Kasutatakse päist nimega **Ocp-Apim-Subscription-Key**.
+1. Peate lisama ka konfiguratsioonipäise, et tagada korrektne autentimine Azure API Managementi suunas. See kasutab päist nimega **Ocp-Apim-Subscription-Key**.
 
-    - Nii saate selle sisestada seadistustesse:
+    - Siin on, kuidas saate selle seadetesse lisada:
 
-    ![Päise lisamine autentimiseks](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), see põhjustab, et küsitakse API võtme väärtust, mille leiate Azure portaalist oma Azure API Managementu instantsi alt.
 
-   - Kui soovite seda lisada *mcp.json* faili, saate selle lisada järgmiselt:
+    ![Päise lisamine autentimiseks](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/mcp-server-with-header-visual-studio-code.png), see kuvab dialoogi, kus küsitakse API võtme väärtust, mille leiate Azure'i portaalist oma Azure API Managementi instantsi jaoks.
+
+   - Kui soovite selle lisada hoopis *mcp.json* faili, saate seda teha järgmiselt:
 
     ```json
     "inputs": [
@@ -146,50 +147,50 @@ Vaatame, kuidas MCP server Visual Studio Code’is lisada:
     }
     ```
 
-### Kasutage agentrežiimi
+### Kasutage agendi režiimi
 
-Nüüd oleme seadistanud kas seadistustes või *.vscode/mcp.json* failis. Proovime seda.
+Nüüd oleme kõik seadistatud kas seadetes või *.vscode/mcp.json* failis. Proovime seda.
 
-Peaks ilmuma tööriistade ikoon, kus kuvatakse teie serveri avaldatud tööriistad:
+Peaks olema olemas Tööriistad ikoon, kus on loetletud teie serveri avaldatud tööriistad:
 
 ![Tööriistad serverist](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/tools-button-visual-studio-code.png)
 
-1. Klõpsake tööriistade ikoonil ja peaksite nägema nimekirja tööriistadest:
+1. Klõpsake tööriistade ikooni ja peaksite nägema tööriistade loendit, nagu allpool:
 
     ![Tööriistad](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/select-tools-visual-studio-code.png)
 
-1. Sisestage vestlusesse käsk tööriista käivitamiseks. Näiteks kui valisite tööriista, mis annab infot tellimuse kohta, võite agendilt tellimuse kohta küsida. Näide päringust:
+1. Sisestage vestlusesse prompt, et tööriist käivitada. Näiteks kui valisite tööriista tellimuse info saamiseks, võite küsida agendilt tellimuse kohta. Siin on näide promptist:
 
     ```text
     get information from order 2
     ```
 
-    Teile kuvatakse nüüd tööriista ikoon, mis palub teil valida tööriista käivitamise. Valige, et tööriist jookseks edasi. Nüüd peaksite nägema sellist tulemust:
+    Teile kuvatakse nüüd tööriistade ikoon, mis küsib, kas soovite jätkata tööriista kutsumist. Valige jätkamine, peaksite nüüd nägema sellist väljundit:
 
-    ![Päringu tulemus](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
+    ![Tulemus päringust](https://learn.microsoft.com/en-us/azure/api-management/media/export-rest-mcp-server/chat-results-visual-studio-code.png)
 
-    **see, mida ülalpool näete, sõltub sellest, milliseid tööriistu olete seadistanud, kuid põhimõte on, et saate tekstilise vastuse nagu näidatud**
+    **Mida te näete üleval sõltub sellest, milliseid tööriistu olete seadistanud, kuid põhimõte on see, et saate sarnase tekstilise vastuse nagu ülaltoodud.**
 
 
 ## Viited
 
-Siin on, kuidas saate rohkem teada:
+Siit saate lisainfot:
 
-- [Õpetus Azure API Managementust ja MCP-st](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
-- [Python näidis: Remote MCP serverite turvamine Azure API Managementu abil (katsetus)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
+- [Juhend Azure API Managementi ja MCP kohta](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server)
+- [Python näide: turvalised kaug-MCP-serverid Azure API Managementiga (eksperimentaalne)](https://github.com/Azure-Samples/remote-mcp-apim-functions-python)
 
 - [MCP kliendi autoriseerimise labor](https://github.com/Azure-Samples/AI-Gateway/tree/main/labs/mcp-client-authorization)
 
-- [Kasuta Azure API Management laiendust VS Code’is API-de importimiseks ja haldamiseks](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
+- [Kasutage Azure API Management laiendust VS Code'i jaoks API-de importimiseks ja haldamiseks](https://learn.microsoft.com/en-us/azure/api-management/visual-studio-code-tutorial)
 
-- [Registreeri ja avasta kauged MCP serverid Azure API Centeris](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
-- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Suurepärane hoidla, mis demonstreerib mitmeid AI võimalusi koos Azure API Managementuga
-- [AI Gateway töötoad](https://azure-samples.github.io/AI-Gateway/) Sisaldab töötoa materjale Azure portaaliga, mis on suurepärane viis AI võimaluste hindamiseks.
+- [Registreerige ja avastage kaug-MCP-serverid Azure API Centeris](https://learn.microsoft.com/en-us/azure/api-center/register-discover-mcp-server)
+- [AI Gateway](https://github.com/Azure-Samples/AI-Gateway) Suurepärane hoidla, mis demonstreerib mitmeid tehisintellekti võimalusi Azure API Managementiga
+- [AI Gateway workshops](https://azure-samples.github.io/AI-Gateway/) Sisaldab töötubasid, mis kasutavad Azure Portali, mis on suurepärane viis alustada tehisintellekti võimekuste hindamist.
 
-## Mis edasi
+## Mis järgmiseks
 
 - Tagasi: [Juhtumiuuringute ülevaade](./README.md)
-- Järgmine: [Azure AI reisiagentuurid](./travelagentsample.md)
+- Järgmine: [Azure AI Travel Agents](./travelagentsample.md)
 
 ---
 

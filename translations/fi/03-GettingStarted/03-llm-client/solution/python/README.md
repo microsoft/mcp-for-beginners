@@ -1,6 +1,6 @@
-# Tämän esimerkin suorittaminen
+# Näytteen suorittaminen
 
-Suosittelemme asentamaan `uv`, mutta se ei ole pakollista, katso [ohjeet](https://docs.astral.sh/uv/#highlights)
+Sinua suositellaan asentamaan `uv`, mutta se ei ole pakollista, katso [ohjeet](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Luo virtuaaliympäristö
 
@@ -19,16 +19,31 @@ venv\Scrips\activate
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Suorita esimerkki
+## -3- Määritä Microsoft Foundry
+
+Ota käyttöön aktiivinen malli, kuten `gpt-5.1` Microsoft Foundryssä, ja määritä sitten:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` on käyttöönoton nimi, joka voi poiketa
+taustalla olevan mallin nimestä. Tarkista
+[Microsoft Foundryn mallin eläkkeelle siirtymisaikataulu](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+ennen mallin valintaa.
+
+## -4- Suorita näyte
+
 
 ```bash
 python client.py
 ```
 
-Näet tulosteen, joka on suunnilleen seuraavanlainen:
+Näet tulosteen, joka on samanlainen kuin:
 
 ```text
 LISTING RESOURCES
@@ -45,5 +60,9 @@ TOOL:  {'function': {'arguments': '{"a":2,"b":20}', 'name': 'add'}, 'id': 'call_
 TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 ```
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäinen asiakirja sen alkuperäiskielellä on virallinen lähde. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

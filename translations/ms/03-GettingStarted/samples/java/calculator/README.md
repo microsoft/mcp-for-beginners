@@ -1,11 +1,11 @@
 # Perkhidmatan Kalkulator Asas MCP
 
 > [!NOTE]
-> Contoh ini menggunakan pengangkutan HTTP+SSE warisan dan menyasarkan SDK yang serasi
-> dengan MCP `2025-11-25`. Pelayan jauh baru harus menggunakan sokongan HTTP 
-> Streamable `2026-07-28`.
+> Contoh ini menggunakan pengangkutan HTTP+SSE lama dan menyasarkan SDK yang serasi
+> dengan MCP `2025-11-25`. Pelayan jauh baru harus menggunakan sokongan
+> HTTP Streamable `2026-07-28`.
 
-Perkhidmatan ini menyediakan operasi kalkulator asas melalui Protokol Konteks Model (MCP) menggunakan Spring Boot dengan pengangkutan WebFlux. Ia direka sebagai contoh ringkas untuk pemula yang mempelajari pelaksanaan MCP.
+Perkhidmatan ini menyediakan operasi kalkulator asas melalui Protokol Konteks Model (MCP) menggunakan Spring Boot dengan pengangkutan WebFlux. Ia direka sebagai contoh ringkas untuk pemula yang belajar tentang pelaksanaan MCP.
 
 Untuk maklumat lanjut, lihat dokumentasi rujukan [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html).
 
@@ -28,11 +28,11 @@ Perkhidmatan kalkulator ini menawarkan keupayaan berikut:
    - Penambahan dua nombor
    - Penolakan satu nombor daripada nombor lain
    - Pendaraban dua nombor
-   - Pembahagian satu nombor dengan nombor lain (dengan pemeriksaan pembahagian sifar)
+   - Pembahagian satu nombor dengan nombor lain (dengan semakan pembahagian sifar)
 
 2. **Operasi Lanjutan**:
-   - Pengiraan kuasa (menaikkan asas kepada kuasa)
-   - Pengiraan punca kuasa dua (dengan pemeriksaan nombor negatif)
+   - Pengiraan kuasa (menaikkan asas kepada punca)
+   - Pengiraan punca kuasa dua (dengan semakan nombor negatif)
    - Pengiraan modulus (baki)
    - Pengiraan nilai mutlak
 
@@ -43,98 +43,75 @@ Perkhidmatan kalkulator ini menawarkan keupayaan berikut:
 
 Perkhidmatan ini mendedahkan titik akhir API berikut melalui protokol MCP:
 
-- `add(a, b)`: Menambah dua nombor bersama
-- `subtract(a, b)`: Menolak nombor kedua daripada nombor pertama
-- `multiply(a, b)`: Mendarab dua nombor
-- `divide(a, b)`: Membahagi nombor pertama dengan nombor kedua (dengan pemeriksaan sifar)
-- `power(base, exponent)`: Mengira kuasa sesuatu nombor
-- `squareRoot(number)`: Mengira punca kuasa dua (dengan pemeriksaan nombor negatif)
-- `modulus(a, b)`: Mengira baki pembahagian
-- `absolute(number)`: Mengira nilai mutlak
-- `help()`: Mendapatkan maklumat tentang operasi yang tersedia
+- `add(a, b)`: Tambah dua nombor bersama
+- `subtract(a, b)`: Tolak nombor kedua daripada nombor pertama
+- `multiply(a, b)`: Darab dua nombor
+- `divide(a, b)`: Bahagikan nombor pertama dengan nombor kedua (dengan semakan sifar)
+- `power(base, exponent)`: Kira kuasa nombor
+- `squareRoot(number)`: Kira punca kuasa dua (dengan semakan nombor negatif)
+- `modulus(a, b)`: Kira baki pembahagian
+- `absolute(number)`: Kira nilai mutlak
+- `help()`: Dapatkan maklumat tentang operasi yang tersedia
 
-## Klien Ujian
+## Pelanggan Ujian
 
-Klien ujian mudah disertakan dalam pakej `com.microsoft.mcp.sample.client`. Kelas `SampleCalculatorClient` menunjukkan operasi yang tersedia dalam perkhidmatan kalkulator.
+Pelanggan ujian ringkas disertakan dalam pakej `com.microsoft.mcp.sample.client`. Kelas `SampleCalculatorClient` menunjukkan operasi kalkulator yang tersedia.
 
-## Menggunakan Klien LangChain4j
+## Menggunakan Pelanggan LangChain4j
 
-Projek ini termasuk klien contoh LangChain4j dalam `com.microsoft.mcp.sample.client.LangChain4jClient` yang menunjukkan cara mengintegrasikan perkhidmatan kalkulator dengan LangChain4j dan model GitHub:
+Projek ini termasuk pelanggan contoh LangChain4j di
+`com.microsoft.mcp.sample.client.LangChain4jClient` yang menunjukkan cara untuk
+menyepadukan perkhidmatan kalkulator dengan model Microsoft Foundry.
 
 ### Prasyarat
 
-1. **Persediaan Token GitHub**:
-   
-   Untuk menggunakan model AI GitHub (seperti phi-4), anda memerlukan token capaian peribadi GitHub:
+1. Cipta sumber Microsoft Foundry dan gunakan model aktif seperti
+   `gpt-5.1`.
+2. Tetapkan titik akhir model, kekunci API, dan nama penggubalan:
 
-   a. Pergi ke tetapan akaun GitHub anda: https://github.com/settings/tokens
-   
-   b. Klik "Generate new token" → "Generate new token (classic)"
-   
-   c. Berikan token anda nama yang menerangkan
-   
-   d. Pilih skop berikut:
-      - `repo` (Kawalan penuh ke atas repositori peribadi)
-      - `read:org` (Baca keahlian organisasi dan pasukan, baca projek organisasi)
-      - `gist` (Cipta gists)
-      - `user:email` (Akses alamat e-mel pengguna (hanya baca))
-   
-   e. Klik "Generate token" dan salin token baru anda
-   
-   f. Tetapkan sebagai pemboleh ubah persekitaran:
-      
-      Pada Windows:
-      ```
-      set GITHUB_TOKEN=your-github-token
-      ```
-      
-      Pada macOS/Linux:
-      ```bash
-      export GITHUB_TOKEN=your-github-token
-      ```
-
-   g. Untuk persediaan berterusan, tambahkan ke pemboleh ubah persekitaran anda melalui tetapan sistem
-
-2. Tambahkan kebergantungan LangChain4j GitHub ke projek anda (sudah termasuk dalam pom.xml):
-   ```xml
-   <dependency>
-       <groupId>dev.langchain4j</groupId>
-       <artifactId>langchain4j-github</artifactId>
-       <version>${langchain4j.version}</version>
-   </dependency>
+   ```bash
+   export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+   export AZURE_OPENAI_API_KEY="<api-key>"
+   export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
    ```
 
-3. Pastikan pelayan kalkulator berjalan pada `localhost:8080`
+3. Semak
+   [jadual persaraan model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+   sebelum memilih penggubalan.
+4. Pastikan pelayan kalkulator berjalan pada `localhost:8080`.
 
-### Menjalankan Klien LangChain4j
+### Menjalankan Pelanggan LangChain4j
 
 Contoh ini menunjukkan:
-- Menyambung ke pelayan MCP kalkulator melalui pengangkutan SSE
-- Menggunakan LangChain4j untuk mencipta chatbot yang memanfaatkan operasi kalkulator
-- Mengintegrasikan dengan model AI GitHub (sekarang menggunakan model phi-4)
+- Sambungan ke pelayan MCP kalkulator melalui pengangkutan SSE
+- Menggunakan LangChain4j untuk membuat bot sembang yang menggunakan operasi kalkulator
+- Penyepaduan dengan model Microsoft Foundry yang digubal
 
-Klien menghantar pertanyaan contoh berikut untuk menunjukkan fungsi:
+Pelanggan menghantar pertanyaan contoh berikut untuk menunjukkan fungsi:
 1. Mengira jumlah dua nombor
-2. Mencari punca kuasa dua sesuatu nombor
-3. Mendapatkan maklumat bantuan tentang operasi kalkulator yang tersedia
+2. Mencari punca kuasa dua nombor
+3. Mendapatkan maklumat bantuan mengenai operasi kalkulator yang tersedia
 
-Jalankan contoh dan periksa keluaran konsol untuk melihat bagaimana model AI menggunakan alat kalkulator untuk menjawab pertanyaan.
+Jalankan contoh dan periksa output konsol untuk melihat bagaimana model AI menggunakan alat kalkulator untuk menjawab pertanyaan.
 
-### Konfigurasi Model GitHub
+### Konfigurasi Model Microsoft Foundry
 
-Klien LangChain4j dikonfigurasikan untuk menggunakan model phi-4 GitHub dengan tetapan berikut:
+Pelanggan LangChain4j menggunakan titik akhir yang serasi Azure OpenAI v1 yang didedahkan oleh
+Microsoft Foundry:
 
 ```java
-ChatLanguageModel model = GitHubChatModel.builder()
-    .apiKey(System.getenv("GITHUB_TOKEN"))
+String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+   .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
+   .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
+   .isAzure(true)
+   .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
-    .modelName("phi-4")
-    .logRequests(true)
-    .logResponses(true)
     .build();
 ```
 
-Untuk menggunakan model GitHub yang berbeza, cuma tukar parameter `modelName` ke model lain yang disokong (contoh: "claude-3-haiku-20240307", "llama-3-70b-8192", dan sebagainya).
+`AZURE_OPENAI_DEPLOYMENT` mesti sepadan dengan nama yang diberikan apabila model itu
+digunakan, yang mungkin berbeza daripada nama model asas.
 
 ## Kebergantungan
 
@@ -154,10 +131,10 @@ Projek ini memerlukan kebergantungan utama berikut:
     <version>${langchain4j.version}</version>
 </dependency>
 
-<!-- For GitHub models support -->
+<!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-    <artifactId>langchain4j-github</artifactId>
+   <artifactId>langchain4j-open-ai-official</artifactId>
     <version>${langchain4j.version}</version>
 </dependency>
 ```
@@ -177,31 +154,31 @@ Bina projek menggunakan Maven:
 java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
 ```
 
-### Menggunakan Pemeriksa MCP
+### Menggunakan MCP Inspector
 
-Pemeriksa MCP adalah alat berguna untuk berinteraksi dengan perkhidmatan MCP. Untuk menggunakannya dengan perkhidmatan kalkulator ini:
+MCP Inspector adalah alat berguna untuk berinteraksi dengan perkhidmatan MCP. Untuk menggunakannya dengan perkhidmatan kalkulator ini:
 
-1. **Pasang dan jalankan Pemeriksa MCP** dalam tetingkap terminal baru:
+1. **Pasang dan jalankan MCP Inspector** di tetingkap terminal baru:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Akses UI web** dengan mengklik URL yang dipaparkan oleh aplikasi (biasanya http://localhost:6274)
+2. **Akses UI web** dengan mengklik URL yang dipaparkan oleh app (biasanya http://localhost:6274)
 
 3. **Konfigurasikan sambungan**:
    - Tetapkan jenis pengangkutan kepada "SSE"
-   - Tetapkan URL ke titik akhir SSE pelayan yang sedang berjalan anda: `http://localhost:8080/sse`
+   - Tetapkan URL kepada titik akhir SSE pelayan anda yang sedang berjalan: `http://localhost:8080/sse`
    - Klik "Sambung"
 
-4. **Gunakan alat tersebut**:
+4. **Gunakan alat**:
    - Klik "Senarai Alat" untuk melihat operasi kalkulator yang tersedia
    - Pilih alat dan klik "Jalankan Alat" untuk melaksanakan operasi
 
-![MCP Inspector Screenshot](../../../../../../translated_images/ms/tool.c75a0b2380efcf1a.webp)
+![Tangkapan Layar MCP Inspector](../../../../../../translated_images/ms/tool.c75a0b2380efcf1a.webp)
 
 ### Menggunakan Docker
 
-Projek ini menyertakan Dockerfile untuk penyebaran berasaskan kontena:
+Projek ini termasuk Dockerfile untuk penghantaran berkontena:
 
 1. **Bina imej Docker**:
    ```bash
@@ -214,26 +191,27 @@ Projek ini menyertakan Dockerfile untuk penyebaran berasaskan kontena:
    ```
 
 Ini akan:
-- Membangun imej Docker pelbagai peringkat dengan Maven 3.9.9 dan Eclipse Temurin 24 JDK
-- Mewujudkan imej kontena yang dioptimumkan
-- Membuka perkhidmatan pada port 8080
-- Memulakan perkhidmatan kalkulator MCP di dalam kontena
+- Bina imej Docker multi-peringkat dengan Maven 3.9.9 dan Eclipse Temurin 24 JDK
+- Membuat imej kontena yang dioptimumkan
+- Dedahkan perkhidmatan pada port 8080
+- Mulakan perkhidmatan kalkulator MCP di dalam kontena
 
 Anda boleh mengakses perkhidmatan di `http://localhost:8080` setelah kontena berjalan.
 
 ## Penyelesaian Masalah
 
-### Isu Umum Berkaitan Token GitHub
+### Isu Sambungan Model Biasa
 
-1. **Isu Kebenaran Token**: Jika anda mendapat ralat 403 Forbidden, periksa bahawa token anda mempunyai kebenaran yang betul seperti yang diterangkan dalam prasyarat.
+1. **Ralat pengesahan**: Sahkan `AZURE_OPENAI_API_KEY` milik
+   sumber yang dikenal pasti oleh `AZURE_OPENAI_ENDPOINT`.
+2. **Penggubalan tidak ditemui**: Sahkan `AZURE_OPENAI_DEPLOYMENT` tepat sama
+   dengan nama penggubalan dalam Microsoft Foundry.
+3. **Had kadar**: Semak kuota penggubalan dan cuba semula selepas selang
+   yang dipulangkan oleh perkhidmatan.
 
-2. **Token Tidak Dijumpai**: Jika anda mendapat ralat "No API key found", pastikan pemboleh ubah persekitaran GITHUB_TOKEN telah ditetapkan dengan betul.
-
-3. **Had Kadar**: API GitHub mempunyai had kadar. Jika anda mengalami ralat had kadar (kod status 429), tunggu beberapa minit sebelum mencuba lagi.
-
-4. **Tempoh Token Tamat**: Token GitHub boleh tamat tempoh. Jika anda menerima ralat pengesahan selepas beberapa ketika, jana token baru dan kemaskini pemboleh ubah persekitaran anda.
-
-Jika anda memerlukan bantuan lanjut, semak [dokumentasi LangChain4j](https://github.com/langchain4j/langchain4j) atau [dokumentasi API GitHub](https://docs.github.com/en/rest).
+Untuk bantuan lanjut, lihat
+dokumentasi [LangChain4j](https://github.com/langchain4j/langchain4j) dan
+dokumentasi [Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/).
 
 ---
 

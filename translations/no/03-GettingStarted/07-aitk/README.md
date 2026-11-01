@@ -1,107 +1,109 @@
-# Konsumere en server fra AI Toolkit-utvidelsen for Visual Studio Code
+# Forbruke en server med Microsoft Foundry Toolkit for Visual Studio Code
 
-Når du bygger en AI-agent handler det ikke bare om å generere smarte svar; det handler også om å gi agenten din evnen til å utføre handlinger. Det er her Model Context Protocol (MCP) kommer inn. MCP gjør det enkelt for agenter å få tilgang til eksterne verktøy og tjenester på en konsekvent måte. Tenk på det som å koble agenten din til et verktøyskrin den *faktisk* kan bruke.
+Når du bygger en AI-agent handler det ikke bare om å generere smarte svar; det handler også om å gi agenten din evnen til å utføre handlinger. Det er her Model Context Protocol (MCP) kommer inn. MCP gjør det enkelt for agenter å få tilgang til eksterne verktøy og tjenester på en konsistent måte. Tenk på det som å koble agenten din til en verktøykasse den *faktisk* kan bruke.
 
-La oss si at du kobler en agent til kalkulator-MCP-serveren din. Plutselig kan agenten din utføre matematiske operasjoner bare ved å motta en prompt som «Hva er 47 ganger 89?» — ingen grunn til å hardkode logikk eller bygge tilpassede API-er.
+La oss si at du kobler en agent til din kalkulator MCP-server. Plutselig kan agenten din utføre matteoperasjoner bare ved å motta en prompt som «Hva er 47 ganger 89?» — uten behov for å hardkode logikk eller bygge tilpassede API-er.
 
 ## Oversikt
 
-Denne leksjonen dekker hvordan du kobler en kalkulator MCP-server til en agent med [AI Toolkit](https://aka.ms/AIToolkit)-utvidelsen i Visual Studio Code, og gjør det mulig for agenten din å utføre matematiske operasjoner som addisjon, subtraksjon, multiplikasjon og divisjon gjennom naturlig språk.
+Denne leksjonen dekker hvordan du kobler en kalkulator MCP-server til en agent med
+[Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit),
+slik at agenten din kan utføre matteoperasjoner gjennom naturlig språk.
 
-AI Toolkit er en kraftig utvidelse for Visual Studio Code som effektiviserer agentutvikling. AI-ingeniører kan enkelt bygge AI-applikasjoner ved å utvikle og teste generative AI-modeller — lokalt eller i skyen. Utvidelsen støtter de fleste store generative modeller som er tilgjengelige i dag.
+Microsoft Foundry Toolkit strømlinjeformer utvikling og testing av generative
+AI-applikasjoner med lokale og skybaserte modeller.
 
-*Merk*: AI Toolkit støtter for øyeblikket Python og TypeScript.
+*Merk*: Toolkit støtter for øyeblikket Python og TypeScript MCP-maler.
 
 ## Læringsmål
 
-Innen slutten av denne leksjonen vil du kunne:
+Når du er ferdig med denne leksjonen, vil du kunne:
 
-- Konsumere en MCP-server via AI Toolkit.
-- Konfigurere en agentkonfigurasjon for å gjøre det mulig å oppdage og bruke verktøy levert av MCP-serveren.
+- Forbruke en MCP-server med Microsoft Foundry Toolkit.
+- Konfigurere en agentkonfigurasjon for å gjøre den i stand til å oppdage og bruke verktøy levert av MCP-serveren.
 - Bruke MCP-verktøy via naturlig språk.
 
-## Tilnærming
+## Fremgangsmåte
 
-Slik bør vi tilnærme oss dette på et overordnet nivå:
+Slik må vi tilnærme oss dette på et overordnet nivå:
 
-- Opprett en agent og definer systemprompten.
-- Opprett en MCP-server med kalkulatorverktøy.
+- Lag en agent og definer dens systemprompt.
+- Lag en MCP-server med kalkulatorverktøy.
 - Koble Agent Builder til MCP-serveren.
-- Test agentens bruk av verktøy via naturlig språk.
+- Test agentens verktøysanrop via naturlig språk.
 
-Flott, nå som vi forstår flyten, la oss konfigurere en AI-agent for å utnytte eksterne verktøy gjennom MCP og styrke dens evner!
+Flott, nå som vi forstår flyten, la oss konfigurere en AI-agent til å utnytte eksterne verktøy gjennom MCP, og forbedre dens kapasiteter!
 
 ## Forutsetninger
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
 
-## Øvelse: Konsumere en server
+## Øvelse: Forbruke en server
 
 > [!WARNING]
-> Merknad for macOS-brukere. Vi undersøker for tiden et problem som påvirker installasjon av avhengigheter på macOS. Som et resultat vil ikke macOS-brukere kunne fullføre denne veiledningen akkurat nå. Vi oppdaterer instruksjonene så snart en løsning er tilgjengelig. Takk for tålmodigheten og forståelsen!
+> Merk for macOS-brukere. Vi undersøker for øyeblikket et problem som påvirker installasjon av avhengigheter på macOS. Som et resultat vil ikke macOS-brukere kunne fullføre denne veiledningen for øyeblikket. Vi vil oppdatere instruksjonene så snart en løsning er tilgjengelig. Takk for din tålmodighet og forståelse!
 
-I denne øvelsen skal du bygge, kjøre og forbedre en AI-agent med verktøy fra en MCP-server inne i Visual Studio Code ved hjelp av AI Toolkit.
+I denne øvelsen vil du bygge, kjøre og forbedre en AI-agent med verktøy fra
+en MCP-server i Visual Studio Code ved hjelp av Microsoft Foundry Toolkit.
 
-### -0- Forberedelse, legg til OpenAI GPT-4o-modellen i Mine modeller
+### -0- Forberedelse, legg til en Microsoft Foundry GPT-5.1 distribusjon
 
-Øvelsen bruker **GPT-4o**-modellen. Modellen bør legges til i **Mine modeller** før du oppretter agenten.
+Opprett en Microsoft Foundry-ressurs, distribuer **GPT-5.1**, og legg til distribusjonen
+i **Mine modeller**. Se over
+[modellsensureringsplanen](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+når du velger en distribusjon.
 
-![Skjermbilde av et modellvalggrensesnitt i Visual Studio Codes AI Toolkit-utvidelse. Overskriften lyder "Finn riktig modell for din AI-løsning" med en undertittel som oppfordrer brukere til å oppdage, teste og distribuere AI-modeller. Under , under “Populære modeller,” vises seks modellkort: DeepSeek-R1 (hostet av GitHub), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Små, raske), og DeepSeek-R1 (hostet av Ollama). Hvert kort inkluderer alternativer for å “Legge til” modellen eller “Prøve i Playground”.](../../../../translated_images/no/aitk-model-catalog.2acd38953bb9c119.webp)
+1. Åpne **Microsoft Foundry Toolkit** fra **Aktivitetslinjen**.
+1. I **Katalog**-delen, velg **Modeller** for å åpne **Modellkatalogen**. Å velge **Modeller** åpner **Modellkatalogen** i en ny redigertab.
+1. Koble til ditt Microsoft Foundry-prosjekt og velg din **GPT-5.1** distribusjon.
+1. Klikk **+ Legg til** for å legge distribusjonen til listen **Mine modeller**.
+1. I **Aktivitetslinjen**, bekreft at distribusjonen vises i listen.
 
-1. Åpne **AI Toolkit**-utvidelsen fra **Aktivitetslinjen**.
-1. I **Katalog**-seksjonen, velg **Modeller** for å åpne **Modellkatalogen**. Valg av **Modeller** åpner **Modellkatalogen** i en ny redigeringsfane.
-1. I søkefeltet i **Modellkatalogen**, skriv inn **OpenAI GPT-4o**.
-1. Klikk **+ Legg til** for å legge modellen til i listen **Mine modeller**. Sørg for at du har valgt modellen som er **hostet av GitHub**.
-1. I **Aktivitetslinjen**, bekreft at **OpenAI GPT-4o**-modellen vises i listen.
+### -1- Lag en agent
 
-### -1- Opprett en agent
+**Agent (Prompt) Builder** gjør det mulig for deg å lage og tilpasse dine egne AI-drevne agenter. I denne delen vil du lage en ny agent og tildele en modell for å styre samtalen.
 
-**Agent (Prompt) Builder** lar deg opprette og tilpasse dine egne AI-drevne agenter. I denne delen skal du opprette en ny agent og tilordne en modell for å drive samtalen.
+1. Åpne **Microsoft Foundry Toolkit** fra **Aktivitetslinjen**.
+1. I **Verktøy**-delen, velg **Agent (Prompt) Builder**. Å velge **Agent (Prompt) Builder** åpner **Agent (Prompt) Builder** i en ny redigertab.
+1. Klikk på knappen **+ Ny Agent**. Utvidelsen vil starte en oppsettsveiviser via **Kommandomenyen**.
+1. Tast inn navnet **Calculator Agent** og trykk **Enter**.
+1. I **Agent (Prompt) Builder**, velg din **GPT-5.1** Foundry-distribusjon.
 
-![Skjermbilde av "Calculator Agent"-byggergrensesnittet i AI Toolkit-utvidelsen for Visual Studio Code. Til venstre er modellen valgt som "OpenAI GPT-4o (via GitHub)". En systemprompt lyder "Du er en professor ved universitet som underviser i matematikk," og brukerprompten sier, "Forklar Fourier-ligningen på en enkel måte." Ytterligere alternativer inkluderer knapper for å legge til verktøy, aktivere MCP-server og velge strukturert utdata. En blå “Kjør”-knapp er nederst. Til høyre, under "Kom i gang med eksempler," listes tre prøveagenter: Webutvikler (med MCP Server, Andreklassesforenkler og Drømmetydning, hver med korte beskrivelser av deres funksjoner).](../../../../translated_images/no/aitk-agent-builder.901e3a2960c3e477.webp)
+### -2- Lag en systemprompt for agenten
 
-1. Åpne **AI Toolkit**-utvidelsen fra **Aktivitetslinjen**.
-1. I **Verktøy**-seksjonen, velg **Agent (Prompt) Builder**. Å velge **Agent (Prompt) Builder** åpner **Agent (Prompt) Builder** i en ny redigeringsfane.
-1. Klikk på **+ Ny agent**-knappen. Utvidelsen starter en oppstartsguide via **Kommandopaletten**.
-1. Skriv inn navnet **Calculator Agent** og trykk **Enter**.
-1. I **Agent (Prompt) Builder**, velg **OpenAI GPT-4o (via GitHub)**-modellen i feltet **Modell**.
+Nå som agenten er satt opp, er det på tide å definere personlighet og hensikt. I denne delen skal du bruke funksjonen **Generer systemprompt** for å beskrive agentens tiltenkte atferd — i dette tilfellet en kalkulatoragent — og la modellen skrive systemprompten for deg.
 
-### -2- Opprett en systemprompt for agenten
+1. For delen **Prompt**, klikk på knappen **Generer systemprompt**. Denne knappen åpner promptbyggeren, som bruker AI til å generere en systemprompt for agenten.
+1. I vinduet **Generer en prompt**, tast inn følgende: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
+1. Klikk på knappen **Generer**. En notifikasjon vil vises i nedre høyre hjørne og bekrefte at systemprompten genereres. Når genereringen er fullført, vises prompten i feltet **Systemprompt** i **Agent (Prompt) Builder**.
+1. Gå gjennom **Systemprompt** og gjør endringer hvis nødvendig.
 
-Når agenten er satt opp, er det på tide å definere dens personlighet og formål. I denne delen skal du bruke funksjonen **Generer systemprompt** for å beskrive agentens tiltenkte oppførsel — i dette tilfellet en kalkulatoragent — og la modellen lage systemprompten for deg.
+### -3- Lag en MCP-server
 
-![Skjermbilde av "Calculator Agent"-grensesnittet i AI Toolkit for Visual Studio Code med et modalt vindu åpent med tittelen "Generer en prompt." Vinduet forklarer at en promptmal kan genereres ved å dele grunnleggende detaljer, og inneholder et tekstfelt med eksempel på systemprompt: "Du er en hjelpsom og effektiv matematikkassistent. Når du får et problem som involverer grunnleggende aritmetikk, svarer du med riktig resultat." Under tekstfeltet er knappene "Lukk" og "Generer". I bakgrunnen vises deler av agentkonfigurasjonen, inkludert den valgte modellen "OpenAI GPT-4o (via GitHub)" og felter for system- og brukerprompter.](../../../../translated_images/no/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
+Nå som du har definert agentens systemprompt — som styrer adferd og svar — er det på tide å utruste agenten med praktiske funksjoner. I denne delen lager du en kalkulator MCP-server med verktøy for å utføre addisjon, subtraksjon, multiplikasjon og divisjon. Denne serveren vil gjøre det mulig for agenten å utføre matteoperasjoner i sanntid som svar på naturlige språk-prompt.
 
-1. For seksjonen **Prompter** klikker du på knappen **Generer systemprompt**. Denne knappen åpner promptbyggeren som bruker AI til å generere en systemprompt for agenten.
-1. I vinduet **Generer en prompt**, skriv inn følgende: `Du er en hjelpsom og effektiv matematikkassistent. Når du får et problem som involverer grunnleggende aritmetikk, svarer du med riktig resultat.`
-1. Klikk på **Generer**-knappen. Et varsel vises nederst til høyre som bekrefter at systemprompten genereres. Når genereringen er fullført, vil prompten vises i feltet **Systemprompt** i **Agent (Prompt) Builder**.
-1. Gjennomgå **Systemprompt** og endre om nødvendig.
+![Skjermbilde av den nederste delen av Kalkulatoragentens grensesnitt i Microsoft Foundry Toolkit for Visual Studio Code.](../../../../translated_images/no/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-### -3- Opprett en MCP-server
+Microsoft Foundry Toolkit inkluderer maler for å lage MCP-servere. Vi vil
+bruke Python-malen for kalkulator MCP-serveren.
 
-Nå som du har definert agentens systemprompt — som styrer dens oppførsel og svar — er det på tide å utruste agenten med praktiske evner. I denne delen skal du opprette en kalkulator MCP-server med verktøy for å utføre addisjon, subtraksjon, multiplikasjon og divisjon. Denne serveren gjør det mulig for agenten din å utføre sanntids matematiske operasjoner som svar på naturlige språkprompter.
+*Merk*: Toolkit støtter for øyeblikket Python og TypeScript MCP-maler.
 
-![Skjermbilde av den nedre delen av Calculator Agent-grensesnittet i AI Toolkit-utvidelsen for Visual Studio Code. Den viser utvidbare menyer for “Verktøy” og “Strukturert utdata,” sammen med en rullegardinmeny merket “Velg utdataformat” satt til “tekst.” Til høyre er det en knapp merket “+ MCP Server” for å legge til en Model Context Protocol-server. En bildeikonplassholder vises over Verktøy-delen.](../../../../translated_images/no/aitk-add-mcp-server.9742cfddfe808353.webp)
-
-AI Toolkit er utstyrt med maler som gjør det enkelt å lage din egen MCP-server. Vi bruker Python-malen for å opprette kalkulator MCP-serveren.
-
-*Merk*: AI Toolkit støtter for øyeblikket Python og TypeScript.
-
-1. I **Verktøy**-seksjonen i **Agent (Prompt) Builder**, klikk på **+ MCP Server**-knappen. Utvidelsen starter en oppstartsguide via **Kommandopaletten**.
+1. I **Verktøy**-delen i **Agent (Prompt) Builder**, klikk på knappen **+ MCP Server**. Utvidelsen vil starte en oppsettsveiviser via **Kommandomenyen**.
 1. Velg **+ Legg til server**.
 1. Velg **Opprett en ny MCP-server**.
-1. Velg **python-weather** som mal.
-1. Velg **Standardmappe** for å lagre MCP-server-malen.
+1. Velg **python-weather** som malen.
+1. Velg **Standard mappe** for å lagre MCP-servermalen.
 1. Skriv inn følgende navn for serveren: **Calculator**
-1. Et nytt Visual Studio Code-vindu åpnes. Velg **Ja, jeg stoler på forfatterne**.
-1. Bruk terminalen (**Terminal** > **Ny terminal**) for å lage et virtuelt miljø: `python -m venv .venv`
-1. Bruk terminalen for å aktivere det virtuelle miljøet:
+1. Et nytt Visual Studio Code-vindu vil åpne. Velg **Ja, jeg stoler på forfatterne**.
+1. Bruk terminalen (**Terminal** > **Ny terminal**) og opprett et virtuelt miljø: `python -m venv .venv`
+1. Bruk terminalen og aktiver det virtuelle miljøet:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
 1. Bruk terminalen for å installere avhengighetene: `pip install -e .[dev]`
-1. I **Utforsker**-visningen på **Aktivitetslinjen**, utvid **src**-mappen og velg **server.py** for å åpne filen i redigeringsprogrammet.
-1. Erstatt koden i **server.py**-filen med følgende og lagre:
+1. I **Utforsker**-visningen i **Aktivitetslinjen**, utvid **src**-mappen og velg **server.py** for å åpne filen i editoren.
+1. Erstatt koden i filen **server.py** med følgende og lagre:
 
     ```python
     """
@@ -146,46 +148,46 @@ AI Toolkit er utstyrt med maler som gjør det enkelt å lage din egen MCP-server
 
 ### -4- Kjør agenten med kalkulator MCP-serveren
 
-Nå som agenten din har verktøy, er det på tide å bruke dem! I denne delen skal du sende prompter til agenten for å teste og validere om agenten bruker riktig verktøy fra kalkulator MCP-serveren.
+Nå som agenten din har verktøy, er det på tide å bruke dem! I denne delen skal du sende promter til agenten for å teste og validere om agenten bruker riktig verktøy fra kalkulator MCP-serveren.
 
-![Skjermbilde av Calculator Agent-grensesnittet i AI Toolkit-utvidelsen for Visual Studio Code. Til venstre, under “Verktøy,” er det lagt til en MCP-server med navnet local-server-calculator_server som viser fire tilgjengelige verktøy: add, subtract, multiply, og divide. Et merke viser at fire verktøy er aktive. Under er en kollapset “Strukturert utdata”-seksjon og en blå “Kjør”-knapp. Til høyre, under “Model Response,” bruker agenten multiply- og subtract-verktøy med innspillene {"a": 3, "b": 25} og {"a": 75, "b": 20} henholdsvis. Det endelige “Tool Response” vises som 75.0. En “Se kode”-knapp vises nederst.](../../../../translated_images/no/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Skjermbilde av Kalkulatoragent som bruker MCP kalkulatorverktøy i Microsoft Foundry Toolkit.](../../../../translated_images/no/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
 Du vil kjøre kalkulator MCP-serveren på din lokale utviklingsmaskin via **Agent Builder** som MCP-klient.
 
-1. Trykk på `F5` for å starte feilsøking av MCP-serveren. **Agent (Prompt) Builder** åpnes i en ny redigeringsfane. Serverens status er synlig i terminalen.
-1. I feltet **Brukerprompt** i **Agent (Prompt) Builder**, skriv inn følgende prompt: `Jeg kjøpte 3 varer til $25 hver, og brukte deretter en rabatt på $20. Hvor mye betalte jeg?`
-1. Klikk på **Kjør**-knappen for å generere agentens svar.
-1. Gjennomgå agentens utdata. Modellen bør komme fram til at du betalte **$55**.
+1. Trykk `F5` for å starte feilsøking av MCP-serveren. **Agent (Prompt) Builder** vil åpne i en ny redigertab. Status for serveren vises i terminalen.
+1. I feltet **Brukerpåminnelse** i **Agent (Prompt) Builder**, tast inn følgende prompt: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
+1. Klikk på knappen **Kjør** for å generere agentens svar.
+1. Gå gjennom agentens output. Modellen skal konkludere med at du betalte **$55**.
 1. Her er en oversikt over hva som bør skje:
-    - Agenten velger verktøyene **multiply** og **subtract** for å hjelpe med beregningen.
-    - De respektive `a` og `b`-verdiene tildeles for **multiply**-verktøyet.
-    - De respektive `a` og `b`-verdiene tildeles for **subtract**-verktøyet.
-    - Svarene fra hvert verktøy vises i respektive **Svar fra verktøy**.
-    - Det endelige svaret fra modellen vises i den endelige **Modellresponsen**.
-1. Send inn flere prompter for å teste agenten ytterligere. Du kan endre eksisterende prompt i feltet **Brukerprompt** ved å klikke i feltet og erstatte den eksisterende prompen.
+    - Agenten velger verktøyene **multiply** og **subtract** for å hjelpe i kalkulasjonen.
+    - De respektive `a` og `b` verdiene er tildelt for verktøyet **multiply**.
+    - De respektive `a` og `b` verdiene er tildelt for verktøyet **subtract**.
+    - Svaret fra hvert verktøy vises i den respektive **Tool Response**.
+    - Det endelige output fra modellen vises i slutt **Model Response**.
+1. Send flere promter for å teste agenten ytterligere. Du kan endre den eksisterende prompten i **Brukerpåminnelse** ved å klikke i feltet og erstatte prompten.
 1. Når du er ferdig med å teste agenten, kan du stoppe serveren via **terminalen** ved å taste **CTRL/CMD+C** for å avslutte.
 
 ## Oppgave
 
-Prøv å legge til en ekstra verktøypost i **server.py**-filen din (for eksempel: returner kvadratroten av et tall). Send inn flere prompter som krever at agenten bruker ditt nye verktøy (eller eksisterende verktøy). Husk å starte serveren på nytt for å laste inn nylig lagde verktøy.
+Prøv å legge til et ekstra verktøy i din fil **server.py** (for eksempel: returner kvadratroten av et tall). Send flere promter som krever at agenten bruker ditt nye verktøy (eller eksisterende verktøy). Husk å restarte serveren for å laste inn de nylig lagde verktøyene.
 
 ## Løsning
 
 [Løsning](./solution/README.md)
 
-## Nøkkelpunkter
+## Viktige punkter
 
-De viktigste læringspunktene i dette kapittelet er:
+De viktigste punktene fra dette kapitlet er følgende:
 
-- AI Toolkit-utvidelsen er en flott klient som lar deg konsumere MCP-servere og deres verktøy.
-- Du kan legge til nye verktøy i MCP-servere, noe som utvider agentens evner slik at den kan møte endrede krav.
-- AI Toolkit inkluderer maler (for eksempel Python MCP-servermaler) for å forenkle opprettelsen av egendefinerte verktøy.
+- Microsoft Foundry Toolkit kan forbruke MCP-servere og deres verktøy.
+- Du kan legge til nye verktøy til MCP-servere, og dermed utvide agentens kapasiteter for å møte endrede krav.
+- Microsoft Foundry Toolkit inkluderer MCP-servermaler for å lage tilpassede verktøy.
 
 ## Ytterligere ressurser
 
-- [AI Toolkit-dokumentasjon](https://aka.ms/AIToolkit/doc)
+- [Microsoft Foundry Toolkit dokumentasjon](https://aka.ms/AIToolkit/doc)
 
-## Hva er neste
+## Hva nå
 - Neste: [Testing og feilsøking](../08-testing/README.md)
 
 ---

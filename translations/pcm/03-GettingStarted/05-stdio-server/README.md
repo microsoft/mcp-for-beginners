@@ -1,41 +1,41 @@
 # MCP Server wit stdio Transport
 
-> **⚠️ Important Update**: As MCP Specification 2025-06-18 don come, di standalone SSE (Server-Sent Events) transport don **deprecated** and dem don change am to "Streamable HTTP" transport. Di current MCP specification get two main transport mechanism:
+> **⚠️ Important Update**: As of MCP Specification 2025-06-18, the standalone SSE (Server-Sent Events) transport don been **deprecated** an don replace am wit "Streamable HTTP" transport. Di current MCP specification dey define two primary transport mechanisms:
 > 1. **stdio** - Standard input/output (wey dem recommend for local servers)
-> 2. **Streamable HTTP** - For remote servers wey fit use SSE insaid
+> 2. **Streamable HTTP** - For remote servers wey fit use SSE internally
 >
-> Dis lesson don update to focus on di **stdio transport**, wey be di recommended way for most MCP server builds.
+> This lesson don update to focus on the **stdio transport**, wey na di recommended approach for most MCP server implementations.
 
-Di stdio transport dey allow MCP servers to dey talk to clients through standard input and output streams. Na di most common and recommended transport mechanism for di current MCP specification, e dey provide simple and efficient way to build MCP servers wey fit join well with plenty client applications.
+Di stdio transport make MCP servers fit communicate wit clients through standard input an output streams. Na di most common an recommended transport mechanism for di current MCP specification, e dey provide simple an efficient way to build MCP servers wey fit easily integrate wit different client applications.
 
 ## Overview
 
-Dis lesson go teach how to build and use MCP Servers wit di stdio transport.
+Dis lesson dey cover how to build an consume MCP Servers using di stdio transport.
 
-## Learning Objectives
+## Wetin You Go Learn
 
-By di time you finish dis lesson, you go fit:
+By di end of dis lesson, you go fit:
 
-- Build MCP Server wit di stdio transport.
-- Debug MCP Server wit Inspector.
-- Use MCP Server wit Visual Studio Code.
-- Understand di current MCP transport and why dem recommend stdio.
+- Build an MCP Server using di stdio transport.
+- Debug an MCP Server using di Inspector.
+- Consume an MCP Server using Visual Studio Code.
+- Understand di current MCP transport mechanisms an why stdio dey recommended.
 
 
-## stdio Transport - How e Dey Work
+## stdio Transport - How e dey Work
 
-Di stdio transport na one of di two standard transports inside MCP Specification
+Di stdio transport na one of di two standard transports in MCP Specification
 `2026-07-28`. Na so e dey work:
 
-- **Simple Communication**: Di server dey read JSON-RPC messages from standard input (`stdin`) and e dey send messages go standard output (`stdout`).
-- **Process-based**: Di client dey launch di MCP server as subprocess.
-- **Message Format**: Messages na individual JSON-RPC requests, notifications, or responses, wey dem separate by newlines.
-- **Logging**: Di server fit write UTF-8 strings go standard error (`stderr`) for logging purpose.
+- **Simple Communication**: Di server dey read JSON-RPC messages from standard input (`stdin`) and dey send messages to standard output (`stdout`).
+- **Process-based**: Di client go launch di MCP server as a subprocess.
+- **Message Format**: Messages na individual JSON-RPC requests, notifications, or responses, dem delimited by newlines.
+- **Logging**: Di server MAY write UTF-8 strings to standard error (`stderr`) for logging purposes.
 
 ### Key Requirements:
-- Messages MUST be separated by newlines and MUST NOT carry inside newlines
-- Di server MUST NOT write anything for `stdout` wey no be valid MCP message
-- Di client MUST NOT write anything go di server `stdin` wey no be valid MCP message
+- Messages MUST be delimited by newlines and MUST NOT contain embedded newlines
+- The server MUST NOT write anything to `stdout` wey no be a valid MCP message
+- The client MUST NOT write anything to the server's `stdin` wey no be a valid MCP message
 
 ### TypeScript
 
@@ -63,11 +63,11 @@ async function runServer() {
 runServer().catch(console.error);
 ```
 
-For di code wey come before:
+For di code wey pass:
 
-- We dey import di `Server` class and `StdioServerTransport` from di MCP SDK
-- We create server instance with simple configuration and capabilities
-- We create `StdioServerTransport` instance and connect di server to am, to allow communication through stdin/stdout
+- We import di `Server` class an `StdioServerTransport` from di MCP SDK
+- We create a server instance wit basic configuration an capabilities
+- We create a `StdioServerTransport` instance an connect di server to am, enabling communication over stdin/stdout
 
 ### Python
 
@@ -77,7 +77,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Make server instance
+# Create server instance
 server = Server("example-server")
 
 @server.tool()
@@ -97,11 +97,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-For di code wey come before:
+For di code wey pass we:
 
-- Create server instance using MCP SDK
-- Define tools with decorators
-- Use stdio_server context manager to handle di transport
+- Create a server instance using di MCP SDK
+- Define tools using decorators
+- Use di stdio_server context manager to handle di transport
 
 ### .NET
 
@@ -124,29 +124,29 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Di main difference from SSE na say stdio servers:
+Di key difference from SSE na say stdio servers:
 
-- No need any web server or HTTP endpoints
-- Dem dey launch as subprocess by di client
+- No need web server setup or HTTP endpoints
+- Dem dey launch as subprocesses by di client
 - Dem dey communicate through stdin/stdout streams
-- Dem get simpler implementation and easier to debug
+- Dem easier to implement an debug
 
-## Exercise: How to create stdio Server
+## Exercise: Creating a stdio Server
 
-To create our server, two things we need to remember:
+To create our server, make we remember two tins:
 
-- We need to use web server to expose endpoints for connection and messages.
-## Lab: Creating simple MCP stdio server
+- We need use a web server to expose endpoints for connection and messages.
+## Lab: Creating a simple MCP stdio server
 
-For dis lab, we go create simple MCP server using di advised stdio transport. Dis server go expose tools wey clients fit call using di Model Context Protocol.
+For dis lab, we go create simple MCP server using di recommended stdio transport. Dis server go expose tools wey clients fit call using di standard Model Context Protocol.
 
 ### Prerequisites
 
-- Python 3.8 or recent pass
+- Python 3.8 or later
 - MCP Python SDK: `pip install mcp`
-- Basic sabi async programming
+- Basic understanding of async programming
 
-Make we start to create our first MCP stdio server:
+Make we start by creating our first MCP stdio server:
 
 ```python
 import asyncio
@@ -155,11 +155,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Set wetin go dey record log
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Make the server
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -173,7 +173,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Use stdio way to carry message
+    # Use stdio transport
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -185,34 +185,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Key difference from di deprecated SSE approach
+## Key differences from di deprecated SSE approach
 
 **Stdio Transport (Current Standard):**
-- Simple subprocess model - client fit launch server as child process
-- Communication through stdin/stdout wit JSON-RPC messages
-- No need setup HTTP server
-- Better performance and safety
-- Easy to debug and develop
+- Simple subprocess model - client go launch server as child process
+- Communication via stdin/stdout using JSON-RPC messages
+- No HTTP server setup required
+- Better performance and security
+- Easier debugging and development
 
 **SSE Transport (Deprecated as of MCP 2025-06-18):**
-- Dem need HTTP server wit SSE endpoints
-- Complex setup with web server infrastructure
-- Additional safety concerns for HTTP endpoints
-- E don change to Streamable HTTP for web-based scenarios
+- Require HTTP server with SSE endpoints
+- More complex setup with web server infrastructure
+- Additional security considerations for HTTP endpoints
+- Now replaced by Streamable HTTP for web-based scenarios
 
-### How to create server wit stdio transport
+### Creating a server with stdio transport
 
-To create our stdio server, we need to:
+To create our stdio server, we go need to:
 
-1. **Import di required libraries** - We need MCP server components and stdio transport
-2. **Create server instance** - Define server wit capabilities
-3. **Define tools** - Add functionality we want to expose
-4. **Set up di transport** - Configure stdio communication
-5. **Run di server** - Start server and handle messages
+1. **Import the required libraries** - We need di MCP server components and stdio transport
+2. **Create a server instance** - Define di server wit im capabilities
+3. **Define tools** - Add di functionality we wan expose
+4. **Set up the transport** - Configure stdio communication
+5. **Run the server** - Start di server an handle messages
 
-Make we build am step by step:
+Make we build dis step by step:
 
-### Step 1: Create basic stdio server
+### Step 1: Create a basic stdio server
 
 ```python
 import asyncio
@@ -220,11 +220,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Set up logging
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Make the server
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -268,23 +268,23 @@ def get_server_info() -> dict:
     }
 ```
 
-### Step 3: Run di server
+### Step 3: Running the server
 
-Save di code as `server.py` and run am from command line:
+Save di code as `server.py` an run am from di command line:
 
 ```bash
 python server.py
 ```
 
-Di server go start and wait for input from stdin. E dey communicate using JSON-RPC messages over stdio transport.
+Di server go start an wait for input from stdin. E dey communicate using JSON-RPC messages over di stdio transport.
 
-### Step 4: Test wit Inspector
+### Step 4: Testing wit di Inspector
 
-You fit test your server wit MCP Inspector:
+You fit test your server using di MCP Inspector:
 
-1. Install Inspector: `npx @modelcontextprotocol/inspector`
-2. Run Inspector and point am to your server
-3. Test di tools wey you build
+1. Install di Inspector: `npx @modelcontextprotocol/inspector`
+2. Run di Inspector an point am to your server
+3. Test di tools wey you don create
 
 ### .NET
 
@@ -293,33 +293,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## Debug your stdio server
+## Debugging your stdio server
 
-### How to use MCP Inspector
+### Using di MCP Inspector
 
-MCP Inspector na good tool for debugging and testing MCP servers. Na how you fit use am for your stdio server:
+MCP Inspector na valuable tool for debugging an testing MCP servers. Na so you go take use am wit your stdio server:
 
-1. **Install Inspector**:
+1. **Install di Inspector**:
    ```bash
    npx @modelcontextprotocol/inspector
    ```
 
-2. **Run Inspector**:
+2. **Run di Inspector**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Test your server**: Inspector get web interface wey you fit:
+3. **Test your server**: Di Inspector dey provide web interface wey you fit:
    - See server capabilities
    - Test tools wit different parameters
    - Monitor JSON-RPC messages
-   - Debug connection wahala
+   - Debug connection issues
 
-### Use VS Code
+### Using VS Code
 
-You fit also debug your MCP server straight for VS Code:
+You fit also debug your MCP server directly for VS Code:
 
-1. Create launch configuration for `.vscode/launch.json`:
+1. Create a launch configuration in `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -335,23 +335,23 @@ You fit also debug your MCP server straight for VS Code:
    }
    ```
 
-2. Set breakpoints for your server code
-3. Run debugger and test wit Inspector
+2. Set breakpoints in your server code
+3. Run di debugger an test wit di Inspector
 
 ### Common debugging tips
 
-- Use `stderr` for logging - no write for `stdout` as na only MCP messages go there
-- Make sure all JSON-RPC messages get newline separation
-- Test wit simple tools first before adding complex ones
-- Use Inspector to check message formats
+- Use `stderr` for logging - never write to `stdout` as e dey reserved for MCP messages
+- Make sure all JSON-RPC messages dey newline-delimited
+- Test wit simple tools first before you add complex functionality
+- Use di Inspector to verify message formats
 
-## How to use your stdio server inside VS Code
+## How to use your stdio server in VS Code
 
-After you build your MCP stdio server, you fit join am with VS Code to use wit Claude or other MCP-compatible clients.
+Once you don build your MCP stdio server, you fit integrate am wit VS Code to use am wit Claude or other MCP-compatible clients.
 
 ### Configuration
 
-1. **Create MCP configuration file** for `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Create an MCP configuration file** at `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -364,16 +364,16 @@ After you build your MCP stdio server, you fit join am with VS Code to use wit C
    }
    ```
 
-2. **Restart Claude**: Close and open Claude again to load di new server configuration.
+2. **Restart Claude**: Close an open Claude again to load di new server configuration.
 
-3. **Test connection**: Start talk with Claude and try your server tools:
-   - "Fit greet me wit di greeting tool?"
-   - "Mak una calculate 15 plus 27"
+3. **Test the connection**: Start conversation wit Claude an try use your server's tools:
+   - "Fit you greet me using di greeting tool?"
+   - "Calculate di sum of 15 and 27"
    - "Wetin be di server info?"
 
 ### TypeScript stdio server example
 
-Here be complete TypeScript example for reference:
+Here na complete TypeScript example for reference:
 
 ```typescript
 #!/usr/bin/env node
@@ -393,7 +393,7 @@ const server = new Server(
   }
 );
 
-// Add tools for work
+// Add tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -476,20 +476,20 @@ public class Tools
 
 ## Summary
 
-For dis updated lesson, you don learn how to:
+For dis updated lesson, you learn how to:
 
-- Build MCP servers using di current **stdio transport** (wey dem recommend)
-- Understand why dem stop to use SSE transport and prefer stdio and Streamable HTTP
+- Build MCP servers using di current **stdio transport** (recommended approach)
+- Understand why SSE transport don been deprecated in favor of stdio an Streamable HTTP
 - Create tools wey MCP clients fit call
-- Debug your server using MCP Inspector
-- Join your stdio server with VS Code and Claude
+- Debug your server using di MCP Inspector
+- Integrate your stdio server wit VS Code an Claude
 
-Di stdio transport na simpler, safer, and better way to build MCP servers compared to di old SSE way. Na di recommended transport for most MCP servers since 2025-06-18 specification.
+Di stdio transport dey provide simpler, more secure, an more performant way to build MCP servers compared to di deprecated SSE approach. Na di recommended transport for most MCP server implementations as of di 2025-06-18 specification.
 
 
 ### .NET
 
-1. Make we first create some tools, for dis one we go create file *Tools.cs* wit dis content:
+1. Make we create some tools first; for this we go create file *Tools.cs* wit di following content:
 
   ```csharp
   using System.ComponentModel;
@@ -497,79 +497,79 @@ Di stdio transport na simpler, safer, and better way to build MCP servers compar
   using ModelContextProtocol.Server;
   ```
 
-## Exercise: How to test your stdio server
+## Exercise: Testing your stdio server
 
-Now wey you don build your stdio server, make we test am well to ensure say e dey work fine.
+Now wey you don build your stdio server, make we test am to make sure say e dey work correct.
 
 ### Prerequisites
 
-1. Make sure say you don install MCP Inspector:
+1. Make sure say you get di MCP Inspector installed:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Your server code suppose dey saved (e.g., as `server.py`)
+2. Your server code suppose don save (e.g., as `server.py`)
 
-### Testing wit Inspector
+### Testing with di Inspector
 
-1. **Start Inspector wit your server**:
+1. **Start di Inspector with your server**:
    ```bash
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-2. **Open web interface**: Inspector go open browser to show your server capabilities.
+2. **Open di web interface**: Di Inspector go open browser window wey go show your server's capabilities.
 
-3. **Test tools**: 
-   - Try `get_greeting` tool wit different names
-   - Test `calculate_sum` tool wit different numbers
-   - Call `get_server_info` tool make you see server details
+3. **Test di tools**: 
+   - Try di `get_greeting` tool wit different names
+   - Test di `calculate_sum` tool wit various numbers
+   - Call di `get_server_info` tool to see server metadata
 
-4. **Monitor communication**: Inspector go show di JSON-RPC messages wey dey waka between client and server.
+4. **Monitor di communication**: Di Inspector dey show JSON-RPC messages wey dey exchange between client an server.
 
 ### Wetin you suppose see
 
-When your server start well, you go see:
-- Server capabilities wey Inspector list
-- Tools wey client fit take test
-- Successful JSON-RPC message exchange
-- Tool responses wey go show for interface
+When your server start correct, you go see:
+- Server capabilities listed in di Inspector
+- Tools wey available for testing
+- Successful JSON-RPC message exchanges
+- Tool responses wey go display in di interface
 
-### Common issues and how to solve dem
+### Common issues and solutions
 
-**Server no fit start:**
-- Check all dependencies install: `pip install mcp`
-- Check Python syntax and indentation
-- Look out for any error messages for console
+**Server no go start:**
+- Check say all dependencies don install: `pip install mcp`
+- Verify Python syntax an indentation
+- Check for error messages for di console
 
-**Tools no dey show:**
-- Make sure `@server.tool()` decorators dey there
-- Check say tool functions dey defined before `main()`
-- Verify say server dey properly set
+**Tools no dey appear:**
+- Make sure `@server.tool()` decorators dey present
+- Check say tool functions dem define before `main()`
+- Verify say di server don properly configure
 
-**Connection wahala:**
-- Make sure server dey use stdio transport correct
-- Check say no other processes dey interfere
-- Verify Inspector command syntax
+**Connection issues:**
+- Make sure say di server dey use stdio transport correct
+- Check say no oda processes dey interfere
+- Verify di Inspector command syntax
 
 ## Assignment
 
-Try build your server wit more capabilities. See [this page](https://api.chucknorris.io/) for example to add tool wey go call API. Na you suppose decide how your server go be. Make you enjoy :)
+Try build your server wit more capabilities. See [this page](https://api.chucknorris.io/) to, for example, add a tool wey go call an API. Na you go decide how di server suppose be. Enjoy :)
 ## Solution
 
-[Solution](./solution/README.md) Here be one possible solution wit working code.
+[Solution](./solution/README.md) Here na one possible solution wey get working code.
 
 ## Key Takeaways
 
-Di key points from dis chapter na:
+Di main takeaways from dis chapter na di following:
 
 - Di stdio transport na di recommended mechanism for local MCP servers.
-- Stdio transport dey allow smooth communication between MCP servers and clients through standard input and output streams.
-- You fit use both Inspector and Visual Studio Code to consume stdio servers directly, making debugging and integration easy.
+- Stdio transport allow seamless communication between MCP servers an clients using standard input an output streams.
+- You fit use both Inspector an Visual Studio Code to consume stdio servers directly, wey dey make debugging an integration straightforward.
 
 ## Samples 
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python) 
@@ -582,16 +582,16 @@ Di key points from dis chapter na:
 
 ## Next Steps
 
-Now wey you don learn how to build MCP servers wit stdio transport, you fit explore more advanced topics:
+Now wey you don learn how to build MCP servers wit di stdio transport, you fit explore more advanced topics:
 
-- **Next**: [HTTP Streaming wit MCP (Streamable HTTP)](../06-http-streaming/README.md) - Learn about di other transport mechanism for remote servers
+- **Next**: [HTTP Streaming with MCP (Streamable HTTP)](../06-http-streaming/README.md) - Learn about di oda supported transport mechanism for remote servers
 - **Advanced**: [MCP Security Best Practices](../../02-Security/README.md) - Implement security for your MCP servers
-- **Production**: [Deployment Strategies](../09-deployment/README.md) - Deploy your servers for production
+- **Production**: [Deployment Strategies](../09-deployment/README.md) - Deploy your servers for production use
 
 ## Additional Resources
 
 - [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Current specification
-- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) - SDK reference for all languages
+- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) - SDK references for all languages
 - [Community Examples](../../06-CommunityContributions/README.md) - More server examples from community
 
 ---

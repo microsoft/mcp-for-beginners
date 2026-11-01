@@ -1,36 +1,36 @@
 > [!WARNING]
-> Valimi võtmine on MCP-s `2026-07-28` aegunud. See õppetund on säilitatud
-> varasemate rakenduste jaoks. Uued serverid peaksid integreerima otse LLM-i
+> Sampling on aegunud MCP `2026-07-28`s. See õppetund on säilitatud
+> kliendi poolt hallatavalt LLM-ilt. Uued serverid peaksid integreerima otse LLM-iga
 > pakkuja API-ga.
 
-# Valimi võtmine – funktsioonide delegeerimine kliendile
+# Sampling - delegeeri funktsioonid kliendile
 
-> Valimi võtmine on säilinud `2026-07-28` spetsifikatsioonis ühilduvuse tõttu ning see on
-> eemaldamiseks esimese ülevaatuse ajal, mis avaldatakse 28. juulil 2027 või hiljem.
-> Selle õppetunni näited võivad kasutada SDK API-sid, mis rakendavad `2025-11-25`.
-> Vaata [Mis on MCP-s muutunud: 2026-07-28 spetsifikatsioon](../../01-CoreConcepts/mcp-2026-07-28.md).
+> Sampling on jäänud `2026-07-28` spetsifikatsiooni ühilduvuse säilitamiseks ja on
+> eemaldamiseks esimesele muudatusele, mis avaldatakse 28. juulil või hiljem,
+> 2027. Selle õppetunni näited võivad kasutada SDK API-sid, mis rakendavad `2025-11-25`.
+> Vaata [Mis muutus MCP-s: 2026-07-28 spetsifikatsioon](../../01-CoreConcepts/mcp-2026-07-28.md).
 
-Varasemates rakendustes võimaldab valimi võtmine MCP serveril paluda abi kliendi hallatavalt LLM-ilt.
-Uute rakenduste puhul kutsu valitud LLM-i pakkujat otse.
+Pärandrakendustes võimaldab Sampling MCP serveril paluda abi kliendi poolt hallatavalt LLM-ilt.
+Uute rakenduste puhul kutsuge valitud LLM-pakkujat
+otse.
 
-
-
+Uurime mõningaid kasutusjuhtumeid ja kuidas ehitada lahendust, mis hõlmab Samplingut.
 
 ## Ülevaade
 
-Selles õppetükis keskendume seletamisele, millal ja kus valimi võtmist kasutada ning kuidas seda seadistada.
+Selles õppetükis keskendume selgitamisele, millal ja kus kasutada Samplingut ning kuidas seda konfigureerida.
 
-## Õpieesmärgid
+## Õpitulemused
 
-Selles peatükis:
+Selles peatükis me:
 
-- Selgitame, mis on valimi võtmine ja millal seda kasutada.
-- Näitame, kuidas MCP-s valimi võtmist seadistada.
-- Anname näiteid valimi võtmisest tegevuses.
+- Selgitame, mis on Sampling ja millal seda kasutada.
+- Näitame, kuidas MCP-s Samplingut konfigureerida.
+- Anname näiteid, kuidas Sampling töötab praktikas.
 
-## Mis on valimi võtmine ja miks seda kasutada?
+## Mis on Sampling ja miks seda kasutada?
 
-Valimi võtmine on täiustatud funktsioon, mis töötab järgmiselt:
+Sampling on täiustatud funktsioon, mis töötab järgmiselt:
 
 ```mermaid
 sequenceDiagram
@@ -39,19 +39,19 @@ sequenceDiagram
     participant LLM
     participant MCP Server
 
-    User->>MCP Client: Autori blogipostitus
-    MCP Client->>MCP Server: Tööriista kõne (blogipostituse mustand)
-    MCP Server->>MCP Client: Valimikupäring (loo kokkuvõte)
-    MCP Client->>LLM: Genereeri blogipostituse kokkuvõte
-    LLM->>MCP Client: Kokkuvõtte tulemus
-    MCP Client->>MCP Server: Valimivastus (kokkuvõte)
-    MCP Server->>MCP Client: Täielik blogipostitus (mustand + kokkuvõte)
-    MCP Client->>User: Blogipostitus valmis
+    User->>MCP Client: Author blog post
+    MCP Client->>MCP Server: Tool call (blog post draft)
+    MCP Server->>MCP Client: Sampling request (create summary)
+    MCP Client->>LLM: Generate blog post summary
+    LLM->>MCP Client: Summary result
+    MCP Client->>MCP Server: Sampling response (summary)
+    MCP Server->>MCP Client: Complete blog post (draft + summary)
+    MCP Client->>User: Blog post ready
 ```
 
-### Valimi taotlus
+### Samplingu päring
 
-Okei, nüüd on meil üldine ülevaade usutavast stsenaariumist, räägime serveri kliendile tagastatavast valimi taotlusest. Siin on, kuidas selline taotlus võib JSON-RPC vormingus välja näha:
+Nüüd, kui meil on ülevaade usutavast stsenaariumist, räägime serveri kliendile tagasi saadetavast samplingu päringust. Selline päring võib JSON-RPC formaadis välja näha järgmiselt:
 
 ```json
 {
@@ -71,7 +71,7 @@ Okei, nüüd on meil üldine ülevaade usutavast stsenaariumist, räägime serve
     "modelPreferences": {
       "hints": [
         {
-          "name": "claude-3-sonnet"
+          "name": "gpt-5.1"
         }
       ],
       "intelligencePriority": 0.8,
@@ -85,15 +85,15 @@ Okei, nüüd on meil üldine ülevaade usutavast stsenaariumist, räägime serve
 
 Siin on mõned tähelepanuväärsed punktid:
 
-- Taust, sisu -> tekst, on meie juhis, mis annab LLM-ile ülesande kokku võtta blogipostituse sisu.
+- Prompt (content -> text) on meie prompt, mis on juhis LLM-ile blogipostituse sisu kokkuvõtmiseks.
 
-- **mudeliEelistused**. See osa on eelistus, soovitus, millist seadistust LLM-iga kasutada. Kasutaja saab valida, kas järgida neid soovitusi või neid muuta. Selles näites on soovitused mudeli, kiiruse ja intelligentsuse prioriteedi kohta.
-- **süsteemiJuhis**, see on tavapärane süsteemi juhis, mis annab Sinu LLM-ile isikupära ja sisaldab juhiseid.
-- **maxTokenid**, see on veel üks omadus, mis ütleb, mitu tokenit on selle ülesande jaoks soovitatav kasutada.
+- **modelPreferences**. See jaotis on lihtsalt eelistus, soovitus, millist konfiguratsiooni LLM-iga kasutada. Kasutaja võib otsustada, kas järgida neid soovitusi või muuta neid. Selles näites on soovitused mudeli, kiiruse ja intelligentsuse prioriteedi kohta.
+- **systemPrompt** — see on tavapärane süsteemi prompt, mis annab teie LLM-ile isikupära ja sisaldab juhiseid.
+- **maxTokens** — see on veel üks atribuut, mis määrab, mitut tokenit selle ülesande jaoks soovitatakse kasutada.
 
-### Valimi vastus
+### Samplingu vastus
 
-See vastus on see, mida MCP klient lõpuks MCP serverile tagastab ning on tulemus kliendi LLM-i kutsumisest, selle vastuse ootamisest ja sõnumi koostamisest. Siin on, kuidas see JSON-RPC-s välja näeb:
+See vastus on see, mida MCP klient lõpuks MCP serverile tagasi saadab ning see on kliendi LLM-ile pöördumise tulemus — klient ootab seda vastust ja koostab seejärel selle sõnumi. JSON-RPC-s võib see välja näha nii:
 
 ```json
 {
@@ -105,19 +105,22 @@ See vastus on see, mida MCP klient lõpuks MCP serverile tagastab ning on tulemu
       "type": "text",
       "text": "Here's your abstract <ABSTRACT>"
     },
-    "model": "gpt-5",
+    "model": "gpt-5.1",
     "stopReason": "endTurn"
   }
 }
 ```
 
-Pane tähele, et vastus on blogipostituse kokkuvõte, nagu me palusime. Samuti pane tähele, et kasutatud mudel pole see, mida me palusime, vaid "gpt-5" "claude-3-sonnet" asemel. See illustreerib, et kasutaja võib oma meelt muuta ja valimi taotlus on soovitus.
+Vastus on blogipostituse kokkuvõte, nagu palutud. Klient
+valis serveri mudelieelistusest aktiivse `gpt-5.1` juurutuse;
+mudeli-eelistused on soovitused, nii et klient võib valida teise aktiivse
+juurutuse, kui vaja.
 
-Okei, nüüd kui mõistame põhilist protsessi ja kasulikku ülesannet "blogipostituse loomine + kokkuvõte", vaatame, mida peame tegema, et see töötaks.
+Nüüd kui mõistame peamist voogu ja kasulikku ülesannet, mille jaoks seda kasutada (blogipostituse loomine + kokkuvõte), vaatame, mida tuleb teha, et see töötaks.
 
-### Sõnumi tüübid
+### Sõnumitüübid
 
-Valimi sõnumid ei piirdu ainult tekstiga, vaid saadetakse ka pilte ja heli. Siin on, kuidas JSON-RPC erineb:
+Samplingu sõnumid ei piirdu ainult tekstiga — saate saata ka pilte ja heli. JSON-RPC näeb selle jaoks välja järgmiselt:
 
 **Tekst**
 
@@ -148,14 +151,14 @@ Valimi sõnumid ei piirdu ainult tekstiga, vaid saadetakse ka pilte ja heli. Sii
 }
 ```
 
-> MÄRKUS: Praeguse staatuse ja migratsioonijuhiste jaoks vaata
-> [aegunud valimi võtmise dokumentatsiooni](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
+> MÄRKUS: Praeguse staatuse ja migratsiooni juhiste kohta vaata
+> [aegunud Samplingu dokumentatsioon](https://modelcontextprotocol.io/specification/2026-07-28/client/sampling).
 
-## Kuidas seadistada valimi võtmist kliendis
+## Kuidas kliendis Samplingut konfigureerida
 
-> Märkus: kui Sa ehitad ainult serverit, pole siin palju vaja teha.
+> Märkus: kui ehitad ainult serverit, pole siin palju vaja teha.
 
-Kliendis pead määrama järgmise funktsiooni järgmiselt:
+Kliendis tuleb määratleda järgmine funktsioon järgmiselt:
 
 ```json
 {
@@ -165,16 +168,16 @@ Kliendis pead määrama järgmise funktsiooni järgmiselt:
 }
 ```
 
-See võetakse seejärel arvesse, kui valitud klient serveriga algatatakse.
+See võetakse kasutusele, kui valitud klient serveriga initsialiseerub.
 
-## Näide valimi võtmisest tegevuses – loo blogipostitus
+## Näide Samplingu kasutamisest - Blogipostituse loomine
 
-Koodime koos valimi serveri, teeme järgmised sammud:
+Koodime koos sampling-serveri; peame tegema järgmised sammud:
 
-1. Loo tööriist serveris.
-1. See tööriist peaks looma valimi taotluse.
-1. Tööriist peaks ootama kliendi valimi taotluse vastust.
-1. Seejärel peaks tööriista tulemus valmima.
+1. Loo serverisse tööriist.
+1. See tööriist peaks looma samplingu päringu
+1. Tööriist peaks ootama, kuni kliendi samplingu päringule vastatakse.
+1. Seejärel toodetakse tööriista tulemus.
 
 Vaatame koodi samm-sammult:
 
@@ -189,9 +192,9 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
 ```
 
-### -2- Loo valimi taotlus
+### -2- Loo samplingu päring
 
-Lisa tööriistale järgmine kood:
+Täienda oma tööriista järgmise koodiga:
 
 **python**
 
@@ -217,7 +220,7 @@ result = await ctx.session.create_message(
 
 ```
 
-### -3- Oota vastust ja tagasta see
+### -3- Oota vastust ja tagasta vastus
 
 **python**
 
@@ -226,7 +229,7 @@ post.abstract = result.content.text
 
 posts.append(post)
 
-# tagasta täielik toode
+# return the complete product
 return json.dumps({
     "id": post.title,
     "abstract": post.abstract
@@ -295,7 +298,7 @@ async def create_blog(title: str, content: str, ctx: Context[ServerSession, None
 
     posts.append(post)
 
-    # tagasta täielik blogipostitus
+    # return the complete blog post
     return json.dumps({
         "id": post.title,
         "abstract": post.abstract
@@ -306,15 +309,15 @@ if __name__ == "__main__":
     # mcp.run()
     mcp.run(transport="streamable-http")
 
-# käivita rakendus käsuga: python server.py
+# run app with: python server.py
 ```
 
 ### -5- Testimine Visual Studio Code'is
 
 Selle testimiseks Visual Studio Code'is tee järgmist:
 
-1. Käivita server terminalis.
-1. Lisa see *mcp.json*-i (ja veendu, et see oleks käivitatud), näiteks nii:
+1. Käivita terminalis server
+1. Lisa see faili *mcp.json* (ja veendu, et see on käivitatud), näiteks midagi sellist:
 
    ```json
    "servers": {
@@ -325,29 +328,29 @@ Selle testimiseks Visual Studio Code'is tee järgmist:
    }
    ```
 
-1. Sisesta päring:
+1. Sisesta prompt:
 
    ```text
    create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
    ```
 
-1. Luba valimi võtmise toimimine. Esmakordsel testimisel esitatakse Sulle täiendav dialoog, mille pead aktsepteerima, seejärel näed tavalist dialoogi tööriista käivitamiseks.
+1. Luba samplingu toimimine. Kui testid seda esimest korda, kuvatakse lisadialoog, mille pead aktsepteerima; seejärel näed tavalist dialoogi, mis palub tööriista käivitada
 
-1. Kontrolli tulemusi. Näed tulemusi nii GitHub Copilot Chat'is ilusti kujundatult kui ka saad uurida toore JSON vastust.
+1. Kontrolli tulemusi. Näed tulemusi ilusti renderdatuna GitHub Copilot Chatis, aga võid ka vaadata toorest JSON-vastust.
 
-**Boonus**. Visual Studio Code tööriistad toetavad valimi võtmist suurepäraselt. Sa saad seadistada valimi võtmise ligipääsu oma paigaldatud serveris, navigeerides nii:
+**Boonus**. Visual Studio Code tööriistadel on suurepärane tugi samplingule.  Saad oma installitud serveri Samplingu ligipääsu konfigureerida, minnes sinna järgmiselt:
 
-1. Mine laienduste sektsiooni.
-1. Vali hammasratta ikoon oma paigaldatud serveri juures jaotises "MCP SERVERID – PAIGALDATUD".
-1. Vali "Konfigureeri mudeli ligipääsu", siin saad valida, milliseid mudeleid GitHub Copilot tohib valimi võtmisel kasutada. Saad ka vaadata kõiki hiljutisi valimi taotlusi, valides "Näita valimi taotlusi".
+1. Liigu laienduste jaotisse.
+1. Vali jaotises "MCP SERVERS - INSTALLED" oma installitud serveri hammasrattaikoon.
+1 Valige "Configure Model Access", siin saate valida, milliseid mudeleid GitHub Copilot võib samplingu tegemisel kasutada. Samuti saate näha kõiki hiljuti toimunud samplingu päringuid, valides "Show Sampling requests".
 
 ## Ülesanne
 
-Selles ülesandes ehitad veidi erineva valimi võtmise integratsiooni, mis toetab toote kirjelduse genereerimist. Siin on Sinu stsenaarium:
+Selles ülesandes ehitate veidi teistsuguse Samplingu, nimelt samplingu integratsiooni, mis toetab tootekirjelduse genereerimist. Siin on teie stsenaarium:
 
-**Stsenaarium**: E-kaubanduse back office töötaja vajab abi, toodete kirjelduste genereerimine võtab liiga kaua aega. Seetõttu pead looma lahenduse, kus saad tööriista "create_product" kutsuda parameetritega "title" ja "keywords" ja see peaks tootma täieliku toote, sealhulgas välja "description", mille täidab kliendi LLM.
+**Scenario**: E-kaubanduse back office töötaja vajab abi — tootekirjelduste genereerimine võtab liiga palju aega. Seetõttu peate ehitama lahenduse, kus kutsutakse tööriista "create_product" argumentidega "title" ja "keywords" ning see peaks tootma täieliku toote, mis sisaldab välja "description", mille peab täitma kliendi LLM.
 
-NÕUANNE: kasuta varasematest õppetundidest õpitud teadmisi, et konstrueerida see server ja tööriist valimi taotlust kasutades.
+TIP: kasuta eelnevalt õpitut, et konstrukteerida see server ja selle tööriist samplingu päringu abil.
 
 ## Lahendus
 
@@ -355,11 +358,11 @@ NÕUANNE: kasuta varasematest õppetundidest õpitud teadmisi, et konstrueerida 
 
 ## Peamised järeldused
 
-Valimi võtmine on võimas funktsioon, mis võimaldab serveril delegeerida ülesandeid kliendile, kui on vaja LLM-i abi.
+Sampling on võimas funktsioon, mis võimaldab serveril delegeerida ülesandeid kliendile, kui vaja on LLM-i abi.
 
-## Mis järgmiseks
+## Mis edasi
 
-- [Peatükk 4 – Praktiline rakendus](../../04-PracticalImplementation/README.md)
+- [Peatükk 4 - Praktiline rakendamine](../../04-PracticalImplementation/README.md)
 
 ---
 

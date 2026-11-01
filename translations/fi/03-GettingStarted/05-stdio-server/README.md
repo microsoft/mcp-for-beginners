@@ -1,41 +1,41 @@
 # MCP-palvelin stdio-siirrolla
 
-> **⚠️ Tärkeä päivitys**: MCP-määritelmän 2025-06-18 alkaen itsenäinen SSE (Server-Sent Events) -siirtotapa on **poistettu käytöstä** ja korvattu "Streamable HTTP" -siirrolla. Nykyinen MCP-määritelmä määrittelee kaksi pääasiallista siirtotapaa:
-> 1. **stdio** - Standardi syöte/ulosotto (suositeltu paikallisille palvelimille)
-> 2. **Streamable HTTP** - Etäpalvelimille, jotka voivat käyttää SSE:tä sisäisesti
+> **⚠️ Tärkeä päivitys**: MCP-spesifikaation 2025-06-18 mukaisesti erillinen SSE (Server-Sent Events) -siirtotapa on **vanhentunut** ja korvattu "Streamable HTTP" -siirtotavalla. Nykyinen MCP-spesifikaatio määrittelee kaksi pääasiallista siirtomekanismia:
+> 1. **stdio** – Vakio syöte/ulosotto (suositellaan paikallisille palvelimille)
+> 2. **Streamable HTTP** – Etäpalvelimille, jotka voivat käyttää SSE:tä sisäisesti
 >
-> Tämä oppitunti on päivitetty keskittymään **stdio-siirtoon**, joka on suositeltu lähestymistapa useimmissa MCP-palvelinratkaisuissa.
+> Tämä oppitunti on päivitetty keskittymään **stdio-siirtoon**, joka on suositeltu tapa useimmissa MCP-palvelinratkaisuissa.
 
-Stdio-siirto mahdollistaa MCP-palvelimien kommunikoimisen asiakkaiden kanssa standardin syötteen ja ulostulon kautta. Tämä on yleisimmin käytetty ja suositeltu siirtotapa nykyisessä MCP-määritelmässä, tarjoten yksinkertaisen ja tehokkaan tavan rakentaa MCP-palvelimia, jotka voidaan helposti integroida erilaisiin asiakassovelluksiin.
+Stdio-siirto mahdollistaa MCP-palvelimien kommunikoinnin asiakkaiden kanssa vakio syöte- ja ulostulovirtojen kautta. Tämä on yleisimmin käytetty ja suositeltu siirtotapa nykyisessä MCP-spesifikaatiossa, tarjoten yksinkertaisen ja tehokkaan tavan rakentaa MCP-palvelimia, jotka voidaan helposti integroida eri asiakasohjelmiin.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa käydään läpi, miten rakentaa ja hyödyntää MCP-palvelimia stdio-siirrolla.
+Tässä oppitunnissa käydään läpi, miten rakentaa ja käyttää MCP-palvelimia stdio-siirtotavan avulla.
 
 ## Oppimistavoitteet
 
 Oppitunnin lopussa osaat:
 
-- Rakentaa MCP-palvelimen stdio-siirtoa käyttäen.
-- Debuggataa MCP-palvelimen Inspector-työkalulla.
-- Käyttää MCP-palvelinta Visual Studio Codella.
+- Rakentaa MCP-palvelimen käyttäen stdio-siirtoa.
+- Virheenkorjata MCP-palvelinta Inspectorilla.
+- Käyttää MCP-palvelinta Visual Studio Codessa.
 - Ymmärtää nykyiset MCP-siirtomekanismit ja miksi stdio on suositeltu.
 
 
-## stdio-siirto – Miten se toimii
+## stdio-siirto – Kuinka se toimii
 
-Stdio-siirto on yksi kahdesta MCP-määritelmän
-`2026-07-28` standardisiirtotavasta. Näin se toimii:
+Stdio-siirto on yksi kahdesta MCP-spesifikaation standardisiirtotavasta
+`2026-07-28`. Näin se toimii:
 
-- **Yksinkertainen viestintä**: Palvelin lukee JSON-RPC-viestejä standardisyötteestä (`stdin`) ja lähettää viestejä standardiulostuloon (`stdout`).
+- **Yksinkertainen kommunikaatio**: Palvelin lukee JSON-RPC-viestejä vakiosyötteestä (`stdin`) ja lähettää viestejä vakio-ulostuloon (`stdout`).
 - **Prosessipohjainen**: Asiakas käynnistää MCP-palvelimen aliprosessina.
-- **Viestimuoto**: Viestit ovat yksittäisiä JSON-RPC-pyyntöjä, ilmoituksia tai vastauksia, jotka erotetaan rivinvaihdoilla.
-- **Lokitus**: Palvelin VOI kirjoittaa UTF-8-merkkijonoja standardivirheeseen (`stderr`) lokitusta varten.
+- **Viestimuoto**: Viestit ovat yksittäisiä JSON-RPC-pyyntöjä, ilmoituksia tai vastauksia, eritelty rivinvaihdoin.
+- **Lokitus**: Palvelin VOI kirjoittaa UTF-8-merkkijonoja vakiovirheeseen (`stderr`) lokitusta varten.
 
 ### Keskeiset vaatimukset:
-- Viestit TULEE erottaa rivinvaihdoilla eikä niiden sisälle SAA sisältyä rivinvaihtoja
-- Palvelimen EI TULE kirjoittaa `stdout`-virtaan mitään muuta kuin kelvollisen MCP-viestin
-- Asiakkaan EI TULE kirjoittaa palvelimen `stdin`-virtaan mitään muuta kuin kelvollisen MCP-viestin
+- Viestit TULEE erottaa rivinvaihdoilla eikä niissä TULE sisältää upotettuja rivinvaihtoja
+- Palvelin EI SAA kirjoittaa mitään `stdout`, joka ei ole kelvollinen MCP-viesti
+- Asiakas EI SAA kirjoittaa palvelimen `stdin`-virtaan mitään, mikä ei ole kelvollinen MCP-viesti
 
 ### TypeScript
 
@@ -65,9 +65,9 @@ runServer().catch(console.error);
 
 Edellisessä koodissa:
 
-- Tuodaan `Server`-luokka ja `StdioServerTransport` MCP SDK:sta
-- Luodaan palvelininstanssi perusasetuksilla ja ominaisuuksilla
-- Luodaan `StdioServerTransport`-instanssi ja yhdistetään palvelin siihen, mahdollistaen kommunikaation stdin/stdout läpi
+- Tuomme `Server`-luokan ja `StdioServerTransport` MCP SDK:sta
+- Luomme palvelininstanssin perusasetuksin ja -ominaisuuksin
+- Luomme `StdioServerTransport`-instanssin ja yhdistämme palvelimen siihen, mahdollistaen kommunikoinnin stdin/stdoutin yli
 
 ### Python
 
@@ -77,7 +77,7 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Luo palvelininstanssi
+# Create server instance
 server = Server("example-server")
 
 @server.tool()
@@ -99,9 +99,9 @@ if __name__ == "__main__":
 
 Edellisessä koodissa me:
 
-- Luomme palvelimen MCP SDK:ta käyttäen
-- Määrittelemme työkalut koristeiden avulla
-- Käytämme stdio_server-context manageria siirron hallintaan
+- Luomme palvelininstanssin MCP SDK:lla
+- Määrittelemme työkalut koristelijoilla
+- Käytämme stdio_server-kontekstinhallintaa siirron käsittelemiseen
 
 ### .NET
 
@@ -124,23 +124,23 @@ var app = builder.Build();
 await app.RunAsync();
 ```
 
-Keskeinen ero SSE:hen on, että stdio-palvelimet:
+Keskeinen ero SSE:hen nähden on, että stdio-palvelimet:
 
-- Eivät vaadi web-palvelimen käyttöönottoa tai HTTP-päätepisteitä
-- Käynnistetään asiakkaan aliprosesseina
+- Eivät vaadi web-palvelimen asennusta tai HTTP-päätepisteitä
+- Käynnistetään asiakasprosessin aliprosessina
 - Kommunikoivat stdin/stdout-virtojen kautta
-- Ovat yksinkertaisempia toteuttaa ja debugata
+- Ovat helpompia toteuttaa ja virheenkorjata
 
 ## Harjoitus: Stdio-palvelimen luominen
 
-Palvelinta luodessa meidän tulee pitää mielessä kaksi asiaa:
+Palvelinta luodessa on pidettävä mielessä kaksi asiaa:
 
-- Meidän pitää käyttää web-palvelinta paljastamaan päätepisteet yhteyttä ja viestejä varten.
-## Labra: Yksinkertaisen MCP stdio-palvelimen luominen
+- Tarvitsemme web-palvelimen tarjoamaan päätepisteet yhteydelle ja viesteille.
+## Laboratorio: Yksinkertaisen MCP stdio-palvelimen luominen
 
-Tässä labrassa luomme yksinkertaisen MCP-palvelimen käyttäen suositeltua stdio-siirtoa. Tämä palvelin tarjoaa työkaluja, joita asiakkaat voivat kutsua käyttämällä standardoitua Model Context Protocolia.
+Tässä laboratoriossa luomme yksinkertaisen MCP-palvelimen käyttäen suositeltua stdio-siirtotapaa. Palvelin tarjoaa työkaluja, joita asiakkaat voivat kutsua standardoidulla Model Context Protocolilla.
 
-### Vaatimukset
+### Esivaatimukset
 
 - Python 3.8 tai uudempi
 - MCP Python SDK: `pip install mcp`
@@ -155,11 +155,11 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp import types
 
-# Määritä lokitus
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Luo palvelin
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -173,7 +173,7 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}! Welcome to MCP stdio server."
 
 async def main():
-    # Käytä stdio-siirtoa
+    # Use stdio transport
     async with stdio_server(server) as (read_stream, write_stream):
         await server.run(
             read_stream,
@@ -185,34 +185,34 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Keskeiset erot vanhentuneeseen SSE-malliin verrattuna
+## Keskeiset erot vanhentuneeseen SSE-tapaan verrattuna
 
-**Stdio-siirto (nykyinen standardi):**
-- Yksinkertainen aliprosessimalli - asiakas käynnistää palvelimen lapsiprosessina
-- Kommunikaatio stdin/stdout -virtana JSON-RPC-viesteillä
-- Ei HTTP-palvelimen asennusta vaadita
+**Stdio-siirto (Nykyinen standardi):**
+- Yksinkertainen aliprosessimalli – asiakas käynnistää palvelimen lapsiprosessina
+- Kommunikointi stdin/stdoutin kautta JSON-RPC-viesteillä
+- Ei vaadi HTTP-palvelimen asennusta
 - Parempi suorituskyky ja turvallisuus
-- Helpompi debuggaus ja kehitys
+- Helpompi virheenkorjaus ja kehitys
 
-**SSE-siirto (poistettu käytöstä MCP 2025-06-18 alkaen):**
-- Vaatimuksena HTTP-palvelin SSE-päätepisteillä
-- Monimutkaisempi asennus web-palvelininfrastruktuurilla
-- Lisäturvatoimet HTTP-päätepisteille
-- Nyt korvattu Streamable HTTP:llä web-pohjaisissa skenaarioissa
+**SSE-siirto (vanhentunut 2025-06-18):**
+- Vaatii HTTP-palvelimen SSE-päätepisteillä
+- Monimutkaisempi asennus web-palvelininfrastruktuurin kanssa
+- Lisäturvavaatimuksia HTTP-päätepisteille
+- Korvattu Streamable HTTP:llä verkkopohjaisissa skenaarioissa
 
 ### Palvelimen luominen stdio-siirrolla
 
-Palvelimemme luomiseksi meidän tulee:
+Palvelimen luomiseksi stdio-siirrolla:
 
-1. **Tuoda tarvittavat kirjastot** - Tarvitsemme MCP-palvelinkomponentit ja stdio-siirron
-2. **Luoda palvelininstanssi** - Määritellä palvelin sen ominaisuuksineen
-3. **Määritellä työkalut** - Lisätä haluttu toiminnallisuus
-4. **Konfiguroida siirto** - Asettaa stdio-viestintä
-5. **Käynnistää palvelin** - Aloittaa palvelin ja käsitellä viestejä
+1. **Tuodaan tarvittavat kirjastot** – Tarvitsemme MCP-palvelin-komponentit ja stdio-siirron
+2. **Luodaan palvelininstanssi** – Määritellään palvelimen ominaisuudet
+3. **Määritellään työkalut** – Lisätään tarjottavat toiminnot
+4. **Kokoonpano siirrolle** – Konfiguroidaan stdio-kommunikointi
+5. **Ajetaan palvelinta** – Käynnistetään palvelin ja käsitellään viestejä
 
-Rakennetaan tämä vaihe vaiheelta:
+Rakennetaan tätä vaihe vaiheelta:
 
-### Vaihe 1: Luo perustason stdio-palvelin
+### Vaihe 1: Luo perus stdio-palvelin
 
 ```python
 import asyncio
@@ -220,11 +220,11 @@ import logging
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 
-# Määritä lokitus
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Luo palvelin
+# Create the server
 server = Server("example-stdio-server")
 
 @server.tool()
@@ -270,13 +270,13 @@ def get_server_info() -> dict:
 
 ### Vaihe 3: Palvelimen käynnistäminen
 
-Tallenna koodi tiedostoon `server.py` ja suorita se komentoriviltä:
+Tallenna koodi tiedostoksi `server.py` ja suorita komentoriviltä:
 
 ```bash
 python server.py
 ```
 
-Palvelin käynnistyy ja odottaa syötettä stdin:stä. Se kommunikoi JSON-RPC-viestien avulla stdio-siirron kautta.
+Palvelin käynnistyy ja odottaa syötettä stdin:stä. Se kommunikoi JSON-RPC-viestien avulla stdio-siirron ylitse.
 
 ### Vaihe 4: Testaus Inspectorilla
 
@@ -293,11 +293,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddMcpServer();
  ```
-## Saat vianetsinnän käyntiin stdio-palvelimelle
+## Virheenkorjaus stdio-palvelimessasi
 
-### MCP Inspectorin käyttö
+### MCP Inspectorin käyttäminen
 
-MCP Inspector on arvokas työkalu MCP-palvelinten debuggaamiseen ja testaamiseen. Näin käytät sitä stdio-palvelimesi kanssa:
+MCP Inspector on arvokas työkalu MCP-palvelinten virheenkorjaukseen ja testaukseen. Näin käytät sitä stdio-palvelimessasi:
 
 1. **Asenna Inspector**:
    ```bash
@@ -309,17 +309,17 @@ MCP Inspector on arvokas työkalu MCP-palvelinten debuggaamiseen ja testaamiseen
    npx @modelcontextprotocol/inspector python server.py
    ```
 
-3. **Testaa palvelimesi**: Inspector tarjoaa web-käyttöliittymän, jossa voit:
-   - Näyttää palvelimen ominaisuudet
-   - Testata työkaluja eri parametreilla
-   - Tarkkailla JSON-RPC-viestejä
-   - Debuggataa yhteysongelmia
+3. **Testaa palvelintasi**: Inspector tarjoaa web-käyttöliittymän, jossa voit:
+   - Tarkastella palvelimen ominaisuuksia
+   - Testata työkaluja erilaisilla parametreilla
+   - Seurata JSON-RPC-viestejä
+   - Virheenkorjata yhteysongelmia
 
-### VS Coden käyttö
+### VS Coden käyttäminen
 
-Voit myös debugata MCP-palvelintasi suoraan VS Codessa:
+Voit myös virheenkorjata MCP-palvelintasi suoraan VS Codessa:
 
-1. Luo käynnistyskonfiguraatio tiedostoon `.vscode/launch.json`:
+1. Luo ajokonfiguraatio tiedostoon `.vscode/launch.json`:
    ```json
    {
      "version": "0.2.0",
@@ -335,23 +335,23 @@ Voit myös debugata MCP-palvelintasi suoraan VS Codessa:
    }
    ```
 
-2. Aseta breakpointit palvelinkoodiisi
-3. Käynnistä debugger ja testaa Inspectorilla
+2. Aseta katkaisupisteet palvelinkoodiin
+3. Käynnistä virheenkorjaus ja testaa Inspectorilla
 
-### Yleisiä vianetsintävinkkejä
+### Yleisiä virheenkorjausvinkkejä
 
-- Käytä `stderr`-virtaa lokitukseen - älä koskaan kirjoita `stdout`-virtuun, sillä se on varattu MCP-viesteille
-- Varmista, että kaikki JSON-RPC-viestit ovat rivinvaihdolla erotettuja
-- Testaa ensin yksinkertaisilla työkaluilla ennen monimutkaisen toiminnallisuuden lisäämistä
-- Käytä Inspector-työkalua viestimuotojen varmistukseen
+- Käytä `stderr` lokitukseen – älä koskaan kirjoita `stdout`-virtaan, koska se on varattu MCP-viesteille
+- Varmista, että kaikki JSON-RPC-viestit on erotettu rivinvaihdoilla
+- Testaa ensin yksinkertaisilla työkaluilla ennen monimutkaisten toimintojen lisäämistä
+- Käytä Inspectoria viestimuotojen tarkistamiseen
 
-## Stdio-palvelimen käyttö VS Codessa
+## MCP stdio-palvelimen käyttäminen VS Codessa
 
-Kun olet rakentanut MCP stdio-palvelimesi, voit integroida sen VS Codeen käytettäväksi Clauden tai muiden MCP-yhteensopivien asiakkaiden kanssa.
+Rakennettuasi MCP stdio-palvelimen voit integroida sen VS Codeen käyttääksesi sitä Clauden tai muiden MCP-yhteensopivien asiakkaiden kanssa.
 
-### Konfigurointi
+### Konfiguraatio
 
-1. **Luo MCP-konfiguraatiotiedosto** sijaintiin `%APPDATA%\Claude\claude_desktop_config.json` (Windows) tai `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
+1. **Luo MCP-konfiguraatiotiedosto** osoitteeseen `%APPDATA%\Claude\claude_desktop_config.json` (Windows) tai `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac):
 
    ```json
    {
@@ -367,13 +367,13 @@ Kun olet rakentanut MCP stdio-palvelimesi, voit integroida sen VS Codeen käytet
 2. **Käynnistä Claude uudelleen**: Sulje ja avaa Claude uudelleen ladataksesi uuden palvelinkonfiguraation.
 
 3. **Testaa yhteys**: Aloita keskustelu Clauden kanssa ja kokeile palvelimesi työkaluja:
-   - "Voitko tervehtiä minua tervehdystyökalulla?"
-   - "Laske lukujen 15 ja 27 summa"
+   - "Voisitko tervehtiä minua tervehdystyökalulla?"
+   - "Laske luvun 15 ja 27 summa"
    - "Mikä on palvelimen tiedot?"
 
 ### TypeScript stdio-palvelinesimerkki
 
-Tässä täydellinen TypeScript-esimerkki viitteeksi:
+Tässä on täydellinen TypeScript-esimerkki viitteeksi:
 
 ```typescript
 #!/usr/bin/env node
@@ -393,7 +393,7 @@ const server = new Server(
   }
 );
 
-// Lisää työkaluja
+// Add tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -476,20 +476,20 @@ public class Tools
 
 ## Yhteenveto
 
-Tässä päivitetystä oppitunnissa opit:
+Tässä päivitettyssä oppitunnissa opit:
 
-- Rakentamaan MCP-palvelimia nykyisellä **stdio-siirrolla** (suositeltu tapa)
-- Ymmärtämään, miksi SSE-siirto poistettiin käytöstä stdio- ja Streamable HTTP -siirtojen hyväksi
+- Rakentamaan MCP-palvelimia käyttäen nykyistä **stdio-siirtoa** (suositeltu tapa)
+- Ymmärtämään, miksi SSE-siirto vanhentui ja miksi stdio ja Streamable HTTP korvasivat sen
 - Luomaan työkaluja, joita MCP-asiakkaat voivat kutsua
-- Debuggaamaan palvelinta MCP Inspectorilla
-- Integroimaan stdio-palvelimen VS Codeen ja Claudeen
+- Virheenkorjaamaan palvelintasi MCP Inspectorilla
+- Integroimaan stdio-palvelimesi VS Codeen ja Claudeen
 
-Stdio-siirto tarjoaa yksinkertaisemman, turvallisemman ja suorituskykyisemmän tavan rakentaa MCP-palvelimia verrattuna poistettuun SSE-malliin. Se on suositeltu siirtotapa useimpiin MCP-palvelinratkaisuihin 2025-06-18 määritelmän jälkeen.
+Stdio-siirto tarjoaa yksinkertaisemman, turvallisemman ja tehokkaamman tavan rakentaa MCP-palvelimia verrattuna vanhentuneeseen SSE-tapaan. Se on suositeltu siirtotapa useimmille MCP-palvelinratkaisuille 2025-06-18 spesifikaation mukaisesti.
 
 
 ### .NET
 
-1. Luodaan ensin muutama työkalu, tähän luomme tiedoston *Tools.cs* seuraavalla sisällöllä:
+1. Luodaan ensin joitakin työkaluja, teemme tiedoston *Tools.cs* seuraavalla sisällöllä:
 
   ```csharp
   using System.ComponentModel;
@@ -497,18 +497,18 @@ Stdio-siirto tarjoaa yksinkertaisemman, turvallisemman ja suorituskykyisemmän t
   using ModelContextProtocol.Server;
   ```
 
-## Harjoitus: Stdio-palvelimen testaaminen
+## Harjoitus: Testaa stdio-palvelintasi
 
-Nyt kun olet rakentanut stdio-palvelimesi, testaamme sen, jotta varmistamme että se toimii oikein.
+Nyt kun olet luonut stdio-palvelimesi, testataan se varmistaaksemme, että se toimii oikein.
 
-### Vaaditut asiat
+### Esivaatimukset
 
-1. Varmista, että MCP Inspector on asennettu:
+1. Varmista, että sinulla on asennettuna MCP Inspector:
    ```bash
    npm install -g @modelcontextprotocol/inspector
    ```
 
-2. Palvelinkoodisi tulee olla tallennettuna (esim. `server.py`)
+2. Palvelinkoodisi tulisi olla tallennettuna (esim. tiedostona `server.py`)
 
 ### Testaus Inspectorilla
 
@@ -521,55 +521,55 @@ Nyt kun olet rakentanut stdio-palvelimesi, testaamme sen, jotta varmistamme ett�
 
 3. **Testaa työkalut**: 
    - Kokeile `get_greeting`-työkalua eri nimillä
-   - Testaa `calculate_sum`-työkalua eri luvuilla
+   - Testaa `calculate_sum`-työkalua eri numeroilla
    - Kutsu `get_server_info`-työkalua nähdäksesi palvelimen metatiedot
 
-4. **Valvo viestintää**: Inspector näyttää JSON-RPC-viestit, joita vaihdetaan asiakkaan ja palvelimen välillä.
+4. **Seuraa kommunikointia**: Inspector näyttää JSON-RPC-viestit, joita vaihdetaan asiakkaan ja palvelimen välillä.
 
 ### Mitä sinun pitäisi nähdä
 
-Kun palvelimesi käynnistyy oikein, sinun pitäisi nähdä:
+Kun palvelin käynnistyy oikein, sinun pitäisi nähdä:
 - Palvelimen ominaisuudet listattuna Inspectorissa
-- Työkalut käytettävissä testaukseen
-- Onnistuneita JSON-RPC-viestinvaihtoja
-- Työkalujen vastaukset näytetty käyttöliittymässä
+- Testattavat työkalut käytettävissä
+- Onnistuneet JSON-RPC-viestinvaihdot
+- Työkalujen vastaukset näkyvissä käyttöliittymässä
 
 ### Yleisiä ongelmia ja ratkaisuja
 
 **Palvelin ei käynnisty:**
-- Tarkista että kaikki riippuvuudet on asennettu: `pip install mcp`
-- Varmista Python-koodin syntaksi ja sisennykset
-- Tarkkaile konsolin virheilmoituksia
+- Tarkista, että kaikki riippuvuudet on asennettu: `pip install mcp`
+- Varmista Python-syntaksin ja sisennyksen oikeellisuus
+- Etsi virheilmoituksia konsolista
 
 **Työkalut eivät näy:**
-- Varmista, että `@server.tool()` -koristeet ovat paikallaan
-- Tarkista, että työkalufunktiot määritellään ennen `main()`-funktiota
-- Varmista, että palvelin on oikein konfiguroitu
+- Varmista, että `@server.tool()`-koristelijat ovat paikoillaan
+- Tarkista, että työkalufunktiot on määritelty ennen `main()`
+- Varmista palvelimen oikea konfigurointi
 
 **Yhteysongelmat:**
 - Varmista, että palvelin käyttää stdio-siirtoa oikein
 - Tarkista, ettei muut prosessit häiritse
-- Tarkista Inspector-komentojen syntaksi
+- Varmista Inspectorin komentorivikäskyjen oikeellisuus
 
 ## Tehtävä
 
-Yritä lisätä palvelimellesi enemmän ominaisuuksia. Katso [tätä sivua](https://api.chucknorris.io/) esimerkiksi lisätäksesi työkalun, joka kutsuu API:a. Sinä päätät miltä palvelimen tulisi näyttää. Hauskaa :)
+Kokeile rakentaa palvelimesi monipuolisemmaksi. Katso [tältä sivulta](https://api.chucknorris.io/) esimerkiksi, miten voit lisätä työkalun, joka kutsuu APIa. Sinä päätät, miltä palvelimen tulisi näyttää. Hauskaa:)
 ## Ratkaisu
 
-[Ratkaisu](./solution/README.md) Tässä on mahdollinen ratkaisu toimivalla koodilla.
+[Ratkaisu](./solution/README.md) Tässä mahdollinen ratkaisu toimivalla koodilla.
 
-## Tärkeimmät opit
+## Keskeiset opit
 
-Tässä luvussa tärkeimmät opit ovat:
+Tässä luvussa opitut keskeiset asiat ovat:
 
 - Stdio-siirto on suositeltu mekanismi paikallisille MCP-palvelimille.
-- Stdio-siirto mahdollistaa saumattoman kommunikoinnin MCP-palvelimien ja asiakkaiden välillä käyttämällä standardia syöttö- ja tulostustuloa.
-- Voit käyttää sekä Inspectoria että Visual Studio Codea stdio-palvelinten kuluttamiseen suoraan, mikä tekee debuggaamisesta ja integraatiosta vaivatonta.
+- Stdio-siirto mahdollistaa saumattoman kommunikoinnin MCP-palvelimien ja asiakkaiden välillä käyttämällä vakio syöte- ja ulostulovirtoja.
+- Voit käyttää sekä Inspectoria että Visual Studio Codea stdio-palvelimien kuluttamiseen suoraan, mikä tekee virheenkorjauksesta ja integraatiosta sujuvaa.
 
 ## Esimerkit 
 
 - [Java Calculator](../samples/java/calculator/README.md)
-- [.Net Calculator](../../../../03-GettingStarted/samples/csharp)
+- [.NET Calculator](../../../../03-GettingStarted/samples/csharp)
 - [JavaScript Calculator](../samples/javascript/README.md)
 - [TypeScript Calculator](../samples/typescript/README.md)
 - [Python Calculator](../../../../03-GettingStarted/samples/python) 
@@ -580,19 +580,19 @@ Tässä luvussa tärkeimmät opit ovat:
 
 ## Mitä seuraavaksi
 
-## Seuraavat askeleet
+## Seuraavat vaiheet
 
 Nyt kun olet oppinut rakentamaan MCP-palvelimia stdio-siirrolla, voit tutustua edistyneempiin aiheisiin:
 
-- **Seuraava**: [HTTP Streaming MCP:llä (Streamable HTTP)](../06-http-streaming/README.md) – Tutustu toiseen tuettuun siirtomekanismiin etäpalvelimille
-- **Edistynyt**: [MCP:n turvallisuusohjeet](../../02-Security/README.md) – Toteuta turvallisuus MCP-palvelimissasi
-- **Tuotanto**: [Jälleenlanseerausstrategiat](../09-deployment/README.md) – Ota palvelimesi käyttöön tuotantoympäristössä
+- **Seuraava**: [HTTP Streaming MCP:llä (Streamable HTTP)](../06-http-streaming/README.md) – Opi toisesta tuetusta siirtomekanismista etäpalvelimille
+- **Edistynyt**: [MCP:n turvallisuusparhaat käytännöt](../../02-Security/README.md) – Toteuta turvallisuutta MCP-palvelimissasi
+- **Tuotanto**: [Julkaisustrategiat](../09-deployment/README.md) – Ota palvelimesi käyttöön tuotantoympäristössä
 
 ## Lisäresurssit
 
 - [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) – Nykyinen spesifikaatio
-- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) – SDK-viitteet kaikille kielille
-- [Yhteisön esimerkit](../../06-CommunityContributions/README.md) – Lisää palvelinesimerkkejä yhteisöltä
+- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) – SDK-tiedot kaikille kielille
+- [Community Examples](../../06-CommunityContributions/README.md) – Lisää palvelinesimerkkejä yhteisöltä
 
 ---
 

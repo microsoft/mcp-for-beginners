@@ -1,27 +1,29 @@
-# நிறுவன ஒருங்கிணைப்பு
+# நிறுவன ஒருமைத்துவம்
 
-ஒரு நிறுவன சூழலில் MCP சேவையகங்களை உருவாக்கும் போது, நீங்கள் பெரும்பாலும் ஏற்கனவே உள்ள AI தளங்கள் மற்றும் சேவைகளுடன் ஒருங்கிணைக்க வேண்டியாகும். இந்த பகுதியில் MCP-ஐ Azure OpenAI மற்றும் Microsoft AI Foundry போன்ற நிறுவன அமைப்புகளுடன் ஒருங்கிணைப்பது எப்படி என்பதை பேசுகிறது, இது முன்னோடியான AI திறன்கள் மற்றும் கருவி ஒருங்கிணைப்பை செயல்படுத்த உதவுகிறது.
+ஒரு நிறுவன சூழலில் MCP சேவையகங்களை கட்டியெழுப்பும் போது, நீங்கள் பெரும்பாலும் உள்ளமைந்த AI தளங்களோடு மற்றும் சேவைகளோடு ஒருமைத்துவம் செய்ய தேவையிருக்கும். இந்த பகுதியில், MCP-ஐ Azure OpenAI மற்றும் Microsoft AI Foundry போன்ற நிறுவன அமைப்புகளுடன் எப்படி ஒருமை செய்யலாம் என்பதைக் கூறுகிறது, இது முன்னேற்றமான AI திறன்களையும் சாதன ஒழுங்குமுறையையும் செயல்படுத்த உதவுகிறது.
 
 ## அறிமுகம்
 
-இந்த பாடத்தில், நீங்கள் கட்டுமான Context Protocol (MCP)-ஐ நிறுவன AI அமைப்புகளுடன் எப்படி ஒருங்கிணைக்கணுமென கற்கப்போகிறீர்கள், குறிப்பாக Azure OpenAI மற்றும் Microsoft AI Foundry மீது கவனம் செலுத்துகின்றோம். இந்த ஒருங்கிணைப்புகள் சக்திவாய்ந்த AI மாதிரிகள் மற்றும் கருவிகளை பயன்படுத்துவதற்கும் MCP-ன் தானியங்கி மற்றும் விரிவாக்கத் தன்மையை நிலைநிறுத்துவதற்குமான வாய்ப்புகளை வழங்குகின்றன.
+இந்த பாடத்தில், நீங்கள் Model Context Protocol (MCP)-ஐ Azure OpenAI மற்றும் Microsoft AI Foundry போன்ற நிறுவன AI அமைப்புகளோடு ஒருமை செய்வதற்கு கற்றுக்கொள்ளப்போகிறீர்கள். இந்த ஒருமித்தங்கள் சக்திவாய்ந்த AI மாதிரிகள் மற்றும் சாதனங்களை பயன்படுத்துவதற்கு உதவுகின்றன, அதே சமயம் MCP-இன் மென்மையான மற்றும் விரிவாக்கக்கூடிய தன்மையை காப்பாற்றுகின்றன.
 
-## கற்றல் முன் நோக்கங்கள்
+## கற்றல் இலக்குகள்
 
-இந்த பாடத்தின் கடைசியில், நீங்கள்:
+இந்த பாடத்தின் முடிவில், நீங்கள் முடியும்:
 
-- Azure OpenAI உடன் MCP-ஐ ஒருங்கிணைத்து அதன் AI திறன்களை பயன்படுத்த இயலும்.
-- Azure OpenAI உடன் MCP கருவி ஒருங்கிணைப்பை செயல்படுத்த இயலும்.
-- Microsoft AI Foundry உடன் MCP-ஐ இணைத்து முன்னோடியான AI ஏஜென்ட் திறன்களை பெற இயலும்.
-- Azure Machine Learning (ML)ஐ பயன்படுத்தி ML பயன்பாடுகளை இயக்கவும் மற்றும் மாதிரிகளை MCP கருவிகளாக பதிவு செய்யவும் இயலும்.
+- MCP-ஐ Azure OpenAI உடன் ஒருமை செய்து அதன் AI திறன்களை பயன்படுத்துதல்.
+- Azure OpenAI உடன் MCP சாதன ஒழுங்குமுறையை செயல்படுத்துதல்.
+- முன்னேற்றமான AI முகவர் திறன்களை வழங்க Microsoft AI Foundry உடன் MCP-ஐ இணைத்தல்.
+- Azure Machine Learning (ML)-ஐ பயன்படுத்தி ML குழாய்களை இயக்கல் மற்றும் MCP சாதனங்களாக மாதிரிகளை பதிவு செய்தல்.
 
-## Azure OpenAI ஒருங்கிணைப்பு
+## Azure OpenAI ஒருமைத்துவம்
 
-Azure OpenAI GPT-4 மற்றும் பிற சக்திவாய்ந்த AI மாதிரிகளுக்கு அணுகலை வழங்குகிறது. MCP-ஐ Azure OpenAI உடன் ஒருங்கிணைப்பதால், நீங்கள் இந்த மாதிரிகளை பயன்படுத்தி MCP-ன் கருவி ஒருங்கிணைப்பின் தானியங்கி தன்மையை பாதுகாப்பதில் உதவி செய்கிறது.
+Microsoft Foundry தற்போதைய AI மாதிரிகள் போன்று GPT-5.1 க்கு அணுகலினை வழங்குகிறது.
+MCP-ஐ Foundry மாதிரிகளுடன் இணைத்தல் MCP சாதன ஒழுங்குமுறையின் மென்மையான தன்மையை காப்பாற்றுகிறது
+மற்றும் ஒருங்கிணைக்கப்பட்ட மாதிரி பரப்பணியை பயன்படுத்துகிறது.
 
 ### C# செயலாக்கம்
 
-இந்த குறியீட்டில், Azure OpenAI SDK-ஐ பயன்படுத்தி MCP உடன் Azure OpenAI-ஐ எப்படி ஒருங்கிணைக்கலாம் என்பதைக் காட்டுகிறோம்.
+இந்த குறியீட்டில், Azure OpenAI SDK ஐ பயன்படுத்தி MCP-ஐ Azure OpenAI உடன் ஒருமைப்படுத்துவது எப்படி என்பதை விளக்குகிறோம்.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -85,24 +87,24 @@ namespace EnterpriseIntegration
 }
 ```
 
-மேலே உள்ள குறியீட்டில் நாம்:
+முன் குறியீட்டில் நாம்:
 
-- Azure OpenAI கிளையண்டை endpoint, deployment name மற்றும் API key உடன் கட்டமைத்துள்ளோம்.
-- `GetCompletionWithToolsAsync` என்ற முறையை உருவாக்கி கருவி ஆதரவுடன் முடித்தல் பெறுவது எப்படி என்பதை காட்டியுள்ளோம்.
-- கருவி அழைப்புகளை பதிலில் கையாளியுள்ளோம்.
+- Azure OpenAI கிளையண்டை அதின் கடைசி புள்ளி, தளவமைப்பின் பெயர் மற்றும் API விசையுடன் கட்டமைத்துள்ளோம்.
+- சாதன ஆதரவுடன் முடிவுகளை பெற `GetCompletionWithToolsAsync` எனும் முறையை உருவாக்கியுள்ளோம்.
+- பதிலில் சாதன அழைப்புகளை கையாளியுள்ளோம்.
 
-உங்கள் தனிப்பட்ட MCP சேவையக அமைப்பை கருத்தில் கொண்டு கருவி கையாளுதல் தர்க்கத்தை நீங்கள் செயல்படுத்த encouraged ஆக உள்ளீர்கள்.
+உங்கள் குறிப்பிட்ட MCP சேவையக அமைப்பின் அடிப்படையில் உண்மை சாதன கையாளும் நினைவலை செயல்படுத்த அழைக்கப்படுகிறீர்கள்.
 
-## Microsoft Foundry ஒருங்கிணைப்பு
+## Microsoft Foundry ஒருமைத்துவம்
 
-Microsoft Foundry AI ஏஜென்ட்களை உருவாக்குவதற்கும் நடைமுறையில் வைக்கத்தக்க தளத்தைக் கொடுக்கிறது. MCP-ஐ Microsoft Foundry உடன் ஒருங்கிணைப்பது அதன் திறன்களை பயன்படுத்தும் போது MCP-ன் தானியக்க தன்மையை கடைப்பிடிக்க உதவும்.
+Microsoft Foundry AI முகவர்களை உருவாக்கவும் செருகவும் ஒரு தளத்தை வழங்குகிறது. MCP-ஐ Microsoft Foundry உடன் இணைத்தல் அதன் திறன்களை பயன்படுத்த உதவுகிறது மற்றும் MCP-இன் மென்மையான தன்மையையும் காக்கிறது.
 
-கீழே உள்ள குறியீட்டில், MCP-ஐ பயன்படுத்தி கோரிக்கைகளை செயல்படுத்தும் மற்றும் கருவி அழைப்புகளை கையாளும் ஏஜென்ட் ஒருங்கிணைப்பை உருவாக்கியுள்ளோம்.
+கீழே உள்ள குறியீட்டில், MCP பயன்படுத்தி கோரிக்கைகளை செயல்படுத்தும் மற்றும் சாதன அழைப்புகளை கையாளும் முகவர் ஒருங்கிணைப்பை உருவாக்குகிறோம்.
 
 ### ஜாவா செயலாக்கம்
 
 ```java
-// ஜாவா AI ஃபவுண்ட்ரி ஏஜெண்ட் ஒருங்கிணைப்பு
+// Java AI Foundry Agent Integration
 package com.example.mcp.enterprise;
 
 import com.microsoft.aifoundry.AgentClient;
@@ -125,26 +127,26 @@ public class AIFoundryMcpBridge {
     }
     
     public AgentResponse processAgentRequest(AgentRequest request) {
-        // AI ஃபவுண்ட்ரி ஏஜெண்ட் கோரிக்கையை செயலாக்கு
+        // Process the AI Foundry Agent request
         AgentResponse initialResponse = agentClient.processRequest(request);
         
-        // ஏஜெண்ட் கருவிகளை பயன்படுத்த கோரியுள்ளதா என்பதைக் சோதி
+        // Check if the agent requested to use tools
         if (initialResponse.getToolCalls() != null && !initialResponse.getToolCalls().isEmpty()) {
-            // ஒவ்வொரு கருவி அழைப்பிற்கும், அதனை பொருத்தமான MCP கருவிக்கு வழிமொழி செய்
+            // For each tool call, route it to the appropriate MCP tool
             for (AgentToolCall toolCall : initialResponse.getToolCalls()) {
                 String toolName = toolCall.getName();
                 Map<String, Object> parameters = toolCall.getArguments();
                 
-                // MCP பயன்படுத்தி கருவியை செயல்படுத்து
+                // Execute the tool using MCP
                 ToolResponse mcpResponse = mcpClient.executeTool(toolName, parameters);
                 
-                // AI ஃபவுண்ட்ரிக்கான கருவி பதிலை உருவாக்கு
+                // Create tool response for AI Foundry
                 AgentToolResponse toolResponse = new AgentToolResponse(
                     toolCall.getId(),
                     mcpResponse.getResult()
                 );
                 
-                // கருவி பதிலை மீண்டும் ஏஜெண்டுக்கு சமர்ப்பி
+                // Submit tool response back to the agent
                 initialResponse = agentClient.submitToolResponse(
                     request.getConversationId(), 
                     toolResponse
@@ -157,20 +159,20 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-மேலே உள்ள குறியீட்டில் நாம்:
+முன் குறியீட்டில், நாம்:
 
-- AI Foundry மற்றும் MCP-இன் இரண்டையும் இணைக்கும் `AIFoundryMcpBridge` வகுப்பை உருவாக்கியுள்ளோம்.
-- AI Foundry ஏஜென்ட் கோரிக்கையை செயலாக்கும் `processAgentRequest` என்ற முறையை உருவாக்கியுள்ளோம்.
-- MCP கிளையண்ட் மூலம் கருவி அழைப்புகளை இயக்கி முடிவுகளை AI Foundry ஏஜென்ட்டுக்கு ஒப்படைத்துள்ளோம்.
+- AI Foundry மற்றும் MCP இரண்டையும் ஒருங்கிணைக்கும் `AIFoundryMcpBridge` வகுப்பை உருவாக்கியுள்ளோம்.
+- AI Foundry முகவர் கோரிக்கையை செயல்படுத்தும் `processAgentRequest` முறைமையை செயல்படுத்தியுள்ளோம்.
+- சாதன அழைப்புகளை MCP கிளையண்ட் மூலம் இயக்கி, முடிவுகளை AI Foundry முகவருக்கு மீண்டும் அனுப்பி கையாளியுள்ளோம்.
 
-## MCP-ஐ Azure ML உடன் ஒருங்கிணைத்தல்
+## MCP-ஐ Azure ML உடன் ஒருமைகாரல்
 
-MCP-ஐ Azure Machine Learning (ML) உடன் ஒருங்கிணைப்பதால் Azure-ன் சக்திவாய்ந்த ML திறன்களை பயன்படுத்தி MCP-ன் தானியக்கிய தன்மையையும் பாதுகாக்க முடியும். இந்த ஒருங்கிணைப்பு ML பைப்பிளைன்களை இயக்கவோ, மாதிரிகளை கருவிகளாக பதிவு செய்யவோ மற்றும் கணனி வளங்களை நிர்வகிக்கவோ பயன்படுகிறது.
+MCP-ஐ Azure Machine Learning (ML) உடன் ஒருமையாக செயல்படுத்துதல் Azureன் சக்திவாய்ந்த ML திறன்களை பயன்படுத்தவும் MCP இன் மென்மையான தன்மையை காப்பாற்றவும் உதவுகிறது. இந்த ஒருமைத்து ML குழாய்களை இயக்க, மாதிரிகளை சாதனங்களாக பதிவு செய்ய மற்றும் கணினி வளங்களை நிர்வகிக்கும் பயன்பாடுகளை கொண்டுள்ளது.
 
 ### பைதான் செயலாக்கம்
 
 ```python
-# Python Azure AI இணைபKevVisualStyleBackColor
+# Python Azure AI Integration
 from mcp_client import McpClient
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
@@ -180,10 +182,10 @@ import asyncio
 
 class EnterpriseAiIntegration:
     def __init__(self, mcp_server_url, subscription_id, resource_group, workspace_name):
-        # MCP கிளையண்டை அமைக்கவும்
+        # Set up MCP client
         self.mcp_client = McpClient(server_url=mcp_server_url)
         
-        # Azure ML கிளையண்டை அமைக்கவும்
+        # Set up Azure ML client
         self.credential = DefaultAzureCredential()
         self.ml_client = MLClient(
             self.credential,
@@ -194,7 +196,7 @@ class EnterpriseAiIntegration:
     
     async def execute_ml_pipeline(self, pipeline_name, input_data):
         """Executes an ML pipeline in Azure ML"""
-        # முதலில் MCP கருவிகளைப் பயன்படுத்தி உள்ளீட்டு தரவை செயலாக்கவும்
+        # First process the input data using MCP tools
         processed_data = await self.mcp_client.execute_tool(
             "dataPreprocessor",
             {
@@ -203,7 +205,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # பைப்லைனைக் Azure ML க்கு சமர்ப்பிக்கவும்
+        # Submit the pipeline to Azure ML
         pipeline_job = self.ml_client.jobs.create_or_update(
             entity={
                 "name": pipeline_name,
@@ -215,7 +217,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # வேலை தகவலை திருப்பி கொடு
+        # Return job information
         return {
             "job_id": pipeline_job.id,
             "status": pipeline_job.status,
@@ -224,22 +226,22 @@ class EnterpriseAiIntegration:
     
     async def register_ml_model_as_tool(self, model_name, model_version="latest"):
         """Registers an Azure ML model as an MCP tool"""
-        # மாடல் விவரங்களைப் பெறுக
+        # Get model details
         if model_version == "latest":
             model = self.ml_client.models.get(name=model_name, label="latest")
         else:
             model = self.ml_client.models.get(name=model_name, version=model_version)
         
-        # பணி நடத்திய சூழலை உருவாக்கவும்
+        # Create deployment environment
         env = Environment(
             name="mcp-model-env",
             conda_file="./environments/inference-env.yml"
         )
         
-        # கணினியை அமைக்கவும்
+        # Set up compute
         compute = self.ml_client.compute.get("mcp-inference")
         
-        # மாடலை ஆன்லைன் எண்ட்பாயிண்டாக வெளியிடவும்
+        # Deploy model as online endpoint
         deployment = self.ml_client.online_deployments.create_or_update(
             endpoint_name=f"mcp-{model_name}",
             deployment={
@@ -255,22 +257,22 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # மாடல் திட்டத்தின் அடிப்படையில் MCP கருவி திட்டத்தை உருவாக்கவும்
+        # Create MCP tool schema based on model schema
         tool_schema = {
             "type": "object",
             "properties": {},
             "required": []
         }
         
-        # மாடல் திட்டத்தின் அடிப்படையில் உள்ளீட்டு பண்புகளைச் சேர்க்கவும்
+        # Add input properties based on model schema
         for input_name, input_spec in model.signature.inputs.items():
             tool_schema["properties"][input_name] = {
                 "type": self._map_ml_type_to_json_type(input_spec.type)
             }
             tool_schema["required"].append(input_name)
         
-        # MCP கருவியாக பதிவு செய்யவும்
-        # உண்மையான செயல்திறனில், நீங்கள் அந்த எண்ட்பாயிண்டை அழைக்கும் ஒரு கருவியை உருவாக்குவீர்கள்
+        # Register as MCP tool
+        # In a real implementation, you would create a tool that calls the endpoint
         return {
             "model_name": model_name,
             "model_version": model.version,
@@ -291,17 +293,17 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-மேலே உள்ள குறியீட்டில் நாம்:
+முன் குறியீட்டில், நாம்:
 
-- MCP மற்றும் Azure ML-ஐ ஒருங்கிணைக்கும் `EnterpriseAiIntegration` வகுப்பை உருவாக்கியுள்ளோம்.
-- MCP கருவிகளை பயன்படுத்தி உள்ளீட்டு தரவை செயலாக்கி Azure ML-க்கு ML பைப்பிளைனை சமர்ப்பிக்கும் `execute_ml_pipeline` முறையை உருவாக்கியுள்ளோம்.
-- தேவையான deployment சுற்றுச்சூழல் மற்றும் கணனி வளங்களை உருவாக்கி Azure ML மாதிரியை MCP கருவியாக பதிவு செய்யும் `register_ml_model_as_tool` முறையை உருவாக்கியுள்ளோம்.
-- கருவி பதிவு செய்ய Azure ML தரவுத் தகுதிகளை JSON ஸ்கீமா வகைகளுக்கு மாற்றியுள்ளோம்.
-- ML பைப்பிளைன் இயக்கம் மற்றும் மாதிரி பதிவு போன்ற நீண்ட நேரம் எடுக்கும் செயல்கள் கூட்டு நிரலாக்கத்தை பயன்படுத்தியுள்ளோம்.
+- MCP-ஐ Azure ML உடன் ஒருங்கிணைக்கும் `EnterpriseAiIntegration` வகுப்பை உருவாக்கியுள்ளோம்.
+- உள்ளீட்டு தரவு MCP சாதனங்களைக் கொண்டு செயல்படுத்தும் மற்றும் Azure ML க்கு ML குழாயை சமர்ப்பிக்கும் `execute_ml_pipeline` முறையை செயல்படுத்தியுள்ளோம்.
+- Azure ML மாதிரியை MCP சாதனமாக பதிவு செய்யும் `register_ml_model_as_tool` முறையை உருவாக்கியுள்ளோம், தேவையான பரப்பணைப் பிணைய சூழல் மற்றும் கணினி வளங்களும் தோற்றுவிக்கப்பட்டுள்ளன.
+- சாதன பதிவிற்கான JSON கட்டமைப்பிற்காக Azure ML தரவுத் தரவுகளை இடைமுகப்படுத்தியுள்ளோம்.
+- ML குழாய் இயக்கம் மற்றும் மாதிரி பதிவின் நீடித்த செயல்பாடுகளை கையாள அசிங்க்ரோனஸ் நிரல் எழுதுதலை பயன்படுத்தியுள்ளோம்.
 
-## அடுத்தது என்ன
+## அடுத்து என்ன
 
-- [5.2 பன்முக வடிவமைப்பு](../mcp-multi-modality/README.md)
+- [5.2 பன்முகத்தன்மை](../mcp-multi-modality/README.md)
 
 ---
 

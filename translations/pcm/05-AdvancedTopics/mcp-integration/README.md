@@ -1,27 +1,29 @@
 # Enterprise Integration
 
-When you dey build MCP Servers for enterprise wahala, you go often need to connect am with existing AI platforms and services dem. Dis section dey talk how to join MCP with enterprise systems like Azure OpenAI and Microsoft AI Foundry, wey go enable better AI and tool control.
+When you dey build MCP Servers for company environment, you go often need to connect dem to the AI platforms and services wey don already dey. This section go show how to integrate MCP with enterprise systems like Azure OpenAI and Microsoft AI Foundry, make you fit use advanced AI capabilities and run tools together.
 
 ## Introduction
 
-For dis lesson, you go learn how to join Model Context Protocol (MCP) with enterprise AI systems, mainly for Azure OpenAI and Microsoft AI Foundry. Dis kind integration go make you fit use strong AI models and tools, plus still keep MCP flexibility and ability to grow.
+For this lesson, you go learn how to connect Model Context Protocol (MCP) with enterprise AI systems, especially Azure OpenAI and Microsoft AI Foundry. These integrations go allow you use powerful AI models and tools while still keep MCP flexible and easy to extend.
 
 ## Learning Objectives
 
-By the time you finish dis lesson, you go fit:
+By the end of this lesson, you go fit:
 
-- Join MCP with Azure OpenAI to use e AI power.
-- Run MCP tool control with Azure OpenAI.
-- Combine MCP with Microsoft AI Foundry for better AI agent work.
+- Connect MCP to Azure OpenAI make you fit use im AI capabilities.
+- Set up MCP tool orchestration with Azure OpenAI.
+- Combine MCP with Microsoft AI Foundry to get advanced AI agent capabilities.
 - Use Azure Machine Learning (ML) to run ML pipelines and register models as MCP tools.
 
 ## Azure OpenAI Integration
 
-Azure OpenAI dey give access to strong AI models like GPT-4 and others. Joining MCP with Azure OpenAI go make you fit use these models plus still keep MCP tool control freedom.
+Microsoft Foundry dey give access to current AI models like GPT-5.1.
+Integrating MCP with Foundry models dey preserve the flexibility of MCP tool
+orchestration even as you dey use a managed model deployment.
 
 ### C# Implementation
 
-For dis code example, we go show how to join MCP with Azure OpenAI using Azure OpenAI SDK.
+For this code snippet, we go show how to integrate MCP with Azure OpenAI using the Azure OpenAI SDK.
 
 ```csharp
 // .NET Azure OpenAI Integration
@@ -85,19 +87,19 @@ namespace EnterpriseIntegration
 }
 ```
 
-For the code before this one, we don:
+For the code wey show before, we don:
 
-- Set up Azure OpenAI client with endpoint, deployment name and API key.
-- Build method `GetCompletionWithToolsAsync` to get completions wey fit use tools.
-- Handle tool calls wey dem send back.
+- Configure the Azure OpenAI client with the endpoint, deployment name and API key.
+- Create a method `GetCompletionWithToolsAsync` wey go get completions with tool support.
+- Handle tool calls in the response.
 
-You fit try to implement the real tool handling logic based on your MCP server setup.
+We dey encourage you make you implement the actual tool handling logic based on how your MCP server dey set up.
 
 ## Microsoft Foundry Integration
 
-Microsoft Foundry na platform to build and deploy AI agents. Joining MCP with Microsoft Foundry go allow you use their power and still keep MCP flexibility.
+Microsoft Foundry dey provide platform to build and deploy AI agents. If you integrate MCP with Microsoft Foundry e go allow you use im capabilities and still keep MCP flexible.
 
-For the code below, we dey build Agent integration wey dey handle requests and tool calls using MCP.
+For the code below, we build an Agent integration wey process requests and handle tool calls using MCP.
 
 ### Java Implementation
 
@@ -125,17 +127,17 @@ public class AIFoundryMcpBridge {
     }
     
     public AgentResponse processAgentRequest(AgentRequest request) {
-        // Process di AI Foundry Agent request
+        // Process the AI Foundry Agent request
         AgentResponse initialResponse = agentClient.processRequest(request);
         
-        // Check if di agent request make e use tools
+        // Check if the agent requested to use tools
         if (initialResponse.getToolCalls() != null && !initialResponse.getToolCalls().isEmpty()) {
-            // For each tool call, send am go di correct MCP tool
+            // For each tool call, route it to the appropriate MCP tool
             for (AgentToolCall toolCall : initialResponse.getToolCalls()) {
                 String toolName = toolCall.getName();
                 Map<String, Object> parameters = toolCall.getArguments();
                 
-                // Run di tool wit MCP
+                // Execute the tool using MCP
                 ToolResponse mcpResponse = mcpClient.executeTool(toolName, parameters);
                 
                 // Create tool response for AI Foundry
@@ -144,7 +146,7 @@ public class AIFoundryMcpBridge {
                     mcpResponse.getResult()
                 );
                 
-                // Submit tool response back to di agent
+                // Submit tool response back to the agent
                 initialResponse = agentClient.submitToolResponse(
                     request.getConversationId(), 
                     toolResponse
@@ -157,15 +159,15 @@ public class AIFoundryMcpBridge {
 }
 ```
 
-For the code before this one, we don:
+For the code wey show before, we don:
 
-- Created `AIFoundryMcpBridge` class wey join both AI Foundry and MCP.
-- Built method `processAgentRequest` wey dey handle AI Foundry agent requests.
-- Handle tool calls by running dem through MCP client and return results back to AI Foundry agent.
+- Create an `AIFoundryMcpBridge` class wey integrate with both AI Foundry and MCP.
+- Implement a method `processAgentRequest` wey process an AI Foundry agent request.
+- Handle tool calls by running dem through the MCP client and submitting the results back to the AI Foundry agent.
 
 ## Integrating MCP with Azure ML
 
-Joining MCP with Azure Machine Learning (ML) go make you fit use Azure strong ML power plus still keep MCP flexibility. You fit use am to run ML pipelines, register models as tools, and manage compute resources.
+If you integrate MCP with Azure Machine Learning (ML) e go allow you use Azure strong ML capabilities while still keep MCP flexible. This integration fit run ML pipelines, register models as tools, and manage compute resources.
 
 ### Python Implementation
 
@@ -180,10 +182,10 @@ import asyncio
 
 class EnterpriseAiIntegration:
     def __init__(self, mcp_server_url, subscription_id, resource_group, workspace_name):
-        # Setup MCP client
+        # Set up MCP client
         self.mcp_client = McpClient(server_url=mcp_server_url)
         
-        # Setup Azure ML client
+        # Set up Azure ML client
         self.credential = DefaultAzureCredential()
         self.ml_client = MLClient(
             self.credential,
@@ -194,7 +196,7 @@ class EnterpriseAiIntegration:
     
     async def execute_ml_pipeline(self, pipeline_name, input_data):
         """Executes an ML pipeline in Azure ML"""
-        # First process di input data wit MCP tools
+        # First process the input data using MCP tools
         processed_data = await self.mcp_client.execute_tool(
             "dataPreprocessor",
             {
@@ -203,7 +205,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # Submit di pipeline go Azure ML
+        # Submit the pipeline to Azure ML
         pipeline_job = self.ml_client.jobs.create_or_update(
             entity={
                 "name": pipeline_name,
@@ -215,7 +217,7 @@ class EnterpriseAiIntegration:
             }
         )
         
-        # Return job info
+        # Return job information
         return {
             "job_id": pipeline_job.id,
             "status": pipeline_job.status,
@@ -236,7 +238,7 @@ class EnterpriseAiIntegration:
             conda_file="./environments/inference-env.yml"
         )
         
-        # Setup compute
+        # Set up compute
         compute = self.ml_client.compute.get("mcp-inference")
         
         # Deploy model as online endpoint
@@ -270,7 +272,7 @@ class EnterpriseAiIntegration:
             tool_schema["required"].append(input_name)
         
         # Register as MCP tool
-        # For real implementation, you go create tool wey go call di endpoint
+        # In a real implementation, you would create a tool that calls the endpoint
         return {
             "model_name": model_name,
             "model_version": model.version,
@@ -291,13 +293,13 @@ class EnterpriseAiIntegration:
         return mapping.get(ml_type, "string")
 ```
 
-For the code before this one, we don:
+For the code wey show before, we don:
 
-- Created `EnterpriseAiIntegration` class wey join MCP with Azure ML.
-- Built method `execute_ml_pipeline` wey process input data with MCP tools and send ML pipeline to Azure ML.
-- Built method `register_ml_model_as_tool` wey register Azure ML model as MCP tool, including setting deployment environment and compute resources.
-- Convert Azure ML data types to JSON schema types for tool registration.
-- Use asynchronous programming to handle long operations like ML pipeline run and model registration.
+- Create an `EnterpriseAiIntegration` class wey integrate MCP with Azure ML.
+- Implement an `execute_ml_pipeline` method wey process input data using MCP tools and submit an ML pipeline to Azure ML.
+- Implement a `register_ml_model_as_tool` method wey register an Azure ML model as an MCP tool, including creating the necessary deployment environment and compute resources.
+- Map Azure ML data types to JSON schema types for tool registration.
+- Use asynchronous programming to handle operations wey fit take long like ML pipeline execution and model registration.
 
 ## What's next
 

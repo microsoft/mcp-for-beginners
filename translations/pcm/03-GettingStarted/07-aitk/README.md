@@ -1,107 +1,109 @@
-# How to use server from AI Toolkit extension for Visual Studio Code
+# How to use a server with Microsoft Foundry Toolkit for Visual Studio Code
 
-Wen yu dey build AI agent, e no be only to generate correct answer; e still mean say yu gots make ur agent fit do action. Na so Model Context Protocol (MCP) come dey important. MCP make am easy for agents to access tools and services outside in one sure way. Think am like na if yu jux plug ur agent inside toolbox Wey e fit really use well.
+When you dey build AI agent, e no be only to sabi produce correct responses; e still suppose get power to take action. Na there Model Context Protocol (MCP) come in. MCP dey make am easy for agents to access external tools and services for one consistent way. Think am like you dey plug your agent into toolbox wey e for actually use.
 
-Make we say yu connect agent to ur calculator MCP server. Suddenly, ur agent fit do maths work by just seeing prompt like “Wetin be 47 multiply 89?”—no need to code tori or build custom API dem.
+Make we talk say you connect agent to your calculator MCP server. Suddenly, your agent fit do math operations just by receiving prompt like “What’s 47 times 89?”—no need to hardcode logic or build custom APIs.
 
 ## Overview
 
-This lesson go show how to connect calculator MCP server to agent with [AI Toolkit](https://aka.ms/AIToolkit) extension for Visual Studio Code, make ur agent fit do maths work like addition, subtraction, multiplication, and division with plain everyday talk.
+Dis lesson go show how to connect calculator MCP server to agent with
+[Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit),
+make your agent fit perform math operations through normal language.
 
-AI Toolkit na strong extension for Visual Studio Code Wey dey help agent development well well. AI engineers fit build AI apps easily by testing and developing generative AI models—fit work locally or for cloud. Extension dey support most popular generative models wey dey today.
+Microsoft Foundry Toolkit dey simplify how you go develop and test generative
+AI applications with local and cloud-hosted models.
 
-*Note*: AI Toolkit now dey support Python and TypeScript.
+*Note*: The Toolkit currently supports Python and TypeScript MCP templates.
 
-## Wetin You Go Learn
+## Learning Objectives
 
-By di end of dis lesson, yu go sabi:
+By the end of this lesson, you go fit:
 
-- How to consume MCP server through AI Toolkit.
-- How to setup agent config make e fit find and use tools wey MCP server provide.
-- How to use MCP tools with normal language talk.
+- Use an MCP server with Microsoft Foundry Toolkit.
+- Configure agent make e fit discover and utilize tools wey the MCP server provide.
+- Use MCP tools via normal (natural) language.
 
-## How We Go Take Do Am
+## Approach
 
-Na so we go take do am for high level:
+Na so we go take approach am for high level:
 
-- Create agent and set im system prompt.
-- Create MCP server wey get calculator tools.
-- Connect Agent Builder to MCP server.
-- Test how agent wan use tools through normal language.
+- Create an agent and define im system prompt.
+- Create a MCP server wey get calculator tools.
+- Connect the Agent Builder to the MCP server.
+- Test how the agent go call tools via normal language.
 
-Correct, now we sabi di way, make we configure AI agent make e use tools outside through MCP, make e fit sabi knock better work!
+Okay, now we don understand di flow, make we configure AI agent make e fit use external tools through MCP to boost im capabilities!
 
-## Wetin You Need Before
+## Prerequisites
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
 
-## Exercise: How to Consume Server
+## Exercise: Consuming a server
 
 > [!WARNING]
-> Note for macOS Users. Right now we dey look into problem Wey dey affect how dependencies dey install for macOS. So macOS users no go fit finish dis tutorial yet. We go update di instructions once we fix am. Thank you for your patience and understanding!
+> Note for macOS Users. We dey investigate one issue wey dey affect dependency installation on macOS. Because of this, macOS users no go fit finish this tutorial now. We go update the instructions once we get fix. Thank you for your patience and understanding!
 
-For dis exercise, you go build, run, and sharpen AI agent wit tools from MCP server inside Visual Studio Code using AI Toolkit.
+For this exercise, you go build, run, and improve AI agent wey get tools from
+one MCP server inside Visual Studio Code using Microsoft Foundry Toolkit.
 
-### -0- Prestep, add OpenAI GPT-4o model to My Models
+### -0- Prestep, add a Microsoft Foundry GPT-5.1 deployment
 
-Dis exercise dey use **GPT-4o** model. You gots add am for **My Models** before you fit create agent.
+Create Microsoft Foundry resource, deploy **GPT-5.1**, and add the deployment
+to **My Models**. Check the
+[model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+when you dey choose deployment.
 
-![Screenshot of a model selection interface in Visual Studio Code's AI Toolkit extension. The heading reads "Find the right model for your AI Solution" with a subtitle encouraging users to discover, test, and deploy AI models. Below, under “Popular Models,” six model cards are displayed: DeepSeek-R1 (GitHub-hosted), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Small, Fast), and DeepSeek-R1 (Ollama-hosted). Each card includes options to “Add” the model or “Try in Playground](../../../../translated_images/pcm/aitk-model-catalog.2acd38953bb9c119.webp)
+1. Open **Microsoft Foundry Toolkit** from the **Activity Bar**.
+1. In the **Catalog** section, select **Models** to open the **Model Catalog**. Selecting **Models** opens the **Model Catalog** in a new editor tab.
+1. Connect your Microsoft Foundry project and select your **GPT-5.1** deployment.
+1. Click **+ Add** to add the deployment to your **My Models** list.
+1. In the **Activity Bar**, confirm say the deployment don show for the list.
 
-1. Open **AI Toolkit** extension for **Activity Bar**.
-1. Inside **Catalog** section, pick **Models** to open **Model Catalog**. Selecting **Models** go open **Model Catalog** for new editor tab.
-1. Inside **Model Catalog** search bar, type **OpenAI GPT-4o**.
-1. Click **+ Add** to add model go **My Models** list. Make sure say na model Wey **GitHub dey host** you select.
-1. For **Activity Bar**, check say **OpenAI GPT-4o** model dey list.
+### -1- Create an agent
 
-### -1- Create Agent
+The **Agent (Prompt) Builder** dey make you create and customize your own AI-powered agents. For this section, you go create new agent and assign model wey go power the conversation.
 
-**Agent (Prompt) Builder** dey let you create and customize your own AI-powered agents. For here, you go create new agent and assign model to power conversation.
+1. Open **Microsoft Foundry Toolkit** from the **Activity Bar**.
+1. In the **Tools** section, select **Agent (Prompt) Builder**. Selecting **Agent (Prompt) Builder** go open the **Agent (Prompt) Builder** in a new editor tab.
+1. Click the **+ New Agent** button. The extension go launch setup wizard through the **Command Palette**.
+1. Enter the name **Calculator Agent** and press **Enter**.
+1. In the **Agent (Prompt) Builder**, select your **GPT-5.1** Foundry deployment.
 
-![Screenshot of the "Calculator Agent" builder interface in the AI Toolkit extension for Visual Studio Code. On the left panel, the model selected is "OpenAI GPT-4o (via GitHub)." A system prompt reads "You are a professor in university teaching math," and the user prompt says, "Explain to me the Fourier equation in simple terms." Additional options include buttons for adding tools, enabling MCP Server, and selecting structured output. A blue “Run” button is at the bottom. On the right panel, under "Get Started with Examples," three sample agents are listed: Web Developer (with MCP Server, Second-Grade Simplifier, and Dream Interpreter, each with brief descriptions of their functions.](../../../../translated_images/pcm/aitk-agent-builder.901e3a2960c3e477.webp)
+### -2- Create a system prompt for the agent
 
-1. Open **AI Toolkit** extension from **Activity Bar**.
-1. For **Tools** section, choose **Agent (Prompt) Builder**. E go open for new editor tab.
-1. Click **+ New Agent** button. Extension go launch setup wizard through **Command Palette**.
-1. Enter **Calculator Agent** as name and press **Enter**.
-1. For **Agent (Prompt) Builder**, under **Model** field, pick **OpenAI GPT-4o (via GitHub)** model.
+Now we don scaffold the agent, time don reach to define im personality and purpose. For this section, you go use the **Generate system prompt** feature to describe how the agent suppose behave—in this case, calculator agent—and make the model write the system prompt for you.
 
-### -2- Create System Prompt for Agent
+1. For the **Prompts** section, click the **Generate system prompt** button. This button go open the prompt builder wey use AI to generate system prompt for the agent.
+1. In the **Generate a prompt** window, enter the following: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
+1. Click the **Generate** button. Notification go show for bottom-right corner say the system prompt dey generate. When prompt generation don finish, the prompt go appear for the **System prompt** field of the **Agent (Prompt) Builder**.
+1. Review the **System prompt** and modify if you need.
 
-After you scaffold agent, time don reach to define personality and purpose. For here, you go use **Generate system prompt** feature to talk about how agent suppose behave—this case na calculator agent—and make model write system prompt for you.
+### -3- Create a MCP server
 
-![Screenshot of the "Calculator Agent" interface in the AI Toolkit for Visual Studio Code with a modal window open titled "Generate a prompt." The modal explains that a prompt template can be generated by sharing basic details and includes a text box with the sample system prompt: "You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result." Below the text box are "Close" and "Generate" buttons. In the background, part of the agent configuration is visible, including the selected model "OpenAI GPT-4o (via GitHub)" and fields for system and user prompts.](../../../../translated_images/pcm/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
+Now we don define your agent's system prompt—wey dey guide im behavior and responses—time don reach to give the agent practical capabilities. For this section, you go create calculator MCP server wey get tools to do addition, subtraction, multiplication, and division. This server go make your agent fit do real-time math operations when person use natural language prompts.
 
-1. For **Prompts** section, click **Generate system prompt**. E go open prompt builder Wey use AI to create system prompt for agent.
-1. For **Generate a prompt** window, enter: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
-1. Click **Generate**. Notification go show for bottom-right confirm say system prompt dey generate. When e finish, the prompt go show for **System prompt** field of **Agent (Prompt) Builder**.
-1. Check **System prompt** and change am if need be.
+![Screenshot wey show lower part of the Calculator Agent interface inside Microsoft Foundry Toolkit for Visual Studio Code.](../../../../translated_images/pcm/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-### -3- Create MCP Server
+Microsoft Foundry Toolkit get templates for creating MCP servers.
+We go use the Python template for the calculator MCP server.
 
-Now we define agent system prompt—wey go clear im behavior and responses—time don dey to give agent real power. For here, you go create calculator MCP server with tools Wey fit do addition, subtraction, multiplication, and division calculations. This server go allow agent do maths calculation for real time based on normal speech prompts.
+*Note*: The Toolkit currently supports Python and TypeScript MCP templates.
 
-!["Screenshot of the lower section of the Calculator Agent interface in the AI Toolkit extension for Visual Studio Code. It shows expandable menus for “Tools” and “Structure output,” along with a dropdown menu labeled “Choose output format” set to “text.” To the right, there is a button labeled “+ MCP Server” for adding a Model Context Protocol server. An image icon placeholder is shown above the Tools section.](../../../../translated_images/pcm/aitk-add-mcp-server.9742cfddfe808353.webp)
-
-AI Toolkit get templates to help you quickly create MCP server. We go use Python template to create calculator MCP server.
-
-*Note*: AI Toolkit now dey support Python and TypeScript.
-
-1. For **Tools** section of **Agent (Prompt) Builder**, click **+ MCP Server**. Extension go launch setup wizard through **Command Palette**.
-1. Pick **+ Add Server**.
-1. Pick **Create a New MCP Server**.
-1. Pick **python-weather** as template.
-1. Pick **Default folder** to save MCP server template.
-1. Enter server name: **Calculator**
-1. New Visual Studio Code window go open. Click **Yes, I trust the authors**.
-1. For terminal (**Terminal** > **New Terminal**), create virtual environment: `python -m venv .venv`
-1. For terminal, activate virtual environment:
+1. In the **Tools** section of the **Agent (Prompt) Builder**, click the **+ MCP Server** button. The extension go launch setup wizard through the **Command Palette**.
+1. Select **+ Add Server**.
+1. Select **Create a New MCP Server**.
+1. Select **python-weather** as the template.
+1. Select **Default folder** to save the MCP server template.
+1. Enter the following name for the server: **Calculator**
+1. New Visual Studio Code window go open. Select **Yes, I trust the authors**.
+1. Using the terminal (**Terminal** > **New Terminal**), create a virtual environment: `python -m venv .venv`
+1. Using the terminal, activate the virtual environment:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
-1. For terminal, install dependencies: `pip install -e .[dev]`
-1. For **Explorer** view inside **Activity Bar**, open **src** directory and pick **server.py** to open for editor.
-1. Replace code for **server.py** with follow code and save am:
+1. Using the terminal, install the dependencies: `pip install -e .[dev]`
+1. In the **Explorer** view of the **Activity Bar**, expand the **src** directory and select **server.py** to open the file in the editor.
+1. Replace the code in the **server.py** file with the following and save:
 
     ```python
     """
@@ -144,48 +146,48 @@ AI Toolkit get templates to help you quickly create MCP server. We go use Python
         return a / b
     ```
 
-### -4- Run Agent with Calculator MCP Server
+### -4- Run the agent with the calculator MCP server
 
-Now we get tools for agent, na so time don reach to use dem! For here, you go send prompts to agent to test if e go use correct tool from calculator MCP server.
+Now wey your agent don get tools, time don reach to use dem! For this section, you go submit prompts to the agent to test and confirm whether the agent go use the correct tool from the calculator MCP server.
 
-![Screenshot of the Calculator Agent interface in the AI Toolkit extension for Visual Studio Code. On the left panel, under “Tools,” an MCP server named local-server-calculator_server is added, showing four available tools: add, subtract, multiply, and divide. A badge shows that four tools are active. Below is a collapsed “Structure output” section and a blue “Run” button. On the right panel, under “Model Response,” the agent invokes the multiply and subtract tools with inputs {"a": 3, "b": 25} and {"a": 75, "b": 20} respectively. The final “Tool Response” is shown as 75.0. A “View Code” button appears at the bottom.](../../../../translated_images/pcm/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Screenshot wey show Calculator Agent dey call MCP calculator tools for Microsoft Foundry Toolkit.](../../../../translated_images/pcm/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
-You go run calculator MCP server for your local dev machine using **Agent Builder** as MCP client.
+You go run the calculator MCP server for your local dev machine through the **Agent Builder** as the MCP client.
 
-1. Press `F5` to start debugging MCP server. **Agent (Prompt) Builder** go open for new editor tab. Server status go show for terminal.
-1. For **User prompt** field of **Agent (Prompt) Builder**, put this prompt: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
-1. Click **Run** button to generate agent response.
-1. Check agent output. Model suppose talk say you pay **$55**.
-1. Dis na how e suppose happen:
-    - Agent select **multiply** and **subtract** tools to help do calculation.
-    - The correct `a` and `b` values go dey assign for **multiply** tool.
-    - The correct `a` and `b` values go dey assign for **subtract** tool.
-    - Response from every tool go show for **Tool Response**.
-    - Final answer from model go show for **Model Response**.
-1. Make you fit try other prompts to test agent more. You fit change prompt for **User prompt** field by clicking and replacing the prompt.
-1. When you finish, you fit stop server for **terminal** by pressing **CTRL/CMD+C** to quit.
+1. Press `F5` to start debugging the MCP server. The **Agent (Prompt) Builder** go open in a new editor tab. Server status go dey visible for the terminal.
+1. In the **User prompt** field of the **Agent (Prompt) Builder**, enter the following prompt: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
+1. Click the **Run** button to generate the agent's response.
+1. Review the agent output. The model suppose conclude say you pay **$55**.
+1. Here na breakdown of wetin suppose happen:
+    - The agent go select the **multiply** and **subtract** tools to help for the calculation.
+    - The respective `a` and `b` values go set for the **multiply** tool.
+    - The respective `a` and `b` values go set for the **subtract** tool.
+    - The response from each tool go dey provided in the respective **Tool Response**.
+    - The final output from the model go dey provided in the final **Model Response**.
+1. Submit more prompts to further test the agent. You fit modify the existing prompt in the **User prompt** field by clicking inside the field and replacing the current prompt.
+1. When you done testing the agent, you fit stop the server from the **terminal** by pressing **CTRL/CMD+C** to quit.
 
 ## Assignment
 
-Try add another tool for your **server.py** file (like make e return square root of number). Submit more prompts Wey go require agent to use your new tool or the tools wey already dey. Make sure say you restart server to load new tools.
+Try add one more tool entry to your **server.py** file (for example: return the square root of a number). Submit extra prompts wey go require the agent to use your new tool (or the tools wey dey already). Make sure you restart the server so the new tools go load.
 
 ## Solution
 
 [Solution](./solution/README.md)
 
-## Main Points to Remember
+## Key Takeaways
 
-Main things wey you go carry go from dis chapter na:
+Wetin we take learn for this chapter na the following:
 
-- AI Toolkit extension na good client wey allow you consume MCP Servers and their tools.
-- You fit add new tools to MCP servers, make agent fit do more things as e need grow.
-- AI Toolkit get templates (like Python MCP server templates) to make creating custom tools easy.
+- Microsoft Foundry Toolkit fit consume MCP servers and their tools.
+- You fit add new tools to MCP servers, so the agent fit get more capabilities as requirements change.
+- Microsoft Foundry Toolkit include MCP server templates to help create custom tools.
 
-## More Resources
+## Additional Resources
 
-- [AI Toolkit docs](https://aka.ms/AIToolkit/doc)
+- [Microsoft Foundry Toolkit documentation](https://aka.ms/AIToolkit/doc)
 
-## Wetin Next
+## What's Next
 - Next: [Testing & Debugging](../08-testing/README.md)
 
 ---

@@ -1,69 +1,69 @@
-# Ilma MCP server
+# Ilma MCP-server
 
-See on näidis MCP-server Pythoni keeles, mis rakendab ilma tööriistu koos imiteeritud vastustega. Seda saab kasutada oma MCP-serveri raamistiku alusena. See sisaldab järgmisi funktsioone:
+See on näide MCP-serverist Pythonis, mis rakendab ilmatööriistu simuleeritud vastustega. Seda saab kasutada oma MCP-serveri lähtepunktina. See sisaldab järgmisi funktsioone: 
 
-- **Ilmatööriist**: tööriist, mis pakub antud asukoha põhjal imiteeritud ilmainfot.
-- **Ühendamine Agent Builderiga**: omadus, mis võimaldab MCP-serveri ühendamist Agent Builderiga testimiseks ja silumiseks.
-- **Silumine rakenduses [MCP Inspector](https://github.com/modelcontextprotocol/inspector)**: omadus, mis võimaldab MCP-serverit siluda, kasutades MCP Inspectorit.
+- **Weather Tool**: tööriist, mis annab antud asukoha põhjal simuleeritud ilmaandmeid.
+- **Connect to Agent Builder**: funktsioon, mis võimaldab ühendada MCP-serveri Agent Builderiga testimiseks ja silumiseks.
+- **Debug in [MCP Inspector](https://github.com/modelcontextprotocol/inspector)**: funktsioon, mis võimaldab siluda MCP-serverit, kasutades MCP Inspectorit.
 
-## Alustamine Ilma MCP serveri malliga
+## Alustamine Ilma MCP-serveri malliga
 
 > **Eeltingimused**
 >
-> MCP-serveri käivitamiseks oma lokaalsel arendusseadmel on sul vaja:
+> MCP-serveri käitamiseks oma lokaalses arenduskeskkonnas vajate:
 >
-> - [Pythoni](https://www.python.org/)
-> - (*Valikuline – kui eelistad uv-d*) [uv](https://github.com/astral-sh/uv)
-> - [Pythoni silumispikendus](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+> - [Python](https://www.python.org/)
+> - (*Valikuline - kui eelistad uv*) [uv](https://github.com/astral-sh/uv)
+> - [Python Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
 
 ## Keskkonna ettevalmistamine
 
-Selle projekti keskkonna seadistamiseks on kaks võimalust. Sa võid valida endale sobivaima.
+Selle projekti keskkonna seadistamiseks on kaks lähenemist. Võite valida kumbki vastavalt eelistusele.
 
-> Märkus: On soovitatav laadida VSCode või terminal uuesti, et pärast virtuaalse keskkonna loomist kasutataks õiget pythonit.
+> Märkus: Pärast virtuaalkeskkonna loomist laadige VSCode või terminal uuesti, et veenduda, et kasutatakse virtuaalkeskkonna pythoni.
 
-| Lähenemisviis | Sammud |
-| ------------- | ------ |
-| Kasutades `uv` | 1. Loo virtuaalne keskkond: `uv venv` <br>2. Käivita VSCode käsk "***Python: Select Interpreter***" ja vali loodud virtuaalse keskkonna python <br>3. Paigalda sõltuvused (sh arendus-sõltuvused): `uv pip install -r pyproject.toml --extra dev` |
-| Kasutades `pip` | 1. Loo virtuaalne keskkond: `python -m venv .venv` <br>2. Käivita VSCode käsk "***Python: Select Interpreter***" ja vali loodud virtuaalse keskkonna python <br>3. Paigalda sõltuvused (sh arendus-sõltuvused): `pip install -e .[dev]` | 
+| Lähenemine | Sammud |
+| -------- | ----- |
+| Kasutades `uv` | 1. Loo virtuaalkeskkond: `uv venv` <br>2. Käivita VSCode käsk "***Python: Select Interpreter***" ja vali loodud virtuaalkeskkonna python <br>3. Paigalda sõltuvused (sh arendus-sõltuvused): `uv pip install -r pyproject.toml --extra dev` |
+| Kasutades `pip` | 1. Loo virtuaalkeskkond: `python -m venv .venv` <br>2. Käivita VSCode käsk "***Python: Select Interpreter***" ja vali loodud virtuaalkeskkonna python<br>3. Paigalda sõltuvused (sh arendus-sõltuvused): `pip install -e .[dev]` | 
 
-Pärast keskkonna seadmestamist saad serveri oma lokaalsel arendusseadmel Agent Builderi kaudu MCP kliendina käivitada, et alustada:
-1. Ava VS Code silumise paneel. Vali `Debug in Agent Builder` või vajuta `F5`, et alustada MCP serveri silumist.
-2. Kasuta Microsoft Foundry Toolkit Agent Builderit, et testida serverit [sellega käsklusega](../../../../../../../../../../../open_prompt_builder). Server ühendub Automaatselt Agent Builderiga.
-3. Klõpsa `Run`, et testida serverit antud käsklusega.
+Pärast keskkonna seadistamist saate serveri oma lokaalses arenduskeskkonnas käivitada Agent Builderi kaudu MCP-kliendina, et alustada:
+1. Avage VS Code silumise paneel. Valige `Debug in Agent Builder` või vajutage `F5`, et alustada MCP-serveri silumist.
+2. Microsoft Foundry Toolkit Agent Builderis valige aktiivne Foundry juurutus nagu `gpt-5.1`, seejärel sisestage: `What is the weather in Shanghai?` Server ühendatakse automaatselt.
+3. Klõpsake `Run`, et testida serverit promptiga.
 
-**Palju õnne!** Oled edukalt käivitanud Ilma MCP serveri oma lokaalsel arendusseadmel Agent Builderi kaudu MCP kliendina.
+**Palju õnne**! Olete edukalt käivitanud Ilma MCP-serveri oma lokaalses arenduskeskkonnas Agent Builderi kaudu MCP-kliendina.
 ![DebugMCP](https://raw.githubusercontent.com/microsoft/windows-ai-studio-templates/refs/heads/dev/mcpServers/mcp_debug.gif)
 
 ## Mida mall sisaldab
 
-| Kaust / Fail | Sisu                                          |
-| ------------ | --------------------------------------------- |
-| `.vscode`    | VSCode failid silumise jaoks                  |
-| `.aitk`      | Konfiguratsioonid Microsoft Foundry Toolkitile |
-| `src`        | Allikakood ilma mcp serveri jaoks             |
+| Kaust / Fail| Sisu                                     |
+| ------------ | -------------------------------------------- |
+| `.vscode`    | VSCode failid silumiseks                   |
+| `.aitk`      | Seadistused Microsoft Foundry Toolkitile                |
+| `src`        | Ilma MCP-serveri lähtekood   |
 
-## Kuidas siluda Ilma MCP serverit
+## Kuidas siluda Ilma MCP-serverit
 
 > Märkused:
-> - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalne arendustööriist MCP serverite testimiseks ja silumiseks.
-> - Kõik silumismeetodid toetavad murrupunkte, seega saad lisada murrupunkte tööriista rakenduskoodi.
+> - [MCP Inspector](https://github.com/modelcontextprotocol/inspector) on visuaalne arendustööriist MCP-serverite testimiseks ja silumiseks.
+> - Kõik silumise režiimid toetavad murdepunktide (breakpoints) kasutamist, nii et saate lisada murdepunkte tööriista teostuse koodi.
 
-| Silumismeetod | Kirjeldus | Silumise sammud |
-| ------------- | --------- | -------------- |
-| Agent Builder | MCP serveri silumine Agent Builderis Microsoft Foundry Toolkiti kaudu. | 1. Ava VS Code silumise paneel. Vali `Debug in Agent Builder` ja vajuta `F5`, et alustada MCP serveri silumist.<br>2. Kasuta Microsoft Foundry Toolkit Agent Builderit, et testida serverit [sellega käsklusega](../../../../../../../../../../../open_prompt_builder). Server ühendub automaatselt Agent Builderiga.<br>3. Klõpsa `Run`, et testida serverit antud käsklusega. |
-| MCP Inspector | MCP serveri silumine MCP Inspectoriga. | 1. Paigalda [Node.js](https://nodejs.org/)<br> 2. Valmista Inspector: `cd inspector` && `npm install` <br> 3. Ava VS Code silumise paneel. Vali `Debug SSE in Inspector (Edge)` või `Debug SSE in Inspector (Chrome)`. Vajuta F5, et alustada silumist.<br> 4. Kui MCP Inspector käivitub brauseris, klõpsa `Connect`, et ühendada see MCP server.<br> 5. Seejärel saad `List Tools` käskluse abil valida tööriista, sisestada parameetrid ja `Run Tool`-ga oma serveri koodi siluda.<br> |
+| Silumise režiim | Kirjeldus | Sammud silumiseks |
+| ---------- | ----------- | --------------- |
+| Agent Builder | Siluge MCP-serverit Agent Builderis Microsoft Foundry Toolkiti kaudu. | 1. Avage VS Code silumise paneel. Valige `Debug in Agent Builder` ja vajutage `F5`, et alustada MCP-serveri silumist.<br>2. Valige aktiivne Foundry juurutus, nagu `gpt-5.1`, seejärel sisestage `What is the weather in Shanghai?`. Server ühendatakse automaatselt.<br>3. Klõpsake `Run`, et testida serverit promptiga. |
+| MCP Inspector | Siluge MCP-serverit kasutades MCP Inspectorit. | 1. Paigaldage [Node.js](https://nodejs.org/)<br> 2. Seadistage Inspector: `cd inspector` && `npm install` <br> 3. Avage VS Code silumise paneel. Valige `Debug SSE in Inspector (Edge)` või `Debug SSE in Inspector (Chrome)`. Vajutage F5, et alustada silumist.<br> 4. Kui MCP Inspector käivitub brauseris, klõpsake nuppu `Connect`, et ühendada see MCP-server.<br> 5. Seejärel saate `List Tools`, valida tööriista, sisestada parameetrid ja `Run Tool`, et siluda oma serveri koodi.<br> |
 
 ## Vaikimisi pordid ja kohandused
 
-| Silumismeetod | Pordid | Definitsioonid | Kohandused | Märkus |
-| ------------- | ------ | ------------- | ---------- | ------ |
-| Agent Builder | 3001 | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Muuda [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json), et muuta ülaltoodud porte. | Puudub |
-| MCP Inspector | 3001 (server); 5173 ja 3000 (Inspector) | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Muuda [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json), et muuta ülaltoodud porte. | Puudub |
+| Silumise režiim | Pordid | Määratlused | Kohandused | Märkus |
+| ---------- | ----- | ------------ | -------------- |-------------- |
+| Agent Builder | 3001 | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Muuda [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json), et muuta ülaltoodud porte. | N/A |
+| MCP Inspector | 3001 (Server); 5173 and 3000 (Inspector) | [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json) | Muuda [launch.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/launch.json), [tasks.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.vscode/tasks.json), [\_\_init\_\_.py](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/src/__init__.py), [mcp.json](../../../../../../10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp/.aitk/mcp.json) , et muuta ülaltoodud porte.| N/A |
 
 ## Tagasiside
 
-Kui sul on selle malli kohta tagasisidet või ettepanekuid, palun ava teema [Microsoft Foundry Toolkit GitHubi hoidlasse](https://github.com/microsoft/vscode-ai-toolkit/issues)
+Kui teil on selle malli kohta tagasisidet või ettepanekuid, avage palun issue [Microsoft Foundry Toolkit GitHub repository](https://github.com/microsoft/vscode-ai-toolkit/issues)
 
 ---
 

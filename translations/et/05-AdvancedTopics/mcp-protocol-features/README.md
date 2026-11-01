@@ -1,23 +1,28 @@
 # MCP protokolli funktsioonide põhjalik ülevaade
 
-See juhend uurib keerukamaid MCP protokolli funktsioone, mis ületavad põhitaseme tööriistade ja ressursside käsitlemise. Nende funktsioonide mõistmine aitab teil luua tõhusamaid, kasutajasõbralikumaid ja tootmiskõlbulikumaid MCP servereid.
+See juhend käsitleb MCP protokolli täiustatud funktsioone, mis ületavad põhilise tööriistade ja ressursside käsitlemise. Nende funktsioonide mõistmine aitab luua vastupidavamaid, kasutajasõbralikumaid ja tootmiskeskkonnas valmis MCP servereid.
 
-> **Vaatame tulevikku:** `2026-07-28` versiooni väljalase lõpetab Logimise primitiivi toe (eelistades stdio jaoks `stderr` ja struktureeritud jälgimise jaoks OpenTelemetry't), eemaldab allpool Serveri elutsükli sündmustes viidatud `initialize`/sessiooni mudeli ning viib katsefaasis Tasks funktsiooni spetsiaalsesse Tasks laiendusse koos uue `tasks/get`/`tasks/update`/`tasks/cancel` elutsükliga. Vaata lähemalt [Mis muutub MCP-s: 2026-07-28 versiooni väljalase](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` ulatus:** serveriprotsessi käivitamine ja seiskamine jäävad
+> rakenduse mureks, kuid MCP `initialize` käepigistus ja protokolli tasandi
+> sessioonid on eemaldatud. Allpool olev Logimise jaotis on säilitatud vanemate
+> rakenduste jaoks; uued serverid peaksid kasutama `stderr` või OpenTelemetryt. Tasks on
+> nüüd eraldi versioonitav laiendus. Vaata
+> [Mis MCP-s muutus: 2026-07-28 spetsifikatsioon](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Käsitletud funktsioonid
 
-1. **Protsessi edenemise teavitused** - Teatab edusammudest pikaajaliste operatsioonide puhul  
-2. **Päringu tühistamine** - Võimaldab klientidel pooleliolevaid päringuid tühistada  
-3. **Ressursside mallid** - Dünaamilised ressursside URI-d parameetritega  
-4. **Serveri elutsükli sündmused** - Õige initsialiseerimine ja sulgemine  
-5. **Logimise kontroll** - Serveripoolne logimise seadistamine  
-6. **Vea käsitlemise mustrid** - Järjepidevad vea vastused
+1. **Edenemise teavitused** - Teatab pikaajaliste toimingute edenemisest
+2. **Päringu tühistamine** - Võimaldab klientidel tühistada pooleli olevaid päringuid
+3. **Resursside mallid** - Dünaamilised ressursi URI‑d parameetritega
+4. **Rakenduse elutsükkel** - Serveriprotsessi käivitamine ja seiskamine
+5. **Logimise juhtimine (pärand)** - MCP logimise konfiguratsioon on aegunud
+6. **Vea käsitlemise mustrid** - Ühtsed veavastused
 
 ---
 
-## 1. Protsessi edenemise teavitused
+## 1. Edenemise teavitused
 
-Pikaajalistele toimingutele (andmetöötlus, failide allalaadimine, API kutsed) edusammude teavitused hoiavad kasutajaid kursis.
+Toimingute puhul, mis võtavad aega (andmetöötlus, failide allalaadimine, API‑kõned), hoiavad edenemise teavitused kasutajaid kursis.
 
 ### Kuidas see töötab
 
@@ -26,14 +31,14 @@ sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (pikk operatsioon)
-    Server-->>Client: teade: edenemine 10%
-    Server-->>Client: teade: edenemine 50%
-    Server-->>Client: teade: edenemine 90%
-    Server->>Client: tulemus (valmis)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
 
-### Python'i implementeerimine
+### Pythoni rakendus
 
 ```python
 from mcp.server import Server, NotificationOptions
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Hangi faili suurus edenemise arvutamiseks
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Töötle tükki
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Saada edenemise teade
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Tee edenemise aruanne pärast iga üksust
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -93,7 +98,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     return f"Completed {total} items"
 ```
 
-### TypeScript'i implementeerimine
+### TypeScripti rakendus
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Saada edenemisest teavitus
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -134,10 +139,10 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Registreeri käsitleja
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Käivita tööriist (edenemise värskendused saabuvad käsitleja kaudu)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
 
@@ -145,9 +150,9 @@ result = await session.call_tool("process_large_file", {"file_path": "/data/larg
 
 ## 2. Päringu tühistamine
 
-Võimaldab klientidel tühistada päringuid, mida enam vaja pole või mis võtavad liiga kaua aega.
+Võimalda klientidel tühistada päringuid, mida enam ei vajata või mis võtavad liiga kaua aega.
 
-### Python'i implementeerimine
+### Pythoni rakendus
 
 ```python
 from mcp.server import Server
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Otsi paljude lehtede seast
-            # Kontrolli, kas tühistamist on taotletud
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simuleeri lehe otsingut
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Väike viivitus võimaldab tühistamise kontrolli
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Tagasta osalised tulemused
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -201,7 +206,7 @@ async def download_file(url: str, ctx) -> str:
             return f"Downloaded {downloaded} bytes"
 ```
 
-### Tühistamise konteksti loomine
+### Tühistamiskonteksti rakendamine
 
 ```python
 class CancellableContext:
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Tavaline ajalõpp, jätka
+            pass  # Normal timeout, continue
 ```
 
-### Kliendi poolne tühistamine
+### Kliendipoolne tühistamine
 
 ```python
 import asyncio
@@ -253,7 +258,7 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Taotlus tühistamiseks
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
@@ -263,9 +268,9 @@ async def search_with_timeout(session, query, timeout=30):
 
 ---
 
-## 3. Ressursside mallid
+## 3. Resursside mallid
 
-Ressursside mallid võimaldavad dünaamilist URI-de koostamist parameetritega, mis on kasulik API-de ja andmebaaside puhul.
+Resursside mallid võimaldavad URI‑de dünaamilist koostamist parameetritega, kasulik API‑de ja andmebaaside jaoks.
 
 ### Mallide defineerimine
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Töötle URI, et välja võtta parameetrid
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -320,7 +325,7 @@ async def read_resource(uri: str) -> str:
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
 
-### TypeScript'i implementeerimine
+### TypeScripti rakendus
 
 ```typescript
 server.setRequestHandler(ListResourceTemplatesSchema, async () => {
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Analüüsi GitHubi teema URI
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -365,11 +370,13 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
 
 ---
 
-## 4. Serveri elutsükli sündmused
+## 4. Rakenduse elutsükkel
 
-Õige initsialiseerimise ja sulgemise käsitlemine tagab puhta ressursside halduse.
+See jaotis käsitleb rakenduse protsessi käivitamist ja seiskamist, mitte eemaldatud
+MCP `initialize` käepigistust. Õige elutsükli haldus tagab puhta ressursside
+haldamise.
 
-### Python elutsükli haldus
+### Pythoni elutsükli haldus
 
 ```python
 from mcp.server import Server
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Jagatud olek
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Käivitamine
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Server jookseb siin
+    yield  # Server runs here
     
-    # Sulgemine
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -409,7 +416,7 @@ async def query_database(sql: str) -> str:
     return str(result)
 ```
 
-### TypeScript elutsükkel
+### TypeScripti elutsükkel
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -428,17 +435,17 @@ class ManagedServer {
   }
   
   async start() {
-    // Algatage ressursid
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
     
-    // Käivitage server
+    // Start server
     await this.server.connect(transport);
   }
   
   async stop() {
-    // Ressursside puhastamine
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Kasutage seda.dbConnection turvaliselt
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Kasutamine sujuva sulgemisega
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -468,11 +475,17 @@ await server.start();
 
 ---
 
-## 5. Logimise kontroll
+## 5. Logimise juhtimine (pärand)
 
-MCP toetab serveripoolseid logimise tasemeid, mida kliendid saavad kontrollida.
+> [!WARNING]
+> MCP logimine on aegunud `2026-07-28` ning võib olla eemaldatud
+> esimeses spetsifikatsiooni paranduses, mis avaldatakse 28. juulil 2027 või hiljem. Alljärgnevad näited
+> on mõeldud ühilduvuseks vanemate rakendustega. Uued serverid peaksid kasutama `stderr` koos
+> stdio ja OpenTelemetryga struktureeritud jälgitavuse jaoks.
 
-### Logimise tasemete implementeerimine
+Vanemad MCP versioonid toetavad serveripoolseid logitasemeid, mida kliendid võivad kontrollida.
+
+### Logitasemete rakendamine
 
 ```python
 from mcp.server import Server
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Seosta MCP tasemed Python logimise tasemetega
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -519,13 +532,13 @@ async def debug_operation(data: str) -> str:
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Saada logi teavitus kliendile
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Tee tööd...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -540,7 +553,7 @@ async def complex_operation(input: str, ctx) -> str:
 
 ## 6. Vea käsitlemise mustrid
 
-Järjepidev vea käsitlemine parandab silumist ja kasutajakogemust.
+Ühtne vea käsitlemine parandab silumist ja kasutajakogemust.
 
 ### MCP veakoodid
 
@@ -572,14 +585,14 @@ class InternalError(ToolError):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
 
-### Struktureeritud vea vastused
+### Struktureeritud veavastused
 
 ```python
 @app.tool()
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Kontrolli sisendit
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Kontrolli õigusi
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Teosta operatsioon
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,12 +617,12 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Logi ootamatud vead
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
 
-### Vea käsitlemine TypeScript'is
+### Veakäsitlus TypeScriptis
 
 ```typescript
 import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Rohkem valideerimist...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Juba MCP viga
+      throw error;  // Already an MCP error
     }
     
-    // Teisenda teised vead
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Tundmatu viga
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -656,67 +669,37 @@ server.setRequestHandler(CallToolSchema, async (request) => {
 
 ---
 
-## Katsefaasi funktsioonid (MCP 2025-11-25)
+## Versioonitundlikud funktsioonid
 
-Need funktsioonid on spetsifikatsioonis märgitud katsefaasiks:
+### Tasks laiendus
 
-### Tasks (Pikaajalised toimingud)
+Tasks on ametlik, eraldi versioonitav laiendus MCP `2026-07-28`. Server
+võib tagastada tööülesande käepideme tööriista kutse vastuseks ning klient juhib ülesannet
+kasutades `tasks/get`, `tasks/update` ja `tasks/cancel`. Eksperimentaalne
+ `2025-11-25` Tasks API ei ole tagurpidi ühilduv ning `tasks/list`
+enam ei eksisteeri.
 
-```python
-# Ülesanded võimaldavad jälgida pikaajalisi toiminguid olekuga
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Teata, et ülesanne algas
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Treeningtsükkel
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
+### Tööriista annotatsioonid
 
-### Tööriistade annotatsioonid
-
-```python
-# Anotatsioonid annavad teavet tööriista käitumise kohta
-@app.tool(
-    annotations={
-        "destructive": False,      # Andmeid ei muudetud
-        "idempotent": True,        # Ohutu uuesti proovida
-        "timeout_seconds": 30,     # Eeldatav maksimaalne kestus
-        "requires_approval": False # Kasutaja heakskiitu ei nõuta
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
+Tööriista annotatsioonid kirjeldavad käitumist, näiteks ainult lugemiseks, destruktiivne, idempotentne,
+või avatud maailma toiming. Need on vihjed ega tohi olla tõlgendatud usaldusväärse
+autorisatsiooni või ohutusgarantiina, kui need ei pärine usaldusväärselt serverilt.
 
 ---
 
-## Mis edasi
+## Mis järgmiseks
 
-- [Moodul 8 - Parimad tavad](../../08-BestPractices/README.md)  
-- [5.14 - Konteksti insenerimine](../mcp-contextengineering/README.md)  
-- [MCP Spetsifikatsiooni muudatused](https://spec.modelcontextprotocol.io/)
+- [Moodul 8 - Parimad tavad](../../08-BestPractices/README.md)
+- [5.14 - Konteksti inseneritöö](../mcp-contextengineering/README.md)
+- [MCP spetsifikatsiooni muudatused](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
 
 ---
 
 ## Lisamaterjalid
 
-- [MCP Spetsifikatsioon 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [JSON-RPC 2.0 veakoodid](https://www.jsonrpc.org/specification#error_object)  
-- [Python SDK näited](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
+- [MCP spetsifikatsioon 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 veakoodid](https://www.jsonrpc.org/specification#error_object)
+- [Python SDK näited](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK näited](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---

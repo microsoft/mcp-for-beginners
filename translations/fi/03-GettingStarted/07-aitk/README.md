@@ -1,107 +1,109 @@
-# Palvelimen käyttäminen AI Toolkit -laajennuksesta Visual Studio Codeen
+# Palvelimen käyttäminen Microsoft Foundry Toolkitilla Visual Studio Codeen
 
-Rakentaessasi tekoälyagenttia kyse ei ole pelkästään älykkäiden vastausten luomisesta; kyse on myös agentillesi annettavasta kyvystä toimia. Tässä astuu kuvaan Model Context Protocol (MCP). MCP helpottaa agenttien pääsyä ulkoisiin työkaluihin ja palveluihin johdonmukaisella tavalla. Voit ajatella sitä ikään kuin agenttisi liittämisenä työkalupakkiin, jota se *tosiasiassa* voi käyttää.
+Kun rakennat tekoälyagenttia, kyse ei ole pelkästään älykkäiden vastausten luomisesta; kyse on myös siitä, että agentillasi on kyky toimia. Siinä astuu kuvaan Model Context Protocol (MCP). MCP tekee agenttien pääsyn ulkoisiin työkaluihin ja palveluihin helpoksi ja yhdenmukaiseksi. Ajattele sitä kuin agenttisi liittämistä työkalupakkiin, jota se *todella* osaa käyttää.
 
-Sanotaanpa, että yhdistät agentin laskin-MCP-palvelimeesi. Yhtäkkiä agenttisi voi suorittaa matemaattisia laskutoimituksia vastaanottamalla vain kehotteen, kuten "Paljonko on 47 kertaa 89?" — logiikkaa ei tarvitse kovakoodata tai rakentaa mukautettuja API-rajapintoja.
+Sanotaan, että yhdistät agentin laskin-MCP-palvelimeesi. Yhtäkkiä agenttisi voi suorittaa matemaattisia laskutoimituksia vain vastaanottamalla kehotteen, kuten ”Mikä on 47 kertaa 89?” — ilman tarvetta kovakoodata logiikkaa tai rakentaa räätälöityjä rajapintoja.
 
 ## Yleiskatsaus
 
-Tässä oppitunnissa käsitellään, miten yhdistää laskin-MCP-palvelin agenttiin [AI Toolkit](https://aka.ms/AIToolkit) -laajennuksen avulla Visual Studio Codessa, jolloin agentti voi suorittaa matematiikan operaatioita, kuten yhteen- ja vähennyslaskuja, kertolaskua ja jakolaskua luonnollisen kielen avulla.
+Tämä oppitunti kattaa, kuinka yhdistää laskin-MCP-palvelin agenttiin
+[Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit),
+mahdollistaen agenttisi suorittaa matemaattisia operaatioita luonnollisen kielen kautta.
 
-AI Toolkit on tehokas Visual Studio Code -laajennus, joka virtaviivaistaa agenttien kehitystä. AI-suunnittelijat voivat helposti rakentaa tekoälysovelluksia kehittämällä ja testaamalla generatiivisia tekoälymalleja — paikallisesti tai pilvessä. Laajennus tukee useimpia nykyisin saatavilla olevia generatiivisia malleja.
+Microsoft Foundry Toolkit virtaviivaistaa generatiivisten
+tekoälysovellusten kehittämistä ja testausta paikallisten ja pilvipohjaisten mallien kanssa.
 
-*Huomautus*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
+*Huomautus*: Toolkit tukee tällä hetkellä Python- ja TypeScript MCP -malleja.
 
 ## Oppimistavoitteet
 
-Oppitunnin lopussa osaat:
+Tämän oppitunnin lopussa osaat:
 
-- Käyttää MCP-palvelinta AI Toolkitin kautta.
-- Konfiguroida agentti löytämään ja käyttämään MCP-palvelimen tarjoamia työkaluja.
-- Hyödyntää MCP-työkaluja luonnollisen kielen avulla.
+- Kuluttaa MCP-palvelinta Microsoft Foundry Toolkitilla.
+- Määrittää agentin kokoonpanon siten, että se löytää ja käyttää MCP-palvelimen tarjoamia työkaluja.
+- Hyödyntää MCP-työkaluja luonnollisen kielen kautta.
 
 ## Lähestymistapa
 
-Tässä on korkean tason lähestymistapamme:
+Näin meidän tulee lähestyä tätä kokonaisuudessaan:
 
-- Luo agentti ja määritä sen järjestelmäkehotus.
-- Luo MCP-palvelin laskimen työkaluilla.
-- Yhdistä Agent Builder MCP-palvelimeen.
-- Testaa agentin työkalukutsut luonnollisen kielen avulla.
+- Luoda agentti ja määrittää sen järjestelmäkehote.
+- Luoda MCP-palvelin laskin-työkaluilla.
+- Yhdistää Agent Builder MCP-palvelimeen.
+- Testata agentin työkalujen kutsumista luonnollisen kielen kautta.
 
-Hienoa, kun ymmärrämme työnkulun, konfiguroidaan tekoälyagentti hyödyntämään ulkoisia työkaluja MCP:n kautta, parantaen sen kykyjä!
+Hienoa, nyt kun ymmärrämme prosessin, määritetään tekoälyagentti hyödyntämään ulkoisia työkaluja MCP:n kautta, parantaen sen kyvykkyyksiä!
 
-## Vaatimukset
+## Esivaatimukset
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
+- [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/AIToolkit)
 
-## Harjoitus: Palvelimen käyttäminen
+## Harjoitus: Palvelimen kuluttaminen
 
 > [!WARNING]
-> Huomio macOS-käyttäjille. Tutkimme tällä hetkellä riippuvuuksien asennukseen liittyvää ongelmaa macOS:llä. Tämän seurauksena macOS-käyttäjät eivät tällä hetkellä pysty suorittamaan tätä opasta loppuun. Päivitämme ohjeet heti, kun korjaus on saatavilla. Kiitos kärsivällisyydestä ja ymmärryksestä!
+> Huomautus macOS-käyttäjille. Tutkimme parhaillaan ongelmaa, joka vaikuttaa riippuvuuksien asennukseen macOS:llä. Tästä johtuen macOS-käyttäjät eivät pysty tällä hetkellä suorittamaan tätä opasta loppuun. Päivitämme ohjeet heti, kun korjaus on saatavilla. Kiitos kärsivällisyydestäsi ja ymmärryksestäsi!
 
-Tässä harjoituksessa rakennat, suoritat ja laajennat tekoälyagenttia MCP-palvelimen työkalujen avulla Visual Studio Codessa AI Toolkit -laajennusta käyttäen.
+Tässä harjoituksessa rakennat, ajat ja parannat tekoälyagenttia työkalujen avulla
+MCP-palvelimelta Visual Studio Codessa käyttäen Microsoft Foundry Toolkitia.
 
-### -0- Esivaihe, lisää OpenAI GPT-4o malli Omiin malleihin
+### -0- Ennen vaihetta, lisää Microsoft Foundry GPT-5.1 -käyttöönottosi
 
-Harjoitus hyödyntää **GPT-4o** mallia. Malli tulee lisätä **Omiin malleihin** ennen agentin luontia.
+Luo Microsoft Foundry -resurssi, ota käyttöön **GPT-5.1**, ja lisää käyttöönotto
+**Minun mallini** -listalle. Tarkista
+[mallin eläkkeelle siirtymisen aikataulu](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+valitessasi käyttöönottoa.
 
-![Näyttökuva mallin valintaliittymästä Visual Studio Coden AI Toolkit -laajennuksessa. Otsikkona "Löydä oikea malli AI-ratkaisuusi" ja alaotsikkona kehotus löytää, testata ja ottaa käyttöön AI-malleja. Alla "Suositut mallit" -kohdassa kuusi mallikorttia: DeepSeek-R1 (GitHubilla ylläpidetty), OpenAI GPT-4o, OpenAI GPT-4.1, OpenAI o1, Phi 4 Mini (CPU - Pieni, Nope), ja DeepSeek-R1 (Ollama-ylläpidetty). Jokaisessa kortissa vaihtoehdot "Lisää" ja "Kokeile leikkikentällä"](../../../../translated_images/fi/aitk-model-catalog.2acd38953bb9c119.webp)
-
-1. Avaa **AI Toolkit** -laajennus **Activity Bar**:sta.
-1. Valitse **Luettelo**-osiosta **Mallit** avataksesi **Malliluettelon**. Mallien valinta avaa uuden editorin välilehden Malliluettelolle.
-1. Kirjoita Malliluettelon hakupalkkiin **OpenAI GPT-4o**.
-1. Klikkaa **+ Lisää** lisätäksesi mallin Omiin malleihin. Varmista, että valittu malli on **GitHubilla ylläpidetty**.
-1. Tarkista Activity Barista, että **OpenAI GPT-4o** malli näkyy listalla.
+1. Avaa **Microsoft Foundry Toolkit** **Toimintopalkista**.
+1. Valitse **Luettelosta** **Mallin** osio avataksesi **Malliluettelon**. Mallin valitseminen avaa **Malliluettelon** uuteen editori-välilehteen.
+1. Yhdistä Microsoft Foundry -projektiisi ja valitse **GPT-5.1** käyttöönotto.
+1. Klikkaa **+ Lisää** lisätäksesi käyttöönoton **Minun mallini** -listasii.
+1. Toimintopalkissa varmista, että käyttöönotto näkyy listalla.
 
 ### -1- Luo agentti
 
-**Agent (Prompt) Builder** mahdollistaa oman tekoälyavusteisen agentin luomisen ja muokkaamisen. Tässä osassa luot uuden agentin ja valitset mallin, joka tehostaa keskustelua.
+**Agentti (Kehote) Rakentaja** mahdollistaa oman tekoälypohjaisen agenttisi luomisen ja mukauttamisen. Tässä osassa luot uuden agentin ja määrität mallin keskustelun käyttöön.
 
-![Näyttökuva "Calculator Agent" -rakentajan käyttöliittymästä AI Toolkit -laajennuksessa Visual Studio Codessa. Vasemmassa paneelissa valittu malli on "OpenAI GPT-4o (GitHubin kautta)." Järjestelmäkehotus on "Olet matematiikan professori yliopistossa," ja käyttäjän kehotus "Selitä Fourier'n yhtälö yksinkertaisesti." Lisävaihtoehtoina painikkeet työkalujen lisäämiseen, MCP-palvelimen käyttöön ottamiseen ja rakenteellisen tulosteen valintaan. Alhaalla sininen "Suorita" -painike. Oikeassa paneelissa "Aloita esimerkeillä" -osiosta löytyvät kolme näytteenomaista agenttia: Web Developer (MCP-palvelimella, Toisen luokan yksinkertaistaja ja Unien tulkitsija, jokaisella lyhyt kuvaus toiminnastaan.)](../../../../translated_images/fi/aitk-agent-builder.901e3a2960c3e477.webp)
+1. Avaa **Microsoft Foundry Toolkit** **Toimintopalkista**.
+1. Työkalut-osiossa valitse **Agentti (Kehote) Rakentaja**. Valinta avaa **Agentti (Kehote) Rakentaja** -editorin uudessa välilehdessä.
+1. Klikkaa **+ Uusi agentti** -painiketta. Laajennus käynnistää asennusohjatun toiminnon **Komentopaletti**- kautta.
+1. Syötä nimi **Laskinagentti** ja paina **Enter**.
+1. Valitse **Agentti (Kehote) Rakentajassa** Microsoft Foundryn **GPT-5.1** käyttöönotto.
 
-1. Avaa **AI Toolkit** -laajennus **Activity Bar**:sta.
-1. Valitse **Työkalut**-osiosta **Agent (Prompt) Builder**. Tämä avaa uuden editorin välilehden.
-1. Klikkaa **+ Uusi agentti** -painiketta. Laajennus käynnistää asetustyökalun **Komento-palettin** kautta.
-1. Anna agentille nimi **Calculator Agent** ja paina **Enter**.
-1. Agent (Prompt) Builderissa valitse **Malliksi** **OpenAI GPT-4o (GitHubin kautta)**.
+### -2- Luo agentille järjestelmäkehote
 
-### -2- Luo agentille järjestelmäkehotus
+Agentin luonnosteltuasi on aika määritellä sen persoonallisuus ja tarkoitus. Tässä osassa käytät **Luo järjestelmäkehote** -ominaisuutta kuvaamaan agentin halutun käyttäytymisen—tässä tapauksessa laskinagentti—ja mallin kirjoittavan järjestelmäkehote puolestasi.
 
-Kun agentin runko on luotu, määritä sen persoonallisuus ja tarkoitus. Tässä osassa käytät **Luo järjestelmäkehotus** -ominaisuutta kuvaamaan agentin tavoitteet — tässä tapauksessa laskinagentti — ja annat mallin kirjoittaa sinulle järjestelmäkehotuksen.
-
-![Näyttökuva "Calculator Agent" -liittymästä AI Toolkitissa Visual Studio Codessa, jossa avoinna modaalinen ikkuna nimeltä "Luo kehotus". Ikkuna selittää, että kehotuspohja voidaan luoda jakamalla perus tietoa. Tekstikentässä esimerkkijärjestelmäkehotus: "Olet avulias ja tehokas matematiikka-avustaja. Saattaessasi peruslaskutehtävän, vastaat oikealla tuloksella." Ikkunan alareunassa ovat "Sulje" ja "Luo" -painikkeet. Taustalla näkyy osittain agentin konfiguraatio, jossa valittu malli "OpenAI GPT-4o (GitHubin kautta)" ja kentät järjestelmä- ja käyttäjäkehotuksille.](../../../../translated_images/fi/aitk-generate-prompt.ba9e69d3d2bbe2a2.webp)
-
-1. Kehotukset-osiosta valitse **Luo järjestelmäkehotus** -painike. Se avaa kehotusrakentajan, joka käyttää tekoälyä luodakseen järjestelmäkehotuksen agentille.
-1. Kirjoita **Luo kehotus** -ikkunaan seuraava teksti: `Olet avulias ja tehokas matematiikka-avustaja. Saattaessasi peruslaskutehtävän, vastaat oikealla tuloksella.`
-1. Klikkaa **Luo** -painiketta. Ilmoitus näkyy oikeassa alakulmassa vahvistaen, että järjestelmäkehotus luodaan. Kun luonti on valmis, kehotus ilmestyy **Agent (Prompt) Builderin** Järjestelmäkehotus-kenttään.
-1. Tarkista järjestelmäkehotus ja muokkaa tarvittaessa.
+1. Kehote-osiossa klikkaa **Luo järjestelmäkehote** -painiketta. Tämä avaa kehotteen rakennustyökalun, joka hyödyntää tekoälyä luomaan agentille sopivan järjestelmäkehoteen.
+1. Ikunassa **Luo kehotetta** kirjoita seuraava: `You are a helpful and efficient math assistant. When given a problem involving basic arithmetic, you respond with the correct result.`
+1. Klikkaa **Luo** -painiketta. Ilmoitus ilmestyy oikeaan alanurkkaan vahvistamaan, että järjestelmäkehote luodaan. Kun luonti on valmis, kehotteen sisältö näkyy **Järjestelmäkehote** kentässä **Agentti (Kehote) Rakentajassa**.
+1. Tarkista **Järjestelmäkehote** ja muokkaa tarvittaessa.
 
 ### -3- Luo MCP-palvelin
 
-Nyt kun olet määrittänyt agenttisi järjestelmäkehotuksen — joka ohjaa sen käyttäytymistä ja vastauksia — on aika varustaa agentti käytännöllisillä ominaisuuksilla. Tässä osassa luot laskin-MCP-palvelimen, joka sisältää työkalut yhteen-, vähennys-, kerto- ja jakolaskujen suorittamiseen. Tämä palvelin antaa agentille mahdollisuuden suorittaa reaaliaikaisia matemaattisia operaatioita luonnollisen kielen kehotusten perusteella.
+Nyt kun olet määritellyt agenttisi järjestelmäkehoteen – joka ohjaa sen käyttäytymistä ja vastauksia – on aika varustaa agentti käytännön kyvyillä. Tässä osassa luot laskimen MCP-palvelimen työkaluilla, jotka suorittavat yhteen-, vähennys-, kerto- ja jakolaskuja. Tämä palvelin mahdollistaa agentin suorittaa reaaliaikaisia matemaattisia operaatioita luonnollisen kielen kehotteiden vastauksena.
 
-![Näyttökuva Calculator Agent -liittymän alaosasta AI Toolkit -laajennuksessa Visual Studio Codessa. Näkyvissä ovat laajennettavat valikot "Tools" ja "Structure output", sekä alasvetovalikko "Choose output format" asetettuna "text." Oikealla on "+ MCP Server" -painike Model Context Protocol -palvelimen lisäämiseen. Yläpuolella näkyy paikkakuva kuvakkeelle.](../../../../translated_images/fi/aitk-add-mcp-server.9742cfddfe808353.webp)
+![Kuvakaappaus Microsoft Foundry Toolkit for Visual Studio Code -laskinagentin rajapinnan alaosasta.](../../../../translated_images/fi/aitk-add-mcp-server.9742cfddfe808353.webp)
 
-AI Toolkit sisältää malleja, jotka helpottavat oman MCP-palvelimen luomista. Käytämme Python-mallipohjaa laskin-MCP-palvelimen luomiseen.
+Microsoft Foundry Toolkit sisältää mallipohjat MCP-palvelinten luomiseen. Käytämme
+Python-mallipohjaa laskimen MCP-palvelimelle.
 
-*Huomautus*: AI Toolkit tukee tällä hetkellä Pythonia ja TypeScriptiä.
+*Huomautus*: Toolkit tukee tällä hetkellä Python- ja TypeScript MCP -malleja.
 
-1. Agent (Prompt) Builderin **Työkalut**-osiosta klikkaa **+ MCP Server** -painiketta. Laajennus käynnistää asetustyökalun **Komento-palettin** kautta.
+1. **Agentti (Kehote) Rakentajan** Työkalut-osiossa klikkaa **+ MCP-serveri** -painiketta. Laajennus käynnistää asennusohjatun Komentopaletin kautta.
 1. Valitse **+ Lisää palvelin**.
 1. Valitse **Luo uusi MCP-palvelin**.
 1. Valitse mallipohjaksi **python-weather**.
-1. Valitse **Oletuskansio** tallennuspaikaksi MCP-palvelimen mallipohjalle.
-1. Anna palvelimelle nimi: **Calculator**
-1. Uusi Visual Studio Code -ikkuna avautuu. Valitse **Kyllä, luotan tekijöihin**.
-1. Käyttäen terminaalia (**Terminal** > **New Terminal**), luo virtuaaliympäristö: `python -m venv .venv`
+1. Valitse **Oletuskansio** tallentaaksesi MCP-palvelimen mallipohjan.
+1. Anna palvelimelle nimi: **Laskin**
+1. Uusi Visual Studio Code -ikkuna avautuu. Valitse **Kyllä, luotan kirjoittajiin**.
+1. Käytä terminaalia (**Terminal** > **New Terminal**) luodaksesi virtuaaliympäristö: `python -m venv .venv`
 1. Aktivoi virtuaaliympäristö terminaalissa:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
 1. Asenna riippuvuudet terminaalissa: `pip install -e .[dev]`
-1. **Explorer**-näkymässä avaa **src**-hakemisto ja valitse **server.py** tiedosto editorissa.
-1. Korvaa **server.py** -tiedoston sisältö seuraavalla ja tallenna:
+1. Toimintopalkin **Explorer**-näkymässä laajenna **src**-hakemisto ja valitse **server.py** avataksesi tiedoston editorissa.
+1. Korvaa **server.py** -tiedoston koodi seuraavalla ja tallenna:
 
     ```python
     """
@@ -144,49 +146,49 @@ AI Toolkit sisältää malleja, jotka helpottavat oman MCP-palvelimen luomista. 
         return a / b
     ```
 
-### -4- Suorita agentti laskin-MCP-palvelimella
+### -4- Aja agentti laskimen MCP-palvelimen kanssa
 
-Nyt kun agentilla on työkalut, on aika käyttää niitä! Tässä osassa lähetät kehotteita agentille testataksesi ja vahvistaaksesi, käyttääkö agentti oikeaa työkalua laskin-MCP-palvelimelta.
+Nyt kun agentillasi on työkalut, on aika käyttää niitä! Tässä osassa teet pyyntöjä agentille testataksesi ja varmistaaksesi, että agentti käyttää oikeaa työkalua laskimen MCP-palvelimelta.
 
-![Näyttökuva Calculator Agentin käyttöliittymästä AI Toolkit -laajennuksessa Visual Studio Codessa. Vasemmalla "Tools" -osiossa on lisätty MCP-palvelin nimeltä local-server-calculator_server, jossa on neljä käytettävissä olevaa työkalua: add, subtract, multiply ja divide. Neljä työkalua on aktiivisia. Alempana on kytketty "Structure output" -osio ja sininen "Run" -painike. Oikealla "Model Response" -osiossa agentti kutsuu multiply- ja subtract-työkaluja syötteillä {"a": 3, "b": 25} ja {"a": 75, "b": 20}. Lopullinen "Tool Response" on 75.0. Alhaalla on "View Code" -painike.](../../../../translated_images/fi/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
+![Kuvakaappaus laskinagentin MCP-laskintyökalujen kutsumisesta Microsoft Foundry Toolkitissa.](../../../../translated_images/fi/aitk-agent-response-with-tools.e7c781869dc8041a.webp)
 
-Suoritat laskin-MCP-palvelimen paikallisella kehityskoneellasi **Agent Builder**in kautta MCP-asiakkaana.
+Ajetaan laskimen MCP-palvelin paikallisella kehityskoneellasi **Agent Builder** -työkalun kautta MCP-asiakkaana.
 
-1. Paina `F5` aloittaaksesi MCP-palvelimen virheenkorjauksen. **Agent (Prompt) Builder** avautuu uuteen editorin välilehteen. Palvelimen tila näkyy terminaalissa.
-1. Kirjoita **Käyttäjän kehotus** -kenttään **Agent (Prompt) Builderissa** seuraava kehotus: `Ostin 3 kappaletta, joiden hinta oli 25 $ kappaleelta, ja käytin sitten 20 $ alennuksen. Paljonko maksoin?`
-1. Klikkaa **Suorita** tuottaaksesi agentin vastauksen.
-1. Tarkista agentin tuloste. Mallin tulisi päätyä siihen, että maksoit **55 dollaria**.
-1. Tässä mitä tapahtuu:
-    - Agentti valitsee **multiply** ja **subtract** -työkalut laskutoimitusten avuksi.
-    - Työkalulle **multiply** annetaan arvot `a` ja `b`.
-    - Työkalulle **subtract** annetaan arvot `a` ja `b`.
-    - Kunkin työkalun vastaus annetaan **Tool Response** -kentässä.
-    - Mallin lopullinen vastaus näkyy **Model Response** -kentässä.
-1. Lähetä lisää kehotteita testataksesi agenttia. Voit muuttaa nykyistä kehotetta **Käyttäjän kehotus** -kentässä muokkaamalla tekstiä.
-1. Kun olet valmis testaamaan agenttia, voit lopettaa palvelimen terminaalissa painamalla **CTRL/CMD+C**.
+1. Paina `F5` käynnistääksesi MCP-palvelimen virheenkorjauksen. **Agentti (Kehote) Rakentaja** avautuu uuteen editorin välilehteen. Palvelimen tila näkyy terminaalissa.
+1. Syötä **Käyttäjän kehote** -kenttään **Agentti (Kehote) Rakentajassa** seuraava kehotus: `I bought 3 items priced at $25 each, and then used a $20 discount. How much did I pay?`
+1. Klikkaa **Aja** -painiketta generoimaan agentin vastaus.
+1. Tarkista agentin tuloste. Mallin pitäisi päätellä, että maksoit **55 dollaria**.
+1. Tässä erittely tapahtuvasta:
+    - Agentti valitsee **kertolasku** ja **vähennys** työkalut laskun avuksi.
+    - Vastaavat `a` ja `b` arvot annetaan **kertolasku** työkalulle.
+    - Vastaavat `a` ja `b` arvot annetaan **vähennys** työkalulle.
+    - Kunkin työkalun vastaus näkyy vastaavassa **Työkalun vastaus** -kentässä.
+    - Mallin lopullinen vastaus näkyy lopullisessa **Mallin vastaus** -kentässä.
+1. Lähetä lisää kehotteita testataksesi agenttia edelleen. Voit muokata nykyistä kehotetta **Käyttäjän kehote** -kentästä klikkaamalla kenttää ja korvaamalla olemassa olevan kehotteen.
+1. Kun olet lopettanut agentin testaamisen, voit lopettaa palvelimen terminaalissa painamalla **CTRL/CMD+C**.
 
 ## Tehtävä
 
-Yritä lisätä uusi työkalu **server.py** -tiedostoosi (esim. laskea luvun neliöjuuri). Lähetä uusia kehotteita, jotka vaativat agenttia käyttämään uutta työkalua (tai olemassa olevia työkaluja). Muista käynnistää palvelin uudelleen, jotta juuri lisäämäsi työkalut latautuvat.
+Kokeile lisätä uusi työkalumerkintä **server.py** -tiedostoosi (esim. neliöjuuren laskeminen). Lähetä lisää kehotteita, jotka vaativat agenttia hyödyntämään uutta tai olemassa olevaa työkalua. Muista käynnistää palvelin uudelleen, jotta uudet työkalut tulevat käyttöön.
 
 ## Ratkaisu
 
 [Ratkaisu](./solution/README.md)
 
-## Tärkeimmät opit
+## Keskeiset opit
 
-Tässä luvussa opittua:
+Tässä luvussa opitut asiat ovat seuraavat:
 
-- AI Toolkit -laajennus on erinomainen asiakas, jonka avulla voit käyttää MCP-palvelimia ja niiden työkaluja.
-- Voit lisätä uusia työkaluja MCP-palvelimiin, laajentaen agentin kyvykkyyttä vastaamaan kehittyviä vaatimuksia.
-- AI Toolkit sisältää mallipohjia (esim. Python MCP-palvelinmallit) helpottamaan mukautettujen työkalujen luomista.
+- Microsoft Foundry Toolkit voi kuluttaa MCP-palvelimia ja niiden työkaluja.
+- Voit lisätä uusia työkaluja MCP-palvelimiin laajentaen agentin kyvykkyyttä muuttuviin tarpeisiin.
+- Microsoft Foundry Toolkit sisältää MCP-palvelinmalleja mukautettujen työkalujen luomiseen.
 
 ## Lisäresurssit
 
-- [AI Toolkit dokumentaatio](https://aka.ms/AIToolkit/doc)
+- [Microsoft Foundry Toolkit dokumentaatio](https://aka.ms/AIToolkit/doc)
 
-## Mitä seuraavaksi
-- Seuraava: [Testaus & virheenkorjaus](../08-testing/README.md)
+## Seuraavaksi
+- Seuraava: [Testaus ja virheenkorjaus](../08-testing/README.md)
 
 ---
 

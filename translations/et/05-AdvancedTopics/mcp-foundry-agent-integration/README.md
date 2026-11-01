@@ -1,59 +1,59 @@
-# Model Context Protocoli (MCP) integratsioon Microsoft Foundryga
+# Model Context Protocol (MCP) integreerimine Microsoft Foundryga
 
-See juhend demonstreerib, kuidas integreerida Model Context Protocol (MCP) serverid Microsoft Foundry agentidega, võimaldades võimsaid tööriistade korraldamise ja ettevõtte tehisintellekti võimeid.
+See juhend demonstreerib, kuidas integreerida Model Context Protocoli (MCP) serverid Microsoft Foundry agentidega, võimaldades võimsat tööriistade orkestreerimist ja ettevõtte tehisintellekti võimekust.
 
 ## Sissejuhatus
 
-Model Context Protocol (MCP) on avatud standard, mis võimaldab tehisintellekti rakendustel turvaliselt ühenduda väliste andmeallikate ja tööriistadega. Microsoft Foundryga integreerides võimaldab MCP agentidel juurdepääsu ja suhtlemist erinevate väliste teenuste, API-de ja andmeallikatega standardiseeritud viisil.
+Model Context Protocol (MCP) on avatud standard, mis võimaldab tehisintellekti rakendustel turvaliselt ühendada väliste andmeallikate ja tööriistadega. Kui integreeritud Microsoft Foundryga, võimaldab MCP agentidel juurdepääsu ja suhtlemist erinevate väliste teenuste, API-de ja andmeallikatega standardiseeritud viisil.
 
-See integratsioon ühendab MCP tööriistade ökosüsteemi paindlikkuse Microsoft Foundry tugeva agendi raamistiku abil, pakkudes ettevõtte tasemel tehisintellekti lahendusi ulatuslike kohandamisvõimalustega.
+See integratsioon ühendab MCP tööriistade ökosüsteemi paindlikkuse Microsoft Foundry tugeva agentide raamistikuga, pakkudes ettevõtte tasemel tehisintellekti lahendusi laialdaste kohandamisvõimalustega.
 
-**Märkus:** Kui soovite MCP-d kasutada Microsoft Foundry Agent Service'is, siis hetkel toetatakse ainult järgmisi piirkondi: westus, westus2, uaenorth, southindia ja switzerlandnorth
+> **Märkus:** Kui soovite kasutada MCP-d Microsoft Foundry Agent Service'is, toetatakse hetkel ainult järgmisi regioone: westus, westus2, uaenorth, southindia ja switzerlandnorth
 
-## Õpieesmärgid
+## Õpitulemused
 
-Selle juhendi lõpuks oskate:
+Pärast selle juhendi läbimist oskate:
 
-- Mõista Model Context Profotkolli ja selle eeliseid
-- Häälestada MCP servereid Microsoft Foundry agentidega kasutamiseks
-- Luua ja konfigureerida agente MCP tööriistade integratsiooniga
-- Rakendada praktilisi näiteid päris MCP serveritega
-- Käsitleda tööriistade vastuseid ja viiteid agendi vestlustes
+- Mõista Model Context Protocoli ja selle eeliseid
+- Seada üles MCP serverid kasutamiseks Microsoft Foundry agentidega
+- Luua ja konfigureerida agente MCP tööriistaintegratsiooniga
+- Rakendada praktilisi näiteid, kasutades tegelikke MCP servereid
+- Töötleda tööriistade vastuseid ja viiteid agendi vestlustes
 
-## Nõuded
+## Eeltingimused
 
 Enne alustamist veenduge, et teil on:
 
-- Azure’i tellimus Microsoft Foundry juurdepääsuga
+- Azure'i tellimus Microsoft Foundry juurdepääsuga
 - Python 3.10+ või .NET 8.0+
 - Azure CLI installitud ja konfigureeritud
 - Sobivad õigused AI ressursside loomiseks
 
 ## Mis on Model Context Protocol (MCP)?
 
-Model Context Protocol on standardiseeritud viis tehisintellekti rakenduste ühendamiseks väliste andmeallikate ja tööriistadega. Põhieesmärgid on:
+Model Context Protocol on standardiseeritud viis, mille abil tehisintellekti rakendused saavad ühendada väliste andmeallikate ja tööriistadega. Peamised eelised on:
 
 - **Standardiseeritud integratsioon**: Ühtne liides erinevate tööriistade ja teenuste vahel
 - **Turvalisus**: Turvalised autentimise ja autoriseerimise mehhanismid
-- **Paindlikkus**: Toetus erinevatele andmeallikatele, API-dele ja kohandatud tööriistadele
-- **Laiendatavus**: Lihtne lisada uusi funktsioone ja integratsioone
+- **Paindlikkus**: Tugi erinevatele andmeallikatele, API-dele ja kohandatud tööriistadele
+- **Laiendatavus**: Uute võimekuste ja integratsioonide lihtne lisamine
 
-## MCP seadistamine Microsoft Foundry jaoks
+## MCP seadistamine Microsoft Foundryga
 
 ### Keskkonna seadistus
 
-Valige endale sobiv arenduskeskkond:
+Valige soovitud arenduskeskkond:
 
-- [Python’i rakendus](#python’i-rakendus)
-- [.NET rakendus](#codeblock5)
+- [Pythoni implementatsioon](#python-implementation)
+- [.NETi implementatsioon](#net-implementation)
 
 ---
 
-## Python’i rakendus
+## Pythoni implementatsioon
 
 ***Märkus*** Saate käivitada selle [märkmiku](./mcp_support_python.ipynb)
 
-### 1. Vajalikud paketid paigaldamine
+### 1. Vajalike pakettide installimine
 
 ```bash
 pip install azure-ai-projects -U
@@ -93,17 +93,17 @@ project_client = AIProjectClient(
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Valikuline: määrake lubatud tööriistad
+    allowed_tools=[],  # Optional: specify allowed tools
 )
 ```
 
-### 6. Täielik Python’i näide
+### 6. Täielik Pythoni näide
 
 ```python
 with project_client:
     agents_client = project_client.agents
 
-    # Loo uus agent MCP tööriistadega
+    # Create a new agent with MCP tools
     agent = agents_client.create_agent(
         model="Your AOAI Model Deployment",
         name="my-mcp-agent",
@@ -113,11 +113,11 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-    # Loo lõim suhtlemiseks
+    # Create thread for communication
     thread = agents_client.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
-    # Loo sõnum lõime jaoks
+    # Create message to thread
     message = agents_client.messages.create(
         thread_id=thread.id,
         role="user",
@@ -125,7 +125,7 @@ with project_client:
     )
     print(f"Created message, ID: {message.id}")
 
-    # Halda tööriistade heakskiite ja käivita agent
+    # Handle tool approvals and run agent
     mcp_tool.update_headers("SuperSecret", "123456")
     run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
     print(f"Created run, ID: {run.id}")
@@ -165,7 +165,7 @@ with project_client:
 
     print(f"Run completed with status: {run.status}")
 
-    # Kuvada vestlus
+    # Display conversation
     messages = agents_client.messages.list(thread_id=thread.id)
     print("\nConversation:")
     print("-" * 50)
@@ -178,11 +178,11 @@ with project_client:
 
 ---
 
-## .NET rakendus
+## .NETi implementatsioon
 
 ***Märkus*** Saate käivitada selle [märkmiku](./mcp_support_dotnet.ipynb)
 
-### 1. Vajalikud paketid paigaldamine
+### 1. Vajalike pakettide installimine
 
 ```csharp
 #r "nuget: Azure.AI.Agents.Persistent, 1.1.0-beta.4"
@@ -206,7 +206,7 @@ var mcpServerLabel = "mslearn";
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-### 4. MCP tööriistade definitsiooni loomine
+### 4. MCP tööriista määratluse loomine
 
 ```csharp
 MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
@@ -297,17 +297,17 @@ await foreach (PersistentThreadMessage threadMessage in messages)
 
 ---
 
-## MCP tööriista konfiguratsioonivõimalused
+## MCP tööriista konfigureerimisvalikud
 
-MCP tööriistade konfigureerimisel oma agendi jaoks saate määrata mitmeid olulisi parameetreid:
+MCP tööriistade konfigureerimisel teie agendi jaoks saate määrata mitmeid olulisi parameetreid:
 
-### Python’i konfiguratsioon
+### Pythoni konfiguratsioon
 
 ```python
 mcp_tool = McpTool(
-    server_label="unique_server_name",      # MCP serveri identifikaator
-    server_url="https://api.example.com/mcp", # MCP serveri lõpp-punkt
-    allowed_tools=[],                       # Vabatahtlik: määra lubatud tööriistad
+    server_label="unique_server_name",      # Identifier for the MCP server
+    server_url="https://api.example.com/mcp", # MCP server endpoint
+    allowed_tools=[],                       # Optional: specify allowed tools
 )
 ```
 
@@ -322,7 +322,7 @@ MCPToolDefinition mcpTool = new(
 
 ## Autentimine ja päised
 
-Mõlemad rakendused toetavad autentimiseks kohandatud päiseid:
+Mõlemad implementatsioonid toetavad autentimiseks kohandatud päiseid:
 
 ### Python
 ```python
@@ -335,48 +335,48 @@ MCPToolResource mcpToolResource = new(mcpServerLabel);
 mcpToolResource.UpdateHeader("SuperSecret", "123456");
 ```
 
-## Levinud probleemide lahendamine
+## Levinud probleemide tõrkeotsing
 
 ### 1. Ühenduse probleemid
-- Kontrollige, kas MCP serveri URL on juurdepääsetav
-- Kontrollige autentimiskandidaate
+- Kontrollige, et MCP serveri URL oleks ligipääsetav
+- Kontrollige autentimisandmeid
 - Veenduge võrguühenduses
 
-### 2. Tööriista kõnede tõrked
-- Kontrollige tööriista argumente ja vormindust
+### 2. Tööriista kutsumise tõrked
+- Kontrollige tööriista argumente ja vormingut
 - Kontrollige serverispetsiifilisi nõudeid
-- Rakendage korrektne veakäsitlus
+- Rakendage sobiv veahaldus
 
 ### 3. Jõudlusprobleemid
-- Optimeerige tööriista kõnede sagedust
+- Optimeerige tööriistakutse sagedust
 - Rakendage vajadusel vahemällu salvestamist
-- Jälgige serveri reageerimisaegu
+- Jälgige serveri vastuse aegu
 
-## Järgmised sammud
+## Edasised sammud
 
-MCP integratsiooni edasiseks täiustamiseks:
+Oma MCP integratsiooni edasiseks täiustamiseks:
 
-1. **Uurige kohandatud MCP servereid**: Looge oma MCP serverid ettevõtte andmeallikate jaoks
-2. **Rakendage täiendav turvalisus**: Lisage OAuth2 või kohandatud autentimismehhanisme
-3. **Jälgimine ja analüütika**: Rakendage tööriistakasutuse logimist ja jälgimist
-4. **Laieneda**: Mõelge koormuse tasakaalustamisele ja jaotatud MCP serveri arhitektuuridele
+1. **Uurige kohandatud MCP servereid**: Looge oma MCP serverid ettevõtte enda andmeallikate jaoks
+2. **Rakendage täiustatud turvalisust**: Lisage OAuth2 või kohandatud autentimismehhanismid
+3. **Jälgimine ja analüütika**: Rakendage logimist ja jälgimist tööriistade kasutuse jaoks
+4. **Skaalake oma lahendust**: Kaaluge koormuse jagamist ja hajutatud MCP serverite arhitektuure
 
 ## Täiendavad ressursid
 
 - [Microsoft Foundry dokumentatsioon](https://learn.microsoft.com/azure/ai-foundry/)
-- [Model Context Protocol näidised](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
+- [Model Context Protocol näited](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/tools/model-context-protocol-samples)
 - [Microsoft Foundry agentide ülevaade](https://learn.microsoft.com/azure/ai-foundry/agents/)
 - [MCP spetsifikatsioon](https://modelcontextprotocol.io/specification/2026-07-28/)
 
 ## Tugi
 
-Täiendava toe ja küsimuste korral:
-- Tutvuge [Microsoft Foundry dokumentatsiooniga](https://learn.microsoft.com/azure/ai-foundry/)
-- Vaadake [MCP kogukonna ressursse](https://modelcontextprotocol.io/)
+Lisatoe ja küsimuste korral:
+- Vaadake üle [Microsoft Foundry dokumentatsiooni](https://learn.microsoft.com/azure/ai-foundry/)
+- Kontrollige [MCP kogukonna ressursse](https://modelcontextprotocol.io/)
 
-## Mis on järgmiseks
+## Mis järgmiseks 
 
-- [5.14 MCP Context Engineering](../mcp-contextengineering/README.md)
+- [5.14 MCP konteksti inseneritöö](../mcp-contextengineering/README.md)
 
 ---
 

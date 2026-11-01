@@ -1,37 +1,45 @@
 # Pokretanje ovog primjera
 
-Ovo je Rust rješenje za LLM klijenta primjera. Potrebno je imati instaliran Rust alatni lanac; pogledajte [službeni vodič za instalaciju](https://www.rust-lang.org/tools/install).
+Ovo je Rust rješenje za uzorak LLM klijenta. Potrebno je imati instaliran Rust alatni lanac; pogledajte [službeni vodič za instalaciju](https://www.rust-lang.org/tools/install).
 
-Klijent poziva model putem GitHub Models inference endpointa (`https://models.github.ai/inference/chat`) i čita vaš GitHub osobni pristupni token (PAT) iz varijable okoline `OPENAI_API_KEY`.
+Klijent poziva implementirani Microsoft Foundry model putem Azure OpenAI
+v1 krajnje točke.
 
 > [!NOTE]
-> Druga rješenja u ovom repozitoriju koriste `GITHUB_TOKEN`. Za Rust, postavite `OPENAI_API_KEY` na istu vrijednost da odgovara konfiguraciji OpenAI klijenta.
+> Vrijednost proslijeđena kao `model` je ime vaše Foundry implementacije, a ne nužno
+> ime osnovnog modela.
 
-## -0- Postavite svoj GitHub token
+## -0- Konfiguracija Microsoft Foundry
 
 ```bash
 # zsh/bash
-export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
 ```powershell
 # PowerShell
-$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+$env:AZURE_OPENAI_ENDPOINT = "https://<resource-name>.openai.azure.com"
+$env:AZURE_OPENAI_API_KEY = "<api-key>"
+$env:AZURE_OPENAI_DEPLOYMENT = "gpt-5.1"
 ```
 
-## -1- Izgradite primjer
+## -1- Izgradnja primjera
 
 ```bash
 cargo build
 ```
 
-## -2- Pokrenite primjer
+## -2- Pokretanje primjera
 
 ```bash
 cargo run
 ```
 
-Klijent pokreće MCP server za kalkulator, dohvaća njegov popis alata i koristi model (`openai/gpt-5-mini`) za poziv alata `add`. Trebali biste vidjeti ispis koji pokazuje poziv alata (na primjer, "Pozivanje alata: add") i rezultat tog poziva.
+Klijent pokreće calculator MCP poslužitelj, dohvaća njegov popis alata i koristi
+implementirani model za pozivanje `add` alata. Trebali biste vidjeti izlaz koji ukazuje
+na poziv alata (na primjer, "Pozivanje alata: add") i rezultat tog poziva.
 
 ---
 

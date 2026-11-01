@@ -1,4 +1,9 @@
-# Kjør eksemplet
+# Kjør eksempelet
+
+> [!WARNING]
+> Dette eksempelet bruker utdaterte Sampling og en legacy HTTP+SSE-endepunkt. Det er
+> beholdt for MCP `2025-11-25` kompatibilitet. Nye implementasjoner bør kalle
+> en LLM-leverandør direkte og bruke Streamable HTTP for ekstern MCP-trafikk.
 
 ## Opprett virtuelt miljø
 
@@ -13,7 +18,7 @@ source ./venv/bin/activate
 pip install "mcp[cli]"
 ```
 
-## Start serveren
+## Kjør serveren
 
 ```sh
 uvicorn server:app --port 8000
@@ -32,7 +37,7 @@ Legg til oppføringen i mcp.json slik:
 }
 ```
 
-Pass på at du klikker "start" på serveren.
+Sørg for at du klikker på "start" på serveren.
 
 I GitHub Copilot lim inn følgende prompt:
 
@@ -40,7 +45,7 @@ I GitHub Copilot lim inn følgende prompt:
 create a blog post named "Where Python comes from", the content is "Python is actually named after Monty Python Flying Circus"
 ```
 
-Første gang vil du bli spurt om å godta en Sampling-handling, deretter vil du bli spurt om å godta verktøyet for å kjøre "create_blog". Du bør se et svar som ligner på:
+Første gang vil du bli spurt om du vil godta en Sampling-handling, deretter vil du bli spurt om å godta verktøyet for å kjøre "create_blog". Du bør se et svar som ligner på:
 
 ```json
 {
@@ -52,5 +57,5 @@ Første gang vil du bli spurt om å godta en Sampling-handling, deretter vil du 
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Ansvarsfraskrivelse**:
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiserte oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på det opprinnelige språket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som følge av bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal betraktes som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->

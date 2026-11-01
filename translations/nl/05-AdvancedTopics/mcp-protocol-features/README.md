@@ -1,38 +1,43 @@
-# MCP Protocol Functies Diepgaande Analyse
+# MCP Protocolfuncties Verdieping
 
-Deze gids onderzoekt geavanceerde MCP protocol functies die verder gaan dan basis tool- en resourcebeheer. Begrip van deze functies helpt je om robuustere, gebruiksvriendelijkere en productieklare MCP servers te bouwen.
+Deze gids onderzoekt geavanceerde MCP-protocolfuncties die verder gaan dan basishandelingen met tools en middelen. Inzicht in deze functies helpt je bij het bouwen van robuustere, gebruiksvriendelijkere en productieklare MCP-servers.
 
-> **Vooruitkijkend:** de releasekandidaat van `2026-07-28` schaft de Logging-primitive af (met voorkeur voor `stderr` voor stdio en OpenTelemetry voor gestructureerde observatie), verwijdert het `initialize`/sessiemodel dat hieronder wordt genoemd bij Server Lifecycle Events, en verplaatst de experimentele Tasks-functie naar een toegewijde Tasks-extensie met een nieuwe `tasks/get`/`tasks/update`/`tasks/cancel` levenscyclus. Zie [Wat Verandert in MCP: De 2026-07-28 Releasekandidaat](../../01-CoreConcepts/mcp-2026-07-28-release-candidate.md).
+> **MCP `2026-07-28` scope:** serverproces opstarten en afsluiten blijven
+> applicatiezaken, maar de MCP `initialize` handshake en protocolniveau
+> sessies zijn verwijderd. De onderstaande Logging-sectie blijft behouden voor legacy
+> implementaties; nieuwe servers moeten `stderr` of OpenTelemetry gebruiken. Tasks is
+> nu een apart versiebeheerde extensie. Zie
+> [Wat is veranderd in MCP: De specificatie van 2026-07-28](../../01-CoreConcepts/mcp-2026-07-28.md).
 
 ## Behandelde Functies
 
-1. **Voortgangsnotificaties** - Voortgang rapporteren voor langlopende operaties  
-2. **Annulering van Verzoeken** - Clients toestaan om lopende verzoeken te annuleren  
-3. **Resource Sjablonen** - Dynamische resource-URI's met parameters  
-4. **Server Levenscyclus Evenementen** - Correct initialiseren en afsluiten  
-5. **Logging Beheer** - Serverzijde configuratie van logging  
-6. **Foutafhandelingspatronen** - Consistente foutreacties  
+1. **Voortgangsrapportages** - Rapporteren van voortgang voor langdurige bewerkingen
+2. **Annulering van Verzoeken** - Clients toestaan om lopende verzoeken te annuleren
+3. **Middelen Sjablonen** - Dynamische resource-URI's met parameters
+4. **Applicatielevenscyclus** - Serverproces opstart en afsluiten
+5. **Logging Beheer (Legacy)** - Verouderde MCP logging configuratie
+6. **Foutafhandelingspatronen** - Consistente foutreacties
 
 ---
 
-## 1. Voortgangsnotificaties
+## 1. Voortgangsrapportages
 
-Voor operaties die tijd kosten (gegevensverwerking, bestandsdownloads, API-aanroepen) houden voortgangsnotificaties gebruikers geïnformeerd.
+Voor bewerkingen die tijd kosten (gegevensverwerking, bestandsdownloads, API-aanroepen) houden voortgangsrapportages gebruikers op de hoogte.
 
-### Hoe Het Werkt
+### Hoe Werkt Het
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
     
-    Client->>Server: tools/call (lange bewerking)
-    Server-->>Client: melding: voortgang 10%
-    Server-->>Client: melding: voortgang 50%
-    Server-->>Client: melding: voortgang 90%
-    Server->>Client: resultaat (voltooid)
+    Client->>Server: tools/call (long operation)
+    Server-->>Client: notification: progress 10%
+    Server-->>Client: notification: progress 50%
+    Server-->>Client: notification: progress 90%
+    Server->>Client: result (complete)
 ```
-  
+
 ### Python Implementatie
 
 ```python
@@ -46,17 +51,17 @@ app = Server("progress-server")
 async def process_large_file(file_path: str, ctx) -> str:
     """Process a large file with progress updates."""
     
-    # Bestandsgrootte ophalen voor voortgangsberekening
+    # Get file size for progress calculation
     file_size = os.path.getsize(file_path)
     processed = 0
     
     with open(file_path, 'rb') as f:
         while chunk := f.read(8192):
-            # Verwerk chunk
+            # Process chunk
             await process_chunk(chunk)
             processed += len(chunk)
             
-            # Verstuur voortgangsmelding
+            # Send progress notification
             progress = (processed / file_size) * 100
             await ctx.send_notification(
                 ProgressNotification(
@@ -80,7 +85,7 @@ async def batch_operation(items: list[str], ctx) -> str:
         result = await process_item(item)
         results.append(result)
         
-        # Rapporteer voortgang na elk item
+        # Report progress after each item
         await ctx.send_notification(
             ProgressNotification(
                 progressToken=ctx.request_id,
@@ -92,7 +97,7 @@ async def batch_operation(items: list[str], ctx) -> str:
     
     return f"Completed {total} items"
 ```
-  
+
 ### TypeScript Implementatie
 
 ```typescript
@@ -109,7 +114,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
       const result = await processItem(items[i]);
       results.push(result);
       
-      // Stuur voortgangsmelding
+      // Send progress notification
       await extra.sendNotification({
         method: "notifications/progress",
         params: {
@@ -125,7 +130,7 @@ server.setRequestHandler(CallToolSchema, async (request, extra) => {
   }
 });
 ```
-  
+
 ### Clientafhandeling (Python)
 
 ```python
@@ -134,18 +139,18 @@ async def handle_progress(notification):
     params = notification.params
     print(f"Progress: {params.progress}/{params.total} - {params.message}")
 
-# Registreer handler
+# Register handler
 session.on_notification("notifications/progress", handle_progress)
 
-# Roep gereedschap aan (voortgangsupdates worden via handler ontvangen)
+# Call tool (progress updates will arrive via handler)
 result = await session.call_tool("process_large_file", {"file_path": "/data/large.csv"})
 ```
-  
+
 ---
 
 ## 2. Annulering van Verzoeken
 
-Clients toestaan om verzoeken te annuleren die niet langer nodig zijn of te lang duren.
+Sta clients toe om verzoeken te annuleren die niet langer nodig zijn of te lang duren.
 
 ### Python Implementatie
 
@@ -163,20 +168,20 @@ async def long_running_search(query: str, ctx) -> str:
     results = []
     
     try:
-        for page in range(100):  # Zoek door veel pagina's
-            # Controleer of annulering is aangevraagd
+        for page in range(100):  # Search through many pages
+            # Check if cancellation was requested
             if ctx.is_cancelled:
                 raise CancelledError("Search cancelled by user")
             
-            # Simuleer paginazoektocht
+            # Simulate page search
             page_results = await search_page(query, page)
             results.extend(page_results)
             
-            # Kleine vertraging maakt annuleringcontroles mogelijk
+            # Small delay allows cancellation checks
             await asyncio.sleep(0.1)
             
     except CancelledError:
-        # Retourneer gedeeltelijke resultaten
+        # Return partial results
         return f"Cancelled. Found {len(results)} results before cancellation."
     
     return f"Found {len(results)} total results"
@@ -200,7 +205,7 @@ async def download_file(url: str, ctx) -> str:
             
             return f"Downloaded {downloaded} bytes"
 ```
-  
+
 ### Implementatie van Annuleringscontext
 
 ```python
@@ -234,10 +239,10 @@ class CancellableContext:
             )
             raise CancelledError(self._cancel_reason)
         except asyncio.TimeoutError:
-            pass  # Normale time-out, doorgaan
+            pass  # Normal timeout, continue
 ```
-  
-### Annulering aan Klantzijde
+
+### Annulering aan de Client-kant
 
 ```python
 import asyncio
@@ -253,19 +258,19 @@ async def search_with_timeout(session, query, timeout=30):
         result = await asyncio.wait_for(task, timeout=timeout)
         return result
     except asyncio.TimeoutError:
-        # Annulering aanvragen
+        # Request cancellation
         await session.send_notification({
             "method": "notifications/cancelled",
             "params": {"requestId": task.request_id, "reason": "Timeout"}
         })
         return "Search timed out"
 ```
-  
+
 ---
 
-## 3. Resource Sjablonen
+## 3. Middelen Sjablonen
 
-Resource sjablonen maken dynamische URI-constructies met parameters mogelijk, handig voor API's en databases.
+Middelen sjablonen maken dynamische URI-constructie met parameters mogelijk, nuttig voor API's en databases.
 
 ### Sjablonen Definiëren
 
@@ -303,7 +308,7 @@ async def list_templates() -> list[ResourceTemplate]:
 async def read_resource(uri: str) -> str:
     """Read resource, expanding template parameters."""
     
-    # Analyseer de URI om parameters te extraheren
+    # Parse the URI to extract parameters
     if uri.startswith("db://users/"):
         user_id = uri.split("/")[-1]
         return await fetch_user(user_id)
@@ -319,7 +324,7 @@ async def read_resource(uri: str) -> str:
     
     raise ValueError(f"Unknown resource URI: {uri}")
 ```
-  
+
 ### TypeScript Implementatie
 
 ```typescript
@@ -345,7 +350,7 @@ server.setRequestHandler(ListResourceTemplatesSchema, async () => {
 server.setRequestHandler(ReadResourceSchema, async (request) => {
   const uri = request.params.uri;
   
-  // Parseer GitHub issue URI
+  // Parse GitHub issue URI
   const githubMatch = uri.match(/^github:\/\/repos\/([^/]+)\/([^/]+)\/issues\/(\d+)$/);
   if (githubMatch) {
     const [_, owner, repo, issueNumber] = githubMatch;
@@ -362,12 +367,14 @@ server.setRequestHandler(ReadResourceSchema, async (request) => {
   throw new Error(`Unknown resource URI: ${uri}`);
 });
 ```
-  
+
 ---
 
-## 4. Server Levenscyclus Evenementen
+## 4. Applicatielevenscyclus
 
-Correcte initialisatie en afsluiting zorgt voor schoon resourcebeheer.
+Deze sectie behandelt het opstarten en afsluiten van applicatieprocessen, niet de verwijderde
+MCP `initialize` handshake. Een correcte levenscyclusafhandeling zorgt voor schoon middelenbeheer.
+
 
 ### Python Levenscyclusbeheer
 
@@ -377,7 +384,7 @@ from contextlib import asynccontextmanager
 
 app = Server("lifecycle-server")
 
-# Gedeelde status
+# Shared state
 db_connection = None
 cache = None
 
@@ -386,15 +393,15 @@ async def lifespan(server: Server):
     """Manage server lifecycle."""
     global db_connection, cache
     
-    # Opstarten
+    # Startup
     print("🚀 Server starting...")
     db_connection = await create_database_connection()
     cache = await create_cache_client()
     print("✅ Resources initialized")
     
-    yield  # Server draait hier
+    yield  # Server runs here
     
-    # Afsluiten
+    # Shutdown
     print("🛑 Server shutting down...")
     await db_connection.close()
     await cache.close()
@@ -408,7 +415,7 @@ async def query_database(sql: str) -> str:
     result = await db_connection.execute(sql)
     return str(result)
 ```
-  
+
 ### TypeScript Levenscyclus
 
 ```typescript
@@ -428,7 +435,7 @@ class ManagedServer {
   }
   
   async start() {
-    // Initialiseer bronnen
+    // Initialize resources
     console.log("🚀 Server starting...");
     this.dbConnection = await createDatabaseConnection();
     console.log("✅ Database connected");
@@ -438,7 +445,7 @@ class ManagedServer {
   }
   
   async stop() {
-    // Ruim bronnen op
+    // Cleanup resources
     console.log("🛑 Server shutting down...");
     if (this.dbConnection) {
       await this.dbConnection.close();
@@ -449,13 +456,13 @@ class ManagedServer {
   
   private setupHandlers() {
     this.server.setRequestHandler(CallToolSchema, async (request) => {
-      // Gebruik deze.dbConnection veilig
+      // Use this.dbConnection safely
       // ...
     });
   }
 }
 
-// Gebruik met nette afsluiting
+// Usage with graceful shutdown
 const server = new ManagedServer();
 
 process.on('SIGINT', async () => {
@@ -465,12 +472,18 @@ process.on('SIGINT', async () => {
 
 await server.start();
 ```
-  
+
 ---
 
-## 5. Logging Beheer
+## 5. Logging Beheer (Legacy)
 
-MCP ondersteunt serverzijde loggingniveaus die clients kunnen beheren.
+> [!WARNING]
+> MCP Logging is afgevoerd in `2026-07-28` en komt in aanmerking voor verwijdering in de
+> eerste specificatieherziening uitgebracht op of na 28 juli 2027. De onderstaande voorbeelden
+> zijn voor compatibiliteit met oudere implementaties. Gebruik `stderr` met
+> stdio en OpenTelemetry voor gestructureerde observatie in nieuwe servers.
+
+Legacy MCP-versies ondersteunen server-side logniveaus die clients kunnen aansturen.
 
 ### Loggingniveaus Implementeren
 
@@ -481,7 +494,7 @@ import logging
 
 app = Server("logging-server")
 
-# Map MCP-niveaus naar Python loggingniveaus
+# Map MCP levels to Python logging levels
 LEVEL_MAP = {
     LoggingLevel.DEBUG: logging.DEBUG,
     LoggingLevel.INFO: logging.INFO,
@@ -511,21 +524,21 @@ async def debug_operation(data: str) -> str:
         logger.error(f"Processing failed: {e}")
         raise
 ```
-  
-### Logberichten Naar Client Verzenden
+
+### Logberichten naar Client Verzenden
 
 ```python
 @app.tool()
 async def complex_operation(input: str, ctx) -> str:
     """Operation that logs to client."""
     
-    # Verzenden logmelding naar client
+    # Send log notification to client
     await ctx.send_log(
         level="info",
         message=f"Starting complex operation with input: {input}"
     )
     
-    # Werk uitvoeren...
+    # Do work...
     result = await do_work(input)
     
     await ctx.send_log(
@@ -535,12 +548,12 @@ async def complex_operation(input: str, ctx) -> str:
     
     return result
 ```
-  
+
 ---
 
 ## 6. Foutafhandelingspatronen
 
-Consistente foutafhandeling verbetert debugging en gebruikerservaring.
+Consistente foutafhandeling verbetert foutopsporing en gebruikerservaring.
 
 ### MCP Foutcodes
 
@@ -571,7 +584,7 @@ class InternalError(ToolError):
     def __init__(self, message: str):
         super().__init__(ErrorCode.INTERNAL_ERROR, message)
 ```
-  
+
 ### Gestructureerde Foutreacties
 
 ```python
@@ -579,7 +592,7 @@ class InternalError(ToolError):
 async def safe_operation(input: str) -> str:
     """Tool with comprehensive error handling."""
     
-    # Valideer invoer
+    # Validate input
     if not input:
         raise ValidationError("Input cannot be empty")
     
@@ -587,11 +600,11 @@ async def safe_operation(input: str) -> str:
         raise ValidationError(f"Input too large: {len(input)} chars (max 10000)")
     
     try:
-        # Controleer permissies
+        # Check permissions
         if not await check_permission(input):
             raise PermissionError(f"read {input}")
         
-        # Voer bewerking uit
+        # Perform operation
         result = await perform_operation(input)
         
         if result is None:
@@ -604,11 +617,11 @@ async def safe_operation(input: str) -> str:
     except TimeoutError as e:
         raise InternalError(f"Operation timed out: {e}")
     except Exception as e:
-        # Log onverwachte fouten
+        # Log unexpected errors
         logger.exception(f"Unexpected error in safe_operation")
         raise InternalError(f"Unexpected error: {type(e).__name__}")
 ```
-  
+
 ### Foutafhandeling in TypeScript
 
 ```typescript
@@ -621,7 +634,7 @@ function validateInput(data: unknown): asserts data is ValidInput {
       "Input must be an object"
     );
   }
-  // Meer validatie...
+  // More validation...
 }
 
 server.setRequestHandler(CallToolSchema, async (request) => {
@@ -636,15 +649,15 @@ server.setRequestHandler(CallToolSchema, async (request) => {
     
   } catch (error) {
     if (error instanceof McpError) {
-      throw error;  // Al een MCP-fout
+      throw error;  // Already an MCP error
     }
     
-    // Andere fouten omzetten
+    // Convert other errors
     if (error instanceof NotFoundError) {
       throw new McpError(ErrorCode.InvalidRequest, error.message);
     }
     
-    // Onbekende fout
+    // Unknown error
     console.error("Unexpected error:", error);
     throw new McpError(
       ErrorCode.InternalError,
@@ -653,70 +666,40 @@ server.setRequestHandler(CallToolSchema, async (request) => {
   }
 });
 ```
-  
+
 ---
 
-## Experimentele Functies (MCP 2025-11-25)
+## Versiegevoelige Functies
 
-Deze functies zijn als experimenteel gemarkeerd in de specificatie:
+### Tasks Extensie
 
-### Taken (Langlopende Operaties)
+Tasks is een officiële, apart versiebeheerde extensie in MCP `2026-07-28`. Een
+server kan een taakhandle retourneren van een tool-aanroep, en de client bestuurt de taak
+met `tasks/get`, `tasks/update`, en `tasks/cancel`. De experimentele
+`2025-11-25` Tasks API is niet achterwaarts compatibel, en `tasks/list` bestaat niet
+meer.
 
-```python
-# Taken maken het mogelijk om langlopende operaties met status te volgen
-@app.task()
-async def training_task(model_id: str, data_path: str, ctx) -> str:
-    """Long-running ML training task."""
-    
-    # Taak gestart rapporteren
-    await ctx.report_status("running", "Initializing training...")
-    
-    # Trainingslus
-    for epoch in range(100):
-        await train_epoch(model_id, data_path, epoch)
-        await ctx.report_status(
-            "running",
-            f"Training epoch {epoch + 1}/100",
-            progress=epoch + 1,
-            total=100
-        )
-    
-    await ctx.report_status("completed", "Training finished")
-    return f"Model {model_id} trained successfully"
-```
-  
 ### Tool Annotaties
 
-```python
-# Annotaties bieden metadata over het gedrag van de tool
-@app.tool(
-    annotations={
-        "destructive": False,      # Wijzigt de gegevens niet
-        "idempotent": True,        # Veilig om opnieuw te proberen
-        "timeout_seconds": 30,     # Verwachte maximale duur
-        "requires_approval": False # Geen gebruikersgoedkeuring nodig
-    }
-)
-async def safe_query(query: str) -> str:
-    """A read-only database query tool."""
-    return await execute_read_query(query)
-```
-  
----
-
-## Wat Volgt
-
-- [Module 8 - Best Practices](../../08-BestPractices/README.md)  
-- [5.14 - Context Engineering](../mcp-contextengineering/README.md)  
-- [MCP Specificatie Wijzigingenlog](https://spec.modelcontextprotocol.io/)  
+Toolannotaties beschrijven gedrag zoals alleen-lezen, destructief, idempotent,
+of open-wereld operatie. Ze zijn hints en mogen niet worden beschouwd als vertrouwde
+autorisatie- of veiligheidsgaranties tenzij ze afkomstig zijn van een vertrouwde server.
 
 ---
 
-## Extra Bronnen
+## Wat Nu
 
-- [MCP Specificatie 2025-11-25](https://spec.modelcontextprotocol.io/specification/2025-11-25/)  
-- [JSON-RPC 2.0 Foutcodes](https://www.jsonrpc.org/specification#error_object)  
-- [Python SDK Voorbeelden](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)  
+- [Module 8 - Best Practices](../../08-BestPractices/README.md)
+- [5.14 - Context Engineering](../mcp-contextengineering/README.md)
+- [MCP Specification Changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
+
+---
+
+## Aanvullende Bronnen
+
+- [MCP Specificatie 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/)
+- [JSON-RPC 2.0 Foutcodes](https://www.jsonrpc.org/specification#error_object)
+- [Python SDK Voorbeelden](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples)
 - [TypeScript SDK Voorbeelden](https://github.com/modelcontextprotocol/typescript-sdk/tree/main/examples)
 
 ---

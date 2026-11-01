@@ -1,35 +1,49 @@
 # Menjalankan contoh ini
 
-Disarankan untuk menginstal `uv` tapi tidak wajib, lihat [instruksi](https://docs.astral.sh/uv/#highlights)
+Anda disarankan untuk menginstal `uv` tetapi itu tidak wajib, lihat [instruksi](https://docs.astral.sh/uv/#highlights)
 
-## -0- Buat lingkungan virtual
+## -0- Membuat lingkungan virtual
 
 ```bash
 python -m venv venv
 ```
 
-## -1- Aktifkan lingkungan virtual
+## -1- Mengaktifkan lingkungan virtual
 
 ```bash
 venv\Scrips\activate
 ```
 
-## -2- Instal dependensi
+## -2- Menginstal dependensi
 
 ```bash
 pip install "mcp[cli]"
 pip install openai
-pip install azure-ai-inference
 ```
 
-## -3- Jalankan contoh
+## -3- Mengonfigurasi Microsoft Foundry
+
+Sebarkan model aktif seperti `gpt-5.1` di Microsoft Foundry, lalu atur:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+`AZURE_OPENAI_DEPLOYMENT` adalah nama penyebaran, yang mungkin berbeda dari
+nama model dasar. Periksa
+[jadwal pensiun model Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
+sebelum memilih model.
+
+## -4- Menjalankan contoh
 
 
 ```bash
 python client.py
 ```
 
-Anda akan melihat output yang mirip dengan:
+Anda harus melihat keluaran serupa dengan:
 
 ```text
 LISTING RESOURCES
@@ -46,5 +60,9 @@ TOOL:  {'function': {'arguments': '{"a":2,"b":20}', 'name': 'add'}, 'id': 'call_
 TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
 ```
 
-**Penafian**:  
-Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diperhatikan bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sahih. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:
+Dokumen ini telah diterjemahkan menggunakan layanan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Meskipun kami berupaya untuk mencapai akurasi, harap diketahui bahwa terjemahan otomatis mungkin mengandung kesalahan atau ketidakakuratan. Dokumen asli dalam bahasa aslinya harus dianggap sebagai sumber yang sah. Untuk informasi penting, disarankan menggunakan terjemahan profesional oleh manusia. Kami tidak bertanggung jawab atas kesalahpahaman atau penafsiran yang keliru yang timbul dari penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
