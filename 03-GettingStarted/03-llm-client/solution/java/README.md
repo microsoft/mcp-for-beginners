@@ -32,21 +32,21 @@ This application uses the MiniMax OpenAI-compatible API. Follow these steps to g
 ```cmd
 set OPENAI_API_KEY=your_minimax_api_key_here
 set OPENAI_BASE_URL=https://api.minimax.io/v1
-set MINIMAX_MODEL_ID=MiniMax-M3
+set MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
 ```
 
 #### On Windows (PowerShell):
 ```powershell
 $env:OPENAI_API_KEY="your_minimax_api_key_here"
 $env:OPENAI_BASE_URL="https://api.minimax.io/v1"
-$env:MINIMAX_MODEL_ID="MiniMax-M3"
+$env:MINIMAX_MODEL_ID="MiniMax-M3.1-Flash"
 ```
 
 #### On macOS/Linux:
 ```bash
 export OPENAI_API_KEY=your_minimax_api_key_here
 export OPENAI_BASE_URL=https://api.minimax.io/v1
-export MINIMAX_MODEL_ID=MiniMax-M3
+export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
 ```
 
 ## Setup and Installation
@@ -122,7 +122,11 @@ java -Dlogging.level.dev.langchain4j=DEBUG -jar target\calculator-llm-client-0.0
 ## Configuration
 
 The application is configured to:
-- Use MiniMax-M3 by default; set `MINIMAX_MODEL_ID` to select either `MiniMax-M3` or `MiniMax-M2.7`
+
+- Use `MiniMax-M3.1-Flash` by default; set `MINIMAX_MODEL_ID=MiniMax-M3` for the
+  other current model
+- Preserve explicitly configured legacy or custom `MINIMAX_MODEL_ID` values;
+  availability depends on your endpoint
 - Connect to `OPENAI_BASE_URL` when it is set; otherwise use `https://api.minimaxi.com/v1` when `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` by default
 - Connect to MCP service at `http://localhost:8080/sse`
 - Use a 60-second timeout for requests

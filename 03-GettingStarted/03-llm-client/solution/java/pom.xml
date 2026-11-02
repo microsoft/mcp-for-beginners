@@ -60,6 +60,14 @@
             <artifactId>langchain4j-open-ai-official</artifactId>
             <version>${langchain4j.version}</version>
         </dependency>
+        <!-- The pinned OpenAI official adapter loads TokenCredential even with API-key auth.
+             Match azure-sdk-bom 1.2.31 used by LangChain4j 1.0.0-beta3. -->
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-core</artifactId>
+            <version>1.54.1</version>
+            <scope>runtime</scope>
+        </dependency>
         <!-- JUnit dependencies for testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,13 +77,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
 
