@@ -259,9 +259,9 @@ Test your understanding:
 
 ### 📚 Additional Resources
 
-- **Microsoft Foundry Toolkit Documentation**: [Official Microsoft Docs](https://github.com/microsoft/vscode-ai-toolkit)
+- **Microsoft Foundry Toolkit Documentation**: [Official Microsoft Docs](https://github.com/microsoft/foundry-dev-tools)
 - **Prompt Engineering Guide**: [Best Practices](https://platform.openai.com/docs/guides/prompt-engineering)
-- **Models in Microsoft Foundry Toolkit**: [Models in Develpment](https://github.com/microsoft/vscode-ai-toolkit/blob/main/doc/models.md)
+- **Models in Microsoft Foundry Toolkit**: [Models in Develpment](https://github.com/microsoft/foundry-dev-tools/blob/main/doc/models.md)
 
 **🎉 Congratulations!** You've mastered the fundamentals of Microsoft Foundry Toolkit and are ready to build more advanced AI applications!
 

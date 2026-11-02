@@ -344,7 +344,7 @@ There are two distinct components to NLWeb.
  
 **References:**  
 - [Azure MCP Documentation](https://aka.ms/azmcp)
-- [NLWeb](https://github.com/microsoft/NlWeb)
+- [NLWeb](https://github.com/nlweb-ai/NLWeb)
 
 ### Case Study 7: Microsoft Foundry MCP Server – Enterprise AI Agent Integration
 
@@ -369,7 +369,7 @@ Microsoft Foundry MCP servers demonstrate how MCP can be used to orchestrate and
 - Accelerated AI adoption while maintaining control over complex agent-driven processes
 
 **References:**
-- [Microsoft Foundry MCP Server GitHub Repository](https://github.com/azure-ai-foundry/mcp-foundry)
+- [Microsoft Foundry MCP Server GitHub Repository](https://github.com/microsoft-foundry/mcp-foundry)
 - [Integrating Azure AI Agents with MCP (Microsoft Foundry Blog)](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp/)
 
 ### Case Study 8: Foundry MCP Playground – Experimentation and Prototyping
@@ -378,7 +378,7 @@ The Foundry MCP Playground offers a ready-to-use environment for experimenting w
 
 **References:**
 
-- [Foundry MCP Playground GitHub Repository](https://github.com/azure-ai-foundry/foundry-mcp-playground)
+- [Foundry MCP Playground GitHub Repository](https://github.com/microsoft-foundry/foundry-mcp-playground)
 
 ### Case Study 9: Microsoft Learn Docs MCP Server – AI-Powered Documentation Access
 
@@ -520,7 +520,7 @@ Microsoft and Azure have developed several open-source repositories to help deve
 
 1. [playwright-mcp](https://github.com/microsoft/playwright-mcp) - A Playwright MCP server for browser automation and testing
 2. [files-mcp-server](https://github.com/microsoft/files-mcp-server) - A OneDrive MCP server implementation for local testing and community contribution
-3. [NLWeb](https://github.com/microsoft/NlWeb) - NLWeb is a collection of open protocols and associated open source tools. Its main focus is establishing a foundational layer for the AI Web
+3. [NLWeb](https://github.com/nlweb-ai/NLWeb) - NLWeb is a collection of open protocols and associated open source tools. Its main focus is establishing a foundational layer for the AI Web
 
 #### Azure-Samples Organization
 
@@ -563,8 +563,8 @@ The Model Context Protocol (MCP) is rapidly shaping the future of standardized, 
 
 ## Additional Resources
 
-- [MCP Foundry GitHub Repository](https://github.com/azure-ai-foundry/mcp-foundry)
-- [Foundry MCP Playground](https://github.com/azure-ai-foundry/foundry-mcp-playground)
+- [MCP Foundry GitHub Repository](https://github.com/microsoft-foundry/mcp-foundry)
+- [Foundry MCP Playground](https://github.com/microsoft-foundry/foundry-mcp-playground)
 - [Integrating Azure AI Agents with MCP (Microsoft Foundry Blog)](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp/)
 - [MCP GitHub Repository (Microsoft)](https://github.com/microsoft/mcp)
 - [MCP Resources Directory (Sample Prompts, Tools, and Resource Definitions)](https://github.com/microsoft/mcp/tree/main/Resources)

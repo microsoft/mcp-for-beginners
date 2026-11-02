@@ -210,7 +210,7 @@ By completing this workshop, you will achieve mastery in:
 ## 📖 Additional Resources
 
 - [MCP Specification (2026-07-28)](https://modelcontextprotocol.io/specification/2026-07-28/)
-- [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/vscode-ai-toolkit)
+- [Microsoft Foundry Toolkit GitHub Repository](https://github.com/microsoft/foundry-dev-tools)
 - [Sample MCP Servers Collection](https://github.com/modelcontextprotocol/servers)
 - [Best Practices Guide](https://modelcontextprotocol.io/docs/best-practices)
 - [OWASP MCP Top 10](https://microsoft.github.io/mcp-azure-security-guide/mcp/) - Security best practices

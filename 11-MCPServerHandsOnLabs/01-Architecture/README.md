@@ -637,7 +637,7 @@ Continue with **[Lab 02: Security and Multi-Tenancy](../02-Security/README.md)**
 ## 📚 Additional Resources
 
 ### Architecture Patterns
-- [Clean Architecture in Python](https://github.com/cosmic-python/code) - Architectural patterns for Python applications
+- [Clean Architecture in Python](https://github.com/cosmicpython/code) - Architectural patterns for Python applications
 - [Database Design Patterns](https://en.wikipedia.org/wiki/Database_design) - Relational database design principles
 - [Microservices Patterns](https://microservices.io/patterns/) - Service architecture patterns
 

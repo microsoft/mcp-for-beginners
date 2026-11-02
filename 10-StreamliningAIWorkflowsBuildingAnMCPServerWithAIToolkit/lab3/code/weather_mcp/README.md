@@ -63,4 +63,4 @@ After setting up the environment, you can run the server in your local dev machi
 
 ## Feedback
 
-If you have any feedback or suggestions for this template, please open an issue on the [Microsoft Foundry Toolkit GitHub repository](https://github.com/microsoft/vscode-ai-toolkit/issues)
+If you have any feedback or suggestions for this template, please open an issue on the [Microsoft Foundry Toolkit GitHub repository](https://github.com/microsoft/foundry-dev-tools/issues)

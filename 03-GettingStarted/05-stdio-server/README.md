@@ -591,5 +591,5 @@ Now that you've learned how to build MCP servers with the stdio transport, you c
 ## Additional Resources
 
 - [MCP Specification 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28/) - Current specification
-- [MCP SDK Documentation](https://github.com/modelcontextprotocol/sdk) - SDK references for all languages
+- [MCP SDK Documentation](https://github.com/modelcontextprotocol) - SDK references for all languages
 - [Community Examples](../../06-CommunityContributions/README.md) - More server examples from the community
