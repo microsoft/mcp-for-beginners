@@ -407,7 +407,7 @@ Agent Builder supports multiple deployment options:
 - **🔗 MCP Specification**: [Official Protocol Documentation](https://modelcontextprotocol.io/)
 - **🛠️ Playwright API**: [Complete Method Reference](https://playwright.dev/docs/api/class-playwright)
 - **🏢 Microsoft MCP Servers**:
-   [Enterprise Integration Guide](https://github.com/microsoft/mcp-servers)
+   [Enterprise Integration Guide](https://github.com/microsoft/mcp)
 - **🌍 Community Examples**: [MCP Server Gallery](https://github.com/modelcontextprotocol/servers)
 
 **🎉 Congratulations!** You've successfully mastered MCP integration and can

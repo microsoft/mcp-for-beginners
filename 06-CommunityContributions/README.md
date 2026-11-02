@@ -362,7 +362,7 @@ Several frameworks are available to simplify MCP server development:
 
 2. **Community Frameworks**:
    - [MCP-Framework](https://mcp-framework.com/) - Build MCP servers with elegance and speed in TypeScript
-   - [MCP Declarative Java SDK](https://github.com/codeboyzhou/mcp-declarative-java-sdk) - Annotation-driven MCP servers with Java
+   - [MCP Declarative Java SDK](https://github.com/thought2code/mcp-annotated-java-sdk) - Annotation-driven MCP servers with Java
    - [Quarkus MCP Server SDK](https://github.com/quarkiverse/quarkus-mcp-server) - Java framework for MCP servers
    - [Next.js MCP Server Template](https://github.com/vercel-labs/mcp-for-next.js) - Starter Next.js project for MCP servers
 

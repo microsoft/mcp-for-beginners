@@ -1308,7 +1308,7 @@ Continue with **[Lab 07: Semantic Search Integration](../07-Semantic-Search/READ
 
 ### MCP Tool Development
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/docs) - Official MCP specification
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP implementation
+- [FastMCP Framework](https://github.com/PrefectHQ/fastmcp) - Python MCP implementation
 - [MCP Tool Patterns](https://github.com/modelcontextprotocol/servers) - Example tool implementations
 
 ### Database Security

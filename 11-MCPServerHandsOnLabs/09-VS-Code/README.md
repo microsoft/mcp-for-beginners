@@ -1041,7 +1041,7 @@ Continue with **[Lab 10: Deployment Strategies](../10-Deployment/README.md)** to
 ### MCP Protocol
 - [Model Context Protocol Specification](https://modelcontextprotocol.io/specification) - Official MCP specification
 - [MCP Best Practices](https://modelcontextprotocol.io/docs/best-practices) - Implementation best practices
-- [FastMCP Framework](https://github.com/jlowin/fastmcp) - Python MCP implementation
+- [FastMCP Framework](https://github.com/PrefectHQ/fastmcp) - Python MCP implementation
 
 ### Development Tools
 - [Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial) - Python development setup
