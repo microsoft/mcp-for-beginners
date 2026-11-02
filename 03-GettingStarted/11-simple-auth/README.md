@@ -15,11 +15,11 @@ Well, most web developers out there start thinking in terms of providing a crede
 
 This involves sending it via a header called "Authorization" like so:
 
-```json
-{ "Authorization": "secret123" }
+```http
+Authorization: Bearer secret123
 ```
 
-This is usually referred to as basic authentication. How the overall flow then works is in the following way:
+This shows a bearer credential in a toy example, not HTTP Basic authentication. Basic uses a different header form, `Authorization: Basic <base64(username:password)>`. Never hardcode either kind of secret in a real application. How the overall flow then works is in the following way:
 
 ```mermaid
 sequenceDiagram
@@ -48,7 +48,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
         if not valid_token(has_header):
             print("-> Invalid token!")
-            return Response(status_code=403, content="Forbidden")
+            return Response(status_code=401, content="Unauthorized")
 
         print("Valid token, proceeding...")
        
@@ -57,7 +57,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         return response
 
 
-starlette_app.add_middleware(CustomHeaderMiddleware)
+starlette_app.add_middleware(AuthMiddleware)
 ```
 
 Here we have: 
@@ -79,7 +79,7 @@ Here we have:
 
     if not valid_token(has_header):
         print("-> Invalid token!")
-        return Response(status_code=403, content="Forbidden")
+        return Response(status_code=401, content="Unauthorized")
     ```
 
     if the secret is present and valid then we let the request pass through by calling `call_next` and return the response.
@@ -97,26 +97,19 @@ How it works is that if a web request is made towards the server the middleware 
 Here we create a middleware with the popular framework Express and intercept the request before it reaches the MCP Server. Here's the code for that:
 
 ```typescript
-function isValid(secret) {
-    return secret === "secret123";
+// Teaching example only. Real servers must validate token audience, issuer and permissions.
+function isValid(header: string) {
+    return header === "Bearer secret123";
 }
 
 app.use((req, res, next) => {
-    // 1. Authorization header present?  
-    if(!req.headers["Authorization"]) {
-        res.status(401).send('Unauthorized');
-    }
-    
-    let token = req.headers["Authorization"];
-
-    // 2. Check validity.
-    if(!isValid(token)) {
-        res.status(403).send('Forbidden');
+    // Node/Express normalizes incoming header names to lowercase.
+    const authorization = req.headers.authorization;
+    if (!authorization || !isValid(authorization)) {
+        res.status(401).send("Unauthorized");
+        return; // Do not call next() after denying a request.
     }
 
-   
-    console.log('Middleware executed');
-    // 3. Passes request to the next step in the request pipeline.
     next();
 });
 ```
@@ -124,7 +117,7 @@ app.use((req, res, next) => {
 In this code we:
 
 1. Check if the Authorization header is present in the first place, if not, we send a 401 error.
-2. Ensure the credential/token is valid, if not, we send a 403 error.
+2. Reject a missing or invalid credential with 401 and return immediately. Reserve 403 for a valid credential that lacks permission.
 3. Finally passes on the request in the request pipeline and returns the asked for resource.
 
 ## Exercise: Implement authentication
@@ -327,10 +320,10 @@ Next, if a credential was submitted, we need to check its validity like so:
 ```python
  if not valid_token(has_header):
     print("-> Invalid token!")
-    return Response(status_code=403, content="Forbidden")
+    return Response(status_code=401, content="Unauthorized")
 ```
 
-Note how we send a 403 forbidden message above. Let's see the full middleware below implementing everything we mentioned above:
+An invalid credential should return 401 Unauthorized. Reserve 403 Forbidden for a valid credential without permission for the requested operation. Let's see the full middleware below implementing everything we mentioned above:
 
 ```python
 class AuthMiddleware(BaseHTTPMiddleware):
@@ -343,7 +336,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
         if not valid_token(has_header):
             print("-> Invalid token!")
-            return Response(status_code=403, content="Forbidden")
+            return Response(status_code=401, content="Unauthorized")
 
         print("Valid token, proceeding...")
         print(f"-> Received {request.method} {request.url}")
@@ -393,19 +386,18 @@ Next, we check if the credential is valid, if not we again stop the request but 
 
 ```typescript
 if(!isValid(token)) {
-    res.status(403).send('Forbidden');
+    res.status(401).send('Unauthorized');
     return;
 } 
 ```
 
-Note how you now get a 403 error.
+An invalid credential returns 401. A valid credential with insufficient permission for an operation returns 403.
 
 Here's the full code:
 
 ```typescript
 app.use((req, res, next) => {
-    console.log('Request received:', req.method, req.url, req.headers);
-    console.log('Headers:', req.headers["authorization"]);
+    console.log('Request received:', req.method, req.url);
     if(!req.headers["authorization"]) {
         res.status(401).send('Unauthorized');
         return;
@@ -414,7 +406,7 @@ app.use((req, res, next) => {
     let token = req.headers["authorization"];
 
     if(!isValid(token)) {
-        res.status(403).send('Forbidden');
+        res.status(401).send('Unauthorized');
         return;
     }  
 
@@ -473,7 +465,7 @@ let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
     headers: {
-      "Authorization": "secret123"
+      "Authorization": `Bearer ${token}`
     }
   }
 };
@@ -730,8 +722,7 @@ We can use `app.use` and a middleware that will run for all requests.
 
 ```typescript
 app.use((req, res, next) => {
-    console.log('Request received:', req.method, req.url, req.headers);
-    console.log('Headers:', req.headers["authorization"]);
+    console.log('Request received:', req.method, req.url);
 
     // 1. Check if authorization header has been sent
 
@@ -744,7 +735,7 @@ app.use((req, res, next) => {
 
     // 2. Check if token is valid
     if(!isValid(token)) {
-        res.status(403).send('Forbidden');
+        res.status(401).send('Unauthorized');
         return;
     }  
 
@@ -759,6 +750,7 @@ app.use((req, res, next) => {
     // 4. Verify the token has the right permissions
     if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
+        return;
     }
 
     console.log("User has required scopes");
@@ -797,6 +789,7 @@ There's quite a few things we can let our middleware and that our middleware SHO
    ```typescript
    if(!hasScopes(token, ["User.Read"])){
         res.status(403).send('Forbidden - insufficient scopes');
+        return;
    }
    ```
 
