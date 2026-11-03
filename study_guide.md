@@ -188,9 +188,9 @@ The repository is organized into twelve main sections, each focusing on differen
    - OAuth2 authentication demos
    - Real-time search capabilities
    - Real-time streaming
-   - Root contexts implementation
+   - Root contexts implementation (legacy: Roots are deprecated in MCP `2026-07-28`)
    - Routing strategies
-   - Sampling techniques
+   - Sampling techniques (legacy: Sampling is deprecated in MCP `2026-07-28`)
    - Scaling approaches
    - Security considerations
    - Entra ID security integration

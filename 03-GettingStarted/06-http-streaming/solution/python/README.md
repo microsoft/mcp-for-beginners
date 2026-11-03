@@ -122,7 +122,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 ### Key Implementation Steps
 
 1. **Create the MCP server using `MCPServer` from the official MCP Python SDK (`from mcp.server.mcpserver import MCPServer`).**
-2. **Define a tool that processes a list and sends notifications using `ctx.info()` or `ctx.log()`.**
+2. **Define a tool that processes a list and sends notifications using `ctx.info()` or `ctx.log()`.** These send MCP Logging notifications, which are deprecated as of MCP `2026-07-28`; see the warning in the [lesson](../../README.md#server-side-sending-notifications).
 3. **Run the server with `transport="streamable-http"`.**
 4. **Implement a client with a message handler to display notifications as they arrive.**
 

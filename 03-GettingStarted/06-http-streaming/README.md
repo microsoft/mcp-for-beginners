@@ -396,6 +396,19 @@ async def process_files(message: str, ctx: Context) -> TextContent:
 
 In the preceding example, the `process_files` tool sends three notifications to the client as it processes each file. The `ctx.info()` method is used to send informational messages.
 
+> [!WARNING]
+> `ctx.info()`, `ctx.log()`, and their .NET equivalents send MCP **Logging**
+> notifications (`notifications/message`). Logging is deprecated as of MCP
+> `2026-07-28`. The official
+> [Deprecated Features](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)
+> registry recommends logging to `stderr` for stdio transports and using
+> OpenTelemetry for observability. These examples are kept because existing
+> servers and clients still use them. With MCP Python SDK 2.3.0, these calls
+> emit an `MCPDeprecationWarning`, and on `2026-07-28` connections the client
+> only receives the messages if it opts in to a log level. To report progress
+> to the client, prefer `ctx.report_progress(...)`, which sends
+> `notifications/progress` and is not deprecated.
+
 Additionally, to enable notifications, ensure your server uses a streaming transport (like `streamable-http`) and your client implements a message handler to process notifications. Here's how you can set up the server to use the `streamable-http` transport:
 
 ```python
@@ -516,7 +529,7 @@ Progress notifications are essential for several reasons:
 
 Here's how you can implement progress notifications in MCP:
 
-- **On the server:** Use `ctx.info()` or `ctx.log()` to send notifications as each item is processed. This sends a message to the client before the main result is ready.
+- **On the server:** Use `ctx.info()` or `ctx.log()` to send notifications as each item is processed. This sends a message to the client before the main result is ready. These are deprecated Logging notifications (see the warning above); in new servers, use `ctx.report_progress(progress, total, message)` instead.
 - **On the client:** Implement a message handler that listens for and displays notifications as they arrive. This handler distinguishes between notifications and the final result.
 
 **Server Example:**

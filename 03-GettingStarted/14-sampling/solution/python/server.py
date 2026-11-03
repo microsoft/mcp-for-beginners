@@ -1,19 +1,26 @@
-from starlette.applications import Starlette
-from starlette.routing import Mount, Host
+"""Product description server that uses MCP Sampling.
 
-from mcp.server.mcpserver import Context, MCPServer
+DEPRECATED FEATURE: Sampling (`sampling/createMessage`) is deprecated in MCP
+2026-07-28. This sample is kept for legacy (2025-11-25) clients. New servers
+should call an LLM provider API directly; see ../../code/python/server_direct_llm.py.
 
-from mcp.types import SamplingMessage, TextContent
+With mcp 2.3.0, `ctx.session.create_message` only works when the client connected
+with the 2025-11-25 `initialize` handshake (as client.py does). On a 2026-07-28
+connection it raises `NoBackChannelError`.
+
+Run with: python server.py   (listens on http://localhost:8000/mcp)
+"""
 
 import json
-
-
-from uuid import uuid4
 from typing import List
+
 from pydantic import BaseModel
 
+from mcp.server.mcpserver import Context, MCPServer
+from mcp.types import SamplingMessage, TextContent
 
-mcp = MCPServer("My App")
+mcp = MCPServer("Product description generator")
+
 
 class Product(BaseModel):
     id: int
@@ -27,7 +34,9 @@ class Product(BaseModel):
             description=description
         )
 
+
 products: List[Product] = []
+
 
 @mcp.tool()
 async def create_product(product_name: str, keywords: str, ctx: Context) -> str:
@@ -37,6 +46,7 @@ async def create_product(product_name: str, keywords: str, ctx: Context) -> str:
 
     prompt = f"Create a product description about {product_name} described by as {keywords}"
 
+    # Deprecated: ask the client's LLM to write the description (Sampling).
     result = await ctx.session.create_message(
         messages=[
             SamplingMessage(
@@ -46,7 +56,6 @@ async def create_product(product_name: str, keywords: str, ctx: Context) -> str:
         ],
         max_tokens=100,
     )
-
 
     product.description = result.content.text
 
@@ -59,23 +68,13 @@ async def create_product(product_name: str, keywords: str, ctx: Context) -> str:
         "description": product.description
     })
 
+
 @mcp.tool()
 def get_products() -> str:
     """List all products created so far."""
     return json.dumps([product.model_dump() for product in products])
 
+
 if __name__ == "__main__":
-    # stdio servers must keep stdout for MCP messages, so log to stderr
-    import sys
-    print("Starting server...", file=sys.stderr)
-    mcp.run()
-
-
-# Mount the SSE server to the existing ASGI server
-app = Starlette(
-    routes=[
-        Mount('/', app=mcp.sse_app()),
-    ]
-)
-
-# run app with: uvicorn 03-GettingStarted/12-sampling/solution/python/server:app --port 8000
+    print("Starting server on http://localhost:8000/mcp ...")
+    mcp.run(transport="streamable-http")
