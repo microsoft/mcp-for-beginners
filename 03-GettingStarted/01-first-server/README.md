@@ -231,7 +231,7 @@ code .
 #### .NET
 
 ```sh
-dotnet new console -n McpCalculatorServer
+dotnet new console -n McpCalculatorServer --framework net10.0
 cd McpCalculatorServer
 ```
 
@@ -475,11 +475,11 @@ touch server.py
 
 #### .NET
 
-Install the required NuGet packages:
+Install the required NuGet packages (this lesson uses the .NET 10 SDK):
 
 ```sh
-dotnet add package ModelContextProtocol --prerelease
-dotnet add package Microsoft.Extensions.Hosting
+dotnet add package ModelContextProtocol --version 2.3.1
+dotnet add package Microsoft.Extensions.Hosting --version 10.0.14
 ```
 
 #### Java
