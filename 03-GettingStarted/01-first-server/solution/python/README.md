@@ -17,7 +17,7 @@ venv\Scripts\activate
 ## -2- Install the dependencies
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 ## -3- Run the sample

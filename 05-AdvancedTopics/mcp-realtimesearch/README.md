@@ -221,12 +221,12 @@ from collections.abc import AsyncIterator
 
 # Import standard MCP libraries
 from mcp.client.session import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 from mcp.types import TextContent, CreateMessageRequestParams, CreateMessageResult
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import Context, MCPServer
 
-# Create a FastMCP server for web search
-search_server = FastMCP("WebSearch")
+# Create an MCP server for web search (MCPServer was called FastMCP in mcp 1.x)
+search_server = MCPServer("WebSearch")
 
 # Class to handle web search operations
 class WebSearchHandler:
@@ -303,8 +303,8 @@ search_handler = WebSearchHandler(
 )
 
 # Setup lifespan to manage the search handler
-@asyncio.asynccontextmanager
-async def app_lifespan(server: FastMCP):
+@asynccontextmanager
+async def app_lifespan(server: MCPServer):
     """Manage application lifecycle"""
     await search_handler.initialize()
     try:
@@ -313,14 +313,15 @@ async def app_lifespan(server: FastMCP):
         await search_handler.close()
 
 # Set lifespan for the server
-search_server = FastMCP("WebSearch", lifespan=app_lifespan)
+search_server = MCPServer("WebSearch", lifespan=app_lifespan)
 
 # Register a web search tool
 @search_server.tool()
 async def web_search(query: str, max_results: int = 5, 
                    include_domains: List[str] = None,
                    exclude_domains: List[str] = None,
-                   time_period: str = "any") -> Dict[str, Any]:
+                   time_period: str = "any",
+                   ctx: Context = None) -> Dict[str, Any]:
     """
     Search the web for information
     
@@ -330,11 +331,11 @@ async def web_search(query: str, max_results: int = 5,
         include_domains: List of domains to include in search results
         exclude_domains: List of domains to exclude from search results
         time_period: Time period for results ("day", "week", "month", "any")
-        
+        ctx: Injected by the SDK because of the Context type annotation
+
     Returns:
         Dictionary containing search results
     """
-    ctx = search_server.get_context()
     search_handler = ctx.request_context.lifespan_context["search_handler"]
     
     results = await search_handler.perform_search(
@@ -350,7 +351,7 @@ async def web_search(query: str, max_results: int = 5,
 # Example client usage
 async def client_example():
     # Connect to the search server using Streamable HTTP transport
-    async with streamablehttp_client("http://localhost:8000/mcp") as (read, write, _):
+    async with streamable_http_client("http://localhost:8000/mcp") as (read, write):
         async with ClientSession(read, write) as session:
             # Initialize the connection
             await session.initialize()
@@ -565,7 +566,7 @@ console.log('Search server running at http://localhost:8000/mcp');
 > 
 > These examples showcase:
 > 
-> 1. **Python Implementation**: A FastMCP server implementation that provides a web search tool and connects to an external search API. This example demonstrates proper lifespan management, context handling, and tool implementation following the patterns of the [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). The server utilizes the recommended Streamable HTTP transport which has superseded the older SSE transport for production deployments.
+> 1. **Python Implementation**: An `MCPServer` implementation (the high-level server class in the official MCP Python SDK 2.x, formerly `FastMCP`) that provides a web search tool and connects to an external search API. This example demonstrates proper lifespan management, context handling, and tool implementation following the patterns of the [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk). The server utilizes the recommended Streamable HTTP transport which has superseded the older SSE transport for production deployments.
 > 
 > 2. **JavaScript Implementation**: A TypeScript/JavaScript implementation using the FastMCP pattern from the [official MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) to create a search server with proper tool definitions and client connections. It follows the latest recommended patterns for session management and context preservation.
 > 

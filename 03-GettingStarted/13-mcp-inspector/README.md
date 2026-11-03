@@ -369,6 +369,8 @@ pip show mcp
 **Example improved error handling:**
 
 ```python
+from mcp.server.mcpserver.exceptions import ToolError
+
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
@@ -376,9 +378,11 @@ async def my_tool(param1: str, param2: int) -> str:
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
-        raise McpError(f"Invalid parameter: {e}")
+        # ToolError is returned to the client as a tool result with is_error=True,
+        # so the LLM can see the message and react to it
+        raise ToolError(f"Invalid parameter: {e}")
     except Exception as e:
-        raise McpError(f"Tool failed: {type(e).__name__}: {e}")
+        raise ToolError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
 ### Scenario 4: Resource Content Empty

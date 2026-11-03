@@ -74,17 +74,17 @@ flowchart TD
 
 ### Step 1 — Shared MCP Tool Server
 
-Start by exposing the tools that both agents will call. In this example we use a minimal Python MCP server built with FastMCP.
+Start by exposing the tools that both agents will call. In this example we use a minimal Python MCP server built with `MCPServer` from the official MCP Python SDK (`mcp>=2.3.0,<3`; this class was called `FastMCP` in mcp 1.x).
 
 <details>
 <summary>Python – Shared Tool Server</summary>
 
 ```python
 # shared_tools_server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 import httpx
 
-mcp = FastMCP("debate-tools")
+mcp = MCPServer("debate-tools")
 
 @mcp.tool()
 async def web_search(query: str) -> str:
@@ -279,7 +279,7 @@ async def run_agent_turn(
         {
             "name": t.name,
             "description": t.description or "",
-            "input_schema": t.inputSchema,
+            "input_schema": t.input_schema,
         }
         for t in tools_result.tools
     ]

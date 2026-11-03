@@ -15,10 +15,10 @@ This module demonstrates how to create a simple MCP server with calculator tools
 that can perform basic arithmetic operations (add, subtract, multiply, divide).
 """
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 import math
 
-server = FastMCP("calculator")
+server = MCPServer("calculator")
 
 @server.tool()
 def add(a: float, b: float) -> float:

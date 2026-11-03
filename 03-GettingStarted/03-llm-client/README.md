@@ -440,20 +440,20 @@ In the preceding code we've:
 # List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
-for resource in resources:
-    print("Resource: ", resource)
+for resource in resources.resources:
+    print("Resource: ", resource.uri)
 
 # List available tools
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
-    print("Tool", tool.inputSchema["properties"])
+    print("Tool", tool.input_schema["properties"])
 ```
 
 Here's what we added:
 
-- Listing resources and tools and printed them. For tools we also list `inputSchema` which we use later.
+- Listing resources and tools and printed them. For tools we also list `input_schema` (the tool's `inputSchema` in the MCP protocol) which we use later.
 
 #### .NET
 
@@ -579,7 +579,7 @@ Next step after listing server capabilities is to convert them into a format tha
                 "type": "function",
                 "parameters": {
                     "type": "object",
-                    "properties": tool.inputSchema["properties"]
+                    "properties": tool.input_schema["properties"]
                 }
             }
         }
@@ -595,7 +595,7 @@ Next step after listing server capabilities is to convert them into a format tha
     functions = []
     for tool in tools.tools:
         print("Tool: ", tool.name)
-        print("Tool", tool.inputSchema["properties"])
+        print("Tool", tool.input_schema["properties"])
         functions.append(convert_to_llm_tool(tool))
     ```
 

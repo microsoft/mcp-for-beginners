@@ -4,10 +4,10 @@ import os
 import platform
 import subprocess
 from pathlib import Path
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
-# Initialize FastMCP server
-server = FastMCP("github_mcp_server")
+# Initialize the MCP server
+server = MCPServer("github_mcp_server")
 
 @server.tool()
 async def get_weather(location: str) -> str:

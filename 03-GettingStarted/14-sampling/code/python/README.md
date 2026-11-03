@@ -1,9 +1,8 @@
 # Run the sample
 
 > [!WARNING]
-> This sample uses deprecated Sampling and a legacy HTTP+SSE endpoint. It is
-> retained for MCP `2025-11-25` compatibility. New implementations should call
-> an LLM provider directly and use Streamable HTTP for remote MCP traffic.
+> This sample uses deprecated Sampling. It is retained for MCP `2025-11-25`
+> compatibility. New implementations should call an LLM provider directly.
 
 ## Create virtual environment
 
@@ -15,13 +14,15 @@ source ./venv/bin/activate
 ## Install dependencies
 
 ```sh
-pip install "mcp[cli]"
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 ## Run the server
 
+The server uses the Streamable HTTP transport and listens on `http://localhost:8000/mcp`:
+
 ```sh
-uvicorn server:app --port 8000
+python server.py
 ```
 
 ## Test the server out with GitHub Copilot and VS Code
@@ -31,7 +32,7 @@ Add the entry to mcp.json like so:
 ```json
 "servers": {
     "my-mcp-server-999e9ea3": {
-        "url": "http://localhost:8001/sse",
+        "url": "http://localhost:8000/mcp",
         "type": "http"
     }
 }

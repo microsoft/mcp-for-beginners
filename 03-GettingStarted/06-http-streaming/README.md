@@ -256,7 +256,7 @@ and [privacy policy](https://parallel.ai/privacy-policy).
 With Python 3.10 or newer and a virtual environment activated, install the SDK:
 
 ```sh
-python -m pip install "mcp>=1.10,<2"
+python -m pip install "mcp>=2.3.0,<3"
 ```
 
 Save this as `hosted_search.py` and run `python hosted_search.py`:
@@ -266,15 +266,14 @@ import asyncio
 from uuid import uuid4
 
 from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 
 
 async def main() -> None:
     session_id = str(uuid4())
-    async with streamablehttp_client("https://search.parallel.ai/mcp") as (
+    async with streamable_http_client("https://search.parallel.ai/mcp") as (
         read_stream,
         write_stream,
-        _,
     ):
         async with ClientSession(read_stream, write_stream) as session:
             await session.initialize()
@@ -289,7 +288,7 @@ async def main() -> None:
                     "session_id": session_id,
                 },
             )
-            if result.isError:
+            if result.is_error:
                 raise RuntimeError(f"Search tool failed: {result.content}")
             for block in result.content:
                 if block.type == "text":
@@ -595,7 +594,7 @@ There are two compelling reasons to upgrade from SSE to Streamable HTTP:
 Here's how you can migrate from SSE to Streamable HTTP in your MCP applications:
 
 - **Update server code** to use `transport="streamable-http"` in `mcp.run()`.
-- **Update client code** to use `streamablehttp_client` instead of SSE client.
+- **Update client code** to use `streamable_http_client` (from `mcp.client.streamable_http`) instead of the SSE client.
 - **Implement a message handler** in the client to process notifications.
 - **Test for compatibility** with existing tools and workflows.
 
