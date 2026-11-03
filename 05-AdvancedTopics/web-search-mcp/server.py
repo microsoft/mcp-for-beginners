@@ -9,7 +9,7 @@ real-time web data to LLMs through four specialized tools:
 - product_search: For e-commerce product information
 - qna: For direct question-answer snippets
 
-The server is built using FastMCP and showcases advanced concepts
+The server is built using MCPServer (from the official MCP Python SDK) and showcases advanced concepts
 like external API integration, structured data parsing, and
 multi-tool orchestration.
 """
@@ -20,7 +20,7 @@ import httpx
 import logging
 from typing import Dict, Any
 from dotenv import load_dotenv
-from mcp.server.fastmcp import FastMCP, Context
+from mcp.server.mcpserver import MCPServer, Context
 
 # Configure logging
 logging.basicConfig(
@@ -41,8 +41,8 @@ SERPAPI_BASE_URL = "https://serpapi.com/search"
 DEFAULT_TIMEOUT = 10.0  # seconds
 DEFAULT_RESULTS_LIMIT = 5
 
-# Initialize FastMCP server
-mcp = FastMCP("WebSearchServer")
+# Initialize the MCP server
+mcp = MCPServer("WebSearchServer")
 
 async def make_serpapi_request(ctx: Context, params: Dict[str, Any]) -> Dict[str, Any]:
     """

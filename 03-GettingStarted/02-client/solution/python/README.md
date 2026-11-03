@@ -17,7 +17,7 @@ venv\Scripts\activate
 ## -2- Install the dependencies
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 ## -3- Run the sample
@@ -30,15 +30,12 @@ You should see an output similar to:
 
 ```text
 LISTING RESOURCES
-Resource:  ('meta', None)
-Resource:  ('nextCursor', None)
-Resource:  ('resources', [])
-INFO Processing request of type ListToolsRequest server.py:534
+LISTING RESOURCE TEMPLATES
+Resource template:  greeting://{name}
 LISTING TOOLS
 Tool:  add
 READING RESOURCE
-INFO Processing request of type ReadResourceRequest server.py:534
+Hello, hello!
 CALL TOOL
-INFO Processing request of type CallToolRequest server.py:534
-[TextContent(type='text', text='8', annotations=None)]
+[TextContent(type='text', text='8', annotations=None, meta=None)]
 ```

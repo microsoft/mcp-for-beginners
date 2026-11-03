@@ -1,4 +1,4 @@
-# pip install PyJWT
+# pip install "PyJWT>=2.15.1,<3"
 
 # create a token
 import jwt

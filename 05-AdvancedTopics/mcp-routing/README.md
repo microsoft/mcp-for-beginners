@@ -390,7 +390,17 @@ In the preceding code, we've:
 
 ## Sampling and Routing Architecture in MCP
 
-Sampling is a critical component of the Model Context Protocol (MCP) that allows for efficient request processing and routing. It involves analyzing incoming requests to determine the most appropriate model or service to handle them, based on various criteria such as content type, user context, and system load.
+> [!NOTE]
+> In this section, "sampling" means choosing generation parameters (such as
+> temperature) for the model that handles a request. It is not the MCP
+> **Sampling** feature (`sampling/createMessage`), which is deprecated as of
+> MCP `2026-07-28`. The official
+> [Deprecated Features](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)
+> registry recommends integrating directly with LLM provider APIs instead,
+> which is the pattern this architecture uses. See
+> [5.6 Sampling](../mcp-sampling/README.md) for details.
+
+Sampling configuration is a key part of a routing architecture built on the Model Context Protocol (MCP). It involves analyzing incoming requests to determine the most appropriate model or service to handle them, and the generation parameters to use, based on various criteria such as content type, user context, and system load.
 
 Sampling and routing can be combined to create a robust architecture that optimizes resource utilization and ensures high availability. The sampling process can be used to classify requests, while routing directs them to the appropriate models or services.
 

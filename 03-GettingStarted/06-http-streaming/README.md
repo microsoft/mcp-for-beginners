@@ -256,7 +256,7 @@ and [privacy policy](https://parallel.ai/privacy-policy).
 With Python 3.10 or newer and a virtual environment activated, install the SDK:
 
 ```sh
-python -m pip install "mcp>=1.10,<2"
+python -m pip install "mcp>=2.3.0,<3"
 ```
 
 Save this as `hosted_search.py` and run `python hosted_search.py`:
@@ -266,15 +266,14 @@ import asyncio
 from uuid import uuid4
 
 from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 
 
 async def main() -> None:
     session_id = str(uuid4())
-    async with streamablehttp_client("https://search.parallel.ai/mcp") as (
+    async with streamable_http_client("https://search.parallel.ai/mcp") as (
         read_stream,
         write_stream,
-        _,
     ):
         async with ClientSession(read_stream, write_stream) as session:
             await session.initialize()
@@ -289,7 +288,7 @@ async def main() -> None:
                     "session_id": session_id,
                 },
             )
-            if result.isError:
+            if result.is_error:
                 raise RuntimeError(f"Search tool failed: {result.content}")
             for block in result.content:
                 if block.type == "text":
@@ -396,6 +395,19 @@ async def process_files(message: str, ctx: Context) -> TextContent:
 ```
 
 In the preceding example, the `process_files` tool sends three notifications to the client as it processes each file. The `ctx.info()` method is used to send informational messages.
+
+> [!WARNING]
+> `ctx.info()`, `ctx.log()`, and their .NET equivalents send MCP **Logging**
+> notifications (`notifications/message`). Logging is deprecated as of MCP
+> `2026-07-28`. The official
+> [Deprecated Features](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)
+> registry recommends logging to `stderr` for stdio transports and using
+> OpenTelemetry for observability. These examples are kept because existing
+> servers and clients still use them. With MCP Python SDK 2.3.0, these calls
+> emit an `MCPDeprecationWarning`, and on `2026-07-28` connections the client
+> only receives the messages if it opts in to a log level. To report progress
+> to the client, prefer `ctx.report_progress(...)`, which sends
+> `notifications/progress` and is not deprecated.
 
 Additionally, to enable notifications, ensure your server uses a streaming transport (like `streamable-http`) and your client implements a message handler to process notifications. Here's how you can set up the server to use the `streamable-http` transport:
 
@@ -517,7 +529,7 @@ Progress notifications are essential for several reasons:
 
 Here's how you can implement progress notifications in MCP:
 
-- **On the server:** Use `ctx.info()` or `ctx.log()` to send notifications as each item is processed. This sends a message to the client before the main result is ready.
+- **On the server:** Use `ctx.info()` or `ctx.log()` to send notifications as each item is processed. This sends a message to the client before the main result is ready. These are deprecated Logging notifications (see the warning above); in new servers, use `ctx.report_progress(progress, total, message)` instead.
 - **On the client:** Implement a message handler that listens for and displays notifications as they arrive. This handler distinguishes between notifications and the final result.
 
 **Server Example:**
@@ -595,7 +607,7 @@ There are two compelling reasons to upgrade from SSE to Streamable HTTP:
 Here's how you can migrate from SSE to Streamable HTTP in your MCP applications:
 
 - **Update server code** to use `transport="streamable-http"` in `mcp.run()`.
-- **Update client code** to use `streamablehttp_client` instead of SSE client.
+- **Update client code** to use `streamable_http_client` (from `mcp.client.streamable_http`) instead of the SSE client.
 - **Implement a message handler** in the client to process notifications.
 - **Test for compatibility** with existing tools and workflows.
 

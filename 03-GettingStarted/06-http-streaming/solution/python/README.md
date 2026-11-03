@@ -10,8 +10,8 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 
 ### Prerequisites
 
-- Python 3.9 or newer
-- The `mcp` Python package (install with `pip install mcp`)
+- Python 3.10 or newer
+- The `mcp` Python package, version 2.x (install with `pip install "mcp[cli]>=2.3.0,<3"`)
 
 ### Installation & Setup
 
@@ -33,7 +33,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 1. **Install required dependencies:**
 
    ```pwsh
-   pip install "mcp[cli]" fastapi requests
+   pip install "mcp[cli]>=2.3.0,<3" "fastapi>=0.162.0,<1" "uvicorn>=0.54.0,<1" "requests>=2.34.2,<3"
    ```
 
 ### Files
@@ -46,7 +46,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 1. Navigate to the solution directory:
 
    ```pwsh
-   cd 03-GettingStarted/06-http-streaming/solution
+   cd 03-GettingStarted/06-http-streaming/solution/python
    ```
 
 2. Start the classic HTTP streaming server:
@@ -67,7 +67,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 1. Open a new terminal (activate the same virtual environment and directory):
 
    ```pwsh
-   cd 03-GettingStarted/06-http-streaming/solution
+   cd 03-GettingStarted/06-http-streaming/solution/python
    python client.py
    ```
 
@@ -88,7 +88,7 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 
 1. Navigate to the solution directory:
    ```pwsh
-   cd 03-GettingStarted/06-http-streaming/solution
+   cd 03-GettingStarted/06-http-streaming/solution/python
    ```
 2. Start the MCP server with the streamable-http transport:
    ```pwsh
@@ -104,26 +104,25 @@ Here's how to run the classic HTTP streaming server and client, as well as the M
 
 1. Open a new terminal (activate the same virtual environment and directory):
    ```pwsh
-   cd 03-GettingStarted/06-http-streaming/solution
+   cd 03-GettingStarted/06-http-streaming/solution/python
    python client.py mcp
    ```
 2. You should see notifications printed in real time as the server processes each item:
    ```
    Running MCP client...
    Starting client...
-   Session ID before init: None
-   Session ID after init: a30ab7fca9c84f5fa8f5c54fe56c9612
    Session initialized, ready to call tools.
-   Received message: root=LoggingMessageNotification(...)
-   NOTIFICATION: root=LoggingMessageNotification(...)
+   MCP Log: info - Processing file_1.txt (1/3)...
+   Received message: method='notifications/message' params=LoggingMessageNotificationParams(...)
+   NOTIFICATION: method='notifications/message' params=LoggingMessageNotificationParams(...)
    ...
-   Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client')]
+   Tool result: meta=None content=[TextContent(type='text', text='Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello from client', annotations=None, meta=None)] ...
    ```
 
 ### Key Implementation Steps
 
-1. **Create the MCP server using FastMCP.**
-2. **Define a tool that processes a list and sends notifications using `ctx.info()` or `ctx.log()`.**
+1. **Create the MCP server using `MCPServer` from the official MCP Python SDK (`from mcp.server.mcpserver import MCPServer`).**
+2. **Define a tool that processes a list and sends notifications using `ctx.info()` or `ctx.log()`.** These send MCP Logging notifications, which are deprecated as of MCP `2026-07-28`; see the warning in the [lesson](../../README.md#server-side-sending-notifications).
 3. **Run the server with `transport="streamable-http"`.**
 4. **Implement a client with a message handler to display notifications as they arrive.**
 
