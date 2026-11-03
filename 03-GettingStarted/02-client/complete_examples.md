@@ -25,7 +25,13 @@ The file declares `public class SDKClient` and needs Spring AI 2.0.2 (MCP Java S
 cp client_example_java.java solution/java/src/main/java/com/microsoft/mcp/sample/client/SDKClient.java
 cd solution/java
 ./mvnw clean compile exec:java
+
+# Afterwards, restore the solution's own SDKClient.java
+git checkout -- src/main/java/com/microsoft/mcp/sample/client/SDKClient.java
 ```
+
+> **Note:** The `cp` command temporarily replaces the solution's `SDKClient.java`.
+> Run the `git checkout` line when you're done to restore the original file.
 
 ### 2. C# Client (`client_example_csharp.cs`)
 
