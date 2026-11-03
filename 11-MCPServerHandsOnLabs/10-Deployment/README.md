@@ -556,7 +556,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.lock.txt
-          pip install pytest pytest-cov pytest-asyncio
+          pip install "pytest>=9.2.0,<10" "pytest-cov>=7.1.0,<8" "pytest-asyncio>=1.4.1,<2"
 
       - name: Set up test database
         run: |
@@ -610,7 +610,7 @@ jobs:
 
       - name: Run Bandit security linter
         run: |
-          pip install bandit[toml]
+          pip install "bandit[toml]>=1.9.4,<2"
           bandit -r mcp_server/ -f json -o bandit-report.json
 
   build:
@@ -787,7 +787,7 @@ stages:
           - script: |
               python -m pip install --upgrade pip
               pip install -r requirements.lock.txt
-              pip install pytest pytest-cov pytest-asyncio
+              pip install "pytest>=9.2.0,<10" "pytest-cov>=7.1.0,<8" "pytest-asyncio>=1.4.1,<2"
             displayName: 'Install dependencies'
 
           - script: |

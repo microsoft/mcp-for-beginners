@@ -10,7 +10,7 @@
 - **Frameworks & SDKs**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
-  - FastMCP (Python)
+  - MCP Python SDK 2.x (`MCPServer`, formerly FastMCP) for Python
   - LangChain4j (Java)
 - **Databases**: PostgreSQL with pgvector extension
 - **Cloud Platforms**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)
@@ -86,7 +86,7 @@ mvn spring-boot:run
   - TypeScript sample validation:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
   - Python sample validation:
-    `cd 10-StreamliningAIWorkflowsBuildingAnMCPServerWithAIToolkit/lab3/code/weather_mcp && python -m pip install -e . && pytest -q`
+    `cd 03-GettingStarted/samples/python && python -m pip install -r requirements.txt "pytest>=9.2.0,<10" && python -m pytest -q`
   - Java sample validation:
     `cd 03-GettingStarted/samples/java/calculator && mvn -B -ntp test verify`
 - [x] **One realistic workflow that can become an MCP tool**:
@@ -263,7 +263,7 @@ mvn verify
 - Follow PEP 8 style guidelines
 - Use type hints where appropriate
 - Include docstrings for functions and classes
-- Use modern Python features (3.8+)
+- Use modern Python features (3.10+, the minimum supported by the `mcp` SDK)
 
 #### Java
 - Follow Spring Boot conventions

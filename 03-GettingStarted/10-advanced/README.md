@@ -14,7 +14,9 @@ Here's what the creation of an MCP Server looks like with the regular server
 **Python**
 
 ```python
-mcp = FastMCP("Demo")
+from mcp.server.mcpserver import MCPServer
+
+mcp = MCPServer("Demo")
 
 # Add an addition tool
 @mcp.tool()
@@ -60,24 +62,30 @@ Let's have a look at how the code now looks:
 **Python**
 
 ```python
-@server.list_tools()
-async def handle_list_tools() -> list[types.Tool]:
+import mcp.types as types
+from mcp.server import Server, ServerRequestContext
+
+async def handle_list_tools(
+    ctx: ServerRequestContext, params: types.PaginatedRequestParams | None
+) -> types.ListToolsResult:
     """List available tools."""
-    return [
+    return types.ListToolsResult(tools=[
         types.Tool(
             name="add",
             description="Add two numbers",
-            inputSchema={
+            input_schema={
                 "type": "object",
                 "properties": {
                     "a": {"type": "number", "description": "number to add"}, 
                     "b": {"type": "number", "description": "number to add"}
                 },
-                "required": ["query"],
+                "required": ["a", "b"],
             },
         )
-    ]
+    ])
 ```
+
+> In the Python SDK 2.x (`mcp>=2.3.0,<3`), low-level handlers are plain async functions that you pass to the `Server` constructor, for example `Server("demo", on_list_tools=handle_list_tools, on_call_tool=handle_call_tool)`. Each handler receives a request context and the typed request parameters, and returns the full result object (such as `ListToolsResult`).
 
 **TypeScript**
 
@@ -122,16 +130,17 @@ What about calling tools, is it the same idea then, one handler to call a tool, 
 **Python**
 
 ```python
-@server.call_tool()
 async def handle_call_tool(
-    name: str, arguments: dict[str, str] | None
-) -> list[types.TextContent]:
-    
+    ctx: ServerRequestContext, params: types.CallToolRequestParams
+) -> types.CallToolResult:
+    name = params.name
+    arguments = params.arguments or {}
+
     # tools is a dictionary with tool names as keys
-    if name not in tools.tools:
+    if name not in tools:
         raise ValueError(f"Unknown tool: {name}")
     
-    tool = tools.tools[name]
+    tool = tools[name]
 
     result = "default"
     try:
@@ -139,9 +148,11 @@ async def handle_call_tool(
     except Exception as e:
         raise ValueError(f"Error calling tool {name}: {str(e)}")
 
-    return [
-        types.TextContent(type="text", text=str(result))
-    ] 
+    return types.CallToolResult(
+        content=[types.TextContent(type="text", text=str(result))]
+    )
+
+server = Server("demo", on_list_tools=handle_list_tools, on_call_tool=handle_call_tool)
 ```
 
 **TypeScript**
@@ -456,23 +467,23 @@ Next, to handle listing our tools, we need to set up a request handler for that.
 # code omitted for brevity
 from tools import tools
 
-@server.list_tools()
-async def handle_list_tools() -> list[types.Tool]:
+async def handle_list_tools(
+    ctx: ServerRequestContext, params: types.PaginatedRequestParams | None
+) -> types.ListToolsResult:
     tool_list = []
-    print(tools)
 
     for tool in tools.values():
         tool_list.append(
             types.Tool(
                 name=tool["name"],
                 description=tool["description"],
-                inputSchema=pydantic_to_json(tool["input_schema"]),
+                input_schema=convert_to_json(tool["input_schema"]),
             )
         )
-    return tool_list
+    return types.ListToolsResult(tools=tool_list)
 ```
 
-Here, we add the decorator `@server.list_tools` and the implementing function `handle_list_tools`. In the latter, we need to produce a list of tools. Note how each tool needs to have a name, description and inputSchema.   
+Here, we implement the function `handle_list_tools` and later pass it to the server as `on_list_tools=handle_list_tools`. In this function, we need to produce a list of tools. Note how each tool needs to have a name, description and input schema (`input_schema` in Python, `inputSchema` on the wire). `convert_to_json` turns the Pydantic model into a JSON schema, see [server.py](./code/python/server.py) for its implementation.   
 
 **TypeScript**
 
@@ -509,19 +520,20 @@ To call a tool, we need set up another request handler, this time focused on dea
 
 **Python**
 
-Let's use the decorator `@server.call_tool` and implement it with a function like `handle_call_tool`. Within that function, we need to parse out the tool name, its argument and ensure the arguments are valid for the tool in question. We can either validate the arguments in this function or downstream in the actual tool.
+Let's implement a function like `handle_call_tool` and pass it to the server as `on_call_tool=handle_call_tool`. Within that function, we need to parse out the tool name, its argument and ensure the arguments are valid for the tool in question. We can either validate the arguments in this function or downstream in the actual tool.
 
 ```python
-@server.call_tool()
 async def handle_call_tool(
-    name: str, arguments: dict[str, str] | None
-) -> list[types.TextContent]:
-    
+    ctx: ServerRequestContext, params: types.CallToolRequestParams
+) -> types.CallToolResult:
+    name = params.name
+    arguments = params.arguments or {}
+
     # tools is a dictionary with tool names as keys
-    if name not in tools.tools:
+    if name not in tools:
         raise ValueError(f"Unknown tool: {name}")
     
-    tool = tools.tools[name]
+    tool = tools[name]
 
     result = "default"
     try:
@@ -530,14 +542,20 @@ async def handle_call_tool(
     except Exception as e:
         raise ValueError(f"Error calling tool {name}: {str(e)}")
 
-    return [
-        types.TextContent(type="text", text=str(result))
-    ]
+    return types.CallToolResult(
+        content=[types.TextContent(type="text", text=str(result))]
+    )
+
+server = Server(
+    "example-server",
+    on_list_tools=handle_list_tools,
+    on_call_tool=handle_call_tool,
+)
 ```
 
 Here's what goes on:
 
-- Our tool name is already present as the input parameter `name` which is true for our arguments in the form of the `arguments` dictionary.
+- The tool name and its arguments come from the request parameters, `params.name` and `params.arguments`.
 
 - The tool is called with `result = await tool["handler"](arguments)`. The validation of the arguments happens in the `handler` property which points to a function, if that fails it will raise an exception. 
 

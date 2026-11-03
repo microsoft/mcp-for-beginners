@@ -561,7 +561,7 @@ stages:
     - script: |
         python -m pip install --upgrade pip
         pip install -r requirements.lock.txt
-        pip install pytest pytest-cov
+        pip install "pytest>=9.2.0,<10" "pytest-cov>=7.1.0,<8"
       displayName: 'Install dependencies'
     
     - script: |

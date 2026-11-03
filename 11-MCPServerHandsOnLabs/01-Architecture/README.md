@@ -28,9 +28,11 @@ Our MCP server implements a **layered architecture** that separates concerns and
 ### Layer 1: Protocol Layer (FastMCP)
 **Responsibility**: Handle MCP protocol communication and message routing
 
+> **Note:** The sample repository pins the MCP Python SDK to `mcp>=1.28.1,<2.0.0`, where the high-level server class is `FastMCP` (`from mcp.server.fastmcp import FastMCP`). In MCP Python SDK 2.x, this class was renamed to `MCPServer` (`from mcp.server.mcpserver import MCPServer`); see [Module 3](../../03-GettingStarted/01-first-server/README.md) for 2.x examples.
+
 ```python
-# FastMCP server setup
-from fastmcp import FastMCP
+# FastMCP server setup (MCP Python SDK 1.x, as pinned by the sample repository)
+from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("Zava Retail Analytics")
 

@@ -8,7 +8,7 @@ This TypeScript solution demonstrates how to build an MCP server using the curre
 
 ## Prerequisites
 
-- Node.js 18+ or later
+- Node.js 22 LTS or later (22.19+ if you use the MCP Inspector via `npm run inspector`)
 - npm or yarn package manager
 
 ## Setup Instructions

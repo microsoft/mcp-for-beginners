@@ -1,8 +1,7 @@
 from pydantic import AnyHttpUrl
-from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from mcp.server.auth.settings import AuthSettings
-from mcp.server.fastmcp.server import FastMCP
+from mcp.server.mcpserver import MCPServer
 from typing import Any, Literal
 from starlette.middleware import Middleware
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -46,11 +45,11 @@ class CustomHeaderMiddleware(BaseHTTPMiddleware):
         response.headers['Custom'] = 'Example'
         return response
 
-app = FastMCP(
+# In mcp 2.x, host and port are no longer constructor arguments.
+# They are passed when the server is started (see run() below).
+app = MCPServer(
     name="MCP Resource Server",
     instructions="Resource Server that validates tokens via Authorization Server introspection",
-    host=settings["host"],
-    port=settings["port"],
     debug=True
 )
 
@@ -75,15 +74,15 @@ async def get_time() -> dict[str, Any]:
 async def setup(app) -> None:
     """Run the server using StreamableHTTP transport."""
 
-    starlette_app = app.streamable_http_app()
+    starlette_app = app.streamable_http_app(host=settings["host"])
     return starlette_app
 
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
             starlette_app,
-            host=app.settings.host,
-            port=app.settings.port,
+            host=settings["host"],
+            port=settings["port"],
             log_level=app.settings.log_level.lower(),
         )
     server = uvicorn.Server(config)

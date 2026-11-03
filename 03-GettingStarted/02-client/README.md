@@ -368,8 +368,8 @@ const tools = await client.listTools();
 # List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
-for resource in resources:
-    print("Resource: ", resource)
+for resource in resources.resources:
+    print("Resource: ", resource.uri)
 
 # List available tools
 tools = await session.list_tools()
@@ -518,7 +518,8 @@ In the preceding code we:
 ```python
 # Read a resource
 print("READING RESOURCE")
-content, mime_type = await session.read_resource("greeting://hello")
+resource = await session.read_resource("greeting://hello")
+print(resource.contents[0].text)
 
 # Call a tool
 print("CALL TOOL")
@@ -708,10 +709,10 @@ main().catch((error) => {
 
 ```python
 # server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = MCPServer("Demo")
 
 
 # Add an addition tool

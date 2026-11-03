@@ -190,321 +190,341 @@ The implementation of MCP across various streaming technologies creates a unifie
 
 ### MCP in Various Data Streaming Frameworks
 
-These examples follow the current MCP specification which focuses on a JSON-RPC based protocol with distinct transport mechanisms. The code demonstrates how you can implement custom transports that integrate streaming platforms like Kafka and Pulsar while maintaining full compatibility with the MCP protocol.
+MCP itself is a JSON-RPC protocol. The specification defines two standard transports, stdio and Streamable HTTP, and allows custom transports as long as they carry the same JSON-RPC messages. That gives you two ways to combine MCP with a streaming platform such as Kafka or Pulsar:
 
-The examples are designed to show how streaming platforms can be integrated with MCP to provide real-time data processing while preserving the contextual awareness that is central to MCP. This approach ensures that the code samples accurately reflect the current state of the MCP specification as of June 2025.
+1. **Put the broker behind an MCP server.** The server exposes tools that publish to and consume from topics. While a tool is reading a stream, it sends **progress notifications** to the client, and the final tool result carries the aggregated outcome. This is the most common pattern, and it works with any MCP client over Streamable HTTP.
+2. **Use the broker as the MCP transport.** MCP messages travel over topics instead of HTTP. This is useful when clients and servers can only reach each other through the message bus.
 
-MCP can be integrated with popular streaming frameworks including:
+The examples below use the [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) 2.x (`mcp` 2.3.0, MCP specification `2026-07-28`). Install the packages for the example you want to run:
+
+```bash
+# Kafka example (aiokafka 0.15 requires Python 3.11+)
+pip install "mcp>=2.3.0,<3" "aiokafka>=0.15.0,<1"
+
+# Pulsar example
+pip install "mcp>=2.3.0,<3" "pulsar-client>=3.13.0,<4"
+```
 
 #### Apache Kafka Integration
 
+The server below exposes two tools. `publish_reading` writes a sensor reading (with its event time) to a Kafka topic. `consume_window` reads up to `max_events` readings, reports each one to the client with `ctx.report_progress`, commits the Kafka offsets only after processing, and returns a summary as structured output.
+
 ```python
-import asyncio
+# kafka_mcp_server.py
 import json
-from typing import Dict, Any, Optional
-from confluent_kafka import Consumer, Producer, KafkaError
-from mcp.client import Client, ClientCapabilities
-from mcp.core.message import JsonRpcMessage
-from mcp.core.transports import Transport
+import os
+from datetime import datetime, timezone
+from typing import TypedDict
 
-# Custom transport class to bridge MCP with Kafka
-class KafkaMCPTransport(Transport):
-    def __init__(self, bootstrap_servers: str, input_topic: str, output_topic: str):
-        self.bootstrap_servers = bootstrap_servers
-        self.input_topic = input_topic
-        self.output_topic = output_topic
-        self.producer = Producer({'bootstrap.servers': bootstrap_servers})
-        self.consumer = Consumer({
-            'bootstrap.servers': bootstrap_servers,
-            'group.id': 'mcp-client-group',
-            'auto.offset.reset': 'earliest'
-        })
-        self.message_queue = asyncio.Queue()
-        self.running = False
-        self.consumer_task = None
-        
-    async def connect(self):
-        """Connect to Kafka and start consuming messages"""
-        self.consumer.subscribe([self.input_topic])
-        self.running = True
-        self.consumer_task = asyncio.create_task(self._consume_messages())
-        return self
-        
-    async def _consume_messages(self):
-        """Background task to consume messages from Kafka and queue them for processing"""
-        while self.running:
-            try:
-                msg = self.consumer.poll(1.0)
-                if msg is None:
-                    await asyncio.sleep(0.1)
-                    continue
-                
-                if msg.error():
-                    if msg.error().code() == KafkaError._PARTITION_EOF:
-                        continue
-                    print(f"Consumer error: {msg.error()}")
-                    continue
-                
-                # Parse the message value as JSON-RPC
-                try:
-                    message_str = msg.value().decode('utf-8')
-                    message_data = json.loads(message_str)
-                    mcp_message = JsonRpcMessage.from_dict(message_data)
-                    await self.message_queue.put(mcp_message)
-                except Exception as e:
-                    print(f"Error parsing message: {e}")
-            except Exception as e:
-                print(f"Error in consumer loop: {e}")
-                await asyncio.sleep(1)
-    
-    async def read(self) -> Optional[JsonRpcMessage]:
-        """Read the next message from the queue"""
-        try:
-            message = await self.message_queue.get()
-            return message
-        except Exception as e:
-            print(f"Error reading message: {e}")
-            return None
-    
-    async def write(self, message: JsonRpcMessage) -> None:
-        """Write a message to the Kafka output topic"""
-        try:
-            message_json = json.dumps(message.to_dict())
-            self.producer.produce(
-                self.output_topic,
-                message_json.encode('utf-8'),
-                callback=self._delivery_report
-            )
-            self.producer.poll(0)  # Trigger callbacks
-        except Exception as e:
-            print(f"Error writing message: {e}")
-    
-    def _delivery_report(self, err, msg):
-        """Kafka producer delivery callback"""
-        if err is not None:
-            print(f'Message delivery failed: {err}')
-        else:
-            print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
-    
-    async def close(self) -> None:
-        """Close the transport"""
-        self.running = False
-        if self.consumer_task:
-            self.consumer_task.cancel()
-            try:
-                await self.consumer_task
-            except asyncio.CancelledError:
-                pass
-        self.consumer.close()
-        self.producer.flush()
+from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
+from mcp.server.mcpserver import Context, MCPServer
 
-# Example usage of the Kafka MCP transport
-async def kafka_mcp_example():
-    # Create MCP client with Kafka transport
-    client = Client(
-        {"name": "kafka-mcp-client", "version": "1.0.0"},
-        ClientCapabilities({})
-    )
-    
-    # Create and connect the Kafka transport
-    transport = KafkaMCPTransport(
-        bootstrap_servers="localhost:9092",
-        input_topic="mcp-responses",
-        output_topic="mcp-requests"
-    )
-    
-    await client.connect(transport)
-    
+KAFKA_BOOTSTRAP = os.environ.get("KAFKA_BOOTSTRAP", "localhost:9092")
+
+mcp = MCPServer("kafka-streaming-server")
+
+
+class PublishResult(TypedDict):
+    topic: str
+    partition: int
+    offset: int
+
+
+class WindowSummary(TypedDict):
+    events_processed: int
+    averages: dict[str, float]
+
+
+@mcp.tool()
+async def publish_reading(topic: str, sensor_id: str, value: float) -> PublishResult:
+    """Publish one sensor reading to a Kafka topic."""
+    event = {
+        "sensor_id": sensor_id,
+        "value": value,
+        # Event time travels with the data, so consumers keep the temporal context.
+        "event_time": datetime.now(timezone.utc).isoformat(),
+    }
+    producer = AIOKafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP)
+    await producer.start()
     try:
-        # Initialize the MCP session
-        await client.initialize()
-        
-        # Example of executing a tool via MCP
-        response = await client.execute_tool(
-            "process_data",
-            {
-                "data": "sample data",
-                "metadata": {
-                    "source": "sensor-1",
-                    "timestamp": "2025-06-12T10:30:00Z"
-                }
-            }
+        record = await producer.send_and_wait(
+            topic, json.dumps(event).encode("utf-8"), key=sensor_id.encode("utf-8")
         )
-        
-        print(f"Tool execution response: {response}")
-        
-        # Clean shutdown
-        await client.shutdown()
     finally:
-        await transport.close()
+        await producer.stop()
+    return {"topic": record.topic, "partition": record.partition, "offset": record.offset}
 
-# Run the example
+
+@mcp.tool()
+async def consume_window(
+    topic: str, max_events: int, ctx: Context, timeout_ms: int = 5000
+) -> WindowSummary:
+    """Read up to max_events readings from a Kafka topic and summarize them.
+
+    Each event that arrives is reported to the client as a progress
+    notification, so the caller sees the stream while the tool is running.
+    """
+    consumer = AIOKafkaConsumer(
+        topic,
+        bootstrap_servers=KAFKA_BOOTSTRAP,
+        group_id="mcp-stream-processor",
+        auto_offset_reset="earliest",
+        enable_auto_commit=False,
+    )
+    await consumer.start()
+    events: list[dict] = []
+    try:
+        while len(events) < max_events:
+            batch = await consumer.getmany(
+                timeout_ms=timeout_ms, max_records=max_events - len(events)
+            )
+            if not batch:
+                break  # No new data within the timeout: return what we have.
+            for records in batch.values():
+                for record in records:
+                    event = json.loads(record.value)
+                    events.append(event)
+                    await ctx.report_progress(
+                        progress=len(events),
+                        total=max_events,
+                        message=f"{event['sensor_id']}={event['value']}",
+                    )
+        # Commit only after processing, so a crash re-delivers instead of losing data.
+        await consumer.commit()
+    finally:
+        await consumer.stop()
+
+    by_sensor: dict[str, list[float]] = {}
+    for event in events:
+        by_sensor.setdefault(event["sensor_id"], []).append(event["value"])
+    return {
+        "events_processed": len(events),
+        "averages": {s: sum(v) / len(v) for s, v in by_sensor.items()},
+    }
+
+
 if __name__ == "__main__":
-    asyncio.run(kafka_mcp_example())
+    # Serves MCP over Streamable HTTP at http://127.0.0.1:8000/mcp
+    mcp.run(transport="streamable-http")
+```
+
+The client connects over Streamable HTTP, publishes a few readings, and then consumes them. The `progress_callback` runs for every progress notification while `consume_window` is still running, so the client sees the stream as it is processed rather than only the final result:
+
+```python
+# stream_client.py
+import asyncio
+
+from mcp import Client
+
+
+async def on_progress(progress: float, total: float | None, message: str | None) -> None:
+    # Called for every progress notification while the tool is still running.
+    print(f"[{progress:.0f}/{total:.0f}] {message}")
+
+
+async def main() -> None:
+    async with Client("http://127.0.0.1:8000/mcp") as client:
+        for i, value in enumerate([21.5, 22.0, 22.4, 19.8]):
+            await client.call_tool(
+                "publish_reading",
+                {"topic": "sensor-readings", "sensor_id": f"sensor-{i % 2}", "value": value},
+            )
+
+        result = await client.call_tool(
+            "consume_window",
+            {"topic": "sensor-readings", "max_events": 4},
+            progress_callback=on_progress,
+        )
+        print("Summary:", result.structured_content)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Run the server first (`python kafka_mcp_server.py`, with a Kafka broker on `localhost:9092` or the address in `KAFKA_BOOTSTRAP`), then the client. The output looks like this:
+
+```text
+[1/4] sensor-0=21.5
+[2/4] sensor-1=22.0
+[3/4] sensor-0=22.4
+[4/4] sensor-1=19.8
+Summary: {'events_processed': 4, 'averages': {'sensor-0': 21.95, 'sensor-1': 20.9}}
 ```
 
 #### Apache Pulsar Implementation
 
+This example uses Pulsar as the MCP transport itself. An MCP transport in the Python SDK is an async context manager that yields a `(read_stream, write_stream)` pair of `SessionMessage` objects. `pulsar_transport` builds that pair from two Pulsar topics: it parses each incoming Pulsar message as a JSON-RPC message, and it serializes each outgoing MCP message to a Pulsar message. Because the transport only moves messages, the same code serves both the MCP server and the MCP client.
+
 ```python
-import asyncio
-import json
-import pulsar
-from typing import Dict, Any, Optional
-from mcp.core.message import JsonRpcMessage
-from mcp.core.transports import Transport
-from mcp.server import Server, ServerOptions
-from mcp.server.tools import Tool, ToolExecutionContext, ToolMetadata
+# pulsar_transport.py
+from contextlib import asynccontextmanager
 
-# Create a custom MCP transport that uses Pulsar
-class PulsarMCPTransport(Transport):
-    def __init__(self, service_url: str, request_topic: str, response_topic: str):
-        self.service_url = service_url
-        self.request_topic = request_topic
-        self.response_topic = response_topic
-        self.client = pulsar.Client(service_url)
-        self.producer = self.client.create_producer(response_topic)
-        self.consumer = self.client.subscribe(
-            request_topic,
-            "mcp-server-subscription",
-            consumer_type=pulsar.ConsumerType.Shared
-        )
-        self.message_queue = asyncio.Queue()
-        self.running = False
-        self.consumer_task = None
-    
-    async def connect(self):
-        """Connect to Pulsar and start consuming messages"""
-        self.running = True
-        self.consumer_task = asyncio.create_task(self._consume_messages())
-        return self
-    
-    async def _consume_messages(self):
-        """Background task to consume messages from Pulsar and queue them for processing"""
-        while self.running:
-            try:
-                # Non-blocking receive with timeout
-                msg = self.consumer.receive(timeout_millis=500)
-                
-                # Process the message
+import anyio
+from mcp.shared.message import SessionMessage
+from mcp.types import jsonrpc_message_adapter
+from pulsar.asyncio import Client as PulsarClient
+
+
+@asynccontextmanager
+async def pulsar_transport(
+    service_url: str, inbound_topic: str, outbound_topic: str, subscription: str
+):
+    """Carry MCP JSON-RPC messages over two Pulsar topics.
+
+    Yields the (read_stream, write_stream) pair that every MCP session expects,
+    so the same transport works for an MCP server and an MCP client.
+    """
+    pulsar_client = PulsarClient(service_url)
+    consumer = await pulsar_client.subscribe(inbound_topic, subscription)
+    producer = await pulsar_client.create_producer(outbound_topic)
+
+    to_session, read_stream = anyio.create_memory_object_stream[SessionMessage | Exception](0)
+    write_stream, from_session = anyio.create_memory_object_stream[SessionMessage](0)
+
+    async def broker_to_session() -> None:
+        async with to_session:
+            while True:
+                msg = await consumer.receive()
                 try:
-                    message_str = msg.data().decode('utf-8')
-                    message_data = json.loads(message_str)
-                    mcp_message = JsonRpcMessage.from_dict(message_data)
-                    await self.message_queue.put(mcp_message)
-                    
-                    # Acknowledge the message
-                    self.consumer.acknowledge(msg)
-                except Exception as e:
-                    print(f"Error processing message: {e}")
-                    # Negative acknowledge if there was an error
-                    self.consumer.negative_acknowledge(msg)
-            except Exception as e:
-                # Handle timeout or other exceptions
-                await asyncio.sleep(0.1)
-    
-    async def read(self) -> Optional[JsonRpcMessage]:
-        """Read the next message from the queue"""
-        try:
-            message = await self.message_queue.get()
-            return message
-        except Exception as e:
-            print(f"Error reading message: {e}")
-            return None
-    
-    async def write(self, message: JsonRpcMessage) -> None:
-        """Write a message to the Pulsar output topic"""
-        try:
-            message_json = json.dumps(message.to_dict())
-            self.producer.send(message_json.encode('utf-8'))
-        except Exception as e:
-            print(f"Error writing message: {e}")
-    
-    async def close(self) -> None:
-        """Close the transport"""
-        self.running = False
-        if self.consumer_task:
-            self.consumer_task.cancel()
-            try:
-                await self.consumer_task
-            except asyncio.CancelledError:
-                pass
-        self.consumer.close()
-        self.producer.close()
-        self.client.close()
+                    message = jsonrpc_message_adapter.validate_json(msg.data())
+                except Exception as exc:  # Malformed payload: let the MCP session report it.
+                    await to_session.send(exc)
+                else:
+                    await to_session.send(SessionMessage(message))
+                await consumer.acknowledge(msg)
 
-# Define a sample MCP tool that processes streaming data
-@Tool(
-    name="process_streaming_data",
-    description="Process streaming data with context preservation",
-    metadata=ToolMetadata(
-        required_capabilities=["streaming"]
-    )
-)
-async def process_streaming_data(
-    ctx: ToolExecutionContext,
-    data: str,
-    source: str,
-    priority: str = "medium"
-) -> Dict[str, Any]:
-    """
-    Process streaming data while preserving context
-    
-    Args:
-        ctx: Tool execution context
-        data: The data to process
-        source: The source of the data
-        priority: Priority level (low, medium, high)
-        
-    Returns:
-        Dict containing processed results and context information
-    """
-    # Example processing that leverages MCP context
-    print(f"Processing data from {source} with priority {priority}")
-    
-    # Access conversation context from MCP
-    conversation_id = ctx.conversation_id if hasattr(ctx, 'conversation_id') else "unknown"
-    
-    # Return results with enhanced context
-    return {
-        "processed_data": f"Processed: {data}",
-        "context": {
-            "conversation_id": conversation_id,
-            "source": source,
-            "priority": priority,
-            "processing_timestamp": ctx.get_current_time_iso()
-        }
-    }
+    async def session_to_broker() -> None:
+        async with from_session:
+            async for session_message in from_session:
+                payload = session_message.message.model_dump_json(by_alias=True, exclude_unset=True)
+                await producer.send(payload.encode("utf-8"))
 
-# Example MCP server implementation using Pulsar transport
-async def run_mcp_server_with_pulsar():
-    # Create MCP server
-    server = Server(
-        {"name": "pulsar-mcp-server", "version": "1.0.0"},
-        ServerOptions(
-            capabilities={"streaming": True}
-        )
-    )
-    
-    # Register our tool
-    server.register_tool(process_streaming_data)
-    
-    # Create and connect Pulsar transport
-    transport = PulsarMCPTransport(
-        service_url="pulsar://localhost:6650",
-        request_topic="mcp-requests",
-        response_topic="mcp-responses"
-    )
-    
     try:
-        # Start the server with the Pulsar transport
-        await server.run(transport)
+        async with anyio.create_task_group() as tg:
+            tg.start_soon(broker_to_session)
+            tg.start_soon(session_to_broker)
+            try:
+                yield read_stream, write_stream
+            finally:
+                tg.cancel_scope.cancel()
     finally:
-        await transport.close()
-
-# Run the server
-if __name__ == "__main__":
-    asyncio.run(run_mcp_server_with_pulsar())
+        await producer.close()
+        await consumer.close()
+        await pulsar_client.close()
 ```
+
+The server uses the low-level `Server` API, which can run on any pair of streams. It registers handlers for `tools/list` and `tools/call` and then serves MCP over the Pulsar transport:
+
+```python
+# pulsar_mcp_server.py
+import asyncio
+from datetime import datetime, timezone
+from typing import Any
+
+import mcp.types as types
+from mcp.server import Server, ServerRequestContext
+
+from pulsar_transport import pulsar_transport
+
+PROCESS_TOOL = types.Tool(
+    name="process_streaming_data",
+    description="Process one streaming record and return it with its context",
+    input_schema={
+        "type": "object",
+        "properties": {
+            "data": {"type": "string"},
+            "source": {"type": "string"},
+            "priority": {"type": "string", "enum": ["low", "medium", "high"]},
+        },
+        "required": ["data", "source"],
+    },
+)
+
+
+async def list_tools(
+    ctx: ServerRequestContext, params: types.PaginatedRequestParams | None
+) -> types.ListToolsResult:
+    return types.ListToolsResult(tools=[PROCESS_TOOL])
+
+
+async def call_tool(
+    ctx: ServerRequestContext, params: types.CallToolRequestParams
+) -> types.CallToolResult:
+    if params.name != PROCESS_TOOL.name:
+        return types.CallToolResult(
+            content=[types.TextContent(type="text", text=f"Unknown tool: {params.name}")],
+            is_error=True,
+        )
+    args: dict[str, Any] = params.arguments or {}
+    result = {
+        "processed_data": f"Processed: {args['data']}",
+        "context": {
+            "source": args["source"],
+            "priority": args.get("priority", "medium"),
+            "processing_timestamp": datetime.now(timezone.utc).isoformat(),
+        },
+    }
+    return types.CallToolResult(
+        content=[types.TextContent(type="text", text=result["processed_data"])],
+        structured_content=result,
+    )
+
+
+server = Server(
+    "pulsar-mcp-server", version="1.0.0", on_list_tools=list_tools, on_call_tool=call_tool
+)
+
+
+async def main() -> None:
+    async with pulsar_transport(
+        "pulsar://localhost:6650",
+        inbound_topic="mcp-requests",
+        outbound_topic="mcp-responses",
+        subscription="mcp-server",
+    ) as (read_stream, write_stream):
+        await server.run(read_stream, write_stream, server.create_initialization_options())
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+The client passes the same transport, with the topics swapped, to `mcp.Client`:
+
+```python
+# pulsar_mcp_client.py
+import asyncio
+
+from mcp import Client
+
+from pulsar_transport import pulsar_transport
+
+
+async def main() -> None:
+    # The client reads the server's outbound topic and writes to its inbound topic.
+    transport = pulsar_transport(
+        "pulsar://localhost:6650",
+        inbound_topic="mcp-responses",
+        outbound_topic="mcp-requests",
+        subscription="mcp-client",
+    )
+    async with Client(transport) as client:
+        tools = await client.list_tools()
+        print("Tools:", [tool.name for tool in tools.tools])
+
+        result = await client.call_tool(
+            "process_streaming_data",
+            {"data": "temperature=22.4", "source": "sensor-1", "priority": "high"},
+        )
+        print("Result:", result.structured_content)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Start the server before the client: a new Pulsar subscription starts at the latest message by default, so the server must be subscribed to `mcp-requests` before the client sends its first request. This example uses one shared response topic, which is fine for one client. With several clients, give each client its own response topic (for example `mcp-responses-<client-id>`) so that responses reach the right caller.
 
 ### Best Practices for Deployment
 

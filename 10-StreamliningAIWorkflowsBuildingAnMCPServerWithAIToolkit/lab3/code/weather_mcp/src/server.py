@@ -1,9 +1,9 @@
 import json
 import random
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
-# Initialize FastMCP server
-server = FastMCP("weather_mcp")
+# Initialize the MCP server
+server = MCPServer("weather_mcp")
 
 @server.tool()
 async def get_weather(location: str) -> str:

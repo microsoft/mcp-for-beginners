@@ -1,6 +1,6 @@
 """Connect model with mcp tools in Python
 # Run this python script
-> pip install mcp openai
+> pip install "mcp[cli]>=2.3.0,<3" "openai>=3.44.0,<4"
 > python <this-script-path>.py
 """
 import asyncio
@@ -106,7 +106,7 @@ class MCPClient:
                     "function": {
                         "name": tool.name,
                         "description": tool.description,
-                        "parameters": tool.inputSchema
+                        "parameters": tool.input_schema
                     },
                 })
 

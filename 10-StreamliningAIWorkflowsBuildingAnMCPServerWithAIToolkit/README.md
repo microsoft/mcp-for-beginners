@@ -94,7 +94,7 @@ Microsoft's flagship AI development extension that transforms VS Code into an AI
 **Duration**: 20 minutes
 
 - 💻 Create custom MCP servers using Microsoft Foundry Toolkit
-- 🐍 Configure and use the latest MCP Python SDK (v1.9.3)
+- 🐍 Configure and use the latest MCP Python SDK (v2.3.0)
 - 🔍 Set up and utilize MCP Inspector for debugging
 - 🛠️ Build a Weather MCP Server with professional debugging workflows
 - 🧪 Debug MCP servers in both Agent Builder and Inspector environments
@@ -157,7 +157,7 @@ Create exceptional customer interactions:
 |-----------|-------------|-------|
 | **Operating System** | Windows 10+, macOS 10.15+, Linux | Any modern OS |
 | **Visual Studio Code** | Latest stable version | Required for Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ and npm | For MCP server development |
+| **Node.js** | v22 LTS+ and npm | For MCP server development |
 | **Python** | 3.10+ | Optional for Python MCP servers |
 | **Memory** | 8GB RAM minimum | 16GB recommended for local models |
 

@@ -187,7 +187,7 @@ Let's see the code step by step:
 
 ```python
 @mcp.tool()
-async def create_blog(title: str, content: str, ctx: Context[ServerSession, None]) -> str:
+async def create_blog(title: str, content: str, ctx: Context) -> str:
     """Create a blog post and generate a summary"""
 
 ```
@@ -220,6 +220,8 @@ result = await ctx.session.create_message(
 
 ```
 
+> **Python SDK 2.x note:** This lesson uses `mcp>=2.3.0,<3`, where `FastMCP` is now called `MCPServer`. `ctx.session.create_message(...)` still works, but only on connections that negotiated protocol `2025-11-25` or earlier (for example a `ClientSession` that calls `session.initialize()`, which is what the solution client does). On a `2026-07-28` connection it raises `NoBackChannelError`, because that protocol version has no server-initiated requests. The SDK also emits an `MCPDeprecationWarning` because Sampling is deprecated. If you need sampling that works across protocol versions, see the `Sample` resolver in the [Python SDK migration guide](https://py.sdk.modelcontextprotocol.io/v2/migration/).
+
 ### -3- Wait for the response and return response
 
 **python**
@@ -244,9 +246,8 @@ return json.dumps({
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host
 
-from mcp.server.fastmcp import Context, FastMCP
+from mcp.server.mcpserver import Context, MCPServer
 
-from mcp.server.session import ServerSession
 from mcp.types import SamplingMessage, TextContent
 
 import json
@@ -257,7 +258,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-mcp = FastMCP("Blog post generator")
+mcp = MCPServer("Blog post generator")
 
 # app = FastAPI()
 
@@ -272,7 +273,7 @@ class BlogPost(BaseModel):
 posts: List[BlogPost] = []
 
 @mcp.tool()
-async def create_blog(title: str, content: str, ctx: Context[ServerSession, None]) -> str:
+async def create_blog(title: str, content: str, ctx: Context) -> str:
     """Create a blog post and generate a summary"""
 
     post = BlogPost(

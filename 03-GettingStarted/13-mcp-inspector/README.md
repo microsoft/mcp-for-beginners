@@ -18,7 +18,7 @@ When building MCP servers, you'll often encounter these challenges:
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 22.19+ (required by the current MCP Inspector)
 - npm (comes with Node.js)
 - An MCP server to test (see [Module 3.1 - First Server](../01-first-server/README.md))
 
@@ -369,6 +369,8 @@ pip show mcp
 **Example improved error handling:**
 
 ```python
+from mcp.server.mcpserver.exceptions import ToolError
+
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
@@ -376,9 +378,11 @@ async def my_tool(param1: str, param2: int) -> str:
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
-        raise McpError(f"Invalid parameter: {e}")
+        # ToolError is returned to the client as a tool result with is_error=True,
+        # so the LLM can see the message and react to it
+        raise ToolError(f"Invalid parameter: {e}")
     except Exception as e:
-        raise McpError(f"Tool failed: {type(e).__name__}: {e}")
+        raise ToolError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
 ### Scenario 4: Resource Content Empty

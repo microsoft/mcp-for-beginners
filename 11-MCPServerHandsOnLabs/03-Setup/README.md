@@ -223,7 +223,7 @@ Or install through VS Code:
 
 ### 5. Install Python
 
-Python 3.8+ is required for MCP server development.
+Python 3.10+ is required for MCP server development.
 
 #### Windows
 
@@ -297,7 +297,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.lock.txt
 
 # Verify key packages
-pip list | grep fastmcp
+pip list | grep mcp
 pip list | grep asyncpg
 pip list | grep azure
 ```
@@ -570,13 +570,13 @@ async def validate_environment():
     # Check Python version
     python_version = sys.version_info
     results['python'] = {
-        'status': 'pass' if python_version >= (3, 8) else 'fail',
+        'status': 'pass' if python_version >= (3, 10) else 'fail',
         'version': f"{python_version.major}.{python_version.minor}.{python_version.micro}",
-        'required': '3.8+'
+        'required': '3.10+'
     }
     
     # Check required packages
-    required_packages = ['fastmcp', 'asyncpg', 'azure-ai-projects']
+    required_packages = ['mcp', 'asyncpg', 'azure.identity']
     for package in required_packages:
         try:
             __import__(package)
@@ -725,7 +725,7 @@ python validate_setup.py
 **✅ Basic Tools**
 - [ ] Docker version 20.10+ installed and running
 - [ ] Azure CLI 2.40+ installed and authenticated
-- [ ] Python 3.8+ with pip installed
+- [ ] Python 3.10+ with pip installed
 - [ ] Git 2.30+ installed
 - [ ] VS Code with required extensions
 
@@ -818,9 +818,10 @@ python -m pip install --upgrade pip setuptools wheel
 pip cache purge
 
 # Install packages one by one to identify issues
-pip install fastmcp
-pip install asyncpg
-pip install azure-ai-projects
+# (version ranges match the sample repository's requirements.in)
+pip install "mcp[cli]>=1.28.1,<2.0.0"
+pip install "asyncpg>=0.30.0,<0.31.0"
+pip install "azure-identity>=1.23.0,<2.0.0"
 ```
 
 **Problem**: VS Code can't find Python interpreter
