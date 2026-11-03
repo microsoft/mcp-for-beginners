@@ -157,7 +157,7 @@ Create exceptional customer interactions:
 |-----------|-------------|-------|
 | **Operating System** | Windows 10+, macOS 10.15+, Linux | Any modern OS |
 | **Visual Studio Code** | Latest stable version | Required for Microsoft Foundry Toolkit |
-| **Node.js** | v18.0+ and npm | For MCP server development |
+| **Node.js** | v22 LTS+ and npm | For MCP server development |
 | **Python** | 3.10+ | Optional for Python MCP servers |
 | **Memory** | 8GB RAM minimum | 16GB recommended for local models |
 

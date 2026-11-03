@@ -53,27 +53,35 @@ Choose your preferred development environment:
 
 ***Note*** You can run this [notebook](./mcp_support_python.ipynb)
 
+The Python code uses `azure-ai-projects` 2.x. In this version, you create an agent with `project_client.agents.create_version(...)` and talk to it through the OpenAI-compatible Responses API (`project_client.get_openai_client()`). The 1.x `azure-ai-agents` API with `McpTool`, threads, runs, and `ToolApproval` is no longer used.
+
 ### 1. Install Required Packages
 
 ```bash
-pip install azure-ai-projects -U
-pip install azure-ai-agents==1.1.0b4 -U
-pip install azure-identity -U
-pip install mcp==1.11.0 -U
+pip install "azure-ai-projects>=2.10.0,<3" "azure-identity>=1.27.0,<2" "openai>=3.44.0,<4"
 ```
+
+The MCP server runs remotely and Foundry calls it for you, so you don't need the `mcp` package for this example.
 
 ### 2. Import Dependencies
 
 ```python
-import os, time
+import os
+
 from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import MCPTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
-from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
+from openai.types.responses.response_input_param import McpApprovalResponse, ResponseInputParam
 ```
 
-### 3. Configure MCP Settings
+### 3. Configure Project and MCP Settings
 
 ```python
+project_endpoint = os.environ.get(
+    "FOUNDRY_PROJECT_ENDPOINT",
+    "https://your-resource.services.ai.azure.com/api/projects/your-project",
+)
+model_deployment_name = os.environ.get("FOUNDRY_MODEL_NAME", "Your model deployment name")
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://learn.microsoft.com/api/mcp")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ```
@@ -81,99 +89,83 @@ mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "mslearn")
 ### 4. Initialize Project Client
 
 ```python
-project_client = AIProjectClient(
-    endpoint="https://your-project-endpoint.services.ai.azure.com/api/projects/your-project",
-    credential=DefaultAzureCredential(),
-)
+credential = DefaultAzureCredential()
+project_client = AIProjectClient(endpoint=project_endpoint, credential=credential)
 ```
 
 ### 5. Create MCP Tool
 
 ```python
-mcp_tool = McpTool(
+mcp_tool = MCPTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
-    allowed_tools=[],  # Optional: specify allowed tools
+    require_approval="always",  # Every MCP tool call waits for your approval
+    # allowed_tools=["microsoft_docs_search"],  # Optional: restrict which MCP tools the agent may call
 )
 ```
 
 ### 6. Complete Python Example
 
+With `require_approval="always"`, the agent returns an `mcp_approval_request` item instead of calling the MCP server directly. You approve the request by sending an `mcp_approval_response` back in the same conversation:
+
 ```python
-with project_client:
-    agents_client = project_client.agents
-
-    # Create a new agent with MCP tools
-    agent = agents_client.create_agent(
-        model="Your AOAI Model Deployment",
-        name="my-mcp-agent",
-        instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
-        tools=mcp_tool.definitions,
+with project_client, project_client.get_openai_client() as openai_client:
+    # Create (a new version of) the agent with the MCP tool
+    agent = project_client.agents.create_version(
+        agent_name="my-mcp-agent",
+        definition=PromptAgentDefinition(
+            model=model_deployment_name,
+            instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+            tools=[mcp_tool],
+        ),
     )
-    print(f"Created agent, ID: {agent.id}")
-    print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
+    print(f"Created agent {agent.name}, version {agent.version}")
+    agent_reference = {"agent_reference": {"name": agent.name, "type": "agent_reference"}}
 
-    # Create thread for communication
-    thread = agents_client.threads.create()
-    print(f"Created thread, ID: {thread.id}")
+    try:
+        # A conversation keeps the context across several responses
+        conversation = openai_client.conversations.create()
+        print(f"Created conversation, ID: {conversation.id}")
 
-    # Create message to thread
-    message = agents_client.messages.create(
-        thread_id=thread.id,
-        role="user",
-        content="What's difference between Azure OpenAI and OpenAI?",
-    )
-    print(f"Created message, ID: {message.id}")
+        response = openai_client.responses.create(
+            conversation=conversation.id,
+            input="What's the difference between Azure OpenAI and OpenAI?",
+            extra_body=agent_reference,
+        )
 
-    # Handle tool approvals and run agent
-    mcp_tool.update_headers("SuperSecret", "123456")
-    run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
-    print(f"Created run, ID: {run.id}")
-
-    while run.status in ["queued", "in_progress", "requires_action"]:
-        time.sleep(1)
-        run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
-
-        if run.status == "requires_action" and isinstance(run.required_action, SubmitToolApprovalAction):
-            tool_calls = run.required_action.submit_tool_approval.tool_calls
-            if not tool_calls:
-                print("No tool calls provided - cancelling run")
-                agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
-                break
-
-            tool_approvals = []
-            for tool_call in tool_calls:
-                if isinstance(tool_call, RequiredMcpToolCall):
-                    try:
-                        print(f"Approving tool call: {tool_call}")
-                        tool_approvals.append(
-                            ToolApproval(
-                                tool_call_id=tool_call.id,
-                                approve=True,
-                                headers=mcp_tool.headers,
-                            )
+        # Approve MCP tool calls until the agent stops asking for approval
+        while True:
+            approvals: ResponseInputParam = []
+            for item in response.output:
+                if item.type == "mcp_approval_request" and item.server_label == mcp_server_label:
+                    print(f"Approving MCP tool call: {item.name}({item.arguments})")
+                    approvals.append(
+                        McpApprovalResponse(
+                            type="mcp_approval_response",
+                            approve=True,
+                            approval_request_id=item.id,
                         )
-                    except Exception as e:
-                        print(f"Error approving tool_call {tool_call.id}: {e}")
+                    )
+            if not approvals:
+                break
+            response = openai_client.responses.create(
+                conversation=conversation.id,
+                input=approvals,
+                extra_body=agent_reference,
+            )
 
-            if tool_approvals:
-                agents_client.runs.submit_tool_outputs(
-                    thread_id=thread.id, run_id=run.id, tool_approvals=tool_approvals
-                )
+        # Show which MCP tools the agent called
+        for item in response.output:
+            if item.type == "mcp_call":
+                print(f"MCP call: {item.server_label}.{item.name} -> {'error' if item.error else 'ok'}")
 
-        print(f"Current run status: {run.status}")
-
-    print(f"Run completed with status: {run.status}")
-
-    # Display conversation
-    messages = agents_client.messages.list(thread_id=thread.id)
-    print("\nConversation:")
-    print("-" * 50)
-    for msg in messages:
-        if msg.text_messages:
-            last_text = msg.text_messages[-1]
-            print(f"{msg.role.upper()}: {last_text.text.value}")
-            print("-" * 50)
+        print("\nAgent response:")
+        print("-" * 50)
+        print(response.output_text)
+    finally:
+        # Clean up the agent version created by this notebook
+        project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+        print("Deleted agent version")
 ```
 
 ---
@@ -304,10 +296,11 @@ When configuring MCP tools for your agent, you can specify several important par
 ### Python Configuration
 
 ```python
-mcp_tool = McpTool(
-    server_label="unique_server_name",      # Identifier for the MCP server
-    server_url="https://api.example.com/mcp", # MCP server endpoint
-    allowed_tools=[],                       # Optional: specify allowed tools
+mcp_tool = MCPTool(
+    server_label="unique_server_name",         # Identifier for the MCP server
+    server_url="https://api.example.com/mcp",  # MCP server endpoint
+    require_approval="always",                 # "always" or "never"
+    allowed_tools=["tool_a", "tool_b"],        # Optional: restrict which tools can be used
 )
 ```
 
@@ -325,8 +318,16 @@ MCPToolDefinition mcpTool = new(
 Both implementations support custom headers for authentication:
 
 ### Python
+
+Pass static headers with `headers`. For secrets, prefer a project connection (`project_connection_id`), which stores the credentials in your Foundry project instead of in code:
+
 ```python
-mcp_tool.update_headers("SuperSecret", "123456")
+mcp_tool = MCPTool(
+    server_label="unique_server_name",
+    server_url="https://api.example.com/mcp",
+    headers={"SuperSecret": "123456"},
+    # project_connection_id="<your-connection-id>",
+)
 ```
 
 ### .NET

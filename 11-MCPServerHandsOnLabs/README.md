@@ -67,7 +67,7 @@ To get the most out of this learning path, you should have:
 - **Azure CLI** - For cloud resource deployment
 - **VS Code** - For development and MCP integration
 - **Git** - For version control
-- **Python 3.8+** - For MCP server development
+- **Python 3.10+** - For MCP server development
 
 ## 📚 Study Guide & Resources
 

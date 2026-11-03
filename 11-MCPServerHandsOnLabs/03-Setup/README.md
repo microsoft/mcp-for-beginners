@@ -223,7 +223,7 @@ Or install through VS Code:
 
 ### 5. Install Python
 
-Python 3.8+ is required for MCP server development.
+Python 3.10+ is required for MCP server development.
 
 #### Windows
 

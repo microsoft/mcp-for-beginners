@@ -18,7 +18,7 @@ When building MCP servers, you'll often encounter these challenges:
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 22.19+ (required by the current MCP Inspector)
 - npm (comes with Node.js)
 - An MCP server to test (see [Module 3.1 - First Server](../01-first-server/README.md))
 
