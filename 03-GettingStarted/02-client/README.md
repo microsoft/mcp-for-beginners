@@ -116,6 +116,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
 ```
 
 #### Java
@@ -255,6 +256,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -383,7 +385,7 @@ Here we list the available resources, `list_resources()` and tools, `list_tools`
 #### .NET
 
 ```dotnet
-foreach (var tool in await client.ListToolsAsync())
+foreach (var tool in await mcpClient.ListToolsAsync())
 {
     Console.WriteLine($"{tool.Name} ({tool.Description})");
 }
@@ -537,7 +539,7 @@ In the preceding code, we've:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
-      "Add",
+      "add",
       new Dictionary<string, object?>() { ["a"] = 1, ["b"] = 3  },
       cancellationToken:CancellationToken.None);
   ```
@@ -545,7 +547,7 @@ In the preceding code, we've:
 1. To print out the result, here's some code to handle that:
 
   ```csharp
-  Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+  Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
   // Sum 4
   ```
 

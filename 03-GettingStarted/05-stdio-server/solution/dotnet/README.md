@@ -8,7 +8,7 @@ This .NET solution demonstrates how to build an MCP server using the current std
 
 ## Prerequisites
 
-- .NET 9.0 SDK or later
+- .NET 10.0 SDK or later
 - Basic understanding of .NET dependency injection
 
 ## Setup Instructions

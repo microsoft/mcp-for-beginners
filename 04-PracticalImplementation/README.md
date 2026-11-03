@@ -100,7 +100,7 @@ The official C# SDK repository contains several sample implementations demonstra
 - **ASP.NET Integration**: Examples demonstrating integration with ASP.NET Core
 - **Tool Implementation Patterns**: Various patterns for implementing tools with different complexity levels
 
-The MCP C# SDK is in preview and APIs may change. We will continuously update this blog as the SDK evolves.
+The MCP C# SDK is now stable (the samples in this course use `ModelContextProtocol` 2.3.1 on .NET 10). We will continue to update this lesson as the SDK evolves.
 
 ### Key Features
 
