@@ -1,11 +1,12 @@
 # Basic Calculator MCP Service
 
 > [!NOTE]
-> This Java solution uses the legacy HTTP+SSE transport and targets an SDK
-> compatible with MCP `2025-11-25`. It is retained for matching course code;
-> new remote servers should use `2026-07-28` Streamable HTTP support.
+> This Java solution uses Spring Boot 4.1.2 and Spring AI 2.0.2 (MCP Java SDK
+> 2.1.0) and serves MCP over Streamable HTTP at `/mcp`. The Java SDK currently
+> negotiates MCP `2025-11-25`; move to `2026-07-28` once a Java SDK release
+> supports it.
 
-This service provides basic calculator operations through the Model Context Protocol (MCP) using Spring Boot with WebFlux transport. It's designed as a simple example for beginners learning about MCP implementations.
+This service provides basic calculator operations through the Model Context Protocol (MCP) using Spring Boot with the WebFlux Streamable HTTP transport. It's designed as a simple example for beginners learning about MCP implementations.
 
 For more information, see the [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
 
@@ -28,11 +29,31 @@ The service exposes the following API endpoints through the MCP protocol:
 The project requires the following key dependencies:
 
 ```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-bom</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <dependency>
     <groupId>org.springframework.ai</groupId>
     <artifactId>spring-ai-starter-mcp-server-webflux</artifactId>
 </dependency>
 ```
+
+The transport is selected in `src/main/resources/application.properties`:
+
+```properties
+spring.ai.mcp.server.protocol=STREAMABLE
+```
+
+Requires Java 21 or later.
 
 ## Building the Project
 
@@ -61,8 +82,8 @@ The MCP Inspector is a helpful tool for interacting with MCP services. To use it
 2. **Access the web UI** by clicking the URL displayed by the app (typically http://localhost:6274)
 
 3. **Configure the connection**:
-   - Set the transport type to "SSE"
-   - Set the URL to your running server's SSE endpoint: `http://localhost:8080/sse`
+   - Set the transport type to "Streamable HTTP"
+   - Set the URL to your running server's MCP endpoint: `http://localhost:8080/mcp`
    - Click "Connect"
 
 4. **Use the tools**:

@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.4</version>
+        <version>4.1.2</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
@@ -31,7 +31,7 @@
             <dependency>
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-bom</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>2.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -57,13 +57,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -86,7 +84,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.6.4</version>
                 <configuration>
                     <mainClass>com.microsoft.mcp.sample.client.SDKClient</mainClass>
                 </configuration>
@@ -100,34 +98,5 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
 
 </project>

@@ -7,8 +7,8 @@ This project demonstrates HTTP streaming using Server-Sent Events (SSE) with Spr
 
 ## Prerequisites
 
-- Java 17 or higher
-- Maven 3.6 or higher
+- Java 21 or higher
+- Maven 3.6.3 or higher
 
 ## Project Structure
 
@@ -173,12 +173,12 @@ data: 35.0
 
 ## Technology Stack
 
-- **Spring Boot 3.3.1** - Application framework
+- **Spring Boot 4.1.2** - Application framework
 - **Spring WebFlux** - Reactive web framework
 - **Project Reactor** - Reactive streams library
 - **Netty** - Non-blocking I/O server
 - **Maven** - Build tool
-- **Java 17+** - Programming language
+- **Java 21+** - Programming language
 
 ## Next Steps
 

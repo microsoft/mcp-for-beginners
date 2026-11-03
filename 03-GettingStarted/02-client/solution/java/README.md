@@ -22,7 +22,7 @@ Before running this client, you need to:
 ## What is the SDKClient?
 
 The `SDKClient` is a Java application that demonstrates how to:
-- Connect to an MCP server using Server-Sent Events (SSE) transport
+- Connect to an MCP server using the Streamable HTTP transport
 - List available tools from the server
 - Call various calculator functions remotely
 - Handle responses and display results
@@ -31,7 +31,7 @@ The `SDKClient` is a Java application that demonstrates how to:
 
 The client uses the Spring AI MCP framework to:
 
-1. **Establish Connection**: Creates a WebFlux SSE client transport to connect to the calculator server
+1. **Establish Connection**: Creates a WebFlux Streamable HTTP client transport to connect to the calculator server's `/mcp` endpoint
 2. **Initialize Client**: Sets up the MCP client and establishes the connection
 3. **Discover Tools**: Lists all available calculator operations
 4. **Execute Operations**: Calls various mathematical functions with sample data
@@ -56,15 +56,27 @@ src/
 The project uses the following key dependencies:
 
 ```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-bom</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <dependency>
     <groupId>org.springframework.ai</groupId>
     <artifactId>spring-ai-starter-mcp-server-webflux</artifactId>
 </dependency>
 ```
 
-This dependency provides:
+This dependency (Spring AI 2.0.2 on Spring Boot 4.1.2, bringing in MCP Java SDK 2.1.0) provides:
 - `McpClient` - The main client interface
-- `WebFluxSseClientTransport` - SSE transport for web-based communication
+- `WebClientStreamableHttpTransport` - Streamable HTTP transport for web-based communication (package `org.springframework.ai.mcp.client.webflux.transport`)
 - MCP protocol schemas and request/response types
 
 ## Building the Project
@@ -119,9 +131,9 @@ Help = CallToolResult[content=[TextContent[text="Basic Calculator MCP Service\n\
 
 ### 1. Transport Setup
 ```java
-var transport = new WebFluxSseClientTransport(WebClient.builder().baseUrl("http://localhost:8080"));
+var transport = WebClientStreamableHttpTransport.builder(WebClient.builder().baseUrl("http://localhost:8080")).build();
 ```
-This creates an SSE (Server-Sent Events) transport that connects to the calculator server.
+This creates a Streamable HTTP transport that connects to the calculator server's default MCP endpoint, `http://localhost:8080/mcp`.
 
 ### 2. Client Creation
 ```java
@@ -132,7 +144,7 @@ Creates a synchronous MCP client and initializes the connection.
 
 ### 3. Calling Tools
 ```java
-CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
+CallToolResult resultAdd = client.callTool(CallToolRequest.builder("add").arguments(Map.of("a", 5.0, "b", 3.0)).build());
 ```
 Calls the "add" tool with parameters a=5.0 and b=3.0.
 

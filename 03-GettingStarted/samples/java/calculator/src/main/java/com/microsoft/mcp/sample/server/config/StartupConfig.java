@@ -30,7 +30,7 @@ public class StartupConfig {
             if (usageMessage != null && !usageMessage.isEmpty()) {
                 System.out.println("\nUsage Information:");
                 System.out.println(usageMessage);
-                System.out.println("\nEndpoint: http://localhost:8080/v1/tools");
+                System.out.println("\nMCP endpoint (Streamable HTTP): http://localhost:8080/mcp");
                 System.out.println("\nSee the README.md for more information on how to use the service.");
             }
             

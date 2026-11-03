@@ -4,8 +4,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -21,8 +21,8 @@ public class LangChain4jClient {
          * In particular, we use the available operations like 'add', 'subtract',
          * 'multiply', etc.
          * <p>
-         * Before running this example, you need to start the calculator server in SSE
-         * mode on localhost:8080.
+         * Before running this example, you need to start the calculator server on
+         * localhost:8080 (Streamable HTTP endpoint: /mcp).
          * <p>
          * Run the example and check the logs to verify that the model used the
          * calculator tools.
@@ -30,16 +30,16 @@ public class LangChain4jClient {
         public static void main(String[] args) throws Exception {
                 String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
 
-                ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+                ChatModel model = OpenAiOfficialChatModel.builder()
                                 .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
                                 .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
-                                .isAzure(true)
+                                .isMicrosoftFoundry(true)
                                 .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
                                 .timeout(Duration.ofMinutes(60))
                                 .build();
 
-                McpTransport transport = new HttpMcpTransport.Builder()
-                                .sseUrl("http://localhost:8080/sse")
+                McpTransport transport = StreamableHttpMcpTransport.builder()
+                                .url("http://localhost:8080/mcp")
                                 .timeout(Duration.ofMinutes(60))
                                 .logRequests(true)
                                 .logResponses(true)
@@ -54,7 +54,7 @@ public class LangChain4jClient {
                                 .build();
 
                 Bot bot = AiServices.builder(Bot.class)
-                                .chatLanguageModel(model)
+                                .chatModel(model)
                                 .toolProvider(toolProvider)
                                 .build();
                 try {

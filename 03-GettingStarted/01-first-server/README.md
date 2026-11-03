@@ -273,7 +273,7 @@ Add the following complete configuration to your *pom.xml* file:
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
+        <version>4.1.2</version>
         <relativePath />
     </parent>
 
@@ -297,7 +297,7 @@ Add the following complete configuration to your *pom.xml* file:
             <dependency>
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-bom</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>2.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -337,27 +337,20 @@ Add the following complete configuration to your *pom.xml* file:
             </plugin>
         </plugins>
     </build>
-
-    <!-- Repositories for Spring AI snapshots -->
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
 </project>
+```
+
+All versions above are stable GA releases from Maven Central (Spring Boot 4.1.2 and Spring AI 2.0.2, which brings in the MCP Java SDK 2.1.0), so no snapshot or milestone repositories are needed.
+
+Spring AI 2.0 still defaults to the legacy HTTP+SSE transport. Switch the server to Streamable HTTP (served at `/mcp`) in *src/main/resources/application.properties*:
+
+```properties
+spring.application.name=calculator-server
+
+# Serve MCP over the Streamable HTTP transport at http://localhost:8080/mcp
+spring.ai.mcp.server.name=calculator-server
+spring.ai.mcp.server.version=1.0.0
+spring.ai.mcp.server.protocol=STREAMABLE
 ```
 
 #### Rust
@@ -740,7 +733,7 @@ public class StartupConfig {
         return args -> {
             System.out.println("\n" + "=".repeat(60));
             System.out.println("Calculator MCP Server is starting...");
-            System.out.println("SSE endpoint: http://localhost:8080/sse");
+            System.out.println("MCP endpoint (Streamable HTTP): http://localhost:8080/mcp");
             System.out.println("Health check: http://localhost:8080/actuator/health");
             System.out.println("=".repeat(60) + "\n");
         };
@@ -1294,8 +1287,8 @@ npx @modelcontextprotocol/inspector
 
 In the inspector web interface:
 
-1. Select "SSE" as the transport type
-2. Set the URL to: `http://localhost:8080/sse`
+1. Select "Streamable HTTP" as the transport type
+2. Set the URL to: `http://localhost:8080/mcp`
 3. Click "Connect"
 
 ![Connect](./assets/tool.png)
