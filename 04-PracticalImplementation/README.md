@@ -227,6 +227,8 @@ Let's see if we can deploy the sample we mentioned earlier:
     https://<apim-servicename-from-azd-output>.azure-api.net/mcp/sse
     ```
 
+    > **Note:** This external sample still exposes the legacy HTTP+SSE endpoint (`/sse`), which was deprecated in MCP spec `2025-03-26`. For servers that implement Streamable HTTP, select `Streamable HTTP` as the transport and use the server's `/mcp` endpoint instead.
+
 1. **List Tools**.  Click on a tool and **Run Tool**.  
 
 If all the steps have worked, you should now be connected to the MCP server and you've been able to call a tool.

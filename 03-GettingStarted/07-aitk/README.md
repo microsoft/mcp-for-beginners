@@ -147,10 +147,17 @@ use the Python template for the calculator MCP server.
         return a / b
     ```
 
-1. Open **src/\_\_init\_\_.py**. In mcp 2.x, `host` and `port` are passed to `server.run()` instead of being set on `server.settings`. If the template contains `server.settings.port = port` and `server.settings.host = "127.0.0.1"`, remove those two lines and change the `server.run(...)` call in the same branch to:
+1. Open **src/\_\_init\_\_.py**. In mcp 2.x, `host` and `port` are passed to `server.run()` instead of being set on `server.settings`. If the template contains `server.settings.port = port` and `server.settings.host = "127.0.0.1"`, remove those two lines and change the `server.run(...)` call in the same branch so the server uses the Streamable HTTP transport (endpoint `/mcp`) instead of the deprecated SSE transport:
 
     ```python
-    server.run(transport="sse", host="127.0.0.1", port=port)
+    server.run(transport="streamable-http", host="127.0.0.1", port=port)
+    ```
+
+1. Open **.aitk/mcp.json**. If the server entry uses `"type": "sse"` with a URL ending in `/sse`, change it so Agent Builder connects to the Streamable HTTP endpoint (keep the server name and port the template generated):
+
+    ```json
+    "type": "http",
+    "url": "http://localhost:3001/mcp"
     ```
 
 ### -4- Run the agent with the calculator MCP server

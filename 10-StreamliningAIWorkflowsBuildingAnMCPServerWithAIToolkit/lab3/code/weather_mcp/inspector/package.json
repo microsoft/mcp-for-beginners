@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "This is just a placeholder to launch the inspector.",
   "scripts": {
-    "dev:inspector": "mcp-inspector"
+    "dev:inspector": "mcp-inspector --web --transport http --server-url http://localhost:3001/mcp"
   },
   "devDependencies": {
     "@modelcontextprotocol/inspector": "2.0.0"

@@ -1,9 +1,10 @@
 # Debugging with MCP Inspector
 
 > [!NOTE]
-> Commands using `--sse` and URLs ending in `/sse` test the legacy HTTP+SSE
-> transport. For a new MCP `2026-07-28` server, use an Inspector version that
-> supports Streamable HTTP and select that transport instead.
+> Network examples in this guide use the **Streamable HTTP** transport
+> (`--transport http`) and the server's `/mcp` endpoint. The older HTTP+SSE
+> transport (`/sse` endpoint) was deprecated in MCP spec `2025-03-26`; use
+> `--transport sse` only to test legacy servers that have not migrated yet.
 
 The **MCP Inspector** is an essential debugging tool that lets you interactively test and troubleshoot your MCP servers without needing a full AI host application. Think of it as "Postman for MCP" - it provides a visual interface to send requests, view responses, and understand how your server behaves.
 
@@ -72,25 +73,29 @@ npx @modelcontextprotocol/inspector node ./build/index.js
 OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
 ```
 
-### SSE/HTTP Servers (Network)
+### Streamable HTTP Servers (Network)
 
 For servers running as HTTP services:
 
 1. Start your server first:
    ```bash
-   python server.py  # Server running on http://localhost:8080
+   python server.py  # Streamable HTTP endpoint at http://localhost:8080/mcp
    ```
 
 2. Launch Inspector and connect:
    ```bash
-   npx @modelcontextprotocol/inspector --sse http://localhost:8080/sse
+   npx @modelcontextprotocol/inspector --transport http --server-url http://localhost:8080/mcp
    ```
+
+   Inspector also infers the transport from the URL: a URL ending in `/mcp`
+   selects Streamable HTTP. For a legacy server that only exposes `/sse`, use
+   `--transport sse --server-url http://localhost:8080/sse`.
 
 ---
 
 ## Inspector Interface Overview
 
-When Inspector launches, you'll see a web interface (typically at `http://localhost:5173`):
+When Inspector launches, you'll see a web interface (typically at `http://localhost:6274`):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -278,10 +283,10 @@ Add to `.vscode/launch.json`:
       "console": "integratedTerminal"
     },
     {
-      "name": "Debug SSE Server with Inspector",
+      "name": "Debug HTTP Server with Inspector",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:5173",
+      "url": "http://localhost:6274",
       "preLaunchTask": "Start MCP Inspector"
     }
   ]
@@ -398,11 +403,12 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ## Advanced Inspector Features
 
-### Custom Headers (SSE)
+### Custom Headers (Streamable HTTP)
 
 ```bash
 npx @modelcontextprotocol/inspector \
-  --sse http://localhost:8080/sse \
+  --transport http \
+  --server-url http://localhost:8080/mcp \
   --header "Authorization: Bearer your-token"
 ```
 

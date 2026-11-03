@@ -25,10 +25,10 @@ If your server is meant to be consumed by running on users machine, you can foll
 1. **Download the server**. If you didn't write the server, then download it first to your machine. 
 1. **Start the server process**: Run your MCP server application 
 
-For SSE (not needed for stdio type server)
+For HTTP servers using Streamable HTTP (not needed for stdio type server)
 
 1. **Configure networking**: Ensure the server is accessible on the expected port 
-1. **Connect clients**: Use local connection URLs like `http://localhost:3000`
+1. **Connect clients**: Use the server's Streamable HTTP endpoint, for example `http://localhost:3000/mcp`
 
 ## Cloud Deployment
 
@@ -40,7 +40,7 @@ MCP servers can be deployed to various cloud platforms:
 
 ### Example: Azure Container Apps
 
-Azure Container Apps support deployment of MCP Servers. It's still a work in progress and it currently supports SSE servers.
+Azure Container Apps support deployment of MCP Servers. New servers should expose Streamable HTTP (usually at `/mcp`). The external sample used below predates Streamable HTTP and still serves the legacy SSE transport at `/sse`, so its client configuration uses `"type": "sse"`. For a Streamable HTTP server, use `"type": "http"` and the `/mcp` URL instead.
 
 Here's how you can go about it:
 

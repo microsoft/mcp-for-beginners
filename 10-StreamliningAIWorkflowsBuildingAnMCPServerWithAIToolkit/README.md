@@ -36,7 +36,7 @@ MCP is the **"USB-C for AI"** - a universal standard that connects AI models to 
 **✨ Key Features:**
 
 - 🔄 **Standardized Integration**: Universal interface for AI-tool connections
-- 🏛️ **Flexible Architecture**: Local & remote servers via stdio/SSE transport
+- 🏛️ **Flexible Architecture**: Local & remote servers via stdio/Streamable HTTP transport
 - 🧰 **Rich Ecosystem**: Tools, prompts, and resources in one protocol
 - 🔒 **Enterprise-Ready**: Built-in security and reliability
 
