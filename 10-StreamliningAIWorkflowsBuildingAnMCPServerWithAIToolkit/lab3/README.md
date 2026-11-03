@@ -1,22 +1,23 @@
 # 🔧 Module 3: Advanced MCP Development with Microsoft Foundry Toolkit
 
 > [!NOTE]
-> Inspector URLs in this lab use the legacy `/sse` endpoint and target the
-> pinned MCP SDK `1.9.3` and Inspector `0.14.0` dependencies. They are not
-> current `2026-07-28` Streamable HTTP examples.
+> This lab runs the server over **Streamable HTTP** at
+> `http://localhost:3001/mcp` with the pinned MCP Python SDK `2.3.0`
+> (`mcp[cli]>=2.3.0,<3`) and Inspector `2.0.0`. Streamable HTTP replaced the
+> legacy HTTP+SSE transport (`/sse`), deprecated in MCP spec `2025-03-26`.
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
-![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
-![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
+![MCP SDK](https://img.shields.io/badge/MCP_SDK-2.3.0-purple?style=flat-square)
+![Inspector](https://img.shields.io/badge/MCP_Inspector-2.0.0-blue?style=flat-square)
 
 ## 🎯 Learning Objectives
 
 By the end of this lab, you will be able to:
 
 - ✅ Create custom MCP servers using the Microsoft Foundry Toolkit
-- ✅ Configure and use the latest MCP Python SDK (v1.9.3)
+- ✅ Configure and use the latest MCP Python SDK (v2.3.0)
 - ✅ Set up and utilize the MCP Inspector for debugging
 - ✅ Debug MCP servers in both Agent Builder and Inspector environments
 - ✅ Understand advanced MCP server development workflows
@@ -41,7 +42,7 @@ In this lab, you'll create a **Weather MCP Server** that demonstrates:
 ## 🔧 Core Components Overview
 
 ### 🐍 MCP Python SDK
-The Model Context Protocol Python SDK provides the foundation for building custom MCP servers. You'll use version 1.9.3 with enhanced debugging capabilities.
+The Model Context Protocol Python SDK provides the foundation for building custom MCP servers. You'll use version 2.3.0 with enhanced debugging capabilities. In SDK 2.x the high-level server class is `MCPServer` (`from mcp.server.mcpserver import MCPServer`); it was called `FastMCP` in 1.x.
 
 ### 🔍 MCP Inspector
 A powerful debugging tool that provides:
@@ -93,16 +94,34 @@ A powerful debugging tool that provides:
 
 ### Step 4: Upgrade to Latest MCP SDK
 
-> **🔍 Why Upgrade?** We want to use the latest MCP SDK (v1.9.3) and Inspector service (0.14.0)  for enhanced features and better debugging capabilities.
+> **🔍 Why Upgrade?** We want to use the latest MCP SDK (v2.3.0) and Inspector (2.0.0) for enhanced features and better debugging capabilities.
 
 #### 4a. Update Python Dependencies
 
 **Edit `pyproject.toml`:** update [./code/weather_mcp/pyproject.toml](./code/weather_mcp/pyproject.toml)
 
+**Edit `src/server.py` and `src/__init__.py`:** update [./code/weather_mcp/src/server.py](./code/weather_mcp/src/server.py) and [./code/weather_mcp/src/__init__.py](./code/weather_mcp/src/__init__.py). MCP SDK 2.x renamed `FastMCP` to `MCPServer`, and `host`/`port` are now passed to `server.run(...)` instead of being set on `server.settings`.
+
+The server entry point now uses the Streamable HTTP transport instead of the
+legacy SSE transport:
+
+```python
+if transport_type in ("http", "streamable-http"):
+    port = int(os.environ.get("PORT", 3001))
+    # Endpoint: http://127.0.0.1:<port>/mcp
+    server.run(transport="streamable-http", host="127.0.0.1", port=port)
+elif transport_type == "stdio":
+    server.run(transport="stdio")
+```
+
 
 #### 4b. Update Inspector Configuration
 
-**Edit `inspector/package.json`:** update [./code/weather_mcp/inspector/package.json](./code/weather_mcp/inspector/package.json)
+**Edit `inspector/package.json`:** update [./code/weather_mcp/inspector/package.json](./code/weather_mcp/inspector/package.json). The `dev:inspector` script starts the Inspector web UI already pointed at the server's Streamable HTTP endpoint:
+
+```json
+"dev:inspector": "mcp-inspector --web --transport http --server-url http://localhost:3001/mcp"
+```
 
 #### 4c. Update Inspector Dependencies
 
@@ -112,6 +131,21 @@ A powerful debugging tool that provides:
 
 
 > **⚡ Full Package Lock:** The complete package-lock.json contains ~3000 lines of dependency definitions. The above shows the key structure - use the provided file for complete dependency resolution.
+
+#### 4d. Update the Agent Builder Server Connection
+
+**Edit `.aitk/mcp.json`:** point Agent Builder at the Streamable HTTP endpoint. If the generated file still uses `"type": "sse"` and a `/sse` URL, replace that entry with:
+
+```json
+{
+  "servers": {
+    "local-server-weather_mcp": {
+      "type": "http",
+      "url": "http://localhost:3001/mcp"
+    }
+  }
+}
+```
 
 ### Step 5: Configure VS Code Debugging
 
@@ -143,7 +177,7 @@ A powerful debugging tool that provides:
       "name": "Launch Inspector (Edge)",
       "type": "msedge",
       "request": "launch",
-      "url": "http://localhost:6274?timeout=60000&serverUrl=http://localhost:3001/sse#tools",
+      "url": "http://localhost:6274",
       "cascadeTerminateToConfigurations": [
         "Attach to Local MCP"
       ],
@@ -156,7 +190,7 @@ A powerful debugging tool that provides:
       "name": "Launch Inspector (Chrome)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:6274?timeout=60000&serverUrl=http://localhost:3001/sse#tools",
+      "url": "http://localhost:6274",
       "cascadeTerminateToConfigurations": [
         "Attach to Local MCP"
       ],
@@ -205,7 +239,7 @@ A powerful debugging tool that provides:
     {
       "label": "Start MCP Server",
       "type": "shell",
-      "command": "python -m debugpy --listen 127.0.0.1:5678 src/__init__.py sse",
+      "command": "python -m debugpy --listen 127.0.0.1:5678 src/__init__.py http",
       "isBackground": true,
       "options": {
         "cwd": "${workspaceFolder}",
@@ -252,8 +286,8 @@ A powerful debugging tool that provides:
         ],
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "Starting MCP inspector",
-          "endsPattern": "Proxy server listening on port"
+          "beginsPattern": ".*",
+          "endsPattern": "MCP Inspector Web is up and running"
         }
       },
       "dependsOn": [
@@ -344,7 +378,7 @@ How's the weather like in Seattle
 ### Step 8: Debug with MCP Inspector
 
 1. **Use the "Debug in Inspector"** configuration (Edge or Chrome)
-2. **Open the Inspector interface** at `http://localhost:6274`
+2. **Open the Inspector interface** at `http://localhost:6274`. Inspector 2.x protects the UI with a session token: if the page asks for one, open the full URL (with `?MCP_INSPECTOR_API_TOKEN=...`) printed in the `Start MCP Inspector` terminal.
 3. **Explore the interactive testing environment:**
    - View available tools
    - Test tool execution
@@ -360,7 +394,7 @@ How's the weather like in Seattle
 By completing this lab, you have:
 
 - [x] **Created a custom MCP server** using Microsoft Foundry Toolkit templates
-- [x] **Upgraded to the latest MCP SDK** (v1.9.3) for enhanced functionality
+- [x] **Upgraded to the latest MCP SDK** (v2.3.0) for enhanced functionality
 - [x] **Configured professional debugging workflows** for both Agent Builder and Inspector
 - [x] **Set up the MCP Inspector** for interactive server testing
 - [x] **Mastered VS Code debugging configurations** for MCP development
@@ -369,8 +403,8 @@ By completing this lab, you have:
 
 | Feature | Description | Use Case |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Latest protocol implementation | Modern server development |
-| **MCP Inspector 0.14.0** | Interactive debugging tool | Real-time server testing |
+| **MCP Python SDK v2.3.0** | Latest protocol implementation | Modern server development |
+| **MCP Inspector 2.0.0** | Interactive debugging tool | Real-time server testing |
 | **VS Code Debugging** | Integrated development environment | Professional debugging workflow |
 | **Agent Builder Integration** | Direct Microsoft Foundry Toolkit connection | End-to-end agent testing |
 

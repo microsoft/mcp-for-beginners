@@ -10,7 +10,7 @@ from pydantic import AnyUrl
 
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
-from mcp.shared.context import RequestContext
+from mcp.client.context import ClientRequestContext
 
 from openai import OpenAI
 
@@ -46,7 +46,7 @@ async def call_llm(prompt: str, system_prompt: str) -> str:
 
 # Optional: create a sampling callback
 async def handle_sampling_message(
-    context: RequestContext[ClientSession, None], params: types.CreateMessageRequestParams
+    context: ClientRequestContext, params: types.CreateMessageRequestParams
 ) -> types.CreateMessageResult:
     print(f"Sampling request: {params.messages}")
 
@@ -105,7 +105,7 @@ async def run():
             # result_unstructured = result.content[0]
             # if isinstance(result_unstructured, types.TextContent):
             #     print(f"Tool result: {result_unstructured.text}")
-            # result_structured = result.structuredContent
+            # result_structured = result.structured_content
             # print(f"Structured tool result: {result_structured}")
 
 

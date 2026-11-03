@@ -5,7 +5,7 @@
 import asyncio
 import logging
 import sys
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 from mcp import ClientSession
 
 import json
@@ -33,7 +33,7 @@ def prompt_user():
 async def main():
     logger.info("Connecting to Microsoft Docs MCP Server at: %s", MCP_SERVER_URL)
     try:
-        async with streamablehttp_client(MCP_SERVER_URL) as (read_stream, write_stream, _):
+        async with streamable_http_client(MCP_SERVER_URL) as (read_stream, write_stream, _):
             logger.info("Connection established. Initializing MCP session.")
             async with ClientSession(read_stream, write_stream) as session:
                 await session.initialize()
@@ -54,13 +54,15 @@ async def main():
                     
                     try:
                         logger.info("Executing query: %s", user_query)
-                        result = await session.call_tool("microsoft_docs_search", {"question": user_query})
+                        result = await session.call_tool("microsoft_docs_search", {"query": user_query})
                         # print("RESULT:", result)
                         print("\n--- Search Result ---")
                         if hasattr(result, 'content'):
                             # print(result.content)
                             for item in result.content:
-                                my_list = json.loads(item.text)
+                                data = json.loads(item.text)
+                                # The Docs MCP server returns {"results": [...]}
+                                my_list = data.get("results", []) if isinstance(data, dict) else data
                                 for doc in my_list:
                                     print(f"[Title]: {doc.get('title', 'No title')}")
                                     print(f"[Content]: {doc.get('content', 'No content')}")

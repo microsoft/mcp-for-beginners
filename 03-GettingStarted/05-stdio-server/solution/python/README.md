@@ -8,7 +8,7 @@ This Python solution demonstrates how to build an MCP server using the current s
 
 ## Prerequisites
 
-- Python 3.8 or later
+- Python 3.10 or later
 - You're recommended to install `uv` for package management, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## Setup Instructions
@@ -34,7 +34,7 @@ source venv/bin/activate
 ### Step 3: Install the dependencies
 
 ```bash
-pip install mcp
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 ## Running the Server

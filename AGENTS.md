@@ -10,7 +10,7 @@
 - **Frameworks & SDKs**: 
   - MCP SDK (`@modelcontextprotocol/sdk`)
   - Spring Boot (Java)
-  - FastMCP (Python)
+  - MCP Python SDK 2.x (`MCPServer`, formerly FastMCP) for Python
   - LangChain4j (Java)
 - **Databases**: PostgreSQL with pgvector extension
 - **Cloud Platforms**: Azure (Container Apps, OpenAI, Content Safety, Application Insights)

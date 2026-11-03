@@ -101,6 +101,7 @@ use the Python template for the calculator MCP server.
 1. Using the terminal, activate the virtual environment:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
+1. Open **pyproject.toml** and make sure the `mcp` dependency is pinned to the 2.x Python SDK used in this lesson: `"mcp[cli]>=2.3.0,<3"`.
 1. Using the terminal, install the dependencies: `pip install -e .[dev]`
 1. In the **Explorer** view of the **Activity Bar**, expand the **src** directory and select **server.py** to open the file in the editor.
 1. Replace the code in the **server.py** file with the following and save:
@@ -114,9 +115,9 @@ use the Python template for the calculator MCP server.
     that can perform basic arithmetic operations (add, subtract, multiply, divide).
     """
     
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.mcpserver import MCPServer
     
-    server = FastMCP("calculator")
+    server = MCPServer("calculator")
     
     @server.tool()
     def add(a: float, b: float) -> float:
@@ -144,6 +145,19 @@ use the Python template for the calculator MCP server.
         if b == 0:
             raise ValueError("Cannot divide by zero")
         return a / b
+    ```
+
+1. Open **src/\_\_init\_\_.py**. In mcp 2.x, `host` and `port` are passed to `server.run()` instead of being set on `server.settings`. If the template contains `server.settings.port = port` and `server.settings.host = "127.0.0.1"`, remove those two lines and change the `server.run(...)` call in the same branch so the server uses the Streamable HTTP transport (endpoint `/mcp`) instead of the deprecated SSE transport:
+
+    ```python
+    server.run(transport="streamable-http", host="127.0.0.1", port=port)
+    ```
+
+1. Open **.aitk/mcp.json**. If the server entry uses `"type": "sse"` with a URL ending in `/sse`, change it so Agent Builder connects to the Streamable HTTP endpoint (keep the server name and port the template generated):
+
+    ```json
+    "type": "http",
+    "url": "http://localhost:3001/mcp"
     ```
 
 ### -4- Run the agent with the calculator MCP server

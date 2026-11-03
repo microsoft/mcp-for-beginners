@@ -36,7 +36,7 @@ MCP is the **"USB-C for AI"** - a universal standard that connects AI models to 
 **✨ Key Features:**
 
 - 🔄 **Standardized Integration**: Universal interface for AI-tool connections
-- 🏛️ **Flexible Architecture**: Local & remote servers via stdio/SSE transport
+- 🏛️ **Flexible Architecture**: Local & remote servers via stdio/Streamable HTTP transport
 - 🧰 **Rich Ecosystem**: Tools, prompts, and resources in one protocol
 - 🔒 **Enterprise-Ready**: Built-in security and reliability
 
@@ -94,7 +94,7 @@ Microsoft's flagship AI development extension that transforms VS Code into an AI
 **Duration**: 20 minutes
 
 - 💻 Create custom MCP servers using Microsoft Foundry Toolkit
-- 🐍 Configure and use the latest MCP Python SDK (v1.9.3)
+- 🐍 Configure and use the latest MCP Python SDK (v2.3.0)
 - 🔍 Set up and utilize MCP Inspector for debugging
 - 🛠️ Build a Weather MCP Server with professional debugging workflows
 - 🧪 Debug MCP servers in both Agent Builder and Inspector environments

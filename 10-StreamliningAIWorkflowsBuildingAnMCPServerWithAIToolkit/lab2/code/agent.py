@@ -1,6 +1,6 @@
 """Connect model with mcp tools in Python
 # Run this python script
-> pip install mcp openai
+> pip install "mcp[cli]>=2.3.0,<3" "openai>=3.44.0,<4"
 > python <this-script-path>.py
 """
 import asyncio
@@ -11,7 +11,8 @@ from contextlib import AsyncExitStack
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-from mcp.client.sse import sse_client
+from mcp.client.streamable_http import streamable_http_client
+import httpx2
 
 from openai import OpenAI
 
@@ -50,16 +51,21 @@ class MCPClient:
         # Register the server
         await self._register_server(server_id, session)
     
-    async def connect_sse_server(self, server_id: str, url: str, headers: Dict[str, str]):
-        """Connect to an MCP server using SSE transport
+    async def connect_http_server(self, server_id: str, url: str, headers: Dict[str, str]):
+        """Connect to a remote MCP server using the Streamable HTTP transport
         
         Args:
             server_id: Unique identifier for this server connection
-            url: URL of the SSE server
+            url: Streamable HTTP endpoint of the server, e.g. http://localhost:3001/mcp
             headers: Optional HTTP headers
         """
-        sse_context = await self.exit_stack.enter_async_context(sse_client(url=url, headers=headers))
-        read, write = sse_context
+        http_client = await self.exit_stack.enter_async_context(
+            httpx2.AsyncClient(headers=headers, timeout=httpx2.Timeout(30.0, read=300.0))
+        )
+        streams = await self.exit_stack.enter_async_context(
+            streamable_http_client(url, http_client=http_client)
+        )
+        read, write = streams[0], streams[1]
         session = await self.exit_stack.enter_async_context(ClientSession(read, write))
         await session.initialize()
         
@@ -106,7 +112,7 @@ class MCPClient:
                     "function": {
                         "name": tool.name,
                         "description": tool.description,
-                        "parameters": tool.inputSchema
+                        "parameters": tool.input_schema
                     },
                 })
 

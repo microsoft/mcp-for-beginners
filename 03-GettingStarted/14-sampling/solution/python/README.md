@@ -17,7 +17,7 @@ venv\Scripts\activate
 ## -2- Install the dependencies
 
 ```bash
-pip install "mcp[cli]" openai
+pip install "mcp[cli]>=2.3.0,<3" "openai>=3.44.0,<4"
 ```
 
 ## -3- Run the sample
