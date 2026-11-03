@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>5c397159-499a-49d3-ba30-bbadb05969da</UserSecretsId>
+    <!-- The sample runs with `dotnet run` and doesn't require the Aspire CLI bundle
+         (AspireUseCliBundle=false, the SDK default), so silence the reminder. -->
+    <NoWarn>$(NoWarn);ASPIRE010</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
