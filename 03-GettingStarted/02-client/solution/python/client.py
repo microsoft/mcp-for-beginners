@@ -19,8 +19,14 @@ async def run():
             # List available resources
             resources = await session.list_resources()
             print("LISTING RESOURCES")
-            for resource in resources:
-                print("Resource: ", resource)
+            for resource in resources.resources:
+                print("Resource: ", resource.uri)
+
+            # List resource templates (resources with parameters, like greeting://{name})
+            templates = await session.list_resource_templates()
+            print("LISTING RESOURCE TEMPLATES")
+            for template in templates.resource_templates:
+                print("Resource template: ", template.uri_template)
 
             # List available tools
             tools = await session.list_tools()
@@ -30,7 +36,8 @@ async def run():
 
             # Read a resource
             print("READING RESOURCE")
-            content, mime_type = await session.read_resource("greeting://hello")
+            resource = await session.read_resource("greeting://hello")
+            print(resource.contents[0].text)
 
             # Call a tool
             print("CALL TOOL")

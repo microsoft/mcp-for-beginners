@@ -156,37 +156,38 @@ In our first step, we need to create the web server instance and the MCP Server.
 Here we create an MCP server instance, create a starlette web app and host it with uvicorn.
 
 ```python
+# see solution/python/server.py for the full file, including imports
+# and the `settings` dictionary with host and port
+
 # creating MCP Server
 
-app = FastMCP(
+app = MCPServer(
     name="MCP Resource Server",
     instructions="Resource Server that validates tokens via Authorization Server introspection",
-    host=settings["host"],
-    port=settings["port"],
     debug=True
 )
 
 # creating starlette web app
-starlette_app = app.streamable_http_app()
+starlette_app = app.streamable_http_app(host=settings["host"])
 
 # serving app via uvicorn
 async def run(starlette_app):
     import uvicorn
     config = uvicorn.Config(
             starlette_app,
-            host=app.settings.host,
-            port=app.settings.port,
+            host=settings["host"],
+            port=settings["port"],
             log_level=app.settings.log_level.lower(),
         )
     server = uvicorn.Server(config)
     await server.serve()
 
-run(starlette_app)
+asyncio.run(run(starlette_app))
 ```
 
 In this code we:
 
-- Create the MCP Server.
+- Create the MCP Server. With the Python SDK 2.x, `host` and `port` are not constructor arguments; they're used when the app is built and served.
 - Construct the the starlette web app from the MCP Server, `app.streamable_http_app()`.
 - Host and server the web app using uvicorn `server.serve()`.
 
@@ -434,16 +435,24 @@ We need to ensure the client is passing the credential through the header. As we
 For the client, we need to pass a header with our credential like so:
 
 ```python
+import httpx2
+from mcp import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+
 # DON'T hardcode the value, have it at minimum in an environment variable or a more secure storage
 token = "secret-token"
 
-async with streamablehttp_client(
-        url = f"http://localhost:{port}/mcp",
-        headers = {"Authorization": f"Bearer {token}"}
+http_client = httpx2.AsyncClient(
+    headers={"Authorization": f"Bearer {token}"},
+    timeout=httpx2.Timeout(30, read=300),
+)
+
+async with http_client, streamable_http_client(
+        f"http://localhost:{port}/mcp",
+        http_client=http_client,
     ) as (
         read_stream,
         write_stream,
-        session_callback,
     ):
         async with ClientSession(
             read_stream,
@@ -454,7 +463,7 @@ async with streamablehttp_client(
             # TODO, what you want done in the client, e.g list tools, call tools etc.
 ```
 
-Note how we populate the `headers` property like so ` headers = {"Authorization": f"Bearer {token}"}`.
+Note how we populate the `headers` property of the HTTP client like so `headers={"Authorization": f"Bearer {token}"}`. In the Python SDK 2.x, headers, timeouts and auth are configured on the `httpx2.AsyncClient` that you pass to `streamable_http_client`.
 
 **TypeScript**
 
@@ -913,11 +922,13 @@ You have a few different choices on how to accomplish per feature RBAC, here are
       # required_permissions: list of permissions required for the tool
       return any(perm in user_permissions for perm in required_permissions)
 
-   @server.call_tool()
+   # Low-level handler (MCP Python SDK 2.x), registered with
+   # Server("my-server", on_call_tool=handle_call_tool)
    async def handle_call_tool(
-     name: str, arguments: dict[str, str] | None
-   ) -> list[types.TextContent]:
-    # Assume request.user.permissions is a list of permissions for the user
+     ctx: ServerRequestContext, params: types.CallToolRequestParams
+   ) -> types.CallToolResult:
+     name = params.name
+     # Assume request.user.permissions is a list of permissions for the user
      user_permissions = request.user.permissions
      required_permissions = tool_permission.get(name, [])
      if not has_permission(user_permissions, required_permissions):

@@ -10,7 +10,7 @@ source ./venv/bin/activate
 ## Install dependencies
 
 ```sh
-pip install PyJWT
+pip install "PyJWT>=2.15.1,<3"
 ```
 
 ## Run code
