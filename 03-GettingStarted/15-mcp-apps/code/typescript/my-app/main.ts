@@ -21,7 +21,7 @@ export async function startStreamableHTTPServer(
     cors({
       origin: "*",
       methods: ["GET", "POST", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization", "MCP-Protocol-Version"],
+      allowedHeaders: ["Content-Type", "Authorization", "MCP-Protocol-Version", "Mcp-Method", "Mcp-Name"],
       credentials: false,
     }),
   );
