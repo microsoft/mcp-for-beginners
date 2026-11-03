@@ -6,8 +6,8 @@ This directory contains complete, working examples of MCP clients in different p
 
 ### 1. Java Client (`client_example_java.java`)
 
-- **Transport**: SSE (Server-Sent Events) over HTTP
-- **Target Server**: `http://localhost:8080`
+- **Transport**: Streamable HTTP
+- **Target Server**: `http://localhost:8080/mcp`
 - **Features**:
   - Connection establishment and ping
   - Tool listing
@@ -16,10 +16,15 @@ This directory contains complete, working examples of MCP clients in different p
 
 **To run:**
 
+The file declares `public class SDKClient` and needs Spring AI 2.0.2 (MCP Java SDK
+2.1.0) on the classpath, so run it from the Java client project in
+`solution/java` (Java 21+):
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
-javac client_example_java.java
-java client_example_java
+cp client_example_java.java solution/java/src/main/java/com/microsoft/mcp/sample/client/SDKClient.java
+cd solution/java
+./mvnw clean compile exec:java
 ```
 
 ### 2. C# Client (`client_example_csharp.cs`)
@@ -118,13 +123,13 @@ Before running these clients, ensure you have:
 
 ## Key Differences Between Implementations
 
-| Language   | Transport | Server Startup | Async Model | Key Libraries       |
-|------------|-----------|----------------|-------------|---------------------|
-| Java       | SSE/HTTP  | External       | Sync        | WebFlux, MCP SDK    |
-| C#         | Stdio     | Automatic      | Async/Await | .NET MCP SDK        |
-| TypeScript | Stdio     | Automatic      | Async/Await | Node MCP SDK        |
-| Python     | Stdio     | Automatic      | AsyncIO     | Python MCP SDK      |
-| Rust       | Stdio     | Automatic      | Async/Await | Rust MCP SDK, Tokio |
+| Language   | Transport       | Server Startup | Async Model | Key Libraries       |
+|------------|-----------------|----------------|-------------|---------------------|
+| Java       | Streamable HTTP | External       | Sync        | WebFlux, MCP SDK    |
+| C#         | Stdio           | Automatic      | Async/Await | .NET MCP SDK        |
+| TypeScript | Stdio           | Automatic      | Async/Await | Node MCP SDK        |
+| Python     | Stdio           | Automatic      | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio           | Automatic      | Async/Await | Rust MCP SDK, Tokio |
 
 ## Next Steps
 

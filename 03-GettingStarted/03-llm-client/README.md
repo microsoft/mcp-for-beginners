@@ -173,30 +173,34 @@ First, you'll need to add the LangChain4j dependencies to your `pom.xml` file. A
 
 ```xml
 <properties>
-    <langchain4j.version>1.0.0-beta3</langchain4j.version>
+    <java.version>21</java.version>
+    <langchain4j.version>1.23.0</langchain4j.version>
 </properties>
 
+<!-- The LangChain4j BOM pins every LangChain4j module to the matching release -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-bom</artifactId>
+            <version>${langchain4j.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <dependencies>
-    <!-- LangChain4j MCP Integration -->
+    <!-- LangChain4j MCP Integration (the BOM resolves it to 1.23.0-beta33) -->
     <dependency>
         <groupId>dev.langchain4j</groupId>
         <artifactId>langchain4j-mcp</artifactId>
-        <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- OpenAI Official API Client -->
+    <!-- OpenAI Official API Client (the BOM resolves it to 1.23.0-beta33) -->
     <dependency>
         <groupId>dev.langchain4j</groupId>
         <artifactId>langchain4j-open-ai-official</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-
-    <!-- Required at runtime by the pinned OpenAI official adapter -->
-    <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>1.54.1</version>
-        <scope>runtime</scope>
     </dependency>
     
     <!-- Spring Boot Starter (optional, for production apps) -->
@@ -233,8 +237,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -253,7 +257,7 @@ public class LangChain4jClient {
             "cn_zh", "https://api.minimaxi.com/v1");
 
     public static void main(String[] args) throws Exception {
-        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+        ChatModel model = OpenAiOfficialChatModel.builder()
                 .baseUrl(resolveBaseUrl())
                 .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
@@ -261,8 +265,8 @@ public class LangChain4jClient {
                 .build();
 
         // Create MCP transport for connecting to server
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
+        McpTransport transport = StreamableHttpMcpTransport.builder()
+                .url("http://localhost:8080/mcp")
                 .timeout(Duration.ofSeconds(60))
                 .logRequests(true)
                 .logResponses(true)
@@ -316,8 +320,8 @@ In the preceding code we've:
 
 - **Added LangChain4j dependencies**: Required for MCP integration and the OpenAI-compatible MiniMax API
 - **Imported the LangChain4j libraries**: For MCP integration and OpenAI chat model functionality
-- **Created a `ChatLanguageModel`**: Configured to use MiniMax with your MiniMax API key, endpoint, and supported model ID
-- **Set up HTTP transport**: Using Server-Sent Events (SSE) to connect to the MCP server
+- **Created a `ChatModel`**: Configured to use MiniMax with your MiniMax API key, endpoint, and supported model ID
+- **Set up HTTP transport**: Using the Streamable HTTP transport to connect to the MCP server at `http://localhost:8080/mcp`
 - **Created an MCP client**: That will handle communication with the server
 - **Used LangChain4j's built-in MCP support**: Which simplifies integration between LLMs and MCP servers
 
@@ -670,7 +674,7 @@ public interface Bot {
 
 // Configure the AI service with LLM and MCP tools
 Bot bot = AiServices.builder(Bot.class)
-        .chatLanguageModel(model)
+        .chatModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
@@ -1273,8 +1277,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -1293,15 +1297,15 @@ public class LangChain4jClient {
             "cn_zh", "https://api.minimaxi.com/v1");
 
     public static void main(String[] args) throws Exception {
-        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+        ChatModel model = OpenAiOfficialChatModel.builder()
                 .baseUrl(resolveBaseUrl())
                 .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
                 .modelName(resolveModelName())
                 .build();
 
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
+        McpTransport transport = StreamableHttpMcpTransport.builder()
+                .url("http://localhost:8080/mcp")
                 .timeout(Duration.ofSeconds(60))
                 .logRequests(true)
                 .logResponses(true)
@@ -1316,7 +1320,7 @@ public class LangChain4jClient {
                 .build();
 
         Bot bot = AiServices.builder(Bot.class)
-                .chatLanguageModel(model)
+                .chatModel(model)
                 .toolProvider(toolProvider)
                 .build();
 
