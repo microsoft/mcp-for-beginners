@@ -49,7 +49,7 @@ python server.py
 The server can also be run in development mode using the MCP CLI:
 
 ```powershell
-mcp dev server.py
+mcp dev server.py --with typer
 ```
 
 Or installed in Claude Desktop (if available):

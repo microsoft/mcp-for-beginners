@@ -8,10 +8,20 @@ You're recommended to install `uv` but it's not a must, see [instructions](https
 python -m venv venv
 ```
 
+> On macOS/Linux use `python3` if `python` is not available.
+
 ## -1- Activate the virtual environment
+
+Windows:
 
 ```bash
 venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
 ```
 
 ## -2- Install the dependencies
@@ -22,18 +32,22 @@ pip install "mcp[cli]>=2.3.0,<3"
 
 ## -3- Run the sample
 
-
 ```bash
 mcp run server.py
 ```
 
+The server uses the stdio transport, so it prints nothing and waits for a client on stdin. Press `Ctrl+C` to stop it.
+
 ## -4- Test the sample
 
-With the server running in one terminal, open another terminal and run the following command:
+You don't need to keep the server from step 3 running: `mcp dev` starts its own copy of the server. Run the following command:
 
 ```bash
-mcp dev server.py
+mcp dev server.py --with typer
 ```
+
+> [!NOTE]
+> `mcp dev` starts the server in a fresh `uv` environment that only installs `mcp` without the `[cli]` extra. Without `--with typer` the server exits immediately with `Error: typer is required` and the inspector shows `Failed to connect to "uv"` / `Connection closed`.
 
 This should start a web server with a visual interface allowing you to test the sample.
 
@@ -100,10 +114,13 @@ You should see the following output:
       "text": "3"
     }
   ],
+  "structuredContent": {
+    "result": 3
+  },
   "isError": false
 }
 ```
 
 > [!TIP]
-> It's usually a lot faster to run the ispector in CLI mode than in the browser.
+> It's usually a lot faster to run the inspector in CLI mode than in the browser.
 > Read more about the inspector [here](https://github.com/modelcontextprotocol/inspector).

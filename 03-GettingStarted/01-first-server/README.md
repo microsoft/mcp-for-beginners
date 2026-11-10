@@ -1215,7 +1215,7 @@ npm run build
 mcp run server.py
 ```
 
-> To use MCP Inspector, use `mcp dev server.py` which automatically launches the Inspector and provides the required proxy session token. If using `mcp run server.py`, you’ll need to manually start the Inspector and configure the connection.
+> To use MCP Inspector, use `mcp dev server.py --with typer` which automatically launches the Inspector and provides the required proxy session token. If using `mcp run server.py`, you’ll need to manually start the Inspector and configure the connection.
 
 #### .NET
 
@@ -1262,7 +1262,7 @@ or add it to your *package.json* like so: `"inspector": "npx @modelcontextprotoc
 Python wraps a Node.js tool called inspector. It's possible to call said tool like so:
 
 ```sh
-mcp dev server.py
+mcp dev server.py --with typer
 ```
 
 However, it doesn't implement all the methods available on the tool so you're recommended to run the Node.js tool directly like below:
