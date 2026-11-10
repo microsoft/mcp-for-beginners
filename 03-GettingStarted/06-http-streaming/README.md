@@ -405,30 +405,50 @@ mcp.run(transport="streamable-http")
 #### .NET
 
 ```csharp
-[Tool("A tool that sends progress notifications")]
-public async Task<TextContent> ProcessFiles(string message, ToolContext ctx)
+using System.ComponentModel;
+using ModelContextProtocol;
+using ModelContextProtocol.Server;
+
+[McpServerToolType]
+public sealed class FileTools
 {
-    await ctx.Info("Processing file 1/3...");
-    await ctx.Info("Processing file 2/3...");
-    await ctx.Info("Processing file 3/3...");
-    return new TextContent
+    [McpServerTool, Description("A tool that sends progress notifications")]
+    public static async Task<string> ProcessFiles(
+        string message,
+        IProgress<ProgressNotificationValue> progress,
+        CancellationToken cancellationToken)
     {
-        Type = "text",
-        Text = $"Done: {message}"
-    };
+        for (int i = 1; i <= 3; i++)
+        {
+            progress.Report(new ProgressNotificationValue
+            {
+                Progress = i,
+                Total = 3,
+                Message = $"Processing file {i}/3..."
+            });
+            await Task.Delay(500, cancellationToken);
+        }
+
+        return $"Done: {message}";
+    }
 }
 ```
 
-In this .NET example, the `ProcessFiles` tool is decorated with the `Tool` attribute and sends three notifications to the client as it processes each file. The `ctx.Info()` method is used to send informational messages.
+In this .NET example, the `ProcessFiles` tool is marked with the `[McpServerTool]` attribute and sends three progress notifications to the client as it processes each file. The SDK injects the `IProgress<ProgressNotificationValue>` parameter automatically (it doesn't appear in the tool's input schema), and each `progress.Report(...)` call sends a `notifications/progress` message to the client.
 
-To enable notifications in your .NET MCP server, ensure you're using a streaming transport:
+To enable notifications in your .NET MCP server, ensure you're using the Streamable HTTP transport from the `ModelContextProtocol.AspNetCore` package:
 
 ```csharp
-var builder = McpBuilder.Create();
-await builder
-    .UseStreamableHttp() // Enable streamable HTTP transport
-    .Build()
-    .RunAsync();
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddMcpServer()
+    .WithHttpTransport() // Enable the Streamable HTTP transport
+    .WithTools<FileTools>();
+
+var app = builder.Build();
+app.MapMcp("/mcp");
+app.Run();
 ```
 
 ### Client-side: Receiving Notifications
@@ -457,33 +477,30 @@ In the preceding code, the `message_handler` function checks if the incoming mes
 #### .NET
 
 ```csharp
-// Define a message handler
-void MessageHandler(IJsonRpcMessage message)
+using ModelContextProtocol;
+using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
+
+var transport = new HttpClientTransport(new()
 {
-    if (message is ServerNotification notification)
-    {
-        Console.WriteLine($"NOTIFICATION: {notification}");
-    }
-    else
-    {
-        Console.WriteLine($"SERVER MESSAGE: {message}");
-    }
-}
+    Endpoint = new Uri("http://localhost:5000/mcp")
+});
 
-// Create and use a client session with the message handler
-var clientOptions = new ClientSessionOptions
-{
-    MessageHandler = MessageHandler,
-    LoggingCallback = (level, message) => Console.WriteLine($"[{level}] {message}")
-};
+await using var client = await McpClient.CreateAsync(transport);
 
-using var client = new ClientSession(readStream, writeStream, clientOptions);
-await client.InitializeAsync();
+// Handle progress notifications as they arrive
+var progress = new Progress<ProgressNotificationValue>(p =>
+    Console.WriteLine($"NOTIFICATION: {p.Progress}/{p.Total} {p.Message}"));
 
-// Now the client will process notifications through the MessageHandler
+var result = await client.CallToolAsync(
+    "process_files",
+    new Dictionary<string, object?> { ["message"] = "hello" },
+    progress);
+
+Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
 ```
 
-In this .NET example, the `MessageHandler` function checks if the incoming message is a notification. If it is, it prints the notification; otherwise, it processes it as a regular server message. The `ClientSession` is initialized with the message handler via the `ClientSessionOptions`.
+In this .NET example, the client passes an `IProgress<ProgressNotificationValue>` handler to `CallToolAsync`. The SDK attaches a progress token to the request and routes every matching `notifications/progress` message from the server to that handler, so each notification is printed while the tool is still running. For other notification types, you can register a handler with `client.RegisterNotificationHandler(...)`.
 
 To enable notifications, ensure your server uses a streaming transport (like `streamable-http`) and your client implements a message handler to process notifications.
 
