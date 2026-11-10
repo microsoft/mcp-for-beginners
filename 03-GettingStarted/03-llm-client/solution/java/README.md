@@ -58,6 +58,10 @@ export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
    ```cmd
    mvnw clean install
    ```
+   On macOS/Linux:
+   ```bash
+   ./mvnw clean install
+   ```
    Or if you have Maven installed globally:
    ```cmd
    mvn clean install
@@ -70,9 +74,18 @@ export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
 
 ## Running the Application
 
+On Windows:
+
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
+```
+
+On macOS/Linux:
+
+```bash
+./mvnw clean package
+java -jar target/calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## What the Application Does
