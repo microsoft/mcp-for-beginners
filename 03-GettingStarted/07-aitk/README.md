@@ -116,6 +116,7 @@ use the Python template for the calculator MCP server.
     """
     
     from mcp.server.mcpserver import MCPServer
+    from mcp.server.mcpserver.exceptions import ToolError
     
     server = MCPServer("calculator")
     
@@ -140,10 +141,10 @@ use the Python template for the calculator MCP server.
         Divide a by b and return the result.
         
         Raises:
-            ValueError: If b is zero
+            ToolError: If b is zero
         """
         if b == 0:
-            raise ValueError("Cannot divide by zero")
+            raise ToolError("Cannot divide by zero")
         return a / b
     ```
 
