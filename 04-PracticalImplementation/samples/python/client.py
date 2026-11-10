@@ -24,7 +24,8 @@ async def main():
     logger.info("Starting clean MCP client")
     
     server_params = StdioServerParameters(
-        command="python",
+        # Start the server with the same Python interpreter that runs this client
+        command=sys.executable,
         args=["server.py"],
     )
     
