@@ -25,17 +25,20 @@ java client_example_java
 ### 2. C# Client (`client_example_csharp.cs`)
 
 - **Transport**: Stdio (Standard Input/Output)
-- **Target Server**: Local .NET MCP server via dotnet run
+- **Target Server**: The .NET server from `01-first-server/solution/dotnet`, started with `dotnet run`
 - **Features**:
   - Automatic server startup via stdio transport
-  - Tool and resource listing
-  - Calculator operations
-  - JSON result parsing
-  - Comprehensive error handling
+  - Tool listing
+  - The `add` tool (the C# SDK publishes the method `Add` as `add`)
+  - Text result extraction from `CallToolResult`
 
-**To run:**
+**To run:** create a small console project next to the example and use the file as its `Program.cs`:
 
 ```bash
+dotnet new console -o csharp-example
+cd csharp-example
+dotnet add package ModelContextProtocol --version 2.4.0
+cp ../client_example_csharp.cs Program.cs
 dotnet run
 ```
 
