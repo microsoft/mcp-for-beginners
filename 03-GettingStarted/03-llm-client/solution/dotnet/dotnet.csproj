@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.14" />
-    <PackageReference Include="ModelContextProtocol" Version="2.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.15" />
+    <PackageReference Include="ModelContextProtocol" Version="2.4.0" />
     <PackageReference Include="OpenAI" Version="2.14.0" />
   </ItemGroup>
 

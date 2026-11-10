@@ -478,8 +478,8 @@ touch server.py
 Install the required NuGet packages (this lesson uses the .NET 10 SDK):
 
 ```sh
-dotnet add package ModelContextProtocol --version 2.3.1
-dotnet add package Microsoft.Extensions.Hosting --version 10.0.14
+dotnet add package ModelContextProtocol --version 2.4.0
+dotnet add package Microsoft.Extensions.Hosting --version 10.0.15
 ```
 
 #### Java
