@@ -1,6 +1,6 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
+You need Python 3.10 or later (the MCP Python SDK 2.x requires it). You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create a virtual environment
 
@@ -8,10 +8,20 @@ You're recommended to install `uv` but it's not a must, see [instructions](https
 python -m venv venv
 ```
 
+> On macOS/Linux use `python3` if `python` is not available.
+
 ## -1- Activate the virtual environment
+
+Windows:
 
 ```bash
 venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
 ```
 
 ## -2- Install the dependencies
@@ -25,6 +35,8 @@ pip install "mcp[cli]>=2.3.0,<3"
 ```bash
 python client.py
 ```
+
+The client starts `server.py` itself over stdio, so you don't need to run the server separately.
 
 You should see an output similar to:
 

@@ -1,6 +1,6 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
+You need [Node.js](https://nodejs.org/) 18 or later.
 
 ## -1- Install the dependencies
 
@@ -8,18 +8,21 @@ You're recommended to install `uv` but it's not a must, see [instructions](https
 npm install
 ```
 
-## -3- Run the server
-
+## -2- Build the sample
 
 ```bash
 npm run build
 ```
 
-## -4- Run the client
+This compiles the server (`src/index.ts`) and the client (`src/client.ts`) into `build/`.
+
+## -3- Run the client
 
 ```sh
 npm run client
 ```
+
+The client starts the server itself over stdio, so you don't need to run the server in another terminal. It gets a prompt, lists the resource templates, reads the `greeting://hello` resource, calls the `add` tool, and then exits.
 
 You should see a result similar to:
 
@@ -28,6 +31,7 @@ Prompt:  {
   type: 'text',
   text: 'Please review this code:\n\nconsole.log("hello");'
 }
-Resource template:  file
+Resource template:  greeting
+Resource:  Hello, hello!
 Tool result:  { content: [ { type: 'text', text: '9' } ] }
 ```

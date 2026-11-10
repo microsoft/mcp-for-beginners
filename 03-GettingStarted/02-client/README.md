@@ -65,7 +65,7 @@ const resources = await client.listResources();
 
 // Read a resource
 const resource = await client.readResource({
-  uri: "file:///example.txt"
+  uri: "greeting://example"
 });
 
 // Call a tool
@@ -75,6 +75,9 @@ const result = await client.callTool({
     arg1: "value"
   }
 });
+
+// Close the connection so the process can exit
+await client.close();
 ```
 
 In the preceding code we:
@@ -144,7 +147,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+rmcp = { version = "2.1.0", features = ["client", "transport-child-process"] }
 serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
@@ -154,7 +157,7 @@ From there, you can import the necessary libraries in your client code.
 ```rust
 use rmcp::{
     RmcpError,
-    model::CallToolRequestParam,
+    model::CallToolRequestParams,
     service::ServiceExt,
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -434,7 +437,7 @@ To invoke the features we need to ensure we specify the correct arguments and in
 
 // Read a resource
 const resource = await client.readResource({
-  uri: "file:///example.txt"
+  uri: "greeting://example"
 });
 
 // Call a tool
@@ -460,8 +463,8 @@ In the preceding code we:
 
     ```typescript
     server.resource(
-        "readFile",
-        new ResourceTemplate("file://{name}", { list: undefined }),
+        "greeting",
+        new ResourceTemplate("greeting://{name}", { list: undefined }),
         async (uri, { name }) => ({
           contents: [{
             uri: uri.href,
@@ -471,7 +474,7 @@ In the preceding code we:
     );
     ```
 
-    Our `uri` value `file://example.txt` matches `file://{name}` on the server. `example.txt` will be mapped to `name`.
+    Our `uri` value `greeting://example` matches `greeting://{name}` on the server. `example` will be mapped to `name`.
 
 - Call a tool, we call it by specifying its `name` and its `arguments` like so:
 
@@ -584,10 +587,14 @@ In the preceding code we've:
 let a = 3;
 let b = 2;
 let tool_result = client
-    .call_tool(CallToolRequestParam {
-        name: "add".into(),
-        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
-    })
+    .call_tool(
+        CallToolRequestParams::new("add").with_arguments(
+            serde_json::json!({ "a": a, "b": b })
+                .as_object()
+                .cloned()
+                .unwrap_or_default(),
+        ),
+    )
     .await?;
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
@@ -834,7 +841,8 @@ Each language-specific solution provides:
 
    ```text
    Prompt: Please review this code: console.log("hello");
-   Resource template: file
+   Resource template: greeting
+   Resource: Hello, hello!
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 

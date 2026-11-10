@@ -42,40 +42,37 @@ dotnet run
 ### 3. TypeScript Client (`client_example_typescript.ts`)
 
 - **Transport**: Stdio (Standard Input/Output)
-- **Target Server**: Local Node.js MCP server
+- **Target Server**: The TypeScript server from `01-first-server/solution/typescript`
 - **Features**:
-  - Full MCP protocol support
-  - Tool, resource, and prompt operations
-  - Calculator operations
-  - Resource reading and prompt execution
-  - Robust error handling
+  - Tool listing and the `add` tool
+  - Resource template listing and reading `greeting://World`
+  - Prompt listing and the `review-code` prompt
+  - Closes the connection so the process exits
 
-**To run:**
+**To run:** the client uses the MCP SDK and starts the server with `node build/index.js`, so run it from the first-server TypeScript project:
 
 ```bash
-# First compile TypeScript (if needed)
+cd ../01-first-server/solution/typescript
+npm install
+cp ../../../02-client/client_example_typescript.ts src/
 npm run build
-
-# Then run the client
-npm run client
-# or
-node client_example_typescript.js
+node build/client_example_typescript.js
 ```
 
 ### 4. Python Client (`client_example_python.py`)
 
 - **Transport**: Stdio (Standard Input/Output)  
-- **Target Server**: Local Python MCP server
+- **Target Server**: The Python server from `01-first-server/solution/python`
 - **Features**:
   - Async/await pattern for operations
-  - Tool and resource discovery
-  - Calculator operations testing
-  - Resource content reading
+  - Tool discovery and the `add` and `subtract` tools
+  - Resource template listing and reading `greeting://World`
   - Class-based organization
 
-**To run:**
+**To run:** from this directory, in a virtual environment with the MCP Python SDK installed (see `01-first-server/solution/python/README.md`):
 
 ```bash
+pip install "mcp[cli]>=2.3.0,<3"
 python client_example_python.py
 ```
 
