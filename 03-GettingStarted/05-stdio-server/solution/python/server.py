@@ -9,6 +9,8 @@ and provides better performance.
 
 import asyncio
 import logging
+
+import jsonschema  # installed together with the mcp package
 from mcp.server import Server, ServerRequestContext
 from mcp.server.stdio import stdio_server
 from mcp.types import (
@@ -31,55 +33,75 @@ logger = logging.getLogger(__name__)
 # Define tools using list_tools and call_tool handlers.
 # In mcp 2.x, the low-level Server receives its handlers as constructor
 # arguments (on_list_tools=..., on_call_tool=...) instead of decorators.
+TOOLS = [
+    Tool(
+        name="add",
+        description="Add two numbers together",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number", "description": "First number"},
+                "b": {"type": "number", "description": "Second number"}
+            },
+            "required": ["a", "b"]
+        }
+    ),
+    Tool(
+        name="multiply",
+        description="Multiply two numbers together",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number", "description": "First number"},
+                "b": {"type": "number", "description": "Second number"}
+            },
+            "required": ["a", "b"]
+        }
+    ),
+    Tool(
+        name="get_greeting",
+        description="Generate a personalized greeting",
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Name to greet"}
+            },
+            "required": ["name"]
+        }
+    ),
+    Tool(
+        name="get_server_info",
+        description="Get information about this MCP server",
+        inputSchema={"type": "object", "properties": {}}
+    )
+]
+TOOLS_BY_NAME = {tool.name: tool for tool in TOOLS}
+
+
 async def list_tools(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListToolsResult:
     """List available tools"""
-    return ListToolsResult(tools=[
-        Tool(
-            name="add",
-            description="Add two numbers together",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "a": {"type": "number", "description": "First number"},
-                    "b": {"type": "number", "description": "Second number"}
-                },
-                "required": ["a", "b"]
-            }
-        ),
-        Tool(
-            name="multiply",
-            description="Multiply two numbers together",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "a": {"type": "number", "description": "First number"},
-                    "b": {"type": "number", "description": "Second number"}
-                },
-                "required": ["a", "b"]
-            }
-        ),
-        Tool(
-            name="get_greeting",
-            description="Generate a personalized greeting",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "name": {"type": "string", "description": "Name to greet"}
-                },
-                "required": ["name"]
-            }
-        ),
-        Tool(
-            name="get_server_info",
-            description="Get information about this MCP server",
-            inputSchema={"type": "object", "properties": {}}
-        )
-    ])
+    return ListToolsResult(tools=TOOLS)
+
+
+def error_result(message: str) -> CallToolResult:
+    """A failed tool call is a normal result with is_error set."""
+    return CallToolResult(content=[TextContent(type="text", text=message)], is_error=True)
 
 async def call_tool(ctx: ServerRequestContext, params: CallToolRequestParams) -> CallToolResult:
     """Handle tool calls"""
     name = params.name
     arguments = params.arguments or {}
+
+    # The low-level Server does not validate arguments for us, so check them
+    # against the tool's input schema before using them
+    tool = TOOLS_BY_NAME.get(name)
+    if tool is None:
+        return error_result(f"Unknown tool: {name}")
+    try:
+        jsonschema.validate(arguments, tool.input_schema)
+    except jsonschema.ValidationError as e:
+        return error_result(f"Invalid arguments for {name}: {e.message}")
+
     if name == "add":
         result = arguments["a"] + arguments["b"]
         logger.info(f"Adding {arguments['a']} + {arguments['b']} = {result}")
@@ -106,10 +128,7 @@ async def call_tool(ctx: ServerRequestContext, params: CallToolRequestParams) ->
         return CallToolResult(content=[TextContent(type="text", text=str(info))])
     
     else:
-        return CallToolResult(
-            content=[TextContent(type="text", text=f"Unknown tool: {name}")],
-            is_error=True,
-        )
+        return error_result(f"Unknown tool: {name}")
 
 # Create the server
 server = Server(

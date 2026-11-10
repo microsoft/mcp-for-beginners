@@ -151,6 +151,7 @@ Allow clients to cancel requests that are no longer needed or taking too long.
 
 ```python
 import asyncio
+import sys
 from mcp.server.mcpserver import MCPServer
 
 mcp = MCPServer("cancellable-server")
@@ -172,7 +173,8 @@ async def long_running_search(query: str) -> str:
     except asyncio.CancelledError:
         # When the client cancels the request, the SDK cancels this task.
         # Clean up, then re-raise: no result is sent for a cancelled request.
-        print(f"Search cancelled after {len(results)} results")
+        # Log to stderr: over stdio, stdout carries the JSON-RPC messages
+        print(f"Search cancelled after {len(results)} results", file=sys.stderr)
         raise
 
     return f"Found {len(results)} total results"
@@ -196,16 +198,22 @@ async def download_file(url: str) -> str:
 
 ```python
 import asyncio
+import sys
+
+import anyio
 
 async def with_cleanup(work, cleanup):
     """Run `work`, and always run `cleanup`, even when the request is cancelled."""
     try:
         return await work()
     except asyncio.CancelledError:
-        print("Request cancelled, cleaning up")
+        print("Request cancelled, cleaning up", file=sys.stderr)
         raise  # always re-raise so the SDK knows the task was cancelled
     finally:
-        await cleanup()
+        # The SDK cancels handlers through an AnyIO cancel scope that is still
+        # active here, so shield the cleanup or its first await is cancelled too
+        with anyio.CancelScope(shield=True):
+            await cleanup()
 ```
 
 ### Client-Side Cancellation
@@ -313,6 +321,7 @@ management.
 ### Python Lifecycle Management
 
 ```python
+import sys
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from mcp.server.mcpserver import Context, MCPServer
@@ -326,20 +335,20 @@ class AppState:
 async def lifespan(server: MCPServer):
     """Manage server lifecycle."""
 
-    # Startup
-    print("🚀 Server starting...")
+    # Startup (log to stderr: over stdio, stdout carries the JSON-RPC messages)
+    print("🚀 Server starting...", file=sys.stderr)
     db_connection = await create_database_connection()
     cache = await create_cache_client()
-    print("✅ Resources initialized")
+    print("✅ Resources initialized", file=sys.stderr)
 
     try:
         yield AppState(db_connection=db_connection, cache=cache)  # Server runs here
     finally:
         # Shutdown
-        print("🛑 Server shutting down...")
+        print("🛑 Server shutting down...", file=sys.stderr)
         await db_connection.close()
         await cache.close()
-        print("✅ Resources cleaned up")
+        print("✅ Resources cleaned up", file=sys.stderr)
 
 mcp = MCPServer("lifecycle-server", lifespan=lifespan)
 

@@ -146,7 +146,12 @@ async def handle_call_tool(
     try:
         result = await tool["handler"](arguments)
     except Exception as e:
-        raise ValueError(f"Error calling tool {name}: {str(e)}")
+        # Report tool failures as a result with is_error set, so the client
+        # (and the LLM behind it) sees the message instead of a protocol error
+        return types.CallToolResult(
+            content=[types.TextContent(type="text", text=f"Error calling tool {name}: {e}")],
+            is_error=True,
+        )
 
     return types.CallToolResult(
         content=[types.TextContent(type="text", text=str(result))]
@@ -537,7 +542,12 @@ async def handle_call_tool(
         # invoke the tool
         result = await tool["handler"](arguments)
     except Exception as e:
-        raise ValueError(f"Error calling tool {name}: {str(e)}")
+        # Report tool failures as a result with is_error set, so the client
+        # (and the LLM behind it) sees the message instead of a protocol error
+        return types.CallToolResult(
+            content=[types.TextContent(type="text", text=f"Error calling tool {name}: {e}")],
+            is_error=True,
+        )
 
     return types.CallToolResult(
         content=[types.TextContent(type="text", text=str(result))]
