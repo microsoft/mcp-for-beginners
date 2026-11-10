@@ -478,7 +478,7 @@ touch server.py
 Install the required NuGet packages:
 
 ```sh
-dotnet add package ModelContextProtocol --prerelease
+dotnet add package ModelContextProtocol
 dotnet add package Microsoft.Extensions.Hosting
 ```
 
