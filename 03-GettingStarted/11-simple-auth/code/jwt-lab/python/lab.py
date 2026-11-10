@@ -18,8 +18,8 @@ payload = {
     "sub": "1234567890",               # Subject (user ID)
     "name": "User Userson",                # Custom claim
     "admin": True,                     # Custom claim
-    "iat": datetime.datetime.utcnow(),# Issued at
-    "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Expiry
+    "iat": datetime.datetime.now(datetime.timezone.utc),# Issued at
+    "exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)  # Expiry
 }
 
 # encode it

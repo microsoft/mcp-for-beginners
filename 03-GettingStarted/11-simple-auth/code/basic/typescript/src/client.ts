@@ -1,5 +1,5 @@
 
-// TODO add secret to header
+// The secret is sent in the Authorization header of every request
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport, StreamableHTTPClientTransportOptions } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
@@ -35,10 +35,13 @@ async function main() {
    console.log("Connected to MCP server with session ID:", sessionId);
 
    let toolsResult = await client.listTools();
+   console.log("Available tools:", toolsResult.tools.map(t => t.name));
 
-   console.log("Available tools:", toolsResult);
+   let result = await client.callTool({ name: "get-current-time", arguments: {} });
+   console.log("Tool result:", JSON.stringify(result.content));
+
+   await client.close();
    console.log("Client disconnected.");
-   transport.close();
 }
 
 main()

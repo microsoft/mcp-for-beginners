@@ -3,7 +3,7 @@
 ## Set up environment
 
 ```sh
-python -m venv
+python -m venv venv
 source ./venv/bin/activate
 ```
 
