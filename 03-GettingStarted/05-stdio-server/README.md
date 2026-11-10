@@ -109,7 +109,9 @@ builder.Services
     .WithStdioServerTransport()
     .WithTools<Tools>();
 
-builder.Services.AddLogging(logging => logging.AddConsole());
+// The console logger writes to stdout by default; stdout carries the JSON-RPC
+// messages, so send all log output to stderr instead
+builder.Logging.AddConsole(options => options.LogToStandardErrorThreshold = LogLevel.Trace);
 
 var app = builder.Build();
 await app.RunAsync();
@@ -126,7 +128,9 @@ The key difference from SSE is that stdio servers:
 
 To create our server, we need to keep two things in mind:
 
-- We need to use a web server to expose endpoints for connection and messages.
+- The client launches the server as a subprocess and talks to it over stdin/stdout, so no web server or HTTP endpoints are needed.
+- stdout is reserved for JSON-RPC messages, so all logging must go to stderr.
+
 ## Lab: Creating a simple MCP stdio server
 
 In this lab, we'll create a simple MCP server using the recommended stdio transport. This server will expose tools that clients can call using the standard Model Context Protocol.

@@ -62,16 +62,28 @@ This will:
 
 ### Method 2: Direct JSON-RPC testing
 
-You can also test by sending JSON-RPC messages directly:
+You can also test by sending JSON-RPC messages directly. A client must first send `initialize` and the `notifications/initialized` notification; a `tools/list` sent on its own is rejected with an "Invalid request parameters" error.
 
 1. Start the server: `python server.py`
-2. Send a JSON-RPC message (example):
+2. Send these messages, one per line:
 
 ```json
-{"jsonrpc": "2.0", "id": 1, "method": "tools/list"}
+{"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-11-25", "capabilities": {}, "clientInfo": {"name": "manual-test", "version": "1.0"}}}
+{"jsonrpc": "2.0", "method": "notifications/initialized"}
+{"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
 ```
 
-3. The server will respond with available tools
+3. The server answers `initialize` with its capabilities and `tools/list` with the available tools
+
+On macOS/Linux you can send all three in one go:
+
+```bash
+printf '%s\n' \
+  '{"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-11-25", "capabilities": {}, "clientInfo": {"name": "manual-test", "version": "1.0"}}}' \
+  '{"jsonrpc": "2.0", "method": "notifications/initialized"}' \
+  '{"jsonrpc": "2.0", "id": 2, "method": "tools/list"}' \
+  | python server.py
+```
 
 ### Available Tools
 
@@ -90,12 +102,14 @@ To use this server with Claude Desktop, add this configuration to your `claude_d
 {
   "mcpServers": {
     "example-stdio-server": {
-      "command": "python",
-      "args": ["path/to/server.py"]
+      "command": "/absolute/path/to/venv/bin/python",
+      "args": ["/absolute/path/to/server.py"]
     }
   }
 }
 ```
+
+Use the Python from the virtual environment you installed `mcp` into (on Windows `venv\Scripts\python.exe`), and absolute paths, because Claude Desktop doesn't start the server from this folder.
 
 ## Key Differences from SSE
 
