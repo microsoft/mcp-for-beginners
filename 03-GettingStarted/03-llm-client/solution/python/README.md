@@ -1,6 +1,6 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
+You need Python 3.10 or later (the MCP Python SDK 2.x requires it). You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create a virtual environment
 
@@ -8,10 +8,20 @@ You're recommended to install `uv` but it's not a must, see [instructions](https
 python -m venv venv
 ```
 
+> On macOS/Linux use `python3` if `python` is not available.
+
 ## -1- Activate the virtual environment
+
+Windows:
 
 ```bash
 venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
 ```
 
 ## -2- Install the dependencies
@@ -31,6 +41,8 @@ export AZURE_OPENAI_API_KEY="<api-key>"
 export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
+On Windows PowerShell use `$env:AZURE_OPENAI_ENDPOINT="..."` instead of `export`.
+
 `AZURE_OPENAI_DEPLOYMENT` is the deployment name, which may differ from the
 underlying model name. Check the
 [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
@@ -38,10 +50,11 @@ before selecting a model.
 
 ## -4- Run the sample
 
-
 ```bash
 python client.py
 ```
+
+The client starts `server.py` itself over stdio, so you don't need to run the server separately.
 
 You should see an output similar to:
 

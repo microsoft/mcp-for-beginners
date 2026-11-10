@@ -55,10 +55,10 @@ def convert_to_llm_tool(tool):
         "function": {
             "name": tool.name,
             "description": tool.description,
-            "type": "function",
             "parameters": {
                 "type": "object",
-                "properties": tool.input_schema["properties"]
+                "properties": tool.input_schema["properties"],
+                "required": tool.input_schema.get("required", []),
             }
         }
     }

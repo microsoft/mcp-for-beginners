@@ -160,7 +160,7 @@ var client = new ChatClient(
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net10.0/server",
     Arguments = [],
 });
 
@@ -338,7 +338,7 @@ Add the following dependencies to your `Cargo.toml` file:
 ```toml
 [dependencies]
 async-openai = { version = "0.29.0", features = ["byot"] }
-rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+rmcp = { version = "2.1.0", features = ["client", "transport-child-process"] }
 serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
@@ -352,7 +352,7 @@ Open the `src/main.rs` file and replace its content with the following code:
 use async_openai::{Client, config::OpenAIConfig};
 use rmcp::{
     RmcpError,
-    model::{CallToolRequestParam, ListToolsResult},
+    model::{CallToolRequestParams, ListToolsResult},
     service::{RoleClient, RunningService, ServiceExt},
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -417,8 +417,13 @@ In the same class, add the following methods:
 ```typescript
 async connectToServer(transport: Transport) {
      await this.client.connect(transport);
-     this.run();
      console.error("MCPClient started on stdin/stdout");
+     try {
+       await this.run();
+     } finally {
+       // Close the connection so the process can exit
+       await this.client.close();
+     }
 }
 
 async run() {
@@ -576,10 +581,10 @@ Next step after listing server capabilities is to convert them into a format tha
             "function": {
                 "name": tool.name,
                 "description": tool.description,
-                "type": "function",
                 "parameters": {
                     "type": "object",
-                    "properties": tool.input_schema["properties"]
+                    "properties": tool.input_schema["properties"],
+                    "required": tool.input_schema.get("required", []),
                 }
             }
         }
@@ -814,13 +819,13 @@ In this part of the code, we will handle user requests.
     let results: any[] = [];
 
     // 3. Go through the LLM response,for each choice, check if it has tool calls 
-    (await response).choices.map(async (choice: { message: any; }) => {
+    for (const choice of (await response).choices) {
         const message = choice.message;
         if (message.tool_calls) {
             console.log("Making tool call")
             await this.callTools(message.tool_calls, results);
         }
-    });
+    }
     ```
 
 Great, let's list the code in full:
@@ -860,8 +865,13 @@ class MyClient {
 
     async connectToServer(transport: Transport) {
         await this.client.connect(transport);
-        this.run();
         console.error("MCPClient started on stdin/stdout");
+        try {
+          await this.run();
+        } finally {
+          // Close the connection so the process can exit
+          await this.client.close();
+        }
     }
 
     openAiToolAdapter(tool: {
@@ -942,13 +952,13 @@ class MyClient {
         let results: any[] = [];
     
         // 3. Go through the LLM response, for each choice, check if it has tool calls 
-        (await response).choices.map(async (choice: { message: any; }) => {
+        for (const choice of (await response).choices) {
           const message = choice.message;
           if (message.tool_calls) {
               console.log("Making tool call")
               await this.callTools(message.tool_calls, results);
           }
-        });
+        }
     }
     
 }
@@ -959,7 +969,7 @@ let client = new MyClient();
             args: ["./build/index.js"]
         });
 
-client.connectToServer(transport);
+await client.connectToServer(transport);
 ```
 
 #### Python
@@ -1150,7 +1160,7 @@ var chatHistory = new List<ChatMessage>
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net10.0/server",
     Arguments = [],
 });
 
@@ -1387,7 +1397,7 @@ async fn call_llm(
     let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
         .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
-        .completions()
+        .chat()
         .create_byot(json!({
             "messages": messages,
             "model": model,
@@ -1434,10 +1444,14 @@ async fn process_llm_response(
             println!("⚡ Calling tool: {}", name);
 
             let result = mcp_client
-                .call_tool(CallToolRequestParam {
-                    name: name.into(),
-                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
-                })
+                .call_tool(
+                    CallToolRequestParams::new(name).with_arguments(
+                        serde_json::from_str::<Value>(&args)?
+                            .as_object()
+                            .cloned()
+                            .unwrap_or_default(),
+                    ),
+                )
                 .await?;
 
             // Add tool result to messages
