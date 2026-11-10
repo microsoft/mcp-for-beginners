@@ -8,11 +8,17 @@ Before running this client, you need to:
 
 1. **Start the Calculator Server** from Chapter 01:
    - Navigate to the calculator server directory: `03-GettingStarted/01-first-server/solution/java/`
-   - Build and run the calculator server:
+   - Build and run the calculator server (from `03-GettingStarted/02-client/solution/java`), on Windows:
      ```cmd
-     cd ..\01-first-server\solution\java
+     cd ..\..\..\01-first-server\solution\java
      .\mvnw clean install -DskipTests
      java -jar target\calculator-server-0.0.1-SNAPSHOT.jar
+     ```
+     On macOS/Linux:
+     ```bash
+     cd ../../../01-first-server/solution/java
+     ./mvnw clean install -DskipTests
+     java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
      ```
    - The server should be running on `http://localhost:8080`
 
@@ -81,16 +87,30 @@ This dependency (Spring AI 2.0.2 on Spring Boot 4.1.2, bringing in MCP Java SDK 
 
 ## Building the Project
 
-Build the project using the Maven wrapper:
+Build the project using the Maven wrapper. On Windows:
 
 ```cmd
 .\mvnw clean install
 ```
 
+On macOS/Linux:
+
+```bash
+./mvnw clean install
+```
+
 ## Running the Client
+
+On Windows:
 
 ```cmd
 java -jar .\target\calculator-client-0.0.1-SNAPSHOT.jar
+```
+
+On macOS/Linux:
+
+```bash
+java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
 
 **Note**: Make sure the calculator server is running on `http://localhost:8080` before executing any of these commands.
@@ -125,7 +145,7 @@ Absolute Result = CallToolResult[content=[TextContent[text="|-5,50| = 5,50"]], i
 Help = CallToolResult[content=[TextContent[text="Basic Calculator MCP Service\n\nAvailable operations:\n1. add(a, b) - Adds two numbers\n2. subtract(a, b) - Subtracts the second number from the first\n..."]], isError=false]
 ```
 
-**Note**: You may see Maven warnings about lingering threads at the end - this is normal for reactive applications and doesn't indicate an error.
+**Note**: The decimal separator depends on your locale (`8.00` or `8,00`). On macOS you may also see an `ERROR` log line saying that Netty cannot load `MacOSDnsServerAddressStreamProvider`; it falls back to the default DNS resolver and the client still works. You may see Maven warnings about lingering threads at the end - this is normal for reactive applications and doesn't indicate an error.
 
 ## Understanding the Code
 
