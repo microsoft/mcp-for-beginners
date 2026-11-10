@@ -162,12 +162,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { params: { name } } = request;
     let tool = tools.find(t => t.name === name);
     if(!tool) {
+        // A tool error is a normal result with isError set
         return {
-            error: {
-                code: "tool_not_found",
-                message: `Tool ${name} not found.`
-            }
-       };
+            content: [{ type: "text", text: `Tool ${name} not found.` }],
+            isError: true
+        };
     }
     
     // args: request.params.arguments
@@ -250,11 +249,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { params: { name } } = request;
     let tool = tools.find(t => t.name === name);
     if (!tool) {
+       // A tool error is a normal result with isError set
        return {
-        error: {
-            code: "tool_not_found",
-            message: `Tool ${name} not found.`
-        }
+          content: [{ type: "text", text: `Tool ${name} not found.` }],
+          isError: true
        };
     }
     const Schema = tool.rawSchema;
@@ -270,11 +268,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     } catch (error) {
        return {
-          error: {
-             code: "invalid_arguments",
-             message: `Invalid arguments for tool ${name}: ${error instanceof Error ? error.message : String(error)}`
-          }
-    };
+          content: [{ type: "text", text: `Invalid arguments for tool ${name}: ${error instanceof Error ? error.message : String(error)}` }],
+          isError: true
+       };
    }
 
 });
@@ -505,9 +501,10 @@ tools.push(subtractTool);
 import { tools } from './tools/index.js';
 
 server.setRequestHandler(ListToolsRequestSchema, async (request) => {
-  // Return the list of registered tools
+  // Return the list of registered tools; only the MCP fields, not the
+  // zod schema or the callback
   return {
-    tools: tools
+    tools: tools.map(({ name, inputSchema }) => ({ name, inputSchema }))
   };
 });
 ```

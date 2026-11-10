@@ -1,10 +1,11 @@
 import './tools/index.js';
-console.log("Registering tools...");
+// Log to stderr: stdout carries the JSON-RPC messages of the stdio transport
+console.error("Registering tools...");
 import {start} from './server.js';
 
 start();
 
 process.on('SIGINT', () => {
-  console.log('\nShutting down...');
+  console.error('\nShutting down...');
   process.exit(0);
 });
