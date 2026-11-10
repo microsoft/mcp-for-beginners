@@ -23,7 +23,7 @@ You can control your MCP server in two different ways:
 
   To add an MCP server to your user profile, use the --add-mcp command line option, and provide the JSON server configuration in the form {\"name\":\"server-name\",\"command\":...}.
 
-  ```
+  ```bash
   code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"
   ```
 
@@ -87,6 +87,9 @@ Add the following content to *mcp.json*:
 ```
 
 Here's a simple example above how to start a server written in Node.js, for other runtimes point out the proper command for starting the server using `command` and `args`.
+
+> [!NOTE]
+> A relative path such as `build/index.js` is resolved from the folder you opened in VS Code, so it only works if that is the server's own project folder. Otherwise use an absolute path or `${workspaceFolder}`, for example `"${workspaceFolder}/build/index.js"`. Build the server (`npm run build`) before you start it.
 
 ### -3- Start the server
 
