@@ -833,7 +833,7 @@ Add the following code to the top of the *src/main.rs* file. This imports the ne
 
 ```rust
 use rmcp::{
-    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::{ServerCapabilities, ServerInfo},
     schemars, tool, tool_handler, tool_router,
     transport::stdio,
@@ -873,14 +873,11 @@ impl Calculator {
     }
 }
 
-#[tool_handler]
+#[tool_handler(router = self.tool_router)]
 impl ServerHandler for Calculator {
     fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
+        ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
+            .with_instructions("A simple calculator tool")
     }
 }
 ```
@@ -1145,7 +1142,7 @@ The final code for the Rust server should look like this:
 ```rust
 use rmcp::{
     ServerHandler, ServiceExt,
-    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::{ServerCapabilities, ServerInfo},
     schemars, tool, tool_handler, tool_router,
     transport::stdio,
@@ -1180,14 +1177,11 @@ impl Calculator {
     }
 }
 
-#[tool_handler]
+#[tool_handler(router = self.tool_router)]
 impl ServerHandler for Calculator {
     fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
+        ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
+            .with_instructions("A simple calculator tool")
     }
 }
 
@@ -1327,7 +1321,7 @@ Congrats, you've managed to create and run your first server!
 To run the Rust server with the MCP Inspector CLI, use the following command:
 
 ```sh
-npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+npx @modelcontextprotocol/inspector --cli cargo run --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
 ### Official SDKs
