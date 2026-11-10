@@ -1,6 +1,9 @@
 """
-cd to the `examples/snippets/clients` directory and run:
-    uv run client
+MCP client that answers the server's sampling requests with Azure OpenAI.
+
+Set AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_API_KEY and AZURE_OPENAI_DEPLOYMENT,
+then run (from this folder):
+    python client.py
 """
 
 import asyncio
