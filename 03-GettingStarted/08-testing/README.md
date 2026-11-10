@@ -50,21 +50,58 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manual Testing
 
-Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP lik for example curl.
+Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP like for example curl.
 
-With curl, you can test MCP servers directly using HTTP requests:
+An MCP server that uses the Streamable HTTP transport has a single endpoint (often `/mcp`) that accepts JSON-RPC messages in POST requests. There are no separate REST routes per tool. A client must first initialize a session, then it can list and call tools. Here's the exchange with curl, using the Python server from [06-http-streaming](../06-http-streaming/solution/python/) (`python server.py mcp`, listening on `http://localhost:8000/mcp`):
 
 ```bash
-# Example: Test server metadata
-curl http://localhost:3000/v1/metadata
-
-# Example: Execute a tool
-curl -X POST http://localhost:3000/v1/tools/execute \
+# 1. Initialize; the response header Mcp-Session-Id identifies your session
+curl -i http://localhost:8000/mcp \
   -H "Content-Type: application/json" \
-  -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"curl","version":"1.0"}}}'
+
+# 2. Copy the Mcp-Session-Id value from the response headers
+SESSION_ID="<value of the Mcp-Session-Id header>"
+
+# 3. Tell the server initialization is complete (returns 202 Accepted)
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","method":"notifications/initialized"}'
+
+# 4. List the tools
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/list"}'
+
+# 5. Call a tool
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"process_files","arguments":{"message":"hello"}}}'
 ```
 
-As you can see from above usage of curl, you use a POST request  to invoke a tool using a payload consisting of the tools name and its parameters. Use the approach that fits you best. CLI tools in general tends to be faster to use and lends themselves to be scripted which can be useful in a CI/CD environment.
+The server answers as a Server-Sent Events stream (`event: message` / `data: {...}`). For the tool call you first see the progress notifications (`notifications/message`) and then the result:
+
+```text
+event: message
+data: {"jsonrpc":"2.0","method":"notifications/message","params":{"level":"info","data":"Processing file_1.txt (1/3)..."}}
+
+...
+
+event: message
+data: {"jsonrpc":"2.0","id":3,"result":{"content":[{"text":"Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello","type":"text"}],"isError":false}}
+```
+
+Stateless servers, such as the .NET server in 06-http-streaming, don't return an `Mcp-Session-Id`; send the requests without that header. Use the approach that fits you best. CLI tools in general tend to be faster to use and lend themselves to be scripted which can be useful in a CI/CD environment.
 
 ### Unit Testing
 
