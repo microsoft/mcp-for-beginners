@@ -50,21 +50,58 @@ npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/lis
 
 ### Manual Testing
 
-Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP lik for example curl.
+Apart from running the inspector tool to test server capabilities, another similar approach is to run a client capable of using HTTP like for example curl.
 
-With curl, you can test MCP servers directly using HTTP requests:
+An MCP server that uses the Streamable HTTP transport has a single endpoint (often `/mcp`) that accepts JSON-RPC messages in POST requests. There are no separate REST routes per tool. A client must first initialize a session, then it can list and call tools. Here's the exchange with curl, using the Python server from [06-http-streaming](../06-http-streaming/solution/python/) (`python server.py mcp`, listening on `http://localhost:8000/mcp`):
 
 ```bash
-# Example: Test server metadata
-curl http://localhost:3000/v1/metadata
-
-# Example: Execute a tool
-curl -X POST http://localhost:3000/v1/tools/execute \
+# 1. Initialize; the response header Mcp-Session-Id identifies your session
+curl -i http://localhost:8000/mcp \
   -H "Content-Type: application/json" \
-  -d '{"name": "calculator", "parameters": {"expression": "2+2"}}'
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"curl","version":"1.0"}}}'
+
+# 2. Copy the Mcp-Session-Id value from the response headers
+SESSION_ID="<value of the Mcp-Session-Id header>"
+
+# 3. Tell the server initialization is complete (returns 202 Accepted)
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","method":"notifications/initialized"}'
+
+# 4. List the tools
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/list"}'
+
+# 5. Call a tool
+curl http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -H "MCP-Protocol-Version: 2025-11-25" \
+  -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"process_files","arguments":{"message":"hello"}}}'
 ```
 
-As you can see from above usage of curl, you use a POST request  to invoke a tool using a payload consisting of the tools name and its parameters. Use the approach that fits you best. CLI tools in general tends to be faster to use and lends themselves to be scripted which can be useful in a CI/CD environment.
+The server answers as a Server-Sent Events stream (`event: message` / `data: {...}`). For the tool call you first see the progress notifications (`notifications/message`) and then the result:
+
+```text
+event: message
+data: {"jsonrpc":"2.0","method":"notifications/message","params":{"level":"info","data":"Processing file_1.txt (1/3)..."}}
+
+...
+
+event: message
+data: {"jsonrpc":"2.0","id":3,"result":{"content":[{"text":"Processed files: file_1.txt, file_2.txt, file_3.txt | Message: hello","type":"text"}],"isError":false}}
+```
+
+Stateless servers, such as the .NET server in 06-http-streaming, don't return an `Mcp-Session-Id`; send the requests without that header. Use the approach that fits you best. CLI tools in general tend to be faster to use and lend themselves to be scripted which can be useful in a CI/CD environment.
 
 ### Unit Testing
 
@@ -73,10 +110,8 @@ Create unit tests for your tools and resources to ensure they work as expected. 
 ```python
 import pytest
 
-from mcp.server.fastmcp import FastMCP
-from mcp.shared.memory import (
-    create_connected_server_and_client_session as create_session,
-)
+from mcp.client import Client
+from mcp.server.mcpserver import MCPServer
 
 # Mark the whole module for async tests
 pytestmark = pytest.mark.anyio
@@ -85,11 +120,11 @@ pytestmark = pytest.mark.anyio
 async def test_list_tools_cursor_parameter():
     """Test that the cursor parameter is accepted for list_tools.
 
-    Note: FastMCP doesn't currently implement pagination, so this test
+    Note: MCPServer doesn't currently implement pagination, so this test
     only verifies that the cursor parameter is accepted by the client.
     """
 
- server = FastMCP("test")
+    server = MCPServer("test")
 
     # Create a couple of test tools
     @server.tool(name="test_tool_1")
@@ -102,23 +137,23 @@ async def test_list_tools_cursor_parameter():
         """Second test tool"""
         return "Result 2"
 
-    async with create_session(server._mcp_server) as client_session:
+    # Client(server) connects to the server in memory, no network or subprocess needed
+    async with Client(server) as client:
         # Test without cursor parameter (omitted)
-        result1 = await client_session.list_tools()
+        result1 = await client.list_tools()
         assert len(result1.tools) == 2
 
         # Test with cursor=None
-        result2 = await client_session.list_tools(cursor=None)
+        result2 = await client.list_tools(cursor=None)
         assert len(result2.tools) == 2
 
         # Test with cursor as string
-        result3 = await client_session.list_tools(cursor="some_cursor_value")
+        result3 = await client.list_tools(cursor="some_cursor_value")
         assert len(result3.tools) == 2
 
         # Test with empty string cursor
-        result4 = await client_session.list_tools(cursor="")
+        result4 = await client.list_tools(cursor="")
         assert len(result4.tools) == 2
-    
 ```
 
 The preceding code does the following:
