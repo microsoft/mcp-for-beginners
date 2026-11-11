@@ -12,8 +12,8 @@ For more information about MCP: https://modelcontextprotocol.io/
 import json
 import logging
 
-# Import FastMCP - the high-level MCP server API
-from mcp.server.fastmcp import FastMCP
+# Import MCPServer - the high-level MCP server API (called FastMCP in mcp 1.x)
+from mcp.server.mcpserver import MCPServer
 
 # Configure module logger
 logging.basicConfig(level=logging.INFO)
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 AVAILABLE_MODELS = ["gpt-5.1"]
 
 # Create an MCP server
-mcp = FastMCP("Python MCP Demo Server")
+mcp = MCPServer("Python MCP Demo Server")
 
 # Define a tool for generating completions
 @mcp.tool()
