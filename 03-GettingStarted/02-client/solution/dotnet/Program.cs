@@ -16,7 +16,7 @@ builder.Configuration
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = $"{Path.Combine(AppContext.BaseDirectory, "../../../../", "server/bin/Debug/net9.0/server")}",
+    Command = $"{Path.Combine(AppContext.BaseDirectory, "../../../../", "server/bin/Debug/net10.0/server")}",
     Arguments = [],
 });
 

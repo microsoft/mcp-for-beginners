@@ -1,6 +1,6 @@
 use rmcp::{
     RmcpError,
-    model::CallToolRequestParam,
+    model::CallToolRequestParams,
     service::ServiceExt,
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -45,10 +45,14 @@ async fn main() -> Result<(), RmcpError> {
     let a = 3;
     let b = 2;
     let tool_result = client
-        .call_tool(CallToolRequestParam {
-            name: "add".into(),
-            arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
-        })
+        .call_tool(
+            CallToolRequestParams::new("add").with_arguments(
+                serde_json::json!({ "a": a, "b": b })
+                    .as_object()
+                    .cloned()
+                    .unwrap_or_default(),
+            ),
+        )
         .await?;
     println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 
