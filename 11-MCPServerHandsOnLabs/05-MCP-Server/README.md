@@ -556,7 +556,9 @@ import asyncio
 from typing import Dict, Any, List, Annotated
 from contextlib import asynccontextmanager
 
-from fastmcp import FastMCP, Context
+# MCP Python SDK 1.x (the sample repository pins mcp>=1.28.1,<2.0.0).
+# In SDK 2.x use: from mcp.server.mcpserver import MCPServer, Context
+from mcp.server.fastmcp import FastMCP, Context
 from pydantic import Field
 
 from .config import config
