@@ -57,7 +57,7 @@ These environment variables are used by the application to authenticate with the
 
 ### Starting the Calculator MCP Server
 
-Before running the client, you need to start the calculator MCP server in SSE mode on localhost:8080.
+Before running the client, you need to start the calculator MCP server (for example `03-GettingStarted/01-first-server/solution/java`) on localhost:8080. The client connects to its Streamable HTTP endpoint at `http://localhost:8080/mcp`.
 
 ## Project Description
 
@@ -66,7 +66,8 @@ This project demonstrates the integration of Model Context Protocol (MCP) with L
 - Using MCP to connect to a calculator service for basic math operations
 - Dual-layer content safety checking on both user prompts and bot responses
 - Integration with a deployed Microsoft Foundry model via LangChain4j
-- Using Server-Sent Events (SSE) for MCP transport
+- Using the Streamable HTTP transport for MCP (LangChain4j `StreamableHttpMcpTransport`)
+- Built with Java 21, Spring Boot 4.1.2, and LangChain4j 1.23.0 (`langchain4j-mcp` 1.23.0-beta33)
 
 ## Content Safety Integration
 

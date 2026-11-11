@@ -33,7 +33,7 @@ This implementation demonstrates several key MCP features:
 To use this MCP implementation, install the required packages:
 
 ```powershell
-pip install mcp-server mcp-client
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 ## Running the Server and Client
@@ -49,7 +49,7 @@ python server.py
 The server can also be run in development mode using the MCP CLI:
 
 ```powershell
-mcp dev server.py
+mcp dev server.py --with typer
 ```
 
 Or installed in Claude Desktop (if available):
@@ -86,7 +86,7 @@ This will connect to the server and exercise all features including tools, resou
 
 ## Implementation Details
 
-The server is implemented using the `FastMCP` API, which provides high-level abstractions for defining MCP services. Here's a simplified example of how tools are defined:
+The server is implemented using the `MCPServer` API from the official MCP Python SDK (called `FastMCP` in mcp 1.x), which provides high-level abstractions for defining MCP services. Here's a simplified example of how tools are defined:
 
 ```python
 @mcp.tool()

@@ -12,10 +12,12 @@ The other projects are from [Aspire](https://aspire.dev/get-started/what-is-aspi
 1. Execute the following command to start the server:
 
    ```bash
-    dotnet watch run --project ./src/AppHost
+   dotnet watch run --project ./src/AppHost --launch-profile http
    ```
 
-1. When a web browser opens the Aspire dashboard, note the `http` URL. It should be something like `http://localhost:5058/`.
+   The `http` profile needs no HTTPS certificate. To use the default `https` profile instead, trust the .NET development certificate first with `dotnet dev-certs https --trust`.
+
+1. A web browser opens the Aspire dashboard (`http://localhost:15047`, the login link is printed in the terminal). In the **Resources** list, note the endpoint URL of `calc-mcp`. It should be something like `http://localhost:5058`.
 
    ![Aspire Dashboard](./images/dotnet-aspire-dashboard.png)
 
@@ -26,14 +28,14 @@ If you have Node.js 22.7.5 and higher, you can use the MCP Inspector to test you
 Start the server and run the following command in a terminal:
 
 ```bash
-npx @modelcontextprotocol/inspector http://localhost:5058
+npx @modelcontextprotocol/inspector --transport http --server-url http://localhost:5058/mcp
 ```
 
 ![MCP Inspector](./images/mcp-inspector.png)
 
-- Select the `Streamable HTTP` as the Transport type.
-- In the Url field, enter the URL of the server noted earlier, and append `/mcp`. It should be `http` (not `https`) something like `http://localhost:5058/mcp`.
-- select the Connect button.
+- Check that the Transport type is `Streamable HTTP`.
+- Check that the URL is the `calc-mcp` URL noted earlier with `/mcp` appended. It should be `http` (not `https`), something like `http://localhost:5058/mcp`.
+- Select the Connect button.
 
 A nice thing about the Inspector is that it provide a nice visibility on what is happening.
 
@@ -58,7 +60,7 @@ To use the Streamable HTTP transport with GitHub Copilot Chat, change the config
 
 Do some tests:
 
-- Ask for "3 prime numbers after 6780". Note how Copilot will use the new tools `NextFivePrimeNumbers` and only return the first 3 prime numbers.
+- Ask for "3 prime numbers after 6780". Note how Copilot will use the new tool `next_five_prime_numbers` and only return the first 3 prime numbers.
 - Ask for "7 prime numbers after 111", to see what happens.
 - Ask for "John has 24 lollies and wants to distribute them all to his 3 kids. How many lollies does each kid have?", to see what happens.
 
