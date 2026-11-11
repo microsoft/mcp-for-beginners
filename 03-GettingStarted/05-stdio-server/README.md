@@ -72,36 +72,27 @@ In the preceding code:
 ### Python
 
 ```python
-import asyncio
 import logging
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
+from mcp.server.mcpserver import MCPServer
 
 # Create server instance
-server = Server("example-server")
+server = MCPServer("example-server")
 
 @server.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
-async def main():
-    async with stdio_server(server) as (read_stream, write_stream):
-        await server.run(
-            read_stream,
-            write_stream,
-            server.create_initialization_options()
-        )
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Run the server over the stdio transport
+    server.run(transport="stdio")
 ```
 
 In the preceding code we:
 
-- Create a server instance using the MCP SDK
+- Create a server instance using `MCPServer`, the high-level server class in the official MCP Python SDK (it was called `FastMCP` in mcp 1.x)
 - Define tools using decorators
-- Use the stdio_server context manager to handle the transport
+- Start the server with `server.run(transport="stdio")`, which handles the stdio transport for us
 
 ### .NET
 
@@ -118,7 +109,9 @@ builder.Services
     .WithStdioServerTransport()
     .WithTools<Tools>();
 
-builder.Services.AddLogging(logging => logging.AddConsole());
+// The console logger writes to stdout by default; stdout carries the JSON-RPC
+// messages, so send all log output to stderr instead
+builder.Logging.AddConsole(options => options.LogToStandardErrorThreshold = LogLevel.Trace);
 
 var app = builder.Build();
 await app.RunAsync();
@@ -135,32 +128,31 @@ The key difference from SSE is that stdio servers:
 
 To create our server, we need to keep two things in mind:
 
-- We need to use a web server to expose endpoints for connection and messages.
+- The client launches the server as a subprocess and talks to it over stdin/stdout, so no web server or HTTP endpoints are needed.
+- stdout is reserved for JSON-RPC messages, so all logging must go to stderr.
+
 ## Lab: Creating a simple MCP stdio server
 
 In this lab, we'll create a simple MCP server using the recommended stdio transport. This server will expose tools that clients can call using the standard Model Context Protocol.
 
 ### Prerequisites
 
-- Python 3.8 or later
-- MCP Python SDK: `pip install mcp`
+- Python 3.10 or later
+- MCP Python SDK: `pip install "mcp[cli]>=2.3.0,<3"`
 - Basic understanding of async programming
 
 Let's start by creating our first MCP stdio server:
 
 ```python
-import asyncio
 import logging
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
-from mcp import types
+from mcp.server.mcpserver import MCPServer
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Create the server
-server = Server("example-stdio-server")
+server = MCPServer("example-stdio-server")
 
 @server.tool()
 def calculate_sum(a: int, b: int) -> int:
@@ -172,17 +164,9 @@ def get_greeting(name: str) -> str:
     """Generate a personalized greeting"""
     return f"Hello, {name}! Welcome to MCP stdio server."
 
-async def main():
-    # Use stdio transport
-    async with stdio_server(server) as (read_stream, write_stream):
-        await server.run(
-            read_stream,
-            write_stream,
-            server.create_initialization_options()
-        )
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Run the server over the stdio transport
+    server.run(transport="stdio")
 ```
 
 ## Key differences from the deprecated SSE approach
@@ -215,33 +199,24 @@ Let's build this step by step:
 ### Step 1: Create a basic stdio server
 
 ```python
-import asyncio
 import logging
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
+from mcp.server.mcpserver import MCPServer
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Create the server
-server = Server("example-stdio-server")
+server = MCPServer("example-stdio-server")
 
 @server.tool()
 def get_greeting(name: str) -> str:
     """Generate a personalized greeting"""
     return f"Hello, {name}! Welcome to MCP stdio server."
 
-async def main():
-    async with stdio_server(server) as (read_stream, write_stream):
-        await server.run(
-            read_stream,
-            write_stream,
-            server.create_initialization_options()
-        )
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Run the server over the stdio transport
+    server.run(transport="stdio")
 ```
 
 ### Step 2: Add more tools
@@ -537,7 +512,7 @@ When your server starts correctly, you should see:
 ### Common issues and solutions
 
 **Server won't start:**
-- Check that all dependencies are installed: `pip install mcp`
+- Check that all dependencies are installed: `pip install "mcp[cli]>=2.3.0,<3"`
 - Verify Python syntax and indentation
 - Look for error messages in the console
 
