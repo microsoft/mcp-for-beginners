@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PublishAot>true</PublishAot>
   </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.*-*" />
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
 </Project>
