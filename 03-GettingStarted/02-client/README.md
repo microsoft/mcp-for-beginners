@@ -65,7 +65,7 @@ const resources = await client.listResources();
 
 // Read a resource
 const resource = await client.readResource({
-  uri: "file:///example.txt"
+  uri: "greeting://example"
 });
 
 // Call a tool
@@ -75,6 +75,9 @@ const result = await client.callTool({
     arg1: "value"
   }
 });
+
+// Close the connection so the process can exit
+await client.close();
 ```
 
 In the preceding code we:
@@ -116,6 +119,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
 ```
 
 #### Java
@@ -124,9 +128,9 @@ For Java, you'll create a client that connects to the MCP server from the previo
 
 ```java
 import java.util.Map;
+import org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport;
 import org.springframework.web.reactive.function.client.WebClient;
 import io.modelcontextprotocol.client.McpClient;
-import io.modelcontextprotocol.client.transport.WebFluxSseClientTransport;
 import io.modelcontextprotocol.spec.McpClientTransport;
 import io.modelcontextprotocol.spec.McpSchema.CallToolRequest;
 import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
@@ -144,7 +148,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+rmcp = { version = "2.1.0", features = ["client", "transport-child-process"] }
 serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
@@ -154,7 +158,7 @@ From there, you can import the necessary libraries in your client code.
 ```rust
 use rmcp::{
     RmcpError,
-    model::CallToolRequestParam,
+    model::CallToolRequestParams,
     service::ServiceExt,
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -255,6 +259,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -287,7 +292,7 @@ Note, in "Arguments", you can either point to the *.csproj* or to the executable
 public class SDKClient {
     
     public static void main(String[] args) {
-        var transport = new WebFluxSseClientTransport(WebClient.builder().baseUrl("http://localhost:8080"));
+        var transport = WebClientStreamableHttpTransport.builder(WebClient.builder().baseUrl("http://localhost:8080")).build();
         new SDKClient(transport).run();
     }
     
@@ -308,10 +313,10 @@ public class SDKClient {
 
 In the preceding code we've:
 
-- Created a main method that sets up an SSE transport pointing to `http://localhost:8080` where our MCP server will be running.
+- Created a main method that sets up a Streamable HTTP transport pointing to `http://localhost:8080`; it talks to the server's default MCP endpoint, `/mcp`.
 - Created a client class that takes the transport as a constructor parameter.
 - In the `run` method, we create a synchronous MCP client using the transport and initialize the connection.
-- Used SSE (Server-Sent Events) transport which is suitable for HTTP-based communication with Java Spring Boot MCP servers.
+- Used the Streamable HTTP transport (`WebClientStreamableHttpTransport` from Spring AI 2.0's `mcp-spring-webflux` module), which replaces the legacy SSE transport for HTTP-based communication with Java Spring Boot MCP servers.
 
 #### Rust
 
@@ -368,8 +373,8 @@ const tools = await client.listTools();
 # List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
-for resource in resources:
-    print("Resource: ", resource)
+for resource in resources.resources:
+    print("Resource: ", resource.uri)
 
 # List available tools
 tools = await session.list_tools()
@@ -383,7 +388,7 @@ Here we list the available resources, `list_resources()` and tools, `list_tools`
 #### .NET
 
 ```dotnet
-foreach (var tool in await client.ListToolsAsync())
+foreach (var tool in await mcpClient.ListToolsAsync())
 {
     Console.WriteLine($"{tool.Name} ({tool.Description})");
 }
@@ -434,7 +439,7 @@ To invoke the features we need to ensure we specify the correct arguments and in
 
 // Read a resource
 const resource = await client.readResource({
-  uri: "file:///example.txt"
+  uri: "greeting://example"
 });
 
 // Call a tool
@@ -460,8 +465,8 @@ In the preceding code we:
 
     ```typescript
     server.resource(
-        "readFile",
-        new ResourceTemplate("file://{name}", { list: undefined }),
+        "greeting",
+        new ResourceTemplate("greeting://{name}", { list: undefined }),
         async (uri, { name }) => ({
           contents: [{
             uri: uri.href,
@@ -471,7 +476,7 @@ In the preceding code we:
     );
     ```
 
-    Our `uri` value `file://example.txt` matches `file://{name}` on the server. `example.txt` will be mapped to `name`.
+    Our `uri` value `greeting://example` matches `greeting://{name}` on the server. `example` will be mapped to `name`.
 
 - Call a tool, we call it by specifying its `name` and its `arguments` like so:
 
@@ -518,7 +523,8 @@ In the preceding code we:
 ```python
 # Read a resource
 print("READING RESOURCE")
-content, mime_type = await session.read_resource("greeting://hello")
+resource = await session.read_resource("greeting://hello")
+print(resource.contents[0].text)
 
 # Call a tool
 print("CALL TOOL")
@@ -537,7 +543,7 @@ In the preceding code, we've:
 
   ```csharp
   var result = await mcpClient.CallToolAsync(
-      "Add",
+      "add",
       new Dictionary<string, object?>() { ["a"] = 1, ["b"] = 3  },
       cancellationToken:CancellationToken.None);
   ```
@@ -545,7 +551,7 @@ In the preceding code, we've:
 1. To print out the result, here's some code to handle that:
 
   ```csharp
-  Console.WriteLine(result.Content.First(c => c.Type == "text").Text);
+  Console.WriteLine(result.Content.OfType<TextContentBlock>().First().Text);
   // Sum 4
   ```
 
@@ -553,25 +559,25 @@ In the preceding code, we've:
 
 ```java
 // Call various calculator tools
-CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
+CallToolResult resultAdd = client.callTool(CallToolRequest.builder("add").arguments(Map.of("a", 5.0, "b", 3.0)).build());
 System.out.println("Add Result = " + resultAdd);
 
-CallToolResult resultSubtract = client.callTool(new CallToolRequest("subtract", Map.of("a", 10.0, "b", 4.0)));
+CallToolResult resultSubtract = client.callTool(CallToolRequest.builder("subtract").arguments(Map.of("a", 10.0, "b", 4.0)).build());
 System.out.println("Subtract Result = " + resultSubtract);
 
-CallToolResult resultMultiply = client.callTool(new CallToolRequest("multiply", Map.of("a", 6.0, "b", 7.0)));
+CallToolResult resultMultiply = client.callTool(CallToolRequest.builder("multiply").arguments(Map.of("a", 6.0, "b", 7.0)).build());
 System.out.println("Multiply Result = " + resultMultiply);
 
-CallToolResult resultDivide = client.callTool(new CallToolRequest("divide", Map.of("a", 20.0, "b", 4.0)));
+CallToolResult resultDivide = client.callTool(CallToolRequest.builder("divide").arguments(Map.of("a", 20.0, "b", 4.0)).build());
 System.out.println("Divide Result = " + resultDivide);
 
-CallToolResult resultHelp = client.callTool(new CallToolRequest("help", Map.of()));
+CallToolResult resultHelp = client.callTool(CallToolRequest.builder("help").arguments(Map.of()).build());
 System.out.println("Help = " + resultHelp);
 ```
 
 In the preceding code we've:
 
-- Called multiple calculator tools using `callTool()` method with `CallToolRequest` objects.
+- Called multiple calculator tools using `callTool()` method with `CallToolRequest` objects created via `CallToolRequest.builder(...)`.
 - Each tool call specifies the tool name and a `Map` of arguments required by that tool.
 - The server tools expect specific parameter names (like "a", "b" for mathematical operations).
 - Results are returned as `CallToolResult` objects containing the response from the server.
@@ -583,10 +589,14 @@ In the preceding code we've:
 let a = 3;
 let b = 2;
 let tool_result = client
-    .call_tool(CallToolRequestParam {
-        name: "add".into(),
-        arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
-    })
+    .call_tool(
+        CallToolRequestParams::new("add").with_arguments(
+            serde_json::json!({ "a": a, "b": b })
+                .as_object()
+                .cloned()
+                .unwrap_or_default(),
+        ),
+    )
     .await?;
 println!("Result of {:?} + {:?}: {:?}", a, b, tool_result);
 ```
@@ -708,10 +718,10 @@ main().catch((error) => {
 
 ```python
 # server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = MCPServer("Demo")
 
 
 # Add an addition tool
@@ -833,7 +843,8 @@ Each language-specific solution provides:
 
    ```text
    Prompt: Please review this code: console.log("hello");
-   Resource template: file
+   Resource template: greeting
+   Resource: Hello, hello!
    Tool result: { content: [ { type: 'text', text: '9' } ] }
    ```
 
@@ -847,7 +858,7 @@ We've provided complete, working client implementations for all programming lang
 
 | Language | File | Description |
 |----------|------|-------------|
-| **Java** | [`client_example_java.java`](./client_example_java.java) | Complete Java client using SSE transport with comprehensive error handling |
+| **Java** | [`client_example_java.java`](./client_example_java.java) | Complete Java client using Streamable HTTP transport with comprehensive error handling |
 | **C#** | [`client_example_csharp.cs`](./client_example_csharp.cs) | Complete C# client using stdio transport with automatic server startup |
 | **TypeScript** | [`client_example_typescript.ts`](./client_example_typescript.ts) | Complete TypeScript client with full MCP protocol support |
 | **Python** | [`client_example_python.py`](./client_example_python.py) | Complete Python client using async/await patterns |
