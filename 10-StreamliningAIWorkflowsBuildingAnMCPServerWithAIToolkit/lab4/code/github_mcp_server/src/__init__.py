@@ -8,9 +8,8 @@ if __name__ == "__main__":
     server.settings.log_level = os.environ.get("LOG_LEVEL", "DEBUG")
     if transport_type == "sse":
         port = int(os.environ.get("PORT", 3001))
-        server.settings.port = port
-        server.settings.host = "127.0.0.1"
-        server.run(transport="sse")
+        # In mcp 2.x, host and port are passed to run() instead of settings
+        server.run(transport="sse", host="127.0.0.1", port=port)
     elif transport_type == "stdio":
         server.run(transport="stdio")
     else:

@@ -2,13 +2,13 @@
 
 > [!NOTE]
 > Inspector URLs in this lab use the legacy `/sse` endpoint and target the
-> pinned MCP SDK `1.9.3` and Inspector `0.14.0` dependencies. They are not
+> pinned MCP Python SDK `2.3.0` (`mcp[cli]>=2.3.0,<3`) and Inspector `0.14.0` dependencies. They are not
 > current `2026-07-28` Streamable HTTP examples.
 
 ![Duration](https://img.shields.io/badge/Duration-20_minutes-blue?style=flat-square)
 ![Microsoft Foundry Toolkit](https://img.shields.io/badge/Microsoft_Foundry_Toolkit-Required-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10+-green?style=flat-square)
-![MCP SDK](https://img.shields.io/badge/MCP_SDK-1.9.3-purple?style=flat-square)
+![MCP SDK](https://img.shields.io/badge/MCP_SDK-2.3.0-purple?style=flat-square)
 ![Inspector](https://img.shields.io/badge/MCP_Inspector-0.14.0-blue?style=flat-square)
 
 ## 🎯 Learning Objectives
@@ -16,7 +16,7 @@
 By the end of this lab, you will be able to:
 
 - ✅ Create custom MCP servers using the Microsoft Foundry Toolkit
-- ✅ Configure and use the latest MCP Python SDK (v1.9.3)
+- ✅ Configure and use the latest MCP Python SDK (v2.3.0)
 - ✅ Set up and utilize the MCP Inspector for debugging
 - ✅ Debug MCP servers in both Agent Builder and Inspector environments
 - ✅ Understand advanced MCP server development workflows
@@ -41,7 +41,7 @@ In this lab, you'll create a **Weather MCP Server** that demonstrates:
 ## 🔧 Core Components Overview
 
 ### 🐍 MCP Python SDK
-The Model Context Protocol Python SDK provides the foundation for building custom MCP servers. You'll use version 1.9.3 with enhanced debugging capabilities.
+The Model Context Protocol Python SDK provides the foundation for building custom MCP servers. You'll use version 2.3.0 with enhanced debugging capabilities. In SDK 2.x the high-level server class is `MCPServer` (`from mcp.server.mcpserver import MCPServer`); it was called `FastMCP` in 1.x.
 
 ### 🔍 MCP Inspector
 A powerful debugging tool that provides:
@@ -93,11 +93,13 @@ A powerful debugging tool that provides:
 
 ### Step 4: Upgrade to Latest MCP SDK
 
-> **🔍 Why Upgrade?** We want to use the latest MCP SDK (v1.9.3) and Inspector service (0.14.0)  for enhanced features and better debugging capabilities.
+> **🔍 Why Upgrade?** We want to use the latest MCP SDK (v2.3.0) and Inspector service (0.14.0)  for enhanced features and better debugging capabilities.
 
 #### 4a. Update Python Dependencies
 
 **Edit `pyproject.toml`:** update [./code/weather_mcp/pyproject.toml](./code/weather_mcp/pyproject.toml)
+
+**Edit `src/server.py` and `src/__init__.py`:** update [./code/weather_mcp/src/server.py](./code/weather_mcp/src/server.py) and [./code/weather_mcp/src/__init__.py](./code/weather_mcp/src/__init__.py). MCP SDK 2.x renamed `FastMCP` to `MCPServer`, and `host`/`port` are now passed to `server.run(...)` instead of being set on `server.settings`.
 
 
 #### 4b. Update Inspector Configuration
@@ -360,7 +362,7 @@ How's the weather like in Seattle
 By completing this lab, you have:
 
 - [x] **Created a custom MCP server** using Microsoft Foundry Toolkit templates
-- [x] **Upgraded to the latest MCP SDK** (v1.9.3) for enhanced functionality
+- [x] **Upgraded to the latest MCP SDK** (v2.3.0) for enhanced functionality
 - [x] **Configured professional debugging workflows** for both Agent Builder and Inspector
 - [x] **Set up the MCP Inspector** for interactive server testing
 - [x] **Mastered VS Code debugging configurations** for MCP development
@@ -369,7 +371,7 @@ By completing this lab, you have:
 
 | Feature | Description | Use Case |
 |---------|-------------|----------|
-| **MCP Python SDK v1.9.3** | Latest protocol implementation | Modern server development |
+| **MCP Python SDK v2.3.0** | Latest protocol implementation | Modern server development |
 | **MCP Inspector 0.14.0** | Interactive debugging tool | Real-time server testing |
 | **VS Code Debugging** | Integrated development environment | Professional debugging workflow |
 | **Agent Builder Integration** | Direct Microsoft Foundry Toolkit connection | End-to-end agent testing |
