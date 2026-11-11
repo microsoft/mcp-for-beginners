@@ -101,7 +101,7 @@ Requirements:
 - Provide user-friendly error messages
 
 Additional Requirements:
-- Follow MCP 1.9.3 best practices
+- Follow MCP Python SDK 2.x best practices
 - Include proper type hints and documentation
 - Implement logging for debugging purposes
 - Add input validation for all parameters
