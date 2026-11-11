@@ -10,7 +10,7 @@ source ./venv/bin/activate
 ## Install dependencies
 
 ```sh
-pip install "mcp[cli]" dotenv PyJWT requests
+pip install "mcp[cli]>=2.3.0,<3" "python-dotenv>=1.2.4,<2" "PyJWT>=2.15.1,<3" "requests>=2.34.2,<3"
 ```
 
 ## Generate token
@@ -48,7 +48,7 @@ User has required scope, proceeding...
 In the client window, you should text similar to:
 
 ```text
-Tool result: meta=None content=[TextContent(type='text', text='{\n  "current_time": "2025-10-06T17:37:39.847457",\n  "timezone": "UTC",\n  "timestamp": 1759772259.847457,\n  "formatted": "2025-10-06 17:37:39"\n}', annotations=None, meta=None)] structuredContent={'current_time': '2025-10-06T17:37:39.847457', 'timezone': 'UTC', 'timestamp': 1759772259.847457, 'formatted': '2025-10-06 17:37:39'} isError=False
+Tool result: meta=None content=[TextContent(type='text', text='{\n  "current_time": "2025-10-06T17:37:39.847457",\n  "timezone": "UTC",\n  "timestamp": 1759772259.847457,\n  "formatted": "2025-10-06 17:37:39"\n}', annotations=None, meta=None)] structured_content={'current_time': '2025-10-06T17:37:39.847457', 'timezone': 'UTC', 'timestamp': 1759772259.847457, 'formatted': '2025-10-06 17:37:39'} is_error=False result_type='complete'
 ```
 
 This means it's all working
