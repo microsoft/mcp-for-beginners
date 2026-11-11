@@ -1,6 +1,6 @@
 use rmcp::{
     ServerHandler, ServiceExt,
-    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::{ServerCapabilities, ServerInfo},
     schemars, tool, tool_handler, tool_router,
     transport::stdio,
@@ -35,14 +35,11 @@ impl Calculator {
     }
 }
 
-#[tool_handler]
+#[tool_handler(router = self.tool_router)]
 impl ServerHandler for Calculator {
     fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
+        ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
+            .with_instructions("A simple calculator tool")
     }
 }
 
