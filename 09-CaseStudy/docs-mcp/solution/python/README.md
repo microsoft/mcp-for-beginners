@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - pip (Python package manager)
 - Internet access to connect to the Microsoft Learn Docs MCP server
 
@@ -14,6 +14,8 @@
    ```bash
    pip install -r requirements.txt
    ```
+
+   > **Note:** `chainlit` and `semantic-kernel` don't support the MCP Python SDK 2.x yet (both require `mcp<2`), so this case study pins `mcp>=1.30.0,<2` and uses the 1.x client API. In 1.x, `streamable_http_client` yields three values (`read_stream, write_stream, get_session_id`); in 2.x it yields only two.
 
 ## Usage
 
