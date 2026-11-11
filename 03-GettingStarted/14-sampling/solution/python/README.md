@@ -1,6 +1,13 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
+> [!WARNING]
+> This sample uses deprecated Sampling. It is retained for MCP `2025-11-25`
+> compatibility, and the server prints an `MCPDeprecationWarning`. New
+> implementations should call an LLM provider directly.
+
+The client starts `server.py` itself over stdio. When the server's `create_product` tool asks the client for an LLM completion (sampling), the client answers it with a model deployed in Microsoft Foundry (Azure OpenAI).
+
+You need Python 3.10 or later. You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create a virtual environment
 
@@ -10,18 +17,37 @@ python -m venv venv
 
 ## -1- Activate the virtual environment
 
+Windows:
+
 ```bash
 venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
 ```
 
 ## -2- Install the dependencies
 
 ```bash
-pip install "mcp[cli]" openai
+pip install "mcp[cli]>=2.3.0,<3" "openai>=3.44.0,<4"
 ```
 
-## -3- Run the sample
+## -3- Configure Microsoft Foundry
 
+Deploy an active model such as `gpt-5.1` in Microsoft Foundry, then set:
+
+```bash
+export AZURE_OPENAI_ENDPOINT="https://<resource-name>.openai.azure.com"
+export AZURE_OPENAI_API_KEY="<api-key>"
+export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
+```
+
+On Windows PowerShell use `$env:AZURE_OPENAI_ENDPOINT="..."` instead of `export`.
+
+## -4- Run the sample
 
 ```bash
 python client.py

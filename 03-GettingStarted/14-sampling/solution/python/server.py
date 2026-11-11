@@ -1,9 +1,8 @@
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host
 
-from mcp.server.fastmcp import Context, FastMCP
+from mcp.server.mcpserver import Context, MCPServer
 
-from mcp.server.session import ServerSession
 from mcp.types import SamplingMessage, TextContent
 
 import json
@@ -14,7 +13,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-mcp = FastMCP("My App")
+mcp = MCPServer("My App")
 
 class Product(BaseModel):
     id: int
@@ -31,7 +30,7 @@ class Product(BaseModel):
 products: List[Product] = []
 
 @mcp.tool()
-async def create_product(product_name: str, keywords: str, ctx: Context[ServerSession, None]) -> str:
+async def create_product(product_name: str, keywords: str, ctx: Context) -> str:
     """Create a product and generate a product description using LLM sampling."""
 
     product = Product(name=product_name, description="")
@@ -60,8 +59,15 @@ async def create_product(product_name: str, keywords: str, ctx: Context[ServerSe
         "description": product.description
     })
 
+@mcp.tool()
+def get_products() -> str:
+    """List all products created so far."""
+    return json.dumps([product.model_dump() for product in products])
+
 if __name__ == "__main__":
-    print("Starting server...")
+    # stdio servers must keep stdout for MCP messages, so log to stderr
+    import sys
+    print("Starting server...", file=sys.stderr)
     mcp.run()
 
 
