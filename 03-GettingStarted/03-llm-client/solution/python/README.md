@@ -1,6 +1,6 @@
 # Running this sample
 
-You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
+You need Python 3.10 or later (the MCP Python SDK 2.x requires it). You're recommended to install `uv` but it's not a must, see [instructions](https://docs.astral.sh/uv/#highlights)
 
 ## -0- Create a virtual environment
 
@@ -8,17 +8,27 @@ You're recommended to install `uv` but it's not a must, see [instructions](https
 python -m venv venv
 ```
 
+> On macOS/Linux use `python3` if `python` is not available.
+
 ## -1- Activate the virtual environment
 
+Windows:
+
 ```bash
-venv\Scrips\activate
+venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source venv/bin/activate
 ```
 
 ## -2- Install the dependencies
 
 ```bash
-pip install "mcp[cli]"
-pip install openai
+pip install "mcp[cli]>=2.3.0,<3"
+pip install "openai>=3.44.0,<4"
 ```
 
 ## -3- Configure Microsoft Foundry
@@ -31,6 +41,8 @@ export AZURE_OPENAI_API_KEY="<api-key>"
 export AZURE_OPENAI_DEPLOYMENT="gpt-5.1"
 ```
 
+On Windows PowerShell use `$env:AZURE_OPENAI_ENDPOINT="..."` instead of `export`.
+
 `AZURE_OPENAI_DEPLOYMENT` is the deployment name, which may differ from the
 underlying model name. Check the
 [Microsoft Foundry model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule)
@@ -38,18 +50,16 @@ before selecting a model.
 
 ## -4- Run the sample
 
-
 ```bash
 python client.py
 ```
+
+The client starts `server.py` itself over stdio, so you don't need to run the server separately.
 
 You should see an output similar to:
 
 ```text
 LISTING RESOURCES
-Resource:  ('meta', None)
-Resource:  ('nextCursor', None)
-Resource:  ('resources', [])
                     INFO     Processing request of type ListToolsRequest                                                                               server.py:534
 LISTING TOOLS
 Tool:  add
@@ -57,5 +67,5 @@ Tool {'a': {'title': 'A', 'type': 'integer'}, 'b': {'title': 'B', 'type': 'integ
 CALLING LLM
 TOOL:  {'function': {'arguments': '{"a":2,"b":20}', 'name': 'add'}, 'id': 'call_BCbyoCcMgq0jDwR8AuAF9QY3', 'type': 'function'}
 [05/08/25 21:04:55] INFO     Processing request of type CallToolRequest                                                                                server.py:534
-TOOLS result:  [TextContent(type='text', text='22', annotations=None)]
+TOOLS result:  [TextContent(type='text', text='22', annotations=None, meta=None)]
 ```

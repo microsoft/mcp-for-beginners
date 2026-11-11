@@ -1,9 +1,10 @@
 # Calculator LLM Client
 
 > [!NOTE]
-> This solution connects to the course's legacy HTTP+SSE calculator service and
-> targets MCP `2025-11-25` SDK APIs. It is not a `2026-07-28` Streamable HTTP
-> example.
+> This solution uses LangChain4j 1.23.0 (`langchain4j-mcp` 1.23.0-beta33) on
+> Spring Boot 4.1.2 and connects to the chapter 1 calculator service over
+> Streamable HTTP at `http://localhost:8080/mcp`. The Java calculator server
+> negotiates MCP `2025-11-25`; it is not yet a `2026-07-28` example.
 
 A Java application that demonstrates how to use LangChain4j to connect to an MCP (Model Context Protocol) calculator service through the MiniMax OpenAI-compatible API.
 
@@ -57,6 +58,10 @@ export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
    ```cmd
    mvnw clean install
    ```
+   On macOS/Linux:
+   ```bash
+   ./mvnw clean install
+   ```
    Or if you have Maven installed globally:
    ```cmd
    mvn clean install
@@ -65,13 +70,22 @@ export MINIMAX_MODEL_ID=MiniMax-M3.1-Flash
 3. **Set up the environment variables** (see "Getting the API Key" section above)
 
 4. **Start the MCP Calculator Service**:
-   Make sure you have chapter 1's MCP calculator service running on `http://localhost:8080/sse`. This should be running before you start the client.
+   Make sure you have chapter 1's MCP calculator service running with its Streamable HTTP endpoint at `http://localhost:8080/mcp`. This should be running before you start the client.
 
 ## Running the Application
+
+On Windows:
 
 ```cmd
 mvnw clean package
 java -jar target\calculator-llm-client-0.0.1-SNAPSHOT.jar
+```
+
+On macOS/Linux:
+
+```bash
+./mvnw clean package
+java -jar target/calculator-llm-client-0.0.1-SNAPSHOT.jar
 ```
 
 ## What the Application Does
@@ -128,7 +142,7 @@ The application is configured to:
 - Preserve explicitly configured legacy or custom `MINIMAX_MODEL_ID` values;
   availability depends on your endpoint
 - Connect to `OPENAI_BASE_URL` when it is set; otherwise use `https://api.minimaxi.com/v1` when `MINIMAX_REGION=cn_zh`, or `https://api.minimax.io/v1` by default
-- Connect to MCP service at `http://localhost:8080/sse`
+- Connect to MCP service at `http://localhost:8080/mcp` (Streamable HTTP)
 - Use a 60-second timeout for requests
 
 ## Dependencies

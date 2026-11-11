@@ -34,8 +34,13 @@ class MyClient {
 
     async connectToServer(transport: Transport) {
         await this.client.connect(transport);
-        this.run();
         console.error("MCPClient started on stdin/stdout");
+        try {
+          await this.run();
+        } finally {
+          // Close the connection so the process can exit
+          await this.client.close();
+        }
     }
 
     openAiToolAdapter(tool: {
@@ -113,14 +118,14 @@ class MyClient {
 
         let results: any[] = [];
     
-        // 1. Go through the LLM response,for each choice, check if it has tool calls 
-        (await response).choices.map(async (choice: { message: any; }) => {
+        // 1. Go through the LLM response, for each choice, check if it has tool calls
+        for (const choice of (await response).choices) {
           const message = choice.message;
           if (message.tool_calls) {
               console.log("Making tool call")
               await this.callTools(message.tool_calls, results);
           }
-        });
+        }
     }
     
 }
@@ -131,4 +136,4 @@ let client = new MyClient();
             args: ["./build/index.js"]
         });
 
-client.connectToServer(transport);
+await client.connectToServer(transport);
