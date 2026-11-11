@@ -1,8 +1,11 @@
-chainlit
-mcp
-semantic-kernel
+# chainlit 2.x and semantic-kernel 1.x still require mcp<2, so this case study
+# stays on the mcp 1.x client API (streamable_http_client yields 3 values).
+chainlit>=2.12.0,<3
+mcp>=1.30.0,<2
+semantic-kernel>=1.46.0,<2
+azure-core>=1.41.0,<2
 
 # Security pin: force the patched Werkzeug (a transitive dependency) to resolve
 # the safe_join Windows device-name DoS advisories
 # CVE-2025-66221 / CVE-2026-21860 / CVE-2026-27199 (fixed in 3.1.6)
-werkzeug>=3.1.6
+werkzeug>=3.1.6,<4
