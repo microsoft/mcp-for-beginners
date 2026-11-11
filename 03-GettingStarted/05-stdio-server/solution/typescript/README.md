@@ -74,11 +74,13 @@ To use this server with Claude Desktop, add this configuration to your `claude_d
   "mcpServers": {
     "example-stdio-server": {
       "command": "node",
-      "args": ["path/to/build/index.js"]
+      "args": ["/absolute/path/to/build/index.js"]
     }
   }
 }
 ```
+
+Use an absolute path to `build/index.js` (run `npm run build` first), because Claude Desktop doesn't start the server from this folder.
 
 ## Project Structure
 

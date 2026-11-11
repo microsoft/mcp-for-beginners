@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol.Server;
 
@@ -47,19 +48,18 @@ public sealed class Tools
     [McpServerTool, Description("Get information about this MCP server")]
     public async Task<string> GetServerInfo()
     {
-        var serverInfo = new
+        // Build the JSON with JsonObject: this project sets PublishAot, which
+        // disables reflection-based JsonSerializer for anonymous types.
+        var serverInfo = new JsonObject
         {
-            server_name = "example-stdio-server",
-            version = "1.0.0",
-            transport = "stdio",
-            capabilities = new[] { "tools" },
-            description = "Example MCP server using stdio transport (MCP 2025-06-18 specification)"
+            ["server_name"] = "example-stdio-server",
+            ["version"] = "1.0.0",
+            ["transport"] = "stdio",
+            ["capabilities"] = new JsonArray("tools"),
+            ["description"] = "Example MCP server using stdio transport (MCP 2025-06-18 specification)"
         };
 
-        var json = JsonSerializer.Serialize(serverInfo, new JsonSerializerOptions 
-        { 
-            WriteIndented = true 
-        });
+        var json = serverInfo.ToJsonString(new JsonSerializerOptions { WriteIndented = true });
 
         _logger.LogInformation("Providing server information");
         return await Task.FromResult(json);
