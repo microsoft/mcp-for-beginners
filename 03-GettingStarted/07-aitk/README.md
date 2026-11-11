@@ -101,6 +101,7 @@ use the Python template for the calculator MCP server.
 1. Using the terminal, activate the virtual environment:
     1. Windows - `.venv\Scripts\activate`
     1. macOS/Linux - `source .venv/bin/activate`
+1. Open **pyproject.toml** and make sure the `mcp` dependency is pinned to the 2.x Python SDK used in this lesson: `"mcp[cli]>=2.3.0,<3"`.
 1. Using the terminal, install the dependencies: `pip install -e .[dev]`
 1. In the **Explorer** view of the **Activity Bar**, expand the **src** directory and select **server.py** to open the file in the editor.
 1. Replace the code in the **server.py** file with the following and save:
@@ -114,9 +115,10 @@ use the Python template for the calculator MCP server.
     that can perform basic arithmetic operations (add, subtract, multiply, divide).
     """
     
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.mcpserver import MCPServer
+    from mcp.server.mcpserver.exceptions import ToolError
     
-    server = FastMCP("calculator")
+    server = MCPServer("calculator")
     
     @server.tool()
     def add(a: float, b: float) -> float:
@@ -139,11 +141,17 @@ use the Python template for the calculator MCP server.
         Divide a by b and return the result.
         
         Raises:
-            ValueError: If b is zero
+            ToolError: If b is zero
         """
         if b == 0:
-            raise ValueError("Cannot divide by zero")
+            raise ToolError("Cannot divide by zero")
         return a / b
+    ```
+
+1. Open **src/\_\_init\_\_.py**. In mcp 2.x, `host` and `port` are passed to `server.run()` instead of being set on `server.settings`. If the template contains `server.settings.port = port` and `server.settings.host = "127.0.0.1"`, remove those two lines and change the `server.run(...)` call in the same branch to:
+
+    ```python
+    server.run(transport="sse", host="127.0.0.1", port=port)
     ```
 
 ### -4- Run the agent with the calculator MCP server
