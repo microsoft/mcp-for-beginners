@@ -25,10 +25,10 @@ If your server is meant to be consumed by running on users machine, you can foll
 1. **Download the server**. If you didn't write the server, then download it first to your machine. 
 1. **Start the server process**: Run your MCP server application 
 
-For SSE (not needed for stdio type server)
+For HTTP-based servers, using Streamable HTTP or the legacy SSE transport (not needed for a stdio server, which the client starts itself):
 
-1. **Configure networking**: Ensure the server is accessible on the expected port 
-1. **Connect clients**: Use local connection URLs like `http://localhost:3000`
+1. **Configure networking**: Ensure the server is accessible on the expected port
+1. **Connect clients**: Use local connection URLs including the MCP endpoint, like `http://localhost:3000/mcp` for Streamable HTTP or `http://localhost:8000/sse` for SSE
 
 ## Cloud Deployment
 
@@ -40,7 +40,9 @@ MCP servers can be deployed to various cloud platforms:
 
 ### Example: Azure Container Apps
 
-Azure Container Apps support deployment of MCP Servers. It's still a work in progress and it currently supports SSE servers.
+Azure Container Apps can host remote MCP servers. The sample used below is a weather server that uses the legacy HTTP+SSE transport with MCP Python SDK 1.x; the same deployment steps apply to a Streamable HTTP server.
+
+You need Python 3.13 or later, [uv](https://docs.astral.sh/uv/), and the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) for the deployment step.
 
 Here's how you can go about it:
 
@@ -50,9 +52,10 @@ Here's how you can go about it:
   git clone https://github.com/anthonychu/azure-container-apps-mcp-sample.git
   ```
 
-1. Run it locally to test things out:
+1. Run it locally to test things out (from the cloned `azure-container-apps-mcp-sample` folder). `API_KEYS` is a comma-separated list of the keys the server accepts in the `x-api-key` header:
 
   ```sh
+  cd azure-container-apps-mcp-sample
   uv venv
   uv sync
 
@@ -88,7 +91,7 @@ Here's how you can go about it:
   }
   ```
 
-  Once the SSE server is started, you can click the play icon in the JSON file, you should now see tools on the server being picked up by GitHub Copilot, see the Tool icon. 
+  Once the SSE server is started, you can click the play icon in the JSON file and enter one of your `API_KEYS` values when prompted. You should now see tools on the server being picked up by GitHub Copilot, see the Tool icon.
 
 1. To deploy, run the following command:
 
