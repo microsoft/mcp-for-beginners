@@ -1,7 +1,7 @@
 use async_openai::{Client, config::OpenAIConfig};
 use rmcp::{
     RmcpError,
-    model::{CallToolRequestParam, ListToolsResult},
+    model::{CallToolRequestParams, ListToolsResult},
     service::{RoleClient, RunningService, ServiceExt},
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -88,10 +88,14 @@ async fn process_llm_response(
             println!("⚡ Calling tool: {}", name);
 
             let result = mcp_client
-                .call_tool(CallToolRequestParam {
-                    name: name.into(),
-                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
-                })
+                .call_tool(
+                    CallToolRequestParams::new(name).with_arguments(
+                        serde_json::from_str::<Value>(&args)?
+                            .as_object()
+                            .cloned()
+                            .unwrap_or_default(),
+                    ),
+                )
                 .await?;
 
             // Add tool result to messages
@@ -144,7 +148,7 @@ async fn call_llm(
     let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
         .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
-        .completions()
+        .chat()
         .create_byot(json!({
             "messages": messages,
             "model": model,

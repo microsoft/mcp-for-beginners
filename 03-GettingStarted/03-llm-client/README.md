@@ -160,7 +160,7 @@ var client = new ChatClient(
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net10.0/server",
     Arguments = [],
 });
 
@@ -173,30 +173,34 @@ First, you'll need to add the LangChain4j dependencies to your `pom.xml` file. A
 
 ```xml
 <properties>
-    <langchain4j.version>1.0.0-beta3</langchain4j.version>
+    <java.version>21</java.version>
+    <langchain4j.version>1.23.0</langchain4j.version>
 </properties>
 
+<!-- The LangChain4j BOM pins every LangChain4j module to the matching release -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-bom</artifactId>
+            <version>${langchain4j.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <dependencies>
-    <!-- LangChain4j MCP Integration -->
+    <!-- LangChain4j MCP Integration (the BOM resolves it to 1.23.0-beta33) -->
     <dependency>
         <groupId>dev.langchain4j</groupId>
         <artifactId>langchain4j-mcp</artifactId>
-        <version>${langchain4j.version}</version>
     </dependency>
     
-    <!-- OpenAI Official API Client -->
+    <!-- OpenAI Official API Client (the BOM resolves it to 1.23.0-beta33) -->
     <dependency>
         <groupId>dev.langchain4j</groupId>
         <artifactId>langchain4j-open-ai-official</artifactId>
-        <version>${langchain4j.version}</version>
-    </dependency>
-
-    <!-- Required at runtime by the pinned OpenAI official adapter -->
-    <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>1.54.1</version>
-        <scope>runtime</scope>
     </dependency>
     
     <!-- Spring Boot Starter (optional, for production apps) -->
@@ -233,8 +237,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -253,7 +257,7 @@ public class LangChain4jClient {
             "cn_zh", "https://api.minimaxi.com/v1");
 
     public static void main(String[] args) throws Exception {
-        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+        ChatModel model = OpenAiOfficialChatModel.builder()
                 .baseUrl(resolveBaseUrl())
                 .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
@@ -261,8 +265,8 @@ public class LangChain4jClient {
                 .build();
 
         // Create MCP transport for connecting to server
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
+        McpTransport transport = StreamableHttpMcpTransport.builder()
+                .url("http://localhost:8080/mcp")
                 .timeout(Duration.ofSeconds(60))
                 .logRequests(true)
                 .logResponses(true)
@@ -316,8 +320,8 @@ In the preceding code we've:
 
 - **Added LangChain4j dependencies**: Required for MCP integration and the OpenAI-compatible MiniMax API
 - **Imported the LangChain4j libraries**: For MCP integration and OpenAI chat model functionality
-- **Created a `ChatLanguageModel`**: Configured to use MiniMax with your MiniMax API key, endpoint, and supported model ID
-- **Set up HTTP transport**: Using Server-Sent Events (SSE) to connect to the MCP server
+- **Created a `ChatModel`**: Configured to use MiniMax with your MiniMax API key, endpoint, and supported model ID
+- **Set up HTTP transport**: Using the Streamable HTTP transport to connect to the MCP server at `http://localhost:8080/mcp`
 - **Created an MCP client**: That will handle communication with the server
 - **Used LangChain4j's built-in MCP support**: Which simplifies integration between LLMs and MCP servers
 
@@ -338,7 +342,7 @@ Add the following dependencies to your `Cargo.toml` file:
 ```toml
 [dependencies]
 async-openai = { version = "0.29.0", features = ["byot"] }
-rmcp = { version = "0.5.0", features = ["client", "transport-child-process"] }
+rmcp = { version = "2.1.0", features = ["client", "transport-child-process"] }
 serde_json = "1.0.141"
 tokio = { version = "1.46.1", features = ["rt-multi-thread"] }
 ```
@@ -352,7 +356,7 @@ Open the `src/main.rs` file and replace its content with the following code:
 use async_openai::{Client, config::OpenAIConfig};
 use rmcp::{
     RmcpError,
-    model::{CallToolRequestParam, ListToolsResult},
+    model::{CallToolRequestParams, ListToolsResult},
     service::{RoleClient, RunningService, ServiceExt},
     transport::{ConfigureCommandExt, TokioChildProcess},
 };
@@ -417,8 +421,13 @@ In the same class, add the following methods:
 ```typescript
 async connectToServer(transport: Transport) {
      await this.client.connect(transport);
-     this.run();
      console.error("MCPClient started on stdin/stdout");
+     try {
+       await this.run();
+     } finally {
+       // Close the connection so the process can exit
+       await this.client.close();
+     }
 }
 
 async run() {
@@ -440,20 +449,20 @@ In the preceding code we've:
 # List available resources
 resources = await session.list_resources()
 print("LISTING RESOURCES")
-for resource in resources:
-    print("Resource: ", resource)
+for resource in resources.resources:
+    print("Resource: ", resource.uri)
 
 # List available tools
 tools = await session.list_tools()
 print("LISTING TOOLS")
 for tool in tools.tools:
     print("Tool: ", tool.name)
-    print("Tool", tool.inputSchema["properties"])
+    print("Tool", tool.input_schema["properties"])
 ```
 
 Here's what we added:
 
-- Listing resources and tools and printed them. For tools we also list `inputSchema` which we use later.
+- Listing resources and tools and printed them. For tools we also list `input_schema` (the tool's `inputSchema` in the MCP protocol) which we use later.
 
 #### .NET
 
@@ -576,10 +585,10 @@ Next step after listing server capabilities is to convert them into a format tha
             "function": {
                 "name": tool.name,
                 "description": tool.description,
-                "type": "function",
                 "parameters": {
                     "type": "object",
-                    "properties": tool.inputSchema["properties"]
+                    "properties": tool.input_schema["properties"],
+                    "required": tool.input_schema.get("required", []),
                 }
             }
         }
@@ -595,7 +604,7 @@ Next step after listing server capabilities is to convert them into a format tha
     functions = []
     for tool in tools.tools:
         print("Tool: ", tool.name)
-        print("Tool", tool.inputSchema["properties"])
+        print("Tool", tool.input_schema["properties"])
         functions.append(convert_to_llm_tool(tool))
     ```
 
@@ -670,7 +679,7 @@ public interface Bot {
 
 // Configure the AI service with LLM and MCP tools
 Bot bot = AiServices.builder(Bot.class)
-        .chatLanguageModel(model)
+        .chatModel(model)
         .toolProvider(toolProvider)
         .build();
 ```
@@ -814,13 +823,13 @@ In this part of the code, we will handle user requests.
     let results: any[] = [];
 
     // 3. Go through the LLM response,for each choice, check if it has tool calls 
-    (await response).choices.map(async (choice: { message: any; }) => {
+    for (const choice of (await response).choices) {
         const message = choice.message;
         if (message.tool_calls) {
             console.log("Making tool call")
             await this.callTools(message.tool_calls, results);
         }
-    });
+    }
     ```
 
 Great, let's list the code in full:
@@ -860,8 +869,13 @@ class MyClient {
 
     async connectToServer(transport: Transport) {
         await this.client.connect(transport);
-        this.run();
         console.error("MCPClient started on stdin/stdout");
+        try {
+          await this.run();
+        } finally {
+          // Close the connection so the process can exit
+          await this.client.close();
+        }
     }
 
     openAiToolAdapter(tool: {
@@ -942,13 +956,13 @@ class MyClient {
         let results: any[] = [];
     
         // 3. Go through the LLM response, for each choice, check if it has tool calls 
-        (await response).choices.map(async (choice: { message: any; }) => {
+        for (const choice of (await response).choices) {
           const message = choice.message;
           if (message.tool_calls) {
               console.log("Making tool call")
               await this.callTools(message.tool_calls, results);
           }
-        });
+        }
     }
     
 }
@@ -959,7 +973,7 @@ let client = new MyClient();
             args: ["./build/index.js"]
         });
 
-client.connectToServer(transport);
+await client.connectToServer(transport);
 ```
 
 #### Python
@@ -1150,7 +1164,7 @@ var chatHistory = new List<ChatMessage>
 var clientTransport = new StdioClientTransport(new()
 {
     Name = "Demo Server",
-    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net9.0/server",
+    Command = "/workspaces/mcp-for-beginners/03-GettingStarted/02-client/solution/server/bin/Debug/net10.0/server",
     Arguments = [],
 });
 
@@ -1273,8 +1287,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -1293,15 +1307,15 @@ public class LangChain4jClient {
             "cn_zh", "https://api.minimaxi.com/v1");
 
     public static void main(String[] args) throws Exception {
-        ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+        ChatModel model = OpenAiOfficialChatModel.builder()
                 .baseUrl(resolveBaseUrl())
                 .apiKey(requireEnv("OPENAI_API_KEY"))
                 .timeout(Duration.ofSeconds(60))
                 .modelName(resolveModelName())
                 .build();
 
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
+        McpTransport transport = StreamableHttpMcpTransport.builder()
+                .url("http://localhost:8080/mcp")
                 .timeout(Duration.ofSeconds(60))
                 .logRequests(true)
                 .logResponses(true)
@@ -1316,7 +1330,7 @@ public class LangChain4jClient {
                 .build();
 
         Bot bot = AiServices.builder(Bot.class)
-                .chatLanguageModel(model)
+                .chatModel(model)
                 .toolProvider(toolProvider)
                 .build();
 
@@ -1387,7 +1401,7 @@ async fn call_llm(
     let model = std::env::var("AZURE_OPENAI_DEPLOYMENT")
         .unwrap_or_else(|_| "gpt-5.1".to_string());
     let response = client
-        .completions()
+        .chat()
         .create_byot(json!({
             "messages": messages,
             "model": model,
@@ -1434,10 +1448,14 @@ async fn process_llm_response(
             println!("⚡ Calling tool: {}", name);
 
             let result = mcp_client
-                .call_tool(CallToolRequestParam {
-                    name: name.into(),
-                    arguments: serde_json::from_str::<Value>(&args)?.as_object().cloned(),
-                })
+                .call_tool(
+                    CallToolRequestParams::new(name).with_arguments(
+                        serde_json::from_str::<Value>(&args)?
+                            .as_object()
+                            .cloned()
+                            .unwrap_or_default(),
+                    ),
+                )
                 .await?;
 
             // Add tool result to messages
