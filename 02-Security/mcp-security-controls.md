@@ -19,7 +19,7 @@ All security controls in this document align with the **[OWASP MCP Azure Securit
 
 > **FORBIDDEN**: MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server
 >
-> **PROHIBITED**: MCP servers **MUST NOT** use sessions for authentication  
+> **PROHIBITED**: MCP servers **MUST NOT** treat possession of a state handle as authentication
 >
 > **REQUIRED**: MCP servers implementing authorization **MUST** verify ALL inbound requests
 >
