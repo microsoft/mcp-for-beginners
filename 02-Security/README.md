@@ -270,9 +270,9 @@ MCP `2026-07-28` is stateless and has no protocol-level sessions. A server that 
 - **Authorization Verification**: MCP servers implementing authorization **MUST** verify ALL inbound requests and **MUST NOT** treat possession of a state handle as authentication
 - **Secure Handle Generation**: Use secure, non-deterministic handles generated with secure random number generators, and expire them
 - **User-Specific Binding**: Bind handles server-side to the authenticated user, for example as `<user_id>:<handle>` where the user ID comes from the verified token, and reject a handle presented by any other principal
-- **Transport Security**: Mandatory HTTPS for all communication to prevent handle and token interception
+- **Transport Security**: Mandatory HTTPS for remote (HTTP) transports to prevent handle and token interception; local stdio servers rely on process and environment isolation instead
 
-> **Older protocol versions:** servers that still speak `2025-11-25` or earlier assign session IDs. For those, see [Session Hijacking in the 2025-11-25 Security Best Practices](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices#session-hijacking).
+> **Older protocol versions:** servers that still speak `2025-11-25` or earlier may assign session IDs (sessionless Streamable HTTP is also allowed). For those, see [Session Hijacking in the 2025-11-25 Security Best Practices](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices#session-hijacking).
 
 ### Confused Deputy Problem
 
