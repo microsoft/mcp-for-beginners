@@ -26,7 +26,7 @@ const SANDBOX_PORT = parseInt(process.env.SANDBOX_PORT || "8081", 10);
 const DIRECTORY = join(__dirname, "dist");
 const SERVERS: string[] = process.env.SERVERS
   ? JSON.parse(process.env.SERVERS)
-  : ["https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp"]; // https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+  : ["http://localhost:3001/mcp"];
 
 function parseCorsOrigins(raw?: string): string[] | null {
   if (!raw) return null;

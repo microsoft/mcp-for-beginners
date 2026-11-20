@@ -2,7 +2,7 @@ Here's a sample demonstrating MCP App
 
 ## Install 
 
-1. Navigate to *mcp-app* folder
+1. Navigate to the *my-app* folder
 1. Run `npm install`, this should install frontend and backend dependencies
 
 Verify the backend compiles by running:
@@ -15,7 +15,7 @@ There should be no output if everything is fine.
 
 ## Run backend
 
-> This takes a bit of extra work if you're on a Windows machine as the MCP Apps solution uses `concurrently` library to run that you need to find a replacement for. Here's the offending line *package.json* on the MCP App:
+> `npm start` runs two processes with the `concurrently` package: Vite rebuilds the app UI (`mcp-app.html`) on changes, and `tsx` runs the server (`main.ts`). `concurrently` and `cross-env` are cross-platform, so this also works on Windows:
 
 ```json
 "start": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts\""
@@ -29,7 +29,7 @@ Start the backend by calling:
 npm start
 ```
 
-This should shart the backend on `http://localhost:3001/mcp`. 
+This should start the backend on `http://localhost:3001/mcp`. It exposes the tools `get-time`, `get-faq`, `play-rps`, `get-app-info`, `simple-click` and `ping`; all but `ping` have a UI resource (`ui://...`) that a host renders.
 
 > Note, if you're in a Codespace, you may need to set port visibility to public. Check you can reach endpoint in the browser through https://<name of Codespace>.app.github.dev/mcp
 
@@ -58,7 +58,7 @@ To test the solution in Visual Studio Code, do the following:
 
 ## Choice -2- Test the app with a host
 
-The repo <https://github.com/modelcontextprotocol/ext-apps> contains several different hosts that you can use to test your MVP Apps. 
+The repo <https://github.com/modelcontextprotocol/ext-apps> contains several different hosts that you can use to test your MCP Apps. 
 
 We will present you with two different options here:
 
@@ -74,7 +74,7 @@ We will present you with two different options here:
 
 - In a separate terminal window, navigate to *ext-apps/examples/basic-host*
 
-    > if you Codespace, you need to navigate to serve.ts and line 27 and replace http://localhost:3001/mcp with your Codespace URL for the backend, so for example https://psychic-xylophone-657rpjgvxpc5g64-3001.app.github.dev/mcp
+    > The host connects to `http://localhost:3001/mcp` by default. In a Codespace, point it at your forwarded backend URL with the `SERVERS` environment variable instead, for example `SERVERS='["https://<codespace-name>-3001.app.github.dev/mcp"]' npm start`
 
 - Run the host:
 

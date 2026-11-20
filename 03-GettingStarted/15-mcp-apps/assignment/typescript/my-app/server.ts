@@ -21,8 +21,6 @@ export function createServer(): McpServer {
 
   // Two-part registration: tool + resource, tied together by the resource URI.
   const resourceUri = "ui://get-time/mcp-app.html";
-  const faqResourceUri = "ui://get-faq/mcp-faq.html";
-  const infoUri = "ui://app-info";
 
   registerAppTool(
     server,
