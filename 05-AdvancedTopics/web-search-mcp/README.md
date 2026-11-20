@@ -25,7 +25,7 @@ By the end of this lesson, you will be able to:
 
 ## Web Search MCP Server
 
-This section introduces the architecture and features of the Web Search MCP Server. You'll see how FastMCP and SerpAPI are used together to extend LLM capabilities with real-time web data.
+This section introduces the architecture and features of the Web Search MCP Server. You'll see how `MCPServer` (the high-level server class in the official MCP Python SDK, called `FastMCP` in mcp 1.x) and SerpAPI are used together to extend LLM capabilities with real-time web data.
 
 ### Overview
 
@@ -70,9 +70,9 @@ Here is a brief example of how the server defines and registers a tool:
 
 ```python
 # server.py (excerpt)
-from mcp.server.fastmcp import FastMCP, Context
+from mcp.server.mcpserver import MCPServer, Context
 
-mcp = FastMCP("WebSearchServer")
+mcp = MCPServer("WebSearchServer")
 
 @mcp.tool()
 async def general_search(query: str, num_results: int = 5, ctx: Context = None) -> str:
@@ -95,21 +95,21 @@ if __name__ == "__main__":
 
 Before you begin, make sure your environment is set up properly by following these steps. This will ensure that all dependencies are installed and your API keys are configured correctly for seamless development and testing.
 
-- Python 3.8 or higher
+- Python 3.10 or higher (required by the MCP Python SDK 2.x)
 - SerpAPI API Key (Sign up at [SerpAPI](https://serpapi.com/) - free tier available)
 
 ## Installation
 
 To get started, follow these steps to set up your environment:
 
-1. Install dependencies using uv (recommended) or pip:
+1. Install dependencies using uv (recommended) or pip. The pinned [`requirements.txt`](../requirements.txt) (including `mcp[cli]>=2.3.0,<3`) lives in the parent `05-AdvancedTopics` folder:
 
 ```bash
 # Using uv (recommended)
-uv pip install -r requirements.txt
+uv pip install -r ../requirements.txt
 
 # Using pip
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 ```
 
 2. Create a `.env` file in the project root with your SerpAPI key:

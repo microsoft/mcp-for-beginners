@@ -23,7 +23,8 @@ By the end of this lesson, you will:
 
 - Basic understanding of Java and Spring Boot
 - Familiarity with MCP concepts from earlier modules
-- Maven or Gradle installed
+- Java 21 or later
+- Maven 3.6.3 or later (the project targets Spring Boot 4.1.2 / Spring Security 7)
 
 ---
 

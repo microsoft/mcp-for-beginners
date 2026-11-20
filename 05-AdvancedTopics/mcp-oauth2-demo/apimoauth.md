@@ -23,7 +23,7 @@ This creates a publicly-accessible Container App with HTTPS enabled (Azure issue
 
 ## Configuring Spring Authorization Server
 
-In your Spring Boot app’s code, include the Spring Authorization Server and Resource Server starters. Configure a `RegisteredClient` (for the `client_credentials` grant in dev/test) and a JWT key source. For example, in `application.properties` you might set:
+In your Spring Boot app’s code, include the Spring Authorization Server and Resource Server starters (on Spring Boot 4.x these are `spring-boot-starter-security-oauth2-authorization-server` and `spring-boot-starter-security-oauth2-resource-server`; the Authorization Server is now part of Spring Security 7). Configure a `RegisteredClient` (for the `client_credentials` grant in dev/test) and a JWT key source. For example, in `application.properties` you might set:
 
 ```properties
 # OAuth2 client (for testing token issuance)
@@ -40,11 +40,12 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        OAuth2AuthorizationServerConfigurer<HttpSecurity> authzServer = OAuth2AuthorizationServerConfigurer.authorizationServer();
+        // Spring Security 7: org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization
+        OAuth2AuthorizationServerConfigurer authzServer = new OAuth2AuthorizationServerConfigurer();
         http
-            .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
             // Enable the Authorization Server endpoints
-            .apply(authzServer.and())
+            .with(authzServer, withDefaults())
+            .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
             // Enable the Resource Server (validate JWT on incoming requests)
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
             // Disable CSRF (MCP server is not browser-based)
@@ -86,8 +87,8 @@ This setup will expose the default OAuth2 endpoints: `/oauth2/token` for tokens 
 **Enable OpenID Connect discovery:** To let APIM automatically retrieve the issuer and JWKS, enable the OIDC provider configuration endpoint by adding `.oidc(Customizer.withDefaults())` in your security configuration ([Configuration Model :: Spring Authorization Server](https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#:~:text=.securityMatcher%28authorizationServerConfigurer.getEndpointsMatcher%28%29%29%20.with%28authorizationServerConfigurer%2C%20%28authorizationServer%29%20,%29%3B%20return%20http.build)). For example:
 
 ```java
+OAuth2AuthorizationServerConfigurer authzServer = new OAuth2AuthorizationServerConfigurer();
 http
-  .apply(authzServer.and())
   .securityMatcher(authzServer.getEndpointsMatcher())
   .with(authzServer, authz -> authz
       .oidc(Customizer.withDefaults()));  // <– enables /.well-known/openid-configuration
