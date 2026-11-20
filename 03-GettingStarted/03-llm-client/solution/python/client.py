@@ -55,10 +55,10 @@ def convert_to_llm_tool(tool):
         "function": {
             "name": tool.name,
             "description": tool.description,
-            "type": "function",
             "parameters": {
                 "type": "object",
-                "properties": tool.inputSchema["properties"]
+                "properties": tool.input_schema["properties"],
+                "required": tool.input_schema.get("required", []),
             }
         }
     }
@@ -76,8 +76,8 @@ async def run():
             # List available resources
             resources = await session.list_resources()
             print("LISTING RESOURCES")
-            for resource in resources:
-                print("Resource: ", resource)
+            for resource in resources.resources:
+                print("Resource: ", resource.uri)
 
             # List available tools
             tools = await session.list_tools()
@@ -87,7 +87,7 @@ async def run():
 
             for tool in tools.tools:
                 print("Tool: ", tool.name)
-                print("Tool", tool.inputSchema["properties"])
+                print("Tool", tool.input_schema["properties"])
                 functions.append(convert_to_llm_tool(tool))
             
             prompt = "Add 2 to 20"

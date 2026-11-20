@@ -4,8 +4,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -24,10 +24,10 @@ public class LangChain4jClient {
 
         public static void main(String[] args) throws Exception {
 
-                ChatLanguageModel model = createModel(System.getenv());
+                ChatModel model = createModel(System.getenv());
 
-                McpTransport transport = new HttpMcpTransport.Builder()
-                                .sseUrl("http://localhost:8080/sse")
+                McpTransport transport = StreamableHttpMcpTransport.builder()
+                                .url("http://localhost:8080/mcp")
                                 .timeout(Duration.ofSeconds(60))
                                 .logRequests(true)
                                 .logResponses(true)
@@ -42,7 +42,7 @@ public class LangChain4jClient {
                                 .build();
 
                 Bot bot = AiServices.builder(Bot.class)
-                                .chatLanguageModel(model)
+                                .chatModel(model)
                                 .toolProvider(toolProvider)
                                 .build();
                 try {
@@ -59,7 +59,7 @@ public class LangChain4jClient {
                 }
         }
 
-        static ChatLanguageModel createModel(Map<String, String> environment) {
+        static ChatModel createModel(Map<String, String> environment) {
                 return OpenAiOfficialChatModel.builder()
                                 .baseUrl(resolveBaseUrl(environment))
                                 .apiKey(requireEnv(environment, "OPENAI_API_KEY"))

@@ -37,6 +37,13 @@ cargo build
 cargo run
 ```
 
-The client starts the calculator MCP server, fetches its tool list, and uses
-the deployed model to call the `add` tool. You should see output indicating
-the tool call (for example, "Calling tool: add") and the result of that call.
+The client starts the calculator MCP server from `01-first-server/solution/rust`
+itself (with `cargo run`), fetches its tool list, and asks the deployed model to
+add two numbers. The model calls the `add` tool, the client sends the tool
+result back to the model, and prints the model's final answer. You should see
+output similar to:
+
+```text
+⚡ Calling tool: add
+🤖 The sum of 3 and 2 is 5.
+```
