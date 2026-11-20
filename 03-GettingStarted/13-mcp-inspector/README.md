@@ -61,6 +61,8 @@ Add to `package.json`:
 
 For servers that communicate via standard input/output:
 
+The Inspector starts your server with only a minimal environment (such as `HOME` and `PATH`), so variables you set in your shell, for example `OPENAI_API_KEY=xxx npx ...`, don't reach the server. Pass them with `-e` instead:
+
 ```bash
 # Python server
 npx @modelcontextprotocol/inspector python -m your_server_module
@@ -68,8 +70,8 @@ npx @modelcontextprotocol/inspector python -m your_server_module
 # Node.js server
 npx @modelcontextprotocol/inspector node ./build/index.js
 
-# With environment variables
-OPENAI_API_KEY=xxx npx @modelcontextprotocol/inspector python server.py
+# With environment variables for the server (-e KEY=VALUE, repeatable)
+npx @modelcontextprotocol/inspector -e OPENAI_API_KEY=xxx python server.py
 ```
 
 ### SSE/HTTP Servers (Network)
@@ -281,7 +283,7 @@ Add to `.vscode/launch.json`:
       "name": "Debug SSE Server with Inspector",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:5173",
+      "url": "http://localhost:6274/?MCP_INSPECTOR_API_TOKEN=local-dev-token",
       "preLaunchTask": "Start MCP Inspector"
     }
   ]
@@ -300,6 +302,12 @@ Add to `.vscode/tasks.json`:
       "label": "Start MCP Inspector",
       "type": "shell",
       "command": "npx @modelcontextprotocol/inspector node ${workspaceFolder}/build/index.js",
+      "options": {
+        "env": {
+          "MCP_INSPECTOR_API_TOKEN": "local-dev-token",
+          "MCP_AUTO_OPEN_ENABLED": "false"
+        }
+      },
       "isBackground": true,
       "problemMatcher": {
         "pattern": {
@@ -307,14 +315,16 @@ Add to `.vscode/tasks.json`:
         },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "Inspector",
-          "endsPattern": "listening"
+          "beginsPattern": "Starting MCP inspector",
+          "endsPattern": "is up and running"
         }
       }
     }
   ]
 }
 ```
+
+The task sets a fixed `MCP_INSPECTOR_API_TOKEN` so the browser launch configuration can open the Inspector UI (port 6274 by default) with the matching token, and turns off the Inspector's own browser window. `endsPattern` matches the "MCP Inspector Web is up and running" line the Inspector prints when it's ready. Use a fixed token only on your local machine.
 
 ---
 
@@ -369,6 +379,8 @@ pip show mcp
 **Example improved error handling:**
 
 ```python
+from mcp.server.mcpserver.exceptions import ToolError
+
 @mcp.tool()
 async def my_tool(param1: str, param2: int) -> str:
     try:
@@ -376,9 +388,11 @@ async def my_tool(param1: str, param2: int) -> str:
         result = process(param1, param2)
         return str(result)
     except ValueError as e:
-        raise McpError(f"Invalid parameter: {e}")
+        # ToolError is returned to the client as a tool result with is_error=True,
+        # so the LLM can see the message and react to it
+        raise ToolError(f"Invalid parameter: {e}")
     except Exception as e:
-        raise McpError(f"Tool failed: {type(e).__name__}: {e}")
+        raise ToolError(f"Tool failed: {type(e).__name__}: {e}")
 ```
 
 ### Scenario 4: Resource Content Empty
@@ -394,19 +408,29 @@ async def my_tool(param1: str, param2: int) -> str:
 
 ## Advanced Inspector Features
 
-### Custom Headers (SSE)
+### Custom Headers (HTTP and SSE)
 
 ```bash
+# Web UI, preconfigured for an SSE server
 npx @modelcontextprotocol/inspector \
-  --sse http://localhost:8080/sse \
+  --transport sse \
+  --server-url http://localhost:8080/sse \
   --header "Authorization: Bearer your-token"
+
+# CLI mode against a Streamable HTTP server
+npx @modelcontextprotocol/inspector --cli http://localhost:8080/mcp \
+  --transport http \
+  --header "Authorization: Bearer your-token" \
+  --method tools/list
 ```
 
-### Verbose Logging
+### Stack Traces for Inspector Errors
 
 ```bash
-DEBUG=mcp* npx @modelcontextprotocol/inspector python server.py
+MCP_DEBUG=1 npx @modelcontextprotocol/inspector python server.py
 ```
+
+`MCP_DEBUG` (or `DEBUG`) makes the Inspector print full stack traces when it fails. To see what your server is doing, look at its stderr output, which the Inspector shows in the web UI, and the messages in the history panel.
 
 ### Recording Sessions
 
