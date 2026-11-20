@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using ModelContextProtocol;
 using ModelContextProtocol.Server;
 
 namespace Calculator.Tools;
@@ -35,7 +36,9 @@ public class CalculatorTool
     {
         if (numberB == 0)
         {
-            throw new ArgumentException("Cannot divide by zero");
+            // The SDK only passes McpException messages on to the client;
+            // other exceptions become a generic "An error occurred" result
+            throw new McpException("Cannot divide by zero");
         }
         return numberA / numberB;
     }

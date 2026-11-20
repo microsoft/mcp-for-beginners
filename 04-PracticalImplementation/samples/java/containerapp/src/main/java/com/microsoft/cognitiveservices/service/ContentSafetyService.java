@@ -9,8 +9,8 @@ import dev.langchain4j.mcp.McpToolProvider;
 import dev.langchain4j.mcp.client.DefaultMcpClient;
 import dev.langchain4j.mcp.client.McpClient;
 import dev.langchain4j.mcp.client.transport.McpTransport;
-import dev.langchain4j.mcp.client.transport.http.HttpMcpTransport;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.mcp.client.transport.http.StreamableHttpMcpTransport;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openaiofficial.OpenAiOfficialChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
@@ -25,7 +25,7 @@ import jakarta.annotation.PreDestroy;
 @Service
 public class ContentSafetyService {
 
-    private final ChatLanguageModel model;
+    private final ChatModel model;
     private final McpClient mcpClient;
     private final Bot bot;
 
@@ -34,15 +34,15 @@ public class ContentSafetyService {
         this.model = OpenAiOfficialChatModel.builder()
             .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
             .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
-            .isAzure(true)
+            .isMicrosoftFoundry(true)
             .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
                 .timeout(Duration.ofMinutes(60))
                 .build();
 
         // Configure the MCP transport and client
         // Using port 8080 for MCP client connection, as that's where the MCP server is running
-        McpTransport transport = new HttpMcpTransport.Builder()
-                .sseUrl("http://localhost:8080/sse")
+        McpTransport transport = StreamableHttpMcpTransport.builder()
+                .url("http://localhost:8080/mcp")
                 .timeout(Duration.ofMinutes(60))
                 .build();
 
@@ -56,7 +56,7 @@ public class ContentSafetyService {
                 .build();
 
         this.bot = AiServices.builder(Bot.class)
-                .chatLanguageModel(model)
+                .chatModel(model)
                 .toolProvider(toolProvider)
                 .build();
     }

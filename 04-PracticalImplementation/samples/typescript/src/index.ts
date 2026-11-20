@@ -1,4 +1,6 @@
 // mcp_sample.ts - MCP TypeScript Sample Implementation
+// stdout carries the MCP messages of the stdio transport, so all logging
+// in this server goes to stderr with console.error
 import { EventEmitter } from 'events';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -59,7 +61,7 @@ export class ExtendedMcpServer {
         }).optional()
       },
       async ({ model, prompt, options }) => {
-        console.log(`Processing completion request for model: ${model}`);
+        console.error(`Processing completion request for model: ${model}`);
         
         // Validate model
         if (!this.models.includes(model)) {
@@ -116,9 +118,9 @@ export class ExtendedMcpServer {
       new ResourceTemplate("test://{query}", { list: undefined }),
       async (uri, { query }) => {
         
-        console.log(`Processing search request for: ${uri}`);
+        console.error(`Processing search request for: ${uri}`);
         
-        console.log(`Processing search request for: ${query}`);
+        console.error(`Processing search request for: ${query}`);
         
         
         // Simulate search processing
@@ -150,7 +152,7 @@ export class ExtendedMcpServer {
   public async connect(): Promise<void> {
     const transport = new StdioServerTransport();
     await this.mcpServer.connect(transport);
-    console.log(`Server connected via stdio transport`);
+    console.error(`Server connected via stdio transport`);
   }
 
   /**
@@ -188,15 +190,15 @@ const server = new ExtendedMcpServer({
 
 // Register event handlers
 server.on('request', (data) => {
-  console.log(`Request received: ${JSON.stringify(data)}`);
+  console.error(`Request received: ${JSON.stringify(data)}`);
 });
 
 server.on('completion', (data) => {
-  console.log(`Completion finished: ${JSON.stringify(data)}`);
+  console.error(`Completion finished: ${JSON.stringify(data)}`);
 });
 
-console.log(`MCP Server "${server.name}" initialized`);
-console.log(`Supported models: ${server.getSupportedModels().join(', ')}`);
+console.error(`MCP Server "${server.name}" initialized`);
+console.error(`Supported models: ${server.getSupportedModels().join(', ')}`);
 
 // Connect the server
 server.connect().catch(error => {

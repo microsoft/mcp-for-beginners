@@ -17,7 +17,7 @@ this.mcpServer.tool(
     }).optional()
 },
 async ({ model, prompt, options }) => {
-    console.log(`Processing completion request for model: ${model}`);
+    console.error(`Processing completion request for model: ${model}`);
 
     // Validate model
     if (!this.models.includes(model)) {

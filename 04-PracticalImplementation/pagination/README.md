@@ -51,27 +51,24 @@ These MCP methods support pagination:
 
 ## Server Implementation
 
-### Python (FastMCP)
+### Python (low-level `Server`, mcp 2.x)
 
 ```python
-from mcp.server import Server
-from mcp.types import Tool, ListToolsResult
-import math
-
-app = Server("paginated-server")
+from mcp.server import Server, ServerRequestContext
+from mcp.types import ListToolsResult, PaginatedRequestParams, Tool
 
 # Simulated large dataset
 ALL_TOOLS = [
-    Tool(name=f"tool_{i}", description=f"Tool number {i}", inputSchema={})
+    Tool(name=f"tool_{i}", description=f"Tool number {i}", input_schema={"type": "object"})
     for i in range(100)
 ]
 
 PAGE_SIZE = 10
 
-@app.list_tools()
-async def list_tools(cursor: str | None = None) -> ListToolsResult:
+async def list_tools(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListToolsResult:
     """List tools with pagination support."""
-    
+    cursor = params.cursor if params else None
+
     # Decode cursor to get starting index
     start_index = 0
     if cursor:
@@ -91,8 +88,11 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
     
     return ListToolsResult(
         tools=page_tools,
-        nextCursor=next_cursor
+        next_cursor=next_cursor
     )
+
+# In mcp 2.x, low-level handlers are passed to the Server constructor
+app = Server("paginated-server", on_list_tools=list_tools)
 ```
 
 ### TypeScript
@@ -184,20 +184,21 @@ public class PaginatedToolService {
 
 ```python
 from mcp import ClientSession
+from mcp.types import PaginatedRequestParams
 
 async def get_all_tools(session: ClientSession) -> list:
     """Fetch all tools using pagination."""
     all_tools = []
     cursor = None
-    
+
     while True:
-        result = await session.list_tools(cursor=cursor)
+        result = await session.list_tools(params=PaginatedRequestParams(cursor=cursor))
         all_tools.extend(result.tools)
-        
-        if result.nextCursor is None:
+
+        if result.next_cursor is None:
             break
-        cursor = result.nextCursor
-    
+        cursor = result.next_cursor
+
     return all_tools
 
 # Usage
@@ -253,9 +254,9 @@ class PaginatedToolIterator:
             raise StopAsyncIteration
         
         # Fetch next page
-        result = await self.session.list_tools(cursor=self.cursor)
+        result = await self.session.list_tools(params=PaginatedRequestParams(cursor=self.cursor))
         self.buffer = list(result.tools)
-        self.cursor = result.nextCursor
+        self.cursor = result.next_cursor
         
         if self.cursor is None:
             self.exhausted = True
@@ -280,15 +281,13 @@ async for tool in PaginatedToolIterator(session):
 Resources often need pagination for directories or large datasets:
 
 ```python
-from mcp.server import Server
-from mcp.types import Resource, ListResourcesResult
+from mcp.server import Server, ServerRequestContext
+from mcp.types import ListResourcesResult, PaginatedRequestParams, Resource
 import os
 
-app = Server("file-server")
-
-@app.list_resources()
-async def list_resources(cursor: str | None = None) -> ListResourcesResult:
+async def list_resources(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListResourcesResult:
     """List files in directory with pagination."""
+    cursor = params.cursor if params else None
     
     directory = "/data/files"
     all_files = sorted(os.listdir(directory))
@@ -305,7 +304,7 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
         resources.append(Resource(
             uri=f"file://{filepath}",
             name=filename,
-            mimeType="application/octet-stream"
+            mime_type="application/octet-stream"
         ))
     
     # Calculate next cursor
@@ -313,8 +312,10 @@ async def list_resources(cursor: str | None = None) -> ListResourcesResult:
     
     return ListResourcesResult(
         resources=resources,
-        nextCursor=next_cursor
+        next_cursor=next_cursor
     )
+
+app = Server("file-server", on_list_resources=list_resources)
 ```
 
 ---
@@ -380,8 +381,8 @@ PAGE_SIZE_LARGE_ITEMS = 5     # Complex content
 ### 2. Handle Invalid Cursors Gracefully
 
 ```python
-@app.list_tools()
-async def list_tools(cursor: str | None = None) -> ListToolsResult:
+async def list_tools(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListToolsResult:
+    cursor = params.cursor if params else None
     try:
         start_index = int(cursor) if cursor else 0
         if start_index < 0 or start_index >= len(ALL_TOOLS):
@@ -396,7 +397,7 @@ async def list_tools(cursor: str | None = None) -> ListToolsResult:
 ```python
 return ListToolsResult(
     tools=page_tools,
-    nextCursor=next_cursor,
+    next_cursor=next_cursor,
     # Some implementations include total for UI progress
     _meta={"total": len(ALL_TOOLS)}
 )
@@ -409,14 +410,14 @@ async def test_pagination():
     # Empty result set
     result = await session.list_tools()
     assert result.tools == []
-    assert result.nextCursor is None
+    assert result.next_cursor is None
     
     # Single page
     result = await session.list_tools()
     assert len(result.tools) <= PAGE_SIZE
     
     # Invalid cursor
-    result = await session.list_tools(cursor="invalid")
+    result = await session.list_tools(params=PaginatedRequestParams(cursor="invalid"))
     assert result.tools  # Should return first page
 ```
 
@@ -428,8 +429,7 @@ async def test_pagination():
 
 ```python
 # BAD: Loads everything into memory
-@app.list_tools()
-async def list_tools() -> ListToolsResult:
+async def list_tools(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListToolsResult:
     all_tools = load_all_tools()  # 1 million tools!
     return ListToolsResult(tools=all_tools)
 ```
@@ -438,11 +438,11 @@ async def list_tools() -> ListToolsResult:
 
 ```python
 # GOOD: Only loads what's needed
-@app.list_tools()
-async def list_tools(cursor: str | None = None) -> ListToolsResult:
+async def list_tools(ctx: ServerRequestContext, params: PaginatedRequestParams | None) -> ListToolsResult:
+    cursor = params.cursor if params else None
     offset = int(cursor) if cursor else 0
     tools = await db.query_tools(offset=offset, limit=PAGE_SIZE)
-    return ListToolsResult(tools=tools, nextCursor=...)
+    return ListToolsResult(tools=tools, next_cursor=...)
 ```
 
 ---

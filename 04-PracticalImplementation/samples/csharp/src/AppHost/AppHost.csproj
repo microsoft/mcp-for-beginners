@@ -1,19 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.1" />
+<Project Sdk="Aspire.AppHost.Sdk/13.6.4">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>5c397159-499a-49d3-ba30-bbadb05969da</UserSecretsId>
+    <!-- The sample runs with `dotnet run` and doesn't require the Aspire CLI bundle
+         (AspireUseCliBundle=false, the SDK default), so silence the reminder. -->
+    <NoWarn>$(NoWarn);ASPIRE010</NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.*" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Calculator\Calculator.csproj" />
