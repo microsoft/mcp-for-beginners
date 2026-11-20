@@ -255,24 +255,24 @@ Microsoft **AI Prompt Shields** provide comprehensive defense against both direc
 
 ## Advanced MCP Security Threats
 
-### Session Hijacking Vulnerabilities
+### State Handle Hijacking
 
-**Session hijacking** represents a critical attack vector in stateful MCP implementations where unauthorized parties obtain and abuse legitimate session identifiers to impersonate clients and perform unauthorized actions.
+MCP `2026-07-28` is stateless and has no protocol-level sessions. A server that needs state across requests mints an explicit handle, such as a cart ID or workflow ID, and receives it back as an ordinary tool argument. **State handle hijacking** is an attack where an unauthorized party obtains or guesses such a handle and uses it to access or modify another user's state.
 
 #### **Attack Scenarios & Risks**
 
-- **Session Hijack Prompt Injection**: Attackers with stolen session IDs inject malicious events into servers sharing session state, potentially triggering harmful actions or accessing sensitive data
-- **Direct Impersonation**: Stolen session IDs enable direct MCP server calls that bypass authentication, treating attackers as legitimate users
-- **Compromised Resumable Streams**: Attackers can terminate requests prematurely, causing legitimate clients to resume with potentially malicious content
+- **Handle Guessing**: Predictable or sequential handles let an attacker reach another user's state
+- **Direct Impersonation**: A server that does not check whether a handle belongs to the caller operates on the original user's state, allowing unauthorized access or actions
 
-#### **Security Controls for Session Management**
+#### **Security Controls for State Handles**
 
 **Critical Requirements:**
-- **Authorization Verification**: MCP servers implementing authorization **MUST** verify ALL inbound requests and **MUST NOT** rely on sessions for authentication
-- **Secure Session Generation**: Use cryptographically secure, non-deterministic session IDs generated with secure random number generators
-- **User-Specific Binding**: Bind session IDs to user-specific information using formats like `<user_id>:<session_id>` to prevent cross-user session abuse
-- **Session Lifecycle Management**: Implement proper expiration, rotation, and invalidation to limit vulnerability windows
-- **Transport Security**: Mandatory HTTPS for all communication to prevent session ID interception
+- **Authorization Verification**: MCP servers implementing authorization **MUST** verify ALL inbound requests and **MUST NOT** treat possession of a state handle as authentication
+- **Secure Handle Generation**: Use secure, non-deterministic handles generated with secure random number generators, and expire them
+- **User-Specific Binding**: Bind handles server-side to the authenticated user, for example as `<user_id>:<handle>` where the user ID comes from the verified token, and reject a handle presented by any other principal
+- **Transport Security**: Mandatory HTTPS for remote (HTTP) transports to prevent handle and token interception; local stdio servers rely on process and environment isolation instead
+
+> **Older protocol versions:** servers that still speak `2025-11-25` or earlier may assign session IDs (sessionless Streamable HTTP is also allowed). For those, see [Session Hijacking in the 2025-11-25 Security Best Practices](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices#session-hijacking).
 
 ### Confused Deputy Problem
 
@@ -442,7 +442,7 @@ These foundational practices create a robust security baseline that enhances the
 
 - **AI Attack Prevention**: Deploy Microsoft Prompt Shields and Azure Content Safety to defend against indirect prompt injection and tool poisoning attacks, while validating tool metadata and monitoring for dynamic changes
 
-- **Session & Transport Security**: Use cryptographically secure, non-deterministic session IDs bound to user identities, implement proper session lifecycle management, and never use sessions for authentication
+- **State Handle & Transport Security**: Use secure, non-deterministic state handles bound server-side to the authenticated user, expire them, and never treat possession of a handle as authentication
 
 - **OAuth Security Best Practices**: Prevent confused deputy attacks through explicit user consent for dynamically registered clients, proper OAuth 2.1 implementation with PKCE, and strict redirect URI validation  
 

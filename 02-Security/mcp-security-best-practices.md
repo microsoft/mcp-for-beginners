@@ -27,7 +27,7 @@ passthrough vulnerabilities.
 > 
 > **MUST**: MCP servers implementing authorization **MUST** verify ALL inbound requests
 >  
-> **MUST NOT**: MCP servers **MUST NOT** use sessions for authentication
+> **MUST NOT**: MCP servers **MUST NOT** treat possession of a state handle as authentication
 >
 > **MUST**: MCP proxy servers using a static third-party client ID **MUST**
 > obtain consent for each MCP client before forwarding authorization
