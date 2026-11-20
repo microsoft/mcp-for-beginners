@@ -69,12 +69,9 @@ Claude Desktop uses a JSON configuration file to define MCP servers.
       "command": "node",
       "args": ["/path/to/weather-server/build/index.js"]
     },
-    "database": {
+    "memory": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres"],
-      "env": {
-        "DATABASE_URL": "postgresql://user:pass@localhost/mydb"
-      }
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   }
 }
@@ -135,33 +132,36 @@ VS Code uses `.vscode/mcp.json` in your workspace or user settings.
       "command": "python",
       "args": ["-m", "mcp_calculator_server"]
     },
-    "my-database": {
-      "type": "sse",
-      "url": "http://localhost:8080/sse"
+    "my-remote-server": {
+      "type": "http",
+      "url": "http://localhost:8080/mcp"
     }
   }
 }
 ```
 
-**User settings** (`settings.json`):
+Use `"type": "http"` for servers that use the Streamable HTTP transport, and `"type": "sse"` only for servers that still use the legacy HTTP+SSE transport.
+
+**User configuration:** to make a server available in every workspace, run **MCP: Add Server** from the Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and add it to your user configuration instead of the workspace. The entry uses the same format, for example:
 
 ```json
 {
-  "mcp.servers": {
-    "global-server": {
+  "servers": {
+    "memory": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-memory"]
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
-  },
-  "mcp.enableLogging": true
+  }
 }
 ```
 
+See [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers) for all options.
+
 ### Using MCP in VS Code
 
-1. Open the Copilot Chat panel (Ctrl+Shift+I / Cmd+Shift+I)
-2. Type `@` to see available MCP tools
+1. Open the Copilot Chat panel (Ctrl+Shift+I / Cmd+Shift+I) and switch to **Agent** mode
+2. Select **Configure Tools** in the chat input to see the MCP tools and enable or disable them
 3. Use natural language to invoke tools: "Calculate 25 * 48 using the calculator"
 
 ### Troubleshooting VS Code
@@ -179,7 +179,7 @@ VS Code uses `.vscode/mcp.json` in your workspace or user settings.
 
 ### Installation
 
-1. Download Cursor from [cursor.sh](https://cursor.sh)
+1. Download Cursor from [cursor.com](https://cursor.com)
 2. Install and sign in
 
 ### Configuration
@@ -201,15 +201,16 @@ Cursor uses a similar configuration format to Claude Desktop.
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/directory"]
     },
     "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "ghp_your_token_here"
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${env:GITHUB_PAT}"
       }
     }
   }
 }
 ```
+
+The `github` entry uses GitHub's official remote MCP server ([github/github-mcp-server](https://github.com/github/github-mcp-server)); the older `@modelcontextprotocol/server-github` npm package is archived and unmaintained. `${env:GITHUB_PAT}` reads a GitHub personal access token from your environment, so the token isn't stored in the file.
 
 ### Using MCP in Cursor
 
@@ -219,60 +220,50 @@ Cursor uses a similar configuration format to Claude Desktop.
 
 ---
 
-## 4. Cline (Terminal-Based)
+## 4. Cline
 
-**Cline** is a terminal-based MCP client, ideal for command-line workflows.
+**Cline** is an open-source coding agent that runs as a VS Code extension, a JetBrains plugin, and a command-line tool. All of them share the same MCP support. The sections below use the CLI.
 
 ### Installation
 
 ```bash
-npm install -g @anthropic/cline
+npm install -g cline
 ```
 
 ### Configuration
 
-Cline uses environment variables and command-line arguments.
-
-**Using environment variables:**
+Sign in or configure a model provider first:
 
 ```bash
-export ANTHROPIC_API_KEY="your-api-key"
-export MCP_SERVER_CALCULATOR="python -m mcp_calculator_server"
+cline auth
 ```
 
-**Using command-line arguments:**
+Add MCP servers with the interactive wizard. For a stdio server, everything after `--` is the command and its arguments; remote servers take a transport and a URL:
 
 ```bash
-cline --mcp-server "calculator:python -m mcp_calculator_server" \
-      --mcp-server "weather:node /path/to/weather/index.js"
+# stdio server started by Cline
+cline mcp install calculator -- python /path/to/server.py
+
+# remote Streamable HTTP server
+cline mcp install my-remote-server --transport http http://localhost:8080/mcp
+
+# open the MCP settings wizard
+cline mcp
 ```
 
-**Configuration file** (`~/.clinerc`):
-
-```json
-{
-  "apiKey": "your-api-key",
-  "mcpServers": {
-    "calculator": {
-      "command": "python",
-      "args": ["-m", "mcp_calculator_server"]
-    }
-  }
-}
-```
+The wizard needs an interactive terminal (TTY).
 
 ### Using Cline
 
 ```bash
 # Start an interactive session
-cline
+cline -i
 
-# Single query with MCP
+# Single task
 cline "Calculate the square root of 144 using the calculator"
-
-# List available tools
-cline --list-tools
 ```
+
+See `cline --help` and [cline.bot](https://cline.bot) for all options.
 
 ---
 
@@ -280,33 +271,9 @@ cline --list-tools
 
 **Windsurf** is another AI-powered code editor with MCP support.
 
-### Installation
-
-1. Download Windsurf from [codeium.com/windsurf](https://codeium.com/windsurf)
-2. Install and create an account
-
 ### Configuration
 
-Windsurf configuration is managed through the settings UI:
-
-1. Open Settings (Ctrl+, / Cmd+,)
-2. Search for "MCP"
-3. Click "Edit in settings.json"
-
-**Example configuration:**
-
-```json
-{
-  "windsurf.mcp.servers": {
-    "my-tools": {
-      "command": "python",
-      "args": ["/path/to/server.py"],
-      "env": {}
-    }
-  },
-  "windsurf.mcp.enabled": true
-}
-```
+Windsurf is now part of Devin Desktop, and its MCP setup has changed. MCP servers are configured in an `mcp_config.json` file, either for a project (checked into the repository) or for your user. The file locations and format are described in the [MCP documentation](https://docs.windsurf.com/windsurf/cascade/mcp). It supports the stdio, Streamable HTTP, and SSE transports.
 
 ---
 
@@ -388,6 +355,7 @@ Different hosts support different transport mechanisms:
 ## Additional Resources
 
 - [Claude Desktop MCP Documentation](https://docs.anthropic.com/en/docs/claude-desktop/mcp)
-- [VS Code MCP Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-mcp)
+- [Use MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers)
 - [MCP Specification - Transports](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/)
+- [Cursor MCP documentation](https://cursor.com/docs/context/mcp)
 - [Official MCP Servers Registry](https://github.com/modelcontextprotocol/servers)
