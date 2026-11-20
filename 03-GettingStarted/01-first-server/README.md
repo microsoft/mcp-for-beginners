@@ -231,7 +231,7 @@ code .
 #### .NET
 
 ```sh
-dotnet new console -n McpCalculatorServer
+dotnet new console -n McpCalculatorServer --framework net10.0
 cd McpCalculatorServer
 ```
 
@@ -273,7 +273,7 @@ Add the following complete configuration to your *pom.xml* file:
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
+        <version>4.1.2</version>
         <relativePath />
     </parent>
 
@@ -297,7 +297,7 @@ Add the following complete configuration to your *pom.xml* file:
             <dependency>
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-bom</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>2.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -337,27 +337,20 @@ Add the following complete configuration to your *pom.xml* file:
             </plugin>
         </plugins>
     </build>
-
-    <!-- Repositories for Spring AI snapshots -->
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
 </project>
+```
+
+All versions above are stable GA releases from Maven Central (Spring Boot 4.1.2 and Spring AI 2.0.2, which brings in the MCP Java SDK 2.1.0), so no snapshot or milestone repositories are needed.
+
+Spring AI 2.0 still defaults to the legacy HTTP+SSE transport. Switch the server to Streamable HTTP (served at `/mcp`) in *src/main/resources/application.properties*:
+
+```properties
+spring.application.name=calculator-server
+
+# Serve MCP over the Streamable HTTP transport at http://localhost:8080/mcp
+spring.ai.mcp.server.name=calculator-server
+spring.ai.mcp.server.version=1.0.0
+spring.ai.mcp.server.protocol=STREAMABLE
 ```
 
 #### Rust
@@ -389,7 +382,7 @@ npm install -D @types/node typescript
 # Create a virtual env and install dependencies
 python -m venv venv
 venv\Scripts\activate
-pip install "mcp[cli]"
+pip install "mcp[cli]>=2.3.0,<3"
 ```
 
 #### Java
@@ -475,11 +468,11 @@ touch server.py
 
 #### .NET
 
-Install the required NuGet packages:
+Install the required NuGet packages (this lesson uses the .NET 10 SDK):
 
 ```sh
-dotnet add package ModelContextProtocol --prerelease
-dotnet add package Microsoft.Extensions.Hosting
+dotnet add package ModelContextProtocol --version 2.4.0
+dotnet add package Microsoft.Extensions.Hosting --version 10.0.15
 ```
 
 #### Java
@@ -514,10 +507,10 @@ Now you have a server, but it doesn't do much, let' fix that.
 
 ```python
 # server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = MCPServer("Demo")
 ```
 
 #### .NET
@@ -740,7 +733,7 @@ public class StartupConfig {
         return args -> {
             System.out.println("\n" + "=".repeat(60));
             System.out.println("Calculator MCP Server is starting...");
-            System.out.println("SSE endpoint: http://localhost:8080/sse");
+            System.out.println("MCP endpoint (Streamable HTTP): http://localhost:8080/mcp");
             System.out.println("Health check: http://localhost:8080/actuator/health");
             System.out.println("=".repeat(60) + "\n");
         };
@@ -833,7 +826,7 @@ Add the following code to the top of the *src/main.rs* file. This imports the ne
 
 ```rust
 use rmcp::{
-    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::{ServerCapabilities, ServerInfo},
     schemars, tool, tool_handler, tool_router,
     transport::stdio,
@@ -873,14 +866,11 @@ impl Calculator {
     }
 }
 
-#[tool_handler]
+#[tool_handler(router = self.tool_router)]
 impl ServerHandler for Calculator {
     fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
+        ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
+            .with_instructions("A simple calculator tool")
     }
 }
 ```
@@ -1053,10 +1043,10 @@ server.connect(transport);
 
 ```python
 # server.py
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = MCPServer("Demo")
 
 
 # Add an addition tool
@@ -1145,7 +1135,7 @@ The final code for the Rust server should look like this:
 ```rust
 use rmcp::{
     ServerHandler, ServiceExt,
-    handler::server::{router::tool::ToolRouter, tool::Parameters},
+    handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::{ServerCapabilities, ServerInfo},
     schemars, tool, tool_handler, tool_router,
     transport::stdio,
@@ -1180,14 +1170,11 @@ impl Calculator {
     }
 }
 
-#[tool_handler]
+#[tool_handler(router = self.tool_router)]
 impl ServerHandler for Calculator {
     fn get_info(&self) -> ServerInfo {
-        ServerInfo {
-            instructions: Some("A simple calculator tool".into()),
-            capabilities: ServerCapabilities::builder().enable_tools().build(),
-            ..Default::default()
-        }
+        ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
+            .with_instructions("A simple calculator tool")
     }
 }
 
@@ -1215,7 +1202,7 @@ npm run build
 mcp run server.py
 ```
 
-> To use MCP Inspector, use `mcp dev server.py` which automatically launches the Inspector and provides the required proxy session token. If using `mcp run server.py`, you’ll need to manually start the Inspector and configure the connection.
+> To use MCP Inspector, use `mcp dev server.py --with typer` which automatically launches the Inspector and provides the required proxy session token. If using `mcp run server.py`, you’ll need to manually start the Inspector and configure the connection.
 
 #### .NET
 
@@ -1262,7 +1249,7 @@ or add it to your *package.json* like so: `"inspector": "npx @modelcontextprotoc
 Python wraps a Node.js tool called inspector. It's possible to call said tool like so:
 
 ```sh
-mcp dev server.py
+mcp dev server.py --with typer
 ```
 
 However, it doesn't implement all the methods available on the tool so you're recommended to run the Node.js tool directly like below:
@@ -1294,8 +1281,8 @@ npx @modelcontextprotocol/inspector
 
 In the inspector web interface:
 
-1. Select "SSE" as the transport type
-2. Set the URL to: `http://localhost:8080/sse`
+1. Select "Streamable HTTP" as the transport type
+2. Set the URL to: `http://localhost:8080/mcp`
 3. Click "Connect"
 
 ![Connect](./assets/tool.png)
@@ -1327,7 +1314,7 @@ Congrats, you've managed to create and run your first server!
 To run the Rust server with the MCP Inspector CLI, use the following command:
 
 ```sh
-npx @modelcontextprotocol/inspector cargo run --cli --method tools/call --tool-name add --tool-arg a=1 b=2
+npx @modelcontextprotocol/inspector --cli cargo run --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
 ### Official SDKs

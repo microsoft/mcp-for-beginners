@@ -1,21 +1,24 @@
 # Running this sample
 
+You need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0). To test the server you also need [Node.js](https://nodejs.org/) for `npx`.
+
 ## -1- Install the dependencies
 
 ```bash
 dotnet restore
 ```
 
-## -3- Run the sample
-
+## -2- Run the sample
 
 ```bash
 dotnet run
 ```
 
-## -4- Test the sample
+The server uses the stdio transport: it waits for a client on stdin and writes its log messages to stderr. Press `Ctrl+C` to stop it.
 
-With the server running in one terminal, open another terminal and run the following command:
+## -3- Test the sample
+
+The inspector starts its own copy of the server, so you don't need to keep the one from step 2 running. Run the following command:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
@@ -23,10 +26,7 @@ npx @modelcontextprotocol/inspector dotnet run
 
 This should start a web server with a visual interface allowing you to test the sample.
 
-Once the server is connected: 
-
-- try listing tools and run `add`, with args 2 and 4, you should see 6 in the result.
-- go to resources and resource template and call "greeting", type in a name and you should see a greeting with the name you provided.
+Once the server is connected, try listing tools and run `add`, with args 2 and 4, you should see `Sum 6` in the result.
 
 ### Testing in CLI mode
 
@@ -36,13 +36,13 @@ You can launch it directly in CLI mode by running the following command:
 npx @modelcontextprotocol/inspector --cli dotnet run --method tools/list
 ```
 
-This will list all the tools available in the server. You should see the following output:
+This will list all the tools available in the server. You should see the following output (the server's log messages on stderr are printed as well):
 
 ```text
 {
   "tools": [
     {
-      "name": "Add",
+      "name": "add",
       "description": "Adds two numbers",
       "inputSchema": {
         "type": "object",
@@ -54,8 +54,6 @@ This will list all the tools available in the server. You should see the followi
             "type": "integer"
           }
         },
-        "title": "Add",
-        "description": "Adds two numbers",
         "required": [
           "a",
           "b"
@@ -66,10 +64,13 @@ This will list all the tools available in the server. You should see the followi
 }
 ```
 
+> [!NOTE]
+> The C# method is called `Add`, but the MCP C# SDK publishes tool names in snake_case, so the tool is called `add`.
+
 To invoke a tool type:
 
 ```bash
-npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name Add --tool-arg a=1 --tool-arg b=2
+npx @modelcontextprotocol/inspector --cli dotnet run --method tools/call --tool-name add --tool-arg a=1 --tool-arg b=2
 ```
 
 You should see the following output:
@@ -81,8 +82,7 @@ You should see the following output:
       "type": "text",
       "text": "Sum 3"
     }
-  ],
-  "isError": false
+  ]
 }
 ```
 
