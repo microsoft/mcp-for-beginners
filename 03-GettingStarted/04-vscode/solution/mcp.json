@@ -2,9 +2,10 @@
     "inputs": [],
     "servers": {
         "hello-mcp": {
+            "type": "stdio",
             "command": "node",
             "args": [
-                "build/index.js"
+                "${workspaceFolder}/03-GettingStarted/01-first-server/solution/typescript/build/index.js"
             ]
         }
     }
