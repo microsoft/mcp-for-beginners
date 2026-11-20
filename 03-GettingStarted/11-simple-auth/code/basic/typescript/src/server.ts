@@ -2,26 +2,20 @@ import express from 'express';
 
 const app = express();
 
-function isValid(secret) {
-    return secret === "secret123";
+// Toy credential for the lesson, not production authentication.
+function isValid(authorization: string | undefined): boolean {
+    return authorization === "Bearer secret123";
 }
 
 app.use((req, res, next) => {
-    console.log('Request received:', req.method, req.url, req.headers);
-    console.log('Headers:', req.headers["authorization"]);
-    if(!req.headers["authorization"]) {
+    // Do not log request headers: Authorization may contain a credential.
+    console.log('Request received:', req.method, req.url);
+    const authorization = req.headers.authorization;
+    if (!isValid(authorization)) {
         res.status(401).send('Unauthorized');
         return;
     }
-    
-    let token = req.headers["authorization"];
 
-    if(!isValid(token)) {
-        res.status(403).send('Forbidden');
-        return;
-    }  
-
-    console.log('Middleware executed');
     next();
 });
 

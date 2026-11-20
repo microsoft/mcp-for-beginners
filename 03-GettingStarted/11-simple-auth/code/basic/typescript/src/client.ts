@@ -6,13 +6,15 @@ import { StreamableHTTPClientTransport, StreamableHTTPClientTransportOptions } f
 
 
 
+// Teaching credential only. Real clients should use protected token storage.
+const token = "secret123";
 let sessionId: string | undefined = undefined;
 
 let options: StreamableHTTPClientTransportOptions = {
   sessionId: sessionId,
   requestInit: {
     headers: {
-      "Authorization": "secret123"
+      "Authorization": `Bearer ${token}`
     }
   }
 };
