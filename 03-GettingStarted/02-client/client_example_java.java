@@ -1,19 +1,20 @@
 package com.microsoft.mcp.sample.client;
 
 import java.util.Map;
+import org.springframework.ai.mcp.client.webflux.transport.WebClientStreamableHttpTransport;
 import org.springframework.web.reactive.function.client.WebClient;
 import io.modelcontextprotocol.client.McpClient;
-import io.modelcontextprotocol.client.transport.WebFluxSseClientTransport;
 import io.modelcontextprotocol.spec.McpClientTransport;
 import io.modelcontextprotocol.spec.McpSchema.CallToolRequest;
 import io.modelcontextprotocol.spec.McpSchema.CallToolResult;
 import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
+import io.modelcontextprotocol.spec.McpSchema.TextContent;
 
 /**
  * Complete Java MCP Client Example
  * 
  * This client demonstrates how to:
- * 1. Connect to an MCP server using SSE transport
+ * 1. Connect to an MCP server using the Streamable HTTP transport
  * 2. List available tools
  * 3. Call various calculator tools
  * 4. Handle responses from the server
@@ -21,10 +22,10 @@ import io.modelcontextprotocol.spec.McpSchema.ListToolsResult;
 public class SDKClient {
     
     public static void main(String[] args) {
-        // Create SSE transport pointing to the MCP server
-        var transport = new WebFluxSseClientTransport(
+        // Create a Streamable HTTP transport pointing to the MCP server (default endpoint: /mcp)
+        var transport = WebClientStreamableHttpTransport.builder(
             WebClient.builder().baseUrl("http://localhost:8080")
-        );
+        ).build();
         
         // Create and run the client
         new SDKClient(transport).run();
@@ -61,31 +62,31 @@ public class SDKClient {
             
             // Addition
             CallToolResult resultAdd = client.callTool(
-                new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0))
+                CallToolRequest.builder("add").arguments(Map.of("a", 5.0, "b", 3.0)).build()
             );
             System.out.println("Add 5 + 3 = " + extractResult(resultAdd));
             
             // Subtraction
             CallToolResult resultSubtract = client.callTool(
-                new CallToolRequest("subtract", Map.of("a", 10.0, "b", 4.0))
+                CallToolRequest.builder("subtract").arguments(Map.of("a", 10.0, "b", 4.0)).build()
             );
             System.out.println("Subtract 10 - 4 = " + extractResult(resultSubtract));
             
             // Multiplication
             CallToolResult resultMultiply = client.callTool(
-                new CallToolRequest("multiply", Map.of("a", 6.0, "b", 7.0))
+                CallToolRequest.builder("multiply").arguments(Map.of("a", 6.0, "b", 7.0)).build()
             );
             System.out.println("Multiply 6 × 7 = " + extractResult(resultMultiply));
             
             // Division
             CallToolResult resultDivide = client.callTool(
-                new CallToolRequest("divide", Map.of("a", 20.0, "b", 4.0))
+                CallToolRequest.builder("divide").arguments(Map.of("a", 20.0, "b", 4.0)).build()
             );
             System.out.println("Divide 20 ÷ 4 = " + extractResult(resultDivide));
             
             // Help
             CallToolResult resultHelp = client.callTool(
-                new CallToolRequest("help", Map.of())
+                CallToolRequest.builder("help").arguments(Map.of()).build()
             );
             System.out.println("\n📖 Help Information:");
             System.out.println(extractResult(resultHelp));
@@ -104,8 +105,8 @@ public class SDKClient {
     private String extractResult(CallToolResult result) {
         if (result != null && result.content() != null && !result.content().isEmpty()) {
             var firstContent = result.content().get(0);
-            if (firstContent.text() != null) {
-                return firstContent.text();
+            if (firstContent instanceof TextContent textContent && textContent.text() != null) {
+                return textContent.text();
             }
         }
         return "No result";

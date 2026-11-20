@@ -65,51 +65,36 @@ class MCPCalculatorClient:
         """Test various calculator operations"""
         print("\n🧮 Testing Calculator Operations:")
 
+        # These are the tools of the server in 01-first-server/solution/python
         operations = [
             ("add", {"a": 5, "b": 3}, "Add 5 + 3"),
             ("subtract", {"a": 10, "b": 4}, "Subtract 10 - 4"),
-            ("multiply", {"a": 6, "b": 7}, "Multiply 6 × 7"),
-            ("divide", {"a": 20, "b": 4}, "Divide 20 ÷ 4"),
-            ("help", {}, "Help Information"),
         ]
 
         for tool_name, arguments, description in operations:
             try:
                 result = await session.call_tool(tool_name, arguments=arguments)
                 result_text = self.extract_text_result(result)
-                
-                if tool_name == "help":
-                    print(f"\n📖 {description}:")
-                    print(result_text)
-                else:
-                    print(f"{description} = {result_text}")
-                    
+                print(f"{description} = {result_text}")
             except Exception as e:
                 print(f"  Error calling {tool_name}: {e}")
 
     async def list_and_test_resources(self, session: ClientSession):
-        """List and test reading resources"""
-        print("\n📄 Listing available resources:")
+        """List resource templates and read a resource from one"""
+        print("\n📄 Listing available resource templates:")
         try:
-            resources = await session.list_resources()
-            for resource in resources.resources:
-                print(f"  - {resource.name}: {resource.description}")
-                print(f"    URI: {resource.uri}")
+            templates = await session.list_resource_templates()
+            for template in templates.resource_templates:
+                print(f"  - {template.name}: {template.uri_template}")
 
-            # Test reading a resource if available
-            if resources.resources:
-                first_resource = resources.resources[0]
-                print(f"\n📖 Reading resource: {first_resource.name}")
-                try:
-                    content = await session.read_resource(first_resource.uri)
-                    print(f"Resource content: {content}")
-                except Exception as e:
-                    print(f"  Error reading resource: {e}")
-            else:
-                print("  No resources available")
-                
+            # The server exposes greeting://{name}; fill in a name to read it
+            print("\n📖 Reading resource: greeting://World")
+            result = await session.read_resource("greeting://World")
+            for content in result.contents:
+                if isinstance(content, types.TextResourceContents):
+                    print(f"Resource content: {content.text}")
         except Exception as e:
-            print(f"  Error listing resources: {e}")
+            print(f"  Error reading resources: {e}")
 
     def extract_text_result(self, result) -> str:
         """

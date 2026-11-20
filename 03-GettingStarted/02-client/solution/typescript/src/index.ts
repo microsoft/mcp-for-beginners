@@ -18,12 +18,12 @@ server.tool("add",
 
 // Add a dynamic greeting resource
 server.resource(
-  "file",
-  new ResourceTemplate("file://{path}", { list: undefined }),
-  async (uri, { path }) => ({
+  "greeting",
+  new ResourceTemplate("greeting://{name}", { list: undefined }),
+  async (uri, { name }) => ({
     contents: [{
       uri: uri.href,
-      text: `File, ${path}!`
+      text: `Hello, ${name}!`
     }]
   })
 );

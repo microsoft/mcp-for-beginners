@@ -40,6 +40,13 @@ for(let template of templates.resourceTemplates) {
   console.log("Resource template: ", template.name);
 }
 
+// Read a resource
+const resource = await client.readResource({
+  uri: "greeting://hello"
+});
+const content = resource.contents[0];
+console.log("Resource: ", "text" in content ? content.text : content.blob);
+
 // Call a tool
 const result = await client.callTool({
   name: "add",
@@ -50,3 +57,5 @@ const result = await client.callTool({
 });
 
 console.log("Tool result: ", result);
+
+await client.close();

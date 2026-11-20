@@ -16,10 +16,11 @@ async function runClient() {
     console.log("🚀 Starting MCP TypeScript Client...");
 
     try {
-        // Create stdio transport to connect to the MCP server
+        // Start the server from 01-first-server/solution/typescript over stdio.
+        // Run this client from that directory (see complete_examples.md).
         const transport = new StdioClientTransport({
             command: "node",
-            args: ["../01-first-server/solution/typescript/server.js"]
+            args: ["build/index.js"]
         });
 
         // Create client instance
@@ -32,20 +33,18 @@ async function runClient() {
 
         // Connect to the server
         await client.connect(transport);
-        
+
         console.log("✅ Connected to MCP server successfully!");
 
         // List available tools
         console.log("\n📋 Listing available tools:");
         const tools = await client.listTools();
         tools.tools.forEach(tool => {
-            console.log(`  - ${tool.name}: ${tool.description}`);
+            console.log(`  - ${tool.name}: ${tool.description ?? "(no description)"}`);
         });
 
-        // Test calculator operations
+        // Call the add tool
         console.log("\n🧮 Testing Calculator Operations:");
-
-        // Addition
         const addResult = await client.callTool({
             name: "add",
             arguments: {
@@ -55,88 +54,47 @@ async function runClient() {
         });
         console.log(`Add 5 + 3 = ${extractTextResult(addResult)}`);
 
-        // Subtraction
-        const subtractResult = await client.callTool({
-            name: "subtract",
-            arguments: {
-                a: 10,
-                b: 4
-            }
-        });
-        console.log(`Subtract 10 - 4 = ${extractTextResult(subtractResult)}`);
-
-        // Multiplication
-        const multiplyResult = await client.callTool({
-            name: "multiply",
-            arguments: {
-                a: 6,
-                b: 7
-            }
-        });
-        console.log(`Multiply 6 × 7 = ${extractTextResult(multiplyResult)}`);
-
-        // Division
-        const divideResult = await client.callTool({
-            name: "divide",
-            arguments: {
-                a: 20,
-                b: 4
-            }
-        });
-        console.log(`Divide 20 ÷ 4 = ${extractTextResult(divideResult)}`);
-
-        // Help
-        const helpResult = await client.callTool({
-            name: "help",
-            arguments: {}
-        });
-        console.log(`\n📖 Help Information:`);
-        console.log(extractTextResult(helpResult));
-
-        // List available resources
+        // List resource templates and read a resource from one
         try {
-            console.log("\n📄 Listing available resources:");
-            const resources = await client.listResources();
-            resources.resources.forEach(resource => {
-                console.log(`  - ${resource.name}: ${resource.description}`);
+            console.log("\n📄 Listing available resource templates:");
+            const templates = await client.listResourceTemplates();
+            templates.resourceTemplates.forEach(template => {
+                console.log(`  - ${template.name}: ${template.uriTemplate}`);
             });
 
-            // Test reading a resource if available
-            if (resources.resources.length > 0) {
-                const firstResource = resources.resources[0];
-                console.log(`\n📖 Reading resource: ${firstResource.name}`);
-                const resourceContent = await client.readResource({
-                    uri: firstResource.uri
-                });
-                console.log(`Resource content: ${JSON.stringify(resourceContent, null, 2)}`);
-            }
+            // The server exposes greeting://{name}; fill in a name to read it
+            console.log("\n📖 Reading resource: greeting://World");
+            const resourceContent = await client.readResource({
+                uri: "greeting://World"
+            });
+            const content = resourceContent.contents[0];
+            console.log(`Resource content: ${"text" in content ? content.text : content.blob}`);
         } catch (error) {
-            console.log("  No resources available or error listing resources:", error.message);
+            console.log("  Error reading resources:", error instanceof Error ? error.message : error);
         }
 
-        // List available prompts
+        // List available prompts and get one
         try {
             console.log("\n💬 Listing available prompts:");
             const prompts = await client.listPrompts();
             prompts.prompts.forEach(prompt => {
-                console.log(`  - ${prompt.name}: ${prompt.description}`);
+                console.log(`  - ${prompt.name}`);
             });
 
-            // Test getting a prompt if available
-            if (prompts.prompts.length > 0) {
-                const firstPrompt = prompts.prompts[0];
-                console.log(`\n💬 Getting prompt: ${firstPrompt.name}`);
-                const promptResult = await client.getPrompt({
-                    name: firstPrompt.name,
-                    arguments: {
-                        code: "console.log('Hello, MCP!');"
-                    }
-                });
-                console.log(`Prompt result: ${JSON.stringify(promptResult, null, 2)}`);
-            }
+            console.log("\n💬 Getting prompt: review-code");
+            const promptResult = await client.getPrompt({
+                name: "review-code",
+                arguments: {
+                    code: "console.log('Hello, MCP!');"
+                }
+            });
+            console.log(`Prompt result: ${JSON.stringify(promptResult.messages[0].content)}`);
         } catch (error) {
-            console.log("  No prompts available or error listing prompts:", error.message);
+            console.log("  Error getting prompts:", error instanceof Error ? error.message : error);
         }
+
+        // Close the connection so the process can exit
+        await client.close();
 
         console.log("\n✨ Client operations completed successfully!");
 

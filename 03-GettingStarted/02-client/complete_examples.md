@@ -6,8 +6,8 @@ This directory contains complete, working examples of MCP clients in different p
 
 ### 1. Java Client (`client_example_java.java`)
 
-- **Transport**: SSE (Server-Sent Events) over HTTP
-- **Target Server**: `http://localhost:8080`
+- **Transport**: Streamable HTTP
+- **Target Server**: `http://localhost:8080/mcp`
 - **Features**:
   - Connection establishment and ping
   - Tool listing
@@ -16,66 +16,77 @@ This directory contains complete, working examples of MCP clients in different p
 
 **To run:**
 
+The file declares `public class SDKClient` and needs Spring AI 2.0.2 (MCP Java SDK
+2.1.0) on the classpath, so run it from the Java client project in
+`solution/java` (Java 21+):
+
 ```bash
 # Ensure your MCP server is running on localhost:8080
-javac client_example_java.java
-java client_example_java
+cp client_example_java.java solution/java/src/main/java/com/microsoft/mcp/sample/client/SDKClient.java
+cd solution/java
+./mvnw clean compile exec:java
+
+# Afterwards, restore the solution's own SDKClient.java
+git checkout -- src/main/java/com/microsoft/mcp/sample/client/SDKClient.java
 ```
+
+> **Note:** The `cp` command temporarily replaces the solution's `SDKClient.java`.
+> Run the `git checkout` line when you're done to restore the original file.
 
 ### 2. C# Client (`client_example_csharp.cs`)
 
 - **Transport**: Stdio (Standard Input/Output)
-- **Target Server**: Local .NET MCP server via dotnet run
+- **Target Server**: The .NET server from `01-first-server/solution/dotnet`, started with `dotnet run`
 - **Features**:
   - Automatic server startup via stdio transport
-  - Tool and resource listing
-  - Calculator operations
-  - JSON result parsing
-  - Comprehensive error handling
+  - Tool listing
+  - The `add` tool (the C# SDK publishes the method `Add` as `add`)
+  - Text result extraction from `CallToolResult`
 
-**To run:**
+**To run:** create a small console project next to the example and use the file as its `Program.cs`:
 
 ```bash
+dotnet new console -o csharp-example
+cd csharp-example
+dotnet add package ModelContextProtocol --version 2.4.0
+cp ../client_example_csharp.cs Program.cs
 dotnet run
 ```
 
 ### 3. TypeScript Client (`client_example_typescript.ts`)
 
 - **Transport**: Stdio (Standard Input/Output)
-- **Target Server**: Local Node.js MCP server
+- **Target Server**: The TypeScript server from `01-first-server/solution/typescript`
 - **Features**:
-  - Full MCP protocol support
-  - Tool, resource, and prompt operations
-  - Calculator operations
-  - Resource reading and prompt execution
-  - Robust error handling
+  - Tool listing and the `add` tool
+  - Resource template listing and reading `greeting://World`
+  - Prompt listing and the `review-code` prompt
+  - Closes the connection so the process exits
 
-**To run:**
+**To run:** the client uses the MCP SDK and starts the server with `node build/index.js`, so run it from the first-server TypeScript project:
 
 ```bash
-# First compile TypeScript (if needed)
+cd ../01-first-server/solution/typescript
+npm install
+cp ../../../02-client/client_example_typescript.ts src/
 npm run build
-
-# Then run the client
-npm run client
-# or
-node client_example_typescript.js
+node build/client_example_typescript.js
 ```
 
 ### 4. Python Client (`client_example_python.py`)
 
 - **Transport**: Stdio (Standard Input/Output)  
-- **Target Server**: Local Python MCP server
+- **Target Server**: The Python server from `01-first-server/solution/python`
 - **Features**:
   - Async/await pattern for operations
-  - Tool and resource discovery
-  - Calculator operations testing
-  - Resource content reading
+  - Tool discovery and the `add` and `subtract` tools
+  - Resource template listing and reading `greeting://World`
   - Class-based organization
 
-**To run:**
+**To run:** from this directory, in a virtual environment with the MCP Python SDK installed (see `01-first-server/solution/python/README.md`):
 
 ```bash
+pip install "mcp[cli]>=2.3.0,<3"
 python client_example_python.py
 ```
 
@@ -118,13 +129,13 @@ Before running these clients, ensure you have:
 
 ## Key Differences Between Implementations
 
-| Language   | Transport | Server Startup | Async Model | Key Libraries       |
-|------------|-----------|----------------|-------------|---------------------|
-| Java       | SSE/HTTP  | External       | Sync        | WebFlux, MCP SDK    |
-| C#         | Stdio     | Automatic      | Async/Await | .NET MCP SDK        |
-| TypeScript | Stdio     | Automatic      | Async/Await | Node MCP SDK        |
-| Python     | Stdio     | Automatic      | AsyncIO     | Python MCP SDK      |
-| Rust       | Stdio     | Automatic      | Async/Await | Rust MCP SDK, Tokio |
+| Language   | Transport       | Server Startup | Async Model | Key Libraries       |
+|------------|-----------------|----------------|-------------|---------------------|
+| Java       | Streamable HTTP | External       | Sync        | WebFlux, MCP SDK    |
+| C#         | Stdio           | Automatic      | Async/Await | .NET MCP SDK        |
+| TypeScript | Stdio           | Automatic      | Async/Await | Node MCP SDK        |
+| Python     | Stdio           | Automatic      | AsyncIO     | Python MCP SDK      |
+| Rust       | Stdio           | Automatic      | Async/Await | Rust MCP SDK, Tokio |
 
 ## Next Steps
 

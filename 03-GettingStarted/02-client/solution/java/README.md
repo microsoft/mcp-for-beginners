@@ -8,11 +8,17 @@ Before running this client, you need to:
 
 1. **Start the Calculator Server** from Chapter 01:
    - Navigate to the calculator server directory: `03-GettingStarted/01-first-server/solution/java/`
-   - Build and run the calculator server:
+   - Build and run the calculator server (from `03-GettingStarted/02-client/solution/java`), on Windows:
      ```cmd
-     cd ..\01-first-server\solution\java
+     cd ..\..\..\01-first-server\solution\java
      .\mvnw clean install -DskipTests
      java -jar target\calculator-server-0.0.1-SNAPSHOT.jar
+     ```
+     On macOS/Linux:
+     ```bash
+     cd ../../../01-first-server/solution/java
+     ./mvnw clean install -DskipTests
+     java -jar target/calculator-server-0.0.1-SNAPSHOT.jar
      ```
    - The server should be running on `http://localhost:8080`
 
@@ -22,7 +28,7 @@ Before running this client, you need to:
 ## What is the SDKClient?
 
 The `SDKClient` is a Java application that demonstrates how to:
-- Connect to an MCP server using Server-Sent Events (SSE) transport
+- Connect to an MCP server using the Streamable HTTP transport
 - List available tools from the server
 - Call various calculator functions remotely
 - Handle responses and display results
@@ -31,7 +37,7 @@ The `SDKClient` is a Java application that demonstrates how to:
 
 The client uses the Spring AI MCP framework to:
 
-1. **Establish Connection**: Creates a WebFlux SSE client transport to connect to the calculator server
+1. **Establish Connection**: Creates a WebFlux Streamable HTTP client transport to connect to the calculator server's `/mcp` endpoint
 2. **Initialize Client**: Sets up the MCP client and establishes the connection
 3. **Discover Tools**: Lists all available calculator operations
 4. **Execute Operations**: Calls various mathematical functions with sample data
@@ -56,29 +62,55 @@ src/
 The project uses the following key dependencies:
 
 ```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-bom</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <dependency>
     <groupId>org.springframework.ai</groupId>
     <artifactId>spring-ai-starter-mcp-server-webflux</artifactId>
 </dependency>
 ```
 
-This dependency provides:
+This dependency (Spring AI 2.0.2 on Spring Boot 4.1.2, bringing in MCP Java SDK 2.1.0) provides:
 - `McpClient` - The main client interface
-- `WebFluxSseClientTransport` - SSE transport for web-based communication
+- `WebClientStreamableHttpTransport` - Streamable HTTP transport for web-based communication (package `org.springframework.ai.mcp.client.webflux.transport`)
 - MCP protocol schemas and request/response types
 
 ## Building the Project
 
-Build the project using the Maven wrapper:
+Build the project using the Maven wrapper. On Windows:
 
 ```cmd
 .\mvnw clean install
 ```
 
+On macOS/Linux:
+
+```bash
+./mvnw clean install
+```
+
 ## Running the Client
+
+On Windows:
 
 ```cmd
 java -jar .\target\calculator-client-0.0.1-SNAPSHOT.jar
+```
+
+On macOS/Linux:
+
+```bash
+java -jar target/calculator-client-0.0.1-SNAPSHOT.jar
 ```
 
 **Note**: Make sure the calculator server is running on `http://localhost:8080` before executing any of these commands.
@@ -113,15 +145,15 @@ Absolute Result = CallToolResult[content=[TextContent[text="|-5,50| = 5,50"]], i
 Help = CallToolResult[content=[TextContent[text="Basic Calculator MCP Service\n\nAvailable operations:\n1. add(a, b) - Adds two numbers\n2. subtract(a, b) - Subtracts the second number from the first\n..."]], isError=false]
 ```
 
-**Note**: You may see Maven warnings about lingering threads at the end - this is normal for reactive applications and doesn't indicate an error.
+**Note**: The decimal separator depends on your locale (`8.00` or `8,00`). On macOS you may also see an `ERROR` log line saying that Netty cannot load `MacOSDnsServerAddressStreamProvider`; it falls back to the default DNS resolver and the client still works. You may see Maven warnings about lingering threads at the end - this is normal for reactive applications and doesn't indicate an error.
 
 ## Understanding the Code
 
 ### 1. Transport Setup
 ```java
-var transport = new WebFluxSseClientTransport(WebClient.builder().baseUrl("http://localhost:8080"));
+var transport = WebClientStreamableHttpTransport.builder(WebClient.builder().baseUrl("http://localhost:8080")).build();
 ```
-This creates an SSE (Server-Sent Events) transport that connects to the calculator server.
+This creates a Streamable HTTP transport that connects to the calculator server's default MCP endpoint, `http://localhost:8080/mcp`.
 
 ### 2. Client Creation
 ```java
@@ -132,7 +164,7 @@ Creates a synchronous MCP client and initializes the connection.
 
 ### 3. Calling Tools
 ```java
-CallToolResult resultAdd = client.callTool(new CallToolRequest("add", Map.of("a", 5.0, "b", 3.0)));
+CallToolResult resultAdd = client.callTool(CallToolRequest.builder("add").arguments(Map.of("a", 5.0, "b", 3.0)).build());
 ```
 Calls the "add" tool with parameters a=5.0 and b=3.0.
 
