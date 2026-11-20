@@ -262,7 +262,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "debugpy", marker = "extra == 'dev'", specifier = "==1.8.8" },
-    { name = "mcp", specifier = ">=1.30.0" },
+    { name = "mcp", specifier = ">=1.30.0,<2" },
 ]
 provides-extras = ["dev"]
 
