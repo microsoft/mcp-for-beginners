@@ -1,18 +1,14 @@
-from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
-from typing import Any
+import sys
 
 import mcp.server.stdio
 import mcp.types as types
-from mcp.server.lowlevel import NotificationOptions, Server
-from mcp.server.models import InitializationOptions
+from mcp.server import NotificationOptions, Server, ServerRequestContext
 
 from tools import tools
 
-server = Server("example-server")
 
 def convert_to_json(model_cls: type) -> dict:
-    schema = model_cls.schema()
+    schema = model_cls.model_json_schema()
     properties = {}
     required = schema.get("required", [])
     for prop, details in schema.get("properties", {}).items():
@@ -23,55 +19,68 @@ def convert_to_json(model_cls: type) -> dict:
         "required": required
     }
 
-@server.list_tools()
-async def handle_list_tools() -> list[types.Tool]:
+# In mcp 2.x, the low-level Server takes its handlers as constructor arguments
+# (on_list_tools=..., on_call_tool=...). Each handler receives a request context
+# and the typed request params, and returns the full result object.
+async def handle_list_tools(
+    ctx: ServerRequestContext, params: types.PaginatedRequestParams | None
+) -> types.ListToolsResult:
     """List available tools."""
     vm_tools = []
     for tool in tools.values():
-        print(f"Registered tool: {tool['name']}")
+        # stdio servers must keep stdout for MCP messages, so log to stderr
+        print(f"Registered tool: {tool['name']}", file=sys.stderr)
         vm_tools.append(
             types.Tool(
                 name=tool["name"],
                 description=tool["description"],
-                inputSchema=convert_to_json(tool["input_schema"]),
+                input_schema=convert_to_json(tool["input_schema"]),
             )
         )
-    return vm_tools
+    return types.ListToolsResult(tools=vm_tools)
 
-@server.call_tool()
 async def handle_call_tool(
-    name: str, arguments: dict[str, str] | None
-) -> list[types.TextContent]:
-    
+    ctx: ServerRequestContext, params: types.CallToolRequestParams
+) -> types.CallToolResult:
+    name = params.name
+    arguments = params.arguments or {}
+
     # tools is a dictionary with tool names as keys
     if name not in tools:
         raise ValueError(f"Unknown tool: {name}")
-    
+
     tool = tools[name]
 
     result = "default"
     try:
         result = await tool["handler"](arguments)
     except Exception as e:
-        raise ValueError(f"Error calling tool {name}: {str(e)}")
+        # Report tool failures as a result with is_error set, so the client
+        # (and the LLM behind it) sees the message instead of a protocol error
+        return types.CallToolResult(
+            content=[types.TextContent(type="text", text=f"Error calling tool {name}: {e}")],
+            is_error=True,
+        )
 
-    return [
-        types.TextContent(type="text", text=str(result))
-    ] 
+    return types.CallToolResult(
+        content=[types.TextContent(type="text", text=str(result))]
+    )
+
+server = Server(
+    "example-server",
+    version="0.1.0",
+    on_list_tools=handle_list_tools,
+    on_call_tool=handle_call_tool,
+)
 
 async def run():
-    """Run the server with lifespan management."""
+    """Run the server over stdio."""
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
             write_stream,
-            InitializationOptions(
-                server_name="example-server",
-                server_version="0.1.0",
-                capabilities=server.get_capabilities(
-                    notification_options=NotificationOptions(),
-                    experimental_capabilities={},
-                ),
+            server.create_initialization_options(
+                notification_options=NotificationOptions(),
             ),
         )
 
@@ -79,5 +88,5 @@ async def run():
 if __name__ == "__main__":
     import asyncio
 
-    print("Starting server...")
+    print("Starting server...", file=sys.stderr)
     asyncio.run(run())
