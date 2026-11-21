@@ -1,9 +1,8 @@
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host
 
-from mcp.server.fastmcp import Context, FastMCP
+from mcp.server.mcpserver import Context, MCPServer
 
-from mcp.server.session import ServerSession
 from mcp.types import SamplingMessage, TextContent
 
 import json
@@ -14,7 +13,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-mcp = FastMCP("Blog post generator")
+mcp = MCPServer("Blog post generator")
 
 # app = FastAPI()
 
@@ -29,7 +28,7 @@ class BlogPost(BaseModel):
 posts: List[BlogPost] = []
 
 @mcp.tool()
-async def create_blog(title: str, content: str, ctx: Context[ServerSession, None]) -> str:
+async def create_blog(title: str, content: str, ctx: Context) -> str:
     """Create a blog post and generate a summary"""
 
     post = BlogPost(
