@@ -5,7 +5,7 @@
 import chainlit as cl
 import logging
 import json
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 from mcp import ClientSession
 
 from semantic_kernel.kernel import Kernel
@@ -26,15 +26,17 @@ class MCPDocsPlugin:
 
     @kernel_function(name="search_docs", description="Search Microsoft Docs using MCP")
     async def search_docs(self, question: str) -> str:
-        async with streamablehttp_client(self.mcp_server_url) as (read_stream, write_stream, _):
+        async with streamable_http_client(self.mcp_server_url) as (read_stream, write_stream, _):
             async with ClientSession(read_stream, write_stream) as session:
                 await session.initialize()
-                result = await session.call_tool("microsoft_docs_search", {"question": question})
+                result = await session.call_tool("microsoft_docs_search", {"query": question})
                 output = []
                 if hasattr(result, 'content'):
                     for item in result.content:
                         try:
-                            my_list = json.loads(item.text)
+                            data = json.loads(item.text)
+                            # The Docs MCP server returns {"results": [...]}
+                            my_list = data.get("results", []) if isinstance(data, dict) else data
                             for doc in my_list:
                                 title = doc.get('title', 'No title')
                                 content = doc.get('content', 'No content')
@@ -47,15 +49,17 @@ class MCPDocsPlugin:
 
 # Register the MCP Docs search as a function
 async def mcp_docs_search(question: str):
-    async with streamablehttp_client(MCP_SERVER_URL) as (read_stream, write_stream, _):
+    async with streamable_http_client(MCP_SERVER_URL) as (read_stream, write_stream, _):
         async with ClientSession(read_stream, write_stream) as session:
             await session.initialize()
-            result = await session.call_tool("microsoft_docs_search", {"question": question})
+            result = await session.call_tool("microsoft_docs_search", {"query": question})
             output = []
             if hasattr(result, 'content'):
                 for item in result.content:
                     try:
-                        my_list = json.loads(item.text)
+                        data = json.loads(item.text)
+                        # The Docs MCP server returns {"results": [...]}
+                        my_list = data.get("results", []) if isinstance(data, dict) else data
                         for doc in my_list:
                             title = doc.get('title', 'No title')
                             content = doc.get('content', 'No content')

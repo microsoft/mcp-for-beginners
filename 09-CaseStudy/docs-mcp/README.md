@@ -52,12 +52,13 @@ Below is a minimal sample solution. The full code and details are available in t
 <summary>Python</summary>
 
 ```python
+# Uses mcp 1.x (mcp>=1.30.0,<2), see the note in the solution README
 import asyncio
-from mcp.client.streamable_http import streamablehttp_client
+from mcp.client.streamable_http import streamable_http_client
 from mcp import ClientSession
 
 async def main():
-    async with streamablehttp_client("https://learn.microsoft.com/api/mcp") as (read_stream, write_stream, _):
+    async with streamable_http_client("https://learn.microsoft.com/api/mcp") as (read_stream, write_stream, _):
         async with ClientSession(read_stream, write_stream) as session:
             await session.initialize()
             result = await session.call_tool("microsoft_docs_search", {"query": "Azure Functions best practices"})
