@@ -1,18 +1,19 @@
 # Basic Calculator MCP Service
 
 > [!NOTE]
-> This sample uses the legacy HTTP+SSE transport and targets an SDK compatible
-> with MCP `2025-11-25`. New remote servers should use `2026-07-28` Streamable
-> HTTP support.
+> This sample uses Spring Boot 4.1.2, Spring AI 2.0.2 (MCP Java SDK 2.1.0), and
+> LangChain4j 1.23.0, and serves MCP over Streamable HTTP at `/mcp`. The Java SDK
+> currently negotiates MCP `2025-11-25`; move to `2026-07-28` once a Java SDK
+> release supports it. Requires Java 21 or later.
 
-This service provides basic calculator operations through the Model Context Protocol (MCP) using Spring Boot with WebFlux transport. It's designed as a simple example for beginners learning about MCP implementations.
+This service provides basic calculator operations through the Model Context Protocol (MCP) using Spring Boot with the WebFlux Streamable HTTP transport. It's designed as a simple example for beginners learning about MCP implementations.
 
 For more information, see the [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) reference documentation.
 
 ## Overview
 
 The service showcases:
-- Support for SSE (Server-Sent Events)
+- Support for the Streamable HTTP transport (`/mcp` endpoint)
 - Automatic tool registration using Spring AI's `@Tool` annotation
 - Basic calculator functions:
   - Addition, subtraction, multiplication, division
@@ -55,7 +56,7 @@ The service exposes the following API endpoints through the MCP protocol:
 
 ## Test Client
 
-A simple test client is included in the `com.microsoft.mcp.sample.client` package. The `SampleCalculatorClient` class demonstrates the available operations of the calculator service.
+A simple test client is included in the `com.microsoft.mcp.sample.client` package. The `SDKClient` class demonstrates the available operations of the calculator service.
 
 ## Using the LangChain4j Client
 
@@ -83,7 +84,7 @@ integrate the calculator service with a Microsoft Foundry model.
 ### Running the LangChain4j Client
 
 This example demonstrates:
-- Connecting to the calculator MCP server via SSE transport
+- Connecting to the calculator MCP server via the Streamable HTTP transport (`http://localhost:8080/mcp`)
 - Using LangChain4j to create a chat bot that leverages calculator operations
 - Integrating with a deployed Microsoft Foundry model
 
@@ -101,10 +102,10 @@ Microsoft Foundry:
 
 ```java
 String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
-ChatLanguageModel model = OpenAiOfficialChatModel.builder()
+ChatModel model = OpenAiOfficialChatModel.builder()
    .baseUrl(endpoint.replaceAll("/+$", "") + "/openai/v1/")
    .apiKey(System.getenv("AZURE_OPENAI_API_KEY"))
-   .isAzure(true)
+   .isMicrosoftFoundry(true)
    .modelName(System.getenv().getOrDefault("AZURE_OPENAI_DEPLOYMENT", "gpt-5.1"))
     .timeout(Duration.ofSeconds(60))
     .build();
@@ -118,25 +119,49 @@ deployed, which may differ from the underlying model name.
 The project requires the following key dependencies:
 
 ```xml
+<!-- Pinned BOMs manage the Spring AI and LangChain4j module versions -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-bom</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-bom</artifactId>
+            <version>1.23.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 <!-- For MCP Server -->
 <dependency>
     <groupId>org.springframework.ai</groupId>
     <artifactId>spring-ai-starter-mcp-server-webflux</artifactId>
 </dependency>
 
-<!-- For LangChain4j integration -->
+<!-- For LangChain4j integration (the BOM resolves it to 1.23.0-beta33) -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
     <artifactId>langchain4j-mcp</artifactId>
-    <version>${langchain4j.version}</version>
 </dependency>
 
 <!-- For Microsoft Foundry's OpenAI-compatible endpoint -->
 <dependency>
     <groupId>dev.langchain4j</groupId>
-   <artifactId>langchain4j-open-ai-official</artifactId>
-    <version>${langchain4j.version}</version>
+    <artifactId>langchain4j-open-ai-official</artifactId>
 </dependency>
+```
+
+The server switches to the Streamable HTTP transport in `src/main/resources/application.properties`:
+
+```properties
+spring.ai.mcp.server.protocol=STREAMABLE
 ```
 
 ## Building the Project
@@ -166,8 +191,8 @@ The MCP Inspector is a helpful tool for interacting with MCP services. To use it
 2. **Access the web UI** by clicking the URL displayed by the app (typically http://localhost:6274)
 
 3. **Configure the connection**:
-   - Set the transport type to "SSE"
-   - Set the URL to your running server's SSE endpoint: `http://localhost:8080/sse`
+   - Set the transport type to "Streamable HTTP"
+   - Set the URL to your running server's MCP endpoint: `http://localhost:8080/mcp`
    - Click "Connect"
 
 4. **Use the tools**:
@@ -191,7 +216,7 @@ The project includes a Dockerfile for containerized deployment:
    ```
 
 This will:
-- Build a multi-stage Docker image with Maven 3.9.9 and Eclipse Temurin 24 JDK
+- Build a multi-stage Docker image with Maven 3.9.16 and Eclipse Temurin 21 (JRE 21.0.13 at runtime)
 - Create an optimized container image
 - Expose the service on port 8080
 - Start the MCP calculator service inside the container

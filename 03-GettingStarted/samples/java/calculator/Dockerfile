@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.9.9-eclipse-temurin-24-noble AS build
+FROM maven:3.9.16-eclipse-temurin-21-noble AS build
 WORKDIR /app
 
 # Copy only the POM file first to cache dependencies
@@ -14,7 +14,7 @@ COPY src ./src/
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM eclipse-temurin:24-jdk-alpine
+FROM eclipse-temurin:21.0.13_9-jre-alpine
 WORKDIR /app
 # Copy the built artifact from the build stage
 COPY --from=build /app/target/calculator-server-0.0.1-SNAPSHOT.jar /app/application.jar

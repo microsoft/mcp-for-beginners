@@ -80,7 +80,7 @@ for supported protocol revisions. See the
 - [C# SDK](https://github.com/modelcontextprotocol/csharp-sdk) - Maintained in collaboration with Microsoft
 - [Java SDK](https://github.com/modelcontextprotocol/java-sdk) - Maintained in collaboration with Spring AI
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) - The official TypeScript implementation
-- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - The official Python implementation (FastMCP)
+- [Python SDK](https://github.com/modelcontextprotocol/python-sdk) - The official Python implementation (`MCPServer`, called `FastMCP` before SDK 2.x)
 - [Kotlin SDK](https://github.com/modelcontextprotocol/kotlin-sdk) - The official Kotlin implementation
 - [Swift SDK](https://github.com/modelcontextprotocol/swift-sdk) - Maintained in collaboration with Loopwork AI
 - [Rust SDK](https://github.com/modelcontextprotocol/rust-sdk) - The official Rust implementation
