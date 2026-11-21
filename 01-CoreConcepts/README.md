@@ -514,18 +514,16 @@ class WeatherData {
 
 ### Python Example: Building an MCP Server
 
-This example uses fastmcp, so please ensure you install it first:
+This example uses the standalone [FastMCP](https://gofastmcp.com) package (`fastmcp` on PyPI), a higher-level framework built on top of the official MCP Python SDK. Install it first:
 
-```python
-pip install fastmcp
+```bash
+pip install "fastmcp>=4.1.6,<5"
 ```
 Code Sample:
 
 ```python
 #!/usr/bin/env python3
-import asyncio
 from fastmcp import FastMCP
-from fastmcp.transports.stdio import serve_stdio
 
 # Create a FastMCP server
 mcp = FastMCP(
@@ -544,7 +542,6 @@ def get_weather(location: str) -> dict:
 
 # Alternative approach using a class
 class WeatherTools:
-    @mcp.tool()
     def forecast(self, location: str, days: int = 1) -> dict:
         """Gets weather forecast for a location for the specified number of days."""
         return {
@@ -555,12 +552,13 @@ class WeatherTools:
             ]
         }
 
-# Register class tools
+# Register class tools (register the bound method of an instance)
 weather_tools = WeatherTools()
+mcp.tool(weather_tools.forecast)
 
-# Start the server
+# Start the server (uses the stdio transport by default)
 if __name__ == "__main__":
-    asyncio.run(serve_stdio(mcp))
+    mcp.run()
 ```
 
 ### JavaScript Example: Creating an MCP Server
