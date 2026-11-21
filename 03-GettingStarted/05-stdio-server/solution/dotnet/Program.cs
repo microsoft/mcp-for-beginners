@@ -24,7 +24,8 @@ builder.Services
 builder.Services.AddLogging(logging =>
 {
     logging.ClearProviders();
-    logging.AddConsole();
+    // Send all log output to stderr; stdout carries the JSON-RPC messages
+    logging.AddConsole(options => options.LogToStandardErrorThreshold = LogLevel.Trace);
     logging.SetMinimumLevel(LogLevel.Information);
 });
 

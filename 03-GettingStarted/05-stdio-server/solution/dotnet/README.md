@@ -8,7 +8,7 @@ This .NET solution demonstrates how to build an MCP server using the current std
 
 ## Prerequisites
 
-- .NET 9.0 SDK or later
+- .NET 10.0 SDK or later
 - Basic understanding of .NET dependency injection
 
 ## Setup Instructions
@@ -60,10 +60,12 @@ npx @modelcontextprotocol/inspector dotnet run --project .
 
 The server provides these tools:
 
-- **AddNumbers(a, b)**: Add two numbers together
-- **MultiplyNumbers(a, b)**: Multiply two numbers together  
-- **GetGreeting(name)**: Generate a personalized greeting
-- **GetServerInfo()**: Get information about the server
+- **add_numbers(a, b)**: Add two numbers together
+- **multiply_numbers(a, b)**: Multiply two numbers together
+- **get_greeting(name)**: Generate a personalized greeting
+- **get_server_info()**: Get information about the server
+
+The C# methods are called `AddNumbers`, `MultiplyNumbers`, and so on; the MCP C# SDK publishes them in snake_case, so use these names when you call the tools.
 
 ### Testing with Claude Desktop
 
@@ -74,11 +76,13 @@ To use this server with Claude Desktop, add this configuration to your `claude_d
   "mcpServers": {
     "example-stdio-server": {
       "command": "dotnet",
-      "args": ["run", "--project", "path/to/server.csproj"]
+      "args": ["run", "--project", "/absolute/path/to/server.csproj"]
     }
   }
 }
 ```
+
+Use an absolute path, because Claude Desktop doesn't start the server from this folder.
 
 ## Project Structure
 
@@ -122,7 +126,7 @@ dotnet/
 - Use `ILogger` for logging (never write to stdout directly)
 - Build with `dotnet build` before testing
 - Test with the Inspector for visual debugging
-- All logging goes to stderr automatically
+- All logging goes to stderr: `Program.cs` sets `LogToStandardErrorThreshold = LogLevel.Trace` on the console logger, whose default target is stdout
 - The server handles graceful shutdown signals
 
 This solution follows the current MCP specification and demonstrates best practices for stdio transport implementation using .NET.
