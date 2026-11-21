@@ -1,7 +1,7 @@
 # server.py
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse, HTMLResponse
-from mcp.server.fastmcp import FastMCP, Context
+from mcp.server.mcpserver import MCPServer, Context
 from mcp.types import (
     TextContent
 )
@@ -10,7 +10,7 @@ import uvicorn
 import os
 
 # Create an MCP server
-mcp = FastMCP("Streamable DEMO")
+mcp = MCPServer("Streamable DEMO")
 
 app = FastAPI()
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     if "mcp" in sys.argv:
         # Configure MCP server with streamable-http transport
         print("Starting MCP server with streamable-http transport...")
-        # MCP server will create its own FastAPI app with the /mcp endpoint
+        # MCPServer creates its own Starlette app that serves the /mcp endpoint
         mcp.run(transport="streamable-http")
     else:
         # Start FastAPI app for classic HTTP streaming

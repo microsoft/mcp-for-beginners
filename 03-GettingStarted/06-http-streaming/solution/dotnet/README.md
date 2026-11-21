@@ -1,5 +1,7 @@
 # Running this sample
 
+You need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) and [Node.js](https://nodejs.org/) (for the MCP Inspector).
+
 ## -1- Install the dependencies
 
 ```bash
@@ -12,6 +14,8 @@ dotnet restore
 dotnet run
 ```
 
+The server listens on `http://localhost:3001` and serves MCP over Streamable HTTP at `/mcp`.
+
 ## -3- Test the sample
 
 Start a separate terminal before you run the below (ensure the server is still running).
@@ -19,7 +23,7 @@ Start a separate terminal before you run the below (ensure the server is still r
 With the server running in one terminal, open another terminal and run the following command:
 
 ```bash
-npx @modelcontextprotocol/inspector http://localhost:3001
+npx @modelcontextprotocol/inspector http://localhost:3001/mcp
 ```
 
 This should start a web server with a visual interface allowing you to test the sample.
@@ -28,15 +32,17 @@ This should start a web server with a visual interface allowing you to test the 
 
 Once the server is connected: 
 
-- try listing tools and run `add`, with args 2 and 4, you should see 6 in the result.
-- go to resources and resource template and call "greeting", type in a name and you should see a greeting with the name you provided.
+- try listing tools and run `add_numbers`, with args 2 and 4, you should see 6 in the result.
+
+> [!NOTE]
+> The C# method is called `AddNumbers`; the MCP C# SDK publishes it in snake_case as `add_numbers`.
 
 ### Testing in CLI mode
 
 You can launch it directly in CLI mode by running the following command:
 
-```bash 
-npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/list
+```bash
+npx @modelcontextprotocol/inspector --cli http://localhost:3001/mcp --method tools/list
 ```
 
 This will list all the tools available in the server. You should see the following output:
@@ -45,7 +51,7 @@ This will list all the tools available in the server. You should see the followi
 {
   "tools": [
     {
-      "name": "AddNumbers",
+      "name": "add_numbers",
       "description": "Add two numbers together.",
       "inputSchema": {
         "type": "object",
@@ -59,8 +65,6 @@ This will list all the tools available in the server. You should see the followi
             "type": "integer"
           }
         },
-        "title": "AddNumbers",
-        "description": "Add two numbers together.",
         "required": [
           "a",
           "b"
@@ -74,7 +78,7 @@ This will list all the tools available in the server. You should see the followi
 To invoke a tool type:
 
 ```bash
-npx @modelcontextprotocol/inspector --cli http://localhost:3001 --method tools/call --tool-name AddNumbers --tool-arg a=1 --tool-arg b=2
+npx @modelcontextprotocol/inspector --cli http://localhost:3001/mcp --method tools/call --tool-name add_numbers --tool-arg a=1 --tool-arg b=2
 ```
 
 You should see the following output:
@@ -86,8 +90,7 @@ You should see the following output:
       "type": "text",
       "text": "3"
     }
-  ],
-  "isError": false
+  ]
 }
 ```
 

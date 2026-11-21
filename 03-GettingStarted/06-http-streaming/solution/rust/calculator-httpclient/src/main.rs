@@ -10,14 +10,10 @@ async fn main() -> Result<(), RmcpError> {
     // Assume the server is running locally on 8000
     let transport = StreamableHttpClientTransport::from_uri("http://localhost:8000/mcp");
 
-    let client_info = ClientInfo {
-        protocol_version: Default::default(),
-        capabilities: ClientCapabilities::default(),
-        client_info: Implementation {
-            name: "calculator http client".to_string(),
-            version: "0.0.1".to_string(),
-        },
-    };
+    let client_info = ClientInfo::new(
+        ClientCapabilities::default(),
+        Implementation::new("calculator http client", "0.0.1"),
+    );
 
     let client = client_info.serve(transport).await.inspect_err(|e| {
         println!("client error: {:?}", e);
@@ -75,21 +71,21 @@ async fn main() -> Result<(), RmcpError> {
 
     println!("\n🧮 Calculating {} + {}...", a, b);
     let tool_result = client
-        .call_tool(CallToolRequestParam {
-            name: "add".into(),
-            arguments: serde_json::json!({ "a": a, "b": b }).as_object().cloned(),
-        })
+        .call_tool(
+            CallToolRequestParams::new("add").with_arguments(
+                serde_json::json!({ "a": a, "b": b })
+                    .as_object()
+                    .cloned()
+                    .unwrap_or_default(),
+            ),
+        )
         .await?;
 
     // Parse and display result
-    match &tool_result.content.expect("REASON").first() {
-        Some(content) => match &content.raw {
-            rmcp::model::RawContent::Text(text_content) => {
-                println!("✅ Result: {}", text_content.text);
-            }
-            other => {
-                println!("✅ Result: {:?}", other);
-            }
+    match tool_result.content.first() {
+        Some(content) => match content.as_text() {
+            Some(text_content) => println!("✅ Result: {}", text_content.text),
+            None => println!("✅ Result: {:?}", content),
         },
         None => {
             println!("⚠️  No result returned from tool");

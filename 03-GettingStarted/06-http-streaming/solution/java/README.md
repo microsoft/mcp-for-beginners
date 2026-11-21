@@ -7,8 +7,8 @@ This project demonstrates HTTP streaming using Server-Sent Events (SSE) with Spr
 
 ## Prerequisites
 
-- Java 17 or higher
-- Maven 3.6 or higher
+- Java 21 or higher
+- Maven 3.6.3 or higher, installed and on your `PATH` (this sample has no Maven wrapper), for example `brew install maven` on macOS
 
 ## Project Structure
 
@@ -104,14 +104,23 @@ curl "http://localhost:8080/calculate?a=10&b=5&op=add" -H "Accept: text/event-st
 
 ## Expected Output
 
-When running the client, you should see streaming output similar to:
+When running the client, it prints the data of each event as it arrives, after the Spring Boot startup log:
 
+```text
+Calculating: 7.0 mul 5.0
+35.0
 ```
+
+On macOS you may also see an `ERROR` log line saying that Netty cannot load `MacOSDnsServerAddressStreamProvider`; it falls back to the default DNS resolver and the client still works.
+
+The raw stream, as returned by the `curl` command above, looks like this:
+
+```text
 event:info
-data:Calculating: 7.0 mul 5.0
+data:Calculating: 10.0 add 5.0
 
 event:result
-data:35.0
+data:15.0
 ```
 
 ## Supported Operations
@@ -173,12 +182,12 @@ data: 35.0
 
 ## Technology Stack
 
-- **Spring Boot 3.3.1** - Application framework
+- **Spring Boot 4.1.2** - Application framework
 - **Spring WebFlux** - Reactive web framework
 - **Project Reactor** - Reactive streams library
 - **Netty** - Non-blocking I/O server
 - **Maven** - Build tool
-- **Java 17+** - Programming language
+- **Java 21+** - Programming language
 
 ## Next Steps
 

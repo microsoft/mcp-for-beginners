@@ -22,3 +22,20 @@ cargo build
 ```bash
 cargo run
 ```
+
+You should see output similar to:
+
+```text
+🔗 Connected to server:
+   Name: rmcp
+   Version: 2.2.0
+   Protocol: ProtocolVersion("2025-11-25")
+   Instructions: A simple calculator tool
+   Capabilities:
+   • Tools support enabled
+📋 Available tools: 1
+   • add - Adds a and b
+
+🧮 Calculating 3 + 2...
+✅ Result: 5
+```
