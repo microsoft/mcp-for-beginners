@@ -15,10 +15,11 @@ This module demonstrates how to create a simple MCP server with calculator tools
 that can perform basic arithmetic operations (add, subtract, multiply, divide).
 """
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver.exceptions import ToolError
 import math
 
-server = FastMCP("calculator")
+server = MCPServer("calculator")
 
 @server.tool()
 def add(a: float, b: float) -> float:
@@ -41,10 +42,10 @@ def divide(a: float, b: float) -> float:
     Divide a by b and return the result.
     
     Raises:
-        ValueError: If b is zero
+        ToolError: If b is zero
     """
     if b == 0:
-        raise ValueError("Cannot divide by zero")
+        raise ToolError("Cannot divide by zero")
     return a / b
 
 @server.tool()
@@ -53,10 +54,10 @@ def sqrt(a: float) -> float:
     Return the square root of a.
 
     Raises:
-        ValueError: If a is negative.
+        ToolError: If a is negative.
     """
     if a < 0:
-        raise ValueError("Cannot compute the square root of a negative number.")
+        raise ToolError("Cannot compute the square root of a negative number.")
     return math.sqrt(a)
 ```
 
@@ -65,7 +66,7 @@ def sqrt(a: float) -> float:
 - **Import the `math` module**: To perform mathematical operations beyond basic arithmetic, Python provides the built-in `math` module. This module includes a variety of mathematical functions and constants. By importing it using `import math`, you gain access to functions like `math.sqrt()`, which computes the square root of a number.
 - **Function Definition**: The `@server.tool()` decorator registers the `sqrt` function as a tool accessible by your AI agent.
 - **Input Parameter**: The function accepts a single argument `a` of type `float`.
-- **Error Handling**: If `a` is negative, the function raises a `ValueError` to prevent computing the square root of a negative number, which is not supported by the `math.sqrt()` function.
+- **Error Handling**: If `a` is negative, the function raises a `ToolError` to prevent computing the square root of a negative number, which is not supported by the `math.sqrt()` function. In MCP Python SDK 2.x, a `ToolError` message is returned to the agent (`isError: true`) so the model can explain the problem; any other exception, such as `ValueError`, is treated as a crash and the agent only sees `Error executing tool sqrt`.
 - **Return Value**: For non-negative inputs, the function returns the square root of `a` using Python's built-in `math.sqrt()` method.
 
 ## 🔄 Restarting the Server
